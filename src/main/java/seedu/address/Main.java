@@ -18,6 +18,8 @@ import javafx.application.Application;
  * By having a separate main class (Main) that doesn't extend Application
  * to be the entry point of the application, we avoid this issue.
  */
+
+//* TODO Delete this line
 public class Main {
     public static void main(String[] args) {
         Application.launch(MainApp.class, args);
