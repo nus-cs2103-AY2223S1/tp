@@ -70,3 +70,4 @@ shadowJar {
 }
 
 defaultTasks 'clean', 'test'
+
