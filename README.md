@@ -2,6 +2,8 @@
 
 ![Ui](docs/images/Ui.png)
 
+# CS2103T Team Project [W08-4]
+
 * This is **a sample project for Software Engineering (SE) students**.<br>
   Example usages:
   * as a starting point of a course project (as opposed to writing everything from scratch)
