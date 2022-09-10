@@ -9,13 +9,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Shum Jie Hui
 
 <img src="images/johndoe.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[homepage]()]
+[[github](https://github.com/ShummyOwnzYou)]
+[[portfolio](team/jiehui.md)]
 
 * Role: Project Advisor
 
@@ -23,17 +23,17 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/samuelcheongws/)]
+[[portfolio](team/samuelcheonws.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Liu Yijun
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/L1uY1jun)] [[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Data
@@ -48,11 +48,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe   
+
+### Benjy Tan
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](https://github.com/benjytan45678)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
