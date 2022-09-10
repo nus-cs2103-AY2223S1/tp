@@ -19,14 +19,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Samuel Cheong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/samuelcheongws.jpg" width="200px">
 
 [[github](https://github.com/samuelcheongws/)]
 [[portfolio](team/samuelcheonws.md)]
 
-* Role: Team Lead
+* Role: Team Member
 * Responsibilities: UI
 
 ### Johnny Doe
