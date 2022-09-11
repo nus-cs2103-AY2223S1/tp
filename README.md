@@ -3,3 +3,4 @@
 ![Ui](docs/images/Ui.png)
 
 * PayMeLah
+[Visit our page!](https://AY2223S1-CS2103T-W13-3.github.io/tp)
