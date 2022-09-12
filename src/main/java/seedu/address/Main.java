@@ -19,11 +19,6 @@ import javafx.application.Application;
  * to be the entry point of the application, we avoid this issue.
  */
 public class Main {
-
-    /**
-     * Dummy comment
-     * @param args dummy comment
-     */
     public static void main(String[] args) {
         Application.launch(MainApp.class, args);
     }
