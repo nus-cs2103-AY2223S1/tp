@@ -1,3 +1,0 @@
-testing for the commit
-
-CodeCov is the most stupidest thing I've ever seen
