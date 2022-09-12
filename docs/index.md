@@ -13,6 +13,7 @@ title: AddressBook Level-3
 * If you are interested in using AddressBook, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
 * If you are interested about developing AddressBook, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
 
+[![codecov](https://codecov.io/gh/AY2223S1-CS2103T-T10-2/tp/branch/master/graph/badge.svg?token=74PQ3HBWNG)](https://codecov.io/gh/AY2223S1-CS2103T-T10-2/tp)
 
 **Acknowledgements**
 
