@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/AY2223S1-CS2103T-T08-1/tp/branch/master/graph/badge.svg?token=8QAGZO6Z9W)](https://codecov.io/gh/AY2223S1-CS2103T-T08-1/tp)
+
 ---
 layout: page
 title: Testing guide
