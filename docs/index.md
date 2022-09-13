@@ -4,7 +4,7 @@ title: PleaseHireUs
 ---
 
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
-[![codecov](https://codecov.io/gh/nus-cs2103-AY2223S1/tp/branch/master/graph/badge.svg?token=A2FU6P932B)](https://codecov.io/gh/nus-cs2103-AY2223S1/tp)
+[![codecov](https://codecov.io/gh/AY2223S1-CS2103T-W17-4/tp/branch/master/graph/badge.svg?token=5KEF39JO86)](https://codecov.io/gh/AY2223S1-CS2103T-W17-4/tp)
 
 ![Ui](images/Ui.png)
 
