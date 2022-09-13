@@ -17,3 +17,5 @@ title: AddressBook Level-3
 **Acknowledgements**
 
 * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+
+[![codecov](https://codecov.io/gh/nus-cs2103-AY2223S1/tp/branch/master/graph/badge.svg?token=A2FU6P932B)](https://codecov.io/gh/nus-cs2103-AY2223S1/tp)
