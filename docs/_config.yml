@@ -1,4 +1,4 @@
-title: "AB-3"
+title: "HealthConnect"
 theme: minima
 
 header_pages:
@@ -8,7 +8,7 @@ header_pages:
 
 markdown: kramdown
 
-repository: "se-edu/addressbook-level3"
+repository: "https://ay2223s1-cs2103-w08-1.github.io/tp"
 github_icon: "images/github-icon.png"
 
 plugins:
