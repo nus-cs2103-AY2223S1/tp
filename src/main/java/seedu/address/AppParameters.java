@@ -16,7 +16,7 @@ import seedu.address.commons.util.FileUtil;
 public class AppParameters {
     private static final Logger logger = LogsCenter.getLogger(AppParameters.class);
 
-    private Path configPath; 
+    private Path configPath;
 
     public Path getConfigPath() {
         return configPath;
