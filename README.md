@@ -1,4 +1,4 @@
-[![CI Status](https://github.com/nus-cs2103-AY2223S1/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/nus-cs2103-AY2223S1/tp/actions/workflows/gradle.yml)
+[![CI Status](https://github.com/AY2223S1-CS2103T-T14-2/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2223S1-CS2103T-T14-2/tp/actions/workflows/gradle.yml)
 [![Code coverage](https://codecov.io/gh/AY2223S1-CS2103T-T14-2/tp/branch/master/graph/badge.svg?token=HGCQQ52YOS)](https://codecov.io/gh/AY2223S1-CS2103T-T14-2/tp)
 
 ![Ui](docs/images/Ui.png)
