@@ -2,6 +2,7 @@
 
 ![Ui](docs/images/Ui.png)
 
+* This project completed by Team CS2103T-F11-2.
 * This is **a sample project for Software Engineering (SE) students**.<br>
   Example usages:
   * as a starting point of a course project (as opposed to writing everything from scratch)
