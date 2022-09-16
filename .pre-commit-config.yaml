@@ -4,6 +4,7 @@ repos:
     hooks:
       - id: cpd
       - id: check-no-tabs
+        exclude: ^Makefile$
       - id: check-eof-newline
       - id: check-trailing-whitespace
       - id: checkstyle
