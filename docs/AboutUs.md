@@ -7,16 +7,27 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ## Project team
 
-### Neo Shi Wen
+### Danny (Kim Hyeongcheol)
 
-<img src="images/about-us/neoshiwen.png" width="200px">
+<img src="images/about-us/bluesky0911.png" width="200px">
 
-[github](http://github.com/shwene) |
-[portfolio](team/neo-shi-wen.md)
+[github](https://github.com/bluesky0911) | 
+[portfolio](team/bluesky0911.md)
 
-* Role: Developer
+* Role: Project Advisor, Head Tutor (CS2103T)
+
+### Tan Chee Heng
+
+<img src="images/cheeheng.png" width="200px">
+
+[github](http://github.com/cheeheng) |
+[portfolio](team/cheeheng.md)
+
+* Role: Developer / Tester
 * Responsibilities:
-  * Implement links
+  * In charge of modules
+  * (coming soon)
+>>>>>>> master
 
 ### Tan Jia Rong
 
@@ -28,4 +39,24 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Developer
 * Responsibilities:
   * Implement homepage and module navigation
+  
+### Teo Yu Qi
 
+<img src="images/about-us/teoyuqi.png" width="200px">
+
+[github](http://github.com/teoyuqi) | 
+[portfolio](team/teoyuqi.md)
+* Developer
+* Responsibilities:
+  * Implement task adding and deleting
+
+### Neo Shi Wen
+
+<img src="images/about-us/neoshiwen.png" width="200px">
+
+[github](http://github.com/shwene) |
+[portfolio](team/neo-shi-wen.md)
+
+* Role: Developer
+* Responsibilities:
+  * Implement links
