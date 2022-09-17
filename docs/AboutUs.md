@@ -17,6 +17,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/jq1836.md)]
 
 * Role: Team Lead
+* Responsibilities: Scheduling and tracking
 
 ### Alvin Jiang
 
