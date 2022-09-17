@@ -270,14 +270,13 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​ | I want to …​                                                                   | So that I can…​                                                                  |
+|----------|---------|--------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
+| `* * *`  | cashier | quickly search for customers’ membership details within the system             | verify their rewards/points                                                      |
+| `* * *`  | cashier | search for customer details through various inputs (email, phone number, name) | retrieve their information flexibly                                              |
+| `* * *`  | cashier | update customer/s membership details (vouchers, points, rewards)               | remove the voucher/points once they claim them                                   |
+| `* * *`  | cashier | add new members to my list                                                     | apply for membership for customers                                               |
+| `* * *`  | cashier | remove members from the list                                                   | make sure membership details are correct for customers who are no longer members |
 
 *{More to be added}*
 
