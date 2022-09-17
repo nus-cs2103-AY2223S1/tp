@@ -16,6 +16,29 @@ We are a team based in the [School of Computing, National University of Singapor
 
 * Role: Project Advisor, Head Tutor (CS2103T)
 
+### Ek Wei Rui
+
+<img src="./images/about-us/ekweirui.png" width="200px">
+
+[github](https://github.com/ekweirui) |
+[portfolio](team/ekweirui.md)
+
+* Role: Developer
+* Responsibilities:
+  * Implement contacts management
+  * Team pull request reviewer
+
+### Neo Shi Wen
+
+<img src="images/about-us/neoshiwen.png" width="200px">
+
+[github](http://github.com/shwene) |
+[portfolio](team/neo-shi-wen.md)
+
+* Role: Developer
+* Responsibilities:
+  * Implement links
+
 ### Tan Chee Heng
 
 <img src="images/cheeheng.png" width="200px">
@@ -48,14 +71,3 @@ We are a team based in the [School of Computing, National University of Singapor
 * Developer
 * Responsibilities:
   * Implement task adding and deleting
-
-### Neo Shi Wen
-
-<img src="images/about-us/neoshiwen.png" width="200px">
-
-[github](http://github.com/shwene) |
-[portfolio](team/neo-shi-wen.md)
-
-* Role: Developer
-* Responsibilities:
-  * Implement links
