@@ -15,5 +15,5 @@ We are a team based in the [School of Computing, National University of Singapor
 [portfolio](team/tan-jia-rong.md)
 
 * Role: Developer
-* Responsibilities: 
+* Responsibilities:
   * Implement homepage and module navigation
