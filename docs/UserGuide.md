@@ -27,8 +27,7 @@ while still having the benefits of a Graphical User Interface (GUI).
    [image coming soon]
 
 1. Type the command in the command box and press Enter to execute it. e.g. 
-   `add module`. For more commands, you may refer to the [command summary]
-   (#11-command-summary)
+   `add module`. For more commands, you may refer to the [command summary](#11-command-summary)
    
 1. Refer to the [Features](#2-features) for details of each command.
 
@@ -70,21 +69,30 @@ Action | Format, Examples
 #### 2.1.1. Add module: `add module`
 #### 2.1.2. Delete Module: `delete module`
 
+<br>
+
 ### 2.2. Adding and deleting tasks
 #### 2.2.1. Add task: `add tasks`
 #### 2.2.2 Delete task: `delete tasks`
+
+<br>
 
 ### 2.3. Adding and deleting links
 #### 2.3.1. Add link
 #### 2.3.2. Delete link
 
+<br>
+
 ### 2.4. Adding and deleting contacts
 #### 2.4.1. Adding contact
 #### 2.4.2. Delete contact
 
+<br>
+
 ### 2.5. Navigation
 #### 2.5.1. Navigate to home
 #### 2.5.2. Navigate between modules
+<br>
 
 ### 2.6. Exiting The Program : `exit`
 
@@ -92,11 +100,17 @@ Exits the program.
 
 Format: `exit`
 
+<br>
+
 ### 2.7. Saving The Data
 Plannit data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
+<br>
+
 ### 2.8. Loading The Data
 If save data exists, data is automatically loaded when the program starts. There is no need to load manually.
+
+<br>
 
 ### 2.9. Editing The Data File
 
@@ -116,6 +130,7 @@ all data and start with an empty data file at the next run.
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+<br>
 <br>
 [More questions coming soon]
 
