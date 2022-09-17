@@ -26,3 +26,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Backend
+
+### Tan Wen Cong
+
+<img src="images/tanwencong.png" width="200px">
+
+[[github]](http://github.com/tanwencong)
+[[portfolio]](team/tanwencong.md)
+
+* Role: Developer
+* Responsibilities: Data
