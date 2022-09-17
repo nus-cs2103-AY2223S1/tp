@@ -5,55 +5,23 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Danny (Kim Hyeongcheol)
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/about-us/bluesky0911.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/bluesky0911)] | 
+[portfolio](team/bluesky0911.md)
 
-* Role: Project Advisor
+* Role: Project Advisor, Head Tutor (CS2103T)
 
-### Jane Doe
+### Yu Qi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/about-us/teoyuqi.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
+[[github](http://github.com/teoyuqi)] | 
+[portfolio](team/teoyuqi.md)
+* Developer
+* Responsibilities:
+  * Implement task adding and deleting
