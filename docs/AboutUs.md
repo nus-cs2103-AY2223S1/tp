@@ -53,7 +53,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Tan Jia Rong
 
-<img src="./images/about-us/tan-jia-rong.png" width="200px">
+<img src="./images/tan-jia-rong.png" width="200px">
 
 [github](https://github.com/Tan-Jia-Rong) |
 [portfolio](team/tan-jia-rong.md)
@@ -64,7 +64,7 @@ We are a team based in the [School of Computing, National University of Singapor
   
 ### Teo Yu Qi
 
-<img src="./images/about-us/teoyuqi.png" width="200px">
+<img src="./images/teoyuqi.png" width="200px">
 
 [github](http://github.com/teoyuqi) | 
 [portfolio](team/teoyuqi.md)
