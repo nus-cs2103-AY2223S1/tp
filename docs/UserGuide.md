@@ -3,10 +3,25 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Yellow Pages (YP) is a desktop app for managing contacts, optimised for use via a Graphical User Interface (GUI). If you can type fast, YP can get your contacts and scheduling done faster than traditional GUI apps.
 
-* Table of Contents
-{:toc}
+* Quick Start
+* Features
+  * Viewing help
+  * Adding a contact
+  * Listing all contacts
+  * Editing a contact
+  * Locating contact by name
+  * Locating contact by tag
+  * Deleting a contact
+  * Clearing all contacts
+  * Adding a meeting
+  * Searching meetings
+  * Filtering meetings
+  * Exiting the program
+  * Saving the data
+* FAQ
+* Command Summary
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -14,7 +29,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `yellowpages.jar` from [here](to-be-added).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
@@ -24,15 +39,15 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
-   * **`clear`** : Deletes all contacts.
+    * **`clear`** : Deletes all contacts.
 
-   * **`exit`** : Exits the app.
+    * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -104,7 +119,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+  specifying any tags after it.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -128,6 +143,16 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
+### Locating contact by tag: `findtag`
+
+Find persons whose tags contain the corresponding tag.
+
+Format: `find TAG [MORE_TAG]`
+
+* The search is case-insensitive. e.g `friend` will match `friends`
+* Only the Tag is searched.
+* Only full words will be matched e.g. `Friend` will not match `Friends`
+
 ### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
@@ -147,6 +172,33 @@ Examples:
 Clears all entries from the address book.
 
 Format: `clear`
+
+### Adding a meeting : `addmeeting`
+
+Adds a meeting to the meeting list.
+
+Format: `addmeeting MEETING_TITLE /at MEETING_DATE [/description MEETING_DESCRIPTION] [/contact INDEX]`
+
+* `index` must be a positive integer corresponding to a contact
+
+### Searching a meeting: `searchmeeting`
+
+Searches a meeting by the meeting's title.
+
+Format `searchmeeting MEETING_TITLE`
+
+* The search is case-insensitive. e.g `project` will match `Project`
+* Only the Meeting Title is searched.
+* Only full words will be matched e.g. `Project` will not match `Projects`
+
+### Filtering Meetings: `filtermeeting`
+
+Format: `filtermeeting [/after DATE] [/before DATE] [/between DATE1 DATE2]`
+
+* Only one of the `/after`, `/before`, `/between` arguments needs to be added
+* `/after` lists all meetings that are after `DATE`
+* `/before` lists all meetings that are before `DATE`
+* `/between` lists all meetings that are between `DATE1` & `DATE2`
 
 ### Exiting the program : `exit`
 
@@ -188,5 +240,10 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Find Tag** | `find TAG [MORE_TAGS]`<br> e.g., `find friend CS2100`
+**Add Meeting** | `addmeeting MEETING_TITLE /at MEETING_DATE [/description MEETING_DESCRIPTION] [/contact INDEX]` <br> e.g., `addmeeting Project Meeting /at 29 Jan 2022`
+**Search Meeting** | `searchmeeting MEETING_TITLE` <br> e.g., searchmeeting Project Meeting
+**Filter Meeting** | `filtermeeting [/after DATE] [/before DATE] [/between DATE1 DATE2]` <br> e.g., filtermeeting /after 29 Jan 2022
 **List** | `list`
 **Help** | `help`
+
