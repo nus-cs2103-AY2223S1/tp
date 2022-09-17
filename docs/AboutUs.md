@@ -46,3 +46,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Data
+
+### Wu Haohui
+
+<img src="images/wuhaohui1231.png" width="200px">
+
+[[github](https://github.com/WuHaohui1231)]
+[[portfolio](team/johndoe.md)]
+
+* Role: Developer
+* Responsibilities: Backend
