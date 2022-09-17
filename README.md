@@ -1,4 +1,4 @@
-[![CI Status](https://github.com/AY2223S1-CS2103T-W09-1/tp/actions/workflows/gradle.yml/badge.svg?branch=master)](https://github.com/AY2223S1-CS2103T-W09-1/tp/actions/workflows/gradle.yml)
+[![Java CI](https://github.com/AY2223S1-CS2103T-T10-1/tp/actions/workflows/gradle.yml/badge.svg?branch=master)](https://github.com/AY2223S1-CS2103T-T10-1/tp/actions/workflows/gradle.yml)
 [![codecov](https://codecov.io/gh/AY2223S1-CS2103T-T10-1/tp/branch/master/graph/badge.svg?token=VXM3PV6R6B)](https://codecov.io/gh/AY2223S1-CS2103T-T10-1/tp)
 
 # Plannit
