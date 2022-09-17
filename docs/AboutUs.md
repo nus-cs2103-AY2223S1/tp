@@ -27,7 +27,6 @@ We are a team based in the [School of Computing, National University of Singapor
 * Responsibilities:
   * In charge of modules
   * (coming soon)
->>>>>>> master
 
 ### Tan Jia Rong
 
