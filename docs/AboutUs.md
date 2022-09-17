@@ -9,7 +9,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Danny (Kim Hyeongcheol)
 
-<img src="images/about-us/bluesky0911.png" width="200px">
+<img src="images/bluesky0911.png" width="200px">
 
 [github](https://github.com/bluesky0911) | 
 [portfolio](team/bluesky0911.md)
@@ -18,7 +18,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Ek Wei Rui
 
-<img src="./images/about-us/ekweirui.png" width="200px">
+<img src="./images/ekweirui.png" width="200px">
 
 [github](https://github.com/ekweirui) |
 [portfolio](team/ekweirui.md)
@@ -30,7 +30,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Neo Shi Wen
 
-<img src="images/about-us/neoshiwen.png" width="200px">
+<img src="images/neoshiwen.png" width="200px">
 
 [github](http://github.com/shwene) |
 [portfolio](team/neo-shi-wen.md)
@@ -53,7 +53,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Tan Jia Rong
 
-<img src="./images/about-us/tan-jia-rong.png" width="200px">
+<img src="./images/tan-jia-rong.png" width="200px">
 
 [github](https://github.com/Tan-Jia-Rong) |
 [portfolio](team/tan-jia-rong.md)
@@ -64,7 +64,7 @@ We are a team based in the [School of Computing, National University of Singapor
   
 ### Teo Yu Qi
 
-<img src="images/about-us/teoyuqi.png" width="200px">
+<img src="images/teoyuqi.png" width="200px">
 
 [github](http://github.com/teoyuqi) | 
 [portfolio](team/teoyuqi.md)
