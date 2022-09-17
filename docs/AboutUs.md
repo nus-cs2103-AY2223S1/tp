@@ -11,10 +11,22 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/about-us/bluesky0911.png" width="200px">
 
-[[github](https://github.com/bluesky0911)] | 
+[github](https://github.com/bluesky0911) | 
 [portfolio](team/bluesky0911.md)
 
 * Role: Project Advisor, Head Tutor (CS2103T)
+
+### Tan Chee Heng
+
+<img src="images/cheeheng.png" width="200px">
+
+[github](http://github.com/cheeheng) |
+[portfolio](team/cheeheng.md)
+
+* Role: Developer / Tester
+* Responsibilities:
+  * In charge of modules
+  * (coming soon)
 
 ### Tan Jia Rong
 
@@ -27,11 +39,11 @@ We are a team based in the [School of Computing, National University of Singapor
 * Responsibilities:
   * Implement homepage and module navigation
   
-### Yu Qi
+### Teo Yu Qi
 
 <img src="images/about-us/teoyuqi.png" width="200px">
 
-[[github](http://github.com/teoyuqi)] | 
+[github](http://github.com/teoyuqi) | 
 [portfolio](team/teoyuqi.md)
 * Developer
 * Responsibilities:
