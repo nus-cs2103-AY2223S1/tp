@@ -1,11 +1,14 @@
 ---
 layout: page
-title: John Doe's Project Portfolio Page
+title: Tan Chee Heng's Project Portfolio Page
 ---
 
-### Project: AddressBook Level 3
+### Project: Plannit
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+Plannit is a desktop application used to help NUS CS students who are furious typists to manage their academic details.
+
+This application will be the go-to platform for fast-typers to access all module links and information without needing to tediously navigate through multiple websites.
+
 
 Given below are my contributions to the project.
 
@@ -17,7 +20,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
 
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=cheeheng&breakdown=true)
 
 * **Project management**:
   * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
