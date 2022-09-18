@@ -43,6 +43,9 @@ public class CommandBox extends UiPart<Region> {
                 case FindCommand.COMMAND_WORD:
                     resultDisplay.setFeedbackToUser(FindCommand.MESSAGE_USAGE);
                     break;
+                case "":
+                    resultDisplay.setFeedbackToUser("");
+                    break;
                 default:
                     break;
             }
