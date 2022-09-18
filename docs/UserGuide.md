@@ -197,11 +197,11 @@ RC4HDB has the ability to import data through .csv files. In order for RC4HDB to
 
 Format: `import FILENAME`
 
+:information_source: The csv file that you want to have imported must follow this [format](#csv-file-format).<br>
+
 Examples:
 * `import students.csv`
 * `import residents.csv`
-
-:information_source: The csv file that you want to have imported must follow this [format](#csv-file-format).<br>
 
 ### Exporting to CSV file: `export`
 
@@ -209,10 +209,10 @@ RC4HDB has the ability to export data to .csv files. The file will be safe to re
 
 Format: `export FILENAME`
 
+:information_source: The csv file will be exported in this [format](#csv-file-format).<br>
+
 Examples:
 * `export students.csv` will export the current data file into a csv file named `students.csv`
-
-:information_source: The csv file will be exported in this [format](#csv-file-format).<br>
 
 ### CSV file format
 
@@ -258,9 +258,6 @@ Action | Format, Examples
 
 
 ---
-
-[Back to Top](#table-of-contents)
-
 
 
 
