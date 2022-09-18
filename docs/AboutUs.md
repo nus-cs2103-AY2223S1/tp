@@ -11,10 +11,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Ng Yan Jia
 
-<img src="images/NgYanJia.png" width="200px">
+<img src="images/ngyanjia.png" width="200px">
 
 [[github](https://github.com/sprintaway)]
-[[portfolio](team/NgYanJia.md)]
+[[portfolio](team/ngyanjia.md)]
 
 * Role: Developer
 
