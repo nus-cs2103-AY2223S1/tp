@@ -13,8 +13,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/tjanenggerkevin.png" width="200px">
 
-[[github](https://github.com/Nephelite)]
-[[portfolio](team/tjanenggerkevin.md)]
+[[github](https://github.com/Nephelite)][[portfolio](team/nephelite.md)]
 
 * Role: Team Leader, Gradle Expert, Agenda Maker
 * Responsibilities: UI, Logic
