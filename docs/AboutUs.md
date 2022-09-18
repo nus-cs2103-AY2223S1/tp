@@ -30,7 +30,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Edward Mualim
 
-<img src="images/edwardmualim.png" width="200px">
+<img src="images/edfernape.png" width="200px">
 
 [[github](https://github.com/edfernape)] [[portfolio](team/johndoe.md)]
 
