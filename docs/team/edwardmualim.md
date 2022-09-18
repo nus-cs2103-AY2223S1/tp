@@ -9,24 +9,12 @@ BookFace replaces a paper-based system or manual tracking of books, providing gr
 
 Given below are my contributions to the project.
 
-* **New Feature**: 
-
+* **New Feature**:
 * **Code contributed**: [RepoSense link]()
-
 * **Project management**:
-    * 
-
 * **Enhancements to existing features**:
-    * 
-
 * **Documentation**:
     * User Guide:
-        * 
     * Developer Guide:
-        * 
-
 * **Community**:
-    * 
-
-* **Tools**:
-    * 
+* **Tools**
