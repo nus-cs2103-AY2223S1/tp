@@ -110,47 +110,41 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Returning a book: `return`
 
-Finds persons whose names contain any of the given keywords.
+Returns the book which is loaned by some user.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `return <user index> <book index>`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Returns the book which is loaned by some user at their respective specified `INDEXES`.
+* The indexes refer to the index number shown in the displayed user and book list respectively.
+* The indexes **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `return 3 2` returns book number two which is loaned by user number three.
 
-### Deleting a person : `delete`
+### Loaning a book : `loan`
 
-Deletes the specified person from the address book.
+Loans a book to some user
 
-Format: `delete INDEX`
+Format: `loan <user index> <book index>`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Loans the book to some user at their respective specified `INDEXES`.
+* The indexes refer to the index number shown in the displayed user and book list respectively.
+* The indexes **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `loan 3 2` loans the second book in the book list to the third user in the user list.
 
-### Clearing all entries : `clear`
+### List all users : `list users`
 
-Clears all entries from the address book.
+Shows a list of all users in the address book.
 
-Format: `clear`
+Format: `list users`
 
-### Exiting the program : `exit`
+### List all books : `list books`
 
-Exits the program.
+Shows a list of all books in the address book.
 
 Format: `exit`
 
