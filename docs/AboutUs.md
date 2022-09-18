@@ -19,14 +19,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Parth Gujar
 
 <img src="images/parth-io.png" width="200px">
 
 [[github](http://github.com/parth-io)]
 [[portfolio](team/parth-io.md)]
 
-* Role: -
+* Role: Developer
 * Responsibilities: -
 
 ### Johnny Doe
