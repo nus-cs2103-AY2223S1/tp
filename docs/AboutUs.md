@@ -19,15 +19,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Parth Gujar
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/parth-io.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/parth-io)]
+[[portfolio](team/parth-io.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: -
 
 ### Edward Mualim
 
@@ -38,22 +38,22 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Teh Yi Kuang
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/TYKCodes)]
+[[portfolio](team/tykcodes.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: -
 
-### James Doe
+### Kiyan Ang Ping Young
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kiyan.jpg" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/kynapy)]
+[[portfolio](team/kynapy.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: -
