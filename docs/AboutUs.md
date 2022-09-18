@@ -30,10 +30,10 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Neo Shi Wen
 
-<img src="./images/neoshiwen.png" width="200px">
+<img src="./images/shwene.png" width="200px">
 
 [github](http://github.com/shwene) |
-[portfolio](team/neo-shi-wen.md)
+[portfolio](team/shwene.md)
 
 * Role: Developer
 * Responsibilities:
