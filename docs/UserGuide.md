@@ -148,6 +148,36 @@ Clears all entries from the address book.
 
 Format: `clear`
 
+### Listing all reviews: rlist
+
+Shows a list of all reviews in the book.
+
+Format: `rlist`
+
+### Deleting a stall: sdel
+
+Deletes the specified stall from the address book at the specified `INDEX`.
+
+Format: `sdel INDEX`
+
+* The index refers to the index number shown in the displayed stalls list.
+* The index must be a positive integer 1, 2, 3, …​
+
+Example:
+* `sdel 2` deletes the 2nd stall in the application.
+
+### Deleting a review: rdel
+
+Deletes a review at the specified `INDEX`.
+
+Format: `rdel INDEX`
+
+* The index refers to the index number shown in the displayed reviews list.
+* The index must be a positive integer 1, 2, 3, …​
+
+Example:
+* `rdel 2` deletes the 2nd review in the application.
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -156,19 +186,15 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+FoodWhere data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+FoodWhere data are saved as a JSON file `[JAR file location]/data/foodwhere.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file make its format invalid, FoodWhere will discard all data and start with an empty data file at the next run.
 </div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
