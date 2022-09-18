@@ -154,7 +154,7 @@ Format: `list loans`
 
 Clears all book and user entries from BookFace.
 
-Format: `clear all` 
+Format: `clear all`
 
 ### List all books : `list books`
 
