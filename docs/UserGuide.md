@@ -5,6 +5,8 @@ title: User Guide
 
 RC4HDB is a **desktop app for managing RC4 housing related information, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, RC4HDB can be a convenient and intuitive way to facilitate your day-to-day workflow as a RC4 housing management staff.
 
+## Table of Contents
+
 * [Quick Start](#quick-start)
 * [Features](#features)
     * [Viewing help : help](#viewing-help--help)
@@ -16,10 +18,10 @@ RC4HDB is a **desktop app for managing RC4 housing related information, optimize
     * [Deleting a resident : delete](#deleting-a-resident--delete)
     * [Clearing all entries : clear](#clearing-all-entries--clear)
     * [Exiting the program : exit](#exiting-the-program--exit)
-    * [Saving data](#saving-the-data)
+    * [Saving the data](#saving-the-data)
     * [Editing the data file](#editing-the-data-file)
     * [Importing from csv file : import](#importing-from-csv-file--import)
-    * [Exporting to csv file](#exporting-to-csv-file-export)
+    * [Exporting to csv file : export](#exporting-to-csv-file-export)
     * [CSV file format](#csv-file-format)
 * [Frequently Asked Questions](#faq)
 * [Command Summary](#command-summary)
@@ -181,7 +183,9 @@ RC4HDB data are saved in the hard disk automatically after any command that chan
 
 ### Editing the data file
 
-RC4HDB data are saved as a JSON file `[JAR file location]/data/RC4data.json`. Advanced users are welcome to update data directly by editing that data file. Please do take note that this is not the recommended method to edit data.
+RC4HDB data are saved as a JSON file `[JAR file location]/data/RC4data.json`. Advanced users are welcome to update data directly by editing that data file.
+
+:information_source: Do take note that this is not the recommended method to edit data.<br>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, RC4HDB will discard all data and start with an empty data file at the next run.
@@ -191,24 +195,24 @@ If your changes to the data file makes its format invalid, RC4HDB will discard a
 
 RC4HDB has the ability to import data through .csv files. In order for RC4HDB to find your files, place them in the data directory, `[JAR file location]/data`.
 
-:information_source: The csv file that you want to have imported must follow this [format]().<br>
-
 Format: `import FILENAME`
 
 Examples:
 * `import students.csv`
 * `import residents.csv`
 
+:information_source: The csv file that you want to have imported must follow this [format](#csv-file-format).<br>
+
 ### Exporting to CSV file: `export`
 
 RC4HDB has the ability to export data to .csv files. The file will be safe to remove from the directory, `[JAR file location]/data`.
-
-:information_source: The csv file will be exported in this [format]().<br>
 
 Format: `export FILENAME`
 
 Examples:
 * `export students.csv` will export the current data file into a csv file named `students.csv`
+
+:information_source: The csv file will be exported in this [format](#csv-file-format).<br>
 
 ### CSV file format
 
@@ -231,7 +235,7 @@ _Details coming soon ..._ --->
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: First, export the data from your computer using the export command and transfer the file to the new computer. Install RC4HDB on the other computer and use the import command to import the data from the csv file.
 
-**Q**: Can I search using fields other than the name?
+**Q**: Can I search using fields other than the name?<br>
 **A**: You can use the filter command to search for people using the other fields.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -252,6 +256,10 @@ Action | Format, Examples
 **Import** | `import FILENAME` <br> e.g., `import students.csv`
 **Export** | `export FILENAME` <br> e.g., `export students.csv`
 
+
+---
+
+[Back to Top](#table-of-contents)
 
 
 
