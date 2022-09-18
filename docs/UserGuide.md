@@ -6,7 +6,7 @@ title: User Guide
 AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -24,15 +24,15 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
-   * **`clear`** : Deletes all contacts.
+    * **`clear`** : Deletes all contacts.
 
-   * **`exit`** : Exits the app.
+    * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -112,43 +112,17 @@ Format: `delete user <user index>`
 Examples:
 *  `delete user 12`
 
-### Locating persons by name: `find`
+### Show all books that are loaned : `list loans`
 
-Finds persons whose names contain any of the given keywords.
+Lists all the books that are currently loaned out.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `list loans`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+### Clearing all entries : `clear all`
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+Clears all book and user entries from BookFace.
 
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-
-### Clearing all entries : `clear`
-
-Clears all entries from the address book.
-
-Format: `clear`
+Format: `clear all`
 
 ### Exiting the program : `exit`
 
@@ -168,27 +142,27 @@ AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**Q**: How do I clear the sample data on BookFace?<br>
+**A**: Simply use the `clear all` command.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action          | Format, Examples                                                                                                |
+|-----------------|-----------------------------------------------------------------------------------------------------------------|
+| **Add book**    | `add book [t/TITLE] [a/AUTHOR]` <br> E.g: `add n/James and The Giant Peach  a/Roald Dahl`                       |
+| **Add user**    | `add user [n/NAME] [p/PHONE_NUMBER] [e/EMAIL]` <br> E.g: `add user n/John Doe p/91234567 e/johndoe@outlook.com` |
+| **Clear**       | `clear all`                                                                                                     |
+| **Delete book** | `delete book BOOK_INDEX`<br> E.g: `delete book 1`                                                               |
+| **Delete user** | `delete user USER_INDEX`<br> E.g: `delete user 1`                                                               |
+| **Return book** | `return USER_INDEX BOOK_INDEX`<br> E.g: `return 1 1`                                                            |
+| **Loan book**   | `loan USER_INDEX BOOK_INDEX`<br> E.g: `loan 1 1`                                                                |
+| **List users**  | `list users`                                                                                                    |
+| **List books**  | `list books`                                                                                                    |
+| **List loans**  | `list loans`                                                                                                    |
+| **Exit**        | `exit`                                                                                                          |
