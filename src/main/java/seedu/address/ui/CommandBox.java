@@ -24,7 +24,7 @@ public class CommandBox extends UiPart<Region> {
     /**
      * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
      */
-    public CommandBox(CommandExecutor commandExecutor) {
+    public CommandBox(CommandExecutor commandExecutor, ResultDisplay resultDisplay) {
         super(FXML);
         this.commandExecutor = commandExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
@@ -32,16 +32,18 @@ public class CommandBox extends UiPart<Region> {
             setStyleToDefault();
             switch (newValue) {
                 case AddCommand.COMMAND_WORD:
-                    System.out.println(AddCommand.MESSAGE_USAGE);
+                    resultDisplay.setFeedbackToUser(AddCommand.MESSAGE_USAGE);
                     break;
                 case EditCommand.COMMAND_WORD:
-                    System.out.println(EditCommand.MESSAGE_USAGE);
+                    resultDisplay.setFeedbackToUser(EditCommand.MESSAGE_USAGE);
                     break;
                 case DeleteCommand.COMMAND_WORD:
-                    System.out.println(DeleteCommand.MESSAGE_USAGE);
+                    resultDisplay.setFeedbackToUser(DeleteCommand.MESSAGE_USAGE);
                     break;
                 case FindCommand.COMMAND_WORD:
-                    System.out.println(FindCommand.MESSAGE_USAGE);
+                    resultDisplay.setFeedbackToUser(FindCommand.MESSAGE_USAGE);
+                    break;
+                default:
                     break;
             }
             });
