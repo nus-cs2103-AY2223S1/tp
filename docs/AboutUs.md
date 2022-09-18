@@ -19,15 +19,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Clarence Chew Xuan Da
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/clarence-chew.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/clarence-chew)]
+[[portfolio](team/clarence-chew.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Documentation
+* Responsibilities: Storage
 
 ### Johnny Doe
 
