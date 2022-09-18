@@ -112,6 +112,38 @@ Format: `delete user <user index>`
 Examples:
 *  `delete user 12`
 
+### Returning a book: `return`
+
+Returns the book which is loaned by some user.
+
+Format: `return <user index> <book index>`
+
+* Returns the book which is loaned by some user at their respective specified `INDEXES`.
+* The indexes refer to the index number shown in the displayed user and book list respectively.
+* The indexes **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `return 3 2` returns book number two which is loaned by user number three.
+
+### Loaning a book : `loan`
+
+Loans a book to some user
+
+Format: `loan <user index> <book index>`
+
+* Loans the book to some user at their respective specified `INDEXES`.
+* The indexes refer to the index number shown in the displayed user and book list respectively.
+* The indexes **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `loan 3 2` loans the second book in the book list to the third user in the user list.
+
+### List all users : `list users`
+
+Shows a list of all users in the address book.
+
+Format: `list users`
+
 ### Show all books that are loaned : `list loans`
 
 Lists all the books that are currently loaned out.
@@ -122,11 +154,11 @@ Format: `list loans`
 
 Clears all book and user entries from BookFace.
 
-Format: `clear all`
+Format: `clear all` 
 
-### Exiting the program : `exit`
+### List all books : `list books`
 
-Exits the program.
+Shows a list of all books in the address book.
 
 Format: `exit`
 
