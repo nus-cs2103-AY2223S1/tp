@@ -11,13 +11,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Shum Jie Hui
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/shummyownzyou.png" width="200px">
 
 [[homepage]()]
 [[github](https://github.com/ShummyOwnzYou)]
 [[portfolio](team/jiehui.md)]
 
 * Role: Project Advisor
+* Responsibilities: Backend
 
 ### Samuel Cheong
 
