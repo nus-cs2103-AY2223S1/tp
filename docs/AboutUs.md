@@ -40,7 +40,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Faith Chua
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/faithchua.png" width="200px">
 
 [[github](http://github.com/boredcoco)]
 [[portfolio](team/faithchua.md)]
