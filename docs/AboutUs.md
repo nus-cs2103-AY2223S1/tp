@@ -16,27 +16,18 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/donljh)]
 [[portfolio](team/donljh.md)]
 
-* Role: Project Advisor
+* Role: to be determined
+* Responsibilities: to be determined
 
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/donljh)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Melissa Harijanto
+### Melissa Anastasia Harijanto
 
 <img src="images/melissaharijanto.png" width="200px">
 
 [[github](http://github.com/melissaharijanto)] 
 [[portfolio](team/melissaharijanto.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: to be determined
+* Responsibilities: to be determined
 
 ### Janelle Loh Jen Teng
 
@@ -45,8 +36,18 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/janelleljt)]
 [[portfolio](team/janelleljt.md)]
 
-- Role: Developer
-- Responsibilities: Dev Ops + Threading
+- Role: to be determined
+- Responsibilities: to be determined
+
+### Yang Jiacheng
+
+<img src="images/jiacheng-y.png" width="200px">
+
+[[github](http://github.com/jiacheng-y)]
+[[portfolio](team/jiacheng.md)]
+
+- Role: to be determined
+- Responsibilities: to be determined
 
 ### Soh Enze
 
@@ -55,5 +56,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/sohenze)]
 [[portfolio](team/sohenze.md)]
 
-- Role: Developer
-- Responsibilities: 
+- Role: to be determined
+- Responsibilities: to be determined
