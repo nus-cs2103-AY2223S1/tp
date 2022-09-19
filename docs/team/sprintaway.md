@@ -16,7 +16,7 @@ title: Ng Yan Jia's Project Portfolio Page
 * **Enhancements implemented**: `to be added soon`
 
 * **Contributions to the UG**:
-1. From return a book until list all books section
+  * From return a book until list all books section
 * **Contributions to the DG**: `to be added soon`
 
 * **Contributions to team-based tasks**: `to be added soon`
