@@ -50,6 +50,8 @@ import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Student;
+import seedu.address.model.person.TeachingAssistant;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.ProfessorBuilder;
 import seedu.address.testutil.StudentBuilder;
@@ -69,29 +71,29 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(studentParser, PREAMBLE_WHITESPACE + NAME_DESC_AMY + PHONE_DESC_AMY
-                + EMAIL_DESC_AMY + GENDER_DESC_AMY + TAG_DESC_FRIEND, new StudentCommand(expectedPerson));
+                + EMAIL_DESC_AMY + GENDER_DESC_AMY + TAG_DESC_FRIEND, new StudentCommand((Student) expectedPerson));
 
         // multiple names - last name accepted
         assertParseSuccess(studentParser, NAME_DESC_BOB + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + GENDER_DESC_AMY + TAG_DESC_FRIEND, new StudentCommand(expectedPerson));
+                + GENDER_DESC_AMY + TAG_DESC_FRIEND, new StudentCommand((Student) expectedPerson));
 
         // multiple phones - last phone accepted
         assertParseSuccess(studentParser, NAME_DESC_BOB + NAME_DESC_AMY + PHONE_DESC_BOB + PHONE_DESC_AMY
-                + EMAIL_DESC_AMY + GENDER_DESC_AMY + TAG_DESC_FRIEND, new StudentCommand(expectedPerson));
+                + EMAIL_DESC_AMY + GENDER_DESC_AMY + TAG_DESC_FRIEND, new StudentCommand((Student) expectedPerson));
 
         // multiple emails - last email accepted
         assertParseSuccess(studentParser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_BOB + EMAIL_DESC_AMY
-                + GENDER_DESC_AMY + TAG_DESC_FRIEND, new StudentCommand(expectedPerson));
+                + GENDER_DESC_AMY + TAG_DESC_FRIEND, new StudentCommand((Student) expectedPerson));
 
         // multiple addresses - last gender accepted
         assertParseSuccess(studentParser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + GENDER_DESC_BOB + GENDER_DESC_AMY + TAG_DESC_FRIEND, new StudentCommand(expectedPerson));
+                + GENDER_DESC_BOB + GENDER_DESC_AMY + TAG_DESC_FRIEND, new StudentCommand((Student) expectedPerson));
 
         // multiple tags - all accepted
         Person expectedPersonMultipleTags = new StudentBuilder(AMY).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(studentParser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + GENDER_DESC_AMY
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new StudentCommand(expectedPersonMultipleTags));
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new StudentCommand((Student) expectedPersonMultipleTags));
     }
 
     public void profParse_allFieldsPresent_success() {
@@ -131,30 +133,36 @@ public class AddCommandParserTest {
         // whitespace only preamble
         assertParseSuccess(taParser, PREAMBLE_WHITESPACE + NAME_DESC_CABE + MODULE_CODE_DESC_CABE
                 + PHONE_DESC_CABE
-                + EMAIL_DESC_CABE + VALID_GENDER_CABE + TAG_DESC_FRIEND, new TaCommand(expectedPerson));
+                + EMAIL_DESC_CABE + VALID_GENDER_CABE + TAG_DESC_FRIEND,
+                new TaCommand((TeachingAssistant) expectedPerson));
 
         // multiple names - last name accepted
         assertParseSuccess(taParser, NAME_DESC_AMY + NAME_DESC_CABE + MODULE_CODE_DESC_CABE + PHONE_DESC_CABE
-                + EMAIL_DESC_CABE + VALID_GENDER_CABE + TAG_DESC_FRIEND, new TaCommand(expectedPerson));
+                + EMAIL_DESC_CABE + VALID_GENDER_CABE + TAG_DESC_FRIEND,
+                new TaCommand((TeachingAssistant) expectedPerson));
 
         // multiple phones - last phone accepted
         assertParseSuccess(taParser, NAME_DESC_CABE + MODULE_CODE_DESC_CABE + PHONE_DESC_AMY + PHONE_DESC_CABE
-                + EMAIL_DESC_CABE + VALID_GENDER_CABE + TAG_DESC_FRIEND, new TaCommand(expectedPerson));
+                + EMAIL_DESC_CABE + VALID_GENDER_CABE + TAG_DESC_FRIEND,
+                new TaCommand((TeachingAssistant) expectedPerson));
 
         // multiple emails - last email accepted
         assertParseSuccess(taParser, NAME_DESC_CABE + MODULE_CODE_DESC_CABE + PHONE_DESC_CABE + EMAIL_DESC_AMY
-                + EMAIL_DESC_CABE + VALID_GENDER_CABE + TAG_DESC_FRIEND, new TaCommand(expectedPerson));
+                + EMAIL_DESC_CABE + VALID_GENDER_CABE + TAG_DESC_FRIEND,
+                new TaCommand((TeachingAssistant) expectedPerson));
 
         // multiple addresses - last address accepted
         assertParseSuccess(taParser, NAME_DESC_BOB + MODULE_CODE_DESC_CABE + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + VALID_GENDER_BOB + TAG_DESC_FRIEND, new TaCommand(expectedPerson));
+                + VALID_GENDER_BOB + TAG_DESC_FRIEND,
+                new TaCommand((TeachingAssistant) expectedPerson));
 
         // multiple tags - all accepted
         Person expectedPersonMultipleTags = new TeachingAssistantBuilder(CABE).withTags(VALID_TAG_FRIEND,
                         VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(taParser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new TaCommand(expectedPersonMultipleTags));
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                new TaCommand((TeachingAssistant) expectedPersonMultipleTags));
     }
 
     @Test
@@ -162,7 +170,7 @@ public class AddCommandParserTest {
         // zero tags
         Person expectedPerson = new StudentBuilder(AMY).withTags().build();
         assertParseSuccess(studentParser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + GENDER_DESC_AMY,
-                new StudentCommand(expectedPerson));
+                new StudentCommand((Student) expectedPerson));
     }
 
     @Test

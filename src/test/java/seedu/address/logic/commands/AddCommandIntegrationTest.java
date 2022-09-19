@@ -11,6 +11,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Student;
+import seedu.address.model.person.TeachingAssistant;
 import seedu.address.testutil.ProfessorBuilder;
 import seedu.address.testutil.StudentBuilder;
 import seedu.address.testutil.TeachingAssistantBuilder;
@@ -29,7 +31,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_newStudent_success() {
-        Person validPerson = new StudentBuilder().build();
+        Student validPerson = new StudentBuilder().build();
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addPerson(validPerson);
 
@@ -50,7 +52,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_newTeachingAssistant_success() {
-        Person validPerson = new TeachingAssistantBuilder().build();
+        TeachingAssistant validPerson = new TeachingAssistantBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addPerson(validPerson);
@@ -62,7 +64,8 @@ public class AddCommandIntegrationTest {
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Person personInList = model.getAddressBook().getPersonList().get(0);
-        assertCommandFailure(new StudentCommand(personInList), model, StudentCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(new StudentCommand((Student) personInList), model,
+                StudentCommand.MESSAGE_DUPLICATE_PERSON);
     }
 
 }

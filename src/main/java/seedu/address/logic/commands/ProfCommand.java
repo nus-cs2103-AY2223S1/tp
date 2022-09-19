@@ -41,7 +41,11 @@ public class ProfCommand extends Command {
 
     private final Person toAdd;
 
+    /**
+     * Creates a ProfCommand to add the specified {@code Professor}
+     */
     public ProfCommand(Person toAdd) {
+        requireNonNull(toAdd);
         this.toAdd = toAdd;
     }
 

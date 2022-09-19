@@ -17,7 +17,6 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.TeachingAssistant;
 import seedu.address.model.tag.Tag;
@@ -50,7 +49,7 @@ public class TaCommandParser implements Parser<TaCommand> {
         Gender gender = ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new TeachingAssistant(name, moduleCode, phone, email, gender, tagList);
+        TeachingAssistant person = new TeachingAssistant(name, moduleCode, phone, email, gender, tagList);
 
         return new TaCommand(person);
     }
