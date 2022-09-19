@@ -9,51 +9,50 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Gabriel Yang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/gabrielyang.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[github](https://github.com/gabyang)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Project Advisor
 
-### Jane Doe
+### Paul Lee
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/paullee18.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/paullee18)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Model
 
-### Johnny Doe
+### Daniel Lim
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/daniellimweien.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/DanielLimWeiEn)] [[portfolio](team/johndoe.md)]
+
+* Role: Developer 
+* Responsibilities: Testing, Logic
+
+### Yuan Wei
+
+<img src="images/tyw2811.png" width="200px">
+
+[[github](http://github.com/tyw2811)]
+[[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Documentation, Code Quality, Logic
 
-### Jean Doe
+### Edric Yeo
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/edric.jpg" width="200px">
 
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
+* Responsibilities: Deliverables and Deadlines, Tracking and Scheduling, Storage
