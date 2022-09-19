@@ -2,12 +2,23 @@
 TrackAScholar User Guide (v1.2)
 ---
 
-Target Users:
-***NUS administrative staff*** in the Office of Admissions
+TrackAScholar (TAS) is a **desktop app for managing scholarship applications, optimised for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TAS can get your scholarship applicant management tasks done faster than traditional GUI apps.
 
-Value Proposition:
-Streamline the scholarship application process by ***organizing the scholarship applications into their corresponding types and status***, thus supporting ***faster and easier identification*** of a student’s scholarship application progress with a GUI.
-
+* [Quick start](#quick-start)
+* [Features](#features)
+  * [Viewing help : help](#viewing-help--help)
+  * [Adding a scholarship application: add](#adding-a-scholarship-application-add)
+  * [Listing all scholarship application : list](#listing-all-scholarship-application--list)
+  * [Editing an existing scholarship application : edit](#editing-an-existing-scholarship-application--edit)
+  * [Locating application status by name: find](#locating-application-status-by-name--find)
+  * [Deleting a scholarship application : delete](#deleting-a-scholarship-application--delete)
+  * [Clearing all entries : clear](#clearing-all-entries--clear)
+  * [Exiting the program : exit](#exiting-the-program--exit)
+* [Further details](#further-details)
+  * [Saving the data](#saving-the-data)
+  * [Editing the data file](#editing-the-data-file)
+  * [Archiving data files](#archiving-data-files-coming-in-v20)
+* [Command summary](#command-summary)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -106,7 +117,7 @@ Examples:
 
 *  `edit 2 n/Samuel Cheong t/` Edits the name of the 2nd person to be `Samuel Cheong` and clears all existing tags.
 
-### Locating application status by name: `find`
+### Locating application status by name : `find`
 
 Finds scholarship applications whose names contain any of the given keywords.
 
