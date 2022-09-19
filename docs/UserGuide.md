@@ -115,9 +115,9 @@ Examples:
 * `prof n/Wong Tin Lok m/CS1231S p/98765432 e/wongtk@example.com g/Male`
 * `prof n/Betsy m/CS1231s Crowe t/friend e/betsycrowe@example.com g/Female p/1234567 t/criminal`
 
-### Listing all persons : `list`
+### Displaying all contacts : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all professors, students and TAs in the address book.
 
 Format: `list`
 
