@@ -1,7 +1,10 @@
+# Project Portfolio Page for 
+
+<!-- Insert name above -->
+
 ## Overview
 
-RC4 Housing Database offers a convenient and intuitive interface for RC4 housing management staff to streamline their daily operations.
-
+**RC4 Housing Database** offers a convenient and intuitive interface for RC4 housing management staff to streamline their daily operations.
 
 ## Summary of Contributions
 
@@ -68,7 +71,7 @@ I also gave guidance to my team on the following matters:
 
 Beyond the project team, I also participated actively in the forum.
 
-These were some threads in which I offered help to my classmates:
+These are some threads in which I offered help to my classmates:
 1. [Clarification of definition of single-level design #231](https://github.com/nus-cs2103-AY2223S1/forum/issues/231)
 2. []()
 3. []()
