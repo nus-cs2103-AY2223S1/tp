@@ -16,5 +16,43 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/donljh)]
 [[portfolio](team/donljh.md)]
 
-* Role: to be determined
-* Responsibilities: to be determined
+* Role: Project Advisor
+
+### Jane Doe
+
+<img src="images/johndoe.png" width="200px">
+
+[[github](http://github.com/donljh)]
+[[portfolio](team/johndoe.md)]
+
+* Role: Team Lead
+* Responsibilities: UI
+
+### Johnny Doe
+
+<img src="images/johndoe.png" width="200px">
+
+[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+
+* Role: Developer
+* Responsibilities: Data
+
+### Jean Doe
+
+<img src="images/johndoe.png" width="200px">
+
+[[github](http://github.com/johndoe)]
+[[portfolio](team/johndoe.md)]
+
+- Role: Developer
+- Responsibilities: Dev Ops + Threading
+
+### Soh Enze
+
+<img src="images/sohenze.png" width="200px">
+
+[[github](http://github.com/sohenze)]
+[[portfolio](team/sohenze.md)]
+
+- Role: Developer
+- Responsibilities: 
