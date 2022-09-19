@@ -32,7 +32,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/melissaharijanto.png" width="200px">
 
-[[github](http://github.com/melissaharijanto)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/melissaharijanto)] 
+[[portfolio](team/melissaharijanto.md)]
 
 * Role: Developer
 * Responsibilities: Data
@@ -42,7 +43,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/janelleljt.png" width="200px">
 
 [[github](http://github.com/janelleljt)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/janelleljt.md)]
 
 - Role: Developer
 - Responsibilities: Dev Ops + Threading
