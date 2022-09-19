@@ -7,7 +7,7 @@ Financial Aid Planner is a desktop client management application used for financ
 Given below are my contributions to the project.
 
 - ### New Feature:
-- ### Code contributed: 
+- ### Code contributed:
 - ### Enhancements implemented:
 - ### Contributions to the UG:
 - ### Contributions to the DG:
