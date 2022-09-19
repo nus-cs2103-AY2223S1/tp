@@ -132,21 +132,28 @@ Examples:
 
 Deletes the specified person from the address book.
 
-Format: `delete INDEX`
+Format: `delete INDEX` or `delete n/NAME`
 
-* Deletes the person at the specified `INDEX`.
+* Before deleting the contact permanently, confirms with the user with a message.
+* Deletes the person at the specified `INDEX` or with the specified `NAME`.
+    * Only full name will be matched e.g. `Han` will not match `Hans`.
+* If multiple entries with the same `NAME` are found, sends a message to user to tell the user to delete by `INDEX` instead.
 * The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, ...
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `delete Edric` deletes the contact with the `NAME` matching `Edric` unless more than one match is found.
+
 
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
 
 Format: `clear`
+
+* Before clearing all entries permanently, confirms with the user with a message.
 
 ### Exiting the program : `exit`
 
