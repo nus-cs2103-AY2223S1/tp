@@ -263,7 +263,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: For students to filter Professor/TA /Students based on information provided allowing them to save time.
+**Value proposition**: For students to manage Professor/TA /Students based on information provided allowing them to save time.
 
 
 ### User stories
