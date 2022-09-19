@@ -144,6 +144,18 @@ Format: `contact delete i/INDEX`
 
 Examples:
 * `contact list` followed by `contact delete i/2` deletes the 2nd contact in the contact list.
+ 
+### Adding a task: `task add`
+
+Adds a task into the task list.
+
+Format:  `task add [m/o]/<assignor/assignee> t/<description>`
+
+* Adds the task with an assignor (m) or assignee (o) and a description.
+
+Examples:
+* `task add m/John t/Finish user guide` adds a task called “Finish user guide” assigned by John to the user.
+* `task add o/Sam t/Finish the assignment` adds a task called “Finish the assignment” which is assigned to Sam.
 
 ### Deleting a task : `task delete`
 
@@ -158,11 +170,11 @@ Format: `task delete i/INDEX`
 Examples:
 * `task list` followed by `task delete i/2` deletes the 2nd task in the task list.
 
-### Exiting the program : `exit`
+### Exiting the program : `bye`
 
-Exits the program.
+Ends the application.
 
-Format: `exit`
+Format: `bye`
 
 ### Saving the data
 
@@ -183,6 +195,8 @@ _Details coming soon ..._
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
+**Q**: How do I save my progress?<br>
+**A**: Your progress is automatically saved after each command.
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
@@ -193,10 +207,11 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add Task** | `task add [m/o]/<assignor/assignee> t/<description>` <br> e.g., `task add o/Sam t/Finish the assignment`
 **Delete Contact** | `contact delete INDEX`<br> e.g., `contact delete 3`
 **Delete Task** | `task delete INDEX`<br> e.g., `task delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
+**Quit** | `bye`
