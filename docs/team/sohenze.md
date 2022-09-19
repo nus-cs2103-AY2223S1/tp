@@ -5,7 +5,7 @@ title: Soh Enze's Project Portfolio Page
 
 - ### Overview
 - ### Summary of Contributions
-    - **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=donljh&breakdown=true)
+    - **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=sohenze&breakdown=true)
 
     - **Enhancements implemented**: to be added soon
 
