@@ -285,7 +285,7 @@ Coordinators of pet sale who need a contact list of both clients, deliverers and
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-#### Primitive AB3 User Stories
+#### Primitive AB3 user stories
 
 | Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
 |----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
@@ -296,8 +296,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
 | `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
 
-#### PetCode User Stories
-##### Buyer Side
+#### PetCode user stories
+##### Buyer side
 | Priority | As a …​                                | I want to …​                                                                                                                                                          | So that I can…​                                                      |
 |----------|----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------|
 | `* * *`  | pet sale coordinator                   | list a summary of all orders from the buyers in storage                                                                                                               | have an overview of what the buyers want.                            |                       |
@@ -309,8 +309,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `PetCode` and the **Actor** is the `user`, unless specified otherwise)
 
+#### Primitive AB3 user cases
 **Use case: Delete a person**
 
 **MSS**
@@ -335,6 +336,67 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 *{More to be added}*
+
+
+#### PetCode user cases
+**Use case: UC01 - List Summary of Orders**
+
+**MSS**
+1. User requests for a summary of orders
+2. PetCode generates a summary based on saved orders
+3. PetCode formats the summary
+4. PetCode outputs the summary
+
+Use case ends.
+
+**Use case: UC02 - Add an Inquiry from a Buyer**
+
+**MSS**
+1. User specifies who the buyer is
+2. User specifies what the buyer would like
+3. PetCode saves this inquiry
+
+Use case ends.
+
+**Use case: UC03 - Delete a Buyer**
+
+**MSS**
+1. User specifies who the buyer s/he would like to delete
+2. PetCode searches for this buyer
+3. PetCode removes this buyer from the list
+
+Use case ends.
+
+**Extensions**
+
+2a. This buyer does not exist.
+
+Use case ends.
+
+**Use case: UC04 - Filter Buyers**
+
+**MSS**
+1. User specifies a tag with which all buyers shall show
+2. PetCode searches for the tag
+3. PetCode searches for all buyers with the tag
+4. PetCode outputs these buyers
+
+Use case ends.
+
+**Extensions**
+
+2a. The tag does not exist
+
+Use case ends.
+
+**Use case: UC05 - Sort Orders**
+
+**MSS**
+1. User requests PetCode to sort
+2. PetCode sorts the orders in ascending chronological order
+3. PetCode outputs the sorted list
+
+Use case ends.
 
 ### Non-Functional Requirements
 
