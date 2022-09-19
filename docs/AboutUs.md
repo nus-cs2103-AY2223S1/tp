@@ -19,11 +19,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Loh Teng Wye
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/nopehax)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Team Lead
