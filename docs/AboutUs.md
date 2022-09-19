@@ -38,15 +38,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Humphrey
+### Jean Doe
 
-<img src="images/bananamonkey4655.png" width="200px">
+<img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/bananamonkey4655)]
-[[portfolio](team/bananamonkey4655.md)]
+[[github](http://github.com/johndoe)]
+[[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Deliverables and Deadlines, Model, UI
+* Responsibilities: Dev Ops + Threading
 
 ### James Doe
 
