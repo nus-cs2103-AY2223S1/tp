@@ -31,19 +31,20 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Liu Yijun
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/l1uy1jun.png" width="200px">
 
-[[github](http://github.com/L1uY1jun)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/L1uY1jun)]
+[[portfolio](team/l1uy1jun.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Team Member
+* Responsibilities: `to be added soon`
 
 ### Darren Tng
 
 <img src="images/johndoe.png" width="200px">
 
 [[github](https://github.com/DarrenCsAcc)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
@@ -54,7 +55,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/johndoe.png" width="200px">
 
 [[github](https://github.com/benjytan45678)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/)]
 
 * Role: Developer
 * Responsibilities: UI
