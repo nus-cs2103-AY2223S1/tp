@@ -38,15 +38,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Faith Chua
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/faithchua.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/boredcoco)]
+[[portfolio](team/faithchua.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: *to be added*
+* Responsibilities: *to be added*
 
 ### James Doe
 
