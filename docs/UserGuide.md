@@ -6,7 +6,7 @@ title: User Guide
 AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -24,15 +24,15 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
-   * **`clear`** : Deletes all contacts.
+    * **`clear`** : Deletes all contacts.
 
-   * **`exit`** : Exits the app.
+    * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -64,93 +64,107 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 </div>
 
-### Viewing help : `help`
+### Adding a book: `add book`
 
-Shows a message explaning how to access the help page.
+Adds a book to the library.
 
-![help message](images/helpMessage.png)
+Format: `add book t/<title> a/<author>`
 
-Format: `help`
-
-
-### Adding a person: `add`
-
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+* The title itself cannot contain “a/”, as “a/” marks the start of the author field
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A person can have any number of tags (including 0).
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add book t/The Life of John a/Emily Dunce`
 
-### Listing all persons : `list`
+### Adding a user: `add user`
 
-Shows a list of all persons in the address book.
+Adds a user to the library.
 
-Format: `list`
+Format: `add user n/<name> p/<phone number> e/<email>`
 
-### Editing a person : `edit`
-
-Edits an existing person in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+* The name itself cannot have a “p/” and a "e/".
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* `add user n/Jenny Brown p/12345678 e/foo@gmail.com`
 
-### Locating persons by name: `find`
+### Removing a book : `delete book`
 
-Finds persons whose names contain any of the given keywords.
+Deletes a book from the library.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `delete book <book index>`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Deletes the book at the specified `INDEX`. The index refers to the index number shown in the displayed book list. The index **must be a positive integer** 1, 2, 3,
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `delete book 99`
 
-### Deleting a person : `delete`
+### Remove a user: `delete user`
 
-Deletes the specified person from the address book.
+Deletes a user from the library.
 
-Format: `delete INDEX`
+Format: `delete user <user index>`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Deletes the user at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3,
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+*  `delete user 12`
 
-### Clearing all entries : `clear`
+### Returning a book: `return`
 
-Clears all entries from the address book.
+Returns the book which is loaned by some user.
 
-Format: `clear`
+Format: `return <user index> <book index>`
 
-### Exiting the program : `exit`
+* Returns the book which is loaned by some user at their respective specified `INDEXES`.
+* The indexes refer to the index number shown in the displayed user and book list respectively.
+* The indexes **must be a positive integer** 1, 2, 3, …​
 
-Exits the program.
+Examples:
+* `return 3 2` returns book number two which is loaned by user number three.
+
+### Loaning a book : `loan`
+
+Loans a book to some user
+
+Format: `loan <user index> <book index>`
+
+* Loans the book to some user at their respective specified `INDEXES`.
+* The indexes refer to the index number shown in the displayed user and book list respectively.
+* The indexes **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `loan 3 2` loans the second book in the book list to the third user in the user list.
+
+### List all users : `list users`
+
+Shows a list of all users in the address book.
+
+Format: `list users`
+
+### List all books : `list books`
+
+Shows a list of all books in the address book.
+
+Format: `list books`
+
+### Show all books that are loaned : `list loans`
+
+Lists all the books that are currently loaned out.
+
+Format: `list loans`
+
+### Clearing all entries : `clear all`
+
+Clears all book and user entries from BookFace.
+
+Format: `clear all`
+
+### Exit BookFace: `exit`
+
+Exit the BookFace program.
 
 Format: `exit`
 
@@ -166,27 +180,27 @@ AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**Q**: How do I clear the sample data on BookFace?<br>
+**A**: Simply use the `clear all` command.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action          | Format, Examples                                                                                          |
+|-----------------|-----------------------------------------------------------------------------------------------------------|
+| **Add book**    | `add book t/TITLE a/AUTHOR` <br> E.g: `add n/James and The Giant Peach  a/Roald Dahl`                     |
+| **Add user**    | `add user n/NAME p/PHONE_NUMBER e/EMAIL` <br> E.g: `add user n/John Doe p/91234567 e/johndoe@outlook.com` |
+| **Clear**       | `clear all`                                                                                               |
+| **Delete book** | `delete book BOOK_INDEX`<br> E.g: `delete book 1`                                                         |
+| **Delete user** | `delete user USER_INDEX`<br> E.g: `delete user 1`                                                         |
+| **Return book** | `return USER_INDEX BOOK_INDEX`<br> E.g: `return 1 1`                                                      |
+| **Loan book**   | `loan USER_INDEX BOOK_INDEX`<br> E.g: `loan 1 1`                                                          |
+| **List users**  | `list users`                                                                                              |
+| **List books**  | `list books`                                                                                              |
+| **List loans**  | `list loans`                                                                                              |
+| **Exit**        | `exit`                                                                                                    |

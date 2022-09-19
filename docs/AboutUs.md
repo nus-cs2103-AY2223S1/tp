@@ -11,48 +11,48 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Ng Yan Jia
 
-<img src="images/NgYanJia.png" width="200px">
+<img src="images/sprintaway.png" width="200px">
 
 [[github](https://github.com/sprintaway)]
-[[portfolio](team/NgYanJia.md)]
+[[portfolio](team/sprintaway.md)]
 
 * Role: Developer
 
-### Jane Doe
+### Parth Gujar
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/parth-io.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/parth-io)]
+[[portfolio](team/parth-io.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: -
 
-### Jean Doe
+### Edward Mualim
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/edfernape.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/edfernape)] [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: -
+
+### Teh Yi Kuang
+
+<img src="images/tykcodes.png" width="200px">
+
+[[github](http://github.com/TYKCodes)]
+[[portfolio](team/tykcodes.md)]
+
+* Role: Developer
+* Responsibilities: -
+
+### Kiyan Ang Ping Young
+
+<img src="images/kiyan.jpg" width="200px">
+
+[[github](http://github.com/kynapy)]
+[[portfolio](team/kynapy.md)]
+
+* Role: Developer
+* Responsibilities: -
