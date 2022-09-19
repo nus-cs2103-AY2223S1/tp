@@ -19,15 +19,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Paul Lee
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/paullee18.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/paullee18)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Model
 
 ### Johnny Doe
 
