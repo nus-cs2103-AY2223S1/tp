@@ -14,12 +14,12 @@ Teacher’s Pet can get your contact and class management tasks done faster than
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
    Note how the app contains some sample data.
 
-![UI introduction](/docs/images/ug-screenshots/UiIntro.png)
+![UI introduction](/images/UiIntro.png)
 
 
 ### UI Overview
 
-![Partition.png](/docs/images/ug-screenshots/UiPartition.png)
+![Partition.png](/images/UiPartition.png)
 
 Our application is divided into 4 areas to maximise productivity, the specific uses are:
 
