@@ -25,7 +25,7 @@ You can reach us at the email `Section_2210_11461[at]nusu.onmicrosoft.com`
 
 <img src="images/johndoe.png" width="200px" alt="Simpson">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/craeyeons)]
 [[portfolio](team/simpson.md)]
 
 - Role: Developer
