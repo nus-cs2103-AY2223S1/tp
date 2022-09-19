@@ -73,19 +73,19 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a Customer: `add`
 
-Adds a person to the address book.
+Adds a Customer to bobaBot.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [r/REWARD] [t/TAG]…`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/John Doe p/98765432 e/johnd@example.com r/0 t/new `
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com p/1234567 r/5000 t/gold`
 
 ### Listing all persons : `list`
 
@@ -190,7 +190,7 @@ _Details coming soon ..._
 
 | Action     | Format, Examples                                                                                                                                                      |
 |------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL [r/REWARD] [t/TAG]…` <br> e.g., ` add n/Betsy Crowe t/friend e/betsycrowe@example.com p/1234567 r/5000 t/gold`                     |
 | **Clear**  | `clear`                                                                                                                                                               |
 | **Delete** | `delete n/NAME` or `delete p/PHONE_NUMBER` or `delete e/EMAIL` <br> e.g., `delete n/Alex Yeoh`, `delete p/87438807`, `delete e/alexyeoh@example.com`                  |
 | **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
