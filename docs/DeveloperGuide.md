@@ -257,29 +257,55 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
+Coordinators of pet sale who need a contact list of both clients, deliverers and suppliers. These coordinators run their business online and get used to typing. Such people need to maintain a contact list of clients, deliverers, and suppliers.
+
 * has a need to manage a significant number of contacts
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* meet a lot of people online
+* need to contact a lot of people on a regular basis
+* need to keep track of fast-growing pets
+* need to find suppliers for customer demands
+* need to find customers for suppliers' pets
+* need to do demand-supply matching
+* need to arrange international deliveries
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
+
+* It is difficult to coordinate (international) pet sales. Suppliers have pets for sale, and clients may have a rough idea about what pets they want to buy. Once the need and the supply match, deliverers have to carry out the deal. Such need-supply matching and international pet shipment is difficult to manage. Our app will serve as a more convenient tool for pet sale coordinators to manage the whole process. Our app will record the needs of clients, current unsold pets from suppliers, and deliverers’ details. It will automatically match the best-fit pet to a client’s needs.
+* Coordinators who run their business online need delivery. Given the location (country) of the client and the supplier, our app will generate a list of deliverers who have a service over the line, based on records.
+* Unlike other products, pets need a certificate to be legally sold - including photos of the animals, whether they are pure-bred etc. Our app will also help manage certificates.
+* Pets, especially younger ones, grow very fast. After a short period of time they may look very different. Their traits may change rapidly, too. As such, we will build a notification system that reminds the user to update the information of pets regularly. Updating information about a pet on time is useful for coordinators to keep looking for the client who has the strongest willingness to buy it.
+
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+#### Primitive AB3 User Stories
 
-*{More to be added}*
+| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
+|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
+| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
+| `* * *`  | user                                       | add a new person             |                                                                        |
+| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
+| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
+| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
+| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+
+#### PetCode User Stories
+##### Buyer Side
+| Priority | As a …​                                | I want to …​                                                                                                                                                          | So that I can…​                                                      |
+|----------|----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------|
+| `* * *`  | pet sale coordinator                   | list a summary of all orders from the buyers in storage                                                                                                               | have an overview of what the buyers want.                            |                       |
+| `* * *`  | pet sale coordinator                   | be able to delete any contacts of clients who changed their mind about buying pets and any pet suppliers that have closed down or no longer want to supply pets to me | remove entries that I no longer need.                                |
+| `* * *`  | pet sale coordinator                   | add inquiry from a buyer as an order                                                                                                                                  | know what they want to buy and what their requirements are.          |
+| `* * *`  | pet sale coordinator                   | be able to filter buyer contacts by tags (e.g pet description)                                                                                                        | not waste time searching buyers that satisfy a customer requirement. |
+| `* * *`  | pet sale coordinator with many clients | sort the orders from the buyers based on their urgency (time)                                                                                                         | know which order I should deal with first.                           |
+
 
 ### Use cases
 
