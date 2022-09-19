@@ -9,34 +9,25 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+## Tjan Eng Ger, Kevin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tjanenggerkevin.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/Nephelite)]
+[[portfolio](team/nephelite.md)]
 
-* Role: Project Advisor
+* Role: Team Leader, Gradle Expert, Agenda Maker
+* Responsibilities: UI, Logic
 
-### Jane Doe
+### See Toh Jin Wei
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/seetohjinwei.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/seetohjinwei)]
+[[portfolio](team/seetohjinwei.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Integration, Logic, Commons
 
 ### Humphrey
 
@@ -47,14 +38,3 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Deliverables and Deadlines, Model, UI
-
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
