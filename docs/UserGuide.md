@@ -73,19 +73,47 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a Student: `student`
 
-Adds a person to the address book.
+Adds a student to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `student n/NAME p/PHONE_NUMBER e/EMAIL g/gender [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `student n/John Doe p/98765432 e/johnd@example.com g/Male`
+* `student n/Betsy Crowe t/friend e/betsycrowe@example.com g/Female p/1234567 t/criminal`
+
+### Adding a Teaching Assistant: `ta`
+
+Adds a Teaching Assistant to the address book.
+
+Format: `ta n/NAME m/MODULE-CODE p/PHONE_NUMBER e/EMAIL g/gender [t/TAG]…​`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A person can have any number of tags (including 0)
+</div>
+
+Examples:
+* `ta n/John Doe m/CS2001 p/98765432 e/johnd@example.com g/Male`
+* `ta n/Betsy m/CS1231s Crowe t/friend e/betsycrowe@example.com g/Female p/1234567 t/criminal`
+
+### Adding a Professor: `prof`
+
+Adds a Professor to the address book.
+
+Format: `prof n/NAME m/MODULE-CODE p/PHONE_NUMBER e/EMAIL g/gender [t/TAG]…​`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A person can have any number of tags (including 0)
+</div>
+
+Examples:
+* `prof n/Wong Tin Lok m/CS1231S p/98765432 e/wongtk@example.com g/Male`
+* `prof n/Betsy m/CS1231s Crowe t/friend e/betsycrowe@example.com g/Female p/1234567 t/criminal`
 
 ### Listing all persons : `list`
 
