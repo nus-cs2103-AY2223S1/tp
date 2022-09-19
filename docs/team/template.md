@@ -5,7 +5,6 @@
 ## Overview
 
 **RC4 Housing Database** offers a convenient and intuitive interface for RC4 housing management staff to streamline their daily operations.
-
 ## Summary of Contributions
 
 ### Code contributed:
