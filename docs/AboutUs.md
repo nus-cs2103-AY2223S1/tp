@@ -23,7 +23,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/melissaharijanto.png" width="200px">
 
-[[github](http://github.com/melissaharijanto)] 
+[[github](http://github.com/melissaharijanto)]
 [[portfolio](team/melissaharijanto.md)]
 
 * Role: to be determined
