@@ -21,7 +21,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Samuel Cheong
 
-<img src="images/samuelcheongws.jpg" width="200px">
+<img src="images/samuelcheongws.png" width="200px">
 
 [[github](https://github.com/samuelcheongws/)]
 [[portfolio](team/samuelcheonws.md)]
