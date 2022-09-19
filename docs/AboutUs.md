@@ -26,7 +26,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/samuelcheongws/)]
 [[portfolio](team/samuelcheonws.md)]
 
-* Role: Team Clown testing
+* Role: Team Member
 * Responsibilities: UI
 
 ### Liu Yijun
