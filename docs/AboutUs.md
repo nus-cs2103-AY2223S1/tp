@@ -52,10 +52,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Benjy Tan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/benjytan45678.png" width="200px">
 
 [[github](https://github.com/benjytan45678)]
-[[portfolio](team/)]
+[[portfolio](team/benjytan45678.md)]
 
 * Role: Developer
 * Responsibilities: UI
