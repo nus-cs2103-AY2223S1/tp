@@ -11,9 +11,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Tjan Eng Ger, Kevin
 
-<img src="images/tjanenggerkevin.png" width="200px">
+<img src="images/nephelite.png" width="200px">
 
-[[github](https://github.com/Nephelite)][[portfolio](team/nephelite.md)]
+[[github](https://github.com/Nephelite)]
+[[portfolio](team/nephelite.md)]
 
 * Role: Team Leader, Gradle Expert, Agenda Maker
 * Responsibilities: UI, Logic
@@ -27,3 +28,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Integration, Logic, Commons
+
+### Humphrey
+
+<img src="images/bananamonkey4655.png" width="200px">
+
+[[github](http://github.com/bananamonkey4655)]
+[[portfolio](team/bananamonkey4655.md)]
+
+* Role: Developer
+* Responsibilities: Deliverables and Deadlines, Model, UI
