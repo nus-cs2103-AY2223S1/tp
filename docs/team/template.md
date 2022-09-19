@@ -1,4 +1,4 @@
-# Project Portfolio Page for 
+# Project Portfolio Page for
 
 <!-- Insert name above -->
 
@@ -12,18 +12,18 @@
 I contributed code to the following modules/classes:
 1.
 2.
-3. 
+3.
 
 You may view these contributions in more detail at [this link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=<github-username>&breakdown=true).
- 
+
 <!-- Please replace the placeholder in the above URL with your github username. -->
 
 ### Enhancements implemented:
 
 I made the following enhancements to our product:
-1. 
-2. 
-3. 
+1.
+2.
+3.
 
 ### Contributions to the UG:
 
@@ -57,8 +57,8 @@ I contributed to the following team-based tasks:
 
 I reviewed the following pull requests:
 1. [Add profile photo for Nicholas #21](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/21)
-2. 
-3. 
+2.
+3.
 
 I also gave guidance to my team on the following matters:
 1.
@@ -77,7 +77,7 @@ These are some threads in which I offered help to my classmates:
 
 <!-- Provide links to the threads here -->
 
-For the practical examination, I also surfaced critical bugs in the other team's product. 
+For the practical examination, I also surfaced critical bugs in the other team's product.
 
 Some examples of these are:
 1. []()
