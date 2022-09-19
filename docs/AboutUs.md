@@ -43,10 +43,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/boredcoco)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/faithchua.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: *to be added*
+* Responsibilities: *to be added*
 
 ### James Doe
 
