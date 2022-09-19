@@ -6,7 +6,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
@@ -15,6 +14,9 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ProfCommand;
+import seedu.address.logic.commands.StudentCommand;
+import seedu.address.logic.commands.TaCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -44,8 +46,14 @@ public class AddressBookParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+        case ProfCommand.COMMAND_WORD:
+            return new ProfCommandParser().parse(arguments);
+
+        case StudentCommand.COMMAND_WORD:
+            return new StudentCommandParser().parse(arguments);
+
+        case TaCommand.COMMAND_WORD:
+            return new TaCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
