@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Lim Jun Hong, Don
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/donljh.png" width="200px">
 
 [[github](https://github.com/donljh)]
 [[portfolio](team/donljh.md)]
@@ -23,7 +23,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/melissaharijanto.png" width="200px">
 
-[[github](http://github.com/melissaharijanto)] 
+[[github](http://github.com/melissaharijanto)]
 [[portfolio](team/melissaharijanto.md)]
 
 * Role: to be determined
