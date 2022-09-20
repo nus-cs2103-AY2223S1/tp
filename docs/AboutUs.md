@@ -40,7 +40,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Nicholas Tan
 
-<img src="images/nicholastan.png" width="200px">
+<img src="images/nicholastyd.png" width="200px">
 
 [[github](https://github.com/NicholasTYD)]
 [[portfolio](team/nicholastyd.md)]
