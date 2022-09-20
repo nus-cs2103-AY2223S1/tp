@@ -257,33 +257,52 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of suppliers
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage suppliers faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                        | I want to …​                                                                    | So that I can…​                                                         |
+|----------|------------------------------------------------|---------------------------------------------------------------------------------|-------------------------------------------------------------------------|
+| `* * *`  | new user                                       | see usage instructions                                                          | refer to instructions when I forget how to use the Salsey App           |
+| `* * *`  | vendor                                         | add a new supplier                                                              |                                                                         |
+| `* * *`  | vendor                                         | add a new task by specifying task description only                              | keep track of a to do list of tasks                                     |
+| `* * *`  | vendor                                         | delete a task                                                                   | remove tasks that I no longer need                                      |
+| `* * *`  | vendor                                         | delete a supplier                                                               | remove suppliers that I no longer interact with                         |
+| `* * *`  | vendor                                         | find a supplier by company name                                                 | locate details of supplier without having to go through the entire list |
+| `* * *`  | vendor                                         | view the tasks that has the earliest deadline                                   | do tasks that matter more first                                         |
+| `* * *`  | vendor                                         | mark my task as complete / imcomplete                                           | keep track of my to do list                                             |
+| `* * *`  | vendor                                         | increment supplies                                                              | update supplies                                                         |
+| `* * *`  | vendor                                         | view my command status and result in a GUI view                                 | have a sense of whether my command is a success or failure              |
+| `* * *`  | vendor                                         | deduct supplies from supplier                                                   | keep track of what supplies are remaining                               |
+| `* *`    | vendor with many suppliers in Salsey           | sort suppliers by type of product they supply to my stall                       | locate a supplier easily                                                |
+| `* *`    | vendor with many hours of usage in Salsey      | add a new supplier with all related information in one go                       | avoid making multiple commands                                          |
+| `* *`    | vendor with many hours of usage in Salsey      | add a new task with all related information in one go                           | avoid making multiple commands                                          |
+| `* *`    | vendor                                         | update the task description                                                     | make last minute changes to the task if needed                          |
+| `* *`    | vendor                                         | update supplier details                                                         | make changes to supplier if needed                                      |
+| `* *`    | vendor with many suppliers and tasks in Salsey | have a summary page of relevant information of suppliers and tasks in one place | have a good overview without using the CLI at all                       |
+| `* *`    | first time and experienced vendor user         | be given command tips when I enter the wrong command                            | refer to insturction when I forget how to use the Salsey App            |
+| `* *`    | vendor                                         | find supplies that are running low                                              | replenish low stock supplies in advance                                 |
+| `*`      | vendor with many suppliers in Salsey           | view suppliers in a sorted manner                                               | locate a supplier easily                                                |
+| `*`      | vendor with many tasks in Salsey               | sort tasks by name                                                              | locate a task easily                                                    |
+| `*`      | vendor                                         | keep track of sales revenue, expenses and profit                                | see if my business is doing well                                        |
+| `*`      | vendor that is a long time user                | sort inventory into different categories                                        | keep track of different types of inventory(hardware, perishables, fuel) |
+| `*`      | vendor                                         | view ingredients needed for recepies                                            | know what to get from suppliers                                         |
+| `*`      | vendor                                         | have a view of a queue system of my orders                                      | know when each supplier will come and replenish the order               |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `Salsey` and the **Actor** is the `canteen vendor`, unless specified otherwise)
 
 **Use case: Delete a person**
 
