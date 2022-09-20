@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Jiang Zhimeng
 
-<img src="images/asierika.png" width="200px">
+<img src="images/asaierika.png" width="200px">
 
 [[github](https://github.com/asaierika)]
 [[portfolio](team/asaierika.md)]
