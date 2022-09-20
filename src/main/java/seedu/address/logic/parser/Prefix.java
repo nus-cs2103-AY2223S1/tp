@@ -15,10 +15,6 @@ public class Prefix {
         return prefix;
     }
 
-    public String toString() {
-        return getPrefix();
-    }
-
     @Override
     public int hashCode() {
         return prefix == null ? 0 : prefix.hashCode();
@@ -35,5 +31,9 @@ public class Prefix {
 
         Prefix otherPrefix = (Prefix) obj;
         return otherPrefix.getPrefix().equals(getPrefix());
+    }
+
+    public String toString() {
+        return getPrefix();
     }
 }

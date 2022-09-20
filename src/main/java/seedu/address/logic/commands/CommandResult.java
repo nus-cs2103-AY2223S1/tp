@@ -11,10 +11,14 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
-    /** Help information should be shown to the user. */
+    /**
+     * Help information should be shown to the user.
+     */
     private final boolean showHelp;
 
-    /** The application should exit. */
+    /**
+     * The application should exit.
+     */
     private final boolean exit;
 
     /**
@@ -47,6 +51,11 @@ public class CommandResult {
     }
 
     @Override
+    public int hashCode() {
+        return Objects.hash(feedbackToUser, showHelp, exit);
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
@@ -59,13 +68,8 @@ public class CommandResult {
 
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+               && showHelp == otherCommandResult.showHelp
+               && exit == otherCommandResult.exit;
     }
 
 }
