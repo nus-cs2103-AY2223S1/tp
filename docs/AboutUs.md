@@ -26,7 +26,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [github](http://github.com/thamruicong) [portfolio](team/ruicong.md)
 
 * Role: Developer
-* Responsibilities: Coding
+* Responsibilities: Coding, Approving Pull Requests
 
 ### Johnny Doe
 
