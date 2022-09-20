@@ -20,34 +20,34 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: In charge of Model
 
-### Jane Doe
+### Perry Wong Jun Jie
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/perry.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://https://github.com/pwjj2000)]
+[[portfolio](team/perry.md)]
 
-* Role: Team Lead
+* Role: Deliverables and Deadlines
+* Responsibilities: Documentation and Testing
+
+### Lim Hong Wei, Jovon
+
+<img src="images/jovonlim.png" width="200px">
+
+[[github](http://github.com/jovonlim)] [[portfolio](team/johndoe.md)]
+
+* Role: Developer
+* Responsibilities: Storage
+
+### Nicholas Tan
+
+<img src="images/nicholastan.png" width="200px">
+
+[[github](https://github.com/NicholasTYD)]
+[[portfolio](team/nicholastyd.md)]
+
+* Role: Developer
 * Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
 
 ### Zhao Yao
 
