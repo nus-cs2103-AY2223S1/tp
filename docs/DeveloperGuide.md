@@ -264,7 +264,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * is reasonably comfortable using CLI apps
 * requires a secure app to store sensitive client details
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app. 
+**Value proposition**: manage contacts faster than a typical mouse/GUI driven app while ensuring that client details are safe and secure. 
 
 
 ### User stories
