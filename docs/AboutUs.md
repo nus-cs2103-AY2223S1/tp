@@ -23,7 +23,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Rui Cong
 
-<img src="images/ruicong.png" width="200px">
+<img src="images/thamruicong.png" width="200px">
 
 [github](http://github.com/thamruicong) [portfolio](team/ruicong.md)
 
@@ -32,7 +32,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Evan Loo
 
-<img src="images/evanloo.png" width="200px">
+<img src="images/evande1.png" width="200px">
 
 [[github](http://github.com/evande1)] [[portfolio](team/evande1.md)]
 
@@ -41,7 +41,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Lee Wai Chong
 
-<img src="images/waichong.png" width="200px">
+<img src="images/Whysochong.png" width="200px">
 
 [[github](https://github.com/Whysochong)]
 [[portfolio](team/waichong.md)]
@@ -51,7 +51,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Thian Zhang Zhi
 
-<img src="images/zhangzhi.png" width="200px">
+<img src="images/zzthian.png" width="200px">
 
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
