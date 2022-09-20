@@ -257,27 +257,30 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* tech savvy university teacher assistants
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage student information faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​         | I want to …​                                              | So that I can…​                                      |
+|----------|-----------------|-----------------------------------------------------------|------------------------------------------------------|
+| `* * *`  | forgetful tutor | see the student’s profile picture                         | recognise them in my class.                          |
+| `* * *`  | tutor           | be able to add comments                                   | monitor my students' progress.                       |
+| `* * *`  | tutor           | be able to retrieve my student’s contact details          | communicate with them.                               |
+| `* * *`  | tutor           | be able to recognise my students from different tutorials | I can organise their contacts into different groups. |
+| `* * *`  | forgetful tutor | have an attendance sheet                                  | record the attendance of each individual student.    |
+| `*`      | user            | track the date and the time while using my app            | keep track of time                                   |
+|          |                 |                                                           |                                                      |
+|          |                 |                                                           |                                                      |
+|          |                 |                                                           |                                                      |
 
 *{More to be added}*
 
