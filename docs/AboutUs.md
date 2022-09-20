@@ -50,10 +50,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Zhao Yao
 
-<img src="images/zhaoyao.png" width="200px">
+<img src="images/wingkei67.png" width="200px">
 
 [[github](http://github.com/wingkei67)]
-[[portfolio](team/zhaoyao.md)]
+[[portfolio](team/wingkei67.md)]
 
 * Role: Developer
 * Responsibilities: Logic
