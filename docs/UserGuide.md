@@ -73,9 +73,9 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a patient: `add`
 
-Adds a person to the address book.
+Adds a patient to the patient record database.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
@@ -87,11 +87,58 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+### Adding a record: `addR`
 
-Shows a list of all persons in the address book.
+Adds a new record to a given patient.
+
+Format: `addR INDEX d/DATE r/DESCRIPTION`
+
+* Adds a new record to the patient at the specified `INDEX`.
+* The index refers to the index number shown in the displayed patient records list.
+* The index must be a positive integer 1, 2, 3, …​
+* The record is created with given `DATE` and `DESCRIPTION` information.
+
+Examples:
+* `addR 1 d/2022-09-11 r/Patient tested negative for COVID-19`
+
+### Deleting a patient: `delete`
+
+Deletes the specified patient from the patient database.
+
+Format: `delete INDEX`
+
+* Deletes the patient at the specified `INDEX`.
+* The index refers to the index number shown in the displayed patient records list.
+* The index must be a positive integer 1, 2, 3, …​
+
+Examples:
+* `list` followed by `delete 2` deletes the 2nd patient in the address book.
+* `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the find command.
+
+### Deleting a record: `deleteR`
+
+Deletes the specified record from the currently viewed patient’s records.
+
+Format: `deleteR RECORD_INDEX`
+
+* The command is only valid after using `listR PATIENT_INDEX`.
+* Deletes the record of the currently viewed patient at the specified `RECORD_INDEX`.
+* The record index must be a positive integer 1, 2, 3, …​
+
+Examples:
+* `listR 1` then `deleteR 2` deletes the 2nd record from the 1st patient’s listed records.
+
+### Listing all patients: `list`
+
+Shows a list of all patients in the patients database.
 
 Format: `list`
+
+### Listing all record(s) for the specified patient : `listR`
+
+Shows a list of all records for the specific patient in the records database.
+
+Format: `listR PATIENT_INDEX`
 
 ### Editing a person : `edit`
 
@@ -183,7 +230,8 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add Patient** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add Record** | `addR INDEX d/DATE r/DESCRIPTION` <br> e.g., `e.g., addR 1 d/2022-09-11 r/Patient tested negative for COVID-19`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
