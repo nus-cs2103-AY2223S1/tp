@@ -101,6 +101,33 @@ Format: `addR INDEX d/DATE r/DESCRIPTION`
 Examples:
 * `addR 1 d/2022-09-11 r/Patient tested negative for COVID-19`
 
+### Deleting a patient: `delete`
+
+Deletes the specified patient from the patient database.
+
+Format: `delete INDEX`
+
+* Deletes the patient at the specified `INDEX`.
+* The index refers to the index number shown in the displayed patient records list.
+* The index must be a positive integer 1, 2, 3, …​
+
+Examples:
+* `list` followed by `delete 2` deletes the 2nd patient in the address book.
+* `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the find command.
+
+### Deleting a record: `deleteR`
+
+Deletes the specified record from the currently viewed patient’s records.
+
+Format: `deleteR RECORD_INDEX`
+
+* The command is only valid after using `listR PATIENT_INDEX`.
+* Deletes the record of the currently viewed patient at the specified `RECORD_INDEX`.
+* The record index must be a positive integer 1, 2, 3, …​
+
+Examples:
+* `listR 1` then `deleteR 2` deletes the 2nd record from the 1st patient’s listed records.
+
 ### Listing all persons : `list`
 
 Shows a list of all persons in the address book.
