@@ -53,7 +53,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/zhaoyao.png" width="200px">
 
 [[github](http://github.com/wingkei67)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/zhaoyao.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Logic
