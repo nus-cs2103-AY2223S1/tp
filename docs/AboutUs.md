@@ -13,7 +13,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/guanzhou03.png" width="200px">
 
-
 [[github](https://github.com/guanzhou03)]
 [[portfolio](team/guanzhou.md)]
 
