@@ -49,12 +49,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Min Hein Aung
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/minheina.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/minheina)]
+[[portfolio](team/minheina.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Team Lead 
+* Responsibilities: Component Logic
