@@ -9,8 +9,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### Guanzhou
-
+### Chen Guanzhou
 <img src="images/guanzhou03.png" width="200px">
 
 [[github](https://github.com/guanzhou03)]
