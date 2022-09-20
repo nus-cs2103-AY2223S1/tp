@@ -45,7 +45,7 @@ FoodWhere (FW) is a **desktop app for managing food reviews, optimized for use v
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `sadd n/NAME a/ADDRESS`, `NAME` and `ADDRESS` are parameters which can be used as `sadd n/John Doe a/ABC Ave`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [d/DETAILS]` can be used as `n/John Doe d/Opens 9am - 11pm` or as `n/John Doe`.
