@@ -39,16 +39,17 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/marclzh.md)]
 
 * Role: TBD
-* Responsibilities: In charge of `find` and `findR` commands'
+* Responsibilities: In charge of `find` and `findR` commands
 
-### Johnny Doe
+### Eiffel Leo
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/eiffellkf.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/eiffellkf)]  
+[[portfolio](team/eiffellkf.md)] 
 
-* Role: Developer
-* Responsibilities: Data
+* Role: TBD
+* Responsibilities: In charge of `add` and `addR` command
 
 ### Jean Doe
 
