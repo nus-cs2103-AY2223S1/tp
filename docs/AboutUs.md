@@ -21,12 +21,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Loh Teng Wye
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lohtengwye.png" width="200px">
 
 [[github](http://github.com/nopehax)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/lohtengwye.md)]
 
-* Role: Team Lead
+* Role: Developer
 * Responsibilities: UI
 
 ### Johnny Doe
