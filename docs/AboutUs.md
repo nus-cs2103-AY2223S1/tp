@@ -29,14 +29,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Deliverables and Deadlines
 * Responsibilities: Documentation and Testing
 
-### Johnny Doe
+### Lim Hong Wei, Jovon
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jovonlim.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/jovonlim)] [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Storage
 
 ### Nicholas Tan
 
