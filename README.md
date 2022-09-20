@@ -6,7 +6,7 @@
 
 * **JerylFypManager** is a desktop application catered to professors to manage and track the progress for students’ final year project (FYP), as well as serving as a platform for professors to provide feedback on their students’ progress.<br>
   Example usages:
-  * as a tracking tool to track final year projects one is in charge of.
+  * as a tracking tool to track final year projects a professor is in charge of.
   * as a helper tool to provide feedback on students' FYP progress.
 
 * It is named `JerylFypManager` as the application serves as a FYP manager, while `Jeryl` represents the initials of the developers of the application.
