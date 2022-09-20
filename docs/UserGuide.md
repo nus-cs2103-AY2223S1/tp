@@ -115,6 +115,19 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Add an appointment:  `book`
+
+Books an appointment for the specified patient at INDEX with a given REASON and DATE.
+
+Format: `book INDEX r/REASON d/DATE`
+
+* The index refers to the index number shown in the displayed appointment list.
+* The index must be a positive integer 1, 2, 3, …​
+* Dates should be inputted in a YYYY-MM-DDTHH:MM format.
+
+Examples:
+* `Book 2 r/Ear Infection d/2022-12-31T18:00`
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -139,10 +152,6 @@ AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 ## Command summary
 
 Action | Format, Examples
@@ -150,7 +159,9 @@ Action | Format, Examples
 **Add** | `add n/NAME p/PHONE_NUMBER a/ADDRESS [e/EMAIL] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 a/123, Clementi Rd, 1234665`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
+**Book** | `book INDEX r/REASON d/DATE`<br> e.g., `book 2 r/EarInfection d/2022-12-31T18:00`
+**Cancel** | `cancel PATIENT_INDEX APPOINTMENT_INDEX` <br> e.g., `cancel 3 2`
+**List** | `list patients` <br> `list appointments`
 **Help** | `help`
+**Exit** | `exit`
