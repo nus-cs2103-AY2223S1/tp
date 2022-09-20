@@ -98,7 +98,7 @@ Shows a list of all contacts in the address book in alphabetical order.</br>
 
 Format: `contact list`
 
-### Listing all Contacts : `contact list`
+### Listing all Tasks : `task list`
 
 Shows a list of all tasks assigned by the user to contacts in the addressbook, and vice versa, in alphabetical order.</br>
 [coming soon!]: Methods to list the tasks separately.
