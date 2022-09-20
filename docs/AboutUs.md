@@ -29,14 +29,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Evan Loo
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/evanloo.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/evande1)] [[portfolio](team/evande1.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Code quality
+* Responsibilities: Ensures adherence to code quality and practices.
 
 ### Jean Doe
 
