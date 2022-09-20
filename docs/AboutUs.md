@@ -23,8 +23,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/perry.png" width="200px">
 
-[[github](http://https://github.com/pwjj2000)]
-[[portfolio](team/perry.md)]
+[[github](https://github.com/pwjj2000)]
+[[portfolio](team/pwjj2000.md)]
 
 * Role: Deliverables and Deadlines
 * Responsibilities: Documentation and Testing
