@@ -87,9 +87,9 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+### Displaying internship application : `list`
 
-Shows a list of all persons in the address book.
+Displays all the internship applications in the list.
 
 Format: `list`
 
@@ -174,8 +174,20 @@ _Details coming soon ..._
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**Q**: What should I do if the program crashes?<br>
+**A**: Screenshot the error message (if any) and report to us via email: 
+johndoe@gmail.com or github issue [here](https://github.com/AY2223S1-CS2103-F14-3/tp/issues). 
+We will assist you as soon as possible.
+
+**Q**: Is CinternS supported on mobile platforms?<br>
+**A**: No. CinternS is only available on PC now.
+
+**Q**: Will my data be lost after updating the program?<br>
+**A**: No.
+
+**Q**: How do I transfer my data to another computer?<br>
+**A**: Install the app in the other computer and overwrite the original empty data file with the save file that contains the data of your previous CinternS home folder.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
