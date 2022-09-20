@@ -11,13 +11,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### John Doe
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/guanzhou03.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+[[github](https://github.com/guanzhou03)]
+[[portfolio](team/guanzhou.md)]
+
+* Role: Team Lead
+* Responsibilities: In charge of Model
 
 ### Perry Wong Jun Jie
 
@@ -48,12 +49,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: UI
 
-### James Doe
+### Zhao Yao
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zhaoyao.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/wingkei67)]
+[[portfolio](team/zhaoyao.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Logic
