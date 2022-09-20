@@ -283,16 +283,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Financial Aid Planner` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a client**
+
+**MSS**
+
+1.  User inputs add command with the client's information
+2.  Financial Aid Planner adds the client and their information to the list 
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Input fields are invalid
+
+  * 1a1. Financial Aid Planner shows an error message.
+
+    Use case ends.
+
+**Use case: Delete a client**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  Financial Aid Planner shows a list of client 
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  Financial Aid Planner deletes the client 
 
     Use case ends.
 
@@ -304,7 +321,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Financial Aid Planner shows an error message.
 
       Use case resumes at step 2.
 
