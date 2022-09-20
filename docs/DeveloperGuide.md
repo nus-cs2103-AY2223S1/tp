@@ -257,33 +257,33 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of TA, professor, and other students' contact information
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: For students to manage Professor/TA /Students based on information provided allowing them to save time.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                    | I want to …​                                     | So that I can…​                                       |
+|----------|--------------------------------------------|--------------------------------------------------|-------------------------------------------------------|
+| `* * *`  | Student                                    | Add contacts of my tutors/professor/ friends     | I can keep track of my social network                 |
+| `* * *`  | Student                                    | Remove unnecessary contacts from my address book | I can manage my social network                        |
+| `* * *`  | Student                                    | Find contacts based on name                      | I can look up a person’s contact easily               |
+| `* * *`  | Student                                    | Edit contacts in  address book                   | I can make changes if that a person’s contact changed |
+| `* * *`  | Student                                    | Display all the contacts in my list              | I can see all the contacts that I have added so far   |
+
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `SoConnect` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
