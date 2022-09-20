@@ -128,11 +128,17 @@ Format: `deleteR RECORD_INDEX`
 Examples:
 * `listR 1` then `deleteR 2` deletes the 2nd record from the 1st patient’s listed records.
 
-### Listing all persons : `list`
+### Listing all patients: `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all patients in the patients database.
 
 Format: `list`
+
+### Listing all record(s) for the specified patient : `listR`
+
+Shows a list of all records for the specific patient in the records database.
+
+Format: `listR PATIENT_INDEX`
 
 ### Editing a person : `edit`
 

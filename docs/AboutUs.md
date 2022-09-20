@@ -20,6 +20,17 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: TBD
 * Responsiblities: In charge of `delete` and `deleteR` commands
 
+### Lai Han Wen
+
+<img src="images/hanwenlai.png" width="200px">
+
+
+[[github](https://github.com/hanwenlai)]
+[[portfolio](team/hanwenlai.md)]
+
+* Role: TBD
+* Responsiblities: In charge of `list` and `listR` commands
+
 ### Jane Doe
 
 <img src="images/johndoe.png" width="200px">
