@@ -48,12 +48,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Storage
 
-### James Doe
+### Totsuka Tomofumi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/totsukatomofumi.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/totsukatomofumi)] [[portfolio](team/totsukatomofumi.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Logic
