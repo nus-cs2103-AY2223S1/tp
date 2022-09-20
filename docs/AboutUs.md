@@ -21,15 +21,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Rui Cong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ruicong.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[github](http://github.com/thamruicong) [portfolio](team/ruicong.md)
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Coding, Approving Pull Requests
 
 ### Evan Loo
 
