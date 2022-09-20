@@ -245,13 +245,13 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add Patient** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Add Record** | `addR INDEX d/DATE r/DESCRIPTION` <br> e.g., `e.g., addR 1 d/2022-09-11 r/Patient tested negative for COVID-19`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action          | Format, Examples                                                                                                                                                      |
+|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Patient** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Add Record**  | `addR INDEX d/DATE r/DESCRIPTION` <br> e.g., `e.g., addR 1 d/2022-09-11 r/Patient tested negative for COVID-19`                                                       |
+| **Clear**       | `clear`                                                                                                                                                               |
+| **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
+| **Edit**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
+| **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
+| **List**        | `list`                                                                                                                                                                |
+| **Help**        | `help`                                                                                                                                                                |
