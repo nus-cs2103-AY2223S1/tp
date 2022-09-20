@@ -3,13 +3,15 @@ layout: page
 title: Developer Guide
 ---
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* Libraries used: [JavaFX](https://openjfx.io), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5). <br>
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -160,9 +162,9 @@ This section describes some noteworthy details on how certain features are imple
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* `VersionedAddressBook#commit()`—Saves the current address book state in its history.
+* `VersionedAddressBook#undo()`—Restores the previous address book state from its history.
+* `VersionedAddressBook#redo()`—Restores a previously undone address book state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
 
@@ -176,7 +178,7 @@ Step 2. The user executes `delete 5` command to delete the 5th person in the add
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -201,7 +203,7 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite—it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
@@ -211,7 +213,7 @@ Step 5. The user then decides to execute the command `list`. Commands that do no
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -224,13 +226,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 **Aspect: How undo & redo executes:**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -257,44 +259,84 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Tech-Savvy NUS CS Student
+* Reasonably fast typer
+* Comfortable using CLI apps
+* Forgets which friends has common modules with him
+* Takes a lot of modules
+* Takes modules where information are spread over multiple websites
+* Tends to work at night
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
+* This app aims to be a unified platform that helps the user manage his academic details.
+* This application will be the go-to place to access all module links, information and deadlines without needing to tediously navigate through multiple different websites.
+
 
 
 ### User stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+Priorities: `High` (must have), `Medium` (nice to have), `Low` (unlikely to have)
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a … | I want to … | So that I can…|
+| - | - | - | - |
+| `High` | User | Add a contact | View them in future settings |
+| `High` | User | Delete a contact | Trim my contact list to keep it updated |
+| `High` | User | Add a module into Plannit | Add details of the module |
+| `High` | User | Delete a module into Plannit | Remove unnecessary modules after the semester ends |
+| `High` | User | Add tasks for each module into Plannit | Keep track of tasks for each module |
+| `High` | User | Delete tasks from module on Plannit | Remove tasks that have been completed |
+| `High` | User | Add links | Store the links on Plannit for easy reference
+| `High` | User | Delete links | Remove the links when the semester ends |
+| `High` | User | Easily navigate through different modules | Quickly view relevant modules details |
+| `High` | Busy User | See the overview of tasks on the home page | Get a quick summary of upcoming tasks |
+| `Medium` | User | Edit module details | Rectify mistakes and update module details when needed |
+| `Medium` | User | Edit a contact | Rectify mistakes and update contact details when needed |
+| `Medium` | User | Sort tasks by deadlines | I can prioritise which tasks to complete first |
+| `Medium` | User | Set different priorities to prioritise my tasks	| I know is important and should be done first |
+| `Medium` | Forgetful Student | Organise contacts by module | I can discuss difficult assignment questions with them and delete them once the semester is completed |
+| `Medium` | Organised Person | Filter contacts by tags | Search for contacts relevant for my case |
+| `Medium` | Expert User | Search a keyword	| Go to the module which has the relevant topic I have in mind |
+| `Medium` | User | Detect (and delete) duplicate items | Avoid adding a same item twice |
+| `Medium` | New potential user | See the app populated with sample data | Easily see how the app will look like when it is in use |
+| `Medium` | Forgetful student | Group contacts by tags	| Find out which friends are taking what modules |
+| `Medium` | Expert User | Purge existing module data | Save time deleting all the module data when the semester ends |
+| `Medium` | User |	Batch delete by module | I can forget the pain of dropping modules |
+| `Low` | Forgetful Student	| Set a reminder to update me on my submission dates | Prevent any minor slip-ups in my work |
+| `Low` | Morning Lark | Configure the application to light mode | See the words clearly under the sun |
+| `Low` | Expert User | Archive existing data | Restore the data in case I mess up |
+| `Low` | User | Undo the latest commands | Recover the data which I accidentally deleted |
+| `Low` | User who is easily bored | Set different themes for the application | Enjoy different visuals  |
+| `Low` | User | Find free times | Add more dates/schedule more meetings |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Plannit` application and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+#### Use case: UC01 - Add a module
+**Main Success Scenario (MSS)**
+1. User requests to add module.
+2. Plannit adds the module.
+3. Plannit shows that the module addition is successful.
 
-**MSS**
+Use case ends
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+**Extensions**
+* 1a. Module already exists
+    * 1a1. Plannit shows an error message.
 
-    Use case ends.
+  Use case ends
+
+#### Use case: UC02 - Delete a module
+**Main Success Scenario (MSS)**
+
+1.  User requests to list modules.
+2.  Plannit shows a list of modules.
+3.  User requests to delete a specific module in the list.
+4.  Plannit deletes the module.
+
+Use case ends.
 
 **Extensions**
 
@@ -304,24 +346,296 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Plannit shows an error message.
 
-      Use case resumes at step 2.
+  Use case resumes at step 2.
 
-*{More to be added}*
+#### Use case: UC03 - Find module
+**Main Success Scenario (MSS)**
+1. User chooses to search up a module's information.
+2. Plannit requests for module code.
+3. User enters the module code.
+4. Plannit searches for module and displays module details.
+
+Use case ends.
+
+Extensions:
+* 3a. Plannit detects that the specified module does not exist.
+    * 3a1. Plannit displays a text, informing that the specified module does not exist.
+
+  Use case ends.
+
+#### Use case: UC04 - Add a task
+**Preconditions**:
+* User has completed UC01
+* Module list is not empty
+
+**Main Success Scenario (MSS)**
+1.  User requests to add a task to a specific module in the list.
+2.  Plannit adds the task to the module.
+
+    Use case ends.
+
+**Extensions**
+* 1a. The given module is invalid.
+
+    * 3a1. Plannit shows an error message.
+
+  Use case resumes at step 1.
+
+* 1b. The given task is in an invalid format.
+
+    * 1b1. Plannit shows an error message.
+
+  Use case resumes at step 1.
+
+#### Use case: UC05 - Delete a task
+**Preconditions**:
+* User has completed UC01
+* Module list is not empty
+* Task list of module is not empty
+
+**Main Success Scenario (MSS)**
+1.  User requests to delete a specific task from a module in the list.
+2.  Plannit deletes the task from the module.
+
+Use case ends.
+
+**Extensions**
+* 1a. The given module is invalid.
+
+    * 1a1. Plannit shows an error message.
+
+  Use case resumes at step 1.
+
+* 1b. The given task index is invalid.
+
+    * 1b1. Plannit shows an error message.
+
+  Use case resumes at step 1.
+
+#### Use case: UC06 - Find task
+**Precondition**
+* User has applied UC13 to navigate to a module.
+
+**Main Success Scenario (MSS)**
+1. User requests to search for a task.
+2. Plannit displays the list of tasks matching the user search keyword to the user.
+
+**Extensions**
+* 1a. User inputs empty search keyword.
+    * 1a1. Plannit shows an error message.
+
+  Use case resumes at Step 1
+
+#### Use case: UC07 - Add a Module Link
+**Preconditions**:
+* User has completed UC01
+* Module list is not empty
+
+**Main Success Scenario (MSS)**
+
+1. User requests for the addition of module-specific link.
+2. Plannit adds and associates the entered link to the specific module.
+
+Use case ends.
+
+Extension:
+* 3a. Plannit detects the module does not exist.
+    * 3a1. Plannit displays an error message.
+
+  Use case ends.
+
+* 3b. Plannit detects the link is already added.
+    * 3b1. Plannit displays an error message.
+
+  Use case ends.
+
+#### Use case: UC08 - Delete a Module Link
+**Main Success Scenario (MSS)**
+
+1. User requests for the deletion of module-specific link.
+2. Plannit adds and associates the entered link to the specific module.
+
+Use case ends.
+
+Extension:
+* 3a. Plannit detects the module does not exist.
+    * 3a1 Plannit displays an error message.
+
+  Use case ends.
+
+* 3b. Plannit detects the link does not exist.
+    * 3b1 Plannit displays an error message.
+
+  Use case ends.
+
+
+#### Use case: UC09 - Add a contact
+**Main Success Scenario (MSS)**
+1.  User chooses to add a contact.
+2.  Plannit requests for the to-be-added contact detail.
+3.  User enters the to-be-added contact details.
+4.  Plannit adds the contact and notifies the user that the contact has been successfully added.
+
+Use case ends.
+
+**Extensions**
+* 3a. The contact is duplicate, i.e. name already exists.
+    * 3a1. Plannit shows an error message notifying user of the issue.
+
+  Use case ends.
+
+* 3b. The email address is invalid.
+    * 3b1. Plannit shows an error message.
+
+  Use case ends.
+
+* 3c. The phone number is invalid.
+    * 3c1. Plannit shows an error message notifying user of the invalid phone number.
+
+  Use case ends.
+
+#### Use case: UC10 - Delete a contact
+**Main Success Scenario (MSS)**
+1. User chooses to delete a contact.
+2. Plannit requests for name of friend.
+3. User enters the friend's name.
+4. Plannit searches for friend and notifies user that the contact has been deleted.
+
+Use case ends.
+
+Extensions:
+* 3a. Plannit detects that the specified contact does not exist.
+    * 3a1. Plannit displays a text, informing that the specified contact does not exist.
+
+  Use case ends.
+
+#### Use case: UC11 - Find contact
+**Main Success Scenario (MSS)**
+1. User chooses to search up his friend's email.
+2. Plannit requests for name of friend.
+3. User enters the friend's name.
+4. Plannit searches for friend and displays friend details
+
+Use case ends.
+
+Extensions:
+* 3a. Plannit detects that the specified contact does not exist.
+    * 3a1. Plannit displays a text, informing that the specified contact does not exist.
+
+  Use case ends.
+
+#### Use case: UC12 - Navigate to Home Page
+**Main Success Scenario (MSS)**
+
+1.  User requests to navigate to Home Page.
+2.  Plannit shows the Home Page.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. Already at Home Page.
+
+  Use case ends.
+
+#### Use case: UC13 - Navigate to Module
+**Main Success Scenario (MSS)**
+
+1.  User requests to navigate to a specific module.
+2.  Plannit shows the module details.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. Module does not exist.
+
+    * 2a1. Plannit shows an error message.
+
+  Use case ends.
+
+#### Use case: UC14 - Navigate to Contact Page
+**Main Success Scenario (MSS)**
+
+1.  User requests to navigate to Contact Page.
+2.  Plannit shows the Contact Page.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. Already at Home Page.
+
+  Use case ends.
+
+#### Use case: UC15 - Exit program
+**Main Success Scenario (MSS)**
+
+1.  User requests to exit program.
+2.  Plannit closes program.
+
+Use case ends.
+
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+#### Constraints
+1. Plannit cannot use NUS API to scrap data from LumiNUS/Canvas.
+2. Plannit should run independently of remote servers.
+3. Plannit cannot use a relational database management system.
+4. Plannit executable size should be smaller than 100MB.
 
-*{More to be added}*
+#### Technical Environment
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Plannit should work on 64-bit environments.
+3. The GUI should:
+    * _work well_ for standard screen resolutions 1920x1080 and higher, and for screen scales 100% and 125%.
+    * be _usable_ for screen resolutions 1280x720 and higher, and for screen scales 150%.
+4. Plannit is packaged into one `JAR` file.
+5. The software should work without an installer.
+6. Plannit should work without an internet connection.
+
+#### Performance
+1. Plannit should be able to hold up to 1000 _entries_ without a noticeable sluggishness in performance for typical usage.
+2. Plannit should be able to save and load up to 1000 _entries_ without a noticeable delay in performance.
+3. Plannit should respond to any user requests within 2 seconds as long as there are less than 1000 entries.
+
+#### Quality
+1. Plannit should be usable by someone with better-than-average typing speed.
+2. Plannit should be beginner-friendly and easily picked up by new users.
+3. Font size should be of reasonable size.
+4. The colours of the application should not induce eye strain.
+
+#### Process
+1. Development of Plannit should adhere to the following deadlines:
+    * **v1.1**: 28 September 2022 (Week 7, Wednesday)
+    * **v1.2**: 12 October 2022 (Week 9, Wednesday)
+    * **v1.3**: 26 October 2022 (Week 11, Wednesday)
+    * **v1.4**: 09 November 2022 (Week 13, Wednesday)
+2. The team should meet every Saturday at 9pm until the end of the project.
+3. Each team member should follow the forking workflow.
+4. At least 2 members need to approve a pull request before it can be successfully merged into the master branch on `GitHub`.
+5. Plannit's implementation should follow Object-Oriented Programming paradigm primarily.
+
+#### Project Scope
+1. Plannit does not automatically update module details/links.
+2. Plannit does not rigorously check for the validity of the email provided by the user.
+3. Plannit does not verify the security of links provided by the user
+4. Plannit does not ensure the validity of links provided by the user.
+5. Plannit does not rigorously check for the existence of phone number provided by the user.
+6. Plannit does not remind the user of upcoming tasks with notifications.
+7. Plannit does not check for invalid module codes.
+
+#### Other noteworthy points
+1. Plannit's code should be easily testable.
 
 ### Glossary
-
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Entries**: Modules, Contacts, Links, Tasks
+* **Mainstream OS**: Windows, Linux, Unix, macOS
+* **Usable**: All functions can be used even if the user experience is not optimal
+* **Work well**: Should not cause any resolution-related inconveniences to the user
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -338,40 +652,57 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the `JAR` file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1. Double-click the `JAR` file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+    1. Re-launch the app by double-clicking the `JAR` file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+1. _{ more test cases … }_
 
-### Deleting a person
+### Deleting a module
 
-1. Deleting a person while all persons are being shown
+1. Deleting a module while all modules are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all modules using the `list` command. Multiple modules in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `delete 1`<br>
+       Expected: First module is deleted from the list. Details of the deleted module shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `delete 0`<br>
+       Expected: No module is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where `x` is larger than the list size)<br>
+       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+1. _{ more test cases … }_
+
+### Deleting a contact
+
+1. Deleting a contact while all contacts are being shown
+
+    1. Prerequisites: List all modules using the `list` command. Multiple modules in the list.
+
+    1. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+
+    1. Test case: `delete 0`<br>
+       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+1. _{ more test cases … }_
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+1. _{ more test cases … }_
