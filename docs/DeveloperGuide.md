@@ -283,16 +283,85 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `OmniHealth` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a patient**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to add a patient with given input fields.
+2. OmniHealth adds patients with given fields into the list of patients.
+    
+    Use case ends.
+
+**Extensions**
+
+* 2a. The given input fields are invalid.
+
+    * 2a1. OmniHealth shows an error message.
+
+      Use case ends.
+
+**Use case: Add a record**
+
+**MSS**
+
+1.  User requests to list patients
+2.  OmniHealth shows a list of patients
+3.  User requests to add record with given fields into to a specific patient in the list
+4.  OmniHealth adds a record with given fields to the record list of the specified patient.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The given input fields are invalid.
+
+    * 2a1. OmniHealth shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Delete a patient**
+
+**MSS**
+
+1.  User requests to list patients
+2.  OmniHealth shows a list of patients
+3.  User requests to delete a specific patient in the list
+4.  OmniHealth deletes the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+    * 2a1. OmniHealth shows an error message.
+
+        Use case ends.
+    
+* 3a. The given index is invalid.
+
+    * 3a1. OmniHealth shows an error message.
+
+      Use case ends.
+
+* 4a. The user searches for a specific patient before deleting.
+
+    * 4a1. User requests to find a patient
+    * 4a2. OmniHealth shows a list of patient with given keyword
+    * 4a3. User requests to delete a specific patient in the list
+    * 4a4. OmniHealth deletes the patient
+
+      Use case ends.
+
+**Use case: Delete a record**
+
+**MSS**
+
+1.  User requests to list records of a specific patient
+2.  OmniHealth shows a list of records
+3.  User requests to delete a specific record in the list
+4.  OmniHealth deletes the record
 
     Use case ends.
 
@@ -300,13 +369,126 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
 
-  Use case ends.
+    * 2a1. OmniHealth shows an error message.
+
+        Use case ends.
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. OmniHealth shows an error message.
 
-      Use case resumes at step 2.
+      Use case ends.
+
+* 4a. Patient attempts to delete a record before listing records.
+
+    * 4a1. OmniHealth shows an error message.
+
+      Use case ends.
+
+**Use case: List all patients**
+
+**MSS**
+
+1. User requests to list all patients.
+2. OmniHealth shows a list of all patients.
+    
+    Use case ends.
+
+**Extensions**
+
+* 1a. The patient list is empty.
+
+    * 1a1. OmniHealth shows an error message.
+      
+        Use case ends.
+
+**Use case: List all records for a specified patient**
+
+**MSS**
+
+1. User requests to list all records for the specified patient.
+2. OmniHealth shows a list of all records for the specified patient.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The record list is empty.
+
+    * 1a1. OmniHealth shows an error message.
+       
+      Use case ends.
+
+* 1b. The given index is invalid.
+
+    * 1b1. OmniHealth shows an error message.
+      
+      Use case ends.
+
+**Use case: Clear patient list**
+
+**MSS**
+
+1. User requests to clear all patients from list
+2. Omnihealth deletes patient list
+
+    Use case ends
+
+**Extensions**
+
+* 1a. Patient list is empty
+    
+    Use case ends
+
+**Use case: Clear patient records**
+
+**MSS**
+
+1. User requests to clear all records from a patient
+2. Omnihealth deletes all patient records
+Use case ends
+
+**Extensions**
+* 1a. Patient record list is empty
+
+  Use case ends
+
+* 1b. Patient does not exist
+  * 1b1. Omnihealth displays error message
+
+
+**Use case: Get Help**
+
+**MSS**
+
+1. User requests to view help
+2. Omnihealth shows list of commands
+    
+    Use case ends
+
+**Use case: Find patient**
+
+**MSS**
+
+1. User requests to find a patient by name
+2. OmniHealth shows a list of all patients matching the input by the user.
+
+**Use case: Find patient**
+
+**MSS**
+
+1. User requests to find a patient by name
+2. OmniHealth shows a list of all patients matching the input by the user.
+
+**Use case: Find patient records**
+
+**MSS**
+
+1. User requests to find a patient by name
+2. OmniHealth shows a list of all patients matching the input by the user.
+3. User inputs a keyword and a patient record index.
+4. OmniHealth shows all the relevant records of the specified patient.
+
 
 *{More to be added}*
 
