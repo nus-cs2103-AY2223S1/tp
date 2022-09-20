@@ -63,7 +63,7 @@ TaskBook is a **desktop app for managing contacts and tasks, optimized for use v
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `task list`, `contact list` and `exit`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -91,11 +91,19 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+### Listing all Contacts : `contact list`
 
-Shows a list of all persons in the address book.
+Shows a list of all contacts in the address book in alphabetical order.</br>
+[coming soon!]: Methods for specific forms of listing.
 
-Format: `list`
+Format: `contact list`
+
+### Listing all Tasks : `task list`
+
+Shows a list of all tasks assigned by the user to contacts in the addressbook, and vice versa, in alphabetical order.</br>
+[coming soon!]: Methods to list the tasks separately.
+
+Format: `task list`
 
 ### Editing a person : `edit`
 
@@ -205,13 +213,14 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add Task** | `task add [m/o]/<assignor/assignee> t/<description>` <br> e.g., `task add o/Sam t/Finish the assignment`
-**Delete Contact** | `contact delete INDEX`<br> e.g., `contact delete 3`
-**Delete Task** | `task delete INDEX`<br> e.g., `task delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
-**Quit** | `bye`
+| Action             | Format, Examples                                                                                                            |
+|--------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| **View All Tasks** | `task list`                                                                                                                 |
+| **View Contacts**  | `contact list`                                                                                                              |
+| **Add Task**       | `task add [m/o]/<assignor/assignee> t/<description>` <br> e.g., `task add o/Sam t/Finish the assignment`                    |
+| **Delete Contact** | `contact delete INDEX`<br> e.g., `contact delete 3`                                                                         |
+| **Delete Task**    | `task delete INDEX`<br> e.g., `task delete 3`                                                                               |
+| **Edit**           | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com` |
+| **Find**           | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                  |
+| **Help**           | `help`                                                                                                                      |
+| **Quit**           | `bye`                                                                                                                       |
