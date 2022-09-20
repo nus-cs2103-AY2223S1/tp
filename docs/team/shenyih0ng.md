@@ -1,5 +1,5 @@
 ---
-layout: page 
+layout: page
 title: Shen Yi Hong's Project Portfolio Page
 ---
 

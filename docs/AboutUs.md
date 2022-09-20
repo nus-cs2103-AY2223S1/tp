@@ -46,7 +46,7 @@ You can reach us at the email `climods[at]comp.nus.edu.sg`
 [[portfolio](team/shenyih0ng.md)]
 
 * Role: Developer
-* Responsibilities: 
+* Responsibilities:
 
 ### James Doe
 
