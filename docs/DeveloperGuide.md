@@ -270,15 +270,19 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​            | I want to …​                               | So that I can…​                                           |
-|----------|--------------------|--------------------------------------------|-----------------------------------------------------------|
-| `* * *`  | sole tuition admin | I can delete a student and his particulars | clean up the storage / delete wrong information           |
-| `* * *`  | sole tuition admin | I can delete a tutor and his particulars   | clean up the storage / delete wrong information           |
-| `* * *`  | sole tuition admin | I can delete a class and its data          | clean up the storage / delete wrong information           |
-| `* * *`  | sole tuition admin | I can display a list of students           | get an overview of all the students in the tuition center |
-| `* * *`  | sole tuition admin | I can display a list of tutors             | get an overview of all the tutors in the tuition center   |
-| `* * *`  | sole tuition admin | I can display a list of classes            | get an overview of all the classes in the tuition center  |
-
+| Priority | As a …​            | I want to …​                               | So that I can…​                                                         |
+|----------|--------------------|--------------------------------------------|-------------------------------------------------------------------------|
+| `* * *`  | sole tuition admin | I can delete a student and his particulars | clean up the storage / delete wrong information                         |
+| `* * *`  | sole tuition admin | I can delete a tutor and his particulars   | clean up the storage / delete wrong information                         |
+| `* * *`  | sole tuition admin | I can delete a class and its data          | clean up the storage / delete wrong information                         |
+| `* * *`  | sole tuition admin | I can display a list of students           | get an overview of all the students in the tuition center               |
+| `* * *`  | sole tuition admin | I can display a list of tutors             | get an overview of all the tutors in the tuition center                 |
+| `* * *`  | sole tuition admin | I can display a list of classes            | get an overview of all the classes in the tuition center                |
+| `* * *`  | sole tuition admin | add a student and his particulars          |                                                                         |
+| `* * *`  | sole tuition admin | add a tutor and his particulars            |                                                                         |
+| `* * *`  | sole tuition admin | add a class and his particulars            |                                                                         |
+| `* * *`  | sole tuition admin | see a list of commands and its usage       | refer to the commands when I forgot them                                |
+| `* * *`  | sole tuition admin | find entities by name                      | locate details of entities without having to go through the entire list |
 *{More to be added}*
 
 ### Use cases
@@ -404,6 +408,83 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+**Use case: Add a student**
+
+**MSS**
+
+1.  User add student by entering the command and student details.
+2.  myStudents adds the student.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The add command syntax is invalid.
+
+    * 1a1. myStudents shows an error message.
+    * 1a2. myStudents will prompt another user input.
+
+      Use case ends.
+
+**Use case: Add a tutor**
+
+**MSS**
+
+1.  User add tutor by entering the command and tutor details.
+2.  myStudents adds the tutor.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The add command syntax is invalid.
+
+    * 1a1. myStudents shows an error message.
+    * 1a2. myStudents will prompt another user input.
+
+      Use case ends.
+
+**Use case: Add a class**
+
+**MSS**
+
+1.  User add class by entering the command and class details.
+2.  myStudents adds the class.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The add command syntax is invalid.
+
+    * 1a1. myStudents shows an error message.
+    * 1a2. myStudents will prompt another user input.
+
+      Use case ends.
+
+**Use case: Find entities**
+
+**MSS**
+
+1.  User request to find entities based on keyword input.
+2.  myStudents shows a list of all entities with name matching the keyword input.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+**Use case: Viewing help**
+
+**MSS**
+
+1.  User request for help by entering the help command.
+2.  myStudents shows a list of commands and its usage.
+
+    Use case ends.
 
 *{More to be added}*
 
