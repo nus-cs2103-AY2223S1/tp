@@ -9,7 +9,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Guanzhou
 
 <img src="images/guanzhou03.png" width="200px">
 
@@ -23,7 +23,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/perry.png" width="200px">
 
-[[github](http://https://github.com/pwjj2000)]
+[[github](https://github.com/pwjj2000)]
 [[portfolio](team/perry.md)]
 
 * Role: Deliverables and Deadlines
