@@ -10,12 +10,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 ## Project team
 
 ### Chen Guanzhou
-
 <img src="images/guanzhou03.png" width="200px">
 
-
 [[github](https://github.com/guanzhou03)]
-[[portfolio](team/guanzhou.md)]
+[[portfolio](team/guanzhou03.md)]
 
 * Role: Team Lead
 * Responsibilities: In charge of Model
@@ -24,7 +22,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/perry.png" width="200px">
 
-[[github](http://https://github.com/pwjj2000)]
+[[github](https://github.com/pwjj2000)]
 [[portfolio](team/perry.md)]
 
 * Role: Deliverables and Deadlines
@@ -34,14 +32,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/jovonlim.png" width="200px">
 
-[[github](http://github.com/jovonlim)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/jovonlim)] [[portfolio](team/jovonlim.md)]
 
 * Role: Developer
 * Responsibilities: Storage
 
 ### Nicholas Tan
 
-<img src="images/nicholastan.png" width="200px">
+<img src="images/nicholastyd.png" width="200px">
 
 [[github](https://github.com/NicholasTYD)]
 [[portfolio](team/nicholastyd.md)]
