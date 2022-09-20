@@ -19,14 +19,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: UI
 
-### Jane Doe
+### Loh Teng Wye
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lohtengwye.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/nopehax)]
+[[portfolio](team/lohtengwye.md)]
 
-* Role: Team Lead
+* Role: Developer
 * Responsibilities: UI
 
 ### Ong Wen Pin
