@@ -259,11 +259,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Coordinators of pet sale who need a contact list of both clients, deliverers and suppliers. These coordinators run their business online and get used to typing. Such people need to maintain a contact list of clients, deliverers, and suppliers.
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* get used to desktop for their online business, and can type fast
 * meet a lot of people online
 * need to contact a lot of people on a regular basis
 * need to keep track of fast-growing pets
@@ -285,17 +281,6 @@ Coordinators of pet sale who need a contact list of both clients, deliverers and
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-#### Primitive AB3 user stories
-
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
-
 #### PetCode user stories
 ##### Buyer side
 | Priority | As a …​                                | I want to …​                                                                                                                                                          | So that I can…​                                                      |
@@ -311,34 +296,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `PetCode` and the **Actor** is the `user`, unless specified otherwise)
 
-#### Primitive AB3 user cases
-**Use case: Delete a person**
-
-**MSS**
-
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
-
-      Use case resumes at step 2.
-
-*{More to be added}*
-
-
-#### PetCode user cases
 **Use case: UC01 - List Summary of Orders**
 
 **MSS**
