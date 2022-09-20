@@ -19,15 +19,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Perry Wong Jun Jie
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/perry.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://https://github.com/pwjj2000)]
+[[portfolio](team/perry.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Deliverables and Deadlines
+* Responsibilities: Documentation and Testing
 
 ### Johnny Doe
 
