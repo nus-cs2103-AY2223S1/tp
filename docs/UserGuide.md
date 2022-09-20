@@ -96,7 +96,7 @@ Note: Contact number cannot be empty. It must contain at least 1 digit.
     - White spaces between numbers will be automatically removed. eg: `8123 4556` will be converted to `81234567`
     
 ```yaml
-Note: Next of Kin’s number cannot be empty. It must contain at least 1 `digit`.
+Note: Next of Kin’s number cannot be empty. It must contain at least 1 digit.
 ```
 
 4. Address
@@ -104,7 +104,7 @@ Note: Next of Kin’s number cannot be empty. It must contain at least 1 `digit`
     - Address may contain any kinds of character
     
 ```yaml
-Note: Address cannot be empty. It must contain at least 1 `character`.
+Note: Address cannot be empty. It must contain at least 1 character.
 ```
 
 5. Email
@@ -112,7 +112,7 @@ Note: Address cannot be empty. It must contain at least 1 `character`.
     - Email must contain a `@`
     
 ```yaml
-Note: Email cannot be empty. It must contain at least 1 `character`.
+Note: Email cannot be empty. It must contain at least 1 character.
 ```
 
 6. Class Date
@@ -131,7 +131,7 @@ Examples:
 ![Add](https://github.com/AY2223S1-CS2103T-T09-4/tp/blob/master/docs/images/UiAdd.png)
 
 ```yaml
-Note: `Amount paid`, `Amount owed`, `Additional notes` fields are to be updated via the `update` command
+Note: Amount paid, Amount owed, Additional notes fields are to be updated via `update` command.
 ```
 
 ---
