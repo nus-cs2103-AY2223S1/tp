@@ -46,7 +46,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/nicholastyd.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: UI
 
 ### James Doe
 
