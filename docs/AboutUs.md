@@ -41,7 +41,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Lee Wai Chong
 
-<img src="images/Whysochong.png" width="200px">
+<img src="images/whysochong.png" width="200px">
 
 [[github](https://github.com/Whysochong)]
 [[portfolio](team/waichong.md)]
