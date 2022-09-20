@@ -30,6 +30,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Documentation
 * Responsibilities: Storage
 
+### Jamie Tan
+
+<img src="images/jamie.png" width="200px">
+
+[[github](http://github.com/jamietan2002)]
+[[portfolio](team/jamie.md)]
+
+* Role: Code Quality and Integration
+* Responsibilities: Main Logic (Command Parsing)
+
 ### Johnny Doe
 
 <img src="images/johndoe.png" width="200px">
