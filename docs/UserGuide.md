@@ -8,36 +8,6 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 * Table of Contents
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
-
-## Quick start
-
-1. Ensure you have Java `11` or above installed in your Computer.
-
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
-
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
-
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
-
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * **`list`** : Lists all contacts.
-
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
-
-   * **`exit`** : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
-
---------------------------------------------------------------------------------------------------------------------
-
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -87,11 +57,14 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+### Listing all patients/appointments : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all patients or appointments, depending on the parameter given.
 
-Format: `list`
+Format:
+* `list patients`
+* `list appts`
+
 
 ### Editing a person : `edit`
 
@@ -169,15 +142,6 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 ### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
-
---------------------------------------------------------------------------------------------------------------------
-
-## FAQ
-
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
-
---------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
