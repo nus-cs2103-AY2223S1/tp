@@ -181,11 +181,11 @@ Examples:
 Finds records with a description that matches the keyword(s) specified in the records database. This command is only valid after using the listR command to list out the records for a specified patient.
 
 Format: `findR KEYWORD [MORE_KEYWORDS]`
-* The search is case-insensitive. e.g hello will match HELLO
-* The order of the keywords does not matter. e.g. Hello World will match World Hello
+* The search is case-insensitive. e.g `hello` will `match HELLO`
+* The order of the keywords does not matter. e.g. `Hello World` will match `World Hello`
 * Only the description of the record will be searched.
-* Only full words will be matched e.g. Hell will not match Hello.
-* Records with a description matching at least one keyword will be returned (i.e. OR search). e.g. Hello World will return Hello Hello, World World.
+* Only full words will be matched e.g. `Hell` will not match `Hello`.
+* Records with a description matching at least one keyword will be returned (i.e. OR search). e.g. `Hello World` will return `Hello Hello`, `World World`.
 
 Examples:
 * `findR hello` returns `hello` and `Hello World`
