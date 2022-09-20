@@ -101,11 +101,44 @@ Format: `addR INDEX d/DATE r/DESCRIPTION`
 Examples:
 * `addR 1 d/2022-09-11 r/Patient tested negative for COVID-19`
 
-### Listing all persons : `list`
+### Deleting a patient: `delete`
 
-Shows a list of all persons in the address book.
+Deletes the specified patient from the patient database.
+
+Format: `delete INDEX`
+
+* Deletes the patient at the specified `INDEX`.
+* The index refers to the index number shown in the displayed patient records list.
+* The index must be a positive integer 1, 2, 3, …​
+
+Examples:
+* `list` followed by `delete 2` deletes the 2nd patient in the address book.
+* `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the find command.
+
+### Deleting a record: `deleteR`
+
+Deletes the specified record from the currently viewed patient’s records.
+
+Format: `deleteR RECORD_INDEX`
+
+* The command is only valid after using `listR PATIENT_INDEX`.
+* Deletes the record of the currently viewed patient at the specified `RECORD_INDEX`.
+* The record index must be a positive integer 1, 2, 3, …​
+
+Examples:
+* `listR 1` then `deleteR 2` deletes the 2nd record from the 1st patient’s listed records.
+
+### Listing all patients: `list`
+
+Shows a list of all patients in the patients database.
 
 Format: `list`
+
+### Listing all record(s) for the specified patient : `listR`
+
+Shows a list of all records for the specific patient in the records database.
+
+Format: `listR PATIENT_INDEX`
 
 ### Editing a person : `edit`
 
@@ -141,6 +174,23 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
+
+
+### Locating records by keyword: `findR`
+
+Finds records with a description that matches the keyword(s) specified in the records database. This command is only valid after using the listR command to list out the records for a specified patient.
+
+Format: `findR KEYWORD [MORE_KEYWORDS]`
+* The search is case-insensitive. e.g hello will match HELLO
+* The order of the keywords does not matter. e.g. Hello World will match World Hello
+* Only the description of the record will be searched.
+* Only full words will be matched e.g. Hell will not match Hello.
+* Records with a description matching at least one keyword will be returned (i.e. OR search). e.g. Hello World will return Hello Hello, World World.
+
+Examples:
+* `findR hello` returns `hello` and `Hello World`
+* `findR foo bar` returns `foo bar`, `bar null`
+
 
 ### Deleting a person : `delete`
 
@@ -195,13 +245,13 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add Patient** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Add Record** | `addR INDEX d/DATE r/DESCRIPTION` <br> e.g., `e.g., addR 1 d/2022-09-11 r/Patient tested negative for COVID-19`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action          | Format, Examples                                                                                                                                                      |
+|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Patient** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Add Record**  | `addR INDEX d/DATE r/DESCRIPTION` <br> e.g., `e.g., addR 1 d/2022-09-11 r/Patient tested negative for COVID-19`                                                       |
+| **Clear**       | `clear`                                                                                                                                                               |
+| **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
+| **Edit**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
+| **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
+| **List**        | `list`                                                                                                                                                                |
+| **Help**        | `help`                                                                                                                                                                |
