@@ -31,15 +31,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: TBD
 * Responsiblities: In charge of `list` and `listR` commands
 
-### Jane Doe
+### Marcus Lee
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/marclzh.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/marclzh)]
+[[portfolio](team/marclzh.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: TBD
+* Responsibilities: In charge of `find` and `findR` commands'
 
 ### Johnny Doe
 
