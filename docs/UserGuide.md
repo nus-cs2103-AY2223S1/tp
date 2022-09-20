@@ -8,10 +8,6 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 * Table of Contents
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
-
---------------------------------------------------------------------------------------------------------------------
-
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -49,23 +45,26 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds a patient to idENTify.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `Format: add n/NAME p/PHONE_NUMBER a/ADDRESS [e/EMAIL] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/John Doe p/98765432 a/John street, block 123, #01-01`
+* `add n/Betsy Crowe p/88888888 a/Newgate Prison t/e`
 
-### Listing all persons : `list`
+### Listing all patients/appointments : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all patients or appointments, depending on the parameter given.
 
-Format: `list`
+Format:
+* `list patients`
+* `list appts`
+
 
 ### Editing a person : `edit`
 
@@ -144,22 +143,11 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 _Details coming soon ..._
 
-### Cancel
-Cancels a specified appointment from the specified patient’s appointment list. <br>
-Format: ```cancel PATIENT_INDEX APPOINTMENT_INDEX```
-- Deletes the appointment with APPOINTMENT_INDEX for the patient at the specified PATIENT_INDEX.
-- The index refers to the index number shown in the displayed appointment list.
-- The indexes must be a positive integer 1, 2, 3,...
-
---------------------------------------------------------------------------------------------------------------------
-
---------------------------------------------------------------------------------------------------------------------
-
 ## Command summary
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add n/NAME p/PHONE_NUMBER a/ADDRESS [e/EMAIL] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 a/123, Clementi Rd, 1234665`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
