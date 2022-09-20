@@ -29,7 +29,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Pei Cheng Yi 
+### Pei Cheng Yi  
 
 <img src="images/ChengYi.jpg" width="200px">
 
