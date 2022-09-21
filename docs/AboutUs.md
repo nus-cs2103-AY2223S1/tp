@@ -16,7 +16,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/Nephelite)]
 [[portfolio](team/nephelite.md)]
 
-* Role: Team Leader, Gradle Expert, Agenda Maker
+* Role: Team Leader, Gradle Expert, Agenda Maker, Developer
 * Responsibilities: UI, Logic
 
 ### See Toh Jin Wei
@@ -48,3 +48,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Testing, Model, Storage
+
+### Sim Choon Hong Dexter
+
+<img src="images/dexter-sim.png" width="200px">
+
+[[github](http://github.com/dexter-sim)]
+[[portfolio](team/dexter-sim.md)]
+
+* Role: Developer
+* Responsibilities: Code Quality, Scheduling and Tracking, Logic, Storage
