@@ -257,13 +257,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* needs to manage a large pool of information on students, tutors and classes
+* needs to retrieve and update information quickly to handle administrative matters
 * prefer desktop apps over other types
-* can type fast
+* can type decently fast
 * prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* is comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: To help manage information on students, tutors and classes more efficiently than a typical mouse/GUI driven app, and to assist in handling administrative matters in an organised manner.
 
 
 ### User stories
