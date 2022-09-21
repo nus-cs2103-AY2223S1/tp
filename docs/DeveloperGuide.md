@@ -234,10 +234,12 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+### \[Proposed\] Show command
 
-_{Explain here how the data archiving feature will be implemented}_
+#### Proposed Implementation
 
+
+### \[Proposed\] Filter command
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -262,24 +264,35 @@ _{Explain here how the data archiving feature will be implemented}_
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* does not like repetitive work
+* prefers to have minimal traveling expenses
+* likes motivational quotes
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
 
+* manage contacts faster than a typical mouse/GUI driven app
+* keep track of the user's contacts and meeting schedule easily, but communication with contacts is not covered.
+* stay motivated to engage with his clients
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​           | I want to …​                                            | So that I can…​                                                        |
+|----------|-------------------|---------------------------------------------------------|------------------------------------------------------------------------|
+| `* * *`  | new user          | see usage instructions                                  | refer to instructions when I forget how to use the App                 |
+| `* * *`  | financial advisor | add client information                                  |                                                                        |
+| `* * *`  | financial advisor | delete client information                               | remove entries that I no longer need                                   |
+| `* * *`  | financial advisor | modify a client entry easily                            | ensure that client information is up to date                           |
+| `* * *`  | financial advisor | filter my clients by name                               | locate details of clients without having to go through the entire list |
+| `* *`    | financial advisor | classify my clients with different tags                 | know who to prioritise                                                 |
+| `* *`    | financial advisor | filter my clients based on tags assigned to them        | access relevant client data easily                                     |
+| `* *`    | financial advisor | view clients from a certain demographic                 | get a better overview of what my client base is like                   |
+| `* *`    | financial advisor | get things done fast with minimal typing                | save time                                                              |
+| `* *`    | financial advisor | remember details that clients tell me about their lives | use them to form an emotional connection with clients                  |
+| `* *`    | financial advisor | keep track of my client's phone number and address      | contact them easily                                                    |
+| `*`      | financial advisor | sort clients by name                                    | locate a client easily                                                 |
 
-*{More to be added}*
 
 ### Use cases
 
