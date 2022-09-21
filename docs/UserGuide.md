@@ -16,8 +16,8 @@ FinBook is a desktop app for managing clients, optimized for use via a Command L
     * [Editing a client: `edit`]
     * [Deleting a client : `delete`]
     * [Listing all clients : `list`](#listing-all-clients-list)
-    * [Exiting the application : `exit`]
-    * [Saving the data]
+    * [Exiting the application : `exit`](#exiting-the-application--exit)
+    * [Saving the data](#saving-the-data)
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
@@ -129,9 +129,9 @@ Show a list of all clients in the financial book
 
 Format: `list`
 
-### Exiting the program : `exit`
+### Exiting the application : `exit`
 
-Exits the program.
+Exits the application.
 
 Format: `exit`
 
@@ -167,4 +167,5 @@ Action | Format, Examples
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/MONTHLY_INCOME m/UPCOMING_MEETING_DATES​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$100000 m/12-Jan-2022`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**List** | `list`
+**List** | `list`   
+**Exit application** | `exit`
