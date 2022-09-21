@@ -281,6 +281,7 @@ They have been extensively documented [here](https://github.com/AY2223S1-CS2103T
 1. High - must have
 2. Moderate - nice to have
 3. Low - unlikely to have
+
 <!--
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -294,6 +295,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
 
 *{More to be added}*
+
 -->
 
 ### Use cases
@@ -304,7 +306,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Getting help with the application**
 
 **MSS**
-1. User need help in utilizing the system
+1. User needs help in utilizing RC4HDB
 2. User enters the help command
 3. RC4HDB displays a message that directs the user to our user guide
    
@@ -325,7 +327,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. User enters resident information in an invalid format
     * 3a1. RC4HDB shows an error message.
-  
+      <br>
     Use case resumes at step 3.
 
 **Use case: Listing out information of all residents**
@@ -353,6 +355,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 5. RC4HDB updates the information of the specified resident
 6. RC4HDB displays a message detailing the changes made
 
+    Use case ends.
+
 **Extensions**
 
 * 3a. There is no relevant category for that information
@@ -361,7 +365,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 4a. User enters resident information in an invalid format
     * 4a1. RC4HDB shows an error message.
-  
+      <br>
     Use case resumes at step 3.
 
 
@@ -379,12 +383,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. RC4HDB cannot find any resident matching the user input
     * 3a1. RC4HDB shows an error message.
-  
+      <br>
     Use case resumes at step 2.
 
 * 4b. RC4HDB finds multiple residents matching the user input
     * 4b1. RC4HDB shows a list of all matching residents.
-  
+      <br>
     Use case ends.
 
 
@@ -396,21 +400,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. RC4HDB applies the filter
 4. RC4HDB shows the filtered list
 
+    Use case ends.
+
 **Extension**
 
 * 2a. User enters an invalid specifier i.e. one that is not `/all` or `/any`
     * 2a1. RC4HDB shows an error message.
-  
+      <br>
     Use case resumes at step 2.
 
 * 2b. User enters multiple specifiers i.e. both `/all` and `/any`
     * 2b1. RC4HDB shows an error message.
-  
+      <br>
     Use case resumes at step 2.
 
 * 2c. User enters a category that does not exist
     * 2c1. RC4HDB shows an error message.
-  
+      <br>
     Use case resumes at step 2.
 
 * 2d. User enters a value that does not exist in the category
@@ -436,12 +442,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. RC4HDB cannot find any resident matching the user input
     * 3a1. RC4HDB shows an error message.
-  
+      <br>
     Use case resumes at step 2.
 
 * 6a. User enters an invalid index
     * 6a1. RC4HDB shows an error message.
-
+      <br>
     Use case resumes at step 5.
 
 
@@ -468,7 +474,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. User clicks on the exit button
     * 2a1. RC4HDB application closes.
-  
+      <br>
     Use case ends.
    
 
@@ -486,12 +492,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extension**
 * 1a. Information in the CSV file has not been stored in the proper format
     * 1a1. RC4HDB shows an error message.
-    
+      <br>
     Use case resumes at step 2.
 
 * 2a. No file could be found at the specified file path
     * 2a1. RC4HDB shows an error message.
-    
+      <br>
     Use case resumes at step 2.
 
 **Use case: Exporting data to .csv file**
@@ -510,7 +516,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 #### Accessibility
 * The application must not require an internet connection to work
-* Inputs must mainly be done through Command Line Interface (CLI)
+* Inputs must be done through the Command Line Interface (CLI)
 * The application must be sufficiently light-weight to be run by older computer systems
 * Should work on any mainstream OS as long as it has Java 11 or above installed
 * A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse
@@ -525,9 +531,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *{More to be added}*
 
 ### Glossary
-* **Command Line Interface (CLI)**: A dialogue box in the application interface for users to input commands
+* **Command Line Interface (CLI)**: An area in the application interface for users to input commands
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Display Window**: An area in the application for users to view the output of their commands
+* **Display Window**: An area in the application interface for users to view the output of their commands
 * **NUS**: The National University of Singapore
 * **RC4**: Residential College 4 which resides in NUS
 * **Resident**: A NUS student who lives in RC4
