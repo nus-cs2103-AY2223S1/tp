@@ -270,17 +270,18 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​         | I want to …​                                              | So that I can…​                                      |
-|----------|-----------------|-----------------------------------------------------------|------------------------------------------------------|
-| `* * *`  | forgetful tutor | see the student’s profile picture                         | recognise them in my class.                          |
-| `* * *`  | tutor           | be able to add comments                                   | monitor my students' progress.                       |
-| `* * *`  | tutor           | be able to retrieve my student’s contact details          | communicate with them.                               |
-| `* * *`  | tutor           | be able to recognise my students from different tutorials | I can organise their contacts into different groups. |
-| `* * *`  | forgetful tutor | have an attendance sheet                                  | record the attendance of each individual student.    |
-| `*`      | user            | track the date and the time while using my app            | keep track of time                                   |
-|          |                 |                                                           |                                                      |
-|          |                 |                                                           |                                                      |
-|          |                 |                                                           |                                                      |
+| Priority | As a …​           | I want to …​                                              | So that I can…​                                               |
+|----------|-------------------|-----------------------------------------------------------|---------------------------------------------------------------|
+| `* * *`  | tutor             | add student's profile                                     | keep track of who the students are.                           |
+| `* * *`  | careless tutor    | edit student's profile                                    | rectify errors or update information.                         |
+| `* * *`  | forgetful tutor   | view the student’s profile picture                        | recognise them in my class.                                   |
+| `* * *`  | tutor             | be able to add comments                                   | monitor my students' progress.                                |
+| `* * *`  | tutor             | be able to retrieve my student’s contact details          | communicate with them.                                        |
+| `* * *`  | tutor             | be able to recognise my students from different tutorials | I can organise their contacts into different groups.          |
+| `* * *`  | forgetful tutor   | have an attendance sheet                                  | record the attendance of each individual student.             |
+| `* *`    | user              | track the date and the time while using my app            | keep track of time.                                           |
+| `* *`    | experienced tutor | view my students by class                                 | be organized.                                                 |
+| `* * *`  | busy tutor        | search for student's profile                              | find information without going through full list of students. |
 
 *{More to be added}*
 
