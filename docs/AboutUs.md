@@ -39,6 +39,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Deliverables and Deadlines, Model, UI
 
+### Bill
+
+<img src="images/xiaobill8.png" width="200px">
+
+[[github](http://github.com/xiaobill8)]
+[[portfolio](team/xiaobill8.md)]
+
+* Role: Developer
+* Responsibilities: Testing, Model, Storage
+
 ### Sim Choon Hong Dexter
 
 <img src="images/dexter-sim.png" width="200px">
