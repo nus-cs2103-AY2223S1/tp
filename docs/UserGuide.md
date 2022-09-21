@@ -36,7 +36,7 @@ TaskBook is a **desktop app for managing contacts and tasks, optimized for use v
 
    * **`task delete`**`3` : Deletes the 3rd task shown in the current task list.
 
-   * **`exit`** : Exits the app.
+   * **`bye`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -68,28 +68,7 @@ TaskBook is a **desktop app for managing contacts and tasks, optimized for use v
 
 </div>
 
-### Viewing help : `help`
-
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-
-### Adding a person: `add`
-
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
-
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+### Viewing help : `help` [coming soon]
 
 ### Listing all Contacts : `contact list`
 
@@ -105,40 +84,15 @@ Shows a list of all tasks assigned by the user to contacts in the addressbook, a
 
 Format: `task list`
 
-### Editing a person : `edit`
+### Adding a contact: `add`
 
-Edits an existing person in the address book.
+Adds a contact to the taskbook.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+Format: `contact add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `contact add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
 ### Deleting a contact : `contact delete`
 
@@ -157,7 +111,7 @@ Examples:
 
 Adds a task into the task list.
 
-Format:  `task add [m/o]/<assignor/assignee> t/<description>`
+Format:  `task add [m/o]/[ASSIGNOR/ASSIGNEE] t/DESCRIPTION`
 
 * Adds the task with an assignor (m) or assignee (o) and a description.
 
@@ -196,6 +150,10 @@ AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
 </div>
 
+### Editing a person : `edit` [coming soon]
+
+### Locating persons by name: `find` [coming soon]
+
 ### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
@@ -213,14 +171,12 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action             | Format, Examples                                                                                                            |
-|--------------------|-----------------------------------------------------------------------------------------------------------------------------|
-| **View All Tasks** | `task list`                                                                                                                 |
-| **View Contacts**  | `contact list`                                                                                                              |
-| **Add Task**       | `task add [m/o]/<assignor/assignee> t/<description>` <br> e.g., `task add o/Sam t/Finish the assignment`                    |
-| **Delete Contact** | `contact delete INDEX`<br> e.g., `contact delete 3`                                                                         |
-| **Delete Task**    | `task delete INDEX`<br> e.g., `task delete 3`                                                                               |
-| **Edit**           | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com` |
-| **Find**           | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                  |
-| **Help**           | `help`                                                                                                                      |
-| **Quit**           | `bye`                                                                                                                       |
+| Action             | Format, Examples                                                                                                                                                   |
+|--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **View All Tasks** | `task list`                                                                                                                                                        |
+| **View Contacts**  | `contact list`                                                                                                                                                     |
+| **Add Contact**    | `contact add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…` <br> e.g., `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
+| **Add Task**       | `task add [m/o]/[ASSIGNOR/ASSIGNEE] t/DESCRIPTION` <br> e.g., `task add o/Sam t/Finish the assignment`                                                             |
+| **Delete Contact** | `contact delete INDEX`<br> e.g., `contact delete 3`                                                                                                                |
+| **Delete Task**    | `task delete INDEX`<br> e.g., `task delete 3`                                                                                                                      |
+| **Quit**           | `bye`                                                                                                                                                              |
