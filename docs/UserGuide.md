@@ -150,6 +150,7 @@ Allows the user to update the students details including:
 - Additional notes
 
 ```yaml
+Notes:
 Student’s Name must be provided to uniquely identify the student.
 Student’s Name must exist in the records beforehand.
 ```
@@ -172,7 +173,8 @@ Notes about the command format:
   `update` command valid.
 ```
 
-Format: `update n/NAME [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS] [paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES]`
+Format: `update n/NAME [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS] 
+[paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES]`
 
 Examples:
 
