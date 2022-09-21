@@ -1,192 +1,227 @@
+# Teacher's Pet User Guide (v1.2)
+
+Teacher’s Pet is a desktop application for managing contacts of students and classes, optimised for use via a
+Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast,
+Teacher’s Pet can get your contact and class management tasks done faster than traditional GUI apps.
+
 ---
-layout: page
-title: User Guide
----
-
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
-
-* Table of Contents
-{:toc}
-
---------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
+2. Download the latest `teacherpet.jar` from …
+3. Copy the file to the folder you want to use as the *home folder* for your application.
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
+   Note how the app contains some sample data.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+![UI introduction](images/UiIntro.png)
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+### UI Overview
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+![Partition](images/UiPartition.png)
 
-   * **`list`** : Lists all contacts.
+Our application is divided into 4 areas to maximise productivity, the specific uses are:
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+- Input Command - The dialog box where all user interaction are held
+- Application’s Reply - A short answer whether the application has executed the command, or an error message if the
+  application did not understand the command
+- Active Display Window - A window that will display the request of the command
+- Day’s Schedule List - A scroll window which shows the schedule for the day, sorted by time
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+1. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open
+   the help window. Some example commands you can try:
+    - `list`: Lists all contacts.
+    - `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`: Adds a contact named
+      `John Doe` to the Address Book.
+    - `delete 3`: Deletes the 3rd contact shown in the current list.
+    - `clear`: Deletes all contacts.
+    - `exit`: Exits the app.
+2. Refer to the Features below for details of each command.
 
-   * **`clear`** : Deletes all contacts.
-
-   * **`exit`** : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
-
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Features
 
-<div markdown="block" class="alert alert-info">
+**Notes about the command format:**
 
-**:information_source: Notes about the command format:**<br>
+- Words in `UPPER_CASE` are the parameters to be supplied by the user. e.g. in `add n/NAME`, `NAME` is a parameter
+  which can be used as `add n/John Doe`.
+- Items in square brackets are optional. e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+- Items with `…` after them can be used multiple times including zero times. e.g. `[t/TAG]…` can be used as ` ` (i.e.
+  0 times), `t/friend`, `t/friend t/family` etc.
+- Parameters can be in any order. e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME`
+  is also acceptable.
+- If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence
+  of the parameter will be taken. e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+- Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will
+  be ignored. e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+### Viewing help : `help`
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+Shows a message explaining how to access the help page.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+Format: `help`
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+Example: `help`
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+![Help](images/UiHelp.png)
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+---
 
-</div>
+[](#adding-a-studentadd)
+### Adding a student: `add`
 
-### Viewing help : `help`
+Adds a student to the Teacher’s Pet.
 
-Shows a message explaning how to access the help page.
+1. Student’s Name
+    - Student’s Name must not be empty
+    - Student’s Name must only contain alphabetical letters.
+    
+```yaml
+Note: Duplicates students are not allowed!
+```
 
-![help message](images/helpMessage.png)
+2. Student’s Contact Number 
+   - Contact number must only contain numerical digits between `0` and `9`
+   - White spaces between numbers will be automatically removed. eg: `8123 4556` will be converted to `81234567`
+   - Number must have 8 digits and starts with either ‘8’ or ‘9’
 
-Format: `help`
+```yaml
+Note: Contact number cannot be empty. It must contain at least 1 digit.
+```
 
+3. Next of Kin’s Number
+    - Next of Kin’s Number must only contain numerical digits between `0` and `9`
+    - Next of Kin’s Number must have 8 digits and starts with either ‘8’ or ‘9’
+    - White spaces between numbers will be automatically removed. eg: `8123 4556` will be converted to `81234567`
+    
+```yaml
+Note: Next of Kin’s number cannot be empty. It must contain at least 1 digit.
+```
 
-### Adding a person: `add`
+4. Address
+    - Address must not be empty
+    - Address may contain any kinds of character
+    
+```yaml
+Note: Address cannot be empty. It must contain at least 1 character.
+```
 
-Adds a person to the address book.
+5. Email
+    - Email may contain any kinds of `character`, other than white space ` `
+    - Email must contain a `@`
+    
+```yaml
+Note: Email cannot be empty. It must contain at least 1 character.
+```
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+6. Class Date
+    - Class Date must be in the format YYYY-MM-DD {start time}-{end time}
+    
+```yaml
+Note: Start time and End time must be in 24hour format.
+```
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
-
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-
-### Listing all persons : `list`
-
-Shows a list of all persons in the address book.
-
-Format: `list`
-
-### Editing a person : `edit`
-
-Edits an existing person in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
-
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+Format: `add n/NAME p/CONTACT_NUMBER np/NEXT_OF_KIN_CONTACT_NUMBER a/ADDRESS e/EMAIL dt/CLASS_DATE`
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Clearing all entries : `clear`
+- `add n/Ben Tan p/87201223 np/90125012 a/Avenue 712 e/BenTan@gmail.com dt/2022-04-19 1500-1600`
 
-Clears all entries from the address book.
+![Add](images/UiAdd.png)
 
-Format: `clear`
+```yaml
+Note: Amount paid, Amount owed, Additional notes fields are to be updated via `update` command.
+```
 
-### Exiting the program : `exit`
+---
 
-Exits the program.
+### Update student details: `update`
 
-Format: `exit`
+Allows the user to update the students details including:
 
-### Saving the data
+- Phone number
+- Next of Kin’s phone number
+- Address
+- Class Date
+- Amount paid
+- Amount owed
+- Additional notes
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+```yaml
+Notes:
+Student’s Name must be provided to uniquely identify the student.
+Student’s Name must exist in the records beforehand.
+```
 
-### Editing the data file
+1. Phone number, Next of Kin’s phone number, Email, Address, and Class Date follow the same convention as in Adding a student:
+    [`add` section](#adding-a-studentadd)
+2. Amount paid
+    - Amount paid can be an integer or a double.
+    - Amount paid must be non negative.
+3. Amount owed
+    - Amount owed can be an integer or a double.
+    - Amount owed must be non negative.
+    - Amount owed and Amount paid are modified independent of each other.
+4. Additional notes
+    - Additional notes is a String and can be empty.
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+```yaml
+Notes about the command format:
+- All the fields except `NAME` are optional but **at least one** of these fields must exist in order to make the
+  `update` command valid.
+```
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div>
+Format: `update n/NAME [p/PHONE_NUMBER] [np/NEXT_OF_KIN_PHONE_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS] 
+[paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES]`
 
-### Archiving data files `[coming in v2.0]`
+Examples:
 
-_Details coming soon ..._
+- `update n/Ben Tan h/98765432`
 
---------------------------------------------------------------------------------------------------------------------
+![UiUpdate1](images/UiUpdate1.png)
+
+- `update n/Ben Tan owed/10 paid/25.5`
+
+![UiUpdate2](images/UiUpdate2.png)
+
+---
+### View all students: `list`
+
+Allows the user to view students and their information which includes:
+
+- Phone number
+- Next of Kin’s number
+- Address
+- Email
+- Class Date
+- Amount paid
+- Amount owed
+- Additional notes
+
+Format: `list`
+
+![UiUList](images/UiList.png)
+
+
+---
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**Q**: How do I transfer my data to another Computer?**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action                                                                                               | Format, Examples |
+|------------------------------------------------------------------------------------------------------| --- |
+| Add                                                                                                  | add n/NAME p/CONTACT_NUMBER np/NEXT_OF_KIN_CONTACT_NUMBER a/ADDRESS e/EMAIL dt/CLASS_DATE
+e.g., add n/John Doe p/98765432 np/90123291 a/Street ABC e/johnd@example.com dt/2022-09-20 1800-2000 |
+| Update                                                                                               | update n/NAME [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS] [paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES]
+e.g., update n/Ben Tan p/98765431                                                                    |
+| View statistics                                                                                      | statistics |
+| Help                                                                                                 | help |
+| Exit                                                                                                 | exit |
+
