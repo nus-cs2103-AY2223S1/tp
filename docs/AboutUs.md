@@ -17,6 +17,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: (deciding)
 
+### Jovita Anderson
+
+<img src="images/jovitaanderson.png" width="200px">
+
+[[github](https://github.com/jovitaanderson)]
+
+* Role: (deciding)
+
 ### Shanice Ng Wen Yi
 
 <img src="images/shaniceng.jpg" width="200px">
