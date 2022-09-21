@@ -340,7 +340,7 @@ Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The list is empty.
 
   Use case ends.
 
@@ -441,13 +441,13 @@ Use case ends.
 Use case ends.
 
 Extension:
-* 3a. Plannit detects the module does not exist.
-    * 3a1. Plannit displays an error message.
+* 1a. Plannit detects the module does not exist.
+    * 1a1. Plannit displays an error message.
 
   Use case ends.
 
-* 3b. Plannit detects the link is already added.
-    * 3b1. Plannit displays an error message.
+* 1b. Plannit detects the link is already added.
+    * 1b1. Plannit displays an error message.
 
   Use case ends.
 
@@ -460,13 +460,13 @@ Extension:
 Use case ends.
 
 Extension:
-* 3a. Plannit detects the module does not exist.
-    * 3a1 Plannit displays an error message.
+* 1a. Plannit detects the module does not exist.
+    * 1a1 Plannit displays an error message.
 
   Use case ends.
 
-* 3b. Plannit detects the link does not exist.
-    * 3b1 Plannit displays an error message.
+* 1b. Plannit detects the link does not exist.
+    * 1b1 Plannit displays an error message.
 
   Use case ends.
 
@@ -536,7 +536,7 @@ Use case ends.
 
 **Extensions**
 
-* 2a. Already at Home Page.
+* 1a. Already at Home Page.
 
   Use case ends.
 
@@ -550,9 +550,9 @@ Use case ends.
 
 **Extensions**
 
-* 2a. Module does not exist.
+* 1a. Module does not exist.
 
-    * 2a1. Plannit shows an error message.
+    * 1a1. Plannit shows an error message.
 
   Use case ends.
 
@@ -566,7 +566,7 @@ Use case ends.
 
 **Extensions**
 
-* 2a. Already at Home Page.
+* 1a. Already at Contact Page.
 
   Use case ends.
 
