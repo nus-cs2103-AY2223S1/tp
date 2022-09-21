@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Humphrey's Project Portfolio Page
+title: Bill's Project Portfolio Page
 ---
 
 ### Project: TaskBook
