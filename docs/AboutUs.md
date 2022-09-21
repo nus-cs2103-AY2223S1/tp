@@ -16,3 +16,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/leecaregene)]
 
 * Role: (deciding)
+
+### Shanice Ng Wen Yi
+
+<img src="images/shaniceng.jpg" width="200px">
+
+[[github](https://github.com/shaniceng)]
+
+* Role: (deciding)
