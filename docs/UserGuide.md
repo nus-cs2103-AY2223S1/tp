@@ -136,7 +136,7 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   <!--- ![result for 'find alex david'](images/findAlexDavidResult.png) --->
 
-### Filtering residents by field : filter
+### Filtering residents by field : `filter`
 
 Shows a list of residents whose fields match the input keywords.
 
