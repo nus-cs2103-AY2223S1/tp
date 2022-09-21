@@ -14,12 +14,12 @@ Teacher’s Pet can get your contact and class management tasks done faster than
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
    Note how the app contains some sample data.
 
-![UI introduction](https://github.com/AY2223S1-CS2103T-T09-4/tp/blob/master/docs/images/UiIntro.png)
+![UI introduction](images/UiIntro.png)
 
 
 ### UI Overview
 
-![Partition](https://github.com/AY2223S1-CS2103T-T09-4/tp/blob/master/docs/images/UiPartition.png)
+![Partition](images/UiPartition.png)
 
 Our application is divided into 4 areas to maximise productivity, the specific uses are:
 
@@ -65,7 +65,7 @@ Format: `help`
 
 Example: `help`
 
-![Help](https://github.com/AY2223S1-CS2103T-T09-4/tp/blob/master/docs/images/UiHelp.png)
+![Help](images/UiHelp.png)
 
 ---
 
@@ -129,7 +129,7 @@ Examples:
 
 - `add n/Ben Tan p/87201223 np/90125012 a/Avenue 712 e/BenTan@gmail.com dt/2022-04-19 1500-1600`
 
-![Add](https://github.com/AY2223S1-CS2103T-T09-4/tp/blob/master/docs/images/UiAdd.png)
+![Add](images/UiAdd.png)
 
 ```yaml
 Note: Amount paid, Amount owed, Additional notes fields are to be updated via `update` command.
@@ -180,10 +180,10 @@ Examples:
 
 - `update n/Ben Tan h/98765432`
 
-![UiUpdate1](https://github.com/AY2223S1-CS2103T-T09-4/tp/blob/master/docs/images/UiUpdate1.png)
+![UiUpdate1](images/UiUpdate1.png)
 
 - `update n/Ben Tan owed/10 paid/25.5`
 
-![UiUpdate2](https://github.com/AY2223S1-CS2103T-T09-4/tp/blob/master/docs/images/UiUpdate2.png)
+![UiUpdate2](images/UiUpdate2.png)
 
 ---
