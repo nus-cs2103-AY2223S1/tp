@@ -204,12 +204,43 @@ Format: `list`
 
 ![UiUList](images/UiList.png)
 
+---
+### View all students: `statistics`
+
+Shows the overall statistics for the tutor, which includes:
+- Total number of students
+- Amount of money earned so far
+- Amount of money still being owed
+
+Format: `statistics`
+
+![UiStatistics](images/UiStatistics.png)
+
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+### Saving the data
+
+Teacher’s Pet data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+### Editing the data file
+
+Teacher’s Pet data is saved as a TXT file `[JAR file location]/data/teacher_pet.txt`. Advanced users are welcome to edit the data file.
+
+```yaml
+❗ Caution: If your changes to the data file makes its format invalid, Teacher’s Pet will discard all data and start with an empty data file at the next run.
+```
 
 ---
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+Q: How do I transfer my data to another Computer?
+
+A: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
 ---
 
