@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -27,7 +28,7 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
+ * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for EditCommand.
  */
 public class EditCommandTest {
 
@@ -151,22 +152,22 @@ public class EditCommandTest {
         // same values -> returns true
         EditPersonDescriptor copyDescriptor = new EditPersonDescriptor(DESC_AMY);
         EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_PERSON, copyDescriptor);
-        assertEquals(standardCommand, commandWithSameValues);
+        assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
-        assertEquals(standardCommand, standardCommand);
+        assertTrue(standardCommand.equals(standardCommand));
 
         // null -> returns false
-        assertNotEquals(null, standardCommand);
+        assertFalse(standardCommand.equals(null));
 
         // different types -> returns false
-        assertNotEquals(standardCommand, new ClearCommand());
+        assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertNotEquals(standardCommand, new EditCommand(INDEX_SECOND_PERSON, DESC_AMY));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_PERSON, DESC_AMY)));
 
         // different descriptor -> returns false
-        assertNotEquals(standardCommand, new EditCommand(INDEX_FIRST_PERSON, DESC_BOB));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_PERSON, DESC_BOB)));
     }
 
 }

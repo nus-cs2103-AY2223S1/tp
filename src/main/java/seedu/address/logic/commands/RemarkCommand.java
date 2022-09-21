@@ -17,7 +17,9 @@ import seedu.address.model.person.Remark;
  * Changes the remark of an existing person in the address book.
  */
 public class RemarkCommand extends Command {
+
     public static final String COMMAND_WORD = "remark";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the remark of the person identified "
             + "by the index number used in the last person listing. "
             + "Existing remark will be overwritten by the input.\n"
@@ -38,10 +40,10 @@ public class RemarkCommand extends Command {
      */
     public RemarkCommand(Index index, Remark remark) {
         requireAllNonNull(index, remark);
+
         this.index = index;
         this.remark = remark;
     }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         List<Person> lastShownList = model.getFilteredPersonList();
@@ -75,10 +77,12 @@ public class RemarkCommand extends Command {
         if (other == this) {
             return true;
         }
+
         // instanceof handles nulls
         if (!(other instanceof RemarkCommand)) {
             return false;
         }
+
         // state check
         RemarkCommand e = (RemarkCommand) other;
         return index.equals(e.index)

@@ -1,6 +1,7 @@
 package seedu.address.commons.core.index;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -50,7 +51,7 @@ public class IndexTest {
         assertNotEquals(null, fifthPersonIndex);
 
         // different types -> returns false
-        assertNotEquals(5.0f, fifthPersonIndex, 0.0);
+        assertNotEquals(5.0f, fifthPersonIndex, String.valueOf(0.0));
 
         // different index -> returns false
         assertNotEquals(fifthPersonIndex, Index.fromOneBased(1));
