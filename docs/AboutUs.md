@@ -15,7 +15,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 
 [[github](https://github.com/anthonyhoth)]
-[[portfolio](team/anthony.md)]
+[[portfolio](team/anthonyhoth.md)]
 
 * Role: TBD
 * Responsiblities: In charge of `delete` and `deleteR` commands
@@ -39,33 +39,25 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/marclzh.md)]
 
 * Role: TBD
-* Responsibilities: In charge of `find` and `findR` commands'
+* Responsibilities: In charge of `find` and `findR` commands
 
-### Johnny Doe
+### Eiffel Leo
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/eiffellkf.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/eiffellkf)]  
+[[portfolio](team/eiffellkf.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: TBD
+* Responsibilities: In charge of `add` and `addR` command
 
-### Jean Doe
+### Sean Lam
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ljxsean.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+[[github](https://github.com/anthonyhoth)]
+[[portfolio](team/ljxsean.md)]
 
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
+* Role: TBD
+* Responsiblities: In charge of `clear` and `clearR` commands
