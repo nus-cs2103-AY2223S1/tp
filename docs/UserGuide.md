@@ -82,7 +82,7 @@ Shows a message directing the user to our user guide.
 Format: `help`
 
 
-### Adding a resident: `add`
+### Adding a resident : `add`
 
 Adds a resident to the database.
 
@@ -118,7 +118,7 @@ Examples:
 *  `edit 1 p/91234567 f/5 u/8` Edits the phone number, floor and unit number of the 1st person to be `91234567`, floor `5` and unit `8` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating residents by name: `find`
+### Locating residents by name : `find`
 
 Finds residents whose names contain any of the given keywords.
 
@@ -142,14 +142,17 @@ Shows a list of residents whose fields match the input keywords.
 
 Format: `filter [/specifier] KEY:VALUE [ADDITIONAL_KEYS:ADDITIONAL VALUES]`
 
-* The specifier dictates whether any or all fields must match, e.g. `filter /any house:Draco house:Aquila` will return
-all residents belonging to both `Draco` and `Aquila`.
-* On the other hand, `filter /all house:Draco gender:Male` will return all `male` residents belonging to `Draco`.
+* The default specifier, if not specified by the user is `/all`.
+* Currently, only two specifiers are supported:
+  * `/all` returns a resident if it fulfills **all** of the specified keywords (Logical AND operation).
+  * `/any` returns a resident if it fulfills **any** of the specified keywords (Logical OR operation).
 * Repeated keys are not permitted for `/all` specifier, e.g. `filter /all house:Draco house:Aquila` will not work.
+* Valid keys are those included when [adding](#adding-a-resident--add) or [editing](#editing-an-existing-resident--edit) a resident e.g. `NAME, PHONE_NUMBER, EMAIL, FLOOR, UNIT, and TAG`
 
 Examples:
-* `filter /all house:Draco gender:Male` returns Kelvin Lim, Brianna Toh, Vanessa  Sim, …
-* `filter major:ComputerScience` returns Nicholas Seah, …
+* `filter /all house:Draco gender:Male` returns residents who are in Draco house, **and** are Male.
+* `filter /any house:Draco house:Aquila` returns residents belonging to either `Draco` **or** `Aquila` house.
+* `filter major:ComputerScience` returns residents who are in ComputerScience
 
 ### Deleting a resident : `delete`
 
@@ -203,7 +206,7 @@ Examples:
 * `import students.csv`
 * `import residents.csv`
 
-### Exporting to CSV file: `export`
+### Exporting to CSV file : `export`
 
 RC4HDB has the ability to export data to .csv files. The file will be safe to remove from the directory, `[JAR file location]/data`.
 
