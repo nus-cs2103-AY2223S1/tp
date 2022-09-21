@@ -1,14 +1,42 @@
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+---
 
-![Ui](docs/images/Ui.png)
+### View all students: `list`
 
-* This is **a project for Software Engineering (SE) students**.<br>
-  Example usages:
-  * as a starting point of a course project (as opposed to writing everything from scratch)
-  * as a case study
-* The project simulates an ongoing software project for a desktop application (called _AddressBook_) used for managing contact details.
-  * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
-  * It comes with a **reasonable level of user and developer documentation**.
-* It is named `AddressBook Level 3` (`AB3` for short) because it was initially created as a part of a series of `AddressBook` projects (`Level 1`, `Level 2`, `Level 3` ...).
-* For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
-* This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+Allows the user to view students and their information which includes:
+
+- Phone number
+- Next of Kin’s number
+- Address
+- Email
+- Class Date
+- Amount paid
+- Amount owed
+- Additional notes
+
+Format: `list`
+
+![Untitled](User%20Guide%20(v1%202a)%20-%20Updated%2082f063cf575c4a73946287e3cf0c410a/Untitled%203.png)
+
+
+
+
+---
+
+## FAQ
+
+**Q**: How do I transfer my data to another Computer?**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+
+---
+
+## Command summary
+
+| Action                                                                                               | Format, Examples |
+|------------------------------------------------------------------------------------------------------| --- |
+| Add                                                                                                  | add n/NAME p/CONTACT_NUMBER np/NEXT_OF_KIN_CONTACT_NUMBER a/ADDRESS e/EMAIL dt/CLASS_DATE
+ e.g., add n/John Doe p/98765432 np/90123291 a/Street ABC e/johnd@example.com dt/2022-09-20 1800-2000 |
+| Update                                                                                               | update n/NAME [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS] [paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES]
+ e.g., update n/Ben Tan p/98765431                                                                    |
+| View statistics                                                                                      | statistics |
+| Help                                                                                                 | help |
+| Exit                                                                                                 | exit |
+
