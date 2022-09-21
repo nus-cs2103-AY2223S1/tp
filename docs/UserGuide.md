@@ -84,7 +84,7 @@ Shows a list of all tasks assigned by the user to contacts in the addressbook, a
 
 Format: `task list`
 
-### Adding a contact: `add`
+### Adding a contact: `contact add`
 
 Adds a contact to the taskbook.
 
