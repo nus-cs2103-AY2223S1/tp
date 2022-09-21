@@ -234,12 +234,35 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+### \[Proposed\] Personalising the UI
+
+#### Proposed Implementation
+
+#### Design considerations:
+
+### \[Proposed\] Remark field for entries
+
+#### Proposed Implementation
+
+#### Design considerations:
+
+### \[Proposed\] Tag command
+
+#### Proposed Implementation
+
+#### Design considerations:
+
+### \[Proposed\] Filter command
+
+#### Proposed Implementation
+
+#### Design considerations:
+
 ### \[Proposed\] Show command
 
 #### Proposed Implementation
 
-
-### \[Proposed\] Filter command
+#### Design considerations:
 
 --------------------------------------------------------------------------------------------------------------------
 
