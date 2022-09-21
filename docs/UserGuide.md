@@ -142,7 +142,7 @@ Note: Amount paid, Amount owed, Additional notes fields are to be updated via `u
 Allows the user to update the students details including:
 
 - Phone number
-- Next of Kin’s number
+- Next of Kin’s phone number
 - Address
 - Class Date
 - Amount paid
@@ -155,7 +155,7 @@ Student’s Name must be provided to uniquely identify the student.
 Student’s Name must exist in the records beforehand.
 ```
 
-1. Phone number, Next of Kin’s number, Email, Address, and Class Date follow the same convention as in Adding a student:
+1. Phone number, Next of Kin’s phone number, Email, Address, and Class Date follow the same convention as in Adding a student:
     [`add` section](#adding-a-studentadd)
 2. Amount paid
     - Amount paid can be an integer or a double.
@@ -173,7 +173,7 @@ Notes about the command format:
   `update` command valid.
 ```
 
-Format: `update n/NAME [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS] 
+Format: `update n/NAME [p/PHONE_NUMBER] [np/NEXT_OF_KIN_PHONE_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS] 
 [paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES]`
 
 Examples:
