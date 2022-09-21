@@ -20,7 +20,7 @@ public class ConfigTest {
     public void equalsMethod() {
         Config defaultConfig = new Config();
         assertNotNull(defaultConfig);
-        assertTrue(defaultConfig.equals(defaultConfig));
+        assertEquals(defaultConfig, defaultConfig);
     }
 
 
