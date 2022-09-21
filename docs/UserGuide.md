@@ -14,12 +14,12 @@ Teacher’s Pet can get your contact and class management tasks done faster than
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
    Note how the app contains some sample data.
 
-![UI introduction](https://github.com/AY2223S1-CS2103T-T09-4/tp/blob/master/docs/images/UiIntro.png)
+![UI introduction](images/UiIntro.png)
 
 
 ### UI Overview
 
-![Partition](https://github.com/AY2223S1-CS2103T-T09-4/tp/blob/master/docs/images/UiPartition.png)
+![Partition](images/UiPartition.png)
 
 Our application is divided into 4 areas to maximise productivity, the specific uses are:
 
@@ -65,10 +65,11 @@ Format: `help`
 
 Example: `help`
 
-![Help](https://github.com/AY2223S1-CS2103T-T09-4/tp/blob/master/docs/images/UiHelp.png)
+![Help](images/UiHelp.png)
 
 ---
 
+[](#adding-a-studentadd)
 ### Adding a student: `add`
 
 Adds a student to the Teacher’s Pet.
@@ -128,10 +129,61 @@ Examples:
 
 - `add n/Ben Tan p/87201223 np/90125012 a/Avenue 712 e/BenTan@gmail.com dt/2022-04-19 1500-1600`
 
-![Add](https://github.com/AY2223S1-CS2103T-T09-4/tp/blob/master/docs/images/UiAdd.png)
+![Add](images/UiAdd.png)
 
 ```yaml
 Note: Amount paid, Amount owed, Additional notes fields are to be updated via `update` command.
 ```
+
+---
+
+### Update student details: `update`
+
+Allows the user to update the students details including:
+
+- Phone number
+- Next of Kin’s phone number
+- Address
+- Class Date
+- Amount paid
+- Amount owed
+- Additional notes
+
+```yaml
+Notes:
+Student’s Name must be provided to uniquely identify the student.
+Student’s Name must exist in the records beforehand.
+```
+
+1. Phone number, Next of Kin’s phone number, Email, Address, and Class Date follow the same convention as in Adding a student:
+    [`add` section](#adding-a-studentadd)
+2. Amount paid
+    - Amount paid can be an integer or a double.
+    - Amount paid must be non negative.
+3. Amount owed
+    - Amount owed can be an integer or a double.
+    - Amount owed must be non negative.
+    - Amount owed and Amount paid are modified independent of each other.
+4. Additional notes
+    - Additional notes is a String and can be empty.
+
+```yaml
+Notes about the command format:
+- All the fields except `NAME` are optional but **at least one** of these fields must exist in order to make the
+  `update` command valid.
+```
+
+Format: `update n/NAME [p/PHONE_NUMBER] [np/NEXT_OF_KIN_PHONE_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS] 
+[paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES]`
+
+Examples:
+
+- `update n/Ben Tan h/98765432`
+
+![UiUpdate1](images/UiUpdate1.png)
+
+- `update n/Ben Tan owed/10 paid/25.5`
+
+![UiUpdate2](images/UiUpdate2.png)
 
 ---
