@@ -10,9 +10,9 @@
 ### Code contributed:
 
 I contributed code to the following modules/classes:
-1.
-2.
-3.
+1. *Enter contributions here*
+2. *Enter contributions here*
+3. *Enter contributions here*
 
 You may view these contributions in more detail at [this link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=<github-username>&breakdown=true).
 
@@ -21,23 +21,23 @@ You may view these contributions in more detail at [this link](https://nus-cs210
 ### Enhancements implemented:
 
 I made the following enhancements to our product:
-1.
-2.
-3.
+1. *Enter contributions here* 
+2. *Enter contributions here*
+3. *Enter contributions here*
 
 ### Contributions to the UG:
 
 I contributed to the following sections of the user guide:
-1.
-2.
-3.
+1. *Enter contributions here*
+2. *Enter contributions here*
+3. *Enter contributions here*
 
 ### Contributions to the DG:
 
 I contributed to the following sections of the developer guide:
-1.
-2.
-3.
+1. *Enter contributions here*
+2. *Enter contributions here*
+3. *Enter contributions here*
 
 In particular, I added/updated the following UML diagrams:
 1. []()
@@ -49,9 +49,9 @@ In particular, I added/updated the following UML diagrams:
 ### Contributions to team-based tasks:
 
 I contributed to the following team-based tasks:
-1.
-2.
-3.
+1. *Enter contributions here*
+2. *Enter contributions here*
+3. *Enter contributions here*
 
 ### Review/mentoring contributions:
 
@@ -61,10 +61,9 @@ I reviewed the following pull requests:
 3.
 
 I also gave guidance to my team on the following matters:
-1.
-2.
-3.
-
+1. *Enter contributions here*
+2. *Enter contributions here*
+3. *Enter contributions here*
 
 ### Contributions beyond the project team:
 
