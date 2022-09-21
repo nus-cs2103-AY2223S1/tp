@@ -17,17 +17,17 @@ You can reach us at the email `climods[at]comp.nus.edu.sg`
 [[github](https://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+* Role: Project Advisor/ Team Lead
 
-### Jane Doe
+### Linus Lee
 
-<img src="images/Linus.jpeg" width="200px">
+<img src="images/zupey.png" width="200px">
 
 [[github](http://github.com/zupey)]
 [[portfolio](team/Linus.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Coder
 
 ### Pei Cheng Yi 
 
