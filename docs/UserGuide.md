@@ -35,8 +35,8 @@ while still having the benefits of a Graphical User Interface (GUI).
 
 | Action            | Format, Examples                                                                                              |
 |-------------------|---------------------------------------------------------------------------------------------------------------|
-| `add module`      | `add    module   m/<MODULE_CODE> [t/<MODULE_TITLE>]`,<br>e.g. `add module m/CS2103T t/Software Engineering`   |
-| `delete module`   | `delete module   m/<MODULE_CODE>`,<br>e.g. `delete module m/CS2103T`                                          |
+| `add module`      | `add    module   m/<MODULE_CODE> [t/<MODULE_TITLE>]`,<br>e.g.: `add module m/CS2103T t/Software Engineering`  |
+| `delete module`   | `delete module   m/<MODULE_CODE>`,<br>e.g.: `delete module m/CS2103T`                                         |
 | `add task`        | `add    task     m/MODULE_CODE d/TASK_DESCRIPTION`,<br>e.g.: `add task m/CS2103T d/Complete tP tasks for W07` |
 | `delete task`     | `delete task     m/MODULE_CODE n/TASK_NUMBER`,<br>e.g.: `delete task m/CS2103T n/3`                           |
 | **CommandInBold** | `command examples here`                                                                                       |
