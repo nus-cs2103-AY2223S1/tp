@@ -111,7 +111,7 @@ Examples:
 
 Adds a task into the task list.
 
-Format:  `task add [m/o]/[ASSIGNOR/ASSIGNEE] t/DESCRIPTION`
+Format:  `task add (m/o)/<ASSIGNOR/ASSIGNEE> t/<DESCRIPTION> [<MODIFIER>]`
 
 * Adds the task with an assignor (m) or assignee (o) and a description.
 
