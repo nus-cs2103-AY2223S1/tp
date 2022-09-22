@@ -5,6 +5,9 @@ import java.util.Set;
 
 import seedu.address.model.tag.Tag;
 
+/**
+ * A utility class containing a set of {@code Tag} objects to be used in tests
+ */
 public class TypicalTags {
     public static final Tag FRIENDS = new Tag("friends");
 
