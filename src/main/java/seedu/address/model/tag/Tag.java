@@ -3,6 +3,8 @@ package seedu.address.model.tag;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.Collection;
+
 /**
  * Represents a Tag in the address book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
@@ -51,4 +53,19 @@ public class Tag {
         return '[' + tagName + ']';
     }
 
+    /**
+     * Format tags for pretty printing.
+     * @returns "tag1, tag2, tag3"
+     */
+    public static String toString(Collection<Tag> tags) {
+        if (tags.isEmpty()) {
+            return "";
+        }
+
+        String result = tags.stream().reduce(
+                "", (tagString, tag) -> tagString + ", " + tag.tagName, (x, y) -> x + y);
+        // Remove unneeded preceding comma
+        result = result.substring(1);
+        return result;
+    }
 }
