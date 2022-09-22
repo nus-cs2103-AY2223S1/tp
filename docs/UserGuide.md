@@ -3,22 +3,26 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
 
-* Table of Contents
-{:toc}
+Long Time No See (LTNS) is a  **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of an **intuitive and minimalistic Graphical User Interface (GUI)**. Made simpler with an intuitive and minimalistic graphical user interface (GUI) and customised functionalities to pinpoint your needs, LTNS will enable you to stay close to your dearest clients!
+
+# Table of Contents
+1. [Quickstart](#quick-start)
+2. [Pre-Existing Features](#pre-existing-features)
+3. [New Features](#new-features)
+4. [Frequently Asked Questions](#faq)
+5. [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
-
+## Quick start (To be revised with GUI mockups?)
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `` from [here](). 
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your LTNS
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br> 
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -38,7 +42,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+##  Pre Existing Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -166,11 +170,36 @@ AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
 
-_Details coming soon ..._
+# New Features
 
---------------------------------------------------------------------------------------------------------------------
+
+### Sorting all Clients : `sort`
+
+Sorts clients in the address book based on a specified metric. 
+
+Format: `sort KEYWORD [MORE_KEYWORDS]` 
+
+* Sorts the list of clients based on specified keyword 
+* Keyword must be from client details
+* (v1.2) current supported sort metrics include `name, phone number, address`
+
+Examples: 
+* `sort name` will display your address book in alphabetical order based on their name 
+* `sort phone` will display your addresss book in numerical order based on their phone numbers
+
+
+### Pin a user by name: `pin`
+* Format: `pin [CLIENT_NAME]` 
+* Description:
+* Example Usage: 
+
+
+### Search for Contacts based on user's metrics: `find`
+* Format: `find [*KEYWORDS]` 
+* Description: 
+* Example Usage: `find n/Jim a/53`
+
 
 ## FAQ
 
@@ -190,3 +219,6 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
+**Find** | `find [n/NAME] [p/PHONE] [e/EMAIL]...` <br> e.g: ` find n/Jim p/98765432` 
+**Sort** | `sort [COMPARABLE_METRIC]` <br> `e.g: sort AGE`
+**Pin** | `pin [n/Name]` <br> e.g: `pin n/Jim`
