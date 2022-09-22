@@ -9,16 +9,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### Chua Zhong Han Marcus
-
-<img src="images/marcusczh.png" width="200px">
-
-[[github](https://github.com/marcusczh)]
-[[portfolio](team/marcusczh.md)]
-
-* Role: Developer
-* Responsibilities: Find functionality
-
 ### John Doe
 
 <img src="images/johndoe.png" width="200px">
@@ -67,6 +57,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Integration, responsible for Client class
 
+### Marcus Chua
+
+<img src="images/marcusczh.png" width="200px">
+
+[[github](https://github.com/marcusczh)]
+[[portfolio](team/marcusczh.md)]
+
+* Role: Developer
+* Responsibilities: Find functionality
 
 ### James Doe
 
