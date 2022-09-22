@@ -82,16 +82,14 @@ This command will require two flags:
   module which the task is associated with.
 * `d/`: This flag is to be followed immediately by the task description.
 
-Format: 	
-```
-add task m/MODULE_CODE d/TASK_DESCRIPTION
-```
+Format: `add task m/MODULE_CODE d/TASK_DESCRIPTION`
 * Each task **must** belong to a specific module.
 * The given module code should be that of an existing module in Plannit.
 
-Example: 
-
-```add task m/CS2103T d/Complete tP tasks for W07```
+Example:
+```
+add task m/CS2103T d/Complete tP tasks for W07
+```
 * In the above example, we add the task `Complete tP tasks for W07` to the 
   module with module code `CS2103T`.
 
