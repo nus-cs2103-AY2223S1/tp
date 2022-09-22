@@ -301,14 +301,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1a1. Financial Aid Planner shows an error message.
 
     Use case ends.
+* 1b. Any of the mandatory fields are not input by the user
+
+    * 1b1. Financial Aid Planner shows an error message.
+
+      Use case ends.
 
 **Use case: Delete a client**
 
 **MSS**
 
-1.  User requests to list persons
-2.  Financial Aid Planner shows a list of client 
-3.  User requests to delete a specific person in the list
+1.  User requests to list clients
+2.  Financial Aid Planner shows a list of clients 
+3.  User requests to delete a specific client in the list
 4.  Financial Aid Planner deletes the client 
 
     Use case ends.
@@ -324,6 +329,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. Financial Aid Planner shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: Edit client details**
+
+**MSS**
+
+1. User requests to edit the details of a client at the specified index 
+2. Financial Aid Planner edits the details of the specified client in the list 
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User did not input any arguments
+
+    * 1a1. Financial Aid Planner shows an error message.
+    
+      Use case ends
 
 *{More to be added}*
 
