@@ -128,19 +128,20 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting internship(s) : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified internship(s) from the list.
 
-Format: `delete INDEX`
+Format: `delete INDEX...`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Deletes the internship at the specified `INDEX`.
+* The index refers to the index number shown in the displayed internship list.
+* The list use 1-based indexing, which means the index **must be a positive integer** such as 1, 2, 3, …​
+* Can add multiple `INDEX` to delete multiple internships.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 1 3` deletes the 1st and 3rd internship from the list.
+* `find TikTok` followed by `delete 1` deletes the 1st internship in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
@@ -185,7 +186,7 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Delete** | `delete INDEX...`<br> e.g., `delete 1 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
