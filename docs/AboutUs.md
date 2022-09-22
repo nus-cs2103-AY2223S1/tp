@@ -38,8 +38,17 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Reuben Chay
+<img src="images/reubenchay.png" width="200px">
 
+[[github](https://github.com/ReubenChay)]
+[[portfolio](team/reubenchay.md)]
+
+* Role: ?
+* Responsibilities: ?
+
+
+### Colin Toh 
 <img src="images/cowlinn.png" width="200px">
 
 [[github](http://github.com/cowlinn)]
@@ -47,6 +56,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Integration, responsible for Client class
+
+
 ### James Doe
 
 <img src="images/johndoe.png" width="200px">
