@@ -1,12 +1,12 @@
 package seedu.address.logic.parser;
 
-
-import seedu.address.model.person.Category;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import seedu.address.model.person.Category;
+
 
 /**
  * Parses input arguments
