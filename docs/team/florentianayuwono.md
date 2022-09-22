@@ -3,9 +3,9 @@ layout: page
 title: Florentiana Yuwono's Project Portfolio Page
 ---
 
-### Project: AddressBook Level 3
+### Project: SoConnect
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+SoConnect is a desktop app for NUS SoC students to manage their contacts, optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
@@ -17,7 +17,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
 
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [RepoSense link](https://github.com/AY2223S1-CS2103T-W15-1/tp/pulls?q=is%3Apr+author%3Aflorentianayuwono)
 
 * **Project management**:
   * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
