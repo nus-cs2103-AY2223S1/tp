@@ -24,6 +24,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Remark;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -97,9 +98,10 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Remark updatedRemark = personToEdit.getRemark(); // edit command does not allow editing remarks
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags);
     }
 
     @Override
@@ -108,18 +110,15 @@ public class EditCommand extends Command {
         if (other == this) {
             return true;
         }
-
         // instanceof handles nulls
         if (!(other instanceof EditCommand)) {
             return false;
         }
-
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
                 && editPersonDescriptor.equals(e.editPersonDescriptor);
     }
-
     /**
      * Stores the details to edit the person with. Each non-empty field value will replace the
      * corresponding field value of the person.
@@ -130,9 +129,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
-
         public EditPersonDescriptor() {}
-
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
@@ -144,46 +141,36 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setTags(toCopy.tags);
         }
-
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
         }
-
         public void setName(Name name) {
             this.name = name;
         }
-
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
         }
-
         public void setPhone(Phone phone) {
             this.phone = phone;
         }
-
         public Optional<Phone> getPhone() {
             return Optional.ofNullable(phone);
         }
-
         public void setEmail(Email email) {
             this.email = email;
         }
-
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
         }
-
         public void setAddress(Address address) {
             this.address = address;
         }
-
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
         }
-
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -191,7 +178,6 @@ public class EditCommand extends Command {
         public void setTags(Set<Tag> tags) {
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
-
         /**
          * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
@@ -200,22 +186,18 @@ public class EditCommand extends Command {
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
-
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
             if (other == this) {
                 return true;
             }
-
             // instanceof handles nulls
             if (!(other instanceof EditPersonDescriptor)) {
                 return false;
             }
-
             // state check
             EditPersonDescriptor e = (EditPersonDescriptor) other;
-
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())

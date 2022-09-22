@@ -45,9 +45,4 @@ public class Phone {
                 && value.equals(((Phone) other).value)); // state check
     }
 
-    @Override
-    public int hashCode() {
-        return value.hashCode();
-    }
-
 }
