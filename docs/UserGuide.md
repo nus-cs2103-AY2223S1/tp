@@ -77,6 +77,12 @@ Adds a Customer to bobaBot.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [r/REWARD] [t/TAG]…`
 
+
+
+<div markdown="span" class="alert alert-primary">:bulb: Tip:
+A person can have any number of tags (including 0)
+</div>
+
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com r/0 t/new `
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com p/1234567 r/5000 t/gold`
