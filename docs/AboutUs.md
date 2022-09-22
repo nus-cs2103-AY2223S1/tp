@@ -29,11 +29,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Chua Yu Xuan Jordan 
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jordanchua.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/jordanchua)]
+[[portfolio](team/jordanchua.md)]
 
 * Role: Developer
 * Responsibilities: Data
