@@ -39,7 +39,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Responsibilities: Data
 
 ### Reuben Chay
-
 <img src="images/reubenchay.png" width="200px">
 
 [[github](https://github.com/ReubenChay)]
@@ -47,6 +46,17 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: ?
 * Responsibilities: ?
+
+
+### Colin Toh 
+<img src="images/cowlinn.png" width="200px">
+
+[[github](http://github.com/cowlinn)]
+[[portfolio](team/cowlinn.md)]
+
+* Role: Developer
+* Responsibilities: Integration, responsible for Client class
+
 
 ### James Doe
 
