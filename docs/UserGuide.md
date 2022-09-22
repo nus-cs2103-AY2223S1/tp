@@ -3,38 +3,15 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
-
-* Table of Contents
-{:toc}
+LinkedOn is a **desktop app for managing teams optimized for use via a Command Line Interface (CLI)**. As an employee,
+you will be able to easily view which members are in the teams you are on. As an employer, you can edit the team
+information and team members in the team. With our app, team management would be easier than ever.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
-
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
-
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
-
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
-
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * **`list`** : Lists all contacts.
-
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
-
-   * **`exit`** : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
+Coming soon!
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -42,151 +19,134 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**:information_source: Notes about the commands:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. in `create t/TEAM-NAME`, `TEAM-NAME` is a parameter which can be used as `create t/UIDevelopers`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `m/John`, `m/John m/Jane` etc.
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* Some commands are available for any user, while some are only available for employers.
 
 </div>
 
-### Viewing help : `help`
+## Commands for any user:
 
-Shows a message explaning how to access the help page.
+### Viewing help: `help`
+
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
+### Viewing your basic information: `myinfo`
 
-### Adding a person: `add`
+Shows your name, email, and contact number.
 
-Adds a person to the address book.
+Format: `myinfo`
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+### Changing your basic information: `updateinfo`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Changes your name, email, and/or contact number.
 
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-
-### Listing all persons : `list`
-
-Shows a list of all persons in the address book.
-
-Format: `list`
-
-### Editing a person : `edit`
-
-Edits an existing person in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+Format: `updateinfo n/NAME e/EMAIL c/CONTACT-NUMBER`
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* `updateinfo n/John Doe e/johndoe@example.com c/12345678` Updates your name to John Doe, 
+your email to johndoe@example.com, and your contact number to 12345678.
 
-### Locating persons by name: `find`
+### Viewing basic information of team members: `view`
 
-Finds persons whose names contain any of the given keywords.
+Shows the name, email, and contact number of the given person.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+Format: `view m/TEAM-MEMBER`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+*  `view m/Jane Doe` Shows the basic information of Jane Doe.
 
-### Deleting a person : `delete`
+### Viewing the team members of a certain team: `viewmember`
 
-Deletes the specified person from the address book.
+Shows the team members of the given team.
 
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+Format: `viewmember t/TEAM-NAME`
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `viewmember t/UIDevelopers` returns the name of the members of UIDevelopers team.
 
-### Clearing all entries : `clear`
+--------------------------------------------------------------------------------------------------------------------
 
-Clears all entries from the address book.
+### Commands for employers only:
 
-Format: `clear`
+### Creating a team: `create`
 
-### Exiting the program : `exit`
+Creates a team with the given name.
 
-Exits the program.
+Format: `create t/TEAM-NAME`
 
-Format: `exit`
+Examples:
+* `create t/UIDevelopers` creates a team with the name UIDevelopers.
 
-### Saving the data
+### Changing a team's name: `rename`
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Changes a team's name to the given name.
 
-### Editing the data file
+Format: `rename o/TEAM-NAME n/NEW-TEAM-NAME`
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+Examples:
+* `rename o/UIDevelopers n/UnitTesters` changes the name of the team UIDevelopers to UnitTesters.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div>
+### Deleting a team: `delete`
 
-### Archiving data files `[coming in v2.0]`
+Deletes the given team.
 
-_Details coming soon ..._
+Format: `delete t/TEAM-NAME`
+
+### Adding team member/s: `add`
+
+Adds the given person/s to the team.
+
+Format: `add t/TEAM-NAME m/TEAM-MEMBER...`
+
+Examples:
+* `add t/UIDevelopers m/John m/Jane` Adds John and Jane to the team UIDevelopers.
+
+### Removing team member/s:
+
+Removes the given person/s from the team.
+
+Format: `remove t/TEAM-NAME m/TEAM-MEMBER...`
+
+Examples:
+* `remove t/UIDevelopers m/John m/Jane` Removes John and Jane from the team UIDevelopers.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+Coming Soon!
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
+### Any User
+
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
 **Help** | `help`
+**MyInfo** | `myinfo`
+**UpdateInfo** | `updateinfo n/NAME e/EMAIL c/CONTACT-NUMBER`<br> e.g., `updateinfo n/John Doe e/johndoe@example.com c/12345678`
+**View** | `view m/TEAM-MEMBER`<br> e.g.,`view m/Jane Doe`
+**ViewMember** | `viewmember t/TEAM-NAME`<br> e.g., `viewmember t/UIDevelopers`
+
+### Employer Only
+
+Action | Format, Examples
+--------|------------------
+**Add** | `add t/TEAM-NAME m/TEAM-MEMBER...`<br> e.g., `add t/UIDevelopers m/John m/Jane`
+**Create** | `create t/TEAM-NAME`<br> e.g., `create t/UIDevelopers`
+**Delete** | `delete t/TEAM-NAME`
+**Remove** | `remove t/TEAM-NAME m/TEAM-MEMBER...`<br> e.g.,`remove t/UIDevelopers m/John m/Jane`
+**Rename** | `rename o/TEAM-NAME n/NEW-TEAM-NAME`<br> e.g., `rename o/UIDevelopers n/UnitTesters`
