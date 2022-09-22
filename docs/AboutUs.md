@@ -31,7 +31,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Chua Yu Xuan Jordan 
 
-<img src="images/jordanchua.png" width="200px">
+<img src="images/jordanchua.png.png" width="200px">
 
 [[github](http://github.com/jordanchua)]
 [[portfolio](team/jordanchua.md)]
