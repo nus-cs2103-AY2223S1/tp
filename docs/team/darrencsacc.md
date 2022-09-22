@@ -1,9 +1,9 @@
 ---
 layout: page
-title: Samuel Cheong's Project Portfolio Page
+title: Darren Tng's Project Portfolio Page
 ---
-
 ### Project: TrackAScholar
+
 
 Given below are my contributions to the project.
 

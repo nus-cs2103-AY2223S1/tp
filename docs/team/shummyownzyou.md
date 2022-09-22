@@ -1,9 +1,9 @@
 ---
 layout: page
-title: Samuel Cheong's Project Portfolio Page
+title: ShummyOwnzYou's Project Portfolio Page
 ---
-
 ### Project: TrackAScholar
+
 
 Given below are my contributions to the project.
 
@@ -18,8 +18,8 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**: `to be added soon`
 
 * **Documentation**: `to be added soon`
-  * User Guide:
-  * Developer Guide:
+    * User Guide:
+    * Developer Guide:
 
 * **Community**: `to be added soon`
 

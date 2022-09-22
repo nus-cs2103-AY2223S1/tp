@@ -1,43 +1,43 @@
 ---
 layout: page
-title: User Guide
+title: TrackAScholar User Guide (v1.2)
 ---
 
-TrackAScholar is a **desktop app for managing contacts for scholars, 
-optimized for use via a Command Line Interface** (CLI) 
-while still having the benefits of a Graphical User Interface (GUI).
-Know which students applied for what scholarship/bursary and keep track of the number available and how many applied for each.
+TrackAScholar (TAS) is a **desktop app for managing scholarship applications, optimised for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TAS can get your scholarship applicant management tasks done faster than traditional GUI apps.
 
-* Table of Contents
-{:toc}
+* [Quick start](#quick-start)
+* [Features](#features)
+  * [Viewing help : help](#viewing-help--help)
+  * [Adding a scholarship application: add](#adding-a-scholarship-application-add)
+  * [Listing all scholarship application : list](#listing-all-scholarship-application--list)
+  * [Editing an existing scholarship application : edit](#editing-an-existing-scholarship-application--edit)
+  * [Locating application status by name: find](#locating-application-status-by-name--find)
+  * [Deleting a scholarship application : delete](#deleting-a-scholarship-application--delete)
+  * [Clearing all entries : clear](#clearing-all-entries--clear)
+  * [Exiting the program : exit](#exiting-the-program--exit)
+* [Further details](#further-details)
+  * [Saving the data](#saving-the-data)
+  * [Editing the data file](#editing-the-data-file)
+  * [Archiving data files](#archiving-data-files-coming-in-v20)
+* [Command summary](#command-summary)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Install Java `11` or above. Check [here](https://nus-cs2103-ay2223s1.github.io/website/admin/programmingLanguages.html#programming-language).
 
-2. Download the latest `plannit.jar` from [coming soon]().
+1. Download the latest `TrackAScholar.jar`. Check [here](https://github.com/AY2223S1-CS2103T-W10-3/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Move the jar file to an empty folder
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1.  Double-click the jar file to open the app. If the app does not respond, open your terminal in the current folder and enter `java -jar TrackAScholar.jar` to open the app.
+
+1. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * **`list`** : Lists all contacts.
-
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
-
-   * **`exit`** : Exits the app.
-
-6. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -76,46 +76,51 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a scholarship application: `add`
 
-Adds a person to the address book.
+Adds a scholarship application to the TrackAScholar.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+It is necessary for a scholarship application to have both an applicant’s name and email, while the other fields are optional.
+</div>
+
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/John Cena e/johnCena@yahoo.com`
+* `add n/Samuel Cheong t/international student e/samuelcheong1234@gmail.com p/65782310`
 
-### Listing all persons : `list`
+### Listing all scholarship application : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all scholarship applications stored in TrackAScholar
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing an existing scholarship application : `edit`
 
-Edits an existing person in the address book.
+Edits an existing scholarship application stored in TrackAScholar
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the scholarship application at the specified `INDEX`. The index refers to the index number shown in the displayed scholarship application list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+* When editing tags, the existing tags of the scholarship application will be removed i.e adding of tags is not cumulative.
+* You can remove all the scholarship application’s tags by typing `t/` without
+  specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 n/John Cena e/johnCena@yahoo.com` Edits the name and email address of the 1st scholarship application to be `John Cena` and `johnCena@yahoo.com` respectively.
 
-### Locating persons by name: `find`
+*  `edit 2 n/Samuel Cheong t/` Edits the name of the 2nd person to be `Samuel Cheong` and clears all existing tags.
 
-Finds persons whose names contain any of the given keywords.
+### Locating application status by name : `find`
+
+Finds scholarship applications whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -128,34 +133,36 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find alex david` returns `Alex Yeoh`, `David Li`
 
-### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+### Deleting a scholarship application : `delete`
+
+Deletes the specified scholarship application from TrackAScholar
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
+* Deletes the scholarship application at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from data stored in TrackAScholar
 
 Format: `clear`
 
 ### Exiting the program : `exit`
 
-Exits the program.
+Exits TrackAScholar.
 
 Format: `exit`
+
+--------------------------------------------------------------------------------------------------------------------
+## Further details
 
 ### Saving the data
 
@@ -175,21 +182,16 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
-
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
-
---------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                      |
-|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**  | `clear`                                                                                                                                                               |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
-| **List**   | `list`                                                                                                                                                                |
-| **Help**   | `help`                                                                                                                                                                |
+Action | Format, Examples
+--------|------------------
+**Add** | `add n/NAME e/EMAIL [p/PHONE_NUMBER] [a/ADDRESS] [t/TAG] …`
+**Clear** | `clear`
+**Delete** | `delete INDEX`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…​`
+**Find** | `find KEYWORD [MORE_KEYWORDS]`
+**List** | `list`
+**Help** | `help`
+**Exit** | `exit`
