@@ -478,7 +478,7 @@ Use case ends.
 
 **Extensions**
 * 3a. The contact is duplicate, i.e. name already exists.
-    * 3a1. Plannit displays an error message notifying user of that a 
+    * 3a1. Plannit displays an error message notifying user that a 
       duplicate exists.
 
   Use case ends.
