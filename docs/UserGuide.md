@@ -157,13 +157,32 @@ Examples:
 
 Adds a task into the task list.
 
-Format:  `task add [m/o]/<assignor/assignee> t/<description>`
+Format:  `task add (m/o)/<assignor/assignee> t/<description> [<modifier>]`
 
-* Adds the task with an assignor (m) or assignee (o) and a description.
+* Adds a task with an assignor (m) or assignee (o), a description and an optional task modifier.
 
 Examples:
 * `task add m/John t/Finish user guide` adds a task called “Finish user guide” assigned by John to the user.
 * `task add o/Sam t/Finish the assignment` adds a task called “Finish the assignment” which is assigned to Sam.
+
+### Task Modifiers
+
+#### Adding a deadline: `task add ... /d <due_date>`
+
+Adds a task of type Deadline into the task list.
+
+Format: `task add (m/o)/<assignor/assignee> t/<description> /d <due_date>`
+
+* `<due_date>` supports the following Date formats:
+    * `yyyy-MM-dd` e.g. "2022-09-21"
+    * `dd-MM-yyyy` e.g. "09-21-2022"
+    * `MMM dd yyyy` e.g. "Sep 21 2022"
+
+Examples:
+* `task add m/John t/Finish user guide /d 2022-09-21` adds a task called “Finish user guide”
+  which is assigned by John to the user, and due by 2022-09-21.
+* `task add o/Sam t/Finish the assignment /d 09-21-2022` adds a task called “Finish the assignment”
+  which the user has assigned to Sam, and due by 2022-09-21.
 
 ### Deleting a task : `task delete`
 
