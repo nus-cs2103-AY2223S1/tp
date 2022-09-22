@@ -39,6 +39,14 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label position;
+    @FXML
+    private Label applicationProcess;
+    @FXML
+    private Label date;
+    @FXML
+    private Label website;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -52,6 +60,10 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
+        position.setText(person.getPosition().positionName);
+        applicationProcess.setText(person.getApplicationProcess().toString());
+        date.setText(person.getDate().value.toString());
+        website.setText(person.getWebsite().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
