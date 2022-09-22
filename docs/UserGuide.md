@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+**JerylFypManager** is a desktop application catered to professors and final year project (FYP) students to manage and track the progress for students’ FYP projects, as well as serving as a platform for professors to provide feedback on their students’ progress. The application’s simple design provides a nifty platform to navigate through and present the FYP projects in a concise manner.
 
 * Table of Contents
 {:toc}
@@ -14,25 +14,31 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `JerylFypManager.jar` from [here](https://github.com/AY2223S1-CS2103-F09-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your FypManager.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the command box and press Enter to execute it.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`list`** - lists all FYP projects the professor is supervising
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add A0123456G n/Automation of Selenium`** - adds the FYP project of the student with ID A0123456G titled _Automation of Selenium_
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`delete A0123456G`** - deletes the FYP project of the student with ID A0123456G
 
-   * **`clear`** : Deletes all contacts.
+   * **`mark A0123456G IP`** - marks the FYP project of the student with ID A0123456G as _In Progress_
 
-   * **`exit`** : Exits the app.
+   * find machine - searches any FYP project names that has “machine” in its name, for example it will output the FYP project with “Machine Learning” in its name
+
+   * **`help add`** - shows a message on how to use the `add` command
+
+   * **`help`** - shows the list of all commands available
+
+   * **`exit`** - exits the application
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -45,148 +51,118 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add n/FYP_NAME`, `FYP_NAME` is a parameter which can be used as `add n/Neural Network`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/FYP_NAME [t/TAG]` can be used as `n/Neural Network t/SOC` or as `n/Data Caching`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/SOC`, `t/SOC t/ML` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/FYP_NAME t/TAG`, `t/TAG n/FYP_NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* Extraneous parameters for commands that do not take in parameters (such as `list` and `exit`) will be ignored.<br>
+  e.g. if the command specifies `list 456`, it will be interpreted as `list`.
 
 </div>
 
-### Viewing help : `help`
+### Adding students FYP: `add`
 
-Shows a message explaning how to access the help page.
+Adds a new FYP of a student to the FYP manager.
 
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-
-### Adding a person: `add`
-
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add STUDENT_ID n/FYP_NAME e/EMAIL [t/TAG]…​`
+* `STUDENT_ID` should be in the following format: "A" + (7 digits) + (1 letter), e.g. `A0123456G`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A student can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add A0123456G n/Neural Network e/e0123456@u.nus.edu t/NN`
+* `add A0987654X n/Data Caching e/e09876567@u.nus.edu`
 
-### Listing all persons : `list`
+### Removing students FYP: `delete`
 
-Shows a list of all persons in the address book.
+Removes a FYP from the FYP manager. A FYP could be deleted for the following reasons:
+* Student dropped the FYP 
+* Student finished the FYP
+
+Format: `delete STUDENT_ID`
+* `STUDENT_ID` should be in the following format: "A" + (7 digits) + (1 letter), e.g. `A0123456G`
+
+Example:
+* `delete A0123456G`
+
+### Marking project status: `mark`
+
+Marks a FYP as "Done"/"In Progress"/"Yet to Start", etc.
+
+Format: `mark STUDENT_ID STATUS`
+* `STUDENT_ID` should be in the following format: "A" + (7 digits) + (1 letter), e.g. `A0123456G`
+* Current supported statuses are as follows:
+  * **"DONE"** - Done
+  * **"IP"** - In Progress
+  * **"YTS"** - Yet To Start
+
+Examples:
+* `mark A0123456G DONE`
+* `mark A0234567H YTS`
+
+### Searching keyword: `find`
+
+Finds projects whose names contain any of the given keyword(s).
+
+Format: `find KEYWORD/[KEYWORD2/KEYWORD3/…]`
+* The keyword is case-insensitive, e.g. `Neural NetWORK` will match `neural network`
+* Partial keywords will also be matched, e.g. `Ne` will match `neural network` and `Genetic Algorithm`
+* Leading and trailing spaces are ignored, e.g. ` neural network  ` will match `neural network`
+* Only project names could be searched
+* Projects matching at least one keyword will be returned (i.e. `OR` search), e.g. `find neural network/tree` will match both `neural network` and `decision tree`
+
+Examples:
+* `find Neural Network`
+* `find Neural/Network  /    Data`
+
+### List of commands: `help`
+
+Shows a list of valid commands or a help page on a particular command.
+
+Format: `help [COMMAND]`
+
+Examples:
+* `help add` - This shows a detailed help message on the `add` command
+* `help` - This shows only the list of commands
+
+### List of FYPs: `list`
+
+Shows a list of final year projects with the student IDs.
 
 Format: `list`
 
-### Editing a person : `edit`
-
-Edits an existing person in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
-
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-
-### Clearing all entries : `clear`
-
-Clears all entries from the address book.
-
-Format: `clear`
-
-### Exiting the program : `exit`
+### Exiting the application: `exit`
 
 Exits the program.
 
 Format: `exit`
-
-### Saving the data
-
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FypManager home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action     | Format, Examples                                                                                               |
+|------------|----------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add STUDENT_ID n/FYP_NAME e/EMAIL [t/TAG]…​` <br> e.g., `add A0987654X n/Data Caching e/e09876567@u.nus.edu`  |
+| **Delete** | `delete STUDENT_ID`<br> e.g., `delete A0123456G`                                                               |
+| **Mark**   | `mark STUDENT_ID STATUS`<br> e.g.,`mark A0123456G IP`                                                          |
+| **Find**   | `find KEYWORD/[KEYWORD2/KEYWORD3/…]`<br> e.g., `find neural network/tree`                                      |
+| **Help**   | `help [COMMAND]`<br> e.g., `help add`, `help`                                                                  |
+| **List**   | `list`                                                                                                         |
+| **Exit**   | `exit`                                                                                                         |
