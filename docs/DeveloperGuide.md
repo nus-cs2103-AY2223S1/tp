@@ -326,9 +326,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 3a. User enters resident information in an invalid format
+  
     * 3a1. RC4HDB shows an error message.
-      <br>
-    Use case resumes at step 3.
+      
+      Use case resumes at step 3.
 
 **Use case: Listing out information of all residents**
 
@@ -363,10 +364,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
     Use case ends.
 
+
 * 4a. User enters resident information in an invalid format
+
     * 4a1. RC4HDB shows an error message.
-      <br>
-    Use case resumes at step 3.
+      
+      Use case resumes at step 3.
 
 
 **Use case: Finding a resident’s information by their name**
@@ -382,15 +385,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extension**
 
 * 3a. RC4HDB cannot find any resident matching the user input
+  
     * 3a1. RC4HDB shows an error message.
-      <br>
-    Use case resumes at step 2.
+      
+      Use case resumes at step 2.
+
 
 * 4b. RC4HDB finds multiple residents matching the user input
+    
     * 4b1. RC4HDB shows a list of all matching residents.
-      <br>
-    Use case ends.
-
+      
+      Use case ends.
+      
 
 **Use case: Filtering the list of all residents by specific fields**
 
@@ -405,24 +411,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extension**
 
 * 2a. User enters an invalid specifier i.e. one that is not `/all` or `/any`
-    * 2a1. RC4HDB shows an error message.
-      <br>
-    Use case resumes at step 2.
+  
+    * 2a1. RC4HDB shows an error message. 
+      
+      Use case resumes at step 2.
+
 
 * 2b. User enters multiple specifiers i.e. both `/all` and `/any`
-    * 2b1. RC4HDB shows an error message.
-      <br>
-    Use case resumes at step 2.
+  
+    * 2b1. RC4HDB shows an error message. 
+      
+      Use case resumes at step 2.
+
 
 * 2c. User enters a category that does not exist
+  
     * 2c1. RC4HDB shows an error message.
-      <br>
-    Use case resumes at step 2.
+      
+      Use case resumes at step 2.
+
 
 * 2d. User enters a value that does not exist in the category
-    * 2d1. RC4HDB shows an error message.
   
-    Use case resumes at step 2.
+    * 2d1. RC4HDB shows an error message. 
+      
+      Use case resumes at step 2.
+
 
 **Use case: Deleting a single resident**
 
@@ -441,14 +455,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extension**
 
 * 3a. RC4HDB cannot find any resident matching the user input
-    * 3a1. RC4HDB shows an error message.
-      <br>
-    Use case resumes at step 2.
+  
+    * 3a1. RC4HDB shows an error message. 
+      
+      Use case resumes at step 2.
+
 
 * 6a. User enters an invalid index
-    * 6a1. RC4HDB shows an error message.
-      <br>
-    Use case resumes at step 5.
+  
+    * 6a1. RC4HDB shows an error message. 
+      
+      Use case resumes at step 5.
 
 
 **Use case: Clearing all data**
@@ -473,9 +490,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extension**
 
 * 2a. User clicks on the exit button
-    * 2a1. RC4HDB application closes.
-      <br>
-    Use case ends.
+  
+    * 2a1. RC4HDB application closes. 
+      
+      Use case ends.
    
 
 **Use case: Importing data from .csv file**
@@ -491,14 +509,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extension**
 * 1a. Information in the CSV file has not been stored in the proper format
-    * 1a1. RC4HDB shows an error message.
-      <br>
-    Use case resumes at step 2.
+  
+    * 1a1. RC4HDB shows an error message. 
+      
+      Use case resumes at step 2.
+
 
 * 2a. No file could be found at the specified file path
-    * 2a1. RC4HDB shows an error message.
-      <br>
-    Use case resumes at step 2.
+  
+    * 2a1. RC4HDB shows an error message. 
+      
+      Use case resumes at step 2.
+
 
 **Use case: Exporting data to .csv file**
 
