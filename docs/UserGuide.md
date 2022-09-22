@@ -93,11 +93,11 @@ Shows a list of all persons in the address book.
 
 Format: `list [s/FIELD]`
 
-* Sorts the contacts by the specified field in ascending order. `FIELD` must take one the following values:
+* Sorts the contacts by the specified field in **ascending** order. `FIELD` must take one the following values:
   * `d` Sort by date of birth
   * `g` Sort by gender
   * `n` Sort by number of products purchased
-  * `pa` Sort by purchase amount. i.e. Total amount ever spent<br><br>
+  * `pa` Sort by purchase amount. i.e. Total amount ever spent
 
 * It is optional to specify the field to sort by. If no field is specified, persons are listed in the order they were inserted.
 * At most one field can be specified. i.e. Cannot specify 2nd or 3rd criteria to sort by.
