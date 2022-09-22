@@ -52,6 +52,21 @@ public class Person {
         return address;
     }
 
+    public String getAttribute(Category category) {
+        switch (category) {
+        case PHONE:
+            return getPhone().toString();
+        case EMAIL:
+            return getEmail().toString();
+        case ADDRESS:
+            return getAddress().toString();
+        case TAG:
+            return getTags().toString();
+        default:
+            return getName().toString();
+        }
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.

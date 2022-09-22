@@ -4,13 +4,18 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.Category;
 import seedu.address.model.person.Person;
 
 /**
@@ -127,6 +132,23 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
+
+    @Override
+    public void updateSortedList(Category category, boolean reverse) {
+        requireNonNull(category);
+        requireNonNull(reverse);
+
+        addressBook.sortPersonList(new Comparator<Person>() {
+            @Override
+            public int compare(Person p1, Person p2) {
+                if (reverse) {
+                    return p2.getAttribute(category).compareTo(p1.getAttribute(category));
+                }
+                return p1.getAttribute(category).compareTo(p2.getAttribute(category));
+            }
+        });
+    }
+
 
     @Override
     public boolean equals(Object obj) {

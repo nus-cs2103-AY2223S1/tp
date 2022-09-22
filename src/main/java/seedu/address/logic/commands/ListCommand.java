@@ -3,7 +3,10 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+
 import seedu.address.model.Model;
+import seedu.address.model.person.Category;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 /**
  * Lists all persons in the address book to the user.
@@ -12,13 +15,35 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_SUCCESS = "Listed all persons";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all internships "
+            + "specified by the category (case-insensitive) in ascending or descending order "
+            + "and displays them as a list with index numbers.\n"
+            + "Parameters: [c/CATEGORY] [REVERSE] "
+            + "Examples:\n "
+            + COMMAND_WORD + "\n"
+            + COMMAND_WORD + " c/website true \n"
+            + COMMAND_WORD + " c/p \n";
 
+    public static final String MESSAGE_SUCCESS = "Listed all internships";
+
+    private final Category category;
+    private final boolean reverse;
+
+
+    public ListCommand() {
+        this.category = null;
+        this.reverse = false;
+    }
+
+    public ListCommand(Category category, boolean reverse) {
+        this.category = category;
+        this.reverse = reverse;
+    }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateSortedList(category, reverse);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
