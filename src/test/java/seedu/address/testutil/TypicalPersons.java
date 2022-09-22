@@ -10,18 +10,22 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.testutil.TypicalTags.getTypicalTags;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
  */
 public class TypicalPersons {
+    public static final Tag friends = new Tag("friends");
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
@@ -67,10 +71,15 @@ public class TypicalPersons {
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);
         }
+        for (Tag tag : getTypicalTags()) {
+            ab.createTag(tag);
+        }
         return ab;
     }
 
     public static List<Person> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
+
+
 }

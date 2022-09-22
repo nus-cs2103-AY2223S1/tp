@@ -90,7 +90,6 @@ public interface Model {
 
     /**
      * Adds the tag to the address book.
-     * @param tag
      */
     void addTag(Tag tag);
 
