@@ -31,7 +31,7 @@ public class ListCommand extends Command {
      * Creates a ListCommand
      */
     public ListCommand() {
-        this.category = null;
+        this.category = Category.NULL;
         this.reverse = false;
     }
 
@@ -47,7 +47,12 @@ public class ListCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        model.updateSortedList(category, reverse);
+        if (category != Category.NULL) {
+            model.sortList(category);
+        }
+        if (reverse) {
+            model.reverseList();
+        }
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

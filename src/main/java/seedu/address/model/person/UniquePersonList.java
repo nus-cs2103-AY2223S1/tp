@@ -3,6 +3,7 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
@@ -73,6 +74,10 @@ public class UniquePersonList implements Iterable<Person> {
     public void sortPerson(Comparator<Person> comparator) {
         internalList.sort(comparator);
     };
+
+    public void reverseList() {
+        Collections.reverse(internalList);
+    }
 
     /**
      * Removes the equivalent person from the list.

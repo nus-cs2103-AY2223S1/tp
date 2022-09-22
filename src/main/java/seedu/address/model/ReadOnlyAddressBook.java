@@ -18,4 +18,6 @@ public interface ReadOnlyAddressBook {
 
     void sortPersonList(Comparator<Person> comparator);
 
+    void reverseList();
+
 }

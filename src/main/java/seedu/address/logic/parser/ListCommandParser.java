@@ -20,14 +20,14 @@ public class ListCommandParser implements Parser<ListCommand> {
     public ListCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
         if (trimmedArgs.length() == 0) {
-            return new ListCommand(Category.NAME, false);
+            return new ListCommand(Category.NULL, false);
         }
         String[] keywords = trimmedArgs.split("\\s+");
 
         if (keywords.length == 1) {
             if (keywords[0].equals("true") || keywords[0].equals("false")) {
                 boolean reverse = keywords[0].equals("true");
-                return new ListCommand(Category.NAME, reverse);
+                return new ListCommand(Category.NULL, reverse);
             } else {
                 try {
                     Category category = CategoryParser.parse(keywords[0]);

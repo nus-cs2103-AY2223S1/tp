@@ -54,6 +54,8 @@ public class Person {
 
     public String getAttribute(Category category) {
         switch (category) {
+        case NAME:
+            return getName().toString();
         case PHONE:
             return getPhone().toString();
         case EMAIL:
@@ -63,7 +65,7 @@ public class Person {
         case TAG:
             return getTags().toString();
         default:
-            return getName().toString();
+            return "";
         }
     }
 

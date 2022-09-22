@@ -8,5 +8,6 @@ public enum Category {
     EMAIL,
     ADDRESS,
     PHONE,
-    TAG
+    TAG,
+    NULL
 }

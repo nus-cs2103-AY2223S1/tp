@@ -131,21 +131,21 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateSortedList(Category category, boolean reverse) {
+    public void sortList(Category category) {
         requireNonNull(category);
-        requireNonNull(reverse);
 
         addressBook.sortPersonList(new Comparator<Person>() {
             @Override
             public int compare(Person p1, Person p2) {
-                if (reverse) {
-                    return p2.getAttribute(category).compareTo(p1.getAttribute(category));
-                }
                 return p1.getAttribute(category).compareTo(p2.getAttribute(category));
             }
         });
     }
 
+    @Override
+    public void reverseList() {
+        addressBook.reverseList();
+    }
 
     @Override
     public boolean equals(Object obj) {
