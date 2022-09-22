@@ -317,16 +317,59 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TaskBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a contact**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to add a person in the list
+2. TaskBook adds the person
+
+    Use case ends.
+
+**Use case: Delete a contact**
+
+**MSS**
+
+1. User requests to list persons
+2. TaskBook shows a list of persons
+3. User requests to delete a specific person in the list
+4. TaskBook deletes the person
+
+    Use case ends.
+   
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. TaskBook shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Add a task**
+
+**MSS**
+
+1. User requests to list persons
+2. TaskBook shows a list of persons
+3. User requests to add a task to a person in the list
+4. TaskBook adds the task
+
+   Use case ends.
+
+**Use case: Delete a task**
+
+**MSS**
+
+1.  User requests to list tasks
+2.  TaskBook shows a list of tasks
+3.  User requests to delete a specific task in the list
+4.  TaskBook deletes the task
 
     Use case ends.
 
@@ -338,7 +381,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. TaskBook shows an error message.
 
       Use case resumes at step 2.
 
@@ -346,11 +389,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. Should work on any _mainstream OS_, on both 32-bit and 64-bit systems as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 persons and 5000 tasks without a _noticeable sluggishness_ in performance for typical usage.
+3. Should be responsive to any command within 2 seconds.
+4. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+5. The product’s stored data should be backwards compatible with all previous versions.
+6. The product’s data storage file should be human-editable.
+7. The product should not cause data corruption on unexpected crashes.
+8. The product should be reliable and work as expected most of the time.
+9. The user interface should be intuitive enough to be usable by a novice with little experience but works more efficiently for an experienced user.
+10. The product is offered as a free downloadable offline application without requiring the use of an installer.
+11. The product should work offline.
+12. The product’s GUI should work well for most standard screen resolutions or higher.
+13. The product should be packaged into a single JAR file with a maximum size of 100MB.
+14. The system’s data should be portable to allow the user to export their data.
+15. The product should be easy to test, with appropriate manual testing instructions and automated tests.
 
 ### Glossary
 
