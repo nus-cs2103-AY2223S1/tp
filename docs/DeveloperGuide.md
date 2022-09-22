@@ -282,37 +282,133 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `bobaBot` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case 1: Add a Customer**
+
+System: bobaBot <br>
+Use case: UC01 - Add a Customer <br>
+Actor: User <br>
+Guarantee: New Customer will be added into bobaBot.
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to add a Customer.
+2. bobaBot adds the Customer into the database.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. User enters the command wrongly.
+  * 1a1. bobaBot displays the error message.
 
-  Use case ends.
+    Use case ends.
 
-* 3a. The given index is invalid.
+**Use case 2: Delete a Customer**
 
-    * 3a1. AddressBook shows an error message.
+System: bobaBot <br>
+Use case: UC02 - Delete a Customer <br>
+Actor: User <br>
+Guarantee: Selected Customer will be deleted from bobaBot.
 
-      Use case resumes at step 2.
+**MSS**
+
+1. User requests to delete a Customer.
+2. bobaBot deletes the Customer from the database.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User enters the command wrongly.
+    * 1a1. bobaBot displays the error message.
+
+      Use case ends.
+    
+* 1b. User enters a Customer that does not exist in bobaBot's database.
+    * 1b1. bobaBot displays that the Customer does not exist.
+
+      Use case ends.
+
+**Use case 3: Find a Customer**
+
+System: bobaBot <br>
+Use case: UC03 - Find a Customer <br>
+Actor: User <br>
+Guarantee: Selected Customer's details will be displayed by bobaBot.
+
+**MSS**
+
+1. User requests to find a Customer.
+2. bobaBot displays the Customer's details from the database.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User enters the command wrongly.
+    * 1a1. bobaBot displays the error message.
+
+      Use case ends.
+    
+* 1b. User enters a Customer that does not exist in bobaBot's database.
+    * 1b1. bobaBot displays that the Customer does not exist.
+
+      Use case ends.
+
+**Use case 4: Update a Customer's details**
+
+System: bobaBot <br>
+Use case: UC02 - Update a Customer's details <br>
+Actor: User <br>
+Guarantee: Selected Customer's details will be updated by bobaBot.
+
+**MSS**
+
+1. User requests to update a Customer's details.
+2. bobaBot updates the Customer's details in the database.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User enters the command wrongly.
+    * 1a1. bobaBot displays the error message.
+
+      Use case ends.
+    
+* 1b. User enters a Customer that does not exist in bobaBot's database.
+    * 1b1. bobaBot displays that the Customer does not exist.
+
+      Use case ends.
+    
+* 1c. bobaBot encounters a duplicate of the edited Customer in its database.
+    * 1c1. bobaBot displays a warning on potential the duplicate.
+    * 1c2. bobaBot provides the option to delete one of the duplicates (UC02)
+
+      Use case resumes from step 2.
+
+**Use case 5: Exit bobaBot**
+
+System: bobaBot <br>
+Use case: UC05 - Exit bobaBot <br>
+Actor: User <br>
+Guarantee: bobaBot will be exited.
+
+**MSS**
+
+1. User requests to exit bobaBot.
+2. bobaBot exits.
+
+   Use case ends.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 Customers without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
