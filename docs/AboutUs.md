@@ -18,14 +18,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Team Lead, Deliverables and Deadline, Scheduling and Tracking
 
-### Jane Doe
+### Jonathan Wiguna
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jonathanwiguna.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/JonathanWiguna)]
+[[portfolio](team/jonathanwiguna.md)]
 
-* Role: Team Lead
+* Role: Developer
 * Responsibilities: UI
 
 ### Johnny Doe
