@@ -112,8 +112,8 @@ Edits an existing contact in the address book.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [d/DOB] [ph/PURCHASE_INDEX,UPDATED_PURCHASE_DETAIL] [t/TAG]`
 
-- Edits the person at the specified INDEX. The index refers to the index number shown in the displayed person list.
-  The index must be a positive integer 1, 2, 3, …​, and it must be within the range of the contact list index.
+- Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list.
+  The index must be **a positive integer** 1, 2, 3, …​, and it must be within the range of the contact list index.
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
 - When editing tags, the existing tags of the person will be removed (i.e adding of tags is not cumulative).
