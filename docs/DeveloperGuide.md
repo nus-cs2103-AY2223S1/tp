@@ -478,18 +478,20 @@ Use case ends.
 
 **Extensions**
 * 3a. The contact is duplicate, i.e. name already exists.
-    * 3a1. Plannit displays an error message notifying user that a 
-      duplicate exists.
+    * 3a1. Plannit displays an error message notifying the user that a 
+      duplicate contact exists.
 
   Use case ends.
 
 * 3b. The email address is invalid.
-    * 3b1. Plannit displays an error message.
+    * 3b1. Plannit displays an error message notifying the user that the 
+      email address is invalid.
 
   Use case ends.
 
 * 3c. The phone number is invalid.
-    * 3c1. Plannit displays an error message notifying user of the invalid phone number.
+    * 3c1. Plannit displays an error message notifying the user that the phone 
+      number is invalid.
 
   Use case ends.
 
@@ -554,7 +556,6 @@ Use case ends.
 
 #### Use case: UC14 - Navigate to Contact Page
 **Main Success Scenario (MSS)**
-
 1.  User requests to navigate to the Contact Page.
 2.  Plannit displays the Contact Page.
 
