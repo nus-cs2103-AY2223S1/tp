@@ -1,5 +1,8 @@
 package seedu.address.model.person;
 
+/**
+ * Enumeration of categories
+ */
 public enum Category {
     NAME,
     EMAIL,

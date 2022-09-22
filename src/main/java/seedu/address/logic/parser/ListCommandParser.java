@@ -6,14 +6,15 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Category;
 
-import java.util.Objects;
 
-
+/**
+ * Parses input arguments and creates a new ListCommand object
+ */
 public class ListCommandParser implements Parser<ListCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the FindCommand
-     * and returns a FindCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the ListCommand
+     * and returns a ListCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public ListCommand parse(String args) throws ParseException {
@@ -39,7 +40,7 @@ public class ListCommandParser implements Parser<ListCommand> {
         } else if (keywords.length == 2) {
             try {
                 Category category = CategoryParser.parse(keywords[0]);
-                boolean reverse = Objects.equals(keywords[1], "true");
+                boolean reverse = keywords[1].equals("true");
                 return new ListCommand(category, reverse);
             } catch (ClassNotFoundException cnf) {
                 throw new ParseException(

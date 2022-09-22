@@ -3,10 +3,8 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-
 import seedu.address.model.Model;
 import seedu.address.model.person.Category;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 /**
  * Lists all persons in the address book to the user.
@@ -29,12 +27,17 @@ public class ListCommand extends Command {
     private final Category category;
     private final boolean reverse;
 
-
+    /**
+     * Creates a ListCommand
+     */
     public ListCommand() {
         this.category = null;
         this.reverse = false;
     }
 
+    /**
+     * Creates a ListCommand sorted by the category in ascending or descending order
+     */
     public ListCommand(Category category, boolean reverse) {
         this.category = category;
         this.reverse = reverse;
@@ -43,6 +46,7 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.updateSortedList(category, reverse);
         return new CommandResult(MESSAGE_SUCCESS);
     }
