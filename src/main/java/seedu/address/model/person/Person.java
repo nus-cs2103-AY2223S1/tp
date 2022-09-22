@@ -2,10 +2,8 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.time.LocalDate;
+import java.util.*;
 
 import seedu.address.model.tag.Tag;
 
@@ -17,23 +15,31 @@ public class Person {
 
     // Identity fields
     private final Name name;
+    private final Position position;
+
     private final Phone phone;
     private final Email email;
 
     // Data fields
     private final Address address;
+
+    private final ApplicationProcess applicationProcess;
+    private final Date date;
+    private final Website website;
     private final Set<Tag> tags = new HashSet<>();
 
-    /**
-     * Every field must be present and not null.
-     */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Position position,
+                  ApplicationProcess applicationProcess, Date date, Website website, Set<Tag> tags) {
+        requireAllNonNull(name, position, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.position = position;
+        this.applicationProcess = applicationProcess;
+        this.date = date;
+        this.website =  website ;
     }
 
     public Name getName() {
@@ -50,6 +56,22 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public Website getWebsite() {
+        return website;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public ApplicationProcess getApplicationProcess() {
+        return applicationProcess;
     }
 
     /**
@@ -92,13 +114,18 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getPosition().equals(getPosition())
+                && otherPerson.getWebsite().equals(getWebsite())
+                && otherPerson.getDate().equals(getDate())
+                && otherPerson.getApplicationProcess().equals(getApplicationProcess());
+
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags, position, website, date, applicationProcess);
     }
 
     @Override
@@ -110,7 +137,15 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Position: ")
+                .append(getPosition())
+                .append("; Website: ")
+                .append(getWebsite())
+                .append("; Date: ")
+                .append(getDate())
+                .append("; Application Process: ")
+                .append(getApplicationProcess());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
