@@ -17,7 +17,6 @@ Long Time No See (LTNS) is a  **desktop app for managing contacts, optimized for
 ## Quick start (To be revised with GUI mockups?)
 1. Ensure you have Java `11` or above installed in your Computer.
 
-<<<<<<< HEAD
 1. Download the latest `LTNS.jar` from [here](https://github.com/AY2223S1-CS2103T-W13-2/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your LTNS.
@@ -122,25 +121,30 @@ Examples:
 
 Search for contacts based on certain metrics 
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
 Format: `find (n/NAME)/(p/PHONE)/(e/EMAIL)/(a/ADDRESS)/(t/TAG)…​ `
 
-For textual information i.e `NAME`, `TAG`:
+For `NAME`:
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only full words will be matched e.g. `Han` will not match `Hans`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
+For `TAG`:
+* The search is case-insensitive. e.g `friends` will match `Friends`
+* Only full words will be matched e.g. `colleagues` will not match `colleague`
+* Note: Only one tag can be specified
+
 For non-textual information i.e `PHONE`, `EMAIL`, `ADDRESS`:
 * The search is case-sensitive. e.g `hans@email.com` will not match `Hans@email.com`
 * Only full searches will be matched e.g `12341234` will not match `1234`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find n/John` returns `john` and `John Doe`
+* `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
-* `find 12341234` returns contacts with `12341234` as their phone number
+* `find p/12341234` returns contacts with `12341234` as their phone number
+* `find t/friends` returns contacts with a `friends` tag
 
 ### Deleting a person : `delete`
 
