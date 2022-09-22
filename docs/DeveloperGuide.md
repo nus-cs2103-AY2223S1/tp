@@ -334,18 +334,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to edit the details of a client at the specified index 
-2. Financial Aid Planner edits the details of the specified client in the list 
+1. User requests to list clients
+2. Financial Aid Planner shows a list of clients
+3. User requests to edit the details of a client at the specified index 
+4. Financial Aid Planner edits the details of the specified client in the list 
 
     Use case ends.
 
 **Extensions**
 
-* 1a. User did not input any arguments
+* 3a. User did not input any arguments.
 
-    * 1a1. Financial Aid Planner shows an error message.
+    * 3a1. Financial Aid Planner shows an error message.
     
-      Use case ends
+      Use case resumes at step 2. 
+  
+* 3b. The given index is invalid. 
+
+    * 3b1. Financial Aid Planner shows an error message.
+
+      Use case resumes at step 2.
 
 **Use case: Clear Financial Aid Planner**
 
@@ -356,6 +364,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+**Use case: Find client**
+
+**MSS**
+
+1.  User requests to find clients containing input keyword(s)
+2.  Financial Aid Planner shows a list of clients with the matching keyword(s)
+
+    Use case ends.
 *{More to be added}*
 
 ### Non-Functional Requirements
