@@ -19,28 +19,31 @@ while still having the benefits of a Graphical User Interface (GUI).
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `plannit.jar` from [coming soon]().
+2. Download the latest `plannit.jar` from [coming soon]().
 
-1. Copy the file to the folder you want to use as the _home folder_ for Plannit.
+3. Copy the file to the folder you want to use as the _home folder_ for Plannit.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    [image coming soon]
 
-1. Type the command in the command box and press Enter to execute it. e.g. 
+5. Type the command in the command box and press Enter to execute it. e.g. 
    `add module`. For more commands, you may refer to the [command summary](#11-command-summary)
    
-1. Refer to the [Features](#2-features) for details of each command.
+6. Refer to the [Features](#2-features) for details of each command.
 
 ### 1.1. Command summary
 
-Action | Format, Examples
---------|------------------
-**CommandInBold** | `command examples here`
-**CommandInBold** | `command examples here`
-`add task`    | `add    task     m/MODULE_CODE d/TASK_DESCRIPTION`,<br>e.g.: `add task m/CS2103T d/Complete tP tasks for W07`
-`delete task` | `delete task     m/MODULE_CODE n/TASK_NUMBER`,<br>e.g.: `delete task m/CS2103T n/3`
-**CommandInBold** | `command examples here`
-**CommandInBold** | `command examples here`
+| Action                                                 | Format                                                | Short Description                                                           |
+|--------------------------------------------------------|-------------------------------------------------------|-----------------------------------------------------------------------------|
+| [`add module`](#211-add-module-add-module)             | `add    module   m/MODULE_CODE [t/MODULE_TITLE]`      | Add module with a module code and optional module title                     |
+| [`delete module`](#212-delete-module-delete-module)    | `delete module   m/MODULE_CODE`                       | Delete module by module code                                                |
+| [`add task`](#221-add-task-add-task)                   | `add    task     m/MODULE_CODE d/TASK_DESCRIPTION`    | Add task with specified module code and task description                    |
+| [`delete task`](#222-delete-task-delete-task)          | `delete task     m/MODULE_CODE n/TASK_NUMBER`         | Delete task corresponding to specified task number of specified module code |
+| **CommandInBold**                                      | `command format here`                                 |                                                                             || **CommandInBold**                     | `command format here`                              |                                                                             |
+| **CommandInBold**                                      | `command format here`                                 |                                                                             |
+| [`add contact`](#241-add-contact-add-contact)          | `add contact     n/NAME    e/EMAIL    p/PHONE_NUMBER` | Add contact with specified name, email, and phone number                    |
+| [`delete contact`](#242-delete-contact-delete-contact) | `delete contact  n/NAME`                              | Delete contact belonging to the specified name                              |
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 2. Features
@@ -124,9 +127,39 @@ delete task m/CS2103T n/3
 <br>
 
 ### 2.4. Adding and deleting contacts
-#### 2.4.1. Adding contact
-#### 2.4.2. Delete contact
+#### 2.4.1. Add contact: `add contact`
+You may add a contact using the `add contact` command.
 
+This command will require two flags, and one optional flag:
+- `n/`: To be followed by the to-be-added contact name.
+- `e/`: To be followed by the email of the new contact
+- `p/`: (Optional flag) To be followed by the email of the new contact.
+
+Format: `add contact n/NAME e/EMAIL p/PHONE_NUMBER`
+- Specifying a phone number is optional.
+- When adding a duplicate name, Plannit will override the old entry.
+- Phone numbers are compulsory to be exactly 8 digits and without country code.
+
+Examples:  
+`add contact n/Dinosaur Lim e/dinosaurlim@gmail.com`  
+Expected outcome: A contact with name "Dinosaur Lim" and email "dinosaurlim@gmail.com" is added to Plannit.  
+
+`add contact n/Dinosaur Lim e/dinosaurlim@gmail.com p/91234567`
+Expected outcome: A contact with name "Dinosaur Lim", email "dinosaurlim@gmail.com", and phone number "91234567" is 
+added to Plannit.
+
+#### 2.4.2. Delete contact: `delete contact`
+You may delete a contact using the `delete contact` command.
+
+This command will require one flag:
+- `n/`: To be followed by the to-be-deleted contact name.
+
+Format: `delete contact n/NAME`
+- If the provided `NAME` does not exist in Plannit, Plannit shows an error message.
+
+Example:  
+`delete contact n/Dinosaur Lim`  
+Expected outcome: The contact with name "Dinosaur Lim" and email "dinosaurlim@gmail.com" is added to Plannit.  
 <br>
 
 ### 2.5. Navigation
