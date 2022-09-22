@@ -347,6 +347,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
       Use case ends
 
+**Use case: Clear Financial Aid Planner**
+
+**MSS**
+
+1.  User requests to clear the list of clients
+2.  Financial Aid Planner shows a success message 
+
+    Use case ends.
+
 *{More to be added}*
 
 ### Non-Functional Requirements
