@@ -45,7 +45,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/darrencsacc.png" width="200px">
 
 [[github](https://github.com/DarrenCsAcc)]
-[[portfolio](team/)]
+[[portfolio](team/darrencsacc.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
