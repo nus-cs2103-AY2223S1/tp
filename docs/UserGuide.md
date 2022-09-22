@@ -35,8 +35,8 @@ while still having the benefits of a Graphical User Interface (GUI).
 
 | Action            | Format, Examples                                                                                              |
 |-------------------|---------------------------------------------------------------------------------------------------------------|
-| `add module`      | `add    module   m/<MODULE_CODE> [t/<MODULE_TITLE>]`,<br>e.g.: `add module m/CS2103T t/Software Engineering`  |
-| `delete module`   | `delete module   m/<MODULE_CODE>`,<br>e.g.: `delete module m/CS2103T`                                         |
+| `add module`      | `add    module   m/MODULE_CODE [t/MODULE_TITLE]`,<br>e.g.: `add module m/CS2103T t/Software Engineering`      |
+| `delete module`   | `delete module   m/MODULE_CODE`,<br>e.g.: `delete module m/CS2103T`                                           |
 | `add task`        | `add    task     m/MODULE_CODE d/TASK_DESCRIPTION`,<br>e.g.: `add task m/CS2103T d/Complete tP tasks for W07` |
 | `delete task`     | `delete task     m/MODULE_CODE n/TASK_NUMBER`,<br>e.g.: `delete task m/CS2103T n/3`                           |
 | **CommandInBold** | `command examples here`                                                                                       |
@@ -75,13 +75,19 @@ This command will require one flag, and one flag is optional:
 * `m/`: To be followed by the module code of the module to be added into Plannit.
 * `t/`: (Optional flag) To be followed by the module title of the module to be added into Plannit.
 
-Format: `add module m/<MODULE_CODE> [t/<MODULE_TITLE>]`
+Format: `add module m/MODULE_CODE [t/MODULE_TITLE]`
 * A module has a module code and an optional module title.
 
 Examples:
-* `add module m/CS2103T` - adds a module CS2103T without a title
-* `add module m/CS2103T t/Software Engineering` - adds a module CS2103T which has the title 
-  Software Engineering
+```
+add module m/CS2103T
+```
+In this example, we are adding a module `CS2103T` without a title.
+
+```
+add module m/CS2103T t/Software Engineering
+```
+In this example, we are adding a module `CS2103T` which has the title `Software Engineering`.
 
 #### 2.1.2. Delete module: `delete module`
 You can delete the module with the indicated module code from Plannit.
@@ -89,11 +95,16 @@ You can delete the module with the indicated module code from Plannit.
 This command will require one flag:
 * `m/`: To be followed by the module code of the module to be deleted from Plannit.
 
-Format: `delete module m/<MODULE_CODE>`
+Format: `delete module m/MODULE_CODE`
 * The module code must correspond to an existing module in Plannit.
 
 Example:
-* `delete module m/CS2103T` - deletes module CS2103T from Plannit
+
+```
+delete module m/CS2103T
+```
+In this example, we are deleting module CS2103T from Plannit
+
 #### 2.1.3. Find module: `find module` [coming soon]
 [coming soon]
 <br>
@@ -115,8 +126,8 @@ Example:
 ```
 add task m/CS2103T d/Complete tP tasks for W07
 ```
-* In the above example, we add the task `Complete tP tasks for W07` to the 
-  module with module code `CS2103T`.
+In the above example, we are adding the task `Complete tP tasks for W07` to the 
+module with module code `CS2103T`.
 
 #### 2.2.2 Delete task: `delete task`
 You may delete a task belonging to a particular module using the `delete 
@@ -135,8 +146,8 @@ Example:
 ```
 delete task m/CS2103T n/3
 ```
-* In the above example, we are deleting task number **3** from the module 
-  with the module code `CS2103T`.
+In the above example, we are deleting task number **3** from the module 
+with the module code `CS2103T`.
 
 #### 2.4.3. Finding tasks: `find task` [coming soon]
 [coming soon]
