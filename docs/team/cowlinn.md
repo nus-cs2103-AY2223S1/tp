@@ -26,19 +26,17 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+    * Ported over original UG from Google Docs to Markdown, including cosmetic tweaks 
+    * TODO
   * Developer Guide:
-    * Added implementation details of the `delete` feature.
+    * TODO
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
+  * PRs reviewed (with non-trivial review comments): TODO
+  * Contributed to forum discussions:  TODO
+  * Reported bugs and suggestions for other teams in the class: TODO
 
 * **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
+  * TODO
 
-* _{you can add/remove categories in the list above}_
+
