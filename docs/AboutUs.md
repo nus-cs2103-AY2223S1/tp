@@ -43,7 +43,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/reubenchay.png" width="200px">
 
 [[github](https://github.com/ReubenChay)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/reubenchay.md)]
 
 * Role: ?
 * Responsibilities: ?
