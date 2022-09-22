@@ -2,7 +2,8 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.ParserUtil.*;
+import static seedu.address.logic.parser.ParserUtil.parseIndex;
+import static seedu.address.logic.parser.ParserUtil.parseTags;
 
 import java.util.Arrays;
 import java.util.Set;

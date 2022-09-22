@@ -53,9 +53,12 @@ public class RemoveTagCommand extends TagCommandGroup {
             return new CommandResult(String.format(MESSAGE_TAGS_NOT_FOUND, Tag.toString(tagsNotFound)));
         }
 
-        Set<Tag> tagsNotBelongingToUser = tagsToRemove.stream().filter(tag -> !person.hasTag(tag)).collect(Collectors.toSet());
+        Set<Tag> tagsNotBelongingToUser = tagsToRemove.stream()
+                .filter(tag -> !person.hasTag(tag)).collect(Collectors.toSet());
         if (!tagsNotBelongingToUser.isEmpty()) {
-            return new CommandResult(String.format(MESSAGE_TAGS_NOT_BELONG_TO_USER, Tag.toString(tagsNotBelongingToUser)));
+            return new CommandResult(
+                    String.format(MESSAGE_TAGS_NOT_BELONG_TO_USER,
+                    Tag.toString(tagsNotBelongingToUser)));
         }
 
         model.removeTags(person, tagsToRemove);

@@ -124,12 +124,17 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     //// tag operations
 
-
+    /**
+     * Returns true if the address book contains the given tag.
+     */
     public boolean hasTag(Tag tag) {
         requireNonNull(tag);
         return tags.contains(tag);
     }
 
+    /**
+     * Adds the tag into the address book.
+     */
     public void createTag(Tag tag) {
         requireNonNull(tag);
         tags.add(tag);

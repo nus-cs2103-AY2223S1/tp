@@ -121,7 +121,7 @@ public class ModelManager implements Model {
     @Override
     public void addTag(Tag tag) {
         requireNonNull(tag);
-        addressBook.createTag(tag) ;
+        addressBook.createTag(tag);
     }
 
 

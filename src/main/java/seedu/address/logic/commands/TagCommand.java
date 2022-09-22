@@ -65,7 +65,8 @@ public class TagCommand extends TagCommandGroup {
         }
 
         Set<Tag> duplicateTags = tagsToAdd.stream().filter(personToTag::hasTag).collect(Collectors.toSet());
-        Set<Tag> nonDuplicateTags = tagsToAdd.stream().filter(tag -> !personToTag.hasTag(tag)).collect(Collectors.toSet());
+        Set<Tag> nonDuplicateTags = tagsToAdd.stream()
+                .filter(tag -> !personToTag.hasTag(tag)).collect(Collectors.toSet());
 
         Set<Tag> tags = new HashSet<>();
         tags.addAll(personToTag.getTags());

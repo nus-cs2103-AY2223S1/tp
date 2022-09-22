@@ -3,7 +3,6 @@ package seedu.address.model;
 import java.util.Set;
 
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableSet;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 

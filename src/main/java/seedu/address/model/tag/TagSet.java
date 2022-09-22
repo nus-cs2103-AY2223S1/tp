@@ -38,6 +38,7 @@ public class TagSet implements Iterable<Tag> {
         return internalSet.stream().anyMatch(toCheck::equals);
     }
 
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TagSet // instanceof handles nulls
