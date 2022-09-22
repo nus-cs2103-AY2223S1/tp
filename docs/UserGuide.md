@@ -37,6 +37,8 @@ Action | Format, Examples
 --------|------------------
 **CommandInBold** | `command examples here`
 **CommandInBold** | `command examples here`
+`add task`    | `add    task     m/MODULE_CODE d/TASK_DESCRIPTION`,<br>e.g.: `add task m/CS2103T d/Complete tP tasks for W07`
+`delete task` | `delete task     m/MODULE_CODE n/TASK_NUMBER`,<br>e.g.: `delete task m/CS2103T n/3`
 **CommandInBold** | `command examples here`
 **CommandInBold** | `command examples here`
 --------------------------------------------------------------------------------------------------------------------
@@ -72,9 +74,47 @@ Action | Format, Examples
 <br>
 
 ### 2.2. Adding and deleting tasks
-#### 2.2.1. Add task: `add tasks`
-#### 2.2.2 Delete task: `delete tasks`
+#### 2.2.1. Add task: `add task`
+You may add a task using the `add task` command.
 
+This command will require two flags:
+* `m/`: This flag is to be followed immediately by the module code of the 
+  module which the task is associated with.
+* `d/`: This flag is to be followed immediately by the task description.
+
+Format: `add task m/MODULE_CODE d/TASK_DESCRIPTION`
+* Each task **must** belong to a specific module.
+* The given module code should be that of an existing module in Plannit.
+
+Example:
+```
+add task m/CS2103T d/Complete tP tasks for W07
+```
+* In the above example, we add the task `Complete tP tasks for W07` to the 
+  module with module code `CS2103T`.
+
+#### 2.2.2 Delete task: `delete task`
+You may delete a task belonging to a particular module using the `delete 
+task` command.
+
+This command will require two flags:
+* `m/`: This flag is to be followed immediately by the module code of the 
+  module which assigned the task. 
+* `n/`: This flag is to be followed immediately by the task number in the module.
+
+Format: `delete task m/MODULE_CODE n/TASK_NUMBER`
+* The given module code should be that of an existing module in Plannit. 
+* The given task number has to be that of an existing task in the module.
+
+Example:
+```
+delete task m/CS2103T n/3
+```
+* In the above example, we are deleting task number **3** from the module 
+  with the module code `CS2103T`.
+
+#### 2.4.3. Finding tasks: `find task` [coming soon]
+[coming soon]
 <br>
 
 ### 2.3. Adding and deleting links
