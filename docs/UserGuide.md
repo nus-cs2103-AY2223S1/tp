@@ -6,7 +6,27 @@ title: User Guide
 AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
-{:toc}
+  * **Student**
+    * Adding a student: `addstu`
+    * Editing a student: `editstu`
+    * Listing all students: `liststu`
+    * Mark attendance of a student: `attendance`
+    * Add students’ response: `addresponse`
+    * Adding help tag to a student: `helpstu`
+    * Deleting a student: `deletestu`
+  * **Question**
+    * Adding a question: `addq`
+    * Mark a question: `markq`
+    * Unmark a question: `unmarkq`
+    * Delete a question: `deleteq`
+    * List questions: `listq`
+  * **Tutorial**
+    * Adding a tutorial: `addtut`
+    * Delete a tutorial: `deletetut`
+    * Mark tutorial: `marktut`
+    * List tutorials: `listtut`
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -170,6 +190,39 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 _Details coming soon ..._
 
+### Add students' response: `addresponse`  
+
+Adds the number of messages a specified student sent during tutorial.
+
+Format: `addresponse n\NAME m\MESSAGE_COUNT`
+
+Example:
+* `addresponse n\John Doe m\7` 
+
+![result for 'addresponse n\John Doe m\7'](images/addresponse.png)
+
+### Mark tutorial: `marktut`  
+
+Marks content in the tutorial as done.
+
+Format: `marktut INDEX`
+
+* Marks the tutorial at the specified `INDEX`. The index refers to the index number shown in the displayed person list. 
+  The index must be a positive integer 1, 2, 3, ...
+
+Example:
+* `marktut 1` marks the first tutorial from the tutorial list as done.
+  
+![result for 'marktut 1'](images/marktut.png)
+
+### Listing all tutorials: `listtut`  
+
+Shows a list of all the added tutorials.
+
+Format: `listtut`
+
+![result for 'listtut'](images/listtut.png)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -181,12 +234,12 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action         | Format, Examples                    |
+|----------------|-------------------------------------|
+| **Add**        | `addstu`, `addq`, `addtut`          |
+| **Attendance** | `attendance`                        |
+| **Delete**     | `deletestu`, `deleteq`, `deletetut` |
+| **Edit**       | `editstu`                           |
+| **List**       | `liststu`, `listq`, `listtut`       |
+| **Mark**       | `markq`, `unmarkq`, `marktut`       |
+| **Tag**        | `helpstu`                           |
