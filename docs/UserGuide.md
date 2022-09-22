@@ -175,9 +175,18 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 
 ### Sorting all Clients : `sort`
-* Format: `sort KEYWORD [MORE_KEYWORDS]` 
-* Description:
-* Example Usage: 
+
+Sorts clients in the address book based on a specified metric. 
+
+Format: `sort KEYWORD [MORE_KEYWORDS]` 
+
+* Sorts the list of clients based on specified keyword 
+* Keyword must be from client details
+* (v1.2) current supported sort metrics include `name, phone number, address`
+
+Examples: 
+* `sort name` will display your address book in alphabetical order based on their name 
+* `sort phone` will display your addresss book in numerical order based on their phone numbers
 
 
 ### Pin a user by name: `pin`
