@@ -31,6 +31,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label name;
     @FXML
+    private Label minecraftName;
+    @FXML
     private Label id;
     @FXML
     private Label phone;
@@ -39,19 +41,26 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label socials;
+    @FXML
     private FlowPane tags;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
     public PersonCard(Person person, int displayedIndex) {
+
         super(FXML);
         this.person = person;
+
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
+        name.setText("[" + person.getName().toString() + "]");
+        minecraftName.setText(person.getMinecraftName().toString());
+        phone.setText(person.getPhone().toString());
+        address.setText(person.getAddress().toString());
+        email.setText(person.getEmail().toString());
+        socials.setText(person.getSocials().toString());
+
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

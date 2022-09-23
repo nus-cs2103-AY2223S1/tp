@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MINECRAFT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -21,9 +22,11 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.MinecraftName;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Socials;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -38,9 +41,11 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_MINECRAFT_NAME + "MINECRAFT NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_TAG + "SOCIAL MEDIA] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -94,12 +99,14 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
+        MinecraftName updatedMinecraftName = editPersonDescriptor.getMinecraftName().orElse(personToEdit.getMinecraftName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Socials updatedSocials = editPersonDescriptor.getSocials().orElse(personToEdit.getSocials());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedMinecraftName, updatedPhone, updatedEmail, updatedAddress, updatedSocials, updatedTags);
     }
 
     @Override
@@ -125,10 +132,13 @@ public class EditCommand extends Command {
      * corresponding field value of the person.
      */
     public static class EditPersonDescriptor {
+
         private Name name;
+        private MinecraftName minecraftName;
         private Phone phone;
         private Email email;
         private Address address;
+        private Socials socials;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -139,9 +149,11 @@ public class EditCommand extends Command {
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
+            setMinecraftName(toCopy.minecraftName);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setSocials(toCopy.socials);
             setTags(toCopy.tags);
         }
 
@@ -149,7 +161,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, minecraftName, phone, email, address, socials, tags);
         }
 
         public void setName(Name name) {
@@ -158,6 +170,14 @@ public class EditCommand extends Command {
 
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
+        }
+
+        public void setMinecraftName(MinecraftName name) {
+            this.minecraftName = name;
+        }
+
+        public Optional<MinecraftName> getMinecraftName() {
+            return Optional.ofNullable(minecraftName);
         }
 
         public void setPhone(Phone phone) {
@@ -182,6 +202,14 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setSocials(Socials socials) {
+            this.socials = socials;
+        }
+
+        public Optional<Socials> getSocials() {
+            return Optional.ofNullable(socials);
         }
 
         /**
