@@ -368,6 +368,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 * 2a. The given index is invalid.
+
+    * 2a1. Rapportbook shows an error message.
+
+      Use case resumes at step 2.
+
+#### Use case: Edit a contact
+1. User [lists contacts](#use-case-list-contacts ).
+2.  User requests to edit a specific contact in the list by and specifies fields and their updated values.
+3. Rapportbook edits the contact based on what the user specified.
+	Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+  Use case ends.
+
+* 2a. The given index is invalid.
     * 2a1. Rapportbook shows an error message.
       Use case resumes at step 2.
 
