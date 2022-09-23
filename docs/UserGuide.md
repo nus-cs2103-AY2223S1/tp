@@ -103,7 +103,7 @@ Example:
 ```
 delete module m/CS2103T
 ```
-In the above example, we are deleting module CS2103T from Plannit
+In the above example, we are deleting module CS2103T from Plannit.
 
 #### 2.1.3. Find module: `find module` [coming soon]
 [coming soon]
