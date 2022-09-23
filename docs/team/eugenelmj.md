@@ -1,8 +1,6 @@
 ---
 layout: page
-
-title: 
-Leong Ming Jian Eugene's Project Portfolio Page
+title: Leong Ming Jian Eugene's Project Portfolio Page
 ---
 
 ### Project: JerylFypManager
