@@ -10,6 +10,7 @@ import java.util.Set;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.contacts.ContactAddCommand;
+import seedu.address.logic.commands.contacts.ContactDeleteCommand;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -23,6 +24,13 @@ public class PersonUtil {
      */
     public static String getAddCommand(Person person) {
         return ContactAddCommand.COMMAND_WORD + " " + getPersonDetails(person);
+    }
+
+    /**
+     * Returns a delete command string for deleting a index.
+     */
+    public static String getDeleteCommand(int index) {
+        return ContactDeleteCommand.COMMAND_WORD + " " + index;
     }
 
     /**

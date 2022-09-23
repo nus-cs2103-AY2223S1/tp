@@ -1,31 +1,28 @@
 package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.categoryless.ExitCommand;
 import seedu.address.logic.commands.contacts.ContactAddCommand;
 import seedu.address.logic.commands.contacts.ContactDeleteCommand;
 import seedu.address.logic.commands.contacts.ContactListCommand;
+import seedu.address.logic.commands.tasks.TaskAddCommand;
+import seedu.address.logic.commands.tasks.TaskDeleteCommand;
+import seedu.address.logic.commands.tasks.TaskListCommand;
+import seedu.address.logic.parser.contacts.ContactCategoryParser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.logic.parser.tasks.TaskCategoryParser;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
@@ -34,58 +31,47 @@ public class TaskBookParserTest {
     private final TaskBookParser parser = new TaskBookParser();
 
     @Test
-    public void parseCommand_add() throws Exception {
+    public void parseCommand_contact_add() throws Exception {
         Person person = new PersonBuilder().build();
-        ContactAddCommand command = (ContactAddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
+        ContactAddCommand command = (ContactAddCommand) parseContactCommand(PersonUtil.getAddCommand(person));
         assertEquals(new ContactAddCommand(person), command);
     }
 
     @Test
-    public void parseCommand_clear() throws Exception {
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
-    }
-
-    @Test
-    public void parseCommand_delete() throws Exception {
-        ContactDeleteCommand command = (ContactDeleteCommand) parser.parseCommand(
-                ContactDeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+    public void parseCommand_contact_delete() throws Exception {
+        ContactDeleteCommand command = (ContactDeleteCommand) parseContactCommand(PersonUtil.getDeleteCommand(
+            INDEX_FIRST_PERSON.getOneBased()));
         assertEquals(new ContactDeleteCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test
-    public void parseCommand_edit() throws Exception {
-        Person person = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+    public void parseCommand_contact_list() throws Exception {
+        assertTrue(parseContactCommand(ContactListCommand.COMMAND_WORD) instanceof ContactListCommand);
+        assertTrue(parseContactCommand(ContactListCommand.COMMAND_WORD + " 3") instanceof ContactListCommand);
+    }
+
+    @Test
+    public void parseCommand_task_add() throws Exception {
+        TaskAddCommand command = (TaskAddCommand) parseTaskCommand("add m/John t/Finish user guide /d 2022-09-21");
+        assertNotNull(command);
+    }
+
+    @Test
+    public void parseCommand_task_delete() throws Exception {
+        TaskDeleteCommand command = (TaskDeleteCommand) parseTaskCommand("delete i/1");
+        assertNotNull(command);
+    }
+
+    @Test
+    public void parseCommand_task_list() throws Exception {
+        assertTrue(parseTaskCommand(TaskListCommand.COMMAND_WORD) instanceof TaskListCommand);
+        assertTrue(parseTaskCommand(TaskListCommand.COMMAND_WORD + " 3") instanceof TaskListCommand);
     }
 
     @Test
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
-    }
-
-    @Test
-    public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
-    }
-
-    @Test
-    public void parseCommand_help() throws Exception {
-        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
-        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
-    }
-
-    @Test
-    public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ContactListCommand.COMMAND_WORD) instanceof ContactListCommand);
-        assertTrue(parser.parseCommand(ContactListCommand.COMMAND_WORD + " 3") instanceof ContactListCommand);
     }
 
     @Test
@@ -97,5 +83,17 @@ public class TaskBookParserTest {
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+    }
+
+    private Command parseCommandWithCategory(String category, String commandWithoutCategory) throws ParseException {
+        return parser.parseCommand(category + " " + commandWithoutCategory);
+    }
+
+    private Command parseContactCommand(String command) throws ParseException {
+        return parseCommandWithCategory(ContactCategoryParser.CATEGORY_WORD, command);
+    }
+
+    private Command parseTaskCommand(String command) throws ParseException {
+        return parseCommandWithCategory(TaskCategoryParser.CATEGORY_WORD, command);
     }
 }
