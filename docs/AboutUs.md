@@ -39,6 +39,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
+### Zhang Yuhao
+
+<img src="images/yh-15.png" width="200px">
+
+[[github](http://github.com/YH-15)]
+[[portfolio](team/yh-15.md)]
+
+* Role: Developer
+* Responsibilities: Storage
+
 ### Jean Doe
 
 <img src="images/johndoe.png" width="200px">

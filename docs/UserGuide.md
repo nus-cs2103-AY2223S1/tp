@@ -109,7 +109,7 @@ Examples:
 * `mark A0123456G DONE`
 * `mark A0234567H YTS`
 
-### Searching keyword: `find`
+### Searching keyword: `find` [pending implementation]
 
 Finds projects whose names contain any of the given keyword(s).
 
