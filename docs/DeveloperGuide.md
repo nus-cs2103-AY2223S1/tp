@@ -343,6 +343,39 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2c1. Rapportbook shows an error message.
       Use case resumes at step 2.
 
+#### Use case: Filter contacts
+1. User requests to filter contacts of a certain tag and/or name
+2. Rapportbook shows a list of contacts that matches his filter query.
+ Use case ends.
+
+**Extensions**
+
+* 1a. The tag specified does not exist
+	* 1a1. Rapportbook shows an error message
+	* Use case resumes at step 1.
+* 1b. The name specified does not exist
+	* 1a1. Rapportbook shows an error message
+	* Use case resumes at step 1.
+
+	Use case ends.
+
+
+#### Use case: Clearing filters
+1. User requests to clear a filter that was applied.
+2. Rapportbook shows a list of contacts that without the filter appplied.
+ Use case ends.
+
+**Extensions**
+
+* 1a. The tag specified does not exist
+	* 1a1. Rapportbook shows an error message
+	* Use case resumes at step 1.
+* 1b. The name specified does not exist
+	* 1a1. Rapportbook shows an error message
+	* Use case resumes at step 1.
+
+	Use case ends.
+
 *{More to be added}*
 
 ### Non-Functional Requirements
