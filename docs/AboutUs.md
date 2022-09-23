@@ -9,15 +9,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Leong Ming Jian Eugene
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/eugenelmj.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/eugenelmj)]
+[[portfolio](team/eugenelmj.md)]
 
 * Role: Project Advisor
+* Responsibilities: Meeting Minutes
 
 ### Nicholas Russell Saerang
 
