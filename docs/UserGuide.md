@@ -64,6 +64,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 </div>
 
+
 ### Viewing help : `help`
 
 Shows a message explaning how to access the help page.
@@ -169,6 +170,64 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 ### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
+
+## Client Directory Features
+
+### Adding a client profile: `add`
+
+Adds a client profile to the client directory.
+Format: `add -c [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]...`
+Tips:
+* At least one of the optional fields must be provided.
+Examples:
+* `add -c n/Bob p/91234567 e/bobthebuilder@gmail.com`
+
+### Editing a client profile: `edit`
+
+Edits a client profile already existing in the client directory.
+Format: `edit -c INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]...`
+Tips:
+* Edits the client profile at the specified INDEX. The index refers to the index numebr shown
+in the displayed person list. The index must be a positive integer 1, 2, 3, ...
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the listing will be removed i.e. adding of tags is not cumulative.
+* You can remove all the listing's tags b 
+Examples:
+* `edit -c 5 n/Bob p/91234567 e/bobthebuilder@gmail.com`
+
+### Listing all client profiles: `list`
+
+Lists all client profiles currently stored in the client directory.
+Format: `list -c`
+
+### Labeling a client: `label`
+
+Gives a label for a client at the specified INDEX.
+Format: `label INDEX l/LABEL`
+Examples:
+* `list -c` followed by `label 3 l/urgent-buyer` labels the third client in the address book
+as an `urgent-buyer`
+
+### Filtering client profiles: `filter`
+
+Returns a filtered list of clients that fulfil the filter conditions.
+Format: `filter -c [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]...`
+Examples:
+* filter -c n/Biden
+* filter -c p/999
+<img src="images/client-profile_filter_mockup.png" width="200px">
+
+### Deleting a client profile: `delete`
+
+Deletes the unique client profile at the specified INDEX.
+Format: `delete INDEX`
+Tips:
+* The INDEX must be a positive integer 1, 2, 3...
+Examples:
+* `list -c` followed by `delete 2` deletes the second client in the address book
+* `filter -c Lee` followed by `delete 1` deletes the first client in the results of the
+`filter` command
 
 --------------------------------------------------------------------------------------------------------------------
 
