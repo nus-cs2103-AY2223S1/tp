@@ -1,6 +1,15 @@
 # User Guide
 Travelr is a desktop app for managing trips and events, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Travelr can get your contact management tasks done faster than traditional GUI apps.
-
+- [Quick start](#quick-start)
+- [Features](#features)
+   * [Adding events: `add -e`](#adding-events---add--e-)
+   * [Deleting events: `delete -e`](#deleting-events---delete--e-)
+   * [Viewing events list: `list -e`](#viewing-events-list---list--e-)
+   * [Adding trips: `add -t`](#adding-trips---add--t-)
+   * [Viewing trips list: `list -t`](#viewing-trips-list---list--t-)
+   * [Adding events to trips: `add -et`](#adding-events-to-trips---add--et-)
+   * [Saving data](#saving-data)
+   * [Exiting the program: `bye`](#exiting-the-program---bye-)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -84,7 +93,7 @@ Examples:
 ### Saving data
 Travelr data are saved locally automatically after any command that changes the data. There is no need to save manually.
 
-### Exiting the program: bye
+### Exiting the program: `bye`
 Exits the program.
-Format: bye
+Format: `bye`
 
