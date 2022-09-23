@@ -1,31 +1,37 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_CATEGORY;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.parser.categoryless.CategorylessParser;
+import seedu.address.logic.parser.contacts.ContactCategoryParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.tasks.TaskCategoryParser;
 
 /**
- * Parses user input.
+ * Parses user input into different categories of commands.
  */
 public class TaskBookParser {
 
     /**
-     * Used for initial separation of command word and args.
+     * Used for joining the various category words into a regex-compatible format.
+     * When updating the command categories, there is a need to update this too.
      */
-    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+    private static final String CATEGORIES = String.join("|",
+        ContactCategoryParser.CATEGORY_WORD,
+        TaskCategoryParser.CATEGORY_WORD
+    );
+    private static final String BASIC_COMMAND_REGEX =
+        String.format("(?:(?<category>%s)\\s)?(?<commandWord>\\S+)(?<arguments>.*)", CATEGORIES);
+    /**
+     * Used for initial separation of commands into categories.
+     */
+    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile(BASIC_COMMAND_REGEX);
 
     /**
      * Parses user input into command for execution.
@@ -40,37 +46,19 @@ public class TaskBookParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
+        final String category = matcher.group("category");
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
-        switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
-
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
-
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
-
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
-
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
-
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
-
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
-
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
-
-        default:
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        if (category == null) {
+            return CategorylessParser.parseCommand(commandWord, arguments);
+        } else if (category.equals(ContactCategoryParser.CATEGORY_WORD)) {
+            return ContactCategoryParser.parseCommand(commandWord, arguments);
+        } else if (category.equals(TaskCategoryParser.CATEGORY_WORD)) {
+            return TaskCategoryParser.parseCommand(commandWord, arguments);
         }
+
+        throw new ParseException(MESSAGE_UNKNOWN_CATEGORY);
     }
 
 }
