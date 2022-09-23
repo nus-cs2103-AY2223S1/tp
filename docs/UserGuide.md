@@ -3,7 +3,9 @@ layout: page
 title: User Guide
 ---
 
-SoConnect is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+# User Guide
+
+SoConnect is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, SoConnect can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -14,9 +16,9 @@ SoConnect is a **desktop app for managing contacts, optimized for use via a Comm
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `soconnect.jar` from [here](https://github.com/AY2223S1-CS2103T-W15-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your SoConnect.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -127,6 +129,25 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
+  
+###  Search for a Contact: `search`
+
+Search for contacts using tags or other information.
+
+Format: `search [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
+
+* `search t/TAG1 and t/TAG2…` searches for contacts that contains all given tags.
+* `search t/TAG1 or t/TAG2…` searches for contacts that contain any of the given tags.
+* The search using `n/NAM`E is case-insensitive. e.g `hans` will match `Hans`.
+* Displays a list of relevant contacts related to the search query if no search result available.
+
+Example:
+* `search t/family` returns all people tagged with family in the contact list
+* `search p/86178789` returns all contacts with that phone number
+* `search t/cs2103t and t/tp` returns all contacts tagged with both cs2103t and tp
+* `search t/friends or t/family` returns all contacts tagged with either friends or family
+* `search n/Johm` is supposed to return an empty result since there is no person named `Johm` in the contact list, but now it will return people with names similar to that, for example, `John`.
+
 
 ### Deleting a person : `delete`
 
@@ -188,5 +209,6 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Search** | `search [n/NAME] [p/PHONE_NUMBER] ...`<br> e.g., `seach n/John Doe t/cs2103t`
 **List** | `list`
 **Help** | `help`

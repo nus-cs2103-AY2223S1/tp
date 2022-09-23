@@ -3,67 +3,59 @@ layout: page
 title: About Us
 ---
 
+# About Us
+
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `florenyu[at]comp.nus.edu.sg`
 
 ## Project team
 
-### Audrey Felicio Anwar
+### Eugene Ong W X
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/eugene-ong-w-x.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/eugene-ong-w-x)]
+[[portfolio](team/eugene-ong-w-x.md)]
 
-* Role: Advisor
-
-### Eugene
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Team lead
+* Responsibilities: Overall project coordination, deliverables, scheduling and tracking
 
 ### Florentiana Yuwono
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/florentianayuwono.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Clarence
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/florentianayuwono)] [[portfolio](team/florentianayuwono.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Documentation
+
+### Chong Chee Kai, Clarence
+
+<img src="images/chongcheekaiclarence.png" width="200px">
+
+[[github](http://github.com/chongcheekaiclarence)]
+[[portfolio](team/chongcheekaiclarence.md)]
+
+* Role: Developer
+* Responsibilities: Integration
 
 ### Pang Kuang Wei
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/pangkuangwei.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/pangkuangwei)]
+[[portfolio](team/pangkuangwei.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Testing
 
 ### Wu Changjun
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ugholaf.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/ugholaf)]
+[[portfolio](team/ugholaf.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Code quality
