@@ -15,22 +15,20 @@ Given below are my contributions to the project.
   * Highlights: _(to be added soon)_
   * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
 
+* **Code contributed**:
+  * _(to be added soon)_
 
-* **Code contributed**: _(to be added soon)_
+* **Project management**:
+  * _(to be added soon)_
 
-
-* **Project management**: _(to be added soon)_
-
-
-* **Enhancements to existing features**: _(to be added soon)_
-
+* **Enhancements to existing features**:
+  * _(to be added soon)_
 
 * **Documentation**:
   * User Guide:
     * _(to be added soon)_
   * Developer Guide:
     * _(to be added soon)_
-
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): _(to be added soon)_
@@ -40,6 +38,5 @@ Given below are my contributions to the project.
   * _(to be added soon)_
   * _(to be added soon)_
   * _(to be added soon)_
-
 
 * **Tools**:
