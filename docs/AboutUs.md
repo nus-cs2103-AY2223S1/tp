@@ -65,7 +65,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/marcusczh.md)]
 
 * Role: Developer
-* Responsibilities: Find functionality
+* Responsibilities: Code quality, integration, Main reviewer for Reuben
+* In-charge of features: find
 
 ### James Doe
 
