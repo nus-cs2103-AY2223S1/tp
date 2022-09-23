@@ -132,12 +132,12 @@ You may add a contact using the `add contact` command.
 
 This command will require two flags, and one optional flag:
 - `n/`: To be followed by the to-be-added contact name.
-- `e/`: To be followed by the email of the new contact
-- `p/`: (Optional flag) To be followed by the email of the new contact.
+- `e/`: To be followed by the email of the new contact.
+- `p/`: (Optional flag) To be followed by the phone number of the new contact.
 
 Format: `add contact n/NAME e/EMAIL p/PHONE_NUMBER`
 - Specifying a phone number is optional.
-- When adding a duplicate name, Plannit will override the old entry.
+- When adding a duplicate name, Plannit will display an error message.
 - Phone numbers are compulsory to be exactly 8 digits and without country code.
 
 Examples:  
@@ -159,7 +159,7 @@ Format: `delete contact n/NAME`
 
 Example:  
 `delete contact n/Dinosaur Lim`  
-Expected outcome: The contact with name "Dinosaur Lim" and email "dinosaurlim@gmail.com" is added to Plannit.  
+Expected outcome: The contact with name "Dinosaur Lim" is deleted from Plannit.  
 <br>
 
 ### 2.5. Navigation
