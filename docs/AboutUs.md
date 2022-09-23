@@ -1,6 +1,5 @@
 ---
-layout: page
-title: About Us
+layout: page title: About Us
 ---
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
@@ -9,15 +8,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Tan Yi Xian
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yixiann.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/yixiann)]
 
-* Role: Project Advisor
+[[portfolio](team/yixian.md)]
+
+* Role: (To be confirmed)
 
 ### Jane Doe
 
