@@ -38,7 +38,7 @@ while still having the benefits of a Graphical User Interface (GUI).
 | [`add module`](#211-add-module)       | `add    module   m/MODULE_CODE [t/MODULE_TITLE]`   | Add module with a module code and optional module title                     |
 | [`delete module`](#212-delete-module) | `delete module   m/MODULE_CODE`                    | Delete module by module code                                                |
 | [`add task`](#221-add-task)           | `add    task     m/MODULE_CODE d/TASK_DESCRIPTION` | Add task with specified module code and task description                    |
-| [`delete task`](#222-add-task)        | `delete task     m/MODULE_CODE n/TASK_NUMBER`      | Delete task corresponding to specified task number of specified module code |
+| [`delete task`](#222-delete-task)     | `delete task     m/MODULE_CODE n/TASK_NUMBER`      | Delete task corresponding to specified task number of specified module code |
 | **CommandInBold**                     | `command format here`                              |                                                                             |
 | **CommandInBold**                     | `command format here`                              |                                                                             |
 --------------------------------------------------------------------------------------------------------------------
@@ -82,12 +82,12 @@ Examples:
 ```
 add module m/CS2103T
 ```
-In this example, we are adding a module `CS2103T` without a title.
+In the above example, we are adding a module `CS2103T` without a title.
 
 ```
 add module m/CS2103T t/Software Engineering
 ```
-In this example, we are adding a module `CS2103T` which has the title `Software Engineering`.
+In the above example, we are adding a module `CS2103T` which has the title `Software Engineering`.
 
 #### 2.1.2. Delete module
 You can delete the module with the indicated module code from Plannit.
@@ -103,7 +103,7 @@ Example:
 ```
 delete module m/CS2103T
 ```
-In this example, we are deleting module CS2103T from Plannit
+In the above example, we are deleting module CS2103T from Plannit
 
 #### 2.1.3. Find module: `find module` [coming soon]
 [coming soon]
