@@ -18,10 +18,10 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.categoryless.ExitCommand;
 import seedu.address.logic.commands.contacts.ContactAddCommand;
 import seedu.address.logic.commands.contacts.ContactDeleteCommand;
+import seedu.address.logic.commands.contacts.ContactListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -84,8 +84,8 @@ public class TaskBookParserTest {
 
     @Test
     public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+        assertTrue(parser.parseCommand(ContactListCommand.COMMAND_WORD) instanceof ContactListCommand);
+        assertTrue(parser.parseCommand(ContactListCommand.COMMAND_WORD + " 3") instanceof ContactListCommand);
     }
 
     @Test
