@@ -1,6 +1,11 @@
 package seedu.address.logic.parser.contacts;
 
+import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.contacts.ContactAddCommand;
+import seedu.address.logic.commands.contacts.ContactDeleteCommand;
+import seedu.address.logic.commands.contacts.ContactListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -18,6 +23,15 @@ public class ContactCategoryParser {
      * @throws ParseException If the user input does not conform the expected format.
      */
     public static Command parseCommand(String commandWord, String arguments) throws ParseException {
-        return null;
+        switch (commandWord) {
+        case ContactAddCommand.COMMAND_WORD:
+            return new ContactAddCommandParser().parse(arguments);
+        case ContactDeleteCommand.COMMAND_WORD:
+            return new ContactDeleteCommandParser().parse(arguments);
+        case ContactListCommand.COMMAND_WORD:
+            return new ContactListCommand();
+        default:
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        }
     }
 }

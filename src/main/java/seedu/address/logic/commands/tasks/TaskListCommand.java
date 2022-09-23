@@ -9,6 +9,9 @@ import seedu.address.model.Model;
  * Lists all tasks in the task book to the user.
  */
 public class TaskListCommand extends Command {
+
+    public static final String COMMAND_WORD = "list";
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         throw new CommandException("Task list command not implemented yet.");

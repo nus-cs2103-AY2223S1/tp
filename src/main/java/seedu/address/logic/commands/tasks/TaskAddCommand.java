@@ -9,6 +9,9 @@ import seedu.address.model.Model;
  * Adds a task to the task book.
  */
 public class TaskAddCommand extends Command {
+
+    public static final String COMMAND_WORD = "add";
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         throw new CommandException("Task add command not implemented yet.");

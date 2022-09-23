@@ -9,6 +9,9 @@ import seedu.address.model.Model;
  * Deletes a task identified using it's displayed index from the task book.
  */
 public class TaskDeleteCommand extends Command {
+
+    public static final String COMMAND_WORD = "delete";
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         throw new CommandException("Task delete command not implemented yet.");
