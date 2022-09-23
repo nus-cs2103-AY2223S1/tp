@@ -64,6 +64,14 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 </div>
 
+### Instantaneous launching
+Users that have Java 11 or above installed in their computers can launch the Duke The Market program 
+by double clicking on the file.
+
+### Saving the data
+Duke The Market data are saved in the hard disk automatically after any command that changes the data. 
+There is no need to save manually.
+
 ### Viewing help : `help`
 
 Shows a message explaning how to access the help page.
@@ -153,10 +161,6 @@ Format: `clear`
 Exits the program.
 
 Format: `exit`
-
-### Saving the data
-
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
