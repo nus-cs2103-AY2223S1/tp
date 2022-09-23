@@ -45,13 +45,13 @@ PayMeLah is a **desktop app for managing the debts your friends owe you, optimiz
 **:information_source: Notes about the command format:**<br>
 
 * Words in diamond brackets `<>` are parameters to be supplied by the user.<br>
-  e.g. in `new n/<name>`, `<name>` is a parameter which can be used as `new n/John`.
+  e.g. in `add n/<name>`, `<name>` is a parameter which can be used as `add n/John`.
 
 * Parameters with ... can be used multiple times.<br>
-  e.g. in  `new n/<name> [t/<tag>]…`, `[t/<tag>]…` is a parameter which can be used as `new n/John t/forgetful t/loser`
+  e.g. in  `add n/<name> [t/<tag>]…`, `[t/<tag>]…` is a parameter which can be used as `add n/John t/forgetful t/loser`
 
 * Items in square brackets `[]` are optional.<br>
-  e.g. in `new n/<name> [t/<tag>]…` can be used as `new n/Alan Poe t/shy pooper` or as `new n/Alan Poe`.
+  e.g. in `add n/<name> [t/<tag>]…` can be used as `add n/Alan Poe t/shy pooper` or as `add n/Alan Poe`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/<name> p/<phone number>`, `p/<phone number> n/<name>` is also acceptable.
@@ -194,6 +194,6 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete <index>`<br> e.g., `delete 3`
 **Edit** | `edit <index> [n/<name>] [p/<phone number>] [e/<email>] [a/<address>] [t/<tag>]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find <keywords> [<more keywords>]`<br> e.g., `find James Jake`
+**Find** | `find <keyword> [<more keywords>]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
