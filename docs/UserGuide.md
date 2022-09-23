@@ -216,6 +216,7 @@ Format: `filter -c [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]...`
 Examples:
 * filter -c n/Biden
 * filter -c p/999
+
 <img src="images/client-profile_filter_mockup.png" width="200px">
 
 ### Deleting a client profile: `delete`
