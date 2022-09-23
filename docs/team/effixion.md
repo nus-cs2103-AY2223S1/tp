@@ -1,5 +1,6 @@
 ---
-Sun Yu Ting's Project Portfolio Page
+layout: page
+title: Sun Yu Ting's Project Portfolio Page
 ---
 
 ## Project: SOCompiler
