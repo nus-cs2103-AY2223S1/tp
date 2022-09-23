@@ -14,7 +14,6 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.FindCommand;
@@ -22,6 +21,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.categoryless.ExitCommand;
 import seedu.address.logic.commands.contacts.ContactAddCommand;
+import seedu.address.logic.commands.contacts.ContactDeleteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -48,9 +48,9 @@ public class TaskBookParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+        ContactDeleteCommand command = (ContactDeleteCommand) parser.parseCommand(
+                ContactDeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new ContactDeleteCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test
