@@ -1,6 +1,9 @@
 package seedu.address.logic.parser.categoryless;
 
+import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.categoryless.ExitCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -16,6 +19,11 @@ public class CategorylessParser {
      * @throws ParseException If the user input does not conform the expected format.
      */
     public static Command parseCommand(String commandWord, String arguments) throws ParseException {
-        return null;
+        switch (commandWord) {
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
+        default:
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        }
     }
 }
