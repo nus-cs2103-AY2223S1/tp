@@ -5,55 +5,53 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Aishwarya Hariharan Iyer
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/aishwarya-hariharan-iyer.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/Aishwarya-Hariharan-Iyer)]
+[[portfolio](team/aishwarya-hariharan-iyer.md)]
 
 * Role: Project Advisor
 
-### Jane Doe
+### Conrad Lew Kian Loong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/conradlew.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/ConradLew)]
+[[portfolio](team/conradlew.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Crystal Phua
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/crvstalphua.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/crvstalphua)]
+[[portfolio](team/crvstalphua.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: UI
 
-### James Doe
+### Donovan Singh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/donovan9617.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/Donovan9617)]
+[[portfolio](team/donovan9617.md)]
+
+* Role: Developer
+* Responsibilities: UI
+
+### Kim Yong Beom
+
+<img src="images/yongbeom-kim.png" width="200px">
+
+[[github](https://github.com/Yongbeom-Kim)]
+[[portfolio](team/yongbeom-kim.md)]
 
 * Role: Developer
 * Responsibilities: UI
