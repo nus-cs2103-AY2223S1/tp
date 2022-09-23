@@ -108,13 +108,13 @@ Examples:
 
 ### Task Modifiers
 
-#### Adding a deadline: `task add ... /d <DUE_DATE>`
+#### Adding a deadline: `task add ... d/DUE_DATE`
 
 Adds a task of type Deadline into the task list.
 
-Format: `task add (m/o)/<ASSIGNOR/ASSIGNEE> t/<DESCRIPTION> /d <DUE_DATE>`
+Format: `task add (m/o)/ASSIGNOR/ASSIGNEE t/DESCRIPTION d/DUE_DATE`
 
-* `<DUE_DATE>` supports the following Date formats:
+* `DUE_DATE` supports the following Date formats:
     * `yyyy-MM-dd` e.g. "2022-09-21"
     * `dd-MM-yyyy` e.g. "09-21-2022"
     * `MMM dd yyyy` e.g. "Sep 21 2022"
