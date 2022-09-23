@@ -72,14 +72,14 @@ TaskBook is a **desktop app for managing contacts and tasks, optimized for use v
 
 ### Listing all Contacts : `contact list`
 
-Shows a list of all contacts in the address book in alphabetical order.</br>
+Shows a list of all contacts in the address book in alphabetical order.<br> 
 [coming soon!]: Methods for specific forms of listing.
 
 Format: `contact list`
 
 ### Listing all Tasks : `task list`
 
-Shows a list of all tasks assigned by the user to contacts in the addressbook, and vice versa, in alphabetical order.</br>
+Shows a list of all tasks assigned by the user to contacts in the addressbook, and vice versa, in alphabetical order.<br>
 [coming soon!]: Methods to list the tasks separately.
 
 Format: `task list`
@@ -93,19 +93,6 @@ Format: `contact add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
 Examples:
 * `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `contact add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-
-### Deleting a contact : `contact delete`
-
-Deletes the specified contact from the contact list.
-
-Format: `contact delete i/INDEX`
-
-* Deletes the contact at the specified `INDEX`.
-* The index refers to the index number shown in the displayed contact list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `contact list` followed by `contact delete i/2` deletes the 2nd contact in the contact list.
  
 ### Adding a task: `task add`
 
@@ -121,13 +108,13 @@ Examples:
 
 ### Task Modifiers
 
-#### Adding a deadline: `task add ... /d <due_date>`
+#### Adding a deadline: `task add ... /d <DUE_DATE>`
 
 Adds a task of type Deadline into the task list.
 
-Format: `task add (m/o)/<assignor/assignee> t/<description> /d <due_date>`
+Format: `task add (m/o)/<ASSIGNOR/ASSIGNEE> t/<DESCRIPTION> /d <DUE_DATE>`
 
-* `<due_date>` supports the following Date formats:
+* `<DUE_DATE>` supports the following Date formats:
     * `yyyy-MM-dd` e.g. "2022-09-21"
     * `dd-MM-yyyy` e.g. "09-21-2022"
     * `MMM dd yyyy` e.g. "Sep 21 2022"
@@ -137,6 +124,19 @@ Examples:
   which is assigned by John to the user, and due by 2022-09-21.
 * `task add o/Sam t/Finish the assignment /d 09-21-2022` adds a task called “Finish the assignment”
   which the user has assigned to Sam, and due by 2022-09-21.
+
+### Deleting a contact : `contact delete`
+
+Deletes the specified contact from the contact list.
+
+Format: `contact delete i/INDEX`
+
+* Deletes the contact at the specified `INDEX`.
+* The index refers to the index number shown in the displayed contact list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `contact list` followed by `contact delete i/2` deletes the 2nd contact in the contact list.
 
 ### Deleting a task : `task delete`
 
