@@ -14,7 +14,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](https://github.com/yixiann)]
 
-[[portfolio](team/yixian.md)]
+[[portfolio](team/yixiann.md)]
 
 * Role: (To be confirmed)
 
