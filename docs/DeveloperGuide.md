@@ -318,30 +318,65 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 ### Use cases
+(For all use cases below, the **System** is the `Rapportbook` and the **Actor** is the `user`, unless specified otherwise)
+#### Use case: List contacts
+1. User requests to list contacts.
+2. Rapportbook shows a list of contacts.
+	Use case ends.
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+#### Use case: Add a contact
+1. User requests to add a contact and provides details of contacts
+2. Rapportbook indicates that contact has been added
+	Use case ends.
 
-**Use case: Delete a person**
+**Extensions**
+* 1a. User does not input the required details for the contact.
+
+  Use case resumes at step 1.
+
+
+#### Use case: Delete a contact
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
+1.  User [lists contacts](#use-case-list-contacts ).
+2.  User requests to delete a specific contact in the list.
+3.  Rapportbook deletes the contact.
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The list is empty.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 2a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 2a1. Rapportbook shows an error message.
 
+      Use case resumes at step 2.
+
+#### Use case: Edit a contact
+1. User [lists contacts](#use-case-list-contacts ).
+2.  User requests to edit a specific contact in the list by and specifies fields and their updated values.
+3. Rapportbook edits the contact based on what the user specified.
+	Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+  Use case ends.
+
+* 2a. The given index is invalid.
+    * 2a1. Rapportbook shows an error message.
+      Use case resumes at step 2.
+
+* 2b. No fields were specified
+    * 2b1. Rapportbook shows an error message.
+      Use case resumes at step 2.
+
+* 2c. Updated values is not in the right format.
+    * 2c1. Rapportbook shows an error message.
       Use case resumes at step 2.
 
 *{More to be added}*
