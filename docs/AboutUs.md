@@ -27,7 +27,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Shanice Ng Wen Yi
 
-<img src="images/shaniceng.jpg" width="200px">
+<img src="images/shaniceng.png" width="200px">
 
 [[github](https://github.com/shaniceng)]
 
