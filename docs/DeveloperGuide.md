@@ -271,48 +271,48 @@ _{Explain here how the data archiving feature will be implemented}_
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                  | I want to …​                                                   | So that I can…​                                                           |
-|----|--------------------------|----------------------------------------------------------------|---------------------------------------------------------------------------|
-| `* *` | new user                 | see usage instructions                                         | refer to instructions when I forget how to use the App                    |
-| `*` | new user                 | view a tutorial for how to use the app                         | understand how to use the app and get started quickly                     |
-| `* * *` | user                     | add a new contact using a single command                       | add contacts without using a GUI                                          |
-| `* * *` | user                     | delete a contact                                               | remove entries that I no longer need without using a GUI                  |
-| `* * *` | user                     | view all contacts                                              | view all details of added contacts in 1 place                             |
-| `* * *` | user                     | add my contact's phone number                                  | find their contact number without having to remember it                   |
-| `* * *` | user                     | add my contact's email                                         | find their contact email without having to remember it                    |
-| `* * *` | user                     | add my contact's address                                       | find their address without having to remember it                          |
-| `* *` | user                     | add tags to my contacts                                        | categorise my contacts                                                    |
-| `* *` | user with many contacts  | sort my contacts by different parameters                       | view my contacts in my desired organisation order                         |
-| `* *` | user                     | find a person by name                                          | locate details of persons without having to go through the entire list    |
-| `* *` | user                     | hide private contact details                                   | minimize chance of someone else seeing them by accident                   |
-| `* *` | user                     | edit my contact's information                                  | keep their information up to date                                         |
-| `* *` | forgetful user           | know if I accidentally add duplicate contacts                  | avoid adding the same contact again                                       |
-| `* *` | user with many contacts  | search within contact groups                                   | find related contacts easily                                              |
-| `* *` | user                     | search contacts using keywords                                 | easily find a specific contact                                            |
-| `*` | user                     | add a profile picture for each of my contacts                  | easily distinguish all my contacts, especially those with similar names   |
-| `* * *` | user                     | add a task                                                     | remember what to do (assign myself)                                       |
-| `* * *` | user                     | view all tasks                                                 | see all my task assignments in 1 place                                    |
-| `* * *` | user                     | add a deadline to a task                                       | record when a task needs to be completed by                               |
-| `* * *` | user                     | delete a task                                                  | remove tasks I no longer want to record                                   |
-| `* *` | user                     | assign a task to a contact                                     | remember what I told someone else to do                                   |
-| `* *` | user                     | use a contact to assign myself a task                          | remember what I was told by someone else to do                            |
-| `* *` | user                     | tag my tasks                                                   | remember what the task is associated with                                 |
-| `* *` | user                     | see the task with the earliest pending deadline                | know what task is the most important to prioritise                        |
-| `* *` | forgetful user           | know if I accidentally add duplicate tasks                     | avoid adding the same task again                                          |
-| `* *` | expert user              | create shortcuts for tasks                                     | save time on creating frequent tasks                                      |
-| `* *` | adept user               | view all tasks assigned to other contacts with 1 command       | easily see what I told others to do                                       |
-| `* *` | adept user               | view all tasks assigned to me by other contacts with 1 command | easily see what others told me to do                                      |
-| `* *` | adept user               | create custom lists of tasks and/or contacts                   | fine-tune task priorities for myself                                      |
-| `* *` | expert user              | tag tasks                                                      | easily find tasks associated with the tag                                 |
-| `* *` | expert user              | delete multiple completed tasks with 1 command                 | easily keep my tasks organised and reduce clutter                         |
-| `*` | user                     | sort the order of tasks by date, size, etc                     | view tasks in whatever prioriity is most important to me at the time      |
-| `* * *` | user                     | close the app with a command                                   | close the app safely                                                      |
-| `* *` | careless user            | undo commands I have keyed in wrongly                          | effortlessly correct any blunders in commands that I notice               |
-| `* *` | expert user              | redo commands to repeat commands                               | quickly perform bulk actions                                              |
-| `* *` | forgetful user           | navigate my command history to look at previous commands       | remember what actions I had taken recently                                |
-| `* *` | forgetful user           | automatically save my progress after every command             | stop worrying about potentially closing the app without saving            |
-| `* *` | lazy user                | handle all my tasks and contacts in 1 place                    |                                                                           |
-| `* *` | user                     | use my preferred date format in commands                       | use the date format I am used to and not memorise a specific other format |
-| `*` | user unfamiliar with CLI | use GUI components to enter commands instead                   | use the app without needing to be fast at typing                          |
+|----------|--------------------------|----------------------------------------------------------------|---------------------------------------------------------------------------|
+| `* *`    | new user                 | see usage instructions                                         | refer to instructions when I forget how to use the App                    |
+| `*`      | new user                 | view a tutorial for how to use the app                         | understand how to use the app and get started quickly                     |
+| `* * *`  | user                     | add a new contact using a single command                       | add contacts without using a GUI                                          |
+| `* * *`  | user                     | delete a contact                                               | remove entries that I no longer need without using a GUI                  |
+| `* * *`  | user                     | view all contacts                                              | view all details of added contacts in 1 place                             |
+| `* * *`  | user                     | add my contact's phone number                                  | find their contact number without having to remember it                   |
+| `* * *`  | user                     | add my contact's email                                         | find their contact email without having to remember it                    |
+| `* * *`  | user                     | add my contact's address                                       | find their address without having to remember it                          |
+| `* *`    | user                     | add tags to my contacts                                        | categorise my contacts                                                    |
+| `* *`    | user with many contacts  | sort my contacts by different parameters                       | view my contacts in my desired organisation order                         |
+| `* *`    | user                     | find a person by name                                          | locate details of persons without having to go through the entire list    |
+| `* *`    | user                     | hide private contact details                                   | minimize chance of someone else seeing them by accident                   |
+| `* *`    | user                     | edit my contact's information                                  | keep their information up to date                                         |
+| `* *`    | forgetful user           | know if I accidentally add duplicate contacts                  | avoid adding the same contact again                                       |
+| `* *`    | user with many contacts  | search within contact groups                                   | find related contacts easily                                              |
+| `* *`    | user                     | search contacts using keywords                                 | easily find a specific contact                                            |
+| `*`      | user                     | add a profile picture for each of my contacts                  | easily distinguish all my contacts, especially those with similar names   |
+| `* * *`  | user                     | add a task                                                     | remember what to do (assign myself)                                       |
+| `* * *`  | user                     | view all tasks                                                 | see all my task assignments in 1 place                                    |
+| `* * *`  | user                     | delete a task                                                  | remove tasks I no longer want to record                                   |
+| `* *`    | user                     | add a deadline to a task                                       | record when a task needs to be completed by                               |
+| `* *`    | user                     | assign a task to a contact                                     | remember what I told someone else to do                                   |
+| `* *`    | user                     | use a contact to assign myself a task                          | remember what I was told by someone else to do                            |
+| `* *`    | user                     | tag my tasks                                                   | remember what the task is associated with                                 |
+| `* *`    | user                     | see the task with the earliest pending deadline                | know what task is the most important to prioritise                        |
+| `* *`    | forgetful user           | know if I accidentally add duplicate tasks                     | avoid adding the same task again                                          |
+| `* *`    | expert user              | create shortcuts for tasks                                     | save time on creating frequent tasks                                      |
+| `* *`    | adept user               | view all tasks assigned to other contacts with 1 command       | easily see what I told others to do                                       |
+| `* *`    | adept user               | view all tasks assigned to me by other contacts with 1 command | easily see what others told me to do                                      |
+| `* *`    | adept user               | create custom lists of tasks and/or contacts                   | fine-tune task priorities for myself                                      |
+| `* *`    | expert user              | tag tasks                                                      | easily find tasks associated with the tag                                 |
+| `* *`    | expert user              | delete multiple completed tasks with 1 command                 | easily keep my tasks organised and reduce clutter                         |
+| `*`      | user                     | sort the order of tasks by date, size, etc                     | view tasks in whatever prioriity is most important to me at the time      |
+| `* * *`  | user                     | close the app with a command                                   | close the app safely                                                      |
+| `* * *`  | forgetful user           | automatically save my progress after every command             | stop worrying about potentially closing the app without saving            |
+| `* *`    | careless user            | undo commands I have keyed in wrongly                          | effortlessly correct any blunders in commands that I notice               |
+| `* *`    | expert user              | redo commands to repeat commands                               | quickly perform bulk actions                                              |
+| `* *`    | forgetful user           | navigate my command history to look at previous commands       | remember what actions I had taken recently                                |
+| `* *`    | lazy user                | handle all my tasks and contacts in 1 place                    |                                                                           |
+| `* *`    | user                     | use my preferred date format in commands                       | use the date format I am used to and not memorise a specific other format |
+| `*`      | user unfamiliar with CLI | use GUI components to enter commands instead                   | use the app without needing to be fast at typing                          |
 
 
 ### Use cases
