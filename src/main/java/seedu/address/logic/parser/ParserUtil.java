@@ -11,8 +11,10 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.MinecraftName;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Socials;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -48,6 +50,21 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String minecraftName} into a {@code MinecraftName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code minecraftName} is invalid.
+     */
+    public static MinecraftName parseMinecraftName(String minecraftName) throws ParseException {
+        requireNonNull(minecraftName);
+        String trimmedName = minecraftName.trim();
+        if (!MinecraftName.isValidMinecraftName(trimmedName)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        return new MinecraftName(trimmedName);
     }
 
     /**
@@ -93,6 +110,15 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses {@code Collection<String> socialStrs} into a {@code Socials}.
+     */
+    public static Socials parseSocials(Collection<String> socialStrs) throws ParseException {
+        requireNonNull(socialStrs);
+        // TODO: Parse socials
+        return new Socials();
     }
 
     /**
