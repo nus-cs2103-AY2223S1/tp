@@ -29,14 +29,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Scheduling and tracking, Integration
 
-### Johnny Doe
+### Lee Kang Quan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kang-quan.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/Kang-Quan)] [[portfolio](team/kang-quan.md)] 
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Testing, Code Quality
 
 ### Jean Doe
 
