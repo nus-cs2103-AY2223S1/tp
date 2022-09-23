@@ -384,27 +384,155 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Viewing help : `help`
 
-1. Deleting a person while all persons are being shown
+Displays a list of commands and functionalities. 
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+Format: `help`
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+### Listing all projects : `list`
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+Shows a list of all projects.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+Format: `list`
 
-1. _{ more test cases …​ }_
+### Adding a project : `project -a`
 
-### Saving data
+Adds a project to the application. A unique project ID will be automatically generated.
 
-1. Dealing with missing/corrupted data files
+Format: 
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+`project -a n/PROJECT_NAME [r/USERNAME/REPO_NAME]`
 
-1. _{ more test cases …​ }_
+Examples:
+
+`project -a n/ProjectX`
+
+`project -a n/ProjectY r/AgentX/ProjectY`
+
+
+
+### Deleting a project : `project -d`
+
+Deletes a project from the application.
+
+Format: `project -d PROJECT_ID`
+
+Examples:
+
+`project -d 1`
+
+### Editing a project : `project -e`
+
+Edits a specified project.
+
+Format: `project -e PROJECT_ID [n/PROJECT_NAME] [r/REPO_URL] `
+
+Edits the project with the specified PROJECT_ID.
+
+At least one of the optional fields must be provided.
+
+Existing values will be updated to the input values.
+
+Examples:
+
+`project -e 1 n/ProjectX`
+
+`project -e 2 r/AgentY/ProjectY`
+
+`project -e 3 n/ProjectZ r/AgentZ/ProjectZ`
+
+
+
+### Tagging a client : `client -t`
+
+Tags a client to a project.
+
+Format: `client -t PROJECT_ID n/CLIENT_NAME [p/CLIENT_CONTACT_NUMBER] [e/CLIENT_EMAIL]`
+
+Adds the client to the project with the specified PROJECT_ID.
+
+Examples:
+
+`client -t 1 n/Amy`
+
+`client -t 2 n/Bob p/91234567`
+
+`client -t 3 n/Charlie e/charlie@gmail.com`
+
+`client -t 2 n/Dave p/91111111 e/dave@gmail.com`
+
+### Removing a client : client -d 
+
+Removes the client from a project.
+
+Format: `client -d i/PROJECT_ID n/CLIENT_NAME`
+
+Examples:
+
+`client -d 1 n/Amy`
+
+
+
+### Editing a client : `client -e`
+
+Edits the client for a specific project.
+
+Format: `client -e i/PROJECT_ID n/CLIENT_NAME [p/CLIENT_CONTACT_NUMBER] [e/CLIENT_EMAIL]`
+
+Edits the client of the project with the specified PROJECT_ID.
+
+At least one of the optional fields must be provided.
+
+Existing values will be updated to the input values.
+
+Examples:
+
+`client -e 1 n/Amy`
+
+`client -e 2 n/Bob p/91234567`
+
+`client -e 3 n/Charlie e/charlie@gmail.com`
+
+`client -e 2 n/Dave p/91111111 e/dave@gmail.com`
+
+
+
+### Tagging a deadline : `deadline -t`
+
+Tags a deadline to a project.
+
+Format: `deadline -t i/PROJECT_ID d/DATETIME`
+
+Tags the deadline to the project with the specified PROJECT_ID.
+
+DATETIME must be in the following format: `yyyy-mm-dd`
+
+Examples:
+
+`deadline -t 1 2022-09-16`
+
+### Deleting a deadline : `deadline -d`
+
+Removes a deadline to a project.
+
+Format: `deadline -d i/PROJECT_ID`
+
+Examples:
+
+`deadline -d 1`
+
+### Editing a deadline : `deadline -e`
+
+Edits a deadline attached to a project.
+
+Format: `deadline -e i/PROJECT_ID d/NEW_DATETIME`
+
+Edits the deadline of the project with the specified PROJECT_ID.
+
+DATETIME must be in the following format: `yyyy-mm-dd`
+
+Examples:
+
+`deadline -e 1 2022-09-16`
+
