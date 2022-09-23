@@ -2,16 +2,16 @@
 layout: page
 title: User Guide
 ---
-**Plannit** is a **unified desktop application** that aims to **help NUS CS 
-students manage their academic details.**  It will be the **go-to platform** 
-for you to access all modules links and information without needing to 
+**Plannit** is a **unified desktop application** that aims to **help NUS CS
+students manage their academic details.**  It will be the **go-to platform**
+for you to access all modules links and information without needing to
 tediously navigate through multiple websites.
 
-This application is **optimized for use via a Command Line Interface** (CLI) 
+This application is **optimized for use via a Command Line Interface** (CLI)
 while still having the benefits of a Graphical User Interface (GUI).
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -26,9 +26,9 @@ while still having the benefits of a Graphical User Interface (GUI).
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    [image coming soon]
 
-1. Type the command in the command box and press Enter to execute it. e.g. 
+1. Type the command in the command box and press Enter to execute it. e.g.
    `add module`. For more commands, you may refer to the [command summary](#11-command-summary)
-   
+
 1. Refer to the [Features](#2-features) for details of each command.
 
 ### 1.1. Command summary
@@ -41,6 +41,9 @@ Action | Format, Examples
 `delete task` | `delete task     m/MODULE_CODE n/TASK_NUMBER`,<br>e.g.: `delete task m/CS2103T n/3`
 **CommandInBold** | `command examples here`
 **CommandInBold** | `command examples here`
+**home** | `home`
+**goto** | `goto m/MODULE_CODE`,<br>e.g.: `goto m/CS2103T`
+**exit** | `exit`
 --------------------------------------------------------------------------------------------------------------------
 
 ## 2. Features
@@ -61,7 +64,7 @@ Action | Format, Examples
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/81234123 p/999`, only `p/81234123` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as 
+* Extraneous parameters for commands that do not take in parameters (such as
   `home`, `goto` and `exit`) will be ignored.<br>
   e.g. if the command specifies `home 123`, it will be interpreted as `home`.
 
@@ -78,7 +81,7 @@ Action | Format, Examples
 You may add a task using the `add task` command.
 
 This command will require two flags:
-* `m/`: This flag is to be followed immediately by the module code of the 
+* `m/`: This flag is to be followed immediately by the module code of the
   module which the task is associated with.
 * `d/`: This flag is to be followed immediately by the task description.
 
@@ -90,31 +93,32 @@ Example:
 ```
 add task m/CS2103T d/Complete tP tasks for W07
 ```
-* In the above example, we add the task `Complete tP tasks for W07` to the 
+* In the above example, we add the task `Complete tP tasks for W07` to the
   module with module code `CS2103T`.
 
 #### 2.2.2 Delete task: `delete task`
-You may delete a task belonging to a particular module using the `delete 
+You may delete a task belonging to a particular module using the `delete
 task` command.
 
 This command will require two flags:
-* `m/`: This flag is to be followed immediately by the module code of the 
-  module which assigned the task. 
+* `m/`: This flag is to be followed immediately by the module code of the
+  module which assigned the task.
 * `n/`: This flag is to be followed immediately by the task number in the module.
 
 Format: `delete task m/MODULE_CODE n/TASK_NUMBER`
-* The given module code should be that of an existing module in Plannit. 
+* The given module code should be that of an existing module in Plannit.
 * The given task number has to be that of an existing task in the module.
 
 Example:
 ```
 delete task m/CS2103T n/3
 ```
-* In the above example, we are deleting task number **3** from the module 
+* In the above example, we are deleting task number **3** from the module
   with the module code `CS2103T`.
 
 #### 2.4.3. Finding tasks: `find task` [coming soon]
 [coming soon]
+
 <br>
 
 ### 2.3. Adding and deleting links
@@ -130,8 +134,31 @@ delete task m/CS2103T n/3
 <br>
 
 ### 2.5. Navigation
-#### 2.5.1. Navigate to home
-#### 2.5.2. Navigate between modules
+Provides users with the ability to navigate between different tabs in the program.
+
+#### 2.5.1 Navigate to Home Page: `home`
+You may navigate back to the home page using the `home` command.
+
+Format:  `home`
+
+#### 2.5.2 Navigate between Modules: `goto`
+You may navigate between modules to view information belonging to a particular
+module using the `goto` command.
+
+This command will require one flag:
+
+* `m/`: This flag is to be followed immediately by the module code of the module you are navigating to.
+
+Format: `goto m/MODULE_CODE`
+
+* The given module code should be that of an existing module in Plannit.
+
+Example:
+```
+goto m/CS2109S
+```
+* In the above example, we are navigating to the module with module code `CS2109S`.
+
 <br>
 
 ### 2.6. Exiting The Program : `exit`
@@ -162,7 +189,7 @@ all data and start with an empty data file at the next run.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
-## 3. Landing Page Visual Guide 
+## 3. Landing Page Visual Guide
 [coming soon]
 
 --------------------------------------------------------------------------------------------------------------------
@@ -175,5 +202,3 @@ all data and start with an empty data file at the next run.
 [More questions coming soon]
 
 --------------------------------------------------------------------------------------------------------------------
-
-
