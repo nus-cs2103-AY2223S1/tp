@@ -3,8 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
-
+SETA is a desktop application for CS2103T Teaching Assistants to track their students’ and tutorials’ details, and questions asked by students, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, SETA enables you to manage your tutorials and track your students more effectively than traditional GUI apps.
 * Table of Contents
 {:toc}
 
@@ -147,6 +146,51 @@ Examples:
 Clears all entries from the address book.
 
 Format: `clear`
+
+### Adding a question : `addq`
+
+Adds a question to the question list.
+
+Format: `addq QUESTION_DESCRIPTION`
+
+Examples:
+* `addq what is the difference between self-invocation and call-backs for sequence diagrams?` 
+
+![](images/Adding%20Question.png)
+
+
+### Mark a question : `markq`
+
+Marks a question as important.
+
+Format: `markq QUESTION_NUMBER`
+
+Examples:
+* `markq 1` marks the first question in the question list as important
+
+![](images/Mark%20Question.png)
+
+### Unmark a question : `unmarkq`
+
+Marks a question as unimportant. (If the question was previously or mistakenly marked as important)
+
+Format: `unmarkq QUESTION_NUMBER`
+
+Examples:
+* `unmarkq 1` marks the first question in the question list as unimportant
+
+![](images/Unmark%20Question.png)
+
+### Delete a question : `deleteq`
+
+Deletes a question in the question list.
+
+Format: `deleteq QUESTION_NUMBER`
+
+Examples:
+* `deleteq 1` deletes the first question from the question list
+
+![](images/Delete%20Question.png)
 
 ### Exiting the program : `exit`
 
