@@ -78,8 +78,8 @@ Adds a contact to the address book.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [g/GENDER] [d/DOB] [ph/NEW_PURCHASE_DETAIL] [t/TAG]`
 
-- The compulsory parameters are: name (n), phone number (p), email (e), address (a)
-- The parameters in [ ] are optional parameters, including gender (g), date of birth (d), purchase history (ph), tag (t).
+- The compulsory parameters are: name (`n`), phone number (`p`), email (`e`), address (`a`)
+- The parameters in [ ] are optional parameters, including gender (`g`), date of birth (`d`), purchase history (`ph`), tag (`t`).
 - A person in the contact list can have more than 1 tag.
 
 Examples:
@@ -92,7 +92,7 @@ __Optional Parameter 1: Gender__
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [g/GENDER]`
 
-- Adds gender to a person in the contact list. The genders accepted by the contact list are: M/m for male,  F/f for female.
+- Adds gender to a person in the contact list. The genders accepted by the contact list are: `M`/`m` for male,  `F`/`f` for female.
 - NAME can contain more than 1 word.
 
 Examples:
@@ -131,9 +131,9 @@ __Optional Parameter 1: Gender__
 
 Format: `edit INDEX [g/GENDER]`
 
-- Edits the gender of a person in the contact list. The genders accepted by the contact list are: M/m for male,  F/f for female.
-- INDEX must be positive integers (i.e 1,2,3…)
-- INDEX must be within the range of the contact list index (i.e from 1 to size of contact list).
+- Edits the gender of a person in the contact list. The genders accepted by the contact list are: `M`/`m` for male,  `F`/`f` for female.
+- `INDEX` must be **a positive integer** (i.e 1,2,3…)
+- `INDEX` must be within the range of the contact list index (i.e from 1 to size of contact list).
 
 Examples:
 * `edit 1 g/M`
