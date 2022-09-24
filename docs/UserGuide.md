@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+SETA is a **desktop application for CS2103T Teaching Assistants** to track their students’ and tutorials’ details, and questions asked by students, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, SETA enables you to manage your tutorials and track your students more effectively than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -45,13 +45,10 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Lim`.
+* 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `n/NAME [t/TELEGRAM_HANDLE]` can be used as `n/John Lim t/@johnlim` or as `n/John Lim`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -64,34 +61,41 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 </div>
 
-### Viewing help : `help`
+### Adding a student : `addstu`
 
-Shows a message explaning how to access the help page.
+Adds a student to the student list.
 
-![help message](images/helpMessage.png)
+![add student](images/addstu.png)
 
-Format: `help`
+Format: `add n/NAME t/TELEGRAM_HANDLE e/EMAIL`
+ 
+Examples:
+* `addstu n/John Lim Jun Jie t/@johnlimjj e/johnlim@example.com`
+* `addstu n/Mary Tan Xiao Li t/@marytxl e/marytxl@example.com`
 
+### Editing a student: `editstu`
 
-### Adding a person: `add`
+Edits an existing student in the student list.
 
-Adds a person to the address book.
+![edit student](images/editstu.png)
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [t/TELEGRAM_HANDLE] [e/EMAIL]`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+* Edits the student at the specified INDEX. The index represents the index number of the student in the student list. The index must be a positive integer 0, 1, 2…
+* At least one of the fields (E.g. [n/NAME] or [e/EMAIL]) must be provided
+* Existing fields will be updated to the input values.
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `editstu 1 t/@johnlim e/jljj@example.com Edits the telegram handle and email of the person at index 1 to be @johnlim and jljj@example.com respectively.`
+* `editstu 3 n/Mary Lee Jing Yi Edits the name of the person at index 3 to be Mary Lee Jing Yi.`
 
-### Listing all persons : `list`
+### Listing all students : `liststu`
 
-Shows a list of all persons in the address book.
+Shows a list of all the students in the student list.
 
-Format: `list`
+![list students](images/liststu.png)
+
+Format: `liststu`
 
 ### Editing a person : `edit`
 

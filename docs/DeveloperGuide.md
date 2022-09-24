@@ -270,50 +270,74 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
+| -------- |--------------------------------------------|------------------------------|------------------------------------------------------------------------|
+| `* * *`  | CS2103T TA                                 | add a new student            | keep track of my student's name, email and telegram handle             |
+| `* * *`  | CS2103T TA                                      | edit a student               | correct any errors or make any changes if needed                       |
+| `* * *`  | CS2103T TA                                       | list students                | have an overview of all the students under me                          |
+| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
+| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
+| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `SETA` and the **Actor** is the `CS2103T TA`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a student**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  CS2103T TA requests to add a student
+2.  SETA adds the student with his or her details into the student list
+    Use case ends.
+
+**Extensions**
+
+* 1a. The name, telegram handle or email of the student is missing.
+  * 1a1. SETA shows an error message.
 
     Use case ends.
+
+**Use case: Edit a student**
+
+**MSS**
+
+1. CS2103T TA requests to list students
+2. SETA shows a list of students
+3. CS2103T TA requests to edit a specific student in the list
+4. SETA updates the relevant details of the student and show the changes made
 
 **Extensions**
 
 * 2a. The list is empty.
 
   Use case ends.
-
 * 3a. The given index is invalid.
+  * 3a1. SETA shows an error message.
+  
+    Use case resumes at step 2
 
-    * 3a1. AddressBook shows an error message.
+**Use case: List students**
 
-      Use case resumes at step 2.
+**MSS**
+
+1. CS2103T TA requests to list students
+2. SETA shows a list of students.
+
+**Extensions**
+
+* 2a. The list is empty
+
+  Use Case ends
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 500 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
