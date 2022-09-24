@@ -29,14 +29,14 @@ You can reach us at the email `seer@comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Zhang Weiqiang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/wweqg.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/wweqg)] [[portfolio](team/wweqg.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: *to be added*
+* Responsibilities: *to be added*
 
 ### Faith Chua
 
