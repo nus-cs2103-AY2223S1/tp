@@ -11,11 +11,12 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 public class StatisticsCommand extends Command {
 
     public static final String COMMAND_WORD = "statistics";
+    public static final String SHOWING_STATISTICS_MESSAGE = "Opened statistics window.";
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult("All statistics displayed", false, false, true);
+        return new CommandResult(SHOWING_STATISTICS_MESSAGE, false, false, true);
     }
 }
