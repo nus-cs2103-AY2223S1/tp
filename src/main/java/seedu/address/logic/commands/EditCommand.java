@@ -200,12 +200,22 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
+        /**
+         * Sets {@code socials} to this object's {@code socials}.
+         * A defensive copy of {@code socials} is used internally.
+         */
+
         public void setSocials(Set<Socials> socials) {
-            this.socials = socials;
+            this.socials = (socials != null) ? new HashSet<>(socials) : null;
         }
 
-        public Optional<Set<Socials>> getSocials() {
+        /**
+         * Returns an unmodifiable socials set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code socials} is null.
+         */
 
+        public Optional<Set<Socials>> getSocials() {
             return (socials != null)
             ? Optional.of(Collections.unmodifiableSet(socials))
             : Optional.empty();
@@ -247,6 +257,7 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
+                    && getSocials().equals(e.getSocials())
                     && getTags().equals(e.getTags());
         }
     }

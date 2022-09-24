@@ -21,6 +21,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final List<JsonAdaptedSocials> socials = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -29,11 +30,15 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("socials") List<JsonAdaptedSocials> socials,
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        if (socials != null) {
+            this.socials.addAll(socials);
+        }
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -47,6 +52,9 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        socials.addAll(source.getSocials().stream()
+                .map(JsonAdaptedSocials::new)
+                .collect(Collectors.toList()));
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -61,6 +69,11 @@ class JsonAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
+        }
+
+        final List<Socials> socialsTags = new ArrayList<>();
+        for (JsonAdaptedSocials social : socials) {
+            socialsTags.add(social.toModelType());
         }
 
         if (name == null) {
@@ -97,9 +110,7 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        final Set<Socials> modelSocials = new HashSet<>(
-                Arrays.asList(new Socials[] {new Socials("fbHandle", Platform.FACEBOOK),
-                              new Socials("igHandle", Platform.INSTAGRAM)}));
+        final Set<Socials> modelSocials = new HashSet<>(socialsTags);
 
         return new Person(modelName, new MinecraftName("df"), modelPhone, modelEmail, modelAddress, modelSocials, modelTags);
     }
