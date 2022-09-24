@@ -436,11 +436,59 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ****
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+#### Data Requirements
 
-*{More to be added}*
+1.  FoodWhere should be released in a single JAR file which can run independently without installation.
+1.  FoodWhere's JAR file should be at most 100MB.
+1.  FoodWhere's documentation should be a static PDF.
+1.  FoodWhere's documentation should be at most 15MB per file.
+1.  FoodWhere's documentation should include appropriate UML diagrams.
+1.  FoodWhere's application data should be stored locally in human editable text files.
+1.  FoodWhere's application data should be stored in the directory containing the FoodWhere JAR file, or a subdirectory of the directory containing the FoodWhere JAR file.
+
+#### Environment Requirements
+
+1.  FoodWhere should work on any _mainstream OS_ with Java `11` installed.
+1.  FoodWhere should work on both 32-bit and 64-bit environments.
+1.  FoodWhere should assume one local user.
+
+#### Accessibility Requirements
+
+1.  FoodWhere's UI should not play audio.
+1.  FoodWhere should be usable without initializing a user account.
+1.  FoodWhere should be able to run completely locally on the device.
+1.  FoodWhere should be faster to use by solely typing (compared to a combination of typing and using the mouse) for a user with above average typing speed for regular English text.
+1.  FoodWhere's GUI should be optimal on standard screen resolutions 1920x1080 and higher, and for screen scales 100% and 125%.
+1.  FoodWhere's GUI should be usable for resolutions 1280x720 and higher, and for screen scale 150%.
+1.  FoodWhere's GUI should have enough information for a new user to start using after typing the `help` command.
+1.  FoodWhere should be developed in American English.
+1.  All UI components in FoodWhere need to be recognisable by a user who has used GUIs before.
+1.  FoodWhere should not access other devices present on the system, such as a printer or a scanner.
+
+#### Business/Domain Rules
+
+1.  FoodWhere stalls need to allow for the user to write multiple reviews on the stalls.
+
+
+#### Performance Requirements
+
+1.  FoodWhere should hold up to 1000 stalls and 1000 reviews while handling each command in under 1 second.
+1.  FoodWhere's GUI should be functional within 5 seconds of starting, on reasonable device specifications.
+1.  FoodWhere should be closed within 5 seconds of termination, on reasonable device specifications.
+1.  FoodWhere's GUI should alert the user for any command that exceeds 5 seconds.
+
+#### Fault Tolerance Requirements
+
+1.  No ASCII text input for FoodWhere should terminate FoodWhere unexpectedly. An exception to this would be the `exit` command.
+1.  FoodWhere's application data should be saved after each successfully completed command.
+
+#### Other Requirements
+
+1.  Images used in FoodWhere's UI need to adhere to copyright.
+1.  FoodWhere's codebase should be following the Object-oriented paradigm primarily.
+1.  FoodWhere's development must be strictly conducted under a framework where milestones must be met without delays and each milestone (v1.2, v1.3, v1.4) must have a usable product.
+1.  FoodWhere should be developed with respect to its very specific target user profile.
+1.  FoodWhere should be developed in a team.
 
 ### Glossary
 
