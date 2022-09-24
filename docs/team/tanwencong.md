@@ -1,5 +1,5 @@
 ---
-layout: page 
+layout: page
 title: Tan Wen Cong's Project Portfolio Page
 ---
 
