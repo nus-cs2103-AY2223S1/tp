@@ -27,6 +27,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Socials;
+import seedu.address.model.server.Server;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -105,8 +106,9 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Socials updatedSocials = editPersonDescriptor.getSocials().orElse(personToEdit.getSocials());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Set<Server> updatedServers = editPersonDescriptor.getServers().orElse(personToEdit.getServers());
 
-        return new Person(updatedName, updatedMinecraftName, updatedPhone, updatedEmail, updatedAddress, updatedSocials, updatedTags);
+        return new Person(updatedName, updatedMinecraftName, updatedPhone, updatedEmail, updatedAddress, updatedSocials, updatedTags, updatedServers);
     }
 
     @Override
@@ -140,6 +142,7 @@ public class EditCommand extends Command {
         private Address address;
         private Socials socials;
         private Set<Tag> tags;
+        private Set<Server> servers;
 
         public EditPersonDescriptor() {}
 
@@ -155,6 +158,7 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setSocials(toCopy.socials);
             setTags(toCopy.tags);
+            setServers(toCopy.servers);
         }
 
         /**
@@ -227,6 +231,14 @@ public class EditCommand extends Command {
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+        public void setServers(Set<Server> servers) {
+            this.servers = (servers != null) ? new HashSet<>(servers) : null;
+        }
+
+        public Optional<Set<Server>> getServers() {
+            return (servers != null) ? Optional.of(Collections.unmodifiableSet(servers)) : Optional.empty();
         }
 
         @Override

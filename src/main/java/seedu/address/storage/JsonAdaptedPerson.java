@@ -17,6 +17,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Socials;
+import seedu.address.model.server.Server;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -31,6 +32,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedMinecraftServer> serverList = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -38,13 +40,16 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("servers") List<JsonAdaptedMinecraftServer> serverList) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        if (serverList != null) {
+            this.serverList.addAll(serverList);
         }
     }
 
@@ -59,6 +64,9 @@ class JsonAdaptedPerson {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        serverList.addAll(source.getServers().stream()
+                .map(JsonAdaptedMinecraftServer::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -70,6 +78,11 @@ class JsonAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
+        }
+
+        final List<Server> personServers = new ArrayList<>();
+        for (JsonAdaptedMinecraftServer server: serverList) {
+            personServers.add(server.toModelType());
         }
 
         if (name == null) {
@@ -105,7 +118,8 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, new MinecraftName("df"), modelPhone, modelEmail, modelAddress, new Socials(), modelTags);
+        final Set<Server> modelServers = new HashSet<>(personServers);
+        return new Person(modelName, new MinecraftName("df"), modelPhone, modelEmail, modelAddress, new Socials(), modelTags, modelServers);
     }
 
 }
