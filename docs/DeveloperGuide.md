@@ -283,16 +283,68 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `LinkUp` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: First time initiation / No account records**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
+1. LinkUp request user to create first user account
+2. LinkUp create the user account
+3. User can now login into that account
+
+
+**Use case: Login**
+
+**MSS**
+
+1. LinkUp request user username and password
+2. User input username and password
+3. LinkUp authorise the user
+
+**Extension**
+
+* 3a. Account does not exist.
+
+    * 3a1. LinkUp shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. Incorrect password
+
+    * 3b1. LinkUp shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Adding account into a team**
+
+**MSS**
+
+1. User requests to list all team
+2. LinkUp show a list of teams
+3. User requests to add an account into the teams through username
+4. LinkUp add the account into the team
+
+**Extensions**
+
+* 2a. The team list is empty.
+
+  Use case ends.
+
+* 3a. The given username does not exist.
+
+    * 3a1. LinkUp shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Delete an account**
+
+**MSS**
+
+1.  User requests to list all users
+2.  LinkUp shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  LinkUp deletes the person
 
     Use case ends.
 
@@ -304,9 +356,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. LinkUp shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: Creating a team**
+
+**MSS**
+
+1. User specify the name of the team
+2. LinkUp create a team with specified name with User as leader
+3. User specify account username to add into the team
+4. LinkUp add the accounts into the team
+
+**Extension**
+
+* 1a. Another team with the same name already exist.
+    
+     * 1a1. LinkUp shows an error message
+  
+      Use case resumes at step 1.
+
 
 *{More to be added}*
 
