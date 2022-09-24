@@ -39,11 +39,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Something
 
-### Jean Doe
+### Charlton
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/bigcrushes.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/bigcrushes)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
