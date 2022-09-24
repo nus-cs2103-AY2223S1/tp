@@ -3,7 +3,9 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+DevEnable is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while 
+still having the benefits of a Graphical User Interface (GUI). If you can type fast, DevEnable can get your contact 
+management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -18,9 +20,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 3. Copy the file to the folder you want to use as the _home folder_ for your DevEnable.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the 
-app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+4. Double-click the file to start the app. 
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will 
 open the help window.<br>
@@ -47,21 +47,24 @@ open the help window.<br>
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/PROJECT_NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `project -a n/PROJECT_NAME`, `PROJECT_NAME` is a parameter which can be used as `project -a n/PROJECT_NAME`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/PROJECT_NAME [r/USERNAME/REPO_NAME]` can be used as `project -a n/ProjectY r/AgentX/ProjectY`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/client`, `t/client t/deadline` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `client -t PROJECT_ID n/CLIENT_NAME [p/CLIENT_CONTACT_NUMBER] [e/CLIENT_EMAIL]`, 
+  `client -t PROJECT_ID n/CLIENT_NAME [e/CLIENT_EMAIL] [p/CLIENT_CONTACT_NUMBER]` are both acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence 
+  of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) 
+  will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -102,7 +105,7 @@ Format: `project -e PROJECT_ID [n/PROJECT_NAME] [r/REPO_URL]…​`
   The ID **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the project will be removed i.e adding of tags is not cumulative.
+* When editing tags, the existing tags of the project will be removed i.e. adding of tags is not cumulative.
 * You can remove all the project’s tags by typing `t/` without
     specifying any tags after it.
 
@@ -219,14 +222,17 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+DevEnable data are saved in the hard disk automatically after any command that changes the data. There is no need to 
+save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+DevEnable data are saved as a txt file `[JAR file location]/data/devenable.txt`. Advanced users are welcome to 
+update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, DevEnable will discard all data and start with an empty data 
+file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -238,19 +244,25 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains 
+the data of your previous AddressBook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-| Action     | Format, Examples|
-|------------|------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`|
-| **Clear**  | `clear`|
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`|
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`|
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`|
-| **List**   | `list`|
-|  **Help**  | `help`|
+| Action             | Format, Examples |
+|--------------------|------------------|
+| **Add Project**    | `project -a`     |
+| **Edit Project**   | `project -e`     |
+| **Delete Project** | `project -d`     |
+| **Tag Client**     | `client -a`      |
+| **Edit Client**    | `client -e`      |
+| **Delete Client**  | `client -d`      |
+| **Tag Deadline**   | `deadline -a`    |
+| **Edit Deadline**   | `deadline -e`    |
+| **Delete Deadline** | `deadline -d`    |
+| **Clear**          | `clear`          |
+| **List**           | `list`           |
+| **Help**           | `help`           |
 
