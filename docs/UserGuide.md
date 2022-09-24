@@ -162,7 +162,7 @@ This command will require two flags:
   module which is associated with the link.
 * `l/`: This flag is to be followed immediately by the link url.
 
-Format: `add link m/MODULE_CODE d/LINK_URL`
+Format: `add link m/MODULE_CODE l/LINK_URL`
 * The given module code should be that of an existing module in Plannit.
 * The given link URL should not currently exist for the module in Plannit.
 
@@ -181,7 +181,7 @@ This command will require two flags:
   module which is associated with the link.
 * `l/`: This flag is to be followed immediately by the link url.
 
-Format: `delete link m/MODULE_CODE d/LINK_URL`
+Format: `delete link m/MODULE_CODE l/LINK_URL`
 * The given module code should be that of an existing module in Plannit.
 * The given link URL currently exists for the module in Plannit.
 
