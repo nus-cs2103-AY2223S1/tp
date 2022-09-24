@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.server.Server;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -24,12 +25,14 @@ public class Person {
     // Data fields
     private final Address address;
     private final Socials socials;
+
+    private Set<Server> servers = new HashSet<>();
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, MinecraftName minecraftName, Phone phone, Email email, Address address, Socials socials, Set<Tag> tags) {
+    public Person(Name name, MinecraftName minecraftName, Phone phone, Email email, Address address, Socials socials, Set<Tag> tags, Set<Server> servers) {
         requireAllNonNull(name, minecraftName, phone, email, address, tags);
         this.name = name;
         this.minecraftName = minecraftName;
@@ -38,6 +41,7 @@ public class Person {
         this.address = address;
         this.socials = socials;
         this.tags.addAll(tags);
+        this.servers.addAll(servers);
     }
 
     public Name getName() {
@@ -70,6 +74,10 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public Set<Server> getServers() {
+        return Collections.unmodifiableSet(servers);
     }
 
     /**
