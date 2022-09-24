@@ -1,7 +1,9 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
@@ -18,6 +20,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -54,17 +57,16 @@ public class DeleteCommandTest {
         Person secondPersonToDelete = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_SET_FIRST_AND_SECOND_PERSON);
 
-        UniquePersonList listOfPersonsToDelete = new UniquePersonList();
-        listOfPersonsToDelete.add(firstPersonToDelete);
-        listOfPersonsToDelete.add(secondPersonToDelete);
-
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, listOfPersonsToDelete);
-
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(firstPersonToDelete);
         expectedModel.deletePerson(secondPersonToDelete);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        try {
+            deleteCommand.execute(model);
+            assertEquals(model, expectedModel);
+        } catch (CommandException ce) {
+            fail("Should not have thrown any exception.");
+        }
     }
 
     @Test
@@ -111,18 +113,17 @@ public class DeleteCommandTest {
         Person secondPersonToDelete = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_SET_FIRST_AND_SECOND_PERSON);
 
-        UniquePersonList listOfPersonsToDelete = new UniquePersonList();
-        listOfPersonsToDelete.add(firstPersonToDelete);
-        listOfPersonsToDelete.add(secondPersonToDelete);
-
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, listOfPersonsToDelete);
-
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(firstPersonToDelete);
         expectedModel.deletePerson(secondPersonToDelete);
         showNoPerson(expectedModel);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        try {
+            deleteCommand.execute(model);
+            assertEquals(model, expectedModel);
+        } catch (CommandException ce) {
+            fail("Should not have thrown any exception.");
+        }
     }
 
     @Test
