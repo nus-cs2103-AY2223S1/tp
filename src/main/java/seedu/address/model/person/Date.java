@@ -1,17 +1,21 @@
 package seedu.address.model.person;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+/**
+ * Represents the date of a internship in the list.
+ */
 public class Date {
     public static final String MESSAGE_CONSTRAINTS =
             "Date should be in dd-mm-yyyy format";
 
+
     public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
     public final LocalDate value;
 
     /**
@@ -34,6 +38,9 @@ public class Date {
         this.value = date;
     }
 
+    /**
+     * Returns true if a given string is in a valid date position.
+     */
     public static boolean isValidDate(String test) {
         try {
             LocalDate.parse(test, FORMATTER);
@@ -43,7 +50,12 @@ public class Date {
         return true;
     }
 
-
+    /**
+     * Returns a string representation of the date in input format
+     */
+    public String toInputFormat() {
+        return value.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+    }
     @Override
     public String toString() {
         return value.toString();
@@ -60,5 +72,6 @@ public class Date {
     public int hashCode() {
         return value.hashCode();
     }
+
 
 }

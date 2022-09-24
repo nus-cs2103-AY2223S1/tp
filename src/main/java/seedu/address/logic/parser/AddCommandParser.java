@@ -55,10 +55,11 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Position position = ParserUtil.parsePosition(argMultimap.getValue(PREFIX_POSITION).get());
         Website website = ParserUtil.parseWebsite(argMultimap.getValue(PREFIX_WEBSITE).orElse("NA"));
-        Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).orElse(LocalDate.now().format(Date.FORMATTER)));
+        Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE)
+                .orElse(LocalDate.now().format(Date.FORMATTER)));
         ApplicationProcess applicationProcess = ParserUtil.parseApplicationProcess(
                 argMultimap.getValue(PREFIX_APPLICATION_PROCESS).orElse("APPLY"));
-        Person person = new Person(name, phone, email, address,position, applicationProcess, date, website, tagList);
+        Person person = new Person(name, phone, email, address, position, applicationProcess, date, website, tagList);
 
         return new AddCommand(person);
     }

@@ -3,19 +3,19 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents the website of the company of the internship.
+ */
 public class Website {
-    public final String value;
-    public static final String DEFAULT = "NA";
+    public static final String MESSAGE_CONSTRAINTS = "Web must be a URL";
 
-    // TODO update with the constraints
-    public static final String MESSAGE_CONSTRAINTS = "Web should be of the format of [TODO] ";
-
-    // TODO update validation regex
-    // TODO must account for NA
     //@@author TomC-reused
     //Reused from https://stackoverflow.com/questions/163360
-    public static final String VALIDATION_REGEX = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
+    public static final String VALIDATION_REGEX =
+            "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
     //@@author
+
+    public final String value;
 
     /**
      * Constructs an {@code Website}.
@@ -28,6 +28,9 @@ public class Website {
         value = website;
     }
 
+    /**
+     * Returns true if a given string is a valid website.
+     */
     public static boolean isValidWebsite(String test) {
         return test.matches(VALIDATION_REGEX) || test.equals("NA");
     }

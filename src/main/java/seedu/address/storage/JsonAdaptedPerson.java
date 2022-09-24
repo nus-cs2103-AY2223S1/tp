@@ -1,7 +1,5 @@
 package seedu.address.storage;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -12,9 +10,16 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javafx.geometry.Pos;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.ApplicationProcess;
+import seedu.address.model.person.Date;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Position;
+import seedu.address.model.person.Website;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -40,10 +45,11 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("position") String position,
-            @JsonProperty("website") String website, @JsonProperty("date") String date,
-            @JsonProperty("applicationProcess") String applicationProcess) {
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("position") String position,
+                             @JsonProperty("applicationProcess") String applicationProcess,
+                             @JsonProperty("date") String date, @JsonProperty("website") String website,
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -70,7 +76,7 @@ class JsonAdaptedPerson {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         position = source.getPosition().positionName;
-        date = source.getDate().value.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        date = source.getDate().toInputFormat();
         website = source.getWebsite().value;
         applicationProcess = source.getApplicationProcess().toString();
 
@@ -122,7 +128,8 @@ class JsonAdaptedPerson {
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         if (position == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Position.class.getSimpleName()));
+            throw new IllegalValueException(String.format(
+                    MISSING_FIELD_MESSAGE_FORMAT, Position.class.getSimpleName()));
         }
         if (!Position.isValidPosition(position)) {
             throw new IllegalValueException(Position.MESSAGE_CONSTRAINTS);
@@ -146,14 +153,16 @@ class JsonAdaptedPerson {
         final Website modelWebsite = new Website(website);
 
         if (applicationProcess == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ApplicationProcess.class.getSimpleName()));
+            throw new IllegalValueException(String.format(
+                    MISSING_FIELD_MESSAGE_FORMAT, ApplicationProcess.class.getSimpleName()));
         }
         if (!ApplicationProcess.isValidApplicationProcess(applicationProcess)) {
             throw new IllegalValueException(ApplicationProcess.MESSAGE_CONSTRAINTS);
         }
         final ApplicationProcess modelApplicationProcess = new ApplicationProcess(applicationProcess);
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelPosition, modelApplicationProcess, modelDate, modelWebsite, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelPosition,
+                modelApplicationProcess, modelDate, modelWebsite, modelTags);
     }
 
 }

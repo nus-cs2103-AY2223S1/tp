@@ -2,8 +2,10 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.time.LocalDate;
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 import seedu.address.model.tag.Tag;
 
@@ -16,18 +18,19 @@ public class Person {
     // Identity fields
     private final Name name;
     private final Position position;
-
     private final Phone phone;
     private final Email email;
 
     // Data fields
     private final Address address;
-
     private final ApplicationProcess applicationProcess;
     private final Date date;
     private final Website website;
     private final Set<Tag> tags = new HashSet<>();
 
+    /**
+     * Every field must be present and not null.
+     */
     public Person(Name name, Phone phone, Email email, Address address, Position position,
                   ApplicationProcess applicationProcess, Date date, Website website, Set<Tag> tags) {
         requireAllNonNull(name, position, tags);
@@ -39,7 +42,7 @@ public class Person {
         this.position = position;
         this.applicationProcess = applicationProcess;
         this.date = date;
-        this.website =  website ;
+        this.website = website;
     }
 
     public Name getName() {
@@ -83,7 +86,7 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both persons have the same name and position.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
@@ -92,7 +95,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getName().equals(getName()) && otherPerson.getPosition().equals(getPosition());
     }
 
     /**

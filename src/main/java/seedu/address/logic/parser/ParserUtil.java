@@ -99,6 +99,12 @@ public class ParserUtil {
         return new Email(trimmedEmail);
     }
 
+    /**
+     * Parses a {@code String position} into a {@code Position}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code position} is invalid.
+     */
     public static Position parsePosition(String position) throws ParseException {
         requireNonNull(position);
         String trimmedPosition = position.trim();
@@ -108,6 +114,12 @@ public class ParserUtil {
         return new Position(trimmedPosition);
     }
 
+    /**
+     * Parses a {@code String website} into a {@code Website}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code website} is invalid.
+     */
     public static Website parseWebsite(String website) throws ParseException {
         requireNonNull(website);
         String trimmedWebsite = website.trim();
@@ -117,6 +129,12 @@ public class ParserUtil {
         return new Website(trimmedWebsite);
     }
 
+    /**
+     * Parses a {@code String applicationProcess} into an {@code ApplicationProcess}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code applicationProcess} is invalid.
+     */
     public static ApplicationProcess parseApplicationProcess(String applicationProcess) throws ParseException {
         requireNonNull(applicationProcess);
         String trimmedApplicationProcess = applicationProcess.trim();
@@ -153,6 +171,12 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Parses a {@code String date} into an {@code Date}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
     public static Date parseDate(String date) throws ParseException {
         requireNonNull(date);
         String trimmedDate = date.trim();

@@ -2,31 +2,49 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Arrays;
+
+/**
+ * Represents an internship's application process state in the list.
+ */
 public class ApplicationProcess {
-    enum Stage {
+
+    /**
+     * Represents the possible state of application process of an internship.
+     */
+    enum ApplicationProcessState {
         APPLY, ASSESSMENT, INTERVIEW, OFFER, ACCEPTED, REJECTED;
-    }
-    public static final String MESSAGE_CONSTRAINTS = "Application process can take the following values: APPLY, ASSESSMENT, INTERVIEW, OFFER, ACCEPTED, REJECTED";
 
-    public static final ApplicationProcess DEFAULT = new ApplicationProcess("apply");
-
-
-    public final Stage value;
-
-    public ApplicationProcess(String stage) {
-        requireNonNull(stage);
-        value = Stage.valueOf(stage.toUpperCase());
+        /**
+         * Returns true if a given string is a valid application state.
+         */
+        public static boolean isInApplicationProcessState(String test) {
+            return Arrays.stream(ApplicationProcessState.values()).anyMatch(stage -> stage.name().equals(test));
+        }
     }
 
+    public static final String MESSAGE_CONSTRAINTS = "Application process can take the following values: "
+            + "APPLY, ASSESSMENT, INTERVIEW, OFFER, ACCEPTED, REJECTED";
 
+    public final ApplicationProcessState value;
+
+    /**
+     * Constructs an {@code ApplicationProcess}.
+     *
+     * @param state A valid state of application process.
+     */
+    public ApplicationProcess(String state) {
+        requireNonNull(state);
+        value = ApplicationProcessState.valueOf(state.toUpperCase());
+    }
+
+
+    /**
+     * Returns true if a given string is a valid application state.
+     */
     public static boolean isValidApplicationProcess(String test) {
         String upperCasedTest = test.toUpperCase();
-        try {
-            Stage.valueOf(upperCasedTest);
-        } catch (IllegalArgumentException e) {
-            return false;
-        }
-        return true;
+        return ApplicationProcessState.isInApplicationProcessState(upperCasedTest);
     }
 
     @Override
