@@ -29,14 +29,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Jolyn Loh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jolynloh.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/jolynloh)] [[portfolio](team/jolynloh.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Code quality
+* Responsibilities: In charge of `Storage`
 
 ### Jean Doe
 
