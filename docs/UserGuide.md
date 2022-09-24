@@ -159,7 +159,7 @@ You may add a link to a specific module using the `add link` command.
 
 This command will require two flags:
 * `m/`: This flag is to be followed immediately by the module code of the
-  module which assigned the task.
+  module which is associated with the link.
 * `l/`: This flag is to be followed immediately by the link url.
 
 Format: `add link m/MODULE_CODE d/LINK_URL`
@@ -178,7 +178,7 @@ You may delete a link from a specific module using the `delete link` command.
 
 This command will require two flags:
 * `m/`: This flag is to be followed immediately by the module code of the
-  module which assigned the task.
+  module which is associated with the link.
 * `l/`: This flag is to be followed immediately by the link url.
 
 Format: `delete link m/MODULE_CODE d/LINK_URL`
