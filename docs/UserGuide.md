@@ -110,12 +110,16 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Locating persons by keyword: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds persons by the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find [n/KEYWORD, c/CATEGORY, t/TAG, b/BIRTHDAY, k/MORE_KEYWORDS]`
 
+* Entering `find` with no keywords after will simply return the list of all the contacts.
+* Users can filter persons by their desired fields by using `[letter]/[KEYWORD]`. e.g.
+`find n/john` returns persons whose name fields contain the keyword, while `find t/TAG`
+returns persons whose tag fields contain the specified tag.
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
@@ -124,8 +128,9 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find n/John` returns `john` and `John Doe`
+* `find c/friends` returns `Alex Yeoh` that is under `category` friends
+* `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### Deleting a person : `delete`
