@@ -270,14 +270,15 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​ | I want to …​                                                               | So that I can…​                                                              |
+|----------|---------|----------------------------------------------------------------------------|------------------------------------------------------------------------------|
+| `* * *`  | user    | use 'add' in the command line                                              | I can add a new surveyee quickly                                             |
+| `* * *`  | user    | use 'edit' in the command line                                             | I can edit a surveyee quickly                                                |
+| `* * *`  | user    | use 'delete' in the command line                                           | I can delete a surveyee quickly                                              |
+| `* * *`  | user    | use 'view' in the command line                                             | I can view my surveyees' information quickly                                 |
+| `* *`    | user    | use 'duplicate' in the command line                                        | I can use an existing surveyee as a template for a new surveyee to save time |
+| `* *`    | user    | use 'view <attribute>' to view only surveyees of specific attribute        | I can save time when looking for surveyees with a specific attribute         |
+| `* *`    | user    | use 'delete <attribute>' to delete all surveyees with a specific attribute | I can save time when deleting surveyees with a specific attribute            |
 
 *{More to be added}*
 
