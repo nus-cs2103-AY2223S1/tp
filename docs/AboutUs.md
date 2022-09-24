@@ -46,7 +46,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/shan.md)]
 
 * Role: Developer
-* Responsibilities: UI 
+* Responsibilities: UI
 
 ### James Doe
 
