@@ -320,7 +320,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-### Use cases
 > Definition:
 > - For all use cases below, the **System** is `FoodWhere` and the **Actor** is the `User`, unless specified otherwise.
 > - More specifically, the `User` are **Food Critics**.
@@ -333,23 +332,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User starts FoodWhere
-2. User requests to add a stall through an appropriate command
-3. FoodWhere adds the stall and confirms with a success message that the stall is added
+1. User starts FoodWhere.
+2. User requests to add a stall through an appropriate command.
+3. FoodWhere adds the stall and confirms with a success message that the stall is added.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
-* 2a. User issues the correct `add` command
+* 2a. User issues the correct `add` command.
 
-    * 2a1. User uses `sadd` command
+    * 2a1. User uses `sadd` command.
 
       Use case resumes at step 3.
 
-* 2b. User issues the correct `sadd` command with the wrong syntax
+* 2b. User issues the correct `sadd` command with the wrong syntax.
 
-    * 2b1. FoodWhere sends an error message to the User, indicating that the format for adding a stall is incorrect, and attaches the correct syntax format in the message.
+    * 2b1. FoodWhere sends an error message to the User, indicating that the format for adding a stall is incorrect, 
+      and attaches the correct syntax format in the message.
 
       Use case ends.
 
@@ -421,7 +421,47 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ****
 
-**Use case 5: Exiting the program**
+**Use case 5: List food stalls**
+
+**MSS**
+
+1. User starts FoodWhere
+2. User enters the command to list food stalls
+3. FoodWhere displays all food stalls
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. User uses list food stalls command with the wrong syntax
+    * 2a1. FoodWhere sends an error message to User, that the list food stalls command is incorrect, attached
+      with the correct syntax format.
+
+      Use case ends.
+
+****
+
+**Use case 6: List food reviews**
+
+**MSS**
+
+1. User starts FoodWhere
+2. User enters the command to list food reviews
+3. FoodWhere displays all food reviews
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. User uses list food reviews command with the wrong syntax
+    * 2a1. FoodWhere sends an error message to User, that the list food reviews command is incorrect, attached
+      with the correct syntax format.
+
+      Use case ends.
+
+****
+
+**Use case 7: Exiting the program**
 
 **Preconditions**
 - User is currently using FoodWhere
@@ -434,6 +474,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
 
 ****
+
 ### Non-Functional Requirements
 
 #### Data Requirements
