@@ -9,11 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -103,7 +99,7 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Socials updatedSocials = editPersonDescriptor.getSocials().orElse(personToEdit.getSocials());
+        Set<Socials> updatedSocials = editPersonDescriptor.getSocials().orElse(personToEdit.getSocials());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedMinecraftName, updatedPhone, updatedEmail, updatedAddress, updatedSocials, updatedTags);
@@ -138,7 +134,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
-        private Socials socials;
+        private Set<Socials> socials;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -204,12 +200,15 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setSocials(Socials socials) {
+        public void setSocials(Set<Socials> socials) {
             this.socials = socials;
         }
 
-        public Optional<Socials> getSocials() {
-            return Optional.ofNullable(socials);
+        public Optional<Set<Socials>> getSocials() {
+
+            return (socials != null)
+            ? Optional.of(Collections.unmodifiableSet(socials))
+            : Optional.empty();
         }
 
         /**

@@ -2,10 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 import seedu.address.model.tag.Tag;
 
@@ -23,20 +20,20 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final Socials socials;
+    private final Set<Socials> socials;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, MinecraftName minecraftName, Phone phone, Email email, Address address, Socials socials, Set<Tag> tags) {
+    public Person(Name name, MinecraftName minecraftName, Phone phone, Email email, Address address, Set<Socials> socialsList, Set<Tag> tags) {
         requireAllNonNull(name, minecraftName, phone, email, address, tags);
         this.name = name;
         this.minecraftName = minecraftName;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.socials = socials;
+        this.socials = socialsList;
         this.tags.addAll(tags);
     }
 
@@ -60,8 +57,8 @@ public class Person {
         return address;
     }
 
-    public Socials getSocials() {
-        return socials;
+    public Set<Socials> getSocials() {
+        return Collections.unmodifiableSet(socials);
     }
 
     /**

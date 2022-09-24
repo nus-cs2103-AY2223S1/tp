@@ -47,10 +47,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Socials socials = ParserUtil.parseSocials(argMultimap.getAllValues(PREFIX_SOCIALS));
+        Set<Socials> socialsList = ParserUtil.parseSocials(argMultimap.getAllValues(PREFIX_SOCIALS));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, mcName, phone, email, address, socials, tagList);
+        Person person = new Person(name, mcName, phone, email, address, socialsList, tagList);
 
         return new AddCommand(person);
     }

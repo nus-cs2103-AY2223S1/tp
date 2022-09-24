@@ -86,7 +86,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
 
-    private Optional<Socials> parseSocialsForEdit(Collection<String> socials) throws ParseException {
+    private Optional<Set<Socials>> parseSocialsForEdit(Collection<String> socials) throws ParseException {
         assert socials != null;
 
         if (socials.isEmpty()) {
