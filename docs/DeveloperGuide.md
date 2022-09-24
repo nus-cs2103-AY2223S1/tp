@@ -320,33 +320,120 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+### Use cases
+> Definition:
+> - For all use cases below, the **System** is `FoodWhere` and the **Actor** is the `User`, unless specified otherwise.
+> - More specifically, the `User` are **Food Critics**.
 
-**Use case: Delete a person**
+> Guarantees:
+> - For any use cases below that changes any data, FoodWhere will guarantee that the data is updated and saved.
+****
+
+**Use case 1: Add a food stall**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User starts FoodWhere
+2. User requests to add a stall through an appropriate command
+3. FoodWhere adds the stall and confirms with a success message that the stall is added
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. User issues the correct `add` command
 
-  Use case ends.
+    * 2a1. User uses `sadd` command
 
-* 3a. The given index is invalid.
+      Use case resumes at step 3.
 
-    * 3a1. AddressBook shows an error message.
+* 2b. User issues the correct `sadd` command with the wrong syntax
 
-      Use case resumes at step 2.
+    * 2b1. FoodWhere sends an error message to the User, indicating that the format for adding a stall is incorrect, and attaches the correct syntax format in the message.
 
-*{More to be added}*
+      Use case ends.
 
+****
+
+**Use case 2: Add a food review**
+
+**MSS**
+
+1. User starts FoodWhere
+2. User requests to add a review through an appropriate command
+3. FoodWhere adds the review and confirms with a success message that the review is added
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. User issues the correct `add` command
+
+    * 2a1. User uses `radd` command
+
+      Use case resumes at step 3.
+
+* 2b. User issues the correct `radd` command with the wrong syntax
+
+    * 2b1. FoodWhere sends an error message to the User, indicating that the format for adding a review is incorrect, and attaches the correct syntax format in the message.
+
+      Use case ends.
+
+****
+
+**Use case 3: Delete a food stall**
+
+**MSS**
+
+1. User starts FoodWhere
+2. User requests to delete a stall through an appropriate command
+3. FoodWhere deletes the stall and confirms with a success message that the stall is deleted
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. FoodWhere detects an error in the entered data. (Invalid index)
+    * 2a1. FoodWhere sends an error message to User, indicating the index used for the delete
+      command is incorrect, attached with the correct syntax format.
+
+      Use case ends.
+
+****
+
+**Use case 4: Delete a food review**
+
+**MSS**
+
+1. User starts FoodWhere
+2. User requests to delete a review through an appropriate command
+3. FoodWhere deletes the review and confirms with a success message that the review is deleted
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. FoodWhere detects an error in the entered data. (Invalid index)
+    * 2a1. FoodWhere sends an error message to User, indicating the index used for the delete
+      command is incorrect, attached with the correct syntax format.
+
+      Use case ends.
+
+****
+
+**Use case 5: Exiting the program**
+
+**Preconditions**
+- User is currently using FoodWhere
+
+**MSS**
+
+1. User enters a command to exit FoodWhere.
+2. FoodWhere saves all changes to disk and closes.
+
+   Use case ends.
+
+****
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
