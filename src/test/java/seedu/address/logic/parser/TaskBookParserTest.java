@@ -58,7 +58,7 @@ public class TaskBookParserTest {
 
     @Test
     public void parseCommand_task_delete() throws Exception {
-        TaskDeleteCommand command = (TaskDeleteCommand) parseTaskCommand("delete 1");
+        TaskDeleteCommand command = (TaskDeleteCommand) parseTaskCommand("delete i/1");
         assertNotNull(command);
     }
 

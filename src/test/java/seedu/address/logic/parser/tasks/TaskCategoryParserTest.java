@@ -13,14 +13,16 @@ public class TaskCategoryParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        String arguments = "o/Sam d/Finish the assignment";
+        // Note: the space at the start of the arguments is necessary due to ArgumentTokenizer behavior.
+        String arguments = " o/Sam d/Finish the assignment";
         Command command = TaskCategoryParser.parseCommand(TaskAddCommand.COMMAND_WORD, arguments);
         assertTrue(command instanceof TaskAddCommand);
     }
 
     @Test
     public void parseCommand_delete() throws Exception {
-        String arguments = "1";
+        // Note: the space at the start of the arguments is necessary due to ArgumentTokenizer behavior.
+        String arguments = " i/1";
         Command command = TaskCategoryParser.parseCommand(TaskDeleteCommand.COMMAND_WORD, arguments);
         assertTrue(command instanceof TaskDeleteCommand);
     }
