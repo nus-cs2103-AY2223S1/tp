@@ -290,9 +290,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  AddressBook shows a list of persons
+1.  User requests to delete a specific person in the list
+1.  AddressBook deletes the person
 
     Use case ends.
 
@@ -307,6 +307,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: List persons with debts**
+
+**MSS**
+
+1.  User requests to list persons with debts
+1.  AddressBook shows the list of persons
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty (no persons with debts).
+
+  Use case ends.
 
 *{More to be added}*
 
