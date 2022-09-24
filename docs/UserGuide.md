@@ -163,6 +163,45 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Hide Contact Details: `customise hide`
+
+Hide certain information of all contacts shown.
+
+Format: `customise hide [p/] [e/] [a/] [t/]`
+
+* Hides the information specified.
+* If the information specified is already hidden, it will stay hidden.
+
+Example:
+* `customise hide e/` The application no longer shows emails in the contact list
+
+### Show Contact Details: `customise show`
+
+Show certain information of all contacts shown.
+
+Format: `customise show [p/] [e/] [a/] [t/]`
+
+* Shows the information specified.
+* If the information specified is already shown, it will stay shown.
+
+Example:
+* `customise show a/` The application now shows addresses in the contact list
+
+### Customise Order of Details: `customise order`
+
+Customise order of information shown in all contacts shown.
+
+Format: `customise order [p/] [e/] [a/] [t/]`
+
+*Attributes not given will be ordered last in default order. (tag > phone > address > email)
+
+Example: 
+
+* `customise order a/ e/ p/` The application now shows address first, followed by email, phone, then tags
+
+
+
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -206,6 +245,7 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear** | `clear`
+**Customise** |  `customise hide [p/] [e/] [a/] [t/]` <br> `customise show [p/] [e/] [a/] [t/]` <br> `customise order [p/] [e/] [a/] [t/]` <br> e.g, `customise order a/ e/ p/`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
