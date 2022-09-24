@@ -22,4 +22,3 @@ PleaseHireUs (PHU) is a desktop app for managing internships, optimized for use 
   * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
   * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
 * **Tools**:
-
