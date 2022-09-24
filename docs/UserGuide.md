@@ -39,8 +39,8 @@ while still having the benefits of a Graphical User Interface (GUI).
 | [`delete module`](#212-delete-module) | `delete module   m/MODULE_CODE`                    | Delete module by module code                                                |
 | [`add task`](#221-add-task)           | `add    task     m/MODULE_CODE d/TASK_DESCRIPTION` | Add task with specified module code and task description                    |
 | [`delete task`](#222-delete-task)     | `delete task     m/MODULE_CODE n/TASK_NUMBER`      | Delete task corresponding to specified task number of specified module code |
-| **CommandInBold**                     | `command format here`                              |                                                                             |
-| **CommandInBold**                     | `command format here`                              |                                                                             |
+| [`add link`](#231-add-link)           | `add    link     m/MODULE_CODE l/LINK_URL`         | Add link to a specified module code by its URL                              |
+| [`delete link`](#232-delete-link)     | `delete link     m/MODULE_CODE l/LINK_URL`         | Delete link from a specified module code by its URL                         |
 --------------------------------------------------------------------------------------------------------------------
 
 ## 2. Features
@@ -149,14 +149,48 @@ delete task m/CS2103T n/3
 In the above example, we are deleting task number **3** from the module 
 with the module code `CS2103T`.
 
-#### 2.4.3. Finding tasks [coming soon]
+#### 2.2.3. Finding tasks [coming soon]
 [coming soon]
 <br>
 
 ### 2.3. Adding and deleting links
 #### 2.3.1. Add link
-#### 2.3.2. Delete link
+You may add a link to a specific module using the `add link` command.
 
+This command will require two flags:
+* `m/`: This flag is to be followed immediately by the module code of the
+  module which assigned the task.
+* `l/`: This flag is to be followed immediately by the link url.
+
+Format: `add link m/MODULE_CODE d/LINK_URL`
+* The given module code should be that of an existing module in Plannit.
+* The given link URL should not currently exist for the module in Plannit.
+
+Example:
+```
+add module m/CS2040C l/visualgo.net/en
+```
+In the above example, we are adding the link with the URL `visualgo.net/en` 
+to the module with module code `CS2040C`.
+
+#### 2.3.2. Delete link
+You may delete a link from a specific module using the `delete link` command.
+
+This command will require two flags:
+* `m/`: This flag is to be followed immediately by the module code of the
+  module which assigned the task.
+* `l/`: This flag is to be followed immediately by the link url.
+
+Format: `delete link m/MODULE_CODE d/LINK_URL`
+* The given module code should be that of an existing module in Plannit.
+* The given link URL currently exists for the module in Plannit.
+
+Example:
+```
+delete module m/CS2040C l/visualgo.net/en
+```
+In the above example, we are deleting the link with the URL `visualgo.net/en`
+from the module with module code `CS2040C`.
 <br>
 
 ### 2.4. Adding and deleting contacts
