@@ -1,6 +1,6 @@
 # Petcode
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103T-T09-2/tp/actions)
-[![codecov](https://codecov.io/gh/se-edu/addressbook-level3/branch/master/graph/badge.svg)](https://codecov.io/gh/AY2223S1-CS2103T-T09-2/tp)
+[![codecov](https://codecov.io/gh/AY2223S1-CS2103T-T09-2/tp/branch/master/graph/badge.svg?token=F6VVPXKC9C)](https://codecov.io/gh/AY2223S1-CS2103T-T09-2/tp)
 
 ![Ui](docs/images/Ui.png)
 
