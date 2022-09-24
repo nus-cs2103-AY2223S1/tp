@@ -9,51 +9,22 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Chen Lyuting
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lyuting47.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/lyuting47)]
+[[portfolio](team/lyuting47.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: [to be added]
 
-### Jean Doe
+### Wayne Zhang Si Yuan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/waynezsy.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/waynezsy)]
+[[portfolio](team/waynezsy.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: [to be added]
