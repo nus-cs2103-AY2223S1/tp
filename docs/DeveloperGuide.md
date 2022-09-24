@@ -257,27 +257,34 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
+* is a university student who organizes many bulk purchases
 * has a need to manage a significant number of contacts
+* has a need to track who has paid him back
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:  
+1. track their debtors
+2. view total money owed from all debtors
+3. manage contacts faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​    | I can …​                                                           | So that …​                                                 |
+|----------|------------|--------------------------------------------------------------------|---------------------------------------------------------------------|
+| `* * *`  | user       | save persons and their contact details                             | I do not need to remember these details                             |
+| `* * *`  | user       | keep track of debts                                                | I know who owes me money and for what                               |
+| `* * *`  | user       | remove debts                                                       | I do not mistakenly think I have not yet been paid                  |
+| `* *`    | user       | see an overview of all the debts owed                              | I am in better control of my overall financial situation            |
+| `* * *`  | user       | see how much I am owed in total                                    | I know how much I expect to be paid                                 |
+| `* *`    | user       | search for a person’s contact                                      | I can easily access his contact details                             |
+| `* * *`  | user       | close the application                                              |                                                                     |
+| `* *`    | user       | save my contacts and debts over multiple usage sessions of the app | I do not need to key in data again when I exit and re-enter the app |
 
 *{More to be added}*
 
