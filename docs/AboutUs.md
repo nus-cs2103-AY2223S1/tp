@@ -53,7 +53,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/ketamethane.png" width="200px">
 
 [[github](https://github.com/ketamethane)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/ketamethane.md)]
 
 * Role: Developer
 * Responsibilities: Question Class
