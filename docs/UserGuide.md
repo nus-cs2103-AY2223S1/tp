@@ -3,7 +3,9 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+DevEnable is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while 
+still having the benefits of a Graphical User Interface (GUI). If you can type fast, DevEnable can get your contact 
+management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -14,27 +16,27 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `deveneable.jar`.
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for your DevEnable.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+4. Double-click the file to start the app. 
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will 
+open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`list`** : Lists all project.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`project -a`**`n/Orbital` : Adds a project named `Orbital` to the Address Book.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`project -d`**`3` : Deletes the 3rd project shown in the current list.
 
    * **`clear`** : Deletes all contacts.
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -45,106 +47,170 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `project -a n/PROJECT_NAME`, `PROJECT_NAME` is a parameter which can be used as `project -a n/PROJECT_NAME`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/PROJECT_NAME [r/USERNAME/REPO_NAME]` can be used as `project -a n/ProjectY r/AgentX/ProjectY`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/client`, `t/client t/deadline` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `client -t PROJECT_ID n/CLIENT_NAME [p/CLIENT_CONTACT_NUMBER] [e/CLIENT_EMAIL]`, 
+  `client -t PROJECT_ID n/CLIENT_NAME [e/CLIENT_EMAIL] [p/CLIENT_CONTACT_NUMBER]` are both acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence 
+  of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) 
+  will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
+Displays a list of commands and functionalities.
 
 Format: `help`
 
+### Adding a project: `project -a`
 
-### Adding a person: `add`
+Adds a project to the application. A unique project ID will be automatically generated.
 
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `project -a n/PROJECT_NAME [r/USERNAME/REPO_NAME]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A project can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `project -a n/ProjectX`
+* `project -a n/ProjectY r/AgentX/ProjectY`
 
-### Listing all persons : `list`
+### Listing all projects : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all projects.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing a project : `project -e`
 
-Edits an existing person in the address book.
+Edits an existing project.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `project -e PROJECT_ID [n/PROJECT_NAME] [r/REPO_URL]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the project with the specified `PROJECT_ID`. The ID refers to the unique ID generated upon adding a project.
+  The ID **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* When editing tags, the existing tags of the project will be removed i.e. adding of tags is not cumulative.
+* You can remove all the project’s tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `project -e 1 n/ProjectX` Edits the project with `PROJECT_ID` 1 to be renamed to ProjectX.
+*  `project -e 2 r/AgentY/ProjectY` Edits the project with `PROJECT_ID` 2 to be associated with new repository link.
+*  `project -e 3 n/ProjectZ r/AgentZ/ProjectZ` Edits the project with `PROJECT_ID` 3.
 
-### Locating persons by name: `find`
+### Deleting a project : `project -d`
 
-Finds persons whose names contain any of the given keywords.
+Deletes a project from the application.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `project -d PROJECT_ID`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Deletes the project with the specified `PROJECT_ID`.
+* The ID **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `project -d 1` Deletes project with `PROJECT_ID` 1.
 
-### Deleting a person : `delete`
+### Tagging a client : `client -t`
 
-Deletes the specified person from the address book.
+Tags a client to a project.
 
-Format: `delete INDEX`
+Format: `client -t PROJECT_ID n/CLIENT_NAME [p/CLIENT_CONTACT_NUMBER] [e/CLIENT_EMAIL]…​`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Adds the client to the project with the specified `PROJECT_ID`.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+*  `client -t 1 n/Amy` Tags the project with `PROJECT_ID` 1 with a client with `CLIENT_NAME` Amy.
+*  `client -t 2 n/Bob p/91234567` Tags the project with `PROJECT_ID` 2 with a client with `CLIENT_NAME` Bob and 
+   `CLIENT_CONTACT_NUMBER` 91234567.
+*  `client -t 3 n/Charlie e/charlie@gmail.com` Tags the project with `PROJECT_ID` 2 with a client with `CLIENT_NAME` 
+    Charlie and `CLIENT_EMAIL` charlie@gmail.com.
+*  `client -t 2 n/Dave p/91111111 e/dave@gmail.com` 
+
+### Editing a client : `client -d`
+
+Edits the client for a specific project.
+
+Format: `client -e i/PROJECT_ID n/CLIENT_NAME [p/CLIENT_CONTACT_NUMBER] [e/CLIENT_EMAIL]…​`
+
+* Edits the client of the project with the specified `PROJECT_ID`.
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+
+Examples:
+*  `client -e 1 n/Amy` Edits the client tagged to project with `PROJECT_ID` 1 with new `CLIENT_NAME` Amy.
+*  `client -e 2 n/Bob p/91234567` Edits the client tagged to project with `PROJECT_ID` 2 with new `CLIENT_NAME` Amy 
+   and `CLIENT_CONTACT_NUMBER` 91234567.
+*  `client -e 3 n/Charlie e/charlie@gmail.com` Edits the client tagged to project with `PROJECT_ID` 3 with new 
+   `CLIENT_NAME` Charlie and `CLIENT_EMAIL` charlie@gmail.com.
+*  `client -e 2 n/Dave p/91111111 e/dave@gmail.com`
+
+### Deleting a client : `client -d`
+
+Removes the client from a project.
+
+Format: `client -d i/PROJECT_ID n/CLIENT_NAME`
+
+* Deletes the client with `CLIENT_NAME` tagged to the specified project with given `PROJECT_ID`.
+* The ID **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `client -d 1 n/Amy` Deletes client with `CLIENT_NAME` Amy tagged to project with `PROJECT_ID` 1.
+
+### Tagging a deadline : `deadline -t`
+
+Tags a deadline to a project.
+
+Format: `deadline -t i/PROJECT_ID d/DATETIME …​`
+
+* Tags the deadline to the project with the specified `PROJECT_ID`.
+* `DATETIME` must be in the following format: yyyy-mm-dd.
+
+Examples:
+*  `deadline -t 1 2022-09-16` Tags the project with `PROJECT_ID` 1 with the specified deadline.
+
+### Editing a deadline : `deadline -e`
+
+Edits the deadline for a specific project.
+
+Format: `deadline -e i/PROJECT_ID d/NEW_DATETIME…​`
+
+* Edits the deadline of the project with the specified `PROJECT_ID`.
+* `DATETIME` must be in the following format: yyyy-mm-dd.
+
+Examples:
+*  `deadline -e 1 2022-09-16` Edits the deadline of project with `PROJECT_ID` to be 2022-09-16.
+
+### Deleting a deadline : `deadline -d`
+
+Removes a deadline to a project.
+
+Format: `deadline -d i/PROJECT_ID`
+
+* Deletes the deadline tagged to the specified project with given `PROJECT_ID`.
+* The ID **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `deadline -d 1` Deletes deadline tagged to project with `PROJECT_ID` 1.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from the list.
 
 Format: `clear`
 
@@ -156,14 +222,17 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+DevEnable data are saved in the hard disk automatically after any command that changes the data. There is no need to 
+save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+DevEnable data are saved as a txt file `[JAR file location]/data/devenable.txt`. Advanced users are welcome to 
+update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, DevEnable will discard all data and start with an empty data 
+file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -175,18 +244,25 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains 
+the data of your previous AddressBook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action             | Format, Examples |
+|--------------------|------------------|
+| **Add Project**    | `project -a`     |
+| **Edit Project**   | `project -e`     |
+| **Delete Project** | `project -d`     |
+| **Tag Client**     | `client -a`      |
+| **Edit Client**    | `client -e`      |
+| **Delete Client**  | `client -d`      |
+| **Tag Deadline**   | `deadline -a`    |
+| **Edit Deadline**   | `deadline -e`    |
+| **Delete Deadline** | `deadline -d`    |
+| **Clear**          | `clear`          |
+| **List**           | `list`           |
+| **Help**           | `help`           |
+
