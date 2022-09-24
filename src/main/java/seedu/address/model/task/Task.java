@@ -4,14 +4,18 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
-import seedu.address.model.person.*;
+import seedu.address.model.person.Person;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Task in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Task {
 
+    /**
+     * Represents whether the Task has been assigned to the user,
+     * or the user has assigned to someone else.
+     */
     public enum Assignment {
         ASSIGNOR, ASSIGNEE;
 
@@ -76,8 +80,8 @@ public class Task {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both tasks have the data and status fields.
+     * This defines a stronger notion of equality between two tasks.
      */
     @Override
     public boolean equals(Object other) {
@@ -112,10 +116,7 @@ public class Task {
                 .append("\n")
                 .append(getDescription());
 
-
-
         return builder.toString();
     }
-
 }
 
