@@ -321,7 +321,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **User**: Refers to the food critic 
+* **Command**: Input by users that is within the Command List
+* * **Review**: Refers to an entry for a particular food stall
 
 --------------------------------------------------------------------------------------------------------------------
 
