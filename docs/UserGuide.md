@@ -142,6 +142,23 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Viewing a person: `view`
+
+Views the attributes of all surveyees with some specified attributes.
+
+Format: `[n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [ra/RACE] [re/RELIGION] [s/NAME OF SURVEY]`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Fields must be non-empty.
+</div>
+
+Examples:
+```
+view g/female ra/chinese re/christian
+> Index: 15 Jane Doe 91234567 jane_doe@example.com, …
+> Index: 19 Jenette Doe 81234567 jenette_doe@example.com, …
+```
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
