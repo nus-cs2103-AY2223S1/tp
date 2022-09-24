@@ -284,14 +284,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `Financial Aid Planner` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Financial Advisor Planner` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Add a client**
 
 **MSS**
 
 1.  User inputs add command with the client's information
-2.  Financial Aid Planner adds the client and their information to the list 
+2.  Financial Advisor Planner adds the client and their information to the list 
 
     Use case ends.
 
@@ -299,12 +299,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. Input fields are invalid
 
-  * 1a1. Financial Aid Planner shows an error message.
+  * 1a1. Financial Advisor Planner shows an error message.
 
     Use case ends.
 * 1b. Any of the mandatory fields are not input by the user
 
-    * 1b1. Financial Aid Planner shows an error message.
+    * 1b1. Financial Advisor Planner shows an error message.
 
       Use case ends.
 
@@ -313,9 +313,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list clients
-2.  Financial Aid Planner shows a list of clients 
+2.  Financial Advisor Planner shows a list of clients 
 3.  User requests to delete a specific client in the list
-4.  Financial Aid Planner deletes the client 
+4.  Financial Advisor Planner deletes the client 
 
     Use case ends.
 
@@ -327,7 +327,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. Financial Aid Planner shows an error message.
+    * 3a1. Financial Advisor Planner shows an error message.
 
       Use case resumes at step 2.
 
@@ -336,9 +336,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to list clients
-2. Financial Aid Planner shows a list of clients
+2. Financial Advisor Planner shows a list of clients
 3. User requests to edit the details of a client at the specified index 
-4. Financial Aid Planner edits the details of the specified client in the list 
+4. Financial Advisor Planner edits the details of the specified client in the list 
 
     Use case ends.
 
@@ -346,22 +346,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. User did not input any arguments.
 
-    * 3a1. Financial Aid Planner shows an error message.
+    * 3a1. Financial Advisor Planner shows an error message.
     
       Use case resumes at step 2. 
   
 * 3b. The given index is invalid. 
 
-    * 3b1. Financial Aid Planner shows an error message.
+    * 3b1. Financial Advisor Planner shows an error message.
 
       Use case resumes at step 2.
 
-**Use case: Clear Financial Aid Planner**
+**Use case: Clear Financial Advisor Planner**
 
 **MSS**
 
 1.  User requests to clear the list of clients
-2.  Financial Aid Planner shows a success message 
+2.  Financial Advisor Planner shows a success message 
 
     Use case ends.
 
@@ -370,7 +370,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to find clients containing input keyword(s)
-2.  Financial Aid Planner shows a list of clients with the matching keyword(s)
+2.  Financial Advisor Planner shows a list of clients with the matching keyword(s)
 
     Use case ends.
 *{More to be added}*
@@ -386,13 +386,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 7.  Stored data should be backwards compatible with older versions 
 8.  Stored data should be secure and only accessible by user 
 9.  User interface should be usable for beginners
+ 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
- 
+* **CLI**: Command Line Interface
+* **GUI**: Graphical User Interface
+
+*{More to be added}*
+
 --------------------------------------------------------------------------------------------------------------------
 
 
