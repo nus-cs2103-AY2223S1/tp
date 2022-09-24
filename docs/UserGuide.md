@@ -279,3 +279,6 @@ Action | Format, Examples
 **Search** | `search [n/NAME] [p/PHONE_NUMBER] ...`<br> e.g., `seach n/John Doe t/cs2103t`
 **List** | `list`
 **Help** | `help`
+**tag create** | `tag create t/TAG` <br> e.g., `tag create t/friend`
+**tag edit** | `tag edit t/TAG1 t/TAG2`  <br> e.g., `tag edit t/friend t/bestFriend`
+**tag add** | `tag add n/NAME t/TAG` <br> e.g., `tag add n/John Doe t/friend`
