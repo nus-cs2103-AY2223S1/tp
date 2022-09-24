@@ -312,16 +312,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. Technical requirement: the app should work on all _mainstream OS_ as long as it has Java `11` or above installed.
+2. Performance requirements: the app should respond within two seconds for typical usage.
+3. Quality requirements: the app should be usable by a person who has average computer skills.
+4. Portability: it should be possible to easily transfer the data from the app to another computer.
+5. Documentation: user guide should be sufficiently clear such that all users can understand how to use the app after reading the guide.
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **App**: Short for application (the short form is only used to refer to the CinternS program, not internship applications)
+* **Mainstream OS**: Windows, Linux, OS-X
+
 
 --------------------------------------------------------------------------------------------------------------------
 
