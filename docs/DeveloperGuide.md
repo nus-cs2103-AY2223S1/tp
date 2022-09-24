@@ -257,59 +257,183 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* Food critics want to keep track of all the food stalls and reviews given
+* has a need to manage a significant number of food stalls and reviews
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* needs a local database to store all information
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
+
+* An application to show all the food stalls and reviews given to the particular stalls
+* Commands are typed using command line
+* Manage stalls faster than a typical mouse/GUI driven app
+* All stalls/reviews created are stored in the local database
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a …​                              | I want to …​                                                                                                                 | So that I can…​                                                                                                                                        |
+|----------|--------------------------------------|------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `* * *`  | user                                 | create reviews for a food stall                                                                                              | record which food stall that I have visited have nice food                                                                                             |
+| `* * *`  | user                                 | view reviews for a food stall                                                                                                | easily find out the best food I have eaten                                                                                                             |
+| `* * *`  | user                                 | delete review for food stall                                                                                                 | delete any erroneous entries I have made                                                                                                               |
+| `* *`    | user                                 | modify details of review for food stall                                                                                      | rectify any erroneous details in the entry                                                                                                             |
+| `* * *`  | user                                 | list out food stall                                                                                                          | have a overview of the food stalls I have been to                                                                                                      |
+| `* *`    | user                                 | list out food stall according from high to low reviews                                                                       | see the top few food stall                                                                                                                             |
+| `* * *`  | user                                 | find food stall by substring match name                                                                                      | find the exact food stall I am interested in                                                                                                           |
+| `*`      | user                                 | find food stall by approximate name                                                                                          | find the exact food stall I am interested in even when I’m not very sure about the stall name                                                          |
+| `*`      | user                                 | tag a food stall with a tag                                                                                                  | categorize food stalls effectively                                                                                                                     |
+| `*`      | user                                 | list out food place according to given tag                                                                                   | get an overview of the food place with the tag i am interested in                                                                                      |
+| `*`      | user                                 | include photo along with the review                                                                                          | easily identify which photo belongs to which stall and upload them to social media                                                                     |
+| `* * *`  | user                                 | purge existing data                                                                                                          | get rid of any sample data                                                                                                                             |
+| `* * *`  | user                                 | add food stall addresses                                                                                                     | add a new location I can review                                                                                                                        |
+| `* * *`  | user                                 | delete food stall addresses                                                                                                  | remove a stall when it closes                                                                                                                          |
+| `* * *`  | new user                             | see the application populated with sample data                                                                               | view what the app should look like                                                                                                                     |
+| `* *`    | user                                 | modify the address of a place/food stall                                                                                     | update when a hawker moves to a different place                                                                                                        |
+| `*`      | user                                 | find places close to my current location                                                                                     | choose where to go next effectively                                                                                                                    |
+| `*`      | user                                 | store individual food ratings of a place                                                                                     | see which food I have reviewed from a place                                                                                                            |
+| `*`      | user                                 | search food places by food type                                                                                              | organize my work to sure variety in food type in my reviews (for example, same/different types of food in the same review or to facilitate comparison) |
+| `*`      | user                                 | send the reviews through other social media platforms                                                                        | share the review with my friends without having to make separate posts                                                                                 |
+| `* * *`  | user                                 | include a date/day on my reviews                                                                                             | track how much reviewing I have done over time                                                                                                         |
+| `*`      | user                                 | see review that are most recent (sorting)                                                                                    | get the most updated review                                                                                                                            |
+| `*`      | user                                 | archive existing stalls / review                                                                                             | not be distracted by previous reviews made                                                                                                             |
+| `* * *`  | new user                             | check out what tools are available in this application                                                                       | learn how to use the application                                                                                                                       |
+| `* * *`  | user helping another person, eg. Bob | import data                                                                                                                  | get existing lists from Bob to work on                                                                                                                 |
+| `* * *`  | user                                 | export data                                                                                                                  | archive my data entries somewhere else                                                                                                                 |
+| `*`      | user                                 | set a deadline to review a particular stall                                                                                  | remind myself to complete the task                                                                                                                     |
+| `*`      | experienced user                     | see statistics of total number of reviews or stalls created                                                                  | keep track of my performance and targets for the year                                                                                                  |
+| `*`      | user                                 | include custom rating metrics on my review (star system? Health benefits?)                                                   | be more nuanced on my review                                                                                                                           |
+| `* * *`  | user                                 | include stall opening and closing times                                                                                      | plan my schedule on when to visit the stall accordingly                                                                                                |
+| `*`      | impatient user                       | manage over 1000 stalls and reviews in reasonable time                                                                       | minimize my waiting time                                                                                                                               |
+| `*`      | impatient user                       | open the app quickly                                                                                                         | not wait so long                                                                                                                                       |
+| `*`      | impatient user                       | get a visualisation for any loading times                                                                                    | know how long I need to wait                                                                                                                           |
+| `* *`    | user                                 | search for past reviews by substring                                                                                         | see places I’ve been to before                                                                                                                         |
+| `* *`    | user                                 | filter for past reviews by stall                                                                                             | see places I’ve been to before                                                                                                                         |
+| `*`      | advanced user                        | add command aliases                                                                                                          | speed up my workflow                                                                                                                                   |
+| `*`      | user                                 | plan my social media posting schedule of my current reviews <br/> (i.e. I want to post about this stall at this future date) | manage my social media presence                                                                                                                        |                                                                                                                                                     
+| `*`      | advanced user                        | access data files in csv format                                                                                              | modify the data files used in the app programmatically to do custom things                                                                             |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+### Use cases
+> Definition:
+> - For all use cases below, the **System** is `FoodWhere` and the **Actor** is the `User`, unless specified otherwise.
+> - More specifically, the `User` are **Food Critics**.
 
-**Use case: Delete a person**
+> Guarantees:
+> - For any use cases below that changes any data, FoodWhere will guarantee that the data is updated and saved.
+****
+
+**Use case 1: Add a food stall**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User starts FoodWhere
+2. User requests to add a stall through an appropriate command
+3. FoodWhere adds the stall and confirms with a success message that the stall is added
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. User issues the correct `add` command
 
-  Use case ends.
+    * 2a1. User uses `sadd` command
 
-* 3a. The given index is invalid.
+      Use case resumes at step 3.
 
-    * 3a1. AddressBook shows an error message.
+* 2b. User issues the correct `sadd` command with the wrong syntax
 
-      Use case resumes at step 2.
+    * 2b1. FoodWhere sends an error message to the User, indicating that the format for adding a stall is incorrect, and attaches the correct syntax format in the message.
 
-*{More to be added}*
+      Use case ends.
 
+****
+
+**Use case 2: Add a food review**
+
+**MSS**
+
+1. User starts FoodWhere
+2. User requests to add a review through an appropriate command
+3. FoodWhere adds the review and confirms with a success message that the review is added
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. User issues the correct `add` command
+
+    * 2a1. User uses `radd` command
+
+      Use case resumes at step 3.
+
+* 2b. User issues the correct `radd` command with the wrong syntax
+
+    * 2b1. FoodWhere sends an error message to the User, indicating that the format for adding a review is incorrect, and attaches the correct syntax format in the message.
+
+      Use case ends.
+
+****
+
+**Use case 3: Delete a food stall**
+
+**MSS**
+
+1. User starts FoodWhere
+2. User requests to delete a stall through an appropriate command
+3. FoodWhere deletes the stall and confirms with a success message that the stall is deleted
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. FoodWhere detects an error in the entered data. (Invalid index)
+    * 2a1. FoodWhere sends an error message to User, indicating the index used for the delete
+      command is incorrect, attached with the correct syntax format.
+
+      Use case ends.
+
+****
+
+**Use case 4: Delete a food review**
+
+**MSS**
+
+1. User starts FoodWhere
+2. User requests to delete a review through an appropriate command
+3. FoodWhere deletes the review and confirms with a success message that the review is deleted
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. FoodWhere detects an error in the entered data. (Invalid index)
+    * 2a1. FoodWhere sends an error message to User, indicating the index used for the delete
+      command is incorrect, attached with the correct syntax format.
+
+      Use case ends.
+
+****
+
+**Use case 5: Exiting the program**
+
+**Preconditions**
+- User is currently using FoodWhere
+
+**MSS**
+
+1. User enters a command to exit FoodWhere.
+2. FoodWhere saves all changes to disk and closes.
+
+   Use case ends.
+
+****
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
