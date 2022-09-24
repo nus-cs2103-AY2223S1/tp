@@ -112,6 +112,36 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
+### Create a Tag: `tag create`
+
+Creates a new tag
+
+Format: `tag create t/TAG`
+
+Example:
+* `tag create t/family` creates a `family` tag.
+
+### Edit a tag: `tag edit`
+
+Renames an existing tag.
+
+Format: `tag edit t/TAG1 t/ TAG2`
+
+* `TAG1` is the current name of the tag and `TAG2` is the new name of the tag.
+
+Example:
+* `tag edit t/friend t/bestFriend` changes the friend tag to a bestFriend tag.
+
+### Add a Tag to a Contact: `tag add`
+
+Adds an existing tag to an existing contact.
+
+Format: `tag add n/NAME t/TAG`
+
+* `Name` is the name of the contact to add `TAG` to.
+
+Example:
+* `tag add n/John Doe t/friend` adds the friend tag to John Doe.
 ### Locating persons by name: `find`
 
 Finds persons whose names contain any of the given keywords.
