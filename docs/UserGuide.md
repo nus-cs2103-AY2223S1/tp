@@ -130,17 +130,22 @@ Examples:
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+Delete an existing person in Survin by index or delete all persons satisfying the specified attributes.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+Format: delete INDEX, delete [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [ra/RACE] [re/RELIGION] [s/NAME OF SURVEY]
 
-Examples:
+* Delete surveyee(s) satisfying the conditions specified.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …
+* Fields must be non-empty if deleting by attributes
+
+Example:
+
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `delete ra/Chinese re/christian` Deletes all surveyees that are Chinese and Christian.
 
 ### Duplicate a person : `duplicate`
 
