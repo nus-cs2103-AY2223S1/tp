@@ -97,6 +97,16 @@ Format: `adddebt <person index> d/<description> m/<money>`
 Example:
 * `adddebt 3 d/McDonalds m/8.9`
 
+### Deleting a debt: `deletedebt`
+
+Deletes a debtor's debts from PayMeLah according to his index 
+number when listed.
+
+Format: `deletedebt <person index>`
+
+Example:
+* `deletedebt 3`
+
 ### Listing all persons : `list`
 
 Shows a list of all persons in PayMeLah.
