@@ -30,7 +30,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Documentation
 * Responsibilities: Storage
 
-### Jamie Tan
+### Jamie Tan Wei-Xuan
 
 <img src="images/jamie.png" width="200px">
 
