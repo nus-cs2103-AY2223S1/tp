@@ -53,7 +53,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/hamas.png" width="200px">
 
 [[github](http://github.com/Bahamas20)]
-[[portfolio](team/Bahamas20.md)]
+[[portfolio](team/bahamas20.md)]
 
 * Role: Developer
 * Responsibilities: UI
