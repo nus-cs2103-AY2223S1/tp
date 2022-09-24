@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.contacts;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 
 import java.util.List;
 
@@ -17,12 +18,13 @@ import seedu.address.model.person.Person;
  */
 public class ContactDeleteCommand extends Command {
 
+    public static final String CATEGORY_WORD = "contact";
     public static final String COMMAND_WORD = "delete";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE = CATEGORY_WORD + " " + COMMAND_WORD
             + ": Deletes the person identified by the index number used in the displayed person list.\n"
-            + "Parameters: i/INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " i/1";
+            + "Parameters: " + PREFIX_INDEX + "INDEX (must be a positive integer)\n"
+            + "Example: " + CATEGORY_WORD + " " + COMMAND_WORD + " " + PREFIX_INDEX + "1";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 

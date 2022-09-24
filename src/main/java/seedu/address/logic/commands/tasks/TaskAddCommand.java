@@ -15,9 +15,12 @@ import seedu.address.model.person.Name;
  */
 public class TaskAddCommand extends Command {
 
+    public static final String CATEGORY_WORD = "task";
+
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the taskbook. "
+    public static final String MESSAGE_USAGE = CATEGORY_WORD + " " + COMMAND_WORD
+            + ": Adds a task to the taskbook.\n"
             + "Parameters: "
             + PREFIX_ASSIGNOR + "/" + PREFIX_ASSIGNEE + "/" + "ASSIGNOR/ASSIGNEE "
             + PREFIX_DESCRIPTION + "DESCRIPTION";
