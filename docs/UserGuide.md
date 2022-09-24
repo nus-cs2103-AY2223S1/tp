@@ -265,4 +265,5 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Search** | `search [n/NAME] [p/PHONE_NUMBER] ...`<br> e.g., `seach n/John Doe t/cs2103t`
 **List** | `list`
+**Sort** | `sort [n/] [p/] [e/] [a/] [t/TAG]…​` <br> e.g., `sort t/friend n/`
 **Help** | `help`
