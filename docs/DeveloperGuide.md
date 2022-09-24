@@ -312,11 +312,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. The software should work on any mainstream OS as long as it has Java 11 or above installed.
+1. The software will not facilitate actual monetary transactions, nor any communications between persons.
+1. The software should be able to hold up to 1000 persons and 10000 debts without a noticeable sluggishness in performance for typical usage.
+1. The software should not result in noticeable lag for other applications.
+1. The product should be for a single user only; multiple users cannot use the software on the same device simultaneously.
+1. The data stored by the software should be stored locally and in a human editable text file, rather than stored using a DBMS.
+1. The software should work without requiring an installer.
+1. The software should not depend on a remote server.
+1. The software should not require the user to create an account on a third-party service.
+1. The software should follow the Object-oriented paradigm primarily.
+1. The software should avoid implementing hard-to-test features or features that make the product hard-to-test.
+1. The software should only make use of third-party frameworks/libraries/services if they are free, open-source, and have permissive license terms.
+1. The software should be able to be packaged into a single JAR file.
+1. The file sizes of the product and its documents should be reasonable, i.e. the JAR file itself should not exceed 100MB and the documents should not exceed 15MB per file.
+1. The GUI should work well for standard screen resolutions 1920x1080 and higher, and, for screen scales 100% and 125%.
+1. The GUI should be usable for resolutions 1280x720 and higher, and, for screen scales 150%.
+1. The GUI should have a readable font, at least size 12.
+1. The GUI should be able to respond to user inputs in 500 milliseconds.
+1. The software and documentation should be accessible for users who have a basic command of the English language.
+1. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 ### Glossary
 
