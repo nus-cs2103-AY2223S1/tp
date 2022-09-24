@@ -22,7 +22,6 @@ public class TaskDeleteCommandParser implements Parser<TaskDeleteCommand> {
     public TaskDeleteCommand parse(String args) throws ParseException {
         try {
             Index index = ParserUtil.parseIndex(args);
-            System.out.println(index.getOneBased());
             return new TaskDeleteCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
