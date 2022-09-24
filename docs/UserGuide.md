@@ -86,7 +86,7 @@ Examples:
 * `project -a n/ProjectX`
 * `project -a n/ProjectY r/AgentX/ProjectY`
 
-### Listing all persons : `list`
+### Listing all projects : `list`
 
 Shows a list of all projects.
 
@@ -111,17 +111,63 @@ Examples:
 *  `project -e 2 r/AgentY/ProjectY` Edits the project with `PROJECT_ID` 2 to be associated with new repository link.
 *  `project -e 3 n/ProjectZ r/AgentZ/ProjectZ` Edits the project with `PROJECT_ID` 3.
 
-### Deleting a person : `project -d`
+### Deleting a project : `project -d`
 
 Deletes a project from the application.
 
 Format: `project -d PROJECT_ID`
 
-* Deletes the person with the specified `PROJECT_ID`.
+* Deletes the project with the specified `PROJECT_ID`.
 * The ID **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `project -d 1` Deletes project with `PROJECT_ID` 1.
+
+### Tagging a client : `client -t`
+
+Tags a client to a project.
+
+Format: `client -t PROJECT_ID n/CLIENT_NAME [p/CLIENT_CONTACT_NUMBER] [e/CLIENT_EMAIL]…​`
+
+* Adds the client to the project with the specified `PROJECT_ID`.
+
+Examples:
+*  `client -t 1 n/Amy` Tags the project with `PROJECT_ID` 1 with a client with `CLIENT_NAME` Amy.
+*  `client -t 2 n/Bob p/91234567` Tags the project with `PROJECT_ID` 2 with a client with `CLIENT_NAME` Bob and 
+   `CLIENT_CONTACT_NUMBER` 91234567.
+*  `client -t 3 n/Charlie e/charlie@gmail.com` Tags the project with `PROJECT_ID` 2 with a client with `CLIENT_NAME` 
+    Charlie and `CLIENT_EMAIL` charlie@gmail.com.
+*  `client -t 2 n/Dave p/91111111 e/dave@gmail.com` 
+
+### Editing a client : `client -d`
+
+Edits the client for a specific project.
+
+Format: `client -e i/PROJECT_ID n/CLIENT_NAME [p/CLIENT_CONTACT_NUMBER] [e/CLIENT_EMAIL]…​`
+
+* Edits the client of the project with the specified `PROJECT_ID`.
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+
+Examples:
+*  `client -e 1 n/Amy` Edits the client tagged to project with `PROJECT_ID` 1 with new `CLIENT_NAME` Amy.
+*  `client -e 2 n/Bob p/91234567` Edits the client tagged to project with `PROJECT_ID` 2 with new `CLIENT_NAME` Amy 
+   and `CLIENT_CONTACT_NUMBER` 91234567.
+*  `client -e 3 n/Charlie e/charlie@gmail.com` Edits the client tagged to project with `PROJECT_ID` 3 with new 
+   `CLIENT_NAME` Charlie and `CLIENT_EMAIL` charlie@gmail.com.
+*  `client -e 2 n/Dave p/91111111 e/dave@gmail.com`
+
+### Deleting a client : `client -d`
+
+Removes the client from a project.
+
+Format: `client -d i/PROJECT_ID n/CLIENT_NAME`
+
+* Deletes the client with `CLIENT_NAME` tagged to the specified project with given `PROJECT_ID`.
+* The ID **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `client -d 1 n/Amy` Deletes client with `CLIENT_NAME` Amy tagged to project with `PROJECT_ID` 1.
 
 ### Clearing all entries : `clear`
 
