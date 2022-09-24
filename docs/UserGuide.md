@@ -129,7 +129,7 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
-  
+
 ###  Search for a Contact: `search`
 
 Search for contacts using tags or other information.
@@ -195,12 +195,9 @@ Format: `customise order [p/] [e/] [a/] [t/]`
 
 *Attributes not given will be ordered last in default order. (tag > phone > address > email)
 
-Example: 
+Example:
 
 * `customise order a/ e/ p/` The application now shows address first, followed by email, phone, then tags
-
-
-
 
 ### Clearing all entries : `clear`
 
