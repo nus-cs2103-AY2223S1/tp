@@ -284,16 +284,38 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Financial Aid Planner` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a client**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User inputs add command with the client's information
+2.  Financial Aid Planner adds the client and their information to the list 
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Input fields are invalid
+
+  * 1a1. Financial Aid Planner shows an error message.
+
+    Use case ends.
+* 1b. Any of the mandatory fields are not input by the user
+
+    * 1b1. Financial Aid Planner shows an error message.
+
+      Use case ends.
+
+**Use case: Delete a client**
+
+**MSS**
+
+1.  User requests to list clients
+2.  Financial Aid Planner shows a list of clients 
+3.  User requests to delete a specific client in the list
+4.  Financial Aid Planner deletes the client 
 
     Use case ends.
 
@@ -305,10 +327,52 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Financial Aid Planner shows an error message.
 
       Use case resumes at step 2.
 
+**Use case: Edit client details**
+
+**MSS**
+
+1. User requests to list clients
+2. Financial Aid Planner shows a list of clients
+3. User requests to edit the details of a client at the specified index 
+4. Financial Aid Planner edits the details of the specified client in the list 
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. User did not input any arguments.
+
+    * 3a1. Financial Aid Planner shows an error message.
+    
+      Use case resumes at step 2. 
+  
+* 3b. The given index is invalid. 
+
+    * 3b1. Financial Aid Planner shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Clear Financial Aid Planner**
+
+**MSS**
+
+1.  User requests to clear the list of clients
+2.  Financial Aid Planner shows a success message 
+
+    Use case ends.
+
+**Use case: Find client**
+
+**MSS**
+
+1.  User requests to find clients containing input keyword(s)
+2.  Financial Aid Planner shows a list of clients with the matching keyword(s)
+
+    Use case ends.
 *{More to be added}*
 
 ### Non-Functional Requirements
