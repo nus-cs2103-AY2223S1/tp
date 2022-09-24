@@ -52,13 +52,13 @@ public class TaskBookParserTest {
 
     @Test
     public void parseCommand_task_add() throws Exception {
-        TaskAddCommand command = (TaskAddCommand) parseTaskCommand("add m/John t/Finish user guide /d 2022-09-21");
+        TaskAddCommand command = (TaskAddCommand) parseTaskCommand("add m/John d/Finish user guide");
         assertNotNull(command);
     }
 
     @Test
     public void parseCommand_task_delete() throws Exception {
-        TaskDeleteCommand command = (TaskDeleteCommand) parseTaskCommand("delete i/1");
+        TaskDeleteCommand command = (TaskDeleteCommand) parseTaskCommand("delete 1");
         assertNotNull(command);
     }
 

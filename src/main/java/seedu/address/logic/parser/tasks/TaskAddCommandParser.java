@@ -28,41 +28,27 @@ public class TaskAddCommandParser implements Parser<TaskAddCommand> {
      */
     @Override
     public TaskAddCommand parse(String args) throws ParseException {
+        args = args.trim();
         if (args.startsWith(PREFIX_ASSIGNOR.getPrefix())) {
-            return parseAssignor(args);
+            return parseWithPrefix(args, PREFIX_ASSIGNOR);
         }
 
         if (args.startsWith(PREFIX_ASSIGNEE.getPrefix())) {
-            return parseAssignee(args);
+            return parseWithPrefix(args, PREFIX_ASSIGNEE);
         }
 
         throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TaskAddCommand.MESSAGE_USAGE));
     }
 
-    private TaskAddCommand parseAssignor(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_ASSIGNOR, PREFIX_DESCRIPTION);
+    private TaskAddCommand parseWithPrefix(String args, Prefix firstPrefix) throws ParseException {
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, firstPrefix, PREFIX_DESCRIPTION);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_ASSIGNOR, PREFIX_DESCRIPTION)
+        if (!arePrefixesPresent(argMultimap, firstPrefix, PREFIX_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TaskAddCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_ASSIGNOR).get());
-        String description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
-
-        return new TaskAddCommand(name, description);
-    }
-
-
-    private TaskAddCommand parseAssignee(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_ASSIGNEE, PREFIX_DESCRIPTION);
-
-        if (!arePrefixesPresent(argMultimap, PREFIX_ASSIGNEE, PREFIX_DESCRIPTION)
-                || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TaskAddCommand.MESSAGE_USAGE));
-        }
-
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_ASSIGNEE).get());
+        Name name = ParserUtil.parseName(argMultimap.getValue(firstPrefix).get());
         String description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
 
         return new TaskAddCommand(name, description);

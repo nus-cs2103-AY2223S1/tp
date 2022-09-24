@@ -13,14 +13,14 @@ public class TaskCategoryParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        String arguments = "";
+        String arguments = "o/Sam d/Finish the assignment";
         Command command = TaskCategoryParser.parseCommand(TaskAddCommand.COMMAND_WORD, arguments);
         assertTrue(command instanceof TaskAddCommand);
     }
 
     @Test
     public void parseCommand_delete() throws Exception {
-        String arguments = "";
+        String arguments = "1";
         Command command = TaskCategoryParser.parseCommand(TaskDeleteCommand.COMMAND_WORD, arguments);
         assertTrue(command instanceof TaskDeleteCommand);
     }
