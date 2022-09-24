@@ -279,6 +279,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`   | administrator managing <br/>multiple applicants | find applicants using keywords                     | retrieve details of their application without having to go through the entire list |
 | `*`     | advanced user                                   | run the application on different operating systems | access the same database/storage on different operating systems                |
 
+
+
 *{More to be added}*
 
 ### Use cases
@@ -315,6 +317,38 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1a1 TrackAScholar displays an error message that applicant already exist. <br>
     Use case resumes at step 1.
 
+**Use case: UC02 - Delete an applicant**
+
+**Guarantees:**
+* Once an applicant is deleted,the applicant will be removed from the database and the user will no longer
+be able to view the applicant from the list.
+
+**MSS**
+
+1. User request to delete an applicant in TrackAScholar.
+2. User types in the information of the applicant to delete.
+3. Applicant with the matching information is removed from the list
+   Use case ends.
+
+**Extensions**
+
+* 2a. Input format is wrong.
+
+    * 2a1. TrackAScholar displays an error message prompting correct input format. <br>
+      Use case resumes at step 1.
+
+* 2b. Input parameters is invalid.
+
+    * 2b1. TrackAScholar displays an error message showing parameter requirements. <br>
+      Use case resumes at step 1.
+
+* 2c. Verify deletion.
+
+    * 2c1. TrackAScholar displays a message that ask the user if they really want to delete the applicant.
+      If user agrees to request,user has to input in a string "YES" to confirm deletion.
+      Use case ends.
+      
+
 
 *{More to be added}*
 
@@ -324,6 +358,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. Product should not be required to handle the contacting of applicants.
+5. Should be easy to learn and use(User should know how to use the product with ease just by reading the user guide)
 
 *{More to be added}*
 
