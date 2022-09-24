@@ -33,14 +33,14 @@ while still having the benefits of a Graphical User Interface (GUI).
 
 ### 1.1. Command summary
 
-Action | Format, Examples
---------|------------------
-**CommandInBold** | `command examples here`
-**CommandInBold** | `command examples here`
-`add task`    | `add    task     m/MODULE_CODE d/TASK_DESCRIPTION`,<br>e.g.: `add task m/CS2103T d/Complete tP tasks for W07`
-`delete task` | `delete task     m/MODULE_CODE n/TASK_NUMBER`,<br>e.g.: `delete task m/CS2103T n/3`
-**CommandInBold** | `command examples here`
-**CommandInBold** | `command examples here`
+| Action                                | Format                                             | Short Description                                                           |
+|---------------------------------------|----------------------------------------------------|-----------------------------------------------------------------------------|
+| [`add module`](#211-add-module)       | `add    module   m/MODULE_CODE [t/MODULE_TITLE]`   | Add module with a module code and optional module title                     |
+| [`delete module`](#212-delete-module) | `delete module   m/MODULE_CODE`                    | Delete module by module code                                                |
+| [`add task`](#221-add-task)           | `add    task     m/MODULE_CODE d/TASK_DESCRIPTION` | Add task with specified module code and task description                    |
+| [`delete task`](#222-delete-task)     | `delete task     m/MODULE_CODE n/TASK_NUMBER`      | Delete task corresponding to specified task number of specified module code |
+| **CommandInBold**                     | `command format here`                              |                                                                             |
+| **CommandInBold**                     | `command format here`                              |                                                                             |
 --------------------------------------------------------------------------------------------------------------------
 
 ## 2. Features
@@ -59,7 +59,7 @@ Action | Format, Examples
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/81234123 p/999`, only `p/81234123` will be taken.
+  e.g. if you specify `p/81234123 p/999`, only `p/999` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as 
   `home`, `goto` and `exit`) will be ignored.<br>
@@ -68,13 +68,49 @@ Action | Format, Examples
 </div>
 
 ### 2.1. Adding and deleting modules
-#### 2.1.1. Add module: `add module`
-#### 2.1.2. Delete Module: `delete module`
+#### 2.1.1. Add module
+You can add a module into Plannit.
 
+This command will require one flag, and one flag is optional:
+* `m/`: To be followed by the module code of the module to be added into Plannit.
+* `t/`: (Optional flag) To be followed by the module title of the module to be added into Plannit.
+
+Format: `add module m/MODULE_CODE [t/MODULE_TITLE]`
+* A module has a module code and an optional module title.
+
+Examples:
+```
+add module m/CS2103T
+```
+In the above example, we are adding a module `CS2103T` without a title.
+
+```
+add module m/CS2103T t/Software Engineering
+```
+In the above example, we are adding a module `CS2103T` which has the title `Software Engineering`.
+
+#### 2.1.2. Delete module
+You can delete the module with the indicated module code from Plannit.
+
+This command will require one flag:
+* `m/`: To be followed by the module code of the module to be deleted from Plannit.
+
+Format: `delete module m/MODULE_CODE`
+* The module code must correspond to an existing module in Plannit.
+
+Example:
+
+```
+delete module m/CS2103T
+```
+In the above example, we are deleting module CS2103T from Plannit.
+
+#### 2.1.3. Find module: `find module` [coming soon]
+[coming soon]
 <br>
 
 ### 2.2. Adding and deleting tasks
-#### 2.2.1. Add task: `add task`
+#### 2.2.1. Add task
 You may add a task using the `add task` command.
 
 This command will require two flags:
@@ -90,10 +126,10 @@ Example:
 ```
 add task m/CS2103T d/Complete tP tasks for W07
 ```
-* In the above example, we add the task `Complete tP tasks for W07` to the 
-  module with module code `CS2103T`.
+In the above example, we are adding the task `Complete tP tasks for W07` to the 
+module with module code `CS2103T`.
 
-#### 2.2.2 Delete task: `delete task`
+#### 2.2.2. Delete task
 You may delete a task belonging to a particular module using the `delete 
 task` command.
 
@@ -110,10 +146,10 @@ Example:
 ```
 delete task m/CS2103T n/3
 ```
-* In the above example, we are deleting task number **3** from the module 
-  with the module code `CS2103T`.
+In the above example, we are deleting task number **3** from the module 
+with the module code `CS2103T`.
 
-#### 2.4.3. Finding tasks: `find task` [coming soon]
+#### 2.4.3. Finding tasks [coming soon]
 [coming soon]
 <br>
 
@@ -124,7 +160,7 @@ delete task m/CS2103T n/3
 <br>
 
 ### 2.4. Adding and deleting contacts
-#### 2.4.1. Adding contact
+#### 2.4.1. Add contact
 #### 2.4.2. Delete contact
 
 <br>
@@ -148,7 +184,8 @@ Plannit data is saved in the hard disk automatically after any command that chan
 <br>
 
 ### 2.8. Loading The Data
-If save data exists, data is automatically loaded when the program starts. There is no need to load manually.
+If saved data exists, data is automatically loaded when the program starts. There is no need to 
+load manually.
 
 <br>
 
@@ -168,8 +205,9 @@ all data and start with an empty data file at the next run.
 --------------------------------------------------------------------------------------------------------------------
 ## 4. FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**Q**: How do I transfer my data to another computer?<br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with 
+the file that contains the data of your previous Plannit home folder.
 <br>
 <br>
 [More questions coming soon]
