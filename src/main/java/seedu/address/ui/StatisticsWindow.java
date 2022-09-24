@@ -1,14 +1,11 @@
 package seedu.address.ui;
 
+import java.util.logging.Logger;
+
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
-
-import java.util.logging.Logger;
 
 /**
  * Controller for a statistics page
@@ -16,10 +13,8 @@ import java.util.logging.Logger;
 public class StatisticsWindow extends UiPart<Stage> {
 
     // To be updated when attributes of students are added
-    public static final String STATISTICS_MESSAGE = "Your Teaching Statistics:                            \n\n" +
-                                                     "Total number of students: XX\n" +
-                                                     "Total Revenue: $XX\n" +
-                                                     "Total amount owed: $XX";
+    public static final String STATISTICS_MESSAGE = "Your Teaching Statistics:                            \n\n"
+            + "Total number of students: XX\n" + "Total Revenue: $XX\n" + "Total amount owed: $XX";
 
     private static final Logger logger = LogsCenter.getLogger(StatisticsWindow.class);
     private static final String FXML = "StatisticsWindow.fxml";
