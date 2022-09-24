@@ -122,7 +122,6 @@ public class Person {
                 && otherPerson.getWebsite().equals(getWebsite())
                 && otherPerson.getDate().equals(getDate())
                 && otherPerson.getApplicationProcess().equals(getApplicationProcess());
-
     }
 
     @Override
