@@ -40,7 +40,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Shan Hashir
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/shan.png" width="200px">
 
 [[github](http://github.com/sh4nH)]
 [[portfolio](team/shan.md)]
