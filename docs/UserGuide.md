@@ -160,7 +160,7 @@ You may add a link to a specific module using the `add link` command.
 This command will require two flags:
 * `m/`: This flag is to be followed immediately by the module code of the
   module which is associated with the link.
-* `l/`: This flag is to be followed immediately by the link url.
+* `l/`: This flag is to be followed immediately by the link URL.
 
 Format: `add link m/MODULE_CODE l/LINK_URL`
 * The given module code should be that of an existing module in Plannit.
@@ -179,7 +179,7 @@ You may delete a link from a specific module using the `delete link` command.
 This command will require two flags:
 * `m/`: This flag is to be followed immediately by the module code of the
   module which is associated with the link.
-* `l/`: This flag is to be followed immediately by the link url.
+* `l/`: This flag is to be followed immediately by the link URL.
 
 Format: `delete link m/MODULE_CODE l/LINK_URL`
 * The given module code should be that of an existing module in Plannit.
