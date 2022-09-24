@@ -169,6 +169,42 @@ Format: `client -d i/PROJECT_ID n/CLIENT_NAME`
 Examples:
 * `client -d 1 n/Amy` Deletes client with `CLIENT_NAME` Amy tagged to project with `PROJECT_ID` 1.
 
+### Tagging a deadline : `deadline -t`
+
+Tags a deadline to a project.
+
+Format: `deadline -t i/PROJECT_ID d/DATETIME …​`
+
+* Tags the deadline to the project with the specified `PROJECT_ID`.
+* `DATETIME` must be in the following format: yyyy-mm-dd.
+
+Examples:
+*  `deadline -t 1 2022-09-16` Tags the project with `PROJECT_ID` 1 with the specified deadline.
+
+### Editing a deadline : `deadline -e`
+
+Edits the deadline for a specific project.
+
+Format: `deadline -e i/PROJECT_ID d/NEW_DATETIME…​`
+
+* Edits the deadline of the project with the specified `PROJECT_ID`.
+* `DATETIME` must be in the following format: yyyy-mm-dd.
+
+Examples:
+*  `deadline -e 1 2022-09-16` Edits the deadline of project with `PROJECT_ID` to be 2022-09-16.
+
+### Deleting a deadline : `deadline -d`
+
+Removes a deadline to a project.
+
+Format: `deadline -d i/PROJECT_ID`
+
+* Deletes the deadline tagged to the specified project with given `PROJECT_ID`.
+* The ID **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `deadline -d 1` Deletes deadline tagged to project with `PROJECT_ID` 1.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the list.
