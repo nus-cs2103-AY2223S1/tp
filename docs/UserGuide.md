@@ -3,8 +3,12 @@ layout: page
 title: User Guide
 ---
 
+<<<<<<< HEAD
+SETA is a desktop application for CS2103T Teaching Assistants to track their students’ and tutorials’ details, and questions asked by students, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, SETA enables you to manage your tutorials and track your students more effectively than traditional GUI apps.
+=======
 SETA is a **desktop application for CS2103T Teaching Assistants** to track their students’ and tutorials’ details, and questions asked by students, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, SETA enables you to manage your tutorials and track your students more effectively than traditional GUI apps.
 
+>>>>>>> 1ce72d1e675a9d6e50b2f6cb054a75179e701b31
 * Table of Contents
   * **Student**
     * Adding a student: `addstu`
@@ -172,6 +176,85 @@ Clears all entries from the address book.
 
 Format: `clear`
 
+### Adding a question : `addq`
+
+Adds a question to the question list.
+
+Format: `addq QUESTION_DESCRIPTION`
+
+Examples:
+* `addq what is the difference between self-invocation and call-backs for sequence diagrams?` 
+
+![](images/addq.png)
+
+
+### Mark a question : `markq`
+
+Marks a question as important.
+
+Format: `markq QUESTION_NUMBER`
+
+Examples:
+* `markq 1` marks the first question in the question list as important
+
+![](images/markq.png)
+
+### Unmark a question : `unmarkq`
+
+Marks a question as unimportant. (If the question was previously or mistakenly marked as important)
+
+Format: `unmarkq QUESTION_NUMBER`
+
+Examples:
+* `unmarkq 1` marks the first question in the question list as unimportant
+
+![](images/unmarkq.png)
+
+### Delete a question : `deleteq`
+
+Deletes a question in the question list.
+
+Format: `deleteq QUESTION_NUMBER`
+
+Examples:
+* `deleteq 1` deletes the first question from the question list
+
+![](images/deleteq.png)
+
+
+### Add students' response: `addresponse`
+
+Adds the number of messages a specified student sent during tutorial.
+
+Format: `addresponse n\NAME m\MESSAGE_COUNT`
+
+Example:
+* `addresponse n\John Doe m\7`
+
+![result for 'addresponse n\John Doe m\7'](images/addresponse.png)
+
+### Mark tutorial: `marktut`
+
+Marks content in the tutorial as done.
+
+Format: `marktut INDEX`
+
+* Marks the tutorial at the specified `INDEX`. The index refers to the index number shown in the displayed person list.
+  The index must be a positive integer 1, 2, 3, ...
+
+Example:
+* `marktut 1` marks the first tutorial from the tutorial list as done.
+
+![result for 'marktut 1'](images/marktut.png)
+
+### Listing all tutorials: `listtut`
+
+Shows a list of all the added tutorials.
+
+Format: `listtut`
+
+![result for 'listtut'](images/listtut.png)
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -194,38 +277,7 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 _Details coming soon ..._
 
-### Add students' response: `addresponse`  
 
-Adds the number of messages a specified student sent during tutorial.
-
-Format: `addresponse n\NAME m\MESSAGE_COUNT`
-
-Example:
-* `addresponse n\John Doe m\7` 
-
-![result for 'addresponse n\John Doe m\7'](images/addresponse.png)
-
-### Mark tutorial: `marktut`  
-
-Marks content in the tutorial as done.
-
-Format: `marktut INDEX`
-
-* Marks the tutorial at the specified `INDEX`. The index refers to the index number shown in the displayed person list. 
-  The index must be a positive integer 1, 2, 3, ...
-
-Example:
-* `marktut 1` marks the first tutorial from the tutorial list as done.
-  
-![result for 'marktut 1'](images/marktut.png)
-
-### Listing all tutorials: `listtut`  
-
-Shows a list of all the added tutorials.
-
-Format: `listtut`
-
-![result for 'listtut'](images/listtut.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
