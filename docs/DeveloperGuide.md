@@ -298,7 +298,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The list is empty.
 
   Use case ends.
 
@@ -314,9 +314,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to search a specific word in the list
 2.  SoConnect shows a list of persons related to the word.
+    
+    Use case ends.
 
 **Extension**
-* 2a. The list is empty.
+* 1a. The list is empty.
 
   Use case ends
 
@@ -339,12 +341,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. There are no tags.
+* 1a. There are no tags.
 
   Use case ends.
 
 * 3a. There is no such current tag.
-    * 1a1. SoConnect shows an error message.
+    * 3a1. SoConnect shows an error message.
     
       Use case resumes at step 2
 * 3b. The new tag already exist.
@@ -386,6 +388,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extension**
 *  1a. The word changes.
     * 1a1. SoConnect updates the selection of possible words.
+    Use case resumes at step 3.
 
 **Use case: sort by name**
 

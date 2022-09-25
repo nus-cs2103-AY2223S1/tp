@@ -9,7 +9,7 @@ SoConnect is a desktop app for NUS SoC students to manage their contacts, optimi
 
 Given below are my contributions to the project.
 
-* **Code contributed**: [RepoSense link](https://github.com/AY2223S1-CS2103T-W15-1/tp/pulls?q=is%3Apr+author%3AChongCheeKaiClarence)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=chongcheekaiclarence&breakdown=true)
 
 * **Project management**:
     * Set up Github project board.
