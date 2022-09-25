@@ -1,0 +1,30 @@
+# Project Portfolio Page for Zhang Bozheng
+
+## Overview
+
+Minefriends is an application for Minecraft multiplayer players to keep track of their Minecraft friends.
+It aims to help players find the right people to play the right game mode at the right time.
+
+## Summary of Contributions
+
+I was the team lead and overall-in-charge (OIC) for the project.
+I led the development of the project, keeping the team on track to ensure smooth and timely delivery of our product.
+
+### Code contributed
+The link to my contributions in the code dashboard is [here](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=zbz-lvlv&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByAuthors&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&tabAuthor=zbz-lvlv&tabRepo=AY2223S1-CS2103T-T10-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=functional-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false).
+
+### Enhancements implemented
+
+### Contributions to the User Guide
+
+### Contributions to the Developer's Guide
+
+* Target persona
+* Target profile
+* Value proposition
+
+### Contributions to team-based tasks
+
+### Reviewing/mentoring contributions
+
+### Contributions beyond the project team
