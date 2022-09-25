@@ -270,14 +270,16 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
+
 | Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
 | -------- |--------------------------------------------|------------------------------|------------------------------------------------------------------------|
 | `* * *`  | CS2103T TA                                 | add a new student            | keep track of my student's name, email and telegram handle             |
 | `* * *`  | CS2103T TA                                      | edit a student               | correct any errors or make any changes if needed                       |
 | `* * *`  | CS2103T TA                                       | list students                | have an overview of all the students under me                          |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| `***`    | CS2103T TA                                 | list out all the tutorial's details | have an overview of all the tutorials I have                           |
+| `***`    | CS2103T TA                                 | mark certain tutorials as done      | keep track of incomplete tutorials                                     |
+| `***`    | CS2103T TA                                 | add students' response count        | keep track of student's participation                                  |
+
 
 *{More to be added}*
 
@@ -333,6 +335,66 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use Case ends
 
 *{More to be added}*
+
+**Use case: Add student's response count**
+
+**MSS**
+
+1. User requests to list students
+2. AddressBook shows a list of students
+3. User requests to add response count of a specific student
+4. AddressBook adds the response count
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given name is invalid.
+
+    * 3a1. AddressBook shows an error message.
+        
+      Use case resumes at step 2.
+
+**Use case: Mark tutorial**
+
+1. User requests to list students
+2. AddressBook shows a list of students
+3. User requests to mark a specific tutorial as done
+4. AddressBook marks the tutorial as done
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. AddressBook shows an error message.
+
+      Use case resumes at step 2.
+
+
+**Use case: List out tutorials**
+
+**MSS**
+
+1. User requests to list tutorials 
+2. AddressBook shows a list of tutorials 
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+    
+    Use case ends.
 
 ### Non-Functional Requirements
 
