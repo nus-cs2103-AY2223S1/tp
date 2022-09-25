@@ -2,8 +2,11 @@
 layout: page
 title: User Guide
 ---
+UniNurse is a **desktop app** designed for **private nurses to manage their patient contacts, optimized for use via a
+Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type
+fast, UniNurse can get your patient management tasks done faster than traditional GUI apps.
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+### Table of Contents
 
 * Table of Contents
 {:toc}
@@ -11,6 +14,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
+_To be updated ..._
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -66,7 +70,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -142,6 +146,21 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Deleting a task : `deleteTask`
+
+Deletes the specified task associated with a patient.
+
+Format: `deleteTask PATIENT_INDEX TASK_INDEX`
+
+* Deletes the task at the specified `TASK_INDEX` of the patient at the specified `PATIENT_INDEX`.
+* The task index refers to the index number shown in the task list of a patient.
+* The patient index refers to the index number shown in the displayed patient list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `deleteTask 2 3` deletes the 3rd task of the 2nd person in the patient list.
+* `find Betsy` followed by `deleteTask 1 2` deletes the 2nd task of the 1st person in results of the find command.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -156,15 +175,22 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+UniNurse data are saved in the hard disk automatically after any command that changes the data. 
+There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+_[To update name of json file]_
+
+UniNurse data are saved as a JSON file `[JAR file location]/data/addressbook.json`.
+Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, UniNurse will discard all data and start with an empty data file at the next run.
 </div>
+
+### Adding recurring tasks `[coming in v1.3]`
+_Details coming soon ..._
 
 ### Archiving data files `[coming in v2.0]`
 
@@ -172,21 +198,28 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## Command summary
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+| Action                          | Format                                                                           |
+|---------------------------------|----------------------------------------------------------------------------------|
+| **Help**                        | `help`                                                                           |
+| **Add patient**                 | `addPatient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/TASK_DESCRIPTION [t/TAG]…` |
+| **Edit patient**                | `editPatient INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`     |
+| **Delete patient**              | `deletePatient INDEX`                                                            |
+| **List all patients**           | `list`                                                                           |
+| **Find patient**                | `find KEYWORD [MORE_KEYWORDS]`                                                   |
+| **Add task**                    | `addTask PATIENT_INDEX d/TASK_DESCRIPTION`                                       |
+| **Edit task**                   | `editTask PATIENT_INDEX TASK_INDEX d/TASK_DESCRIPTION`                           |
+| **Delete task**                 | `deleteTask PATIENT_INDEX TASK_INDEX`                                            |
+| **List all tasks**              | `listTask`                                                                       |
+| **View all tasks of a patient** | `viewTask INDEX`                                                                 |
+| **Clear all patients**          | `clear`                                                                          |
+| **Exit**                        | `exit`                                                                           |
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## FAQ
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+**Q**: How do I transfer my data to another Computer?<br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
+the data of your previous UniNurse home folder.
