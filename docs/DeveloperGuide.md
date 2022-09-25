@@ -337,7 +337,6 @@ Use case ends.
     
     Use case ends.
 
->>>>>>> developerGuideEdward
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
