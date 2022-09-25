@@ -3,9 +3,34 @@ layout: page
 title: User Guide
 ---
 
+<<<<<<< HEAD
 SETA is a desktop application for CS2103T Teaching Assistants to track their students’ and tutorials’ details, and questions asked by students, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, SETA enables you to manage your tutorials and track your students more effectively than traditional GUI apps.
+=======
+SETA is a **desktop application for CS2103T Teaching Assistants** to track their students’ and tutorials’ details, and questions asked by students, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, SETA enables you to manage your tutorials and track your students more effectively than traditional GUI apps.
+
+>>>>>>> 1ce72d1e675a9d6e50b2f6cb054a75179e701b31
 * Table of Contents
-{:toc}
+  * **Student**
+    * Adding a student: `addstu`
+    * Editing a student: `editstu`
+    * Listing all students: `liststu`
+    * Mark attendance of a student: `attendance`
+    * Add students’ response: `addresponse`
+    * Adding help tag to a student: `helpstu`
+    * Deleting a student: `deletestu`
+  * **Question**
+    * Adding a question: `addq`
+    * Mark a question: `markq`
+    * Unmark a question: `unmarkq`
+    * Delete a question: `deleteq`
+    * List questions: `listq`
+  * **Tutorial**
+    * Adding a tutorial: `addtut`
+    * Delete a tutorial: `deletetut`
+    * Mark tutorial: `marktut`
+    * List tutorials: `listtut`
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -44,13 +69,10 @@ SETA is a desktop application for CS2103T Teaching Assistants to track their stu
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Lim`.
+* 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `n/NAME [t/TELEGRAM_HANDLE]` can be used as `n/John Lim t/@johnlim` or as `n/John Lim`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -63,34 +85,41 @@ SETA is a desktop application for CS2103T Teaching Assistants to track their stu
 
 </div>
 
-### Viewing help : `help`
+### Adding a student : `addstu`
 
-Shows a message explaning how to access the help page.
+Adds a student to the student list.
 
-![help message](images/helpMessage.png)
+![add student](images/addstu.png)
 
-Format: `help`
+Format: `add n/NAME t/TELEGRAM_HANDLE e/EMAIL`
+ 
+Examples:
+* `addstu n/John Lim Jun Jie t/@johnlimjj e/johnlim@example.com`
+* `addstu n/Mary Tan Xiao Li t/@marytxl e/marytxl@example.com`
 
+### Editing a student: `editstu`
 
-### Adding a person: `add`
+Edits an existing student in the student list.
 
-Adds a person to the address book.
+![edit student](images/editstu.png)
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [t/TELEGRAM_HANDLE] [e/EMAIL]`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+* Edits the student at the specified INDEX. The index represents the index number of the student in the student list. The index must be a positive integer 0, 1, 2…
+* At least one of the fields (E.g. [n/NAME] or [e/EMAIL]) must be provided
+* Existing fields will be updated to the input values.
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `editstu 1 t/@johnlim e/jljj@example.com Edits the telegram handle and email of the person at index 1 to be @johnlim and jljj@example.com respectively.`
+* `editstu 3 n/Mary Lee Jing Yi Edits the name of the person at index 3 to be Mary Lee Jing Yi.`
 
-### Listing all persons : `list`
+### Listing all students : `liststu`
 
-Shows a list of all persons in the address book.
+Shows a list of all the students in the student list.
 
-Format: `list`
+![list students](images/liststu.png)
+
+Format: `liststu`
 
 ### Editing a person : `edit`
 
@@ -156,7 +185,7 @@ Format: `addq QUESTION_DESCRIPTION`
 Examples:
 * `addq what is the difference between self-invocation and call-backs for sequence diagrams?` 
 
-![](images/Adding%20Question.png)
+![](images/addq.png)
 
 
 ### Mark a question : `markq`
@@ -168,7 +197,7 @@ Format: `markq QUESTION_NUMBER`
 Examples:
 * `markq 1` marks the first question in the question list as important
 
-![](images/Mark%20Question.png)
+![](images/markq.png)
 
 ### Unmark a question : `unmarkq`
 
@@ -179,7 +208,7 @@ Format: `unmarkq QUESTION_NUMBER`
 Examples:
 * `unmarkq 1` marks the first question in the question list as unimportant
 
-![](images/Unmark%20Question.png)
+![](images/unmarkq.png)
 
 ### Delete a question : `deleteq`
 
@@ -190,7 +219,41 @@ Format: `deleteq QUESTION_NUMBER`
 Examples:
 * `deleteq 1` deletes the first question from the question list
 
-![](images/Delete%20Question.png)
+![](images/deleteq.png)
+
+
+### Add students' response: `addresponse`
+
+Adds the number of messages a specified student sent during tutorial.
+
+Format: `addresponse n\NAME m\MESSAGE_COUNT`
+
+Example:
+* `addresponse n\John Doe m\7`
+
+![result for 'addresponse n\John Doe m\7'](images/addresponse.png)
+
+### Mark tutorial: `marktut`
+
+Marks content in the tutorial as done.
+
+Format: `marktut INDEX`
+
+* Marks the tutorial at the specified `INDEX`. The index refers to the index number shown in the displayed person list.
+  The index must be a positive integer 1, 2, 3, ...
+
+Example:
+* `marktut 1` marks the first tutorial from the tutorial list as done.
+
+![result for 'marktut 1'](images/marktut.png)
+
+### Listing all tutorials: `listtut`
+
+Shows a list of all the added tutorials.
+
+Format: `listtut`
+
+![result for 'listtut'](images/listtut.png)
 
 ### Exiting the program : `exit`
 
@@ -214,6 +277,8 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 _Details coming soon ..._
 
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -225,12 +290,12 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action         | Format, Examples                    |
+|----------------|-------------------------------------|
+| **Add**        | `addstu`, `addq`, `addtut`          |
+| **Attendance** | `attendance`                        |
+| **Delete**     | `deletestu`, `deleteq`, `deletetut` |
+| **Edit**       | `editstu`                           |
+| **List**       | `liststu`, `listq`, `listtut`       |
+| **Mark**       | `markq`, `unmarkq`, `marktut`       |
+| **Tag**        | `helpstu`                           |
