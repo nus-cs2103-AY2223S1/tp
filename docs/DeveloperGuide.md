@@ -356,8 +356,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+2.  _mainstream OS_ includes Windows, MacOS, Linux systems with 64-bit machines
+3.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+5.  Size of windows should be scalable to full screen for maximum screen utilisation
+6. Performance requirements: Should be able to serve its features right now
+8. Extremely intuitive and minimalistic design to avoid confusion. 
+9. The product is not required to handle the direct contacting of users.
+10. For added personality, user should be able to have some customizability.(e.g: Change UI’s theme based on system-defined presets)
+
 
 *{More to be added}*
 
