@@ -330,7 +330,66 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Edit a person**
+
+**MSS**
+
+1.  User requests to list persons
+2.  AddressBook shows a list of persons
+3.  User requests to edit a specific person in the list
+4.  AddressBook edits the information of the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. AddressBook shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Set a reminder for a contact**
+
+**MSS**
+
+1.  User requests to list persons
+2.  AddressBook shows a list of persons
+3.  User requests to set a reminder for a specific person in the list
+4.  AddressBook reminds user when it is time to do so
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. AddressBook shows an error message
+
+      Use case resumes at step 2.
+    * 3b. The user requests to remove the reminder
+      * 3b1 AddressBook removes the reminder
+
+        Use case ends.
+
+
+**Use case: Filter contacts**
+
+**MSS**
+
+1.  User requests to filter contacts based off a criteria
+2.  AddressBook shows the list of people that match the criteria
+
+    Use case ends.
+
 
 ### Non-Functional Requirements
 
