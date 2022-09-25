@@ -255,16 +255,21 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
+**Target user persona**:
+
+A male 14 year old teenager who plays Minecraft multiplayer with his friends. He is an expert Minecraft player. He has school and extracurricular commitments but always finds time to play Minecraft. He plays a variety of multiplayer game modes (eg. creative, hunger games, skyblock, PvP etc.) and he has different friends who play Minecraft with him in different ways. He is familiar with Minecraft commands and so he is comfortable with the CLI.
+
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* plays Minecraft multiplayer with friends regularly
+* has many Minecraft friends (online and offline) from all over the world
 * prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* prefers typing to mouse interactions and types fast
+* is comfortable with using the Minecraft command line, and by hence extension, using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
 
+There are many servers and multiplayer game modes in Minecraft, and players have different schedules to when they can play. We want to help players find the right people to play the right game with at the right time.
 
 ### User stories
 
