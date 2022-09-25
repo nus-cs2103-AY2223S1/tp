@@ -311,6 +311,33 @@ Use case ends.
 
       Use case resumes at step 2.
 
+<<<<<<< HEAD
+=======
+*{More to be added}*
+
+**Use case: Add a book**
+
+**MSS**
+1. The librarian has a new book to add to BookFace.
+2. The librarian uses the `add book` command with the required fields.
+3. BookFace checks for the correctness of the command.
+4. BookFace adds the entry to the list of books.
+
+    Use case ends.
+
+**Extensions**
+* 3a. There is a book with the exact same details.
+  * 3a1. BookFace notifies the librarian of the duplicate.
+  * 3a2. BookFace creates this book as a separate object.
+  * 3a3. BookFace saves this book to the list.
+  
+    Use case ends.
+* 3b. The librarian did not specify all required fields.
+  * 3b1. BookFace notifies the librarian of the correct usage of `add book`.
+    
+    Use case ends.
+
+>>>>>>> developerGuideEdward
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
