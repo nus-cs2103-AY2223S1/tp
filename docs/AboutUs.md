@@ -38,12 +38,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Li Yingming
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yingming23.png.jpg" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/SkeletalProjectPortfolioPage.md)]
+[[github](http://github.com/Yingming23)]
+[[portfolio](team/yingming23.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
