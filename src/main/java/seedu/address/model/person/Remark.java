@@ -7,6 +7,10 @@ import static java.util.Objects.requireNonNull;
  * Guarantees: immutable; is always valid
  */
 public class Remark {
+    public static final String MESSAGE_CONSTRAINTS = "Remarks can take any values";
+
+    public static final String VALIDATION_REGEX = ".*";
+
     public final String value;
 
     /**
@@ -17,6 +21,13 @@ public class Remark {
     public Remark(String remark) {
         requireNonNull(remark);
         value = remark;
+    }
+
+    /**
+     * Returns true if a given string is a valid remark.
+     */
+    public static boolean isValidRemark(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override
