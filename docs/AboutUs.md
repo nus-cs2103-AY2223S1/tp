@@ -9,51 +9,53 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Hao Sitong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/o-ohst.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/o-ohst)]
+[[portfolio](team/o-ohst.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: overall project coordination
 
-### Johnny Doe
+### Ong Zheng Long
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ZhengLong3.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/ZhengLong3)]
+[[portfolio](team/ZhengLong3.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Nguyen Quy Duc
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ngquyduc.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/ngquyduc)]
+[[portfolio](team/ngquyduc.md)]
+
+* Role: Developer
+* Responsibilities: UI
+
+### Yap Sien Soon
+
+<img src="images/ssyap98.png" width="200px">
+
+[[github](https://github.com/ssyap98)]
+[[portfolio](team/ssyap98.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Zhang Bokun
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/bokun2.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/bokun2)]
+[[portfolio](team/bokun2.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Data
