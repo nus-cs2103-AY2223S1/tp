@@ -257,7 +257,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of contacts with multiple ways of contact.
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -270,45 +270,68 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a …​                                    | I want to …​                                                     | So that I can…​                                                        |
+| -------- |--------------------------------------------|------------------------------------------------------------------|------------------------------------------------------------------------|
+| `* * *`  | new user                                   | see usage instructions                                           | refer to instructions when I forget how to use the App                 |
+| `* * *`  | user                                       | add a new person                                                 |                                                                        |
+| `* * *`  | user who uses github                       | add a new person by github username                              | have their details without fill in manually                            |
+| `* * *`  | user                                       | add different types of contact (slack, email, etc.) of a person  | keep track of their way of contacts                                    |
+| `* * *`  | user                                       | edit different types of contact (slack, email, etc.) of a person |                                                                        |
+| `* * *`  | user                                       | delete contact of a person                                       | remove contacts that are in-active                                     |
+| `* * *`  | user                                       | set a timezone for a person                                      | contact them during working or available hours                         |
+| `* * *`  | user                                       | set a role for a person                                          | contact person in-charge quickly                                       |
+| `* * *`  | user                                       | find a person by name                                            | locate details of persons without having to go through the entire list |
+| `* * *`  | user                                       | find a person by github username                                 | locate details of persons without having to go through the entire list |
+| `* * *`  | user who uses github                       | find repository belongs to a person                              | know which person to find when have queries related to project         |
+| `* * *`  | user                                       | store contact details in local                                   | contact a user without internet connection                             |
+| `*`      | user with many persons in the address book | sort persons by name                                             | locate a person easily                                                 |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `GithubContact` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC-01 - Find a person by name or GitHub username**
 
-**MSS**
+**MSS:**
+1. User search people by their name or GitHub username.
+2. System shows a list of person related to the name or GitHub username.
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+   Use case ends.
 
-    Use case ends.
+**Extensions:**
+- 2a. The list is empty
 
-**Extensions**
+  Use case ends
 
-* 2a. The list is empty.
 
-  Use case ends.
+**Use case: UC-01 - Find a person by name or GitHub username**
 
-* 3a. The given index is invalid.
+**MSS:**
+1. User search repository by name.
+2. System shows a list of repositories related to the user's query.
 
-    * 3a1. AddressBook shows an error message.
+   Use case ends.
 
-      Use case resumes at step 2.
+**Extensions:**
+- 2a. The list is empty
 
-*{More to be added}*
+  Use case ends
+
+**Use case: UC-02 - Add a new person**
+
+**Use case: UC-03 - Add a new person by GitHub username**
+
+**Use case: UC-04 - Add contact to a person**
+
+**Use case: UC-05 - Delete contact from a person**
+
+**Use case: UC-06 - Set timezone to a person**
+
+**Use case: UC-07 - Delete timezone from a person**
+
+**Use case: UC-08 - Set role to a person**
+
+**Use case: UC-09 - Delete role from a person**
 
 ### Non-Functional Requirements
 
@@ -321,7 +344,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Contact**: A contact is a way to approach a person. Example: Slack, Telegram, WhatsApp, etc.
 
 --------------------------------------------------------------------------------------------------------------------
 
