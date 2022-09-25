@@ -311,11 +311,10 @@ Use case ends.
 
       Use case resumes at step 2.
 
-<<<<<<< HEAD
-=======
+    
 *{More to be added}*
 
-**Use case: Add a book**
+**Use case: UC03 - Add a book**
 
 **MSS**
 1. The librarian has a new book to add to BookFace.
