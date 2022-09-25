@@ -245,3 +245,4 @@ This sets the status of the `Generate report` task in the `Accountants` team to 
 Follow the guide for installing `Java 11` [here](https://www.codejava.net/java-se/download-and-install-java-11-openjdk-and-oracle-jdk).
 
 [Back to top](#contactmation-user-guide)
+
