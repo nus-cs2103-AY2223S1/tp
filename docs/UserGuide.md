@@ -3,34 +3,52 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+## About BookFace
+BookFace replaces a paper-based system or manual tracking of books, providing greater speed/efficiency in identifying where a book is, or when it is due. It also adds a member-tracking system to handle an increasing number of library members.
 
 * Table of Contents
   {:toc}
+  - [Quick Start](#quickstart)
+  - [Features](#features)
+    - [Add book](#adding-a-book-add-book)
+    - [Add user](#adding-a-user-add-user)
+    - [Remove book](#removing-a-book--delete-book)
+    - [Remove user](#remove-a-user-delete-user)
+    - [Return book](#returning-a-book-return)
+    - [Loan book](#loaning-a-book--loan)
+    - [List all users](#list-all-users--list-users)
+    - [List all books](#list-all-books--list-books)
+    - [List all loans](#show-all-books-that-are-loaned--list-loans)
+    - [Clear](#clearing-all-entries--clear-all)
+    - [Exit](#exit-bookface-exit)
+  - [FAQ](#faq)
+  - [Command Summary](#commandsummary)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Quick Start
+
+<div markdown="block" class="alert alert-info" name="quickstart">
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `BookFace.jar` from here.
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your BookFace.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. The GUI is similar to the image below. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-    * **`list`** : Lists all contacts.
+    * **`list`** :
 
-    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+    * **`add`** : 
 
-    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+    * **`delete`**`3` : 
 
-    * **`clear`** : Deletes all contacts.
+    * **`clear`** : 
 
     * **`exit`** : Exits the app.
 
@@ -183,6 +201,7 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
+  
 
 **Q**: How do I clear the sample data on BookFace?<br>
 **A**: Simply use the `clear all` command.
@@ -190,6 +209,9 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
+  
+  
+<div markdown="block" class="alert alert-info" name="commandsummary">
 
 | Action          | Format, Examples                                                                                          |
 |-----------------|-----------------------------------------------------------------------------------------------------------|

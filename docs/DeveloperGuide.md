@@ -257,42 +257,46 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* librarians managing a small library
+* has a need to manage a significant number of patrons
 * prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* can type fast and is reasonably comfortable using CLI apps
+* has no access to card-based systems to manage loans
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Our app replaces a paper-based system or manual tracking of books, providing greater speed/efficiency in identifying where a book is, or when it is due. It also adds a member-tracking system to handle an increasing number of library members.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                            | I want to …​                   | So that I can…​                                        |
+|----------|------------------------------------|--------------------------------|--------------------------------------------------------|
+| `* * *`  | new user                           | see usage instructions         | refer to instructions when I forget how to use the App |
+| `* * *`  | user                               | add book records               |                                                        |
+| `* * *`  | user                               | delete book records            |                                                        |
+| `* * *`  | user                               | view the book records          |                                                        |
+| `* * *`  | user                               | add new patrons to my library  |                                                        |
+| `* * *`  | user                               | delete patrons from my library |                                                        |
+| `* * *`  | user                               | add loans                      | mark books as unavailable                              |
+| `* * *`  | user                               | mark loans as returned         | mark books as available                                |
+| `* * *`  | person who likes to talk to others | type my commands to a CLI      | so I can work while interacting with my patrons        | 
 
 *{More to be added}*
 
 ### Use cases
 
+
 (For all use cases below, the **System** is the `BookFace` and the **Actor** is the `User`, unless specified otherwise)
 
 **Use case: UC02 - View book records**
+
 
 **MSS:**
 
 1.  User requests to list all book records
 2.  BookFace shows a list of books
-
-    Use case ends.
+<br>Use case ends.
 
 **Extensions:**
 
@@ -303,6 +307,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1b1. BookFace shows an error message.
     <br>Use case ends.
+
 
 ### Non-Functional Requirements
 
