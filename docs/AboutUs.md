@@ -9,51 +9,62 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Damith
 
 <img src="images/johndoe.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[github](https://github.com/damithc)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Project Advisor
 
-### Jane Doe
+### Ezra Tio
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/e1010101.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](https://github.com/e1010101)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: X
+* Responsibilities: X
 
-### Johnny Doe
+### Gregg Chan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/Hoodineee.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/Hoodineee)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: X
+* Responsibilities: X
 
-### James Doe
+### Jonathan Goh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jgyj123.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/jgyj123)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: X
+* Responsibilities: X
+
+### Soo Jia Xi
+
+<img src="images/joosxi.png" width="200px">
+
+[[github](http://github.com/joosxi)]
+[[portfolio](team/johndoe.md)]
+
+* Role: X
+* Responsibilities: X
+
+### Xiao Ying
+
+<img src="images/xiaoying1129.png" width="200px">
+
+[[github](http://github.com/xiaoying1129)]
+[[portfolio](team/johndoe.md)]
+
+* Role: X
+* Responsibilities: X
