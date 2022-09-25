@@ -128,19 +128,21 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### View details of an internship: `view`
 
-Deletes the specified person from the address book.
+View details of list item at index
 
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
+Format: `view NAME [INDEX]`
+* Only the name is searched.
+* Companies matching the name will be returned (i.e. OR search). 
+e.g. Shopee will return Shopee, Shopee Labs as a numbered list.
+* If only one company matches the name, its details will immediately be shown.
+* Call the command again with the index to retrieve details about the application status at the company with corresponding index.
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `view Shopee` returns
+`1. Shopee`
+`2. Shopee Labs`
+* `view Shopee 1` returns `Shopee, CEO, 29/02/23, offer, NA`
 
 ### Clearing all entries : `clear`
 
