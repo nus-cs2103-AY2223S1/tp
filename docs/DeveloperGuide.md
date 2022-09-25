@@ -330,10 +330,6 @@ Use case ends.
     * 1b1. BookFace shows an error message.
     <br>Use case ends.
 
-
-    
-*{More to be added}*
-
 **Use case: UC03 - Add a book**
 
 **MSS**
