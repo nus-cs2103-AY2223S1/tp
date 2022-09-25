@@ -4,7 +4,7 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '7.1.2'
     id 'application'
     id 'jacoco'
-} 
+}
 
 mainClassName = 'seedu.address.Main'
 
@@ -17,7 +17,7 @@ repositories {
 }
 
 checkstyle {
-    setToolVersion('10.2') 
+    setToolVersion('10.2')
 }
 
 test {
