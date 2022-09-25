@@ -285,7 +285,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `BookFace` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a book record**
+**Use case 1: Delete a book record**
 
 **MSS**
 
