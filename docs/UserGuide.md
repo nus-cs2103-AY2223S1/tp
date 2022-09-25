@@ -151,7 +151,7 @@ If your changes to the data file make its format invalid, FoodWhere will discard
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app on the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FoodWhere application.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -159,10 +159,11 @@ If your changes to the data file make its format invalid, FoodWhere will discard
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
+**Exit** | `exit`
 **Help** | `help`
+**rAdd** | `radd s/STALL_INDEX d/DATE c/CONTENT`<br> e.g., `radd s/3 d/2022-09-20 c/Great food!`
+**rDel** | `rdel INDEX`
+**rList** | `rlist`
+**sAdd** | `sadd n/NAME a/ADDRESS [d/DETAILS]…`<br> e.g., `sadd n/John Doe a/Blk 123 Bedok South d/+658123131 d/Opens 9am - 11pm`
+**sDel** | `sdel INDEX`
+**sList** | `slist`
