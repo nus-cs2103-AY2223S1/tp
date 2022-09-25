@@ -289,6 +289,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `BookFace` and the **Actor** is the `User`, unless specified otherwise)
 
+**Use case: UC01 - Delete a book record**
+
+**MSS**
+
+1.  User requests to delete a book record
+2.  BookFace shows a list of books
+3.  User requests to delete a specific book record in the list
+4.  BookFace deletes the book record from the list
+
+Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. BookFace shows an error message.
+
+      Use case resumes at step 2.
+
 **Use case: UC02 - List book records**
 
 
