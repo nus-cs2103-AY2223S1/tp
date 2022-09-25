@@ -322,7 +322,7 @@ Use case ends.
 7. BookFace is not required to handle the displaying detailed reports about users (their loan history, statistics on 
    their membership such as frequency of loans) yet.
 8. BookFace should work even without an active internet connection.
-9. The data stored in a BooKFace instance should be recoverable even if the instance crashes.
+9. The data stored in a BookFace instance should be recoverable even if the instance crashes.
 10. BookFace will need at least 50 MB of disk space to work.
 11. BookFace does not plan to improve its accessibility for blind, deaf, or otherwise disabled users according to 
     the Web Content Accessibility Guidelines (WCAG 2.1)
@@ -339,8 +339,9 @@ Use case ends.
 |
 | CLI           | Command-Line Interface                         |
 |
+| GUI           | Graphical User Interface                       |
+|
 | Loan          | A book that has been borrowed from the library |
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
