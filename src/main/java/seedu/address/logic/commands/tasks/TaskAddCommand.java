@@ -1,7 +1,7 @@
 package seedu.address.logic.commands.tasks;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNEE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNOR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGN_FROM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGN_TO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 
 import seedu.address.logic.commands.Command;
@@ -23,7 +23,7 @@ public class TaskAddCommand extends Command {
             TaskCategoryParser.CATEGORY_WORD + " " + COMMAND_WORD
             + ": Adds a task to the task book.\n"
             + "Parameters: "
-            + PREFIX_ASSIGNOR + "/" + PREFIX_ASSIGNEE + "/" + "ASSIGNOR/ASSIGNEE "
+            + PREFIX_ASSIGN_FROM + "/" + PREFIX_ASSIGN_TO + "/" + "Assigned from/Assigned to "
             + PREFIX_DESCRIPTION + "DESCRIPTION";
 
     private final Name name;

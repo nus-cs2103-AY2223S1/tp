@@ -15,7 +15,6 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Name;
-import seedu.address.model.task.Task;
 import seedu.address.model.task.enums.Assignment;
 
 /**
