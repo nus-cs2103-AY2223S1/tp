@@ -14,7 +14,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java 11 or above installed in your Computer.
 
-1. Download the latest `ModtRekt.jar` from here.
+1. Download the latest `ModtRekt.jar` from [here](https://github.com/AY2223S1-CS2103T-W10-4/tp/releases).
 
 1. Copy the file to the folder you want to use as the home folder for your module tracker.
 
