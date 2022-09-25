@@ -50,7 +50,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Mohamed Hamas
 
-<img src="images/hamas.png" width="200px">
+<img src="images/Bahamas20.png" width="200px">
 
 [[github](http://github.com/Bahamas20)]
 [[portfolio](team/bahamas20.md)]

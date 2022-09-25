@@ -11,7 +11,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: to be added soon
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=weesiau&breakdown=true)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=Bahamas20&breakdown=true)
 
 * **Project management**:
     * to be added soon
