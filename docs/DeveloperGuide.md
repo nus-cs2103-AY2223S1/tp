@@ -267,8 +267,8 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Value proposition**:  
 1. track their debtors
-2. view total money owed from all debtors
-3. manage contacts faster than a typical mouse/GUI driven app
+1. view total money owed from all debtors
+1. manage contacts faster than a typical mouse/GUI driven app
 
 
 ### User stories
@@ -280,10 +280,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user       | save persons and their contact details                             | I do not need to remember these details                             |
 | `* * *`  | user       | keep track of debts                                                | I know who owes me money and for what                               |
 | `* * *`  | user       | remove debts                                                       | I do not mistakenly think I have not yet been paid                  |
-| `* *`    | user       | see an overview of all the debts owed                              | I am in better control of my overall financial situation            |
 | `* * *`  | user       | see how much I am owed in total                                    | I know how much I expect to be paid                                 |
-| `* *`    | user       | search for a person’s contact                                      | I can easily access his contact details                             |
 | `* * *`  | user       | close the application                                              |                                                                     |
+| `* *`    | user       | see an overview of all the debts owed                              | I am in better control of my overall financial situation            |
+| `* *`    | user       | search for a person’s contact                                      | I can easily access his contact details                             |
 | `* *`    | user       | save my contacts and debts over multiple usage sessions of the app | I do not need to key in data again when I exit and re-enter the app |
 
 *{More to be added}*
