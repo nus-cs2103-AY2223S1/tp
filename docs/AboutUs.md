@@ -59,6 +59,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
+### Low Lik Hern
+
+<img src="images/likhern.png" width="200px">
+
+[[github](http://github.com/likhern)]
+[[portfolio](team/likhern.md)]
+
+* Role: Testing
+* Responsibilities: Data
+
 ### Min Hein Aung
 
 <img src="images/minheina.png" width="200px">
