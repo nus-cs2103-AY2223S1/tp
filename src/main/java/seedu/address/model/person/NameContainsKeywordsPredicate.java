@@ -15,6 +15,10 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
         this.keywords = keywords;
     }
 
+    public NameContainsKeywordsPredicate(String keyword) {
+        this.keywords = List.of(keyword);
+    }
+
     @Override
     public boolean test(Person person) {
         return keywords.stream()
@@ -25,7 +29,12 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof NameContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((NameContainsKeywordsPredicate) other).keywords)); // state check
+                        && keywords.equals(((NameContainsKeywordsPredicate) other).keywords)); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return keywords.stream().map(str -> str.hashCode()).reduce(0, (code1, code2) -> code1 + code2);
     }
 
 }
