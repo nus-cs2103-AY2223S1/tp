@@ -23,6 +23,6 @@ public class ThemeCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        return new CommandResult(String.format("Theme changed to %s mode.", this.theme.toString()));
+        return new CommandResult(String.format("Theme changed to %s mode. Visual changes not implemented yet!", this.theme.toString()));
     }
 }
