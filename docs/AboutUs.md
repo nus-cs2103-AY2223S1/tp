@@ -48,12 +48,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Vinod s/o Jaya Kumar
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/Vinod.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/Vinodjayakumar124)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Documentation
