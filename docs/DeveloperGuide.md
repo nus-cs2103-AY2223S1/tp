@@ -287,31 +287,124 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `ModtRekt` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: View all active tasks and deadlines**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to view all active tasks and deadlines
+2. ModtRekt shows all active tasks and deadlines, categorised into modules
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The list is empty. 
+
+  * 2a.1 ModtRekt displays "No active tasks or deadlines". 
+    
+    Use case ends
+
+**Use case: Add a task**
+
+**MSS**
+
+1.  User requests to add a task 
+2.  ModtRekt shows a list of modules
+3.  User requests to add a task to specific module in the list
+4.  ModtRekt adds the task
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The module list is empty.
 
   Use case ends.
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. ModtRekt shows an error message.
 
       Use case resumes at step 2.
 
+**Use case: Add a deadline**
+
+**MSS**
+
+1.  User requests to add a deadline
+2.  ModtRekt shows a list of modules
+3.  User requests to add a deadline to specific module in the list
+4.  ModtRekt adds the deadline
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The module list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. ModtRekt shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Remove a task**
+
+**MSS**
+
+1. User requests to remove a task
+2. ModtRekt shows a list of modules
+3. User requests to remove a task from specific module in the list
+4. ModtRekt shows a list of tasks in that module
+5. User requests to remove a specific task of the module in the list
+6. ModtRekt removes the task
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The module list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. ModtRekt shows an error message.
+
+      Use case resumes at step 2.
+
+* 4a. The task list is empty.
+
+  Use case ends.
+
+* 5a. The given index is invalid.
+
+    * 5a1. ModtRekt shows an error message.
+
+      Use case resumes at step 4.
+
+**Use case: View modules remaining for graduation**
+
+**MSS**
+
+1.  User requests to view what modules he has left for graduation
+2.  ModtRekt shows a list of modules, categorised into each requirement
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. All the requirements are met.
+
+    * 2a1. ModtRekt congratulates user.
+
+      Use case ends.
+
+    
 *{More to be added}*
 
 ### Non-Functional Requirements
