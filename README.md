@@ -7,3 +7,5 @@ modules that they are interested in taking. It is primarily optimised for the us
 Interface (CLI) while still providing the benefits of a Graphical User Interface (GUI). Power users
 of the command line/terminal will be able to plan and manage their modules much faster than doing it
 on [nusmods.com](https://nusmods.com).
+
+> This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
