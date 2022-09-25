@@ -11,13 +11,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Aaron Tan Gui Rong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/aarontangr.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/aarontangr)]
 
-* Role: Project Advisor
+* Role: Developer
 
 ### Elbert Benedict
 
