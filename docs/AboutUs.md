@@ -19,15 +19,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Eric Lee Ying Yao
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/autumn-sonata.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/autumn-sonata)]
+[[portfolio](team/ericleeyingyao.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Something
 
 ### Johnny Doe
 
