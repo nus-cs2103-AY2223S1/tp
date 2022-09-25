@@ -23,7 +23,8 @@ public class ContactDeleteCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new ContactDeleteCommand(INDEX_FIRST_PERSON));
+        // Note: the space at the start of the userInput is necessary due to ArgumentTokenizer behavior.
+        assertParseSuccess(parser, " i/1", new ContactDeleteCommand(INDEX_FIRST_PERSON));
     }
 
     @Test

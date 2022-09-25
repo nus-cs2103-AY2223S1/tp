@@ -21,7 +21,8 @@ public class ContactCategoryParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        String arguments = "1";
+        // Note: the space at the start of the arguments is necessary due to ArgumentTokenizer behavior.
+        String arguments = " i/1";
         Command command = ContactCategoryParser.parseCommand(ContactDeleteCommand.COMMAND_WORD, arguments);
         assertTrue(command instanceof ContactDeleteCommand);
     }

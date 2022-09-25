@@ -52,7 +52,7 @@ public class TaskBookParserTest {
 
     @Test
     public void parseCommand_task_add() throws Exception {
-        TaskAddCommand command = (TaskAddCommand) parseTaskCommand("add m/John t/Finish user guide /d 2022-09-21");
+        TaskAddCommand command = (TaskAddCommand) parseTaskCommand("add m/John d/Finish user guide");
         assertNotNull(command);
     }
 

@@ -2,6 +2,7 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -30,7 +31,7 @@ public class PersonUtil {
      * Returns a delete command string for deleting a index.
      */
     public static String getDeleteCommand(int index) {
-        return ContactDeleteCommand.COMMAND_WORD + " " + index;
+        return ContactDeleteCommand.COMMAND_WORD + " " + PREFIX_INDEX + index;
     }
 
     /**

@@ -121,4 +121,16 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Parses a {@code String description} into a {@code String}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param description String containing a task description.
+     * @return A string containing the trimmed description of a task.
+     */
+    public static String parseDescription(String description) {
+        requireNonNull(description);
+        return description.trim();
+    }
 }
