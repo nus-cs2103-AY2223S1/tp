@@ -114,10 +114,10 @@ Examples:
 
 1. View a summary of all spending <br>
    * Examples: `view -s`
-   * A summary of total spending: `Total amount spent: $125.30`
+   * Expected: A summary of total spending: `Total amount spent: $125.30`
 2. View a summary of all spending the specified month
     * Examples: `view -s 09-2022`
-    * A summary of spendings in September 2022: `Total amount spent in September 2022: $37.70`
+    * Expected: A summary of spendings in September 2022: `Total amount spent in September 2022: $37.70`
 
 * View all spending recorded by the user in a month. The month refers to the month that is displayed to the user.
 * The `MONTH` field is optional, if no month is specified, the application displays the current month.
@@ -126,10 +126,10 @@ Examples:
 
 1. View a summary of all income <br>
     * Examples: `view -i`
-    * A summary of total income earned: `Total amount earned: $125.30`
+    * Expected: A summary of total income earned: `Total amount earned: $125.30`
 2. View a summary of all income the specified month
     * Examples: `view -i 09-2022`
-    * A summary of all income in September 2022: `Total amount spent in September 2022: $37.70`
+    * Expected: A summary of all income in September 2022: `Total amount spent in September 2022: $37.70`
 
 * View all income recorded by the user in a month. The month refers to the month that is displayed to the user.
 * The `MONTH` field is optional, if no month is specified, the application displays the current month.
@@ -177,12 +177,12 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action     | Format, Examples                                                                                                                                                      |
+|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Clear**  | `clear`                                                                                                                                                               |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
+| **List**   | `list`                                                                                                                                                                |
+| **Help**   | `help`                                                                                                                                                                |
