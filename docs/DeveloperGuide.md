@@ -318,16 +318,56 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
-
-**Use case: Delete a person**
+(For all use cases below, the **System** is the `MineFriends` and the **Actor** is the `friend`, unless specified otherwise)
+      
+**Use case: Add a friend**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to add a specific friend in the list
+2.  MineFriends adds the friend to the list
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given format is invalid.
+
+    * 1a1. MineFriends shows an error message.
+
+      Use case ends.
+
+**Use case: Delete a friend**
+
+**MSS**
+
+1.  User requests to list friends
+2.  MineFriends shows a list of friends
+3.  User requests to delete a specific friend in the list
+4.  MineFriends deletes the friend
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. MineFriends shows an error message.
+
+      Use case resumes at step 2.
+      
+**Use case: Edit a friend**
+
+**MSS**
+
+1.  User requests to list friends
+2.  MineFriends shows a list of friends
+3.  User requests to edit a specific friend in the list
+4.  MineFriends edits the friend
 
     Use case ends.
 
@@ -350,6 +390,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Not suitable for platforms with on-screen keyboards as the keyboard popup may block the screen view.
+5.  Should be able to launch multiple instance of the app on the same platform.
+6.  Should be able to be used by a novice who has never used a CLI program before.
+7.  Not required to handle the messaging send between the friends.
+8.  Not required to handle the app on mobile platform.
 
 *{More to be added}*
 
