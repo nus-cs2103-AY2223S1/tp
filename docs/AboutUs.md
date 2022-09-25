@@ -3,57 +3,59 @@ layout: page
 title: About Us
 ---
 
-We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
+# About Us
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+ModtRekt is a tool for students of NUS to manage their modules and tasks.
+
+We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
 ## Project team
 
-### John Doe
+### Jonathan Tay Ming-Yang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jontmy.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/jontmy)]
+[[portfolio](team/jontmy.md)]
 
-* Role: Project Advisor
+* Role: Team lead
+* Responsibilities: Deliverables and deadlines, Scheduling and tracking
 
-### Jane Doe
+### Ho Jun Hao
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/hojunhao2000.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/hojunhao.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/hojunhao.md)]
+[[github](http://github.com/hojunhao2000)]
+[[portfolio](team/hojunhao2000.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Code quality
 
-### Jean Doe
+### Marciano Renzo William
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/midnightfeverrr.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/hojunhao.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/hojunhao.md)]
+[[github](http://github.com/midnightfeverrr)] [[portfolio](team/midnightfeverrr.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Testing
+
+### Dominic Berzin Chua Way Gin
+
+<img src="images/domoberzin.png" width="200px">
+
+[[github](http://github.com/domoberzin)]
+[[portfolio](team/domoberzin.md)]
+
+* Role: Developer
+* Responsibilities: Documentation
+
+### David Gareth Ong
+
+<img src="images/vvidday.png" width="200px">
+
+[[github](http://github.com/vvidday)]
+[[portfolio](team/vvidday.md)]
+
+* Role: Developer
+* Responsibilities: Integration
