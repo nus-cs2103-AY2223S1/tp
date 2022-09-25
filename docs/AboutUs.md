@@ -19,41 +19,41 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Project Advisor
 * Responsibilities: Data
 
-### Jane Doe
+### Darren Teo Zhi Jie
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/darrtzj.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/darrtzj)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Tan How Suen
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/howsuen.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/HowSuen)] [[portfolio](team/howsuen.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Soh Jing Ren
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jorrdansoh.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/jorrdansoh)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Dev Ops
 
-### James Doe
+### Yeo Kai Jiun
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kaij77.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/kaij77)]
+[[portfolio](team/kaijiun.md)]
 
 * Role: Developer
 * Responsibilities: UI
