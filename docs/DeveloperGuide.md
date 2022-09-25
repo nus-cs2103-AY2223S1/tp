@@ -271,14 +271,18 @@ _{Explain here how the data archiving feature will be implemented}_
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-| -------- |--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | CS2103T TA                                 | add a new student            | keep track of my student's name, email and telegram handle             |
-| `* * *`  | CS2103T TA                                      | edit a student               | correct any errors or make any changes if needed                       |
-| `* * *`  | CS2103T TA                                       | list students                | have an overview of all the students under me                          |
-| `***`    | CS2103T TA                                 | list out all the tutorial's details | have an overview of all the tutorials I have                           |
-| `***`    | CS2103T TA                                 | mark certain tutorials as done      | keep track of incomplete tutorials                                     |
-| `***`    | CS2103T TA                                 | add students' response count        | keep track of student's participation                                  |
+| Priority | As a …​                                    | I want to …​                                        | So that I can…​                                             |
+|----------|--------------------------------------------|-----------------------------------------------------|-------------------------------------------------------------|
+| `* * *`  | CS2103T TA                                 | add a new student                                   | keep track of my student's name, email and telegram handle  |
+| `* * *`  | CS2103T TA                                 | edit a student                                      | correct any errors or make any changes if needed            |
+| `* * *`  | CS2103T TA                                 | list students                                       | have an overview of all the students under me               |
+| `* * *`  | CS2103T TA                                 | list out all the tutorial's details                 | have an overview of all the tutorials I have                |
+| `* * *`  | CS2103T TA                                 | mark certain tutorials as done                      | keep track of incomplete tutorials                          |
+| `* * *`  | CS2103T TA                                 | add students' response count                        | keep track of student's participation                       |
+| `* * *`  | CS2103T TA                                 | add questions asked by students during the tutorial | address them in the future                                  |
+| `* * *`  | CS2103T TA                                 | mark a question as important                        | to prioritise which questions to address first              |
+| `* * *`  | CS2103T TA                                 | mark a question as unimportant                      | undo the action of accidentally marking such questions as important |
+| `* * *`  | CS2103T TA                                 | delete a question in the list of questions          | remove the questions that I have addressed                  |
 
 
 *{More to be added}*
@@ -359,6 +363,88 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
         
       Use case resumes at step 2.
 
+
+**Use case: Add a question**
+
+**MSS**
+
+1. CS2103T TA requests to add a question
+2. AddressBook adds the question into the question list
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The question description is empty.
+
+  Use case ends.
+
+
+**Use case: Mark question**
+
+1. User requests to list questions
+2. AddressBook shows list of questions
+3. User requests to mark a specific question as important 
+4. AddressBook marks the question as important
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. AddressBook shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Unmark question**
+
+1. User requests to list questions
+2. AddressBook shows list of questions
+3. User requests to mark a specific question as unimportant
+4. AddressBook marks the question as unimportant
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. AddressBook shows an error message.
+
+      Use case resumes at step 2.
+
+
+**Use case: Delete question**
+
+1. User requests to list questions
+2. AddressBook shows list of questions
+3. User requests to delete a specific question
+4. AddressBook deletes the question
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. AddressBook shows an error message.
+
+      Use case resumes at step 2.
+
+
 **Use case: Mark tutorial**
 
 1. User requests to list students
@@ -398,9 +484,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 500 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 500 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. The system should respond within 1 second.
+
 
 *{More to be added}*
 
