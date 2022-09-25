@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final ObservableList<Person> targetPersonList;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +36,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        targetPersonList = FXCollections.observableArrayList();
     }
 
     public ModelManager() {
@@ -147,4 +150,32 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(other.filteredPersons);
     }
 
+    //=========== Target Person Accessors =============================================================
+    @Override
+    public ObservableList<Person> getTargetPersonList() {
+        return targetPersonList;
+    }
+
+    @Override
+    public void setTargetPerson(Person targetPerson) {
+        if (targetPersonList.size() > 0) {
+            targetPersonList.remove(0);
+        }
+        targetPersonList.add(targetPerson);
+    }
+
+    @Override
+    public void clearTargetPerson() {
+        if (targetPersonList.size() > 0) {
+            targetPersonList.remove(0);
+        }
+    }
+
+    @Override
+    public boolean isTargetPerson(Person person) {
+        if (targetPersonList.size() > 0) {
+            return targetPersonList.get(0).isSamePerson(person);
+        }
+        return false;
+    }
 }
