@@ -8,6 +8,7 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.ThemeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -21,6 +22,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_THEME = "The specified theme is not supported.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -120,5 +122,27 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a string representing a theme.
+     * @param theme the theme specified
+     * @return a valid theme
+     * @throws ParseException if the given theme is not supported.
+     */
+    public static ThemeCommand.Theme parseTheme(String theme) throws ParseException {
+        requireNonNull(theme);
+        String trimmedTheme = theme.trim();
+        ThemeCommand.Theme parsedTheme;
+
+        if (trimmedTheme.equals(ThemeCommand.THEME_DARK)) {
+            parsedTheme = ThemeCommand.Theme.DARK;
+        } else if (trimmedTheme.equals(ThemeCommand.THEME_LIGHT)) {
+            parsedTheme = ThemeCommand.Theme.LIGHT;
+        } else {
+            throw new ParseException(MESSAGE_INVALID_THEME);
+        }
+
+        return parsedTheme;
     }
 }
