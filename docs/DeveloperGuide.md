@@ -394,10 +394,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 100 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. The system should respond within 2 seconds of entering a command.
+5. The app is not required to explain financial advisor terms.
+6. The app is not required to spell check or check for offensive terms.
+7. The system should still work even if there is no data file present.
+8. The system should replace the data file if it has corrupted.
+9. The system should save the data after each command has been processed.
 
-*{More to be added}*
 
 ### Glossary
 
