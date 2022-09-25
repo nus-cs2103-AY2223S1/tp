@@ -2,6 +2,8 @@
 
 [![codecov](https://codecov.io/gh/AY2223S1-CS2103-F14-1/tp/branch/master/graph/badge.svg?token=RICOOYUUM4)](https://codecov.io/gh/AY2223S1-CS2103-F14-1/tp)
 
+![UI Mockup](docs/images/Ui.png)
+
 `CLIMods` is a native desktop application for NUS students to explore, manage and plan academic
 modules that they are interested in taking. It is primarily optimised for the use via a Command Line
 Interface (CLI) while still providing the benefits of a Graphical User Interface (GUI). Power users
