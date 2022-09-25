@@ -6,6 +6,7 @@
 <div align="center">
 
 [![Java CI](https://github.com/AY2223S1-CS2103T-T13-2/tp/actions/workflows/gradle.yml/badge.svg?branch=master)](https://github.com/AY2223S1-CS2103T-T13-2/tp/actions/workflows/gradle.yml)
+[![codecov](https://codecov.io/gh/nus-cs2103-AY2223S1/tp/branch/master/graph/badge.svg?token=A2FU6P932B)](https://codecov.io/gh/nus-cs2103-AY2223S1/tp)
 ![Ui](docs/images/Ui.png)
 
 </div>
