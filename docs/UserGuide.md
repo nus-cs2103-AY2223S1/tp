@@ -99,8 +99,7 @@ Example:
 
 ### Deleting a debt: `deletedebt`
 
-Deletes a debtor's debts from PayMeLah according to his index 
-number when listed.
+Deletes a debtor's debts from PayMeLah according to his index number when listed.
 
 Format: `deletedebt <person index>`
 
