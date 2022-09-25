@@ -19,11 +19,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Project Advisor
 * Responsibilities: Data
 
-### Jane Doe
+### Darren Teo Zhi Jie
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/darrtzj.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/darrtzj)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Team Lead
