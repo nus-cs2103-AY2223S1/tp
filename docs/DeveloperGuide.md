@@ -283,18 +283,61 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `LongTimeNoSee (LTNS)` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case 1: Help**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User is not sure what commands there are
+2. User inputs the command to request help
+3. LTNS displays a help message
 
-    Use case ends.
+   Use case ends
+
+**Use Case 2: Add client**
+
+**MSS**
+
+1. User loads the application
+2. User inputs the command to add a client
+3. User tags on the details he would like to specify
+4. LTNS switches to the default view automatically
+5. LTNS adds the latest client to the list view
+
+   Use case ends
+
+**Use case 3: List clients**
+
+**MSS**
+
+1. User requests to list all contacts
+2. LTNS displays a list of all contacts
+
+   Use case ends
+
+**Use case 4: View clients**
+
+**MSS**
+
+1. User loads the application
+2. User clicks on a specific client from the list view
+3. User can update information specific to his client (i.e: Birthday / Events/ Notes etc.)
+4. User switches to his default view
+5. LTNS shows a list of clients stored in the database
+
+   Use case ends.
+
+
+**Use case 6: Delete a person**
+
+**MSS**
+
+1. User requests to <u>list persons(UC3)</u>
+2. User requests to delete a specific person in the list
+3. LTNS deletes the person
+
+   Use case ends
 
 **Extensions**
 
@@ -304,7 +347,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. LTNS shows an error message.
 
       Use case resumes at step 2.
 
