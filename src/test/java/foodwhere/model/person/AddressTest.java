@@ -1,29 +1,28 @@
 package foodwhere.model.person;
 
+import static foodwhere.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static foodwhere.testutil.Assert.assertThrows;
 
-import foodwhere.testutil.Assert;
 import org.junit.jupiter.api.Test;
 
 public class AddressTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> new Address(null));
+        assertThrows(NullPointerException.class, () -> new Address(null));
     }
 
     @Test
     public void constructor_invalidAddress_throwsIllegalArgumentException() {
         String invalidAddress = "";
-        Assert.assertThrows(IllegalArgumentException.class, () -> new Address(invalidAddress));
+        assertThrows(IllegalArgumentException.class, () -> new Address(invalidAddress));
     }
 
     @Test
     public void isValidAddress() {
         // null address
-        Assert.assertThrows(NullPointerException.class, () -> Address.isValidAddress(null));
+        assertThrows(NullPointerException.class, () -> Address.isValidAddress(null));
 
         // invalid addresses
         assertFalse(Address.isValidAddress("")); // empty string

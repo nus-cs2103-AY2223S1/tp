@@ -1,16 +1,16 @@
 package foodwhere.storage;
 
+import static foodwhere.testutil.TypicalPersons.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static foodwhere.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.nio.file.Path;
 
-import foodwhere.commons.core.GuiSettings;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import foodwhere.commons.core.GuiSettings;
 import foodwhere.model.AddressBook;
 import foodwhere.model.ReadOnlyAddressBook;
 import foodwhere.model.UserPrefs;

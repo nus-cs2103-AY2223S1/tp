@@ -1,21 +1,21 @@
 package foodwhere.logic.commands;
 
+import static foodwhere.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static foodwhere.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 import java.util.Arrays;
 import java.util.Collections;
 
-import foodwhere.commons.core.Messages;
-import foodwhere.model.person.NameContainsKeywordsPredicate;
-import foodwhere.testutil.TypicalPersons;
 import org.junit.jupiter.api.Test;
 
+import foodwhere.commons.core.Messages;
 import foodwhere.model.Model;
 import foodwhere.model.ModelManager;
 import foodwhere.model.UserPrefs;
+import foodwhere.model.person.NameContainsKeywordsPredicate;
+import foodwhere.testutil.TypicalPersons;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -57,7 +57,7 @@ public class FindCommandTest {
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
-        CommandTestUtil.assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
 
@@ -67,8 +67,11 @@ public class FindCommandTest {
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
-        CommandTestUtil.assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(TypicalPersons.CARL, TypicalPersons.ELLE, TypicalPersons.FIONA), model.getFilteredPersonList());
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(TypicalPersons.CARL,
+                TypicalPersons.ELLE,
+                TypicalPersons.FIONA),
+                model.getFilteredPersonList());
     }
 
     /**

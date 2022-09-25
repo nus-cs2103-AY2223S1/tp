@@ -2,9 +2,10 @@ package foodwhere.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.Assertions;
+
 import foodwhere.logic.commands.Command;
 import foodwhere.logic.parser.exceptions.ParseException;
-import org.junit.jupiter.api.Assertions;
 
 /**
  * Contains helper methods for testing command parsers.

@@ -26,18 +26,18 @@ import static foodwhere.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static foodwhere.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static foodwhere.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
-import foodwhere.commons.core.Messages;
-import foodwhere.logic.commands.AddCommand;
-import foodwhere.model.person.Person;
-import foodwhere.model.person.Phone;
-import foodwhere.testutil.PersonBuilder;
-import foodwhere.testutil.TypicalPersons;
 import org.junit.jupiter.api.Test;
 
+import foodwhere.commons.core.Messages;
+import foodwhere.logic.commands.AddCommand;
 import foodwhere.model.person.Address;
 import foodwhere.model.person.Email;
 import foodwhere.model.person.Name;
+import foodwhere.model.person.Person;
+import foodwhere.model.person.Phone;
 import foodwhere.model.tag.Tag;
+import foodwhere.testutil.PersonBuilder;
+import foodwhere.testutil.TypicalPersons;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
@@ -67,7 +67,8 @@ public class AddCommandParserTest {
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new PersonBuilder(TypicalPersons.BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        Person expectedPersonMultipleTags =
+                new PersonBuilder(TypicalPersons.BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedPersonMultipleTags));

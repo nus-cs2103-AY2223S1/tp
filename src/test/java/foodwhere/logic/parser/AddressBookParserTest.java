@@ -1,20 +1,16 @@
 package foodwhere.logic.parser;
 
+import static foodwhere.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static foodwhere.testutil.Assert.assertThrows;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import foodwhere.commons.core.Messages;
-import foodwhere.logic.parser.exceptions.ParseException;
-import foodwhere.model.person.NameContainsKeywordsPredicate;
-import foodwhere.model.person.Person;
-import foodwhere.testutil.*;
 import org.junit.jupiter.api.Test;
 
+import foodwhere.commons.core.Messages;
 import foodwhere.logic.commands.AddCommand;
 import foodwhere.logic.commands.ClearCommand;
 import foodwhere.logic.commands.DeleteCommand;
@@ -23,9 +19,13 @@ import foodwhere.logic.commands.ExitCommand;
 import foodwhere.logic.commands.FindCommand;
 import foodwhere.logic.commands.HelpCommand;
 import foodwhere.logic.commands.ListCommand;
+import foodwhere.logic.parser.exceptions.ParseException;
+import foodwhere.model.person.NameContainsKeywordsPredicate;
+import foodwhere.model.person.Person;
 import foodwhere.testutil.EditPersonDescriptorBuilder;
 import foodwhere.testutil.PersonBuilder;
 import foodwhere.testutil.PersonUtil;
+import foodwhere.testutil.TypicalIndexes;
 
 public class AddressBookParserTest {
 
@@ -56,7 +56,8 @@ public class AddressBookParserTest {
         Person person = new PersonBuilder().build();
         EditCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + TypicalIndexes.INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+                + TypicalIndexes.INDEX_FIRST_PERSON.getOneBased() + " "
+                + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(TypicalIndexes.INDEX_FIRST_PERSON, descriptor), command);
     }
 
@@ -88,12 +89,14 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
-        Assert.assertThrows(ParseException.class, String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand(""));
+        assertThrows(ParseException.class,
+                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), () ->
+                        parser.parseCommand(""));
     }
 
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
-        Assert.assertThrows(ParseException.class, Messages.MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+        assertThrows(ParseException.class,
+                Messages.MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
     }
 }

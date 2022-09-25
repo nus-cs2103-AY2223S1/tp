@@ -5,11 +5,11 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import foodwhere.logic.commands.EditCommand;
-import foodwhere.model.person.Person;
-import foodwhere.model.person.Phone;
 import foodwhere.model.person.Address;
 import foodwhere.model.person.Email;
 import foodwhere.model.person.Name;
+import foodwhere.model.person.Person;
+import foodwhere.model.person.Phone;
 import foodwhere.model.tag.Tag;
 
 /**

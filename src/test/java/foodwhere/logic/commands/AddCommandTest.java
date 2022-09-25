@@ -1,34 +1,33 @@
 package foodwhere.logic.commands;
 
+import static foodwhere.testutil.Assert.assertThrows;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static foodwhere.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
-import foodwhere.commons.core.GuiSettings;
-import foodwhere.logic.commands.exceptions.CommandException;
-import foodwhere.model.person.Person;
-import foodwhere.testutil.Assert;
-import foodwhere.testutil.PersonBuilder;
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.ObservableList;
+import foodwhere.commons.core.GuiSettings;
+import foodwhere.logic.commands.exceptions.CommandException;
 import foodwhere.model.AddressBook;
 import foodwhere.model.Model;
 import foodwhere.model.ReadOnlyAddressBook;
 import foodwhere.model.ReadOnlyUserPrefs;
+import foodwhere.model.person.Person;
+import foodwhere.testutil.PersonBuilder;
+import javafx.collections.ObservableList;
 
 public class AddCommandTest {
 
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> new AddCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
@@ -48,7 +47,7 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
-        Assert.assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
     }
 
     @Test

@@ -1,7 +1,7 @@
 package foodwhere.testutil;
 
-import foodwhere.model.person.Person;
 import foodwhere.model.AddressBook;
+import foodwhere.model.person.Person;
 
 /**
  * A utility class to help with building Addressbook objects.

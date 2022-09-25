@@ -1,8 +1,8 @@
 package foodwhere.commons.util;
 
+import static foodwhere.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static foodwhere.testutil.Assert.assertThrows;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -10,11 +10,11 @@ import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.logging.Level;
 
-import foodwhere.commons.core.Config;
-import foodwhere.commons.exceptions.DataConversionException;
-import foodwhere.testutil.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+
+import foodwhere.commons.core.Config;
+import foodwhere.commons.exceptions.DataConversionException;
 
 public class ConfigUtilTest {
 
@@ -25,7 +25,7 @@ public class ConfigUtilTest {
 
     @Test
     public void read_null_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> read(null));
+        assertThrows(NullPointerException.class, () -> read(null));
     }
 
     @Test
@@ -35,7 +35,7 @@ public class ConfigUtilTest {
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        Assert.assertThrows(DataConversionException.class, () -> read("NotJsonFormatConfig.json"));
+        assertThrows(DataConversionException.class, () -> read("NotJsonFormatConfig.json"));
     }
 
     @Test
@@ -75,12 +75,12 @@ public class ConfigUtilTest {
 
     @Test
     public void save_nullConfig_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> save(null, "SomeFile.json"));
+        assertThrows(NullPointerException.class, () -> save(null, "SomeFile.json"));
     }
 
     @Test
     public void save_nullFile_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> save(new Config(), null));
+        assertThrows(NullPointerException.class, () -> save(new Config(), null));
     }
 
     @Test

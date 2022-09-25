@@ -3,11 +3,11 @@ package foodwhere.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import foodwhere.model.person.Person;
-import foodwhere.model.person.Phone;
 import foodwhere.model.person.Address;
 import foodwhere.model.person.Email;
 import foodwhere.model.person.Name;
+import foodwhere.model.person.Person;
+import foodwhere.model.person.Phone;
 import foodwhere.model.tag.Tag;
 import foodwhere.model.util.SampleDataUtil;
 

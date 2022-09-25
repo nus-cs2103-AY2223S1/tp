@@ -1,10 +1,9 @@
 package foodwhere.commons.util;
 
+import static foodwhere.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static foodwhere.testutil.Assert.assertThrows;
 
-import foodwhere.testutil.Assert;
 import org.junit.jupiter.api.Test;
 
 public class FileUtilTest {
@@ -18,7 +17,7 @@ public class FileUtilTest {
         assertFalse(FileUtil.isValidPath("a\0"));
 
         // null path -> throws NullPointerException
-        Assert.assertThrows(NullPointerException.class, () -> FileUtil.isValidPath(null));
+        assertThrows(NullPointerException.class, () -> FileUtil.isValidPath(null));
     }
 
 }

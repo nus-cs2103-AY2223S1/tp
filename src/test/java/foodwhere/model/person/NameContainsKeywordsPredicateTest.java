@@ -7,8 +7,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import foodwhere.testutil.PersonBuilder;
 import org.junit.jupiter.api.Test;
+
+import foodwhere.testutil.PersonBuilder;
 
 public class NameContainsKeywordsPredicateTest {
 

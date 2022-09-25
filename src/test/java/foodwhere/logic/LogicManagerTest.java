@@ -1,15 +1,19 @@
 package foodwhere.logic;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static foodwhere.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static foodwhere.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static foodwhere.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static foodwhere.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static foodwhere.testutil.Assert.assertThrows;
 import static foodwhere.testutil.TypicalPersons.AMY;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 import java.nio.file.Path;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 import foodwhere.commons.core.Messages;
 import foodwhere.logic.commands.AddCommand;
@@ -17,18 +21,14 @@ import foodwhere.logic.commands.CommandResult;
 import foodwhere.logic.commands.ListCommand;
 import foodwhere.logic.commands.exceptions.CommandException;
 import foodwhere.logic.parser.exceptions.ParseException;
-import foodwhere.model.person.Person;
-import foodwhere.storage.JsonAddressBookStorage;
-import foodwhere.storage.JsonUserPrefsStorage;
-import foodwhere.storage.StorageManager;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
-
 import foodwhere.model.Model;
 import foodwhere.model.ModelManager;
 import foodwhere.model.ReadOnlyAddressBook;
 import foodwhere.model.UserPrefs;
+import foodwhere.model.person.Person;
+import foodwhere.storage.JsonAddressBookStorage;
+import foodwhere.storage.JsonUserPrefsStorage;
+import foodwhere.storage.StorageManager;
 import foodwhere.testutil.PersonBuilder;
 
 public class LogicManagerTest {

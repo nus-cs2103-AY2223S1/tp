@@ -1,19 +1,19 @@
 package foodwhere.storage;
 
+import static foodwhere.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static foodwhere.testutil.Assert.assertThrows;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Optional;
 
-import foodwhere.commons.core.GuiSettings;
-import foodwhere.commons.exceptions.DataConversionException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import foodwhere.commons.core.GuiSettings;
+import foodwhere.commons.exceptions.DataConversionException;
 import foodwhere.model.UserPrefs;
 
 public class JsonUserPrefsStorageTest {

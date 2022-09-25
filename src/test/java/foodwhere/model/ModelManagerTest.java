@@ -1,21 +1,21 @@
 package foodwhere.model;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static foodwhere.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static foodwhere.testutil.Assert.assertThrows;
 import static foodwhere.testutil.TypicalPersons.ALICE;
 import static foodwhere.testutil.TypicalPersons.BENSON;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
-import foodwhere.commons.core.GuiSettings;
-import foodwhere.model.person.NameContainsKeywordsPredicate;
 import org.junit.jupiter.api.Test;
 
+import foodwhere.commons.core.GuiSettings;
+import foodwhere.model.person.NameContainsKeywordsPredicate;
 import foodwhere.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {

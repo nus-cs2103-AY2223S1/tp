@@ -26,18 +26,18 @@ import static foodwhere.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static foodwhere.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static foodwhere.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
+import org.junit.jupiter.api.Test;
+
 import foodwhere.commons.core.Messages;
 import foodwhere.commons.core.index.Index;
 import foodwhere.logic.commands.EditCommand;
-import foodwhere.model.person.Phone;
-import foodwhere.testutil.EditPersonDescriptorBuilder;
-import foodwhere.testutil.TypicalIndexes;
-import org.junit.jupiter.api.Test;
-
 import foodwhere.model.person.Address;
 import foodwhere.model.person.Email;
 import foodwhere.model.person.Name;
+import foodwhere.model.person.Phone;
 import foodwhere.model.tag.Tag;
+import foodwhere.testutil.EditPersonDescriptorBuilder;
+import foodwhere.testutil.TypicalIndexes;
 
 public class EditCommandParserTest {
 
@@ -132,7 +132,8 @@ public class EditCommandParserTest {
         // name
         Index targetIndex = TypicalIndexes.INDEX_THIRD_PERSON;
         String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
-        EditCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).build();
+        EditCommand.EditPersonDescriptor descriptor =
+                new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -169,7 +170,9 @@ public class EditCommandParserTest {
                 + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
 
         EditCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
-                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+                .withEmail(VALID_EMAIL_BOB)
+                .withAddress(VALID_ADDRESS_BOB)
+                .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -181,7 +184,8 @@ public class EditCommandParserTest {
         // no other valid values specified
         Index targetIndex = TypicalIndexes.INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + PHONE_DESC_BOB;
-        EditCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB).build();
+        EditCommand.EditPersonDescriptor descriptor =
+                new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 

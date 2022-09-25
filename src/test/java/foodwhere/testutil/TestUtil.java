@@ -6,8 +6,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import foodwhere.commons.core.index.Index;
-import foodwhere.model.person.Person;
 import foodwhere.model.Model;
+import foodwhere.model.person.Person;
 
 /**
  * A utility class for test cases.

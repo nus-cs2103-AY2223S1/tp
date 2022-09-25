@@ -1,15 +1,15 @@
 package foodwhere.storage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static foodwhere.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import foodwhere.commons.exceptions.IllegalValueException;
-import foodwhere.commons.util.JsonUtil;
 import org.junit.jupiter.api.Test;
 
+import foodwhere.commons.exceptions.IllegalValueException;
+import foodwhere.commons.util.JsonUtil;
 import foodwhere.model.AddressBook;
 import foodwhere.testutil.TypicalPersons;
 
