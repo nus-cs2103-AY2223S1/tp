@@ -17,12 +17,18 @@ public class ThemeCommand extends Command {
             + "Example: " + COMMAND_WORD + " light";
     private final Theme theme;
 
+    /**
+     * Constructs a ThemeCommand.
+     * @param theme the theme to apply
+     */
     public ThemeCommand(Theme theme) {
         this.theme = theme;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        return new CommandResult(String.format("Theme changed to %s mode. Visual changes not implemented yet!", this.theme.toString()));
+        return new CommandResult(String.format("Theme changed to %s mode. "
+                + "Visual changes not implemented yet!",
+                this.theme.toString()));
     }
 }
