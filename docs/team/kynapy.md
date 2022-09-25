@@ -14,7 +14,7 @@ Given below are my contributions to the project:
 * **Code contributed**: [RepoSense link]()
 * **Project Management**:
     * ---To be added soon---
-    
+
 * **Enhancements implemented**:
     * ---To be added soon---
 
@@ -27,4 +27,3 @@ Given below are my contributions to the project:
 
 * **Tools**:
     * ---To be added soon---
-    

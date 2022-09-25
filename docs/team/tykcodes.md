@@ -15,7 +15,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * Added a command summary (Pull request [#60](https://github.com/AY2223S1-CS2103-F14-4/tp/pull/60)) 
+        * Added a command summary (Pull request [#60](https://github.com/AY2223S1-CS2103-F14-4/tp/pull/60))
 
     * Developer Guide:
         * ---To be added soon---
