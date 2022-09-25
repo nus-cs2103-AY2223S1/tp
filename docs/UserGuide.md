@@ -1,3 +1,8 @@
+---
+layout: page
+title: User Guide
+---
+
 ## About BookFace
 BookFace replaces a paper-based system or manual tracking of books, providing greater speed/efficiency in identifying where a book is, or when it is due. It also adds a member-tracking system to handle an increasing number of library members.
 
@@ -5,6 +10,17 @@ BookFace replaces a paper-based system or manual tracking of books, providing gr
   {:toc}
   - [Quick Start](#quickstart)
   - [Features](#features)
+    - [Add book](#adding-a-book-add-book)
+    - [Add user](#adding-a-user-add-user)
+    - [Remove book](#removing-a-book--delete-book)
+    - [Remove user](#remove-a-user-delete-user)
+    - [Return book](#returning-a-book-return)
+    - [Loan book](#loaning-a-book--loan)
+    - [List all users](#list-all-users--list-users)
+    - [List all books](#list-all-books--list-books)
+    - [List all loans](#show-all-books-that-are-loaned--list-loans)
+    - [Clear](#clearing-all-entries--clear-all)
+    - [Exit](#exit-bookface-exit)
   - [FAQ](#faq)
   - [Command Summary](#commandsummary)
 
