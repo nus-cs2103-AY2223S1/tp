@@ -38,6 +38,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
+### Jean Doe
+
+<img src="images/johndoe.png" width="200px">
+
+[[github](http://github.com/johndoe)]
+[[portfolio](team/SkeletalProjectPortfolio.md)]
+
+* Role: Developer
+* Responsibilities: Dev Ops + Threading
+
 ### Li Yingming
 
 <img src="images/yingming23.png.jpg" width="200px">
@@ -46,14 +56,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/yingming23.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/SkeletalProjectPortfolioPage.md)]
-
-* Role: Developer
-* Responsibilities: UI
+* Responsibilities: To be Added
