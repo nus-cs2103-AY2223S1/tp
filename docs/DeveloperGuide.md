@@ -263,8 +263,9 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**: Empower students with the ability to make sensible financial decisions in their budgeting. 
+Provides an overview of their own expenditures and income, displaying it in a graphical manner for easy comprehension.
+Students would be able to easily identify categories they are overspending, and hone in on which one to cut down on.
 
 ### User stories
 

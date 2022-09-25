@@ -110,41 +110,33 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Viewing total summary of spendings : `view -s [MONTH]`
 
-Finds persons whose names contain any of the given keywords.
+1. View a summary of all spending <br>
+   * Examples: `view -s`
+   * A summary of total spending: `Total amount spent: $125.30`
+2. View a summary of all spending the specified month
+    * Examples: `view -s 09-2022`
+    * A summary of spendings in September 2022: `Total amount spent in September 2022: $37.70`
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+* View all spending recorded by the user in a month. The month refers to the month that is displayed to the user.
+* The `MONTH` field is optional, if no month is specified, the application displays the current month.
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+### Viewing total summary of income : `view -i [MONTH]`
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+1. View a summary of all income <br>
+    * Examples: `view -i`
+    * A summary of total income earned: `Total amount earned: $125.30`
+2. View a summary of all income the specified month
+    * Examples: `view -i 09-2022`
+    * A summary of all income in September 2022: `Total amount spent in September 2022: $37.70`
 
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* View all income recorded by the user in a month. The month refers to the month that is displayed to the user.
+* The `MONTH` field is optional, if no month is specified, the application displays the current month.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries in PennyWise.
 
 Format: `clear`
 
@@ -156,17 +148,21 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+PennyWise data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+PennyWise data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, PennyWise will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+### Editing of entries `[coming in v1.3]`
+### Tagging of Income `[coming in v1.3]`
+### Tagging of Spending `[coming in v1.3]`
+### Filtering of Income/Spendings `[coming in v1.3]`
+### Filtering by Dates `[coming in v1.3]`
 
 _Details coming soon ..._
 
