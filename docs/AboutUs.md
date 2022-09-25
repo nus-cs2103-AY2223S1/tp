@@ -31,7 +31,7 @@ You can reach us at the email `climods[at]comp.nus.edu.sg`
 
 ### Pei Cheng Yi  
 
-<img src="images/ChengYi.jpg" width="200px">
+<img src="images/seeksaveserve.png" width="200px">
 
 [[github](http://github.com/SeekSaveServe)] [[portfolio](team/PeiChengYi.md)]
 
