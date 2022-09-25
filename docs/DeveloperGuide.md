@@ -289,7 +289,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `BookFace` and the **Actor** is the `User`, unless specified otherwise)
 
-**Use case: UC02 - View book records**
+**Use case: UC02 - List book records**
 
 
 **MSS:**
@@ -304,7 +304,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   <br>Use case ends.
 
 * 1b. The list of books cannot be retrieved.
-
     * 1b1. BookFace shows an error message.
     <br>Use case ends.
 
