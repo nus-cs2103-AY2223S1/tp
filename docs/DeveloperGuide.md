@@ -286,7 +286,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `BookFace` and the **Actor** is the `user`, unless specified otherwise)
+
+(For all use cases below, the **System** is the `BookFace` and the **Actor** is the `User`, unless specified otherwise)
 
 **Use case: UC01 - Delete a book record**
 
@@ -311,8 +312,23 @@ Use case ends.
 
       Use case resumes at step 2.
 
-    
-*{More to be added}*
+**Use case: UC02 - List book records**
+
+
+**MSS:**
+
+1.  User requests to list all book records
+2.  BookFace shows a list of books
+<br>Use case ends.
+
+**Extensions:**
+
+* 1a. The list is empty.
+  <br>Use case ends.
+
+* 1b. The list of books cannot be retrieved.
+    * 1b1. BookFace shows an error message.
+    <br>Use case ends.
 
 **Use case: UC03 - Add a book**
 
