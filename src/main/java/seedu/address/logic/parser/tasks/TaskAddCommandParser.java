@@ -1,8 +1,8 @@
 package seedu.address.logic.parser.tasks;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNEE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNOR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGN_FROM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGN_TO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 
 import java.util.stream.Stream;
@@ -31,13 +31,13 @@ public class TaskAddCommandParser implements Parser<TaskAddCommand> {
     @Override
     public TaskAddCommand parse(String args) throws ParseException {
         // Note: the space at the start of the arguments is necessary due to ArgumentTokenizer behavior.
-        if (args.startsWith(" " + PREFIX_ASSIGNOR.getPrefix())) {
-            return parseWithPrefix(args, PREFIX_ASSIGNOR);
+        if (args.startsWith(" " + PREFIX_ASSIGN_TO.getPrefix())) {
+            return parseWithPrefix(args, PREFIX_ASSIGN_TO);
         }
 
         // Note: the space at the start of the arguments is necessary due to ArgumentTokenizer behavior.
-        if (args.startsWith(" " + PREFIX_ASSIGNEE.getPrefix())) {
-            return parseWithPrefix(args, PREFIX_ASSIGNEE);
+        if (args.startsWith(" " + PREFIX_ASSIGN_FROM.getPrefix())) {
+            return parseWithPrefix(args, PREFIX_ASSIGN_FROM);
         }
 
         throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TaskAddCommand.MESSAGE_USAGE));
@@ -54,9 +54,9 @@ public class TaskAddCommandParser implements Parser<TaskAddCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(firstPrefix).get());
         String description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         Assignment assignment =
-                firstPrefix.equals(PREFIX_ASSIGNEE)
-                ? Assignment.ASSIGNEE
-                : Assignment.ASSIGNOR;
+                firstPrefix.equals(PREFIX_ASSIGN_FROM)
+                ? Assignment.FROM
+                : Assignment.TO;
 
         return new TaskAddCommand(name, description, assignment);
     }

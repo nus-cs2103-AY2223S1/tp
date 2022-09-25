@@ -5,14 +5,14 @@ package seedu.address.model.task.enums;
  * or the user has assigned to someone else.
  */
 public enum Assignment {
-    ASSIGNOR, ASSIGNEE;
+    FROM, TO;
 
     @Override
     public String toString() {
         switch (this) {
-            case ASSIGNEE:
+            case FROM:
                 return "Assigned from";
-            case ASSIGNOR:
+            case TO:
                 return "Assigned to";
             default:
                 return " ";
