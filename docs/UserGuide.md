@@ -10,10 +10,10 @@ RC4HDB is a **desktop app for managing RC4 housing related information, optimize
 * [Quick Start](#quick-start)
 * [Features](#features)
     * [Viewing help : help](#viewing-help--help)
-    * [Adding a resident : add](#adding-a-resident-add)
+    * [Adding a resident : add](#adding-a-resident--add)
     * [Listing all residents : list](#listing-all-residents--list)
     * [Editing an existing resident : edit](#editing-an-existing-resident--edit)
-    * [Locating residents by names : find](#locating-residents-by-name-find)
+    * [Locating residents by names : find](#locating-residents-by-name--find)
     * [Filtering residents by field : filter](#filtering-residents-by-field--filter)
     * [Deleting a resident : delete](#deleting-a-resident--delete)
     * [Clearing all entries : clear](#clearing-all-entries--clear)
@@ -21,7 +21,7 @@ RC4HDB is a **desktop app for managing RC4 housing related information, optimize
     * [Saving the data](#saving-the-data)
     * [Editing the data file](#editing-the-data-file)
     * [Importing from csv file : import](#importing-from-csv-file--import)
-    * [Exporting to csv file : export](#exporting-to-csv-file-export)
+    * [Exporting to csv file : export](#exporting-to-csv-file--export)
     * [CSV file format](#csv-file-format)
 * [Frequently Asked Questions](#faq)
 * [Command Summary](#command-summary)
@@ -89,7 +89,7 @@ Adds a resident to the database. The format for resident fields can be found [he
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL r/FLOOR-UNIT g/GENDER h/HOUSE m/MATRIC_NUMBER [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A resident can have any number of tags (including 0)
 </div>
 
 Examples:
@@ -108,15 +108,15 @@ Edits the data of an existing resident in the RC4HDB database.
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/FLOOR-UNIT] [g/GENDER] [h/HOUSE] [m/MATRIC_NUMBER] [t/TAG]…​`
 
-* Edits the resident at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the resident at the specified `INDEX`. The index refers to the index number shown in the displayed residents list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without specifying any tags after it.
+* When editing tags, the existing tags of the resident will be removed i.e adding of tags is not cumulative.
+* You can remove all the resident’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 r/5-8` Edits the phone number, room number of the 1st person to be `91234567`, and `5-8` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 p/91234567 r/5-8` Edits the phone number, room number of the 1st resident to be `91234567`, and `5-8` respectively.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd resident to be `Betsy Crower` and clears all existing tags.
 
 ### Locating residents by name : `find`
 
@@ -128,7 +128,7 @@ Format: `find NAME [MORE_NAME]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Residents matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
@@ -160,7 +160,7 @@ Deletes the specified resident from the RC4HDB database.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
+* Deletes the resident at the specified `INDEX`.
 * The index refers to the index number shown in the displayed resident list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
@@ -229,32 +229,39 @@ Examples:
 
 ### Format for resident fields
 
-`NAME`
+`n/NAME`
 * Must be a string
 * Spaces are allowed
 
-`PHONE_NUMBER`
+`p/PHONE_NUMBER`
 * Must be an **8**-digit non-negative integer
 
-`EMAIL`
+`e/EMAIL`
 * Can be any string, valid or invalid email
 
-`FLOOR-UNIT`
+`r/FLOOR-UNIT`
 * The floor number and unit number must be separated by a hyphen
 * Both floor and unit number must be a non-negative integer
 * e.g. `5-8`
 
-`GENDER`
-* M or F
+`g/GENDER`
+* `M` or `F`
 
-`HOUSE`
+`h/HOUSE`
 * Represents the RC4 house that the resident is allocated to
 * Must be either `D`, `U`, `L`, `A`, `N`
 * `D` stands for **Draco**, `U` for **Ursa**, `L` for **Leo**, `A` for **Aquila**, `N` for **Noctua**
 
-`MATRIC_NUMBER`
+`m/MATRIC_NUMBER`
 * Must be an uppercase `A`, followed by a **7**-digit non-negative integer and an uppercase alphabet.
 * e.g. `A0123456A`
+
+`t/TAG`
+* Represents any other key that could be used to identify a resident
+* Must be a string. No restrictions on formatting
+* Optional. A resident can have any number of tags, including 0
+* When editing tags, the existing tags of the resident will be removed i.e adding of tags is not cumulative.
+* You can remove all the resident’s tags by typing `t/` without specifying any tags after it.
 
 _More details coming soon ..._
 
