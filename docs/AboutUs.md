@@ -9,25 +9,25 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Zhang Bozheng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zbz-lvlv.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/zbz-lvlv)]
+[[portfolio](team/zbz-lvlv.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: All
+
+### Kang Wenhan
+
+<img src="images/onepersonhere.png" width="200px">
+
+[[github](http://github.com/onepersonhere)]
+[[portfolio](team/onepersonhere.md)]
+
+* Role: Chief Programmer
+* Responsibilities: Backend
 
 ### Johnny Doe
 
