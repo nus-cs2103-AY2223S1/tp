@@ -20,15 +20,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Something
 
-### Jane Doe
+### Kang Qiao
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kangqiao322.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](https://github.com/kangqiao322)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Something
 
 ### Jet
 
