@@ -6,6 +6,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.tasks.TaskCategoryParser;
 import seedu.address.model.Model;
 
 /**
@@ -13,13 +14,14 @@ import seedu.address.model.Model;
  */
 public class TaskDeleteCommand extends Command {
 
-    public static final String CATEGORY_WORD = "task";
     public static final String COMMAND_WORD = "delete";
 
-    public static final String MESSAGE_USAGE = CATEGORY_WORD + " " + COMMAND_WORD
+    public static final String MESSAGE_USAGE =
+            TaskCategoryParser.CATEGORY_WORD + " " + COMMAND_WORD
             + ": Deletes the task identified by the index number.\n"
             + "Parameters: " + PREFIX_INDEX + "INDEX (must be a positive integer)\n"
-            + "Example: " + CATEGORY_WORD + " " + COMMAND_WORD + " " + PREFIX_INDEX + "1";
+            + "Example: " + TaskCategoryParser.CATEGORY_WORD + " "
+            + COMMAND_WORD + " " + PREFIX_INDEX + "1";
 
     private final Index index;
 

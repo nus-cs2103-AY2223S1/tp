@@ -10,21 +10,23 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.contacts.ContactCategoryParser;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a person identified using it's displayed index from the task book.
  */
 public class ContactDeleteCommand extends Command {
 
-    public static final String CATEGORY_WORD = "contact";
     public static final String COMMAND_WORD = "delete";
 
-    public static final String MESSAGE_USAGE = CATEGORY_WORD + " " + COMMAND_WORD
+    public static final String MESSAGE_USAGE =
+            ContactCategoryParser.CATEGORY_WORD + " " + COMMAND_WORD
             + ": Deletes the person identified by the index number used in the displayed person list.\n"
             + "Parameters: " + PREFIX_INDEX + "INDEX (must be a positive integer)\n"
-            + "Example: " + CATEGORY_WORD + " " + COMMAND_WORD + " " + PREFIX_INDEX + "1";
+            + "Example: " + ContactCategoryParser.CATEGORY_WORD + " "
+            + COMMAND_WORD + " " + PREFIX_INDEX + "1";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
