@@ -16,6 +16,7 @@ import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Name;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.enums.Assignment;
 
 /**
  * Parses input arguments and creates a new TaskAddCommand object
@@ -52,10 +53,10 @@ public class TaskAddCommandParser implements Parser<TaskAddCommand> {
 
         Name name = ParserUtil.parseName(argMultimap.getValue(firstPrefix).get());
         String description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
-        Task.Assignment assignment =
+        Assignment assignment =
                 firstPrefix.equals(PREFIX_ASSIGNEE)
-                ? Task.Assignment.ASSIGNEE
-                : Task.Assignment.ASSIGNOR;
+                ? Assignment.ASSIGNEE
+                : Assignment.ASSIGNOR;
 
         return new TaskAddCommand(name, description, assignment);
     }

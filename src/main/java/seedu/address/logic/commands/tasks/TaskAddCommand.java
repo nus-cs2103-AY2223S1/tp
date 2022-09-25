@@ -10,7 +10,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.tasks.TaskCategoryParser;
 import seedu.address.model.Model;
 import seedu.address.model.person.Name;
-import seedu.address.model.task.Task;
+import seedu.address.model.task.enums.Assignment;
 
 /**
  * Adds a task to the task book.
@@ -28,7 +28,7 @@ public class TaskAddCommand extends Command {
 
     private final Name name;
     private final String description;
-    private final Task.Assignment assignment;
+    private final Assignment assignment;
     private final boolean isDone;
 
     /**
@@ -39,11 +39,11 @@ public class TaskAddCommand extends Command {
      * @param description The description for the new task.
      * @param assignment Represents task assigned to user or others.
      */
-    public TaskAddCommand(Name name, String description, Task.Assignment assignment) {
+    public TaskAddCommand(Name name, String description, Assignment assignment) {
         this.name = name;
         this.description = description;
         this.assignment = assignment;
-        isDone = false;
+        this.isDone = false;
     }
 
     @Override
