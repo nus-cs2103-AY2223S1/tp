@@ -2,10 +2,9 @@ plugins {
     id 'java'
     id 'checkstyle'
     id 'com.github.johnrengelman.shadow' version '7.1.2'
-    id 'org.openjfx.javafxplugin' version '0.0.13'
     id 'application'
     id 'jacoco'
-}
+} 
 
 mainClassName = 'seedu.address.Main'
 
@@ -17,13 +16,8 @@ repositories {
     maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
 }
 
-javafx {
-    version = "18.0.2"
-    modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.graphics' ]
-}
-
 checkstyle {
-    toolVersion = '10.2'
+    setToolVersion('10.2') 
 }
 
 test {
@@ -47,6 +41,7 @@ task coverage(type: JacocoReport) {
 }
 
 dependencies {
+    String javaFxVersion = '18.0.2'
     String jUnitVersion = '5.4.0'
 
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.7.0'
