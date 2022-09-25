@@ -308,7 +308,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Search a contact*
+**Use case: Search a contact**
 
 **MSS**
 
@@ -323,7 +323,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends
 
 * 3a. There is no input after search.
-* 
+
     * 3a1. SoConnect shows the same list of persons.
   
       Use case ends.
@@ -346,10 +346,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 * 3a. There is no such current tag.
+
     * 3a1. SoConnect shows an error message.
     
       Use case resumes at step 2
+  
 * 3b. The new tag already exist.
+
     * 3b1. SoConnect shows an error message.
     
       Use case resumes at step 2.
@@ -368,10 +371,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 *  1a. There is no such name in the contacts.
+
     * 1a1. SoConnect shows an error message.
+  
       Use case resumes at step 1.
+  
 *  3a. There is no such tag in the taglist.
+
     * 3a1. SoConnect shows aan error message.
+   
       Use case resumes at step 2.
 
 **Use case: Autocomplete a word**
@@ -387,8 +395,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extension**
 *  1a. The word changes.
+
     * 1a1. SoConnect updates the selection of possible words.
-    Use case resumes at step 3.
+   
+      Use case resumes at step 3.
 
 **Use case: sort by name**
 
