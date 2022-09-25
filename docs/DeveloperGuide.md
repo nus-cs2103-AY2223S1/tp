@@ -270,7 +270,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
+| Priority | As a …​                                    | I want to …​                   | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
 | `* * *`  | user                                       | add a new person               |                                                                        |
@@ -278,6 +278,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
 | `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
 | `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `*`      | Minecraft multiplayer player               | view all my friends who are online easily                       | save time contacting them individually to start a game together     |
+| `*`      | parent of a young Minecraft player         | ban Minecraft from redirecting my child to third-party websites | protect them from stranger-danger online                            |
+| `* * *`  | Minecraft multiplayer player               | add my friends to the contact list                              | keep track of their information                                     |
+| `* *`    | Minecraft multiplayer player               | search for my friends through the CLI                           | track their current game status and find information about them     |
+| `* * *`  | Minecraft multiplayer player               | view all my friends in the list                                 | know who I have added as a friend already and who I haven’t add yet |
+| `* *`    | Minecraft multiplayer player               | save all the data of my contacts                                | not need to search for them or re-compile them again                |
+| `*`      | Minecraft multiplayer player               | login after typing in a password                                | ensure that nobody else can access my contact list                  |
+| `*`      | Minecraft survival games player            | know my friend's strengths and weaknesses in game               | form a strategic team to increase odds of winning                   |
+| `*`      | Minecraft PvP player                       | find friends to play together at the same time                  | team up and be stronger                                             |
+| `*`      | Experienced Minecraft player               | use the command line interface comfortably                      | do things more efficiently in the application                       |
+| `*`      | Minecraft player                           | change my password                                              | keep my account secure so nobody can hack my account                |
+| `*`      | Long time Minecraft player                 | have a lot of friends                                           | keep track of those friends                                         |
+| `*`      | Beginner Minecraft player                  | learn the controls                                              | play with my friends                                                |
+| `*`      | Minecraft player                           | reset my password                                               | still login in the case I forget my password                        |
+| `*`      | Minecraft PvP player                       | keep track of my friends’ general online (availability) times   | know when to expect them to be online                               |
+| `* * *`  | Minecraft multiplayer player               | know the contact number of my friends                           | can call them to play                                               |
+| `* * *`  | Minecraft multiplayer player               | know the social media handles of my friends                     | can text them to play                                               |
+| `* * *`  | Minecraft multiplayer player               | know the email address of my friends                            | can still communicate with them if all the other ways fail          |
+| `* * *`  | Minecraft multiplayer player               | know the addresses of my friends                                | can play together with them physically                              |
+| `*`      | Minecraft multiplayer player               | see what types of game modes my friends like to play            | call the correct person to play the correct type of game            |
+| `*`      | Minecraft multiplayer player               | remember what servers my friends have been banned on            | call the right person to play the right server                      |
+| `* * *`  | Minecraft multiplayer player               | remember what time zones my friends are in                      | can call them at the right time                                     |
+| `*`      | Minecraft player                           | set up an authentication system                                 | can protect my privacy                                              |
+| `*`      | Adult Minecraft Player                     | keep track of certain details                                   | do not need to remember everything if there are too many details about my friends |
+| `*`      | Tech Savvy Minecraft Player                | customize CLI to their own liking                               | have a good feeling when I use the CLI                              |
+| `*`      | Not so tech-savvy Minecraft Player         | practice their CLI skills                                       | master the CLI inputs                                               |
+| `*`      | Minecraft Fan                              | want everything related about Minecraft                         | feel fulfilled in life                                              |
+| `*`      | Minecraft Player who is banned from certain servers | find those people who his contacts are cut             | play with them on another server                                    |
+| `* * *`  | Minecraft multiplayer players              | know my friends in game username                                | recognize them in game                                              |
+| `* *`    | Minecraft multiplayer players              | know my friends in game skin                                    | recognize them in game                                              |
 
 *{More to be added}*
 
@@ -322,6 +352,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Minecraft**: An openworld sandbox [game](https://www.minecraft.net/en-us)
+* **MineFriends**: The name of our app
+* **Username**: Username of `friend` in Minecraft
+* **Server**: A Minecraft multiplayer server
+* **Socials**: Social Media such as Facebook, Instagram, Snapchat etc.
+* **Player**: A person that plays Minecraft
+* **PvP**: A type of gamemode in minecraft where one player battles another player
 
 --------------------------------------------------------------------------------------------------------------------
 
