@@ -32,8 +32,8 @@ public class TaskAddCommand extends Command {
     private final boolean isDone;
 
     /**
-     * Creates an TaskAddCommand to add a task
-     * with the specified {@code Name} and {@code Description}
+     * Creates an TaskAddCommand to add a task with the specified
+     * {@code Name name}, {@code String description} and {@code Task.Assignment assignment}
      *
      * @param name Name of the Person in the task book.
      * @param description The description for the new task.
