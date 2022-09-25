@@ -283,32 +283,140 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `SoConnect` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  SoConnect shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  SoConnect deletes the person
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The list is empty.
 
   Use case ends.
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. SoConnect shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Search a contact**
+
+**MSS**
+
+1.  User requests to search a specific word in the list
+2.  SoConnect shows a list of persons related to the word.
+    
+    Use case ends.
+
+**Extension**
+* 1a. The list is empty.
+
+  Use case ends
+
+* 3a. There is no input after search.
+
+    * 3a1. SoConnect shows the same list of persons.
+  
+      Use case ends.
+
+**Use case: Edit a tag**
+
+**MSS**
+
+1.  User requests for list of tags.
+2.  SoConnect shows the list of tags.
+3.  User changes a tag.
+4.  SoConnect updates the tag.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. There are no tags.
+
+  Use case ends.
+
+* 3a. There is no such current tag.
+
+    * 3a1. SoConnect shows an error message.
+    
+      Use case resumes at step 2
+  
+* 3b. The new tag already exist.
+
+    * 3b1. SoConnect shows an error message.
+    
+      Use case resumes at step 2.
+
+**Use case: Add tag to Contact**
+
+**MSS**
+
+1.  User requests for the name of the contact.
+2.  SoConnect gives the contact with the right name.
+3.  User request to add tag to the contact.
+4.  SoConnect adds the tag to the contact.
+
+    Use case ends.
+
+**Extensions**
+
+*  1a. There is no such name in the contacts.
+
+    * 1a1. SoConnect shows an error message.
+  
+      Use case resumes at step 1.
+  
+*  3a. There is no such tag in the taglist.
+
+    * 3a1. SoConnect shows aan error message.
+   
+      Use case resumes at step 2.
+
+**Use case: Autocomplete a word**
+
+**MSS**
+
+1.  User inputs word
+2.  SoConnect gives a selection of possible words.
+3.  User chooses the right word.
+4.  SoConnect changes inputted word to the chosen word. 
+
+    Use case ends.
+
+**Extension**
+*  1a. The word changes.
+
+    * 1a1. SoConnect updates the selection of possible words.
+   
+      Use case resumes at step 3.
+
+**Use case: sort by name**
+
+**MSS**
+
+1.  User request sort by name
+2.  SoConnect sorts the list by name.
+
+    Use case ends.
+
+**Use case: Hide all contact's phone number**
+
+**MSS**
+
+1.  User requests phone number to be hidden.
+2.  SoConnect removes phone number from displaying in the contact.
+
+    Use case ends.
 
 ### Non-Functional Requirements
 
