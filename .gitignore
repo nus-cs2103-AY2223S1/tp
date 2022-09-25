@@ -2,11 +2,16 @@
 /.gradle/
 /build/
 src/main/resources/docs/
+/bin/
 
 # IDEA files
 /.idea/
 /out/
 /*.iml
+
+# vscode files
+/.vscode/
+eclipse-formatter.xml
 
 # Storage/log files
 /data/
