@@ -11,14 +11,14 @@ You can reach us at the email `florenyu[at]comp.nus.edu.sg`
 
 ## Project team
 
-### Eugene Ong W X
+### Eugene Ong Wei Xiang
 
 <img src="images/eugene-ong-w-x.png" width="200px">
 
 [[github](https://github.com/eugene-ong-w-x)]
 [[portfolio](team/eugene-ong-w-x.md)]
 
-* Role: Team lead
+* Role: Team Lead
 * Responsibilities: Overall project coordination, deliverables, scheduling and tracking
 
 ### Florentiana Yuwono
@@ -58,4 +58,4 @@ You can reach us at the email `florenyu[at]comp.nus.edu.sg`
 [[portfolio](team/ugholaf.md)]
 
 * Role: Developer
-* Responsibilities: Code quality
+* Responsibilities: Code Quality

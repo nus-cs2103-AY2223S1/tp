@@ -95,6 +95,23 @@ Shows a list of all persons in the address book.
 
 Format: `list`
 
+### Sort Contacts : `sort`
+
+Sort the list of contacts displayed by certain attribute(s).
+
+Default sorting orders:
+* Alphabetical order for *names*, *emails*, *addresses*
+* Increasing order for *phone numbers*
+* Sorts contacts that have a specified *tag* before those without the *tag*
+
+Format: `sort [n/] [p/] [e/] [a/] [t/TAG]…​`
+* Add `!` in front of an attribute to sort in reverse order
+
+Example: 
+* `sort n/` sorts the currently displayed list of contacts by their names. 
+* `sort !t/friend` sorts contacts of friends *below* all other contacts. 
+* `sort t/friend n/` first sorts contacts of friends *above* all other contacts. Then it separately sorts the contacts of friends and contacts of non-friends by their names.
+
 ### Editing a person : `edit`
 
 Edits an existing person in the address book.
@@ -278,6 +295,7 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Search** | `search [n/NAME] [p/PHONE_NUMBER] ...`<br> e.g., `seach n/John Doe t/cs2103t`
 **List** | `list`
+**Sort** | `sort [n/] [p/] [e/] [a/] [t/TAG]…​` <br> e.g., `sort t/friend n/`
 **Help** | `help`
 **Create Tag** | `tag create t/TAG` <br> e.g., `tag create t/friend`
 **Edit Tag** | `tag edit t/TAG1 t/TAG2`  <br> e.g., `tag edit t/friend t/bestFriend`
