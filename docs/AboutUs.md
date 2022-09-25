@@ -40,25 +40,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Code Quality and Integration
 * Responsibilities: Main Logic (Command Parsing)
 
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
 ### Low Lik Hern
 
 <img src="images/likhern.png" width="200px">
