@@ -35,8 +35,9 @@ public class TaskAddCommand extends Command {
      * Creates an TaskAddCommand to add a task
      * with the specified {@code Name} and {@code Description}
      *
-     * @param name
-     * @param description
+     * @param name Name of the Person in the task book.
+     * @param description The description for the new task.
+     * @param assignment Represents task assigned to user or others.
      */
     public TaskAddCommand(Name name, String description, Task.Assignment assignment) {
         this.name = name;
