@@ -19,14 +19,14 @@ You can reach us at the email `jason.qiu@u.nus.edu`
 * Role: Team lead
 * Responsibilities: UI
 
-### Jane Doe
+### Pontakorn Prasertsuk
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/peppapighs.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/peppapighs)]
+[[portfolio](team/peppapighs.md)]
 
-* Role: Team Lead
+* Role: Code Quality
 * Responsibilities: UI
 
 ### Johnny Doe
