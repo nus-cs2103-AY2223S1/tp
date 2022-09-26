@@ -112,6 +112,12 @@ Shows a list of all persons in PayMeLah.
 
 Format: `list`
 
+### Listing all debtees : `debtlist`
+
+Shows a list of all persons that owe you money in PayMeLah.
+
+Format: `debtlist`
+
 ### Editing a person : `edit`
 
 Edits an existing person in PayMeLah.
@@ -205,4 +211,5 @@ Action | Format, Examples
 **Edit** | `edit <index> [n/<name>] [p/<phone number>] [e/<email>] [a/<address>] [t/<tag>]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find <keyword> [<more keywords>]`<br> e.g., `find James Jake`
 **List** | `list`
+**List debtees** | `debtlist`
 **Help** | `help`
