@@ -40,10 +40,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Rachel Angelyn Gunawan
 
-<img src="images/Rachel-AG.png" width="200px">
+<img src="images/rachel-ag.png" width="200px">
 
 [[github](https://github.com/Rachel-AG)]
-[[portfolio](team/Rachel-AG.md)]
+[[portfolio](team/rachel-ag.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
