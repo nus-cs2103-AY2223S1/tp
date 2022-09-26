@@ -14,7 +14,7 @@ You can reach us at the email `jason.qiu@u.nus.edu`
 <img src="images/jasonqiu212.png" width="200px">
 
 [[github](https://github.com/jasonqiu212)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/jasonqiu212.md)]
 
 * Role: Team lead
 * Responsibilities: UI
