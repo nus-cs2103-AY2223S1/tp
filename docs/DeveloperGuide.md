@@ -330,6 +330,38 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+**Use case: Find a person by name**
+
+**MSS**
+
+1. User requests to find a person by name.
+1. PayMeLah shows a list of people with that name.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. There is no person with the given name.
+  * 1a1. PayMeLah shows an error message.
+
+    Use case ends.
+
+**Use case: Find a person by debt description**
+
+**MSS**
+
+1. User requests to find a person by debt description.
+1. PayMeLah shows a list of people with a debt matching the debt description.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. There is debt matching the given description.
+    * 1a1. PayMeLah shows an error message.
+
+      Use case ends.
+
 *{More to be added}*
 
 ### Non-Functional Requirements
