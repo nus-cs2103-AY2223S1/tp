@@ -94,9 +94,9 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -307,7 +307,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User keys in the add command.
 2.  DevEnable adds the project to the list.
-3.  DevEnable saves the new list to storage.
 
     Use case ends.
 
@@ -326,22 +325,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list projects.
-2.  DevEnable shows the <ins>list of projects (UC1).</ins>
-3.  User types the command to delete a specific project in the list.
-4.  DevEnable deletes the project from the list.
-5.  DevEnable saves the new list to storage.
+1. User <ins>views the list of projects (UC1).</ins>)
+2. User types the command to delete a specific project in the list.
+3. DevEnable deletes the project from the list.
 
     Use case ends.
 
 **Extensions**
 
-* 3a. The user types in an invalid command.
-    * 3a1. DevEnable displays an error message with the correct usage.
+* 2a. The user types in an invalid command.
+    * 2a1. DevEnable displays an error message with the correct usage.
   
-      Use case resumes at Step 3.
-* 3b. DevEnable detects that the project ID does not exist in the list.
-    * 3b1. DevEnable displays an error message that the project does not exist.
+      Use case resumes at Step 2.
+* 2b. DevEnable detects that the project ID does not exist in the list.
+    * 2b1. DevEnable displays an error message that the project does not exist.
   
       Use case ends.
 
@@ -349,22 +346,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list projects.
-2.  DevEnable shows the <ins>list of projects (UC1).</ins>
-3.  User types the command to edit a specific project in the list.
-4.  DevEnable edits the project in the list.
-5.  DevEnable saves the new list to storage.
+1. User <ins>views the list of projects (UC1).</ins>
+2. User types the command to edit a specific project in the list.
+3. DevEnable edits the project in the list.
 
     Use case ends.
 
 **Extensions**
 
-* 3a. The user types in an invalid command.
-    * 3a1. DevEnable displays an error message with the correct usage.
+* 2a. The user types in an invalid command.
+    * 2a1. DevEnable displays an error message with the correct usage.
   
-      Use case resumes at Step 3.
-* 3b. DevEnable detects that the project ID does not exist in the list.
-    * 3b1. DevEnable displays an error message that the project does not exist.
+      Use case resumes at Step 2.
+* 2b. DevEnable detects that the project ID does not exist in the list.
+    * 2b1. DevEnable displays an error message that the project does not exist.
   
       Use case ends.
 
@@ -372,22 +367,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list projects.
-2.  DevEnable shows the <ins>list of projects (UC1).</ins>
-3.  User types the command to tag a client to a specific project in the list.
-4.  DevEnable tags the client to the project in the list.
-5.  DevEnable saves the new list to storage.
+1. User <ins>views the list of projects (UC1).</ins>
+2. User types the command to tag a client to a specific project in the list.
+3. DevEnable tags the client to the project in the list.
 
     Use case ends.
 
 **Extensions**
 
-* 3a. The user types in an invalid command.
-    * 3a1. DevEnable displays an error message with the correct usage.
+* 2a. The user types in an invalid command.
+    * 2a1. DevEnable displays an error message with the correct usage.
   
-      Use case resumes at Step 3.
-* 3b. DevEnable detects that the project ID does not exist in the list.
-    * 3b1. DevEnable displays an error message that the project does not exist.
+      Use case resumes at Step 2.
+* 2b. DevEnable detects that the project ID does not exist in the list.
+    * 2b1. DevEnable displays an error message that the project does not exist.
   
       Use case ends.
 
@@ -395,26 +388,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list projects.
-2.  DevEnable shows the <ins>list of projects (UC1).</ins>
-3.  User types the command to delete a client from a specific project in the list.
-4.  DevEnable deletes the client from the project in the list.
-5.  DevEnable saves the new list to storage.
+1. User <ins>views the list of projects (UC1).</ins>
+2. User types the command to delete a client from a specific project in the list.
+3. DevEnable deletes the client from the project in the list.
 
     Use case ends.
 
 **Extensions**
 
-* 3a. The user types in an invalid command.
-    * 3a1. DevEnable displays an error message with the correct usage.
+* 2a. The user types in an invalid command.
+    * 2a1. DevEnable displays an error message with the correct usage.
   
-      Use case resumes at Step 3.
-* 3b. DevEnable detects that the project ID does not exist in the list.
-    * 3b1. DevEnable displays an error message that the project does not exist.
+      Use case resumes at Step 2.
+* 2b. DevEnable detects that the project ID does not exist in the list.
+    * 2b1. DevEnable displays an error message that the project does not exist.
   
       Use case ends.
-* 3c. DevEnable detects that the client is not assigned to the project.
-    * 3c1. DevEnable displays an error message that the client does not exist.
+* 2c. DevEnable detects that the client is not assigned to the project.
+    * 2c1. DevEnable displays an error message that the client does not exist.
   
       Use case ends.
 
@@ -422,26 +413,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list projects.
-2.  DevEnable shows the <ins>list of projects (UC1).</ins>
-3.  User types the command to edit a client of a specific project in the list.
-4.  DevEnable edits the client of the project in the list.
-5.  DevEnable saves the new list to storage.
+1. User <ins>views the list of projects (UC1).</ins>
+2. User types the command to edit a client of a specific project in the list.
+3. DevEnable edits the client of the project in the list.
 
     Use case ends.
 
 **Extensions**
 
-* 3a. The user types in an invalid command.
-    * 3a1. DevEnable displays an error message with the correct usage.
+* 2a. The user types in an invalid command.
+    * 2a1. DevEnable displays an error message with the correct usage.
   
-      Use case resumes at Step 3.
-* 3b. DevEnable detects that the project ID does not exist in the list.
-    * 3b1. DevEnable displays an error message that the project does not exist.
+      Use case resumes at Step 2.
+* 2b. DevEnable detects that the project ID does not exist in the list.
+    * 2b1. DevEnable displays an error message that the project does not exist.
   
       Use case ends.
-* 3c. DevEnable detects that the client is not assigned to the project.
-    * 3c1. DevEnable displays an error message that the client does not exist.
+* 2c. DevEnable detects that the client is not assigned to the project.
+    * 2c1. DevEnable displays an error message that the client does not exist.
   
       Use case ends.
 
@@ -449,26 +438,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list projects.
-2.  DevEnable shows the <ins>list of projects (UC1).</ins>
-3.  User types the command to add a deadline to a specific project in the list.
-4.  DevEnable adds the deadline to the project in the list.
-5.  DevEnable saves the new list to storage.
+1. User <ins>views the list of projects (UC1).</ins>
+2. User types the command to add a deadline to a specific project in the list.
+3. DevEnable adds the deadline to the project in the list.
 
     Use case ends.
 
 **Extensions**
 
-* 3a. The user types in an invalid command.
-    * 3a1. DevEnable displays an error message with the correct usage.
+* 2a. The user types in an invalid command.
+    * 2a1. DevEnable displays an error message with the correct usage.
   
-      Use case resumes at Step 3.
-* 3b. DevEnable detects that the project ID does not exist in the list.
-    * 3b1. DevEnable displays an error message that the project does not exist.
+      Use case resumes at Step 2.
+* 2b. DevEnable detects that the project ID does not exist in the list.
+    * 2b1. DevEnable displays an error message that the project does not exist.
   
       Use case ends.
-* 3c. DevEnable detects that the deadline is not in the correct format.
-    * 3c1. DevEnable displays an error message with the required format.
+* 2c. DevEnable detects that the deadline is not in the correct format.
+    * 2c1. DevEnable displays an error message with the required format.
   
       Use case ends.
 
@@ -476,26 +463,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list projects.
-2.  DevEnable shows the <ins>list of projects (UC1).</ins>
-3.  User types the command to delete the deadline from a specific project in the list.
-4.  DevEnable deletes the deadline from the project in the list.
-5.  DevEnable saves the new list to storage.
+1. User <ins>views the list of projects (UC1).</ins>
+2. User types the command to delete the deadline from a specific project in the list.
+3. DevEnable deletes the deadline from the project in the list.
 
     Use case ends.
 
 **Extensions**
 
-* 3a. The user types in an invalid command.
-    * 3a1. DevEnable displays an error message with the correct usage.
+* 2a. The user types in an invalid command.
+    * 2a1. DevEnable displays an error message with the correct usage.
   
-      Use case resumes at Step 3.
-* 3b. DevEnable detects that the project ID does not exist in the list.
-    * 3b1. DevEnable displays an error message that the project does not exist.
+      Use case resumes at Step 2.
+* 2b. DevEnable detects that the project ID does not exist in the list.
+    * 2b1. DevEnable displays an error message that the project does not exist.
   
       Use case ends.
-* 3c. DevEnable detects that the project does not have a deadline.
-    * 3c1. DevEnable displays an error message that there is no deadline.
+* 2c. DevEnable detects that the project does not have a deadline.
+    * 2c1. DevEnable displays an error message that there is no deadline.
   
       Use case ends.
 
@@ -503,30 +488,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list projects.
-2.  DevEnable shows the <ins>list of projects (UC1).</ins>
-3.  User types the command to edit the deadline of a specific project in the list.
-4.  DevEnable edits the deadline of the project in the list.
-5.  DevEnable saves the new list to storage.
+1. User <ins>views the list of projects (UC1).</ins>
+2. User types the command to edit the deadline of a specific project in the list.
+3. DevEnable edits the deadline of the project in the list.
 
     Use case ends.
 
 **Extensions**
 
-* 3a. The user types in an invalid command.
-    * 3a1. DevEnable displays an error message with the correct usage.
+* 2a. The user types in an invalid command.
+    * 2a1. DevEnable displays an error message with the correct usage.
   
-      Use case resumes at Step 3.
-* 3b. DevEnable detects that the project ID does not exist in the list.
-    * 3b1. DevEnable displays an error message that the project does not exist.
-  
-      Use case ends.
-* 3c. DevEnable detects that the project does not have a deadline.
-    * 3c1. DevEnable displays an error message that there is no deadline.
+      Use case resumes at Step 2.
+* 2b. DevEnable detects that the project ID does not exist in the list.
+    * 2b1. DevEnable displays an error message that the project does not exist.
   
       Use case ends.
-* 3d. DevEnable detects that the deadline is not in the correct format.
-    * 3d1. DevEnable displays an error message with the required format.
+* 2c. DevEnable detects that the project does not have a deadline.
+    * 2c1. DevEnable displays an error message that there is no deadline.
+  
+      Use case ends.
+* 2d. DevEnable detects that the deadline is not in the correct format.
+    * 2d1. DevEnable displays an error message with the required format.
   
       Use case ends.
 
@@ -584,16 +567,16 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. _{ more test cases …​ }_
 
 ### Deleting a person
 
@@ -601,16 +584,16 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
+   2. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   3. Test case: `delete 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
 
 ### Saving data
 
@@ -618,4 +601,4 @@ testers are expected to do more *exploratory* testing.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
