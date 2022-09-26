@@ -19,21 +19,21 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Sng Haoren
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/misterpuffin.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/misterpuffin)]
+[[portfolio](team/misterpuffin.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Code Monkey
+* Responsibilities: Generate code  
 
 ### Johnny Doe
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/johndoe)] [[portfolio](team/misterpuffin.md)]
 
 * Role: Developer
 * Responsibilities: Data
@@ -43,7 +43,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/misterpuffin.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
@@ -53,7 +53,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/misterpuffin.md)]
 
 * Role: Developer
 * Responsibilities: UI
