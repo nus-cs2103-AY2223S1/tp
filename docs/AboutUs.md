@@ -55,4 +55,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/ngxingyu.md)]
 
 * Role: Developer
-* Responsibilities: 
+* Responsibilities: Logic + Testing 
