@@ -46,3 +46,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: [to be added]
+
+### Bryan Yang
+
+<img src="images/thesoggy.png" width="200px">
+
+[[github](http://github.com/thesoggy)]
+[[portfolio](team/thesoggy.md)]
+
+* Role: Developer
+* Responsibilities: [to be added]
