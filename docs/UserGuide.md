@@ -89,9 +89,21 @@ Examples:
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all internships. List of internships can be sorted by category in ascending or descending order.
 
-Format: `list`
+Format: ` list [c/CATEGORY] [REVERSE]`
+* List the internships sorted by category and in ascending or descending order
+* The category is optional. By default, without stating the category, `list` will display all internships in the order which they were created
+* The CATEGORY tag refers to company_name (or n), position (or p), application_process (or pr), website (or web), date(or d) (case-insensitive)
+* The reverse tag is optional. It can take on the value `true` or `false`. The reverse tag is set to false by default if not stated. List of internships will be shown in ascending order.
+* If REVERSE is set to `true`. List of internships will be displayed in descending order
+
+Examples:
+* `list c/n true`
+* `list c/website`
+* `list c/position false`
+
+
 
 ### Editing a person : `edit`
 
