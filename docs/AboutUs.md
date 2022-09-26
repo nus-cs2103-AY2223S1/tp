@@ -40,15 +40,18 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Elgin Lee Yiheng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/elginl.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/jicsontoh.md)]
+[[github](http://github.com/ElginL)]
+[[portfolio](team/elginl.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities:
+    - Team Lead
+    - Deliverables and Deadlines
+    - Scheduling and Tracking
 
 ### Nam Minh Quan
 
