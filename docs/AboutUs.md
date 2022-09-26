@@ -9,7 +9,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Lau Rui Han
 
 <img src="images/johndoe.png" width="200px">
 
@@ -19,7 +19,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Emily Ong Hui Qi
 
 <img src="images/johndoe.png" width="200px">
 
@@ -29,7 +29,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Zhu Yuanxi
 
 <img src="images/johndoe.png" width="200px">
 
@@ -38,15 +38,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Sharmaine Teo
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/sharmaine1028.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/sharmaine1028)]
+[[portfolio](team/sharmaine1028.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Project Manager
 
 ### Jason Yap
 
