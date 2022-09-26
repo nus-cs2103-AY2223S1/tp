@@ -2,7 +2,7 @@
 
 ![Ui](docs/images/Ui.png)
 
-* DevEnable is a desktop application for **Web Developers** to manage client projects.<br>
+* DevEnable is a desktop application for **Software Developers** to manage client projects.<br>
   Developers can:
   * view all projects in one place
   * tag and manage tasks based on deadlines
