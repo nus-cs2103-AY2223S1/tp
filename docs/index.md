@@ -3,15 +3,26 @@ layout: page
 title: AddressBook Level-3
 ---
 
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
-[![codecov](https://codecov.io/gh/se-edu/addressbook-level3/branch/master/graph/badge.svg)](https://codecov.io/gh/se-edu/addressbook-level3)
+[![CI Status](https://github.com/AY2223S1-CS2103T-W08-4/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2223S1-CS2103T-W08-4/tp/actions)
+[![codecov](https://codecov.io/gh/AY2223S1-CS2103T-W08-4/tp/branch/master/graph/badge.svg?token=CV0THT0WWT)](https://codecov.io/gh/AY2223S1-CS2103T-W08-4/tp)
 
 ![Ui](images/Ui.png)
 
-**AddressBook is a desktop application for managing your contact details.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+# CS2103T Team Project [W08-4]
 
-* If you are interested in using AddressBook, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
-* If you are interested about developing AddressBook, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
+* This is **a brownfield project for Software Engineering (SE) students**.<br>
+  Example usages:
+    * Can be used by canteen vendors in NUS to manage their supplies and suppliers.
+    * Can be used as a barebones address book as well.
+* The project simulates an ongoing software project for a desktop application (called _Salsey_) used for managing suppliers via contacts as well as supplies.
+    * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
+    * It comes with a **reasonable level of user and developer documentation**.
+* It is named `Salsey` because our team wanted to up the sales of canteen vendors by allowing them to be more efficient using our management applicaiton.
+* For the detailed documentation of this project, see the **[Salsey Product Website](https://ay2223s1-cs2103t-w08-4.github.io/tp/)**.
+* This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+
+[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![codecov](https://codecov.io/gh/se-edu/addressbook-level3/branch/master/graph/badge.svg)](https://codecov.io/gh/se-edu/addressbook-level3)
 
 
 **Acknowledgements**
