@@ -5,20 +5,18 @@
 
 ![Ui](docs/images/Ui.png)
 
-## 
-ModQuik is a **desktop app for NUS CS Professors, optimised for use via a Command Line Interface(CLI).** 
+ModQuik is a **desktop app for NUS CS Professors, optimised for use via a Command Line Interface(CLI).**
   It allows the professors to keep track of their students, teaching assistants and timetable for their courses.<br>
   Example usages:
   * To find out which students are in which class
   * To find out which TA is teaching which class
   * To keep track of upcoming tasks
-  
+
 ## Site Map
 - User Guide
 - Developer Guide
 - About Us
 - Contact Us
-
 
 ## Acknowledgements
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
