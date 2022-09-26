@@ -312,9 +312,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1.  The product should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2.  The product should be able to hold up to 200 projects without a noticeable sluggishness in performance for typical usage.
+3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse. 
+4.  The product should work only for a single user. 
+5.  The data should be stored locally and should be in a human editable text file. 
+6.  The GUI should work well for standard screen resolutions 1920x1080 and higher and for screen scales 100% and 125%. 
+7.  The GUI should be usable for resolutions 1280x720 and higher and for screen scales 150%. 
+8.  The product file size should not exceed 100MB. 
+9.  The document file size should not exceed 15MB. 
+10.  The DG and UG should be PDF-friendly. 
+11.  The product needs to be developed in a breadth-first incremental manner. 
+12.  The product should not use a DBMS to store data. 
+13.  The data should be saved every time a command alters the data. 
+14.  The testing strategy should cover over 90% of the code. 
+15.  The data should be encrypted and secured for the user.
+
 
 *{More to be added}*
 
