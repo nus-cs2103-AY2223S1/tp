@@ -3,7 +3,8 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Jeeq TracQer is a tool built for small businesses lacking in resources to help them keep track of supplier contacts and previous transaction information with them
+
 
 * Table of Contents
 {:toc}
@@ -128,6 +129,20 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
+### Filtering the address book display : `filter`
+
+Filter the address book based on type of goods or net transfer.
+
+Format: `filter g/[GOODS]` or `filter tr/[NET_TRANSFER]`
+
+* Filters the display based on the specified criteria.
+* Type of goods include: Food, Electronics, Clothing, Commodities and Services.
+* Net transfer could either be `-` which means net loss or `+` which means net gains.
+
+Examples:
+* `filter g/Food` Display all contacts that made food transactions with you.
+* `filter tr/-` Display all contacts that has a negative net transfer with you.
+
 ### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
@@ -188,5 +203,6 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Filter** | `filter g/[GOODS]` or `filter tr/[NET_TRANSFER]`<br> e.g., `filter g/Food` or `filter tr/-`
 **List** | `list`
 **Help** | `help`
