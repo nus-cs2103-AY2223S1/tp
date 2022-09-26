@@ -285,28 +285,172 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC1 - List all projects**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
+1.  User requests to list projects
+2.  DevEnable shows a list of persons.
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The list is empty.
+  * 1a1. DevEnable displays a default message.
+    Use case ends.
 
-  Use case ends.
+**Use case: UC2 - Add project**
 
-* 3a. The given index is invalid.
+**MSS**
 
-    * 3a1. AddressBook shows an error message.
+1.  User keys in the add command.
+2.  DevEnable adds the project to the list.
+3.  DevEnable saves the new list to storage.
+    Use case ends.
 
-      Use case resumes at step 2.
+**Extensions**
+
+* 1a. The command is invalid.
+    * 1a1. DevEnable displays an error message.
+      Use case resumes at Step 1.
+
+**Use case: UC3 - Delete project**
+
+**MSS**
+
+1.  User requests to list projects.
+2.  DevEnable shows the <ins>list of projects (UC1).</ins>
+3.  User types the command to delete a specific project in the list.
+4.  DevEnable deletes the project from the list.
+5.  DevEnable saves the new list to storage.
+    Use case ends.
+
+**Extensions**
+
+* 3a. The command is invalid.
+    * 3a1. DevEnable displays an error message.
+      Use case resumes at Step 3.
+
+**Use case: UC4 - Edit project**
+
+**MSS**
+
+1.  User requests to list projects.
+2.  DevEnable shows the <ins>list of projects (UC1).</ins>
+3.  User types the command to edit a specific project in the list.
+4.  DevEnable edits the project in the list.
+5.  DevEnable saves the new list to storage.
+    Use case ends.
+
+**Extensions**
+
+* 3a. The command is invalid.
+    * 3a1. DevEnable displays an error message.
+      Use case resumes at Step 3.
+
+**Use case: UC5 - Tag client to project**
+
+**MSS**
+
+1.  User requests to list projects.
+2.  DevEnable shows the <ins>list of projects (UC1).</ins>
+3.  User types the command to tag a client to a specific project in the list.
+4.  DevEnable tags the client to the project in the list.
+5.  DevEnable saves the new list to storage.
+    Use case ends.
+
+**Extensions**
+
+* 3a. The command is invalid.
+    * 3a1. DevEnable displays an error message.
+      Use case resumes at Step 3.
+
+**Use case: UC6 - Delete client from project**
+
+**MSS**
+
+1.  User requests to list projects.
+2.  DevEnable shows the <ins>list of projects (UC1).</ins>
+3.  User types the command to delete a client from a specific project in the list.
+4.  DevEnable deletes the client from the project in the list.
+5.  DevEnable saves the new list to storage.
+    Use case ends.
+
+**Extensions**
+
+* 3a. The command is invalid.
+    * 3a1. DevEnable displays an error message.
+      Use case resumes at Step 3.
+
+**Use case: UC7 - Edit client of project**
+
+**MSS**
+
+1.  User requests to list projects.
+2.  DevEnable shows the <ins>list of projects (UC1).</ins>
+3.  User types the command to edit a client of a specific project in the list.
+4.  DevEnable edits the client of the project in the list.
+5.  DevEnable saves the new list to storage.
+    Use case ends.
+
+**Extensions**
+
+* 3a. The command is invalid.
+    * 3a1. DevEnable displays an error message.
+      Use case resumes at Step 3.
+
+**Use case: UC8 - Add deadline to project**
+
+**MSS**
+
+1.  User requests to list projects.
+2.  DevEnable shows the <ins>list of projects (UC1).</ins>
+3.  User types the command to add a deadline to a specific project in the list.
+4.  DevEnable adds the deadline to the project in the list.
+5.  DevEnable saves the new list to storage.
+    Use case ends.
+
+**Extensions**
+
+* 3a. The command is invalid.
+    * 3a1. DevEnable displays an error message.
+      Use case resumes at Step 3.
+
+**Use case: UC9 - Delete deadline from project**
+
+**MSS**
+
+1.  User requests to list projects.
+2.  DevEnable shows the <ins>list of projects (UC1).</ins>
+3.  User types the command to delete the deadline from a specific project in the list.
+4.  DevEnable deletes the deadline from the project in the list.
+5.  DevEnable saves the new list to storage.
+    Use case ends.
+
+**Extensions**
+
+* 3a. The command is invalid.
+    * 3a1. DevEnable displays an error message.
+      Use case resumes at Step 3.
+
+**Use case: UC10 - Edit deadline of project**
+
+**MSS**
+
+1.  User requests to list projects.
+2.  DevEnable shows the <ins>list of projects (UC1).</ins>
+3.  User types the command to edit the deadline of a specific project in the list.
+4.  DevEnable edits the deadline of the project in the list.
+5.  DevEnable saves the new list to storage.
+    Use case ends.
+
+**Use case: UC10 - View list of commands**
+
+**MSS**
+
+1.  User requests to list all commands.
+2.  DevEnable shows the list of commands.
+    Use case ends.
 
 *{More to be added}*
 
