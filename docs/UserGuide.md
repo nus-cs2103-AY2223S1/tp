@@ -63,7 +63,7 @@ RC4HDB is a **desktop app for managing RC4 housing related information, optimize
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken, unless specified.<br>
+* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken, unless otherwise specified.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
@@ -122,7 +122,7 @@ Examples:
 
 Finds residents whose names contain any of the given keywords.
 
-Format: `find NAME [MORE_NAME]`
+Format: `find NAME [ADDITIONAL_NAMES]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -140,7 +140,7 @@ Examples:
 
 Shows a list of residents whose fields match the input keywords.
 
-Format: `filter [/SPECIFIER] KEY/VALUE [ADDITIONAL_KEYS/ADDITIONAL VALUES]`
+Format: `filter [/SPECIFIER] KEY/VALUE [ADDITIONAL_KEYS/ADDITIONAL_VALUES]`
 
 * The default specifier, if not specified by the user is `/all`.
 * Currently, only two specifiers are supported:

@@ -275,7 +275,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### User stories
 
-Our user stories have been packaged with the relevant functionalities that we will/have implemented.
+Our user stories have been packaged with the relevant functionalities that we will implement/have implemented.
 
 They have been extensively documented [here](https://github.com/AY2223S1-CS2103T-W12-3/tp/issues?q=is%3Aissue+label%3Atype.Story), and have been prioritized accordingly:
 1. High - must have
@@ -336,7 +336,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. User wants to see the full list of residents in RC4
 2. User enters the list command
-3. RC4HDB displays the details of all residents n RC4.
+3. RC4HDB displays the details of all residents in RC4.
    
     Use case ends.
 
@@ -401,7 +401,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Filtering the list of all residents by specific fields**
 
 **MSS**
-1. User want to see a list of residents that fall under a certain category
+1. User wants to see a list of residents that fall under a certain category
 2. User enters the filter command followed by an optional specifier to filter for any categories or all of the categories, and lastly the tags to filter for
 3. RC4HDB applies the filter
 4. RC4HDB shows the filtered list
