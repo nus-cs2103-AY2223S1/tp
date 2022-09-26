@@ -17,6 +17,9 @@ public class HomeCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+        // Should be
+        // updateFilteredContactList(PREDICATE_SHOW_ALL_PERSONS)
+        // updateFilteredModuleList(PREDICATE_SHOW_ALL_PERSONS)
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
