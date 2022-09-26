@@ -54,9 +54,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/quannam0124.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/jicsontoh.md)]
+[[github](http://github.com/quannam0124)]
+[[portfolio](team/quannam0124.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Dev Ops, Documentation, Code Quality
 
