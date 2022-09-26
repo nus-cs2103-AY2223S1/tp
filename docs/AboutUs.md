@@ -3,57 +3,57 @@ layout: page
 title: About Us
 ---
 
-We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
+We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg)!
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+We are developing NutriGoals - a free-to-use CLI nutritional tracker for beginners who are getting started on
+their fitness journey!
+
 
 ## Project team
 
-### John Doe
+### Xavier Ong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/xav168.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[GitHub](https://github.com/xav168)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Scheduling and tracking
 
-### Johnny Doe
+### Nicole Lim
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/nicolelim02.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[GitHub](http://github.com/nicolelim02)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Code Quality
 
-### James Doe
+### Tin Ruiqi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ruiqi7.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[GitHub](http://github.com/ruiqi7)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Deliverables and deadline
+
+### Tan Ping Zhi
+
+<img src="images/tanpingzhi.png" width="200px">
+
+[[GitHub](http://github.com/jtanpingzhi)]
+
+
+* Role: Developer
+* Responsibilities: Integration
+
+### Aung Khant Kyaw
+
+<img src="images/akkfiros.png" width="200px">
+
+[[GitHub](http://github.com/akkfiros)]
+
+
+* Role: Developer
+* Responsibilities: Documentation
