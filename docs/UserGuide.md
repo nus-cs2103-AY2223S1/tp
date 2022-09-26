@@ -64,13 +64,18 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 </div>
 
-### Viewing help : `help`
+### Viewing help : `help` 
 
-Shows a message explaning how to access the help page.
+`help` returns the list of all commands. `help [COMMAND]` returns the detailed description of that specified command.
 
-![help message](images/helpMessage.png)
+[//]: # (![help message]&#40;images/helpMessage.png&#41;)
 
-Format: `help`
+Format: `help` or `help [COMMAND]`
+
+Examples:
+* `help` Shows the list of commands.
+* `help find` Shows the description of `find` command.
+* `help add` Shows the description of `add` command.
 
 
 ### Adding a person: `add`
@@ -189,4 +194,4 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
-**Help** | `help`
+**Help** | `help` or `help [COMMAND]` <br> e.g.,`help` or `help add` or `help sort`
