@@ -29,14 +29,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Lee Cheng Da
+### Johnny Doe
 
-<img src="images/chengda300.png" width="200px">
+<img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/chengda300)] [[portfolio](team/chengda300.md)]
+[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Feature enhancements
+* Responsibilities: Data
 
 ### Jean Doe
 
