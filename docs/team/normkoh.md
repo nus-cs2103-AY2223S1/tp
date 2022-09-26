@@ -7,7 +7,7 @@ title: Koh Wei Quan Norman's Project Portfolio Page
 
 #### Overview : to be added soon
 
-#### Summary of contributions : 
+#### Summary of contributions :
 - Code Contributed: To be added soon
 - Enhancements implemented: To be added soon
 - Contributions to the UG: To be added soon

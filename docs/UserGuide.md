@@ -2,8 +2,8 @@
 layout: page
 title: User Guide
 ---
-SOConnect is a **desktop application for SOC students to easily find their peers, TAs and profs**. 
-Since it is designed for SOC students, it is **optimized for use via a Command Line Interface (CLI)** 
+SOConnect is a **desktop application for SOC students to easily find their peers, TAs and profs**.
+Since it is designed for SOC students, it is **optimized for use via a Command Line Interface (CLI)**
 but it also has a Graphical User Interface for simpler and quicker task.
 
 
