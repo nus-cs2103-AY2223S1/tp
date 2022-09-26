@@ -13,7 +13,7 @@ You can reach us at the email `Section_2210_11461[at]nusu.onmicrosoft.com`
 
 ### Kelvin Ou
 
-<img src="images/johndoe.png" width="200px" alt="Kelvin">
+<img src="images/kelvinou01.png" width="200px" alt="Kelvin">
 
 [[github](https://github.com/kelvinou01)]
 [[portfolio](team/kelvin.md)]
@@ -23,7 +23,7 @@ You can reach us at the email `Section_2210_11461[at]nusu.onmicrosoft.com`
 
 ### Simpson Eng
 
-<img src="images/johndoe.png" width="200px" alt="Simpson">
+<img src="images/craeyeons.png" width="200px" alt="Simpson">
 
 [[github](http://github.com/craeyeons)]
 [[portfolio](team/simpson.md)]
@@ -33,7 +33,7 @@ You can reach us at the email `Section_2210_11461[at]nusu.onmicrosoft.com`
 
 ### Tan Ming Wei
 
-<img src="images/johndoe.png" width="200px" alt="Ming Wei">
+<img src="images/malwaregarry.png" width="200px" alt="Ming Wei">
 
 [[github](http://github.com/malwaregarry)]
 [[portfolio](team/mingwei.md)]
@@ -43,7 +43,7 @@ You can reach us at the email `Section_2210_11461[at]nusu.onmicrosoft.com`
 
 ### Yap Zhi Heng
 
-<img src="images/johndoe.png" width="200px" alt="Zhi Heng">
+<img src="images/polygonalr.png" width="200px" alt="Zhi Heng">
 
 [[github](http://github.com/Polygonalr)]
 [[portfolio](team/zhiheng.md)]
@@ -53,7 +53,7 @@ You can reach us at the email `Section_2210_11461[at]nusu.onmicrosoft.com`
 
 ### Yew Wei Quan
 
-<img src="images/johndoe.png" width="200px" alt="Wei Quan">
+<img src="images/weiquany.png" width="200px" alt="Wei Quan">
 
 [[github](http://github.com/weiquany)]
 [[portfolio](team/weiquan.md)]
