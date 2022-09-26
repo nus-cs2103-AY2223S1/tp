@@ -308,31 +308,28 @@ Priorities: `High` (must have), `Medium` (nice to have), `Low` (unlikely to have
 | `Low` | User who is easily bored | Set different themes for the application | Enjoy different visuals  |
 | `Low` | User | Find free times | Add more dates/schedule more meetings |
 
-*{More to be added}*
-
 ### Use cases
 
-(For all use cases below, the **System** is the `Plannit` application and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the Plannit application and the **Actor** is the user, unless specified otherwise)
 
 #### Use case: UC01 - Add a module
 **Main Success Scenario (MSS)**
 1. User requests to add module.
 2. Plannit adds the module.
-3. Plannit shows that the module addition is successful.
+3. Plannit displays to the user that the module addition is successful.
 
 Use case ends
 
 **Extensions**
-* 1a. Module already exists
-    * 1a1. Plannit shows an error message.
+* 1a. The module already exists.
+    * 1a1. Plannit displays an error message.
 
   Use case ends
 
 #### Use case: UC02 - Delete a module
 **Main Success Scenario (MSS)**
-
 1.  User requests to list modules.
-2.  Plannit shows a list of modules.
+2.  Plannit displays a list of modules.
 3.  User requests to delete a specific module in the list.
 4.  Plannit deletes the module.
 
@@ -346,7 +343,7 @@ Use case ends.
 
 * 3a. The given index is invalid.
 
-    * 3a1. Plannit shows an error message.
+    * 3a1. Plannit displays an error message.
 
   Use case resumes at step 2.
 
@@ -367,8 +364,8 @@ Extensions:
 
 #### Use case: UC04 - Add a task
 **Preconditions**:
-* User has completed UC01
-* Module list is not empty
+* User has completed [UC01](#use-case-uc01---add-a-module).
+* Module list is not empty.
 
 **Main Success Scenario (MSS)**
 1.  User requests to add a task to a specific module in the list.
@@ -379,21 +376,21 @@ Extensions:
 **Extensions**
 * 1a. The given module is invalid.
 
-    * 3a1. Plannit shows an error message.
+    * 1a1. Plannit displays an error message.
 
-  Use case resumes at step 1.
+  Use case ends.
 
 * 1b. The given task is in an invalid format.
 
-    * 1b1. Plannit shows an error message.
+    * 1b1. Plannit displays an error message.
 
-  Use case resumes at step 1.
+  Use case ends.
 
 #### Use case: UC05 - Delete a task
 **Preconditions**:
-* User has completed UC01
-* Module list is not empty
-* Task list of module is not empty
+* User has completed [UC01](#use-case-uc01---add-a-module).
+* Module list is not empty.
+* Task list of module is not empty.
 
 **Main Success Scenario (MSS)**
 1.  User requests to delete a specific task from a module in the list.
@@ -404,38 +401,38 @@ Use case ends.
 **Extensions**
 * 1a. The given module is invalid.
 
-    * 1a1. Plannit shows an error message.
+    * 1a1. Plannit displays an error message.
 
-  Use case resumes at step 1.
+  Use case ends.
 
 * 1b. The given task index is invalid.
 
-    * 1b1. Plannit shows an error message.
+    * 1b1. Plannit displays an error message.
 
-  Use case resumes at step 1.
+  Use case ends.
 
 #### Use case: UC06 - Find task
 **Precondition**
-* User has applied UC13 to navigate to a module.
+* User has applied [UC13](#use-case-uc13---navigate-to-module) to navigate to a module.
 
 **Main Success Scenario (MSS)**
 1. User requests to search for a task.
-2. Plannit displays the list of tasks matching the user search keyword to the user.
+2. Plannit displays to the user the list of tasks matching the user's search 
+   request.
 
 **Extensions**
 * 1a. User inputs empty search keyword.
-    * 1a1. Plannit shows an error message.
+    * 1a1. Plannit displays an error message.
 
-  Use case resumes at Step 1
+  Use case ends.
 
 #### Use case: UC07 - Add a Module Link
 **Preconditions**:
-* User has completed UC01
-* Module list is not empty
+* User has completed [UC01](#use-case-uc01---add-a-module).
+* Module list is not empty.
 
 **Main Success Scenario (MSS)**
-
-1. User requests for the addition of module-specific link.
+1. User requests for the addition of a module-specific link.
 2. Plannit adds and associates the entered link to the specific module.
 
 Use case ends.
@@ -453,9 +450,8 @@ Extension:
 
 #### Use case: UC08 - Delete a Module Link
 **Main Success Scenario (MSS)**
-
-1. User requests for the deletion of module-specific link.
-2. Plannit adds and associates the entered link to the specific module.
+1. User requests for the deletion of a module-specific link.
+2. Plannit deletes the entered link from the specific module.
 
 Use case ends.
 
@@ -482,26 +478,30 @@ Use case ends.
 
 **Extensions**
 * 3a. The contact is duplicate, i.e. name already exists.
-    * 3a1. Plannit shows an error message notifying user of the issue.
+    * 3a1. Plannit displays an error message notifying the user that a 
+      duplicate contact exists.
 
   Use case ends.
 
 * 3b. The email address is invalid.
-    * 3b1. Plannit shows an error message.
+    * 3b1. Plannit displays an error message notifying the user that the 
+      email address is invalid.
 
   Use case ends.
 
 * 3c. The phone number is invalid.
-    * 3c1. Plannit shows an error message notifying user of the invalid phone number.
+    * 3c1. Plannit displays an error message notifying the user that the phone 
+      number is invalid.
 
   Use case ends.
 
 #### Use case: UC10 - Delete a contact
 **Main Success Scenario (MSS)**
 1. User chooses to delete a contact.
-2. Plannit requests for name of friend.
-3. User enters the friend's name.
-4. Plannit searches for friend and notifies user that the contact has been deleted.
+2. Plannit requests for the name of the contact.
+3. User enters the contact's name.
+4. Plannit searches for the contact and notifies user that the contact has been 
+   deleted.
 
 Use case ends.
 
@@ -516,7 +516,7 @@ Extensions:
 1. User chooses to search up his friend's email.
 2. Plannit requests for name of friend.
 3. User enters the friend's name.
-4. Plannit searches for friend and displays friend details
+4. Plannit searches for the name and displays the friend's details.
 
 Use case ends.
 
@@ -528,9 +528,8 @@ Extensions:
 
 #### Use case: UC12 - Navigate to Home Page
 **Main Success Scenario (MSS)**
-
 1.  User requests to navigate to Home Page.
-2.  Plannit shows the Home Page.
+2.  Plannit displays the Home Page.
 
 Use case ends.
 
@@ -542,9 +541,8 @@ Use case ends.
 
 #### Use case: UC13 - Navigate to Module
 **Main Success Scenario (MSS)**
-
 1.  User requests to navigate to a specific module.
-2.  Plannit shows the module details.
+2.  Plannit displays the module details.
 
 Use case ends.
 
@@ -552,27 +550,25 @@ Use case ends.
 
 * 1a. Module does not exist.
 
-    * 1a1. Plannit shows an error message.
+    * 1a1. Plannit displays an error message.
 
   Use case ends.
 
 #### Use case: UC14 - Navigate to Contact Page
 **Main Success Scenario (MSS)**
-
-1.  User requests to navigate to Contact Page.
-2.  Plannit shows the Contact Page.
+1.  User requests to navigate to the Contact Page.
+2.  Plannit displays the Contact Page.
 
 Use case ends.
 
 **Extensions**
 
-* 1a. Already at Contact Page.
+* 1a. Plannit is already at the Contact Page.
 
   Use case ends.
 
 #### Use case: UC15 - Exit program
 **Main Success Scenario (MSS)**
-
 1.  User requests to exit program.
 2.  Plannit closes program.
 

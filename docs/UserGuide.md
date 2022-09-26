@@ -23,28 +23,29 @@ while still having the benefits of a Graphical User Interface (GUI).
 
 3. Copy the file to the folder you want to use as the _home folder_ for Plannit.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app
+contains some sample data.<br>
    [image coming soon]
 
-5. Type the command in the command box and press Enter to execute it. e.g.
+5. Type the command in the command box and press Enter to execute it. e.g. 
    `add module`. For more commands, you may refer to the [command summary](#11-command-summary)
 
 6. Refer to the [Features](#2-features) for details of each command.
 
 ### 1.1. Command summary
-
-Action | Format, Examples (if any)
---------|------------------
-**CommandInBold** | `command examples here`
-**CommandInBold** | `command examples here`
-`add task`    | `add    task     m/MODULE_CODE d/TASK_DESCRIPTION`,<br>e.g.: `add task m/CS2103T d/Complete tP tasks for W07`
-`delete task` | `delete task     m/MODULE_CODE n/TASK_NUMBER`,<br>e.g.: `delete task m/CS2103T n/3`
-**CommandInBold** | `command examples here`
-**CommandInBold** | `command examples here`
-**home** | `home`
-**goto** | `goto m/MODULE_CODE`,<br>e.g.: `goto m/CS2103T`
-**exit** | `exit`
---------------------------------------------------------------------------------------------------------------------
+| Action                                  | Format                                                | Short Description                                                           |
+|-----------------------------------------|-------------------------------------------------------|-----------------------------------------------------------------------------|
+| [`add module`](#211-add-module)         | `add    module   m/MODULE_CODE [t/MODULE_TITLE]`      | Add module with a module code and optional module title                     |
+| [`delete module`](#212-delete-module)   | `delete module   m/MODULE_CODE`                       | Delete module by module code                                                |
+| [`add task`](#221-add-task)             | `add    task     m/MODULE_CODE d/TASK_DESCRIPTION`    | Add task with specified module code and task description                    |
+| [`delete task`](#222-delete-task)       | `delete task     m/MODULE_CODE n/TASK_NUMBER`         | Delete task corresponding to specified task number of specified module code |
+| **CommandInBold**                       | `command format here`                                 |                                                                             |
+| **CommandInBold**                       | `command format here`                                 |                                                                             |
+| [`add contact`](#241-add-contact)       | `add contact     n/NAME    e/EMAIL    p/PHONE_NUMBER` | Add contact with specified name, email, and phone number                    |
+| [`delete contact`](#242-delete-contact) | `delete contact  n/NAME`                              | Delete contact belonging to the specified name                              |
+| [`home`](#251-navigate-to-home-page)    | `home`                                                | Navigate to the home page                                                   |
+| [`goto`](#252-navigate-between-modules) | `goto m/MODULE_CODE`                                  | Navigate to specified module page                                           |
+| [`exit`](#26-exiting-the-program)       | `exit`                                                | Exit the program                                                            |
 
 ## 2. Features
 
@@ -61,8 +62,9 @@ Action | Format, Examples (if any)
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/81234123 p/999`, only `p/81234123` will be taken.
+* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of
+the parameter will be taken.<br>
+  e.g. if you specify `p/81234123 p/999`, only `p/999` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as
   `home`, `goto` and `exit`) will be ignored.<br>
@@ -71,13 +73,50 @@ Action | Format, Examples (if any)
 </div>
 
 ### 2.1. Adding and deleting modules
-#### 2.1.1. Add module: `add module`
-#### 2.1.2. Delete Module: `delete module`
+#### 2.1.1. Add module
+You can add a module into Plannit.
+
+This command will require one flag, and one flag is optional:
+* `m/`: To be followed by the module code of the module to be added into Plannit.
+* `t/`: (Optional flag) To be followed by the module title of the module to be added into Plannit.
+
+Format: `add module m/MODULE_CODE [t/MODULE_TITLE]`
+* A module has a module code and an optional module title.
+
+Examples:
+```
+add module m/CS2103T
+```
+In the above example, we are adding a module `CS2103T` without a title.
+
+```
+add module m/CS2103T t/Software Engineering
+```
+In the above example, we are adding a module `CS2103T` which has the title `Software Engineering`.
+
+#### 2.1.2. Delete module
+You can delete the module with the indicated module code from Plannit.
+
+This command will require one flag:
+* `m/`: To be followed by the module code of the module to be deleted from Plannit.
+
+Format: `delete module m/MODULE_CODE`
+* The module code must correspond to an existing module in Plannit.
+
+Example:
+
+```
+delete module m/CS2103T
+```
+In the above example, we are deleting module CS2103T from Plannit.
+
+#### 2.1.3. Find module: `find module` [coming soon]
+[coming soon]
 
 <br>
 
 ### 2.2. Adding and deleting tasks
-#### 2.2.1. Add task: `add task`
+#### 2.2.1. Add task
 You may add a task using the `add task` command.
 
 This command will require two flags:
@@ -93,10 +132,10 @@ Example:
 ```
 add task m/CS2103T d/Complete tP tasks for W07
 ```
-* In the above example, we add the task `Complete tP tasks for W07` to the
-  module with module code `CS2103T`.
+In the above example, we are adding the task `Complete tP tasks for W07` to the 
+module with module code `CS2103T`.
 
-#### 2.2.2 Delete task: `delete task`
+#### 2.2.2. Delete task
 You may delete a task belonging to a particular module using the `delete
 task` command.
 
@@ -113,10 +152,10 @@ Example:
 ```
 delete task m/CS2103T n/3
 ```
-* In the above example, we are deleting task number **3** from the module
-  with the module code `CS2103T`.
+In the above example, we are deleting task number **3** from the module 
+with the module code `CS2103T`.
 
-#### 2.4.3. Finding tasks: `find task` [coming soon]
+#### 2.4.3. Finding tasks [coming soon]
 [coming soon]
 
 <br>
@@ -128,20 +167,52 @@ delete task m/CS2103T n/3
 <br>
 
 ### 2.4. Adding and deleting contacts
-#### 2.4.1. Adding contact
-#### 2.4.2. Delete contact
+#### 2.4.1. Add contact
+This command will require two flags, and one optional flag:
+* `n/`: To be followed by the to-be-added contact name.
+* `e/`: To be followed by the email of the new contact.
+* `p/`: (Optional flag) To be followed by the phone number of the new contact.
 
-<br>
+Format: `add contact n/NAME e/EMAIL p/PHONE_NUMBER`
+* Specifying a phone number is optional.
+* When adding a duplicate name, Plannit will display an error message.
+* Phone numbers are compulsory to be exactly 8 digits and without country code.
+
+Examples:  
+```
+add contact n/Dinosaur Lim e/dinosaurlim@gmail.com
+```
+In the above example, we are adding a contact with name `Dinosaur Lim` and email `dinosaurlim@gmail.com` into Plannit. 
+```
+add contact n/Dinosaur Lim e/dinosaurlim@gmail.com p/91234567
+```
+In the above example, we are adding a contact with name `Dinosaur Lim`, email `dinosaurlim@gmail.com`, and phone number
+`91234567` into Plannit.
+
+#### 2.4.2. Delete contact
+You may delete a contact using the `delete contact` command.
+
+This command will require one flag:
+* `n/`: To be followed by the to-be-deleted contact name.
+
+Format: `delete contact n/NAME`
+* If the provided `NAME` does not exist in Plannit, Plannit shows an error message.
+
+Example:  
+```
+delete contact n/Dinosaur Lim  
+```
+In the above example, we are deleting a contact with name `Dinosaur Lim` from Plannit.
 
 ### 2.5. Navigation
 Provides users with the ability to navigate between different tabs in the program.
 
-#### 2.5.1 Navigate to Home Page: `home`
+#### 2.5.1 Navigate to Home Page
 You may navigate back to the home page using the `home` command.
 
 Format:  `home`
 
-#### 2.5.2 Navigate between Modules: `goto`
+#### 2.5.2 Navigate between Modules
 You may navigate between modules to view information belonging to a particular
 module using the `goto` command.
 
@@ -161,8 +232,7 @@ goto m/CS2109S
 
 <br>
 
-### 2.6. Exiting The Program : `exit`
-
+### 2.6. Exiting The Program
 Exits the program.
 
 Format: `exit`
@@ -170,18 +240,20 @@ Format: `exit`
 <br>
 
 ### 2.7. Saving The Data
-Plannit data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Plannit data is saved in the hard disk automatically after any command that changes the data. There is no need to save
+manually.
 
 <br>
 
 ### 2.8. Loading The Data
-If save data exists, data is automatically loaded when the program starts. There is no need to load manually.
+If saved data exists, data is automatically loaded when the program starts. There is no need to 
+load manually.
 
 <br>
 
 ### 2.9. Editing The Data File
-
-Plannit data is saved as a `JSON` file `[JAR file location]/data/plannit.json`. Advanced users are welcome to update data directly by editing that data file.
+Plannit data is saved as a `JSON` file `[JAR file location]/data/plannit.json`. Advanced users are welcome to update 
+data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, Plannit will discard 
@@ -194,9 +266,9 @@ all data and start with an empty data file at the next run.
 
 --------------------------------------------------------------------------------------------------------------------
 ## 4. FAQ
-
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**Q**: How do I transfer my data to another computer?<br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with 
+the file that contains the data of your previous Plannit home folder.
 <br>
 <br>
 [More questions coming soon]
