@@ -112,6 +112,52 @@ Shorthand: `ls -m`
 Examples:
 - `list modules`
 
+### Tasks
+
+### Adding a task: `add task`
+
+Adds a task under specific module.
+- User must be within a module page.
+- User may optionally include a deadline for the task by specifying the -d flag along with the deadline in DD/MM/YYYY format.
+
+Format: `add task <task> [-d <deadline>]`
+
+Shorthand: `add -t <task> [-d <deadline>]`
+
+Examples:
+- `add task do ip tasks -d 15/09/2022`
+- `add -t do ip tasks`
+
+### Removing a task: `remove task`
+
+Removes a task under a specific module.
+- User must be within a module page.
+- Index must be a valid integer. Users may use the list tasks command to find the indexes of their tasks.
+
+Format: `remove task <task index>`
+
+Shorthand: `rm -t <task index>`
+
+Examples:
+- `remove task 1`
+- `rm -t 1`
+
+### Listing all tasks: `list tasks`
+
+Lists all tasks under either all modules or a specific module.
+- Module code is inferred from the current module page if the user is currently within a module page.
+- The module code is case insensitive e.g. cs2103t will match CS2103T
+- Module code must match an existing module.
+
+
+Format: `list tasks [-m <module code>]`
+
+Shorthand: `ls -t [-m <module code>]`
+
+Examples:
+- `list tasks -m cs2103t`
+- `ls -t -m CS2103T`
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
