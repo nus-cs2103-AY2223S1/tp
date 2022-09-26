@@ -18,7 +18,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Tang Zhi Lin
 
 <img src="images/tex-tang.png" width="200px">
 
