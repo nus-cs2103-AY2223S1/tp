@@ -306,26 +306,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Getting help with the application**
 
 **MSS**
-1. User needs help in utilizing RC4HDB
-2. User enters the help command
-3. RC4HDB displays a message that directs the user to our user guide
+1. User needs help in utilizing RC4HDB.
+2. User enters the help command.
+3. RC4HDB displays a message that directs the user to our user guide.
    
     Use case ends.
 
 **Use case: Adding a single resident**
 
 **MSS**
-1. New resident moves into RC4
-2. User gets personal details of the resident
-3. User enters the add command and enters the resident information in the required format
-4. RC4HDB adds the resident to the data file
-5. RC4HDB displays the name and other information of the resident
+1. New resident moves into RC4.
+2. User gets personal details of the resident.
+3. User enters the add command and enters the resident information in the required format.
+4. RC4HDB adds the resident to the data file.
+5. RC4HDB displays the name and other information of the resident.
    
     Use case ends.
 
 **Extensions**
 
-* 3a. User enters resident information in an invalid format
+* 3a. User enters resident information in an invalid format.
   
     * 3a1. RC4HDB shows an error message.
       
@@ -334,14 +334,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Listing out information of all residents**
 
 **MSS**
-1. User wants to see the full list of residents in RC4
-2. User enters the list command
+1. User wants to see the full list of residents in RC4.
+2. User enters the list command.
 3. RC4HDB displays the details of all residents in RC4.
    
     Use case ends.
 
 **Extension**
-* 2a. The list is empty 
+* 2a. The list is empty. 
   
     Use case ends.
 
@@ -349,23 +349,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Editing a single resident’s information**
 
 **MSS**
-1. Resident has a change in personal information
-2. User needs to edit the resident's information in RC4HDB
-3. User looks at which category the information falls under
-4. User enters the edit command and enters the category of the information to be altered, followed by the updated information
-5. RC4HDB updates the information of the specified resident
-6. RC4HDB displays a message detailing the changes made
+1. Resident has a change in personal information.
+2. User needs to edit the resident's information in RC4HDB.
+3. User looks at which category the information falls under.
+4. User enters the edit command and enters the category of the information to be altered, followed by the updated information.
+5. RC4HDB updates the information of the specified resident.
+6. RC4HDB displays a message detailing the changes made.
 
     Use case ends.
 
 **Extensions**
 
-* 3a. There is no relevant category for that information
+* 3a. There is no relevant category for that information.
   
     Use case ends.
 
 
-* 4a. User enters resident information in an invalid format
+* 4a. User enters resident information in an invalid format.
 
     * 4a1. RC4HDB shows an error message.
       
@@ -375,23 +375,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Finding a resident’s information by their name**
 
 **MSS**
-1. User wants to search for a resident’s information
-2. User enters the find command followed by the name of the resident they are looking for
-3. RC4HDB searches the database for the user's input
-4. RC4HDB displays the resident's information
+1. User wants to search for a resident’s information.
+2. User enters the find command followed by the name of the resident they are looking for.
+3. RC4HDB searches the database for the user's input.
+4. RC4HDB displays the resident's information.
    
     Use case ends.
 
 **Extension**
 
-* 3a. RC4HDB cannot find any resident matching the user input
+* 3a. RC4HDB cannot find any resident matching the user input.
   
     * 3a1. RC4HDB shows an error message.
       
       Use case resumes at step 2.
 
 
-* 4b. RC4HDB finds multiple residents matching the user input
+* 4b. RC4HDB finds multiple residents matching the user input.
     
     * 4b1. RC4HDB shows a list of all matching residents.
       
@@ -401,37 +401,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Filtering the list of all residents by specific fields**
 
 **MSS**
-1. User wants to see a list of residents that fall under a certain category
-2. User enters the filter command followed by an optional specifier to filter for any categories or all of the categories, and lastly the tags to filter for
-3. RC4HDB applies the filter
-4. RC4HDB shows the filtered list
+1. User wants to see a list of residents that fall under a certain category.
+2. User enters the filter command followed by an optional specifier to filter for any categories or all of the categories, and lastly the tags to filter for.
+3. RC4HDB applies the filter.
+4. RC4HDB shows the filtered list.
 
     Use case ends.
 
 **Extension**
 
-* 2a. User enters an invalid specifier i.e. one that is not `/all` or `/any`
+* 2a. User enters an invalid specifier i.e. one that is not `/all` or `/any`.
   
     * 2a1. RC4HDB shows an error message. 
       
       Use case resumes at step 2.
 
 
-* 2b. User enters multiple specifiers i.e. both `/all` and `/any`
+* 2b. User enters multiple specifiers i.e. both `/all` and `/any`.
   
     * 2b1. RC4HDB shows an error message. 
       
       Use case resumes at step 2.
 
 
-* 2c. User enters a category that does not exist
+* 2c. User enters a category that does not exist.
   
     * 2c1. RC4HDB shows an error message.
       
       Use case resumes at step 2.
 
 
-* 2d. User enters a value that does not exist in the category
+* 2d. User enters a value that does not exist in the category.
   
     * 2d1. RC4HDB shows an error message. 
       
@@ -441,27 +441,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Deleting a single resident**
 
 **MSS**
-1. Resident moves out of RC4
-2. User enters the find command followed by the name of the resident that moved out
-3. RC4HDB searches for the name of the resident
-4. RC4HDB displays the details of that resident that is found
-5. User identifies the index of the resident on the displayed list
-6. User enters the delete command followed by the index
-7. RC4HDB removes the corresponding indexed resident from the database
-8. RC4HDB displays the details of that resident that has been deleted
+1. Resident moves out of RC4.
+2. User enters the find command followed by the name of the resident that moved out.
+3. RC4HDB searches for the name of the resident.
+4. RC4HDB displays the details of that resident that is found.
+5. User identifies the index of the resident on the displayed list.
+6. User enters the delete command followed by the index.
+7. RC4HDB removes the corresponding indexed resident from the database.
+8. RC4HDB displays the details of that resident that has been deleted.
    
     Use case ends.
 
 **Extension**
 
-* 3a. RC4HDB cannot find any resident matching the user input
+* 3a. RC4HDB cannot find any resident matching the user input.
   
     * 3a1. RC4HDB shows an error message. 
       
       Use case resumes at step 2.
 
 
-* 6a. User enters an invalid index
+* 6a. User enters an invalid index.
   
     * 6a1. RC4HDB shows an error message. 
       
@@ -471,25 +471,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Clearing all data**
 
 **MSS**
-1. User wants to clear all data from the current working file
-2. User enters the clear command
-3. RC4HDB replaces the current data file with an empty data file with the same name
-4. RC4HDB shows a success message
+1. User wants to clear all data from the current working file.
+2. User enters the clear command.
+3. RC4HDB replaces the current data file with an empty data file with the same name.
+4. RC4HDB shows a success message.
    
     Use case ends.
 
 **Use case: Exiting the application**
 
 **MSS**
-1. User has completed his/her tasks and wants to exit the application
-2. User enters the exit command
-3. RC4HDB application closes 
+1. User has completed his/her tasks and wants to exit the application.
+2. User enters the exit command.
+3. RC4HDB application closes .
    
     Use case ends.
 
 **Extension**
 
-* 2a. User clicks on the exit button
+* 2a. User clicks on the exit button.
   
     * 2a1. RC4HDB application closes. 
       
@@ -499,23 +499,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Importing data from .csv file**
 
 **MSS**
-1. User has a data file with resident’s information, and wants to view it in RC4HDB
-2. User enters the import command, followed by the full file path of the CSV file
-3. RC4HDB reads the file stored in the file path entered by the user
-4. RC4HDB displays the name of the csv file after the file has been read
-5. RC4HDB displays all the information stored in the file
+1. User has a data file with resident’s information, and wants to view it in RC4HDB.
+2. User enters the import command, followed by the full file path of the CSV file.
+3. RC4HDB reads the file stored in the file path entered by the user.
+4. RC4HDB displays the name of the csv file after the file has been read.
+5. RC4HDB displays all the information stored in the file.
 
     Use case ends.
 
 **Extension**
-* 1a. Information in the CSV file has not been stored in the proper format
+* 1a. Information in the CSV file has not been stored in the proper format.
   
-    * 1a1. RC4HDB shows an error message. 
+    * 1a1. RC4HDB shows an error message.
       
       Use case resumes at step 2.
 
 
-* 2a. No file could be found at the specified file path
+* 2a. No file could be found at the specified file path.
   
     * 2a1. RC4HDB shows an error message. 
       
@@ -525,10 +525,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Exporting data to .csv file**
 
 **MSS**
-1. User wants the data in a CSV file
-2. User enters the export command, followed by the full file path and new file name
-3. RC4HDB creates a new CSV file in the file path entered by the user
-4. RC4HDB shows a success message
+1. User wants the data in a CSV file.
+2. User enters the export command, followed by the full file path and new file name.
+3. RC4HDB creates a new CSV file in the file path entered by the user.
+4. RC4HDB shows a success message.
 
     Use case ends.
 
