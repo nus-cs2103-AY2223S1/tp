@@ -285,30 +285,132 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case 1: Add group member’s information**
+
+**MSS**
+1. User chooses to add a group member contact.
+2. User enters the command to add a user.
+3. OBS verifies entered command has valid syntax.
+4. OBS adds user to the list of people. \
+   Use case ends.
+
+**Extensions**
+* 4a. OBS detects an error in the entered command.
+    * 4a1. OBS requests for the correct command.
+    * 4a2. User enters new command.
+    * Steps 4a1-4a2 are repeated until the command entered are correct. \
+      Use case resumes from step 4.
+
+
+* a. At any time, User chooses to close the AddressBook.
+    * a1. OBS updates the written storage file.
+    * a2. OBS closes the program. \
+      Use case ends.
+
+**Use case 2: Delete a person**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
-    Use case ends.
+1. User requests to list persons
+2. AddressBook shows a list of persons
+3. User requests to delete a specific person in the list
+4. AddressBook deletes the person using his index.
+   \
+   Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The list is empty. Use case ends.
 
-  Use case ends.
 
 * 3a. The given index is invalid.
-
     * 3a1. AddressBook shows an error message.
-
+      \
       Use case resumes at step 2.
 
-*{More to be added}*
+
+* a. At any time, User chooses to close the AddressBook.
+    * a1. OBS updates the written storage file.
+    * a2. OBS closes the program.
+      \
+      Use case ends.
+
+**Use case 3: Search group member via tags**
+
+**MSS**
+
+1. User searches students with a particular tag.
+2. OBS verifies syntax of the search command is valid.
+3. OBS searches through the list of added tags.
+4. OBS returns the list of students associated with the particular tag and display it through the GUI.
+   \
+   Use case ends.
+
+**Extensions**
+* 3a. OBS detects an error in the sequence or syntax of entered command.
+    * 3a1. OBS prompts error message.
+    * 3a2. OBS requests for the correct command.
+    * 3a3. User enters new command.
+      Steps 3a1-3a3 are repeated until the command entered are correct.
+      \
+      Use case resumes from step 4.
+
+
+* 4a. OBS detects there is no such tag.
+    * 4a1. OBS prompts error message.
+    * 4a2. OBS requests for the correct command.
+    * 4a3. User enters new command.
+      \
+      Steps 4a1-4a3 are repeated until the command entered are correct.
+      \
+      Use case resumes from step 4.
+
+
+* a. At any time, User chooses to close the AddressBook.
+    * a1. OBS updates the written storage file.
+    * a2. OBS closes the program.
+      \
+      Use case ends.
+
+
+**Use case 4: Add a tag to a person**
+
+**MSS**
+
+1. User chooses to add a tag on a user, could be himself or others.
+2. User enters the add tag command with the associated person.
+3. OBS verifies the syntax of the command.
+4. OBS searches through the list of people for the selected person.
+5. OBS adds tag to the person.
+   \
+   Use case ends.
+
+**Extensions**
+* 3a. OBS detects an error in the entered command.
+    * 3a1. OBS requests for the correct command.
+    * 3a2. User enters new command.
+      \
+      Steps 3a1-3a2 are repeated until the data entered are correct.
+      \
+      Use case resumes from step 4.
+
+
+* 5a. OBS cannot find person in the AddressBook.
+    * 5a1. OBS requests for correct command argument.
+    * 5a2. User enters new command.
+      \
+      Steps 5a1-5a2 are repeated until the data entered are correct.
+      \
+      Use case resumes from step 5.
+
+
+* a. At any time, User chooses to close the addressbook.
+    * a1. OBS updates the written storage file.
+    * a2. OBS closes the program.
+      \
+      Use case ends.
+
+
 
 ### Non-Functional Requirements
 
