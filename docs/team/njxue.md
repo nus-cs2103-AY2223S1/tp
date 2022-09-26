@@ -12,7 +12,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: To be added soon
 
-* **Code contributed**: To be added soon
+* **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=njxue&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**: To be added soon
 
