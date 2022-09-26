@@ -255,9 +255,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
-
-***Employees and Employers working in team-based projects***
+**Target user profile**: Employees and Employers working in team-based projects
 
 * Experienced in using applications
 * has a need to manage a significant number of contacts
