@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Gabriel Yang
 
-<img src="images/gabrielyang.png" width="200px">
+<img src="images/gabyang.png" width="200px">
 
 [[github](https://github.com/gabyang)]
 [[portfolio](team/johndoe.md)]
