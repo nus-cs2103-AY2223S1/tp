@@ -18,7 +18,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/notle1706.md)]
 
 * Role: Developer
-* Responsibilities: 
+* Responsibilities: Dev Ops, Code Quality
 
 ### Jicson Toh
 
