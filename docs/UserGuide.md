@@ -43,7 +43,7 @@ contains some sample data.<br>
 | **CommandInBold**                       | `command format here`                                 |                                                                             |
 | [`add contact`](#241-add-contact)       | `add contact     n/NAME    e/EMAIL    p/PHONE_NUMBER` | Add contact with specified name, email, and phone number                    |
 | [`delete contact`](#242-delete-contact) | `delete contact  n/NAME`                              | Delete contact belonging to the specified name                              |
-| [`home`](#251-navigate-to-home-page)    | `home`                                                | Navigate to the home page                                                   |
+| [`home`](#251-navigate-to-home)         | `home`                                                | Navigate to the home page                                                   |
 | [`goto`](#252-navigate-between-modules) | `goto m/MODULE_CODE`                                  | Navigate to specified module page                                           |
 | [`exit`](#26-exiting-the-program)       | `exit`                                                | Exit the program                                                            |
 
@@ -207,28 +207,28 @@ In the above example, we are deleting a contact with name `Dinosaur Lim` from Pl
 ### 2.5. Navigation
 Provides users with the ability to navigate between different tabs in the program.
 
-#### 2.5.1 Navigate to Home Page
+#### 2.5.1 Navigate to home
 You may navigate back to the home page using the `home` command.
 
 Format:  `home`
 
-#### 2.5.2 Navigate between Modules
+#### 2.5.2 Navigate between modules
 You may navigate between modules to view information belonging to a particular
 module using the `goto` command.
 
 This command will require one flag:
 
-* `m/`: This flag is to be followed immediately by the module code of the module you are navigating to.
+* `m/`: To be followed by the module code of the module you are navigating to.
 
 Format: `goto m/MODULE_CODE`
 
-* The given module code should be that of an existing module in Plannit.
+* When navigating to a non-existent module, Plannit will display an error message.
 
 Example:
 ```
 goto m/CS2109S
 ```
-* In the above example, we are navigating to the module with module code `CS2109S`.
+In the above example, we are navigating to the module with module code `CS2109S`.
 
 <br>
 
