@@ -23,6 +23,7 @@ RC4HDB is a **desktop app for managing RC4 housing related information, optimize
     * [Importing from csv file : import](#importing-from-csv-file--import)
     * [Exporting to csv file : export](#exporting-to-csv-file--export)
     * [CSV file format](#csv-file-format)
+    * [Format for resident fields](#format-for-resident-fields)
 * [Frequently Asked Questions](#faq)
 * [Command Summary](#command-summary)
 
