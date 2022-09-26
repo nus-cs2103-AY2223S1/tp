@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,6 +15,9 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.client.Birthday;
+import seedu.address.model.client.Income;
+import seedu.address.model.client.RiskAppetite;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -120,5 +124,41 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code String birthday} into a {@code Birthday}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Birthday parseBirthday(String birthday) {
+        requireNonNull(birthday);
+        String trimmedBirthday = birthday.trim();
+        LocalDateTime convertedBirthday = Birthday.parseBirthday(trimmedBirthday);
+        Birthday birthdaySet = new Birthday(convertedBirthday);
+        return birthdaySet;
+    }
+
+    /**
+     * Parses {@code String income} into a {@code income}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Income parseIncome(String income) {
+        requireNonNull(income);
+        String trimmedIncome = income.trim();
+        Double incomeValue = Double.valueOf(trimmedIncome);
+        return new Income(incomeValue);
+    }
+
+    /**
+     * Parses {@code String RA} into a {@code RiskAppetite}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static RiskAppetite parseRA(String ra) {
+        requireNonNull(ra);
+        String trimmedRiskAppetiteTag = ra.trim();
+        RiskAppetite.RiskLevel riskLevel = RiskAppetite.parseRiskLevel(
+                trimmedRiskAppetiteTag);
+        RiskAppetite riskAppetite = new RiskAppetite(riskLevel);
+        return riskAppetite;
     }
 }

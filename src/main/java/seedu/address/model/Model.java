@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.client.Client;
 import seedu.address.model.person.Person;
 
 /**
@@ -13,6 +14,8 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+
+    Predicate<Client> PREDICATE_SHOW_ALL_CLIENTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -84,4 +87,21 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+
+
+    // Add Command //
+
+    /**
+     * Colin's new implementations:
+     */
+    boolean hasClient(Client toAdd);
+
+    void addClient(Client toAdd);
+
+    void deleteClient(Client toDelete);
+
+    ObservableList<Client> getFilteredClientList();
+
+    void updateFilteredClientList(Predicate<Client> predicate);
 }
