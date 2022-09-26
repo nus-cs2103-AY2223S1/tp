@@ -257,7 +257,8 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* computer science students
+*  has a need to keep track of the list of internships application and their status
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -283,7 +284,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `InternshipBook` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
@@ -308,12 +309,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case: Add internship**
+
+**MSS**
+
+1.  User request to add an internship application
+2.  System adds the internship application
+3.  System displays the success message
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given parameters is invalid.
+
+    * 1a1. System shows an error message.
+
+    Use case ends.
+
+* 1b. The given parameters does not include all required parameters.
+
+    * 1b1. System shows an error message.
+
+  Use case ends.
+
 *{More to be added}*
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 500 internships without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*

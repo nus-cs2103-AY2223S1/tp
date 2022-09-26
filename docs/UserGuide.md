@@ -75,17 +75,21 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds an internship into the list.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/COMPANY_NAME p/POSITION [pr/APPLICATION_PROCESS] [d/DATE] [web/WEBSITE]`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+* Possible options for `APPLICATION_PROCESS` : `APPLY`, `ASSESSMENT`, `INTERVIEW`, `OFFER`, `ACCEPTED`, `REJECTED` 
+* Case-insensitive: `Apply`, `APPLY`, and `apply` are all acceptable inputs.
+* `DATE` should be in dd-mm-yyyy format.
+* `DATE` will be set to today’s date by default.
+* `APPLICATION_PROCESS` will be set to `APPLY` by default.
+* `WEBSITE` will be set to “NA” by default.
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/Grab p/software engineer pr/ASSESSMENT web/https://www.grab.com/sg/about`
+* `add n/Tiktok p/backend engineer`
+* `add n/Shopee p/frontend engineer pr/INTERVIEW d/14-09-2022`
 
 ### Listing all persons : `list`
 
