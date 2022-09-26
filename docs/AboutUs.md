@@ -28,7 +28,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/jicsontoh.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops
+* Responsibilities: Dev Ops, Testing
 
 ### Johnny Doe
 
