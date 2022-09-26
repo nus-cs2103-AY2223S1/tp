@@ -63,7 +63,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/dreammac3816547290.png" width="200px">
 
 [github](https://github.com/dreammac3816547290)
-[portfolio](docs/team/nathaniellukas.md)
+[portfolio](team/dreammac3816547290.md)
 
 * Role: Developer
 * Responsibilities: Deliverables and deadlines
