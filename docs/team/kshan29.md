@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Seow Han's Project Portfolio Page
+title: Kee Seow Han's Project Portfolio Page
 ---
 
 ### Project: AddressBook Level 3

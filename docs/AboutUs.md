@@ -49,10 +49,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Kee Seow Han
 
-<img src="images/seowhan.png" width="200px">
+<img src="images/kshan29.png" width="200px">
 
 [[github](http://github.com/KSHan29)]
-[[portfolio](team/seowhan.md)]
+[[portfolio](team/kshan29.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Testing
