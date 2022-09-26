@@ -19,15 +19,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Lin Leyi 
+### Lin Leyi
 
 <img src="images/lleyi0606.png" width="200px">
 
 [[github](http://github.com/lleyi0606)]
 [[portfolio](team/lleyi0606.md)]
 
-* Role: Documentation 
-* Responsibilities: Documentation 
+* Role: Documentation
+* Responsibilities: Documentation
 
 ### Johnny Doe
 
