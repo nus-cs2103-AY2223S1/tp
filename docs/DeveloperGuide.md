@@ -320,8 +320,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Calorie(s)**: Unit of measurement for amount of food consumed.
+
+* **Meals**: Breakfast, Lunch, Dinner e.t.c., categories for users to input their daily meals under.
+
+* **Macros**: Proteins, Carbohydrates, Fats e.t.c., macronutrient groups that provide people with energy.
+
+* **Daily Recommended Calorie Intake**: the amount of calories recommended by experts for an individual to consume daily
+(According to Health Promotion Board Singapore, adult males should consume 2200 calories, adult females
+should consume 1800 calories).
+
+* **Deficit**: the amount of calories _not_ consumed in order to facilitate fat burning and weight loss.
+
+* **Surplus**: the amount of calories consumed in excess of the recommended daily intake to facilitate mass gain.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
