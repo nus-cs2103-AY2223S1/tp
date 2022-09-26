@@ -30,9 +30,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Hui Yi Lu
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/pewggls.png" width="200px">
 
-[[github](http://github.com/pewggls)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/pewggls)] [[portfolio](team/pewggls.md)]
 
 * Role: Developer
 * Responsibilities: Developer
