@@ -14,7 +14,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/hauchongtang.png" width="200px">
 
 [[github](http://github.com/hauchongtang)]
-[[portfolio](team/hauchontang.md)]
+[[portfolio](team/hauchongtang.md)]
 
 * Role: Developer
 * Responsibilities: Scheduling and tracking, Integration
