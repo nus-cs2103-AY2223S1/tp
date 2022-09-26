@@ -283,7 +283,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `DevEnable` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: UC1 - List all projects**
 
@@ -291,12 +291,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to list projects
 2.  DevEnable shows a list of persons.
+
     Use case ends.
 
 **Extensions**
 
 * 1a. The list is empty.
   * 1a1. DevEnable displays a default message.
+  
     Use case ends.
 
 **Use case: UC2 - Add project**
@@ -306,15 +308,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User keys in the add command.
 2.  DevEnable adds the project to the list.
 3.  DevEnable saves the new list to storage.
+
     Use case ends.
 
 **Extensions**
 
 * 1a. The user types in an invalid command.
     * 1a1. DevEnable displays an error message with the correct usage.
+  
       Use case resumes at Step 1.
 * 1b. DevEnable detects that the project name already exists in the list.
     * 1b1. DevEnable displays an error message that the project already exists.
+  
       Use case ends.
 
 **Use case: UC3 - Delete project**
@@ -326,15 +331,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3.  User types the command to delete a specific project in the list.
 4.  DevEnable deletes the project from the list.
 5.  DevEnable saves the new list to storage.
+
     Use case ends.
 
 **Extensions**
 
 * 3a. The user types in an invalid command.
     * 3a1. DevEnable displays an error message with the correct usage.
+  
       Use case resumes at Step 3.
 * 3b. DevEnable detects that the project ID does not exist in the list.
     * 3b1. DevEnable displays an error message that the project does not exist.
+  
       Use case ends.
 
 **Use case: UC4 - Edit project**
@@ -346,15 +354,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3.  User types the command to edit a specific project in the list.
 4.  DevEnable edits the project in the list.
 5.  DevEnable saves the new list to storage.
+
     Use case ends.
 
 **Extensions**
 
 * 3a. The user types in an invalid command.
     * 3a1. DevEnable displays an error message with the correct usage.
+  
       Use case resumes at Step 3.
 * 3b. DevEnable detects that the project ID does not exist in the list.
     * 3b1. DevEnable displays an error message that the project does not exist.
+  
       Use case ends.
 
 **Use case: UC5 - Tag client to project**
@@ -366,15 +377,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3.  User types the command to tag a client to a specific project in the list.
 4.  DevEnable tags the client to the project in the list.
 5.  DevEnable saves the new list to storage.
+
     Use case ends.
 
 **Extensions**
 
 * 3a. The user types in an invalid command.
     * 3a1. DevEnable displays an error message with the correct usage.
+  
       Use case resumes at Step 3.
 * 3b. DevEnable detects that the project ID does not exist in the list.
     * 3b1. DevEnable displays an error message that the project does not exist.
+  
       Use case ends.
 
 **Use case: UC6 - Delete client from project**
@@ -386,18 +400,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3.  User types the command to delete a client from a specific project in the list.
 4.  DevEnable deletes the client from the project in the list.
 5.  DevEnable saves the new list to storage.
+
     Use case ends.
 
 **Extensions**
 
 * 3a. The user types in an invalid command.
     * 3a1. DevEnable displays an error message with the correct usage.
+  
       Use case resumes at Step 3.
 * 3b. DevEnable detects that the project ID does not exist in the list.
     * 3b1. DevEnable displays an error message that the project does not exist.
+  
       Use case ends.
 * 3c. DevEnable detects that the client is not assigned to the project.
     * 3c1. DevEnable displays an error message that the client does not exist.
+  
       Use case ends.
 
 **Use case: UC7 - Edit client of project**
@@ -409,18 +427,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3.  User types the command to edit a client of a specific project in the list.
 4.  DevEnable edits the client of the project in the list.
 5.  DevEnable saves the new list to storage.
+
     Use case ends.
 
 **Extensions**
 
 * 3a. The user types in an invalid command.
     * 3a1. DevEnable displays an error message with the correct usage.
+  
       Use case resumes at Step 3.
 * 3b. DevEnable detects that the project ID does not exist in the list.
     * 3b1. DevEnable displays an error message that the project does not exist.
+  
       Use case ends.
 * 3c. DevEnable detects that the client is not assigned to the project.
     * 3c1. DevEnable displays an error message that the client does not exist.
+  
       Use case ends.
 
 **Use case: UC8 - Add deadline to project**
@@ -432,18 +454,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3.  User types the command to add a deadline to a specific project in the list.
 4.  DevEnable adds the deadline to the project in the list.
 5.  DevEnable saves the new list to storage.
+
     Use case ends.
 
 **Extensions**
 
 * 3a. The user types in an invalid command.
     * 3a1. DevEnable displays an error message with the correct usage.
+  
       Use case resumes at Step 3.
 * 3b. DevEnable detects that the project ID does not exist in the list.
     * 3b1. DevEnable displays an error message that the project does not exist.
+  
       Use case ends.
 * 3c. DevEnable detects that the deadline is not in the correct format.
     * 3c1. DevEnable displays an error message with the required format.
+  
       Use case ends.
 
 **Use case: UC9 - Delete deadline from project**
@@ -455,18 +481,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3.  User types the command to delete the deadline from a specific project in the list.
 4.  DevEnable deletes the deadline from the project in the list.
 5.  DevEnable saves the new list to storage.
+
     Use case ends.
 
 **Extensions**
 
 * 3a. The user types in an invalid command.
     * 3a1. DevEnable displays an error message with the correct usage.
+  
       Use case resumes at Step 3.
 * 3b. DevEnable detects that the project ID does not exist in the list.
     * 3b1. DevEnable displays an error message that the project does not exist.
+  
       Use case ends.
 * 3c. DevEnable detects that the project does not have a deadline.
     * 3c1. DevEnable displays an error message that there is no deadline.
+  
       Use case ends.
 
 **Use case: UC10 - Edit deadline of project**
@@ -478,29 +508,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3.  User types the command to edit the deadline of a specific project in the list.
 4.  DevEnable edits the deadline of the project in the list.
 5.  DevEnable saves the new list to storage.
+
     Use case ends.
 
 **Extensions**
 
 * 3a. The user types in an invalid command.
     * 3a1. DevEnable displays an error message with the correct usage.
+  
       Use case resumes at Step 3.
 * 3b. DevEnable detects that the project ID does not exist in the list.
     * 3b1. DevEnable displays an error message that the project does not exist.
+  
       Use case ends.
 * 3c. DevEnable detects that the project does not have a deadline.
     * 3c1. DevEnable displays an error message that there is no deadline.
+  
       Use case ends.
 * 3d. DevEnable detects that the deadline is not in the correct format.
     * 3d1. DevEnable displays an error message with the required format.
+  
       Use case ends.
 
-**Use case: UC10 - View list of commands**
+**Use case: UC11 - View list of commands**
 
 **MSS**
 
 1.  User requests to list all commands.
 2.  DevEnable shows the list of commands.
+
     Use case ends.
 
 *{More to be added}*
