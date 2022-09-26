@@ -42,18 +42,20 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/effixion.png" width="200px">
 
+
 [[github](http://github.com/effixion)]
 [[portfolio](team/effixion.md)]
+
 
 * Role: Developer
 * Responsibilities: to be added soon
 
-### James Doe
+### Li Yingming
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yingming23.png.jpg" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/SkeletalProjectPortfolioPage.md)]
+[[github](http://github.com/Yingming23)]
+[[portfolio](team/yingming23.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: To be Added
