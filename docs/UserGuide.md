@@ -75,23 +75,39 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds an internship into the list.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/COMPANY_NAME p/POSITION [pr/APPLICATION_PROCESS] [d/DATE] [web/WEBSITE]`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+* Possible options for `APPLICATION_PROCESS` : `APPLY`, `ASSESSMENT`, `INTERVIEW`, `OFFER`, `ACCEPTED`, `REJECTED` 
+* Case-insensitive: `Apply`, `APPLY`, and `apply` are all acceptable inputs.
+* `DATE` should be in dd-mm-yyyy format.
+* `DATE` will be set to today’s date by default.
+* `APPLICATION_PROCESS` will be set to `APPLY` by default.
+* `WEBSITE` will be set to “NA” by default.
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/Grab p/software engineer pr/ASSESSMENT web/https://www.grab.com/sg/about`
+* `add n/Tiktok p/backend engineer`
+* `add n/Shopee p/frontend engineer pr/INTERVIEW d/14-09-2022`
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all internships. List of internships can be sorted by category in ascending or descending order.
 
-Format: `list`
+Format: ` list [c/CATEGORY] [REVERSE]`
+* List the internships sorted by category and in ascending or descending order
+* The category is optional. By default, without stating the category, `list` will display all internships in the order which they were created
+* The CATEGORY tag refers to company_name (or n), position (or p), application_process (or pr), website (or web), date(or d) (case-insensitive)
+* The reverse tag is optional. It can take on the value `true` or `false`. The reverse tag is set to false by default if not stated. List of internships will be shown in ascending order.
+* If REVERSE is set to `true`. List of internships will be displayed in descending order
+
+Examples:
+* `list c/n true`
+* `list c/website`
+* `list c/position false`
+
+
 
 ### Editing a person : `edit`
 
@@ -128,6 +144,7 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
+
 ### Deleting internship(s) : `delete`
 
 Deletes the specified internship(s) from the list.
@@ -142,6 +159,24 @@ Format: `delete INDEX...`
 Examples:
 * `list` followed by `delete 1 3` deletes the 1st and 3rd internship from the list.
 * `find TikTok` followed by `delete 1` deletes the 1st internship in the results of the `find` command.
+
+### View details of an internship: `view`
+
+View details of list item at index
+
+Format: `view NAME [INDEX]`
+
+* Only the name is searched.
+* Companies matching the name will be returned (i.e. OR search). 
+e.g. Shopee will return Shopee, Shopee Labs as a numbered list.
+* If only one company matches the name, its details will immediately be shown.
+* Call the command again with the index to retrieve details about the application status at the company with corresponding index.
+
+Examples:
+* `view Shopee` returns
+`1. Shopee`
+`2. Shopee Labs`
+* `view Shopee 1` returns `Shopee, CEO, 29/02/23, offer, NA`
 
 ### Clearing all entries : `clear`
 
