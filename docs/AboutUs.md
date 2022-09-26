@@ -36,17 +36,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/therealdaofu)] [[portfolio](team/therealdaofu.md)]
 
 * Role: Developer
-* Responsibilities: Data
 
-### Jean Doe
+### Sun Yu Ting
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/effixion.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/SkeletalProjectPortfolioPage.md)]
+[[github](http://github.com/effixion)]
+[[portfolio](team/effixion.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: to be added soon
 
 ### James Doe
 
