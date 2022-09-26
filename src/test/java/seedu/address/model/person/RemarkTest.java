@@ -5,6 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+// @@author craeyeons-reused
+// Reused from tutorial-2 of week 6, adding-command-tutorial
+// https://github.com/se-edu/addressbook-level3/tree/tutorial-add-remark
+
 public class RemarkTest {
 
     @Test
@@ -29,3 +33,4 @@ public class RemarkTest {
         assertFalse(remark.equals(differentRemark));
     }
 }
+// @@author craeyeons-reused

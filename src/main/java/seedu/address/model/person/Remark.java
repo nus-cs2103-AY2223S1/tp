@@ -2,6 +2,10 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 
+// @@author craeyeons-reused
+// Reused from tutorial-2 of week 6, adding-command-tutorial
+// https://github.com/se-edu/addressbook-level3/tree/tutorial-add-remark
+
 /**
  * Represents a Person's remark in the address book.
  * Guarantees: immutable; is always valid
@@ -47,3 +51,4 @@ public class Remark {
         return value.hashCode();
     }
 }
+// @@author craeyeons-reused
