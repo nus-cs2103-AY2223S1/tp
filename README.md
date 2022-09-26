@@ -3,7 +3,7 @@
 
 ![Ui](docs/images/Ui.png)
 
-# Finbook
+# FinBook
 
 FinBook is a desktop app for managing clients, optimized for use via a Command Line Interface (CLI) while still having
 the benefits of a Graphical User Interface (GUI). If you can type fast, FinBook can get your contact management tasks
