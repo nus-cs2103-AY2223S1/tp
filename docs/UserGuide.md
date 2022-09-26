@@ -129,47 +129,33 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 
-- `find John` returns `john` and `John Doe`
-- `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+### Viewing total summary of spendings : `view -s [MONTH]`
 
-### View total summary of spending: `view -s [MONTH]`
+1. View a summary of all spending <br>
+   * Examples: `view -s`
+   * Expected: A summary of total spending: `Total amount spent: $125.30`
+2. View a summary of all spending the specified month
+    * Examples: `view -s 09-2022`
+    * Expected: A summary of spendings in September 2022: `Total amount spent in September 2022: $37.70`
 
-Edits an existing person in the address book.
+* View all spending recorded by the user in a month. The month refers to the month that is displayed to the user.
+* The `MONTH` field is optional, if no month is specified, the application displays the current month.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+### Viewing total summary of income : `view -i [MONTH]`
 
-- Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list.
-  The index **must be a positive integer** 1, 2, 3, …​
-- At least one of the optional fields must be provided.
-- Existing values will be updated to the input values.
-- When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-- You can remove all the person’s tags by typing `t/` without specifying any tags after it.
+1. View a summary of all income <br>
+    * Examples: `view -i`
+    * Expected: A summary of total income earned: `Total amount earned: $125.30`
+2. View a summary of all income the specified month
+    * Examples: `view -i 09-2022`
+    * Expected: A summary of all income in September 2022: `Total amount spent in September 2022: $37.70`
 
-Examples:
-
-- `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567`
-  and `johndoe@example.com` respectively.
-- `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-- 
-### View total summary of income: `view -i [MONTH]`
-
-Deletes the specified person from the address book.
-
-Format: `delete INDEX`
-
-- Deletes the person at the specified `INDEX`.
-- The index refers to the index number shown in the displayed person list.
-- The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-
-- `list` followed by `delete 2` deletes the 2nd person in the address book.
-- `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* View all income recorded by the user in a month. The month refers to the month that is displayed to the user.
+* The `MONTH` field is optional, if no month is specified, the application displays the current month.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries in PennyWise.
 
 Format: `clear`
 
@@ -181,19 +167,21 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to
-save manually.
+PennyWise data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to
-update data directly by editing that data file.
+PennyWise data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, PennyWise will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+### Editing of entries `[coming in v1.3]`
+### Tagging of Income `[coming in v1.3]`
+### Tagging of Spending `[coming in v1.3]`
+### Filtering of Income/Spendings `[coming in v1.3]`
+### Filtering by Dates `[coming in v1.3]`
 
 _Details coming soon ..._
 
@@ -209,17 +197,13 @@ the data of your previous AddressBook home folder.
 
 ## Command summary
 
-| Action | Format, Examples |
-| ------ | ---------------- |
 
-**
-Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br>
-e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**
-Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br>
-e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action     | Format, Examples                                                                                                                                                      |
+|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Clear**  | `clear`                                                                                                                                                               |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
+| **List**   | `list`                                                                                                                                                                |
+| **Help**   | `help`                                                                                                                                                                |
