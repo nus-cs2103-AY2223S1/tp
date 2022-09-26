@@ -13,7 +13,7 @@ Format: `findi KEYWORD [MORE_KEYWORDS]`
 
 - The search is case-insensitive.
 - `keychain` will match `Keychain`
-- The order of the keywords does not matter. e.g. `pants long` will match `long pants`
+- The order of the keywords does not matter. <br> e.g. `pants long` will match `long pants`
 - Only the name of the item is searched.
 - Only full words will be matched. <br> e.g. `key` will not match `Keychain`
 - Items matching at least one keyword will be returned (i.e. OR search). <br>
