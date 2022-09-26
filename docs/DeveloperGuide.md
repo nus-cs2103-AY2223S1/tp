@@ -358,7 +358,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Debtor**: The person who owes money.
+* **Creditor**: The person who is owed money.
+* **Debt**: The transaction event (e.g. group dinner, Grab food order) where money is owed between a debtor and a creditor
 
 --------------------------------------------------------------------------------------------------------------------
 
