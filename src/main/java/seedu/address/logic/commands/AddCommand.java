@@ -64,4 +64,9 @@ public class AddCommand extends Command {
                 || (other instanceof AddCommand // instanceof handles nulls
                 && toAdd.equals(((AddCommand) other).toAdd));
     }
+
+    @Override
+    public String toString() {
+        return this.toAdd.toString();
+    }
 }
