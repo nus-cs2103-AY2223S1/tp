@@ -68,12 +68,11 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 ### Adding Tasks: `task d/DESCRIPTION D/DEADLINE`
 
 Adds a task to the task list.
-The description of the task cannot be empty.
-The deadline of the task is allowed to be empty.
-The deadline of the task should be in dd-mm-yyy format.
-Newly added tasks are marked as not done.
+The deadline of the task is allowed to be empty. Newly added tasks are marked as not done.
+Throws an exception if the description of the task is empty. 
+Throws an exception if the deadline of the task is not in dd-mm-yyyy format.
 
-Format: `task d/buy milk D/tomorrow`
+Format: `task d/buy milk D/12-09-2022`
 
 ### Removing Tasks: `delete i/INDEX`
 
