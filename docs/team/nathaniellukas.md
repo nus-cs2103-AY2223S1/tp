@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Kang Quan's Project Portfolio Page
+title: Nathaniel Lukas's Project Portfolio Page
 ---
 
 ### Project: Salesy
