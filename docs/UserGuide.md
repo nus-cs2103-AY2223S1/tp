@@ -94,9 +94,6 @@ The Add-Related commands include `student`, `prof` and `ta`. These are the comma
 [coming soon]
 ### 3.1.3 Add a new TA Contact: `ta`<a id="313-add-ta"></a>
 [coming soon]
-
-<div style="page-break-after: always;"></div>
-
 --------------------------------------------------------------------------------------------------------------------
 ## 3.2 Editing-Related Commands <a id="32-edit-commands"></a>
 ### 3.2.1 Delete a person<a id="321-delete-person"></a>
