@@ -13,10 +13,9 @@ It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
+* **New Feature**: 
   * To be added soon
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
-
+* **New Feature**: 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=quannam0124&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other')
 
 * **Project management**:
