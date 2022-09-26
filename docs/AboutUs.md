@@ -9,15 +9,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Yeo Yu Jie
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yeoyujie.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/yeoyujie)]
+[[portfolio](team/yeoyujie.md)]
 
-* Role: Project Advisor
+* Role: Integration, Scheduling and Tracking
 
 ### Jane Doe
 
