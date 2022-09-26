@@ -26,8 +26,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/russelldash332)]
 [[portfolio](team/russelldash332.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Team Lead, Git Expert
+* Responsibilities: Project Coordination
 
 ### Chua Yu Xuan Jordan 
 
@@ -37,7 +37,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/jordanchua.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Storage
 
 ### Zhang Yuhao
 
@@ -47,7 +47,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/yh-15.md)]
 
 * Role: Developer
-* Responsibilities: Storage
+* Responsibilities: Testing
 
 ### Liu Han
 
@@ -67,4 +67,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/pokezardvgc.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Documentation + Code Quality
