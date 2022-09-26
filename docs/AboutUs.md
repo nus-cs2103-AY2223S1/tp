@@ -28,14 +28,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: UI + Data
 
-### Johnny Doe
+### Andrew Lo Zhi Sheng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/andrew.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[github](http://github.com/wrewsama) [portfolio](team/andrew.md)
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: UI
 
 ### Shan Hashir
 
