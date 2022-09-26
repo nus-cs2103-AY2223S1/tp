@@ -29,7 +29,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead, Git Expert
 * Responsibilities: Project Coordination
 
-### Chua Yu Xuan Jordan 
+### Chua Yu Xuan Jordan
 
 <img src="images/jordanchua.png" width="200px">
 
