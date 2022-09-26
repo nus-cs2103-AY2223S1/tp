@@ -315,6 +315,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1a1 TrackAScholar displays an error message that applicant already exist. <br>
     Use case resumes at step 1.
 
+**Use case: UC03 - Edit personal details of an applicant **
+
+**Guarantees:**
+* The details of an applicant will only be updated if there exists such an applicant with the same name in the txt file.
+
+**MSS**
+
+1. User requests to change the details of an applicant (such as email or contact number etc).
+2. TrackAScholar updates the personal details of the applicant to the list.
+3. Prints out the updated profile of the applicant for user to check 
+   Use case ends.
+
+**Extensions**
+
+* 1a. Input format is wrong.
+
+    * 1a1. TrackAScholar displays an error message prompting correct input format. <br>
+      Use case resumes at step 1.
+
+* 1b. Input parameters is invalid.
+
+    * 1a1. TrackAScholar displays an error message showing parameter requirements. <br>
+      Use case resumes at step 1.
+
+* 1c. An applicant with such name does not exist.
+
+    * 1a1 TrackAScholar displays an error message that applicant does not exist and details cannot be updated. <br>
+      Use case resumes at step 1.
 
 *{More to be added}*
 
@@ -324,6 +352,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. Product should not be required to handle the contacting of applicants.
+5. Learning features of the product should be intuitive and easily acquired by new users.
 
 *{More to be added}*
 
