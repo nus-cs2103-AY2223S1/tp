@@ -16,7 +16,7 @@ management tasks done faster than traditional GUI apps.
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `deveneable.jar`.
+2. Download the latest `devenable.jar`.
 
 3. Copy the file to the folder you want to use as the _home folder_ for your DevEnable.
 
@@ -26,15 +26,13 @@ management tasks done faster than traditional GUI apps.
 open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all project.
+   * **`list`** : Lists all projects.
 
    * **`project -a`**`n/Orbital` : Adds a project named `Orbital` to the Address Book.
 
    * **`project -d`**`3` : Deletes the 3rd project shown in the current list.
 
-   * **`clear`** : Deletes all contacts.
-
-   * **`exit`** : Exits the app.
+   * **`clear`** : Deletes all projects.
 
 6. Refer to the [Features](#features) below for details of each command.
 
@@ -158,7 +156,7 @@ Examples:
    and `CLIENT_CONTACT_NUMBER` 91234567.
 *  `client -e 3 n/Charlie e/charlie@gmail.com` Edits the client tagged to project with `PROJECT_ID` 3 with new 
    `CLIENT_NAME` Charlie and `CLIENT_EMAIL` charlie@gmail.com.
-*  `client -e 2 n/Dave p/91111111 e/dave@gmail.com`
+*  `client -e 2 n/Dave p/91111111 e/dave@gmail.com` Edits the client tagged to project with `PROJECT_ID` 2 with new `CLIENT_NAME` Dave, `CLIENT_CONTACT_NUMBER` 91111111 and `CLIENT_EMAIL` dave@gmail.com.
 
 ### Deleting a client : `client -d`
 
@@ -214,12 +212,6 @@ Clears all entries from the list.
 
 Format: `clear`
 
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
-
 ### Saving the data
 
 DevEnable data are saved in the hard disk automatically after any command that changes the data. There is no need to 
@@ -245,7 +237,7 @@ _Details coming soon ..._
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains 
-the data of your previous AddressBook home folder.
+the data of your previous DevEnable home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
