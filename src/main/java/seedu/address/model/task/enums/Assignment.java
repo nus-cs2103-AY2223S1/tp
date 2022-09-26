@@ -10,12 +10,12 @@ public enum Assignment {
     @Override
     public String toString() {
         switch (this) {
-            case FROM:
-                return "Assigned from";
-            case TO:
-                return "Assigned to";
-            default:
-                return " ";
+        case FROM:
+            return "Assigned from";
+        case TO:
+            return "Assigned to";
+        default:
+            return " ";
         }
     }
 }
