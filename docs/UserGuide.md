@@ -93,9 +93,21 @@ Examples:
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all internships. List of internships can be sorted by category in ascending or descending order.
 
-Format: `list`
+Format: ` list [c/CATEGORY] [REVERSE]`
+* List the internships sorted by category and in ascending or descending order
+* The category is optional. By default, without stating the category, `list` will display all internships in the order which they were created
+* The CATEGORY tag refers to company_name (or n), position (or p), application_process (or pr), website (or web), date(or d) (case-insensitive)
+* The reverse tag is optional. It can take on the value `true` or `false`. The reverse tag is set to false by default if not stated. List of internships will be shown in ascending order.
+* If REVERSE is set to `true`. List of internships will be displayed in descending order
+
+Examples:
+* `list c/n true`
+* `list c/website`
+* `list c/position false`
+
+
 
 ### Editing a person : `edit`
 
@@ -132,19 +144,21 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### View details of an internship: `view`
 
-Deletes the specified person from the address book.
+View details of list item at index
 
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
+Format: `view NAME [INDEX]`
+* Only the name is searched.
+* Companies matching the name will be returned (i.e. OR search). 
+e.g. Shopee will return Shopee, Shopee Labs as a numbered list.
+* If only one company matches the name, its details will immediately be shown.
+* Call the command again with the index to retrieve details about the application status at the company with corresponding index.
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `view Shopee` returns
+`1. Shopee`
+`2. Shopee Labs`
+* `view Shopee 1` returns `Shopee, CEO, 29/02/23, offer, NA`
 
 ### Clearing all entries : `clear`
 
