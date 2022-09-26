@@ -65,5 +65,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/cjun1039)]
 [[portfolio](team/cjun1039.md)]
 
-* Role: tbc
-* Responsibilities: tbc
+* Role: Developer
+* Responsibilities: Dev Ops
