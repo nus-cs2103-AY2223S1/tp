@@ -10,11 +10,11 @@ AddressBook - Level 3 is a desktop address book application used for teaching So
 Given below are my contributions to the project.
 
 * **New Feature**: To be added soon
-  * What it does: 
-  * Justification: 
-  * Highlights: 
+  * What it does:
+  * Justification:
+  * Highlights:
   * Credits: *{}*
-  
+
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=kshan29&breakdown=true)
 
 * **Project management**:
@@ -35,4 +35,3 @@ Given below are my contributions to the project.
 
 * **Tools**:
   * To be added soon
-  
