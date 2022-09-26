@@ -19,21 +19,22 @@ You can reach us at the email `seer@comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Wu Lezheng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/wu-lezheng.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/Wu-Lezheng)]
+[[portfolio](team/wu-lezheng.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: *to be added*
+* Responsibilities: Task management, UI
 
 ### Zhang Weiqiang
 
 <img src="images/wweqg.png" width="200px">
 
-[[github](http://github.com/wweqg)] [[portfolio](team/wweqg.md)]
+[[github](http://github.com/wweqg)] 
+[[portfolio](team/wweqg.md)]
 
 * Role: *to be added*
 * Responsibilities: *to be added*
