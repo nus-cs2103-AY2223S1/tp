@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Edbert's Project Portfolio Page
+title: Edbert Geraldy Cangdinata's Project Portfolio Page
 ---
 
 ### Project: TA-Assist
