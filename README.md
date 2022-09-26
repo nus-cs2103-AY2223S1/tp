@@ -1,6 +1,6 @@
 ## Class-ify
 
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![codecov](https://codecov.io/gh/AY2223S1-CS2103T-T15-2/tp/branch/master/graph/badge.svg?token=LKPSW2V6NG)](https://codecov.io/gh/AY2223S1-CS2103T-T15-2/tp)
 
 ![Ui](docs/images/Ui.png)
 
