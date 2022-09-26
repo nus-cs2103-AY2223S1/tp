@@ -30,9 +30,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Andrew Lo Zhi Sheng
 
-<img src="images/andrew.png" width="200px">
+<img src="images/wrewsama.png" width="200px">
 
-[github](http://github.com/wrewsama) [portfolio](team/andrew.md)
+[github](http://github.com/wrewsama) [portfolio](team/wrewsama.md)
 
 * Role: Developer
 * Responsibilities: UI
