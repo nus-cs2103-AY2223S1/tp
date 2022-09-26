@@ -257,13 +257,15 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* An artist who works through commissions
+* has a need to manage clients and commissions
+* wants to review past commission works and feedbacks
+* wants to market himself to the right clients
+* prefers desktop apps over other types
+* prefers using GUI over CLI
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
+Allows artists to hone their craft systematically and tune their artworks to fit the taste of their clients which ultimately builds their reputation.
 
 
 ### User stories
