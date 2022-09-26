@@ -357,7 +357,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. There is debt matching the given description.
+* 1a. There is no debt matching the given description.
     * 1a1. PayMeLah shows an error message.
 
       Use case ends.
