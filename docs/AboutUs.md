@@ -37,11 +37,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Khoo Jing Hong, Derrick
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/drkkjh.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/drkkjh)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
