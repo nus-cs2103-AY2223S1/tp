@@ -9,34 +9,33 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Clement Foo Shi Yu
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/cfsy.jpg" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/CFSY)]
+[[portfolio](team/cfsy.md)]
 
 * Role: Project Advisor
 
-### Jane Doe
+### Chen Shun
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ciaoosuuu.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/ciaoosuuu)]
+[[portfolio](team/ciaoosuuu.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: UI
+
+### Hui Yi Lu
+
+<img src="images/johndoe.png" width="200px">
+
+[[github](http://github.com/pewggls)] [[portfolio](team/johndoe.md)]
+
+* Role: Developer
+* Responsibilities: Developer
 
 ### Jean Doe
 
