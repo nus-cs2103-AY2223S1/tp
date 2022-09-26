@@ -119,19 +119,19 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting an internship application : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified internship application from the list.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the internship application at the specified `INDEX`.
+* The index refers to the index number shown in the displayed internship application list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* The index must be within the range of available internships in the application list.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd internship application in the list.
 
 ### Clearing all entries : `clear`
 
@@ -181,3 +181,7 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
+
+-------------------------------------------------------------------------------------------------------------------
+## UI - mock-ups
+![Ui](/images/Ui.png)
