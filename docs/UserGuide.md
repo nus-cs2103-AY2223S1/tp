@@ -158,7 +158,7 @@ Examples:
    and `CLIENT_CONTACT_NUMBER` 91234567.
 *  `client -e 3 n/Charlie e/charlie@gmail.com` Edits the client tagged to project with `PROJECT_ID` 3 with new 
    `CLIENT_NAME` Charlie and `CLIENT_EMAIL` charlie@gmail.com.
-*  `client -e 2 n/Dave p/91111111 e/dave@gmail.com`
+*  `client -e 2 n/Dave p/91111111 e/dave@gmail.com` Edits the client tagged to project with `PROJECT_ID` 2 with new `CLIENT_NAME` Dave, `CLIENT_CONTACT_NUMBER` 91111111 and `CLIENT_EMAIL` dave@gmail.com.
 
 ### Deleting a client : `client -d`
 
