@@ -57,3 +57,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: UI
+
+### Nathaniel Lukas Christianto
+
+<img src="images/dreammac3816547290.png" width="200px">
+
+[github](https://github.com/dreammac3816547290)
+[portfolio](team/dreammac3816547290.md)
+
+* Role: Developer
+* Responsibilities: Deliverables and deadlines
