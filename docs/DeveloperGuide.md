@@ -310,6 +310,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
+### Target User Profile
+Travelers with a bucket list, who wish to be able to plan their itineraries, bookings, and costs efficiently.
+
+### Use Cases
+Software System: TravelR
+Use case: UC01 Delete Trip
+Actor: User
+
+MSS :
+1. User request the list of trips
+2. TravelR lists the trips.
+3. User requests to delete a certain trip.
+4. TravelR deletes the specified trip.
+
+    Use case ends
+
+Extensions:
+
+3a. The requested trip doesn't exist
+   * 3a1. AddressBook shows an error message.
+   
+     Use case ends
+
+3b. Invalid input
+   * 3b1. AddressBook shows an error message.
+   
+     Use Case Ends
+
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
