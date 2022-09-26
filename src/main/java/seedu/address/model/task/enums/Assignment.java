@@ -11,7 +11,7 @@ public enum Assignment {
     public String toString() {
         switch (this) {
         case FROM:
-            return "Assigned from";
+            return "Assigned by";
         case TO:
             return "Assigned to";
         default:
