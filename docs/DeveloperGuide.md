@@ -283,7 +283,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `CinternS` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
@@ -307,6 +307,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
+
+<br>
+
+**Use case: Add an internship application**
+
+**MSS**
+
+1.  User inputs their application details (i.e. company 
+name, position applied, application platform, application 
+date, document submitted, etc.)
+2.  CinternS adds the application into the database.
+    Use case ends.
+
+**Extensions**
+
+* 1a. CinternS detects the user has entered invalid data format.
+  * 1a1. CinternS prompts a warning message and requests the user to reenter.
+    1a2. User inputs the application by using the correct format.
+    Use case resumes at step2.
 
 *{More to be added}*
 
