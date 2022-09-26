@@ -9,7 +9,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -22,7 +26,7 @@ import seedu.address.model.person.MinecraftName;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Socials;
+import seedu.address.model.person.Social;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -99,7 +103,7 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Socials> updatedSocials = editPersonDescriptor.getSocials().orElse(personToEdit.getSocials());
+        Set<Social> updatedSocials = editPersonDescriptor.getSocial().orElse(personToEdit.getSocials());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedMinecraftName, updatedPhone, updatedEmail, updatedAddress, updatedSocials, updatedTags);
@@ -134,7 +138,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
-        private Set<Socials> socials;
+        private Set<Social> social;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -149,7 +153,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
-            setSocials(toCopy.socials);
+            setSocial(toCopy.social);
             setTags(toCopy.tags);
         }
 
@@ -157,7 +161,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, minecraftName, phone, email, address, socials, tags);
+            return CollectionUtil.isAnyNonNull(name, minecraftName, phone, email, address, social, tags);
         }
 
         public void setName(Name name) {
@@ -205,8 +209,8 @@ public class EditCommand extends Command {
          * A defensive copy of {@code socials} is used internally.
          */
 
-        public void setSocials(Set<Socials> socials) {
-            this.socials = (socials != null) ? new HashSet<>(socials) : null;
+        public void setSocial(Set<Social> socials) {
+            this.social = (socials != null) ? new HashSet<>(social) : null;
         }
 
         /**
@@ -215,9 +219,9 @@ public class EditCommand extends Command {
          * Returns {@code Optional#empty()} if {@code socials} is null.
          */
 
-        public Optional<Set<Socials>> getSocials() {
-            return (socials != null)
-            ? Optional.of(Collections.unmodifiableSet(socials))
+        public Optional<Set<Social>> getSocial() {
+            return (social != null)
+            ? Optional.of(Collections.unmodifiableSet(social))
             : Optional.empty();
         }
 
@@ -257,7 +261,7 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    && getSocials().equals(e.getSocials())
+                    && getSocial().equals(e.getSocial())
                     && getTags().equals(e.getTags());
         }
     }

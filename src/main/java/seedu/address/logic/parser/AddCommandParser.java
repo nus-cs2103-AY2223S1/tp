@@ -20,7 +20,7 @@ import seedu.address.model.person.MinecraftName;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Socials;
+import seedu.address.model.person.Social;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -47,10 +47,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Set<Socials> socialsList = ParserUtil.parseSocials(argMultimap.getAllValues(PREFIX_SOCIALS));
+        Set<Social> socialList = ParserUtil.parseSocials(argMultimap.getAllValues(PREFIX_SOCIALS));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, mcName, phone, email, address, socialsList, tagList);
+        Person person = new Person(name, mcName, phone, email, address, socialList, tagList);
 
         return new AddCommand(person);
     }

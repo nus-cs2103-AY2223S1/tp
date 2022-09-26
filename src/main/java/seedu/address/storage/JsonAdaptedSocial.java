@@ -5,34 +5,34 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.parser.ParserUtil;
-import seedu.address.model.person.Socials;
+import seedu.address.model.person.Social;
 
 
 /**
- * Jackson-friendly version of {@link Socials}.
+ * Jackson-friendly version of {@link Social}.
  */
-class JsonAdaptedSocials{
+class JsonAdaptedSocial{
 
-    private final String socials;
+    private final String social;
 
     /**
      * Constructs a {@code JsonAdaptedSocials} with the given {@code socials}.
      */
     @JsonCreator
-    public JsonAdaptedSocials(String socials) {
-        this.socials = socials;
+    public JsonAdaptedSocial(String social) {
+        this.social = social;
     }
 
     /**
      * Converts a given {@code socials} into this class for Jackson use.
      */
-    public JsonAdaptedSocials(Socials source) {
-        socials = source.fullHandle;
+    public JsonAdaptedSocial(Social source) {
+        social = source.fullHandle;
     }
 
     @JsonValue
-    public String getSocials() {
-        return socials;
+    public String getSocial() {
+        return social;
     }
 
     /**
@@ -40,11 +40,11 @@ class JsonAdaptedSocials{
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted socials.
      */
-    public Socials toModelType() throws IllegalValueException {
-        if (!Socials.isValidName(socials)) {
-            throw new IllegalValueException(Socials.MESSAGE_CONSTRAINTS);
+    public Social toModelType() throws IllegalValueException {
+        if (!Social.isValidName(social)) {
+            throw new IllegalValueException(Social.MESSAGE_CONSTRAINTS);
         }
-        return ParserUtil.parseSocial(socials);
+        return ParserUtil.parseSocial(social);
     }
 
 }

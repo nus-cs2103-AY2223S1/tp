@@ -1,13 +1,23 @@
 package seedu.address.storage;
 
-import java.util.*;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.MinecraftName;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Social;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -21,7 +31,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
-    private final List<JsonAdaptedSocials> socials = new ArrayList<>();
+    private final List<JsonAdaptedSocial> social = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -30,14 +40,14 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("socials") List<JsonAdaptedSocials> socials,
+                             @JsonProperty("socials") List<JsonAdaptedSocial> socials,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         if (socials != null) {
-            this.socials.addAll(socials);
+            this.social.addAll(social);
         }
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -52,8 +62,8 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        socials.addAll(source.getSocials().stream()
-                .map(JsonAdaptedSocials::new)
+        social.addAll(source.getSocials().stream()
+                .map(JsonAdaptedSocial::new)
                 .collect(Collectors.toList()));
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -71,8 +81,8 @@ class JsonAdaptedPerson {
             personTags.add(tag.toModelType());
         }
 
-        final List<Socials> socialsTags = new ArrayList<>();
-        for (JsonAdaptedSocials social : socials) {
+        final List<Social> socialsTags = new ArrayList<>();
+        for (JsonAdaptedSocial social : social) {
             socialsTags.add(social.toModelType());
         }
 
@@ -110,7 +120,7 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        final Set<Socials> modelSocials = new HashSet<>(socialsTags);
+        final Set<Social> modelSocials = new HashSet<>(socialsTags);
 
         return new Person(modelName, new MinecraftName("df"), modelPhone, modelEmail, modelAddress, modelSocials, modelTags);
     }

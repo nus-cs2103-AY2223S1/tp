@@ -3,16 +3,16 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-public class Socials {
+public class Social {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Socials should not be blank and must be alphanumeric, with the exception of the underscore symbol: \"_\".";
+            "Social handles can take any values, and it should not be blank";
 
     /*
-     * The first character of the social media handle must not be a whitespace,
+     * The first character of the social must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\w]*";
+    public static final String VALIDATION_REGEX = "[^\\s].*";
 
     public final String fullHandle;
 
@@ -22,9 +22,15 @@ public class Socials {
      * @param handle A valid social media handle.
      */
 
-    public Socials(String handle, Platform platform) {
+    public Social(String handle, Platform platform) {
         requireNonNull(handle);
         requireNonNull(platform);
+        checkArgument(isValidName(handle), MESSAGE_CONSTRAINTS);
+        fullHandle = handle;
+    }
+
+    public Social(String handle) {
+        requireNonNull(handle);
         checkArgument(isValidName(handle), MESSAGE_CONSTRAINTS);
         fullHandle = handle;
     }
