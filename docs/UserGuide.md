@@ -19,29 +19,31 @@ while still having the benefits of a Graphical User Interface (GUI).
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `plannit.jar` from [coming soon]().
+2. Download the latest `plannit.jar` from [coming soon]().
 
-1. Copy the file to the folder you want to use as the _home folder_ for Plannit.
+3. Copy the file to the folder you want to use as the _home folder_ for Plannit.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app
+contains some sample data.<br>
    [image coming soon]
 
-1. Type the command in the command box and press Enter to execute it. e.g. 
+5. Type the command in the command box and press Enter to execute it. e.g. 
    `add module`. For more commands, you may refer to the [command summary](#11-command-summary)
    
-1. Refer to the [Features](#2-features) for details of each command.
+6. Refer to the [Features](#2-features) for details of each command.
 
 ### 1.1. Command summary
 
-| Action                                | Format                                             | Short Description                                                           |
-|---------------------------------------|----------------------------------------------------|-----------------------------------------------------------------------------|
-| [`add module`](#211-add-module)       | `add    module   m/MODULE_CODE [t/MODULE_TITLE]`   | Add module with a module code and optional module title                     |
-| [`delete module`](#212-delete-module) | `delete module   m/MODULE_CODE`                    | Delete module by module code                                                |
-| [`add task`](#221-add-task)           | `add    task     m/MODULE_CODE d/TASK_DESCRIPTION` | Add task with specified module code and task description                    |
-| [`delete task`](#222-delete-task)     | `delete task     m/MODULE_CODE n/TASK_NUMBER`      | Delete task corresponding to specified task number of specified module code |
-| [`add link`](#231-add-link)           | `add    link     m/MODULE_CODE l/LINK_URL`         | Add link to a specified module code by its URL                              |
-| [`delete link`](#232-delete-link)     | `delete link     m/MODULE_CODE l/LINK_URL`         | Delete link from a specified module code by its URL                         |
---------------------------------------------------------------------------------------------------------------------
+| Action                                  | Format                                                | Short Description                                                           |
+|-----------------------------------------|-------------------------------------------------------|-----------------------------------------------------------------------------|
+| [`add module`](#211-add-module)         | `add    module   m/MODULE_CODE [t/MODULE_TITLE]`      | Add module with a module code and optional module title                     |
+| [`delete module`](#212-delete-module)   | `delete module   m/MODULE_CODE`                       | Delete module by module code                                                |
+| [`add task`](#221-add-task)             | `add    task     m/MODULE_CODE d/TASK_DESCRIPTION`    | Add task with specified module code and task description                    |
+| [`delete task`](#222-delete-task)       | `delete task     m/MODULE_CODE n/TASK_NUMBER`         | Delete task corresponding to specified task number of specified module code |
+| [`add link`](#231-add-link)             | `add    link     m/MODULE_CODE l/LINK_URL`            | Add link to a specified module code by its URL                              |
+| [`delete link`](#232-delete-link)       | `delete link     m/MODULE_CODE l/LINK_URL`            | Delete link from a specified module code by its URL                         |
+| [`add contact`](#241-add-contact)       | `add contact     n/NAME    e/EMAIL    p/PHONE_NUMBER` | Add contact with specified name, email, and phone number                    |
+| [`delete contact`](#242-delete-contact) | `delete contact  n/NAME`                              | Delete contact belonging to the specified name                              |
 
 ## 2. Features
 
@@ -58,7 +60,8 @@ while still having the benefits of a Graphical User Interface (GUI).
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of
+the parameter will be taken.<br>
   e.g. if you specify `p/81234123 p/999`, only `p/999` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as 
@@ -163,8 +166,8 @@ This command will require two flags:
 * `l/`: This flag is to be followed immediately by the link URL.
 
 Format: `add link m/MODULE_CODE l/LINK_URL`
-* The given module code should be that of an existing module in Plannit.
-* The given link URL should not currently exist for the module in Plannit.
+* When adding a link URL to a non-existent module code, Plannit shows an error message.
+* When adding a duplicate link URL, Plannit shows an error message.
 
 Example:
 ```
@@ -182,8 +185,8 @@ This command will require two flags:
 * `l/`: This flag is to be followed immediately by the link URL.
 
 Format: `delete link m/MODULE_CODE l/LINK_URL`
-* The given module code should be that of an existing module in Plannit.
-* The given link URL currently exists for the module in Plannit.
+* When deleting a link URL from a non-existent module code, Plannit shows an error message.
+* When deleting a non-existent link URL, Plannit shows an error message.
 
 Example:
 ```
@@ -195,9 +198,43 @@ from the module with module code `CS2040C`.
 
 ### 2.4. Adding and deleting contacts
 #### 2.4.1. Add contact
+
+This command will require two flags, and one optional flag:
+- `n/`: To be followed by the to-be-added contact name.
+- `e/`: To be followed by the email of the new contact.
+- `p/`: (Optional flag) To be followed by the phone number of the new contact.
+
+Format: `add contact n/NAME e/EMAIL p/PHONE_NUMBER`
+- Specifying a phone number is optional.
+- When adding a duplicate name, Plannit will display an error message.
+- Phone numbers are compulsory to be exactly 8 digits and without country code.
+
+Examples:  
+```
+add contact n/Dinosaur Lim e/dinosaurlim@gmail.com
+```
+In the above example, we are adding a contact with name `Dinosaur Lim` and email `dinosaurlim@gmail.com` into Plannit. 
+```
+add contact n/Dinosaur Lim e/dinosaurlim@gmail.com p/91234567
+```
+In the above example, we are adding a contact with name `Dinosaur Lim`, email `dinosaurlim@gmail.com`, and phone number
+`91234567` into Plannit.
+
 #### 2.4.2. Delete contact
 
-<br>
+You may delete a contact using the `delete contact` command.
+
+This command will require one flag:
+- `n/`: To be followed by the to-be-deleted contact name.
+
+Format: `delete contact n/NAME`
+- If the provided `NAME` does not exist in Plannit, Plannit shows an error message.
+
+Example:  
+```
+delete contact n/Dinosaur Lim  
+```
+In the above example, we are deleting a contact with name `Dinosaur Lim` from Plannit.
 
 ### 2.5. Navigation
 #### 2.5.1. Navigate to home
@@ -213,7 +250,8 @@ Format: `exit`
 <br>
 
 ### 2.7. Saving The Data
-Plannit data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Plannit data is saved in the hard disk automatically after any command that changes the data. There is no need to save
+manually.
 
 <br>
 
@@ -225,7 +263,8 @@ load manually.
 
 ### 2.9. Editing The Data File
 
-Plannit data is saved as a `JSON` file `[JAR file location]/data/plannit.json`. Advanced users are welcome to update data directly by editing that data file.
+Plannit data is saved as a `JSON` file `[JAR file location]/data/plannit.json`. Advanced users are welcome to update 
+data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, Plannit will discard 
