@@ -255,29 +255,51 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
+**Target user profile**: Financial Advisors (FAs)
 
 * has a need to manage a significant number of contacts
+* has a need to manage many, different types of contacts such as friends,
+family, clients and potential clients
+* has to regularly keep in touch with many contacts, and often through
+multiple platforms
+* has a need to store information related to their clients such as birthdays,
+contracts, packages, etc.
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Streamline, automate and speed up routine tasks that
+FAs have to deal with on a day-to-day basis
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                    | I want to …​                                                           | So that I can…​                                                               |
+|----------|--------------------------------------------|------------------------------------------------------------------------|-------------------------------------------------------------------------------|
+| `* * *`  | new user                                   | see usage instructions                                                 | refer to instructions when I forget how to use the App                        |
+| `* * *`  | user                                       | add my friends/clients/potential clients contact information           | easily contact them and store their information                               |
+| `* * *`  | user                                       | view all of my contacts and the details about my contacts              | get can overview of all of my contacts' information                           | 
+| `* * *`  | user                                       | delete specific contacts                                               | remove entries that I no longer need                                          |
+| `* * *`  | user                                       | find a person by name                                                  | locate details of persons without having to go through the entire list        |
+| `* * *`  | user                                       | save important information related to my contacts                      | easily keep track of my contacts' important details                           |
+| `* * *`  | user                                       | be able to label my contacts into different categories                 | organize my contacts better                                                   |
+| `* * *`  | user                                       | be able to filter my contacts by tag/category/etc.                     | more easily navigate through my contacts and find contacts I am interested in |
+| `* * *`  | user                                       | be sure that my data is safe and backed up                             | I do not lose important contact information                                   |
+| `* *`    | user                                       | search from my contacts                                                | I can look up information stored about my contacts easily                     |
+| `* *`    | user                                       | import my contacts                                                     | I do not have to manually add my contacts individually                        |
+| `* *`    | user                                       | copy and paste information to my clipboard                             | I can paste prepared messages in whatever messaging application I like        |
+| `* *`    | user                                       | set preset messages beforehand for my contacts                         | I can easily copy the message and send it out                                 |
+| `* *`    | user                                       | be able to set reminders for myself                                    | I can be reminded of important dates for my contacts                          |
+| `* *`    | user                                       | delete all the current contacts                                        | start afresh after testing out the commands                                   |
+| `* *`    | user                                       | edit information related to my contacts                                | make changes if I make a mistake or their information changes                 |
+| `* *`    | intermediate user                          | learn more about how to use the application and more advanced features | I can increase my productivity                                                |
+| `* *`    | intermediate user                          | automatically hide old contacts that were last contacted some time ago | I can declutter the application of old contacts                               |
+| `* *`    | long-time user                             | customize some of my commands                                          | group common commands together to automate common tasks and save time         |
+| `*`      | long-time user                             | have a fast way to show off how fast working with Friendnancial is     | I can introduce the product to my friends and convince them to use it         |
+| `*`      | user with many persons in the address book | sort persons by name                                                   | locate a person easily                                                        |
 
 *{More to be added}*
 
@@ -308,15 +330,79 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Edit a person**
+
+**MSS**
+
+1.  User requests to list persons
+2.  AddressBook shows a list of persons
+3.  User requests to edit a specific person in the list
+4.  AddressBook edits the information of the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. AddressBook shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Set a reminder for a contact**
+
+**MSS**
+
+1.  User requests to list persons
+2.  AddressBook shows a list of persons
+3.  User requests to set a reminder for a specific person in the list
+4.  AddressBook reminds user when it is time to do so
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. AddressBook shows an error message
+
+      Use case resumes at step 2.
+    * 3b. The user requests to remove the reminder
+      * 3b1 AddressBook removes the reminder
+
+        Use case ends.
+
+
+**Use case: Filter contacts**
+
+**MSS**
+
+1.  User requests to filter contacts based off a criteria
+2.  AddressBook shows the list of people that match the criteria
+
+    Use case ends.
+
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 100 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. The system should respond within 2 seconds of entering a command.
+5. The app is not required to explain financial advisor terms.
+6. The app is not required to spell check or check for offensive terms.
+7. The system should still work even if there is no data file present.
+8. The system should replace the data file if it has corrupted.
+9. The system should save the data after each command has been processed.
 
-*{More to be added}*
 
 ### Glossary
 
