@@ -9,44 +9,43 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Vaishnav Muralidharan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/Vaishnav Formal photo.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
+
 [[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
 
 * Role: Project Advisor
 
 ### Jane Doe
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tex-tang.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/Tex-Tang)]
+[[portfolio](team/tex-tang.md)]
 
-* Role: Team Lead
+* Role: Developer
+* Responsibilities: UI + Data
+
+### Andrew Lo Zhi Sheng
+
+<img src="images/andrew.png" width="200px">
+
+[github](http://github.com/wrewsama) [portfolio](team/andrew.md)
+
+* Role: Developer
 * Responsibilities: UI
 
-### Johnny Doe
+### Shan Hashir
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/sh4nh.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/sh4nH)]
+[[portfolio](team/shan.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: UI
 
 ### James Doe
 
