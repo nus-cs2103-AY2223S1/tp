@@ -9,8 +9,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### Guanzhou
-
+### Chen Guanzhou
 <img src="images/guanzhou03.png" width="200px">
 
 [[github](https://github.com/guanzhou03)]
@@ -24,7 +23,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/perry.png" width="200px">
 
 [[github](https://github.com/pwjj2000)]
-[[portfolio](team/perry.md)]
+[[portfolio](team/pwjj2000.md)]
 
 * Role: Deliverables and Deadlines
 * Responsibilities: Documentation and Testing
