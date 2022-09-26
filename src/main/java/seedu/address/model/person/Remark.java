@@ -1,18 +1,18 @@
-package seedu.address.model.person.exceptions;
+package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 
 public class Remark {
-    public final String description;
+    public final String value;
 
-    public Remark(String description) {
-        requireNonNull(description);
-        this.description = description;
+    public Remark(String value) {
+        requireNonNull(value);
+        this.value = value;
     }
 
     @Override
     public String toString() {
-        return description;
+        return value;
     }
 
     @Override
@@ -22,13 +22,13 @@ public class Remark {
         }
         if (o instanceof Remark) {
             Remark r = (Remark) o;
-            return this.description.equals(r.description);
+            return this.value.equals(r.value);
         }
         return false;
     }
 
     @Override
     public int hashCode() {
-        return this.description.hashCode();
+        return this.value.hashCode();
     }
 }
