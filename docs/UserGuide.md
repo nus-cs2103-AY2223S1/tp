@@ -92,6 +92,8 @@ Action | Format
 --------|------------------
 **Add a student** | `add n/NAME [t/TELEGRAM_HANDLE] [s/STUDENT_NUMBER]`
 **Delete a student** | `delete n/NAME`
+=======
+**Delete a student** |
 **Edit a student's details** |
 **View all students** |
 **View a student's details** |
