@@ -258,26 +258,29 @@ _{Explain here how the data archiving feature will be implemented}_
 **Target user profile**:
 
 * has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* private clinic practitioners who do not have access to general health service management applications like Healthhub
+* private clinic practitioners of clinics who still utilise physical paper records to store patient information
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
+* provide doctors with a place to **store and centrally manage their patients’ information**
+* allows doctors to schedule appointments, send appointment reminders and other notifications (eg. medication, payment 
+  information) to patients using their stored contact information.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​   | I want to …​                            | So that I can…​                                                                           |
+| -------- |-----------|-----------------------------------------|-------------------------------------------------------------------------------------------|
+| `* * *`  | new user  | view the user guide easily              | learn more about the product usage                                                        |
+| `* * *`  | user      | add a new patient and their details     | save them for later viewing                                                               |
+| `* * *`  | user      | view an existing patient's full details | know more about the patient                                                               |
+| `* * *`  | user      | delete a patient's records              | clear a particular patient's medical records upon request. (E.g. due to privacy reasons)  |
+| `* * *`  | user      | clear the all of a patient's records    | save time by not deleting one by one                                                      |
+| `*`      | user      | view the entire list of patients        | see all my patients I have added.                                                         |
+| `* * *`  | user      | search for a specific patient’s records | view one patient's record                                                                 |
+| `* * *`  | user      | exit the program                        |                                                                                           |
 
 *{More to be added}*
 
@@ -513,9 +516,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work as long as Java `11` or above is installed.
+2. Should be secure to use so that patient records are not easily leaked.
+3. Should be able to handle large amounts of data eg. Patient record list, Patient list
 
 *{More to be added}*
 
