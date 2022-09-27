@@ -45,7 +45,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/eiffellkf.png" width="200px">
 
-[[github](http://github.com/eiffellkf)]  
+[[github](http://github.com/eiffellkf)]
 [[portfolio](team/eiffellkf.md)]
 
 * Role: TBD
@@ -54,7 +54,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 ### Sean Lam
 
 <img src="images/ljxsean.png" width="200px">
-
 
 [[github](https://github.com/anthonyhoth)]
 [[portfolio](team/ljxsean.md)]
