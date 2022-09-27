@@ -18,7 +18,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/johndoe.md)]
 
 * Role: Project Advisor
-
 ### Kok Chun Khai
 
 <img src="images/avock.png" width="200px">
@@ -30,7 +29,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Responsibilities: UI
 
 ### Xu Daofu
-
 <img src="images/therealdaofu.png" width="200px">
 
 [[github](https://github.com/therealdaofu)] [[portfolio](team/therealdaofu.md)]
@@ -38,7 +36,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 
 ### Sun Yu Ting
-
 <img src="images/effixion.png" width="200px">
 
 [[github](http://github.com/effixion)]
