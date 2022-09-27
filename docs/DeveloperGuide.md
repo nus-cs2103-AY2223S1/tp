@@ -314,21 +314,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `GuestList` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Get list of all guests**
-
-**MSS**
-
-1.  User requests to list guests
-2.  GuestList shows a list of guests
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
 **Use case: Add a guest**
 
 **MSS**
@@ -373,6 +358,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. GuestList shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: Get list of all guests**
+
+**MSS**
+
+1.  User requests to list guests
+2.  GuestList shows a list of guests
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
 
 **Use case: Exit the program**
 
