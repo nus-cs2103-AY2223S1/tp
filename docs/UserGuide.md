@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-Jeeq TracQer is a tool built for small businesses lacking in resources to help them keep track of supplier contacts and previous transaction information with them
+Jeeq TracQer is a tool built for small businesses lacking in resources to help them keep track of supplier contacts and previous transaction information with them.
 
 
 * Table of Contents
