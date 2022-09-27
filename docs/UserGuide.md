@@ -101,7 +101,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 Example of usage:
 
-After `find bernice` is used, `edit 1 p/99999999` can be used to easily find and update a person’s contact information.
+`edit 1 p/99999999` can be used to easily update a person’s contact information.
 
 
 ### Locating persons by name: `find`
