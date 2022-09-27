@@ -14,6 +14,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/sheshenk.png" width="200px">
 
 [[github](https://github.com/sheshenk)]
+[[portfolio](team/sheshenk.md)]
 
 * Role: Admin
 
