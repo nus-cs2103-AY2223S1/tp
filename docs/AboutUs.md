@@ -41,8 +41,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Gregory Wong Twee Loong
 
-<img src="images/specops2016.png" width="200px">
-
 [[github](http://github.com/SpecOps2016)]
 
 [[portfolio](team/specops2016.md)]
