@@ -53,7 +53,6 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/ljxsean.png" width="200px">
 
-
 [[github](https://github.com/ljxsean)]
 [[portfolio](team/ljxsean.md)]
 
