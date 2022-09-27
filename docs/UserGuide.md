@@ -172,8 +172,9 @@ This command will require two flags, and one optional flag:
 
 Format: `add contact n/NAME e/EMAIL p/PHONE_NUMBER`
 - Specifying a phone number is optional.
-- When adding a duplicate name, Plannit will display an error message.
-- Phone numbers are compulsory to be exactly 8 digits and without country code.
+- You cannot add a duplicate name into Plannit.
+- You cannot specify country code for phone number.
+- You cannot specify a non-8-digit phone number.
 
 Examples:  
 ```
@@ -194,7 +195,7 @@ This command will require one flag:
 - `n/`: To be followed by the to-be-deleted contact name.
 
 Format: `delete contact n/NAME`
-- If the provided `NAME` does not exist in Plannit, Plannit shows an error message.
+- You cannot delete a non-existent contact.
 
 Example:  
 ```
