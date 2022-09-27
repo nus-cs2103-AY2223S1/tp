@@ -22,8 +22,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/eugenetayyj.png" width="200px">
 
-[[github](https://github.com/eugenetayyj)]
-[[portfolio](team/eugenetayyj.md)]
+[github](https://github.com/eugenetayyj) |
+[portfolio](team/eugenetayyj.md)
 
 * Role: Developer
 * Responsibilities:
