@@ -42,7 +42,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/rachaelsng.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/rachaelsng)]
 [[portfolio](team/rachaelsng.md)]
 
 * Role: Developer
