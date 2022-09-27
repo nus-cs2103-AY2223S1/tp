@@ -3,7 +3,10 @@ layout: page
 title: TrackAScholar User Guide (v1.2)
 ---
 
-TrackAScholar (TAS) is a **desktop app for managing scholarship applications, optimised for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TAS can get your scholarship applicant management tasks done faster than traditional GUI apps.
+TrackAScholar (TAS) is a **desktop app for managing scholarship applications, 
+optimised for use via a Command Line Interface (CLI)** while still having 
+the benefits of a Graphical User Interface (GUI). If you can type fast, 
+TAS can get your scholarship applicant management tasks done faster than traditional GUI apps.
 
 * [Quick start](#quick-start)
 * [Features](#features)
@@ -69,7 +72,7 @@ TrackAScholar (TAS) is a **desktop app for managing scholarship applications, op
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
