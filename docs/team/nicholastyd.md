@@ -9,6 +9,18 @@ idENTify - ENT doctors treat patients who often have chronic conditions and our 
 
 ### Summary of Contributions
 
-* to be added
+Given below are my contributions to the project.
 
-* _{you can add/remove categories in the list above}_
+Code contributed: [RepoSense link](https://github.com/NicholasTYD/tp)
+
+Enhancements implemented:
+
+Contributions to the UG:
+
+Contributions to the DG:
+
+Contributions to team-based tasks:
+
+Review/mentoring contributions:
+
+Contributions beyond the project team:

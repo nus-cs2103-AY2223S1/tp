@@ -9,24 +9,23 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
-
+### Chen Guanzhou
 <img src="images/guanzhou03.png" width="200px">
 
 [[github](https://github.com/guanzhou03)]
-[[portfolio](team/guanzhou.md)]
+[[portfolio](team/guanzhou03.md)]
 
 * Role: Team Lead
 * Responsibilities: In charge of Model
 
 ### Perry Wong Jun Jie
 
-<img src="images/perry.png" width="200px">
+<img src="images/pwjj2000.png" width="200px">
 
-[[github](http://https://github.com/pwjj2000)]
-[[portfolio](team/perry.md)]
+[[github](https://github.com/pwjj2000)]
+[[portfolio](team/pwjj2000.md)]
 
-* Role: Deliverables and Deadlines
+* Role: Developer
 * Responsibilities: Documentation and Testing
 
 ### Lim Hong Wei, Jovon
@@ -40,7 +39,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Nicholas Tan
 
-<img src="images/nicholastan.png" width="200px">
+<img src="images/nicholastyd.png" width="200px">
 
 [[github](https://github.com/NicholasTYD)]
 [[portfolio](team/nicholastyd.md)]
@@ -50,10 +49,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Zhao Yao
 
-<img src="images/zhaoyao.png" width="200px">
+<img src="images/wingkei67.png" width="200px">
 
 [[github](http://github.com/wingkei67)]
-[[portfolio](team/zhaoyao.md)]
+[[portfolio](team/wingkei67.md)]
 
 * Role: Developer
 * Responsibilities: Logic
