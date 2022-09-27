@@ -7,24 +7,28 @@ We are a team based in the [School of Computing, National University of Singapor
 
 You can reach us at the email `seer[at]comp.nus.edu.sg`
 
-## Project team
+## FABook Team
 
 ### Danny (Kim Hyeongcheol)
 
 <img src="./images/bluesky0911.png" width="200px">
 
-[github](https://github.com/bluesky0911)
+[github](https://github.com/bluesky0911) |
+[portfolio](team/bluesky0911.md)
 
 * Role: Project Advisor, Head Tutor (CS2103T)
 
 ### Eugene Tay
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/eugenetayyj.png" width="200px">
 
-[[github](http://github.com/johndoe)] | [[portfolio](team/johndoe.md)]
+[[github](https://github.com/eugenetayyj)]
+[[portfolio](team/eugenetayyj.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities:
+  * Team pull request reviewer
+  
 
 ### Shaune Ang
 
