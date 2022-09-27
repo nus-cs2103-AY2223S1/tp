@@ -159,6 +159,17 @@ Format: `clear`
 
 * Before clearing all entries permanently, confirms with the user with a message.
 
+
+### Getting reminders : `remind`
+
+Reminds the user of the upcoming birthdays of all contacts stored in Friendnancial.
+
+Format: `remind`
+
+Examples:
+* `remind` displays a popup listing all the users contacts names and birthdays as
+as reminder to the user.
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -180,11 +191,12 @@ Friendnancial data is saved in the hard disk automatically after any command tha
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG] [a/ADDRESS] [b/BIRTHDAY] [i/INSURANCE]` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com c/friend`
-**Clear** | `clear`
-**Delete** | `delete INDEX` or `delete n/NAME`<br> e.g., `delete 3`
-**Find** | `find [n/KEYWORD, t/TAG, b/BIRTHDAY]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action     | Format, Examples                                                                                                                                         |
+|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG] [a/ADDRESS] [b/BIRTHDAY] [i/INSURANCE]` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com c/friend` |
+| **Clear**  | `clear`                                                                                                                                                  |
+| **Delete** | `delete INDEX` or `delete n/NAME`<br> e.g., `delete 3`                                                                                                   |
+| **Find**   | `find [n/KEYWORD, t/TAG, b/BIRTHDAY]`<br> e.g., `find James Jake`                                                                                        |
+| **List**   | `list`                                                                                                                                                   |
+| **Remind** | `remind`                                                                                                                                                 |
+| **Help**   | `help`                                                                                                                                                   |
