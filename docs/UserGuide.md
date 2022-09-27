@@ -188,8 +188,3 @@ Format: `exit`
 | **Delete Group**  | `deletegroup GROUP` <br> e.g., deletegroup CS2103T                                                                                                                                    |
 | **Exit**          | `exit`                                                                                                                                                                                |
 =======
-
-
-
-
-
