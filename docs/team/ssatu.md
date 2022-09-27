@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Colin's Project Portfolio Page
+title: Damien's Project Portfolio Page
 ---
 
 ### Project: LongTimeNoSee(LTNS)
@@ -9,14 +9,15 @@ Long Time No See (LTNS) is a desktop task tracking app made for student financia
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the main representation of our user's patrons, i.e: The `client` class.
-  * Justification: This feature is required to use our code
-  * Highlights:  It encapsulates extensions from the original AB3's person model. You can store birthdays, add notes, tag people etc.
+* **New Feature**: Added the main representation of our users' available policies, i.e: The `policy` class.
+  * Justification: This feature allows us to store policies sold by the user.
+  * Highlights:  It stores information about a given policy, like policy duration, premium and coverage type.
   * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
+* **New Feature**: 
+  * *TODO
 
-* **Code contributed**: [https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=cowlinn&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other]()
+* **Code contributed**: [https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=ssatu&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other]()
 
 * **Project management**:
   * TODO
@@ -26,7 +27,6 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Ported over original UG from Google Docs to Markdown, including cosmetic tweaks 
     * TODO
   * Developer Guide:
     * TODO

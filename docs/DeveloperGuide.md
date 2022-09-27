@@ -333,12 +333,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-
 **Use case 6: Delete a person**
 
 **MSS**
 
-1. User requests to <u>list persons(UC3)</u>
+1. User requests to <u>list clients(UC3)</u>
 2. User requests to delete a specific person in the list
 3. LTNS deletes the person
 
@@ -355,6 +354,77 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. LTNS shows an error message.
 
       Use case resumes at step 2.
+    
+**Use case 7: Sort a list**
+
+**MSS**
+
+1. User requests to <u>list clients(UC3)</u>, which will be shown based on date added (default sort)
+2. User requests to sort the list based on name (or any other metric)
+3. LTNS shows the list of clients, sorted in alphabetical order based on client's name. (or based on how the metric is compared)
+
+   Use case ends
+
+**Extensions**
+
+* 2a. Given sorting metric does not exist.
+
+  Use case ends.
+
+**Use case 8: Delete a person**
+
+**MSS**
+
+1. User requests to <u>list clients(UC3)</u>
+2. User requests to delete a specific person in the list
+3. LTNS deletes the person
+
+   Use case ends
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. LTNS shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case 8: Pin a client**
+
+**MSS**
+
+1. User requests to pin a client by name
+2. LTNS will display the pinned clients
+3. User will be able to see all pinned clients in all pages.
+    
+   Use case ends
+
+**Extensions**
+
+* 2a. LTNS displays a highlighted box on pinned clients when using the list command.
+
+  Use case ends.
+
+**Use case 9: Find a contact**
+
+**MSS**
+
+1. User requests to search by a certain metric.
+2. LTNS shows a list of contacts with matching metrics.
+
+   Use case ends
+
+**Extensions**
+
+* 2a. User requests another search.
+
+  * 2a1. LTNS displays a new list of contacts with matching metrics.
+
+    Use case ends.
 
 *{More to be added}*
 

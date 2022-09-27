@@ -29,14 +29,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Damien Koh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ssatu.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/ssatu)]
+[[portfolio](team/ssatu.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Documentation, Testing, Deliverables and deadlines, Main reviewer for Colin
+* In-charge of features: Policy management
 
 ### Reuben Chay
 <img src="images/reubenchay.png" width="200px">
@@ -44,8 +46,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/ReubenChay)]
 [[portfolio](team/reubenchay.md)]
 
-* Role: ?
-* Responsibilities: ?
+* Role: Developer
+* Responsibilities: Scheduling and tracking, code quality, Main reviewer for Hong Sheng
+* In-charge of features: sort
 
 
 ### Colin Toh 
