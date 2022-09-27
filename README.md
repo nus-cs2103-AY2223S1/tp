@@ -12,12 +12,12 @@
 
 * FAs should use this application because it features
   * **Keybord Proficient** and **Fast Contact processing** (You don't even need a mouse)
-  * **Declutter** of your calendar  
+  * **Declutter** of your calendar
   * **Advanced filter functions** that your phones do not have
   * **Reminders** for the forgetful
-  * **Short and Sweet** Commands 
+  * **Short and Sweet** Commands
 
-Best of all this application is **FREE**! 
+Best of all this application is **FREE**!
 
 The application is still currently in progress of development, this is the mockup of our end product
 ![Ui](docs/images/Ui.png)
