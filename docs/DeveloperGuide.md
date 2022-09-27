@@ -321,11 +321,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * Use case ends at step 3.
 
-* 1a. User specifies more than one applicant type during request
+* 1b. User specifies more than one applicant type during request
 
     * Step 4 repeats as many times as there are requests.
 
-* 1a. TrackAScholar detects an error in the entered applicant type
+* 1c. TrackAScholar detects an error in the entered applicant type
 
     * 1a1. TrackAScholar requests for the correct applicant type
     * 1a2. User enters new applicant type
