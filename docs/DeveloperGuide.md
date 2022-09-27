@@ -322,9 +322,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
     Use case ends
+
 **Extensions**
-2a. The list is empty.
-    
+- 2a. The list is empty.
+
     Use case ends
 
 **Use Case: UC03 - Show a list of appointments**
@@ -339,7 +340,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends
 
 **Extensions**
-2a. The list is empty.
+- 2a. The list is empty.
 
     Use case ends
 
@@ -385,7 +386,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
     
 **Extensions**
-2a. idENTify detects an error in the entered data.
+- 2a. idENTify detects an error in the entered data.
 - 2a1. idENTify shows an error message.
 - 2a2. User enters new data.
 - Steps 2a1-2a2 are repeated until the data entered are correct.
