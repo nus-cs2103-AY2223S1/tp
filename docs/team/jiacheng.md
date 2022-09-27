@@ -1,11 +1,11 @@
 ---
 layout: page
-title: Melissa Anastasia Harijanto's Project Portfolio Page
+title: Yang Jiacheng's Project Portfolio Page
 ---
 
 - ### Overview
 - ### Summary of Contributions
-  - **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=melissaharijanto&breakdown=true)
+  - **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=jiacheng-y&breakdown=true)
 
   - **Enhancements implemented**: to be added soon
 
