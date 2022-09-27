@@ -136,9 +136,9 @@ Examples:
 *  `client -t 1 n/Amy` Tags the project with `PROJECT_ID` 1 with a client with `CLIENT_NAME` Amy.
 *  `client -t 2 n/Bob p/91234567` Tags the project with `PROJECT_ID` 2 with a client with `CLIENT_NAME` Bob and 
    `CLIENT_CONTACT_NUMBER` 91234567.
-*  `client -t 3 n/Charlie e/charlie@gmail.com` Tags the project with `PROJECT_ID` 2 with a client with `CLIENT_NAME` 
+*  `client -t 3 n/Charlie e/charlie@gmail.com` Tags the project with `PROJECT_ID` 3 with a client with `CLIENT_NAME` 
     Charlie and `CLIENT_EMAIL` charlie@gmail.com.
-*  `client -t 2 n/Dave p/91111111 e/dave@gmail.com` 
+*  `client -t 2 n/Dave p/91111111 e/dave@gmail.com` Tags the project with `PROJECT_ID` 2 with a client with `CLIENT_NAME` Dave, `CLIENT_CONTACT_NUMBER` 91111111 and `CLIENT_EMAIL` dave@gmail.com
 
 ### Editing a client : `client -d`
 
