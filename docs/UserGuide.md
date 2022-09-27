@@ -108,9 +108,11 @@ Example:
 
 ### Getting debt overview
 
-Retrieves the total sum of debts you are owed.
+Retrieves a statement of the total sum of debts you are owed.
 
 Format: `statement`
+
+Example: `statement` returns `You are owed $583.90 in total.`
 
 ### Listing all persons : `list`
 
