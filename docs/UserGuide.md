@@ -87,11 +87,21 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+### Listing all students : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all the students in the module with their contact information in the application.
 
-Format: `list`
+Format: `list MODULE_NAME [MORE_MODULE_NAMES]`
+- The module name is case-insensitive. e.g CS1101S will match cs1101s
+- Students matching at least one module will be returned
+- Only exact module matches will be returned. e.g. CS1231 will not match CS1231S
+
+Examples:
+- `list CS1101S returns` Alex Yeoh and Bernice Yu
+- `list CS1101S CS1231S` returns Bernice Yu only`
+
+![list](images/userguide/list.png)
+
 
 ### Editing a person : `edit`
 
