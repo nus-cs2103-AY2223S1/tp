@@ -5,28 +5,28 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `jason.qiu@u.nus.edu`
 
 ## Project team
 
-### John Doe
+### Jason Qiu
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jasonqiu212.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/jasonqiu212)]
+[[portfolio](team/jasonqiu212.md)]
 
-* Role: Project Advisor
+* Role: Team lead
+* Responsibilities: UI
 
-### Jane Doe
+### Pontakorn Prasertsuk
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/peppapighs.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/peppapighs)]
+[[portfolio](team/peppapighs.md)]
 
-* Role: Team Lead
+* Role: Code Quality
 * Responsibilities: UI
 
 ### Johnny Doe
