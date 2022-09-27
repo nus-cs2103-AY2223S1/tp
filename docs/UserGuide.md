@@ -94,10 +94,9 @@ Shows a list of all persons in the address book.
 Format: `list [s/FIELD]`
 
 * Sorts the contacts by the specified field in **ascending** order. `FIELD` must take one the following values:
+  * `n` sort by name
   * `d` Sort by date of birth
   * `g` Sort by gender
-  * `n` Sort by number of products purchased
-  * `pa` Sort by purchase amount. i.e. Total amount ever spent
 
 * It is optional to specify the field to sort by. If no field is specified, persons are listed in the order they were inserted.
 * At most one field can be specified. i.e. Cannot specify 2nd or 3rd criteria to sort by.
@@ -105,7 +104,7 @@ Format: `list [s/FIELD]`
 
 Examples:
 * `list` Lists all persons without sorting them.
-* `list s/pa` Lists all persons sorted by their purchase amount in ascending order.
+* `list s/n` Lists all persons sorted by their names.
 
 ### Editing a person : `edit`
 
