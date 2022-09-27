@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+ModQuik is a desktop app for NUS CS Professors, optimised for use via a Command Line Interface(CLI). It allows the professors to keep track of their students, teaching assistants and timetable for their courses. 
 
 * Table of Contents
 {:toc}
@@ -64,20 +64,14 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 </div>
 
-### Viewing help : `help`
+### Adding a consultation : `/consult add`
 
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
+Format: `/consult add <time-slot>`
 
 
-### Adding a person: `add`
+### Deleting a consultation : `/consult delete`
 
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `/consult delete <id>`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
