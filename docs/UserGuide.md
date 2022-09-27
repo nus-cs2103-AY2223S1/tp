@@ -106,7 +106,7 @@ Format: `deletedebt <person index>`
 Example:
 * `deletedebt 3`
 
-### Getting debt overview
+### Getting the statement
 
 Retrieves a statement of the total sum of debts you are owed.
 
