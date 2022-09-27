@@ -82,6 +82,19 @@ Format: `profile -d INDEX`
 Example:
 * `profile -d 1` deletes the first profile listed.
 
+### Deleting an event: `event -d`
+
+Deletes a specified event from NUScheduler.
+
+Format: `event -d INDEX`
+
+* Deletes the events at the specified `INDEX`.
+* The index refers to the index number shown in the displayed event list.
+* The index **must be a positive integer** 1, 2, 3, ...
+
+Example:
+* `event -v` followed by `event -d 2` deletes the 2nd event displayed.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
