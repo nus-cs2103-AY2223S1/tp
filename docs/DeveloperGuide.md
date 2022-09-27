@@ -258,7 +258,7 @@ _{Explain here how the data archiving feature will be implemented}_
 **Target user profile**:
 
 * computer science students
-*  has a need to keep track of the list of internships application and their status
+* has a need to keep track of the list of internships application and their status
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -271,23 +271,35 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | Basic user                                   | Add an internship        |  |
-| `* * *`  | Basic user                                   | Delete an internship    |   |
-| `* * *`  | Basic user                                   | View an internship details |  |
-| `* * *`  | Basic user                                   | Filter the internship based on current application process| Track my progress |
-| `* * *`    | Basic user                                 | Sort my internship list by date| View the upcoming internship matters to prepare |
-
-
-
+| Priority | As a …​            | I want to …​                                                              | So that I can…​                                 |
+|----------|--------------------|---------------------------------------------------------------------------|-------------------------------------------------|
+| `* * *`  | Basic user         | Add an internship                                                         |                                                 |
+| `* * *`  | Basic user         | Delete an internship                                                      |                                                 |
+| `* * *`  | Basic user         | View an internship details                                                |                                                 |
+| `* * *`  | Basic user         | Update the internship details                                             |                                                 |
+| `* * *`  | Basic user         | Keep track of the list of internships I applied to                        |                                                 |
+| `* * *`  | Basic user         | Add tag to internship                                                     | Find the relevant information easily            |
+| `* * *`  | Basic user         | Filter the internship based on current application process, tagging, etc. | Track my progress                               |
+| `* * *`  | Basic user         | View my interview dates                                                   | Track my interview timings                      |
+| `* * *`  | Basic user         | Know the contact of the HR                                                | Discuss the next step needed to be done         |
+| `* * *`  | Basic user         | Sort my internship list by date                                           | View the upcoming internship matters to prepare |
+| `* *  `  | First-time user    | Have a link to the demo video                                             | Learn how to use the app                        |
+| `* *  `  | First-time user    | See a help message explaining which features I should try first           | Learn the basic features of the application     |
+| `* * *`  | First-time user    | See some sample internships when I open the app                           | Understand how the app works                    |
+| `*   `   | Forgetful user     | Get reminder                                                              |                                                 |
+| `*   `   | Advanced user      | Use a shortcut to do commands                                             | Work more efficiently                           |
+| `*   `   | Advanced user      | Copy internship details easily                                            | Quickly share information to other apps         |
+| `*   `   | Advanced user      | Visit internship website fast                                             |                                                 |
+| `* * *`  | Advanced user      | Delete many internships                                                   |                                                 |
+| `* *  `  | Visual user        | View my internship application process tag with color                     | I can easily identify which stage I have reached|
+| `*   `   | Visual user        | View the count of internships application at each stages                  | See the success rate of my applications         |
 *{More to be added}*
 
 ### Use cases
 
 (For all use cases below, the **System** is the `InternshipBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete internship(s)**
+**Use case: List internship(s)**
 
 **MSS**
 
