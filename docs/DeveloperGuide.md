@@ -282,7 +282,7 @@ They have been extensively documented [here](https://github.com/AY2223S1-CS2103T
 2. Moderate `* *` - nice to have
 3. Low `*` - unlikely to have
 
-| Priority | As a ...ZWSP  | I want to ...ZWSP                                                | So that ... ZWSP                                 |
+| Priority | As a ...      | I want to ...                                                    | So that ...                                      |
 |----------|---------------|------------------------------------------------------------------|--------------------------------------------------|
 | `***`    | user          | view relevant information about RC4 residents                    |                                                  |
 | `**`     | user          | specify which fields I want to see when listing data             | my screen is less cluttered                      |
