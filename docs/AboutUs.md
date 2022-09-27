@@ -29,9 +29,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Li Tianze
 
-<img src="images/litianze.png" width="200px">
+<img src="images/tzl0.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/tzl0)]
+[[portfolio](team/tzl0.md)]
 
 * Role: Developer
 * Responsibilities: Data
