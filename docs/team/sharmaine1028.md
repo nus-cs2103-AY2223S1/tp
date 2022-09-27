@@ -1,9 +1,9 @@
 ---
 layout: page
-title: John Doe's Project Portfolio Page
+title: Sharmaine Teo's Project Portfolio Page
 ---
 
-### Project: AddressBook Level 3
+### Project: PennyWise
 
 PennyWise is a desktop application that **empowers students with the ability to make sensible financial decisions**,helping students to manage their budget. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 

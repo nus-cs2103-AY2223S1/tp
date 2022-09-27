@@ -21,12 +21,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Emily Ong Hui Qi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/EmilyOng.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/EmilyOng)]
+[[portfolio](team/EmilyOng.md)]
 
-* Role: Team Lead
+* Role: Developer
 * Responsibilities: UI
 
 ### Zhu Yuanxi
