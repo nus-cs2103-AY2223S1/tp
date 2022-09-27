@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+ProfNUS is a **desktop application which helps SOC Professors who have many modules with many students/TAs to manage.** It is optimized for users who prefer CLI over GUI so that frequent tasks can be done faster by typing in commands.
 
 * Table of Contents
 {:toc}
@@ -101,6 +101,15 @@ Examples:
 - `list CS1101S CS1231S` returns Bernice Yu only`
 
 ![list](images/userguide/list.png)
+
+
+### Viewing list of modules : `mlist`
+
+Shows a list of all modules in the address book.
+
+![mlist](images/userguide/mlist.png)
+
+Format: `mlist`
 
 
 ### Editing a person : `edit`
