@@ -282,7 +282,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | employer                                   | change the name of the team                   | update team information                                                |
 | `* * *`  | employee                                   | see what teams I am in                        |                                                                        |
 | `* * *`  | employee                                   | see my team members in a specific team        | know who is in my team                                                 |
-| `* * *`  | employee                                   | search the contact information of my teammate | contact them                                                           |                                                                                                                                                                        
+| `* * *`  | employee                                   | search the contact information of my teammate | contact them                                                           |                                                                                                                             
 | `* * *`  | user                                       | find a person by name                         | locate details of persons without having to go through the entire list |
 | `* *`    | user                                       | hide private contact details                  | minimize chance of someone else seeing them by accident                |
 | `*`      | user with many persons in the address book | sort persons by name                          | locate a person easily                                                 |
@@ -380,9 +380,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extension**
 
 * 1a. Another team with the same name already exist.
-    
+
      * 1a1. LinkUp shows an error message
-  
+
       Use case resumes at step 1.
 
 
