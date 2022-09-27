@@ -384,9 +384,6 @@ be able to view the applicant from the list.
 
 **Use case: UC04 - List Applicants**
 
-**Guarantees:**
-* TrackAScholar will display the applicants in a list to be viewed easily.
-
 **MSS**
 
 1. User requests to list all applicants.
