@@ -24,6 +24,7 @@ import seedu.address.testutil.PersonBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for RemarkCommand.
+ * Created new tests for RemarkCommand.
  */
 public class RemarkCommandTest {
 
