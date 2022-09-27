@@ -3,7 +3,8 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Jeeq TracQer is a tool built for small businesses lacking in resources to help them keep track of supplier contacts and previous transaction information with them.
+
 
 * Table of Contents
 {:toc}
@@ -127,6 +128,9 @@ Examples:
 * `find fairprice` returns `NTUC Fairprice` <br>
 
 [//]: # (  ![result for 'find alex david']&#40;images/findAlexDavidResult.png&#41;)
+### Filtering the address book display : `filter`
+
+Coming Soon.
 
 ### Deleting a company : `delete`
 
@@ -195,5 +199,6 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | Coming Soon
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find MacDonalds`
+**Filter** | Coming Soon
 **List** | `list`
 **Help** | `help` or `help [COMMAND]` <br> e.g.,`help` or `help add` or `help sort`
