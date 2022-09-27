@@ -1,26 +1,24 @@
-Lu Yiting's Project Portfolio Page
+---
+layout: page
+title: Lu Yiting's Project Portfolio Page
+---
 
-Project: Teaching Assistant Assistant
+### Project: Teaching Assistant Assistant
 
-Overview:
+- **Code contributed**:
 
-to be added..
+- **Enhancements implemented**:
 
-Summary of contributions:
+- **Documentation**:
 
-to be added..
+  - User Guide:
 
-Code contributed:
+    - ---To be added soon---
 
-Enhancements implemented:
+  - Developer Guide:
+    - ---To be added soon---
 
-Contributions to the UG:
-
-Contributions to the DG:
-
-Contributions to team-based tasks
-Review/mentoring contributions:
-
-Contributions beyond the project team:
-
-Evidence of technical leadership e.g. sharing useful information in the forum
+- **Reviewing/mentoring contributions**:
+  - ---To be added soon---
+- **Contributions beyond the project team**:
+  - ---To be added soon---
