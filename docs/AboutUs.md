@@ -20,7 +20,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Ervin Kin Zhe Zheng 
+### Ervin Kin Zhe Zheng
 
 <img src="images/ervink123.png" width="200px">
 
