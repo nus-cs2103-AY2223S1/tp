@@ -55,7 +55,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/ljxsean.png" width="200px">
 
-
 [[github](https://github.com/anthonyhoth)]
 [[portfolio](team/ljxsean.md)]
 
