@@ -137,13 +137,29 @@ Deletes the specified person from the address book.
 
 Format: `delete INDEX`
 
+Otherwise, the specified person may be removed by name.
+
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
+Format: `delete <name>`
+
+* Delete the entry of the person who has the given name.
+* Will not perform any operation if the name of the person does not exist.
+
+An optional argument `add` can be specified to complete erase all data in the book.
+
+Format: `delete all`
+
+* `delete all` is functionally the same as `clear`
+
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
+* `list` followed by `delete 2` deletes the 2nd person in the SectresBook.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `delete Betsy` deletes the entry belonging to Betsy in the SectresBook
+* `delete Lynette` does not perform any operation, as Lynette does not exist in the SectresBook.
+* `delete all` will clear the entire SectresBook. Please refer to the [`clear` command](#clearing-all-entries--clear).
 
 ### Clearing all entries : `clear`
 

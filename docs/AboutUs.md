@@ -19,15 +19,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Chen Ruihan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chen_ruihan.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/rui-han-crh)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Features
 
 ### Johnny Doe
 
