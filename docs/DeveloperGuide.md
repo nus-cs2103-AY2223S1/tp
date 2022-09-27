@@ -317,16 +317,42 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on Windows, Linux, OS-X Operating System (OS) as long as it has Java 11.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text should be able to accomplish most of the tasks 
+   faster using commands than using the mouse.
+4. Should not be used with offensive language.
+5. Expected to adhere to a schedule that delivers a feature set every one month.
+6. Should respond to each command at most 1 second long.
+7. Not required to make calls to contacts.
+8. Should be able to store data locally in a human editable text file.
+9. Should not use Database Management System to store data.
+10. Product should be a result of evolving the given code base.
+11. Should be for a single user.
+12. Should be able to be used at any time (even beyond this semester)
+13. Should not exceed 100MB in size.
+14. Should not require external software to run.
+
 
 *{More to be added}*
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Regular English text**: Basic text that is keyed in by a user. Not code or not system admin commands.
+
+* **Operating System (OS)**: The low-level software that supports a computer's basic functions, common ones include 
+  Windows, macOS, Linux.
+* **Search string**: The text that a user uses to find a specific patient (such as a part of the patient’s name).
+* **Command-Line Interface (CLI)**: A text-based user interface (UI) used to run programs, manage computer files and 
+  interact with the computer.
+* **Graphical User Interface (GUI)**: A graphics-based operating system interface that uses icons, menus and a mouse 
+  (to click on the icon or pull down the menus) to manage interaction with the system.
+* **Main Success Scenario**: Describes the most straightforward interaction for a given use case, which assumes that nothing goes wrong.
+* **Actor**: A role played by a user. An actor can be a human or another system. Actors are not part of the system; they reside outside the system.
+* **Backward compatible**: Refers to a hardware or software system that can use the interface of an older version of the same product.
+* **Store data locally**: Allow the required data to be stored in a file in the user’s computer.
+* **Database Management Systems (DBMS)**: Software systems used to store, retrieve, and run queries on data. A DBMS serves as an interface between an end-user and a database, allowing users to create, read, update, and delete data in the database.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
