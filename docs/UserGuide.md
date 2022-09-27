@@ -8,14 +8,8 @@ Command Line Interface** (CLI) while still having the benefits of a Graphical Us
 fast, FRIDAY can get your contact management tasks done faster than traditional GUI apps.
 
 ### Table of Contents
-1. Features (v1.2)
-2. Commands
-   1. Adding students
-   2. Deleting students
-   3. Editing details
-   5. Listing students
-   6. Listing details
-3. Command Summary
+1. Table of Contents
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
