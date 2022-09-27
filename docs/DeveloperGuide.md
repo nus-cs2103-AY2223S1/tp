@@ -385,15 +385,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
     
-**Extensions**
-- 2a. idENTify detects an error in the entered data.
-- 2a1. idENTify shows an error message.
-- 2a2. User enters new data.
-- Steps 2a1-2a2 are repeated until the data entered are correct.
+**Extensions**  
 
-
-    Use case resumes at step 3
-   
 2a.  idENTify detects an error in the entered data.
 - 2a1. idENTify shows an error message.
 - 2a2. User enters new data.
@@ -441,20 +434,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
     Use case resumes at step 3.
-
-**Extensions**
-
-- 2a. The list is empty.
-
-
-    Use case ends.
-
-
-3a. The given index is invalid.
-- 3a1. AddressBook shows an error message.
-
-
-    Use case resumes at step 2.
 
 ### Non-Functional Requirements
 
