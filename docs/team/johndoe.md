@@ -1,11 +1,11 @@
 ---
 layout: page
-title: Francis Tan's Project Portfolio Page
+title: John Doe's Project Portfolio Page
 ---
 
-### Project: NUSEatWhere
+### Project: AddressBook Level 3
 
-NUSEatWhere is a Command Line (CLI) application which helps you search for the available food options in NUS and thus make an informed decision on where to eat.
+AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
