@@ -317,7 +317,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. The app should be designed for and used by a single user.
 5. The app data should be stored in a human-editable text file and not an DBMS.
-6. The app should be well tested with a covarage of above 65% to allow bugs to be found more easily.
+6. The app should be well tested with a coverage of above 65% to allow bugs to be found more easily.
 7. The product should be usable on all standard screen resolutions above 1280x720.
 8. The product should be packaged within a single JAR file with a filesize of up to 100MB.
 
