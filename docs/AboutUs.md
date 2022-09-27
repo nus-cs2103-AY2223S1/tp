@@ -19,15 +19,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Sheryl-Lynn Tan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/sltsheryl.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/sltsheryl)] [[portfolio](team/sltsheryl.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: to be added soon
 
 ### Zheng Jiarui
 
