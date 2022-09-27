@@ -6,7 +6,7 @@
   Example usages:
   * Can be used by secretaries and treasurers to manage the club they belong to.
   * Can also be used to take notes and as a bare-boned address book as well.
-* The project simulates an ongoing software project for a desktop application (called _AddressBook_) used for managing contact details.
+* The project simulates an ongoing software project for a desktop application (called _SectresBook_) used for managing contact details.
   * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
   * It comes with a **reasonable level of user and developer documentation**.
 * It is named `SectresBook` because it is used by Secretaries and Treasurers of clubs to manage their club information.
