@@ -385,7 +385,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-
 1. The software should work on any mainstream OS as long as it has Java 11 or above installed.
 1. The software will not facilitate actual monetary transactions, nor any communications between persons.
 1. The software should be able to hold up to 1000 persons and 10000 debts without a noticeable sluggishness in performance for typical usage.
