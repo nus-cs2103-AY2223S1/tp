@@ -39,8 +39,8 @@ contains some sample data.<br>
 | [`delete module`](#212-delete-module)   | `delete module   m/MODULE_CODE`                       | Delete module by module code                                                |
 | [`add task`](#221-add-task)             | `add    task     m/MODULE_CODE d/TASK_DESCRIPTION`    | Add task with specified module code and task description                    |
 | [`delete task`](#222-delete-task)       | `delete task     m/MODULE_CODE n/TASK_NUMBER`         | Delete task corresponding to specified task number of specified module code |
-| **CommandInBold**                       | `command format here`                                 |                                                                             |
-| **CommandInBold**                       | `command format here`                                 |                                                                             |
+| [`add link`](#231-add-link)             | `add    link     m/MODULE_CODE l/LINK_URL`            | Add link to a specified module code by its URL                              |
+| [`delete link`](#232-delete-link)       | `delete link     m/MODULE_CODE l/LINK_URL`            | Delete link from a specified module code by its URL                         |
 | [`add contact`](#241-add-contact)       | `add contact     n/NAME    e/EMAIL    p/PHONE_NUMBER` | Add contact with specified name, email, and phone number                    |
 | [`delete contact`](#242-delete-contact) | `delete contact  n/NAME`                              | Delete contact belonging to the specified name                              |
 | [`home`](#251-navigate-to-home)         | `home`                                                | Navigate to the home page                                                   |
@@ -155,15 +155,49 @@ delete task m/CS2103T n/3
 In the above example, we are deleting task number **3** from the module 
 with the module code `CS2103T`.
 
-#### 2.4.3. Finding tasks [coming soon]
+#### 2.2.3. Finding tasks [coming soon]
 [coming soon]
 
 <br>
 
 ### 2.3. Adding and deleting links
 #### 2.3.1. Add link
-#### 2.3.2. Delete link
+You may add a link to a specific module using the `add link` command.
 
+This command will require two flags:
+* `m/`: This flag is to be followed immediately by the module code of the
+  module which is associated with the link.
+* `l/`: This flag is to be followed immediately by the link URL.
+
+Format: `add link m/MODULE_CODE l/LINK_URL`
+* When adding a link URL to a non-existent module code, Plannit shows an error message.
+* When adding a duplicate link URL, Plannit shows an error message.
+
+Example:
+```
+add module m/CS2040C l/visualgo.net/en
+```
+In the above example, we are adding the link with the URL `visualgo.net/en` 
+to the module with module code `CS2040C`.
+
+#### 2.3.2. Delete link
+You may delete a link from a specific module using the `delete link` command.
+
+This command will require two flags:
+* `m/`: This flag is to be followed immediately by the module code of the
+  module which is associated with the link.
+* `l/`: This flag is to be followed immediately by the link URL.
+
+Format: `delete link m/MODULE_CODE l/LINK_URL`
+* When deleting a link URL from a non-existent module code, Plannit shows an error message.
+* When deleting a non-existent link URL, Plannit shows an error message.
+
+Example:
+```
+delete module m/CS2040C l/visualgo.net/en
+```
+In the above example, we are deleting the link with the URL `visualgo.net/en`
+from the module with module code `CS2040C`.
 <br>
 
 ### 2.4. Adding and deleting contacts
