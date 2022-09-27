@@ -5,8 +5,6 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
 ### Shashank Acharya
@@ -27,24 +25,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Code quality
 
-### Jane Doe
+### Lester Ong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lesterong.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/lesterong)] 
+[[portfolio](team/lesterong.md)]
 
 * Role: Developer
-* Responsibilities: Data
 
 ### Jean Doe
 
