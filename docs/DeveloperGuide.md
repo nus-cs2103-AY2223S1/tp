@@ -8,9 +8,9 @@ Project team leaders with many projects, members and tasks to assign.
 
 ### Value proposition
 Project team leaders can:
-* view information of which group members are in their project. 
+* view information of which group members are in their project.
 * track which tasks have been assigned to which members.
-* see an estimate of how much workload each member has. 
+* see an estimate of how much workload each member has.
 * receive information regarding upcoming deadlines.
 
 ---
