@@ -7,5 +7,5 @@ OmniHealth is a **desktop app for private clinic practitioners to quickly store,
 
 If you can type fast, OmniHealth can get your patient management tasks done faster than traditional GUI apps! 💊✨
 
-* For the detailed documentation of this project, see the **[OmniHealth Website](https://ay2223s1-cs2103t-w15-1.github.io/tp/)**.
+* For the detailed documentation of this project, see the **[OmniHealth Website](https://ay2223s1-cs2103t-t14-3.github.io/tp/)**.
 * This project is built on the AddressBook-Level3 project, find out more on [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
