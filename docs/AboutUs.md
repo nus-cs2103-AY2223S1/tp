@@ -9,15 +9,17 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Devansh Shah
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/devanshshah1309.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[homepage](https://www.linkedin.com/in/devansh-shah-305a59201/)
 
-* Role: Project Advisor
+[github](https://github.com/devanshshah1309)
+
+[portfolio](team/devanshshah1309.md)
+
+* Role: Developer
 
 ### Jane Doe
 
