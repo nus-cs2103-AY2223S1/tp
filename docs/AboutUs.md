@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Agamjyot Singh Chadha
 
-<img src="images/garfield-007.png" width="200px">
+<img src="images/garfield-oo7.png" width="200px">
 
 [[github](https://github.com/garfield-oo7)]
 [[portfolio](team/johndoe.md)]
