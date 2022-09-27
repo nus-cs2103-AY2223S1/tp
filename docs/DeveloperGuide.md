@@ -439,7 +439,7 @@ be able to view the applicant from the list.
 5. Learning features of the product should be intuitive and easily acquired by new users.
 6. TrackAScholar should respond within 2 seconds
 7. Storage stored should be easy to be shared and uploaded between different users
-
+8. The total project cost should not exceed $1.5 million.
 *{More to be added}*
 
 ### Glossary
