@@ -11,10 +11,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Li Zhaoqi
 
-<img src="images/lzq.png" width="200px">
+<img src="images/eclipse-dominator.png" width="200px">
 
 [[github](https://github.com/Eclipse-Dominator)]
-[[portfolio](team/lzq.md)]
+[[portfolio](team/eclipse-dominator.md)]
 
 - Role: Developer
 - Responsibilities: Something
