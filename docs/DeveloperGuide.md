@@ -281,7 +281,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |----------|--------------------------------------------|------------------------------------------------------------------------|-------------------------------------------------------------------------------|
 | `* * *`  | new user                                   | see usage instructions                                                 | refer to instructions when I forget how to use the App                        |
 | `* * *`  | user                                       | add my friends/clients/potential clients contact information           | easily contact them and store their information                               |
-| `* * *`  | user                                       | view all of my contacts and the details about my contacts              | get can overview of all of my contacts' information                           | 
+| `* * *`  | user                                       | view all of my contacts and the details about my contacts              | get can overview of all of my contacts' information                           |
 | `* * *`  | user                                       | delete specific contacts                                               | remove entries that I no longer need                                          |
 | `* * *`  | user                                       | find a person by name                                                  | locate details of persons without having to go through the entire list        |
 | `* * *`  | user                                       | save important information related to my contacts                      | easily keep track of my contacts' important details                           |

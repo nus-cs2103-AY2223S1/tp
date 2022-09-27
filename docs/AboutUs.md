@@ -16,7 +16,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/gabyang)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead 
+* Role: Team Lead
 * Responsibilities: UI
 
 ### Paul Lee
@@ -35,7 +35,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](https://github.com/DanielLimWeiEn)] [[portfolio](team/johndoe.md)]
 
-* Role: Developer 
+* Role: Developer
 * Responsibilities: Testing, Logic
 
 ### Yuan Wei
