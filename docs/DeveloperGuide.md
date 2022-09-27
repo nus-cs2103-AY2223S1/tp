@@ -283,7 +283,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | CS2103T TA                                 | mark a question as important                        | to prioritise which questions to address first              |
 | `* * *`  | CS2103T TA                                 | mark a question as unimportant                      | undo the action of accidentally marking such questions as important |
 | `* * *`  | CS2103T TA                                 | delete a question in the list of questions          | remove the questions that I have addressed                  |
-
+| `* * *`  | CS2103T TA                                 | list out all the question's details                 | have an overview of all the questions I have                |
+| `* * *`  | CS2103T TA                                 | add a new tutorial                                  | keep track of my tutorial's time and group number           |
+| `* * *`  | CS2103T TA                                 | delete a tutorial                                   | remove a tutorial I have already had                        |
 
 *{More to be added}*
 
@@ -444,6 +446,56 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case: List questions**
+
+**MSS**
+
+1. CS2103T TA requests to list questions.
+2. SETA shows a list of questions.
+
+**Extensions**
+
+* 2a. The list is empty
+
+  Use Case ends
+
+*{More to be added}*
+
+**Use case: Add a tutorial**
+
+**MSS**
+
+1.  CS2103T TA requests to add a tutorial
+2.  SETA adds the tutorial with the group number and time into the tutorial list
+    Use case ends.
+
+**Extensions**
+
+* 1a. The group number or time of the tutorial is missing.
+    * 1a1. SETA shows an error message.
+
+      Use case ends.
+
+**Use case: Delete a tutorial**
+
+1. User requests to list tutorials
+2. AddressBook shows list of tutorials
+3. User requests to delete a specific tutorial
+4. AddressBook deletes the tutorial
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. AddressBook shows an error message.
+
+      Use case resumes at step 2.
 
 **Use case: Mark tutorial**
 
