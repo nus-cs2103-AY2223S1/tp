@@ -9,43 +9,25 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Nyamdavaa Amar
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/nvmdava.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/damithc)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/nvmdava)]
+[[portfolio](team/nvmdava.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Storage
 
-### Johnny Doe
+### Chloe Lim
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chloeelim.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/chloeelim)]
+[[portfolio](team/chloeelim.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: UI, Integration
 
 ### Ng Xing Yu
 
@@ -55,4 +37,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/ngxingyu.md)]
 
 * Role: Developer
-* Responsibilities: Logic + Testing 
+* Responsibilities: Logic + Testing
