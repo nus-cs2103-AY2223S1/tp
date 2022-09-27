@@ -48,12 +48,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Tai Tze Kin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/teekaytai.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/teekaytai)]
+[[portfolio](team/teekaytai.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Team lead
+* Responsibilities: In charge of `Commands`
