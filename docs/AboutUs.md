@@ -19,15 +19,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Darren Wah
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/darrenwah.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/Darren12345677)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Integration, Scheduling and tracking
 
 ### Johnny Doe
 
