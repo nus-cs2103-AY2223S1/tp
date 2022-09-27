@@ -279,6 +279,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`   | administrator managing <br/>multiple applicants | find applicants using keywords                     | retrieve details of their application without having to go through the entire list |
 | `*`     | advanced user                                   | run the application on different operating systems | access the same database/storage on different operating systems                |
 
+
+
 *{More to be added}*
 
 ### Use cases
@@ -314,7 +316,41 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   * 1a1 TrackAScholar displays an error message that applicant already exist. <br>
     Use case resumes at step 1.
+    
+--------------------------------------------------------------------------------------------------------------------
 
+**Use case: UC02 - Delete an applicant**
+
+**Guarantees:**
+* Once an applicant is deleted,the applicant will be removed from the database and the user will no longer
+be able to view the applicant from the list.
+
+**MSS**
+
+1. User request to delete an applicant in TrackAScholar.
+2. TrackAScholar removes applicant with matching name
+   Use case ends.
+
+**Extensions**
+
+* 1a. Input format is wrong.
+
+  * 1a1. TrackAScholar displays an error message prompting correct input format. <br>
+      Use case resumes at step 1.
+
+* 1b. Input parameters is invalid.
+
+  * 1b1. TrackAScholar displays an error message showing parameter requirements. <br>
+      Use case resumes at step 1.
+
+* 1c. Verify deletion.
+
+  * 1c1. TrackAScholar request confirmation to delete the applicant.
+  * 1c2. User agrees by typing YES to confirm deletion. <br>
+      Use case ends.
+      
+--------------------------------------------------------------------------------------------------------------------
+      
 **Use case: UC03 - Edit personal details of an applicant **
 
 **Guarantees:**
@@ -329,20 +365,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. Input format is wrong.
 
-    * 1a1. TrackAScholar displays an error message prompting correct input format. <br>
+  * 1a1. TrackAScholar displays an error message prompting correct input format. <br>
       Use case resumes at step 1.
 
 * 1b. Input parameters is invalid.
 
-    * 1a1. TrackAScholar displays an error message showing parameter requirements. <br>
+  * 1a1. TrackAScholar displays an error message showing parameter requirements. <br>
       Use case resumes at step 1.
 
 * 1c. An applicant with such name does not exist.
 
-    * 1a1 TrackAScholar displays an error message that applicant does not exist and details cannot be updated. <br>
+  * 1a1 TrackAScholar displays an error message that applicant does not exist and details cannot be updated. <br>
       Use case resumes at step 1.
 
 *{More to be added}*
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Non-Functional Requirements
 
