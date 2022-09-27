@@ -362,6 +362,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+**Use case: Get debt overview**
+
+**MSS**
+
+1. User requests to get overview of all debts
+1. PayMeLah shows the total sum of debts the user is owed.
+
+   Use case ends.
+
 *{More to be added}*
 
 ### Non-Functional Requirements
