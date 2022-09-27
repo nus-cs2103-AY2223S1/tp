@@ -1,5 +1,9 @@
-# Jovita Anderson's Project Portfolio Page
-## Project: FinBook
+---
+layout: page
+title: Jovita Anderson's Project Portfolio Page
+---
+
+### Project: FinBook
 to be added soon
 
 ### Overview
