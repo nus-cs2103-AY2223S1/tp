@@ -102,3 +102,77 @@ Format: `deleteuser NAME`
 Examples:
 * `deleteuser Betsy` deletes the person with the username `Betsy`.
 * `deleteuser Betsy Hoover` deletes the person with the username `Betsy Hoover`.
+
+### Creating a group : `addgroup`
+
+Creates a new group with no members. 
+
+Format: `addgroup  GROUP` 
+
+* Creates a group with the specified GROUP
+
+Examples:
+
+Adds an existing contact to an existing group in TABS.
+
+* addgroup CS2103T
+
+### Adding a member : `addmember` 
+
+Format: `addmember GROUP NAME`
+
+Examples:
+
+* addmember CS2103T UserName
+* addmember CS2101 DefaultUser
+
+### Assigning a task to a user: `assigntask`
+
+Assigns a task to a user in TABS.
+
+Format: `assigntask NAME t/TASK`
+
+* Assigns a TASK to a user with the specified NAME.
+* TASK is of type String.
+
+Examples:
+
+* assigntask n/John t/TeamProject assigns TeamProject task to user John.
+* assigntask n/Billy Tom t/Team Delta Project assigns Team Delta Project to user Billy Tom.
+
+### Display a group : `display`
+
+Displays the group members allocated to the specified group. Instead of details, assigned tasks will be listed.
+
+![TABS example](Ui.png)
+
+Format: `display GROUP`
+
+Lists the members associated with the GROUP and their tasks.
+
+Examples:
+
+* display CS2103T displays the users under group CS2103T
+
+### Deleting a group : `deletegroup`
+
+Deletes the specified group from the address book.
+
+Format: `deletegroup GROUP`
+
+Deletes the group with the group name GROUP.
+
+Examples:
+
+* deletegroup CS2103T deletes the group CS2103T
+
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+
+
+
+
