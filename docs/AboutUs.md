@@ -9,51 +9,52 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Guok Wei Jie
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/guokweijie.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/guokweijie)]
 
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/guokweijie.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
 
-### Johnny Doe
+### Wadia Ganim
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/wadia82.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/wadia82)]
 
-* Role: Developer
-* Responsibilities: Data
+[[portfolio](team/wadia82.md)]
 
-### Jean Doe
+* Role: Scheduling and Tracking
 
-<img src="images/johndoe.png" width="200px">
+### Fu Zanwen
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+<img src="images/fuzanwenn.png" width="200px">
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+[[github](http://github.com/Fuzanwenn)]
 
-### James Doe
+[[portfolio](team/fuzanwenn.md)]
 
-<img src="images/johndoe.png" width="200px">
+* Role: Documentation
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+### Gregory Wong Twee Loong
 
-* Role: Developer
-* Responsibilities: UI
+<img src="images/specops2016.png" width="200px">
+
+[[github](http://github.com/SpecOps2016)]
+
+[[portfolio](team/specops2016.md)]
+
+* Role: Testing
+
+### Li Tianze
+
+<img src="images/tzl0.png" width="200px">
+
+[[github](http://github.com/TZL0)]
+
+[[portfolio](team/tzl0.md)]
+
+* Role: Integration
