@@ -1,6 +1,5 @@
 ---
-layout: page
-title: About Us
+layout: page title: About Us
 ---
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
@@ -21,15 +20,17 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 
-### Jane Doe
+### Marcus Pang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/marcuspang.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[homepage](https://www.linkedin.com/in/marcus-pang-yu-yang/)
 
-* Role: Team Lead
-* Responsibilities: UI
+[github](http://github.com/marcuspang)
+
+[portfolio](team/marcuspang.md)
+
+* Role: Developer
 
 ### Johnny Doe
 
