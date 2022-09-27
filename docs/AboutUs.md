@@ -48,12 +48,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Ng Jia Le Max
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/maxng.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://https://github.com/maxng17/tp)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Documentation
