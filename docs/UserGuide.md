@@ -125,8 +125,6 @@ Examples:
 
 Coming Soon.
 
-### Deleting a person : `delete`
-
 ### Deleting a company : `delete`
 
 Deletes the specified company from the address book.
