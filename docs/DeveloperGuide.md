@@ -315,6 +315,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+
+**Use case: Delete debt**
+
+**MSS**
+
+1.  User requests to list debtors
+1.  PayMeLah shows a list of debtors
+1.  User requests to delete the debts of a specific debtor in the list
+1.  PayMeLah deletes the debts of that person
+1.  PayMeLah displays that the person’s debts are deleted
+
+**Extensions**
+
+* 3a. The given index is invalid.
+
+    * 3a1. PayMeLah shows an error message
+
+      Use case resumes at step 3.
+      
 **Use case: List persons with debts**
 
 **MSS**
