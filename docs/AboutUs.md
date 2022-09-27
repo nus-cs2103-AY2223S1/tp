@@ -37,15 +37,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Mahesh Anugraha
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/mahesh.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/anuanas2007)]
+[[portfolio](team/anuanas2007.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Code Quality + Documentation
 
 ### Zico
 
