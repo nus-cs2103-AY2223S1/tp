@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Anthony Ho's Project Portfolio Page
+title: Anthony's Project Portfolio Page
 ---
 
 ### Project: OmniHealth
