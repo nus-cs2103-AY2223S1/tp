@@ -295,7 +295,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to add an applicant.
-2. TrackAScholar adds the applicant to the list.
+2. TrackAScholar adds the applicant to the list. <br>
     Use case ends.
 
 **Extensions**
