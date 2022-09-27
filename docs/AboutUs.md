@@ -38,15 +38,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Edbert Geraldy Cangdinata
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/berted.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/berted)]
+[[portfolio](team/berted.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Developer. In charge of Storage.
+* Responsibilities: Documentation + Scheduling
 
 ### James Doe
 
