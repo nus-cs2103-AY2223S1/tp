@@ -58,6 +58,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Responsibilities:Integration, Testing, Main Reviewer for Marcus
 * In-Charge of Features: Client Class Management 
 
+### Marcus Chua
+
+<img src="images/marcusczh.png" width="200px">
+
+[[github](https://github.com/marcusczh)]
+[[portfolio](team/marcusczh.md)]
+
+* Role: Developer
+* Responsibilities: Code quality, integration, Main reviewer for Reuben
+* In-charge of features: find
 
 ### James Doe
 
