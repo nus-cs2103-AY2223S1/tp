@@ -73,19 +73,24 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Creating a new student record `new student`
 
-Adds a person to the address book.
+Creates a new student record with the name of the student and other relevant details such as:
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+* Student ID
+* Name of Parent
+* Home Address
+* Mobile Number of Parent
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+Format: `new student n/[name of student] id/[id of student] pn/[name of parent] a/[home address] hp/[mobile number of parent]`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+All fields are compulsory and cannot be left empty.
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `new student n/Jonathan Tan id/123A pn/George Tan a/10 Kent Ridge View hp/91234567`
+* `new student n/Sally Teo id/789B pn/Amy Toh a/200 River Valley Street hp/97654321`
 
 ### Listing all persons : `list`
 
