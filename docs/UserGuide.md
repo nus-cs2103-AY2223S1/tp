@@ -184,6 +184,39 @@ AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
 </div>
+### View your teaching schedule: `view schedule`
+
+**Syntax**: `view schedule [-w WEEKDAY] [-m MODULE_CODE] [-d DATE] [-h] [-v]`
+
+- `-w WEEKDAY` option shows your schedule on the `WEEKDAY`. `WEEKDAY` should be one of `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` and `Sunday`.
+- `-m MODULE_NAME` option shows your weekly schedule of `MODULE_CODE`.
+- `-d DATE` option shows your schedule on the `DATE`. `DATE` should comply with the format `yyyy-mm-dd`
+- `-h` option shows your schedule table in a horizontal mode (time will be columns and weekdays will be rows).
+- `-v` options shows your schedule table in a vertical mode (weekdays will be columns and time will be rows).
+- The result will be a timetable in vertical mode by default if no option is specified.
+
+**Notes about the syntax**:
+
+- `-w WEEKDAY` option and `-d DATE` option cannot be used at the same time.
+- If either `-w WEEKDAY`, `-m MODULE_NAME` or `-d DATE` is used, the result won't be a timetable. Instead, it will be shown as a list of slots.
+- `-h` and `-v` options can only be used when the result is shown as a timetable.
+- `-h` option and `-v` option cannot be used at the same time.
+
+**Examples**:
+
+- `view schedule -w Monday -m CS2103T`
+
+  <div align=center><img src="./images/view schedule -w Monday -m CS2103T.png" width=300px></div>
+
+- `view schedule -d 2022-09-12`
+
+  <div align=center><img src="./images/view schedule -d 2022-09-12.png" width=300px></div>
+
+- `view schedule -h` 
+
+  <div align=center><img src="./images/view schedule -h.png" width=500px height=250px></div>
+
+
 
 ### Archiving data files `[coming in v2.0]`
 
