@@ -34,7 +34,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/chloeelim.png" width="200px">
 
 [[github](http://github.com/chloeelim)]
-[[portfolio](team/chloeelim.md)]
+[[portfolio](team/jameschiu.md)]
 
 * Role: Developer
 * Responsibilities: UI, Integration
@@ -48,3 +48,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Logic + Testing
+
+### James Chiu
+
+<img src="images/jameschiu.jpeg" alt="jameschiu" width="200px">
+
+[[github](http://github.com/zlimez)]
+[[portfolio](team/ngxingyu.md)]
+
+* Role: Developer
+* Responsibilities: Model + Documentation
