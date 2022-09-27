@@ -255,42 +255,109 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
+**Target User Profile:**
+* Tech savvy admin staff in Ear, Nose, Throat (ENT) department
+* Has a need to manage a significant number of contacts
+* Prefer desktop apps over other types
+* Can type fast
+* Prefer typing to mouse interactions
+* Is reasonably comfortable using Command-Line Interface (CLI) apps
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
-
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition:**
+* ENT doctors treat patients who often have chronic conditions and our product will make it easier for the staff to keep track of these patients, such as their appointment dates, the severity of their condition, their diagnosis, etc
+* ENT department offers a lot of services including head & neck surgery, voice clinic, and otology / skull base, etc; therefore, they need this app to filter different types of patients
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
+| Priority | As a …​                                    | I want to …​                   | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | starting user                              | view a help screen             | understand how this application works                                  |
+| `* * *`  | user                                       | search idENTify                | find specific patients and information faster                          |
+| `* * *`  | user                                       | add a contact of the patient   | keep track of the patient's contact details                            |
+| `* * *`  | user                                       | delete a contact of the patient| remove the patient from my contacts when no longer needed              |
+| `* * *`  | user                                       | book an appointment for the patient | schedule the patient to meet the doctor                           |
+| `* * *`  | user                                       | cancel an appointment for the patient | ensure that the appointment schedule is updated and accurate    |
+| `* * *`  | user                                       | save the data of my contacts when I exit the app  | not lose the contacts when I open the app again     |
+| `* * *`  | user                                       | mark an appointment as done    | locate a person easily                                                 |
+| `* *`    | clumsy user                                | unmark an appointment as done  | change my appointment state without deleting and reading the appointment |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is `idENTify` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `idENTify` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use Case: UC05 - find a patient**
+**Use Case: UC01 - Add a Patient** 
 
-**Guarantees:**  A list of patients that matches the given query if applicable.
+**Guarantees**: A patient contact is added into idENTify.
 
 **MSS**
 
+1. User adds the patient by entering the command and the patient details.
+2. idENTify adds the patient.
+
+
+    Use case ends
+    
+
+**Extensions**
+
+* 1a. idENTify detects an error in the entered data.
+  - 1a1. idENTify shows an error message.
+  - 1a2. User enters new data.
+  - Steps 1a1-1a2 are repeated until the data entered are correct.
+  Use case resumes at step 2.
+  
+**Use Case: UC02 - Show a list of patients**
+
+**Guarantees**: A list of patients’ contact is shown.
+
+**MSS**
+
+1. User requests to list patients
+2. idENTify shows a list of patients.
+
+
+    Use case ends
+**Extensions**
+2a. The list is empty.
+    
+    Use case ends
+
+**Use Case: UC03 - Show a list of appointments**
+
+**Guarantees**: A list of appointments is shown.
+
+**MSS**
+1. User requests to list appointments
+2. idENTify shows a list of appointments
+
+    
+    Use case ends
+
+**Extensions**
+2a. The list is empty.
+
+    Use case ends
+
+**Use Case: UC04 - delete a patient**
+
+**Guarantees**: The patient will be deleted from the patient list only if the data entered are correct.
+
+**MSS**
+1. User gets the list of patients(UC02).
+2. User requests to delete a specific patient in the list.
+3. idENTify deletes the patient.
+
+    
+    Use case ends
+    
+**Use Case: UC05 - find a patient**
+
+**Guarantees:**  A list of patients that matches the given query if applicable.
 1.  User requests to find a patient.
 2.  idENTify shows a list of patients that matches the given query.
 
@@ -318,7 +385,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
     
 **Extensions**
+2a. idENTify detects an error in the entered data.
+- 2a1. idENTify shows an error message.
+- 2a2. User enters new data.
+- Steps 2a1-2a2 are repeated until the data entered are correct.
 
+
+    Use case resumes at step 3
+   
 2a.  idENTify detects an error in the entered data.
 - 2a1. idENTify shows an error message.
 - 2a2. User enters new data.
@@ -383,16 +457,42 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on Windows, Linux, OS-X Operating System (OS) as long as it has Java 11.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text should be able to accomplish most of the tasks 
+   faster using commands than using the mouse.
+4. Should not be used with offensive language.
+5. Expected to adhere to a schedule that delivers a feature set every one month.
+6. Should respond to each command at most 1 second long.
+7. Not required to make calls to contacts.
+8. Should be able to store data locally in a human editable text file.
+9. Should not use Database Management System to store data.
+10. Product should be a result of evolving the given code base.
+11. Should be for a single user.
+12. Should be able to be used at any time (even beyond this semester)
+13. Should not exceed 100MB in size.
+14. Should not require external software to run.
+
 
 *{More to be added}*
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Regular English text**: Basic text that is keyed in by a user. Not code or not system admin commands.
+
+* **Operating System (OS)**: The low-level software that supports a computer's basic functions, common ones include 
+  Windows, macOS, Linux.
+* **Search string**: The text that a user uses to find a specific patient (such as a part of the patient’s name).
+* **Command-Line Interface (CLI)**: A text-based user interface (UI) used to run programs, manage computer files and 
+  interact with the computer.
+* **Graphical User Interface (GUI)**: A graphics-based operating system interface that uses icons, menus and a mouse 
+  (to click on the icon or pull down the menus) to manage interaction with the system.
+* **Main Success Scenario**: Describes the most straightforward interaction for a given use case, which assumes that nothing goes wrong.
+* **Actor**: A role played by a user. An actor can be a human or another system. Actors are not part of the system; they reside outside the system.
+* **Backward compatible**: Refers to a hardware or software system that can use the interface of an older version of the same product.
+* **Store data locally**: Allow the required data to be stored in a file in the user’s computer.
+* **Database Management Systems (DBMS)**: Software systems used to store, retrieve, and run queries on data. A DBMS serves as an interface between an end-user and a database, allowing users to create, read, update, and delete data in the database.
+
 
 --------------------------------------------------------------------------------------------------------------------
 

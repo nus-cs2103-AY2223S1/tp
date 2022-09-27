@@ -128,6 +128,19 @@ Format: `book INDEX r/REASON d/DATE`
 Examples:
 * `Book 2 r/Ear Infection d/2022-12-31T18:00`
 
+### Mark an appointment as completed:  `mark`
+
+Marks a specified appointment `INDEX_2` for a specified patient at `INDEX_1` as completed.
+
+Format: `mark INDEX_1 INDEX_2`
+
+* `INDEX_1` refers to the index number of the patient shown in the displayed patient list.
+* `INDEX_2` refers to the index number of the appointment to be marked for the desired patient.
+* Values of `INDEX_1` and `INDEX_2` **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `mark 3 1`
+
 ### Clearing all entries : `clear`
 
 Clears all entries from idENTify.
@@ -143,7 +156,7 @@ Format: `exit`
 ### Cancel
 Cancels a specified appointment from the specified patient’s appointment list. <br>
 Format: ```cancel PATIENT_INDEX APPOINTMENT_INDEX```
-- Deletes the appointment with APPOINTMENT_INDEX for the patient at the specified PATIENT_INDEX.
+- Deletes the appointment with `APPOINTMENT_INDEX` for the patient at the specified `PATIENT_INDEX`.
 - The index refers to the index number shown in the displayed appointment list.
 - The indexes must be a positive integer 1, 2, 3, …​
 ### Saving the data
