@@ -38,12 +38,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Mohamed Safwan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/mohamedsaf1.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/mohamedsaf1)]
+[[portfolio](team/mohamedsaf1.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
