@@ -285,14 +285,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: View a Customer**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list customers
+2.  ArtBuddy shows a list of customers
+3.  User requests to open customer in the list
+4.  AddressBook shows the list of commissions the customer made and the detail of the customer
 
     Use case ends.
 
@@ -304,11 +304,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. ArtBuddy shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Delete a Customer**
+
+**MSS**
+
+1.  User requests to list customers
+2.  ArtBuddy shows a list of customers
+3.  User requests to delete a customer in the list
+4.  AddressBook deletes the customer
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. ArtBuddy shows an error message.
+
+      Use case resumes at step 2.
 
 ### Non-Functional Requirements
 
@@ -321,8 +342,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-
+* **Customer**: A contact detail, contains information about the customer, and a list of Commissions.
+* **Commission**: A single commission made by a customer, contains specifics about the commission and list of Iterations.
+* **Iteration**: A single iteration of the commission, contains an image for the commission and a text comment on the image. 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
