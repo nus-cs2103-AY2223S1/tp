@@ -3,9 +3,9 @@ layout: page
 title: User Guide
 ---
 
-JeeqTracker is a **desktop application that drives the backend of small business owners. It keeps track of transactions
-and point of contact for companies that the user interacts with, optimised for use via a Command Line Interface (CLI)**,
-while still having the benefits of a Graphical User Interface (GUI). If you can type fast, JeeqTracker can get business
+JeeqTracker is a **desktop application built for small businesses lacking in resources to help them keep track of
+supplier contacts and previous transaction information with them, optimised for use via a Command Line Interface (CLI)**,
+while still having the benefits of a Graphical User Interface (GUI). If you can type fast, JeeqTracker can get business 
 interactions recorded faster and simpler than traditional GUI applications.
 
 * [Quick Start](#quick-start)
@@ -110,6 +110,19 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
+### Creating a Company: `create`
+
+Creates a new company to store POC (Point-Of-Contact) and transactions
+
+Format: `create coy/COMPANY_NAME`
+
+* Creates an empty company with no POC and transactions.
+* Use `add` command to add POC to the company.`add coy/MCDONALDS n/justin hp98492121 e/test@gmail.com loc/West Coast 
+  Park` adds the POC justin to the company.
+
+Examples:
+* `create coy/MCDONALDS` creates a company called MCDONALDS.
+
 ### Listing all persons : `list`
 
 Lists all the companies stored in the address book.
@@ -145,6 +158,9 @@ Examples:
 * `find fairprice` returns `NTUC Fairprice` <br>
 
 [//]: # (  ![result for 'find alex david']&#40;images/findAlexDavidResult.png&#41;)
+### Filtering the address book display : `filter`
+
+Coming Soon.
 
 ### Deleting a company : `delete`
 
@@ -195,6 +211,14 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 _Details coming soon ..._
 
+### Getting the User Guide: `user guide`
+
+Returns the url to our user guide.
+
+Format: `user guide`
+
+* Displays a pop-up that contains the link to our user guide.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -205,7 +229,8 @@ _Details coming soon ..._
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
-
+ |
+=======
 | Action     | Format, Examples                                                                                                                                                      |
 |------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
@@ -213,5 +238,6 @@ _Details coming soon ..._
 | **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
 | **Edit**   | Coming Soon                                                                                                                                                           |
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find MacDonalds`                                                                                                            |
+| **Filter** | Coming Soon                                                                                                                                                           |
 | **List**   | `list`                                                                                                                                                                |
 | **Help**   | `help` or `help [COMMAND]` <br> e.g.,`help` or `help add` or `help sort`                                                                                              |
