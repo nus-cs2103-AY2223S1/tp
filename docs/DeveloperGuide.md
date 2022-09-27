@@ -263,7 +263,9 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Provide a place for our users to store all the activities that are done, 
+ongoing or todo and organises it for them so it will be easier to trace back using specific activities. 
+Mainly CLI with many shortcuts to benefit people who type fast.
 
 
 ### User stories
