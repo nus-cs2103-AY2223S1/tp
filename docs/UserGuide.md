@@ -224,6 +224,12 @@ Examples:
 * Description: 
 * Example Usage: `find n/Jim a/53`
 
+### View all policies: `policies` [Coming soon]
+* Format: `policies`
+* Description: In v1.2, we will allow the user to view all available policies in a list format.
+* Example Usage: `policies`
+* Example Result: Shows a list of all policies stored on the page
+
 
 ## FAQ
 
@@ -246,3 +252,4 @@ Action | Format, Examples
 **Find** | `find [n/NAME] [p/PHONE] [e/EMAIL]...` <br> e.g: ` find n/Jim p/98765432` 
 **Sort** | `sort [COMPARABLE_METRIC]` <br> `e.g: sort AGE`
 **Pin** | `pin [n/Name]` <br> e.g: `pin n/Jim`
+**policies** | `policies`

@@ -30,14 +30,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Responsibilities: UI/UX of LTNS, Wireframing/Figma diagram, Main reviewer for Damien
 * In-charge of features: Ui, LTNS main UI/UX, pin function
 
-### Johnny Doe
+### Damien Koh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ssatu.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/ssatu)]
+[[portfolio](team/ssatu.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Documentation, Testing, Deliverables and deadlines, Main reviewer for Colin
+* In-charge of features: Policy management
 
 ### Reuben Chay
 <img src="images/reubenchay.png" width="200px">
@@ -45,8 +47,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/ReubenChay)]
 [[portfolio](team/reubenchay.md)]
 
-* Role: ?
-* Responsibilities: ?
+* Role: Developer
+* Responsibilities: Scheduling and tracking, code quality, Main reviewer for Hong Sheng
+* In-charge of features: sort
 
 
 ### Colin Toh 
