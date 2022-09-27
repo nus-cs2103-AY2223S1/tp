@@ -286,16 +286,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `InternshipBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Delete internship(s)**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to list internships
+2. PleaseHireUs shows a list of internships
+3. User requests to delete specific internship(s) in the list
+4. PleaseHireUs deletes the internship(s)
 
-    Use case ends.
+   	 Use case ends.
 
 **Extensions**
 
@@ -303,9 +303,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. At least one of the given indexes is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. PleaseHireUs shows an error message.
 
       Use case resumes at step 2.
 
@@ -376,22 +376,28 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting internship(s)
 
-1. Deleting a person while all persons are being shown
+1. Deleting internship(s) while all internships are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all internships using the `list` command. The list is non-empty.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First internship is deleted from the list. Details of the deleted internship shown in the status message. Timestamp in the status bar is updated.
+
+   1. Test case: `delete 0 2`<br>
+      Expected: No internship is deleted. Error details shown in the status message. Status bar remains the same.
+
+1. Deleting internship(s) while only the selected internships are being shown
+
+   1. Prerequisites: List specific internships using the `find` command. The list is non-empty.
+
+   1. Test case: `delete 1 2`<br>
+      Expected: If there is only one internship in the list, no internship is deleted and error details will be shown in the status message. Else if there are at least two internships on the list, the first and second internship will be deleted from the list. Details of the deleted internships are shown in the status message and the timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No internship is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
 
 ### Saving data
 

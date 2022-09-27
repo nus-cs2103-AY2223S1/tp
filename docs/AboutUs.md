@@ -29,12 +29,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Farrel Dwireswara Salim
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/sugiyem.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/sugiyem)] [[portfolio](team/sugiyem.md)]
 
 * Role: Developer
-* Responsibilities: Data
 
 ### Rachel Angelyn Gunawan
 
