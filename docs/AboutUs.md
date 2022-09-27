@@ -18,15 +18,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Team Lead
 
-### Jane Doe
+### Lin Leyi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lleyi0606.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/lleyi0606)]
+[[portfolio](team/lleyi0606.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Documentation
+* Responsibilities: Documentation
 
 ### Fang Yiye
 
