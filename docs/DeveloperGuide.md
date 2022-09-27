@@ -299,7 +299,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to view all profiles
-2.  NUScheduelr shows a list of profiles
+2.  NUScheduler shows a list of profiles
 3.  User requests to delete a specific profile in the list
 4.  NUScheduler deletes the person
 
