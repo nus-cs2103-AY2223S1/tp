@@ -1,4 +1,7 @@
-# Project Portfolio Page for Neale Tham
+---
+layout: page
+title: Project Portfolio Page for Neale Tham
+---
 
 ## Overview
 

@@ -1,4 +1,7 @@
-# Project Portfolio Page for
+---
+layout: page
+title: Project Portfolio Page for
+---
 
 <!-- Insert name above -->
 

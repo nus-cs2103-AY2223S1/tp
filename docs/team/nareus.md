@@ -1,4 +1,7 @@
-# Project Portfolio Page for Naren Sreekanth
+---
+layout: page
+title: Project Portfolio Page for Naren Sreekanth
+---
 
 ## Overview
 

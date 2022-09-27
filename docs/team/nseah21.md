@@ -1,4 +1,7 @@
-# Project Portfolio Page for Nicholas Seah
+---
+layout: page
+title: Project Portfolio Page for Nicholas Seah
+---
 
 ## Overview
 

@@ -1,4 +1,7 @@
-# Project Portfolio Page for Alvin Jiang
+---
+layout: page
+title: Project Portfolio Page for Alvin Jiang
+---
 
 ## Overview
 
