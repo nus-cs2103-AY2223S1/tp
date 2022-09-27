@@ -94,9 +94,16 @@ Examples:
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Lists all the companies stored in the address book.
 
 Format: `list`
+
+* Displays all the companies and their details in the address book.
+* If address book is empty, the companies name section will be blank.
+
+Examples:
+
+* `list` Displays all stored companies name and details.
 
 ### Editing a person : `edit`
 
