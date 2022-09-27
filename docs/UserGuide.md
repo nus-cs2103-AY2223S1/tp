@@ -3,6 +3,12 @@ layout: page
 title: User Guide
 ---
 
+
+<p align="center">
+    <img src="images/LTNS_logo.png" width="200" height="200">
+</p>
+
+
 Long Time No See (LTNS) is a  **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of an **intuitive and minimalistic Graphical User Interface (GUI)**. Made simpler with an intuitive and minimalistic graphical user interface (GUI) and customised functionalities to pinpoint your needs, LTNS will enable you to stay close to your dearest clients!
 
 # Table of Contents
@@ -14,10 +20,12 @@ Long Time No See (LTNS) is a  **desktop app for managing contacts, optimized for
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start (To be revised with GUI mockups?)
+## Quick start 
 1. Ensure you have Java `11` or above installed in your Computer.
 
+
 1. Download the latest `LTNS.jar` from [here](https://github.com/AY2223S1-CS2103T-W13-2/tp/releases).
+
 
 1. Copy the file to the folder you want to use as the _home folder_ for your LTNS.
 
@@ -140,11 +148,13 @@ For non-textual information i.e `PHONE`, `EMAIL`, `ADDRESS`:
 * Only full searches will be matched e.g `12341234` will not match `1234`
 
 Examples:
+
 * `find n/John` returns `john` and `John Doe`
 * `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 * `find p/12341234` returns contacts with `12341234` as their phone number
 * `find t/friends` returns contacts with a `friends` tag
+
 
 ### Deleting a person : `delete`
 

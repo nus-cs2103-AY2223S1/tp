@@ -19,15 +19,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Hong Sheng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/loyhongshenggg.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/loyhongshenggg)]
+[[portfolio](team/loyhongshenggg.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Team Lead and Developer
+* Responsibilities: UI/UX of LTNS, Wireframing/Figma diagram, Main reviewer for Damien
+* In-charge of features: Ui, LTNS main UI/UX, pin function
 
 ### Johnny Doe
 
@@ -69,12 +70,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Responsibilities: Code quality, integration, Main reviewer for Reuben
 * In-charge of features: find
 
-### James Doe
 
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
