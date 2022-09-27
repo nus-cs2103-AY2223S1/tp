@@ -38,3 +38,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: UI, Integration
+
+### Ng Xing Yu
+
+<img src="images/ngxingyu.png" alt="ngxingyu" width="200px">
+
+[[github](http://github.com/ngxingyu)]
+[[portfolio](team/ngxingyu.md)]
+
+* Role: Developer
+* Responsibilities: Logic + Testing
