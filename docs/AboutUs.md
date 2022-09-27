@@ -9,25 +9,26 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Tan Jing Jie
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jj.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[github](https://github.com/jjtan444)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: Deliverables and deadlines
 
-### Jane Doe
+### Darren Wah
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/darrenwah.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/Darren12345677)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Integration, Scheduling and tracking
 
 ### Ng Yee Thern
 
