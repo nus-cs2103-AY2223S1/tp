@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* Adapted from AB3 https://github.com/nus-cs2103-AY2223S1/tp
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -475,12 +475,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to find a patient by name
 2. OmniHealth shows a list of all patients matching the input by the user.
 
-**Use case: Find patient**
+**Extensions**
+* 1a. Patient record list is empty
 
-**MSS**
+  Use case ends
 
-1. User requests to find a patient by name
-2. OmniHealth shows a list of all patients matching the input by the user.
+* 1b. Patient does not exist
+    * 1b1. Omnihealth displays error message
+
+  Use case ends
 
 **Use case: Find patient records**
 
@@ -490,6 +493,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. OmniHealth shows a list of all patients matching the input by the user.
 3. User inputs a keyword and a patient record index.
 4. OmniHealth shows all the relevant records of the specified patient.
+
+**Extensions**
+* 1a. Patient record list is empty
+
+  Use case ends
+
+* 1b. Patient does not exist
+    * 1b1. Omnihealth displays error message
+
+  Use case ends
+
+* 3a. No keywords matching can be found
+    * 3a1. Omnihealth displays error message
+  
+  Use case ends
 
 *{More to be added}*
 
