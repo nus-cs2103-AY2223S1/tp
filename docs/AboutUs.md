@@ -24,7 +24,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/Qiaoran.png" width="200px">
 
 [[github](http://github.com/Qiaoran-M)]
-[[portfolio](team/Qiaoran.md)]
+[[portfolio](team/qiaoran.md)]
 
 * Role: Developer
 * Responsibilities: Testing
