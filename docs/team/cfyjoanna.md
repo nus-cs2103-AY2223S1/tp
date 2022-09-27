@@ -7,7 +7,7 @@ title: Joanna's Project Portfolio Page
 
 #### Overview
 
-Pupilist is an all in one app that allows teachers to plan and organize their student’s workflow, helping them ease their workload. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java.
+Pupilist is an all-in-one app that allows teachers to plan and organize their student’s workflow, helping them ease their workload. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java.
 
 #### Summary of Contributions
 
