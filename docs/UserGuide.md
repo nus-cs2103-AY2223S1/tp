@@ -97,11 +97,26 @@ Format: `adddebt <person index> d/<description> m/<money>`
 Example:
 * `adddebt 3 d/McDonalds m/8.9`
 
+### Deleting a debt: `deletedebt`
+
+Deletes a debtor's debts from PayMeLah according to his index number when listed.
+
+Format: `deletedebt <person index>`
+
+Example:
+* `deletedebt 3`
+
 ### Listing all persons : `list`
 
 Shows a list of all persons in PayMeLah.
 
 Format: `list`
+
+### Listing all debtees : `debtlist`
+
+Shows a list of all persons that owe you money in PayMeLah.
+
+Format: `debtlist`
 
 ### Editing a person : `edit`
 
@@ -196,4 +211,5 @@ Action | Format, Examples
 **Edit** | `edit <index> [n/<name>] [p/<phone number>] [e/<email>] [a/<address>] [t/<tag>]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find <keyword> [<more keywords>]`<br> e.g., `find James Jake`
 **List** | `list`
+**List debtees** | `debtlist`
 **Help** | `help`

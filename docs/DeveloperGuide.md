@@ -257,27 +257,34 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
+* is a university student who organizes many bulk purchases
 * has a need to manage a significant number of contacts
+* has a need to track who has paid him back
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:  
+1. track their debtors
+1. view total money owed from all debtors
+1. manage contacts faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​    | I can …​                                                           | So that …​                                                 |
+|----------|------------|--------------------------------------------------------------------|---------------------------------------------------------------------|
+| `* * *`  | user       | save persons and their contact details                             | I do not need to remember these details                             |
+| `* * *`  | user       | keep track of debts                                                | I know who owes me money and for what                               |
+| `* * *`  | user       | remove debts                                                       | I do not mistakenly think I have not yet been paid                  |
+| `* * *`  | user       | see how much I am owed in total                                    | I know how much I expect to be paid                                 |
+| `* * *`  | user       | close the application                                              |                                                                     |
+| `* *`    | user       | see an overview of all the debts owed                              | I am in better control of my overall financial situation            |
+| `* *`    | user       | search for a person’s contact                                      | I can easily access his contact details                             |
+| `* *`    | user       | save my contacts and debts over multiple usage sessions of the app | I do not need to key in data again when I exit and re-enter the app |
 
 *{More to be added}*
 
@@ -290,9 +297,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  AddressBook shows a list of persons
+1.  User requests to delete a specific person in the list
+1.  AddressBook deletes the person
 
     Use case ends.
 
@@ -319,16 +326,60 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  PayMeLah deletes the debts of that person
 1.  PayMeLah displays that the person’s debts are deleted
 
-    Use case ends.
-
 **Extensions**
-
 
 * 3a. The given index is invalid.
 
     * 3a1. PayMeLah shows an error message
 
       Use case resumes at step 3.
+      
+**Use case: List persons with debts**
+
+**MSS**
+
+1.  User requests to list persons with debts
+1.  AddressBook shows the list of persons
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty (no persons with debts).
+
+  Use case ends.
+
+**Use case: Find a person by name**
+
+**MSS**
+
+1. User requests to find a person by name.
+1. PayMeLah shows a list of people with that name.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. There is no person with the given name.
+  * 1a1. PayMeLah shows an error message.
+
+    Use case ends.
+
+**Use case: Find a person by debt description**
+
+**MSS**
+
+1. User requests to find a person by debt description.
+1. PayMeLah shows a list of people with a debt matching the debt description.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. There is no debt matching the given description.
+    * 1a1. PayMeLah shows an error message.
+
+      Use case ends.
 
 *{More to be added}*
 
@@ -359,7 +410,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Debtor**: The person who owes money.
+* **Creditor**: The person who is owed money.
+* **Debt**: The transaction event (e.g. group dinner, Grab food order) where money is owed between a debtor and a creditor
 
 --------------------------------------------------------------------------------------------------------------------
 
