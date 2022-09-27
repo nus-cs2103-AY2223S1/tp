@@ -44,7 +44,7 @@ public class TaskListCard extends UiPart<Region> {
         this.task = task;
         this.relatedParty.setText(task.getPerson().getName().fullName);
         this.description.setText(task.getDescription()); //TODO: Change to object
-        this.assignment.setText(task.getAssignment().toString().equals("M") ? "assigned by" : "assigned to");
+        this.assignment.setText(task.getAssignment().toString());
         this.isDone.setText(/*task.getStatus()*/"[X]");
         this.id.setText(displayedIndex + ". ");
     }

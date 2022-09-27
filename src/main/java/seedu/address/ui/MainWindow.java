@@ -25,7 +25,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.TaskList;
+import seedu.address.model.task.enums.Assignment;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -133,21 +133,21 @@ public class MainWindow extends UiPart<Stage> {
                                     new Email("suichan@holo.net"),
                                     new Address("HoloOffice"),
                                     new HashSet<>()),
-                        Task.Assignment.ASSIGNEE,
+                        Assignment.FROM,
                     "Datte boku wa hoshi dakara...", true));
         temp.add(new Task(new Person(new Name("Hoshimachi Suisei"),
                 new Phone("12345678"),
                 new Email("suichan@holo.net"),
                 new Address("HoloOffice"),
                 new HashSet<>()),
-                Task.Assignment.ASSIGNEE,
+                Assignment.FROM,
                 "Stellar Stellar!", true));
         temp.add(new Task(new Person(new Name("Hoshimachi Suisei"),
                 new Phone("12345678"),
                 new Email("suichan@holo.net"),
                 new Address("HoloOffice"),
                 new HashSet<>()),
-                Task.Assignment.ASSIGNEE,
+                Assignment.TO,
                 "Bukorosu!", true));
 
 
