@@ -3,10 +3,18 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+# User Guide
+CinternS is a **desktop app for managing internship applications, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CinternS can get your internship application management tasks done faster than traditional GUI apps. It consists of several useful features which the users are able to execute using commands.
 
-* Table of Contents
-  {:toc}
+* [Quick Start](#quick-start)
+* [Features](#features)
+    * [Adding an internship application: `add`](#adding-an-internship-application-add)
+    * [Listing all internship applications: `list`](#listing-all-internship-applications-list)
+    * [Deleting an internship application: `delete`](#deleting-an-internship-application-delete)
+    * [Exiting the program: `exit`](#exiting-the-program-exit)
+    * [Saving the data](#saving-the-data)
+* [FAQ](#faq)
+* [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -139,7 +147,7 @@ Clears all entries from the address book.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+### Exiting the program: `exit`
 
 Exits the program.
 
