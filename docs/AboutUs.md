@@ -30,9 +30,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Debbie Wu
 
-<img src="images/debbiewu.png" width="200px">
+<img src="images/debwy.png" width="200px">
 
-[[github](http://github.com/debwy)] [[portfolio](team/debbiewu.md)]
+[[github](http://github.com/debwy)] [[portfolio](team/debwy.md)]
 
 * Role: Developer
 * Responsibilities: Documentation
