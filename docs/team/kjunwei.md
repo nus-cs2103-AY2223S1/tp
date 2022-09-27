@@ -1,5 +1,5 @@
 ---
-layout: TAB
+layout: page
 title: Khor Jun Wei's Project Portfolio Page
 ---
 
