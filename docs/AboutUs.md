@@ -28,3 +28,31 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: [to be added]
+
+### Wong Rende
+
+<img src="images/wr3nd3.png" width="200px">
+
+[[github](http://github.com/wr3nd3)]
+[[portfolio](team/wr3nd3.md)]
+
+* Role: Developer
+* Responsibilities: [to be added]
+
+<img src="images/tsammeow.png" width="200px">
+
+[[github](http://github.com/tsammeow)]
+[[portfolio](team/tsammeow.md)]
+
+* Role: Developer
+* Responsibilities: [to be added]
+
+### Bryan Yang
+
+<img src="images/thesoggy.png" width="200px">
+
+[[github](http://github.com/thesoggy)]
+[[portfolio](team/thesoggy.md)]
+
+* Role: Developer
+* Responsibilities: [to be added]

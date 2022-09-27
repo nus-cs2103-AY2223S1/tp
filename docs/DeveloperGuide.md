@@ -257,27 +257,34 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
+* is a university student who organizes many bulk purchases
 * has a need to manage a significant number of contacts
+* has a need to track who has paid him back
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:  
+1. track their debtors
+1. view total money owed from all debtors
+1. manage contacts faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​    | I can …​                                                           | So that …​                                                 |
+|----------|------------|--------------------------------------------------------------------|---------------------------------------------------------------------|
+| `* * *`  | user       | save persons and their contact details                             | I do not need to remember these details                             |
+| `* * *`  | user       | keep track of debts                                                | I know who owes me money and for what                               |
+| `* * *`  | user       | remove debts                                                       | I do not mistakenly think I have not yet been paid                  |
+| `* * *`  | user       | see how much I am owed in total                                    | I know how much I expect to be paid                                 |
+| `* * *`  | user       | close the application                                              |                                                                     |
+| `* *`    | user       | see an overview of all the debts owed                              | I am in better control of my overall financial situation            |
+| `* *`    | user       | search for a person’s contact                                      | I can easily access his contact details                             |
+| `* *`    | user       | save my contacts and debts over multiple usage sessions of the app | I do not need to key in data again when I exit and re-enter the app |
 
 *{More to be added}*
 
@@ -290,9 +297,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  AddressBook shows a list of persons
+1.  User requests to delete a specific person in the list
+1.  AddressBook deletes the person
 
     Use case ends.
 
@@ -308,20 +315,84 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case: List persons with debts**
+
+**MSS**
+
+1.  User requests to list persons with debts
+1.  AddressBook shows the list of persons
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty (no persons with debts).
+
+  Use case ends.
+
+**Use case: Find a person by name**
+
+**MSS**
+
+1. User requests to find a person by name.
+1. PayMeLah shows a list of people with that name.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. There is no person with the given name.
+  * 1a1. PayMeLah shows an error message.
+
+    Use case ends.
+
+**Use case: Find a person by debt description**
+
+**MSS**
+
+1. User requests to find a person by debt description.
+1. PayMeLah shows a list of people with a debt matching the debt description.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. There is no debt matching the given description.
+    * 1a1. PayMeLah shows an error message.
+
+      Use case ends.
+
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. The software should work on any mainstream OS as long as it has Java 11 or above installed.
+1. The software will not facilitate actual monetary transactions, nor any communications between persons.
+1. The software should be able to hold up to 1000 persons and 10000 debts without a noticeable sluggishness in performance for typical usage.
+1. The software should not result in noticeable lag for other applications.
+1. The product should be for a single user only; multiple users cannot use the software on the same device simultaneously.
+1. The data stored by the software should be stored locally and in a human editable text file, rather than stored using a DBMS.
+1. The software should work without requiring an installer.
+1. The software should not depend on a remote server.
+1. The software should not require the user to create an account on a third-party service.
+1. The software should follow the Object-oriented paradigm primarily.
+1. The software should avoid implementing hard-to-test features or features that make the product hard-to-test.
+1. The software should only make use of third-party frameworks/libraries/services if they are free, open-source, and have permissive license terms.
+1. The software should be able to be packaged into a single JAR file.
+1. The file sizes of the product and its documents should be reasonable, i.e. the JAR file itself should not exceed 100MB and the documents should not exceed 15MB per file.
+1. The GUI should work well for standard screen resolutions 1920x1080 and higher, and, for screen scales 100% and 125%.
+1. The GUI should be usable for resolutions 1280x720 and higher, and, for screen scales 150%.
+1. The GUI should have a readable font, at least size 12.
+1. The GUI should be able to respond to user inputs in 500 milliseconds.
+1. The software and documentation should be accessible for users who have a basic command of the English language.
+1. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Debtor**: The person who owes money.
+* **Creditor**: The person who is owed money.
+* **Debt**: The transaction event (e.g. group dinner, Grab food order) where money is owed between a debtor and a creditor
 
 --------------------------------------------------------------------------------------------------------------------
 
