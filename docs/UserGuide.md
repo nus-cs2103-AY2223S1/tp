@@ -75,23 +75,24 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds a buyer, supplier, or delivery service to the contacts.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add r/ROLE n/NAME b/BREED p/PHONE_NUMBER e/EMAIL a/ADDRESS i/ADDITIONAL_INFORMATION [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add buyer n/Hongyi b/ragdoll p/11223344 e/email@u.nus.edu a/UTR 138600 i/colou:blue t/Singapore`
+* `add supplier n/Carol Pet House b/persian cat, pomeranian, ragdoll p/11223344 e/carolpethouse@gmail.com a/Marina Bay Sands 138600 i/discount for more than one purchase`
 
-### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+### Listing all contacts : `list`
 
-Format: `list`
+Shows a list of all contacts, based on their role as suppliers, buyers, or delivery services.
+
+Format: `list buyers`, `list suppliers`, `list delivery`
 
 ### Editing a person : `edit`
 
@@ -130,17 +131,39 @@ Examples:
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+Deleting a person from contacts.
 
-Format: `delete INDEX`
+Format: `delete n/NAME`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* If there are multiple contacts with the same name, the user will be prompted to choose which one to delete.
+* Else, the contact will be deleted successfully.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `delete n/Bernice` will pop a success message if there is only one person named Bernice.
+* `delete n/John` will show a list of contacts if there are multiple people named John. Continue the input with `i/1` will delete the person with index 1.
+
+### Filter contacts : `filter`
+
+Filter display only buyers or suppliers based on the given tag(s).
+
+Format: `filter t/INPUT`
+
+Examples:
+* `filter t/cat`
+* `filter t/dog t/second-hand`
+
+### Sort contacts : `sort`
+
+Sort the contacts based on given tag(s) and order(s).
+
+Format: `Sort t/TAG Asc/Desc, [t/TAG] [Asc/Desc]…`
+
+* The order can be either ascending `Asc` or descending `Desc`.
+* The provided category can be one or more than one.
+
+Examples:
+* `Sort t/country Asc`
+* `Sort t/priority Desc, t/country Desc`
 
 ### Clearing all entries : `clear`
 
