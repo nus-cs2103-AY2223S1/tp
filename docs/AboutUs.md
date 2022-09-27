@@ -14,7 +14,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/garfield-oo7.png" width="200px">
 
 [[github](https://github.com/garfield-oo7)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/garfield-oo7.md)]
 
 * Role: Project Advisor
 
