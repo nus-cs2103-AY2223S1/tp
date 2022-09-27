@@ -11,13 +11,17 @@ Given below are my contributions to the project.
 
 * **New Feature**: 
 * **Code contributed**: [RepoSense link](https://github.com/AY2223S1-CS2103T-T17-4/tp)
-
 * **Project management**:
+* **Contributions to the README**:
+* - Update UI mock image.
 * **Contributions to the UG**:
+* - Add the part about add function to the UG
+* - Reviewed teammates' pull requests and resolved conflicts
 * **Contributions to the DG**:
 * **Contributions to team-based tasks**:
 * **Enhancements to existing features**:
 * **Review/mentoring contributions**:
+* - Reviewed teammates' pull requests and resolved conflicts
 * **Documentation**:
 * **Community**:
 * **Tools**:
