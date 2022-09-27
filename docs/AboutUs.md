@@ -29,14 +29,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Something
 
-### Johnny Doe
+### Connor Lim
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/connlim.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/connlim)] [[portfolio](team/connlim.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: In charge of Tasks, Quality Assurance
 
 ### Jean Doe
 
