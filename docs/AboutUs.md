@@ -40,7 +40,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Mahesh Anugraha
 
-<img src="images/mahesh.png" width="200px">
+<img src="images/anuanas2007.png" width="200px">
 
 [[github](http://github.com/anuanas2007)]
 [[portfolio](team/anuanas2007.md)]
