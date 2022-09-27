@@ -1,7 +1,7 @@
-[![CI Status](https://github.com/AY2223S1-CS2103T-W11-1/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103T-W11-1/tp/actions) 
+[![CI Status](https://github.com/AY2223S1-CS2103T-W11-1/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103T-W11-1/tp/actions)
 [![codecov](https://codecov.io/gh/nus-cs2103-AY2223S1/tp/branch/master/graph/badge.svg?token=A2FU6P932B)](https://codecov.io/gh/AY2223S1-CS2103T-W11-1/tp)
 
-![Ui](docs/images/Ui.png) 
+![Ui](docs/images/Ui.png)
 
 NUSEatWhere is a Command Line (CLI) application which helps you search for the available food options in NUS and thus make an informed decision on where to eat.
 
