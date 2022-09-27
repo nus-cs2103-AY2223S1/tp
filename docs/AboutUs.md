@@ -21,7 +21,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Daniel Lee
 
-<img src="images/lulucopter.pmg" width="200px">
+<img src="images/lulucopter.png" width="200px">
 
 [[github](http://github.com/lulucopter)]
 [[portfolio](team/lulucopter.md)]
