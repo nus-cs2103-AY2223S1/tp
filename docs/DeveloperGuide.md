@@ -283,16 +283,49 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `NutriGoals` application and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC-1 Summarise daily calorie intake**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to summarise his / her daily calorie intake
+2. NutriGoals shows the total calorie intake and the list of meals
+
+   Use case ends.
+
+**Extension**
+
+* 1a. No food item recorded
+    * 1a1. NutriGoals displays a default message
+
+      Use case ends.
+
+
+**Use case: UC-2 Add a meal**
+
+**MSS**
+
+1. User enters the command to add a food item
+2. NutriGoals shows the new list of meals
+
+   Use case ends.
+
+**Extension**
+
+* 1a. The information provided is invalid
+  * 1a1. NutriGoals shows an error message
+
+    Use case ends.
+
+**Use case: UC-3 Delete a meal**
+
+**MSS**
+
+1. User requests to <ins>list the meals recorded (UC-1)</ins>
+2. NutriGoals shows a list of meals
+3. User requests to delete a specific meal in the list
+4. NutriGoals deletes the meal
 
     Use case ends.
 
@@ -302,13 +335,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The given food item is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. NutriGoals shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: UC-4 Edit a meal**
+
+**MSS**
+
+1. User requests to <ins>list all the meals recorded (UC-1)</ins>
+2. NutriGoals shows a list of meals
+3. User requests to edit a specific meal in the list
+4. NutriGoals edits the meal
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty
+  
+  Use case ends.
+
+* 3a. The given food item is invalid
+
+  * 3a1. NutriGoals show an error message
+    
+    Use case resumes at step 2.
 
 ### Non-Functional Requirements
 
