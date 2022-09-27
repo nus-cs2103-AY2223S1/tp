@@ -35,8 +35,8 @@ You can reach us at the email `jason.qiu@u.nus.edu`
 
 [[github](http://github.com/shenyicui)] [[portfolio](team/shenyicui.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Deliverables
+* Responsibilities: Issues
 
 ### Jean Doe
 
