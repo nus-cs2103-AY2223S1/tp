@@ -46,7 +46,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/jasoncp14.md)]
 
 * Role: Developer
-* Responsibilities: Code, Testing, Documentation
+* Responsibilities: Code Quality, Testing, Documentation
 
 ### James Doe
 
