@@ -142,6 +142,16 @@ Examples:
 * `list_contact` followed by `delete_contact 2` deletes the 2nd person in the address book.
 * `find_contact Betsy` followed by `delete_contact 1` deletes the 1st person in the results of the `find_contact` command.
 
+### Creating a new task: `add_task`
+
+Adds a task to the task list.
+
+Format: `add_task n/NAME  c/CONTACT_INDEX`
+
+Examples:
+* `add_task n/CS2103T iP c/1`
+* `add_task n/CS2101 Assignment c/2`
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
