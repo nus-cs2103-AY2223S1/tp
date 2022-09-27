@@ -425,7 +425,6 @@ be able to view the applicant from the list.
 5. Learning features of the product should be intuitive and easily acquired by new users.
 6. TrackAScholar should respond within 2 seconds
 7. Storage stored should be easy to be shared and uploaded between different users
->>>>>>> master
 
 *{More to be added}*
 
