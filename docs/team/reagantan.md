@@ -5,9 +5,8 @@ title: Reagan Tan's Project Portfolio Page
 
 ### Project: FABook
 
-FABook is a desktop address book application for Financial Advisors to manage their ever-increasing client list.
-
-This platform can help Financial Advisors sort their client list based on different fields, track client meetings and many more.
+FABook is for mid-tier financial advisors who have to manage many current and potential clients. They often have trouble scheduling client meet-ups for both time and location as they have difficulty keeping track of clients’ information (name, address, portfolio).
+They want a product to store all this information in one place.
 
 Given below are my contributions to the project.
 
