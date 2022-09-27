@@ -92,6 +92,19 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
+### Creating a Company: `create`
+
+Creates a new company to store POC (Point-Of-Contact) and transactions
+
+Format: `create coy/COMPANY_NAME`
+
+* Creates an empty company with no POC and transactions.
+* Use `add` command to add POC to the company.`add coy/MCDONALDS n/justin hp98492121 e/test@gmail.com loc/West Coast 
+  Park` adds the POC justin to the company.
+
+Examples:
+* `create coy/MCDONALDS` creates a company called MCDONALDS.
+
 ### Listing all persons : `list`
 
 Lists all the companies stored in the address book.
