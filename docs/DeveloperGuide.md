@@ -257,42 +257,75 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+- They are tech-savvy
+- Organised and consistent in using the app
+- Have a need to effectively manage their team, through work progress and employee involvement
+- Doesn’t mind putting extra time to make their life easier in the future
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
+
+- Manage employees
+- Manage multiple projects and their progress + contributions from employees
+- More effective under the hand of a tech-savvy user
+- Meeting/time management
+- Easily **personalizable**
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a …​             | I want to …​                                                                                                   | So that I can…​                                                                                                          |
+| -------- | ------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `* * *`  | basic user          | add new contacts                                                                                               | add new contacts for use later                                                                                           |
+| `* * *`  | basic user          | delete contacts                                                                                                | remove old unused contacts                                                                                               |
+| `* * *`  | basic user          | view my current contacts                                                                                       | see all the contacts I have saved                                                                                        |
+| `* * *`  | basic user          | group contacts into group                                                                                      | categorise my contacts                                                                                                   |
+| `* * *`  | basic user          | add additional info for each contact via a custom field                                                        | record extra information that i need to take note of regarding the contact                                               |
+| `*`      | regular user        | customise the colors of the user interface to my liking                                                        | be more comfortable using the app                                                                                        |
+| `* *`    | regular user        | add custom commands acting as macros to the app                                                                | be more efficient with controls specific to my use.                                                                      |
+| `* *`    | user                | export my contacts as to csv or vcard                                                                          | transfer general contact information to be used elsewhere or for sharing.                                                |
+| `* *`    | user                | add aliases to my contacts                                                                                     | search the contacts up faster                                                                                            |
+| `* * *`  | user                | edit group information and group user information                                                              | edit and update team information should such details change                                                              |
+| `* * *`  | user                | have an advertisement free experience                                                                          | be more focused and not get distracted by ads                                                                            |
+| `* *`    | user                | transfer app data                                                                                              | keep my current data should i change devices or have multiple devices using the app                                      |
+| `* * *`  | user                | edit contact information                                                                                       | update my contacts with the most recent update                                                                           |
+| `* *`    | user                | have an responsive and snappy user experience                                                                  | have a more enjoyable experience while using the app as well as increased efficiency                                     |
+| `* *`    | user                | undo a command                                                                                                 | easily revert incorrect changes                                                                                          |
+| `* *`    | user                | automatically save the data                                                                                    | be assured that i won’t lose data in the event the app exits improperly due to rare circumstances (e.g. computer crash)  |
+| `* *`    | user                | enjoy a simple and accessible user interface                                                                   | easily understand and use the basic features without the need to extensively refer to a user guide                       |
+| `* *`    | user                | enjoy a clean and zen-style gui                                                                                | be more focused and not easily distracted.                                                                               |
+| `* * *`  | developer           | use the app solely using the keyboard (cli like input controls)                                                | be fast and efficient since pressing a key is faster than reaching for the mouse                                         |
+| `*`      | busy, working adult | have a clear separation between work contacts and other contacts                                               | have a clear work-life balance                                                                                           |
+| `* * *`  | project manager     | add extra information to each group of contacts                                                                | keep extra information regarding my team                                                                                 |
+| `* * *`  | project manager     | add task to a group                                                                                            | record tasks to be done by my team                                                                                       |
+| `* * *`  | project manager     | assign specific task to single or multiple users within a group                                                | delegate tasks assignment when working in a team                                                                         |
+| `* *`    | project manager     | view the timeline of task completion within a group                                                            | track progress within the group                                                                                          |
+| `* * *`  | project manager     | add additional information to a contact within a team                                                          | track bonus details and information regarding a member                                                                   |
+| `* * *`  | project manager     | add completion dates to some tasks assigned in the group                                                       | set deadlines to group specific tasks                                                                                    |
+| `* * *`  | project manager     | add ability to add custom fields when adding contacts to a group                                               | tailor fit the group to my project needs                                                                                 |
+| `*`      | project manager     | add custom color palette to each group                                                                         | feel more personalised to each team as well as better differentiate between different teams                              |
+| `* * *`  | project manager     | change the completion status of tasks in a group                                                               | to indicate the if an assigned task has been completed by a member                                                       |
+| `* *`    | project manager     | generate a progress report of the group progress (i.e. show task done at what time, how many percent done etc) | easily access and present those information to others (e.g. higher ups) as well as tracking the progress of the project. |
+| `* * *`  | project manager     | have the ability to broadcast messages to my team members                                                      | disseminate information in a short time.                                                                                 |
+| `* * *`  | project manager     | delegate work to each group efficiently via commands                                                           | cut down on time spent doing admin work                                                                                  |
+| `* * *`  | project manager     | access and view the contacts of my team members                                                                | track progress of the team on an individual level                                                                        |
+| `* *`    | project manager     | organise my project team tasks with efficiency                                                                 | spend less time doing admin work                                                                                         |
+| `* *`    | project manager     | switch context easily between multiple groups                                                                  | manage multiple teams                                                                                                    |
+| `* * *`  | project manager     | issue commands specific to the team                                                                            | be more efficient and type fewer group related details                                                                   |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `ContactMation` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  ContactMation shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  ContactMation deletes the person
 
     Use case ends.
 
@@ -304,24 +337,105 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. ContactMation shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+
+**Use case: Edit a person**
+
+**MSS**
+
+1.  User requests to list persons
+2.  ContactMation shows a list of persons
+3.  User requests to edit a specific person in the list
+4.  ContactMation shows a screen with the properties of the person
+5.  User edits the properties to their liking and saves
+6.  Contactmation saves the data
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. ContactMation shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Add a Task**
+
+**MSS**
+
+1.  User requests to list groups
+2.  ContactMation shows a list of groups
+3.  User requests to add a task to a group in the list
+4.  ContactMation adds the task
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. ContactMation shows an error message.
+
+      Use case resumes at step 2.
+
+
+**Use case: Set a Task completion status**
+
+**MSS**
+
+1.  User requests to list tasks for a group
+2.  ContactMation shows a list of tasks
+3.  User requests to set the task completion status
+4.  ContactMation sets the task completion status
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. ContactMation shows an error message.
+
+      Use case resumes at step 2.
+
+* 4a. The given status is empty.
+
+  * 4a1. ContactMation sets the task to `Done`
+
+      Use case ends.
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+4.  Should be usable with only a _command-line interface_.
+5.  Data should persist between app launches.
+6.  Should work with both 32-bit and 64-bit operating systems.
+7.  The system is not required to do any communication with the Internet (e.g. sending emails).
+8.  Should not use any images or terms that could be deemed as offensive.
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Mainstream OS**: Windows, Linux, Unix-like, MacOS
+* **Command-line Interface**: A system that received user input in the form of lines of text
+* **Task**: A piece of work that has to be done, that can be assigned to people and that may have a deadline
 
 --------------------------------------------------------------------------------------------------------------------
 
