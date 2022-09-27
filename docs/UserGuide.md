@@ -152,6 +152,31 @@ Examples:
 * `add_task n/CS2103T iP c/1`
 * `add_task n/CS2101 Assignment c/2`
 
+### Listing tasks by contact: `list_task`
+
+Shows a list of all tasks belonging to a given contact.
+
+Format: `list_task c/CONTACT_INDEX`
+
+Examples:
+* `list_task c/1`
+
+### Finding tasks by name: `find_task`
+
+Find tasks whose names contain any of the given keywords.
+
+Format: `find_task KEYWORD [MORE_KEYWORDS]`
+
+* The search is **case-insensitive**. e.g `book` will match `Book`
+* The order of the keywords does not matter. e.g. `read book` will match `book read`
+* Only the name of the task is searched.
+* Only full words will be matched e.g. `Book` will not match `Books`
+* Tasks matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Read book` will return `Write book`, `Find book`
+
+Examples:
+* `find_task Book` returns `book` and `Find book`
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
