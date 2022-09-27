@@ -9,34 +9,35 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Chao Yung
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chao890.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[github](https://github.com/chao890)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+- Role: Developer
+- Responsibilities: Documentation, Git Expert
 
-### Jane Doe
+### Kevin Chang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kevinchangjk.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/kevinchangjk)]
+[[portfolio](team/kevinchangjk.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+- Role: Developer
+- Responsibilities: Backend, Code Quality
 
 ### Prittam Ravi
 
 <img src="images/prit3010.png" width="200px">
 
-[[github](https://github.com/prit3010)] [[portfolio](team/prit3010.md)]
+[[github](https://github.com/prit3010)]
+[[portfolio](team/prit3010.md)]
 
-* Role: Developer
-* Responsibilities: Scheduling & Tracking, Deliverables & Deadlines
+- Role: Team Lead
+- Responsibilities: Scheduling & Tracking, Deliverables & Deadlines
 
 ### Jean Doe
 
@@ -45,8 +46,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+- Role: Developer
+- Responsibilities: Dev Ops + Threading
 
 ### James Doe
 
@@ -55,5 +56,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: UI
+- Role: Developer
+- Responsibilities: UI
