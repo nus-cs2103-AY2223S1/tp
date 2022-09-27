@@ -55,5 +55,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/fongyj)]
 [[portfolio](team/fongyj.md)]
 
-* Role: Deliverables and deadlines, Integration
-* Responsibilities: Commons
+* Role: Developer
+* Responsibilities: 
+  * Deliverables and deadlines, Integration
+  * Commons Component
