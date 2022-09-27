@@ -14,21 +14,21 @@ SETA is a **desktop application for CS2103T Teaching Assistants** to track their
     * Adding a student: `addstu`
     * Editing a student: `editstu`
     * Listing all students: `liststu`
-    * Mark attendance of a student: `attendance`
-    * Add students’ response: `addresponse`
+    * Adding attendance of a student: `attendance`
+    * Adding students’ response: `addresponse`
     * Adding help tag to a student: `helpstu`
     * Deleting a student: `deletestu`
   * **Question**
     * Adding a question: `addq`
-    * Mark a question: `markq`
-    * Unmark a question: `unmarkq`
-    * Delete a question: `deleteq`
-    * List questions: `listq`
+    * Marking a question: `markq`
+    * Unmarking a question: `unmarkq`
+    * Deleting a question: `deleteq`
+    * Listing questions: `listq`
   * **Tutorial**
     * Adding a tutorial: `addtut`
-    * Delete a tutorial: `deletetut`
-    * Mark tutorial: `marktut`
-    * List tutorials: `listtut`
+    * Deleting a tutorial: `deletetut`
+    * Marking tutorial: `marktut`
+    * Listing tutorials: `listtut`
 
 
 
@@ -69,7 +69,7 @@ SETA is a **desktop application for CS2103T Teaching Assistants** to track their
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Lim`.
+  e.g. in `addstu n/NAME`, `NAME` is a parameter which can be used as `addstu n/John Lim`.
 * 
 * Items in square brackets are optional.<br>
   e.g. `n/NAME [t/TELEGRAM_HANDLE]` can be used as `n/John Lim t/@johnlim` or as `n/John Lim`.
@@ -89,7 +89,7 @@ SETA is a **desktop application for CS2103T Teaching Assistants** to track their
 
 Adds a student to the student list.
 
-![add student](images/addstu.png)
+![add student](images/userguide-screenshots/addstu.png)
 
 Format: `add n/NAME t/TELEGRAM_HANDLE e/EMAIL`
  
@@ -101,7 +101,7 @@ Examples:
 
 Edits an existing student in the student list.
 
-![edit student](images/editstu.png)
+![edit student](images/userguide-screenshots/editstu.png)
 
 Format: `edit INDEX [n/NAME] [t/TELEGRAM_HANDLE] [e/EMAIL]`
 
@@ -117,64 +117,151 @@ Examples:
 
 Shows a list of all the students in the student list.
 
-![list students](images/liststu.png)
+![list students](images/userguide-screenshots/liststu.png)
 
 Format: `liststu`
 
-### Editing a person : `edit`
+### Adding attendance : `attendance`
 
-Edits an existing person in the address book.
+Increase or decrease the number of times a student attended tutorials.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+Format: `attendance n/NAME s/SIGN v/VALUE`
+* decrease attendance value if `SIGN` is '-' and increase attendance value if `SIGN` is '+'
+* increase or decrease the specific student's attendance by `VALUE`
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* `attendance n/Lee Jun Jie s/- v/2`
+* `attendance n/John Lim Jun Jie s/+ v/1`
+  
+![add attendance](images/userguide-screenshots/attendance.png)
 
-### Locating persons by name: `find`
+### Adding students' response: `addresponse`
 
-Finds persons whose names contain any of the given keywords.
+Adds the number of messages a specified student sent during tutorial.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+Format: `addresponse n\NAME m\MESSAGE_COUNT`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `addresponse n\John Doe m\7`
 
-### Deleting a person : `delete`
+![result for 'addresponse n\John Doe m\7'](images/userguide-screenshots/addresponse.png)
 
-Deletes the specified person from the address book.
+### Adding help tag: `helpstu`
 
-Format: `delete INDEX`
+Adds a help tag to an existing student.
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+Format: `helpstu NAME`
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+Example:
+* `helpstu John Lim Jun Jie`
 
-### Clearing all entries : `clear`
+![help student](images/userguide-screenshots/helpstu.png)
 
-Clears all entries from the address book.
+### Deleting a student: `deletestu`
 
-Format: `clear`
+Removes a specific student.
+
+Format: `deletestu INDEX`
+
+* Deletes the student at the specified INDEX
+* The index refers to the index number shown in the displayed student list.
+* The index must be a positive integer 1, 2. 3, …
+
+Example:
+* `liststu` followed by `deletestu 2` deletes the 2nd student
+
+![help student](images/userguide-screenshots/deletestu.png)
+
+[//]: # (### Editing a person : `edit`)
+
+[//]: # ()
+[//]: # (Edits an existing person in the address book.)
+
+[//]: # ()
+[//]: # (Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`)
+
+[//]: # ()
+[//]: # (* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​)
+
+[//]: # (* At least one of the optional fields must be provided.)
+
+[//]: # (* Existing values will be updated to the input values.)
+
+[//]: # (* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.)
+
+[//]: # (* You can remove all the person’s tags by typing `t/` without)
+
+[//]: # (    specifying any tags after it.)
+
+[//]: # ()
+[//]: # (Examples:)
+
+[//]: # (*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.)
+
+[//]: # (*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.)
+
+[//]: # ()
+[//]: # (### Locating persons by name: `find`)
+
+[//]: # ()
+[//]: # (Finds persons whose names contain any of the given keywords.)
+
+[//]: # ()
+[//]: # (Format: `find KEYWORD [MORE_KEYWORDS]`)
+
+[//]: # ()
+[//]: # (* The search is case-insensitive. e.g `hans` will match `Hans`)
+
+[//]: # (* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`)
+
+[//]: # (* Only the name is searched.)
+
+[//]: # (* Only full words will be matched e.g. `Han` will not match `Hans`)
+
+[//]: # (* Persons matching at least one keyword will be returned &#40;i.e. `OR` search&#41;.)
+
+[//]: # (  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`)
+
+[//]: # ()
+[//]: # (Examples:)
+
+[//]: # (* `find John` returns `john` and `John Doe`)
+
+[//]: # (* `find alex david` returns `Alex Yeoh`, `David Li`<br>)
+
+[//]: # (  ![result for 'find alex david']&#40;images/findAlexDavidResult.png&#41;)
+
+[//]: # ()
+[//]: # (### Deleting a person : `delete`)
+
+[//]: # ()
+[//]: # (Deletes the specified person from the address book.)
+
+[//]: # ()
+[//]: # (Format: `delete INDEX`)
+
+[//]: # ()
+[//]: # (* Deletes the person at the specified `INDEX`.)
+
+[//]: # (* The index refers to the index number shown in the displayed person list.)
+
+[//]: # (* The index **must be a positive integer** 1, 2, 3, …​)
+
+[//]: # ()
+[//]: # (Examples:)
+
+[//]: # (* `list` followed by `delete 2` deletes the 2nd person in the address book.)
+
+[//]: # (* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.)
+
+[//]: # ()
+[//]: # (### Clearing all entries : `clear`)
+
+[//]: # ()
+[//]: # (Clears all entries from the address book.)
+
+[//]: # ()
+[//]: # (Format: `clear`)
 
 ### Adding a question : `addq`
 
@@ -185,7 +272,7 @@ Format: `addq QUESTION_DESCRIPTION`
 Examples:
 * `addq what is the difference between self-invocation and call-backs for sequence diagrams?` 
 
-![](images/addq.png)
+![](images/userguide-screenshots/addq.png)
 
 
 ### Mark a question : `markq`
@@ -197,7 +284,7 @@ Format: `markq QUESTION_NUMBER`
 Examples:
 * `markq 1` marks the first question in the question list as important
 
-![](images/markq.png)
+![](images/userguide-screenshots/markq.png)
 
 ### Unmark a question : `unmarkq`
 
@@ -208,7 +295,7 @@ Format: `unmarkq QUESTION_NUMBER`
 Examples:
 * `unmarkq 1` marks the first question in the question list as unimportant
 
-![](images/unmarkq.png)
+![](images/userguide-screenshots/unmarkq.png)
 
 ### Delete a question : `deleteq`
 
@@ -219,19 +306,8 @@ Format: `deleteq QUESTION_NUMBER`
 Examples:
 * `deleteq 1` deletes the first question from the question list
 
-![](images/deleteq.png)
+![](images/userguide-screenshots/deleteq.png)
 
-
-### Add students' response: `addresponse`
-
-Adds the number of messages a specified student sent during tutorial.
-
-Format: `addresponse n\NAME m\MESSAGE_COUNT`
-
-Examples:
-* `addresponse n\John Doe m\7`
-
-![result for 'addresponse n\John Doe m\7'](images/addresponse.png)
 
 ### List questions : `listq`
 
@@ -239,7 +315,7 @@ Lists all questions.
 
 Format: `listq`
 
-![](images/listq.png)
+![](images/userguide-screenshots/listq.png)
 
 ### Adding a tutorial : `addtut`
 
@@ -250,7 +326,7 @@ Format: `addtut g/GROUP_NUMBER c/CONTENT t/DATE TIME`
 Examples:
 * `addtut g/T08 c/UML diagrams t/2022-10-01T08:00:00`
 
-![add student](images/addtut.png)
+![add student](images/userguide-screenshots/addtut.png)
 
 ### Delete a tutorial : `deletetut`
 
@@ -261,7 +337,7 @@ Format: `deletetut TUTORIAL_NUMBER`
 Example:
 * `deleteq 1`deletes the first tutorial from the tutorial list
 
-![](images/deletetut.png)
+![](images/userguide-screenshots/deletetut.png)
 
 ### Mark tutorial: `marktut`
 
@@ -275,7 +351,7 @@ Format: `marktut INDEX`
 Example:
 * `marktut 1` marks the first tutorial from the tutorial list as done.
 
-![result for 'marktut 1'](images/marktut.png)
+![result for 'marktut 1'](images/userguide-screenshots/marktut.png)
 
 ### Listing all tutorials: `listtut`
 
@@ -283,7 +359,7 @@ Shows a list of all the added tutorials.
 
 Format: `listtut`
 
-![result for 'listtut'](images/listtut.png)
+![result for 'listtut'](images/userguide-screenshots/listtut.png)
 
 ### Exiting the program : `exit`
 

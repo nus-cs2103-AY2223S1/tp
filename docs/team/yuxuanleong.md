@@ -37,9 +37,9 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `deletestu`, `attendance` and `help` [\#72]()
+    * Added documentation for the features `deletestu`, `attendance` and `helpstu` [\#72]()
   * Developer Guide:
-    * Added implementation details of the `deletestu`, `attendance` and `help` feature.
+    * Added implementation details of the `deletestu` feature.
 
 * **Community**:
   * to be added.

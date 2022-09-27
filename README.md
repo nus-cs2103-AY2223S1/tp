@@ -2,7 +2,7 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
 
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
 
-![Ui](docs/images/liststu.png)
+![Ui](docs/images/userguide-screenshots/liststu.png)
 
 * This is **a sample project for Software Engineering (SE) students**.<br>
   Example usages:
