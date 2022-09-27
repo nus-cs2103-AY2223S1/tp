@@ -10,12 +10,23 @@ They want a product to store all this information in one place.
 
 Given below are my contributions to the project.
 
-* **New Feature**: [coming soon]
+* **New Feature**: [to be added soon]
+  * What it does: [to be added soon]
+  * Justification: [to be added soon]
+  * Highlights: [to be added soon]
+  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
 
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&tabAuthor=shauneang&tabRepo=AY2223S1-CS2103T-T10-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
-* **Code contributed**: [RepoSense link]() [coming soon]
+* **Project management**:
+  * [to be added soon]
 
+* **Enhancements to existing features**:
+  * [to be added soon]
 
 * **Documentation**:
   * User Guide:
     * Added documentation for the feature `find`.
+
+* **Community**:
+  * [to be added soon]
