@@ -1,3 +1,4 @@
+[![CI Status](https://github.com/AY2223S1-CS2103T-W10-2/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103T-W10-2/tp/actions)
 > “The major winners will be financial services companies that embrace technology.” – [Alexander Peh, PayPal and Braintree](https://www.investontario.ca/spotlights/21-fintech-quotes-every-executive-needs-hear)
 
 * This is **a project for Software Engineering (SE) students module code CS2103T**.<br>
