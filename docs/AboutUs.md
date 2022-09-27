@@ -54,7 +54,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/aboutUs/maxng.png" width="200px">
 
-[[github](http://https://github.com/maxng17/tp)]
+[[github](http://github.com/maxng17)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
