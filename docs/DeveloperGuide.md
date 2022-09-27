@@ -283,32 +283,103 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `idENTify` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use Case: UC05 - find a patient**
+
+**Guarantees:**  A list of patients that matches the given query if applicable.
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to find a patient.
+2.  idENTify shows a list of patients that matches the given query.
+
+
+    Use case ends.
+    
+**Extensions**
+
+2a. The list is empty.
+
+
+    Use case ends.
+
+**Use Case: UC06 -  Book an appointment**
+
+**Guarantees:** An appointment is booked for the patient only if the data entered are correct.
+
+**MSS**
+
+1.  User gets the list of patients(UC02).
+2.  User requests to book an appointment for a specified patient.
+3.  idENTify shows that an appointment has been booked for that patient.
+
+
+    Use case ends.
+    
+**Extensions**
+
+2a.  idENTify detects an error in the entered data.
+- 2a1. idENTify shows an error message.
+- 2a2. User enters new data.
+- Steps 2a1-2a2 are repeated until the data entered are correct.
+
+    Use case resumes at step 3.
+
+**Use Case: UC07 - cancel an appointment**
+
+**Guarantees:** The appointment will be deleted from the appointment list only if the data entered are correct.
+
+**MSS**
+1.  User gets the list of appointments(UC03).
+2.  User requests to cancel a specific appointment in the list.
+3.  idENTify shows that the appointment has been cancelled.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+2a. idENTify detects an error in the entered data.
+- 2a1. idENTify shows an error message.
+- 2a2. User enters new data.
+- Steps 2a1-2a2 are repeated until the data entered are correct.
 
-  Use case ends.
 
-* 3a. The given index is invalid.
+    Use case resumes at step 3.
 
-    * 3a1. AddressBook shows an error message.
+**Use Case: UC08 - mark an appointment**
 
-      Use case resumes at step 2.
+**Guarantees:** The appointment will be marked as done only if the data entered are correct.
 
-*{More to be added}*
+**MSS**
+1.  User gets the list of appointments(UC03).
+2.  User requests to mark a specified appointment for a specified patient.
+3.  idENTify marks the selected appointment.
+    Use case ends.
+
+**Extensions**
+
+2a. idENTify detects an error in the entered data.
+- 2a1. idENTify shows an error message.
+- 2a2. User enters new data.
+- Steps 2a1-2a2 are repeated until the data entered are correct.
+
+
+    Use case resumes at step 3.
+
+**Extensions**
+
+2a. The list is empty.
+
+
+    Use case ends.
+
+
+3a. The given index is invalid.
+-3a1. AddressBook shows an error message.
+
+
+    Use case resumes at step 2.
 
 ### Non-Functional Requirements
 
