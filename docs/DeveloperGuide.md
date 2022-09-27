@@ -271,14 +271,16 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                    | I want to …​                                                           | So that I can…​                                                                           |
+|----------|--------------------------------------------|------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
+| `* * *`  | financial advisor                          | add new client                                                         | keep track of the client's profile                                                        |
+| `* * *`  | financial advisor                          | delete a client                                                        | remove entries that are no longer needed                                                  |
+| `* * *`  | financial advisor                          | edit a client's profile                                                | update relevant and up-to-date information of the client                               |
+| `* * *`  | financial advisor                          | search clients by name                                                 | retrieve information of clients without having to go through the entire list              |
+| `* * *`  | financial advisor                          | sort clients by alphabetical order                                     | have an organised list of contacts                                                        |
+| `* * *`  | financial advisor                          | store important information of clients                                 | make pivotal decisions on how to better suit the clients' needs based on their information |
+| `* * `   | financial advisor                        | view the list of clients that are scheduled for meeting on a given day | be reminded and keep track of the scheduled meetings                                      |
+| `* *`    | financial advisor | have an image of my client                                             | remember and recognise the clients during the meetings                                    |
 
 *{More to be added}*
 
