@@ -59,13 +59,3 @@ We are a team based in the [School of Computing, National University of Singapor
 
 * Role: Developer
 * Responsibilities: Integration
-
-### Marciano Renzo William
-
-<img src="images/midnightfeverrr.png" width="200px">
-
-[[github](http://github.com/midnightfeverrr)]
-[[portfolio](team/midnightfeverrr.md)]
-
-* Role: Developer
-* Responsibilities: UI
