@@ -270,14 +270,17 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​          | I want to …​                             | So that I can…​                                                            |
+|----------|------------------|------------------------------------------|----------------------------------------------------------------------------|
+| `* * *`  | new user         | see usage instructions and FAQ           | understand how to use the App                                              |
+| `* * *`  | student          | add a classmate to the addressbook       | conveniently refer to their contact details all in one place               |
+| `* * *`  | student          | list all classmates                      | see a list of all classmates in my class                                   |
+| `* * *`  | student          | delete a classmate                       | remove unneeded entries                                                    |
+| `* * *`  | student          | find a classmate by name/Github username | locate their details to review and give feedback on their iP and tP easily |
+| `* * *`  | student          | tag a classmate with tags                | find them easily                                                           |
+| `* * *`  | student          | sort classmates using a specified tag    | locate classmates with the specified tag easily                            |
+| `* *`    | student          | save my data to a file                   | access the data on different devices                                       |
+| `* *`    | technical person | close the App using a command            | close the App easily                                                       |
 
 *{More to be added}*
 
