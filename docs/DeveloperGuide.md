@@ -296,7 +296,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to add person
+1.  User requests to add a person
 1.  PayMeLah adds the person
 
     Use case ends.
@@ -315,7 +315,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to list persons
 1.  PayMeLah shows a list of persons
-1.  User requests to add debt to a specific person in the list
+1.  User requests to add a debt to a specific person in the list
 1.  PayMeLah adds the debt to the person
 
     Use case ends.
