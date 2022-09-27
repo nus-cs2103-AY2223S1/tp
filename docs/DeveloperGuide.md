@@ -328,7 +328,7 @@ be able to view the applicant from the list.
 **MSS**
 
 1. User request to delete an applicant in TrackAScholar.
-2. TrackAScholar removes applicant with matching name
+2. TrackAScholar removes applicant with matching name.
    Use case ends.
 
 **Extensions**
@@ -358,8 +358,9 @@ be able to view the applicant from the list.
 
 **MSS**
 
-1. User requests to change the details of an applicant (such as email or contact number etc).
-2. TrackAScholar updates the personal details of the applicant to the list.
+1. User requests to change the details of an applicant (such as email or contact number etc.).
+2. TrackAScholar updates the personal details of the applicant to the list. <br>
+   Use case ends.
 
 **Extensions**
 
@@ -377,33 +378,6 @@ be able to view the applicant from the list.
 
   * 1a1 TrackAScholar displays an error message that applicant does not exist and details cannot be updated. <br>
       Use case resumes at step 1.
-
-**Use case: UC05 - Filter applicants by status**
-
-**MSS**
-
-1. User requests a filtered list based on a specific application status
-2. TrackAScholar shows the number of applicants by status
-3. TrackAScholar shows the percentage of applicants by status
-4. TrackAScholar shows the filtered list of applicants with the specified applicant status
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. User specifies more than one applicant status during request
-
-    * Step 4 repeats as many times as there are requests.
-
-* 1b. TrackAScholar detects an error in the entered applicant status/detects no applicant status input
-
-    * 1b1. TrackAScholar requests for the correct applicant status
-    * 1b2. User enters new applicant status
-    * Steps 1b1-1b2 are repeated until the applicant status entered matches a valid existing applicant status
-    * Use case resumes from step 2.
-    
-
-*{More to be added}*
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -428,7 +402,34 @@ be able to view the applicant from the list.
 
 --------------------------------------------------------------------------------------------------------------------
 
+**Use case: UC05 - Filter applicants by status**
 
+**MSS**
+
+1. User requests a filtered list based on a specific application status.
+2. TrackAScholar shows the number of applicants by status.
+3. TrackAScholar shows the percentage of applicants by status.
+4. TrackAScholar shows the filtered list of applicants with the specified applicant status.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User specifies more than one applicant status during request.
+
+    * Step 4 repeats as many times as there are requests.
+
+* 1b. TrackAScholar detects an error in the entered applicant status/detects no applicant status input.
+
+    * 1b1. TrackAScholar requests for the correct applicant status.
+    * 1b2. User enters new applicant status.
+    * Steps 1b1-1b2 are repeated until the applicant status entered matches a valid existing applicant status.
+    * Use case resumes from step 2.
+    
+
+*{More to be added}*
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Non-Functional Requirements
 
@@ -437,8 +438,8 @@ be able to view the applicant from the list.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. Product should not be required to handle the contacting of applicants.
 5. Learning features of the product should be intuitive and easily acquired by new users.
-6. TrackAScholar should respond within 2 seconds
-7. Storage stored should be easy to be shared and uploaded between different users
+6. TrackAScholar should respond within 2 seconds.
+7. Storage stored should be easy to be shared and uploaded between different users.
 
 *{More to be added}*
 
