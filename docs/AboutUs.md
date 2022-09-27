@@ -9,15 +9,26 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Clifton Felix
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/cliftonfelix.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://www.github.com/cliftonfelix)]
+[[portfolio](team/cliftonfelix.md)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: Code, Testing, Documentation
+
+
+### Daniel Lee
+
+<img src="images/lulucopter.png" width="200px">
+
+[[github](http://github.com/lulucopter)]
+[[portfolio](team/lulucopter.md)]
+
+* Role: Team Lead
+* Responsibilities: Logic
 
 ### Deon Tan
 
@@ -29,31 +40,22 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Testing & Integration
 
-### Johnny Doe
+### Jason Ciu Putra Sung
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jasoncp14.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/jasoncp14)]
+[[portfolio](team/jasoncp14.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Code Quality, Testing, Documentation
 
-### James Doe
+### Jessica Mary Listijo
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/maryjess.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/maryjess)]
+[[portfolio](team/maryjess.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: UI, Documentation
