@@ -106,6 +106,12 @@ Format: `deletedebt <person index>`
 Example:
 * `deletedebt 3`
 
+### Getting debt overview
+
+Retrieves the total sum of debts you are owed.
+
+Format: `statement`
+
 ### Listing all persons : `list`
 
 Shows a list of all persons in PayMeLah.
@@ -212,4 +218,5 @@ Action | Format, Examples
 **Find** | `find <keyword> [<more keywords>]`<br> e.g., `find James Jake`
 **List** | `list`
 **List debtees** | `debtlist`
+**Get statement** | `statement`
 **Help** | `help`
