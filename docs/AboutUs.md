@@ -29,14 +29,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Ng Yee Thern
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yeethern.png" width="350px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/AugustDespair)] [[portfolio](team/yeethern.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Code Quality
+* Responsibilities: Code Quality
 
 ### Renee Yeow
 
@@ -44,6 +44,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/reneeyeow02)]
 [[portfolio](team/johndoe.md)]
+
 
 * Role: UI Designer
 * Responsibilities: UI and Documentation
