@@ -34,7 +34,7 @@ Given below are my contributions to the project.
 * **Community**:
     * PRs reviewed (with non-trivial review comments): To be added soon.
     * Contributed to forum discussions (examples: To be added soon.
-    * Reported bugs and suggestions for other teams in the class (examples:To be added soon.)
+    * Reported bugs and suggestions for other teams in the class (examples: To be added soon.)
 
 * **Tools**:
   To be added soon.
