@@ -3,7 +3,7 @@ layout: page
 title: JerHong's Project Portfolio Page
 ---
 
-### Project: AddressBook Level 3
+### Project: CinternS
 
 CinternS is a desktop app for managing internship applications, optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
