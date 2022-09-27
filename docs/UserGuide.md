@@ -1,5 +1,5 @@
 ---
-MineFriends User Guide
+👾 MineFriends User Guide
 ---
 
 MineFriends is a **desktop app for MineCraft players to manage information about their online friends, 
@@ -36,7 +36,7 @@ benefits of a Graphical User Interface (GUI).
    * **`delete`**`3` : Deletes the 3rd friend shown in your current friend list.
    
 
-1. Refer to the [Features](#features) below for details of each command.
+Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -47,10 +47,10 @@ benefits of a Graphical User Interface (GUI).
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Amy Bee`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [t/TAG]` can be used as `n/Amy Bee t/friend` or as `n/Amy Bee`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -81,7 +81,7 @@ Format: `add n/NAME m/MINECRAFT_NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [s/SOCIAL_
 * A person can have any number of tags (including 0)
 
 
-Examples:
+Examples: - image to be added -
 * `add n/Amy Bee m/AmyBee123 p/85355255 e/amy@gmail.com a/123, Jurong West Ave 6, #08-111`
 
 
@@ -91,6 +91,8 @@ Examples:
 ### Listing all friends : `list`
 
 Shows a list of all of your MineCraft friends.
+
+Example: - image to be added -
 
 Format: `list`
 
@@ -110,7 +112,7 @@ Format: `edit INDEX [n/NAME] [a/ADDRESS] [t/TAG] …`
 * You can remove all the person’s tags by typing `t/` without
   specifying any tags after it.
 
-Examples:
+Examples: - image to be added -
 * `edit 1 p/91234567 e/amybee123@gmail.com` Edits the phone number and email address of the 1st person to be `91234567` and `amybee123@gmail.com` respectively.
 *  
 * `edit 2 n/Amy Bee t/` Edits the name of the 2nd person to be `Amy Bee` and clears all existing tags.
@@ -129,7 +131,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * Persons matching at least one keyword will be returned
   (e.g. `Amy Tan` will return `Amy Bee`, `Benson Tan`)
 
-Examples:
+Examples: - image to be added -
 * `find Amy` returns `amy` and `Amy Bee`
 
 
@@ -145,12 +147,14 @@ Format: `delete INDEX`
 * Deletes the friend at the specified `INDEX` of your friend list.
 * The index **must be a positive integer** 1, 2, 3, …
 
-Examples:
+Examples: - image to be added -
 * `list` followed by `delete 2` deletes the 2nd friend in your friend list.
 
 ### Clearing all entries : `clear`
 
 Clears all entries from your friend list.
+
+Example: - image to be added -
 
 Format: `clear`
 
@@ -170,8 +174,9 @@ MineFriends data are saved in the hard disk automatically after any command that
 
 ## FAQ
 
-**Q**: How do I transfer my MineFriends data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous MineFriends home folder.
+**Q: How do I transfer my MineFriends data to another Computer?** <br>
+**A**: 
+Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous MineFriends home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
