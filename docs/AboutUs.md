@@ -38,22 +38,22 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
 ### Stevan Gerard Gunawan
 
 <img src="images/gerardstevan.png" width="200px">
 
 [[github](http://github.com/gerardstevan)]
 [[portfolio](team/gerardstevan.md)]
+
+* Role: Developer
+* Responsibilities: Dev Ops + Threading
+
+### Ling Guan Ming
+
+<img src="images/ceereec.png" width="200px">
+
+[[github](http://github.com/ceereec)]
+[[portfolio](team/ceereec.md)]
 
 * Role: Developer
 * Responsibilities: UI
