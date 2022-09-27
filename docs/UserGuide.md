@@ -95,39 +95,46 @@ Format: `help`
 
 ### Deleting spendings: `del -s index_of_spendings`
 
-Adds a person to the address book.
+Deletes a spending entry.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Example: `del -s 2` deletes the 2nd item on the list
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Spending list:
+1. Spent 15.60 12 Sep 2022
+2. Spent 1.20 12 Sep 2022
 
-Examples:
+Expected: `A spending of 1.20 on 12 Sep 2022 has been deleted.`
 
-- `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-- `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
 ### Adding income: `add -i number [DATE]`
 
-Shows a list of all persons in the address book.
+Adds an income entry.
 
-Format: `list`
+1. Add income with default current date
+   * Example: `add -i 15.60`
+   * An income of $15.60 will be added with the current date
+   * Expected: `An income of 15.60 on 27 Sep 2022 has been recorded`
+2. Add income with specific date
+   * Example: `add -i 15.60 / 12-09-2022`
+   * An income of $15.60 will be added with 12 September 2022 as the date
+   * Expected: `An income of 15.60 on 12 Sep 2022 has been recorded`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The default date is the current date on your computer!
+</div>
 
 ### Deleting income: `del -i number index_of_income`
 
-Finds persons whose names contain any of the given keywords.
+Deletes an income entry
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Example: `del -i 2` deletes the 2nd item on the list
 
-- The search is case-insensitive. e.g `hans` will match `Hans`
-- The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-- Only the name is searched.
-- Only full words will be matched e.g. `Han` will not match `Hans`
-- Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`
-  , `Bo Yang`
+Spending list:
+1. Earned 5.00 12 Sep 2022
+2. Earned 30.00 12 Sep 2022
 
-Examples:
+Expected: `An income of 30.00 on 12 Sep 2022 has been deleted.`
+
 
 ### Viewing total summary of spendings : `view -s [MONTH]`
 

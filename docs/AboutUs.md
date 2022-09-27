@@ -11,11 +11,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Lau Rui Han
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ruihan00.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/ruihan00)]
+[[portfolio](team/ruihan00.md)]
 
 * Role: Project Advisor
 
