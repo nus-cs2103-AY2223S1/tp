@@ -270,16 +270,21 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a …​                                    | I want to …​                      | So that I can…​                                                        |
+|----------|--------------------------------------------|-----------------------------------|------------------------------------------------------------------------|
+| `* * *`  | new user                                   | see usage instructions            | refer to instructions when I forget how to use the App                 |
+| `* * *`  | user                                       | add a new person                  |                                                                        |
+| `* * *`  | user                                       | delete a person                   | remove entries that I no longer need                                   |
+| `* * *`  | user                                       | find a person by name             | locate details of persons without having to go through the entire list |
+| `* *`    | user                                       | hide private contact details      | minimize chance of someone else seeing them by accident                |
+| `*`      | user with many persons in the address book | sort persons by name              | locate a person easily                                                 |
+| `**`     | new user                                   | see sample data                   | Have a better understanding of the app's default layout                |     
+| `**`     | user                                       | filter my contacts by keywords    | Locate my contacts easily, based on a particular critera               |  
+| `**`     | user                                       | update my contacts list           | Edit their contact details                                             | 
+| `*`      | user                                       | have a reliable method            | store contact information without losing data                          | 
+ | `*`      | user                                       | view individual client's profiles | keep track of multiple, unique clients                                 | 
+ | `*`      | user                                       | pin important contacts            | be reminded of users which are of higher priority                      | 
+*{More to be added}* 
 
 ### Use cases
 

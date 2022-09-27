@@ -55,7 +55,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/cowlinn.md)]
 
 * Role: Developer
-* Responsibilities: Integration, responsible for Client class
+* Responsibilities:Integration, Testing, Main Reviewer for Marcus
+* In-Charge of Features: Client Class Management 
 
 
 ### James Doe
