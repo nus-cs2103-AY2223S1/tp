@@ -3,10 +3,26 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+JeeqTracker is a **desktop application that drives the backend of small business owners. It keeps track of transactions
+and point of contact for companies that the user interacts with, optimised for use via a Command Line Interface (CLI)**,
+while still having the benefits of a Graphical User Interface (GUI). If you can type fast, JeeqTracker can get business
+interactions recorded faster and simpler than traditional GUI applications.
 
-* Table of Contents
-{:toc}
+* [Quick Start](#quick-start)
+* [Features](#features)
+  * [Adding a person: `add`](#adding-a-person-add)
+  * [Clearing all entries: `clear`](#clearing-all-entries--clear)
+  * [Deleting a company: `delete`](#deleting-a-company--delete)
+  * [Editing a person: `edit`](#editing-a-person--edit)
+  * [Exiting the program: `exit`](#exiting-the-program--exit)
+  * [Listing all companies: `list`](#listing-all-persons--list)
+  * [Locating companies by name: `find`](#locating-companies-by-name-find)
+  * [Viewing help: `help`](#viewing-help--help)
+  * [Saving the data](#saving-the-data)
+  * [Editing the data file](#editing-the-data-file)
+  * [Archiving data files `coming in v2.0`](#archiving-data-files-coming-in-v20)
+* [FAQ](#faq)
+* [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -14,9 +30,9 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `jeeqtracker.jar` from [here](https://github.com/AY2223S1-CS2103T-T09-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your JeeqTracker.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -24,15 +40,17 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`list`** : Lists all companies
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add`**`coy/MacDonalds n/James hp/98765432 e/jamesho@example.com loc/West Coast Park` : Adds a point of contact named `James` to the Company `MacDonalds`
 
-   * **`delete`**`3` : Deletes the 3rd company shown in the current list.
+   * **`delete`**`coy/MacDonalds` : Deletes MacDonalds (Company) together with all their contacts in the current list
 
-   * **`clear`** : Deletes all contacts.
+   * **`find`**`MacDonalds` : Finds MacDonalds in the list of companies, and displays all its details (Point of contact, Transactions)
 
-   * **`exit`** : Exits the app.
+  * **`clear`** : Deletes all companies and points of contact.
+
+  * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -45,7 +63,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `create coy/COMPANY`, `COMPANY` is a parameter which can be used as `add coy/MacDonalds`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -57,10 +75,10 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g. if you specify `coy/KFC coy/MacDonalds`, only `coy/MacDonalds` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* Extraneous parameters for commands that do not take in parameters (such as `list`, `exit` and `clear`) will be ignored.<br>
+  e.g. if the command specifies `list 123`, it will be interpreted as `list`.
 
 </div>
 
@@ -188,12 +206,12 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear` followed by `confirm`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | Coming Soon
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find MacDonalds`
-**List** | `list`
-**Help** | `help` or `help [COMMAND]` <br> e.g.,`help` or `help add` or `help sort`
+| Action     | Format, Examples                                                                                                                                                      |
+|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Clear**  | `clear` followed by `confirm`                                                                                                                                         |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
+| **Edit**   | Coming Soon                                                                                                                                                           |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find MacDonalds`                                                                                                            |
+| **List**   | `list`                                                                                                                                                                |
+| **Help**   | `help` or `help [COMMAND]` <br> e.g.,`help` or `help add` or `help sort`                                                                                              |
