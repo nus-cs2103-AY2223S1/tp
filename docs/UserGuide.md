@@ -28,7 +28,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`delete`**`3` : Deletes the 3rd company shown in the current list.
 
    * **`clear`** : Deletes all contacts.
 
@@ -134,19 +134,19 @@ Examples:
 
 [//]: # (  ![result for 'find alex david']&#40;images/findAlexDavidResult.png&#41;)
 
-### Deleting a person : `delete`
+### Deleting a company : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified company from the address book.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the company at the specified `INDEX`.
+* The index refers to the index number shown in the displayed company list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd company in the address book.
+* `find cold` followed by `delete 1` deletes the 1st company in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
