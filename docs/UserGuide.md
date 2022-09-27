@@ -1,3 +1,23 @@
+# User Guide
+
+TABS helps project team leaders **overview tasks assigned to group members**. It is targeted at individuals with less programming background i.e. **less CLI-intensive** in nature.
+
+- Quick start
+- Features
+  - Adding a person: adduser
+  - Listing all persons: list
+  - Edit a person: edituser
+  - Locating persons by name: finduser
+  - Deleting a person : deleteuser
+  - Adding a group: addgroup
+  - Add member to  group: addmember
+  - Assign member a task: assigntask
+  - Locate group by name: display
+  - Delete a group: deletegroup
+  - Exiting the program : exit
+- Command summary
+
+---
 ## Quick start
 
 1. Ensure you have Java 11 or above installed in your Computer.
@@ -97,7 +117,7 @@ Deletes the specified person from the address book.
 
 Format: `deleteuser NAME`
 
-* Deletes the person with the specified `NAME`. The person with this `NAME` must already exist in the app. 
+* Deletes the person with the specified `NAME`. The person with this `NAME` must already exist in the app.
 
 Examples:
 * `deleteuser Betsy` deletes the person with the username `Betsy`.
@@ -105,9 +125,9 @@ Examples:
 
 ### Creating a group : `addgroup`
 
-Creates a new group with no members. 
+Creates a new group with no members.
 
-Format: `addgroup  GROUP` 
+Format: `addgroup  GROUP`
 
 * Creates a group with the specified GROUP
 
@@ -117,7 +137,7 @@ Adds an existing contact to an existing group in TABS.
 
 * addgroup CS2103T
 
-### Adding a member : `addmember` 
+### Adding a member : `addmember`
 
 Format: `addmember GROUP NAME`
 
@@ -183,7 +203,7 @@ Format: `exit`
 | **List**          | `list`                                                                                                                                                                                |
 | **Add Group**     | `addgroup GROUP` <br> e.g., addgroup CS2103T                                                                                                                                          |
 | **Add Member**    | `addmember [g/GROUP] [n/NAME]` <br> e.g., addmember g/CS2103T n/James Lee, addmember g/CS2101 n/DefaultUser                                                                           |
-| **Assign Task**   | `assigntask [n/NAME] [t/TASK]` <br> e.g., assigntask n/John t/TeamProject                                                                                                             | 
+| **Assign Task**   | `assigntask [n/NAME] [t/TASK]` <br> e.g., assigntask n/John t/TeamProject                                                                                                             |
 | **Display Group** | `display GROUP` <br> e.g., display CS2103T                                                                                                                                            |
 | **Delete Group**  | `deletegroup GROUP` <br> e.g., deletegroup CS2103T                                                                                                                                    |
 | **Exit**          | `exit`                                                                                                                                                                                |
