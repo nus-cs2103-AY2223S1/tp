@@ -9,7 +9,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -257,7 +258,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* CS1101S Teaching Assistants
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -270,14 +271,36 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                    | I want to …​                                                      | So that I can…​                                                        |
+|----------| ------------------------------------------ |-------------------------------------------------------------------| ---------------------------------------------------------------------- |
+| `* * *`  | user              | add students                                                      |                                                                  |
+| `* * *`  | user              | remove students                                                   |                                                                  |
+| `* * *`  | user              | add my students’ contact details                                  | contact them when I need to                                      |
+| `* * *`  | user              | delete my students’ contact details                               | remove outdated information                                      |
+| `* * *`  | user              | add my students’ grades and marks for tests                       | assess and see how well they are performing                      |
+| `* * *`  | user              | delete my students’ grades and marks for tests                    | remove outdated results                                          |
+| `* * *`  | user              | add queries from students                                         | keep track of any queries i need to address                      |
+| `* * *`  | user              | delete certain comments that are no longer relevant               | Not clutter up space with old comments                           |
+| `* * *`  | user              | add comments for a specific student                               | take note of their progress                                      |
+| `* * *`  | user              | view the information of a specific student                        | retrieve details about the student                               |
+| `* * *`  | user              | search for keywords                                               | look for information i need from my students                     |
+| `* * *`  | user              | be given helpful error messages when I give an invalid command    | troubleshoot easily without consulting the User Guide every time |
+| `* * *`  | user              | add dates for my students’ Mastery Checks                         | schedule the meetings                                            |
+| `* * *`  | user              | delete dates for my students’ Mastery Checks                      | remove outdated dates and Mastery Checks                         |
+| `* *`    | user              | get help in the app itself                                        | get help without consulting the User Guide                       |
+| `* *`    | user              | edit my students’ grades and marks for tests                      | update the student’s results                                     |
+| `* *`    | user              | edit the contact details of a specific student                    | update the student’s contact details                             |
+| `* *`    | user              | edit the information of a specific student                        | update the student’s details.                                    |
+| `* *`    | user              | edit previously added comments                                    | update my comments for a student.                                |
+| `* *`    | new user          | see the app populated with sample data                            | easily see how the app will look when it is in use               |
+| `* *`    | new user          | purge all current data                                            | get rid of sample/experimental data I used for exploring the app |
+| `* *`    | expert user       | create custom alias for my commands                               | enter commands more efficiently                                  |
+| `* *`    | expert user       | delete a custom alias                                             | remove aliases I no longer need                                  |
+| `* *`    | intermediate user | generate random pairs to group my students into pairs             | split my students for pair work                                  |
+| `*`      | expert user       | view all my current macros                                        | view all my macros and know what they do                         |
+| `*`      | expert user       | create my own macros to  perform certain functions                | be more efficient using the app                                  |
+| `*`      | intermediate user | have suggestions on comments to give students for generic  feedback | provide fast feedback                                            |
+| `*`      | intermediate user | customize the look and feel of the software                       | make the software feel like my own                               |
 
 *{More to be added}*
 

@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Yuvaraj Kumaresan
 
-<img src="images/Yuvaraj.png" width="200px">
+<img src="images/yuvaraj0702.png" width="200px">
 
 [[github](https://github.com/Yuvaraj0702)]
 [[portfolio](team/yuvaraj.md)]
@@ -43,7 +43,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/jorrdansoh.png" width="200px">
 
 [[github](http://github.com/jorrdansoh)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/jorrdansoh.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops
