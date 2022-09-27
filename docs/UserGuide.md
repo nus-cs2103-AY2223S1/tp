@@ -70,6 +70,16 @@ Format: `add n/NAME [t/TELEGRAM_HANDLE] [s/STUDENT_NUMBER]`
 The Telegram handle and student number are optional
 </div>
 
+### Deleting a student: `delete`
+
+Deletes a student from FRIDAY.
+
+Format: `delete n/NAME [t/TELEGRAM_HANDLE] [s/STUDENT_NUMBER]`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The Telegram handle and student number are optional
+</div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -81,7 +91,7 @@ The Telegram handle and student number are optional
 Action | Format
 --------|------------------
 **Add a student** | `add n/NAME [t/TELEGRAM_HANDLE] [s/STUDENT_NUMBER]`
-**Delete a student** |
+**Delete a student** | `delete n/NAME`
 **Edit a student's details** |
 **View all students** |
 **View a student's details** |
