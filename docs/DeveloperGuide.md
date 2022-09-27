@@ -285,7 +285,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `MassLinkers` and the **Actor** is the `student`, unless specified otherwise)
 
-**Use case 1: Add classmate’s information**
+**Use case 1: Add a classmate’s information**
 
 **MSS**
 1. Student chooses to add a classmate's contact.
@@ -311,16 +311,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. Student requests to list classmates
-2. MassLinkers shows a list of classmates
-3. Student requests to delete a specific classmate in the list
+1. Student requests to list classmates.
+2. MassLinkers shows a list of classmates.
+3. Student requests to delete a specific classmate in the list.
 4. MassLinkers deletes the classmate using his index.
    \
    Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty. Use case ends.
+* 2a. The list is empty. 
+\
+Use case ends.
 
 
 * 3a. The given index is invalid.
@@ -339,10 +341,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. Student searches students with a particular tag.
+1. Student searches classmate with a particular tag.
 2. MassLinkers verifies syntax of the search command is valid.
 3. MassLinkers searches through the list of added tags.
-4. MassLinkers returns the list of students associated with the particular tag and display it through the GUI.
+4. MassLinkers returns the list of classmates associated with the particular tag and display it through the GUI.
    \
    Use case ends.
 
