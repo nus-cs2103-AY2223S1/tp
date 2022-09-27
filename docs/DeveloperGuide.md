@@ -309,6 +309,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 1a1. idENTify shows an error message.
   - 1a2. User enters new data.
   - Steps 1a1-1a2 are repeated until the data entered are correct.
+
   Use case resumes at step 2.
   
 **Use Case: UC02 - Show a list of patients**
@@ -387,12 +388,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
 **Extensions**  
 
-2a.  idENTify detects an error in the entered data.
-- 2a1. idENTify shows an error message.
-- 2a2. User enters new data.
-- Steps 2a1-2a2 are repeated until the data entered are correct.
+* 2a.  idENTify detects an error in the entered data.
+  - 2a1. idENTify shows an error message.
+  - 2a2. User enters new data.
+  - Steps 2a1-2a2 are repeated until the data entered are correct.
 
-    Use case resumes at step 3.
+  Use case resumes at step 3.
 
 **Use Case: UC07 - cancel an appointment**
 
@@ -407,13 +408,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-2a. idENTify detects an error in the entered data.
-- 2a1. idENTify shows an error message.
-- 2a2. User enters new data.
-- Steps 2a1-2a2 are repeated until the data entered are correct.
+* 2a. idENTify detects an error in the entered data.
+  - 2a1. idENTify shows an error message.
+  - 2a2. User enters new data.
+  - Steps 2a1-2a2 are repeated until the data entered are correct.
 
 
-    Use case resumes at step 3.
+  Use case resumes at step 3.
 
 **Use Case: UC08 - mark an appointment**
 
@@ -427,13 +428,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-2a. idENTify detects an error in the entered data.
-- 2a1. idENTify shows an error message.
-- 2a2. User enters new data.
-- Steps 2a1-2a2 are repeated until the data entered are correct.
+* 2a. idENTify detects an error in the entered data.
+  - 2a1. idENTify shows an error message.
+  - 2a2. User enters new data.
+  - Steps 2a1-2a2 are repeated until the data entered are correct.
 
 
-    Use case resumes at step 3.
+  Use case resumes at step 3.
 
 ### Non-Functional Requirements
 
