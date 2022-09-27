@@ -9,15 +9,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Chao Yung
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chao890.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+
+[[github](https://github.com/chao890)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: Documentation, Git Expert
 
 ### Jane Doe
 
@@ -29,14 +30,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Prittam Ravi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/prit3010.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/prit3010)] [[portfolio](team/prit3010.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Scheduling & Tracking, Deliverables & Deadlines
 
 ### Jean Doe
 
