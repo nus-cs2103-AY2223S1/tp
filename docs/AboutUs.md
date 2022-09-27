@@ -18,3 +18,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Team Lead
 * Responsibilities: Storage
+
+### Chloe Lim
+
+<img src="images/chloeelim.png" width="200px">
+
+[[github](http://github.com/chloeelim)]
+[[portfolio](team/chloeelim.md)]
+
+* Role: Developer
+* Responsibilities: UI, Integration
