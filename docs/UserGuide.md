@@ -85,7 +85,7 @@ Examples:
 ### Removing students FYP: `delete`
 
 Removes a FYP from the FYP manager. A FYP could be deleted for the following reasons:
-* Student dropped the FYP 
+* Student dropped the FYP
 * Student finished the FYP
 
 Format: `delete STUDENT_ID`
