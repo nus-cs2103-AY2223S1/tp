@@ -283,16 +283,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `FRIDAY` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  FRIDAY shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  FRIDAY deletes the person
 
     Use case ends.
 
@@ -304,9 +304,121 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. FRIDAY shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: List a person's details**
+
+**MSS**
+
+1. User requests to list all persons
+2. FRIDAY shows a list of persons
+3. User requests to view the details of a specific person in the list
+4. FRIDAY displays the details of the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. FRIDAY shows an error message.
+
+      Use case resumes at step 2.
+
+
+**Use case: Add details to a person**
+
+**MSS**
+
+1. User requests to list persons
+2. FRIDAY shows a list of persons
+3. User requests to add details for a specific person in the list
+4. FRIDAY adds details for the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. FRIDAY shows an error message.
+  
+      Use case resumes at step 2.
+
+* 3b. The given details have the wrong formats or tags
+
+    * 3b1. FRIDAY shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Edit details of a person**
+
+**MSS**
+
+1. User requests to list persons
+2. FRIDAY shows a list of persons
+3. User requests to edit details for a specific person in the list
+4. FRIDAY edits details for the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. FRIDAY shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given details have the wrong formats or tags
+
+    * 3b1. FRIDAY shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Delete details of a person**
+
+**MSS**
+
+1. User requests to list persons
+2. FRIDAY shows a list of persons
+3. User requests to delete details for a specific person in the list
+4. FRIDAY deletes details for the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. FRIDAY shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given details have the wrong formats or tags
+
+    * 3b1. FRIDAY shows an error message.
+
+      Use case resumes at step 2.
+
 
 *{More to be added}*
 
