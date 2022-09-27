@@ -97,7 +97,7 @@ Examples:
 Shows a list of all students in the class.
 For each student in the list, only the Student's Name and Student's ID are displayed.
 
-Note: The other details of a student are hidden to reduce cluttering.
+:bulb: Note: The other details of a student are hidden to reduce cluttering.
 To view the full record of a student, use the `view` command instead.   
 
 Format: `view all`
