@@ -271,21 +271,24 @@ _{Explain here how the data archiving feature will be implemented}_
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 
-| Priority | As a …​                                    | I want to …​                                        | So that I can…​                                             |
-|----------|--------------------------------------------|-----------------------------------------------------|-------------------------------------------------------------|
-| `* * *`  | CS2103T TA                                 | add a new student                                   | keep track of my student's name, email and telegram handle  |
-| `* * *`  | CS2103T TA                                 | edit a student                                      | correct any errors or make any changes if needed            |
-| `* * *`  | CS2103T TA                                 | list students                                       | have an overview of all the students under me               |
-| `* * *`  | CS2103T TA                                 | list out all the tutorial's details                 | have an overview of all the tutorials I have                |
-| `* * *`  | CS2103T TA                                 | mark certain tutorials as done                      | keep track of incomplete tutorials                          |
-| `* * *`  | CS2103T TA                                 | add students' response count                        | keep track of student's participation                       |
-| `* * *`  | CS2103T TA                                 | add questions asked by students during the tutorial | address them in the future                                  |
-| `* * *`  | CS2103T TA                                 | mark a question as important                        | to prioritise which questions to address first              |
-| `* * *`  | CS2103T TA                                 | mark a question as unimportant                      | undo the action of accidentally marking such questions as important |
-| `* * *`  | CS2103T TA                                 | delete a question in the list of questions          | remove the questions that I have addressed                  |
-| `* * *`  | CS2103T TA                                 | list out all the question's details                 | have an overview of all the questions I have                |
-| `* * *`  | CS2103T TA                                 | add a new tutorial                                  | keep track of my tutorial's time and group number           |
-| `* * *`  | CS2103T TA                                 | delete a tutorial                                   | remove a tutorial I have already had                        |
+| Priority | As a …​    | I want to …​                                        | So that I can…​                                                     |
+|----------|------------|-----------------------------------------------------|---------------------------------------------------------------------|
+| `* * *`  | CS2103T TA | add a new student                                   | keep track of my student's name, email and telegram handle          |
+| `* * *`  | CS2103T TA | edit a student                                      | correct any errors or make any changes if needed                    |
+| `* * *`  | CS2103T TA | list students                                       | have an overview of all the students under me                       |
+| `* * *`  | CS2103T TA | add student's attendance                            | track student's attendance for grading purposes                     |
+| `* * *`  | CS2103T TA | add help tag to a student                           | see which students need more attention                              |
+| `* * *`  | CS2103T TA | delete a student                                    | remove entries I no longer need                                     |
+| `* * *`  | CS2103T TA | list out all the tutorial's details                 | have an overview of all the tutorials I have                        |
+| `* * *`  | CS2103T TA | mark certain tutorials as done                      | keep track of incomplete tutorials                                  |
+| `* * *`  | CS2103T TA | add students' response count                        | keep track of student's participation                               |
+| `* * *`  | CS2103T TA | add questions asked by students during the tutorial | address them in the future                                          |
+| `* * *`  | CS2103T TA | mark a question as important                        | to prioritise which questions to address first                      |
+| `* * *`  | CS2103T TA | mark a question as unimportant                      | undo the action of accidentally marking such questions as important |
+| `* * *`  | CS2103T TA | delete a question in the list of questions          | remove the questions that I have addressed                          |
+| `* * *`  | CS2103T TA | list out all the question's details                 | have an overview of all the questions I have                        |
+| `* * *`  | CS2103T TA | add a new tutorial                                  | keep track of my tutorial's time and group number                   |
+| `* * *`  | CS2103T TA | delete a tutorial                                   | remove a tutorial I have already had                                |
 
 *{More to be added}*
 
@@ -340,8 +343,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use Case ends
 
-*{More to be added}*
+**Use case: Delete a student**
 
+**MSS**
+
+1. User requests to list students
+2. SETA shows a list of students
+3. User requests to delete a specific student in the list
+4. SETA deletes the person
+
+    Use case ends.
+
+
+**Extensions**
+
+* 2a. The list is empty
+  
+    Use case ends.
+* 3a. The given index is invalid.
+  * 3a1. SETA shows an error message.
+    Use case resumes at step 2.
+  
 **Use case: Add student's response count**
 
 **MSS**
@@ -537,7 +559,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 500 persons without a noticeable sluggishness in performance for typical usage.
+2. Should be able to hold up to 200 students without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. The system should respond within 1 second.
 
