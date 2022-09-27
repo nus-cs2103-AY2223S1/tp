@@ -20,13 +20,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Jane Doe
 
-<img src="images/johndoe.png" width="200px">
+<div align=center><img src="images/lizekai-richard.png" alt="lizekai-richard" style="zoom:100%;" width=200px /></div>
+
+ 
 
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Backend
 
 ### Leong Jia Hao Daniel
 
