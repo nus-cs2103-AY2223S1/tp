@@ -382,6 +382,29 @@ be able to view the applicant from the list.
 
 --------------------------------------------------------------------------------------------------------------------
 
+**Use case: UC04 - List Applicants**
+
+**MSS**
+
+1. User requests to list all applicants.
+2. TrackAScholar shows the list of all applicants. <br>
+   Use case ends.
+
+**Extensions**
+
+* 1a. Input format is wrong.
+
+    * 1a1. TrackAScholar displays an error message prompting correct input format. <br>
+      Use case resumes at step 1.
+
+* 1b. TrackAScholar has no applicants stored.
+
+    * 1a1. TrackAScholar shows an empty applicant list.
+
+--------------------------------------------------------------------------------------------------------------------
+
+
+
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -397,6 +420,8 @@ be able to view the applicant from the list.
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **MSS**: Main Success Scenario
+* **GUI**: Graphical user interface allows users to interact with a software through visual components instead of the command line
 
 --------------------------------------------------------------------------------------------------------------------
 
