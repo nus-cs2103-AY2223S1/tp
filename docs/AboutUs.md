@@ -28,14 +28,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: UI
 
-### Johnny Doe
+### Motwani Richa Vijay
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/richavm14.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/richavm14)]
+[[portfolio](team/richavm14.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Code Quality + Documentation
 
 ### Jean Doe
 
