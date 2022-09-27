@@ -304,7 +304,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 1a1. idENTify shows an error message.
   - 1a2. User enters new data.
   - Steps 1a1-1a2 are repeated until the data entered are correct.
-  Use case resumes at step 2.
+    Use case resumes at step 2.
   
 **Use Case: UC02 - Show a list of patients**
 
@@ -315,13 +315,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to list patients
 2. idENTify shows a list of patients.
 
-
     Use case ends
 
 **Extensions**
 - 2a. The list is empty.
 
-    Use case ends
+ 
+     Use case ends
 
 **Use Case: UC03 - Show a list of appointments**
 
@@ -331,15 +331,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to list appointments
 2. idENTify shows a list of appointments
 
-    
-    Use case ends
+   Use case ends
 
 **Extensions**
 - 2a. The list is empty.
 
     Use case ends
 
-**Use Case: UC04 - delete a patient**
+**Use Case: UC04 - Delete a patient**
 
 **Guarantees**: The patient will be deleted from the patient list only if the data entered are correct.
 
@@ -348,7 +347,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. User requests to delete a specific patient in the list.
 3. idENTify deletes the patient.
 
-    
     Use case ends
 
 **Extensions**
@@ -357,8 +355,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - 2a2. User enters new data.
 - Steps 2a1-2a2 are repeated until the data entered are correct.
 
-
-    Use case resumes at step 3
+  Use case resumes at step 3
    
 
 
