@@ -126,23 +126,24 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Locating internships by: `find`
 
-Finds persons whose names contain any of the given keywords.
+Find internships whose data in the target category matched the given keyword/s.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find [c/CATEGORY] KEYWORDS…`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* The `CATEGORY` tag refers to company_name (or n), position (or p), application_process (or pr), website (or web), date(or d) (case-insensitive)
+* If not specified, the `CATEGORY` tag will be set to company_name as a default
+* Only the target category is searched.
+* A `KEYWORD` will match any string if the `KEYWORD` is contained in that string e.g. `Han` will match both `Reyhan` and `Handy`
+* Internships whose target category match at least one keyword will be returned (i.e. OR search). e.g. `c/company_name Hans Bo` can return internships with company name of `Hans Gruber` or `Bo Yang`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find c/p engineer` returns a list of internships with a position of Algorithm Engineer and Software Engineer
+* `find sea shop` returns a list of internships with company name of Sea Labs, Shopee, and Shopback
+
 
 
 ### Deleting internship(s) : `delete`
@@ -223,6 +224,6 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete INDEX...`<br> e.g., `delete 1 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Find** | `find [c/CATEGORY] KEYWORDS...`<br> e.g., `find c/p engineer`
 **List** | `list`
 **Help** | `help`

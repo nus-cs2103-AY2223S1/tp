@@ -19,13 +19,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Elbert Benedict
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/elben85.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[ [github](http://github.com/Elben85) ]
+[ [portfolio](team/elben85.md) ]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
 
 ### Farrel Dwireswara Salim
 
