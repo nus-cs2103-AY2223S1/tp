@@ -13,7 +13,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Donovan Lee Jun Hao
 
-<img src="images/donovanlee.png" width="200px">
+<img src="images/24donovan24.png" width="200px">
 
 [[github](https://github.com/24Donovan24)]
 [[portfolio](team/donovan.md)]
