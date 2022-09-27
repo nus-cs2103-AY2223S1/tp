@@ -304,13 +304,48 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case: Filter**
+
+**MSS**
+
+1. User requests to filter the list of persons by a specific application type
+2. TrackAScholar shows the number of applicants by type
+3. TrackAScholar shows the percentage of each type of applicant
+4. TrackAScholar shows the list of applicants with the specified applicant type
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User does not specify any specific applicant type during request
+
+    * Use case ends at step 3.
+
+* 1a. User specifies more than one applicant type during request
+
+    * Step 4 repeats as many times as there are requests.
+
+* 1a. TrackAScholar detects an error in the entered applicant type
+
+    * 1a1. TrackAScholar requests for the correct applicant type
+    * 1a2. User enters new applicant type
+    * Steps 1a1-1a2 are repeated until the applicant type entered matches a valid existing applicant type.
+    * Use case resumes from step 2.
+
+* 3a. The list is empty.
+
+    Use case ends.
+
+
+
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Storage stored should be easy to be shared and uploaded between different users
 
 *{More to be added}*
 
