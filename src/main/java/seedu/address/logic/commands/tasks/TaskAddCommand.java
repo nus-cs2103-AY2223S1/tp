@@ -1,7 +1,7 @@
 package seedu.address.logic.commands.tasks;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNEE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNOR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGN_FROM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGN_TO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 
 import seedu.address.logic.commands.Command;
@@ -11,7 +11,7 @@ import seedu.address.logic.parser.tasks.TaskCategoryParser;
 import seedu.address.model.Model;
 import seedu.address.model.person.Name;
 import seedu.address.model.task.Description;
-import seedu.address.model.task.Task;
+import seedu.address.model.task.enums.Assignment;
 
 /**
  * Adds a task to the task book.
@@ -24,12 +24,12 @@ public class TaskAddCommand extends Command {
             TaskCategoryParser.CATEGORY_WORD + " " + COMMAND_WORD
             + ": Adds a task to the task book.\n"
             + "Parameters: "
-            + PREFIX_ASSIGNOR + "/" + PREFIX_ASSIGNEE + "/" + "ASSIGNOR/ASSIGNEE "
+            + PREFIX_ASSIGN_FROM + "/" + PREFIX_ASSIGN_TO + "/" + "Assigned from/Assigned to "
             + PREFIX_DESCRIPTION + "DESCRIPTION";
 
     private final Name name;
     private final Description description;
-    private final Task.Assignment assignment;
+    private final Assignment assignment;
     private final boolean isDone;
 
     /**
@@ -40,11 +40,11 @@ public class TaskAddCommand extends Command {
      * @param description The description for the new task.
      * @param assignment Represents task assigned to user or others.
      */
-    public TaskAddCommand(Name name, Description description, Task.Assignment assignment) {
+    public TaskAddCommand(Name name, Description description, Assignment assignment) {
         this.name = name;
         this.description = description;
         this.assignment = assignment;
-        isDone = false;
+        this.isDone = false;
     }
 
     @Override

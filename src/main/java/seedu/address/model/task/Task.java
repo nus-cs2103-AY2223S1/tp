@@ -5,32 +5,13 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 
 import seedu.address.model.person.Person;
+import seedu.address.model.task.enums.Assignment;
 
 /**
  * Represents a Task in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Task {
-
-    /**
-     * Represents whether the Task has been assigned to the user,
-     * or the user has assigned to someone else.
-     */
-    public enum Assignment {
-        ASSIGNOR, ASSIGNEE;
-
-        @Override
-        public String toString() {
-            switch (this) {
-            case ASSIGNEE:
-                return "M";
-            case ASSIGNOR:
-                return "O";
-            default:
-                return " ";
-            }
-        }
-    }
 
     private final Person person;
     private final Assignment assignment;
