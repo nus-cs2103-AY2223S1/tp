@@ -264,7 +264,12 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**
+1. One easy-to-access place to track each student’s individual progress
+2. Makes TA’s lives easier by removing the need to manually filter students
+3. Easier and more convenient to manage and schedule meetings with students
+4. Manage students faster than a typical mouse/GUI driven app
+5. Constraint: won’t be able to actually grade submissions using FRIDAY
 
 
 ### User stories
