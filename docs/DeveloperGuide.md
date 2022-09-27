@@ -288,30 +288,91 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `idENTify` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use Case: UC01 - Add a Patient** 
+
+**Guarantees**: A patient contact is added into idENTify.
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User adds the patient by entering the command and the patient details.
+2. idENTify adds the patient.
 
-    Use case ends.
+
+    Use case ends
+    
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. idENTify detects an error in the entered data.
+  - 1a1. idENTify shows an error message.
+  - 1a2. User enters new data.
+  - Steps 1a1-1a2 are repeated until the data entered are correct.
+  Use case resumes at step 2.
+  
+**Use Case: UC02 - Show a list of patients**
 
-  Use case ends.
+**Guarantees**: A list of patients’ contact is shown.
 
-* 3a. The given index is invalid.
+**MSS**
 
-    * 3a1. AddressBook shows an error message.
+1. User requests to list patients
+2. idENTify shows a list of patients.
 
-      Use case resumes at step 2.
+
+    Use case ends
+**Extensions**
+2a. The list is empty.
+    
+    Use case ends
+
+**Use Case: UC03 - Show a list of appointments**
+
+**Guarantees**: A list of appointments is shown.
+
+**MSS**
+1. User requests to list appointments
+2. idENTify shows a list of appointments
+
+    
+    Use case ends
+
+**Extensions**
+2a. The list is empty.
+
+    Use case ends
+
+**Use Case: UC04 - delete a patient**
+
+**Guarantees**: The patient will be deleted from the patient list only if the data entered are correct.
+
+**MSS**
+1. User gets the list of patients(UC02).
+2. User requests to delete a specific patient in the list.
+3. idENTify deletes the patient.
+
+    
+    Use case ends
+
+**Extensions**
+2a. idENTify detects an error in the entered data.
+- 2a1. idENTify shows an error message.
+- 2a2. User enters new data.
+- Steps 2a1-2a2 are repeated until the data entered are correct.
+
+
+    Use case resumes at step 3
+   
+
+
+
+
+
+
+
+
+
 
 *{More to be added}*
 
