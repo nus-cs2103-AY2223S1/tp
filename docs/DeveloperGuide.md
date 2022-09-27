@@ -321,13 +321,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to list patients
 2. idENTify shows a list of patients.
 
-
     Use case ends
 
 **Extensions**
 - 2a. The list is empty.
 
-    Use case ends
+ 
+     Use case ends
 
 **Use Case: UC03 - Show a list of appointments**
 
@@ -337,15 +337,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to list appointments
 2. idENTify shows a list of appointments
 
-    
-    Use case ends
+   Use case ends
 
 **Extensions**
 - 2a. The list is empty.
 
     Use case ends
 
-**Use Case: UC04 - delete a patient**
+**Use Case: UC04 - Delete a patient**
 
 **Guarantees**: The patient will be deleted from the patient list only if the data entered are correct.
 
@@ -354,7 +353,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. User requests to delete a specific patient in the list.
 3. idENTify deletes the patient.
 
-    
     Use case ends
     
 **Use Case: UC05 - find a patient**
@@ -397,6 +395,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use Case: UC07 - cancel an appointment**
 
+
 **Guarantees:** The appointment will be deleted from the appointment list only if the data entered are correct.
 
 **MSS**
@@ -424,6 +423,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User gets the list of appointments(UC03).
 2.  User requests to mark a specified appointment for a specified patient.
 3.  idENTify marks the selected appointment.
+
     Use case ends.
 
 **Extensions**
