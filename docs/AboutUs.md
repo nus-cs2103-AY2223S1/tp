@@ -32,10 +32,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Deon Tan
 
-<img src="images/deon.png" width="200px">
+<img src="images/deeyonn.png" width="200px">
 
 [[github](http://github.com/deeyonn)]
-[[portfolio](team/deon.md)]
+[[portfolio](team/deeyonn.md)]
 
 * Role: Developer
 * Responsibilities: Testing & Integration
