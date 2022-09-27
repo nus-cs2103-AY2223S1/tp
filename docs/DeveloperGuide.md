@@ -292,7 +292,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to list customers
 2.  ArtBuddy shows a list of customers
 3.  User requests to open customer in the list
-4.  AddressBook shows the list of commissions the customer made and the detail of the customer
+4.  ArtBuddy shows the list of commissions the customer made and the detail of the customer
 
     Use case ends.
 
@@ -315,7 +315,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to list customers
 2.  ArtBuddy shows a list of customers
 3.  User requests to delete a customer in the list
-4.  AddressBook deletes the customer
+4.  ArtBuddy deletes the customer
 
     Use case ends.
 
