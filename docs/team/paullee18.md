@@ -1,14 +1,13 @@
 ---
 layout: page
-title: Edric Yeo's Project Portfolio Page
+title: Paul Lee's Project Portfolio Page
 ---
 
 ### Project: Friendnancial
-**Overview:**
-Friendnancial is a desktop contact management application used by
-financial advisors to manage their clients and contacts. The user
-interacts with it using a CLI, and it has a GUI created with JavaFX.
-It is written in Java and has about 10 kLoC.
+
+Overview: Friendnancial is a desktop contact management application used by financial advisors to manage their clients and contacts. 
+The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java and has about 10 kLoC.
+Given below are my contributions to the project.
 
 
 **Summary of Contributions**:
