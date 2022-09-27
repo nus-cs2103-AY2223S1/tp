@@ -20,13 +20,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.MinecraftName;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Socials;
+import seedu.address.model.person.*;
 import seedu.address.model.server.Server;
 import seedu.address.model.tag.Tag;
 
@@ -107,8 +101,9 @@ public class EditCommand extends Command {
         Socials updatedSocials = editPersonDescriptor.getSocials().orElse(personToEdit.getSocials());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Set<Server> updatedServers = editPersonDescriptor.getServers().orElse(personToEdit.getServers());
+        TimeZone updatedTimeZone = editPersonDescriptor.getTimeZone().orElse(personToEdit.getTimeZone());
 
-        return new Person(updatedName, updatedMinecraftName, updatedPhone, updatedEmail, updatedAddress, updatedSocials, updatedTags, updatedServers);
+        return new Person(updatedName, updatedMinecraftName, updatedPhone, updatedEmail, updatedAddress, updatedSocials, updatedTags, updatedServers, updatedTimeZone);
     }
 
     @Override
@@ -143,6 +138,7 @@ public class EditCommand extends Command {
         private Socials socials;
         private Set<Tag> tags;
         private Set<Server> servers;
+        private TimeZone timeZone;
 
         public EditPersonDescriptor() {}
 
@@ -159,13 +155,14 @@ public class EditCommand extends Command {
             setSocials(toCopy.socials);
             setTags(toCopy.tags);
             setServers(toCopy.servers);
+            setTimeZone(toCopy.timeZone);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, minecraftName, phone, email, address, socials, tags);
+            return CollectionUtil.isAnyNonNull(name, minecraftName, phone, email, address, socials, tags, servers, timeZone);
         }
 
         public void setName(Name name) {
@@ -241,6 +238,14 @@ public class EditCommand extends Command {
             return (servers != null) ? Optional.of(Collections.unmodifiableSet(servers)) : Optional.empty();
         }
 
+        public void setTimeZone(TimeZone timeZone) {
+            this.timeZone = timeZone;
+        }
+
+        public Optional<TimeZone> getTimeZone() {
+            return Optional.ofNullable(timeZone);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -260,7 +265,9 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getServers().equals(e.getServers())
+                    && getTimeZone().equals(e.getTimeZone());
         }
     }
 }
