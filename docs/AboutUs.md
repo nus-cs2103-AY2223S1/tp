@@ -38,15 +38,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Chee Zhong Wei
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/czhongwei.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/czhongwei)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Features
 
 ### James Doe
 
