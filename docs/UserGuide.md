@@ -79,7 +79,7 @@ Lists out all food stalls in NUSEatWhere database.
 
 Format: `list [-h]`
 
-Arguments: <br>
+Arguments <br>
 -h: displays this help
 
 ### Finding stalls : `find`
@@ -92,11 +92,11 @@ Format: `find [-n NAME] [-t TAG] [-l LOCATION] [-c CUSINE] [-h]`
 You can search for any number of tags (including 0 if other search fields are used)
 </div>
 
-Arguments
--n NAME : returns stores that match the name
--t TAGNAME : returns stores with that tag
--l LOCATION : returns stores with location matching a location name
--c CUSINE : returns stores with matching cuisine name
+Arguments<br>
+-n NAME : returns stores that match the name<br>
+-t TAGNAME : returns stores with that tag<br>
+-l LOCATION : returns stores with location matching a location name<br>
+-c CUSINE : returns stores with matching cuisine name<br>
 -h : displays this help
 <br><br>
 
@@ -115,9 +115,9 @@ Create a custom tag for stall(s) to facilitate searching.
 
 Format: `tag ID…​ -t TAGNAME…​ [-h]`
 
-Arguments
-ID: ID of store to place tag on
-TAGNAME : name of tag to assign to food stall
+Arguments<br>
+ID: ID of store to place tag on<br>
+TAGNAME : name of tag to assign to food stall<br>
 -h : displays this help
 
 ### Remove tag from stall : `untag`
@@ -126,9 +126,9 @@ Remove a custom tag from stall(s).
 
 Format: `untag ID…​ -t TAGNAME…​ [-h]`
 
-Arguments
-ID: ID of store to place tag on
-TAGNAME : name of tag to assign to food stall
+Arguments<br>
+ID: ID of store to place tag on<br>
+TAGNAME : name of tag to assign to food stall<br>
 -h : displays this help
 
 ### Add stall: `add`
@@ -137,10 +137,10 @@ Adds a new stall to NUSEatWhere database.
 
 Format: `add -n NAME -l LOCATION -c CUSINE [-t TAG]…​`
 
-Arguments
-NAME : name of the store to be added
-LOCATION : location of the store to be added
-CUSINE : cuisine type of the store to be added
+Arguments<br>
+NAME : name of the store to be added<br>
+LOCATION : location of the store to be added<br>
+CUSINE : cuisine type of the store to be added<br>
 TAG : extra tags to add to the store
 
 ### Delete stall : `delete`
@@ -149,7 +149,7 @@ Delete the stall from NUSEatWhere database
 
 Format: `delete STOREID`
 
-Arguments
+Arguments<br>
 storeID: ID of store to remove from NUSEatWhere
 
 ### Favourite/Unfavourite `[coming in later versions]`
