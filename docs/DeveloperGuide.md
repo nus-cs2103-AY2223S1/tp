@@ -333,7 +333,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to list persons
 2. Coydir shows a list of persons
 3. User requests to delete a specific person in the list
-4. Coy deletes the person
+4. Coydir deletes the person
 5. User adds specific person back with the updated changes.
 
     Use case ends.
