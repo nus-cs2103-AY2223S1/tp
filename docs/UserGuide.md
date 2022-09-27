@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-NUScheduler is a desktop app for ****managing contacts, optimised for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, NUScheduler can get your contact management tasks done faster than traditional GUI apps.
+NUScheduler is a desktop app for **managing contacts, optimised for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, NUScheduler can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -14,13 +14,13 @@ NUScheduler is a desktop app for ****managing contacts, optimised for use via a 
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `NUScheduler.jar` from [here](https://github.com/AY2223S1-CS2103T-T17-3/tp/releases).
+2. Download the latest `NUScheduler.jar` from [here](https://github.com/AY2223S1-CS2103T-T17-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your NUScheduler.
+3. Copy the file to the folder you want to use as the _home folder_ for your NUScheduler.
 
-1. Double-click the file to start the app.
+4. Double-click the file to start the app.
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`profile -a`** : Adds profile.
@@ -29,7 +29,7 @@ NUScheduler is a desktop app for ****managing contacts, optimised for use via a 
 
    * **`profile -v`** : Lists profiles or shows a single profile.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
