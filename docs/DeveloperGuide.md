@@ -275,43 +275,43 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                     | I want to …​                                                      | So that I can…​                                                         |
 | -------- | ------------------------------------------ | ---------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| `* * *`  | private nurse with many patients           | search a patient by name                                         | locate a patient easily                                                |
 | `* * *`  | user                                       | add a person                                                     |                                                                        |
 | `* * *`  | user                                       | delete a person                                                  | remove entries that I no longer need                                   |
 | `* * *`  | private nurse                              | be able to edit a patient's details                              | update their information if there are any changes                      |
+| `* * *`  | private nurse with many patients           | search a patient by name                                         | locate a patient easily                                                |
+| `* * *`  | user                                       | add a task to a patient                                          | know what task I need to do for the patient                            |
 | `* * *`  | private nurse                              | delete a task associated with a patient                          | remove tasks that I no longer need                                     |
 | `* * *`  | private nurse                              | edit a task associated with a patient                            | update the task if there are any changes                               |
-| `* * *`  | user                                       | know what tasks I need to do                                     | prepare for them beforehand                                            |
+| `* * *`  | private nurse                              | know what tasks I need to do                                     | prepare for them beforehand                                            |
 | `* * *`  | private nurse                              | view all tasks associated with a patient                         |                                                                        |
 | `* * *`  | private nurse                              | know the patient's family member's details                       | contact them in case of emergency                                      |
-| `* * *`  | user                                       | add a task to a patient                                          | know what task I need to do for the patient                            |
-| `* *`    | private nurse                              | add a medical condition to a patient                             | take note of the conditions they have                                  |
 | `* *`    | user                                       | see my list of patients for the day                              | know my schedule                                                       |
-| `* *`    | user                                       | know the type of ward (i.e. contagious, non-contagious)          | know if I need to don PPE before attending to them                     |
-| `* *`    | user                                       | know which doctors are assigned to my patients                   | report any irregularities to them                                      |
-| `* *`    | member of the hospital                     | update the room location of the patient                          | know if the patient is moved for any reasons, everyone involved will be aware of the change|
-| `* *`    | private nurse                              | know additional notes the doctor made about the patient          | better care for the patients                                           |
+| `* *`    | private nurse with many patients and tasks | search a patient by name and task                                | locate a patient with a specific task or name easily                   |
+| `* *`    | private nurse with many patients           | view all tasks for a particular day                              | easily see the more urgent tasks I have for the day                    |
 | `* *`    | busy nurse with short attention span       | customise what information I can see at a glance                 | waste less time looking through long chunks of text to find what I want|
-| `* *`    | private nurse                              | know the doctors (and their contact) assigned to the patients    | know who to contact in case of emergency                               |
 | `* *`    | private nurse                              | know the exact location of my patient (i.e floor no and room no) | quickly navigate to their side when needed                             |
-| `* *`    | doctor                                     | key in additional notes about the patients                       | let anyone attending to them will know more about the patients         |
-| `* *`    | private nurse                              | know what type of medication my patient is allergic              | avoid any potential mistake                                            |
+| `* *`    | private nurse                              | know the type of ward (i.e. contagious, non-contagious)          | know if I need to don PPE before attending to them                     |
+| `* *`    | member of the hospital                     | update the room location of the patient                          | know if the patient is moved for any reasons, everyone involved will be aware of the change|
+| `* *`    | private nurse                              | know which doctors are assigned to my patients                   | report any irregularities to them                                      |
+| `* *`    | private nurse                              | know the doctors (and their contact) assigned to the patients    | know who to contact in case of emergency                               |
+| `* *`    | private nurse                              | add a recurring task associated with a patient                   | keep track of tasks that I have to do repeatedly (e.g. weekly visits)  |
+| `* *`    | private nurse                              | delete a recurring task associated with a patient                | remove any tasks that I no longer need                                 |
+| `* *`    | private nurse                              | edit a recurring task associated with a patient                  | update the task to reflect any changes                                 |
+| `* *`    | doctor                                     | key in additional notes about the patients                       | let anyone attending to them know more about the patients              |
+| `* *`    | private nurse                              | know additional notes the doctor made about the patient          | better care for the patients                                           |
 | `* *`    | private nurse                              | delete a note about a patient                                    | remove notes that I no longer need                                     |
 | `* *`    | private nurse                              | edit a note about a patient                                      | update it to reflect any changes                                       |
 | `* *`    | private nurse                              | view all notes about a patient                                   |                                                                        |
-| `* *`    | private nurse                              | add a recurring task associated with a patient                   | keep track of tasks that I have to do repeatedly (e.g. weekly visits)  |
-| `* *`    | private nurse                              | edit a recurring task associated with a patient                  | update the task to reflect any changes                                 |
-| `* *`    | private nurse                              | delete a recurring task associated with a patient                | remove any tasks that I no longer need                                 |
-| `* *`    | private nurse with many patients           | view all tasks for a particular day                              | easily see the more urgent tasks I have for the day                    |
+| `* *`    | private nurse                              | add a medical condition to a patient                             | take note of the conditions they have                                  |
 | `* *`    | private nurse                              | delete a medical condition from a patient                        | remove conditions a patient may have recovered from                    |
 | `* *`    | private nurse                              | edit a medical condition of a patient                            | update any changes (e.g. severity of condition, etc.)                  |
 | `* *`    | private nurse                              | view all medical conditions of a patient                         | have better overview of the needs and type of care the patient needs   |
 | `* *`    | doctor                                     | update the medication type and dosage                            | progressively monitor the patient and update the info accordingly      |
 | `* *`    | doctor                                     | key in medication types and dosage                               | let nurses administer the appropriate type and amount                  |
 | `* *`    | private nurse                              | know what medication my patient needs                            | prepare the dosages accordingly                                        |
+| `* *`    | private nurse                              | know what type of medication my patient is allergic to           | avoid any potential mistake administering medication                   |
 | `* *`    | private nurse                              | be able to undo/redo recent commands I made in case of a mistake |                                                                        |
 | `* *`    | private nurse                              | archive former patient details (e.g., patient is cured)          | more easily keep track of only active patients and also still able to recall a patient's details if needed in the future (e.g., patient gets another disease, don't have to ask them for contact details again)|
-| `* *`    | private nurse with many patients and tasks | search a patient by name and task                                | locate a patient with a specific task or name easily                   |
 | `*`      | doctor in charge of the patient,           | control who has edit or read access                              | ensure no unqualified person can change the patients medicine requirements|
 
 
@@ -356,6 +356,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
+* **Private Nurse**: A private duty nurse who is self-employed or works for a home health care organization and provides nursing care to patients with restricted mobility or ability for self-care
+* **PPE**: Personal Protective Equipment is equipment worn to minimize exposure to hazards that cause serious workplace injuries and illnesses
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
