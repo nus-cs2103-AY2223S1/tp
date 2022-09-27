@@ -283,38 +283,38 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `MassLinkers` and the **Actor** is the `student`, unless specified otherwise)
 
-**Use case 1: Add group member’s information**
+**Use case 1: Add classmate’s information**
 
 **MSS**
-1. User chooses to add a group member contact.
-2. User enters the command to add a user.
-3. OBS verifies entered command has valid syntax.
-4. OBS adds user to the list of people. \
+1. Student chooses to add a classmate's contact.
+2. Student enters the command to add a classmate.
+3. MassLinkers verifies entered command has valid syntax.
+4. MassLinkers adds user to the list of classmates. \
    Use case ends.
 
 **Extensions**
-* 4a. OBS detects an error in the entered command.
-    * 4a1. OBS requests for the correct command.
-    * 4a2. User enters new command.
+* 4a. MassLinkers detects an error in the entered command.
+    * 4a1. MassLinkers requests for the correct command.
+    * 4a2. Student enters new command.
     * Steps 4a1-4a2 are repeated until the command entered are correct. \
       Use case resumes from step 4.
 
 
-* a. At any time, User chooses to close the AddressBook.
-    * a1. OBS updates the written storage file.
-    * a2. OBS closes the program. \
+* a. At any time, Student chooses to close MassLinkers.
+    * a1. MassLinkers updates the written storage file.
+    * a2. MassLinkers closes the program. \
       Use case ends.
 
-**Use case 2: Delete a person**
+**Use case 2: Delete a classmate**
 
 **MSS**
 
-1. User requests to list persons
-2. AddressBook shows a list of persons
-3. User requests to delete a specific person in the list
-4. AddressBook deletes the person using his index.
+1. Student requests to list classmates
+2. MassLinkers shows a list of classmates
+3. Student requests to delete a specific classmate in the list
+4. MassLinkers deletes the classmate using his index.
    \
    Use case ends.
 
@@ -324,89 +324,89 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 * 3a. The given index is invalid.
-    * 3a1. AddressBook shows an error message.
+    * 3a1. MassLinkers shows an error message.
       \
       Use case resumes at step 2.
 
 
-* a. At any time, User chooses to close the AddressBook.
-    * a1. OBS updates the written storage file.
-    * a2. OBS closes the program.
+* a. At any time, Student chooses to close MassLinkers.
+    * a1. MassLinkers updates the written storage file.
+    * a2. MassLinkers closes the program.
       \
       Use case ends.
 
-**Use case 3: Search group member via tags**
+**Use case 3: Search classmate via a tag**
 
 **MSS**
 
-1. User searches students with a particular tag.
-2. OBS verifies syntax of the search command is valid.
-3. OBS searches through the list of added tags.
-4. OBS returns the list of students associated with the particular tag and display it through the GUI.
+1. Student searches students with a particular tag.
+2. MassLinkers verifies syntax of the search command is valid.
+3. MassLinkers searches through the list of added tags.
+4. MassLinkers returns the list of students associated with the particular tag and display it through the GUI.
    \
    Use case ends.
 
 **Extensions**
-* 3a. OBS detects an error in the sequence or syntax of entered command.
-    * 3a1. OBS prompts error message.
-    * 3a2. OBS requests for the correct command.
-    * 3a3. User enters new command.
+* 3a. MassLinkers detects an error in the sequence or syntax of entered command.
+    * 3a1. MassLinkers prompts error message.
+    * 3a2. MassLinkers requests for the correct command.
+    * 3a3. Student enters new command.
       Steps 3a1-3a3 are repeated until the command entered are correct.
       \
       Use case resumes from step 4.
 
 
-* 4a. OBS detects there is no such tag.
-    * 4a1. OBS prompts error message.
-    * 4a2. OBS requests for the correct command.
-    * 4a3. User enters new command.
+* 4a. MassLinkers detects there is no such tag.
+    * 4a1. MassLinkers prompts error message.
+    * 4a2. MassLinkers requests for the correct command.
+    * 4a3. Student enters new command.
       \
       Steps 4a1-4a3 are repeated until the command entered are correct.
       \
       Use case resumes from step 4.
 
 
-* a. At any time, User chooses to close the AddressBook.
-    * a1. OBS updates the written storage file.
-    * a2. OBS closes the program.
+* a. At any time, Student chooses to close MassLinkers.
+    * a1. MassLinkers updates the written storage file.
+    * a2. MassLinkers closes the program.
       \
       Use case ends.
 
 
-**Use case 4: Add a tag to a person**
+**Use case 4: Add a tag to a classmate**
 
 **MSS**
 
-1. User chooses to add a tag on a user, could be himself or others.
-2. User enters the add tag command with the associated person.
-3. OBS verifies the syntax of the command.
-4. OBS searches through the list of people for the selected person.
-5. OBS adds tag to the person.
+1. Student chooses to add a tag on a classmate, could be himself or others.
+2. Student enters the add tag command with the associated classmate.
+3. MassLinkers verifies the syntax of the command.
+4. MassLinkers searches through the list of people for the selected classmate.
+5. MassLinkers adds tag to the classmate.
    \
    Use case ends.
 
 **Extensions**
-* 3a. OBS detects an error in the entered command.
-    * 3a1. OBS requests for the correct command.
-    * 3a2. User enters new command.
+* 3a. MassLinkers detects an error in the entered command.
+    * 3a1. MassLinkers requests for the correct command.
+    * 3a2. Student enters new command.
       \
       Steps 3a1-3a2 are repeated until the data entered are correct.
       \
       Use case resumes from step 4.
 
 
-* 5a. OBS cannot find person in the AddressBook.
-    * 5a1. OBS requests for correct command argument.
-    * 5a2. User enters new command.
+* 5a. MassLinkers cannot find classmate in MassLinkers.
+    * 5a1. MassLinkers requests for correct command argument.
+    * 5a2. Student enters new command.
       \
       Steps 5a1-5a2 are repeated until the data entered are correct.
       \
       Use case resumes from step 5.
 
 
-* a. At any time, User chooses to close the addressbook.
-    * a1. OBS updates the written storage file.
-    * a2. OBS closes the program.
+* a. At any time, Student chooses to close MassLinkers.
+    * a1. MassLinkers updates the written storage file.
+    * a2. MassLinkers closes the program.
       \
       Use case ends.
 
