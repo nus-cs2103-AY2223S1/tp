@@ -57,3 +57,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Deliverables and deadlines
 * Responsibilities: In charge of `model` and `UI`
+
+### Tai Tze Kin
+
+<img src="images/teekaytai.png" width="200px">
+
+[[github](http://github.com/teekaytai)]
+[[portfolio](team/teekaytai.md)]
+
+* Role: Team lead
+* Responsibilities: In charge of `Commands`
+
