@@ -48,6 +48,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
+### Chee Jer Hong
+
+<img src="images/jhchee18.png" width="200px">
+
+[[github](http://github.com/jhchee18)]
+[[portfolio](team/jhchee18.md)]
+
+* Role: Deliverables and deadlines
+* Responsibilities: In charge of `model` and `UI`
+
 ### Tai Tze Kin
 
 <img src="images/teekaytai.png" width="200px">
@@ -57,3 +67,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Team lead
 * Responsibilities: In charge of `Commands`
+
