@@ -14,7 +14,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/yuvaraj0702.png" width="200px">
 
 [[github](https://github.com/Yuvaraj0702)]
-[[portfolio](team/yuvaraj.md)]
+[[portfolio](team/yuvaraj0702.md)]
 
 * Role: Project Advisor
 * Responsibilities: Data
@@ -33,7 +33,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/howsuen.png" width="200px">
 
-[[github](http://github.com/HowSuen)] [[portfolio](team/howsuen.md)]
+[[github](http://github.com/HowSuen)] [[portfolio](team/howsuen.md)] 
 
 * Role: Developer
 * Responsibilities: Data
