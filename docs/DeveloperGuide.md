@@ -321,7 +321,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 - 2a. The list is empty.
 
-      Use case ends
+Use case ends
 
 **Use Case: UC03 - Show a list of appointments**
 
