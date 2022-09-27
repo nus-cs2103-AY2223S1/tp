@@ -15,7 +15,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](https://github.com/nitant-p)]
 
-[[portfolio](team/nitant.md)]
+[[portfolio](team/nitant-p.md)]
 
 * Role: Project Advisor
 
