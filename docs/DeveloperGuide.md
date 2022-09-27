@@ -282,19 +282,19 @@ They have been extensively documented [here](https://github.com/AY2223S1-CS2103T
 2. Moderate `* *` - nice to have
 3. Low `*` - unlikely to have
 
-| Priority | As a ...      | I want to ...                                                    | So that ...                                      |
-|----------|---------------|------------------------------------------------------------------|--------------------------------------------------|
-| `***`    | user          | view relevant information about RC4 residents                    |                                                  |
-| `**`     | user          | specify which fields I want to see when listing data             | my screen is less cluttered                      |
-| `**`     | user          | import my old data into the application                          |                                                  |
-| `**`     | user          | view a smaller list of RC4 residents that pass certain condition |                                                  |
-| `**`     | user          | search for residents using a portion of their names              | I do not have to remember their exact names      | 
-| `*`      | user          | export residents' data in a familiar format                      |                                                  |
-| `*`      | new user      | see sample data                                                  | I can see how the app will look like when in use |
-| `*`      | user          | delete multiple residents' data from the app quickly             | I can save time                                  |
-| `*`      | advanced user | give residents roles                                             | I can further categorize them                    |
-| `*`      | user          | use the system without referring to the user guide               |                                                  |
-| `*`      | user          | switch between different data files                              |                                                  |
+| Priority | As a ...      | I want to ...                                                      | So that ...                                      |
+|----------|---------------|--------------------------------------------------------------------|--------------------------------------------------|
+| `***`    | user          | view relevant information about RC4 residents                      |                                                  |
+| `**`     | user          | specify which fields I want to see when listing data               | my screen is less cluttered                      |
+| `**`     | user          | import my old data into the application                            |                                                  |
+| `**`     | user          | view a smaller list of RC4 residents that pass certain conditions  |                                                  |
+| `**`     | user          | search for residents using a portion of their names                | I do not have to remember their exact names      | 
+| `*`      | user          | export residents' data in a familiar format                        |                                                  |
+| `*`      | new user      | see sample data                                                    | I can see how the app will look like when in use |
+| `*`      | user          | delete multiple residents' data from the app quickly               | I can save time                                  |
+| `*`      | advanced user | give residents roles                                               | I can further categorize them                    |
+| `*`      | user          | use the system without referring to the user guide                 |                                                  |
+| `*`      | user          | switch between different data files                                |                                                  |
 
 *{More to be added}*
 
