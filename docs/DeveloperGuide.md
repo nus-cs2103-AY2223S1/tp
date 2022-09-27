@@ -319,9 +319,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *{More to be added}*
 
 ### Glossary
-
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Mastery check**: An assessment where students in pairs must present what they have learnt in the module to their TA, and the TA will assess the students’ understanding of the concepts.
+* **Avenger**: A teaching assistant (TA) who is responsible for teaching a studio class.
+* **Studio**: A tutorial class with up to 8 students.
+* **XP**: Points that will count towards a student’s grade
+* **Source Academy**: Online platform used for CS1101S.
+* **Mission**: Assignment on Source Academy
+* **Quest**: Optional assignment on Source Academy
 
 --------------------------------------------------------------------------------------------------------------------
 
