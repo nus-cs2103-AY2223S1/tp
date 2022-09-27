@@ -15,10 +15,9 @@
 3. Clone the project
 
 ## Site Map
-- [User Guide](#)
-- [Developer Guide](#)
-- [About Us](#)
-- [Contact Us](#)
+- [User Guide](docs/UserGuide.md)
+- [Developer Guide](docs/DeveloperGuide.md)
+- [About Us](docs/AboutUs.md)
 
 ## Acknowledgements
 - This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
