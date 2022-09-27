@@ -1,4 +1,4 @@
-# Project Portfolio Page for Jordan Quah Shao Xuan
+# Project Portfolio Page for Alvin Jiang
 
 ## Overview
 
@@ -12,7 +12,9 @@ I contributed code to the following modules/classes:
 2. *Enter contributions here*
 3. *Enter contributions here*
 
-You may view these contributions in more detail at [this link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=jq1836&breakdown=true).
+You may view these contributions in more detail at [this link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=alvinjiang1&breakdown=true).
+
+<!-- Please replace the placeholder in the above URL with your github username. -->
 
 ### Enhancements implemented:
 
@@ -52,14 +54,14 @@ I contributed to the following team-based tasks:
 ### Review/mentoring contributions:
 
 I reviewed the following pull requests:
-1. [Add Alvin's info #13](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/13)
+1. [Add profile photo for Nicholas #21](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/21)
 2. [Create skeletal project portfolio page #22](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/22)
-3. [Use Jekyll for Project Documentation #27](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/27)
-4. [Edit README #28](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/28)
+3. [Edit README #28](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/28)
+4. [Update index.md #29](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/29)
 5. [Update UG and DG #30](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/30)
 
 I also gave guidance to my team on the following matters:
-1. *GitHub actions repository wide check **'\r\n'** error.*
+1. *Enter contributions here*
 2. *Enter contributions here*
 3. *Enter contributions here*
 
