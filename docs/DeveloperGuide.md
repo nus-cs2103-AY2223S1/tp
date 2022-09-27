@@ -297,7 +297,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to add an applicant.
-2. TrackAScholar adds the applicant to the list.
+2. TrackAScholar adds the applicant to the list. <br>
     Use case ends.
 
 **Extensions**
@@ -316,6 +316,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   * 1a1 TrackAScholar displays an error message that applicant already exist. <br>
     Use case resumes at step 1.
+    
+--------------------------------------------------------------------------------------------------------------------
 
 **Use case: UC02 - Delete an applicant**
 
@@ -326,31 +328,59 @@ be able to view the applicant from the list.
 **MSS**
 
 1. User request to delete an applicant in TrackAScholar.
-2. User types in the information of the applicant to delete.
-3. Applicant with the matching information is removed from the list
+2. TrackAScholar removes applicant with matching name
    Use case ends.
 
 **Extensions**
 
-* 2a. Input format is wrong.
+* 1a. Input format is wrong.
 
-    * 2a1. TrackAScholar displays an error message prompting correct input format. <br>
+  * 1a1. TrackAScholar displays an error message prompting correct input format. <br>
       Use case resumes at step 1.
 
-* 2b. Input parameters is invalid.
+* 1b. Input parameters is invalid.
 
-    * 2b1. TrackAScholar displays an error message showing parameter requirements. <br>
+  * 1b1. TrackAScholar displays an error message showing parameter requirements. <br>
       Use case resumes at step 1.
 
-* 2c. Verify deletion.
+* 1c. Verify deletion.
 
-    * 2c1. TrackAScholar displays a message that ask the user if they really want to delete the applicant.
-      If user agrees to request,user has to input in a string "YES" to confirm deletion.
+  * 1c1. TrackAScholar request confirmation to delete the applicant.
+  * 1c2. User agrees by typing YES to confirm deletion. <br>
       Use case ends.
       
+--------------------------------------------------------------------------------------------------------------------
+      
+**Use case: UC03 - Edit personal details of an applicant **
 
+**Guarantees:**
+* The details of an applicant will only be updated if there exists such an applicant with the same name in the txt file.
+
+**MSS**
+
+1. User requests to change the details of an applicant (such as email or contact number etc).
+2. TrackAScholar updates the personal details of the applicant to the list.
+
+**Extensions**
+
+* 1a. Input format is wrong.
+
+  * 1a1. TrackAScholar displays an error message prompting correct input format. <br>
+      Use case resumes at step 1.
+
+* 1b. Input parameters is invalid.
+
+  * 1a1. TrackAScholar displays an error message showing parameter requirements. <br>
+      Use case resumes at step 1.
+
+* 1c. An applicant with such name does not exist.
+
+  * 1a1 TrackAScholar displays an error message that applicant does not exist and details cannot be updated. <br>
+      Use case resumes at step 1.
 
 *{More to be added}*
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Non-Functional Requirements
 
@@ -358,7 +388,8 @@ be able to view the applicant from the list.
 2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. Product should not be required to handle the contacting of applicants.
-5. Should be easy to learn and use(User should know how to use the product with ease just by reading the user guide)
+5. Learning features of the product should be intuitive and easily acquired by new users.
+6. TrackAScholar should respond within 2 seconds
 
 *{More to be added}*
 
