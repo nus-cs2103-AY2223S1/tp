@@ -54,7 +54,7 @@ Changes your name, email, and/or contact number.
 Format: `updateinfo n/NAME e/EMAIL c/CONTACT-NUMBER`
 
 Examples:
-* `updateinfo n/John Doe e/johndoe@example.com c/12345678` Updates your name to John Doe, 
+* `updateinfo n/John Doe e/johndoe@example.com c/12345678` Updates your name to John Doe,
 your email to johndoe@example.com, and your contact number to 12345678.
 
 ### Viewing basic information of team members: `view`
