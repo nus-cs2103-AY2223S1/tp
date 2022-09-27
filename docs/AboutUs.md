@@ -9,7 +9,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### T Neethesh
 
 <img src="images/neethesh_26.png" width="200px">
 
