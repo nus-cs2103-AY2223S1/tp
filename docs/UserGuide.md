@@ -71,7 +71,7 @@ Examples:
 > filter age > 25
 
 Here are the patient that age > 25:
-    1. Jack 
+    1. Jack
     2. Peter
     3. Larry
 ```
@@ -79,7 +79,7 @@ Here are the patient that age > 25:
 > filter appointment date > 2019-12-25
 
 Here are the patient that date > 2019-12-25:
-    1. Jack 
+    1. Jack
     2. Larry
 ```
 ```
