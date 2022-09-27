@@ -33,7 +33,7 @@ Given below are my contributions to the project.
     * to be added soon
 
 * **Community**:
-  * to be added soon 
+  * to be added soon
   * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
   * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
   * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())

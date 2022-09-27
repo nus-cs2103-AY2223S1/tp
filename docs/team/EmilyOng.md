@@ -28,4 +28,3 @@ PennyWise is a desktop application that **empowers students with the ability to 
 
 * **Tools**:
     * to be added soon
-    
