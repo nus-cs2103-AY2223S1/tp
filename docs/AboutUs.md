@@ -5,7 +5,6 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
@@ -13,8 +12,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/dilys.png" width="200px">
 
-[[github](https://github.com/Dilysss)]
-[[portfolio](team/dilysss.md)]
+[github](https://github.com/Dilysss)
+[portfolio](team/dilysss.md)
 
 * Role: Project Advisor
 
@@ -28,11 +27,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: UI
 
-### Johnny Doe
+### Leong Yu Xuan 
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yuxuan.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[github](http://github.com/yuxuanleong)
+[portfolio](team/yuxuanleong.md)
 
 * Role: Developer
 * Responsibilities: Data
@@ -41,8 +41,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/shawn532.png" width="200px">
 
-[[github](http://github.com/shawn532)]
-[[portfolio](team/johndoe.md)]
+[github](http://github.com/shawn532)
+[portfolio](team/johndoe.md)
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
@@ -51,8 +51,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/ketamethane.png" width="200px">
 
-[[github](https://github.com/ketamethane)]
-[[portfolio](team/ketamethane.md)]
+[github](https://github.com/ketamethane)
+[portfolio](team/ketamethane.md)
 
 * Role: Developer
 * Responsibilities: Question Class
