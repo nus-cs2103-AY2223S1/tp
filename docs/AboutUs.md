@@ -9,13 +9,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Donovan Lee Jun Hao
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/donovanlee.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[homepage](https://ay2223s1-cs2103t-t15-4.github.io/tp/)]
+[[github](https://github.com/24Donovan24)]
+[[portfolio](team/donovan.md)]
 
 * Role: Project Advisor
 
