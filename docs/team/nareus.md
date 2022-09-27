@@ -1,9 +1,7 @@
 ---
 layout: page
-title: Project Portfolio Page for
+title: Project Portfolio Page for Naren Sreekanth
 ---
-
-<!-- Insert name above -->
 
 ## Overview
 
@@ -17,7 +15,7 @@ I contributed code to the following modules/classes:
 2. *Enter contributions here*
 3. *Enter contributions here*
 
-You may view these contributions in more detail at [this link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=<github-username>&breakdown=true).
+You may view these contributions in more detail at [this link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=nareus&breakdown=true).
 
 <!-- Please replace the placeholder in the above URL with your github username. -->
 
@@ -59,8 +57,8 @@ I contributed to the following team-based tasks:
 ### Review/mentoring contributions:
 
 I reviewed the following pull requests:
-1. [Add profile photo for Nicholas #21](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/21)
-2.
+1. [Add profile photo for Jordan #14](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/14)
+2. [Update index.md #29](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/29)
 3.
 
 I also gave guidance to my team on the following matters:
@@ -73,7 +71,7 @@ I also gave guidance to my team on the following matters:
 Beyond the project team, I also participated actively in the forum.
 
 These are some threads in which I offered help to my classmates:
-1. [Clarification of definition of single-level design #231](https://github.com/nus-cs2103-AY2223S1/forum/issues/231)
+1. []()
 2. []()
 3. []()
 
