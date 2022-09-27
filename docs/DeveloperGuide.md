@@ -296,9 +296,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The given input fields are invalid.
+* 1a. The given input fields are invalid.
 
-    * 2a1. OmniHealth shows an error message.
+    * 1a1. OmniHealth shows an error message.
 
       Use case ends.
 
@@ -315,9 +315,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The given input fields are invalid.
+* 3a. The given input fields are invalid.
 
-    * 2a1. OmniHealth shows an error message.
+    * 3a1. OmniHealth shows an error message.
 
       Use case resumes at step 2.
 
@@ -334,23 +334,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list is empty.
-    * 2a1. OmniHealth shows an error message.
+* 3a. The list is empty.
+    * 3a1. OmniHealth shows an error message.
 
         Use case ends.
     
-* 3a. The given index is invalid.
+* 3b. The given index is invalid.
 
-    * 3a1. OmniHealth shows an error message.
+    * 3b1. OmniHealth shows an error message.
 
       Use case ends.
 
-* 4a. The user searches for a specific patient before deleting.
+* 2a. The user searches for a specific patient before deleting.
 
-    * 4a1. User requests to find a patient
-    * 4a2. OmniHealth shows a list of patient with given keyword
-    * 4a3. User requests to delete a specific patient in the list
-    * 4a4. OmniHealth deletes the patient
+    * 2a1. User requests to find a patient
+    * 2a2. OmniHealth shows a list of patient with given keyword
+    * 2a3. User requests to delete a specific patient in the list
+    * 2a4. OmniHealth deletes the patient
 
       Use case ends.
 
@@ -367,21 +367,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list is empty.
-
-    * 2a1. OmniHealth shows an error message.
-
-        Use case ends.
-
-* 3a. The given index is invalid.
+* 3a. The list is empty.
 
     * 3a1. OmniHealth shows an error message.
 
+        Use case ends.
+
+* 3b. The given index is invalid.
+
+    * 3b1. OmniHealth shows an error message.
+
       Use case ends.
 
-* 4a. Patient attempts to delete a record before listing records.
+* *a. Patient attempts to delete a record before listing records.
 
-    * 4a1. OmniHealth shows an error message.
+    * *a1. OmniHealth shows an error message.
 
       Use case ends.
 
@@ -417,13 +417,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. OmniHealth shows an error message.
        
-      Use case ends.
+        Use case ends.
 
 * 1b. The given index is invalid.
 
     * 1b1. OmniHealth shows an error message.
       
-      Use case ends.
+        Use case ends.
 
 **Use case: Clear patient list**
 
@@ -432,7 +432,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to clear all patients from list
 2. Omnihealth deletes patient list
 
-    Use case ends
+   Use case ends
 
 **Extensions**
 
@@ -446,7 +446,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to clear all records from a patient
 2. Omnihealth deletes all patient records
-Use case ends
+
+   Use case ends
 
 **Extensions**
 * 1a. Patient record list is empty
@@ -456,6 +457,7 @@ Use case ends
 * 1b. Patient does not exist
   * 1b1. Omnihealth displays error message
 
+  Use case ends
 
 **Use case: Get Help**
 
@@ -488,7 +490,6 @@ Use case ends
 2. OmniHealth shows a list of all patients matching the input by the user.
 3. User inputs a keyword and a patient record index.
 4. OmniHealth shows all the relevant records of the specified patient.
-
 
 *{More to be added}*
 
