@@ -14,6 +14,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/guokweijie.png" width="200px">
 
 [[github](https://github.com/guokweijie)]
+[[portfolio](team/guokweijie.md)]
 
 * Role: Team Lead
 
@@ -26,9 +27,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Documentation
 * Responsibilities: the quality of various project documents
 
-### Johnny Doe
+### Li Tianze
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/litianze.png" width="200px">
 
 [[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
 
