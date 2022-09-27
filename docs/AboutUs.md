@@ -46,9 +46,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/rachaelsng.md)]
 
 * Role: Developer
-* Responsibilities: 
+* Responsibilities:
   * Testing of the project
-  * Storage component
+  * Storage Component
 
 ### Fong Yih Jie
 
