@@ -20,12 +20,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Perry Wong Jun Jie
 
-<img src="images/perry.png" width="200px">
+<img src="images/pwjj2000.png" width="200px">
 
 [[github](https://github.com/pwjj2000)]
 [[portfolio](team/pwjj2000.md)]
 
-* Role: Deliverables and Deadlines
+* Role: Developer
 * Responsibilities: Documentation and Testing
 
 ### Lim Hong Wei, Jovon
