@@ -34,7 +34,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/jamie.png" width="200px">
 
 [[github](http://github.com/jamietan2002)]
-[[portfolio](team/jamie.md)]
+[[portfolio](team/jamietan2002.md)]
 
 * Role: Code Quality and Integration
 * Responsibilities: Main Logic (Command Parsing)
