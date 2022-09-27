@@ -273,12 +273,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | Basic user                                   | Add an internship        |  |
+| `* * *`  | Basic user                                   | Delete an internship    |   |
+| `* * *`  | Basic user                                   | View an internship details |  |
+| `* * *`  | Basic user                                   | Filter the internship based on current application process| Track my progress |
+| `* * *`    | Basic user                                 | Sort my internship list by date| View the upcoming internship matters to prepare |
+
+
 
 *{More to be added}*
 
@@ -332,6 +333,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. System shows an error message.
 
   Use case ends.
+
+**Use case: Filter internship(s)**
+
+**MSS**
+
+1. User requests to filter internships by category and keywords(s)
+2. PleaseHireUs shows a list of internships filtered by corresponding categories and keywords
+
+    Use case ends.
+
+**Extensions**
+* 1a. No keywords is given
+    * 1a1. PleaseHireUs shows an error message.
+    
+  Use case ends.
+
+
+* 1c. No category is given
+  * 1c1. The category is set to default category
+  * 1c2. Continue from 2
+
+
+* 2a. The list is empty. 
+
+    Use case ends.
+
 
 *{More to be added}*
 
