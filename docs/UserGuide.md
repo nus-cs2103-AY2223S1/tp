@@ -146,6 +146,41 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Listing all tasks : `listTask`
+
+Shows a list of all tasks to be completed.
+
+Format: `listTask`
+
+Examples:
+
+Suppose the following patients were added.
+
+`addPatient n/John Doe d/Administer 3ml of example medicine`
+
+`addPatient n/Betsy Crowe d/Change dressing on left arm`
+* `listTask` will display:
+    * `Administer 3ml of example medicine FOR John Doe`
+    * `Change dressing on left arm FOR Betsy Crowe`
+
+### View all tasks associated with a patient : `viewTask`
+
+Shows all the tasks that are associated with the specified patient.
+
+Format: `viewTask INDEX`
+
+Examples:
+
+Suppose the following patients were added.
+
+`addPatient n/John Doe d/Administer 3ml of example medicine`
+
+`addPatient n/Betsy Crowe d/Change dressing on left arm`
+* `viewTask 1` will display:
+    * `Administer 3ml of example medicine`
+* `viewTask 2` will display:
+    * `Change dressing on left arm`
+
 ### Deleting a task : `deleteTask`
 
 Deletes the specified task associated with a patient.
