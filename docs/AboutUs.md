@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Nitant Panicker
 
-<img src="images/nitant.png" width="200px">
+<img src="images/nitant-p.png" width="200px">
 
 [[github](https://github.com/nitant-p)]
 
