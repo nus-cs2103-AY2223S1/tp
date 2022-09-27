@@ -272,31 +272,79 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a …​                                    | I want to …​                      | So that I can…​                                                        |
+|----------|--------------------------------------------|-----------------------------------|------------------------------------------------------------------------|
+| `* * *`  | new user                                   | see usage instructions            | refer to instructions when I forget how to use the App                 |
+| `* * *`  | user                                       | add a new person                  |                                                                        |
+| `* * *`  | user                                       | delete a person                   | remove entries that I no longer need                                   |
+| `* * *`  | user                                       | find a person by name             | locate details of persons without having to go through the entire list |
+| `* *`    | user                                       | hide private contact details      | minimize chance of someone else seeing them by accident                |
+| `*`      | user with many persons in the address book | sort persons by name              | locate a person easily                                                 |
+| `**`     | new user                                   | see sample data                   | Have a better understanding of the app's default layout                |     
+| `**`     | user                                       | filter my contacts by keywords    | Locate my contacts easily, based on a particular critera               |  
+| `**`     | user                                       | update my contacts list           | Edit their contact details                                             | 
+| `*`      | user                                       | have a reliable method            | store contact information without losing data                          | 
+ | `*`      | user                                       | view individual client's profiles | keep track of multiple, unique clients                                 | 
+ | `*`      | user                                       | pin important contacts            | be reminded of users which are of higher priority                      | 
+*{More to be added}* 
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `LongTimeNoSee (LTNS)` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case 1: Help**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User is not sure what commands there are
+2. User inputs the command to request help
+3. LTNS displays a help message
 
-    Use case ends.
+   Use case ends
+
+**Use Case 2: Add client**
+
+**MSS**
+
+1. User loads the application
+2. User inputs the command to add a client
+3. User tags on the details he would like to specify
+4. LTNS switches to the default view automatically
+5. LTNS adds the latest client to the list view
+
+   Use case ends
+
+**Use case 3: List clients**
+
+**MSS**
+
+1. User requests to list all contacts
+2. LTNS displays a list of all contacts
+
+   Use case ends
+
+**Use case 4: View clients**
+
+**MSS**
+
+1. User loads the application
+2. User clicks on a specific client from the list view
+3. User can update information specific to his client (i.e: Birthday / Events/ Notes etc.)
+4. User switches to his default view
+5. LTNS shows a list of clients stored in the database
+
+   Use case ends.
+
+
+**Use case 6: Delete a person**
+
+**MSS**
+
+1. User requests to <u>list persons(UC3)</u>
+2. User requests to delete a specific person in the list
+3. LTNS deletes the person
+
+   Use case ends
 
 **Extensions**
 
@@ -306,7 +354,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. LTNS shows an error message.
 
       Use case resumes at step 2.
 
@@ -315,8 +363,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+2.  _mainstream OS_ includes Windows, MacOS, Linux systems with 64-bit machines
+3.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+5.  Size of windows should be scalable to full screen for maximum screen utilisation
+6. Performance requirements: Should be able to serve its features right now
+8. Extremely intuitive and minimalistic design to avoid confusion. 
+9. The product is not required to handle the direct contacting of users.
+10. For added personality, user should be able to have some customizability.(e.g: Change UI’s theme based on system-defined presets)
+
 
 *{More to be added}*
 
