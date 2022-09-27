@@ -106,6 +106,14 @@ Format: `deletedebt <person index>`
 Example:
 * `deletedebt 3`
 
+### Getting the statement
+
+Retrieves a statement of the total sum of debts you are owed.
+
+Format: `statement`
+
+Example: `statement` returns `You are owed $583.90 in total.`
+
 ### Listing all persons : `list`
 
 Shows a list of all persons in PayMeLah.
@@ -230,4 +238,5 @@ Action | Format, Examples
 **Find debts** | `finddebt <keyword> [<more keywords>]`<br> e.g., `finddebt burger`
 **List** | `list`
 **List debtees** | `debtlist`
+**Get statement** | `statement`
 **Help** | `help`
