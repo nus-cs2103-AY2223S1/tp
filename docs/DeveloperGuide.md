@@ -9,7 +9,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -257,7 +258,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* CS1101S Teaching Assistants
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
