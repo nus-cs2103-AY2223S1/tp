@@ -228,10 +228,40 @@ Adds the number of messages a specified student sent during tutorial.
 
 Format: `addresponse n\NAME m\MESSAGE_COUNT`
 
-Example:
+Examples:
 * `addresponse n\John Doe m\7`
 
 ![result for 'addresponse n\John Doe m\7'](images/addresponse.png)
+
+### List questions : `listq`
+
+Lists all questions.
+
+Format: `listq`
+
+![](images/listq.png)
+
+### Adding a tutorial : `addtut`
+
+Adds a tutorial to the tutorial list.
+
+Format: `addtut g/GROUP_NUMBER c/CONTENT t/DATE TIME`
+
+Examples:
+* `addtut g/T08 c/UML diagrams t/2022-10-01T08:00:00`
+
+![add student](images/addtut.png)
+
+### Delete a tutorial : `deletetut`
+
+Deletes a tutorial in the question list.
+
+Format: `deletetut TUTORIAL_NUMBER`
+
+Example:
+* `deleteq 1`deletes the first tutorial from the tutorial list
+
+![](images/deletetut.png)
 
 ### Mark tutorial: `marktut`
 
