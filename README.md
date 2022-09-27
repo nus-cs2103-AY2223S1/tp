@@ -1,3 +1,5 @@
+# JARVIS
+
 [![CI Status](https://github.com/AY2223S1-CS2103T-T11-3/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103T-T11-3/tp/actions)
 [![codecov](https://codecov.io/gh/AY2223S1-CS2103T-T11-3/tp/branch/master/graph/badge.svg?token=TWZARR5X99)](https://codecov.io/gh/AY2223S1-CS2103T-T11-3/tp)
 
