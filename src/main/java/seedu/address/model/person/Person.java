@@ -26,13 +26,15 @@ public class Person {
     private final Address address;
     private final Socials socials;
 
+    private final TimeZone timeZone;
+
     private Set<Server> servers = new HashSet<>();
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, MinecraftName minecraftName, Phone phone, Email email, Address address, Socials socials, Set<Tag> tags, Set<Server> servers) {
+    public Person(Name name, MinecraftName minecraftName, Phone phone, Email email, Address address, Socials socials, Set<Tag> tags, Set<Server> servers, TimeZone timeZone) {
         requireAllNonNull(name, minecraftName, phone, email, address, tags);
         this.name = name;
         this.minecraftName = minecraftName;
@@ -42,6 +44,7 @@ public class Person {
         this.socials = socials;
         this.tags.addAll(tags);
         this.servers.addAll(servers);
+        this.timeZone = timeZone;
     }
 
     public Name getName() {
@@ -78,6 +81,10 @@ public class Person {
 
     public Set<Server> getServers() {
         return Collections.unmodifiableSet(servers);
+    }
+
+    public TimeZone getTimeZone() {
+        return timeZone;
     }
 
     /**

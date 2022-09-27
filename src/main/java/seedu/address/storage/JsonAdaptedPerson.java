@@ -10,13 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.MinecraftName;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Socials;
+import seedu.address.model.person.*;
 import seedu.address.model.server.Server;
 import seedu.address.model.tag.Tag;
 
@@ -33,6 +27,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedMinecraftServer> serverList = new ArrayList<>();
+    private final String timeZone;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -40,7 +35,8 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("servers") List<JsonAdaptedMinecraftServer> serverList) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("servers") List<JsonAdaptedMinecraftServer> serverList,
+                             @JsonProperty("timeZone") String timeZone) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -51,6 +47,7 @@ class JsonAdaptedPerson {
         if (serverList != null) {
             this.serverList.addAll(serverList);
         }
+        this.timeZone = timeZone;
     }
 
     /**
@@ -67,6 +64,7 @@ class JsonAdaptedPerson {
         serverList.addAll(source.getServers().stream()
                 .map(JsonAdaptedMinecraftServer::new)
                 .collect(Collectors.toList()));
+        timeZone = source.getTimeZone().getOffsetInString();
     }
 
     /**
@@ -119,7 +117,8 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final Set<Server> modelServers = new HashSet<>(personServers);
-        return new Person(modelName, new MinecraftName("df"), modelPhone, modelEmail, modelAddress, new Socials(), modelTags, modelServers);
+        final TimeZone modelTimeZone = new TimeZone(timeZone);
+        return new Person(modelName, new MinecraftName("df"), modelPhone, modelEmail, modelAddress, new Socials(), modelTags, modelServers, modelTimeZone);
     }
 
 }

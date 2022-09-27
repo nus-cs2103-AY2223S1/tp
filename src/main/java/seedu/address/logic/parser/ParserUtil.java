@@ -9,12 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.MinecraftName;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Socials;
+import seedu.address.model.person.*;
 import seedu.address.model.server.Server;
 import seedu.address.model.tag.Tag;
 
@@ -165,5 +160,14 @@ public class ParserUtil {
             serverSet.add(parseServer(serverName));
         }
         return serverSet;
+    }
+
+    public static TimeZone parseTimeZone(String offset) throws ParseException {
+        requireNonNull(offset);
+        String trimmedOffset = offset.trim();
+        if (!TimeZone.isValidTimeZone(trimmedOffset)) {
+            throw new ParseException(TimeZone.getTimezoneConstraints());
+        }
+        return new TimeZone(trimmedOffset);
     }
 }
