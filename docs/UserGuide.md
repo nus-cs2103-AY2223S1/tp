@@ -7,7 +7,7 @@
 * Filter patients (filter)
 * Sort (sort)
 
-### Adding a patient: `add`
+### Adding a patient: `add` [coming soon]
 
 Adds a patient and his/her details, such as age, contact number and appointment date, to the app.
 
