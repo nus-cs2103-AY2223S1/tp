@@ -24,7 +24,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/darrtzj.png" width="200px">
 
 [[github](http://github.com/darrtzj)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/darrtzj.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
