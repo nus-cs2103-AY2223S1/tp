@@ -43,13 +43,13 @@ interactions recorded faster and simpler than traditional GUI applications.
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all companies
+   * **`list`** : Lists all companies.
 
-   * **`add`**`coy/MacDonalds n/James hp/98765432 e/jamesho@example.com loc/West Coast Park` : Adds a point of contact named `James` to the Company `MacDonalds`
+   * **`add`**`coy/MacDonalds n/James hp/98765432 e/jamesho@example.com loc/West Coast Park` : Adds a point of contact named `James` to the Company `MacDonalds`.
 
-   * **`delete`**`coy/MacDonalds` : Deletes MacDonalds (Company) together with all their contacts in the current list
+   * **`delete`**`coy/MacDonalds` : Deletes MacDonalds (Company) together with all their contacts in the current list.
 
-   * **`find`**`MacDonalds` : Finds MacDonalds in the list of companies, and displays all its details (Point of contact, Transactions)
+   * **`find`**`MacDonalds` : Finds MacDonalds in the list of companies, and displays all its details (Point of contact, Transactions).
 
   * **`clear`** : Deletes all companies and points of contact.
 
