@@ -9,51 +9,42 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Nyamdavaa Amar
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/nvmdava.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/nvmdava)]
+[[portfolio](team/nvmdava.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Storage
 
-### Johnny Doe
+### Leong See Leng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/seelengxd.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/seelengxd)]
+[[portfolio](team/seelengxd.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Model, Code Quality
 
-### James Doe
+### Chloe Lim
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chloeelim.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/chloeelim)]
+[[portfolio](team/chloeelim.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: UI, Integration
+
+### Ng Xing Yu
+
+<img src="images/ngxingyu.png" alt="ngxingyu" width="200px">
+
+[[github](http://github.com/ngxingyu)]
+[[portfolio](team/ngxingyu.md)]
+
+* Role: Developer
+* Responsibilities: Logic + Testing

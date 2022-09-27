@@ -18,23 +18,23 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
-4. Double-click the file to start the app. The GUI should display a list of customers. This view will be referred to as Customer View.
+4. Double-click the file to start the app. The GUI should display a list of customers. This view will be referred to as Customer View. <br> ![Ui](images/Ui.png)
 5. The following commands are available in Customer View:
 
    * **`addcus`**`n/John Doe e/johnd@example.com a/John t/animal cartoons t/vip` :  Creates a new customer named John Doe.
    * **`deletecus`**`4` :  Deletes the 4th customer displayed on the list.
    * **`opencus`**`2` : Opens the 2nd customer (Simon) on the list and brings you to the Commission View for Simon.
 
-6. In the Commission View, the list of all commissions from the opened customer (Simon) is displayed.
+6. In the Commission View, the list of all commissions from the opened customer (Simon) is displayed. <br> ![Ui](images/Ui.png)
 7. The following commands are available in Commission View:
     * **`addcom`**` n/Tokyo Ghoul Fan art f/50 d/2022-10-10` : Creates a new commission titled Tokyo Ghoul Fan art under Simon.
     * **`deletecom`**`5` : Deletes the 5th commission from Simon on the list.
     * **`opencom`**`3` : Opens the 3rd commission titled Berserk After Story and brings you to the Commission Details View.
-8. In the Commission Details View, the title, description, image thumbnails and deadline of the opened commission (Berserk After Story) is displayed.
+8. In the Commission Details View, the title, description, image thumbnails and deadline of the opened commission (Berserk After Story) is displayed. ![Ui](images/UiCommissionDetails.png)
 9. The following commands are available in Commission Details View:
    * **`additer`**`/Users/Joseph/CSP/Berserk` : Attaches the image at the specified file path to the Berserk After Story.
    * **`openimg`** : Expands the attached image for the commission for better view
-10. Refer to the Features below for details of each command.
+10. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
