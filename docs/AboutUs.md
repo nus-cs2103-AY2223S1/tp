@@ -29,7 +29,7 @@ You can reach us at the email `jason.qiu@u.nus.edu`
 * Role: Code Quality
 * Responsibilities: UI
 
-### Johnny Doe
+### Shenyi Cui
 
 <img src="images/shenyicui.png" width="200px">
 
