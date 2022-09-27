@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-NUScheduler is a desktop app for **managing contacts, optimised for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, NUScheduler can get your contact management tasks done faster than traditional GUI apps.
+NUScheduler is a desktop app for **managing contacts, optimised for use via a Command Line Interface (CLI)** while still having the benefits of Graphical User Interface (GUI). If you can type fast, NUScheduler can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -41,19 +41,7 @@ NUScheduler is a desktop app for **managing contacts, optimised for use via a Co
 > - Items in square brackets are optional. <br>
 > e.g. `profile -v [INDEX]` can be used as `profile -v 2` or as `profile -v`.
 
-### View Profile: `profile -v`
 
-Shows either a list of profiles or a single profile.
-
-Format: `profile -v [INDEX]`
-
-Tip: `INDEX` is optional, specify to view single profile.
-
-### Add Event `event -a`
-
-Adds an event with a name and a start timing and end timing.
-
-Format: `event -a n/NAME s/START e/END [p/PROFILE]`
 
 ### Viewing help : `help`
 
@@ -62,7 +50,6 @@ Shows a message explaining how to access the help page.
 ![help message](images/helpMessage.png)
 
 Format: `help`
-
 
 ### Adding a profile: `profile -a`
 
@@ -86,6 +73,20 @@ Format: `profile -d INDEX`
 
 Example:
 * `profile -d 1` deletes the first profile listed.
+
+### View Profile: `profile -v`
+
+Shows either a list of profiles or a single profile.
+
+Format: `profile -v [INDEX]`
+
+Tip: `INDEX` is optional, specify to view single profile.
+
+### Add Event `event -a`
+
+Adds an event with a name and a start timing and end timing.
+
+Format: `event -a n/NAME s/START e/END [p/PROFILE]`
 
 ### Deleting an event: `event -d`
 
