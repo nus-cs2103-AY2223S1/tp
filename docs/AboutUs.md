@@ -9,6 +9,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
+### Tiang Hui Zheng
+
+<img src="images/heyzec.png" width="200px">
+
+[[github](https://github.com/heyzec)]
+[[portfolio](team/heyzec.md)]
+
+* Role: Team Lead
+
+
 ### Yeo Yu Jie
 
 <img src="images/yeoyujie.png" width="200px">

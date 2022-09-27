@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Yeo Yu Jie's Project Portfolio Page
+title: Tiang Hui Zheng's Project Portfolio Page
 ---
 
 # Overview
@@ -10,12 +10,12 @@ It allows the professors to keep track of their students, teaching assistants an
 ## Summary of contributions
 Given below are my contributions to the project.
 
-* **Code contributed**: [yeoyujie's tP Dashboard](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=yeoyujie&breakdown=true)
+* **Code contributed**: [heyzec's tP Dashboard](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=heyzec&breakdown=true)
 
 * **Enhancements implemented**: to be added soon
 
 * **Project management**:
-  * Managed releases `v1.1` - `v1.4` (4 releases) on GitHub
+  * to be added soon
 
 * **Documentation**: 
   * User Guide:
@@ -24,8 +24,7 @@ Given below are my contributions to the project.
     * to be added soon
 
 * **Contributions to team-based tasks**:
-  * Setting up GitHub team org and repo
-  * Maintaining issue tracker
+  * to be added soon
 
 * **Review/mentoring contributions**: to be added soon
 
