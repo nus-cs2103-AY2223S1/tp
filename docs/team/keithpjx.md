@@ -23,7 +23,7 @@ Given below are my contributions to the project.
   * TO BE ADDED LATER
 
 * **Enhancements to existing features**:
-  * TO BE ADDED LATER 
+  * TO BE ADDED LATER
 
 * **Documentation**:
   * User Guide:
