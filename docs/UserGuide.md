@@ -131,17 +131,7 @@ Examples:
 
 ### Filtering the address book display : `filter`
 
-Filter the address book based on type of goods or net transfer.
-
-Format: `filter g/[GOODS]` or `filter tr/[NET_TRANSFER]`
-
-* Filters the display based on the specified criteria.
-* Type of goods include: Food, Electronics, Clothing, Commodities and Services.
-* Net transfer could either be `-` which means net loss or `+` which means net gains.
-
-Examples:
-* `filter g/Food` Display all contacts that made food transactions with you.
-* `filter tr/-` Display all contacts that has a negative net transfer with you.
+Coming Soon.
 
 ### Deleting a person : `delete`
 
