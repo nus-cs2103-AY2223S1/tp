@@ -264,7 +264,12 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**
+1. One easy-to-access place to track each student’s individual progress
+2. Makes TA’s lives easier by removing the need to manually filter students
+3. Easier and more convenient to manage and schedule meetings with students
+4. Manage students faster than a typical mouse/GUI driven app
+5. Constraint: won’t be able to actually grade submissions using FRIDAY
 
 
 ### User stories
@@ -375,7 +380,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. The given index is invalid.
 
     * 3a1. FRIDAY shows an error message.
-
+    
       Use case resumes at step 2.
 
 * 3b. The given details have the wrong formats or tags
@@ -448,7 +453,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 100 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
