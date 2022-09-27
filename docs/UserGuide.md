@@ -154,6 +154,13 @@ Clears all entries from the address book.
 
 Format: `clear`
 
+* A confirmation message will appear after the command.
+* Input `confirm` to proceed with the clearing of all entries.
+
+Example:
+
+* `clear` followed by `confirm`
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -190,7 +197,7 @@ _Details coming soon ..._
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
+**Clear** | `clear` followed by `confirm`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find MacDonalds`
