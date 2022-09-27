@@ -19,6 +19,23 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Purpose**
+
+### **Target User Profile**
+
+Our target user is a Chief Human Resources Officer (CHRO) who:
+* types fast
+* is comfortable with using CLI for inputting commands
+* needs a centralized platform for accessing and updating employees’ data
+* is a Top-level management executive in charge of an organization's employees
+
+### **Value Proposition**
+
+Coydir enables the Company’s HR executive to quickly access the list of all employees, and make necessary updates based on changes in the company’s structure. This grants excellent visualization of the company structure, which will be useful in company organization or restructuring.
+
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Design**
 
 <div markdown="span" class="alert alert-primary">
