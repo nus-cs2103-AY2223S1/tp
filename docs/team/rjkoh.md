@@ -1,6 +1,6 @@
 ---
 layout: page
-title: John Doe's Project Portfolio Page
+title: Koh Rui Jie's Project Portfolio Page
 ---
 
 # Project: ConnectNUS
