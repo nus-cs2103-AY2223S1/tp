@@ -169,6 +169,7 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) {
         logger.info("Starting AddressBook " + MainApp.VERSION);
         ui.start(primaryStage);
+        primaryStage.setTitle("SectresBook");
     }
 
     @Override

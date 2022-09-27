@@ -9,50 +9,49 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### T Neethesh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/neethesh_26.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[github](https://github.com/Neethesh26)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Project Advisor
 
-### Jane Doe
+### Chen Ruihan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chen_ruihan.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/rui-han-crh)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Features
 
-### Johnny Doe
+### Ryan Chua
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ryanczx.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/ryanczx)] [[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Chee Zhong Wei
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/czhongwei.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/czhongwei)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Features
 
-### James Doe
+### Jiang Pinran
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/pinran-j.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/Pinran-J)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
