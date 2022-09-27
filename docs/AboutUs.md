@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Anthony Ho
 
-<img src="images/anthony.png" width="200px">
+<img src="images/anthonyhoth.png" width="200px">
 
 
 [[github](https://github.com/anthonyhoth)]
