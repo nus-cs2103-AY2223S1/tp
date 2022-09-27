@@ -270,29 +270,187 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+
+| Priority | As a …​                                    | I want to …​                                        | So that I can…​                                             |
+|----------|--------------------------------------------|-----------------------------------------------------|-------------------------------------------------------------|
+| `* * *`  | CS2103T TA                                 | add a new student                                   | keep track of my student's name, email and telegram handle  |
+| `* * *`  | CS2103T TA                                 | edit a student                                      | correct any errors or make any changes if needed            |
+| `* * *`  | CS2103T TA                                 | list students                                       | have an overview of all the students under me               |
+| `* * *`  | CS2103T TA                                 | list out all the tutorial's details                 | have an overview of all the tutorials I have                |
+| `* * *`  | CS2103T TA                                 | mark certain tutorials as done                      | keep track of incomplete tutorials                          |
+| `* * *`  | CS2103T TA                                 | add students' response count                        | keep track of student's participation                       |
+| `* * *`  | CS2103T TA                                 | add questions asked by students during the tutorial | address them in the future                                  |
+| `* * *`  | CS2103T TA                                 | mark a question as important                        | to prioritise which questions to address first              |
+| `* * *`  | CS2103T TA                                 | mark a question as unimportant                      | undo the action of accidentally marking such questions as important |
+| `* * *`  | CS2103T TA                                 | delete a question in the list of questions          | remove the questions that I have addressed                  |
+
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `SETA` and the **Actor** is the `CS2103T TA`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a student**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  CS2103T TA requests to add a student
+2.  SETA adds the student with his or her details into the student list
+    Use case ends.
+
+**Extensions**
+
+* 1a. The name, telegram handle or email of the student is missing.
+  * 1a1. SETA shows an error message.
+
+    Use case ends.
+
+**Use case: Edit a student**
+
+**MSS**
+
+1. CS2103T TA requests to list students
+2. SETA shows a list of students
+3. CS2103T TA requests to edit a specific student in the list
+4. SETA updates the relevant details of the student and show the changes made
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+* 3a. The given index is invalid.
+  * 3a1. SETA shows an error message.
+  
+    Use case resumes at step 2
+
+**Use case: List students**
+
+**MSS**
+
+1. CS2103T TA requests to list students
+2. SETA shows a list of students.
+
+**Extensions**
+
+* 2a. The list is empty
+
+  Use Case ends
+
+*{More to be added}*
+
+**Use case: Add student's response count**
+
+**MSS**
+
+1. User requests to list students
+2. AddressBook shows a list of students
+3. User requests to add response count of a specific student
+4. AddressBook adds the response count
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given name is invalid.
+
+    * 3a1. AddressBook shows an error message.
+        
+      Use case resumes at step 2.
+
+
+**Use case: Add a question**
+
+**MSS**
+
+1. CS2103T TA requests to add a question
+2. AddressBook adds the question into the question list
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The question description is empty.
+
+  Use case ends.
+
+
+**Use case: Mark question**
+
+1. User requests to list questions
+2. AddressBook shows list of questions
+3. User requests to mark a specific question as important 
+4. AddressBook marks the question as important
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. AddressBook shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Unmark question**
+
+1. User requests to list questions
+2. AddressBook shows list of questions
+3. User requests to mark a specific question as unimportant
+4. AddressBook marks the question as unimportant
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. AddressBook shows an error message.
+
+      Use case resumes at step 2.
+
+
+**Use case: Delete question**
+
+1. User requests to list questions
+2. AddressBook shows list of questions
+3. User requests to delete a specific question
+4. AddressBook deletes the question
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. AddressBook shows an error message.
+
+      Use case resumes at step 2.
+
+
+**Use case: Mark tutorial**
+
+1. User requests to list students
+2. AddressBook shows a list of students
+3. User requests to mark a specific tutorial as done
+4. AddressBook marks the tutorial as done
 
     Use case ends.
 
@@ -308,13 +466,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-*{More to be added}*
+
+**Use case: List out tutorials**
+
+**MSS**
+
+1. User requests to list tutorials 
+2. AddressBook shows a list of tutorials 
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+    
+    Use case ends.
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 500 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. The system should respond within 1 second.
+
 
 *{More to be added}*
 

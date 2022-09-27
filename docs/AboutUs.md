@@ -9,24 +9,23 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Dilys Pang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/dilys.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/Dilysss)]
+[[portfolio](team/dilysss.md)]
 
 * Role: Project Advisor
 
-### Jane Doe
+### Lim Qiao En
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/qiaoen.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[github](http://github.com/qiaoen17)
+[portfolio](team/qiaoen17.md)
 
-* Role: Team Lead
+* Role: Developer
 * Responsibilities: UI
 
 ### Johnny Doe
@@ -48,12 +47,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Tan Cheong Hsien Ryan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ketamethane.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/ketamethane)]
+[[portfolio](team/ketamethane.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Question Class
