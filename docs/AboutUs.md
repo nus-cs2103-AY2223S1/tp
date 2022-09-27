@@ -29,6 +29,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Something
 
+### Jason Christopher
+
+<img src="images/jasonchristopher21.png" width="200px">
+
+[[github](http://github.com/jasonchristopher21)] [[portfolio](team/jasonchristopher21.md)]
+
+* Role: Developer
+* Responsibilities: TBA
+
 ### Johnny Doe
 
 <img src="images/johndoe.png" width="200px">
