@@ -18,9 +18,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Li Zekai
 
-<div align=center><img src="images/lizekai-richard.png" alt="lizekai-richard" style="zoom:100%;" width=200px /></div>
+<div align=left><img src="images/lizekai-richard.png" alt="lizekai-richard" style="zoom:100%;" width=200px /></div>
 
  
 
