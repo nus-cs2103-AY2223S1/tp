@@ -176,6 +176,14 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 _Details coming soon ..._
 
+### Getting the User Guide: `user guide`
+
+Returns the url to our user guide.
+
+Format: `user guide`
+
+* Displays a pop-up that contains the link to our user guide.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
