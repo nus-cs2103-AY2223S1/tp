@@ -258,12 +258,12 @@ _{Explain here how the data archiving feature will be implemented}_
 **Target user profile**:
 
 * has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
 * prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* is not used to using CLI apps
+* tends to forget commands
+* easily overwhelmed by too many information
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage contacts faster than a typical mouse/GUI driven app and provides a clean and easy to use UI
 
 
 ### User stories
@@ -272,12 +272,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *` | business owner            | choose which comoant and point-of-contact to delete | save only relevant companys and point-of-contact to remove clutter |
+| `* * *` | forgetful businesss owner | see usage instructions                     | refer to instructions when I forget how to use the App             |
+| `* * *` | new business owner        | simply search for contacts                 | only retrieve the essetial details i need                          |
+| `* * *` | new business owner        | view a company's details and point of contact | easily know who to contact for that company                        |
+| `* * *` | busy business owner       | quickly retrieve the date of the company   | save time without having to go through multiple layers             |
+| `* * *` | careless business owner   | edit the details of point-of-contact       | correct the mistakes that I did                                    |
+| `* * `  | efficient business owner  | sort the search result by price            | quickly know which company I have made the most transactio with    |
 
 *{More to be added}*
 
