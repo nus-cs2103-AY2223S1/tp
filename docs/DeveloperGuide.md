@@ -260,7 +260,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * works in the housing management team for RC4 with several other co-workers
 * has a need to manage a significant number of residents in RC4
 * is responsible for performing a wide variety of tasks including liasing with students/staff
-* requires quick access to contact details and other relevant resident information 
+* requires quick access to contact details and other relevant resident information
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -278,24 +278,37 @@ _{Explain here how the data archiving feature will be implemented}_
 Our user stories have been packaged with the relevant functionalities that we will implement/have implemented.
 
 They have been extensively documented [here](https://github.com/AY2223S1-CS2103T-W12-3/tp/issues?q=is%3Aissue+label%3Atype.Story), and have been prioritized accordingly:
-1. High - must have
-2. Moderate - nice to have
-3. Low - unlikely to have
+1. High `* * *` - must have
+2. Moderate `* *` - nice to have
+3. Low `*` - unlikely to have
 
-<!--
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
-
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a ...      | I want to ...                                                      | So that ...                                      |
+|----------|---------------|--------------------------------------------------------------------|--------------------------------------------------|
+| `***`    | user          | view relevant information about RC4 residents                      |                                                  |
+| `**`     | user          | specify which fields I want to see when listing data               | my screen is less cluttered                      |
+| `**`     | user          | import my old data into the application                            |                                                  |
+| `**`     | user          | view a smaller list of RC4 residents that pass certain conditions  |                                                  |
+| `**`     | user          | search for residents using a portion of their names                | I do not have to remember their exact names      | 
+| `*`      | user          | export residents' data in a familiar format                        |                                                  |
+| `*`      | new user      | see sample data                                                    | I can see how the app will look like when in use |
+| `*`      | user          | delete multiple residents' data from the app quickly               | I can save time                                  |
+| `*`      | advanced user | give residents roles                                               | I can further categorize them                    |
+| `*`      | user          | use the system without referring to the user guide                 |                                                  |
+| `*`      | user          | switch between different data files                                |                                                  |
 
 *{More to be added}*
 
+<!-- keep in case needed
+Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+
+| Priority | As a …​         | I want to …​                               | So that I can…​                                                        |
+| -------- |--------------------------------------------|-----------------------------------------------|------------------------------------------------------------------------|
+| `* * *`  | user                                       | view relevant information about RC4 residents | refer to instructions when I forget how to use the App                 |
+| `* * *`  | user                                       | add a new person                              |                                                                        |
+| `* * *`  | user                                       | delete a person                               | remove entries that I no longer need                                   |
+| `* * *`  | user                                       | find a person by name                         | locate details of persons without having to go through the entire list |
+| `* *`    | user                                       | hide private contact details                  | minimize chance of someone else seeing them by accident                |
+| `*`      | user with many persons in the address book | sort persons by name                          | locate a person easily                                                 |
 -->
 
 ### Use cases
