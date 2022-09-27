@@ -179,8 +179,7 @@ Format: `exit`
 
 AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
-
+### Viewing your teaching schedule
 AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -217,6 +216,25 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 - `view schedule -h` 
 
   <div align=center><img src="./images/view schedule -h.png" width=500px height=250px></div>
+
+### Finding a student
+
+Finds a student based on some keywords, with all information showing up.
+
+Format: `find keyword`
+
+
+**Tip:** Keyword  person can have any number of tags or modules (including 0).
+
+**Tip:** The result is a list of persons which keywords matching with their name, phone number or email.
+
+**Example** 
+
+
+- `find Adam Do`
+
+  <div align=center><img src="./images/find Adam Do.png" width="500px"></div>
+
 
 
 
