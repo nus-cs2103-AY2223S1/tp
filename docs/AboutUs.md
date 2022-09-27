@@ -9,15 +9,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Li Zhaoqi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/eclipse-dominator.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/Eclipse-Dominator)]
+[[portfolio](team/eclipse-dominator.md)]
 
-* Role: Project Advisor
+- Role: Developer
+- Responsibilities: Something
 
 ### Eric Lee Ying Yao
 
@@ -26,8 +26,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/autumn-sonata)]
 [[portfolio](team/autumn-sonata.md)]
 
-* Role: Developer
-* Responsibilities: Something
+- Role: Developer
+- Responsibilities: Something
 
 ### Connor Lim
 
@@ -45,8 +45,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+- Role: Developer
+- Responsibilities: Dev Ops + Threading
 
 ### James Doe
 
@@ -55,5 +55,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: UI
+- Role: Developer
+- Responsibilities: UI
