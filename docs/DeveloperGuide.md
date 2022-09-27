@@ -270,22 +270,23 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                                  | So that I can…​                                                        |
-|----------|--------------------------------------------|-----------------------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions                        | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person                              |                                                                        |
-| `* * *`  | user                                       | delete a person                               | remove entries that I no longer need                                   |
-| `* * *`  | employer                                   | add a team                                    |                                                                        |
-| `* * *`  | employer                                   | delete a team                                 | remove teams that I no longer need                                     |
-| `* * *`  | employer                                   | add team members into a team                  | update the team information                                            |
-| `* * *`  | employer                                   | remove team members from a team               | remove a user from a team                                              |
-| `* * *`  | employer                                   | change the name of the team                   | update team information                                                |
-| `* * *`  | employee                                   | see what teams I am in                        |                                                                        |
-| `* * *`  | employee                                   | see my team members in a specific team        | know who is in my team                                                 |
-| `* * *`  | employee                                   | search the contact information of my teammate | contact them                                                           |
-| `* * *`  | user                                       | find a person by name                         | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details                  | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name                          | locate a person easily                                                 |
+| Priority | As a …​  | I can  …​                                          | So that I can…​                                         |
+|----------|----------|----------------------------------------------------|---------------------------------------------------------|
+| `* * *`  | user     | see my basic information (EPIC)                    |                                                         |
+| `* * *`  | user     | see my name                                        |                                                         |
+| `* * *`  | user     | see my email                                       |                                                         |
+| `* * *`  | user     | see my contact number                              |                                                         |
+| `* *  `  | user     | have different role as employer or employee        | have different features and privilege                   |
+| `* * *`  | employer | change the team structure                          | manage the teams (EPIC)                                 |
+| `* * *`  | employer | make a new team                                    | delegate work efficiently                               |
+| `* * *`  | employer | change the name of the team                        | the name of the team is always up-to-date               |
+| `* * *`  | employer | delete a team                                      | remove teams after their project is done                |
+| `* * *`  | employer | add members to a team                              | update the team when a new member joins                 |
+| `* * *`  | employer | remove members from a team                         | update when an employee leaves the department/company   |
+| `* * `   | user     | search for information about employees in the team | know which teams I am currently in                      |
+| `* * *`  | user     | view the teams I am in                             | minimize chance of someone else seeing them by accident |
+| `*`      | user     | retrieve my colleague’s email                      | easily contact them                                     |
+| `* * *`  | user     | see all the members in a team                      | know who to contact or work with                        |
 
 *{More to be added}*
 
