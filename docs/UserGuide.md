@@ -81,17 +81,13 @@ Examples:
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds a point of contact to the company.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Format: `add coy/COMPANY n/NAME hp/NUMBER e/EMAIL loc/ADDRESS`
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add coy/MacDonalds n/James hp/98765432 e/jamesho@example.com loc/West Coast Park`
+* `add coy/KFC n/Tom hp/85948392 e/tom@example.com loc/Yishun Street 81`
 
 ### Creating a Company: `create`
 
