@@ -9,15 +9,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Tan Wei Lie Eugene
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/eugenetanwl3881.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/eugenetanwl3881)]
+[[portfolio](team/eugenetanwl3881.md)]
 
-* Role: Project Advisor
+* Role: Project Member
 
 ### Jane Doe
 
