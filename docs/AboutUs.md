@@ -47,12 +47,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: UI
 
-### James Doe
+### Arnav Aggarwal
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/arnav-ag.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/arnav-ag)]
+[[portfolio](team/arnav-ag.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: UI + API Integration
