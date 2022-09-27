@@ -21,7 +21,7 @@ You may view these contributions in more detail at [this link](https://nus-cs210
 ### Enhancements implemented:
 
 I made the following enhancements to our product:
-1. *Enter contributions here* 
+1. *Enter contributions here*
 2. *Enter contributions here*
 3. *Enter contributions here*
 

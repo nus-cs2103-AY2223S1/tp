@@ -260,13 +260,13 @@ _{Explain here how the data archiving feature will be implemented}_
 * works in the housing management team for RC4 with several other co-workers
 * has a need to manage a significant number of residents in RC4
 * is responsible for performing a wide variety of tasks including liasing with students/staff
-* requires quick access to contact details and other relevant resident information 
+* requires quick access to contact details and other relevant resident information
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: 
+**Value proposition**:
 
 * manage contacts faster than a typical mouse/GUI driven app
 * requires less technical knowledge to perform complex tasks
@@ -433,7 +433,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2d. User enters a value that does not exist in the category.
 
-    * 2d1. RC4HDB shows an error message. 
+    * 2d1. RC4HDB shows an error message.
 
       Use case resumes at step 2.
 
@@ -487,7 +487,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. User clicks on the exit button.
 
-    * 2a1. RC4HDB application closes. 
+    * 2a1. RC4HDB application closes.
 
       Use case ends.
 
