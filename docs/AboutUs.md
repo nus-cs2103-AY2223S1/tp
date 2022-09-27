@@ -9,25 +9,30 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Mok Yao Hui
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/laxus2308.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/laxus2308)]
+[[portfolio](team/laxus2308.md)]
 
-* Role: Project Advisor
+* Role: Team Lead, Scheduling and Tracking
+* Responsibilities: 
+  - Overall project coordination
+  - Define, assign and track project tasks
+  - Logic Component
 
-### Jane Doe
+### Yong Chang Sheng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/rycs2812.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/rycs2812)]
+[[portfolio](team/rycs2812.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities:
+  * Code Quality
+  * UI Component
 
 ### Johnny Doe
 
