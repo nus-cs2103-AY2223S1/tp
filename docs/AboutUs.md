@@ -41,7 +41,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Kok Ee Suan
 
-<img src="images/eesuan.png" width="200px">
+<img src="images/ee-suan.png" width="200px">
 
 [[github](http://github.com/ee-suan)]
 [[portfolio](team/eesuan.md)]
