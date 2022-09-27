@@ -298,10 +298,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to view all profiles
+2.  NUScheduelr shows a list of profiles
+3.  User requests to delete a specific profile in the list
+4.  NUScheduler deletes the person
 
     Use case ends.
 
@@ -313,9 +313,45 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. NUScheduler shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: Add an event**
+
+**MSS**
+
+1. User requests to add an event to the schedule
+2. NUScheduler adds the event and displays the updated schedule of events
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The starting date or the ending date is not provided.
+
+    * 1a1. NUScheduler reminds user of the correct format to add an event.
+
+      Use case ends.
+
+**User case: View upcoming events**
+
+**MSS**
+
+1. User requests to view all upcoming events within the next specified days
+2. NUScheduler displays the filtered list of matching events
+
+**Extensions**
+
+* 1a. The schedule is empty.
+
+  Use case ends.
+
+* 1b. The given time period is invalid.
+
+    * 1b1. NUScheduler shows an error message.
+
+      Use case ends.
 
 *{More to be added}*
 
