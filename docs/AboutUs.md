@@ -9,44 +9,46 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Tan Jing Jie
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jj.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
+[[github](https://github.com/jjtan444)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Deliverables and deadlines
+
+### Darren Wah
+
+<img src="images/darrenwah.png" width="200px">
+
+[[github](http://github.com/Darren12345677)]
+[[portfolio](team/johndoe.md)]
+
+* Role: Developer
+* Responsibilities: Integration, Scheduling and tracking
+
+### Ng Yee Thern
+
+<img src="images/yeethern.png" width="350px">
+
+[[github](http://github.com/AugustDespair)] [[portfolio](team/yeethern.md)]
+
+* Role: Code Quality
+* Responsibilities: Code Quality
+
+### Renee Yeow
+
+<img src="images/cat.png" width="200px">
+
+[[github](http://github.com/reneeyeow02)]
+[[portfolio](team/johndoe.md)]
+
+
+* Role: UI Designer
+* Responsibilities: UI and Documentation
 
 ### Ng Jia Le Max
 
