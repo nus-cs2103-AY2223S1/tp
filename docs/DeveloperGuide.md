@@ -9,6 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
+* This project is built upon the existing code for [AddressBook Level-3](https://github.com/se-edu/addressbook-level3).
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -257,33 +258,41 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* NUS students
+* has a need to regularly keep in touch with a large and diverse network of connections
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: help the end user keep track of various connections, view schedules based on various filters, and enable users to filter and search connections based on connection types
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                          | I want to …​                                                | So that I can…​                                               |
+|----------|----------------------------------|-------------------------------------------------------------|---------------------------------------------------------------|
+| `* * *`  | potential user exploring the app | see a list of features                                      | learn how to use the app                                      |
+| `* * *`  | potential user exploring the app | test out the features with the sample data provided         | familiarise with the app's features before deciding to use it |
+| `* * *`  | user ready to use the app        | reset the app's data                                        | tailor the data to my own needs and add my own data           |
+| `* * *`  | new user                         | view how to use the app at any time                         | be reminded of the commands if I forget them                  |
+| `* * *`  | user                             | add new profiles                                            |                                                               |
+| `* * *`  | user                             | remove profiles that I am no longer in contact with         | focus on the relevant profiles                                |
+| `* * *`  | user                             | view all the profiles I've added at one glance              | check the connections I have added                            |
+| `* * *`  | user                             | view individual profiles                                    | access their contact information                              |
+| `* * *`  | user                             | create an event with a title, timing, and relevant profiles |                                                               |
+| `* * *`  | user                             | remove past events                                          |                                                               |
+| `* * *`  | user                             | view individual events                                      | know its timing and who is involved                           |
+| `* *`    | user                             | view upcoming events                                        | plan my schedule for the near future                          |
+
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `NUScheduler` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
