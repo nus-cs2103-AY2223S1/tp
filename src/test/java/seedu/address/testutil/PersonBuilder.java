@@ -6,13 +6,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.person.Address;
-import seedu.address.model.person.MinecraftName;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Social;
+import seedu.address.model.person.*;
+import seedu.address.model.server.Server;
 import seedu.address.model.tag.Tag;
 
 
@@ -26,6 +21,7 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_TIMEZONE = "08:30";
 
     private Name name;
     private MinecraftName minecraftName;
@@ -34,6 +30,8 @@ public class PersonBuilder {
     private Address address;
     private Set<Social> socials;
     private Set<Tag> tags;
+    private Set<Server> servers;
+    private TimeZone timeZone;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -46,6 +44,8 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         socials = new HashSet<>();
         tags = new HashSet<>();
+        servers = new HashSet<>();
+        timeZone = new TimeZone(DEFAULT_TIMEZONE);
     }
 
     /**
@@ -59,6 +59,8 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         socials = new HashSet<>(personToCopy.getSocials());
         tags = new HashSet<>(personToCopy.getTags());
+        servers = new HashSet<>(personToCopy.getServers());
+        timeZone = personToCopy.getTimeZone();
     }
 
     /**
@@ -111,8 +113,20 @@ public class PersonBuilder {
         return this;
     }
 
+    public PersonBuilder withServers(String ... servers) {
+        this.servers = new HashSet<>(Arrays.asList(servers).stream()
+                .map(Server::new)
+                .collect(Collectors.toList()));
+        return this;
+    }
+
+    public PersonBuilder withTimeZone(String timeZone) {
+        this.timeZone = new TimeZone(timeZone);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, minecraftName, phone, email, address, socials, tags);
+        return new Person(name, minecraftName, phone, email, address, socials, tags, servers, timeZone);
     }
 
 }
