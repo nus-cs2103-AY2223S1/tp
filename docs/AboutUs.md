@@ -51,7 +51,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Chantell
 
-<img src="images/chantellyu.jpeg" width="200px">
+<img src="images/chantellyu.png" width="200px">
 
 [[github](http://github.com/chantellyu)]
 [[portfolio](team/johndoe.md)]
