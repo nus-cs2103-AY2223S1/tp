@@ -280,7 +280,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |----------|--------------------------|-----------------------------------------------------|---------------------------------------------------------------------|
 | `* * *`  | business owner           | choose which company and point-of-contact to delete | save only relevant companies and point-of-contact to remove clutter |
 | `* * *`  | forgetful business owner | see usage instructions                              | refer to instructions when I forget how to use the application      |
-| `* * *`  | new business owner       | simply search for contacts                          | retrieve the only essential details i need                          |
+| `* * *`  | new business owner       | simply search for contacts                          | retrieve only the essential details I need                          |
 | `* * *`  | new business owner       | view a company's details and point-of-contact       | easily know who to contact for that company                         |
 | `* * *`  | busy business owner      | quickly retrieve the data of the company            | save time without having to go through multiple layers              |
 | `* *`    | careless business owner  | edit the details of point-of-contact                | correct the mistakes that I did                                     |
@@ -292,14 +292,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `JeeqTracker` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Delete a company**
 
 **MSS**
 
-1.  User requests to list persons
-2.  JeeqTracker shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  JeeqTracker deletes the person
+1.  User requests to list companies
+2.  JeeqTracker shows a list of companies
+3.  User requests to delete a specific company in the list
+4.  JeeqTracker deletes the company
 
     Use case ends.
 
@@ -309,7 +309,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The given company name does not exist in the list.
 
     * 3a1. JeeqTracker shows an error message.
 
