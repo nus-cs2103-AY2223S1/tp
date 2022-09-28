@@ -426,7 +426,7 @@ Use case ends.
 5.  For every action by the user, the result should be visible within 5 seconds.
 6.  The project should not depend on any remote servers.
 7.  The software and documentation should be accessible to users with a basic command of English.
-8.  The packaged JAR file should not exceed 100mb.
+8.  The packaged JAR file should not exceed 100MB.
 9.  The software should work without the need for an installer.
 
 *{More to be added}*
