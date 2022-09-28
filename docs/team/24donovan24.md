@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Steven's Project Portfolio Page
+title: Donovan Lee's Project Portfolio Page
 ---
 
 ### Project: Gim
@@ -11,23 +11,23 @@ Given below are my contributions to the project.
 
 * **New Feature**: to be added soon
 
-* **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=stevenlimhw&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+* **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=24donovan24&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
-  * to be added soon
+    * to be added soon
 
 * **Enhancements to existing features**:
-  * to be added soon
+    * to be added soon
 
 * **Documentation**:
-  * User Guide:
-    * to be added soon
+    * User Guide:
+        * to be added soon
 
-  * Developer Guide:
-    * to be added soon
+    * Developer Guide:
+        * to be added soon
 
 * **Community**:
-  * to be added soon
+    * to be added soon
 
 * **Tools**:
-  * to be added soon
+    * to be added soon
