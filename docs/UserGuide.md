@@ -62,8 +62,6 @@ Format: `add [TITLE]`
 Examples:
 * `add software engineer internship at Apple`
 
-
-
 ### Marking an internship application status: `mark` 
 ###### (coming soon)
 
@@ -74,7 +72,6 @@ Format: `mark [INDEX] [STATUS]`
 * Updates the application at the specified INDEX. The index refers to the index number shown in the displayed 
 application list. The index **must be a positive integer** 1, 2, 3 ...
 
-
 * Updates the application to the specific STATUS. The status refers to the current status of the application. 
 The status **must be “rejected”, “interviewed”, “accepted” or “applied”**.
 
@@ -82,10 +79,26 @@ Examples:
 * `mark 3 interviewed` - Marks the 3rd application status to be `interviewed`
 * `mark 2 accepted` - Marks the 2nd application status to be `accepted`
 
-### Filtering for internship applications of a specified status: `filter `
-###### (coming soon)
+### Listing all internship applications : `list`
+######(coming soon)
 
-Shows a list of internship applications of a specified status.
+Shows a list of all internship applications.
+
+Format: `list`
+
+### Deleting an internship application : `delete`
+######(coming soon)
+
+Deletes an internship application.
+
+Format: `delete [INDEX]`
+
+* Deletes the application at the specified `INDEX`.
+* The `INDEX` refers to the index number shown in the displayed application list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+*  `delete 4` - Deletes the 4th application in the list.
 
 Format: `filter [STATUS]`
 
@@ -138,6 +151,8 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add [TITLE]` <br> e.g., `add software engineer internship at Apple`
 **Mark** | `mark [INDEX] [STATUS]` <br> e.g., `mark 3 interviewed`
+**List** | `list`
+**Delete** | `delete [INDEX]` <br> e.g., `delete 4`
 **Filter** | `filter [STATUS]` <br> e.g., `filter accepted`
 **Find** | `find [KEYWORD]`<br> e.g., `find google`
 **Exit** | `exit`
