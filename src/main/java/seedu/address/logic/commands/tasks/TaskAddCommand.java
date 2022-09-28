@@ -10,6 +10,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.tasks.TaskCategoryParser;
 import seedu.address.model.Model;
 import seedu.address.model.person.Name;
+import seedu.address.model.task.Description;
 import seedu.address.model.task.enums.Assignment;
 
 /**
@@ -27,19 +28,19 @@ public class TaskAddCommand extends Command {
             + PREFIX_DESCRIPTION + "DESCRIPTION";
 
     private final Name name;
-    private final String description;
+    private final Description description;
     private final Assignment assignment;
     private final boolean isDone;
 
     /**
      * Creates an TaskAddCommand to add a task with the specified
-     * {@code Name name}, {@code String description} and {@code Task.Assignment assignment}
+     * {@code Name name}, {@code Description description} and {@code Task.Assignment assignment}
      *
      * @param name Name of the Person in the task book.
      * @param description The description for the new task.
      * @param assignment Represents task assigned to user or others.
      */
-    public TaskAddCommand(Name name, String description, Assignment assignment) {
+    public TaskAddCommand(Name name, Description description, Assignment assignment) {
         this.name = name;
         this.description = description;
         this.assignment = assignment;
