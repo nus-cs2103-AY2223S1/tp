@@ -9,6 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
+* This project is built upon the existing code for [AddressBook Level-3](https://github.com/se-edu/addressbook-level3).
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -16,6 +17,7 @@ title: Developer Guide
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -257,42 +259,50 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* NUS students
+* has a need to regularly keep in touch with a large and diverse network of connections
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: help the end user keep track of various connections, view schedules based on various filters, and enable users to filter and search connections based on connection types
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                          | I want to …​                                                | So that I can…​                                               |
+|----------|----------------------------------|-------------------------------------------------------------|---------------------------------------------------------------|
+| `* * *`  | potential user exploring the app | see a list of features                                      | learn how to use the app                                      |
+| `* * *`  | potential user exploring the app | test out the features with the sample data provided         | familiarise with the app's features before deciding to use it |
+| `* * *`  | user ready to use the app        | reset the app's data                                        | tailor the data to my own needs and add my own data           |
+| `* * *`  | new user                         | view how to use the app at any time                         | be reminded of the commands if I forget them                  |
+| `* * *`  | user                             | add new profiles                                            |                                                               |
+| `* * *`  | user                             | remove profiles that I am no longer in contact with         | focus on the relevant profiles                                |
+| `* * *`  | user                             | view all the profiles I've added at one glance              | check the connections I have added                            |
+| `* * *`  | user                             | view individual profiles                                    | access their contact information                              |
+| `* * *`  | user                             | create an event with a title, timing, and relevant profiles |                                                               |
+| `* * *`  | user                             | remove past events                                          |                                                               |
+| `* * *`  | user                             | view individual events                                      | know its timing and who is involved                           |
+| `* *`    | user                             | view upcoming events                                        | plan my schedule for the near future                          |
+
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `NUScheduler` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to view all profiles
+2.  NUScheduler shows a list of profiles
+3.  User requests to delete a specific profile in the list
+4.  NUScheduler deletes the person
 
     Use case ends.
 
@@ -304,24 +314,69 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. NUScheduler shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: Add an event**
+
+**MSS**
+
+1. User requests to add an event to the schedule
+2. NUScheduler adds the event and displays the updated schedule of events
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The starting date or the ending date is not provided.
+
+    * 1a1. NUScheduler reminds user of the correct format to add an event.
+
+      Use case ends.
+
+**User case: View upcoming events**
+
+**MSS**
+
+1. User requests to view all upcoming events within the next specified days
+2. NUScheduler displays the filtered list of matching events
+
+**Extensions**
+
+* 1a. The schedule is empty.
+
+  Use case ends.
+
+* 1b. The given time period is invalid.
+
+    * 1b1. NUScheduler shows an error message.
+
+      Use case ends.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 profiles without a noticeable sluggishness in performance for typical usage.
+3. Should be able to hold up to 1000 events without a noticeable sluggishness in performance for typical usage.
+4. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+5. Response to any commands should be displayed within 5 seconds.
+6. A user's individual schedule should not be accessible to other users.
+7. The _GUI_ should display data logic warnings when commands are entered with incomplete fields.
+8. The _GUI_ should be at least 1280 by 720 pixels to clearly display all information.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **GUI**: Graphical User Interface, a visual display that users can interact with
+* **NUS**: National University of Singapore, tertiary education institute
+* **End user**: _NUS_ students who use NUScheduler to handle their schedules
+* **Contact details**: Contains information such as Phone number and Email, allowing the _end user_ to communicate with other users.
+* **Profile**: Contains user information such as their Name and _contact details_
+* **Connections**: _Profiles_ who the _end user_ is connected to and requires meeting with
+* **Event**: A planned meeting containing the Title, Start timing and End timing of the meeting. Also contains _profiles_ of users participating in the meeting.
 
 --------------------------------------------------------------------------------------------------------------------
 
