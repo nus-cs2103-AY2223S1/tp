@@ -48,12 +48,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer. In charge of Storage.
 * Responsibilities: Documentation + Scheduling
 
-### James Doe
+### Ng Jing Xue
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/njxue.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/njxue)]
+[[portfolio](team/njxue.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Developer. 
+* Responsibilities: Integration, Documentation, Testing and Model.
