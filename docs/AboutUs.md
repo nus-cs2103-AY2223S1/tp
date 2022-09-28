@@ -29,14 +29,14 @@ You can reach us at the email `jason.qiu@u.nus.edu`
 * Role: Code Quality
 * Responsibilities: UI
 
-### Johnny Doe
+### Shenyi Cui
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/shenyicui.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/shenyicui)] [[portfolio](team/shenyicui.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Deliverables
+* Responsibilities: Issues
 
 ### Jean Doe
 
