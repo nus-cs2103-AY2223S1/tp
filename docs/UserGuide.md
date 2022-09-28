@@ -181,12 +181,17 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action              | Format                                   | Examples        |
+|---------------------|------------------------------------------|-----------------|
+| **Add exercise**    | :a <exercise> <weight(kg)> <sets> <reps> | :a squat 60 5 5 |
+| **Delete exercise** | :d <index>                               | :d 3            |
+| **List exercises**  | :ls                                      | :ls             |
+| **Help menu**       | :help                                    | :help           |
+| **Exit program**    | :wq                                      | :wq             |
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Glossary of Terminologies 
+* Exercise : Activity requiring physical effort, carried out to sustain or improve health and fitness
+* Reps: Number of times you perform a specific exercise 
+* Sets: Number of cycles of reps that you complete 
