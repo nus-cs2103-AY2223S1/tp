@@ -257,7 +257,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* home-based small business owners who are managing orders and inventory information efficiently
+* home-based small business owners who want to manage orders and inventory information efficiently
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -282,7 +282,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | business owner                               | delete items from my inventory                                          | have an updated list of inventory items                                           |
 | `* * *`  | business owner                               | list all items in my inventory                                          | see all items in my inventory in one place                                        |
 | `* * *`  | business owner                               | tag inventory items                                                     | keep an organised inventory of items                                              |
-| `* *  `  | busy business owner                          | find an orders                                                          | locate an order without manually searching through the entire list                |
+| `* *  `  | busy business owner                          | find orders                                                             | locate an order without manually searching through the entire list                |
 | `* *  `  | business owner                               | find items in my inventory                                              | locate an item in my inventory without manually searching through the entire list |
 | `* * `   | business owner                               | edit order details                                                      | update changes to order                                                           |
 | `* *  `  | business owner                               | edit inventory item details                                             | update changes to inventory                                                       |
