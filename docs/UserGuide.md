@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-**TA-Assist** is a desktop app for teaching assistants (TA) to keep track of students’ attendance and module results, optimized for use via a Command Line Interface (CLI) while having the benefits of a Graphical User Interface (GUI). 
+**TA-Assist** is a desktop app for teaching assistants (TA) to keep track of students’ attendance and module results, optimized for use via a Command Line Interface (CLI) while having the benefits of a Graphical User Interface (GUI).
 
 * Table of Contents
 {:toc}
@@ -159,7 +159,7 @@ Examples:
 
 </aside>
 
-Format: `assign INDEX... c/CLASS_NAME`   
+Format: `assign INDEX... c/CLASS_NAME`
 
 - Assigns students at the given indices to an existing `CLASS_NAME` class
 
