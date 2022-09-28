@@ -38,7 +38,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Testing
 * Responsibilities: Designing test scenarios, conducting automated and manual tests, analysing test results
 
-### Jean Doe
+### Jacob Kwan
 
 <img src="images/jacobkwan.png" width="200px">
 
