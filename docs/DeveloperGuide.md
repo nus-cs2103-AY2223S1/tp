@@ -323,25 +323,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 #### Use case: List contacts
 1. User requests to list contacts.
 2. Rapportbook shows a list of contacts.  
-Use case ends.
+   Use case ends.
 
 #### Use case: Add a contact
+
+**MSS**
+
 1. User requests to add a contact and provides details of contacts.
 2. Rapportbook indicates that contact has been added.  
-Use case ends.
+   Use case ends.
 
 **Extensions**
+
 * 1a. User does not input the required details for the contact.
-  * Use case resumes at step 1.
+    * Use case resumes at step 1.
 
 #### Use case: Delete a contact
 
 **MSS**
 
-1.  User [lists contacts](#use-case-list-contacts ).
-2.  User requests to delete a specific contact in the list.
-3.  Rapportbook deletes the contact.  
-Use case ends.
+1. User [lists contacts](#use-case-list-contacts).
+2. User requests to delete a specific contact in the list.
+3. Rapportbook deletes the contact.  
+   Use case ends.
 
 **Extensions**
 
@@ -353,36 +357,41 @@ Use case ends.
     * Use case resumes at step 2.
 
 #### Use case: Edit a contact
-1. User [lists contacts](#use-case-list-contacts ).
+
+**MSS**
+
+1. User [lists contacts](#use-case-list-contacts).
 2. User requests to edit a specific contact in the list by specifying fields and their updated values.
 3. Rapportbook edits the contact based on what the user specified.  
-Use case ends.
+   Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.
+* 1a. The list is empty.  
   Use case ends.
 
 * 2a. The given index is invalid.
-    * 2a1. Rapportbook shows an error message.
-      Use case resumes at step 2.
+    * 2a1. Rapportbook shows an error message. 
+    * Use case resumes at step 2.
 * 2b. No fields were specified
-    * 2b1. Rapportbook shows an error message.
-      Use case resumes at step 2.
+    * 2b1. Rapportbook shows an error message. 
+    * Use case resumes at step 2.
 * 2c. Updated values is not in the right format.
-    * 2c1. Rapportbook shows an error message.
-      Use case resumes at step 2.
-* 2d. No index was specified.
-    * 2d-a. Rapportbook has a [contact shown](#use-case-show-contact ).
-      * Use case resumes at step 3.
-    * 2d-b. Rapportbook does not have a [contact shown](#use-case-show-contact ).
-      * 2d-b1. Rapportbook shows an error message.
-      * Use case resumes at step 2.
+    * 2c1. Rapportbook shows an error message. 
+    * Use case resumes at step 2.
+* 2d. No index was specified but there is a [contact shown](#use-case-show-contact).
+    * Use case resumes at step 3.
+* 2e. No index was specified and there is no [contact shown](#use-case-show-contact).
+    * Rapportbook shows an error message.
+    * Use case resumes at step 2.
 
 #### Use case: Filter contacts
+
+**MSS**
+
 1. User requests to filter contacts of a certain tag and/or name.
 2. Rapportbook shows a list of contacts that matches his filter query.  
-Use case ends.
+   Use case ends.
 
 **Extensions**
 
@@ -396,9 +405,12 @@ Use case ends.
 	Use case ends.
 
 #### Use case: Clearing filters
+
+**MSS**
+
 1. User requests to clear a filter that was applied.
 2. Rapportbook shows a list of contacts that without the filter applied.  
-Use case ends.
+   Use case ends.
 
 **Extensions**
 
@@ -412,10 +424,13 @@ Use case ends.
 	Use case ends.
 
 #### Use case: Show contact
-1.  User [lists contacts](#use-case-list-contacts ).
-2.  User requests to show a specific contact in the list.
-3.  Rapportbook displays the contact in a separate panel for the user.  
-Use case ends. 
+
+**MSS**
+
+1. User [lists contacts](#use-case-list-contacts).
+2. User requests to show a specific contact in the list.
+3. Rapportbook displays the contact in a separate panel for the user.  
+   Use case ends. 
 
 **Extensions**
 
@@ -427,6 +442,9 @@ Use case ends.
     * Use case resumes at step 2.
 
 #### Use case: Create tag(s)
+
+**MSS**
+
 1. User requests to create a certain tag or multiple tags.
 2. Rapportbook creates the corresponding tag(s).
 3. Rapportbook shows success message.
@@ -440,14 +458,17 @@ Use case ends.
     * Use case resumes at step 3.
 
 #### Use case: Add tag(s) to contact
-1.  User [lists contacts](#use-case-list-contacts ).
+
+**MSS**
+
+1.  User [lists contacts](#use-case-list-contacts).
 2.  User requests to tag a specific contact in the list with certain tag(s).
 3.  Rapportbook shows success message.  
     Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.
+* 1a. The list is empty.  
   Use case ends.
 
 * 2a. The given index is invalid.
@@ -465,14 +486,17 @@ Use case ends.
       Use case ends.
 
 #### Use case: Remove tag(s) from contact
-1.  User [lists contacts](#use-case-list-contacts ).
+
+**MSS**
+
+1.  User [lists contacts](#use-case-list-contacts).
 2.  User requests to remove certain tag(s) from a specific contact in the list.
 3.  Rapportbook shows success message.  
     Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.
+* 1a. The list is empty.  
   Use case ends.
 
 * 2a. The given index is invalid.
@@ -486,14 +510,14 @@ Use case ends.
     * Use case resumes at step 2.
 
 #### Use case: Request help manual
-1.  User requests help for application usage.
-2.  Rapportbook opens another window that contains a link to the help manual.  
-Use case ends.
+1. User requests help for application usage.
+2. Rapportbook opens another window that contains a link to the help manual.  
+   Use case ends.
 
 #### Use case: Exit application
-1.  User requests to exit the application.
-2.  Rapportbook closes all windows and exits gracefully.  
-Use case ends.
+1. User requests to exit the application.
+2. Rapportbook closes all windows and exits gracefully.  
+   Use case ends.
 
 
 ### Non-Functional Requirements
