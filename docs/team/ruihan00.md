@@ -3,6 +3,7 @@ layout: page
 title: Lau Rui Han's Project Portfolio Page
 ---
 
+
 ### Project: AddressBook Level 3
 
 PennyWise is a desktop application that **empowers students with the ability to make sensible financial decisions**,helping students to manage their budget. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
