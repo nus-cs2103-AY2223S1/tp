@@ -31,7 +31,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Jamie Tan Wei-Xuan
 
-<img src="images/jamie.png" width="200px">
+<img src="images/jamietan2002.png" width="200px">
 
 [[github](http://github.com/jamietan2002)]
 [[portfolio](team/jamietan2002.md)]
