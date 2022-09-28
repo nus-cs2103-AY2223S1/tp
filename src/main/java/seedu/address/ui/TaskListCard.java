@@ -7,7 +7,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.task.Task;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code TaskList}.
  */
 public class TaskListCard extends UiPart<Region> {
 
