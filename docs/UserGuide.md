@@ -142,8 +142,8 @@ Deletes the specified student or task from their respective lists.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list s` followed by `delete s/2` deletes the 2nd student in Jarvis.
-* `list t` followed by `delete t/1` deletes the 1st task in Jarvis.
+* `list s` followed by `delete s/2` deletes the 2nd student in JARVIS.
+* `list t` followed by `delete t/1` deletes the 1st task in JARVIS.
 
 ### Clearing all entries : `clear`
 
