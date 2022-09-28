@@ -83,28 +83,26 @@ Examples:
 * `mark 2 accepted` - Marks the 2nd application status to be accepted
 
 
-### Listing all persons : `list`
+### Listing all internship applications : `list`
+######(coming soon)
 
-Shows a list of all persons in the address book.
+Shows a list of all internship applications.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Deleting an internship application : `delete`
+######(coming soon)
 
-Edits an existing person in the address book.
+Deletes an internship application.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `delete [INDEX]`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+* Deletes the application at the specified `INDEX`.
+* The `INDEX` refers to the index number shown in the displayed application list.
+* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `delete 4` - Deletes the 4th application in the list.
 
 ### Locating persons by name: `find`
 
