@@ -48,12 +48,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer. In charge of Storage.
 * Responsibilities: Documentation + Scheduling
 
-### James Doe
+### Xu Yi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/optionalemon.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/optionalemon)]
+[[portfolio](team/optionalemon.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Developer, in charge of UI.
+* Responsibilities: Testing + Deliverables and Deadlines
