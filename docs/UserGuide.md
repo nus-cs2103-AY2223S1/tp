@@ -62,73 +62,76 @@ clean Graphical User Interface (GUI) for easy comprehension of expenditure and s
 
 **:information_source: Notes about the command format:**<br>
 
+- All command follow this format:<br>
+  `command | identifier | input | [optional inputs]`<br>
+  Example: `add -s 15.60 / 15-08-2022`<br>
+  - Command : add<br>
+  - Identifier : -s<br>
+  - Input : 15.60<br>
+  - Optional input : 15-08-2022<br>
+
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `del -s INDEX_OF_SPENDING`, `INDEX_OF_SPENDING` is a parameter which can be used as `del -s 10`.
 
 - Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-- Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-- Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-- If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of
-  the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-
-- Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be
-  ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
+  e.g `add -s NUMBER [DATE]` can be used as `add -s 100 [31-08-2022]` or as `add -s 100`.
 </div>
 
 
-### Adding spendings: `add -s  number [DATE]`
-
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
+### Adding spendings: `add -s  NUMBER [DATE]`
+1. Add spending with default date <br>
+Example: `add -s 15.60`<br>
+A spending of 15.60 will be added with the current date
 
 
-### Deleting spendings: `del -s index_of_spendings`
+2. Add spending with specific date <br>
+Example: `add -s 15.60 / 12-09-2022`<br>
+A spending of 15.60 will be added with 12 September 2022 as the date
 
-Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+### Deleting spendings: `del -s INDEX_OF_SPENDING`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Deletes a spending record.
 
-Examples:
+Example: `del -s 2`<br>
+Suppose the spendings list before delete is:
+```aidl
+Spendings list:
+  1. Spent 15.60 12 Sep 2022
+  2. Spent 1.20 12 Sep 2022
+```
+After running `del -s 2`, the spendings list will become:
+```
+Spendings list:
+  1. Spent 15.60 12 Sep 2022
+```
 
-- `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-- `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+### Adding income: `add -i NUMBER [DATE]`
 
-### Adding income: `add -i number [DATE]`
+1. Add income with default current date<br>
+Example: `add -i 15.60`<br>
+An income of $15.60 will be added with the current date
+2. Add income with specific date<br>
+Example: `add -i 15.60 / 12-09-2022`<br>
+An income of $15.60 will be added with 12 September 2022 as the date
 
-Shows a list of all persons in the address book.
 
-Format: `list`
+### Deleting income: `del -i INDEX_OF_INCOME`
 
-### Deleting income: `del -i number index_of_income`
+Deletes an income record.
 
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-- The search is case-insensitive. e.g `hans` will match `Hans`
-- The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-- Only the name is searched.
-- Only full words will be matched e.g. `Han` will not match `Hans`
-- Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`
-  , `Bo Yang`
-
-Examples:
+Example: `del -i 2`<br>
+Suppose the income list before delete is:
+```aidl
+Income list:
+1. Earned 5.00 12 Sep 2022
+2. Earned 30.00 12 Sep 2022
+```
+After running `del -i 2`, the income list will become:
+```aidl
+Income list:
+1. Earned 5.00 12 Sep 2022
+```
 
 ### Viewing total summary of spendings : `view -s [MONTH]`
 
