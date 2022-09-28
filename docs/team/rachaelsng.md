@@ -10,7 +10,7 @@ JARVIS is a desktop application that allows a CS1101S TA to manage his/her stude
 Given below are my contributions to the project.
 
 * **New Feature**: to be added
-  * What it does: to be added 
+  * What it does: to be added
   * Justification: to be added
   * Highlights: to be added
   * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
@@ -23,17 +23,16 @@ Given below are my contributions to the project.
   * to be added
 
 * **Enhancements to existing features**:
-  * to be added 
+  * to be added
 
 * **Documentation**:
   * User Guide:
     * to be added
   * Developer Guide:
-    * to be added 
+    * to be added
 
 * **Community**:
   * to be added
 
 * **Tools**:
   * to be added
-  
