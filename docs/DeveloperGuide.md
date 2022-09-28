@@ -364,7 +364,7 @@ Extensions:
 8.  User confirms
 9.  HackAssist updates deadline
 10.  HackAssist displays updated information about task
-
+    
     Use case ends.
 
 Extensions:
