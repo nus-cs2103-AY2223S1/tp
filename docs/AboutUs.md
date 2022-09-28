@@ -44,10 +44,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Liao Yu-Chuan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/isanidiot.png" width="200px">
 
 [github](http://github.com/isanidiot) |
-[portfolio](team/liaoyuchuan.md)
+[portfolio](team/yuchuan.md)
 
 * Role: Developer
 * Responsibilities: Data
