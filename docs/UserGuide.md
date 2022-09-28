@@ -122,13 +122,13 @@ In the above example, we are deleting module CS2103T from Plannit.
 You may add a task using the `add task` command.
 
 This command will require two flags:
-* `m/`: This flag is to be followed immediately by the module code of the
+* `m/`: To be followed by the module code of the
   module which the task is associated with.
-* `d/`: This flag is to be followed immediately by the task description.
+* `d/`: To be followed by the task description.
 
 Format: `add task m/MODULE_CODE d/TASK_DESCRIPTION`
 * Each task **must** belong to a specific module.
-* The given module code should be that of an existing module in Plannit.
+* You should provide a module code of an existing module in Plannit.
 
 Example:
 ```
@@ -142,13 +142,14 @@ You may delete a task belonging to a particular module using the `delete
 task` command.
 
 This command will require two flags:
-* `m/`: This flag is to be followed immediately by the module code of the
-  module which assigned the task.
-* `n/`: This flag is to be followed immediately by the task number in the module.
+* `m/`: To be followed by the module code of the module which assigned the 
+  task.
+* `n/`: To be followed by the task number in the module.
 
 Format: `delete task m/MODULE_CODE n/TASK_NUMBER`
-* The given module code should be that of an existing module in Plannit.
-* The given task number has to be that of an existing task in the module.
+* You should provide a module code of an existing module in Plannit.
+* You should provide a task number corresponding to that of an existing task in 
+  the module.
 
 Example:
 ```
@@ -167,9 +168,9 @@ with the module code `CS2103T`.
 You may add a link to a specific module using the `add link` command.
 
 This command will require two flags:
-* `m/`: This flag is to be followed immediately by the module code of the
+* `m/`: To be followed by the module code of the
   module which is associated with the link.
-* `l/`: This flag is to be followed immediately by the link URL.
+* `l/`: To be followed by the link URL.
 
 Format: `add link m/MODULE_CODE l/LINK_URL`
 * You cannot add a link URL to a non-existent module code.
@@ -186,9 +187,9 @@ to the module with module code `CS2040C`.
 You may delete a link from a specific module using the `delete link` command.
 
 This command will require two flags:
-* `m/`: This flag is to be followed immediately by the module code of the
+* `m/`: To be followed by the module code of the
   module which is associated with the link.
-* `l/`: This flag is to be followed immediately by the link URL.
+* `l/`: To be followed by the link URL.
 
 Format: `delete link m/MODULE_CODE l/LINK_URL`
 * You cannot delete a link URL from a non-existent module code.
