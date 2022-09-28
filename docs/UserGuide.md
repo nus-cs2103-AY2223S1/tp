@@ -24,6 +24,8 @@ interactions recorded faster and simpler than traditional GUI applications.
   * [Saving the data](#saving-the-data)
   * [Editing the data file](#editing-the-data-file)
   * [Archiving data files `coming in v2.0`](#archiving-data-files-coming-in-v20)
+  * [Sorting the adress book: `sort`](#sorting-the-address-book-coming-in-v20)
+  * [Creating a transaction: `transaction`](#creating-a-transaction-transaction)
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
 
@@ -218,6 +220,23 @@ Format: `user guide`
 
 * Displays a pop-up that contains the link to our user guide.
 
+### Sorting the address book: `[sort]`
+
+Coming soon.
+
+### Creating a Transaction: `transaction`
+
+Creates a transaction related to a company.
+
+Format:
+- `transaction coy/COMPANY_NAME  g/GOODS  q/QUANTITY  pr/PRICE d/BUY`
+- `transaction coy/COMPANY_NAME  g/GOODS q/QUANTITY  pr/PRICE d/SELL`
+Examples:
+- `transaction coy/McDonalds g/apples q/100 pr/1.5 d/BUY`
+- `transaction coy/KFC g/Chicken q/50 pr/5.55 d/SELL`
+
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -229,13 +248,15 @@ Format: `user guide`
 
 ## Command summary
 =======
-| Action     | Format, Examples                                                                                                                                                      |
-|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**  | `clear` followed by `confirm`                                                                                                                                         |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
-| **Edit**   | Coming Soon                                                                                                                                                           |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find MacDonalds`                                                                                                            |
-| **Filter** | Coming Soon                                                                                                                                                           |
-| **List**   | `list`                                                                                                                                                                |
-| **Help**   | `help` or `help [COMMAND]` <br> e.g.,`help` or `help add` or `help sort`                                                                                              |
+| Action          | Format, Examples                                                                                                                                                                                                                                                         |
+|-----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**         | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                                                                                                    |
+| **Clear**       | `clear` followed by `confirm`                                                                                                                                                                                                                                            |
+| **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                      |
+| **Edit**        | Coming Soon                                                                                                                                                                                                                                                              |
+| **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find MacDonalds`                                                                                                                                                                                                               |
+| **Filter**      | Coming Soon                                                                                                                                                                                                                                                              |
+| **List**        | `list`                                                                                                                                                                                                                                                                   |
+| **Help**        | `help` or `help [COMMAND]` <br> e.g.,`help` or `help add` or `help sort`                                                                                                                                                                                                 |
+| **Transaction** | `transaction coy/COMPANY_NAME g/GOODS q/QUANTITY pr/PRICE d/BUY` <br/> e.g `transaction coy/McDonalds g/apples q/100 pr/1.5 d/buy` <br/> `transaction coy/COMPANY_NAME g/GOODS q/QUANTITY pr/PRICE d/SELL` <br/> e.g. `transaction coy/KFC g/Chickens q/50 pr/2.55 d/SELL` |
+
