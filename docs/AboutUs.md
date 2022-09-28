@@ -14,7 +14,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/linuschan.png" width="200px">
 
 [[github](https://github.com/linuschancs)]
-[[portfolio](team/linuschan.md)]
+[[portfolio](team/linuschancs.md)]
 
 * Role: Team Lead / Developer
 * Responsibilities: Deliverables and Scheduling
