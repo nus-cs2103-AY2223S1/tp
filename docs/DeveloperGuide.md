@@ -257,13 +257,11 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
+* wishes to track their daily calorie intake
 * is reasonably comfortable using CLI apps
+* knows how much calories are in the food they just ate
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage and calculate calorie intake quickly
 
 
 ### User stories
