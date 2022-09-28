@@ -108,23 +108,6 @@ Examples:
 * `add n/John p/92781123 e/john@example.com a/Donald street, block 248, #02-04 g/m`
 * `add n/Charlotte p/81286623 e/charlotte@example.com a/Charity street, block 101, #10-82  g/F`
 
-__Optional Parameter 3: Purchase History__
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [ph/NEW_PURCHASE_DETAIL]`
-
-- Adds the person’s new purchase details (`NEW_PURCHASE_DETAIL`) to his purchase history
-- `NEW_PURCHASE_DETAIL` is an array that must contain all expected attributes in a purchase history object. This 
-includes a date, the amount spent, number of items bought, and the names of any number of items that 
-constituted the purchase
-
-Examples:
-* `add n/John Wang p/98765432 e/johnwang@example.com a/John street, block 123, #01-01 ph/[12.04.2022, 101.25, 3, 
-Orange, Umbrella, Soap]`
-* `add n/John p/92781123 e/john@example.com a/Donald street, block 248, #02-04 ph/[24.08.2022, 112.25, 3, 
-Sweets, Banana, Battery]`
-* `add n/Charlotte p/81286623 e/charlotte@example.com a/Charity street, block 101, #10-82 ph/[21.08.2022, 
-82.65, 2, Cupcake, Cheese]`
-
 
 ### Listing all persons : `list`
 
@@ -166,21 +149,6 @@ Examples:
 * `edit 2 g/f`
 * `edit 3 g/F`
 
-__Optional Parameter 3: Purchase History__
-
-Format: `edit INDEX [ph/PURCHASE_INDEX,UPDATED_PURCHASE_DETAIL]`
-
-- Edits the person’s purchase history at specified index (`INDEX`). The original purchase history stored at that index (`PURCHASE_INDEX`)  
-will be replaced with the details of the updated purchase (`UPDATED_PURCHASE_DETAIL`)
-- Both `INDEX` and `PURCHASE_INDEX` must be **positive integers** (i.e 1,2,3…)
-- `UPDATED_PURCHASE_DETAIL` is an array that must contain all expected attributes in a purchase history object. This 
-includes a date, the amount spent, number of items bought, and the names of any number of items that constituted the purchase
-
-Examples:
-* `edit 2 ph/3,[20.03.2022, 101.25, 3, Chair, Table, Banana]`
-* `edit 4 ph/1,[15.02.2022, 112.25, 3, Table, Banana, Chocolate]`
-* `edit 2 ph/3,[13.03.2022, 67.90, 2, Cheese Wheel, Chicken Wings]`
-
 
 ### Locating persons by name: `find`
 
@@ -213,6 +181,7 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
 
 ### Clearing all entries : `clear`
 
