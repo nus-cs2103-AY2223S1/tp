@@ -229,7 +229,7 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
-**Add Task** | `add task TASK_DESCRIPTION`
-**Delete Task** | `delete task TASK_NUMBER`
+**Add Task** | `add task TASK_DESCRIPTION` <br> e.g., `add task laundry`
+**Delete Task** | `delete task TASK_NUMBER` <br> e.g., `delete task 1`
 **View Tasks** | `view tasks`
-**Assign** | `assign TASK_NUMBER to PERSON_NAME`
+**Assign** | `assign TASK_NUMBER to PERSON_NAME` <br> e.g., `assign 1 to John`
