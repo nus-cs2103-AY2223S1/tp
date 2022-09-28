@@ -44,7 +44,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/jiacheng-y.png" width="200px">
 
 [[github](http://github.com/jiacheng-y)]
-[[portfolio](team/jiacheng.md)]
+[[portfolio](team/jiacheng-y.md)]
 
 - Role: to be determined
 - Responsibilities: to be determined
