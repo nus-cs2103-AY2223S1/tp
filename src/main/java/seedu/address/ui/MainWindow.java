@@ -24,6 +24,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.enums.Assignment;
 
@@ -134,21 +135,21 @@ public class MainWindow extends UiPart<Stage> {
                                     new Address("HoloOffice"),
                                     new HashSet<>()),
                         Assignment.FROM,
-                    "Datte boku wa hoshi dakara...", true));
+                    new Description("Datte boku wa hoshi dakara"), true));
         temp.add(new Task(new Person(new Name("Hoshimachi Suisei"),
                 new Phone("12345678"),
                 new Email("suichan@holo.net"),
                 new Address("HoloOffice"),
                 new HashSet<>()),
                 Assignment.FROM,
-                "Stellar Stellar!", true));
+                new Description("Stellar Stellar"), true));
         temp.add(new Task(new Person(new Name("Hoshimachi Suisei"),
                 new Phone("12345678"),
                 new Email("suichan@holo.net"),
                 new Address("HoloOffice"),
                 new HashSet<>()),
                 Assignment.TO,
-                "Bukorosu!", true));
+                new Description("Bukorosu"), true));
 
 
         taskListPanel = new TaskListPanel(/*logic.getTaskList()*/ temp); //to be replaced later
