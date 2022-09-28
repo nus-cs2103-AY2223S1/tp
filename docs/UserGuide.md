@@ -32,7 +32,7 @@ TutHub is a **desktop app for tech-savvy tuition agents who want to keep track o
 
    * **`clear`** : Deletes all contacts.
 
-   * **`exit`** : Exits the app.
+   * **`exit`** : Exits the TutHub app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -150,7 +150,7 @@ Format: `clear`
 
 ### Exiting the program : `exit`
 
-Exits TutHub program.
+Exits TutHub app.
 
 Format: `exit`
 
