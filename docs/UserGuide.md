@@ -78,26 +78,31 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
 
-### Adding a person: `add`
+### Marking an internship application status: `mark` 
+###### (coming soon)
 
-Adds a person to the address book.
+Marks an internship application status as rejected, interviewing, accepted or applied.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `mark [INDEX] [STATUS]`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+* Updates the application at the specified INDEX. The index refers to the index number shown in the displayed 
+application list. The index **must be a positive integer** 1, 2, 3 ...
+
+
+* Updates the application to the specific STATUS. The status refers to the current status of the application. 
+The status **must be “rejected”, “interviewed”, “accepted” or “applied”**.
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `mark 3 interviewed` - Marks the 3rd application status to be interviewed
+* `mark 2 accepted` - Marks the 2nd application status to be accepted
+
 
 ### Listing all persons : `list`
 
@@ -196,7 +201,7 @@ _Details coming soon ..._
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
+**Mark** | `mark [INDEX] [STATUS]` <br> e.g., `mark 3 interviewed`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`

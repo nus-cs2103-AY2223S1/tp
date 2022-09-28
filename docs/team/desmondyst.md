@@ -9,7 +9,7 @@ title: Desmond Yong Shao Tian's Project Portfolio Page
 
 Given below are my contributions to the project.
 
-* **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=desmondyst&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+* **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=desmondyst&breakdown=true)
 
 * **Enhancements implemented**: to be added soon
 
