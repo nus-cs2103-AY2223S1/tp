@@ -282,14 +282,14 @@ Internship applications can stretch over a long period of time, making it hard t
 
 (For all use cases below, the **System** is the `CinternS` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case:  Delete an internship application**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests the list of applications.
+2.  CinternS shows the list of internship applications.
+3.  User requests to delete a specific application in the list
+4.  Cinterns deletes the application.
 
     Use case ends.
 
@@ -297,12 +297,15 @@ Internship applications can stretch over a long period of time, making it hard t
 
 * 2a. The list is empty.
 
-  Use case ends.
+     Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The given index is invalid (e.g. not a number).
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. CinternS shows an error message.
 
+      Use case resumes at step 2.
+* 3b. The given index is out of bound.
+    * 3b1. CinternS shows an error message.<br>
       Use case resumes at step 2.
 
 <br>
