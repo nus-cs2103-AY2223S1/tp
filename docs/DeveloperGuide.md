@@ -257,42 +257,83 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
+* is from SoC
 * has a need to manage a significant number of contacts
+* has a need to manage the modules they are taking
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Sole app that SoC students need to streamline their everyday routines
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​            | I want to …​                                       | So that I can…​                                                 |
+|----------|--------------------|----------------------------------------------------|-----------------------------------------------------------------|
+| `* * *`  | SoC Student        | add a module                                       |                                                                 |
+| `* * *`  | SoC Student        | add a new person                                   |                                                                 |
+| `* * *`  | SoC Student        | delete a person                                    | remove entries that I no longer need                            |
+| `* * *`  | SoC Student        | delete a module                                    | remove entries that I no longer need                            |
+| `* * *`  | SoC Student        | add zoom links for my modules                      |                                                                 |
+| `* * *`  | SoC Student        | delete zoom links                                  | remove entries that I no longer need                            |
+| `* * *`  | SoC Student        | easily find my zoom links                          | not spend too much time finding them on various websites        |
+| `* * *`  | SoC Student        | find a module and the specifics of the module      | not spend too much time finding information on various websites |
+| `* * *`  | SoC Student        | add the deadline of my assignments for each module | easily keep track of my deadlines                               |
+| `* * *`  | SoC Student        | find a contact easily                              | not spend too much time looking for contacts                    |
+| `* *`    | SoC Student        | check my schedule for the day                      | plan ahead                                                      |
+| `* *`    | SoC Student        | organise consultations easily                      | not need to search various websites to organise consultations   |
+| `* *`    | SoC Student        | label my contacts                                  | keep track of my project groups                                 |
+| `* *`    | SoC Student        | organise the deadlines of my assignments           | see which deadline is most pressing                             |
+| `* *`    | SoC Student        | see the dates of my exams                          | better prepare for them                                         |
+| `*`      | SoC Student        | add miscellaneous events                           | better plan my time                                             |
+| `*`      | SoC Student        | archive the current information                    | reset for the new semester                                      |
+| `*`      | SoC Student        | keep track of my interview dates                   | make ample preparations                                         |
+| `*`      | SoC Student        | keep track of my weekly meetings                   | make preparations for them                                      |
+| `*`      | Teaching Assistant | access document links for all my slides            | share with the class I am teaching                              |
+| `*`      | Teaching Assistant | manage my student's consultation slots             | easily find the timing for their consultation                   |
+| `*`      | Teaching Assistant | access my module website                           | grade my student's submission                                   |
+| `*`      | Teaching Assistant | easily group my students' contacts together        | easily find them at once                                        |
 
-*{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `SoCompiler` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case:UC1 Add a person**
+
+**MSS**
+
+1. User requests to add person
+2. SoCompiler adds the person to the list of persons
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given person already exists.
+
+    * 1a1. SoCompiler shows an error message
+
+        Use case ends.
+  
+* 1b. Necessary fields are empty.
+    
+    * 1b1. SoCompiler shows an error message
+
+        Use case ends.
+
+**Use case:UC2 Delete a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  SoCompiler shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  SoCompiler deletes the person
 
     Use case ends.
 
@@ -304,25 +345,170 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. SoCompiler shows an error message.
 
       Use case resumes at step 2.
+
+**Use case:UC3 Add a module**
+
+**MSS**
+
+1. User requests to add a module
+2. SoCompiler adds the module to the list of modules
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given module already exists.
+
+    * 1a1. SoCompiler shows an error message
+
+      Use case ends.
+
+* 1b. Necessary fields are empty.
+
+    * 1b1. SoCompiler shows an error message
+
+      Use case ends.
+
+**Use case:UC4 Delete a module**
+
+**MSS**
+
+1.  User requests to list module
+2.  SoCompiler shows a list of modules
+3.  User requests to delete a specific module in the list
+4.  SoCompiler deletes the module
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. SoCompiler shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case:UC5 Find a person**
+
+**MSS**
+
+1. User requests to find keyword
+2. SoCompiler shows a list of persons matching that keyword
+
+    Use case ends.
+
+**Use case:UC6 Find a module**
+
+**MSS**
+
+1. User requests to find keyword
+2. SoCompiler shows a list of modules matching that keyword
+
+    Use case ends.
+
+**Use case:UC7 Display list of persons**
+
+**MSS**
+
+1. User requests to list persons
+2. SoCompiler shows a list of persons
+
+    Use case ends.
+
+**Use case:UC8 Display list of modules**
+
+**MSS**
+
+1. User requests to list modules
+2. SoCompiler shows a list of modules
+
+   Use case ends.
+
+**Use case:UC9 Edit entry in list of persons**
+
+**MSS**
+
+1. User requests to list persons
+2. SoCompiler shows a list of persons
+3. User requests to edit the fields of a specified person in the list
+4. SoCompiler edits the fields of the specified person
+
+   Use case ends.
+
+**Extensions**
+
+* 3a. The given index is invalid.
+
+    * 3a1. SoCompiler shows an error message
+
+      Use case ends.
+
+* 3b. No field is provided.
+
+    * 3b1. SoCompiler shows an error message
+
+      Use case ends.
+
+* 3c. The given name already exists.
+
+    * 3c1. SoCompiler shows an error message
+
+        Use case ends.
+
+**Use case:UC10 Edit entry in list of persons**
+
+**MSS**
+
+1. User requests to list modules
+2. SoCompiler shows a list of modules
+3. User requests to edit the fields of a specified module in the list
+4. SoCompiler edits the fields of the specified module
+
+   Use case ends.
+
+**Extensions**
+
+* 3a. The given index is invalid.
+
+    * 3a1. SoCompiler shows an error message
+
+      Use case ends.
+
+* 3b. No field is provided.
+
+    * 3b1. SoCompiler shows an error message
+
+      Use case ends.
+
+* 3c. The given name already exists.
+
+    * 3c1. SoCompiler shows an error message
+
+      Use case ends.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 persons and modules without a noticeable sluggishness in performance for typical usage.
+3. A user with more than 50 words per minute typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. The system should be backward compatible with data stored in earlier versions of the system.
+5. The product is not required to handle interaction with other users.
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-
+* **Modules**: University modules offered in NUS
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
