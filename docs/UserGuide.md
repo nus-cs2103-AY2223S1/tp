@@ -64,7 +64,9 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 </div>
 
-### Viewing help : `help`
+### Getting help
+
+#### Viewing help : `help`
 
 Shows a message explaning how to access the help page.
 
@@ -72,6 +74,50 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
+### Managing tasks
+
+#### Adding a task: `add`
+
+Adds a task to the task manager.
+
+Format:
+`add {task_name} /by {deadline} /mod {module_code}`
+
+Examples:
+* `add finish problem set 5 /by Week 6 Sunday /mod CS2040S`
+* `add finish SEP application /by 2359 today`
+
+#### Deleting a task: `del`
+
+Deletes a task from the task manager list.
+
+Format:
+`del {task_index}`
+
+Example:
+`del 5`
+
+#### Marking a task: `mark`
+
+Marks a task as completed in the task manager list.
+
+Format:
+`mark {task_index}`
+
+Example:
+`mark 3`
+
+#### Unmarking a task: `unmark`
+
+Marks a task as incomplete in the task manager list.
+
+Format:
+`unmark {task_index}`
+
+Example:
+`unmark 3`
+
+### Managing contacts
 
 ### Adding a person: `add`
 
@@ -183,6 +229,10 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
+**Add task** | `add {taskname} /by {deadline} /mod {module_code}` <br> e.g. `add finish problem set 5 /by Week 6 Sunday /mod CS2040S`
+**Delete task** | `del {task_index}` <br> e.g. `delete 5`
+**Mark task** | `mark {task_index}` <br> e.g. `mark 3`
+**Unmark task** | `unmark {task_index}` <br> e.g. `unmark 3`
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
