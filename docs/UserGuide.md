@@ -33,6 +33,7 @@ contains some sample data.<br>
 6. Refer to the [Features](#2-features) for details of each command.
 
 ### 1.1. Command summary
+
 | Action                                  | Format                                                | Short Description                                                           |
 |-----------------------------------------|-------------------------------------------------------|-----------------------------------------------------------------------------|
 | [`add module`](#211-add-module)         | `add    module   m/MODULE_CODE [t/MODULE_TITLE]`      | Add module with a module code and optional module title                     |
