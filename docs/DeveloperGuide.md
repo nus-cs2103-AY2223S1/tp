@@ -321,8 +321,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Mainstream OS (Operating System)**: Windows, Linux, Unix, OS-X
+* **CLI**: Command Line Interface, receives commands from user in the form of lines of text
+* **GUI**: Graphical User Interface, a system of interactive user components for computer software
+* **Inventory**: Any item that the business needs to operate
+* **Order**: Any sales promise that needs to be fulfilled
 
 --------------------------------------------------------------------------------------------------------------------
 
