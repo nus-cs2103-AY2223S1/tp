@@ -33,28 +33,30 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/tlx02.png" width="200px">
 
+
 [[github](http://github.com/tlx02)] 
 [[portfolio](team/tlx02.md)]
+
 
 * Role: Developer
 * Responsibilities: Code Quality
 
-### Jean Doe
+### Phua Li Ting
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/phualiting.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/phualiting)]
+[[portfolio](team/phualiting.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Scheduling and tracking
+
+### Rachel Chua
+
+<img src="images/rachelchua.png" width="200px">
+
+[[github](http://github.com/RachelChua)]
+[[portfolio](team/rachelchua.md)]
+
+* Role: Developer
+* Responsibilities: Deliverable and deadlines
