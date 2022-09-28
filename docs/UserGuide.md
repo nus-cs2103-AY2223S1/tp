@@ -70,7 +70,7 @@ Format: `help`
 
 ### Adding a profile: `profile -a`
 
-Adds a profile to NUScheduler. 
+Adds a profile to NUScheduler.
 
 Format: `profile -a n/NAME p/PHONE_NUMBER e/EMAIL`
 
