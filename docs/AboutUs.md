@@ -20,7 +20,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Emily Ong Hui Qi
 
-<img src="images/EmilyOng.png" width="200px">
+<img src="images/emilyong.png" width="200px">
 
 [[github](http://github.com/EmilyOng)]
 [[portfolio](team/EmilyOng.md)]
