@@ -314,7 +314,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2. Should be able to hold up to 1000 profiles without a noticeable sluggishness in performance for typical usage.
 3. Should be able to hold up to 1000 events without a noticeable sluggishness in performance for typical usage.
 4. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 5. Response to any commands should be displayed within 5 seconds.
@@ -328,8 +328,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **GUI**: Graphical User Interface, a visual display that users can interact with
 * **NUS**: National University of Singapore, tertiary education institute
 * **End user**: _NUS_ students who use NUScheduler to handle their schedules
-* **Connections**: People who the end user is connected to and requires meeting with
 * **Profile**: Contains contact details of a user such as, Name, Phone number and Email
+* **Connections**: Profiles who the _end user_ is connected to and requires meeting with
 * **Event**: A planned meeting containing the Name, Start timing and End timing of the meeting
 
 --------------------------------------------------------------------------------------------------------------------
