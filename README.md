@@ -1,14 +1,31 @@
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+# TruthTable
+
+[![CI Status](https://github.com/AY2223S1-CS2103T-W13-4/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103T-W13-4/tp/actions)
 
 ![Ui](docs/images/Ui.png)
 
-* This is **a sample project for Software Engineering (SE) students**.<br>
-  Example usages:
-  * as a starting point of a course project (as opposed to writing everything from scratch)
-  * as a case study
-* The project simulates an ongoing software project for a desktop application (called _AddressBook_) used for managing contact details.
-  * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
-  * It comes with a **reasonable level of user and developer documentation**.
-* It is named `AddressBook Level 3` (`AB3` for short) because it was initially created as a part of a series of `AddressBook` projects (`Level 1`, `Level 2`, `Level 3` ...).
-* For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
-* This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+## Overview
+
+Are you
+
+- a university student leading software engineering teams in your modules?
+- having trouble keeping track of your team’s progress and delegating tasks effectively?
+- someone who prefers CLI to GUI?
+- desperate for a single source of truth on who’s doing what and by when?
+
+Then, **TruthTable** is _perfect_ for you.
+
+## Features
+
+**TruthTable** allows you to
+
+1. collate different project-related information (e.g. GitHub project PRs, issues, links to Zoom meetings, and Google
+   Docs)
+2. visualise your teams’ progress easily
+3. delegate tasks to your team members conveniently
+4. use CLI interface to manage your project tasks _blazingly_ fast.
+
+# Acknowledgements
+
+This project is based on the `AddressBook-Level3` project created by the [SE-EDU initiative](https://se-education.org).
+
