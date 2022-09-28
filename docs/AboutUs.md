@@ -26,6 +26,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/LuYiting0913)]
 [[portfolio](team/luyiting.md)]
 
+### Yeo Jun Jie
+
+<img src="images/yeojunjie.png" width="200px">
+
+[[github](http://github.com/yeojunjie)]
+[[portfolio](team/yeojunjie.md)]
+
+- Role: Developer
+- Responsibilities: Dev Ops + Threading
+
 ### Bag Devesh Kumar
 
 <img src="images/tensaida.png" width="200px">
