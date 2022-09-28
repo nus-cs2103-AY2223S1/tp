@@ -24,14 +24,13 @@ clean Graphical User Interface (GUI) for easy comprehension of expenditure and s
 “Quick Start” to get started. Enjoy!
 
 ## Quick start
-
 1. Ensure you have Java 11 or above installed in your Computer. You can check whether Java 11 is installed by following
    the instructions below:
-   1. Open your terminal window
-   2. Run the following command: `java -version`
-   3. If Java 11 is not installed, please download Java 11 from [Oracle](https://www.oracle.com/java/technologies/downloads/#java11). 
-   For Mac users, you may use the [Azul build of
-      OpenJDK 11 (JDK FX) version](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).
+    1. Open your terminal window
+    2. Run the following command: `java -version`
+    3. If Java 11 is not installed, please download Java 11 from [Oracle](https://www.oracle.com/java/technologies/downloads/#java11).
+       For Mac users, you may use the [Azul build of
+       OpenJDK 11 (JDK FX) version](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).
 2. Download the latest pennywise.jar from here.
 3. Copy the file to the folder you want to use as the home folder for your PennyWise.
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app
@@ -41,16 +40,16 @@ clean Graphical User Interface (GUI) for easy comprehension of expenditure and s
    open the help window.<br>
    Some example commands you can try:
 
-   - **`list`** : Lists all contacts.
+    - **`list`** : Lists all contacts.
 
-   - **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact
-     named `John Doe` to the Address Book.
+    - **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact
+      named `John Doe` to the Address Book.
 
-   - **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+    - **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
-   - **`clear`** : Deletes all contacts.
+    - **`clear`** : Deletes all contacts.
 
-   - **`exit`** : Exits the app.
+    - **`exit`** : Exits the app.
 
 6. Refer to the [Features](#features) below for details of each command.
 
@@ -65,10 +64,10 @@ clean Graphical User Interface (GUI) for easy comprehension of expenditure and s
 - All command follow this format:<br>
   `command | identifier | input | [optional inputs]`<br>
   Example: `add -s 15.60 / 15-08-2022`<br>
-  - Command : add<br>
-  - Identifier : -s<br>
-  - Input : 15.60<br>
-  - Optional input : 15-08-2022<br>
+    - Command : add<br>
+    - Identifier : -s<br>
+    - Input : 15.60<br>
+    - Optional input : 15-08-2022<br>
 
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `del -s INDEX_OF_SPENDING`, `INDEX_OF_SPENDING` is a parameter which can be used as `del -s 10`.
@@ -79,59 +78,58 @@ clean Graphical User Interface (GUI) for easy comprehension of expenditure and s
 
 
 ### Adding spendings: `add -s  NUMBER [DATE]`
+Adds a spending entry. <br>
 1. Add spending with default date <br>
-Example: `add -s 15.60`<br>
-A spending of 15.60 will be added with the current date
+   - Example: `add -s 15.60`<br>
+   - A spending of 15.60 will be added with the current date
 
 
-2. Add spending with specific date <br>
-Example: `add -s 15.60 / 12-09-2022`<br>
-A spending of 15.60 will be added with 12 September 2022 as the date
-
+2. Add spending with specific date<br>
+   - Example: add `-s 15.60 / 12-09-2022`<br>
+   - A spending of 15.60 will be added with 12 September 2022 as the date
 
 ### Deleting spendings: `del -s INDEX_OF_SPENDING`
 
-Deletes a spending record.
+Deletes a spending entry.
 
-Example: `del -s 2`<br>
-Suppose the spendings list before delete is:
-```aidl
-Spendings list:
-  1. Spent 15.60 12 Sep 2022
-  2. Spent 1.20 12 Sep 2022
-```
-After running `del -s 2`, the spendings list will become:
-```
-Spendings list:
-  1. Spent 15.60 12 Sep 2022
-```
+Example: `del -s 2` deletes the 2nd item on the list
+
+Spending list:
+1. Spent 15.60 12 Sep 2022
+2. Spent 1.20 12 Sep 2022
+
+Expected: `A spending of 1.20 on 12 Sep 2022 has been deleted.`
+
 
 ### Adding income: `add -i NUMBER [DATE]`
 
-1. Add income with default current date<br>
-Example: `add -i 15.60`<br>
-An income of $15.60 will be added with the current date
-2. Add income with specific date<br>
-Example: `add -i 15.60 / 12-09-2022`<br>
-An income of $15.60 will be added with 12 September 2022 as the date
+Adds an income entry.
 
+1. Add income with default current date
+   * Example: `add -i 15.60`
+   * An income of $15.60 will be added with the current date
+   * Expected: `An income of 15.60 on 27 Sep 2022 has been recorded`
+2. Add income with specific date
+   * Example: `add -i 15.60 / 12-09-2022`
+   * An income of $15.60 will be added with 12 September 2022 as the date
+   * Expected: `An income of 15.60 on 12 Sep 2022 has been recorded`
 
-### Deleting income: `del -i INDEX_OF_INCOME`
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The default date is the current date on your computer!
+</div>
 
-Deletes an income record.
+### Deleting income: `del -i NUMBER INDEX_OF_INCOME`
 
-Example: `del -i 2`<br>
-Suppose the income list before delete is:
-```aidl
-Income list:
+Deletes an income entry
+
+Example: `del -i 2` deletes the 2nd item on the list
+
+Spending list:
 1. Earned 5.00 12 Sep 2022
 2. Earned 30.00 12 Sep 2022
-```
-After running `del -i 2`, the income list will become:
-```aidl
-Income list:
-1. Earned 5.00 12 Sep 2022
-```
+
+Expected: `An income of 30.00 on 12 Sep 2022 has been deleted.`
+
 
 ### Viewing total summary of spendings : `view -s [MONTH]`
 
