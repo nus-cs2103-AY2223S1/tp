@@ -68,7 +68,6 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-
 ### Adding a Project: `addProj`
 
 Adds a project to Project list.
@@ -107,23 +106,23 @@ Format: `listProj`
 
 Adds staff members to a project in Project list.
 
-Format: `addStaff INDEX sn/NAME si/INSURANCE_STATUS sd/DEPARTMENT st/TITLE 
-sc/CONTACT NUMBER` 
+Format: `addStaff pn/PROJECT_NAME sn/NAME si/INSURANCE_STATUS sd/DEPARTMENT st/TITLE sc/CONTACT NUMBER` 
 
 * Adds a staff member at the specified `INDEX`. The index refers to the index number shown in the displayed Project list. The index **must be a positive integer** 1, 2, 3, …​
 * All fields for staff member are required
-* 
 
 Examples:
-* `addStaff 1 sn/John Doe sp/98765432 si/true sd/Accounting st/Accountant` Adds staff member named `John Doe` to the project 1 in the current Project list.
-* `addStaff 3 sn/Betsy Crowe sp/1234567 st/Admin Staff sd/Admin si/false` Adds staff member named `Betsy Crown` to the project 3 in the current Project list.
-
+* `addStaff DUKE sn/John Doe sp/98765432 si/true sd/Accounting st/Accountant` Adds staff member named `John Doe` to the project DUKE.
+* `addStaff ROOFUS sn/Betsy Crowe sp/1234567 st/Admin Staff sd/Admin si/false` Adds staff member named `Betsy Crown` to the project ROOFUS.
 
 ### Locating Project by Name: `find`
 
 Finds a specified Project in Project list.
 
 Format: `find pn/PROJECT_NAME`
+
+* The search is case-insensitive. e.g `hans` will match `Hans`
+* Only full words will be matched e.g. `Han` will not match `Hans`
 
 Examples:
 * `find CS2103` returns `CS2103` and `CS2103 TP`
