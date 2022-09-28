@@ -281,21 +281,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user who often change his/her mind | update the details              | easily change things                                    |
 | `* *`    | user                               | categorize my events            | keep track of each category                             |
 | `*`      | user                               | reuse past itineraries          | use it when I want to                                   |
-| `*`       | user                               | view the total budget needed    | keep track of the budget                                |
+| `*`      | user                               | view the total budget needed    | keep track of the budget                                |
 
 *{More to be added}*
 
 ### Use Cases
-Software System: TravelR
+Software System: Travelr
 
 **Use case: UC01 Delete a Trip**
 **Actor: User**
 
 **MSS :**
 1. User request the list of trips
-2. TravelR lists the trips.
+2. Travelr lists the trips.
 3. User requests to delete a certain trip.
-4. TravelR deletes the specified trip.
+4. Travelr deletes the specified trip.
 
    Use case ends
 
@@ -305,12 +305,12 @@ Software System: TravelR
 
   Use case ends.
 * 3a. The requested trip doesn't exist
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Travelr shows an error message.
 
       Use case ends
 
 * 3b. Invalid input
-    * 3b1. AddressBook shows an error message.
+    * 3b1. Travelr shows an error message.
 
       Use Case Ends
 
