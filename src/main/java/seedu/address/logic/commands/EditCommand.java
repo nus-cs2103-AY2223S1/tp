@@ -26,7 +26,9 @@ import seedu.address.model.person.MinecraftName;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Socials;
+import seedu.address.model.person.Social;
+import seedu.address.model.person.*;
+import seedu.address.model.server.Server;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -103,10 +105,12 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Socials updatedSocials = editPersonDescriptor.getSocials().orElse(personToEdit.getSocials());
+        Set<Social> updatedSocials = editPersonDescriptor.getSocial().orElse(personToEdit.getSocials());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Set<Server> updatedServers = editPersonDescriptor.getServers().orElse(personToEdit.getServers());
+        TimeZone updatedTimeZone = editPersonDescriptor.getTimeZone().orElse(personToEdit.getTimeZone());
 
-        return new Person(updatedName, updatedMinecraftName, updatedPhone, updatedEmail, updatedAddress, updatedSocials, updatedTags);
+        return new Person(updatedName, updatedMinecraftName, updatedPhone, updatedEmail, updatedAddress, updatedSocials, updatedTags, updatedServers, updatedTimeZone);
     }
 
     @Override
@@ -138,8 +142,10 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
-        private Socials socials;
+        private Set<Social> social;
         private Set<Tag> tags;
+        private Set<Server> servers;
+        private TimeZone timeZone;
 
         public EditPersonDescriptor() {}
 
@@ -153,15 +159,17 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
-            setSocials(toCopy.socials);
+            setSocial(toCopy.social);
             setTags(toCopy.tags);
+            setServers(toCopy.servers);
+            setTimeZone(toCopy.timeZone);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, minecraftName, phone, email, address, socials, tags);
+            return CollectionUtil.isAnyNonNull(name, minecraftName, phone, email, address, socials, tags, servers, timeZone);
         }
 
         public void setName(Name name) {
@@ -204,12 +212,25 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setSocials(Socials socials) {
-            this.socials = socials;
+        /**
+         * Sets {@code socials} to this object's {@code socials}.
+         * A defensive copy of {@code socials} is used internally.
+         */
+
+        public void setSocial(Set<Social> socials) {
+            this.social = (socials != null) ? new HashSet<>(social) : null;
         }
 
-        public Optional<Socials> getSocials() {
-            return Optional.ofNullable(socials);
+        /**
+         * Returns an unmodifiable socials set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code socials} is null.
+         */
+
+        public Optional<Set<Social>> getSocial() {
+            return (social != null)
+            ? Optional.of(Collections.unmodifiableSet(social))
+            : Optional.empty();
         }
 
         /**
@@ -227,6 +248,22 @@ public class EditCommand extends Command {
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+        public void setServers(Set<Server> servers) {
+            this.servers = (servers != null) ? new HashSet<>(servers) : null;
+        }
+
+        public Optional<Set<Server>> getServers() {
+            return (servers != null) ? Optional.of(Collections.unmodifiableSet(servers)) : Optional.empty();
+        }
+
+        public void setTimeZone(TimeZone timeZone) {
+            this.timeZone = timeZone;
+        }
+
+        public Optional<TimeZone> getTimeZone() {
+            return Optional.ofNullable(timeZone);
         }
 
         @Override
@@ -248,7 +285,11 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
+                    && getSocial().equals(e.getSocial())
                     && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getServers().equals(e.getServers())
+                    && getTimeZone().equals(e.getTimeZone());
         }
     }
 }

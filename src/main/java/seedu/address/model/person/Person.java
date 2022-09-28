@@ -2,11 +2,12 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
+import java.util.Collections;
+import java.util.Objects;
 
+import seedu.address.model.server.Server;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,21 +24,30 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final Socials socials;
+    
+    private final Set<Social> socials;
+
+    private final TimeZone timeZone;
+
+    private Set<Server> servers = new HashSet<>();
+
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, MinecraftName minecraftName, Phone phone, Email email, Address address, Socials socials, Set<Tag> tags) {
+
+    public Person(Name name, MinecraftName minecraftName, Phone phone, Email email, Address address, Set<Social> socialsList, Set<Tag> tags, Set<Server> servers, TimeZone timeZone) {
         requireAllNonNull(name, minecraftName, phone, email, address, tags);
         this.name = name;
         this.minecraftName = minecraftName;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.socials = socials;
+        this.socials = socialsList;
         this.tags.addAll(tags);
+        this.servers.addAll(servers);
+        this.timeZone = timeZone;
     }
 
     public Name getName() {
@@ -60,8 +70,8 @@ public class Person {
         return address;
     }
 
-    public Socials getSocials() {
-        return socials;
+    public Set<Social> getSocials() {
+        return Collections.unmodifiableSet(socials);
     }
 
     /**
@@ -70,6 +80,14 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public Set<Server> getServers() {
+        return Collections.unmodifiableSet(servers);
+    }
+
+    public TimeZone getTimeZone() {
+        return timeZone;
     }
 
     /**
