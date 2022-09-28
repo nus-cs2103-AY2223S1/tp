@@ -1,15 +1,20 @@
 package seedu.address.testutil;
 
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.model.person.Address;
+import seedu.address.model.person.MinecraftName;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Social;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.util.SampleDataUtil;
+
 
 /**
  * A utility class to help with building Person objects.
@@ -17,14 +22,17 @@ import seedu.address.model.util.SampleDataUtil;
 public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
+    public static final String DEFAULT_MINECRAFTNAME = "AmyBee123";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
+    private MinecraftName minecraftName;
     private Phone phone;
     private Email email;
     private Address address;
+    private Set<Social> socials;
     private Set<Tag> tags;
 
     /**
@@ -32,9 +40,11 @@ public class PersonBuilder {
      */
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
+        minecraftName = new MinecraftName(DEFAULT_MINECRAFTNAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        socials = new HashSet<>();
         tags = new HashSet<>();
     }
 
@@ -43,9 +53,11 @@ public class PersonBuilder {
      */
     public PersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
+        minecraftName = personToCopy.getMinecraftName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        socials = new HashSet<>(personToCopy.getSocials());
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -60,10 +72,13 @@ public class PersonBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
-//    public PersonBuilder withTags(String ... tags) {
-//        this.tags = SampleDataUtil.getTagSet(tags);
-//        return this;
-//    }
+    public PersonBuilder withTags(String ... tags) {
+        this.tags = new HashSet<>(Arrays.asList(tags).stream()
+                .map(Tag::new)
+                .collect(Collectors.toList()));
+        return this;
+    }
+
 
     /**
      * Sets the {@code Address} of the {@code Person} that we are building.
@@ -89,8 +104,15 @@ public class PersonBuilder {
         return this;
     }
 
+    public PersonBuilder withSocial(String ... socials) {
+        this.socials = new HashSet<>(Arrays.asList(socials).stream()
+                .map(Social::new)
+                .collect(Collectors.toList()));
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, minecraftName, phone, email, address, socials, tags);
     }
 
 }

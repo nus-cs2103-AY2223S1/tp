@@ -19,7 +19,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Socials;
+import seedu.address.model.person.Social;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -62,7 +62,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
-        parseSocialsForEdit(argMultimap.getAllValues(PREFIX_SOCIALS)).ifPresent(editPersonDescriptor::setSocials);
+        parseSocialsForEdit(argMultimap.getAllValues(PREFIX_SOCIALS)).ifPresent(editPersonDescriptor::setSocial);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -86,7 +86,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
 
-    private Optional<Socials> parseSocialsForEdit(Collection<String> socials) throws ParseException {
+    private Optional<Set<Social>> parseSocialsForEdit(Collection<String> socials) throws ParseException {
         assert socials != null;
 
         if (socials.isEmpty()) {

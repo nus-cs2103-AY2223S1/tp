@@ -20,6 +20,13 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.MinecraftName;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Social;
 import seedu.address.model.person.*;
 import seedu.address.model.server.Server;
 import seedu.address.model.tag.Tag;
@@ -98,7 +105,7 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Socials updatedSocials = editPersonDescriptor.getSocials().orElse(personToEdit.getSocials());
+        Set<Social> updatedSocials = editPersonDescriptor.getSocial().orElse(personToEdit.getSocials());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Set<Server> updatedServers = editPersonDescriptor.getServers().orElse(personToEdit.getServers());
         TimeZone updatedTimeZone = editPersonDescriptor.getTimeZone().orElse(personToEdit.getTimeZone());
@@ -135,7 +142,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
-        private Socials socials;
+        private Set<Social> social;
         private Set<Tag> tags;
         private Set<Server> servers;
         private TimeZone timeZone;
@@ -152,7 +159,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
-            setSocials(toCopy.socials);
+            setSocial(toCopy.social);
             setTags(toCopy.tags);
             setServers(toCopy.servers);
             setTimeZone(toCopy.timeZone);
@@ -205,12 +212,25 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setSocials(Socials socials) {
-            this.socials = socials;
+        /**
+         * Sets {@code socials} to this object's {@code socials}.
+         * A defensive copy of {@code socials} is used internally.
+         */
+
+        public void setSocial(Set<Social> socials) {
+            this.social = (socials != null) ? new HashSet<>(social) : null;
         }
 
-        public Optional<Socials> getSocials() {
-            return Optional.ofNullable(socials);
+        /**
+         * Returns an unmodifiable socials set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code socials} is null.
+         */
+
+        public Optional<Set<Social>> getSocial() {
+            return (social != null)
+            ? Optional.of(Collections.unmodifiableSet(social))
+            : Optional.empty();
         }
 
         /**
@@ -265,6 +285,8 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
+                    && getSocial().equals(e.getSocial())
+                    && getTags().equals(e.getTags());
                     && getTags().equals(e.getTags())
                     && getServers().equals(e.getServers())
                     && getTimeZone().equals(e.getTimeZone());
