@@ -70,6 +70,12 @@ Format: `add n/NAME [t/TELEGRAM_HANDLE] [s/STUDENT_NUMBER]`
 The Telegram handle and student number are optional
 </div>
 
+### Viewing all students: `list`
+
+Lists all students in FRIDAY
+
+Format: `list`
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -83,5 +89,5 @@ Action | Format
 **Add a student** | `add n/NAME [t/TELEGRAM_HANDLE] [s/STUDENT_NUMBER]`
 **Delete a student** |
 **Edit a student's details** |
-**View all students** |
+**View all students** | `list`
 **View a student's details** |
