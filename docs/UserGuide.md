@@ -14,7 +14,7 @@ ModtRekt is a **desktop app for managing modules and tasks, optimized for use vi
 - [Command Summary](#command-summary)
 
 ## UI Mockups
-![Ui](images/UiMockup.png)
+![Ui](images/Ui.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
