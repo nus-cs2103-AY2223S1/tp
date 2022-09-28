@@ -84,7 +84,7 @@ Examples:
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all tutors registered in TutHub.
 
 Format: `list`
 
