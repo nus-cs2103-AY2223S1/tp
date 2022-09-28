@@ -2,6 +2,11 @@
 
 ![Ui](docs/images/Ui.png)
 
+# MyInsuRec
+*MyInsuRec* is a desktop app for financial advisors to manage and organize their clients and meetings, helping
+financial advisors stay connected with their clients. *MyInsuRec* is best suited for the quick typist, as it is 
+optimized for use via a Command Line Interface (CLI), with all the benefits of a Graphical User Interface (GUI).
+
 * This is **a sample project for Software Engineering (SE) students**.<br>
   Example usages:
   * as a starting point of a course project (as opposed to writing everything from scratch)
