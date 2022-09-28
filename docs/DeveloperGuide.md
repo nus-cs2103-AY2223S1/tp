@@ -401,6 +401,74 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ---
 
+**Use case: Add a task to a specified patient**
+
+**MSS**
+
+1. User requests to list patients
+2. UniNurse shows a list of patients
+3. User requests to add a task with its description to a specific patient 
+4. UniNurse adds the task to a patient 
+   
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty
+
+  Use case ends.
+
+* 3a. The given patient index is invalid.
+
+    * 3a1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given task details is invalid
+
+    * 3b1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+---
+
+**Use case: Edit a task associated with a specified patient**
+
+**MSS**
+
+1. User requests to list patients and/or their tasks
+2. UniNurse shows a list of patients with their tasks
+3. User requests to edit a task with its description they want to change, by specifying the specific patient and specific task
+4. UniNurse edits the task description of the chosen task of the specified patient
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty
+
+  Use case ends.
+
+* 3a. The given patient index is invalid.
+
+    * 3a1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given task index of the specified patient is invalid.
+
+    * 3b1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+* 3c. The given task details is invalid
+  
+    * 3c1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+---
+
 **Use case: See the list of tasks to be completed**
 
 **MSS**
