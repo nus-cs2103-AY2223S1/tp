@@ -184,7 +184,6 @@ Deletes an existing task in task list.
 Format: `delete_task INDEX`
 
 * Deletes the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
 
 Examples:
 * `delete_task 1` Deletes the Task at index 1.
