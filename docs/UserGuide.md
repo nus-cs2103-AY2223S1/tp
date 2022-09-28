@@ -55,7 +55,8 @@ Examples:
 * `edit John date: 2019-12-25` John’s appointment date has been changed to Dec 25th, 2019.
 * `edit John note: use medicine` Doctor’s notes for John has been changed to use medicine.
 
-### Filtering a person: `filter` [comming soon]
+### Filtering a person: `filter` [coming soon]
+
 Shows the patients that satisfy given condition
 
 Format:
@@ -87,4 +88,36 @@ Here are the patient that date > 2019-12-25:
 
 Unable to filter patients by favourite food
 
+```
+
+### Sorting by criteria: `sort` [coming soon]
+
+Sorts the patients according to name or appointment date.
+
+Format :
+```
+sort by <criteria>
+```
+where `criteria` can be either `name` or `appointment date`.
+
+Examples :
+```
+> sort by appointment date
+
+Patients sorted by their appointment dates -
+Jack Oct 12, 2022
+John Oct 20, 2022
+Peter Nov 1, 2022
+Lara Jan 6, 2023
+```
+
+```
+> sort by name
+
+Patients sorted by name -
+Alice
+Bob
+Jack
+John 
+Peter
 ```
