@@ -255,15 +255,11 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
+**Target user profile**:  
+Recruting and hiring managers.
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
-
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:   
+Manage candidates using a CLI faster than mouse/GUI driven apps. Make use of Skill, Degree, Job Type, or any other custom tags and rating system to filter candidates for the next hire. 
 
 
 ### User stories
@@ -308,14 +304,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `CLInkedIn` and the **Actor** is the `user`, unless specified otherwise)
 
+
 **Use case: Delete a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  CLInkedIn shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  CLInkedIn deletes the person
 
     Use case ends.
 
@@ -327,9 +324,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. CLInkedIn shows an error message.
 
       Use case resumes at step 2.
+
 
 **Use case: Search for candidates**
 
@@ -349,13 +347,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. User requests to edit the name, location, application status, tags, etc. of a specific candidate in the list.
 4. CLInkedIn updates the details of the corresponding candidate.  
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The list is empty.  
 
-  Use case ends.
+   Use case ends.
 
 * 3a. CLInkedIn detects that the candidate does not exist in the list.
 
@@ -370,6 +368,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3b2. User enters new command.  
       Steps 3b1-3b2 are repeated until the tag entered is valid.  
       Use case resumes from step 4.
+
+
+**Use case: Create a custom tag type**
+
+**MSS**
+
+1.  User requests to create a custom tag type with a specified tag alias.
+2.  CLInkedIn creates the custom tag type with the specified tag alias.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. CLInkedIn detects that the custom tag already exists.
+    * 1a1. CLInkedIn shows an error message and requests user to re-enter the tag type and tag alias.
+    * 1a2. User enters new tag type and tag alias.  
+      Steps 1a1-1a2 repeats until the user enters a valid tag type.  
+      Use case resumes at step 2.
+* 1b. CLInkedIn detects that the tag alias already exists.
+    * 1b1. CLInkedIn shows an error message and requests user to re-enter the tag alias.
+    * 1b2. User enters a new tag alias.  
+      Steps 1b1-1b2 repeats until the user enters a valid tag alias.  
+      Use case resumes at step 2.
+
+
     
 *{More to be added}*
 
