@@ -425,6 +425,10 @@ Use case ends.
 4.  The GUI should work well with standard screen resolutions 1920x1080 and higher.
 5.  The user interface should be intuitive enough for a Y2 Computer Science student.
 6.  For every action by the user, the result should be visible within 5 seconds.
+7.  The project should not depend on any remote servers
+8.  The software and documentation should be accessible to users with a basic command of English.
+9.  The packaged JAR file should not exceed 100mb.
+10. The software should work without the need for an installer.
 
 *{More to be added}*
 
