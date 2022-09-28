@@ -1,14 +1,14 @@
-Healthcare Xpress [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+# _Healthcare Xpress_ [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
 
 ![Ui](docs/images/Ui.png)
 
-* This is **a sample project for Software Engineering (SE) students**.<br>
+
+* This is an **address log application for medical staff**.<br>
   Example usages:
-  * as a starting point of a course project (as opposed to writing everything from scratch)
-  * as a case study
-* The project simulates an ongoing software project for a desktop application (called _AddressBook_) used for managing contact details.
-  * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
-  * It comes with a **reasonable level of user and developer documentation**.
-* It is named `AddressBook Level 3` (`AB3` for short) because it was initially created as a part of a series of `AddressBook` projects (`Level 1`, `Level 2`, `Level 3` ...).
-* For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
-* This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+  * for medical administrators to lookup patient details and forward them to the relevant attending nurses or physicians
+  * for medical administrators to keep track of which nurses are assigned to which patients
+  * for medical administrators to label patients with specific conditions so precautions can be taken by attending staff if needed
+* As most commands are inputed with the keyboard, it is best suited for a medical administrator who is familiar with CLI Applications.
+* However, due to its intuitive design, beginners can expect to pick it up very quickly.
+* For the detailed documentation of this project, see the **[Healthcare Xpress Product Website](https://ay2223s1-cs2103-f13-4.github.io/tp/)**.
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
