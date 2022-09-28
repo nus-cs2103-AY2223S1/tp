@@ -413,6 +413,7 @@ Priorities:
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Task**: A task that is assigned to a specific contact
 * **Tag**: The relationship between user and contact
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
