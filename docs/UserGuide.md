@@ -24,32 +24,32 @@ clean Graphical User Interface (GUI) for easy comprehension of expenditure and s
 “Quick Start” to get started. Enjoy!
 
 ## Quick start
-
 1. Ensure you have Java 11 or above installed in your Computer. You can check whether Java 11 is installed by following
    the instructions below:
-   1. Open your terminal window
-   2. Run the following command: java -version
-   3. If Java 11 is not installed, please download Java 11 from Oracle. For Mac users, you may use the Azul build of
-      OpenJDK 11 (JDK FX) version.
+    1. Open your terminal window
+    2. Run the following command: `java -version`
+    3. If Java 11 is not installed, please download Java 11 from [Oracle](https://www.oracle.com/java/technologies/downloads/#java11).
+       For Mac users, you may use the [Azul build of
+       OpenJDK 11 (JDK FX) version](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).
 2. Download the latest pennywise.jar from here.
 3. Copy the file to the folder you want to use as the home folder for your PennyWise.
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app
-   contains some sample data
+   contains some sample data.
    ![Ui](images/Ui.png)
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
    open the help window.<br>
    Some example commands you can try:
 
-   - **`list`** : Lists all contacts.
+    - **`list`** : Lists all contacts.
 
-   - **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact
-     named `John Doe` to the Address Book.
+    - **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact
+      named `John Doe` to the Address Book.
 
-   - **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+    - **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
-   - **`clear`** : Deletes all contacts.
+    - **`clear`** : Deletes all contacts.
 
-   - **`exit`** : Exits the app.
+    - **`exit`** : Exits the app.
 
 6. Refer to the [Features](#features) below for details of each command.
 
@@ -61,39 +61,34 @@ clean Graphical User Interface (GUI) for easy comprehension of expenditure and s
 
 **:information_source: Notes about the command format:**<br>
 
+- All command follow this format:<br>
+  `command | identifier | input | [optional inputs]`<br>
+  Example: `add -s 15.60 / 15-08-2022`<br>
+    - Command : add<br>
+    - Identifier : -s<br>
+    - Input : 15.60<br>
+    - Optional input : 15-08-2022<br>
+
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `del -s INDEX_OF_SPENDING`, `INDEX_OF_SPENDING` is a parameter which can be used as `del -s 10`.
 
 - Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-- Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-- Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-- If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of
-  the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-
-- Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be
-  ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
+  e.g `add -s NUMBER [DATE]` can be used as `add -s 100 [31-08-2022]` or as `add -s 100`.
 </div>
 
 
-### Adding spendings: `add -s  number [DATE]`
-
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
+### Adding spendings: `add -s  NUMBER [DATE]`
+Adds a spending entry. <br>
+1. Add spending with default date <br>
+   - Example: `add -s 15.60`<br>
+   - A spending of 15.60 will be added with the current date
 
 
-### Deleting spendings: `del -s index_of_spendings`
+2. Add spending with specific date<br>
+   - Example: add `-s 15.60 / 12-09-2022`<br>
+   - A spending of 15.60 will be added with 12 September 2022 as the date
+
+### Deleting spendings: `del -s INDEX_OF_SPENDING`
 
 Deletes a spending entry.
 
@@ -106,7 +101,7 @@ Spending list:
 Expected: `A spending of 1.20 on 12 Sep 2022 has been deleted.`
 
 
-### Adding income: `add -i number [DATE]`
+### Adding income: `add -i NUMBER [DATE]`
 
 Adds an income entry.
 
@@ -123,7 +118,7 @@ Adds an income entry.
 The default date is the current date on your computer!
 </div>
 
-### Deleting income: `del -i number index_of_income`
+### Deleting income: `del -i NUMBER INDEX_OF_INCOME`
 
 Deletes an income entry
 
