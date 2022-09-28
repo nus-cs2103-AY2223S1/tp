@@ -80,7 +80,7 @@ Adds a person to the address book.
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [st/SKILL_TAG] [dt/DEGREE_TAG] [jt/JOB_TYPE_TAG] [<alias>/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number and any kind of tags (including 0).
+You can have any number and any kind of tags (including 0).
 </div>
 
 * By default, you can add 3 types of tags - `SKILL_TAG`, `DEGREE_TAG`, `JOB_TYPE_TAG`.
@@ -172,6 +172,43 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Creating a custom tag type: `create`
+
+Creates a custom tag type apart from the existing Skill, Degree, and Job Type tag types. 
+
+Format: `create TAG_TYPE TAG_ALIAS` 
+
+- Creates a new `TAG_TYPE` tag type.
+- `TAG_ALIAS` can be used to add tags to this custom tag type.
+
+Examples:  
+
+- `create GPA gpat` creates a tag type `GPA` with `gpat` as its tag alias.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can use existing tag types: Skill, or Degree, or Job Type.
+</div>
+
+### Editing tag type name: `editTagType`
+
+Edits the name and alias of an existing tag type to `NEW_TAG_TYPE` and `NEW_TAG_ALIAS`  
+
+Format: `editTagType OLD_TAG_TYPE-NEW_TAG_TYPE OLD_TAG_ALIAS-NEW_TAG_ALIAS`
+
+Examples: `editTagType GPA-Grade gpat-grdt`
+
+- Edits name of the `GPA` tag type to `Grade` and its tag alias from `gpat` to `grdt`
+
+### Deleting an existing tag type: `deleteTagType`
+
+Deletes an existing tag type and its corresponding tag alias.
+
+Format: `deleteTagType TAG_TYPE`
+
+Examples: `deleteTagType GPA`
+
+- Deletes the `GPA` tag type.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -227,14 +264,18 @@ Examples:
 
 ## Command summary
 
-| Action        | Format, Examples                                                                                                                                                                                                                                                       |
-|---------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**       | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [st/SKILL_TAG] [dt/DEGREE_TAG] [jt/JOB_TYPE_TAG] [<alias>/TAG]…​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 st/Java`                                                     |
-| **Clear**     | `clear`                                                                                                                                                                                                                                                                |
-| **Delete**    | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                    |
-| **Edit**      | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [st/OLD_SKILL_TAG-NEW_SKILL_TAG] [dt/OLD_DEGREE_TAG-NEW_DEGREE_TAG] [jt/OLD_JOB_TYPE_TAG-NEW_JOB_TYPE_TAG] [<alias>/OLD_TAG-NEW_TAG]…​`<br> e.g.,`edit 1 p/91234567 e/johndoe@example.com dt/Bachelors-Masters`   |
-| **AddTag**    | `addTag INDEX [st/SKILL_TAG] [dt/DEGREE_TAG] [jt/JOB_TYPE_TAG] [<alias>/TAG]…​`<br> e.g., `addTag 3 st/Java`                                                                                                                                                           |
-| **deleteTag** | `deleteTag INDEX [st/SKILL_TAG] [dt/DEGREE_TAG] [jt/JOB_TYPE_TAG] [<alias>/TAG]…​`<br> e.g., `deleteTag 2 dt/Bachelors`                                                                                                                                                |
-| **Find**      | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                                             |
-| **List**      | `list`                                                                                                                                                                                                                                                                 |
-| **Help**      | `help`                                                                                                                                                                                                                                                                 |
+| Action            | Format, Examples                                                                                                                                                                                                                                                      |
+|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**           | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [st/SKILL_TAG] [dt/DEGREE_TAG] [jt/JOB_TYPE_TAG] [<alias>/TAG]…​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 st/Java`                                                    |
+| **Clear**         | `clear`                                                                                                                                                                                                                                                               |
+| **Delete**        | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                   |
+| **Edit**          | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [st/OLD_SKILL_TAG-NEW_SKILL_TAG] [dt/OLD_DEGREE_TAG-NEW_DEGREE_TAG] [jt/OLD_JOB_TYPE_TAG-NEW_JOB_TYPE_TAG] [<alias>/OLD_TAG-NEW_TAG]…​`<br> e.g.,`edit 1 p/91234567 e/johndoe@example.com dt/Bachelors-Masters`  |
+| **AddTag**        | `addTag INDEX [st/SKILL_TAG] [dt/DEGREE_TAG] [jt/JOB_TYPE_TAG] [<alias>/TAG]…​`<br> e.g., `addTag 3 st/Java`                                                                                                                                                          |
+| **deleteTag**     | `deleteTag INDEX [st/SKILL_TAG] [dt/DEGREE_TAG] [jt/JOB_TYPE_TAG] [<alias>/TAG]…​`<br> e.g., `deleteTag 2 dt/Bachelors`<br/>                                                                                                                                          |
+| **Create**        | `create TAG_TYPE TAG_ALIAS` <br> e.g., `create GPA gpat`                                                                                                                                                                                                              |
+| **EditTagType**   | `editTagType OLD_TAG_TYPE-NEW_TAG_TYPE OLD_TAG_ALIAS-NEW_TAG_ALIAS` <br> e.g., `editTagType GPA-Grade gpat-grdt`                                                                                                                                                      |
+| **DeleteTagType** | `deleteTagType TAG_TYPE` <br> e.g., `deleteTagType GPA`                                                                                                                                                                                                               |
+| **Find**          | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                                            |
+| **List**          | `list`                                                                                                                                                                                                                                                                |
+| **Help**          | `help`                                                                                                                                                                                                                                                                |
+
