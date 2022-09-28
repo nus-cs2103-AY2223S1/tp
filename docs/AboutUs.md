@@ -50,7 +50,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Lu Yiting
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/luyiting0913.png" width="200px">
 
 [[github](https://github.com/LuYiting0913)]
 [[portfolio](team/luyiting.md)]
