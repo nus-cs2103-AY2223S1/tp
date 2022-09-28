@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Yee Thern's Project Portfolio Page
+title: Max Ng's Project Portfolio Page
 ---
 
 ### Project: HR Pro Max++
@@ -11,18 +11,16 @@ It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
-* **New Feature**: 
+* **New Feature**: to be confirmed
 
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: to be confirmed
 
-* **Project management**:
+* **Project management**: to be confirmed
 
-* **Enhancements to existing features**:
+* **Enhancements to existing features**: to be confirmed
 
-* **Documentation**:
+* **Documentation**: to be confirmed
 
-* **Community**:
-    
-* **Tools**:
+* **Community**: to be confirmed
 
-* _{you can add/remove categories in the list above}_
+* **Tools**: to be confirmed
