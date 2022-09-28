@@ -9,25 +9,35 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Ong Wee Marcus
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lfrostbytee.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/lfrostbytee)]
+[[portfolio](team/lfrostbytee.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Deliverables, Scheduling and Tracking
+
+### Meng Qiaoran
+
+<img src="images/qiaoran.png" width="200px">
+
+[[github](http://github.com/Qiaoran-M)]
+[[portfolio](team/qiaoran.md)]
+
+* Role: Developer
+* Responsibilities: Testing
+
+### Benjamin Sim
+
+<img src="images/benjamin-sim.png" width="200px">
+
+[[github](https://github.com/Benjamin-Sim)]
+[[portfolio](team/benjamin-sim.md)]
+
+* Role: Developer
+* Responsibilities: Code Quality
 
 ### Johnny Doe
 
