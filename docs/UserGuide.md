@@ -81,7 +81,8 @@ This command will require one flag, and one flag is optional:
 * `t/`: (Optional flag) To be followed by the module title of the module to be added into Plannit.
 
 Format: `add module m/MODULE_CODE [t/MODULE_TITLE]`
-* A module has a module code and an optional module title.
+* You may optionally add a module title.
+* You cannot add a duplicate module code.
 
 Examples:
 ```
@@ -101,7 +102,7 @@ This command will require one flag:
 * `m/`: To be followed by the module code of the module to be deleted from Plannit.
 
 Format: `delete module m/MODULE_CODE`
-* The module code must correspond to an existing module in Plannit.
+* You cannot delete a non-existent module code.
 
 Example:
 
