@@ -80,7 +80,7 @@ Adds a person to the address book.
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+You can have any number of tags (including 0)
 </div>
 
 Examples:
@@ -142,6 +142,43 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Creating a custom tag type: `create`
+
+Creates a custom tag type apart from the existing Skill, Degree, and Job Type tag types. 
+
+Format: `create TAG_TYPE TAG_ALIAS` 
+
+- Creates a new `TAG_TYPE` tag type.
+- `TAG_ALIAS` can be used to add tags to this custom tag type.
+
+Examples:  
+
+- `create GPA gpat` creates a tag type `GPA` with `gpat` as its tag alias.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can use existing tag types: Skill, or Degree, or Job Type.
+</div>
+
+### Editing tag type name: `editTagType`
+
+Edits the name and alias of an existing tag type to `NEW_TAG_TYPE` and `NEW_TAG_ALIAS`  
+
+Format: `editTagType OLD_TAG_TYPE-NEW_TAG_TYPE OLD_TAG_ALIAS-NEW_TAG_ALIAS`
+
+Examples: `editTagType GPA-Grade gpat-grdt`
+
+- Edits name of the `GPA` tag type to `Grade` and its tag alias from `gpat` to `grdt`
+
+### Deleting an existing tag type: `deleteTagType`
+
+Deletes an existing tag type and its corresponding tag alias.
+
+Format: `deleteTagType TAG_TYPE`
+
+Examples: `deleteTagType GPA`
+
+- Deletes the `GPA` tag type.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -189,4 +226,7 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
+**Create** | `create TAG_TYPE TAG_ALIAS` <br> e.g., `create GPA gpat`
+**EditTagType** | `editTagType OLD_TAG_TYPE-NEW_TAG_TYPE OLD_TAG_ALIAS-NEW_TAG_ALIAS` <br> e.g., `editTagType GPA-Grade gpat-grdt`
+**DeleteTagType** | `deleteTagType TAG_TYPE` <br> e.g., `deleteTagType GPA`
 **Help** | `help`
