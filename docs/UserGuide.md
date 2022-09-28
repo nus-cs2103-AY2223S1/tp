@@ -47,11 +47,11 @@ interactions recorded faster and simpler than traditional GUI applications.
 
    * **`list`** : Lists all companies.
 
-   * **`add`**`coy/MacDonalds n/James hp/98765432 e/jamesho@example.com loc/West Coast Park` : Adds a point of contact named `James` to the Company `MacDonalds`.
+   * **`add`**`coy/MacDonalds n/James hp/98765432 e/jamesho@example.com loc/West Coast Park` : Adds a point-of-contact named `James` to the Company `MacDonalds`.
 
    * **`delete`**`coy/MacDonalds` : Deletes MacDonalds (Company) together with all their contacts in the current list.
 
-   * **`find`**`MacDonalds` : Finds MacDonalds in the list of companies, and displays all its details (Point of contact, Transactions).
+   * **`find`**`MacDonalds` : Finds MacDonalds in the list of companies, and displays all its details (point-of-contact, Transactions).
 
   * **`clear`** : Deletes all companies and points of contact.
 
@@ -89,7 +89,7 @@ interactions recorded faster and simpler than traditional GUI applications.
 
 ### Adding a person: `add`
 
-Adds a point of contact to the company.
+Adds a point-of-contact to the company.
 
 Format: `add coy/COMPANY n/NAME hp/NUMBER e/EMAIL loc/ADDRESS`
 
@@ -174,7 +174,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `MacDonald` will not match `MacDonalds`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Companies matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Cold Storage` will return `Urban Storage`, `Cold Drink Store`
 
 ### Getting the User Guide: `user guide`

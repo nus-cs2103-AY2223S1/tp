@@ -281,7 +281,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | business owner           | choose which company and point-of-contact to delete | save only relevant companies and point-of-contact to remove clutter |
 | `* * *`  | forgetful business owner | see usage instructions                              | refer to instructions when I forget how to use the application      |
 | `* * *`  | new business owner       | simply search for contacts                          | retrieve the only essential details i need                          |
-| `* * *`  | new business owner       | view a company's details and point of contact       | easily know who to contact for that company                         |
+| `* * *`  | new business owner       | view a company's details and point-of-contact       | easily know who to contact for that company                         |
 | `* * *`  | busy business owner      | quickly retrieve the data of the company            | save time without having to go through multiple layers              |
 | `* *`    | careless business owner  | edit the details of point-of-contact                | correct the mistakes that I did                                     |
 | `* *`    | efficient business owner | sort the search result by price                     | quickly know which company I have made the most transaction with    |
