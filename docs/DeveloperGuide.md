@@ -417,6 +417,9 @@ Guarantee: bobaBot will be exited.
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **User**: The staff of the boba shop
+* **Customer**: The customer of the boba shop
+* **Customer's detail**: Any information in the system related to the customer
 
 --------------------------------------------------------------------------------------------------------------------
 
