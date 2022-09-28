@@ -76,7 +76,6 @@ Exits the program.
 
 Format: `exit`
 
-### Delete a meal [coming in v1.2]
 
 _Details coming soon ..._
 
@@ -95,7 +94,7 @@ _Details coming soon ..._
 ------------|----------------------------------- | --------------------------------------------------------------------  
  **Add**    | `add FOOD_ITEM CALORIES MEAL_TYPE` | ` add donut 1000 breakfast`
  **Delete** | `delete MEAL_TYPE FOOD_ITEM`       |  `delete lunch cake`                                                                         
- **Edit**   | `edit MEAL_TYPE FOOD_ITEM`         | `edit dinner rice` 
+ **Edit**   | `edit MEAL_TYPE INDEX UPDATED_FOOD_ITEM CALORIES`         | `edit dinner 2 rice 300 ` 
  **review** | `review`                           | `review`                                                                 
  **List**   | `list`                             |    `list`                                                                                                     
  **exit**   | `exit`                             |    `exit`                                                                                                     
