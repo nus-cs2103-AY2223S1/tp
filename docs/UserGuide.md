@@ -123,7 +123,7 @@ Format: `liststu`
 
 ### Adding attendance : `attendance`
 
-Increase or decrease the number of times a student attended tutorials.
+Increases or decreases the number of times a student attended tutorials.
 
 Format: `attendance n/NAME s/SIGN v/VALUE`
 * decrease attendance value if `SIGN` is '-' and increase attendance value if `SIGN` is '+'

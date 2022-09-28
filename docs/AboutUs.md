@@ -42,7 +42,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/shawn532.png" width="200px">
 
 [github](http://github.com/shawn532)
-[portfolio](team/yuxuanleong.md)
+[portfolio](team/shawn532.md)
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
