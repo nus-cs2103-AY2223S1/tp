@@ -40,13 +40,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Jean Doe
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jacobkwan.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/jacobkwan)]
+[[portfolio](team/jacobkwan.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Integration
+* Responsibilities: Versioning of codebase/releases and overall maintenance of the repository.
 
 ### James Doe
 
