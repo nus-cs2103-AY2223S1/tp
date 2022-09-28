@@ -25,7 +25,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/darrenwah.png" width="200px">
 
 [[github](http://github.com/Darren12345677)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/darren12345677.md)]
 
 * Role: Developer
 * Responsibilities: Integration, Scheduling and tracking

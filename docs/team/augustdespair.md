@@ -13,7 +13,7 @@ Given below are my contributions to the project.
 
 * **New Feature**:
 
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=augustdespair&breakdown=true)
 
 * **Project management**:
 
