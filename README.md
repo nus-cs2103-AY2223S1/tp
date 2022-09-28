@@ -11,4 +11,7 @@ If you can type fast, TrackO can help you manage your order and inventory tracki
 applications!
 
 * For the detailed documentation of this project, see the **[TrackO Website](https://ay2223s1-cs2103t-w15-3.github.io/tp/)**.
+
+**Acknowledgements**
+
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
