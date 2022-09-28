@@ -42,9 +42,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Joe Eng Yu Siang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yusiangeng.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/yusiangeng)] [[portfolio](team/yusiangeng.md)]
 
 * Role: Integration
 * Responsibilities: Code versioning, maintaining code repository, and integrating various parts of the software to create a whole
