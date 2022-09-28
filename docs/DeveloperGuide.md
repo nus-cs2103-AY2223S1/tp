@@ -257,42 +257,73 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
+* wishes to track their daily calorie intake
 * is reasonably comfortable using CLI apps
+* knows how much calories are in the food they just ate
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage and calculate calorie intake quickly
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​         | I want to …​                                 | So that I can…​                            |
+| -------- |-----------------|----------------------------------------------|--------------------------------------------|
+| `* * *`  | careless user   | delete a wrongly added meal                  | fix my food records easily                 |
+| `* * *`  | user            | add my daily calorie intake                  | know how much I am eating                  |
+| `* * *`  | food enthusiast | calculate my daily calorie intake            | know how nutrient dense my food is         |
+| `* * *`  | careless user   | edit a meal wrongly recorded                 | change my food records easily              |
+| `* *`    | user            | key in the calorie intake for each type of food | know how much calories a particular food contains |
+| `*`      | forgetful user  | receive reminders about my calorie deficiency / excess    | know if I should consume more / less calories                   |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `NutriGoals` application and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC-1 Summarise daily calorie intake**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to summarise his / her daily calorie intake
+2. NutriGoals shows the total calorie intake and the list of meals
+
+   Use case ends.
+
+**Extension**
+
+* 1a. No food item recorded
+    * 1a1. NutriGoals displays a default message
+
+      Use case ends.
+
+
+**Use case: UC-2 Add a meal**
+
+**MSS**
+
+1. User enters the command to add a food item
+2. NutriGoals shows the new list of meals
+
+   Use case ends.
+
+**Extension**
+
+* 1a. The information provided is invalid
+  * 1a1. NutriGoals shows an error message
+
+    Use case ends.
+
+**Use case: UC-3 Delete a meal**
+
+**MSS**
+
+1. User requests to <ins>list the meals recorded (UC-1)</ins>
+2. NutriGoals shows a list of meals
+3. User requests to delete a specific meal in the list
+4. NutriGoals deletes the meal
 
     Use case ends.
 
@@ -302,13 +333,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The given food item is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. NutriGoals shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: UC-4 Edit a meal**
+
+**MSS**
+
+1. User requests to <ins>list all the meals recorded (UC-1)</ins>
+2. NutriGoals shows a list of meals
+3. User requests to edit a specific meal in the list
+4. NutriGoals edits the meal
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty
+  
+  Use case ends.
+
+* 3a. The given food item is invalid
+
+  * 3a1. NutriGoals show an error message
+    
+    Use case resumes at step 2.
 
 ### Non-Functional Requirements
 
