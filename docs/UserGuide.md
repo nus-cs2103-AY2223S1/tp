@@ -65,13 +65,13 @@ Format: `help`
 ### Adding a person: `add`
 
 <aside>
-ℹ️ Add a student to the address book.
+ℹ️ Add a student to TA Assist.
 
 </aside>
 
 Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/CLASS_NAME...]`
 
-- Adds a student named `NAME` into the address book.
+- Adds a student named `NAME` into TA Assist.
 
 Examples:
 
@@ -81,7 +81,7 @@ Examples:
 ### Edit a student: `edit`
 
 <aside>
-ℹ️ Edits an existing student in the address book.
+ℹ️ Edits an existing student in TA Assist.
 
 </aside>
 
@@ -102,7 +102,7 @@ Examples:
 ### Delete a student: `delete`
 
 <aside>
-ℹ️ Deletes the specified student from the address book.
+ℹ️ Deletes the specified student from TA Assist.
 
 </aside>
 
@@ -114,7 +114,7 @@ Format: `delete INDEX`
 
 Examples:
 
-- `list` followed by `delete 2` deletes the 2nd student in the address book.
+- `list` followed by `delete 2` deletes the 2nd student in TA Assist.
 - `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 - `class c/CS2103T` followed by `delete 3` deletes the 3rd student in the CS2103T class.
 
@@ -165,7 +165,7 @@ Format: `assign INDEX... c/CLASS_NAME`
 
 Example:
 
-- `list` followed by `assign 1 3 5 6 c/CS1231S` assigns **1st**, **3rd**, **5th** and **6th** student in the address book to the **CS1231S** class.
+- `list` followed by `assign 1 3 5 6 c/CS1231S` assigns **1st**, **3rd**, **5th** and **6th** student in TA Assist to the **CS1231S** class.
 
 ### List classes: `listc`
 
@@ -296,5 +296,5 @@ Format: `back`
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TA Assist home folder.
 
