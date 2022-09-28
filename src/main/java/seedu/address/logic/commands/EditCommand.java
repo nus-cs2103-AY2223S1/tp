@@ -169,7 +169,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, minecraftName, phone, email, address, socials, tags, servers, timeZone);
+            return CollectionUtil.isAnyNonNull(name, minecraftName, phone, email, address, social, tags, servers, timeZone);
         }
 
         public void setName(Name name) {
@@ -286,7 +286,7 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getSocial().equals(e.getSocial())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
                     && getTags().equals(e.getTags())
                     && getServers().equals(e.getServers())
                     && getTimeZone().equals(e.getTimeZone());
