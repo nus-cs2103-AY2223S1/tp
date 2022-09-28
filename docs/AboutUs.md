@@ -9,50 +9,51 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### John
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/johnrhimawan.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[github](https://github.com/johnrhimawan)]
 [[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Something
 
-### Jean Doe
+### Kang Qiao
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kangqiao322.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](https://github.com/kangqiao322)]
+[[portfolio](team/johndoe.md)]
+
+* Role: Developer
+* Responsibilities: Something
+
+### Jet
+
+<img src="images/jetlfj.png" width="200px">
+
+[[github](http://github.com/jetlfj)] [[portfolio](team/johndoe.md)]
+
+* Role: Developer
+* Responsibilities: Something
+
+### Charlton
+
+<img src="images/bigcrushes.png" width="200px">
+
+[[github](http://github.com/bigcrushes)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Chantell
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chantellyu.jpeg" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/chantellyu)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
