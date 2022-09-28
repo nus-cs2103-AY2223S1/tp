@@ -372,10 +372,17 @@ otherwise)
 
 ### Non-Functional Requirements
 
-1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
+1. **Technical requirements**: The system should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. **Performance requirements**: The system should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. **Performance requirements**: The system should respond within two seconds.
+4. **Quality requirements**: A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
    able to accomplish most of the tasks faster using commands than using the mouse.
+5. **Quality requirements**: The system should be easily usable by a novice who has never managed budgeting.
+6. **Data Requirements**: Data should be persisted within the user's file system only.
+7. **Documentation**: The User Guide and Developer Guide should be directed towards self-help for users.
+8. The user interface should be intuitive enough for users who are not IT-savvy.
+9. The source code should be open source.
+10. The product is offered as a free online service.
 
 *{More to be added}*
 
