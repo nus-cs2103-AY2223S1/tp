@@ -37,15 +37,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: to be added soon
 
-### Jean Doe
+### Chin Hong Ming
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chm252.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/chm252)]
+[[portfolio](team/chm252.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: to be added soon
 
 ### Jonas Goh
 
