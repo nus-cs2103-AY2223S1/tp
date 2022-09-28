@@ -48,6 +48,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer. In charge of Storage.
 * Responsibilities: Documentation + Scheduling
 
+### Xu Yi
+
+<img src="images/optionalemon.png" width="200px">
+
+[[github](http://github.com/optionalemon)]
+[[portfolio](team/optionalemon.md)]
+
+* Role: Developer, in charge of UI.
+* Responsibilities: Testing + Deliverables and Deadlines
+
 ### Ng Jing Xue
 
 <img src="images/njxue.png" width="200px">
