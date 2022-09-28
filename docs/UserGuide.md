@@ -3,10 +3,20 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+# User Guide
+
+Sherlock is a **desktop app for law enforcement officers to easily manage the particulars of citizens optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interfac (GUI). If you can type fast, Sherlock can retrieve information for potential suspects faster than traditional GUI apps.
 
 * Table of Contents
-{:toc}
+  * [Quick Start](#quick-start)
+  * [Features](#features) `(Version 1.2)`
+    * Listing all persons: [`list`](#listing-all-persons--list)
+    * Adding a person: [`add`](#adding-a-person-add)
+    * Editing a person: [`edit`](#editing-a-person--edit)
+    * Locating persons by: [`find`](#locating-persons-by-name-find)
+    * Deleting a person: [`delete`](#deleting-a-person--delete)
+  * [FAQ](#faq)
+  * [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -14,9 +24,9 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `sherlock.jar` from here (Hyperlink will be added in the future).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your Sherlock.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -24,15 +34,11 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`list`** : Lists all persons in Sherlock.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add`**`id/12345678 n/John Doe p/98765432 a/John street, block 123, #01-01` : Adds a person named `John Doe` to Sherlock.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
-
-   * **`exit`** : Exits the app.
+   * **`delete`**`id/12345678` : Deletes the person with `ID number 12345678` from Sherlock.
 
 1. Refer to the [Features](#features) below for details of each command.
 
