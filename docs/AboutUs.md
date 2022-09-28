@@ -5,21 +5,9 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Joanna
+### Joanna Chan
 
 <img src="images/cfyjoanna.png" width="200px">
 
@@ -29,31 +17,42 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: Integration
 
-### Johnny Doe
+### Ashiqur Rahman
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ashiqurrah.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/ashiqurrah)]
+[[portfolio](team/ashiqurrah.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Git expert
 
-### James Doe
+### Phylicia Christel
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/phyliciachristel.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/phyliciachristel)]
+[[portfolio](team/phyliciachristel.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Code Quality
+
+### Farisa Nadia
+
+<img src="images/farisanadia.png" width="200px">
+
+[[github](http://github.com/farisanadia)]
+[[portfolio](team/farisanadia.md)]
+
+* Role: Developer
+* Responsibilities: Documentation + Deliverables and deadlines
+
+### Johannes
+
+<img src="images/jwdavis0200.png" width="200px">
+
+[[github](http://github.com/jwdavis0200)]
+[[portfolio](team/jwdavis0200.md)]
+
+* Role: Developer
+* Responsibilities: Testing + Scheduling and tracking
