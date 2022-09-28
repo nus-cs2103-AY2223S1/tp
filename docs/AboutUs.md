@@ -65,7 +65,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Reagan Tan
 
-<img src="images/ReaganTan00.png" width="200px">
+<img src="images/reagantan00.png" width="200px">
 
 [github](http://github.com/reagantan00) |
 [portfolio](team/reagantan.md)
