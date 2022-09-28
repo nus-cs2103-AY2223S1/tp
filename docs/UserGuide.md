@@ -26,7 +26,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add_contact`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
@@ -45,7 +45,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add_contact n/NAME`, `NAME` is a parameter which can be used as `add_contact n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -192,6 +192,18 @@ Format: `edit_task INDEX [n/NAME] [c/CONTACT_INDEX]`
 Examples:
 * `edit_task 1 n/Gym` Edits the task name of the 1st task to Gym.
 * `edit_task 3 n/Product meeting c/3` Edits the task name and associated contact of the 3rd task to be `Team meeting` and the 3rd contact respectively.
+
+### Deleting tasks:
+
+Deletes an existing task in task list.
+
+Format: `delete_task INDEX`
+
+* Deletes the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `delete_task 1` Deletes the Task at index 1.
+* `delete_task 3` Deletes the Task at index 3.
 
 ### Clearing all entries : `clear`
 
