@@ -9,24 +9,25 @@ SETA is a **desktop application for CS2103T Teaching Assistants** to track their
 
 * Table of Contents
   * **Student**
-    * Adding a student: `addstu`
-    * Editing a student: `editstu`
-    * Listing students: `liststu`
-    * Adding attendance of a student: `attendance`
-    * Adding students’ response: `addresponse`
-    * Adding help tag to a student: `helpstu`
-    * Deleting a student: `deletestu`
+    * Adding a student: [`addstu`](#adding-a-student--addstu)
+    * Editing a student: [`editstu`](#editing-a-student-editstu)
+    * Listing all students: [`liststu`](#listing-all-students--liststu)
+    * Adding student's attendance: [`attendance`](#adding-students-attendance--attendance)
+    * Adding student’s response: [`addresponse`](#adding-students-response-addresponse)
+    * Adding help tag to a student: [`helpstu`](#adding-help-tag-helpstu)
+    * Deleting a student: [`deletestu`](#deleting-a-student-deletestu)
   * **Question**
-    * Adding a question: `addq`
-    * Marking a question: `markq`
-    * Unmarking a question: `unmarkq`
-    * Deleting a question: `deleteq`
-    * Listing questions: `listq`
+    * Adding a question: [`addq`](#adding-a-question--addq)
+    * Marking a question: [`markq`](#marking-a-question--markq)
+    * Unmarking a question: [`unmarkq`](#unmarking-a-question--unmarkq)
+    * Deleting a question: [`deleteq`](#deleting-a-question--deleteq)
+    * Listing all questions: [`listq`](#listing-all-questions--listq)
   * **Tutorial**
-    * Adding a tutorial: `addtut`
-    * Deleting a tutorial: `deletetut`
-    * Marking tutorial: `marktut`
-    * Listing tutorials: `listtut`
+    * Adding a tutorial: [`addtut`](#adding-a-tutorial--addtut)
+    * Deleting a tutorial: [`deletetut`](#deleting-a-tutorial--deletetut)
+    * Marking a tutorial: [`marktut`](#marking-a-tutorial-marktut)
+    * Listing all tutorials: [`listtut`](#listing-all-tutorials-listtut)
+  * Exiting the program: [`exit`](#exiting-the-program--exit)
 
 
 
@@ -36,7 +37,7 @@ SETA is a **desktop application for CS2103T Teaching Assistants** to track their
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `seta.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `seta.jar` from [here](https://github.com/AY2223S1-CS2103T-T08-4/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your SETA.
 
@@ -46,13 +47,11 @@ SETA is a **desktop application for CS2103T Teaching Assistants** to track their
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`liststu`** : Lists all students.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`addstu`**`n/John Lim Jun Jie t/@johnlimjj e/johnlim@example.com` : Adds a student named `John Lim Jun Jie` to the student list.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
+   * **`deletestu`**`3` : Deletes the 3rd student shown in the current list.
 
    * **`exit`** : Exits the app.
 
@@ -76,7 +75,7 @@ SETA is a **desktop application for CS2103T Teaching Assistants** to track their
   e.g. if the command specifies `n/NAME e/EMAIL`, `e/EMAIL n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g. if you specify `t/johnlim t/johnlimjj`, only `t/johnlimjj` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `liststu` and `exit`) will be ignored.<br>
   e.g. if the command specifies `liststu 123`, it will be interpreted as `liststu`.
@@ -87,7 +86,7 @@ SETA is a **desktop application for CS2103T Teaching Assistants** to track their
 
 Adds a student to the student list.
 
-Format: `add n/NAME t/TELEGRAM_HANDLE e/EMAIL`
+Format: `addstu n/NAME t/TELEGRAM_HANDLE e/EMAIL`
  
 Examples:
 * `addstu n/John Lim Jun Jie t/@johnlimjj e/johnlim@example.com`
@@ -119,7 +118,7 @@ Format: `liststu`
 
 ![list students](images/userguide-screenshots/liststu.png)
 
-### Adding attendance : `attendance`
+### Adding student's attendance : `attendance`
 
 Increases or decreases the number of times a student attended tutorials.
 
@@ -133,7 +132,7 @@ Examples:
   
 ![add attendance](images/userguide-screenshots/attendance.png)
 
-### Adding students' response: `addresponse`
+### Adding student's response: `addresponse`
 
 Adds the number of messages a specified student sent during tutorial.
 
@@ -166,7 +165,7 @@ Format: `deletestu INDEX`
 * The index must be a positive integer 1, 2. 3, …
 
 Example:
-* `liststu` followed by `deletestu 2` deletes the 2nd student
+* `liststu` followed by `deletestu 2` deletes the second student in the student list
 
 ![help student](images/userguide-screenshots/deletestu.png)
 
@@ -185,8 +184,12 @@ Examples:
 
 Marks a question as important.
 
-Format: `markq QUESTION_NUMBER`
+Format: `markq INDEX`
 
+* Marks the question at the specified INDEX as important.
+* The index refers to the index number shown in the displayed question list.
+* The index must be a positive integer 1, 2. 3, …
+* 
 Examples:
 * `markq 1` marks the first question in the question list as important
 
@@ -196,8 +199,12 @@ Examples:
 
 Marks a question as unimportant. (If the question was previously or mistakenly marked as important)
 
-Format: `unmarkq QUESTION_NUMBER`
+Format: `unmarkq INDEX`
 
+* Marks the question at the specified INDEX as unimportant.
+* The index refers to the index number shown in the displayed question list.
+* The index must be a positive integer 1, 2. 3, …
+* 
 Examples:
 * `unmarkq 1` marks the first question in the question list as unimportant
 
@@ -207,7 +214,7 @@ Examples:
 
 Deletes a question in the question list.
 
-Format: `deleteq QUESTION_NUMBER`
+Format: `deleteq INDEX`
 
 Examples:
 * `deleteq 1` deletes the first question from the question list
@@ -215,7 +222,7 @@ Examples:
 ![](images/userguide-screenshots/deleteq.png)
 
 
-### Listing questions : `listq`
+### Listing all questions : `listq`
 
 Lists all questions.
 
@@ -236,23 +243,28 @@ Examples:
 
 ### Deleting a tutorial : `deletetut`
 
-Deletes a tutorial in the question list.
+Deletes a tutorial in the tutorial list.
 
-Format: `deletetut TUTORIAL_NUMBER`
+Format: `deletetut INDEX`
 
+* Deletes the tutorial at the specified INDEX
+* The index refers to the index number shown in the displayed tutorial list.
+* The index must be a positive integer 1, 2. 3, …
+* 
 Example:
 * `deleteq 1`deletes the first tutorial from the tutorial list
 
 ![](images/userguide-screenshots/deletetut.png)
 
-### Marking tutorial: `marktut`
+### Marking a tutorial: `marktut`
 
 Marks content in the tutorial as done.
 
 Format: `marktut INDEX`
 
-* Marks the tutorial at the specified `INDEX`. The index refers to the index number shown in the displayed person list.
-  The index must be a positive integer 1, 2, 3, ...
+* Marks the tutorial at the specified `INDEX`. 
+* The index refers to the index number shown in the displayed tutorial list.
+* The index must be a positive integer 1, 2, 3, ...
 
 Example:
 * `marktut 1` marks the first tutorial from the tutorial list as done.
@@ -275,14 +287,14 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+SETA data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+SETA data are saved as a JSON file `[JAR file location]/data/seta.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, SETA will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -296,7 +308,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous SETA home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -311,3 +323,4 @@ _Details coming soon ..._
 | **List**       | `liststu`, `listq`, `listtut`       |
 | **Mark**       | `markq`, `unmarkq`, `marktut`       |
 | **Tag**        | `helpstu`                           |
+| **Exit**       | `exit`                              |
