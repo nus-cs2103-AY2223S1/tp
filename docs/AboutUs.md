@@ -9,34 +9,34 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Tan Wen Hao Brendan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/nerbnerb.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/nerbnerb)]
+[[portfolio](team/nerbnerb.md)]
 
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
+* Role: Developer
 * Responsibilities: UI
 
-### Johnny Doe
+### Desmond Yong Shao Tian
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/desmondyst.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/desmondyst)]
+[[portfolio](team/desmondyst.md)]
 
 * Role: Developer
 * Responsibilities: Data
+
+### Lee Ian Ee
+
+<img src="images/leeianee.png" width="200px">
+
+[[github](https://github.com/leeianee)] [[portfolio](team/leeianee.md)]
+
+* Role: Developer
+* Responsibilities: Code Quality
 
 ### Marcus Isaac Goh Wei Jie
 
@@ -48,9 +48,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### James Doe
+### Tee Yi Teng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/puakii.png" width="200px">
 
 [[github](https://github.com/Puakii)]
 [[portfolio](team/puakii.md)]
