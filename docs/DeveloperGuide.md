@@ -271,20 +271,22 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​         | I want to …​                                        | So that I can…​                                         |
-|----------|-----------------|-----------------------------------------------------|------------------------------------------------------------------|
-| `* * *`  | New user        | Get help for specific commands                      | Learn the complete features of a command and know how to use it. |
-| `* * *`  | User            | Add students to my class                            | Decide who to have in my class.                                  |
-| `* * *`  | User            | Delete students from my class                       | Decide who to have in my class.                                  |
-| `* * *`  | User            | Give participation points to students               | Keep track of their participation in class.                      |
-| `* * *`  | User            | Take attendance of my students                      |                                                                  |
-| `* * *`  | User            | Delete students from TA Assist                      | Keep my list of students concise.                                |
-| `* * *`  | User            | View all my classes                                 |                                                                  |
-| `* *  `  | Infrequent user | Remember the last used commands                     | Quickly find the commands that I need.                           |
-| `* *  `  | An expert user  | Create macros to perform multiple tasks             | Be more efficient at using the system.                           |
-| `* *  `  | User            | Edit students' information                          | Easily and quickly update their information.                     |
-| `* * *`  | User            | Create assignments that contribute to CA components | Assign grades to assignments done by students.                   |
-| `* *  `  | User            | Assign weightage to my created assignments          | Estimate the overall performance of my students.                 |
+| Priority | As a …​         | I want to …​                                               | So that I can…​                                                  |
+|---------|-----------------|------------------------------------------------------------|------------------------------------------------------------------|
+| `* * *` | New user        | Get help for specific commands                             | Learn the complete features of a command and know how to use it. |
+| `* * *` | User            | Add students to my class                                   | Decide who to have in my class.                                  |
+| `* * *` | User            | Delete students from my class                              | Decide who to have in my class.                                  |
+| `* * *` | User            | Give participation points to students                      | Keep track of their participation in class.                      |
+| `* * *` | User            | Take attendance of my students                             | Keep track of their class attendance.                            |
+| `* * *` | User            | Delete students from TA Assist                             | Keep my list of students concise.                                |
+| `* * *` | User            | View all my classes                                        | See what classes I am teaching.                                  |
+| `* *  ` | Infrequent user | Remember the last used commands                            | Quickly find the commands that I need.                           |
+| `* *  ` | An expert user  | Create macros to perform multiple tasks                    | Be more efficient at using the system.                           |
+| `* *  ` | User            | Edit students' information                                 | Easily and quickly update their information.                     |
+| `* * *` | User            | Create assignments that contribute to CA components        | Assign grades to assignments done by students.                   |
+| `* *  ` | User            | Assign weightage to my created assignments                 | Estimate the overall performance of my students.                 |
+| `* * *` | User            | Change participation marks previously given to my students | Correctly and accurately reflect the marks for my students.      |
+
 *{More to be added}*
 
 ### Use cases
