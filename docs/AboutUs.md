@@ -13,7 +13,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/hikoya.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/hikoya)]
 [[portfolio](team/hikoya.md)]
 
@@ -32,32 +31,23 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Jamie Tan Wei-Xuan
 
-<img src="images/jamie.png" width="200px">
+<img src="images/jamietan2002.png" width="200px">
 
 [[github](http://github.com/jamietan2002)]
-[[portfolio](team/jamie.md)]
+[[portfolio](team/jamietan2002.md)]
 
 * Role: Code Quality and Integration
 * Responsibilities: Main Logic (Command Parsing)
 
-### Johnny Doe
+### Low Lik Hern
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/likhern.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/likhern)]
+[[portfolio](team/likhern.md)]
 
-* Role: Developer
+* Role: Testing
 * Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
 
 ### Min Hein Aung
 
