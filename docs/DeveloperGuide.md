@@ -339,10 +339,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *{More to be added}*
 
 ### Non-Functional Requirements
-
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+- **Technical Requirement**:
+  - Application should work on any device - teachers using different laptops should be able to use the application.
+- **Quality Requirement**:
+  - Display of information on the application should not feel cluttered.
+- **Performance Requirement**:
+  - Should be able to process any command within two seconds - response of application should not feel laggy.
+- **Project Scope**:
+  - Application does not offer student or parent accounts, and hence no communication with students or their guardians via the product.
+  - Application does not allow synchronisation of class lists with other teachers, but allows for sharing of data between teachers.
 
 *{More to be added}*
 
