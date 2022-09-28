@@ -295,7 +295,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Extensions**
+**Extensions**:
 * 2a. User enters the details in the wrong format.
   * 2a1. FindMyIntern shows an error message.
   
@@ -310,7 +310,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. FindMyIntern updates the internship application to the status.
    Use case ends.
 
-**Extensions**
+**Extensions**:
 * 2a. User enters the details in the wrong format.
   * 2a1. FindMyIntern shows an error message.
   
@@ -323,7 +323,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**:
 1. User wants to search for internship applications stored in the tracker.
 2. User enters the keywords for the search.
-FindMyIntern shows a list of internship applications that match the keywords.
+3. FindMyIntern shows a list of internship applications that match the keywords.
    
    Use case ends.
 
