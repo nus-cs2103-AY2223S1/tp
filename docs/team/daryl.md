@@ -15,7 +15,7 @@ This displays my code contributions for the project: [RepoSense link](https://nu
 
 #### Contributions to User Guide
 
-#### Contributions to Developer's Guide
+#### Contributions to Developer Guide
 
 #### Contributions to team-based tasks
 
