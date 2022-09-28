@@ -270,20 +270,43 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority   | As a …​                                     | I can …​                                                                                          | So that I can…​                                                                     |
+|------------|---------------------------------------------|---------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
+| `* * *`    | new user                                    | see usage instructions                                                                            | refer to instructions when I forget how to use the App                              |
+| `* * *`    | user                                        | add a new person                                                                                  |                                                                                     |
+| `* * *`    | user                                        | delete a person                                                                                   | remove entries that I no longer need                                                |
+| `* * *`    | user                                        | find a person by name                                                                             | locate details of persons without having to go through the entire list              |
+| `* *`      | user                                        | hide private contact details                                                                      | minimize chance of someone else seeing them by accident                             |
+| `*`        | user with many persons in the address book  | sort persons by name                                                                              | locate a person easily                                                              |
+| `* * *`    | user                                        | use the help command                                                                              | view the command summary                                                            |
+| `* * *`    | user                                        | check the total number of candidates                                                              | keep a track of the number of applicants.                                           |                                                      
+| `* * *`    | user                                        | add tags to existing or new candidates                                                            | categorise candidates.                                                              |                                                   
+| `* * *`    | user                                        | add a Skill type tag                                                                              | keep a track of all the relevant skills of candidates.                              |                                                  
+| `* * *`    | user                                        | add a Degree type tag                                                                             | keep track of the highest level of education of candidates. - degree                |                                          
+| `* * *`    | user                                        | add a Job Type type tag                                                                           | view which candidates are applying for internships/full-time/part-time/temporary.   |                         
+| `* * *`    | user                                        | remove tags                                                                                       | remove attributes that are no more relevant.                                        |                        
+| `* * *`    | user                                        | edit tags                                                                                         | update attributes with the most relevant information.                               |                        
+| `* * *`    | user                                        | add the application status of candidates                                                          | keep a track of a candidate’s application progress.                                 |                      
+| `* * *`    | user                                        | update the application status of candidates                                                       | advance a candidate to another status.                                              |                      
+| `**`       | user                                        | add a rating to candidates                                                                        | quantify the merit of a candidate.                                                  |                    
+| `**`       | user                                        | delete the rating of candidates                                                                   | remove wrong/unwanted ratings.                                                      |                   
+| `**`       | user                                        | edit the rating of candidates                                                                     | update the ratings of candidates.                                                   |                    
+| `**`       | user                                        | sort candidates based on their rating                                                             | view candidates based on the order of desirability.                                 |                     
+| `* * *`    | user                                        | search for candidates using keywords                                                              | view the candidates that meet a specific criteria.                                  |                   
+| `* * *`    | user                                        | search candidates based on tags                                                                   | view candidates based on their skills, level of education, etc.                     |                    
+| `* * *`    | user                                        | search candidates based on ratings                                                                | filter candidates based on their suitability.                                       |                     
+| `* * *`    | user                                        | search candidates based on their location                                                         | view eligible candidates for a particular region/country.                           |                     
+| `* * *`    | user                                        | search candidates based on application status                                                     | view all candidates with the same application status.                               |                   
+| `* * *`    | user                                        | add optional notes/comments for candidates                                                        | keep track of additional information.                                               |                  
+| `*`        | user                                        | add links to LinkedIn profiles, Github profiles or Personal websites of candidates                | keep track of more information about candidates.                                    |
+| `*`        | user                                        | copy links of LinkedIn profiles, Github profiles or Personal websites of candidates to clipboard  | easily open these links.                                                            | 
+| `**`       | user                                        | search for candidates based on a combination of multiple criteria                                 | view candidates that meet a particular set of criteria.                             |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `CLInkedIn` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
@@ -308,6 +331,46 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case: Search for candidates**
+
+**MSS**
+
+1. User requests to search for candidates using keywords like candidate name, location, application status, tags, etc.
+2. CLInkedIn shows a list of candidates with details matching the search keywords.
+
+    Use case ends.
+
+**Use case: Modify Candidate details**
+
+**MSS**
+
+1. User requests to list persons.
+2. AddressBook shows a list of persons.
+3. User requests to edit the name, location, application status, tags, etc. of a specific candidate in the list.
+4. CLInkedIn updates the details of the corresponding candidate.  
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. CLInkedIn detects that the candidate does not exist in the list.
+
+    * 3a1. CLInkedIn requests for a valid command.
+    * 3a2. User enters new command.  
+      Steps 3a1-3a2 are repeated until the command entered is valid.  
+      Use case resumes from step 4.
+
+* 3b. User requests to edit an invalid tag of a candidate.
+
+    * 3b1. CLInkedIn requests to enter a valid tag.
+    * 3b2. User enters new command.  
+      Steps 3b1-3b2 are repeated until the tag entered is valid.  
+      Use case resumes from step 4.
+    
 *{More to be added}*
 
 ### Non-Functional Requirements
