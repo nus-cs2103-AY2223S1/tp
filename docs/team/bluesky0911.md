@@ -1,5 +1,5 @@
 ---
-layout: page 
+layout: page
 title: Danny's Project Portfolio Page
 ---
 <p align="center">
