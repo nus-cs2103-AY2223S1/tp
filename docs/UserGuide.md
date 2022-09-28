@@ -182,7 +182,7 @@ Examples:
 
 ### Deleting a task: `Delete Task`
 
-Adds a task to the tasklist.
+Deletes a task from the tasklist.
 
 Format: `delete task TASK_NUMBER` 
 * Deletes the task at the specified `TASK_NUMBER`.
