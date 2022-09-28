@@ -319,7 +319,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `UniNurse` application and the **Actor** is the `user`, unless specified otherwise)
+
+---
 
 **Use case: Delete a person**
 
@@ -344,7 +346,49 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+---
+
+**Use case: See the list of tasks to be completed**
+
+**MSS**
+
+1.  User requests to list tasks
+2.  UniNurse shows a list of tasks together with patient name
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+---
+
+**Use case: See the list of tasks associated with a specific patient**
+
+**MSS**
+
+1.  User requests to list tasks for patient at a specified index
+2.  UniNurse shows a list of tasks for the specified patient
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given index is invalid or out of range.
+
+    * 1a1. UniNurse shows an error message.
+
+      Use case ends.
+
+* 2a. The list is empty.
+
+  Use case ends.
+
 *{More to be added}*
+
+---
 
 ### Non-Functional Requirements
 
