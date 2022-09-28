@@ -297,6 +297,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
+**Use case: Mark a task as complete**
+
+**MSS**
+
+1.  User requests to list tasks
+2.  CodeConnect shows a list of tasks
+3.  User requests to mark a specific task in the list as complete
+4.  CodeConnect marks the task as complete
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. CodeConnect shows an error message.
+
+      Use case resumes at step 2.
+
 **Use case: Delete a person**
 
 **MSS**
