@@ -13,3 +13,51 @@
 * It is named `AddressBook Level 3` (`AB3` for short) because it was initially created as a part of a series of `AddressBook` projects (`Level 1`, `Level 2`, `Level 3` ...).
 * For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
 * This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+
+## Features
+
+* Keep track of your tasks, their deadlines, and the modules they belong to
+  * Mark them as complete or uncompleted
+
+## Usage
+
+### Adding a task: `add`
+
+Adds a task to the task manager.
+
+Format:
+`add {task_name} /by {deadline} /mod {module_code}`
+
+Examples:
+* `add finish problem set 5 /by Week 6 Sunday /mod CS2040S`
+* `add finish SEP application /by 2359 today`
+
+### Deleting a task: `del`
+
+Deletes a task from the task manager list.
+
+Format:
+`del {task_index}`
+
+Example:
+`del 5`
+
+### Marking a task: `mark`
+
+Marks a task as completed in the task manager list.
+
+Format:
+`mark {task_index}`
+
+Example:
+`mark 3`
+
+### Unmarking a task: `unmark`
+
+Marks a task as incomplete in the task manager list.
+
+Format:
+`unmark {task_index}`
+
+Example:
+`unmark 3`
