@@ -17,15 +17,20 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+- Role: Project Advisor
 
 ### Lim Wei Jun
-
-<img src="images/limweijun.png" width="200px">
 
 [[github](http://github.com/limweijun)]
 [[portfolio](team/limweijun.md)]
 
-* Role: Developer
-* Responsibilities: -
+- Role: Developer
+- Responsibilities: Dev Ops + Threading
+
+### Lu Yiting
+
+<img src="images/johndoe.png" width="200px">
+
+[[github](https://github.com/LuYiting0913)]
+[[portfolio](team/luyiting.md)]
 
