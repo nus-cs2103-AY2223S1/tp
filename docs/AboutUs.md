@@ -9,13 +9,14 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### John Doe
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/justinpeng.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[homepage](https://justinpeng.vercel.app)]
+[[github](https://github.com/JustinPeng13)]
+[[portfolio](team/justinpeng13.md)]
 
-* Role: Project Advisor
+* Role: Secondary Team Lead
+* Responsibilities: Deliverables and deadlines, Scheduling and tracking, Git/SourceTree expert
 
 ### Soh Je Hou
 
