@@ -28,11 +28,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Chief Programmer
 * Responsibilities: Backend
 
-### Johnny Doe
+### Justin Cheng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chustinjeng.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/Chustinjeng)] [[portfolio](team/Chustinjeng.md)]
 
 * Role: Developer
 * Responsibilities: Data
