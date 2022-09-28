@@ -34,7 +34,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/yeethern.png" width="350px">
 
-[[github](http://github.com/AugustDespair)] [[portfolio](team/yeethern.md)]
+[[github](http://github.com/AugustDespair)] [[portfolio](team/augustdespair.md)]
 
 * Role: Code Quality
 * Responsibilities: Code Quality
@@ -55,7 +55,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/maxng.png" width="200px">
 
 [[github](http://github.com/maxng17)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/maxng17.md)]
 
 * Role: Developer
 * Responsibilities: Documentation
