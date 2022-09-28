@@ -295,6 +295,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                    | view contacts related to my search query                   | find contacts even when I mistype their name                               |
 | `* *`    | user                    | hide private contact details                               | minimize chance of someone else seeing them by accident                    |
 | `* *`    | user                    | show private contact details                               | view them when I need to                                                   |
+| `* *`    | user                    | have an autocomplete for the names that I am searching     | search faster by names and minimize the chance of an unsuccessful search.  |
+| `* *`    | user                    | have an autocomplete for the tags that I am searching      | search faster by tags and minimize the chance of an unsuccessful search.   |
 | `* *`    | user with many contacts | specify the default order of my contacts                   | avoid re-sorting the list everytime                                        |
 | `* *`    | user with many contacts | sort contacts by name, email, phone number, or address     | organise my contacts list                                                  |
 | `* *`    | user with many contacts | sort contacts according to tags                            | view contacts with a specified tag before other contacts                   |
@@ -333,7 +335,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Search a contact**
+**Use case: Search contacts**
 
 **MSS**
 
@@ -388,7 +390,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests for the name of the contact.
 2.  SoConnect gives the contact with the right name.
-3.  User request to add tag to the contact.
+3.  User requests to add tag to the contact.
 4.  SoConnect adds the tag to the contact.
 
     Use case ends.
@@ -460,8 +462,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **CLI**: A text-based user interface used to run programs
+* **GUI**: A graphical user interface (GUI) is a form of user interface that allows users to interact with programs through graphical icons and audio indicator
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-
+* **Autocomplete**: A feature that shows a list of completed words or strings without the user needing to type them in full
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
