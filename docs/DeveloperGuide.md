@@ -283,32 +283,96 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `FindMyIntern` and the **Actor** is the `user` unless specified otherwise)
 
-**Use case: Delete a person**
 
-**MSS**
+**Use Case: UC1 - Add internship application to the tracker**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+**MSS**:
+1. User wants to add an internship application to the tracker.
+2. User enters the details for the internship application.
+3. FindMyIntern adds the new internship application into the tracker.
+
+   Use case ends.
+
+**Extensions**
+* 2a. User enters the details in the wrong format.
+  * 2a1. FindMyIntern shows an error message.
+  
+    Use case ends.
+
+<br />
+
+**Use Case: UC2 - Update status of internship application**
+
+**MSS**:
+1. User requests to update the status of a specific internship application in the tracker.
+2. FindMyIntern updates the internship application to the status.
+   Use case ends.
+
+**Extensions**
+* 2a. User enters the details in the wrong format.
+  * 2a1. FindMyIntern shows an error message.
+  
+    Use case ends.
+
+<br />
+
+**Use Case: UC3 - Search for internship applications using keywords**
+
+**MSS**:
+1. User wants to search for internship applications stored in the tracker.
+2. User enters the keywords for the search.
+FindMyIntern shows a list of internship applications that match the keywords.
+   
+   Use case ends.
+
+**Extensions**:
+* 2a. User enters the details in the wrong format.
+  * 2a1. FindMyIntern shows an error message.
 
     Use case ends.
 
-**Extensions**
 
-* 2a. The list is empty.
+* 3a. There were no internship applications that matched the keywords.
+  * 3a1. FindMyIntern shows an empty list.
+    Use case ends.
 
-  Use case ends.
+<br />
 
-* 3a. The given index is invalid.
+**Use Case: UC4 - Filter internship by application status**
 
-    * 3a1. AddressBook shows an error message.
+**MSS**:
+1. User wants to filter internship applications by application status.
+2. User enters the desired application status.
+3. FindMyIntern shows a list of internship applications with the desired application status.
 
-      Use case resumes at step 2.
+   Use case ends.
+
+**Extensions**:
+* 2a. User enters the details in the wrong format.
+  * 2a1. FindMyIntern shows an error message.
+
+    Use case ends.
+
+
+* 3a. There were no internship applications that contained the desired application status.
+  * 3a1. FindMyIntern shows an empty list.
+
+    Use case ends.
 
 *{More to be added}*
+
+
+
+
+
+
+
+
+
+
+
 
 ### Non-Functional Requirements
 
