@@ -53,7 +53,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/paotheroo.PNG" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/paotheroo)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Documentation
