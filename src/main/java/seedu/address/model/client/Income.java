@@ -37,5 +37,10 @@ public class Income {
         return this.getIncome() == (otherIncome.getIncome());
     }
 
+    @Override
+    public String toString() {
+        return value;
+    }
+
 
 }

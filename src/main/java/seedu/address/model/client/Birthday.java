@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.chrono.ChronoLocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.FormatStyle;
 import java.util.Date;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -107,6 +108,12 @@ public class Birthday {
         } else {
             return sameCelebrate && this.getBirthday().equals(otherBirthday.getBirthday());
         }
+    }
+
+    @Override
+    public String toString() {
+        return birthday.format(DateTimeFormatter
+                .ofLocalizedDate(FormatStyle.LONG));
     }
 
     @Override

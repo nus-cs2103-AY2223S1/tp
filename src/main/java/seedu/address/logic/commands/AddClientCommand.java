@@ -26,10 +26,10 @@ public class AddClientCommand extends Command {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
-            + "[" + PREFIX_TAG + "TAG]... "
+            + "[" + PREFIX_TAG + "TAG] (multiple)... "
             + PREFIX_BIRTHDAY + "BIRTHDAY "
             + PREFIX_INCOME + "INCOME "
-            + PREFIX_RISK_APPETITE + "RA .. \n"
+            + PREFIX_RISK_APPETITE + "RA.. \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
@@ -48,7 +48,6 @@ public class AddClientCommand extends Command {
 
     private final Client toAdd;
 
-    //TODO: Add proper constructor
     public AddClientCommand(Client client) {
         requireNonNull(client);
         toAdd = client;

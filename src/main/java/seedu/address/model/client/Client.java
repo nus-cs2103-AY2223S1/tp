@@ -28,7 +28,7 @@ public class Client extends Person {
     //private PersonNotes notes; //TODO: Just a string
     private Income income; //TODO: Just a float
     private RiskAppetite ra; //TODO Enum
-    //private Age age; //TODO do you even need an age?
+    //The age is obtained from birthday
 
 
     public Client(Name name, Phone phone, Email email, Address address,Set<Tag> tag,
@@ -79,7 +79,13 @@ public class Client extends Person {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
-        sb.append(super.toString()); //tag on previous stuff
+        sb.append(super.toString()) //tag on previous stuff
+                .append(", Birthday: ")
+                .append(getBirthday())
+                .append(", Income: ")
+                .append(getIncome())
+                .append(", RiskLevel: ")
+                .append(getRiskAppetite());
         return sb.toString();
     }
 

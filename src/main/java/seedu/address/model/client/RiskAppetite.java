@@ -20,7 +20,17 @@ public class RiskAppetite {
     }
 
     public enum RiskLevel {
-        HIGH, MEDIUM, LOW
+        HIGH("High"), MEDIUM("Medium"), LOW("Low");
+
+        private String message;
+
+        RiskLevel(String message) {
+            this.message = message;
+        }
+        @Override
+        public String toString() {
+            return message;
+        }
     }
 
     private final RiskLevel rl;
@@ -69,6 +79,11 @@ public class RiskAppetite {
         RiskAppetite otherRA = (RiskAppetite) other;
         boolean isSameRA = this.getRiskLevel() == otherRA.getRiskLevel();
         return isSameRA;
+    }
+
+    @Override
+    public String toString() {
+        return rl.toString();
     }
 
 }
