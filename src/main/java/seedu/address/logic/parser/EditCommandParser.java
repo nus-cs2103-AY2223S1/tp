@@ -35,7 +35,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MINECRAFT_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_SOCIALS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MINECRAFT_NAME, PREFIX_PHONE,
+                        PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_SOCIALS, PREFIX_TAG);
 
         Index index;
 
@@ -50,7 +51,10 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_MINECRAFT_NAME).isPresent()) {
-            editPersonDescriptor.setMinecraftName(ParserUtil.parseMinecraftName(argMultimap.getValue(PREFIX_MINECRAFT_NAME).get()));
+            editPersonDescriptor.setMinecraftName(ParserUtil.parseMinecraftName(
+                    argMultimap.getValue(PREFIX_MINECRAFT_NAME).get()
+                    )
+            );
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));

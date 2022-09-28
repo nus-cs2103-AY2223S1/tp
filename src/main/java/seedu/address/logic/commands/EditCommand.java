@@ -101,7 +101,8 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        MinecraftName updatedMinecraftName = editPersonDescriptor.getMinecraftName().orElse(personToEdit.getMinecraftName());
+        MinecraftName updatedMinecraftName = editPersonDescriptor.getMinecraftName()
+                .orElse(personToEdit.getMinecraftName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
@@ -110,7 +111,8 @@ public class EditCommand extends Command {
         Set<Server> updatedServers = editPersonDescriptor.getServers().orElse(personToEdit.getServers());
         TimeZone updatedTimeZone = editPersonDescriptor.getTimeZone().orElse(personToEdit.getTimeZone());
 
-        return new Person(updatedName, updatedMinecraftName, updatedPhone, updatedEmail, updatedAddress, updatedSocials, updatedTags, updatedServers, updatedTimeZone);
+        return new Person(updatedName, updatedMinecraftName, updatedPhone, updatedEmail, updatedAddress,
+                updatedSocials, updatedTags, updatedServers, updatedTimeZone);
     }
 
     @Override
