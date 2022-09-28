@@ -170,6 +170,20 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 _Details coming soon ..._
 
+### Adding a task: `add task`
+
+Adds a task to the tasklist.
+
+Format: `add task TASK_DESCRIPTION`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A person can have any number of tags (including 0)
+</div>
+
+Examples:
+* `add task laundry`
+* `add task coding assignment`
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
