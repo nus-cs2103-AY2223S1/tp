@@ -1,7 +1,7 @@
 # Kenneth Sim's Project Portfolio page
 
-##Overview
+## Overview
 
-##Summary of contributions
+## Summary of contributions
 
 
