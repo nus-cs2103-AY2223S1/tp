@@ -40,20 +40,20 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Marcus Isaac Goh Wei Jie
 
-<img src="images/Marcusgwj.png" width="200px">
+<img src="images/marcusgwj.png" width="200px">
 
 [[github](https://github.com/Marcusgwj)]
-[[portfolio](team/Marcusgwj.md)]
+[[portfolio](team/marcusgwj.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
 ### Tee Yi Teng
 
-<img src="images/Puakii.png" width="200px">
+<img src="images/puakii.png" width="200px">
 
 [[github](https://github.com/Puakii)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/puakii.md)]
 
 * Role: Developer
 * Responsibilities: UI
