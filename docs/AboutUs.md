@@ -1,16 +1,14 @@
 ---
-layout: page
-title: About Us
+layout: page title: About Us
 ---
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
-
 
 ## Project team
 
 ### Dilys Pang
 
-<img src="images/dilys.png" width="200px">
+<img src="images/dilysss.png" width="200px">
 
 [github](https://github.com/Dilysss)
 [portfolio](team/dilysss.md)
@@ -20,7 +18,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Lim Qiao En
 
-<img src="images/qiaoen.png" width="200px">
+<img src="images/qiaoen17.png" width="200px">
 
 [github](http://github.com/qiaoen17)
 [portfolio](team/qiaoen17.md)
@@ -28,9 +26,9 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Developer
 * Responsibilities: UI
 
-### Leong Yu Xuan 
+### Leong Yu Xuan
 
-<img src="images/yuxuan.png" width="200px">
+<img src="images/yuxuanleong.png" width="200px">
 
 [github](http://github.com/yuxuanleong)
 [portfolio](team/yuxuanleong.md)
