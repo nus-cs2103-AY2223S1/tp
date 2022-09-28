@@ -6,7 +6,9 @@
 `SETA`[^1] is meant for CS2103T TAs to manage their students and tutorials details more efficiently.
 
 For the detailed documentation of this project, see:
-* User guide
+* [User Guide](docs/UserGuide.md)
+* [Developer Guide](docs/DeveloperGuide.md)
+* [About Us](docs/AboutUs.md)
 
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org)
 
