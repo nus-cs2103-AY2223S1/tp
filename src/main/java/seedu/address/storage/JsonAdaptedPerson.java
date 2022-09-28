@@ -1,17 +1,23 @@
 package seedu.address.storage;
 
-import java.util.List;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
-
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.MinecraftName;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Social;
+import seedu.address.model.person.TimeZone;
 import seedu.address.model.server.Server;
 import seedu.address.model.tag.Tag;
 
@@ -37,7 +43,9 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("socials") List<JsonAdaptedSocial> socials, @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("servers") List<JsonAdaptedMinecraftServer> serverList,
+                             @JsonProperty("socials") List<JsonAdaptedSocial> socials,
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                             @JsonProperty("servers") List<JsonAdaptedMinecraftServer> serverList,
                              @JsonProperty("timeZone") String timeZone) {
         this.name = name;
         this.phone = phone;
@@ -90,7 +98,6 @@ class JsonAdaptedPerson {
         for (JsonAdaptedSocial social : social) {
             socialsTags.add(social.toModelType());
         }
-            
         final List<Server> personServers = new ArrayList<>();
         for (JsonAdaptedMinecraftServer server: serverList) {
             personServers.add(server.toModelType());
@@ -129,12 +136,12 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-
         final Set<Social> modelSocials = new HashSet<>(socialsTags);
 
         final Set<Server> modelServers = new HashSet<>(personServers);
         final TimeZone modelTimeZone = new TimeZone(timeZone);
-        return new Person(modelName, new MinecraftName("df"), modelPhone, modelEmail, modelAddress, modelSocials, modelTags, modelServers, modelTimeZone);
+        return new Person(modelName, new MinecraftName("df"), modelPhone,
+                modelEmail, modelAddress, modelSocials, modelTags, modelServers, modelTimeZone);
 
     }
 

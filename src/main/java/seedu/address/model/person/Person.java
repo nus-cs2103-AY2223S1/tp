@@ -36,8 +36,8 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-
-    public Person(Name name, MinecraftName minecraftName, Phone phone, Email email, Address address, Set<Social> socialsList, Set<Tag> tags, Set<Server> servers, TimeZone timeZone) {
+    public Person(Name name, MinecraftName minecraftName, Phone phone, Email email,
+                  Address address, Set<Social> socialsList, Set<Tag> tags, Set<Server> servers, TimeZone timeZone) {
         requireAllNonNull(name, minecraftName, phone, email, address, tags);
         this.name = name;
         this.minecraftName = minecraftName;
