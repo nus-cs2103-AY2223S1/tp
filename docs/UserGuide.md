@@ -3,10 +3,18 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+# User Guide
+CinternS is a **desktop app for managing internship applications, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CinternS can get your internship application management tasks done faster than traditional GUI apps. It consists of several useful features which the users are able to execute using commands.
 
-* Table of Contents
-  {:toc}
+* [Quick Start](#quick-start)
+* [Features](#features)
+    * [Adding an internship application: `add`](#adding-an-internship-application-add)
+    * [Listing all internship applications: `list`](#listing-all-internship-applications-list)
+    * [Deleting an internship application: `delete`](#deleting-an-internship-application-delete)
+    * [Exiting the program: `exit`](#exiting-the-program-exit)
+    * [Saving the data](#saving-the-data)
+* [FAQ](#faq)
+* [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -78,9 +86,9 @@ Examples:
 * `add c/Google d/12/9/2022 p/Software Engineer`
 * `add c/Facebook d/13/9/2022 p/Backend Engineer`
 
-### Listing all persons : `list`
+### Displaying internship application : `list`
 
-Shows a list of all persons in the address book.
+Displays all the internship applications in the list.
 
 Format: `list`
 
@@ -119,19 +127,19 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting an internship application : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified internship application from the list.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the internship application at the specified `INDEX`.
+* The index refers to the index number shown in the displayed internship application list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* The index must be within the range of available internships in the application list.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd internship application in the list.
 
 ### Clearing all entries : `clear`
 
@@ -139,7 +147,7 @@ Clears all entries from the address book.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+### Exiting the program: `exit`
 
 Exits the program.
 
@@ -165,8 +173,20 @@ _Details coming soon ..._
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**Q**: What should I do if the program crashes?<br>
+**A**: Screenshot the error message (if any) and report to us via email: 
+johndoe@gmail.com or github issue [here](https://github.com/AY2223S1-CS2103-F14-3/tp/issues). 
+We will assist you as soon as possible.
+
+**Q**: Is CinternS supported on mobile platforms?<br>
+**A**: No. CinternS is only available on PC now.
+
+**Q**: Will my data be lost after updating the program?<br>
+**A**: No.
+
+**Q**: How do I transfer my data to another computer?<br>
+**A**: Install the app in the other computer and overwrite the original empty data file with the save file that contains the data of your previous CinternS home folder.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -181,3 +201,7 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
+
+-------------------------------------------------------------------------------------------------------------------
+## UI - mock-ups
+![Ui](/images/Ui.png)
