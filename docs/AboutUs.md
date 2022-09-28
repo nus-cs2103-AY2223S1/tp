@@ -19,31 +19,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 - Role: Project Advisor
 
-### Jane Doe
+### Lim Wei Jun
 
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-- Role: Team Lead
-- Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-- Role: Developer
-- Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/limweijun)]
+[[portfolio](team/limweijun.md)]
 
 - Role: Developer
 - Responsibilities: Dev Ops + Threading
@@ -55,5 +34,3 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/LuYiting0913)]
 [[portfolio](team/luyiting.md)]
 
-- Role: Team member
-- Responsibilities:
