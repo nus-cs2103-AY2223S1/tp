@@ -3,7 +3,7 @@ layout: page
 title: Developer Guide
 ---
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -224,13 +224,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 **Aspect: How undo & redo executes:**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -272,7 +272,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                        | I want to …​                                                                    | So that I can…​                                                         |
 |----------|------------------------------------------------|---------------------------------------------------------------------------------|-------------------------------------------------------------------------|
-| `* * *`  | new user                                       | see usage instructions                                                          | refer to instructions when I forget how to use the Salsey App           |
+| `* * *`  | new user                                       | see usage instructions                                                          | refer to instructions when I forget how to use the Salesy App           |
 | `* * *`  | vendor                                         | add a new supplier                                                              |                                                                         |
 | `* * *`  | vendor                                         | add a new task by specifying task description only                              | keep track of a to do list of tasks                                     |
 | `* * *`  | vendor                                         | delete a task                                                                   | remove tasks that I no longer need                                      |
@@ -283,16 +283,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | vendor                                         | increment supplies                                                              | update supplies                                                         |
 | `* * *`  | vendor                                         | view my command status and result in a GUI view                                 | have a sense of whether my command is a success or failure              |
 | `* * *`  | vendor                                         | deduct supplies from supplier                                                   | keep track of what supplies are remaining                               |
-| `* *`    | vendor with many suppliers in Salsey           | sort suppliers by type of product they supply to my stall                       | locate a supplier easily                                                |
-| `* *`    | vendor with many hours of usage in Salsey      | add a new supplier with all related information in one go                       | avoid making multiple commands                                          |
-| `* *`    | vendor with many hours of usage in Salsey      | add a new task with all related information in one go                           | avoid making multiple commands                                          |
+| `* *`    | vendor with many suppliers in Salesy           | sort suppliers by type of product they supply to my stall                       | locate a supplier easily                                                |
+| `* *`    | vendor with many hours of usage in Salesy      | add a new supplier with all related information in one go                       | avoid making multiple commands                                          |
+| `* *`    | vendor with many hours of usage in Salesy      | add a new task with all related information in one go                           | avoid making multiple commands                                          |
 | `* *`    | vendor                                         | update the task description                                                     | make last minute changes to the task if needed                          |
 | `* *`    | vendor                                         | update supplier details                                                         | make changes to supplier if needed                                      |
-| `* *`    | vendor with many suppliers and tasks in Salsey | have a summary page of relevant information of suppliers and tasks in one place | have a good overview without using the CLI at all                       |
-| `* *`    | first time and experienced vendor user         | be given command tips when I enter the wrong command                            | refer to insturction when I forget how to use the Salsey App            |
+| `* *`    | vendor with many suppliers and tasks in Salesy | have a summary page of relevant information of suppliers and tasks in one place | have a good overview without using the CLI at all                       |
+| `* *`    | first time and experienced vendor user         | be given command tips when I enter the wrong command                            | refer to insturction when I forget how to use the Salesy App            |
 | `* *`    | vendor                                         | find supplies that are running low                                              | replenish low stock supplies in advance                                 |
-| `*`      | vendor with many suppliers in Salsey           | view suppliers in a sorted manner                                               | locate a supplier easily                                                |
-| `*`      | vendor with many tasks in Salsey               | sort tasks by name                                                              | locate a task easily                                                    |
+| `*`      | vendor with many suppliers in Salesy           | view suppliers in a sorted manner                                               | locate a supplier easily                                                |
+| `*`      | vendor with many tasks in Salesy               | sort tasks by name                                                              | locate a task easily                                                    |
 | `*`      | vendor                                         | keep track of sales revenue, expenses and profit                                | see if my business is doing well                                        |
 | `*`      | vendor that is a long time user                | sort inventory into different categories                                        | keep track of different types of inventory(hardware, perishables, fuel) |
 | `*`      | vendor                                         | view ingredients needed for recepies                                            | know what to get from suppliers                                         |
@@ -302,32 +302,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is `Salsey` and the **Actor** is the `canteen vendor`, unless specified otherwise)
+(For all use cases below, the **System** is `Salesy` and the **Actor** is the `canteen vendor`, unless specified otherwise)
 
 **Use case: View the help page**
 
 **MSS**
 
 1. Vendor clicks on the help tab
-2. Salsey shows the various commands that are available to use.
+2. Salesy shows the various commands that are available to use.
 3. Vendor clicks on the <u>drop down of the task </u> that she wants to further expand
 4. <u>Drop down</u> will expand and vendor is able to view the command guide.
-    
-    Use case ends
+
+   Use case ends
 
 **Use case: Add a task**
 
 **MSS**
 
 1. Vendor enters the command to add task
-2. Salsey shows that command is successful and displays the task added
+2. Salesy shows that command is successful and displays the task added
 
    Use case ends.
 
 **Extensions**
 
-* 2a. Salsey detects that the command entered is in an invalid format.
-    * 2a1. Salsey shows an error message as well as a guide on the add task command.
+* 2a. Salesy detects that the command entered is in an invalid format.
+    * 2a1. Salesy shows an error message as well as a guide on the add task command.
 
       Use case resumes at step 1.
 
@@ -336,36 +336,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. Vendor enters the command to add supplier
-2. Salsey shows that command is successful and displays the supplier added
+2. Salesy shows that command is successful and displays the supplier added
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
-* 2a. Salsey detects that the command entered is in an invalid format.
-  * 2a1. Salsey shows an error message as well as a guide on the add supplier command.
+* 2a. Salesy detects that the command entered is in an invalid format.
+    * 2a1. Salesy shows an error message as well as a guide on the add supplier command.
 
-    Use case resumes at step 1.
+      Use case resumes at step 1.
 
 **Use case: Mark a task as done**
 
 **MSS**
 
 1. Vendor requests to <u>list pending tasks</u>.
-2. Salsey shows a list of tasks
+2. Salesy shows a list of tasks
 3. Vendor requests to mark a specific task in the list as done.
-4. Salsey marks the task as done.
+4. Salesy marks the task as done.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
 * 2a. The list is empty
-  
-    Use case ends.
+
+  Use case ends.
 * 2b. The given index is invalid.
 
-  * 2b1. Salsey shows an error message.
+    * 2b1. Salesy shows an error message.
 
   Use case resumes at step 2.
 
@@ -374,32 +374,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. Vendor requests to list the inventory.
-2. Salsey shows a list of items.
+2. Salesy shows a list of items.
 3. Vendor requests to decrement an item in the list by a specified quantity.
-4. Salsey decrements the inventory.
+4. Salesy decrements the inventory.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
 * 2a. The list is empty.
-  
-    Use case ends.
+
+  Use case ends.
 
 * 4a. The amount to be decremented results in negative quantity
 
-  * 4a1. Salsey displays an error message.
+    * 4a1. Salesy displays an error message.
 
-    Use case resumes at step 3.
+      Use case resumes at step 3.
 
 **Use case: Delete a task**
 
 **MSS**
 
 1.  Vendor requests to list tasks
-2.  Salsey shows a list of tasks
+2.  Salesy shows a list of tasks
 3.  Vendor requests to delete a specific task in the list
-4.  Salsey deletes the task
+4.  Salesy deletes the task
 
     Use case ends.
 
@@ -411,7 +411,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. Salsey shows an error message.
+    * 3a1. Salesy shows an error message.
 
       Use case resumes at step 2.
 
@@ -420,9 +420,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  Vendor requests to list suppliers
-2.  Salsey shows a list of suppliers
+2.  Salesy shows a list of suppliers
 3.  Vendor requests to delete a specific supplier in the list
-4.  Salsey deletes the supplier
+4.  Salesy deletes the supplier
 
     Use case ends.
 
@@ -434,7 +434,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. Salsey shows an error message.
+    * 3a1. Salesy shows an error message.
 
       Use case resumes at step 2.
 
@@ -443,30 +443,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. Vendor requests to view pending tasks
-2. Salsey shows a list of tasks that are marked undone.
+2. Salesy shows a list of tasks that are marked undone.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
 * 2a. The list is empty.
-  
-    Use case ends.
+
+  Use case ends.
 
 **Use case: Find a supplier**
 
 **MSS**
 
 1. Vendor requests to find a supplier.
-2. Salsey shows a list of matching suppliers based on vendor's query.
-    
-    Use case ends.
+2. Salesy shows a list of matching suppliers based on vendor's query.
+
+   Use case ends.
 
 **Extensions**
 
 * 2a. The list is empty.
-  
-    Use case ends.
+
+  Use case ends.
 
 *{More to be added}*
 
@@ -503,15 +503,15 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
@@ -520,16 +520,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `delete 0`<br>
+       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
@@ -537,6 +537,6 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_       
