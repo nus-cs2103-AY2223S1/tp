@@ -16,7 +16,7 @@ Friendnancial (Friend) is a **desktop app for managing contacts, optimized for u
 
 1. Download the latest `.jar` file from [here](https://github.com/AY2223S1-CS2103T-W10-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for Friendnancial.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui_old.png)
@@ -75,17 +75,17 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds a person to Friendnancial.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL c/CATEGORY [t/TAG] [a/Address] [b/BIRTHDAY] [n/NOTES]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​ [a/Address] [b/BIRTHDAY] [i/INSURANCE]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 c/family`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal c/friend c/client`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
 ### Listing all persons : `list`
 
@@ -114,7 +114,7 @@ Examples:
 
 Finds persons by the given keywords.
 
-Format: `find [n/KEYWORD, c/CATEGORY, t/TAG, b/BIRTHDAY, k/MORE_KEYWORDS]`
+Format: `find [n/KEYWORD, t/TAG, b/BIRTHDAY]`
 
 * Entering `find` with no keywords after will simply return the list of all the contacts.
 * Users can filter persons by their desired fields by using `[letter]/[KEYWORD]`. e.g.
@@ -129,13 +129,12 @@ returns persons whose tag fields contain the specified tag.
 
 Examples:
 * `find n/John` returns `john` and `John Doe`
-* `find c/friends` returns `Alex Yeoh` that is under `category` friends
 * `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified person from Friendnancial.
 
 Format: `delete INDEX` or `delete n/NAME`
 
@@ -154,11 +153,22 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from Friendnancial.
 
 Format: `clear`
 
 * Before clearing all entries permanently, confirms with the user with a message.
+
+
+### Getting reminders : `remind`
+
+Reminds the user of the upcoming birthdays of all contacts stored in Friendnancial.
+
+Format: `remind`
+
+Examples:
+* `remind` displays a popup listing all the users contacts names and birthdays as
+as reminder to the user.
 
 ### Exiting the program : `exit`
 
@@ -168,24 +178,25 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Friendnancial data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Friendnancial home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL c/CATEGORY [t/TAG] [a/ADDRESS] [b/BIRTHDAY] [i/INSURANCE] [n\NOTES]` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com c/friend`
-**Clear** | `clear`
-**Delete** | `delete INDEX` or `delete n/NAME`<br> e.g., `delete 3`
-**Find** | `find [n/KEYWORD, c/CATEGORY, t/TAG, b/BIRTHDAY, k/MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action     | Format, Examples                                                                                                                                         |
+|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG] [a/ADDRESS] [b/BIRTHDAY] [i/INSURANCE]` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com c/friend` |
+| **Clear**  | `clear`                                                                                                                                                  |
+| **Delete** | `delete INDEX` or `delete n/NAME`<br> e.g., `delete 3`                                                                                                   |
+| **Find**   | `find [n/KEYWORD, t/TAG, b/BIRTHDAY]`<br> e.g., `find James Jake`                                                                                        |
+| **List**   | `list`                                                                                                                                                   |
+| **Remind** | `remind`                                                                                                                                                 |
+| **Help**   | `help`                                                                                                                                                   |
