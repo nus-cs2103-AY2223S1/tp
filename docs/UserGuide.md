@@ -62,8 +62,6 @@ Format: `add [TITLE]`
 Examples:
 * `add software engineer internship at Apple`
 
-
-
 ### Marking an internship application status: `mark` 
 ###### (coming soon)
 
@@ -74,14 +72,12 @@ Format: `mark [INDEX] [STATUS]`
 * Updates the application at the specified INDEX. The index refers to the index number shown in the displayed 
 application list. The index **must be a positive integer** 1, 2, 3 ...
 
-
 * Updates the application to the specific STATUS. The status refers to the current status of the application. 
 The status **must be “rejected”, “interviewed”, “accepted” or “applied”**.
 
 Examples:
-* `mark 3 interviewed` - Marks the 3rd application status to be interviewed
-* `mark 2 accepted` - Marks the 2nd application status to be accepted
-
+* `mark 3 interviewed` - Marks the 3rd application status to be `interviewed`
+* `mark 2 accepted` - Marks the 2nd application status to be `accepted`
 
 ### Listing all internship applications : `list`
 ######(coming soon)
@@ -104,46 +100,18 @@ Format: `delete [INDEX]`
 Examples:
 *  `delete 4` - Deletes the 4th application in the list.
 
-### Locating persons by name: `find`
+Format: `filter [STATUS]`
 
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Filters for applications of the specified STATUS.
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-
-### Clearing all entries : `clear`
-
-Clears all entries from the address book.
-
-Format: `clear`
+* `filter accepted` - Shows a list of applications marked as `accepted`
+* `filter rejected` - Shows a list of applications marked as `rejected`
 
 ### Finding for an internship application: `find`
 ###### (coming soon)
+
+Finds internship applications which contain any of the given keywords.
 
 Format: `find [KEYWORD]`
 
@@ -167,24 +135,13 @@ Format: `exit`
 
 FindMyIntern data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
-
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FindMyIntern home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -192,13 +149,10 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-
 **Add** | `add [TITLE]` <br> e.g., `add software engineer internship at Apple`
 **Mark** | `mark [INDEX] [STATUS]` <br> e.g., `mark 3 interviewed`
-
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find [KEYWORD]`<br> e.g., `find google`
 **List** | `list`
-**Help** | `help`
+**Delete** | `delete [INDEX]` <br> e.g., `delete 4`
+**Filter** | `filter [STATUS]` <br> e.g., `filter accepted`
+**Find** | `find [KEYWORD]`<br> e.g., `find google`
 **Exit** | `exit`
