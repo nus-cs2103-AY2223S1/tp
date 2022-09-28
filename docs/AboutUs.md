@@ -33,7 +33,7 @@ ConnectNUS
 
 <img src="images/leehuiyulaura.jpeg" width="200px">
 
-[[github](http://github.com/leehuiyulaura)] 
+[[github](http://github.com/leehuiyulaura)]
 [[portfolio](team/leehuiyulaura.md)]
 
 * Role: Developer

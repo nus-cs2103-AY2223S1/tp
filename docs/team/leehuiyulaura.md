@@ -6,7 +6,7 @@ title: Laura Lee's Project Portfolio Page
 # Project: ConnectNUS
 
 ## Overview
-ConnectNUS is a desktop address book application used for NUS CS students to keep track of their own modules, 
+ConnectNUS is a desktop address book application used for NUS CS students to keep track of their own modules,
 and their friend's modules and contacts as well.
 
 * Find friends to collaborate with for team projects.
@@ -23,16 +23,16 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=leehuiyulaura&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
-* **Project management**: 
+* **Project management**:
   * To Be Added
 
-* **Enhancements to existing features**: 
+* **Enhancements to existing features**:
   * To Be Added
-  
-* **Documentation**: 
-  * User Guide: 
+
+* **Documentation**:
+  * User Guide:
     * To Be Added
-  * Developer Guide: 
+  * Developer Guide:
     * To Be Added
 
 * **Community**:
