@@ -8,7 +8,10 @@ MODPRO is a desktop application which helps NUS students in tracking the progres
 ## Table of Contents
 - [Quick Start](#quick-start)
 - [Features](#features)
-   - [Tagging task order](#tagging-task-order-coming-soon-in-v12)
+  - [Adding task functions](#tagging-task-order-coming-soon-in-v12)
+  - [Tagging task order](#tagging-task-order-coming-soon-in-v12)
+  - [List](#list-coming-soon-in-v2)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start 
@@ -28,6 +31,20 @@ MODPRO is a desktop application which helps NUS students in tracking the progres
 
 ## Features
 
+### Adding task functions [Coming Soon in v1.2]
+Adds task into task list
+
+Format: `add TASK`
+* Adds a task to the end of the task list
+* Task refers to the task description to be shown
+* If the task description is empty, an error message will be displayed to inform the user to enter a description
+
+Examples:
+
+`add CS2105 Assignment 1` adds CS2105 Assignment 1 task into task list
+
+`add CS2103T Quiz` adds CS2103T Quiz task into task list
+
 ### Tagging task order [Coming Soon in v1.2]
 Tags the order that the task is scheduled to be completed in
 
@@ -43,6 +60,17 @@ Examples:
 `tag CS2103T Quiz (2)` tags CS2103T Quiz as 2nd task to complete
 
 
+### List [Coming Soon in v1.2]
+List tasks stored in task list
+
+Format: `list`
+* Display tasks that are stored in the task list
+
+Examples:
+
+`list` displays tasks that are stored in the task list
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -50,4 +78,7 @@ Examples:
 
 | Command | Format and Examples                                                     |
 |---------|-------------------------------------------------------------------------|
-| **Tag** | **Format**: `tag task (number)`<br/> **Example**: `tag CS2105 Quiz (1)` |
+| **Add** | **Format**: `add TASK`<br/> **Example**: `add CS2105 Assignment 1`      |
+| **Tag**  | **Format**: `tag task (number)`<br/> **Example**: `tag CS2105 Quiz (1)` |
+| **List** | **Format**: `list`<br/> **Example**:`list`                               |
+
