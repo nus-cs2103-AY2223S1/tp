@@ -342,7 +342,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Candidate**: An entry in CLInkedIn
 * **Personal Information**: Phone number, email, and address of candidate 
 * **Status**: Stage of recruiting process. A chronological order would be Pending Application, Application Received, Passed ATS, OA In Progress, OA Submitted, Pending Interview, Interview Completed and the possible outcomes are Hired and Rejected.
-* **Skills**: Technical skills of candidate
+* **Skill Tag Type**: A type of tag that comprises of all tags of skills like Java, ReactJS, UI/UX, etc.
+* **Degree Tag Type**: A type of tag that comprises of tags of the degrees achieved by the candidate like Bachelors, Masters, PHD, etc.
+* **Job Type Tag Type**: A type of tag that comprises of tag of candidates selected job type like Intern, Part-time, Full-time, etc.
 * **Rating**: Suitability of candidate from 1 (lowest, does not fit role at all) to 5 (highest, perfect fit for the role)
 * **Notes**: Additional information about candidate
 --------------------------------------------------------------------------------------------------------------------
