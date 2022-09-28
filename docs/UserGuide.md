@@ -178,6 +178,19 @@ Example:
 * `search t/friends or t/family` returns all contacts tagged with either friends or family
 * `search n/Johm` is supposed to return an empty result since there is no person named `Johm` in the contact list, but now it will return people with names similar to that, for example, `John`.
 
+### Autocomplete: `search`
+
+Show a list of names or tags that match the current search query.
+This feature is only available when searching for names or tags.
+
+Format: `search [n/NAME_PREFIX]`, `search [t/TAG_PREFIX]`
+
+* Only names or tags with their prefix that match the current name or tag search query will be returned. E.g. `An` will match `Angel` but not `Jordan`.
+* The search is case-insensitive. E.g `hans` will match `Hans`.
+
+Example:
+* `search n/An` will show a list of names that start with `An`.
+* `search t/fa` will show a list of tags that start with `fa`.
 
 ### Deleting a person : `delete`
 
