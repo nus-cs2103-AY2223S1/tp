@@ -90,11 +90,11 @@ Parameter constraints:
 Examples:
 * `:a Squat 30 3 5` Adds a squat exercise of weight 30kg for 3 sets of 5 reps
 
-### Listing all persons : `list`
+### Listing all exercises : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all exercises.
 
-Format: `list`
+Format: `:ls`
 
 ### Editing a person : `edit`
 
@@ -149,7 +149,7 @@ Clears all entries from the address book.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+### Exiting the program : `:wq`
 
 Exits the program.
 
