@@ -189,7 +189,7 @@ public class ParserUtil {
         requireNonNull(offset);
         String trimmedOffset = offset.trim();
         if (!TimeZone.isValidTimeZone(trimmedOffset)) {
-            throw new ParseException(TimeZone.getTimezoneConstraints());
+            throw new ParseException(TimeZone.getMessageConstraints());
         }
         return new TimeZone(trimmedOffset);
     }

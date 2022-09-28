@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import java.sql.Time;
+import java.util.List;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -29,58 +31,59 @@ class JsonAdaptedPerson {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final String name;
+    private final String minecraftName;
     private final String phone;
     private final String email;
     private final String address;
-    private final List<JsonAdaptedSocial> social = new ArrayList<>();
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-    private final List<JsonAdaptedMinecraftServer> serverList = new ArrayList<>();
+    private final List<JsonAdaptedSocial> socials = new ArrayList<>();
+    private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final List<JsonAdaptedMinecraftServer> servers = new ArrayList<>();
     private final String timeZone;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("socials") List<JsonAdaptedSocial> socials,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                             @JsonProperty("servers") List<JsonAdaptedMinecraftServer> serverList,
-                             @JsonProperty("timeZone") String timeZone) {
+    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("minecraftName") String minecraftName, @JsonProperty("phone") String phone,
+            @JsonProperty("email") String email, @JsonProperty("address") String address, @JsonProperty("socials") List<JsonAdaptedSocial> socials, @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("servers") List<JsonAdaptedMinecraftServer> servers, @JsonProperty("timeZone") String timeZone) {
         this.name = name;
+        this.minecraftName = minecraftName;
         this.phone = phone;
         this.email = email;
         this.address = address;
         if (socials != null) {
-            this.social.addAll(social);
+            this.socials.addAll(socials);
         }
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
+        if (tags != null) {
+            this.tags.addAll(tags);
         }
-        if (serverList != null) {
-            this.serverList.addAll(serverList);
+        if (servers != null) {
+            this.servers.addAll(servers);
         }
         this.timeZone = timeZone;
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Person} into this class for json use.
      */
     public JsonAdaptedPerson(Person source) {
-        name = source.getName().fullName;
-        phone = source.getPhone().value;
-        email = source.getEmail().value;
-        address = source.getAddress().value;
-        social.addAll(source.getSocials().stream()
+
+        name = source.getName().toString();
+        minecraftName = source.getMinecraftName().toString();
+        phone = source.getPhone().toString();
+        email = source.getEmail().toString();
+        address = source.getAddress().toString();
+        socials.addAll(source.getSocials().stream()
                 .map(JsonAdaptedSocial::new)
                 .collect(Collectors.toList()));
-        tagged.addAll(source.getTags().stream()
+        tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        serverList.addAll(source.getServers().stream()
+        servers.addAll(source.getServers().stream()
                 .map(JsonAdaptedMinecraftServer::new)
                 .collect(Collectors.toList()));
-        timeZone = source.getTimeZone().getOffsetInString();
+        timeZone = source.getTimeZone().toString();
+
     }
 
     /**
@@ -89,18 +92,20 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+
+        final List<Tag> tags = new ArrayList<>();
+        for (JsonAdaptedTag tag : this.tags) {
+            tags.add(tag.toModelType());
         }
 
-        final List<Social> socialsTags = new ArrayList<>();
-        for (JsonAdaptedSocial social : social) {
-            socialsTags.add(social.toModelType());
+        final List<Social> socials = new ArrayList<>();
+        for (JsonAdaptedSocial social : this.socials) {
+            socials.add(social.toModelType());
         }
-        final List<Server> personServers = new ArrayList<>();
-        for (JsonAdaptedMinecraftServer server: serverList) {
-            personServers.add(server.toModelType());
+            
+        final List<Server> servers = new ArrayList<>();
+        for (JsonAdaptedMinecraftServer server: this.servers) {
+            servers.add(server.toModelType());
         }
 
         if (name == null) {
@@ -110,6 +115,14 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
         final Name modelName = new Name(name);
+
+        if (minecraftName == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, MinecraftName.class.getSimpleName()));
+        }
+        if (!MinecraftName.isValidMinecraftName(minecraftName)) {
+            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        }
+        final MinecraftName modelMinecraftName = new MinecraftName(minecraftName);
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
@@ -135,13 +148,22 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        final Set<Social> modelSocials = new HashSet<>(socialsTags);
+        final Set<Tag> modelTags = new HashSet<>(tags);
 
-        final Set<Server> modelServers = new HashSet<>(personServers);
+        final Set<Social> modelSocials = new HashSet<>(socials);
+
+        final Set<Server> modelServers = new HashSet<>(servers);
+
+        if (timeZone == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TimeZone.class.getSimpleName()));
+        }
+        if (!TimeZone.isValidTimeZone(timeZone)) {
+            throw new IllegalValueException(TimeZone.MESSAGE_CONSTRAINTS);
+        }
         final TimeZone modelTimeZone = new TimeZone(timeZone);
-        return new Person(modelName, new MinecraftName("df"), modelPhone,
-                modelEmail, modelAddress, modelSocials, modelTags, modelServers, modelTimeZone);
+
+        return new Person(modelName, modelMinecraftName, modelPhone, modelEmail,
+                modelAddress, modelSocials, modelTags, modelServers, modelTimeZone);
 
     }
 

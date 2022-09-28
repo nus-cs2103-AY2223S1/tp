@@ -106,7 +106,7 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Social> updatedSocials = editPersonDescriptor.getSocial().orElse(personToEdit.getSocials());
+        Set<Social> updatedSocials = editPersonDescriptor.getSocials().orElse(personToEdit.getSocials());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Set<Server> updatedServers = editPersonDescriptor.getServers().orElse(personToEdit.getServers());
         TimeZone updatedTimeZone = editPersonDescriptor.getTimeZone().orElse(personToEdit.getTimeZone());
@@ -144,7 +144,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
-        private Set<Social> social;
+        private Set<Social> socials;
         private Set<Tag> tags;
         private Set<Server> servers;
         private TimeZone timeZone;
@@ -161,7 +161,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
-            setSocial(toCopy.social);
+            setSocials(toCopy.socials);
             setTags(toCopy.tags);
             setServers(toCopy.servers);
             setTimeZone(toCopy.timeZone);
@@ -171,7 +171,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, minecraftName, phone, email, address, social, tags, servers, timeZone);
+            return CollectionUtil.isAnyNonNull(name, minecraftName, phone, email, address, socials, tags, servers, timeZone);
         }
 
         public void setName(Name name) {
@@ -218,9 +218,8 @@ public class EditCommand extends Command {
          * Sets {@code socials} to this object's {@code socials}.
          * A defensive copy of {@code socials} is used internally.
          */
-
-        public void setSocial(Set<Social> socials) {
-            this.social = (socials != null) ? new HashSet<>(social) : null;
+        public void setSocials(Set<Social> socials) {
+            this.socials = (socials != null) ? new HashSet<>(socials) : null;
         }
 
         /**
@@ -228,10 +227,9 @@ public class EditCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code socials} is null.
          */
-
-        public Optional<Set<Social>> getSocial() {
-            return (social != null)
-            ? Optional.of(Collections.unmodifiableSet(social))
+        public Optional<Set<Social>> getSocials() {
+            return (socials != null)
+            ? Optional.of(Collections.unmodifiableSet(socials))
             : Optional.empty();
         }
 
@@ -270,6 +268,7 @@ public class EditCommand extends Command {
 
         @Override
         public boolean equals(Object other) {
+
             // short circuit if same object
             if (other == this) {
                 return true;
@@ -284,11 +283,11 @@ public class EditCommand extends Command {
             EditPersonDescriptor e = (EditPersonDescriptor) other;
 
             return getName().equals(e.getName())
+                    && getMinecraftName().equals(e.getMinecraftName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    && getSocial().equals(e.getSocial())
-                    && getTags().equals(e.getTags())
+                    && getSocials().equals(e.getSocials())
                     && getTags().equals(e.getTags())
                     && getServers().equals(e.getServers())
                     && getTimeZone().equals(e.getTimeZone());

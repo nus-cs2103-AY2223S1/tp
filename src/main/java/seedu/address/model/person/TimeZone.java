@@ -1,22 +1,42 @@
 package seedu.address.model.person;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class TimeZone {
 
-    private static final String TIMEZONE_CONSTRAINTS = "Timezone offsets should be double digit hours, " +
+    public static final String MESSAGE_CONSTRAINTS = "Timezone offsets should be double digit hours, " +
             "followed by \":\", then double digit minutes";
 
-    private static final String OFFSET_REGEX = "/^(?:Z|[+-](?:2[0-3]|[01][0-9]):[0-5][0-9])$/";
+    private static final String OFFSET_REGEX = "^(?:Z|[+-](?:2[0-3]|[01][0-9]):[0-5][0-9])$";
 
     private static final int HOURS_TO_MINUTES = 60;
     private final String offset;
 
     public TimeZone(String offset) {
         requireNonNull(offset);
-        checkArgument(isValidTimeZone(offset), TIMEZONE_CONSTRAINTS);
+        if (offset.equals("")) {
+            offset = getDeviceTimeZoneOffset();
+        }
+        checkArgument(isValidTimeZone(offset), MESSAGE_CONSTRAINTS);
         this.offset = offset;
+    }
+
+    private String getDeviceTimeZoneOffset() {
+
+        java.util.TimeZone tz = java.util.TimeZone.getDefault();
+        Calendar cal = GregorianCalendar.getInstance(tz);
+        int offsetInMillis = tz.getOffset(cal.getTimeInMillis());
+
+        String offset = String.format("%02d:%02d", Math.abs(offsetInMillis / 3600000),
+                Math.abs((offsetInMillis / 60000) % 60));
+        offset = (offsetInMillis >= 0 ? "+" : "-") + offset;
+
+        return offset;
+
     }
 
     public static boolean isValidTimeZone(String test) {
@@ -37,8 +57,8 @@ public class TimeZone {
         return convertToIntOffset(offset);
     }
 
-    public static String getTimezoneConstraints() {
-        return TIMEZONE_CONSTRAINTS;
+    public static String getMessageConstraints() {
+        return MESSAGE_CONSTRAINTS;
     }
 
     public static int getHoursToMinutes() {
@@ -56,7 +76,5 @@ public class TimeZone {
     public String toString() {
         return offset;
     }
-
-
 
 }

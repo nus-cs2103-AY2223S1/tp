@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.utils.CheckedFunction;
 import seedu.address.model.person.*;
 import seedu.address.model.server.Server;
 import seedu.address.model.tag.Tag;
@@ -23,28 +24,47 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MINECRAFT_NAME, PREFIX_PHONE,
-                        PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_SOCIALS, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MINECRAFT_NAME,
-                PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MINECRAFT_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_SOCIAL, PREFIX_TAG, PREFIX_MINECRAFT_SERVER, PREFIX_TIMEZONE);
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MINECRAFT_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        MinecraftName mcName = ParserUtil.parseMinecraftName(argMultimap.getValue(PREFIX_MINECRAFT_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Set<Social> socialList = ParserUtil.parseSocials(argMultimap.getAllValues(PREFIX_SOCIALS));
+        Name name = (Name) parseMandatoryArgument(PREFIX_NAME, argMultimap, ParserUtil::parseName);
+        MinecraftName mcName = (MinecraftName) parseMandatoryArgument(PREFIX_MINECRAFT_NAME, argMultimap, ParserUtil::parseMinecraftName);
+        Phone phone = (Phone) parseOptionalArgument(PREFIX_PHONE, argMultimap, ParserUtil::parsePhone);
+        Email email = (Email) parseOptionalArgument(PREFIX_EMAIL, argMultimap, ParserUtil::parseEmail);
+        Address address = (Address) parseOptionalArgument(PREFIX_ADDRESS, argMultimap, ParserUtil::parseAddress);
+        Set<Social> socialList = ParserUtil.parseSocials(argMultimap.getAllValues(PREFIX_SOCIAL));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Set<Server> serverList = ParserUtil.parseServers(argMultimap.getAllValues(PREFIX_MINECRAFT_SERVER));
-        TimeZone timeZone = ParserUtil.parseTimeZone(argMultimap.getValue(PREFIX_TIMEZONE).get());
+        TimeZone timeZone = (TimeZone) parseOptionalArgument(PREFIX_TIMEZONE, argMultimap, ParserUtil::parseTimeZone);
+
         Person person = new Person(name, mcName, phone, email, address, socialList, tagList, serverList, timeZone);
 
         return new AddCommand(person);
+    }
+
+    private Object parseOptionalArgument(Prefix prefix, ArgumentMultimap argMultimap, CheckedFunction<String, ?> parserFn) {
+        if (argMultimap.getValue(prefix).isPresent()) {
+            try {
+                return parserFn.apply(argMultimap.getValue(prefix).get());
+            } catch (Exception e) {
+                return null;
+            }
+        }
+        return null;
+    }
+
+    private Object parseMandatoryArgument(Prefix prefix, ArgumentMultimap argMultimap, CheckedFunction<String, ?> parserFn) {
+        try {
+            return parserFn.apply(argMultimap.getValue(prefix).get());
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     /**
