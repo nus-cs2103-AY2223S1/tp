@@ -9,17 +9,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-- Role: Project Advisor
-
 ### Lim Wei Jun
+
+<img src="images/limweijun.png" width="200px">
 
 [[github](http://github.com/limweijun)]
 [[portfolio](team/limweijun.md)]
@@ -36,3 +28,20 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 - Role: Developer
 - Responsibilities: Dev Ops + Threading
+
+### Yeo Jun Jie
+
+<img src="images/yeojunjie.png" width="200px">
+
+[[github](http://github.com/yeojunjie)]
+[[portfolio](team/yeojunjie.md)]
+
+- Role: Developer
+- Responsibilities: Dev Ops + Threading
+
+### Bag Devesh Kumar
+
+<img src="images/tensaida.png" width="200px">
+
+[[github](https://github.com/tensaida)]
+[[portfolio](team/tensaida.md)]
