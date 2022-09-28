@@ -33,7 +33,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/april-anh.png" width="200px">
 
 [[github](https://github.com/april-anh)]
-[[portfolio](team/anh.md)]
+[[portfolio](team/april-anh.md)]
 
 * Role: Deliverables and Deadlines
 
