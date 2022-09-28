@@ -15,6 +15,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[homepage](https://justinpeng.vercel.app)]
 [[github](https://github.com/JustinPeng13)]
+[[portfolio](team/justinpeng13.md)]
 
 * Role: Secondary Team Lead
 * Responsibilities: Deliverables and deadlines, Scheduling and tracking, Git/SourceTree expert
