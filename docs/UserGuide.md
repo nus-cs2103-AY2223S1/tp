@@ -28,7 +28,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`delete`**`s/3` : Deletes the 3rd student shown in the student list.
 
    * **`clear`** : Deletes all contacts.
 
@@ -128,25 +128,30 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a student / task : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified student or task from their respective lists.
 
-Format: `delete INDEX`
+* Delete a student at specified index
+  - Format: `delete s/STUDENT_INDEX`
+* Delete a task at specified index
+  - Format: `delete t/TASK_INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+**Things to Note:**
+* The index refers to the index number shown in the displayed list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list s` followed by `delete s/2` deletes the 2nd student in Jarvis.
+* `list t` followed by `delete t/1` deletes the 1st task in Jarvis.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all student and task from JARVIS.
 
 Format: `clear`
+
+#### **Warning! This action is irreversible! Please think twice before you use this**
 
 ### Exiting the program : `exit`
 
@@ -185,7 +190,7 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Delete** | `delete s/STUDENT_INDEX` or `delete t/TASK_INDEX` <br> e.g., `delete s/3` or `delete t/2`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
