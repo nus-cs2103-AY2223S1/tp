@@ -38,15 +38,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Marcus Isaac Goh Wei Jie
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/Marcusgwj.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/Marcusgwj)]
+[[portfolio](team/Marcusgwj.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Data
 
 ### James Doe
 
