@@ -350,15 +350,44 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case: Add homework**
+
+**MSS**
+
+1.  User requests to list students
+2.  Pupilist shows a list of students
+3.  User requests assign homework to a specific student in the list
+4.  Pupilist adds homework to the student
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The homework description is invalid.
+
+    * 3a1. Pupilist shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given index is invalid.
+
+    * 3b1. Pupilist shows an error message.
+
+      Use case resumes at step 2.
+
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. Should work on Windows or Linux OS as long as it has Java 11 installed.
+2. Should work on 64-bit environments.
+3. The system should be usable by a novice who has never used an app to organize their students before.
+4. The system should respond within a second.
+5. The product is not required to handle communication between teacher and student.
 
 ### Glossary
 
