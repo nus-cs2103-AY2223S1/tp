@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CreateMeetingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -11,6 +12,7 @@ public interface Parser<T extends Command> {
     /**
      * Parses {@code userInput} into a command and returns it.
      * @throws ParseException if {@code userInput} does not conform the expected format
+     * @return
      */
-    T parse(String userInput) throws ParseException;
+    Command parse(String userInput) throws ParseException;
 }
