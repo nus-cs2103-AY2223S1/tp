@@ -170,7 +170,7 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 _Details coming soon ..._
 
-### Adding a task: `add task`
+### Adding a task: `Add Task`
 
 Adds a task to the tasklist.
 
@@ -180,7 +180,7 @@ Examples:
 * `add task laundry` add laundry to the task list
 * `add task coding assignment` add coding assignment to the task list
 
-### Deleting a task: `delete task`
+### Deleting a task: `Delete Task`
 
 Adds a task to the tasklist.
 
@@ -192,17 +192,19 @@ Format: `delete task TASK_NUMBER`
 Examples:
 * `delete task 1` deletes the first task from the tasklist
 
-### viewing all tasks: `view tasks`
+### viewing all tasks: `View Tasks`
 
 Lists out all the tasks in the tasklist.
 
 Format: `view tasks` 
 
-### Assigning a task: `assign`
+### Assigning a task: `Assign`
 
 Assign a task to an existing person.
 
 Format: `assign TASK_NUMBER to PERSON_NAME`
+* `TASK_NUMBER` must be smaller than the total number of tasks in task list.
+* `PERSON_NAME` must be existing contact in contactbook.
 
 Examples:
 * `assign 1 to John` assign tasknumber 1 to John
@@ -227,4 +229,7 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
-**add task** | `add task TASK_DESCRIPTION`
+**Add Task** | `add task TASK_DESCRIPTION`
+**Delete Task** | `delete task TASK_NUMBER`
+**View Tasks** | `view tasks`
+**Assign** | `assign TASK_NUMBER to PERSON_NAME`
