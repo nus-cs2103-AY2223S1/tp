@@ -11,12 +11,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Shawn
 
-<img src="images/shawnng.png" width="200px">
+<img src="images/snigloo.png" width="200px">
 
 [[github](https://github.com/snigloo)]
-[[portfolio](team/shawnng.md)]
+[[portfolio](team/snigloo.md)]
 
 * Role: Team Lead
+* Responsibilities: UI/UX
 
 ### Lin Leyi
 
