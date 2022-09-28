@@ -33,7 +33,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/leeianee.png" width="200px">
 
-[[github](https://github.com/leeianee)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/leeianee)] [[portfolio](team/leeianee.md)]
 
 * Role: Developer
 * Responsibilities: Code Quality
@@ -43,7 +43,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-[[portfolio](team/leeianee.md)]
+[[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
