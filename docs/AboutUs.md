@@ -19,6 +19,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: Deliverables, Scheduling and Tracking
 
+### Meng Qiaoran
+
+<img src="images/qiaoran.png" width="200px">
+
+[[github](http://github.com/Qiaoran-M)]
+[[portfolio](team/qiaoran.md)]
+
+* Role: Developer
+* Responsibilities: Testing
+
 ### Benjamin Sim
 
 <img src="images/benjamin-sim.png" width="200px">
