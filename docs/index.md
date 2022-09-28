@@ -61,6 +61,6 @@ Format:
 Example:
 `unmark 3`
 
-**Acknowledgements**
+## Acknowledgements
 
 * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
