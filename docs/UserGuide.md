@@ -209,6 +209,21 @@ Examples: `deleteTagType GPA`
 
 - Deletes the `GPA` tag type.
 
+### Adding optional information
+
+Adds additional optional information (notes) to a person
+
+Format: `note INDEX n/NOTE`
+* The INDEX refers to the index number shown in the displayed person list.
+* The index must be a positive integer 1, 2, 3, …​
+
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+A person can have any number of notes (including 0)
+</div>
+
+Examples:
+* `note 4 n/Strong in Java` adds a note `Strong in Java` to the 4th person in the address book.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -264,6 +279,7 @@ Examples:
 
 ## Command summary
 
+
 | Action            | Format, Examples                                                                                                                                                                                                                                                     |
 |-------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**           | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [st/SKILL_TAG] [dt/DEGREE_TAG] [jt/JOB_TYPE_TAG] [<alias>/TAG]…​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 st/Java`                                                   |
@@ -279,4 +295,5 @@ Examples:
 | **List**          | `list`                                                                                                                                                                                                                                                               |
 | **Status**        | `status INDEX s/STATUS` <br> e.g., `status 1 s/Rejected`                                                                                                                                                                                                             |
 | **Help**          | `help`                                                                                                                                                                                                                                                               |
+
 
