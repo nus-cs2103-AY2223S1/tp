@@ -23,7 +23,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-T08-4/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -36,7 +36,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-T08-4/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-T08-4/tp/blob/master/src/main/java/seedu/address/MainApp.java) It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -69,13 +69,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T08-4/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T08-4/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T08-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -86,7 +86,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-T08-4/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -114,7 +114,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T08-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -135,7 +135,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T08-4/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -257,13 +257,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* CS2103T Teaching Assistants managing one or more tutorials 
+* has a need to manage a significant amount of tasks in a week other than their tutorials
 * prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* can type fast and is reasonably comfortable using CLI apps
+* has no access to other time management systems
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: They have difficulties keeping track of students' participation in zoom, telegram handles 
+and schedule. The UI of the current application is not aesthetically pleasing and not intuitive enough.
 
 
 ### User stories
@@ -300,8 +301,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  CS2103T TA requests to add a student
-2.  SETA adds the student with his or her details into the student list
+1.  User requests to add a student.
+2.  SETA adds the student with his or her details into the student list.  
     Use case ends.
 
 **Extensions**
@@ -315,10 +316,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. CS2103T TA requests to list students
-2. SETA shows a list of students
-3. CS2103T TA requests to edit a specific student in the list
-4. SETA updates the relevant details of the student and show the changes made
+1. User requests to list students.
+2. SETA shows a list of students.
+3. User requests to edit a specific student in the list.
+4. SETA updates the relevant details of the student and show the changes made.
 
 **Extensions**
 
@@ -328,20 +329,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. The given index is invalid.
   * 3a1. SETA shows an error message.
   
-    Use case resumes at step 2
+    Use case resumes at step 2.
 
 **Use case: List students**
 
 **MSS**
 
-1. CS2103T TA requests to list students
+1. User requests to list students.
 2. SETA shows a list of students.
 
 **Extensions**
 
-* 2a. The list is empty
+* 2a. The list is empty.
 
-  Use Case ends
+  Use case ends.
 
 **Use case: Add attendance**
 
@@ -355,10 +356,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. Resulting attendance is negative
-  * 1a1. SETA shows an error message
+* 1a. Resulting attendance is negative.
+  * 1a1. SETA shows an error message.
 
     Use case ends.
+
+**Use case: Add student's response count**
+
+**MSS**
+
+1. User requests to list students.
+2. SETA shows a list of students.
+3. User requests to add response count of a specific student.
+4. SETA adds the response count.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given name is invalid.
+
+    * 3a1. SETA shows an error message.
+
+      Use case resumes at step 2.
+
 
 **Use case: Add help tag**
 
@@ -372,7 +397,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. invalid or non-existent student name
+* 1a. Invalid or non-existent student name.
   * 1a1. SETA shows an error message.
 
     Use case ends.
@@ -381,53 +406,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to list students
-2. SETA shows a list of students
-3. User requests to delete a specific student in the list
-4. SETA deletes the person
+1. User requests to list students.
+2. SETA shows a list of students.
+3. User requests to delete a specific student in the list.
+4. SETA deletes the person.
 
     Use case ends.
 
 
 **Extensions**
 
-* 2a. The list is empty
+* 2a. The list is empty.
   
     Use case ends.
 * 3a. The given index is invalid.
   * 3a1. SETA shows an error message.
     Use case resumes at step 2.
   
-**Use case: Add student's response count**
-
-**MSS**
-
-1. User requests to list students
-2. SETA shows a list of students
-3. User requests to add response count of a specific student
-4. SETA adds the response count
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given name is invalid.
-
-    * 3a1. SETA shows an error message.
-        
-      Use case resumes at step 2.
-
-
 **Use case: Add a question**
 
 **MSS**
 
-1. CS2103T TA requests to add a question
-2. AddressBook adds the question into the question list
+1. User requests to add a question.
+2. SETA adds the question into the question list.
 
    Use case ends.
 
@@ -461,10 +462,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: Unmark question**
 
-1. User requests to list questions
-2. SETA shows list of questions
-3. User requests to mark a specific question as unimportant
-4. SETA marks the question as unimportant
+1. User requests to list questions.
+2. SETA shows list of questions.
+3. User requests to mark a specific question as unimportant.
+4. SETA marks the question as unimportant.
 
    Use case ends.
 
@@ -479,14 +480,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. SETA shows an error message.
 
       Use case resumes at step 2.
-
-
+    
 **Use case: Delete question**
 
-1. User requests to list questions
-2. SETA shows list of questions
-3. User requests to delete a specific question
-4. SETA deletes the question
+1. User requests to list questions.
+2. SETA shows list of questions.
+3. User requests to delete a specific question.
+4. SETA deletes the question.
 
    Use case ends.
 
@@ -506,23 +506,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. CS2103T TA requests to list questions.
+1. User requests to list questions.
 2. SETA shows a list of questions.
 
 **Extensions**
 
-* 2a. The list is empty
+* 2a. The list is empty.
 
-  Use Case ends
-
-*{More to be added}*
+  Use case ends.
 
 **Use case: Add a tutorial**
 
 **MSS**
 
-1.  CS2103T TA requests to add a tutorial
-2.  SETA adds the tutorial with the group number and time into the tutorial list
+1.  User requests to add a tutorial.
+2.  SETA adds the tutorial with the group number and time into the tutorial list.
     Use case ends.
 
 **Extensions**
@@ -534,10 +532,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: Delete a tutorial**
 
-1. User requests to list tutorials
-2. AddressBook shows list of tutorials
-3. User requests to delete a specific tutorial
-4. AddressBook deletes the tutorial
+1. User requests to list tutorials.
+2. SETA shows list of tutorials.
+3. User requests to delete a specific tutorial.
+4. SETA deletes the tutorial.
 
    Use case ends.
 
@@ -549,16 +547,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. SETA shows an error message.
 
       Use case resumes at step 2.
 
 **Use case: Mark tutorial**
 
-1. User requests to list students
-2. AddressBook shows a list of students
-3. User requests to mark a specific tutorial as done
-4. AddressBook marks the tutorial as done
+1. User requests to list students.
+2. SETA shows a list of students.
+3. User requests to mark a specific tutorial as done.
+4. SETA marks the tutorial as done.
 
     Use case ends.
 
@@ -570,7 +568,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. SETA shows an error message.
 
       Use case resumes at step 2.
 
@@ -579,8 +577,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to list tutorials 
-2. AddressBook shows a list of tutorials 
+1. User requests to list tutorials. 
+2. SETA shows a list of tutorials.
 
     Use case ends.
 
@@ -592,13 +590,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 200 students without a noticeable sluggishness in performance for typical usage.
-3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. The system should respond within 1 second.
-
-
-*{More to be added}*
+1. Should work on any mainstream OS as long as it has Java 11 or above installed.
+2. Should be able to hold up to 100 students.
+3. A user with above average typing speed for regular English text should be able to
+   accomplish most of the tasks faster using commands than using the mouse.
+4. The system should respond within two seconds.
+5. The system must perform without failure in 95 percent of use cases.
+6. The date time format must be as follows: 
+   YYYY-MM-DDTHH:mm:SS where T is the separator between date and time.
 
 ### Glossary
 
