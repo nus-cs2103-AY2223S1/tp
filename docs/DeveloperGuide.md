@@ -323,6 +323,59 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ---
 
+**Use case: Add a patient**
+
+**MSS**
+1. User adds a patient to patient list with patient details
+2. UniNurse shows the list of patients with the newly added patient
+
+   Use case ends.
+
+**Extensions**
+* 1a. The given details are invalid
+
+    * 1a1. UniNurse shows an error message.
+
+      Use case resumes at step 1
+
+---
+
+**Use case: Edit a patient**
+
+**MSS**
+
+1. User requests to list patients
+2. UniNurse shows a list of patients
+3. User requests to edit a patient profile with the information that they want to change
+4. UniNurse edits the patient
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given details to edit are invalid
+
+    * 3b1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+* 3c. The new details to be updated are invalid
+
+    * 3b1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+---
+
 **Use case: Delete a person**
 
 **MSS**
