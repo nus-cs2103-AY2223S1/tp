@@ -22,18 +22,18 @@ title: CodeConnect
 
 ### Adding a task: `add`
 
-Adding a task to the task manager.
+Adds a task to the task manager.
 
 Format:
 `add {task_name} /by {deadline} /mod {module_code}`
 
 Examples:
-`add finish problem set 5 /by Week 6 Sunday /mod CS2040S`
-`add finish SEP application /by 2359 today`
+* `add finish problem set 5 /by Week 6 Sunday /mod CS2040S`
+* `add finish SEP application /by 2359 today`
 
 ### Deleting a task: `del`
 
-Deleting a task from the task manager list.
+Deletes a task from the task manager list.
 
 Format:
 `del {task_index}`
@@ -43,7 +43,7 @@ Example:
 
 ### Marking a task: `mark`
 
-Marking a task as completed in the task manager list.
+Marks a task as completed in the task manager list.
 
 Format:
 `mark {task_index}`
@@ -53,7 +53,7 @@ Example:
 
 ### Unmarking a task: `unmark`
 
-Unmarking a task as incomplete in the task manager list.
+Marks a task as incomplete in the task manager list.
 
 Format:
 `unmark {task_index}`
