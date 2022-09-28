@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Lee Ian Ee's Project Portfolio Page
+title: Tee Yi Teng's Project Portfolio Page
 ---
 
 ### Project: FindMyIntern
@@ -9,7 +9,7 @@ title: Lee Ian Ee's Project Portfolio Page
 
 Given below are my contributions to the project.
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=leeianee&breakdown=true)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=puakii&breakdown=true)
 
 * **Enhancements implemented**: to be added soon
 
