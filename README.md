@@ -1,9 +1,11 @@
-#👾 MineFriends 
+# MineFriends 👾
 
-MineFriends is a **desktop app for avid MineCraft players to manage information about their online friends**. 
+[![CI Status](https://github.com/AY2223S1-CS2103T-T10-4/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103T-T10-4/tp/actions)
+
+MineFriends is a **desktop app for avid Minecraft players to manage information about their online friends**. 
 
 With MineFriends, you can:
--
+
 - Maintain a list of all your online friends
 - Access your friends' information easily, such as their emails and social handles
 - Keep track of which servers and timezones your friends are playing on
