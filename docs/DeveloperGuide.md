@@ -276,30 +276,30 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *` | business owner            | choose which company and point-of-contact to delete | save only relevant companies and point-of-contact to remove clutter |
-| `* * *` | forgetful business owner  | see usage instructions                     | refer to instructions when I forget how to use the application             |
-| `* * *` | new business owner        | simply search for contacts                 | retrieve the only essential details i need                          |
-| `* * *` | new business owner        | view a company's details and point of contact | easily know who to contact for that company                        |
-| `* * *` | busy business owner       | quickly retrieve the data of the company   | save time without having to go through multiple layers             |
-| `* *`   | careless business owner   | edit the details of point-of-contact       | correct the mistakes that I did                                    |
-| `* *`   | efficient business owner  | sort the search result by price            | quickly know which company I have made the most transaction with    |
+| Priority | As a …​                  | I want to …​                                        | So that I can…​                                                     |
+|----------|--------------------------|-----------------------------------------------------|---------------------------------------------------------------------|
+| `* * *`  | business owner           | choose which company and point-of-contact to delete | save only relevant companies and point-of-contact to remove clutter |
+| `* * *`  | forgetful business owner | see usage instructions                              | refer to instructions when I forget how to use the application      |
+| `* * *`  | new business owner       | simply search for contacts                          | retrieve only the essential details I need                          |
+| `* * *`  | new business owner       | view a company's details and point-of-contact       | easily know who to contact for that company                         |
+| `* * *`  | busy business owner      | quickly retrieve the data of the company            | save time without having to go through multiple layers              |
+| `* *`    | careless business owner  | edit the details of point-of-contact                | correct the mistakes that I did                                     |
+| `* *`    | efficient business owner | sort the search result by price                     | quickly know which company I have made the most transaction with    |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `JeeqTracker` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Delete a company**
 
 **MSS**
 
-1.  User requests to list persons
-2.  JeeqTracker shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  JeeqTracker deletes the person
+1.  User requests to list companies
+2.  JeeqTracker shows a list of companies
+3.  User requests to delete a specific company in the list
+4.  JeeqTracker deletes the company
 
     Use case ends.
 
@@ -309,7 +309,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The given company name does not exist in the list.
 
     * 3a1. JeeqTracker shows an error message.
 
@@ -334,10 +334,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to creates a Mcdonalds company
+1. User requests to create a Mcdonalds company
 2. JeeqTracker creates and adds a company called McDonalds into JeeqTracker
-3. User requests to add justin as a POC to Mcdonalds
-4. JeeqTracker adds justin and his details into the Mcdonalds as the POC
+3. User requests to add Justin as a POC to Mcdonalds
+4. JeeqTracker adds Justin and his details into the Mcdonalds as the POC
 
     Use case ends.
 
@@ -385,7 +385,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 companies / point-of-contacts without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  JeeqTracker should respond within 2 seconds
 5.  The system should be usable by a business owner who has basic knowledge of how to use a computer

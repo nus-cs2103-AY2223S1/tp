@@ -21,11 +21,11 @@ interactions recorded faster and simpler than traditional GUI applications.
   * [Locating companies by name: `find`](#locating-companies-by-name-find)
   * [Viewing help: `help`](#viewing-help--help)
   * [Getting the User Guide: `user guide`](#getting-the-user-guide-user-guide)
+  * [Sorting the address book: `sort`](#sorting-the-address-book-sort)
+  * [Creating a transaction: `transaction`](#creating-a-transaction-transaction)
   * [Saving the data](#saving-the-data)
   * [Editing the data file](#editing-the-data-file)
   * [Archiving data files `coming in v2.0`](#archiving-data-files-coming-in-v20)
-  * [Sorting the adress book: `sort`](#sorting-the-address-book-coming-in-v20)
-  * [Creating a transaction: `transaction`](#creating-a-transaction-transaction)
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
 
@@ -47,11 +47,11 @@ interactions recorded faster and simpler than traditional GUI applications.
 
    * **`list`** : Lists all companies.
 
-   * **`add`**`coy/MacDonalds n/James hp/98765432 e/jamesho@example.com loc/West Coast Park` : Adds a point of contact named `James` to the Company `MacDonalds`.
+   * **`add`**`coy/MacDonalds n/James hp/98765432 e/jamesho@example.com loc/West Coast Park` : Adds a point-of-contact named `James` to the Company `MacDonalds`.
 
    * **`delete`**`coy/MacDonalds` : Deletes MacDonalds (Company) together with all their contacts in the current list.
 
-   * **`find`**`MacDonalds` : Finds MacDonalds in the list of companies, and displays all its details (Point of contact, Transactions).
+   * **`find`**`MacDonalds` : Finds MacDonalds in the list of companies, and displays all its details (point-of-contact, Transactions).
 
   * **`clear`** : Deletes all companies and points of contact.
 
@@ -87,29 +87,28 @@ interactions recorded faster and simpler than traditional GUI applications.
 
 </div>
 
-### Viewing help : `help` 
-
-`help` returns the list of all commands. `help [COMMAND]` returns the detailed description of that specified command.
-
-[//]: # (![help message]&#40;images/helpMessage.png&#41;)
-
-Format: `help` or `help [COMMAND]`
-
-Examples:
-* `help` Shows the list of commands.
-* `help find` Shows the description of `find` command.
-* `help add` Shows the description of `add` command.
-
-
 ### Adding a person: `add`
 
-Adds a point of contact to the company.
+Adds a point-of-contact to the company.
 
 Format: `add coy/COMPANY n/NAME hp/NUMBER e/EMAIL loc/ADDRESS`
 
 Examples:
 * `add coy/MacDonalds n/James hp/98765432 e/jamesho@example.com loc/West Coast Park`
 * `add coy/KFC n/Tom hp/85948392 e/tom@example.com loc/Yishun Street 81`
+
+### Clearing all entries : `clear`
+
+Clears all entries from the address book.
+
+Format: `clear`
+
+* A confirmation message will appear after the command.
+* Input `confirm` to proceed with the clearing of all entries.
+
+Example:
+
+* `clear` followed by `confirm`
 
 ### Creating a Company: `create`
 
@@ -118,50 +117,11 @@ Creates a new company to store POC (Point-Of-Contact) and transactions
 Format: `create coy/COMPANY_NAME`
 
 * Creates an empty company with no POC and transactions.
-* Use `add` command to add POC to the company.`add coy/MCDONALDS n/justin hp98492121 e/test@gmail.com loc/West Coast 
+* Use `add` command to add POC to the company.<br>`add coy/MCDONALDS n/justin hp98492121 e/test@gmail.com loc/West Coast
   Park` adds the POC justin to the company.
 
 Examples:
 * `create coy/MCDONALDS` creates a company called MCDONALDS.
-
-### Listing all companies : `list`
-
-Lists all the companies stored in the address book.
-
-Format: `list`
-
-* Displays all the companies and their details in the address book.
-* If address book is empty, the companies name section will be blank.
-
-Examples:
-
-* `list` Displays all stored companies name and details.
-
-### Editing a person : `edit`
-
-Coming Soon.
-
-### Locating companies by name: `find`
-
-Find companies whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `kfc` will match `KFC`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `MacDonald` will not match `MacDonalds`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Cold Storage` will return `Urban Storage`, `Cold Drink Store`
-
-Examples:
-* `find Mac` returns `MacDonald`
-* `find fairprice` returns `NTUC Fairprice` <br>
-
-[//]: # (  ![result for 'find alex david']&#40;images/findAlexDavidResult.png&#41;)
-### Filtering the address book display : `filter`
-
-Coming Soon.
 
 ### Deleting a company : `delete`
 
@@ -177,24 +137,86 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd company in the address book.
 * `find cold` followed by `delete 1` deletes the 1st company in the results of the `find` command.
 
-### Clearing all entries : `clear`
+### Editing a person : `edit`
 
-Clears all entries from the address book.
-
-Format: `clear`
-
-* A confirmation message will appear after the command.
-* Input `confirm` to proceed with the clearing of all entries.
-
-Example:
-
-* `clear` followed by `confirm`
+Coming Soon.
 
 ### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
+
+### Filtering the address book display : `filter`
+
+Coming Soon.
+
+### Listing all companies : `list`
+
+Lists all the companies stored in the address book.
+
+Format: `list`
+
+* Displays all the companies and their details in the address book.
+* If address book is empty, the companies name section will be blank.
+
+Examples:
+
+* `list` Displays all stored companies name and details.
+
+### Locating companies by name: `find`
+
+Find companies whose names contain any of the given keywords.
+
+Format: `find KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `kfc` will match `KFC`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Only the name is searched.
+* Only full words will be matched e.g. `MacDonald` will not match `MacDonalds`
+* Companies matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Cold Storage` will return `Urban Storage`, `Cold Drink Store`
+
+### Getting the User Guide: `user guide`
+
+Returns the url to our user guide.
+
+Format: `user guide`
+
+* Displays a pop-up that contains the link to our user guide.
+
+### Viewing help : `help` 
+
+`help` returns the list of all commands. `help [COMMAND]` returns the detailed description of that specified command.
+
+[//]: # (![help message]&#40;images/helpMessage.png&#41;)
+
+Format: `help` or `help [COMMAND]`
+
+Examples:
+* `help` Shows the list of commands.
+* `help find` Shows the description of `find` command.
+* `help add` Shows the description of `add` command.
+
+Examples:
+* `find Mac` returns `MacDonald`
+* `find fairprice` returns `NTUC Fairprice` <br>
+
+### Sorting the address book: `sort`
+
+Coming soon.
+
+### Creating a Transaction: `transaction`
+
+Creates a transaction related to a company (buy/sell).
+
+Format:
+- `transaction coy/COMPANY_NAME  g/GOODS  q/QUANTITY  pr/PRICE d/BUY`
+- `transaction coy/COMPANY_NAME  g/GOODS q/QUANTITY  pr/PRICE d/SELL`
+
+Examples:
+- `transaction coy/McDonalds g/apples q/100 pr/1.5 d/BUY`
+- `transaction coy/KFC g/Chicken q/50 pr/5.55 d/SELL`
 
 ### Saving the data
 
@@ -212,31 +234,6 @@ If your changes to the data file makes its format invalid, JeeqTracker will disc
 
 _Details coming soon ..._
 
-### Getting the User Guide: `user guide`
-
-Returns the url to our user guide.
-
-Format: `user guide`
-
-* Displays a pop-up that contains the link to our user guide.
-
-### Sorting the address book: `[sort]`
-
-Coming soon.
-
-### Creating a Transaction: `transaction`
-
-Creates a transaction related to a company.
-
-Format:
-- `transaction coy/COMPANY_NAME  g/GOODS  q/QUANTITY  pr/PRICE d/BUY`
-- `transaction coy/COMPANY_NAME  g/GOODS q/QUANTITY  pr/PRICE d/SELL`
-Examples:
-- `transaction coy/McDonalds g/apples q/100 pr/1.5 d/BUY`
-- `transaction coy/KFC g/Chicken q/50 pr/5.55 d/SELL`
-
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -248,15 +245,19 @@ Examples:
 
 ## Command summary
 =======
-| Action          | Format, Examples                                                                                                                                                                                                                                                         |
-|-----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**         | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                                                                                                    |
-| **Clear**       | `clear` followed by `confirm`                                                                                                                                                                                                                                            |
-| **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                      |
-| **Edit**        | Coming Soon                                                                                                                                                                                                                                                              |
-| **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find MacDonalds`                                                                                                                                                                                                               |
-| **Filter**      | Coming Soon                                                                                                                                                                                                                                                              |
-| **List**        | `list`                                                                                                                                                                                                                                                                   |
-| **Help**        | `help` or `help [COMMAND]` <br> e.g.,`help` or `help add` or `help sort`                                                                                                                                                                                                 |
+| Action          | Format, Examples                                                                                                                                                                                                                                                           |
+|-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**         | `add coy/COMPANY n/NAME hp/NUMBER e/EMAIL loc/ADDRESS`<br> e.g., `add coy/KFC n/Tom hp/85948392 e/tom@example.com loc/Yishun Street 81`                                                                                                                                    |
+| **Clear**       | `clear` followed by `confirm`                                                                                                                                                                                                                                              |
+ | **Create**      | `create coy/COMPANY_NAME`<br> e.g., `create coy/MacDonalds`                                                                                                                                                                                                                |
+| **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                        |
+| **Edit**        | Coming Soon                                                                                                                                                                                                                                                                |
+| **Exit**        | `exit`                                                                                                                                                                                                                                                                     |
+| **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find MacDonalds`                                                                                                                                                                                                                 |
+| **Filter**      | Coming Soon                                                                                                                                                                                                                                                                |
+| **List**        | `list`                                                                                                                                                                                                                                                                     |
+| **Help**        | `help` or `help [COMMAND]` <br> e.g.,`help` or `help add` or `help sort`                                                                                                                                                                                                   |
+| **Sort**        | Coming Soon                                                                                                                                                                                                                                                                |
 | **Transaction** | `transaction coy/COMPANY_NAME g/GOODS q/QUANTITY pr/PRICE d/BUY` <br/> e.g `transaction coy/McDonalds g/apples q/100 pr/1.5 d/buy` <br/> `transaction coy/COMPANY_NAME g/GOODS q/QUANTITY pr/PRICE d/SELL` <br/> e.g. `transaction coy/KFC g/Chickens q/50 pr/2.55 d/SELL` |
+| **UserGuide**   | `user guide`                                                                                                                                                                                                                                                               |
 
