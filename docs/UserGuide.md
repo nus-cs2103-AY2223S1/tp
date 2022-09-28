@@ -70,6 +70,16 @@ Format: `add n/NAME [t/TELEGRAM_HANDLE] [s/STUDENT_NUMBER]`
 The Telegram handle and student number are optional
 </div>
 
+### Editing a student: `edit`
+
+Edits a student's details in FRIDAY.
+
+Format: `edit i/INDEX [t/TELEGRAM_HANDLE] [s/STUDENT_NUMBER] [m/MASTERY_CHECK] [c/CONSULTATION] [g/GRADE] [r/REMARK]`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The Telegram handle, student number, mastery check, consultation, grade, and remark are optional
+</div>
+
 ### Viewing all students: `list`
 
 Lists all students in FRIDAY
@@ -84,10 +94,10 @@ Format: `list`
 
 ## Command Summary
 
-Action | Format
---------|------------------
-**Add a student** | `add n/NAME [t/TELEGRAM_HANDLE] [s/STUDENT_NUMBER]`
-**Delete a student** |
-**Edit a student's details** |
-**View all students** | `list`
-**View a student's details** |
+| Action                       | Format                                                                                                        |
+|------------------------------|---------------------------------------------------------------------------------------------------------------|
+| **Add a student**            | `add n/NAME [t/TELEGRAM_HANDLE] [s/STUDENT_NUMBER]`                                                           |
+| **Delete a student**         |                                                                                                               |
+| **Edit a student's details** | `edit i/INDEX [t/TELEGRAM_HANDLE] [s/STUDENT_NUMBER] [m/MASTERY_CHECK] [c/CONSULTATION] [g/GRADE] [r/REMARK]` |
+| **View all students**        | `list`                                                                                                        |
+| **View a student's details** |                                                                                                               |
