@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 ConnectNUS
 ### Silas Tay
 
-<img src="images/silastsl.jpeg" width="200px">
+<img src="images/silastsl.png" width="200px">
 
 [[github](https://github.com/silastsl)]
 [[portfolio](team/silastsl.md)]
@@ -21,7 +21,7 @@ ConnectNUS
 
 ### Koh Rui Jie
 
-<img src="images/rjkoh.jpeg" width="200px">
+<img src="images/rjkoh.png" width="200px">
 
 [[github](http://github.com/rjkoh)]
 [[portfolio](team/rjkoh.md)]
@@ -31,7 +31,7 @@ ConnectNUS
 
 ### Laura Lee
 
-<img src="images/leehuiyulaura.jpeg" width="200px">
+<img src="images/leehuiyulaura.png" width="200px">
 
 [[github](http://github.com/leehuiyulaura)]
 [[portfolio](team/leehuiyulaura.md)]
@@ -41,7 +41,7 @@ ConnectNUS
 
 ### Shamus Tan
 
-<img src="images/shamooose.jpeg" width="200px">
+<img src="images/shamooose.png" width="200px">
 
 [[github](http://github.com/shamooose)]
 [[portfolio](team/shamooose.md)]
@@ -51,7 +51,7 @@ ConnectNUS
 
 ### Linus Chui
 
-<img src="images/linuschui.jpeg" width="200px">
+<img src="images/linuschui.png" width="200px">
 
 [[github](http://github.com/linuschui)]
 [[portfolio](team/linuschui.md)]
