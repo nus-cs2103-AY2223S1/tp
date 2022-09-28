@@ -5,19 +5,17 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### Zechen Lin
+### Lin Zechen
 
 <img src="images/bubbl3t.png" width="200px">
 
 [[github](https://github.com/Bubbl3T)]
 [[portfolio](team/bubbl3t.md)]
 
-* Role: Team Lead + IntelliJ Expert
-* Responsibilities: Deliverables and deadlines, Integration, Logic, Model
+* Role: Team Lead, IntelliJ Expert.
+* Responsibilities: Deliverables and Deadlines, Integration, Logic IC, Model IC.
 
 ### Rezwan Arefin
 
@@ -27,16 +25,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/rezwanarefin01.md)]
 
 * Role: Team Lead. 
-* Responsibilities: Code Quality, Git Expert, in charge of Logic. 
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
+* Responsibilities: Code Quality, Git Expert, Logic IC. 
 
 ### Edbert Geraldy Cangdinata
 
@@ -45,8 +34,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/berted)]
 [[portfolio](team/berted.md)]
 
-* Role: Developer. In charge of Storage.
-* Responsibilities: Documentation + Scheduling
+* Role: Developer. 
+* Responsibilities: Documentation, Scheduling, Storage IC.
 
 ### Xu Yi
 
@@ -55,8 +44,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/optionalemon)]
 [[portfolio](team/optionalemon.md)]
 
-* Role: Developer, in charge of UI.
-* Responsibilities: Testing + Deliverables and Deadlines
+* Role: Developer.
+* Responsibilities: Testing, Deliverables and Deadlines, UI IC.
 
 ### Ng Jing Xue
 
