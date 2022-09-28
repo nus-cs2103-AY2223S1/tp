@@ -26,7 +26,7 @@ JARVIS is a **desktop app for a CS1101S Teaching Assistant to manage students an
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`s/John Tan` : Adds a contact named `John Tan` to JARVIS.
+   * **`add`**`s/John Tan` : Adds a student named `John Tan` to JARVIS.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
