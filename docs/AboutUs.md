@@ -11,13 +11,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 uNivUSal
 
-### John Doe
+### Aaron Pang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/turretdive.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/turretDive)]
+[[portfolio](team/turretdive.md)]
 
 * Role: Project Advisor
 
@@ -40,11 +39,11 @@ uNivUSal
 * Role: Developer
 * Responsibilities: Data
 
-### Jun Sheng
+### Jean Doe
 
-<img src="images/jsincorporated.png" width="200px">
+<img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/jsincorporated)]
+[[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
