@@ -275,7 +275,7 @@ Examples:
 ![](images/userguide-screenshots/addq.png)
 
 
-### Mark a question : `markq`
+### Marking a question : `markq`
 
 Marks a question as important.
 
@@ -286,7 +286,7 @@ Examples:
 
 ![](images/userguide-screenshots/markq.png)
 
-### Unmark a question : `unmarkq`
+### Unmarking a question : `unmarkq`
 
 Marks a question as unimportant. (If the question was previously or mistakenly marked as important)
 
@@ -297,7 +297,7 @@ Examples:
 
 ![](images/userguide-screenshots/unmarkq.png)
 
-### Delete a question : `deleteq`
+### Deleting a question : `deleteq`
 
 Deletes a question in the question list.
 
@@ -309,7 +309,7 @@ Examples:
 ![](images/userguide-screenshots/deleteq.png)
 
 
-### List questions : `listq`
+### Listing questions : `listq`
 
 Lists all questions.
 
@@ -328,7 +328,7 @@ Examples:
 
 ![add student](images/userguide-screenshots/addtut.png)
 
-### Delete a tutorial : `deletetut`
+### Deleting a tutorial : `deletetut`
 
 Deletes a tutorial in the question list.
 
@@ -339,7 +339,7 @@ Example:
 
 ![](images/userguide-screenshots/deletetut.png)
 
-### Mark tutorial: `marktut`
+### Marking tutorial: `marktut`
 
 Marks content in the tutorial as done.
 
