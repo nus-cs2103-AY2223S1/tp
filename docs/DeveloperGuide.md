@@ -263,7 +263,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
-* needs to 
+* needs to store projects and stakeholders securely
 
 **Value proposition**: manage projects and project contacts faster than a typical mouse/GUI driven app, in a secure manner.
 
