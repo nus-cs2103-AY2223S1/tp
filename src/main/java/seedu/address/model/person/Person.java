@@ -7,6 +7,7 @@ import java.util.Set;
 import java.util.Collections;
 import java.util.Objects;
 
+import seedu.address.model.server.Server;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,14 +24,20 @@ public class Person {
 
     // Data fields
     private final Address address;
+    
     private final Set<Social> socials;
+
+    private final TimeZone timeZone;
+
+    private Set<Server> servers = new HashSet<>();
+
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, MinecraftName minecraftName, Phone phone, Email email, Address address,
-                  Set<Social> socialsList, Set<Tag> tags) {
+
+    public Person(Name name, MinecraftName minecraftName, Phone phone, Email email, Address address, Set<Social> socialsList, Set<Tag> tags, Set<Server> servers, TimeZone timeZone) {
         requireAllNonNull(name, minecraftName, phone, email, address, tags);
         this.name = name;
         this.minecraftName = minecraftName;
@@ -39,6 +46,8 @@ public class Person {
         this.address = address;
         this.socials = socialsList;
         this.tags.addAll(tags);
+        this.servers.addAll(servers);
+        this.timeZone = timeZone;
     }
 
     public Name getName() {
@@ -71,6 +80,14 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public Set<Server> getServers() {
+        return Collections.unmodifiableSet(servers);
+    }
+
+    public TimeZone getTimeZone() {
+        return timeZone;
     }
 
     /**

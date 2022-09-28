@@ -27,6 +27,8 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Social;
+import seedu.address.model.person.*;
+import seedu.address.model.server.Server;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -105,8 +107,10 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Social> updatedSocials = editPersonDescriptor.getSocial().orElse(personToEdit.getSocials());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Set<Server> updatedServers = editPersonDescriptor.getServers().orElse(personToEdit.getServers());
+        TimeZone updatedTimeZone = editPersonDescriptor.getTimeZone().orElse(personToEdit.getTimeZone());
 
-        return new Person(updatedName, updatedMinecraftName, updatedPhone, updatedEmail, updatedAddress, updatedSocials, updatedTags);
+        return new Person(updatedName, updatedMinecraftName, updatedPhone, updatedEmail, updatedAddress, updatedSocials, updatedTags, updatedServers, updatedTimeZone);
     }
 
     @Override
@@ -140,6 +144,8 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Social> social;
         private Set<Tag> tags;
+        private Set<Server> servers;
+        private TimeZone timeZone;
 
         public EditPersonDescriptor() {}
 
@@ -155,13 +161,15 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setSocial(toCopy.social);
             setTags(toCopy.tags);
+            setServers(toCopy.servers);
+            setTimeZone(toCopy.timeZone);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, minecraftName, phone, email, address, social, tags);
+            return CollectionUtil.isAnyNonNull(name, minecraftName, phone, email, address, socials, tags, servers, timeZone);
         }
 
         public void setName(Name name) {
@@ -242,6 +250,22 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        public void setServers(Set<Server> servers) {
+            this.servers = (servers != null) ? new HashSet<>(servers) : null;
+        }
+
+        public Optional<Set<Server>> getServers() {
+            return (servers != null) ? Optional.of(Collections.unmodifiableSet(servers)) : Optional.empty();
+        }
+
+        public void setTimeZone(TimeZone timeZone) {
+            this.timeZone = timeZone;
+        }
+
+        public Optional<TimeZone> getTimeZone() {
+            return Optional.ofNullable(timeZone);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -263,6 +287,9 @@ public class EditCommand extends Command {
                     && getAddress().equals(e.getAddress())
                     && getSocial().equals(e.getSocial())
                     && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getServers().equals(e.getServers())
+                    && getTimeZone().equals(e.getTimeZone());
         }
     }
 }

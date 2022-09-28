@@ -18,6 +18,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Social;
+import seedu.address.model.server.Server;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -33,6 +34,8 @@ class JsonAdaptedPerson {
     private final String address;
     private final List<JsonAdaptedSocial> social = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedMinecraftServer> serverList = new ArrayList<>();
+    private final String timeZone;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -40,8 +43,8 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("socials") List<JsonAdaptedSocial> socials,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("socials") List<JsonAdaptedSocial> socials, @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("servers") List<JsonAdaptedMinecraftServer> serverList,
+                             @JsonProperty("timeZone") String timeZone) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -52,6 +55,10 @@ class JsonAdaptedPerson {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        if (serverList != null) {
+            this.serverList.addAll(serverList);
+        }
+        this.timeZone = timeZone;
     }
 
     /**
@@ -68,6 +75,10 @@ class JsonAdaptedPerson {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        serverList.addAll(source.getServers().stream()
+                .map(JsonAdaptedMinecraftServer::new)
+                .collect(Collectors.toList()));
+        timeZone = source.getTimeZone().getOffsetInString();
     }
 
     /**
@@ -84,6 +95,11 @@ class JsonAdaptedPerson {
         final List<Social> socialsTags = new ArrayList<>();
         for (JsonAdaptedSocial social : social) {
             socialsTags.add(social.toModelType());
+        }
+            
+        final List<Server> personServers = new ArrayList<>();
+        for (JsonAdaptedMinecraftServer server: serverList) {
+            personServers.add(server.toModelType());
         }
 
         if (name == null) {
@@ -122,7 +138,10 @@ class JsonAdaptedPerson {
 
         final Set<Social> modelSocials = new HashSet<>(socialsTags);
 
-        return new Person(modelName, new MinecraftName("df"), modelPhone, modelEmail, modelAddress, modelSocials, modelTags);
+        final Set<Server> modelServers = new HashSet<>(personServers);
+        final TimeZone modelTimeZone = new TimeZone(timeZone);
+        return new Person(modelName, new MinecraftName("df"), modelPhone, modelEmail, modelAddress, modelSocials, modelTags, modelServers, modelTimeZone);
+
     }
 
 }

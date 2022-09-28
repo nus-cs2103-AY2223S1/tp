@@ -16,6 +16,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Social;
 import seedu.address.logic.parser.exceptions.SocialNotFoundException;
+import seedu.address.model.server.Server;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.person.Platform;
 
@@ -170,5 +171,32 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    public static Server parseServer(String server) throws ParseException {
+        requireNonNull(server);
+        String trimmedServer = server.trim();
+        if (!Server.isValidServerName(trimmedServer)) {
+            throw new ParseException(Server.getServerConstraints());
+        }
+        return new Server(trimmedServer);
+    }
+
+    public static Set<Server> parseServers(Collection<String> servers) throws ParseException {
+        requireNonNull(servers);
+        final Set<Server> serverSet = new HashSet<>();
+        for (String serverName: servers) {
+            serverSet.add(parseServer(serverName));
+        }
+        return serverSet;
+    }
+
+    public static TimeZone parseTimeZone(String offset) throws ParseException {
+        requireNonNull(offset);
+        String trimmedOffset = offset.trim();
+        if (!TimeZone.isValidTimeZone(trimmedOffset)) {
+            throw new ParseException(TimeZone.getTimezoneConstraints());
+        }
+        return new TimeZone(trimmedOffset);
     }
 }
