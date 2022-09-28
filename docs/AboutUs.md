@@ -37,14 +37,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Deliverables and Deadlines
 
-### Johnny Doe
+### Chu Thi Thanh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lilythchu.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/lilythchu)]
+[[portfolio](team/lilythchu.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Code quality
 
 ### Jean Doe
 
