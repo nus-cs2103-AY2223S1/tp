@@ -112,7 +112,7 @@ Adds tag(s) to an inventory item.
 
 Format: `tagi INDEX [t/TAG]…​`
 
-* Adds tag(s) to the inventory item at the specified `INDEX`. 
+* Adds tag(s) to the inventory item at the specified `INDEX`.
   The index refers to the index number shown in the displayed inventory list. The index **must be a positive integer** 1, 2, 3, …​.
 * You can remove all the item’s tags by typing `t/` without
   specifying any tags after it.
@@ -135,6 +135,6 @@ Action | Format, Examples
 **Add Inventory** | `addi n/NAME [t/TAG]…​` <br> e.g., `addi n/Chair t/Furniture`
 **Delete Inventory** | `deletei INDEX`<br> e.g., `deletei 3`
 **Tagi** | `tagi INDEX [t/TAG]…​` <br> e.g, `tagi 1 t/Perishable t/Premium`
-**listi** | `listi`  
+**listi** | `listi`
 **findi** | `findi KEYWORD [MORE_KEYWORDS]` <br/> e.g., `find blue shirt`
 **Exit** | `exit`
