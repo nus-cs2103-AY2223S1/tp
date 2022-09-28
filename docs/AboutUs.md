@@ -55,7 +55,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/rachelchua.png" width="200px">
 
-[[github](http://github.com/RachelChua)][[portfolio](team/rachelchua.md)]
+[[github](http://github.com/RachelChua)]
+[[portfolio](team/rachelchua.md)]
 
 * Role: Developer
 * Responsibilities: Deliverable and deadlines
