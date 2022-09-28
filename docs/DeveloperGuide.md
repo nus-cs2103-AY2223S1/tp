@@ -257,14 +257,16 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* tech savvy university teacher assistants
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Tech savvy university teacher assistants
+* has a need to manage student contacts
+* Prefer desktop apps over other types
+* Can type fast
+* Prefers typing to mouse interactions
+* Is reasonably comfortable using CLI apps
 
-**Value proposition**: manage student information faster than a typical mouse/GUI driven app
-
+**Value proposition**: 
+* Teacher assistant have a lot of students information to manage and our product will make it easier for teacher assistants to remember student information, such as names, faces, attendance, etc
+* Teacher assistants also want to ensure their students are doing well and our product will ensure that they can keep track of student's performance
 
 ### User stories
 
@@ -287,30 +289,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `GREWZ` and the **Actor** is the `teacher assistant`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - Add a Student**
+
+**Guarantees:**  A student contact is added to GREWZ.
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
-    Use case ends.
+1. Tutor adds the student by entering the command with student details
+2. GREWZ adds student. 
+Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. GREWZ detects an error in entered data.
+    * 1a1. GREWZ responds with an error message
+    * 1a2. User enters command with student details
+    * Repeat steps until data is correct
+    Use case resumes in step 2
 
-  Use case ends.
 
-* 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
-
-      Use case resumes at step 2.
 
 *{More to be added}*
 
@@ -326,6 +325,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Command**
 
 --------------------------------------------------------------------------------------------------------------------
 
