@@ -257,17 +257,17 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* work as teaching assistants
-* has a need to keep track of students' grades, attendance, and work submission status of relevant modules
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* works as teaching assistants.
+* has a need to keep track of students' grades, attendance, and work submission status of relevant modules.
+* prefers desktop apps over other types.
+* can type fast.
+* prefers typing to mouse interactions.
+* is reasonably comfortable using CLI apps.
 
 **Value proposition**: 
-- Fast management of students' grades over the typical GUI-driven app.
-- Easy navigation and batch processing with the help of filter and search functionality.
-- CSV file generation of student data.
+* Fast management of students' grades over the typical GUI-driven app.
+* Easy navigation and batch processing with the help of filter and search functionality.
+* CSV file generation of student data.
 
 ### User stories
 
