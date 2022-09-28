@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Thomas Ho
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/thomashoooo.png" width="200px">
 
 [[github](http://github.com/ThomasHoooo)]
 [[portfolio](team/thomashoooo.md)]
