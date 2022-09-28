@@ -257,13 +257,21 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to organise and manage their students and lesson plans
+* has a need to keep track of their students' assigned workload
+* has a need to keep track of their students' grades progress
+* has a need to keep track of their students' attendance in lessons
+* has a need to keep track of their student's assignment progress
+* has a need to keep track of their homework assignments for their students
+* has a need to access and organise their students contact details
+* has a need to keep track of follow-up future lesson plans for their students
+* prefer an all-in-one solution to organise their lesson plans and students
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage and organise students and lesson plans in a lightweight and fast desktop application.
 
 
 ### User stories
@@ -272,18 +280,52 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
+| `* * *`  | potential user                             | see the app populated with sample data | see how the app would look like after frequent usage           |
+| `* * *`  | new user                                   | purge all current data         |  restart with a new set of data for                                    |
+| `* * *`  | new user									| be able to view all the basic commands of the app| I can pick them up quickly to start using the app	  |
+| `* * *`  | user                                   	| assign homework to my students | keep track of the work I assigned to them                              |
+| `* * *`  | user                                       | mark my students attendance 	 | keep track of my students' attendance								  |
+| `* * *`  | user                                       | modify my students' grade progress | keep track on how well my students' are doing		              |
+| `* * *`  | user with many students to manage		    | add my students' lesson plans  | I can organise my lesson plans for each of my students                 |
+| `* * *`  | user with many students to manage			| view a list of all my students and their work-related info | I can see my students' workload at a glance|
+| `* * *`  | long-term user with many students			| update my students data easily | I can keep updated information relevant to their work and contact 	  |
+| `* * *`  | long-term user								| view grade and assignment progress of my individual students | keep track of my students progress  	  |
 *{More to be added}*
 
 ### Use cases
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: Add attendance**
+
+**MSS**
+1. User requests to find a student attendance record.
+2. AddressBook shows the Student name and his attendance record.
+3. User chooses to increment attendance record of student to mark him as attended.
+4. AddressBook tells User that the command is successful.
+	
+	Use case ends.
+
+**Extensions**
+
+* 1a. No Student specified found.
+	* 1a1. AddressBook tells user no such student found.
+	  Use case resumes at step 1
+	  
+**Use case: view students' information**
+1. User requests to list students by their user-specified tagged information.
+2. AddressBook shows a list of students names along with the requested information.
+
+	Use case ends.
+**Extensions**
+
+* 1a. The list is empty.
+	* 1a1. AddressBook shows an empty list
+  Use case ends.
+
+* 2a. Invalid information tag request.
+	* 2a1. AddressBook shows error to indicate invalid command.
+  Use case ends.
 
 **Use case: Delete a person**
 
