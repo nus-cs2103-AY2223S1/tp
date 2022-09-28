@@ -313,13 +313,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+2.  Should be able to hold up to 500 customers, 2000 commissions and 8000 iterations without a noticeable sluggishness
+in performance for typical usage.
+3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be 
+able to accomplish most of the tasks faster using commands than using the mouse.
 4. The app should be designed for and used by a single user.
-5. The app data should be stored in a human-editable text file and not an DBMS.
-6. The app should be well tested with a coverage of above 65% to allow bugs to be found more easily.
-7. The product should be usable on all standard screen resolutions above 1280x720.
-8. The product should be packaged within a single JAR file with a filesize of up to 100MB.
+5. The app data should be stored in a human-editable text file and not a DBMS.
+6. Images and other app assets should be stored locally and not in a remote server.
+7. The app should be well tested with a coverage of above 65% to allow bugs to be found more easily.
+8. The product should be usable on all standard screen resolutions above 1280x720.
+9. The product should be packaged within a single JAR file with a filesize of up to 100MB.
 
 ### Glossary
 
