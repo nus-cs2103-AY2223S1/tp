@@ -14,7 +14,7 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=farisanadia&breakdown=true)
 
 * **Project management**:
-  `to be added`b
+  `to be added`
 
 * **Enhancements to existing features**:
   `to be added`
