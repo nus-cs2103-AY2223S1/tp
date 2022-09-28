@@ -138,7 +138,7 @@ Expected: `An income of 30.00 on 12 Sep 2022 has been deleted.`
 
 ### Viewing total summary of spendings : `view -s [MONTH]`
 
-1. View a summary of all spending <br>
+1. View a summary of all spending
    * Examples: `view -s`
    * Expected: A summary of total spending: `Total amount spent: $125.30`
 2. View a summary of all spending the specified month
@@ -150,7 +150,7 @@ Expected: `An income of 30.00 on 12 Sep 2022 has been deleted.`
 
 ### Viewing total summary of income : `view -i [MONTH]`
 
-1. View a summary of all income <br>
+1. View a summary of all income
     * Examples: `view -i`
     * Expected: A summary of total income earned: `Total amount earned: $125.30`
 2. View a summary of all income the specified month
@@ -196,7 +196,7 @@ _Details coming soon ..._
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
+**Q**: How do I transfer my data to another Computer?
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous AddressBook home folder.
 
