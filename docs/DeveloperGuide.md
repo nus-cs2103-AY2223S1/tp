@@ -315,7 +315,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to list customers
 2.  ArtBuddy shows a list of customers
 3.  User requests to delete a customer in the list
-4.  ArtBuddy deletes the customer
+4.  ArtBuddy warns the user that all commissions under the customer will be deleted, and confirms whether the user still wants to proceed
+5.  User confirms.
+6.  ArtBuddy deletes the customer
 
     Use case ends.
 
