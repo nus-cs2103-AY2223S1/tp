@@ -176,10 +176,6 @@ Adds a task to the tasklist.
 
 Format: `add task TASK_DESCRIPTION`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
-
 Examples:
 * `add task laundry`
 * `add task coding assignment`
@@ -204,3 +200,4 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
+**add task** | `add task TASK_DESCRIPTION`
