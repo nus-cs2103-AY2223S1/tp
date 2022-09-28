@@ -79,15 +79,15 @@ Examples:
 * `mark 3 interviewed` - Marks the 3rd application status to be `interviewed`
 * `mark 2 accepted` - Marks the 2nd application status to be `accepted`
 
-### Listing all internship applications : `list`
-######(coming soon)
+### Listing all internship applications: `list`
+###### (coming soon)
 
 Shows a list of all internship applications.
 
 Format: `list`
 
-### Deleting an internship application : `delete`
-######(coming soon)
+### Deleting an internship application: `delete`
+###### (coming soon)
 
 Deletes an internship application.
 
@@ -99,6 +99,10 @@ Format: `delete [INDEX]`
 
 Examples:
 *  `delete 4` - Deletes the 4th application in the list.
+
+### Filtering for internship applications of a specified status: `filter`
+
+###### (coming soon)
 
 Format: `filter [STATUS]`
 
