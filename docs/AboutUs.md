@@ -33,10 +33,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/glemenneo.png" width="200px">
 
-[[github](http://github.com/glemenneo)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/glemenneo)] [[portfolio](team/glemenneo.md)]
 
-* Role: Developer
-* Responsibilities: Testing
+* Role: Testing
+* Responsibilities: Designing test scenarios, conducting automated and manual tests, analysing test results
 
 ### Jean Doe
 
