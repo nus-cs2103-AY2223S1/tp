@@ -346,6 +346,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+**Use case: View internship(s)**
+
+**MSS**
+
+1. User wants to view more details of an internship application.
+2. System displays more details of the internship application.
+3. Use case ends.
+
+**Extensions**
+*{More to be added}*
+
 **Use case: Filter internship(s)**
 
 **MSS**
