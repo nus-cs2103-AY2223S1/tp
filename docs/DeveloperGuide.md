@@ -429,6 +429,10 @@ Use case ends.
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Command Line Interface (CLI)**: A text of lines input by the users to send instructions to the system. 
+* **Graphical User Interface (GUI)**: A means, supported by visuals, for the users to send instructions to the system.
+* **Student**: The main user.
+* **Classmate**: The people whom the users need to link to and interact with.
 
 --------------------------------------------------------------------------------------------------------------------
 
