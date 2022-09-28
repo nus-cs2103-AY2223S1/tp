@@ -19,24 +19,23 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Sheryl-Lynn Tan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/sltsheryl.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/sltsheryl)] [[portfolio](team/sltsheryl.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: to be added soon
+
+### Zheng Jiarui
+
+<img src="images/carriezhengjr.png" width="200px">
+
+[[github](https://github.com/carriezhengjr)] [[portfolio](team/carriezhengjr.md)]
+
+* Role: Developer
+* Responsibilities: to be added soon
 
 ### Jean Doe
 
@@ -48,12 +47,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Jonas Goh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jonasgwt.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/jonasgwt)]
+[[portfolio](team/jonasgwt.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: to be added soon

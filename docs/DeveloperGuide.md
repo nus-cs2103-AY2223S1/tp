@@ -270,45 +270,152 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​          | I want to …​                             | So that I can…​                                                            |
+|----------|------------------|------------------------------------------|----------------------------------------------------------------------------|
+| `* * *`  | new user         | see usage instructions and FAQ           | understand how to use the App                                              |
+| `* * *`  | student          | add a classmate to the addressbook       | conveniently refer to their contact details all in one place               |
+| `* * *`  | student          | list all classmates                      | see a list of all classmates in my class                                   |
+| `* * *`  | student          | delete a classmate                       | remove unneeded entries                                                    |
+| `* * *`  | student          | find a classmate by name/Github username | locate their details to review and give feedback on their iP and tP easily |
+| `* * *`  | student          | tag a classmate with tags                | find them easily                                                           |
+| `* * *`  | student          | sort classmates using a specified tag    | locate classmates with the specified tag easily                            |
+| `* *`    | student          | save my data to a file                   | access the data on different devices                                       |
+| `* *`    | technical person | close the App using a command            | close the App easily                                                       |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `MassLinkers` and the **Actor** is the `student`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case 1: Add a classmate’s information**
+
+**MSS**
+1. Student chooses to add a classmate's contact.
+2. Student enters the command to add a classmate.
+3. MassLinkers verifies entered command has valid syntax.
+4. MassLinkers adds user to the list of classmates. \
+   Use case ends.
+
+**Extensions**
+* 4a. MassLinkers detects an error in the entered command.
+    * 4a1. MassLinkers requests for the correct command.
+    * 4a2. Student enters new command.
+    * Steps 4a1-4a2 are repeated until the command entered are correct. \
+      Use case resumes from step 4.
+
+
+* a. At any time, Student chooses to close MassLinkers.
+    * a1. MassLinkers updates the written storage file.
+    * a2. MassLinkers closes the program. \
+      Use case ends.
+
+**Use case 2: Delete a classmate**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
-    Use case ends.
+1. Student requests to list classmates.
+2. MassLinkers shows a list of classmates.
+3. Student requests to delete a specific classmate in the list.
+4. MassLinkers deletes the classmate using his index.
+   \
+   Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The list is empty. 
+\
+Use case ends.
 
-  Use case ends.
 
 * 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
-
+    * 3a1. MassLinkers shows an error message.
+      \
       Use case resumes at step 2.
 
-*{More to be added}*
+
+* a. At any time, Student chooses to close MassLinkers.
+    * a1. MassLinkers updates the written storage file.
+    * a2. MassLinkers closes the program.
+      \
+      Use case ends.
+
+**Use case 3: Search classmate via a tag**
+
+**MSS**
+
+1. Student searches classmate with a particular tag.
+2. MassLinkers verifies syntax of the search command is valid.
+3. MassLinkers searches through the list of added tags.
+4. MassLinkers returns the list of classmates associated with the particular tag and display it through the GUI.
+   \
+   Use case ends.
+
+**Extensions**
+* 3a. MassLinkers detects an error in the sequence or syntax of entered command.
+    * 3a1. MassLinkers prompts error message.
+    * 3a2. MassLinkers requests for the correct command.
+    * 3a3. Student enters new command.
+      Steps 3a1-3a3 are repeated until the command entered are correct.
+      \
+      Use case resumes from step 4.
+
+
+* 4a. MassLinkers detects there is no such tag.
+    * 4a1. MassLinkers prompts error message.
+    * 4a2. MassLinkers requests for the correct command.
+    * 4a3. Student enters new command.
+      \
+      Steps 4a1-4a3 are repeated until the command entered are correct.
+      \
+      Use case resumes from step 4.
+
+
+* a. At any time, Student chooses to close MassLinkers.
+    * a1. MassLinkers updates the written storage file.
+    * a2. MassLinkers closes the program.
+      \
+      Use case ends.
+
+
+**Use case 4: Add a tag to a classmate**
+
+**MSS**
+
+1. Student chooses to add a tag on a classmate, could be himself or others.
+2. Student enters the add tag command with the associated classmate.
+3. MassLinkers verifies the syntax of the command.
+4. MassLinkers searches through the list of people for the selected classmate.
+5. MassLinkers adds tag to the classmate.
+   \
+   Use case ends.
+
+**Extensions**
+* 3a. MassLinkers detects an error in the entered command.
+    * 3a1. MassLinkers requests for the correct command.
+    * 3a2. Student enters new command.
+      \
+      Steps 3a1-3a2 are repeated until the data entered are correct.
+      \
+      Use case resumes from step 4.
+
+
+* 5a. MassLinkers cannot find classmate in MassLinkers.
+    * 5a1. MassLinkers requests for correct command argument.
+    * 5a2. Student enters new command.
+      \
+      Steps 5a1-5a2 are repeated until the data entered are correct.
+      \
+      Use case resumes from step 5.
+
+
+* a. At any time, Student chooses to close MassLinkers.
+    * a1. MassLinkers updates the written storage file.
+    * a2. MassLinkers closes the program.
+      \
+      Use case ends.
+
+
 
 ### Non-Functional Requirements
 
