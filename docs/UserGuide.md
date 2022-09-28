@@ -3,10 +3,10 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+TrackO is a **desktop app built for small business owners to help them manage customer contacts and orders, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you prefer and are fast at typing, TrackO can get your order and inventory management tasks done faster than traditional GUI apps.
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -14,25 +14,23 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `TrackO.jar` from [here](https://github.com/AY2223S1-CS2103T-W15-3/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the command box and press Enter to execute it. e.g. typing **`listo`** and pressing Enter will show a lit of existing orders.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+    * **`listo`** : Lists all orders.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+    * **`addi`**`n/Keychain` : Adds an inventory item named `Keychain` to the inventory list.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+    * **`deleteo`**`3` : Deletes the 3rd order shown in the current list.
 
-   * **`clear`** : Deletes all contacts.
-
-   * **`exit`** : Exits the app.
+    * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
