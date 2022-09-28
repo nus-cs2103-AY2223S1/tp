@@ -31,7 +31,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/phyliciachristel.png" width="200px">
 
-[[github](http://github.com/phyliciachristel)] 
+[[github](http://github.com/phyliciachristel)]
 [[portfolio](team/phyliciachristel.md)]
 
 * Role: Developer
