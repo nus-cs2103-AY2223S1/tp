@@ -17,6 +17,7 @@ title: Developer Guide
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
@@ -312,16 +313,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 profiles without a noticeable sluggishness in performance for typical usage.
+3. Should be able to hold up to 1000 events without a noticeable sluggishness in performance for typical usage.
+4. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+5. Response to any commands should be displayed within 5 seconds.
+6. A user's individual schedule should not be accessible to other users.
+7. The _GUI_ should display data logic warnings when commands are entered with incomplete fields.
+8. The _GUI_ should be at least 1280 by 720 pixels to clearly display all information.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **GUI**: Graphical User Interface, a visual display that users can interact with
+* **NUS**: National University of Singapore, tertiary education institute
+* **End user**: _NUS_ students who use NUScheduler to handle their schedules
+* **Contact details**: Contains information such as Phone number and Email, allowing the _end user_ to 
+communicate with other users.
+* **Profile**: Contains user information such as their Name and _contact details_
+* **Connections**: _Profiles_ who the _end user_ is connected to and requires meeting with
+* **Event**: A planned meeting containing the Title, Start timing and End timing of the meeting. 
+Also contains _profiles_ of users participating in the meeting.
 
 --------------------------------------------------------------------------------------------------------------------
 
