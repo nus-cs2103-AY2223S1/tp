@@ -9,51 +9,52 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Sheyuan Yeo
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/piyotato.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/Piyotato)]
+[[portfolio](team/piyotato.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: [To Be Added]
 
-### Jean Doe
+### Silas Yeo
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/comicalromance.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/comicalromance)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: [To Be Added]
 
-### James Doe
+### Po Hsien
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lpohsien.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/lpohsien)]
+[[portfolio](team/lpohsien.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: [To Be Added]
+
+### Lin Zizheng
+
+<img src="images/dr-arrgghh.png" width="200px">
+
+[[github](http://github.com/dr-arrgghh)]
+[[portfolio](team/dr-arrgghh.md)]
+
+* Role: Developer
+* Responsibilities: [To Be Added]
+
+### Pang Bao Bin
+
+<img src="images/highorbit25.png" width="200px">
+
+[[github](http://github.com/highorbit25)]
+[[portfolio](team/highorbit25.md)]
+
+* Role: Developer
+* Responsibilities: [To Be Added]
