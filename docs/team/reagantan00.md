@@ -30,7 +30,7 @@ Given below are my contributions to the project.
     * User Guide:
         * [to be added soon]
     * Developer Guide:
-        * [to be added soon]
+        * made changes to user profile, value proposition and user stories
 
 * **Community**:
     * [to be added soon]
