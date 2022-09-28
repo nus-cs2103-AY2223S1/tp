@@ -170,6 +170,16 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 _Details coming soon ..._
 
+### Adding a task: `add task`
+
+Adds a task to the tasklist.
+
+Format: `add task TASK_DESCRIPTION`
+
+Examples:
+* `add task laundry`
+* `add task coding assignment`
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -190,3 +200,4 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
+**add task** | `add task TASK_DESCRIPTION`
