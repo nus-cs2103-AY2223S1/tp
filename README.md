@@ -29,5 +29,5 @@ your client's information.
 ## About us
   * Want to find out more about our team's dynamics and roles? Take a look at [our Team](docs/AboutUs.md).
 
-##Acknowledgments
+## Acknowledgments
   * This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.

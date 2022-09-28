@@ -59,6 +59,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [github](http://github.com/fungusta) |
 [portfolio](team/peterfung.md)
 
+
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
