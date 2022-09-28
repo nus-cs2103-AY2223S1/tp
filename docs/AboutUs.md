@@ -40,7 +40,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Low Zan Hao
 
-<img src="images/paotheroo.png" width="200px">
+<img src="images/paotheroo.PNG" width="200px">
 
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
