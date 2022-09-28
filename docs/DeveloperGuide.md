@@ -317,9 +317,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 1ai. System informs the user of the non-existent order.
     
      Use case ends.
-- 1b. The list has no orders.
+- 2a. The list has no orders.
   
-  - 1bi. System informs the user of the empty order list.
+  - 2ai. System informs the user of the empty order list.
   
     Use case ends.
 
@@ -334,8 +334,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-- 1a. The list of orders is empty.
-    - 1ai. System informs the user that the list is empty.
+- 2a. The list of orders is empty.
+    - 2ai. System informs the user that the list is empty.
   
       Use case ends.
 
@@ -385,8 +385,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     Use case ends.
 
-- 1b. The list of inventory items is empty.
-    - 1bi. System informs user that the list of items is empty.
+- 2a. The list of inventory items is empty.
+    - 2ai. System informs user that the list of items is empty.
 
       Use case ends.
     
@@ -403,8 +403,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-- 1a. The list of inventory items is empty.
-  - 1ai. System informs user of the empty list.
+- 2a. The list of inventory items is empty.
+  - 2ai. System informs user of the empty list.
 
     Use case ends.
 
