@@ -104,16 +104,21 @@ Example:
 
 Adds an event with a name and a start timing and end timing.
 
-Format: `event -a n/NAME s/START e/END [p/PROFILE]`
+Format: `event -a n/NAME s/START e/END [p/PROFILE]…`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+An event can have any number of profiles (including 0)
+</div>
+
 
 ### Viewing upcoming events: `event -u`
 
 Displays a list of upcoming events, ordered by the date, for the next specified number of days.
 
-Format: `event -u INDEX`
+Format: `event -u DAYS`
 
-* The index refers to the number of days from the current date. All events within this time frame will be displayed.
-* The index **must be a positive integer** 1, 2, 3, ...
+* The days refer to the number of days from the current date. All events within this time frame will be displayed.
+* The days **must be a positive integer** 1, 2, 3, ...
 
 Example:
 * `event -u 5` displays all events taking place in the next 5 days ordered by date.
@@ -146,6 +151,12 @@ Format: `event -d INDEX`
 Example:
 * `event -v` followed by `event -d 2` deletes the 2nd event displayed.
 
+### Exiting the program: `exit`
+
+Exits the program.
+
+Format: `exit`
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -158,10 +169,10 @@ No FAQ Yet.
 
 Action | Format, Examples
 --------|------------------
-**Add Profile** | `profile -a n/NAME p/PHONE`
+**Add Profile** | `profile -a n/NAME p/PHONE_NUMBER e/EMAIL`
 **Delete Profile** | `profile -d INDEX`
 **View Profile** | `profile -v [INDEX]`
-**Add Event** | `event -a n/NAME n/START n/END [p/PROFILE]`
+**Add Event** | `event -a n/NAME s/START e/END [p/PROFILE]…`
 **Delete Event** | `event -d INDEX`
 **View Event(s)** | `event -v [INDEX]`
-**View Upcoming** | `event -u DAYS`
+**View Upcoming Event(s)** | `event -u DAYS`
