@@ -45,7 +45,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/ee-suan.png" width="200px">
 
 [[github](http://github.com/ee-suan)]
-[[portfolio](team/eesuan.md)]
+[[portfolio](team/ee-suan.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
