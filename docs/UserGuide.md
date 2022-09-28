@@ -72,15 +72,15 @@ TutHub is a **desktop app for tech-savvy tuition agents who want to keep track o
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER g/GENDER e/EMAIL s/SALARY [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/John Doe p/98765432 g/M e/johnd@example.com s/40`
+* `add n/Betsy Crowe t/s2chem g/F e/betsycrowe@example.com s/30 p/1234567 t/s2math`
 
 ### Listing all persons : `list`
 
