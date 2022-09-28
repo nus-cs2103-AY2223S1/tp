@@ -28,7 +28,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities:
   * Team pull request reviewer
-  
+
 
 ### Shaune Ang
 
@@ -46,7 +46,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/johndoe.png" width="200px">
 
-[github](http://github.com/isanidiot) | 
+[github](http://github.com/isanidiot) |
 [portfolio](team/liaoyuchuan.md)
 
 * Role: Developer
@@ -56,7 +56,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/johndoe.png" width="200px">
 
-[github](http://github.com/fungusta) | 
+[github](http://github.com/fungusta) |
 [portfolio](team/peterfung.md)
 
 * Role: Developer
@@ -66,7 +66,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/johndoe.png" width="200px">
 
-[github](http://github.com/reagantan00) | 
+[github](http://github.com/reagantan00) |
 [portfolio](team/reagantan.md)
 
 * Role: Developer
