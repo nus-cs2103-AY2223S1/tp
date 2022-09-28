@@ -51,7 +51,7 @@ NUScheduler is a desktop app for **managing contacts, optimised for use via a Co
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
@@ -90,6 +90,33 @@ Format: `profile -d INDEX`
 
 Example:
 * `profile -d 1` deletes the first profile listed.
+
+### Viewing upcoming events: `event -u`
+
+Displays a list of upcoming events, ordered by the date, for the next specified number of days.
+
+Format: `event -u INDEX`
+
+* The index refers to the number of days from the current date. All events within this time frame will be displayed.
+* The index **must be a positive integer** 1, 2, 3, ...
+
+Example:
+* `event -u 5` displays all events taking place in the next 5 days ordered by date.
+
+### Viewing events: `event -v`
+
+Displays either a list of events or a single event.
+
+Format: `event -v INDEX`
+
+Tip: `INDEX` is optional, specify to view a single profile.
+
+* The index refers to the index number shown in the full displayed event list after using `event -v`.
+* The index **must be a positive integer** 1, 2, 3, ...
+
+Example:
+* `event -v` displays all events in NUScheduler.
+* `event -v 2` displays the second event listed in `event -v`.
 
 ### Deleting an event: `event -d`
 
