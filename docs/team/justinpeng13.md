@@ -22,7 +22,7 @@ Given below are my contributions to the project.
 
 * **Project management**:
   * to be added soon
-  
+
 * **Documentation**:
   * User Guide:
     * to be added soon
