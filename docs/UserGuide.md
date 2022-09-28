@@ -81,7 +81,7 @@ Adds a student to the StudMap.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
 A student can have any number of tags (including 0)
 </div>
 
@@ -165,7 +165,7 @@ StudMap data are saved in the hard disk automatically after any command that cha
 
 StudMap data are saved as a JSON file `[JAR file location]/data/studmap.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">:exclamation: <b>Caution:</b>
 If your changes to the data file makes its format invalid, StudMap will discard all data and start with an empty data file at the next run.
 </div>
 
