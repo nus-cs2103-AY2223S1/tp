@@ -91,6 +91,18 @@ Format: `profile -d INDEX`
 Example:
 * `profile -d 1` deletes the first profile listed.
 
+### Viewing upcoming events: `event -u`
+
+Displays a list of upcoming events, ordered by the date, for the next specified number of days.
+
+Format: `event -u INDEX`
+
+* The index refers to the number of days from the current date. All events within this time frame will be displayed.
+* The index **must be a positive integer** 1, 2, 3, ...
+
+Example:
+* `event -u 5` displays all events taking place in the next 5 days ordered by date.
+
 ### Viewing events: `event -v`
 
 Displays either a list of events or a single event.
