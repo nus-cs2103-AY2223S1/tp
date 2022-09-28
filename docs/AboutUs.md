@@ -27,7 +27,6 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Lester Ong
 
-
 <img src="images/lesterong.png" width="200px">
 
 [[github](http://github.com/lesterong)] 

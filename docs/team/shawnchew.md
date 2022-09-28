@@ -6,7 +6,7 @@ title: Shawn Chew's Project Portfolio Page
 ### Project: NUScheduler
 
 
-NUScheduler is a desktop application for managing contacts. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+NUScheduler is a desktop app for managing contacts, optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, NUScheduler can get your contact management tasks done faster than traditional GUI apps.
 
 Given below are my contributions to the project.
 
@@ -15,3 +15,4 @@ Given below are my contributions to the project.
         * 
     * Developer Guide:
         *
+  
