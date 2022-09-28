@@ -27,7 +27,7 @@ SETA is a **desktop application for CS2103T Teaching Assistants** to track their
     * Deleting a tutorial: [`deletetut`](#deleting-a-tutorial--deletetut)
     * Marking a tutorial: [`marktut`](#marking-a-tutorial-marktut)
     * Listing all tutorials: [`listtut`](#listing-all-tutorials-listtut)
-  * Exiting the program: [`exit`](#exiting-the-program--exit)
+  * **Exiting the program**: [`exit`](#exiting-the-program--exit)
 
 
 
