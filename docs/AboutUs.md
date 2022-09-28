@@ -48,12 +48,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Integration
 
-### James Doe
+### Max Tan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/maxtance.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/maxtance/)]
+[[portfolio](team/maxtance.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Code Quality
