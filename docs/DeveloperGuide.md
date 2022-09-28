@@ -318,12 +318,12 @@ Extensions:
 7.  User selects specific member
 8.  HackAssist displays information about member and prompts for confirmation
 9.  User confirms
-10.  User is added to existing task  
+10.  User is added to existing task
 Use case ends.
 
 **Extensions**
 
-Extensions:
+Extensions:  
   2a. There are no tasks  
       *Use case ends.  
   
@@ -338,15 +338,15 @@ Extensions:
       Use case resumes from step 8.  
   
   7b. HackAssist detects that the member already has more than 3 tasks  
-      *7b1. Hackassist shows a warning message for potentially overloaded user  
-      *7b2. Hackassist promts for confirmation  
-      *7b3. User ackowledges and confirms addition of member  
-      Use case resumes from step 8.  
+        *7b1. Hackassist shows a warning message for potentially overloaded user  
+        *7b2. Hackassist promts for confirmation  
+        *7b3. User ackowledges and confirms addition of member  
+        Use case resumes from step 8.  
 
   *a. At any time, User chooses to cancel the process.  
-      *a1. HackAssist requests to confirm the cancellation.  
-      *a2. User confirms the cancellation.  
-      Use case ends.  
+       *a1. HackAssist requests to confirm the cancellation.  
+       *a2. User confirms the cancellation.  
+       Use case ends.  
       
  **Use case: Edit deadline of task**
 
