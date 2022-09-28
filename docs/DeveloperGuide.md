@@ -295,15 +295,15 @@ Use case ends.
 
 **Extensions**
 
-Extensions:
-  3a. HackAssist detects that the member already exists  
-      *3a1. Hackassist shows an error message  
+Extensions:  
+  * 3a. HackAssist detects that the member already exists
+     * 3a1. Hackassist shows an error message  
        Use case ends.  
 
-  *a. At any time, User chooses to cancel the process.  
-      *a1. HackAssist requests to confirm the cancellation.  
-      *a2. User confirms the cancellation.  
-      Use case ends.  
+ * *a. At any time, User chooses to cancel the process.
+    * *a1. HackAssist requests to confirm the cancellation.  
+    * *a2. User confirms the cancellation.  
+       Use case ends.  
 
 **Use case: Add specific team member to an existing task**
 
@@ -324,29 +324,29 @@ Use case ends.
 **Extensions**
 
 Extensions:  
-  2a. There are no tasks  
-      *Use case ends.  
-  
-  5a. There are no members  
-      *5a1 Hackassist shows an error message that there are no members  
-      Use case ends.  
-      
-  7a. HackAssist detects that the member's Ability Rating is lower than the given task  
-      *7a1. Hackassist shows a warning message for low user rating  
-      *7a2. Hackassist promts for confirmation  
-      *7a3. User ackowledges and confirms addition of member  
-      Use case resumes from step 8.  
-  
-  7b. HackAssist detects that the member already has more than 3 tasks  
-        *7b1. Hackassist shows a warning message for potentially overloaded user  
-        *7b2. Hackassist promts for confirmation  
-        *7b3. User ackowledges and confirms addition of member  
-        Use case resumes from step 8.  
-
-  *a. At any time, User chooses to cancel the process.  
-       *a1. HackAssist requests to confirm the cancellation.  
-       *a2. User confirms the cancellation.  
+  * 2a. There are no tasks  
        Use case ends.  
+
+ * 5a. There are no members 
+    * 5a1 Hackassist shows an error message that there are no members   
+       Use case ends.  
+
+* 7a. HackAssist detects that the member's Ability Rating is lower than the given task  
+    * 7a1. Hackassist shows a warning message for low user rating  
+    * 7a2. Hackassist promts for confirmation  
+    * 7a3. User ackowledges and confirms addition of member  
+      Use case resumes from step 8.  
+
+* 7b. HackAssist detects that the member already has more than 3 tasks  
+    * 7b1. Hackassist shows a warning message for potentially overloaded user    
+    * 7b2. Hackassist promts for confirmation 
+    * 7b3. User ackowledges and confirms addition of member  
+      Use case resumes from step 8.  
+
+* a. At any time, User chooses to cancel the process.  
+    * a1. HackAssist requests to confirm the cancellation.  
+    * a2. User confirms the cancellation.  
+      Use case ends.  
       
  **Use case: Edit deadline of task**
 
@@ -365,20 +365,20 @@ Extensions:
 Use case ends.
 
 Extensions:
-  2a. There are no tasks  
-      *Use case ends.
+* 2a. There are no tasks  
+    Use case ends.
   
-  7b. HackAssist detects that the deadline is invalid  
-      *7b1 Hackassist shows an error message that the deadline is invalid  
-      *7b2 User enters new data  
-      Steps 7b1-7b2 are repeated until the data entered are correct.  
-      Use case resumes from step 8.  
+* 7a. HackAssist detects that the deadline is invalid  
+    * 7a1. Hackassist shows an error message that the deadline is invalid  
+    * 7a2. User enters new data  
+    Steps 7a1-7a2 are repeated until the data entered are correct.  
+    Use case resumes from step 8.  
       
-  7a. HackAssist detects that the deadline is already past  
-      *7a1. Hackassist shows an error message that the deadline has already past  
-      *7b2 User enters new data  
-      Steps 7a1-7a2 are repeated until the data entered are correct.  
-      Use case resumes from step 8.  
+* 7b. HackAssist detects that the deadline is already past  
+    * 7b1. Hackassist shows an error message that the deadline has already past  
+    * 7b2. User enters new data  
+    Steps 7b1-7b2 are repeated until the data entered are correct.  
+    Use case resumes from step 8.  
 *{More to be added}*
 
 ### Non-Functional Requirements
