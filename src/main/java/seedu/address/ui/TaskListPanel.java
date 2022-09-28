@@ -21,7 +21,7 @@ public class TaskListPanel extends UiPart<Region> {
     private ListView<Task> taskListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code TaskListPanel} with the given {@code ObservableList}.
      */
     public TaskListPanel(ObservableList<Task> taskList) {
         super(FXML);
