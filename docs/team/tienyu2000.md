@@ -16,7 +16,7 @@ If you can type fast, WB can get your internship management tasks done faster th
 
 #### Contributions to User Guide
 
-#### Contributions to Developer's Guide
+#### Contributions to Developer Guide
 
 #### Contributions to team-based tasks 
 

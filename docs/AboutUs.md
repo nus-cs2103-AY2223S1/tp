@@ -53,7 +53,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/tienyu2000.png" width="200px">
 
 [[github](http://github.com/tienyu2000)]
-[[portfolio](team/tienYu.md)]
+[[portfolio](team/tienyu2000.md)]
 
 * Role: Documentation
 * Responsibilities: JavaDocs to generate API documentation in HTML format
