@@ -3,8 +3,8 @@ layout: page
 title: User Guide
 ---
 
-FRIDAY is a **desktop app for CS1101S TAs to organize and track their students’ progress, optimized for use via a 
-Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type 
+FRIDAY is a **desktop app for CS1101S TAs to organize and track their students’ progress, optimized for use via a
+Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type
 fast, FRIDAY can get your contact management tasks done faster than traditional GUI apps.
 
 ### Table of Contents
@@ -17,13 +17,13 @@ fast, FRIDAY can get your contact management tasks done faster than traditional 
 
 1. Add and delete students
 2. Edit details of students
-   1. Name 
-   2. Telegram handle 
-   3. Consultation dates 
-   4. Dates of Mastery Checks 
-   5. Grades 
+   1. Name
+   2. Telegram handle
+   3. Consultation dates
+   4. Dates of Mastery Checks
+   5. Grades
    6. Remarks
-3. View all students 
+3. View all students
 4. View individual student details
 
 --------------------------------------------------------------------------------------------------------------------
@@ -86,8 +86,8 @@ Format: `list`
 
 Action | Format
 --------|------------------
-**Add a student** | `add n/NAME [t/TELEGRAM_HANDLE] [s/STUDENT_NUMBER]` 
-**Delete a student** | 
+**Add a student** | `add n/NAME [t/TELEGRAM_HANDLE] [s/STUDENT_NUMBER]`
+**Delete a student** |
 **Edit a student's details** |
 **View all students** | `list`
-**View a student's details** | 
+**View a student's details** |

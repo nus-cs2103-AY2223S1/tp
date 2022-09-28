@@ -9,7 +9,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -257,42 +258,69 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* CS1101S Teaching Assistants
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**
+1. One easy-to-access place to track each student’s individual progress
+2. Makes TA’s lives easier by removing the need to manually filter students
+3. Easier and more convenient to manage and schedule meetings with students
+4. Manage students faster than a typical mouse/GUI driven app
+5. Constraint: won’t be able to actually grade submissions using FRIDAY
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                    | I want to …​                                                      | So that I can…​                                                        |
+|----------| ------------------------------------------ |-------------------------------------------------------------------| ---------------------------------------------------------------------- |
+| `* * *`  | user              | add students                                                      |                                                                  |
+| `* * *`  | user              | remove students                                                   |                                                                  |
+| `* * *`  | user              | add my students’ contact details                                  | contact them when I need to                                      |
+| `* * *`  | user              | delete my students’ contact details                               | remove outdated information                                      |
+| `* * *`  | user              | add my students’ grades and marks for tests                       | assess and see how well they are performing                      |
+| `* * *`  | user              | delete my students’ grades and marks for tests                    | remove outdated results                                          |
+| `* * *`  | user              | add queries from students                                         | keep track of any queries i need to address                      |
+| `* * *`  | user              | delete certain comments that are no longer relevant               | Not clutter up space with old comments                           |
+| `* * *`  | user              | add comments for a specific student                               | take note of their progress                                      |
+| `* * *`  | user              | view the information of a specific student                        | retrieve details about the student                               |
+| `* * *`  | user              | search for keywords                                               | look for information i need from my students                     |
+| `* * *`  | user              | be given helpful error messages when I give an invalid command    | troubleshoot easily without consulting the User Guide every time |
+| `* * *`  | user              | add dates for my students’ Mastery Checks                         | schedule the meetings                                            |
+| `* * *`  | user              | delete dates for my students’ Mastery Checks                      | remove outdated dates and Mastery Checks                         |
+| `* *`    | user              | get help in the app itself                                        | get help without consulting the User Guide                       |
+| `* *`    | user              | edit my students’ grades and marks for tests                      | update the student’s results                                     |
+| `* *`    | user              | edit the contact details of a specific student                    | update the student’s contact details                             |
+| `* *`    | user              | edit the information of a specific student                        | update the student’s details.                                    |
+| `* *`    | user              | edit previously added comments                                    | update my comments for a student.                                |
+| `* *`    | new user          | see the app populated with sample data                            | easily see how the app will look when it is in use               |
+| `* *`    | new user          | purge all current data                                            | get rid of sample/experimental data I used for exploring the app |
+| `* *`    | expert user       | create custom alias for my commands                               | enter commands more efficiently                                  |
+| `* *`    | expert user       | delete a custom alias                                             | remove aliases I no longer need                                  |
+| `* *`    | intermediate user | generate random pairs to group my students into pairs             | split my students for pair work                                  |
+| `*`      | expert user       | view all my current macros                                        | view all my macros and know what they do                         |
+| `*`      | expert user       | create my own macros to  perform certain functions                | be more efficient using the app                                  |
+| `*`      | intermediate user | have suggestions on comments to give students for generic  feedback | provide fast feedback                                            |
+| `*`      | intermediate user | customize the look and feel of the software                       | make the software feel like my own                               |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `FRIDAY` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  FRIDAY shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  FRIDAY deletes the person
 
     Use case ends.
 
@@ -304,16 +332,128 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. FRIDAY shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: List a person's details**
+
+**MSS**
+
+1. User requests to list all persons
+2. FRIDAY shows a list of persons
+3. User requests to view the details of a specific person in the list
+4. FRIDAY displays the details of the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. FRIDAY shows an error message.
+
+      Use case resumes at step 2.
+
+
+**Use case: Add details to a person**
+
+**MSS**
+
+1. User requests to list persons
+2. FRIDAY shows a list of persons
+3. User requests to add details for a specific person in the list
+4. FRIDAY adds details for the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. FRIDAY shows an error message.
+    
+      Use case resumes at step 2.
+
+* 3b. The given details have the wrong formats or tags
+
+    * 3b1. FRIDAY shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Edit details of a person**
+
+**MSS**
+
+1. User requests to list persons
+2. FRIDAY shows a list of persons
+3. User requests to edit details for a specific person in the list
+4. FRIDAY edits details for the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. FRIDAY shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given details have the wrong formats or tags
+
+    * 3b1. FRIDAY shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Delete details of a person**
+
+**MSS**
+
+1. User requests to list persons
+2. FRIDAY shows a list of persons
+3. User requests to delete details for a specific person in the list
+4. FRIDAY deletes details for the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. FRIDAY shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given details have the wrong formats or tags
+
+    * 3b1. FRIDAY shows an error message.
+
+      Use case resumes at step 2.
+
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 100 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
