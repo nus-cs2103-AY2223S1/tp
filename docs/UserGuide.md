@@ -1,5 +1,3 @@
-# HR Pro Max++
-
 HR Pro Max++ is a **desktop app for team leads in SMEs to manage projects and staff members under them. It is optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
 If you can type fast, HR Pro Max++ can get your project management tasks done faster than traditional GUI apps.
 
@@ -102,13 +100,12 @@ Show all the Projects in the Projects list.
 
 Format: `listProj`
 
-### Adding members to projects : `addstaff`
+### Adding a staff member to Project : `addstaff`
 
-Adds staff members to a project in Project list.
+Adds a staff member info to Project in project list.
 
 Format: `addStaff pn/PROJECT_NAME sn/NAME si/INSURANCE_STATUS sd/DEPARTMENT st/TITLE sc/CONTACT NUMBER` 
 
-* Adds a staff member at the specified `INDEX`. The index refers to the index number shown in the displayed Project list. The index **must be a positive integer** 1, 2, 3, …​
 * All fields for staff member are required
 
 Examples:
@@ -145,7 +142,9 @@ Examples:
 * `edit 2 pn/CS2103 t/` Edits the name of the 2nd person to be `CS2103` and clears all existing tags.
 
 ### Clearing all Projects : `clear`
+
 Clears all Projects from the Project list.
+
 Format: `clear`
 
 ### Exiting the program : `exit`
