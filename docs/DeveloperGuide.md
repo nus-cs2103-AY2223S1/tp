@@ -295,7 +295,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Extensions**
+**Extensions**:
 * 2a. User enters the details in the wrong format.
   * 2a1. FindMyIntern shows an error message.
   
@@ -310,7 +310,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. FindMyIntern updates the internship application to the status.
    Use case ends.
 
-**Extensions**
+**Extensions**:
 * 2a. User enters the details in the wrong format.
   * 2a1. FindMyIntern shows an error message.
   
@@ -323,7 +323,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**:
 1. User wants to search for internship applications stored in the tracker.
 2. User enters the keywords for the search.
-FindMyIntern shows a list of internship applications that match the keywords.
+3. FindMyIntern shows a list of internship applications that match the keywords.
    
    Use case ends.
 
@@ -363,21 +363,10 @@ FindMyIntern shows a list of internship applications that match the keywords.
 
 *{More to be added}*
 
-
-
-
-
-
-
-
-
-
-
-
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 internship applications without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
@@ -385,7 +374,6 @@ FindMyIntern shows a list of internship applications that match the keywords.
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
