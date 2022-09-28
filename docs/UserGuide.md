@@ -191,7 +191,7 @@ Format: `edit_task INDEX [n/NAME] [c/CONTACT_INDEX]`
 
 Examples:
 * `edit_task 1 n/Gym` Edits the task name of the 1st task to Gym.
-* `edit_task 3 n/Product meeting c/Boss` Edits the task name and associated contact of the 3rd task to be `Team meeting` and `Boss` respectively.
+* `edit_task 3 n/Product meeting c/3` Edits the task name and associated contact of the 3rd task to be `Team meeting` and the 3rd contact respectively.
 
 ### Clearing all entries : `clear`
 
@@ -234,10 +234,12 @@ _Details coming soon ..._
 
 | Action     | Format, Examples                                                                                                                                                      |
 |------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**  | `clear`                                                                                                                                                               |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
+| **Add Contact**    | `add_contact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add_contact n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Clear Contact**  | `clear`                                                                                                                                                               |
+| **Delete Contact** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
+| **Edit Contact**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
+| **Find Contact**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
+| **Edit Task**    | `edit_task INDEX [n/NAME] [c/CONTACT_INDEX]`<br> e.g., `edit_task 3 n/Product meeting c/3`
+| **Delete Task**    | `delete_task INDEX`<br> e.g., `delete_task 3`
 | **List**   | `list`                                                                                                                                                                |
 | **Help**   | `help`                                                                                                                                                                |
