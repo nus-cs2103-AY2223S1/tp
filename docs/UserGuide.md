@@ -44,10 +44,10 @@ FABook is a **desktop app for managing contacts, optimized for a financial advis
   e.g. in `create name:NAME`, `NAME` is a parameter which can be used as `create name:John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `name:NAME [tag:TAG]` can be used as `name:John Doe tag:friend` or as `name:John Doe`.
+  e.g `name:NAME [num:HP_NUMBER]` can be used as `name:John Doe num:90338099` or as `name:John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[tag:TAG]…​` can be used as ` ` (i.e. 0 times), `tag:friend`, `tag:friend tag:family` etc.
+* Items with `…`​ after them can be used multiple times.<br>
+  e.g. `NAME…​` can be used as `Jon`, `Jon Jack` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `name:NAME num:HP_NUMBER`, `num:HP_NUMBER name:NAME` is also acceptable.
@@ -73,18 +73,18 @@ Format: `help`
 
 Creates a contact that is stored in the address book and contains their contact information. Any contact information that is not available can be updated later.
 
-Format: `create name:NAME [num:PHONE_NUMBER] [address:ADDRESS] [meeting_time:TIME] [tag:TAG]…​`
+Format: `create name:NAME [num:PHONE_NUMBER] [address:ADDRESS] [meeting_time:TIME]`
 
 :bulb: **Note:**
 Name is the only compulsory input. Parameters not provided will be left blank.
 
 Examples:
 * `create name:John Doe num:98765432 address:John street, block 123, #01-01`
-* `create name:Betsy Crowe tag:friend address:Newgate Prison num:1234567 tag:criminal`
+* `create name:Betsy Crowe address:Newgate Prison num:1234567`
 
 :white_check_mark: **Tip:**
 Input shortcut: `c` can be used in place of `create`.
-Format: `c name:NAME [num:PHONE_NUMBER] [address:ADDRESS] [meeting_time:TIME] [tag:TAG]…​`
+Format: `c name:NAME [num:PHONE_NUMBER] [address:ADDRESS] [meeting_time:TIME]`
 
 
 ### Listing all persons : `list`
@@ -97,7 +97,7 @@ Format: `list`
 
 Searches for a contact that is stored in the address book and updates its contact information.
 
-Format: `update name:NAME [num:PHONE_NUMBER] [address:ADDRESS] [meeting_time:TIME] [tag:TAG]…​`
+Format: `update name:NAME [num:PHONE_NUMBER] [address:ADDRESS] [meeting_time:TIME]`
 
 :bulb: **Note:**
 Name is the only compulsory input. Parameters not provided will be stay unchanged.
@@ -105,23 +105,19 @@ Name is the only compulsory input. Parameters not provided will be stay unchange
 * Edits the person with the provided name.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will not be removed i.e adding of tags is cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
 
 Examples:
 *  `edit name:John Doe number:91234567 address:21 Lower Kent Ridge Rd` Edits the phone number and address of the `John Doe` to be `91234567` and `21 Lower Kent Ridge Rd` respectively.
-*  `edit name:Betsy Crower number:90990334 tag:` Edits the HP number of  `Betsy Crower` to be `90990334` and clears all existing tags.
 
 :white_check_mark: **Tip:**
 Input shortcut: `u` can be used in place of `update`.
-Format: `u name:NAME [num:PHONE_NUMBER] [address:ADDRESS] [meeting_time:TIME] [tag:TAG]…​`
+Format: `u name:NAME [num:PHONE_NUMBER] [address:ADDRESS] [meeting_time:TIME]`
 
 ### Locating persons by name: `find`
 
 Finds persons whose names contain any of the given keywords.
 
-Format: `find NAME [MORE_NAMES]`
+Format: `find NAME…`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -140,7 +136,7 @@ Examples:
   
 :white_check_mark: **Tip:**
 Input shortcut: `f` can be used in place of `find`.
-Format: `f NAME`
+Format: `f NAME…`
   
 ### Locating persons by phone number: `find`
 
@@ -217,10 +213,10 @@ _Details coming soon ..._
 
 Action | Format, Examples | Shortcut
 --------|------------------|---
-**Create** | `create name:NAME [num:PHONE_NUMBER] [address:ADDRESS] [meeting_time:TIME] [tag:TAG]…​`<br> e.g., `create name:Betsy Crowe tag:friend address:Newgate Prison num:1234567 tag:criminal`|c
+**Create** | `create name:NAME [num:PHONE_NUMBER] [address:ADDRESS] [meeting_time:TIME] `<br> e.g., `create name:Betsy Crowe address:Newgate Prison num:1234567`|c
 **Clear** | `clear` |
 **Delete** | `delete NAME`<br> e.g., `delete Aaron Judge` |
-**Update** | `update name:NAME [num:PHONE_NUMBER] [address:ADDRESS] [meeting_time:TIME] [tag:TAG]…​`<br> e.g.,`edit name:John Doe number:91234567 address:21 Lower Kent Ridge Rd`| u
-**Find** | `find NAME [MORE_NAMES]`__or__ `find NUMBER` <br> e.g., `find James Jake` __or__ `find 09122222` |f
+**Update** | `update name:NAME [num:PHONE_NUMBER] [address:ADDRESS] [meeting_time:TIME]`<br> e.g.,`edit name:John Doe number:91234567 address:21 Lower Kent Ridge Rd`| u
+**Find** | `find NAME…`__or__ `find NUMBER` <br> e.g., `find James Jake` __or__ `find 09122222` |f
 **List** | `list` |
 **Help** | `help` |
