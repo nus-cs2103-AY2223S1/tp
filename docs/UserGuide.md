@@ -177,8 +177,35 @@ Adds a task to the tasklist.
 Format: `add task TASK_DESCRIPTION`
 
 Examples:
-* `add task laundry`
-* `add task coding assignment`
+* `add task laundry` add laundry to the task list
+* `add task coding assignment` add coding assignment to the task list
+
+### Deleting a task: `delete task`
+
+Adds a task to the tasklist.
+
+Format: `delete task TASK_NUMBER` 
+* Deletes the task at the specified `TASK_NUMBER`.
+* The tasknumber refers to the task number shown in the displayed task list.
+* The tasknumber **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `delete task 1` deletes the first task from the tasklist
+
+### viewing all tasks: `view tasks`
+
+Lists out all the tasks in the tasklist.
+
+Format: `view tasks` 
+
+### Assigning a task: `assign`
+
+Assign a task to an existing person.
+
+Format: `assign TASK_NUMBER to PERSON_NAME`
+
+Examples:
+* `assign 1 to John` assign tasknumber 1 to John
 
 --------------------------------------------------------------------------------------------------------------------
 
