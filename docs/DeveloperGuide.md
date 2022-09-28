@@ -297,9 +297,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  JeeqTracker shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  JeeqTracker deletes the person
 
     Use case ends.
 
@@ -311,9 +311,74 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. JeeqTracker shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: Find a Company**
+
+**MSS**
+
+1. User requests to find a company
+2. JeeqTracker displays the companies with the same starting names
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. There are no companies with that name.
+  
+  Use case ends.
+
+**Use case: Add a Point-Of-Contact**
+
+**MSS**
+
+1. User requests to creates a Mcdonalds company
+2. JeeqTracker creates and adds a company called McDonalds into JeeqTracker
+3. User requests to add justin as a POC to Mcdonalds
+4. JeeqTracker adds justin and his details into the Mcdonalds as the POC
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Company Mcdonalds already exists.
+    * 1a1. JeeqTracker shows an error message.
+    
+        Use case resumes at 1.
+* 3a. User fails to provide all necessary details to create a POC.
+    * 3a1. JeeqTracker shows an error message.
+        
+        Use case resumes at 2.
+
+**Use case: Requesting help**
+
+**MSS**
+
+1. User requests for help to use the add function
+2. JeeqTracker displays a detailed explanation on how to use the add function
+3. User requests for all the functionalities 
+4. JeeqTracker displays a pop-up with the link to the user guide
+
+    Use case ends.
+
+**Use case: Clearing all data**
+
+**MSS**
+
+1. User requests to clear all data in JeeqTracker
+2. JeeqTracker returns a confirmation to clear all data
+3. User confirms 
+4. JeeqTracker clears all data in JeeqTracker
+
+**Extensions**
+
+* 3a. User inputs the wrong word for confirmation.
+    * 3a1. JeeqTracker shows an error message.
+        
+      Use case resumes at 2.
+
 
 *{More to be added}*
 
