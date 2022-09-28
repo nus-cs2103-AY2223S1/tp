@@ -177,6 +177,22 @@ Format: `find_task KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find_task Book` returns `book` and `Find book`
 
+### Editting tasks:
+
+Edits an existing task in task list.
+
+Format: `edit_task INDEX [n/NAME] [c/CONTACT_INDEX]`
+
+* Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* You can remove any associated contacts by typing `c/` without
+    specifying any tags after it.
+
+Examples:
+* `edit_task 1 n/Gym` Edits the task name of the 1st task to Gym.
+* `edit_task 3 n/Product meeting c/Boss` Edits the task name and associated contact of the 3rd task to be `Team meeting` and `Boss` respectively.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
