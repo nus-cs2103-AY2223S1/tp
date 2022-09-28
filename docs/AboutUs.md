@@ -9,51 +9,52 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 ConnectNUS
-### John Doe
+### Silas Tay
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/silastsl.jpeg" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/silastsl)]
+[[portfolio](team/silastsl.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: To be decided
 
-### Jean Doe
+### Koh Rui Jie
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/rjkoh.jpeg" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/rjkoh)]
+[[portfolio](team/rjkoh.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: To be decided
+
+### Laura Lee
+
+<img src="images/leehuiyulaura.jpeg" width="200px">
+
+[[github](http://github.com/leehuiyulaura)] 
+[[portfolio](team/leehuiyulaura.md)]
+
+* Role: Developer
+* Responsibilities: To be decided
+
+### Shamus Tan
+
+<img src="images/shamooose.jpeg" width="200px">
+
+[[github](http://github.com/shamooose)]
+[[portfolio](team/shamooose.md)]
+
+* Role: Developer
+* Responsibilities: To be decided
+
+### Linus Chui
+
+<img src="images/linuschui.jpeg" width="200px">
+
+[[github](http://github.com/linuschui)]
+[[portfolio](team/linuschui.md)]
+
+* Role: Developer
+* Responsibilities: To be decided
