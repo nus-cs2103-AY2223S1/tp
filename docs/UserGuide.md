@@ -170,8 +170,8 @@ This command will require two flags:
 * `l/`: This flag is to be followed immediately by the link URL.
 
 Format: `add link m/MODULE_CODE l/LINK_URL`
-* When adding a link URL to a non-existent module code, Plannit shows an error message.
-* When adding a duplicate link URL, Plannit shows an error message.
+* You cannot add a link URL to a non-existent module code.
+* You cannot add a duplicate link URL for a single module code.
 
 Example:
 ```
@@ -189,8 +189,8 @@ This command will require two flags:
 * `l/`: This flag is to be followed immediately by the link URL.
 
 Format: `delete link m/MODULE_CODE l/LINK_URL`
-* When deleting a link URL from a non-existent module code, Plannit shows an error message.
-* When deleting a non-existent link URL, Plannit shows an error message.
+* You cannot delete a link URL from a non-existent module code.
+* You cannot delete a non-existent link URL from a valid module code.
 
 Example:
 ```
