@@ -23,7 +23,7 @@ You can reach us at the email `seer@comp.nus.edu.sg`
 
 <img src="images/wweqg.png" width="200px">
 
-[[github](http://github.com/wweqg)] 
+[[github](http://github.com/wweqg)]
 [[portfolio](team/wweqg.md)]
 
 * Role: *to be added*

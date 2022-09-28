@@ -9,7 +9,7 @@ PetCode is a software app that aims to facilitate better working experience and 
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands. 
+* **New Feature**: Added the ability to undo/redo previous commands.
     * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
     * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
     * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
@@ -28,7 +28,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * 
+        * *to be added*.
     * Developer Guide:
         * Wrote Target User Profile, Value Proposition, User Stories, and Use Cases sections.
 
@@ -36,7 +36,7 @@ Given below are my contributions to the project.
     * Created the team's organization and team repo
     * Managed issues and allocated tasks to members
     * Set up CodeCov repo
-    * 
+  
     * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
     * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
     * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
