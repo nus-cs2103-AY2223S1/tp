@@ -38,15 +38,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Code quality
 * Responsibilities: In charge of `Storage`
 
-### Jean Doe
+### Siew Ee Sung
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/eesung00.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/eesung00)]
+[[portfolio](team/eesung00.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Testing
+* Responsibilities: In charge of `commons`, assisting in `model`.
 
 ### Chee Jer Hong
 
