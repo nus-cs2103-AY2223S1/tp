@@ -315,6 +315,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Should be usable by hackathon team leaders of all skill levels (i.e. novices to highly experienced).
+5.  Product is not required to handle printing.
+6.  System should respond within two seconds.
+7.  Product is expected to be updated with a new set of features or bugfixes once every two weeks.
+8.  Should be able to read from local disk storage (i.e. persistent storage functionality).
+9.  Product is not designed to work between different disk storages (i.e. only can read and write to local disk storage).
 
 *{More to be added}*
 
