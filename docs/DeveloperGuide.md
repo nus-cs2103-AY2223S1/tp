@@ -283,16 +283,49 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `HobbyList` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add an activity**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to add an activity to the list
+2. HobbyList adds that activity to the list and shows a confirmed message
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The activity is already existed.
+
+    * 1a1. HobbyList shows a message to announce the user.
+
+      Use case ends.
+
+**Use case: List all activities**
+
+**MSS**
+
+1.  User requests to see all activities
+2.  HobbyList shows a list of activities
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+  * 2a1. HobbyList shows a message to announce the user.
+
+    Use case ends.
+
+**Use case: Delete an activity**
+
+**MSS**
+
+1.  User requests to list out all activities
+2.  HobbyList shows a list of activities
+3.  User requests to delete a specific activity in the list
+4.  HobbyList deletes the activity
 
     Use case ends.
 
@@ -304,7 +337,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. HobbyList shows an error message.
 
       Use case resumes at step 2.
 
