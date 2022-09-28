@@ -283,20 +283,57 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Healthcare Xpress` and the **Actor** is the `medical administrator`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - Delete a patient/nurse**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  Medical administrator requests to list patients,nurses or both according to general or specific groups.
+2.  Healthcare Xpress shows a list of patients/nurses that satisfy the group's condition.
+3.  Medical administrator requests to delete a specific patient/nurse in the list.
+4.  Healthcare Xpress deletes the patient/nurse.
 
     Use case ends.
 
 **Extensions**
+* 1a. The given input is invalid.
+
+    * 1a1. Healthcare Xpress shows an error message.
+
+      Use case restart.   
+    
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. Healthcare Xpress shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: UC02 - Mark a patient**
+
+**MSS**
+
+1.  Medical administrator requests to list patients according to general or specific groups.
+2.  HealthCare Xpress shows a list of patients that satisfy the group's condition.
+3.  Medical administrator requests to mark a specific patient in the list.
+4.  HealthCare Xpress mark the patient as visited.
+
+    Use case ends.
+
+**Extensions**
+* 1a. The given input is invalid.
+
+    * 1a1. Healthcare Xpress shows an error message.
+
+      Use case restart.
+
+* 1b. Medical Administrator request to list nurses.
+
+    Use case ends. 
 
 * 2a. The list is empty.
 
@@ -304,11 +341,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Healthcare Xpress shows an error message.
 
       Use case resumes at step 2.
-
-*{More to be added}*
 
 ### Non-Functional Requirements
 
