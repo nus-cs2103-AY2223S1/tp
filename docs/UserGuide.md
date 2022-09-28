@@ -101,7 +101,6 @@ Examples:
 *  `delete 4` - Deletes the 4th application in the list.
 
 ### Filtering for internship applications of a specified status: `filter`
-
 ###### (coming soon)
 
 Format: `filter [STATUS]`
