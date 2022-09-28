@@ -1,5 +1,6 @@
 ---
-layout: page title: Devansh Shah's Project Portfolio Page
+layout: page
+title: Devansh Shah's Project Portfolio Page
 ---
 
 ### Project: TruthTable
