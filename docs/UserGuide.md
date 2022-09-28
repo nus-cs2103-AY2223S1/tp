@@ -210,10 +210,10 @@ This command will require two flags, and one optional flag:
 * `e/`: To be followed by the email of the new contact.
 * `p/`: (Optional flag) To be followed by the phone number of the new contact.
 
-Format: `add contact n/NAME e/EMAIL p/PHONE_NUMBER`
+Format: `add contact n/NAME e/EMAIL [p/PHONE_NUMBER]`
 * You cannot add a duplicate name into Plannit.
-* You may specify a phone number.
-* You cannot specify country code for phone number.
+* You may optionally specify a phone number.
+* You cannot specify any country code for phone number.
 * You cannot specify a non-8-digit phone number.
 
 Examples:  
