@@ -257,13 +257,17 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* CS2103T students in a tutorial group <br>
+Students can search for their teammates, view their repos and view each other’s code reviews (with their information such as GitHub repos etc).
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+
+**Value proposition**: All your contacts and projects in one place.
+* Provides more convenience for both instructors and students.
+* Promotes peer interaction and review as students can find each other’s work and leave constructive feedback with greater ease.
+* Promotes self-learning as students can see how others write their code.
+* Easier for instructors to keep track of students’ progress.
+* Saves time.
+
 
 
 ### User stories
