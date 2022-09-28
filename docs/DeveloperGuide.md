@@ -257,87 +257,64 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to keep track of their bucket lists
+* wants to manage travel itineraries, bookings, and costs efficiently
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage trips itineraries, bookings, and costs faster than a typical mouse/GUI driven app.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                            | I want to …​                    | So that I can…​                                         |
+|----------|------------------------------------|---------------------------------|---------------------------------------------------------|
+| `* * *`  | user                               | add events and trips            | keep track of what I want to do                         |
+| `* * *`  | user                               | view all the events in the list | refer to it whenever I want                             |
+| `* * *`  | user                               | save events into local storage  | access the data whenever I want                         |
+| `* * *`  | user                               | delete events and trips         | remove the unwanted event and trips                     |
+| `* *`    | user                               | hide private contact details    | minimize chance of someone else seeing them by accident |
+| `* *`    | user who often change his/her mind | update the details              | easily change things                                    |
+| `* *`    | user                               | categorize my events            | keep track of each category                             |
+| `*`      | user                               | reuse past itineraries          | use it when I want to                                   |
+| `*`       | user                               | view the total budget needed    | keep track of the budget                                |
 
 *{More to be added}*
-
-### Use cases
-
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
-
-**Use case: Delete a person**
-
-**MSS**
-
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
-
-      Use case resumes at step 2.
-
-*{More to be added}*
-
-### Target User Profile
-Travelers with a bucket list, who wish to be able to plan their itineraries, bookings, and costs efficiently.
 
 ### Use Cases
 Software System: TravelR
-Use case: UC01 Delete Trip
-Actor: User
 
-MSS :
+**Use case: UC01 Delete a Trip**
+**Actor: User**
+
+**MSS :**
 1. User request the list of trips
 2. TravelR lists the trips.
 3. User requests to delete a certain trip.
 4. TravelR deletes the specified trip.
 
-    Use case ends
+   Use case ends
 
-Extensions:
+**Extensions:**
 
-3a. The requested trip doesn't exist
-   * 3a1. AddressBook shows an error message.
-   
-     Use case ends
+* 2a. The list is empty.
 
-3b. Invalid input
-   * 3b1. AddressBook shows an error message.
-   
-     Use Case Ends
+  Use case ends.
+* 3a. The requested trip doesn't exist
+    * 3a1. AddressBook shows an error message.
 
+      Use case ends
+
+* 3b. Invalid input
+    * 3b1. AddressBook shows an error message.
+
+      Use Case Ends
+
+*{More TBA}*
 
 ### Non-Functional Requirements
 
