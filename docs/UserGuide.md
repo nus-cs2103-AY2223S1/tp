@@ -1,5 +1,6 @@
 ---
-layout: page title: User Guide
+layout: page 
+title: User Guide
 ---
 
 `CLIMods` is a native desktop application for NUS students to explore, manage and plan academic
@@ -8,7 +9,8 @@ Interface (CLI) while still providing the benefits of a Graphical User Interface
 of the command line/terminal will be able to plan and manage their modules much faster than doing it
 on [nusmods.com](https://www.nusmods.com).
 
-* Table of Contents {:toc}
+* Table of Contents 
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -116,7 +118,6 @@ Exits the program
 
 Action | Format, Examples
 --------|------------------
-
 **help** | `help [COMMAND-NAME]`<br> e.g. `help find`
 **ls** | `ls [FACULTY-PREFIX] [--user]`<br> e.g. `ls`, `ls CS`, `ls MA --user`
 **find** | `find KEYWORD`<br> e.g. `find compilers`
