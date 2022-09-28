@@ -285,28 +285,39 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC1 - Give a student a score for a session in a class**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to enter focus mode for a class.
+2.  TA Assist enters focus mode for the class.
+3.  User requests to allocate a score for a specific student in the class, for a specific session.
+4.  TA Assist updates the score for the student.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. TA Assist cannot find the class.
+    * 2a1. TA Assist shows an error message.
 
-  Use case ends.
+      Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The student does not exist in the class.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. TA Assist shows an error message.
+    * 3a2. User enters a new student to allocate the score for.
+    * Steps 3a1-3a2 are repeated until the user enters a student that exists. 
 
-      Use case resumes at step 2.
+      Use case resumes at step 4.
+  
+* 3b. The session does not exist in the class.
+
+    * 3b1. TA Assist shows an error message.
+    * 3b2. User enters a new session to allocate the score for.
+    * Steps 3b1-3b2 are repeated until the user enters a session that exists.
+
+      Use case resumes at step 4.
 
 *{More to be added}*
 
