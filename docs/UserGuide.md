@@ -64,15 +64,29 @@ ModQuik is a desktop app for NUS CS Professors, optimised for use via a Command 
 
 </div>
 
-### Adding a consultation : `/consult add`
+### Add module : `add mod`
 
-Format: `/consult add <time-slot>`
+Adds a module into list of modules.
 
+Format: `add module m/MODULE`
 
-### Deleting a consultation : `/consult delete`
+### list module : `list mod`
 
-Format: `/consult delete <id>`
+Shows the list of modules that the user is in charge of.
 
+Format: `list mod m/MODULE`
+
+### Delete module : `delete mod`
+
+Deletes a module from the list of modules.
+
+Format: `delete mod m/MODULE`
+
+### Adding a person: `add`
+
+Adds a person to the address book.
+
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
@@ -81,11 +95,11 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+### Listing all persons : `list students`
 
-Shows a list of all persons in the address book.
+Shows a list of all students in a specified module.
 
-Format: `list`
+Format: `list students m/MODULE`
 
 ### Editing a person : `edit`
 
@@ -104,11 +118,11 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Locating persons by name: `find students`
 
-Finds persons whose names contain any of the given keywords.
+Finds students whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find student KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -135,6 +149,36 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+### Adding a consultation : `add consult`
+
+Adds a consultation to the consultation database.
+
+Format: `add consult t/TIMESLOT`
+
+### Adding a consultation : `add consult`
+
+Adds a consultation to the consultation database.
+
+Format: `add consult t/TIMESLOT`
+
+### Deleting a consultation : `delete consult`
+
+Deletes a specified consultation from the consultation database.
+
+Format: `delete consult INDEX`
+
+### Adding a reminder : `add remminder`
+
+Adds a reminder to the list of reminders.
+
+Format: `add reminder r/DESCRIPTION`
+
+### Deleting a reminder : `delete reminder`
+
+Deletes the specified reminder from the list of reminders.
+
+Format: `delete reminder INDEX`
 
 ### Clearing all entries : `clear`
 
