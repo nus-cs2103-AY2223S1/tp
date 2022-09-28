@@ -39,11 +39,11 @@ uNivUSal
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Jun Sheng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jsincorporated.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/jsincorporated)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
