@@ -3,7 +3,11 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+CLInkedIn is a desktop contact management Java application made for Recruiters to manage their contacts list of candidates.  
+CLInkedIn operates mainly using a Command Line Interface (CLI), but still has a Graphical User Interface (GUI) made with JavaFX for improved user experience.
+
+If you can type fast, CLInkedIn can get your contact management tasks done faster than
+traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -166,9 +170,25 @@ AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+### Adding recruitment status: `status`
 
-_Details coming soon ..._
+Adds a recruitment status to the person. 
+
+<div markdown="span" class="alert alert-primary">:bulb: **Note:** Due to the subjectability of recruitment statuses per job and per recruiter, there will be no categorisation of recruitment statuses and hence no type checking of valid/invalid statuses. All inputs by the user are assumed to be valid.
+</div>
+
+Format: `skill INDEX s/SKILL`
+* The INDEX refers to the index number shown in the displayed person list.
+* The index must be a positive integer 1, 2, 3, …​ 
+
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+A person can have a minimum of 0 recruitment statuses and a maximum of 1 recruitment status. Calling the `status` command on the same person will update their recruitment status to the latest input.
+</div>
+
+Examples:
+* `status 1 s/Rejected` adds a recruitment status of `Rejected` to the 1st person in the address book.
+* `status 2 s/Interviewed` adds a recruitment status of `Interviewed` to the 2nd person in the address book.
+* `status 2 s/Accepted` updates the recruitment status of the 2nd person in the address book from `Interviewed` to `Accepted`.
 
 --------------------------------------------------------------------------------------------------------------------
 
