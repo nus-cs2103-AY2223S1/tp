@@ -5,7 +5,7 @@ title: Ong Han Wei's Project Portfolio Page
 
 ### Project: MyInsuRec
 
-MyInsuRec is a desktop app for financial advisors to manage and organize their clients and meetings, 
+MyInsuRec is a desktop app for financial advisors to manage and organize their clients and meetings,
 helping financial advisors stay connected with their clients.
 
 Given below are my contributions to the project.
@@ -18,13 +18,13 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**: [To be updated]
 
-* **Documentation**: 
+* **Documentation**:
     * README:
-        * Update the Target Users 
+        * Update the Target Users
     * User Guide:
         * Added documentation for the features `addMeeting` and `delMeeting`
         * Added documentation for command feature
-    * Developer Guide:
+    * Developer Guide: [To be updated]
 
 * **Community**: [To be updated]
 
