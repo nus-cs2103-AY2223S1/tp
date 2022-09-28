@@ -14,7 +14,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/rylzxc.png" width="200px">
 
 [[github](https://github.com/rylzxc)]
-[[portfolio](team/daryl.md)]
+[[portfolio](team/rylzxc.md)]
 
 * Role: Team Lead
 * Responsibilities: Overall project coordination, deliverables and deadlines
