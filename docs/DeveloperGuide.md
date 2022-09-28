@@ -274,7 +274,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |----------|---------|--------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
 | `* * *`  | cashier | quickly search for customers’ membership details within the system             | verify their rewards/points                                                      |
 | `* * *`  | cashier | search for customer details through various inputs (email, phone number, name) | retrieve their information flexibly                                              |
-| `* * *`  | cashier | update customer/s membership details (vouchers, points, rewards)               | remove the voucher/points once they claim them                                   |
+| `* * *`  | cashier | update customers' membership details (vouchers, points, rewards)               | remove the voucher/points once they claim them                                   |
 | `* * *`  | cashier | add new members to my list                                                     | apply for membership for customers                                               |
 | `* * *`  | cashier | remove members from the list                                                   | make sure membership details are correct for customers who are no longer members |
 
