@@ -19,12 +19,21 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 - Role: Developer
 - Responsibilities: Dev Ops + Threading
 
+### Lam Chun Yu
+
+<img src="images/gunbux.png" width="200px">
+
+[[github](http://github.com/gunbux)] [[portfolio](team/gunbux.md)]
+
+- Role: Developer
+- Responsibilities: -
+
 ### Lu Yiting
 
 <img src="images/luyiting0913.png" width="200px">
 
 [[github](https://github.com/LuYiting0913)]
-[[portfolio](team/luyiting.md)]
+[[portfolio](team/luyiting0913.md)]
 
 ### Yeo Jun Jie
 
