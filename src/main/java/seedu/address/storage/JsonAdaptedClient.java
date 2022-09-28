@@ -1,7 +1,5 @@
 package seedu.address.storage;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -26,7 +24,7 @@ import seedu.address.model.tag.Tag;
 
 
 public class JsonAdaptedClient {
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Participant's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Client's %s field is missing!";
 
     private final String name;
     private final String phone;
@@ -70,7 +68,7 @@ public class JsonAdaptedClient {
     }
 
     /**
-     * Converts a given {@code Participant} into this class for Json use.
+     * Converts a given {@code Client} into this class for Json use.
      */
     public JsonAdaptedClient(Client source) {
         name = source.getName().fullName;
@@ -80,14 +78,14 @@ public class JsonAdaptedClient {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        birthday = source.getBirthday().toString();
-        income = source.getIncome().toString();
-        riskAppetite = source.getRiskAppetite().toString();
+        birthday = source.getBirthday().value;
+        income = source.getIncome().value;
+        riskAppetite = source.getRiskAppetite().value;
         // TODO: Notes to be implemented
     }
 
     /**
-     * Converts this Jackson-friendly adapted participant object into the model's {@code Participant} object.
+     * Converts this Jackson-friendly adapted participant object into the model's {@code Client} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted participant.
      */
@@ -134,17 +132,25 @@ public class JsonAdaptedClient {
         //TODO: Some level of input validation (null / unsupported values) Current code alr does this
         //TODO: IllegalClientException
 
-        final LocalDateTime finalBirthday = Birthday.parseBirthday(birthday);
-        final Birthday wrappedBirthday = new Birthday(finalBirthday);
+        if (birthday == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Birthday.class.getSimpleName()));
+        }
+        final Birthday modelBirthday = new Birthday(birthday);
 
-        final double parsedIncome = Double.parseDouble(income);
-        final Income income = new Income(parsedIncome);
+        if (income == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Income.class.getSimpleName()));
+        }
 
-        final RiskAppetite.RiskLevel parsedRL = RiskAppetite.parseRiskLevel(riskAppetite);
-        final RiskAppetite riskAppetite = new RiskAppetite(parsedRL);
+        final Income modelIncome = new Income(income);
+
+        if (riskAppetite == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, RiskAppetite.class.getSimpleName()));
+        }
+
+        final RiskAppetite modelRiskAppetite = new RiskAppetite(riskAppetite);
 
 
         return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags,
-                wrappedBirthday, income, riskAppetite);
+                modelBirthday, modelIncome, modelRiskAppetite);
     }
 }

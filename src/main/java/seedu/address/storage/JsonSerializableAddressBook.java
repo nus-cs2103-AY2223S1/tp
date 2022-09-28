@@ -64,13 +64,10 @@ class JsonSerializableAddressBook {
         for (JsonAdaptedClient jsonAdaptedClient : clients) {
             Client client = jsonAdaptedClient.toModelType();
             if (addressBook.hasClient(client)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_CLIENT);
             }
             addressBook.addClient(client);
         }
-
-
-
 
         return addressBook;
     }

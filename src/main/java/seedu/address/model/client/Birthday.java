@@ -1,36 +1,33 @@
 package seedu.address.model.client;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.chrono.ChronoLocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.Date;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class Birthday {
-    public static final String MESSAGE_DATE_CONSTRAINTS = "Date of birth cannot be in the future or invalid";
-
     private static final String STANDARD_DATE = "yyyy-MM-dd";
 
-    private LocalDateTime birthday;
+    private static final String BIRTHDAY_VALIDATION_REGEX = "\\d{4}-\\d{2}-\\d{2}";
+    public static final String MESSAGE_DATE_CONSTRAINTS = "Date of birth cannot be in the future or invalid";
+
+    public static final String MESSAGE_FORMAT_CONSTRAINTS = "String entered does not follow format: " + STANDARD_DATE;
+
+
+    private LocalDate birthday;
     private boolean celebrated;
 
-    public Birthday(LocalDateTime t) {
-        this.birthday = t;
+    public final String value;
+
+    public Birthday(String value) {
+        this.value = value;
+        this.birthday = parseBirthday(value);
         this.celebrated = false;
     }
 
-    /**
-     * Overloaded birthday parameter to dictate whether a birthday is celebrated or not
-     */
-    public Birthday(LocalDateTime t, boolean celebrated) {
-        this.birthday = t;
-        this.celebrated = celebrated;
-    }
-
-    /**
-     * Default constructor for birthday where it is unspecified!
-     */
 
     public Birthday unspecified() {
         return new Birthday(null);
@@ -47,7 +44,7 @@ public class Birthday {
         this.celebrated = true;
     }
 
-    public LocalDateTime getBirthday() {
+    public LocalDate getBirthday() {
         return this.birthday;
     }
 
@@ -55,25 +52,43 @@ public class Birthday {
      * Utility function to check if a birthday is valid
      */
 
-    public static boolean isValidBirthday(LocalDateTime date) {
-        return LocalDateTime.now().isEqual(date) || LocalDate.now().isAfter(ChronoLocalDate.from(date));
+    public static boolean isValidBirthday(String date) {
+        try {
+            LocalDate verifiedDate = LocalDate.parse(date);
+        } catch (DateTimeParseException dte) {
+            return false;
+        }
+        LocalDate verifiedDate = LocalDate.parse(date);
+        return LocalDate.now().isEqual(verifiedDate) || LocalDate.now().isAfter(ChronoLocalDate.from(verifiedDate));
+    }
+
+    /**
+     * Credits to: https://stackoverflow.com/questions/2149680/regex-date-format-validation-on-java
+     * For regex example for YYYY-MM-DD
+     */
+    public static boolean isValidFormat(String date) {
+        return date.matches(BIRTHDAY_VALIDATION_REGEX);
     }
 
     /**TODO: Think about how to addbirthday
      *
      */
 
-    public static LocalDateTime parseBirthday(String s) {
+    public static LocalDate parseBirthday(String s) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(STANDARD_DATE);
-        LocalDateTime dateTime = LocalDateTime.parse(s, formatter);
-        checkArgument(isValidBirthday(dateTime), MESSAGE_DATE_CONSTRAINTS);
+        try {
+            LocalDate dateTime = LocalDate.parse(s);
+        } catch (DateTimeParseException f) {
+            return LocalDate.parse("2020-05-05"); //TODO: Change to a better default value
+        }
+        LocalDate dateTime = LocalDate.parse(s);
         return dateTime;
     }
 
 
 
     public int calculateAge() {
-        int currentYear = LocalDateTime.now().getYear();
+        int currentYear = LocalDate.now().getYear();
         return currentYear - birthday.getYear();
     }
 
@@ -92,6 +107,11 @@ public class Birthday {
         } else {
             return sameCelebrate && this.getBirthday().equals(otherBirthday.getBirthday());
         }
+    }
+
+    @Override
+    public int hashCode() {
+        return birthday.hashCode();
     }
     
 }

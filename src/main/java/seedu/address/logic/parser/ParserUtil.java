@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
@@ -130,35 +131,41 @@ public class ParserUtil {
      * Parses {@code String birthday} into a {@code Birthday}.
      * Leading and trailing whitespaces will be trimmed.
      */
-    public static Birthday parseBirthday(String birthday) {
+    public static Birthday parseBirthday(String birthday) throws ParseException {
         requireNonNull(birthday);
         String trimmedBirthday = birthday.trim();
-        LocalDateTime convertedBirthday = Birthday.parseBirthday(trimmedBirthday);
-        Birthday birthdaySet = new Birthday(convertedBirthday);
-        return birthdaySet;
+        if (!Birthday.isValidFormat(trimmedBirthday)) {
+            throw new ParseException(Birthday.MESSAGE_FORMAT_CONSTRAINTS);
+        }
+        if (!Birthday.isValidBirthday(trimmedBirthday)) {
+            throw new ParseException(Birthday.MESSAGE_DATE_CONSTRAINTS);
+        }
+        return new Birthday(birthday);
     }
 
     /**
      * Parses {@code String income} into a {@code income}.
      * Leading and trailing whitespaces will be trimmed.
      */
-    public static Income parseIncome(String income) {
+    public static Income parseIncome(String income) throws ParseException {
         requireNonNull(income);
         String trimmedIncome = income.trim();
-        Double incomeValue = Double.valueOf(trimmedIncome);
-        return new Income(incomeValue);
+        if (!Income.isValidFormat(trimmedIncome)) {
+            throw new ParseException(Income.MESSAGE_FORMAT_CONSTRAINTS);
+        }
+         return new Income(income);
     }
 
     /**
      * Parses {@code String RA} into a {@code RiskAppetite}.
      * Leading and trailing whitespaces will be trimmed.
      */
-    public static RiskAppetite parseRA(String ra) {
+    public static RiskAppetite parseRA(String ra) throws ParseException {
         requireNonNull(ra);
         String trimmedRiskAppetiteTag = ra.trim();
-        RiskAppetite.RiskLevel riskLevel = RiskAppetite.parseRiskLevel(
-                trimmedRiskAppetiteTag);
-        RiskAppetite riskAppetite = new RiskAppetite(riskLevel);
-        return riskAppetite;
+        if (!RiskAppetite.isValidFormat(ra)) {
+            throw new ParseException(RiskAppetite.MESSAGE_FORMAT_CONSTRAINTS);
+        }
+        return new RiskAppetite(ra);
     }
 }

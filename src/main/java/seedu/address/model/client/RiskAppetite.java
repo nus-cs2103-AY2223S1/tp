@@ -1,4 +1,6 @@
 package seedu.address.model.client;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Represents a client's risk level
@@ -7,27 +9,31 @@ package seedu.address.model.client;
  */
 public class RiskAppetite {
 
+    public static String MESSAGE_FORMAT_CONSTRAINTS = "Error: RiskAppetite must be one " +
+            "of the following indicators: " +
+            "{H, M, L}";
+
+    private static ArrayList<String> MESSAGE_INDICATORS = new ArrayList<String>(Arrays.asList("H", "M", "L"));
+
+    public static boolean isValidFormat(String ra) {
+        return MESSAGE_INDICATORS.contains(ra);
+    }
+
     public enum RiskLevel {
         HIGH, MEDIUM, LOW
     }
 
-    private final String additionalNotes;
     private final RiskLevel rl;
 
+    public String value;
 
-    public RiskAppetite(String notes, RiskLevel r) {
-        additionalNotes = notes;
-        rl = r;
+
+    public RiskAppetite(String riskLevel) {
+        value = riskLevel;
+        rl = parseRiskLevel(riskLevel);
     }
 
-    public RiskAppetite(RiskLevel r) {
-        additionalNotes = null;
-        rl = r;
-    }
 
-    public String getNotes() {
-        return this.additionalNotes;
-    }
     public RiskLevel getRiskLevel() {
         return this.rl;
     }
@@ -62,12 +68,7 @@ public class RiskAppetite {
 
         RiskAppetite otherRA = (RiskAppetite) other;
         boolean isSameRA = this.getRiskLevel() == otherRA.getRiskLevel();
-
-        if (this.getNotes() == null || otherRA.getNotes() == null) {
-            return isSameRA  && this.getNotes() == otherRA.getNotes();
-        } else {
-            return isSameRA && this.getNotes().equals(otherRA.getNotes());
-        }
+        return isSameRA;
     }
 
 }

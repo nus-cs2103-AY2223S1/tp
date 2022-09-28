@@ -26,7 +26,10 @@ public class AddClientCommand extends Command {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]... "
+            + PREFIX_BIRTHDAY + "BIRTHDAY "
+            + PREFIX_INCOME + "INCOME "
+            + PREFIX_RISK_APPETITE + "RA .. \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
@@ -34,9 +37,9 @@ public class AddClientCommand extends Command {
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney"
-            + PREFIX_BIRTHDAY + "2021-03-03"
-            + PREFIX_INCOME + "21.0"
-            + PREFIX_RISK_APPETITE + "m";
+            + PREFIX_BIRTHDAY + "2021-03-03 "
+            + PREFIX_INCOME + "21.0 "
+            + PREFIX_RISK_APPETITE + "m ";
 
 
     public static final String MESSAGE_SUCCESS = "New Client added: %1$s";

@@ -13,6 +13,7 @@ import seedu.address.model.tag.Tag;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -68,11 +69,11 @@ public class Client extends Person {
     }
 
     public RiskAppetite getRiskAppetite() {
-        return this.getRiskAppetite();
+        return this.ra;
     }
 
     public Income getIncome() {
-        return this.getIncome();
+        return this.income;
     }
 
     @Override
@@ -93,5 +94,11 @@ public class Client extends Person {
 
         return otherClient != null
                 && otherClient.getName().equals(getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.getName(), this.getPhone(), this.getEmail(), this.getAddress(), this.getTags(),
+                this.getBirthday(), this.getIncome(), this.getRiskAppetite());
     }
 }
