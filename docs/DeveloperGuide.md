@@ -256,7 +256,7 @@ _{Explain here how the data archiving feature will be implemented}_
 ### Product scope
 
 **Target user profile**:
-HR Pro Max++ aims to help team leads in SME to help track and manage their projects 
+HR Pro Max++ aims to help team leads in SME to help track and manage their projects
 and staff members in their team.
 
 * prefer desktop apps over other types
@@ -271,7 +271,7 @@ and staff members in their team.
 **Value proposition**:
 * For many SME, a problem they face when setting up their business is a lack of a database to help
 them track their business operations. This can result in inefficiency in their operations if they are not
-kept up to date of the latest project information or do not know who to contact. Therefore, we created 
+kept up to date of the latest project information or do not know who to contact. Therefore, we created
 HR Pro Max++ to be a free, easy and comprehensive employee and project management application.
 * For SME to earn profit, they would have to engage in many projects, so they can record the project details
 in our application to keep track of them.
@@ -292,7 +292,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | team leader | edit project details                       | to update project with the newest information |
 | `* * *`  | team leader | add staff to a project                     | to track who is working on each project       |
 | `* * *`  | new user    | record staff details one at a time         | ensure that I will not make any mistake       |
- 
+
 
 ### Use cases
 
@@ -310,8 +310,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions:**
 
 * 1a. HR Pro Max++ detects error in add project command.
-    * 1a1. HR Pro Max++ shows error 
-     
+    * 1a1. HR Pro Max++ shows error
+    
       Use case resume at step 1.
 
 **Use case: UC02- Add staff member to project**
@@ -322,7 +322,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. HR Pro Max++ shows a list of all projects.
 3. User requests to add a staff member to a specific project in the list.
 4. HR Pro Max++ displays staff member added and stores them.
-   
+
    Use Case ends.
 
 **Extensions:**
@@ -369,7 +369,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. User writes command to edit project details with new arguments.
 3. HR Pro Max++ records the change in local storage and display project
 with updated details.
-  
+
    Use case ends.
 
 **Extensions:**
