@@ -71,6 +71,21 @@ Examples:
 `list` displays tasks that are stored in the task list
 
 
+### Marking a task as complete [Coming Soon in v1.2]
+Marks the specified task as complete
+
+Format: `mark INDEX`
+* Marks the task at the specified INDEX as complete. 
+* The index refers to the index number shown in the task list. 
+* The index must be a positive integer 1, 2, 3, …​
+* If the index is non-positive or more than the number of tasks in the list, an error message will be displayed.
+
+Examples:
+
+`mark 1` marks the first task in the list as complete.
+
+`mark 3` marks the third task in the list as complete.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
