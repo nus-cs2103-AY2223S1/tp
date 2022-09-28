@@ -257,13 +257,18 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* is an internship campus recruiter
+* has a need to manage a significant number of applicants
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
+a one-stop, convenient, and efficient platform to manage and empower 
+how internship campus recruiters work with their applicants’ data. 
+Say goodbye to opening multiple windows to retrieve the information you need and 
+focus on what matters more: matching the right people for the right job.
 
 
 ### User stories
@@ -313,15 +318,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+2.  Should be able to hold up to 1000 applicants without a noticeable sluggishness in performance for typical usage.
+3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) 
+    should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  GUI should be color-blind friendly
+5.  Data should be stored locally and not use any database management system.
+6.  The application should work with a single JAR file, and should work without requiring an installer.
+7.  The application size should not exceed 100MB.
+8.  Application should not use more than 4GB of RAM.
+9.  The product should be for a single user i.e. (not a multi-user product).
+10. The data should be stored locally and should be in a human editable text file.
+11. The GUI should work well (i.e., should not cause any resolution-related inconveniences to the user) for, 
+    standard screen resolutions 1920x1080 and higher, and, for screen scales 100% and 125%. 
+    
+    In addition, the GUI should be usable (i.e., all functions can be used even if the user experience is not optimal) for, 
+    resolutions 1280x720 and higher, and, for screen scales 150%.
 
 *{More to be added}*
 
 ### Glossary
 
+* **Applicant**: An applicant refers to a person who has applied for a role. 
+  Applicant and Person can be used interchangeably as they refer to the same thing.
+* **Role**: Role and Job are used interchangeably. They refer to a job opening that an applicant applied for.
+* **Command Line Interface (CLI)**: Text-based user interface
+* **Graphical User Interface (GUI)**: Graphic-based user interface
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+
 
 --------------------------------------------------------------------------------------------------------------------
 
