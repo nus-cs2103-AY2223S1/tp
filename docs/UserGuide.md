@@ -77,19 +77,15 @@ Shows a message explaining how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a patient: `addPatient`
 
-Adds a person to the address book.
+Adds a patient to the patient list.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Format: `addPatient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/TASK_DESCRIPTION…​`
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `addPatient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Administer 3ml of example medicine`
+* `addPatient n/Betsy Crowe p/87901234 e/betsy@example.com a/Jane street blk 420 #01-69 d/Change dressing on left arm`
 
 ### Listing all persons : `list`
 
@@ -101,46 +97,92 @@ Format: `list`
 
 Edits an existing patient in the patient list.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]`
+Format: `editPatient INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]`
 
-* Edits the person at the specified INDEX. The index refers to the index number shown in the displayed person list. * The index must be a positive integer 1, 2, 3, …​
+* Edits the patient at the specified `INDEX`.
+* The index refers to the index number shown in the displayed patient list.
+* The index ***must be a positive integer*** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* When editing tags, the existing tags of the patient will be removed i.e adding of tags is not cumulative.
+* You can remove all the patient’s tags by typing t/ without specifying any tags after it.
 
 Example:
 
-* `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be 91234567 and johndoe@example.com respectively.
+* `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
+* `edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
+
+### Listing all persons : `list`
+
+Shows a list of all persons in the address book.
+
+Format: `list`
 
 ### Finding patient by name: `find`
 
-Returns list of patients with matching name.
+Finds patients whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g hans will match Hans
-* The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
-* Only the name is searched
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang
+* The search is case-insensitive. e.g `hans` will match `Hans`.
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
+* Only the name is searched.
+* Only full words will be matched e.g. `Han` will not match `Hans`.
+* Patients matching at least one keyword will be returned (i.e. OR search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
 
 Examples:
-* `find jo` returns Joe and John
-* `find alex david` returns Alex Tan & David Ho
+* `find jo` returns `Joe` and `John`.
+* `find alex david` returns `Alex Tan` & `David Ho`.
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a patient : `deletePatient`
 
-Deletes the specified person from the address book.
+Deletes the specified patient from the patient list.
 
-Format: `delete INDEX`
+Format: `deletePatient INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the patient at the specified `INDEX`.
+* The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
+* `list` followed by `delete 2` deletes the 2nd patient in the patient book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+### Listing all tasks : `listTask`
+
+Shows a list of all tasks to be completed.
+
+Format: `listTask`
+
+Examples:
+
+Suppose the following patients were added.
+
+`addPatient n/John Doe d/Administer 3ml of example medicine`
+
+`addPatient n/Betsy Crowe d/Change dressing on left arm`
+* `listTask` will display:
+    * `Administer 3ml of example medicine FOR John Doe`
+    * `Change dressing on left arm FOR Betsy Crowe`
+
+### View all tasks associated with a patient : `viewTask`
+
+Shows all the tasks that are associated with the specified patient.
+
+Format: `viewTask INDEX`
+
+Examples:
+
+Suppose the following patients were added.
+
+`addPatient n/John Doe d/Administer 3ml of example medicine`
+
+`addPatient n/Betsy Crowe d/Change dressing on left arm`
+* `viewTask 1` will display:
+    * `Administer 3ml of example medicine`
+* `viewTask 2` will display:
+    * `Change dressing on left arm`
 
 ### Deleting a task : `deleteTask`
 
