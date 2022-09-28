@@ -9,10 +9,10 @@ Figure: A mockup of our application
 **FABook** is an application for **mid tier financial advisors** who have
 to manage **countless** potential and current clients.<br>
 
-Many financial advisors have **trouble scheduling** for meet-ups due to 
+Many financial advisors have **trouble scheduling** for meet-ups due to
 information overload of their clients.<br>
 
-**FABook** is optimized for a **one-stop storage** to store and remind you on 
+**FABook** is optimized for a **one-stop storage** to store and remind you on
 your client's information.
 
 ## Example usages:
