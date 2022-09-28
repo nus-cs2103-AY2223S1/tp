@@ -73,19 +73,22 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding an exercise: `:a`
 
-Adds a person to the address book.
+Adds an exercise that we have done for the day.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `:a <exercise name> <weight(kg)> <sets> <reps>`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Parameter constraints:
+* The weight **must be a positive decimal number**
+  * Examples: 1, 1.5, 2, ... 
+* The sets **must be a positive integer**
+  * Examples: 1, 2, 3, ...
+* The reps **must be a positive integer**
+  * Examples: 1, 2, 3, ...
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `:a Squat 30 3 5` Adds a squat exercise of weight 30kg for 3 sets of 5 reps
 
 ### Listing all persons : `list`
 
@@ -128,19 +131,17 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting an exercise : `:d`
 
-Deletes the specified person from the address book.
+Deletes a particular exercise from our list. The index refers to the index number shown in the displayed exercise list.
 
-Format: `delete INDEX`
+Format: `:d <index>`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+Parameter constraints:
+* The index must be a positive integer 1, 2, 3, ...
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `:d 3` Deletes an exercise at index 3 of the list
 
 ### Clearing all entries : `clear`
 
