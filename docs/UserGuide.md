@@ -67,7 +67,7 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding an applicant person: `add`
+### Adding an applicant : `add`
 
 Adds an applicant to InternConnect.
 
