@@ -23,7 +23,7 @@ Given below are my contributions to the project.
   `to be added`
 
 * **Community**:
-  `to be added`
+  `to be added.`
 
 * **Tools**:
   `to be added`
