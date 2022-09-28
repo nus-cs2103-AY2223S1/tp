@@ -3,11 +3,7 @@ layout: page
 title: User Guide
 ---
 
-CLInkedIn is a desktop contact management Java application made for Recruiters to manage their contacts list of candidates.  
-CLInkedIn operates mainly using a Command Line Interface (CLI), but still has a Graphical User Interface (GUI) made with JavaFX for improved user experience.
-
-If you can type fast, CLInkedIn can get your contact management tasks done faster than
-traditional GUI apps.
+CLInkedIn is a **desktop address book application made for Recruiting and Hiring Managers to keep track of candidates and their job applications.** The application is optimized for use via a **Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CLInkedIn can get your Recruitment tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -81,15 +77,19 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [st/SKILL_TAG] [dt/DEGREE_TAG] [jt/JOB_TYPE_TAG] [<alias>/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A person can have any number and any kind of tags (including 0).
 </div>
 
+* By default, you can add 3 types of tags - `SKILL_TAG`, `DEGREE_TAG`, `JOB_TYPE_TAG`.
+* Alternatively, you can create your own custom tag type and alias for it. See `create` command.
+
+
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 st/Java dt/Bachelors jt/Internship`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567`
 
 ### Listing all persons : `list`
 
@@ -101,18 +101,44 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [st/OLD_SKILL_TAG-NEW_SKILL_TAG] [dt/OLD_DEGREE_TAG-NEW_DEGREE_TAG] [jt/OLD_JOB_TYPE_TAG-NEW_JOB_TYPE_TAG] [<alias>/OLD_TAG-NEW_TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+* While editing **Skill** tags, the existing `OLD_SKILL` of the person will be renamed to `NEW_SKILL`(Same for **Degree**, **JobType** and **Custom** tags).
+* You can remove **all** the person’s tags by typing `t/` without specifying any tags after it.
+* You can remove **all** the person’s **Skill** tags by typing `st/` without specifying any tags after it (Same for **Degree**, **JobType** and **Custom** tags).
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+* `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* `edit 2 dt/Bachelors-Masters` Edits the Degree tag `Bachelors` of the 2nd person to be `Masters`.
+
+### Adding a tag to an exiting person : `addTag`
+
+Adds a tag to an existing person in the address book.
+
+Format: `addTag INDEX [st/SKILL_TAG] [dt/DEGREE_TAG] [jt/JOB_TYPE_TAG] [<alias>/TAG]…​`
+
+* Adds a tag to the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+
+Examples:
+* `addTag 3 st/Java` Adds a **Skill** tag `Java` to the 3rd person.
+* `edit 2 dt/Bachelors` Adds a **Degree** tag `Bachelors` to the 2nd person.
+
+### Deleting a tag of an exiting person : `deleteTag`
+
+Deletes a tag of an existing person in the address book.
+
+Format: `deleteTag INDEX [st/SKILL_TAG] [dt/DEGREE_TAG] [jt/JOB_TYPE_TAG] [<alias>/TAG]…​`
+
+* Deletes an existing tag of the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+
+Examples:
+* `deleteTag 3 st/Java` Deletes the **Skill** tag `Java` of the 3rd person.
+* `deleteTag 2 dt/Bachelors` Deletes the **Degree** tag `Bachelors` of the 2nd person.
 
 ### Locating persons by name: `find`
 
@@ -177,7 +203,7 @@ Adds a recruitment status to the person.
 <div markdown="span" class="alert alert-primary">:bulb: **Note:** Due to the subjectability of recruitment statuses per job and per recruiter, there will be no categorisation of recruitment statuses and hence no type checking of valid/invalid statuses. All inputs by the user are assumed to be valid.
 </div>
 
-Format: `skill INDEX s/SKILL`
+Format: `status INDEX STATUS`
 * The INDEX refers to the index number shown in the displayed person list.
 * The index must be a positive integer 1, 2, 3, …​ 
 
@@ -186,9 +212,9 @@ A person can have a minimum of 0 recruitment statuses and a maximum of 1 recruit
 </div>
 
 Examples:
-* `status 1 s/Rejected` adds a recruitment status of `Rejected` to the 1st person in the address book.
-* `status 2 s/Interviewed` adds a recruitment status of `Interviewed` to the 2nd person in the address book.
-* `status 2 s/Accepted` updates the recruitment status of the 2nd person in the address book from `Interviewed` to `Accepted`.
+* `status 1 Rejected` adds a recruitment status of `Rejected` to the 1st person in the address book.
+* `status 2 Interviewed` adds a recruitment status of `Interviewed` to the 2nd person in the address book.
+* `status 2 Accepted` updates the recruitment status of the 2nd person in the address book from `Interviewed` to `Accepted`.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -201,12 +227,14 @@ Examples:
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action        | Format, Examples                                                                                                                                                                                                                                                       |
+|---------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**       | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [st/SKILL_TAG] [dt/DEGREE_TAG] [jt/JOB_TYPE_TAG] [<alias>/TAG]…​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 st/Java`                                                     |
+| **Clear**     | `clear`                                                                                                                                                                                                                                                                |
+| **Delete**    | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                    |
+| **Edit**      | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [st/OLD_SKILL_TAG-NEW_SKILL_TAG] [dt/OLD_DEGREE_TAG-NEW_DEGREE_TAG] [jt/OLD_JOB_TYPE_TAG-NEW_JOB_TYPE_TAG] [<alias>/OLD_TAG-NEW_TAG]…​`<br> e.g.,`edit 1 p/91234567 e/johndoe@example.com dt/Bachelors-Masters`   |
+| **AddTag**    | `addTag INDEX [st/SKILL_TAG] [dt/DEGREE_TAG] [jt/JOB_TYPE_TAG] [<alias>/TAG]…​`<br> e.g., `addTag 3 st/Java`                                                                                                                                                           |
+| **deleteTag** | `deleteTag INDEX [st/SKILL_TAG] [dt/DEGREE_TAG] [jt/JOB_TYPE_TAG] [<alias>/TAG]…​`<br> e.g., `deleteTag 2 dt/Bachelors`                                                                                                                                                |
+| **Find**      | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                                             |
+| **List**      | `list`                                                                                                                                                                                                                                                                 |
+| **Help**      | `help`                                                                                                                                                                                                                                                                 |
