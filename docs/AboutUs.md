@@ -48,6 +48,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Documentation
 
+### Rama Aryasuta Pangestu
+
+<img src="images/rama-pang.png" width="200px">
+
+[[github](https://github.com/rama-pang)]
+[[portfolio](team/rama-pang.md)]
+
+* Role: Developer
+* Responsibilities: Testing
+
 ### Ramanathan Kumarappan
 
 <img src="images/ramanathan0908.png" width="200px">
