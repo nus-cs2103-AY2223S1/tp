@@ -13,3 +13,32 @@
 * It is named `AddressBook Level 3` (`AB3` for short) because it was initially created as a part of a series of `AddressBook` projects (`Level 1`, `Level 2`, `Level 3` ...).
 * For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
 * This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+
+## Features
+
+* Keep track of your tasks, their deadlines, and the modules they belong to
+  * Mark them as complete or uncompleted
+
+## Usage
+
+### Finding tasks: 'find'
+
+Finds tasks from your task list via keywords, or via module. 
+
+Format:
+`find /t {task}`, `find /m {module}`
+
+Examples:
+* `find /t homework` returns `Science homework`, `Math homework`
+* `find /m CS1101S` returns `Problem set 4`, `Reading assignment 2`
+
+### Finding contacts
+
+Find persons in your contacts via keywords, or via module.
+
+Format:
+`findc /n {name}` `findc /m {module}`
+
+Examples:
+* `findc /n John` returns `john`, `John Doe`
+* `findc /m CS1231S` returns `Alex Yeoh`, `David Li`
