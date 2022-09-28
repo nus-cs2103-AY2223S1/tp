@@ -398,17 +398,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. User interface should be intuitive for a novice who has never used a command-line address book system. 
+5. This product is offered as a free desktop service.
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-
+* **Candidate**: An entry in CLInkedIn
+* **Personal Information**: Phone number, email, and address of candidate 
+* **Status**: Stage of recruiting process. A chronological order would be Pending Application, Application Received, Passed ATS, OA In Progress, OA Submitted, Pending Interview, Interview Completed and the possible outcomes are Hired and Rejected.
+* **Skill Tag Type**: A type of tag that comprises of all tags of skills like Java, ReactJS, UI/UX, etc.
+* **Degree Tag Type**: A type of tag that comprises of tags of the degrees achieved by the candidate like Bachelors, Masters, PHD, etc.
+* **Job Type Tag Type**: A type of tag that comprises of tag of candidates selected job type like Intern, Part-time, Full-time, etc.
+* **Rating**: Suitability of candidate from 1 (lowest, does not fit role at all) to 5 (highest, perfect fit for the role)
+* **Notes**: Additional information about candidate
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
