@@ -1,4 +1,7 @@
-# Daryl's Project Portfolio Page
+---
+layout: page
+title: Daryl Chua's Project Portfolio Page
+---
 
 ## Project: WorkBook
 
