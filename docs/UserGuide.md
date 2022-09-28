@@ -144,15 +144,30 @@ Clears all entries from the address book.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+### Finding for an internship application: `find`
+###### (coming soon)
+
+Format: `find [KEYWORD]`
+
+* The search is case-insensitive e.g `google` will match `Google`
+
+* Partial words will be matched e.g. `goo` will match `Google`
+
+Examples:
+* `find google` returns the application containing `Google`
+* `find apple` returns the application containing `Apple`
+
+### Exiting the program: `exit`
+###### (coming soon)
 
 Exits the program.
 
 Format: `exit`
 
 ### Saving the data
+###### (coming soon)
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+FindMyIntern data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
@@ -185,6 +200,7 @@ Action | Format, Examples
 
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Find** | `find [KEYWORD]`<br> e.g., `find google`
 **List** | `list`
 **Help** | `help`
+**Exit** | `exit`
