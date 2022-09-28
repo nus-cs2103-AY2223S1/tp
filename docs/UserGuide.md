@@ -242,7 +242,7 @@ delete contact n/Dinosaur Lim
 In the above example, we are deleting a contact with name `Dinosaur Lim` from Plannit.
 
 ### 2.5. Navigation
-Provides users with the ability to navigate between different tabs in the program.
+With navigation functionalities, you now have the ability to navigate between different tabs in Plannit!
 
 #### 2.5.1 Navigate to home
 You may navigate back to the home page using the `home` command.
@@ -254,12 +254,10 @@ You may navigate between modules to view information belonging to a particular
 module using the `goto` command.
 
 This command will require one flag:
-
 * `m/`: To be followed by the module code of the module you are navigating to.
 
 Format: `goto m/MODULE_CODE`
-
-* When navigating to a non-existent module, Plannit will display an error message.
+* You should provide a module code of an existing module in Plannit.
 
 Example:
 ```
