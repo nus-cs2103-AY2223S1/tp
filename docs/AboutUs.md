@@ -38,15 +38,15 @@ You can reach us at the email `jason.qiu@u.nus.edu`
 * Role: Deliverables
 * Responsibilities: Issues
 
-### Jean Doe
+### Muthukrishnan Santosh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/santosh3007.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/santosh3007)]
+[[portfolio](team/santosh3007.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Documentation
+* Responsibilities: Manage Non-Functional Requirements
 
 ### James Doe
 
