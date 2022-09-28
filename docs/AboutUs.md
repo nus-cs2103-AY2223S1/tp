@@ -17,7 +17,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/limweijun.md)]
 
 - Role: Developer
-- Responsibilities: Dev Ops + Threading
+- Responsibilities: CI/CD, Testing
 
 ### Lam Chun Yu
 
@@ -26,7 +26,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/gunbux)] [[portfolio](team/gunbux.md)]
 
 - Role: Developer
-- Responsibilities: -
+- Responsibilities: Big Architectural Planning, UML Diagrams
 
 ### Lu Yiting
 
@@ -34,6 +34,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](https://github.com/LuYiting0913)]
 [[portfolio](team/luyiting0913.md)]
+
+- Role: Developer
+- Responsibilities: User Stories Planning
 
 ### Yeo Jun Jie
 
@@ -43,7 +46,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/yeojunjie.md)]
 
 - Role: Developer
-- Responsibilities: Dev Ops + Threading
+- Responsibilities: UI Specialist
 
 ### Bag Devesh Kumar
 
@@ -51,3 +54,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](https://github.com/tensaida)]
 [[portfolio](team/tensaida.md)]
+
+- Role: Developer
+- Responsibilities: Command Line Specialist
