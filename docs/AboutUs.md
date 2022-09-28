@@ -10,7 +10,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Dilys Pang
 
-<img src="images/dilys.png" width="200px">
+<img src="images/dilysss.png" width="200px">
 
 [github](https://github.com/Dilysss)
 [portfolio](team/dilysss.md)
@@ -20,7 +20,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Lim Qiao En
 
-<img src="images/qiaoen.png" width="200px">
+<img src="images/qiaoen17.png" width="200px">
 
 [github](http://github.com/qiaoen17)
 [portfolio](team/qiaoen17.md)
@@ -30,7 +30,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Leong Yu Xuan 
 
-<img src="images/yuxuan.png" width="200px">
+<img src="images/yuxuanleong.png" width="200px">
 
 [github](http://github.com/yuxuanleong)
 [portfolio](team/yuxuanleong.md)
