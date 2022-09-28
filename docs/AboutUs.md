@@ -9,16 +9,6 @@ You can reach us at the email `seer@comp.nus.edu.sg`
 
 ## PetCode Team
 
-### John Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
 ### Wu Lezheng
 
 <img src="images/wu-lezheng.png" width="200px">
@@ -58,3 +48,13 @@ You can reach us at the email `seer@comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Issue Manager, UI
+
+### Hong Ker Yen Elizabeth
+
+<img src="images/elizabethhky.png" width="200px">
+
+[[github](https://github.com/elizabethhky)]
+[[portfolio](team/elizabethhky.md)]
+
+* Role: *to be added*
+* Responsibilites: *to be added*
