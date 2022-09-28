@@ -92,11 +92,15 @@ Examples:
 * `new student n/Jonathan Tan id/123A pn/George Tan a/10 Kent Ridge View hp/91234567`
 * `new student n/Sally Teo id/789B pn/Amy Toh a/200 River Valley Street hp/97654321`
 
-### Listing all persons : `list`
+### Listing all persons : `view all`
 
-Shows a list of all persons in the address book.
+Shows a list of all students in the class.
+For each student in the list, only the Student's Name and Student's ID are displayed.
 
-Format: `list`
+:bulb: Note: The other details of a student are hidden to reduce cluttering.
+To view the full record of a student, use the `view` command instead.   
+
+Format: `view all`
 
 ### Editing a person : `edit`
 
