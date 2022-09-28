@@ -39,7 +39,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Shaugn Tan Sean Hon
 
-<img src="images/shaugn.png" width="200px">
+<img src="images/shogun187.png" width="200px">
 
 [[github](http://github.com/shogun187)]
 [[portfolio](team/shogun187.md)]
