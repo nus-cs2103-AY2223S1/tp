@@ -1,19 +1,15 @@
-# PleaseHireUs User Guide
+---
+layout: page
+title: User Guide
+---
+
 
 PleaseHireUs (PHU) is a **desktop app for managing internships, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
 
-##Table of Contents
+## Table of Contents
+* Table of Contents
+  {:toc}
 
-1. [Quick Start](#quick-start)
-2. [Features](#features)
-    1. [Viewing help](#viewing-help--help)
-    2. [Adding an internship](#adding-an-internship-add)
-    3. [Listing all internships](#listing-all-internships--list)
-    4. [Locating internships by](#locating-internships-by-find)
-    5. [Deleting internship(s)](#deleting-internships--delete)
-    6. [View details of an internship](#view-details-of-an-internship-view)
-3. [FAQ](#faq)
-4. [Command Summary](#command-summary)
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
@@ -32,7 +28,7 @@ PleaseHireUs (PHU) is a **desktop app for managing internships, optimized for us
 
    * **`list`** : Lists all internships.
 
-   * **`add`**`add n/Grab p/software engineer pr/ASSESSMENT web/https://www.grab.com/sg/about` : Adds a new internship to the internship tracker.
+   * **`add n/Grab p/software engineer pr/ASSESSMENT web/https://www.grab.com/sg/about`** : Adds a new internship to the internship tracker.
 
    * **`delete 3`** : Deletes the 3rd internship shown in the current list.
 
