@@ -184,6 +184,36 @@ Suppose the following patients were added.
 * `viewTask 2` will display:
     * `Change dressing on left arm`
 
+### Adding a task : `addTask`
+
+Edits the specified task associated with a patient.
+
+Format: `addTask PATIENT_INDEX [d/TASK_DESCRIPTION]`
+
+* Adds a task to a patient at the specified `PATIENT_INDEX`.
+* The patient index refers to the index number shown in the displayed patient list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+Examples:
+* `list` followed by `addTask 1 d/Administer 3ml of example medicine` adds a task to the 1st person in the patient list.
+* `find Betsy` followed by `addTask 2 d/Change dressing on left arm` adds a task to the 2nd person in results of the `find` command.
+
+### Editing a task : `editTask`
+
+Edits the specified task associated with a patient.
+
+Format: `editTask PATIENT_INDEX TASK_INDEX [d/TASK_DESCRIPTION]`
+
+* Edits the task at the specified `TASK_INDEX` of the patient at the specified `PATIENT_INDEX`.
+* The task index refers to the index number shown in the task list of a patient.
+* The patient index refers to the index number shown in the displayed patient list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+Examples:
+* `list` followed by `editTask 1 1 d/Administer 3ml of example medicine` edits the description of the 1st task of the 1st person in the patient list.
+* `find Betsy` followed by `editTask 2 3 d/Change dressing on left arm` edits the description of the 3rd task of the 2nd person in results of the `find` command.
+
+
 ### Deleting a task : `deleteTask`
 
 Deletes the specified task associated with a patient.
@@ -246,8 +276,8 @@ _Details coming soon ..._
 | **Delete patient**              | `deletePatient INDEX`                                                            |
 | **List all patients**           | `list`                                                                           |
 | **Find patient**                | `find KEYWORD [MORE_KEYWORDS]`                                                   |
-| **Add task**                    | `addTask PATIENT_INDEX d/TASK_DESCRIPTION`                                       |
-| **Edit task**                   | `editTask PATIENT_INDEX TASK_INDEX d/TASK_DESCRIPTION`                           |
+| **Add task**                    | `addTask PATIENT_INDEX [d/TASK_DESCRIPTION]`                                     |
+| **Edit task**                   | `editTask PATIENT_INDEX TASK_INDEX [d/TASK_DESCRIPTION]`                         |
 | **Delete task**                 | `deleteTask PATIENT_INDEX TASK_INDEX`                                            |
 | **List all tasks**              | `listTask`                                                                       |
 | **View all tasks of a patient** | `viewTask INDEX`                                                                 |
