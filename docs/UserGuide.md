@@ -3,17 +3,15 @@ layout: page
 title: User Guide
 ---
 
-<<<<<<< HEAD
-SETA is a desktop application for CS2103T Teaching Assistants to track their students’ and tutorials’ details, and questions asked by students, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, SETA enables you to manage your tutorials and track your students more effectively than traditional GUI apps.
+User Guide
 =======
 SETA is a **desktop application for CS2103T Teaching Assistants** to track their students’ and tutorials’ details, and questions asked by students, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, SETA enables you to manage your tutorials and track your students more effectively than traditional GUI apps.
 
->>>>>>> 1ce72d1e675a9d6e50b2f6cb054a75179e701b31
 * Table of Contents
   * **Student**
     * Adding a student: `addstu`
     * Editing a student: `editstu`
-    * Listing all students: `liststu`
+    * Listing students: `liststu`
     * Adding attendance of a student: `attendance`
     * Adding students’ response: `addresponse`
     * Adding help tag to a student: `helpstu`
@@ -38,12 +36,12 @@ SETA is a **desktop application for CS2103T Teaching Assistants** to track their
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `seta.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your SETA.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/userguide-screenshots/ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -70,18 +68,18 @@ SETA is a **desktop application for CS2103T Teaching Assistants** to track their
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `addstu n/NAME`, `NAME` is a parameter which can be used as `addstu n/John Lim`.
-* 
+
 * Items in square brackets are optional.<br>
   e.g. `n/NAME [t/TELEGRAM_HANDLE]` can be used as `n/John Lim t/@johnlim` or as `n/John Lim`.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME e/EMAIL`, `e/EMAIL n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* Extraneous parameters for commands that do not take in parameters (such as `liststu` and `exit`) will be ignored.<br>
+  e.g. if the command specifies `liststu 123`, it will be interpreted as `liststu`.
 
 </div>
 
@@ -89,19 +87,17 @@ SETA is a **desktop application for CS2103T Teaching Assistants** to track their
 
 Adds a student to the student list.
 
-![add student](images/userguide-screenshots/addstu.png)
-
 Format: `add n/NAME t/TELEGRAM_HANDLE e/EMAIL`
  
 Examples:
 * `addstu n/John Lim Jun Jie t/@johnlimjj e/johnlim@example.com`
 * `addstu n/Mary Tan Xiao Li t/@marytxl e/marytxl@example.com`
+  
+![add student](images/userguide-screenshots/addstu.png)
 
 ### Editing a student: `editstu`
 
 Edits an existing student in the student list.
-
-![edit student](images/userguide-screenshots/editstu.png)
 
 Format: `edit INDEX [n/NAME] [t/TELEGRAM_HANDLE] [e/EMAIL]`
 
@@ -113,13 +109,15 @@ Examples:
 * `editstu 1 t/@johnlim e/jljj@example.com Edits the telegram handle and email of the person at index 1 to be @johnlim and jljj@example.com respectively.`
 * `editstu 3 n/Mary Lee Jing Yi Edits the name of the person at index 3 to be Mary Lee Jing Yi.`
 
+![edit student](images/userguide-screenshots/editstu.png)
+
 ### Listing all students : `liststu`
 
 Shows a list of all the students in the student list.
 
-![list students](images/userguide-screenshots/liststu.png)
-
 Format: `liststu`
+
+![list students](images/userguide-screenshots/liststu.png)
 
 ### Adding attendance : `attendance`
 
@@ -172,97 +170,6 @@ Example:
 
 ![help student](images/userguide-screenshots/deletestu.png)
 
-[//]: # (### Editing a person : `edit`)
-
-[//]: # ()
-[//]: # (Edits an existing person in the address book.)
-
-[//]: # ()
-[//]: # (Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`)
-
-[//]: # ()
-[//]: # (* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​)
-
-[//]: # (* At least one of the optional fields must be provided.)
-
-[//]: # (* Existing values will be updated to the input values.)
-
-[//]: # (* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.)
-
-[//]: # (* You can remove all the person’s tags by typing `t/` without)
-
-[//]: # (    specifying any tags after it.)
-
-[//]: # ()
-[//]: # (Examples:)
-
-[//]: # (*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.)
-
-[//]: # (*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.)
-
-[//]: # ()
-[//]: # (### Locating persons by name: `find`)
-
-[//]: # ()
-[//]: # (Finds persons whose names contain any of the given keywords.)
-
-[//]: # ()
-[//]: # (Format: `find KEYWORD [MORE_KEYWORDS]`)
-
-[//]: # ()
-[//]: # (* The search is case-insensitive. e.g `hans` will match `Hans`)
-
-[//]: # (* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`)
-
-[//]: # (* Only the name is searched.)
-
-[//]: # (* Only full words will be matched e.g. `Han` will not match `Hans`)
-
-[//]: # (* Persons matching at least one keyword will be returned &#40;i.e. `OR` search&#41;.)
-
-[//]: # (  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`)
-
-[//]: # ()
-[//]: # (Examples:)
-
-[//]: # (* `find John` returns `john` and `John Doe`)
-
-[//]: # (* `find alex david` returns `Alex Yeoh`, `David Li`<br>)
-
-[//]: # (  ![result for 'find alex david']&#40;images/findAlexDavidResult.png&#41;)
-
-[//]: # ()
-[//]: # (### Deleting a person : `delete`)
-
-[//]: # ()
-[//]: # (Deletes the specified person from the address book.)
-
-[//]: # ()
-[//]: # (Format: `delete INDEX`)
-
-[//]: # ()
-[//]: # (* Deletes the person at the specified `INDEX`.)
-
-[//]: # (* The index refers to the index number shown in the displayed person list.)
-
-[//]: # (* The index **must be a positive integer** 1, 2, 3, …​)
-
-[//]: # ()
-[//]: # (Examples:)
-
-[//]: # (* `list` followed by `delete 2` deletes the 2nd person in the address book.)
-
-[//]: # (* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.)
-
-[//]: # ()
-[//]: # (### Clearing all entries : `clear`)
-
-[//]: # ()
-[//]: # (Clears all entries from the address book.)
-
-[//]: # ()
-[//]: # (Format: `clear`)
-
 ### Adding a question : `addq`
 
 Adds a question to the question list.
@@ -273,7 +180,6 @@ Examples:
 * `addq what is the difference between self-invocation and call-backs for sequence diagrams?` 
 
 ![](images/userguide-screenshots/addq.png)
-
 
 ### Marking a question : `markq`
 

@@ -16,6 +16,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [portfolio](team/dilysss.md)
 
 * Role: Project Advisor
+* Responsibilities: Student Functions
 
 ### Lim Qiao En
 
