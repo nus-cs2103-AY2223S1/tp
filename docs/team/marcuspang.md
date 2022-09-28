@@ -1,5 +1,6 @@
 ---
-layout: page title: Marcus Pang's Project Portfolio Page
+layout: page
+title: Marcus Pang's Project Portfolio Page
 ---
 
 ### Project: TruthTable
