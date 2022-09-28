@@ -1,6 +1,8 @@
 package seedu.address.model.person;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
@@ -9,14 +11,16 @@ import seedu.address.commons.util.StringUtil;
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
 public class NameContainsKeywordsPredicate implements Predicate<Person> {
-    private final List<String> keywords;
+    private final Set<String> keywords;
 
+    /**
+     * Converts keywords to lower and removes all duplicates.
+     *
+     * @param keywords List of names to filter for.
+     */
     public NameContainsKeywordsPredicate(List<String> keywords) {
-        this.keywords = keywords;
-    }
-
-    public NameContainsKeywordsPredicate(String keyword) {
-        this.keywords = List.of(keyword);
+        this.keywords = new HashSet<>();
+        keywords.forEach((keyword) -> this.keywords.add(keyword.toLowerCase()));
     }
 
     @Override
