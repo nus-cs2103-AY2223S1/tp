@@ -37,7 +37,7 @@ public class TaskListCard extends UiPart<Region> {
     private Label id;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code TaskListCode} with the given {@code TaskList} and index to display.
      */
     public TaskListCard(Task task, int displayedIndex) {
         super(FXML);
