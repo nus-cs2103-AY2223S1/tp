@@ -28,15 +28,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Integration, Scheduling and Tracking
 
-### Jane Doe
+### Nguyen Doan Phuong Anh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/april-anh.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/april-anh)]
+[[portfolio](team/anh.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Deliverables and Deadlines
 
 ### Johnny Doe
 
