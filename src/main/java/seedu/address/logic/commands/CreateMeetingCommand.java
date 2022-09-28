@@ -6,6 +6,8 @@ import java.text.ParseException;
 import java.util.Arrays;
 import java.util.List;
 
+import com.fasterxml.jackson.databind.exc.InvalidFormatException;
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.FindCommandParser;
@@ -40,9 +42,13 @@ public class CreateMeetingCommand extends Command {
         NameContainsKeywordsPredicate personNameArray
             = new NameContainsKeywordsPredicate(Arrays.asList(personName));
         model.updateFilteredPersonList(personNameArray);
+        ObservableList<Person> listOfPeople = model.getFilteredPersonList();
+        if (listOfPeople.isEmpty()) {
+            throw new RuntimeException(); // placeholder
+        }
+        Person otherPerson = listOfPeople.get(0);
 
-        model.createNewMeeting();
-        // create new meeting object
+        model.createNewMeeting(otherPerson);
 
         return new CommandResult(String.format(MESSAGE_CREATE_MEETING_SUCCESS, this.personToMeet));
     }
