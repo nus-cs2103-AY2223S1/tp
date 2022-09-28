@@ -9,6 +9,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
+### Sim Zhe Feng Kenneth
+
+<img src="images/kennethsim2000.png" width="200px">
+
+[[github](http://github.com/johndoe)]
+[[portfolio](team/johndoe.md)]
+
+* Role: Team Lead
+* Responsibilities: Overall project coordination and code quality
+
 ### Aaron Li Wen Hao
 
 <img src="images/johndoe.png" width="200px">
@@ -17,8 +27,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: 
-* Responsibilities: 
+* Role: Testing
+* Responsibilities: Ensures the testing of the project is done properly and on time
 
 ### Albert Ariel Widiaatmaja
 
@@ -27,8 +37,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: 
-* Responsibilities: 
+* Role: Management of Deliverables
+* Responsibilities: Ensure project deliverables are defined, assigned, and done on time in the right format
 
 ### Joe Eng Yu Siang
 
@@ -36,8 +46,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
 
-* Role: 
-* Responsibilities: 
+* Role: Integration
+* Responsibilities: Code versioning, maintaining code repository, and integrating various parts of the software to create a whole
 
 ### Low Zan Hao
 
@@ -46,15 +56,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: 
-* Responsibilities: 
-
-### Sim Zhe Feng Kenneth
-
-<img src="images/kennethsim2000.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: 
-* Responsibilities: 
+* Role: Documentation
+* Responsibilities: Quality of various project documents
