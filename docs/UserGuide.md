@@ -209,22 +209,6 @@ Examples: `deleteTagType GPA`
 
 - Deletes the `GPA` tag type.
 
-### Adding a skill : skill
-
-Adds a skill  to the person
-
-Format: `skill INDEX s/SKILL`
-* The INDEX refers to the index number shown in the displayed person list.
-* The index must be a positive integer 1, 2, 3, …​
-
-<div markdown="span" class="alert alert-primary">:bulb: **Note:**
-A person can have any number of skills (including 0)
-</div>
-
-Examples:
-* `skill 1 s/Java` adds a skill `Java` to the 1st person in the address book.
-* `skill 2 s/Python` adds a skill `Python` to the 2nd person in the address book.
-
 ### Adding optional information
 
 Adds additional optional information (notes) to a person
@@ -303,7 +287,6 @@ Examples:
 | **Edit**          | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [st/OLD_SKILL_TAG-NEW_SKILL_TAG] [dt/OLD_DEGREE_TAG-NEW_DEGREE_TAG] [jt/OLD_JOB_TYPE_TAG-NEW_JOB_TYPE_TAG] [<alias>/OLD_TAG-NEW_TAG]…​`<br> e.g.,`edit 1 p/91234567 e/johndoe@example.com dt/Bachelors-Masters`  |
 | **AddTag**        | `addTag INDEX [st/SKILL_TAG] [dt/DEGREE_TAG] [jt/JOB_TYPE_TAG] [<alias>/TAG]…​`<br> e.g., `addTag 3 st/Java`                                                                                                                                                          |
 | **deleteTag**     | `deleteTag INDEX [st/SKILL_TAG] [dt/DEGREE_TAG] [jt/JOB_TYPE_TAG] [<alias>/TAG]…​`<br> e.g., `deleteTag 2 dt/Bachelors`<br/>                                                                                                                                          |
-| **AddSkill**      | `skill INDEX s/SKILL`<br> e.g., `skill 1 s/Java`                                                                                                                                                                                                                      |
 | **AddNote**       | `note INDEX n/NOTE`<br> e.g., `note 4 n/Strong in Java`                                                                                                                                                                                                               |
 | **Create**        | `create TAG_TYPE TAG_ALIAS` <br> e.g., `create GPA gpat`                                                                                                                                                                                                              |
 | **EditTagType**   | `editTagType OLD_TAG_TYPE-NEW_TAG_TYPE OLD_TAG_ALIAS-NEW_TAG_ALIAS` <br> e.g., `editTagType GPA-Grade gpat-grdt`                                                                                                                                                      |
