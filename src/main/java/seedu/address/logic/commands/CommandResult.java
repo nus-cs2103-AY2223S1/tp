@@ -17,6 +17,9 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** Reminder information should be shown to the user. */
+    private final boolean showReminder;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
@@ -24,6 +27,14 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.showReminder = false;
+    }
+
+    public CommandResult(String feedbackToUser, boolean showReminder) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = false;
+        this.exit = false;
+        this.showReminder = showReminder;
     }
 
     /**
@@ -44,6 +55,10 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isShowReminder() {
+        return showReminder;
     }
 
     @Override
