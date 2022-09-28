@@ -291,8 +291,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  HackAssist shows a list of fields to input (Name, Rating of Ability, Role)
 3.  User inputs fields
 4.  HackAssist shows list of all members, including new member
-
-    Use case ends.
+Use case ends.
 
 **Extensions**
 
@@ -320,8 +319,7 @@ Extensions:
 8.  HackAssist displays information about member and prompts for confirmation
 9.  User confirms
 10.  User is added to existing task
-
-    Use case ends.
+Use case ends.
 
 **Extensions**
 
@@ -364,8 +362,7 @@ Extensions:
 8.  User confirms
 9.  HackAssist updates deadline
 10.  HackAssist displays updated information about task
-    
-    Use case ends.
+Use case ends.
 
 Extensions:
   2a. There are no tasks
