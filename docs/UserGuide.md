@@ -9,6 +9,7 @@ MODPRO is a desktop application which helps NUS students in tracking the progres
 - [Quick Start](#quick-start)
 - [Features](#features)
    - [Tagging task order](#tagging-task-order-coming-soon-in-v12)
+   - [List](#list-coming-soon-in-v2)
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start 
@@ -43,11 +44,24 @@ Examples:
 `tag CS2103T Quiz (2)` tags CS2103T Quiz as 2nd task to complete
 
 
+### List [Coming Soon in v1.2]
+List tasks stored in task list
+
+Format: `list`
+* Display tasks that are stored in the task list
+
+Examples:
+
+`list` displays tasks that are stored in the task list
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Summary of Commands
 
-| Command | Format and Examples                                                     |
-|---------|-------------------------------------------------------------------------|
-| **Tag** | **Format**: `tag task (number)`<br/> **Example**: `tag CS2105 Quiz (1)` |
+| Command  | Format and Examples                                                     |
+|----------|-------------------------------------------------------------------------|
+| **Tag**  | **Format**: `tag task (number)`<br/> **Example**: `tag CS2105 Quiz (1)` |
+| **List** | **Format**: `list`<br/> **Example**:`list`                               |
+
