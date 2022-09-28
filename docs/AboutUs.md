@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Tan Jing Jie
 
-<img src="images/aboutUs/jj.png" width="200px">
+<img src="images/jjtan444.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/jjtan444)]
@@ -22,26 +22,26 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Darren Wah
 
-<img src="images/aboutUs/darrenwah.png" width="200px">
+<img src="images/darren12345677.png" width="200px">
 
 [[github](http://github.com/Darren12345677)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/darren12345677.md)]
 
 * Role: Developer
 * Responsibilities: Integration, Scheduling and tracking
 
 ### Ng Yee Thern
 
-<img src="images/aboutUs/yeethern.png" width="350px">
+<img src="images/augustdespair.png" width="350px">
 
-[[github](http://github.com/AugustDespair)] [[portfolio](team/yeethern.md)]
+[[github](http://github.com/AugustDespair)] [[portfolio](team/augustdespair.md)]
 
 * Role: Code Quality
 * Responsibilities: Code Quality
 
 ### Renee Yeow
 
-<img src="images/aboutUs/cat.png" width="200px">
+<img src="images/reneeyeow02.png" width="200px">
 
 [[github](http://github.com/reneeyeow02)]
 [[portfolio](team/johndoe.md)]
@@ -52,10 +52,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Ng Jia Le Max
 
-<img src="images/aboutUs/maxng.png" width="200px">
+<img src="images/maxng17.png" width="200px">
 
 [[github](http://github.com/maxng17)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/maxng17.md)]
 
 * Role: Developer
 * Responsibilities: Documentation

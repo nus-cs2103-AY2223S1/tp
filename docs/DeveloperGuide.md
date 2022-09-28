@@ -256,43 +256,94 @@ _{Explain here how the data archiving feature will be implemented}_
 ### Product scope
 
 **Target user profile**:
+HR Pro Max++ aims to help team leads in SME to help track and manage their projects
+and staff members in their team.
 
-* has a need to manage a significant number of contacts
 * prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
+* can type fast and prefers it over mouse interactions
 * is reasonably comfortable using CLI apps
+* need to oversee many projects
+* need to track staff members who are part of each project
+* need to record project details for easy access in the future
+* need to be reminded of impending project deadlines
+* need to contact their team members
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
+* For many SME, a problem they face when setting up their business is a lack of a database to help
+them track their business operations. This can result in inefficiency in their operations if they are not
+kept up to date of the latest project information or do not know who to contact. Therefore, we created
+HR Pro Max++ to be a free, easy and comprehensive employee and project management application.
+* For SME to earn profit, they would have to engage in many projects, so they can record the project details
+in our application to keep track of them.
+* Team lead can also record which one of their team members are involved with which project so that they will
+know who to find and how to contact them.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​     | I want to …​                               | So that I can…​                               |
+|----------|-------------|--------------------------------------------|-----------------------------------------------|
+| `* * *`  | team leader | view the projects I am working on          | view my workload                              |
+| `* * *`  | team leader | add deadline to projects                   | aim to finish before then                     |
+| `* * *`  | team leader | add clients to projects                    | find out who to liaise with                   |
+| `* * *`  | team leader | delete projects that are done or cancelled | remove unnecessary information                |
+| `* * *`  | team leader | edit project details                       | to update project with the newest information |
+| `* * *`  | team leader | add staff to a project                     | to track who is working on each project       |
+| `* * *`  | new user    | record staff details one at a time         | ensure that I will not make any mistake       |
 
-*{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `HR Pro Max++` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01- Add a project**
+
+**MSS**
+
+1. User enters add project command with project details using prefixes.
+2. HR Pro Max++ records the project details and display added project.
+
+   Use case ends.
+
+**Extensions:**
+
+* 1a. HR Pro Max++ detects error in add project command.
+    * 1a1. HR Pro Max++ shows error
+    
+      Use case resume at step 1.
+
+**Use case: UC02- Add staff member to project**
+
+**MSS**
+
+1. User request to list all current projects.
+2. HR Pro Max++ shows a list of all projects.
+3. User requests to add a staff member to a specific project in the list.
+4. HR Pro Max++ displays staff member added and stores them.
+
+   Use Case ends.
+
+**Extensions:**
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. HR Pro Max++ shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: UC03- Delete a Project**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+2.  HR Pro Max++ shows a list of persons
+3.  User requests to delete a specific project in the list
+4.  HR Pro Max++ deletes the project
 
     Use case ends.
 
@@ -304,16 +355,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. HR Pro Max++ shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+
+
+**Use case: UC04- Edit Project details**
+
+**MSS**
+
+1. User add a project(UC01).
+2. User writes command to edit project details with new arguments.
+3. HR Pro Max++ records the change in local storage and display project
+with updated details.
+
+   Use case ends.
+
+**Extensions:**
+
+* 3a. HR Pro Max++ detects error in edit project command.
+    * 3a1. HR Pro Max++ shows error
+
+      Use case resume at step 2.
+
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 projects without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
@@ -322,6 +392,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **SME** Small and medium-sized enterprises, business whose personnel fall below certain limits
+* **Team lead/ Team leader** Someone leading a group of other staff members within the SME
 
 --------------------------------------------------------------------------------------------------------------------
 
