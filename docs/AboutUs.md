@@ -48,12 +48,12 @@ You can reach us at the email `jason.qiu@u.nus.edu`
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Chin Yun Ru
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yunruu.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/yunruu)]
+[[portfolio](team/yunruu.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Integration
+* Responsibilities: Glossary
