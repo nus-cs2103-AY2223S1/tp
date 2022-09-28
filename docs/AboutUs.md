@@ -38,7 +38,8 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/shawnchew.png" width="200px">
 
-[[github](https://github.com/shawnchew)] [[portfolio](team/shawnchew.md)]
+[[github](https://github.com/shawnchew)]
+[[portfolio](team/shawnchew.md)]
 
 * Role: Developer
 
