@@ -41,16 +41,16 @@ If you can type fast, HR Pro Max++ can get your project management tasks done fa
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `addProj pn/PROJECT_NAME`, `PROJECT_NAME` is a parameter which can be used as `addProj pn/CS2103T`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `pn/PROJECT_NAME [t/TAG]` can be used as `pn/2101 t/fun` or as `pn/2101`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/fun`, `t/fun t/expensive` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `pn/PROJECT_NAME pb/PROJECT_BUDGET`, `pb/PROJECT_BUDGET pn/PROJECT_NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
@@ -69,33 +69,56 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a Project: `add`
+### Adding a Project: `addProj`
 
-Adds a project to HR Pro Max++.
+Adds a project to Project list.
 
-Format: `add n/NAME b/Project Budget c/Client d/Deadline [t/TAG]…​`
+Format: `addProj pn/PROJECT_NAME pb/PROJECT_BUDGET pd/PROJECt_DEADLINE pc/PROJECT_CLIENT [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A project can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/Duke b/100000 c/Max d/2022-11-10`
-* `add n/2103T_TP t/fun time c/Darren t/Tiring b/100 d/2022-09-29`
+* `addProj pn/2103T_TP pb/100000 pd/2022-01-01 pc/Max`
+* `addProj pn/CS2100 pc/Darren t/Tiring pb/1000 pd/2022-01-01 t/Fun time`
+
+### Deleting a Project : `delete`
+
+Deletes the specified Project from Project list.
+
+Format: `delete INDEX`
+
+* Deletes the project at the specified `INDEX`.
+* The index refers to the index number shown in the displayed Project list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `delete 2` deletes the 2nd project in Project list.
+* `find 2103T_TP` followed by `delete 1` deletes the 1st project in the results of the `find` command.
+
+### Listing all projects : `listProj`
+
+Show all the Projects in the Projects list.
+
+Format: `listProj`
 
 ### Adding members to projects : `addMem`
 
-### Listing all projects : `list`
+### Locating Project by Name: `find`
 
-Shows a list of all projects in HR Pro Max++.
+Finds a specified Project in Project list.
 
-Format: `list`
+Format: `find pn/PROJECT_NAME`
+
+Examples:
+* `find CS2103` returns `CS2103` and `CS2103 TP`
 
 ### Editing a Project : `edit`
 
-Edits an existing Project in the HR Pro Max++.
+Edits an existing Project in the Project list.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [pn/PROJECT_NAME] [pb/PROJECT_BUDGET] [pd/PROJECT_DEADLINES] [pc/PROJECT_CLIENT​] [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -105,44 +128,12 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* `edit 1 pb/5000` Edits the project budget of the 1st project to be `5000`.
+* `edit 2 pn/CS2103 t/` Edits the name of the 2nd person to be `CS2103` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Clearing all Projects : `clear`
 
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a Project : `delete`
-
-Deletes the specified Project from HR Pro Max++.
-
-Format: `delete INDEX`
-
-* Deletes the project at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd project in HR Pro Max++.
-* `find Betsy` followed by `delete 1` deletes the 1st project in the results of the `find` command.
-
-### Clearing all entries : `clear`
-
-Clears all entries from the address book.
+Clears all Projects from the Project list.
 
 Format: `clear`
 
@@ -154,19 +145,7 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
+Project data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
 
