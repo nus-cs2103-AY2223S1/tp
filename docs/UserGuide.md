@@ -103,7 +103,21 @@ Show all the Projects in the Projects list.
 
 Format: `listProj`
 
-### Adding members to projects : `addMem`
+### Adding members to projects : `addstaff`
+
+Adds staff members to a project in Project list.
+
+Format: `addStaff INDEX sn/NAME si/INSURANCE_STATUS sd/DEPARTMENT st/TITLE 
+sc/CONTACT NUMBER` 
+
+* Adds a staff member at the specified `INDEX`. The index refers to the index number shown in the displayed Project list. The index **must be a positive integer** 1, 2, 3, …​
+* All fields for staff member are required
+* 
+
+Examples:
+* `addStaff 1 sn/John Doe sp/98765432 si/true sd/Accounting st/Accountant` Adds staff member named `John Doe` to the project 1 in the current Project list.
+* `addStaff 3 sn/Betsy Crowe sp/1234567 st/Admin Staff sd/Admin si/false` Adds staff member named `Betsy Crown` to the project 3 in the current Project list.
+
 
 ### Locating Project by Name: `find`
 
@@ -132,9 +146,7 @@ Examples:
 * `edit 2 pn/CS2103 t/` Edits the name of the 2nd person to be `CS2103` and clears all existing tags.
 
 ### Clearing all Projects : `clear`
-
 Clears all Projects from the Project list.
-
 Format: `clear`
 
 ### Exiting the program : `exit`
@@ -144,7 +156,6 @@ Exits the program.
 Format: `exit`
 
 ### Saving the data
-
 Project data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
