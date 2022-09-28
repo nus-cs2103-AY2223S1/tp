@@ -73,7 +73,7 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Creating a new student record `new student`
+### Creating a new student record : `new student`
 
 Creates a new student record with the name of the student and other relevant details such as:
 
@@ -137,19 +137,15 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting individual student record : `delete`
 
-Deletes the specified person from the address book.
+Deletes an existing student record from the class list, using the student’s name or the student’s ID.
 
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+Format: `delete n/[name of student]` or `delete id/[id of student]`
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `delete Jonathan Tan` deletes student record with student's name as 'Jonathan Tan'.
+* `delete 123A` deletes student record with students' ID as '123A'.
 
 ### Clearing all entries : `clear`
 
@@ -165,7 +161,7 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Student records are saved locally after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
