@@ -323,6 +323,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS (Operating System)**: Windows, Linux, Unix, OS-X
 * **CLI**: Command Line Interface, receives commands from user in the form of lines of text
 * **GUI**: Graphical User Interface, a system of interactive user components for computer software
+* **Inventory**: Any item that the business needs to operate
+* **Order**: Any sales promise that needs to be fulfilled
 
 --------------------------------------------------------------------------------------------------------------------
 
