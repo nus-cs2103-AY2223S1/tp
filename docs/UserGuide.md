@@ -62,6 +62,27 @@ Format: `add [TITLE]`
 Examples:
 * `add software engineer internship at Apple`
 
+
+
+### Marking an internship application status: `mark` 
+###### (coming soon)
+
+Marks an internship application status as rejected, interviewing, accepted or applied.
+
+Format: `mark [INDEX] [STATUS]`
+
+* Updates the application at the specified INDEX. The index refers to the index number shown in the displayed 
+application list. The index **must be a positive integer** 1, 2, 3 ...
+
+
+* Updates the application to the specific STATUS. The status refers to the current status of the application. 
+The status **must be “rejected”, “interviewed”, “accepted” or “applied”**.
+
+Examples:
+* `mark 3 interviewed` - Marks the 3rd application status to be interviewed
+* `mark 2 accepted` - Marks the 2nd application status to be accepted
+
+
 ### Listing all persons : `list`
 
 Shows a list of all persons in the address book.
@@ -158,8 +179,10 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
+
 **Add** | `add [TITLE]` <br> e.g., `add software engineer internship at Apple`
-**Clear** | `clear`
+**Mark** | `mark [INDEX] [STATUS]` <br> e.g., `mark 3 interviewed`
+
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
