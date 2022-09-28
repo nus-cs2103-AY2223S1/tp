@@ -9,22 +9,23 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Tan Jing Jie
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jj.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[github](https://github.com/jjtan444)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: Deliverables and deadlines
 
 ### Darren Wah
 
 <img src="images/darrenwah.png" width="200px">
 
 [[github](http://github.com/Darren12345677)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/darren12345677.md)]
 
 * Role: Developer
 * Responsibilities: Integration, Scheduling and tracking
@@ -33,7 +34,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/yeethern.png" width="350px">
 
-[[github](http://github.com/AugustDespair)] [[portfolio](team/yeethern.md)]
+[[github](http://github.com/AugustDespair)] [[portfolio](team/augustdespair.md)]
 
 * Role: Code Quality
 * Responsibilities: Code Quality
@@ -49,12 +50,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: UI Designer
 * Responsibilities: UI and Documentation
 
-### James Doe
+### Ng Jia Le Max
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/maxng.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/maxng17)]
+[[portfolio](team/maxng17.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Documentation
