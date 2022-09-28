@@ -292,14 +292,96 @@ Priorities:
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
+**Use case: Update a person**
+
+**MSS**
+
+1.  User requests to list people
+2.  AddressBook shows a list of people
+3.  User requests to edit a specific person in the list
+4.  AddressBook edits the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. AddressBook shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The command arguments are invalid.
+
+    * 3b1. AddressBook shows an error message.
+
+      Use case resumes at step 2.
+
 **Use case: Delete a person**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
+1.  User requests to list people
+2.  AddressBook shows a list of people
 3.  User requests to delete a specific person in the list
 4.  AddressBook deletes the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. AddressBook shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Update a task**
+
+**MSS**
+
+1.  User requests to list tasks
+2.  AddressBook shows a list of tasks
+3.  User requests to edit a specific task in the list
+4.  AddressBook edits the task
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. AddressBook shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The command argument is invalid.
+
+    * 3b1. AddressBook shows an error message.
+
+      Use case resumes at step 2.
+
+
+**Use case: Delete a task**
+
+**MSS**
+
+1.  User requests to list tasks
+2.  AddressBook shows a list of tasks
+3.  User requests to delete a specific task in the list
+4.  AddressBook deletes the task
 
     Use case ends.
 
