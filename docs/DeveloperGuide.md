@@ -283,16 +283,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `InternConnect` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Delete an applicant**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list applicants
+2.  InternConnect shows a list of applicants
+3.  User requests to delete a specific applicant in the list
+4.  InternConnect deletes the applicant
+5.  InternConnect shows the updated list of applicants
 
     Use case ends.
 
@@ -304,9 +305,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. InternConnect shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: Exit**
+
+**MSS**
+
+1.  User requests to exit from InternConnect
+2.  InternConnect is closed
+
+    Use case ends.
 
 *{More to be added}*
 
