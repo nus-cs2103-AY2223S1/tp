@@ -26,7 +26,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the feature `find`.
+    * version 1.1
 
 * **Community**:
   * [to be added soon]
