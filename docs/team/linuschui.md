@@ -12,7 +12,7 @@ ConnectNUS is a desktop address book application used for NUS CS students to kee
 Given below are my contributions to the project.
 
 * **New Feature**: to be added
-    * What it does: 
+    * What it does:
     * Justification:
     * Highlights:
     * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
