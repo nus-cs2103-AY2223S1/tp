@@ -279,9 +279,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | new user         | see usage instructions and FAQ           | understand how to use the App                                              |
 | `* * *`  | student          | add a classmate to the addressbook       | conveniently refer to their contact details all in one place               |
 | `* * *`  | student          | list all classmates                      | see a list of all classmates in my class                                   |
+| `* * *`  | student          | edit a classmate                         | change their details without deleting them                                 |
 | `* * *`  | student          | delete a classmate                       | remove unneeded entries                                                    |
 | `* * *`  | student          | find a classmate by name/Github username | locate their details to review and give feedback on their iP and tP easily |
-| `* * *`  | student          | tag a classmate with tags                | find them easily                                                           |
+| `* * *`  | student          | tag a classmate with a tag               | find them easily                                                           |
 | `* * *`  | student          | sort classmates using a specified tag    | locate classmates with the specified tag easily                            |
 | `* *`    | student          | save my data to a file                   | access the data on different devices                                       |
 | `* *`    | technical person | close the App using a command            | close the App easily                                                       |
