@@ -71,7 +71,7 @@ Format: `help`
 
 ### Adding a Project: `add`
 
-Adds a project to HR Pro Max++.
+Adds a project to Project list.
 
 Format: `add n/NAME b/Project Budget c/Client d/Deadline [t/TAG]…​`
 
@@ -83,7 +83,21 @@ Examples:
 * `add n/Duke b/100000 c/Max d/2022-11-10`
 * `add n/2103T_TP t/fun time c/Darren t/Tiring b/100 d/2022-09-29`
 
-### Adding members to projects : `addMem`
+### Adding members to projects : `addstaff`
+
+Adds staff members to a project in Project list.
+
+Format: `addStaff INDEX sn/NAME si/INSURANCE_STATUS sd/DEPARTMENT st/TITLE 
+sc/CONTACT NUMBER` 
+
+* Adds a staff member at the specified `INDEX`. The index refers to the index number shown in the displayed Project list. The index **must be a positive integer** 1, 2, 3, …​
+* All fields for staff member are required
+* 
+
+Examples:
+* `addStaff 1 sn/John Doe sp/98765432 si/true sd/Accounting st/Accountant` Adds staff member named `John Doe` to the project 1 in the current Project list.
+* `addStaff 3 sn/Betsy Crowe sp/1234567 st/Admin Staff sd/Admin si/false` Adds staff member named `Betsy Crown` to the project 3 in the current Project list.
+
 
 ### Listing all projects : `list`
 
@@ -93,7 +107,7 @@ Format: `list`
 
 ### Editing a Project : `edit`
 
-Edits an existing Project in the HR Pro Max++.
+Edits an existing Project in the Project list.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
@@ -128,16 +142,16 @@ Examples:
 
 ### Deleting a Project : `delete`
 
-Deletes the specified Project from HR Pro Max++.
+Deletes the specified Project from Project list.
 
 Format: `delete INDEX`
 
 * Deletes the project at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* The index refers to the index number shown in the displayed Project list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd project in HR Pro Max++.
+* `list` followed by `delete 2` deletes the 2nd project in Project list.
 * `find Betsy` followed by `delete 1` deletes the 1st project in the results of the `find` command.
 
 ### Clearing all entries : `clear`
@@ -154,7 +168,7 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+HR Pro Max++ data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
