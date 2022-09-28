@@ -19,15 +19,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Rezwan Arefin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/rezwanarefin01.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/RezwanArefin01)]
+[[portfolio](team/rezwanarefin01.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Team Lead. 
+* Responsibilities: Code Quality, Git Expert, in charge of Logic. 
 
 ### Johnny Doe
 
