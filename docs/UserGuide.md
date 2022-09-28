@@ -224,13 +224,13 @@ Format: `user guide`
 
 * Displays a pop-up that contains the link to our user guide.
 
-### Sorting the address book: `[coming in v2.0]`
+### Sorting the address book: `[sort]`
 
-_Details coming soon ..._
+Coming soon.
 
 ### Creating a Transaction: `transaction`
 
-Creates a transaction related to a company
+Creates a transaction related to a company.
 
 Format:
 - `transaction coy/COMPANY_NAME  g/GOODS  q/QUANTITY  pr/PRICE d/BUY`
