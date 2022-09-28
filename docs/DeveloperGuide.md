@@ -94,9 +94,9 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -316,38 +316,265 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `DevEnable` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC1 - List all projects**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list projects
+2.  DevEnable shows a list of projects.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The list is empty.
+  * 1a1. DevEnable displays a default message.
+  
+    Use case ends.
 
-  Use case ends.
+**Use case: UC2 - Add project**
 
-* 3a. The given index is invalid.
+**MSS**
 
-    * 3a1. AddressBook shows an error message.
+1.  User requests to add a project.
+2.  DevEnable adds the project to the list.
 
-      Use case resumes at step 2.
+    Use case ends.
+
+**Extensions**
+
+* 1a. The user makes an error in writing the request.
+    * 1a1. DevEnable displays an error message with the correct usage.
+  
+      Use case resumes at Step 1.
+* 1b. DevEnable detects that the project already exists in the list.
+    * 1b1. DevEnable displays an error message that the project already exists.
+  
+      Use case ends.
+
+**Use case: UC3 - Delete project**
+
+**MSS**
+
+1. User <ins>views the list of projects (UC1).</ins>
+2. User requests to delete a specific project in the list.
+3. DevEnable deletes the project from the list.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The user makes an error in writing the request.
+    * 2a1. DevEnable displays an error message with the correct usage.
+  
+      Use case resumes at Step 2.
+* 2b. DevEnable detects that the project does not exist in the list.
+    * 2b1. DevEnable displays an error message that the project does not exist.
+  
+      Use case ends.
+
+**Use case: UC4 - Edit project**
+
+**MSS**
+
+1. User <ins>views the list of projects (UC1).</ins>
+2. User requests to edit a specific project in the list.
+3. DevEnable edits the project in the list.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The user makes an error in writing the request.
+    * 2a1. DevEnable displays an error message with the correct usage.
+  
+      Use case resumes at Step 2.
+* 2b. DevEnable detects that the project does not exist in the list.
+    * 2b1. DevEnable displays an error message that the project does not exist.
+  
+      Use case ends.
+
+**Use case: UC5 - Tag client to project**
+
+**MSS**
+
+1. User <ins>views the list of projects (UC1).</ins>
+2. User requests to tag a client to a specific project in the list.
+3. DevEnable tags the client to the project in the list.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The user makes an error in writing the request.
+    * 2a1. DevEnable displays an error message with the correct usage.
+  
+      Use case resumes at Step 2.
+* 2b. DevEnable detects that the project does not exist in the list.
+    * 2b1. DevEnable displays an error message that the project does not exist.
+  
+      Use case ends.
+
+**Use case: UC6 - Delete client from project**
+
+**MSS**
+
+1. User <ins>views the list of projects (UC1).</ins>
+2. User requests to delete a client from a specific project in the list.
+3. DevEnable deletes the client from the project in the list.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The user makes an error in writing the request.
+    * 2a1. DevEnable displays an error message with the correct usage.
+  
+      Use case resumes at Step 2.
+* 2b. DevEnable detects that the project does not exist in the list.
+    * 2b1. DevEnable displays an error message that the project does not exist.
+  
+      Use case ends.
+* 2c. DevEnable detects that the client is not assigned to the project.
+    * 2c1. DevEnable displays an error message that the client does not exist.
+  
+      Use case ends.
+
+**Use case: UC7 - Edit client of project**
+
+**MSS**
+
+1. User <ins>views the list of projects (UC1).</ins>
+2. User requests to edit a client of a specific project in the list.
+3. DevEnable edits the client of the project in the list.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The user makes an error in writing the request.
+    * 2a1. DevEnable displays an error message with the correct usage.
+  
+      Use case resumes at Step 2.
+* 2b. DevEnable detects that the project does not exist in the list.
+    * 2b1. DevEnable displays an error message that the project does not exist.
+  
+      Use case ends.
+* 2c. DevEnable detects that the client is not assigned to the project.
+    * 2c1. DevEnable displays an error message that the client does not exist.
+  
+      Use case ends.
+
+**Use case: UC8 - Add deadline to project**
+
+**MSS**
+
+1. User <ins>views the list of projects (UC1).</ins>
+2. User requests to add a deadline to a specific project in the list.
+3. DevEnable adds the deadline to the project in the list.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The user makes an error in writing the request.
+    * 2a1. DevEnable displays an error message with the correct usage.
+  
+      Use case resumes at Step 2.
+* 2b. DevEnable detects that the project does not exist in the list.
+    * 2b1. DevEnable displays an error message that the project does not exist.
+  
+      Use case ends.
+* 2c. DevEnable detects that the deadline is not in the correct format.
+    * 2c1. DevEnable displays an error message with the required format.
+  
+      Use case ends.
+
+**Use case: UC9 - Delete deadline from project**
+
+**MSS**
+
+1. User <ins>views the list of projects (UC1).</ins>
+2. User requests to delete the deadline from a specific project in the list.
+3. DevEnable deletes the deadline from the project in the list.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The user makes an error in writing the request.
+    * 2a1. DevEnable displays an error message with the correct usage.
+  
+      Use case resumes at Step 2.
+* 2b. DevEnable detects that the project does not exist in the list.
+    * 2b1. DevEnable displays an error message that the project does not exist.
+  
+      Use case ends.
+* 2c. DevEnable detects that the project does not have a deadline.
+    * 2c1. DevEnable displays an error message that there is no deadline.
+  
+      Use case ends.
+
+**Use case: UC10 - Edit deadline of project**
+
+**MSS**
+
+1. User <ins>views the list of projects (UC1).</ins>
+2. User requests to edit the deadline of a specific project in the list.
+3. DevEnable edits the deadline of the project in the list.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The user makes an error in writing the request.
+    * 2a1. DevEnable displays an error message with the correct usage.
+  
+      Use case resumes at Step 2.
+* 2b. DevEnable detects that the project does not exist in the list.
+    * 2b1. DevEnable displays an error message that the project does not exist.
+  
+      Use case ends.
+* 2c. DevEnable detects that the project does not have a deadline.
+    * 2c1. DevEnable displays an error message that there is no deadline.
+  
+      Use case ends.
+* 2d. DevEnable detects that the deadline is not in the correct format.
+    * 2d1. DevEnable displays an error message with the required format.
+  
+      Use case ends.
+
+**Use case: UC11 - View list of commands**
+
+**MSS**
+
+1.  User requests to list all commands.
+2.  DevEnable shows the list of commands.
+
+    Use case ends.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1.  The product should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2.  The product should be able to hold up to 200 projects without a noticeable sluggishness in performance for typical usage.
+3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse. 
+4.  The product should work only for a single user. 
+5.  The data should be stored locally and should be in a human editable text file. 
+6.  The GUI should work well for standard screen resolutions 1920x1080 and higher and for screen scales 100% and 125%. 
+7.  The GUI should be usable for resolutions 1280x720 and higher and for screen scales 150%. 
+8.  The product file size should not exceed 100MB. 
+9.  The document file size should not exceed 15MB. 
+10.  The DG and UG should be PDF-friendly. 
+11.  The product needs to be developed in a breadth-first incremental manner. 
+12.  The product should not use a DBMS to store data. 
+13.  The data should be saved every time a command alters the data. 
+14.  The testing strategy should cover over 90% of the code. 
+15.  The data should be encrypted and secured for the user.
+
 
 *{More to be added}*
 
@@ -374,13 +601,38 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. _{ more test cases …​ }_
+
+### Deleting a person
+
+1. Deleting a person while all persons are being shown
+
+   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+
+   2. Test case: `delete 1`<br>
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+
+   3. Test case: `delete 0`<br>
+      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+2. _{ more test cases …​ }_
+
+### Saving data
+
+1. Dealing with missing/corrupted data files
+
+   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+
+2. _{ more test cases …​ }_
