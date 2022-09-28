@@ -5,8 +5,6 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
 ### Shashank Acharya
@@ -14,44 +12,42 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/sheshenk.png" width="200px">
 
 [[github](https://github.com/sheshenk)]
+[[portfolio](team/sheshenk.md)]
 
 * Role: Admin
 
-### Jane Doe
+### Shen Xinbei
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ichigh0st.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/ichigh0st)]
+[[portfolio](team/ichigh0st.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Code quality
 
-### Johnny Doe
+### Lester Ong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lesterong.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/lesterong)] 
+[[portfolio](team/lesterong.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Shawn Chew
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/shawnchew.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/shawnchew)]
+[[portfolio](team/shawnchew.md)]
 
 * Role: Developer
-* Responsibilities: UI
+
+### Kee Seow Han
+
+<img src="images/kshan29.png" width="200px">
+
+[[github](http://github.com/KSHan29)]
+[[portfolio](team/kshan29.md)]
+
+* Role: Testing
