@@ -9,7 +9,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### Brendan Tan
+### Tan Wen Hao Brendan
 
 <img src="images/nerbnerb.png" width="200px">
 
