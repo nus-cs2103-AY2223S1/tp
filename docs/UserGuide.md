@@ -99,7 +99,9 @@ Edits an existing person in the address book.
 
 Format: `edit_contact INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the person at the specified `INDEX`. 
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
@@ -158,8 +160,12 @@ Shows a list of all tasks belonging to a given contact.
 
 Format: `list_task c/CONTACT_INDEX`
 
+* Lists the tasks of the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
 Examples:
-* `list_task c/1`
+* `list_task c/5`
 
 ### Finding tasks by name: `find_task`
 
