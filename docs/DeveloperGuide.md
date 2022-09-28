@@ -297,7 +297,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 - 1a. User inputs incomplete order data. <br>
-  - 1ai. System informs user of the incomplete data.
+  - 1a1. System informs user of the incomplete data.
   
     Use case ends.
 
@@ -314,12 +314,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 1a. The order the user wishes to delete does not exist.
       
-  - 1ai. System informs the user of the non-existent order.
+  - 1a1. System informs the user of the non-existent order.
     
      Use case ends.
 - 2a. The list has no orders.
   
-  - 2ai. System informs the user of the empty order list.
+  - 2a1. System informs the user of the empty order list.
   
     Use case ends.
 
@@ -335,7 +335,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 - 2a. The list of orders is empty.
-    - 2ai. System informs the user that the list is empty.
+    - 2a1. System informs the user that the list is empty.
   
       Use case ends.
 
@@ -351,7 +351,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 - 1a. The order the user is trying to find does not exist.
-  - 1ai. System informs the user that the order does not exist.
+  - 1a1. System informs the user that the order does not exist.
     
     Use case ends.
 
@@ -367,11 +367,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 - 1a. User inputs incomplete details of the item.
-  - 1ai. System informs user of the incomplete details.
+  - 1a1. System informs user of the incomplete details.
     
     Use case ends.
 
 **Use case: UC06 - Delete an inventory item**
+
+**MSS**
 
 1. User requests to delete an inventory item.
 2. System deletes the inventory item.
@@ -381,16 +383,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 - 1a. The item that the user requests to delete does not exist.
-  - 1ai. System informs user of the non-existent item.
+  - 1a1. System informs user of the non-existent item.
     
     Use case ends.
 
 - 2a. The list of inventory items is empty.
-    - 2ai. System informs user that the list of items is empty.
+    - 2a1. System informs user that the list of items is empty.
 
       Use case ends.
-    
-**MSS**
 
 **Use case: UC07 - List all inventory items**
 
@@ -404,7 +404,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 - 2a. The list of inventory items is empty.
-  - 2ai. System informs user of the empty list.
+  - 2a1. System informs user of the empty list.
 
     Use case ends.
 
@@ -420,7 +420,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 - 1a. The inventory item that the user requests to find does not exist.
-  - 1ai. System informs the user of the non-existent item.
+  - 1a1. System informs the user of the non-existent item.
 
     Use case ends.
 
