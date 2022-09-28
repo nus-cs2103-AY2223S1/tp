@@ -1,27 +1,29 @@
 ---
 layout: page
-title: Teh Yi Kuang's Project Portfolio Page
+title: Ang Ping Young's Project Portfolio Page
 ---
 
+
 ### Project: BookFace
-
 BookFace replaces a paper-based system or manual tracking of books, providing greater speed/efficiency in identifying where a book is, or when it is due. It also adds a member-tracking system to handle an increasing number of library members.
-Given below are my contributions to the project.
 
+Given below are my contributions to the project:
+
+* **New Feature**:
+    * ---To be added soon---
 * **Code contributed**: [RepoSense link]()
+* **Project Management**:
+    * ---To be added soon---
 
 * **Enhancements implemented**:
     * ---To be added soon---
 
 * **Documentation**:
     * User Guide:
-        * Added a command summary (Pull request [#60](https://github.com/AY2223S1-CS2103-F14-4/tp/pull/60))
-
     * Developer Guide:
-        * ---To be added soon---
 
-* **Reviewing/mentoring contributions**:
-    * ---To be added soon---
-* **Contributions beyond the project team**:
+* **Community**:
     * ---To be added soon---
 
+* **Tools**:
+    * ---To be added soon---

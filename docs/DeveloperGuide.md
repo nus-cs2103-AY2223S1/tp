@@ -257,33 +257,37 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* librarians managing a small library
+* has a need to manage a significant number of patrons
 * prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* can type fast and is reasonably comfortable using CLI apps
+* has no access to card-based systems to manage loans
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Our app replaces a paper-based system or manual tracking of books, providing greater speed/efficiency in identifying where a book is, or when it is due. It also adds a member-tracking system to handle an increasing number of library members.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                            | I want to …​                   | So that I can…​                                        |
+|----------|------------------------------------|--------------------------------|--------------------------------------------------------|
+| `* * *`  | new user                           | see usage instructions         | refer to instructions when I forget how to use the App |
+| `* * *`  | user                               | add book records               |                                                        |
+| `* * *`  | user                               | delete book records            |                                                        |
+| `* * *`  | user                               | view the book records          |                                                        |
+| `* * *`  | user                               | add new patrons to my library  |                                                        |
+| `* * *`  | user                               | delete patrons from my library |                                                        |
+| `* * *`  | user                               | add loans                      | mark books as unavailable                              |
+| `* * *`  | user                               | mark loans as returned         | mark books as available                                |
+| `* * *`  | person who likes to talk to others | type my commands to a CLI      | so I can work while interacting with my patrons        | 
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `BookFace` and the **Actor** is the `user`, unless specified otherwise)
+
+(For all use cases below, the **System** is the `BookFace` and the **Actor** is the `User`, unless specified otherwise)
 
 **Use case: UC01 - Delete a book record**
 
@@ -308,19 +312,77 @@ Use case ends.
 
       Use case resumes at step 2.
 
+**Use case: UC02 - List book records**
+
+
+**MSS:**
+
+1.  User requests to list all book records
+2.  BookFace shows a list of books
+<br>Use case ends.
+
+**Extensions:**
+
+* 1a. The list is empty.
+  <br>Use case ends.
+
+* 1b. The list of books cannot be retrieved.
+    * 1b1. BookFace shows an error message.
+    <br>Use case ends.
+
+**Use case: UC03 - Add a book**
+
+**MSS**
+1. The librarian has a new book to add to BookFace.
+2. The librarian uses the `add book` command with the required fields.
+3. BookFace checks for the correctness of the command.
+4. BookFace adds the entry to the list of books.
+
+    Use case ends.
+
+**Extensions**
+* 3a. There is a book with the exact same details.
+  * 3a1. BookFace notifies the librarian of the duplicate.
+  * 3a2. BookFace creates this book as a separate object.
+  * 3a3. BookFace saves this book to the list.
+  
+    Use case ends.
+* 3b. The librarian did not specify all required fields.
+  * 3b1. BookFace notifies the librarian of the correct usage of `add book`.
+    
+    Use case ends.
+
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Someone without coding background should find BookFace easy to use. 
+5. The system should respond in 1 second.
+6. The system should be backward compatible with data produced by earlier versions of the system.
+7. BookFace is not required to handle the displaying detailed reports about users (their loan history, statistics on 
+   their membership such as frequency of loans) yet.
+8. BookFace should work even without an active internet connection.
+9. The data stored in a BookFace instance should be recoverable even if the instance crashes.
+10. BookFace will need at least 50 MB of disk space to work.
+11. BookFace does not plan to improve its accessibility for blind, deaf, or otherwise disabled users according to 
+    the Web Content Accessibility Guidelines (WCAG 2.1)
+12. BookFace should be able to handle basic human mistakes, such as incorrect syntax for commands and prompt the 
+    user to retry
+13. BookFace should be extensible and sufficiently decoupled such that a separate GUI can be attached to the 
+    existing backend services and database
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-
+| Term          | Explanation                                    |
+|---------------|------------------------------------------------|
+| Mainstream OS | Windows, Linux, OS-X.                          |
+|
+| CLI           | Command-Line Interface                         |
+|
+| GUI           | Graphical User Interface                       |
+|
+| Loan          | A book that has been borrowed from the library |
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
