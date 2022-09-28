@@ -9,15 +9,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Linus Chan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/linuschan.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/linuschancs)]
+[[portfolio](team/linuschan.md)]
 
-* Role: Project Advisor
+* Role: Team Lead / Developer
+* Responsibilities: Deliverables and Scheduling
 
 ### Jane Doe
 
