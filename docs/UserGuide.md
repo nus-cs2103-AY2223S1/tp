@@ -70,6 +70,16 @@ Format: `add n/NAME [t/TELEGRAM_HANDLE] [s/STUDENT_NUMBER]`
 The Telegram handle and student number are optional
 </div>
 
+### View induvidual student details: `view`
+
+View a particular students details.
+
+Format: `view s/STUDENT_NUMBER`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Use student number to view student due to name similarity.
+</div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
