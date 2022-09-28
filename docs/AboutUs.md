@@ -19,15 +19,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Denzel Tan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/denzel.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/danzzzerl)]
+[[portfolio](team/danzzzerl.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: finding tasks/contacts
 
 ### Johnny Doe
 
