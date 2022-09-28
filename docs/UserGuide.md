@@ -183,7 +183,23 @@ Format: `find_task KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find_task Book` returns `book` and `Find book`
 
-### Delete tasks:
+### Editting tasks:
+
+Edits an existing task in task list.
+
+Format: `edit_task INDEX [n/NAME] [c/CONTACT_INDEX]`
+
+* Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* You can remove any associated contacts by typing `c/` without
+    specifying any tags after it.
+
+Examples:
+* `edit_task 1 n/Gym` Edits the task name of the 1st task to Gym.
+* `edit_task 3 n/Product meeting c/3` Edits the task name and associated contact of the 3rd task to be `Team meeting` and the 3rd contact respectively.
+
+### Deleting tasks:
 
 Deletes an existing task in task list.
 
@@ -194,7 +210,6 @@ Format: `delete_task INDEX`
 Examples:
 * `delete_task 1` Deletes the Task at index 1.
 * `delete_task 3` Deletes the Task at index 3.
-
 
 ### Clearing all entries : `clear`
 
@@ -242,6 +257,7 @@ _Details coming soon ..._
 | **Delete Contact** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
 | **Edit Contact**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
 | **Find Contact**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
+| **Edit Task**    | `edit_task INDEX [n/NAME] [c/CONTACT_INDEX]`<br> e.g., `edit_task 3 n/Product meeting c/3`
 | **Delete Task**    | `delete_task INDEX`<br> e.g., `delete_task 3`
 | **List**   | `list`                                                                                                                                                                |
 | **Help**   | `help`                                                                                                                                                                |
