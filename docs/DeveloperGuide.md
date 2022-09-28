@@ -281,8 +281,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | book an appointment for the patient | schedule the patient to meet the doctor                           |
 | `* * *`  | user                                       | cancel an appointment for the patient | ensure that the appointment schedule is updated and accurate    |
 | `* * *`  | user                                       | save the data of my contacts when I exit the app  | not lose the contacts when I open the app again     |
-| `* * *`  | user                                       | mark an appointment as done    | locate a person easily                                                 |
-| `* *`    | clumsy user                                | unmark an appointment as done  | change my appointment state without deleting and reading the appointment |
+| `* * *`  | user                                       | mark an appointment as done    |  know that the patient has already visited                             |
+| `* *`    | clumsy user                         | unmark an appointment as done  | change my appointment state without deleting and adding the appointment again |
 
 *{More to be added}*
 
@@ -349,7 +349,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Guarantees**: The patient will be deleted from the patient list only if the data entered are correct.
 
 **MSS**
-1. User gets the list of patients(UC02).
+1. User gets the <ins>list of patients(UC02)<ins>.
 2. User requests to delete a specific patient in the list.
 3. idENTify deletes the patient.
 
@@ -377,7 +377,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User gets the list of patients(UC02).
+1.  User gets the <ins>list of patients(UC02)<ins>.
 2.  User requests to book an appointment for a specified patient.
 3.  idENTify shows that an appointment has been booked for that patient.
 
@@ -399,7 +399,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Guarantees:** The appointment will be deleted from the appointment list only if the data entered are correct.
 
 **MSS**
-1.  User gets the list of appointments(UC03).
+1.  User gets the <ins>list of appointments(UC03)<ins>.
 2.  User requests to cancel a specific appointment in the list.
 3.  idENTify shows that the appointment has been cancelled.
 
@@ -420,7 +420,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Guarantees:** The appointment will be marked as done only if the data entered are correct.
 
 **MSS**
-1.  User gets the list of appointments(UC03).
+1.  User gets the <ins>list of appointments(UC03)<ins>.
 2.  User requests to mark a specified appointment for a specified patient.
 3.  idENTify marks the selected appointment.
 
