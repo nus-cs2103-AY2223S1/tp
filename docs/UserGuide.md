@@ -33,6 +33,7 @@ contains some sample data.<br>
 6. Refer to the [Features](#2-features) for details of each command.
 
 ### 1.1. Command summary
+
 | Action                                  | Format                                                | Short Description                                                           |
 |-----------------------------------------|-------------------------------------------------------|-----------------------------------------------------------------------------|
 | [`add module`](#211-add-module)         | `add    module   m/MODULE_CODE [t/MODULE_TITLE]`      | Add module with a module code and optional module title                     |
@@ -81,7 +82,8 @@ This command will require one flag, and one flag is optional:
 * `t/`: (Optional flag) To be followed by the module title of the module to be added into Plannit.
 
 Format: `add module m/MODULE_CODE [t/MODULE_TITLE]`
-* A module has a module code and an optional module title.
+* You may optionally add a module title.
+* You cannot add a duplicate module code.
 
 Examples:
 ```
@@ -101,7 +103,7 @@ This command will require one flag:
 * `m/`: To be followed by the module code of the module to be deleted from Plannit.
 
 Format: `delete module m/MODULE_CODE`
-* The module code must correspond to an existing module in Plannit.
+* You cannot delete a non-existent module code.
 
 Example:
 
@@ -120,13 +122,13 @@ In the above example, we are deleting module CS2103T from Plannit.
 You may add a task using the `add task` command.
 
 This command will require two flags:
-* `m/`: This flag is to be followed immediately by the module code of the
+* `m/`: To be followed by the module code of the
   module which the task is associated with.
-* `d/`: This flag is to be followed immediately by the task description.
+* `d/`: To be followed by the task description.
 
 Format: `add task m/MODULE_CODE d/TASK_DESCRIPTION`
 * Each task **must** belong to a specific module.
-* The given module code should be that of an existing module in Plannit.
+* You should provide a module code of an existing module in Plannit.
 
 Example:
 ```
@@ -140,13 +142,14 @@ You may delete a task belonging to a particular module using the `delete
 task` command.
 
 This command will require two flags:
-* `m/`: This flag is to be followed immediately by the module code of the
-  module which assigned the task.
-* `n/`: This flag is to be followed immediately by the task number in the module.
+* `m/`: To be followed by the module code of the module which assigned the 
+  task.
+* `n/`: To be followed by the task number in the module.
 
 Format: `delete task m/MODULE_CODE n/TASK_NUMBER`
-* The given module code should be that of an existing module in Plannit.
-* The given task number has to be that of an existing task in the module.
+* You should provide a module code of an existing module in Plannit.
+* You should provide a task number corresponding to that of an existing task in 
+  the module.
 
 Example:
 ```
@@ -165,13 +168,13 @@ with the module code `CS2103T`.
 You may add a link to a specific module using the `add link` command.
 
 This command will require two flags:
-* `m/`: This flag is to be followed immediately by the module code of the
+* `m/`: To be followed by the module code of the
   module which is associated with the link.
-* `l/`: This flag is to be followed immediately by the link URL.
+* `l/`: To be followed by the link URL.
 
 Format: `add link m/MODULE_CODE l/LINK_URL`
-* When adding a link URL to a non-existent module code, Plannit shows an error message.
-* When adding a duplicate link URL, Plannit shows an error message.
+* You cannot add a link URL to a non-existent module code.
+* You cannot add a duplicate link URL for a single module code.
 
 Example:
 ```
@@ -184,13 +187,13 @@ to the module with module code `CS2040C`.
 You may delete a link from a specific module using the `delete link` command.
 
 This command will require two flags:
-* `m/`: This flag is to be followed immediately by the module code of the
+* `m/`: To be followed by the module code of the
   module which is associated with the link.
-* `l/`: This flag is to be followed immediately by the link URL.
+* `l/`: To be followed by the link URL.
 
 Format: `delete link m/MODULE_CODE l/LINK_URL`
-* When deleting a link URL from a non-existent module code, Plannit shows an error message.
-* When deleting a non-existent link URL, Plannit shows an error message.
+* You cannot delete a link URL from a non-existent module code.
+* You cannot delete a non-existent link URL from a valid module code.
 
 Example:
 ```
@@ -240,7 +243,7 @@ delete contact n/Dinosaur Lim
 In the above example, we are deleting a contact with name `Dinosaur Lim` from Plannit.
 
 ### 2.5. Navigation
-Provides users with the ability to navigate between different tabs in the program.
+With navigation functionalities, you now have the ability to navigate between different tabs in Plannit!
 
 #### 2.5.1 Navigate to home
 You may navigate back to the home page using the `home` command.
@@ -252,12 +255,10 @@ You may navigate between modules to view information belonging to a particular
 module using the `goto` command.
 
 This command will require one flag:
-
 * `m/`: To be followed by the module code of the module you are navigating to.
 
 Format: `goto m/MODULE_CODE`
-
-* When navigating to a non-existent module, Plannit will display an error message.
+* You should provide a module code of an existing module in Plannit.
 
 Example:
 ```
