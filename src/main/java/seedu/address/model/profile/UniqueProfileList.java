@@ -13,9 +13,9 @@ import seedu.address.model.profile.exceptions.ProfileNotFoundException;
 
 /**
  * A list of profiles that enforces uniqueness between its elements and does not allow nulls.
- * A profile is considered unique by comparing using {@code Profile#isSameProfile(Profile)}. As such, adding and updating of
+ * A profile is unique by comparing using {@code Profile#isSameProfile(Profile)}. As such, adding and updating of
  * profiles uses Profile#isSameProfile(Profile) for equality so as to ensure that the profile being added or updated is
- * unique in terms of identity in the UniqueProfileList. However, the removal of a profile uses Profile#equals(Object) so
+ * unique in terms of identity in the UniqueProfileList. However, removal of a profile uses Profile#equals(Object) so
  * as to ensure that the profile with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.

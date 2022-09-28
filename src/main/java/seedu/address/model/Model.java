@@ -72,7 +72,8 @@ public interface Model {
     /**
      * Replaces the given profile {@code target} with {@code editedProfile}.
      * {@code target} must exist in the address book.
-     * The profile identity of {@code editedProfile} must not be the same as another existing profile in the address book.
+     * The profile identity of {@code editedProfile} must not be the same as another existing
+     * profile in the address book.
      */
     void setProfile(Profile target, Profile editedProfile);
 

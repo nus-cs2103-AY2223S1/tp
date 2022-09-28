@@ -22,8 +22,8 @@ import seedu.address.model.Model;
 import seedu.address.model.profile.Address;
 import seedu.address.model.profile.Email;
 import seedu.address.model.profile.Name;
-import seedu.address.model.profile.Profile;
 import seedu.address.model.profile.Phone;
+import seedu.address.model.profile.Profile;
 import seedu.address.model.tag.Tag;
 
 /**

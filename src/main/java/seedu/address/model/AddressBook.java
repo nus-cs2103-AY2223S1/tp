@@ -77,7 +77,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Replaces the given profile {@code target} in the list with {@code editedProfile}.
      * {@code target} must exist in the address book.
-     * The profile identity of {@code editedProfile} must not be the same as another existing profile in the address book.
+     * The profile identity of {@code editedProfile} must not be the same as an existing profile in the address book.
      */
     public void setProfile(Profile target, Profile editedProfile) {
         requireNonNull(editedProfile);
