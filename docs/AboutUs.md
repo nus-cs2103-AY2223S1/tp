@@ -9,15 +9,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Douglas Lim
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/dlimyy.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/dlimyy)]
+[[portfolio](team/dlimyy.md)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: Integration, Deliverables and deadlines
 
 ### Jane Doe
 
@@ -29,14 +29,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Tan Li Xin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tlx02.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/tlx02)] 
+[[portfolio](team/tlx02.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Code Quality
 
 ### Phua Li Ting
 
