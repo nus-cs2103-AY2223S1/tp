@@ -1,10 +1,8 @@
 ---
-layout: page
-title: About Us
+layout: page title: About Us
 ---
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
-
 
 ## Project team
 
@@ -28,7 +26,7 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Developer
 * Responsibilities: UI
 
-### Leong Yu Xuan 
+### Leong Yu Xuan
 
 <img src="images/yuxuanleong.png" width="200px">
 
