@@ -24,7 +24,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        - Added documentation for the adding of skill tags and optional information.
+        - Added documentation for the adding of optional information.
     * Readme:
         - Designed and added UI mockup.
         
