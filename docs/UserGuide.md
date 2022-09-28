@@ -59,6 +59,8 @@ NUScheduler is a desktop app for **managing contacts, optimised for use via a Co
 
 </div>
 
+
+
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
@@ -66,7 +68,6 @@ Shows a message explaining how to access the help page.
 ![help message](images/helpMessage.png)
 
 Format: `help`
-
 
 ### Adding a profile: `profile -a`
 
@@ -77,6 +78,14 @@ Format: `profile -a n/NAME p/PHONE_NUMBER e/EMAIL`
 Examples:
 * `profile -a n/John Doe p/98765432 e/johnd@example.com`
 * `profile -a n/Betsy Crowe e/betsycrowe@example.com p/1234567`
+
+### Viewing profile: `profile -v`
+
+Shows either a list of profiles or a single profile.
+
+Format: `profile -v [INDEX]`
+
+Tip: `INDEX` is optional, specify to view single profile.
 
 ### Deleting a profile: `profile -d`
 
@@ -90,6 +99,12 @@ Format: `profile -d INDEX`
 
 Example:
 * `profile -d 1` deletes the first profile listed.
+
+### Adding event: `event -a`
+
+Adds an event with a name and a start timing and end timing.
+
+Format: `event -a n/NAME s/START e/END [p/PROFILE]`
 
 ### Viewing upcoming events: `event -u`
 
