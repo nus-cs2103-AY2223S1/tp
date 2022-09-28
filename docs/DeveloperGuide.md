@@ -253,7 +253,10 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ## **Appendix: Requirements**
 
-### Product scope
+**Product scope**
+* Only provides necessary information that we want to retrieve for patients, except sensitive medical information 
+like health problems
+* Does not execute any of the real-world tasks except to remind the admin staff
 
 **Target user profile**:
 
