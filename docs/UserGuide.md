@@ -4,9 +4,17 @@ title: User Guide
 ---
 
 AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
-
-* Table of Contents
-{:toc}
+## Table of Contents
+- [Quick Start](#quick-start)
+- [Features](#features)
+    - [Adding an internship application: `add`](#adding-an-internship-application-add)
+    - [Marking an internship application status: `mark`](#marking-an-internship-application-status-mark)
+    - [Listing all internship applications: `list`](#listing-all-internship-applications-list)
+    - [Deleting an internship application: `delete`](#deleting-an-internship-application-delete)
+    - [Filtering for internship applications of a specified status: `filter`](#filtering-for-internship-applications-of-a-specified-status-filter)
+    - [Finding for an internship application: `find`](#finding-for-an-internship-application-find)
+    - [Exiting the program: `exit`](#exiting-the-program-exit)
+    - [Saving the data](#saving-the-data)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -14,23 +22,27 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `findmyintern.jar` from [here](https://github.com/AY2223S1-CS2103T-T14-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your FindMyIntern.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the command box and press Enter to execute it. e.g. typing **`list`** and pressing Enter will list all internship applications.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`add software engineer internship at Apple`** : Adds an internship application titled “software engineer internship at Apple”.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`mark 3 interviewed`** : Marks the 3rd application shown in the current list as interviewed.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`list`** : Lists all internship applications.
 
-   * **`clear`** : Deletes all contacts.
+   * **`delete 3`** : Deletes the 3rd application shown in the current list.
+
+   * **`find shopee`** : Finds an internship application called Shopee in the tracker.
+   
+   * **`filter rejected`** : Filters the tracker for internship applications with rejected status.
 
    * **`exit`** : Exits the app.
 
