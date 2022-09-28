@@ -374,15 +374,37 @@ Use case ends.
 
 ### Glossary
 
-| Term          | Explanation                                    |
-|---------------|------------------------------------------------|
-| Mainstream OS | Windows, Linux, OS-X.                          |
-|
-| CLI           | Command-Line Interface                         |
-|
-| GUI           | Graphical User Interface                       |
-|
-| Loan          | A book that has been borrowed from the library |
+<table>
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Term</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td markdown="span">Mainstream OS</td>
+<td markdown="span">Windows, Linux, OS-X</td>
+</tr>
+<tr>
+<td markdown="span">CLI</td>
+<td markdown="span">Command-Line Interface</td>
+</tr>
+<tr>
+<td markdown="span">GUI</td>
+<td markdown="span">Graphical User Interface</td>
+</tr>
+<tr>
+<td markdown="span">Loan</td>
+<td markdown="span">A book that has been borrowed from the library</td>
+</tr>
+</tbody>
+</table>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
