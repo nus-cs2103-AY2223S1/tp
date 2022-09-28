@@ -263,7 +263,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions (from SoC coding modules)
 * is reasonably comfortable using CLI apps (from SoC coding modules)
 
-**Value proposition**: 
+**Value proposition**:
 
 * manage contacts faster than a typical mouse/GUI driven app
 * organise and separate their school contacts from personal contacts
@@ -341,7 +341,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to search a specific word in the list
 2.  SoConnect shows a list of persons related to the word.
-    
+
     Use case ends.
 
 **Extension**
@@ -352,7 +352,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. There is no input after search.
 
     * 3a1. SoConnect shows the same list of persons.
-  
+
       Use case ends.
 
 **Use case: Edit a tag**
@@ -375,13 +375,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. There is no such current tag.
 
     * 3a1. SoConnect shows an error message.
-    
+
       Use case resumes at step 2
-  
+
 * 3b. The new tag already exist.
 
     * 3b1. SoConnect shows an error message.
-    
+
       Use case resumes at step 2.
 
 **Use case: Add tag to Contact**
@@ -400,13 +400,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *  1a. There is no such name in the contacts.
 
     * 1a1. SoConnect shows an error message.
-  
+
       Use case resumes at step 1.
-  
+
 *  3a. There is no such tag in the taglist.
 
     * 3a1. SoConnect shows aan error message.
-   
+
       Use case resumes at step 2.
 
 **Use case: Autocomplete a word**
@@ -416,7 +416,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User inputs word
 2.  SoConnect gives a selection of possible words.
 3.  User chooses the right word.
-4.  SoConnect changes inputted word to the chosen word. 
+4.  SoConnect changes inputted word to the chosen word.
 
     Use case ends.
 
@@ -424,7 +424,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *  1a. The word changes.
 
     * 1a1. SoConnect updates the selection of possible words.
-   
+
       Use case resumes at step 3.
 
 **Use case: sort by name**

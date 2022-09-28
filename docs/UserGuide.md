@@ -107,9 +107,9 @@ Default sorting orders:
 Format: `sort [n/] [p/] [e/] [a/] [t/TAG]…​`
 * Add `!` in front of an attribute to sort in reverse order
 
-Example: 
-* `sort n/` sorts the currently displayed list of contacts by their names. 
-* `sort !t/friend` sorts contacts of friends *below* all other contacts. 
+Example:
+* `sort n/` sorts the currently displayed list of contacts by their names.
+* `sort !t/friend` sorts contacts of friends *below* all other contacts.
 * `sort t/friend n/` first sorts contacts of friends *above* all other contacts. Then it separately sorts the contacts of friends and contacts of non-friends by their names.
 
 ### Editing a person : `edit`
