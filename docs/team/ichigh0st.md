@@ -27,17 +27,17 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * 
+        *
     * Developer Guide:
-        * 
+        *
 
 * **Contributions to team-based tasks**:
     * Updated site-wide settings using Jekyll
 
 * **Community**:
-    * 
+    *
 
 * **Tools**:
-    * 
+    *
 
 * _{you can add/remove categories in the list above}_

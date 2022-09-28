@@ -373,12 +373,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **GUI**: Graphical User Interface, a visual display that users can interact with
 * **NUS**: National University of Singapore, tertiary education institute
 * **End user**: _NUS_ students who use NUScheduler to handle their schedules
-* **Contact details**: Contains information such as Phone number and Email, allowing the _end user_ to 
-communicate with other users.
+* **Contact details**: Contains information such as Phone number and Email, allowing the _end user_ to communicate with other users.
 * **Profile**: Contains user information such as their Name and _contact details_
 * **Connections**: _Profiles_ who the _end user_ is connected to and requires meeting with
-* **Event**: A planned meeting containing the Title, Start timing and End timing of the meeting. 
-Also contains _profiles_ of users participating in the meeting.
+* **Event**: A planned meeting containing the Title, Start timing and End timing of the meeting. Also contains _profiles_ of users participating in the meeting.
 
 --------------------------------------------------------------------------------------------------------------------
 

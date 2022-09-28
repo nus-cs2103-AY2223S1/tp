@@ -34,15 +34,14 @@ We are a team based in the [School of Computing, National University of Singapor
 
 * Role: Developer
 
-### Jean Doe
+### Shawn Chew
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/shawnchew.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/shawnchew)]
+[[portfolio](team/shawnchew.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
 
 ### Kee Seow Han
 
