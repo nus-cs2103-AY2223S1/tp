@@ -18,15 +18,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Member
 
-### Tan Yi Xian
+### Jane Doe
 
-<img src="images/yixiann.png" width="200px">
+<img src="images/johndoe.png" width="200px">
 
-[[github](https://github.com/yixiann)]
+[[github](http://github.com/johndoe)]
+[[portfolio](team/johndoe.md)]
 
-[[portfolio](team/yixiann.md)]
-
-* Role: Project Member
+* Role: Team Lead
+* Responsibilities: UI
 
 ### Johnny Doe
 
