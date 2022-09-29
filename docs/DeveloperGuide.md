@@ -257,27 +257,55 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of internship applications
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
+
+* Manage internship applications faster than a typical mouse/GUI driven app
+* Manage multiple internships and provide comparisons between them for better decision-making
+* Easily customizable and personalizable to manage internships applications
+* Frequent reminders for deadlines
+
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                    | I want to …​                                                          | So that I can…​                                                    |
+|----------|--------------------------------------------|-----------------------------------------------------------------------|--------------------------------------------------------------------|
+| `* * *`  | new user                                   | see usage instructions                                                | learn how to use the App                                           |
+| `* * *`  | user                                       | view a list of current internship applications                        | -                                                                  |
+| `* * *`  | user                                       | add a new internship application                                      | -                                                                  |
+| `* * *`  | user                                       | delete an internship application                                      | remove entries that I no longer need                               |
+| `* *`    | user                                       | mark internship applications as completed                             | clearly see my progress                                            |
+| `*`      | user                                       | unmark completed internship applications                              | clearly see my progress                                            |
+| `* * *`  | forgetful user                             | obtain the information of the company                                 | contact them if I have any queries                                 |
+| `*`      | potential user                             | see the app populated with sample data                                | see what the app is like while it is in use                        |
+| `* *`    | new user                                   | purge all current data                                                | get rid of experimental data I used for exploring the app          |
+| `* * *`  | organized user                             | color code tags for different interviews and statuses                 | sort and prioritize my interview data                              |
+| `* *`    | user applying to many internships          | sort application deadlines by time and priority                       | take note of upcoming deadlines                                    |
+| `* *`    | user applying to many internships          | record down the dates of the interviews                               | avoid interview clashes                                            |
+| `* *`    | user who just started his interviews       | record my mistakes made during interviews                             | reflect on t hem                                                   |
+| `* * *`  | user applying to many internships          | search for a specific company via keywords                            | easily find the information I am looking for                       |
+| `* *`    | user applying to many internships          | receive reminders about upcoming interviews and deadlines             | not miss any important dates                                       |
+| `* * *`  | user applying to many internships          | make my own tags                                                      | sort my applications better                                        |
+| `* *`    | user applying to technical internships     | view different stages of my interview such as HR and technical stages | see what phase of the interviews I am at                           |
+| `* * *`  | user applying to internships progressively | edit individual application information at any time                   | make sure the information stays relevant                           |
+| `* *`    | user applying to technical internships     | filter through my internships by job role                             | to keep track of the roles I have applied for                      |
+| `*`      | user applying to many internships          | sort the salaries of each company                                     | compare the options I have                                         |
+| `*`      | user applying to many internships          | archive the interviews I have been rejected from                      | avoid cluttering the app with data and also refer to them later on |
+| `* *`    | user applying to many internships          | prioritize the companies I am keen on                                 | compare the options I have                                         |
+| `* * *`  | frequent user                              | the commands to be simple and memorable                               | access my information quickly and easily                           |
+| `*`      | frequent user                              | search for applications through case sensitive searching              | find and sort my internships more easily                           |
+| `* *`    | user                                       | view internship periods of different companies                        | more informed about my applications                                |
+| `*`      | frequent user                              | have a customizable GUI                                               | have more visible information on my applications                   |
+| `* *`    | frequent user                              | compare internship statistics such as internship lengths              | make a more informed choice                                        |
+| `*`      | frequent user                              | send feedback to the developers of the application                    | make them optimize the app more                                    |
 
 *{More to be added}*
 
