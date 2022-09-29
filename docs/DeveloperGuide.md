@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* EZLead is evolved from AddressBook Level 3, a desktop app that manage contacts through CLI.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -292,7 +292,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `LinkUp` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `EZLead` and the **Actor** is the `Tech Lead`, unless specified otherwise)
 
 **Use case: First time initiation / No account records**
 
@@ -325,14 +325,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Adding account into a team**
+**Use case: Adding member into a team**
 
 **MSS**
 
 1. User requests to list all team
-2. LinkUp show a list of teams
-3. User requests to add an account into the teams through username
-4. LinkUp add the account into the team
+2. EZLead show a list of teams
+3. User requests to add a member into the teams through username
+4. EZLead add the member into the team
 
 **Extensions**
 
@@ -342,7 +342,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given username does not exist.
 
-    * 3a1. LinkUp shows an error message.
+    * 3a1. EZlead shows an error message.
 
       Use case resumes at step 2.
 
@@ -351,9 +351,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list all users
-2.  LinkUp shows a list of persons
+2.  EZLead shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  LinkUp deletes the person
+4.  EZLead deletes the person
 
     Use case ends.
 
@@ -374,15 +374,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User specify the name of the team
-2. LinkUp create a team with specified name with User as leader
+2. EZLead create a team with specified name with User as leader
 3. User specify account username to add into the team
-4. LinkUp add the accounts into the team
+4. EZLead add the accounts into the team
 
 **Extension**
 
 * 1a. Another team with the same name already exist.
 
-     * 1a1. LinkUp shows an error message
+     * 1a1. EZLead shows an error message
 
       Use case resumes at step 1.
 
