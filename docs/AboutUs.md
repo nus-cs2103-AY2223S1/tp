@@ -9,51 +9,52 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Adriel Soh
 
 <img src="images/johndoe.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/leirdas)]
+[[portfolio](team/leirdas.md)]
 
-* Role: Project Advisor
+* Role: [to be added]
+* Responsibilities: [to be added]
 
-### Jane Doe
+### Fanny Jian
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/fannyjian.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/fannyjian)]
+[[portfolio](team/fannyjian.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Documentation, Deliverables and deadline, In charge of UI
 
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
+### Marcus Low Hui Yu
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/marcuslowhuiyu)]
+[[portfolio](team/marcuslowhuiyu.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: [to be added]
+* Responsibilities: [to be added]
+
+### Neo Jia Han
+
+<img src="images/johndoe.png" width="200px">
+
+[[github](http://github.com/jia-han)]
+[[portfolio](team/jia-han.md)]
+
+* Role: [to be added]
+* Responsibilities: [to be added]
+
+### Timothy Jonathan Koei
+
+<img src="images/johndoe.png" width="200px">
+
+[[github](http://github.com/t1mzzz)]
+[[portfolio](team/t1mzzz.md)]
+
+* Role: [to be added]
+* Responsibilities: [to be added]
