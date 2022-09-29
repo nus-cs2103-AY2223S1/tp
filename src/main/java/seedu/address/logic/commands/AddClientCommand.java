@@ -2,13 +2,13 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INCOME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INCOME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RISK_APPETITE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -16,6 +16,9 @@ import seedu.address.model.client.Client;
 
 
 
+/**
+ * Adds a client to the address book.
+ */
 public class AddClientCommand extends Command {
 
     public static final String COMMAND_WORD = "client"; //TODO: This will eventually replace add
@@ -44,10 +47,13 @@ public class AddClientCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New Client added: %1$s";
 
-    public static final String MESSAGE_DUPLICATE_CLIENT= "This client already exists in the address book";
-
+    public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the address book";
     private final Client toAdd;
 
+    /**
+     * Main constructor for AddClient
+     * @param client
+     */
     public AddClientCommand(Client client) {
         requireNonNull(client);
         toAdd = client;

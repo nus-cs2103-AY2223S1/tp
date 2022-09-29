@@ -114,17 +114,24 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
     //=========== Client stuff =============================================================
+    @Override
     public boolean hasClient(Client client) {
         requireNonNull(client);
         return addressBook.hasClient(client);
     }
-
+    @Override
     public void addClient(Client client) {
         addressBook.addClient(client);
         updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
     }
 
-    public void deleteClient (Client client) {
+    @Override
+    public void setClient(Client target, Client editedClient) {
+        requireAllNonNull(target, editedClient);
+        addressBook.setClient(target, editedClient);
+    }
+    @Override
+    public void deleteClient(Client client) {
         requireNonNull(client);
         addressBook.removeClient(client);
     }

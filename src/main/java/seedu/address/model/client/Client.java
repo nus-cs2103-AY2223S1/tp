@@ -1,5 +1,7 @@
 package seedu.address.model.client;
 
+import java.util.Objects;
+import java.util.Set;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -10,11 +12,7 @@ import seedu.address.model.tag.Tag;
 
 //import statement for policies?
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.time.LocalDate;
-import java.util.Objects;
-import java.util.Set;
+
 
 /**
  * Main client class handled by person
@@ -31,7 +29,18 @@ public class Client extends Person {
     //The age is obtained from birthday
 
 
-    public Client(Name name, Phone phone, Email email, Address address,Set<Tag> tag,
+    /**
+     * Encapsulation of a Client class
+     * @param name
+     * @param phone
+     * @param email
+     * @param address
+     * @param tag
+     * @param birthday
+     * @param income
+     * @param ra
+     */
+    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tag,
                   Birthday birthday, Income income, RiskAppetite ra) {
         super(name, phone, email, address, tag);
         this.birthday = birthday;
@@ -61,7 +70,7 @@ public class Client extends Person {
                 && otherclient.getBirthday().equals(getBirthday())
                 && otherclient.getRiskAppetite().equals(getRiskAppetite())
                 && otherclient.getIncome().equals(getIncome());
-                //TODO: Add the remaining equals!
+        //TODO: Add the remaining equals!
     }
 
     public Birthday getBirthday() {

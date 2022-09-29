@@ -1,23 +1,25 @@
 package seedu.address.model.client;
-import java.util.ArrayList;
-import java.util.Arrays;
+
 
 /**
- * Represents a client's risk level
- * wraps an enum with 3 levels (high/medium/low)
- * and an optional notes string
+ *  Encapsulation for a client's RiskAppetite
  */
 public class RiskAppetite {
 
-    public static String MESSAGE_FORMAT_CONSTRAINTS = "Error: RiskAppetite must be one " +
-            "of the following indicators: " +
-            "{H, M, L}";
 
-    private static ArrayList<String> MESSAGE_INDICATORS = new ArrayList<String>(Arrays.asList("H", "M", "L"));
+    public static final String MESSAGE_FORMAT_CONSTRAINTS = "Error: RiskAppetite must be one "
+            + "of the following indicators: "
+            + "{H, M, L}";
 
-    public static boolean isValidFormat(String ra) {
-        return MESSAGE_INDICATORS.contains(ra);
-    }
+    public final String value;
+
+    private final RiskLevel rl;
+
+    /**
+     * Enumerator representing RiskLevel.
+     * Encapsulates 3 different categories, High, Medium and Low risk.
+     * Tagged with messages to be represented in String format.
+     */
 
     public enum RiskLevel {
         HIGH("High"), MEDIUM("Medium"), LOW("Low");
@@ -32,20 +34,22 @@ public class RiskAppetite {
             return message;
         }
     }
-
-    private final RiskLevel rl;
-
-    public String value;
-
-
+    /**
+     * Default constructor.
+     * @param riskLevel
+     */
     public RiskAppetite(String riskLevel) {
         value = riskLevel;
         rl = parseRiskLevel(riskLevel);
     }
 
-
     public RiskLevel getRiskLevel() {
         return this.rl;
+    }
+
+
+    public static boolean isValidFormat(String ra) {
+        return MESSAGE_FORMAT_CONSTRAINTS.contains(ra);
     }
 
     /**
@@ -62,8 +66,9 @@ public class RiskAppetite {
         case "L":
             return RiskLevel.LOW;
 
+        default:
+            return RiskLevel.MEDIUM;
         }
-        return RiskLevel.MEDIUM; //TODO: Add a default value?
     }
 
     @Override
@@ -72,7 +77,7 @@ public class RiskAppetite {
             return true;
         }
 
-        if (! (other instanceof RiskAppetite)) {
+        if (!(other instanceof RiskAppetite)) {
             return false;
         }
 

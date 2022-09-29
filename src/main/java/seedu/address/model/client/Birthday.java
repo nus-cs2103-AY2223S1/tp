@@ -5,24 +5,29 @@ import java.time.chrono.ChronoLocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.FormatStyle;
-import java.util.Date;
 
-import static seedu.address.commons.util.AppUtil.checkArgument;
+/**
+ * Encapsulation for a client's birthday
+ */
 
 public class Birthday {
-    private static final String STANDARD_DATE = "yyyy-MM-dd";
-
-    private static final String BIRTHDAY_VALIDATION_REGEX = "\\d{4}-\\d{2}-\\d{2}";
     public static final String MESSAGE_DATE_CONSTRAINTS = "Date of birth cannot be in the future or invalid";
+    public static final String STANDARD_DATE = "yyyy-MM-dd";
+    public static final String MESSAGE_FORMAT_CONSTRAINTS = "Date of Birth must follow Format: " + STANDARD_DATE;
+    private static final String BIRTHDAY_VALIDATION_REGEX = "\\d{4}-\\d{2}-\\d{2}";
 
-    public static final String MESSAGE_FORMAT_CONSTRAINTS = "String entered does not follow format: " + STANDARD_DATE;
+    public final String value;
 
 
     private LocalDate birthday;
     private boolean celebrated;
 
-    public final String value;
 
+
+    /**
+     * Main constructor for Birthday
+     * @param value
+     */
     public Birthday(String value) {
         this.value = value;
         this.birthday = parseBirthday(value);
@@ -33,14 +38,10 @@ public class Birthday {
     public Birthday unspecified() {
         return new Birthday(null);
     }
-
     public boolean checkCelebrated() {
         return this.celebrated;
     }
 
-    /**Add a reminder to celebrate if not true?
-     *
-     */
     public void celebrateBirthday() {
         this.celebrated = true;
     }
@@ -71,10 +72,11 @@ public class Birthday {
         return date.matches(BIRTHDAY_VALIDATION_REGEX);
     }
 
-    /**TODO: Think about how to addbirthday
-     *
+    /**
+     * Parses a birthday in string form and checks for validity
+     * @param  s
+     * @return LocalDate
      */
-
     public static LocalDate parseBirthday(String s) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(STANDARD_DATE);
         try {
@@ -87,7 +89,10 @@ public class Birthday {
     }
 
 
-
+    /**
+     * Calculates a client's age based on his birthday input
+     * @return age
+     */
     public int calculateAge() {
         int currentYear = LocalDate.now().getYear();
         return currentYear - birthday.getYear();
@@ -120,5 +125,4 @@ public class Birthday {
     public int hashCode() {
         return birthday.hashCode();
     }
-    
 }

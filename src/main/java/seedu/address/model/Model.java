@@ -90,18 +90,37 @@ public interface Model {
 
 
 
-    // Add Command //
+    // Colin's versions
 
     /**
-     * Colin's new implementations:
+     * Returns true if a person with the same identity as {@code Client} exists in the address book.
      */
     boolean hasClient(Client toAdd);
 
+    /**
+     * Adds the client specified.
+     */
     void addClient(Client toAdd);
 
+    /**
+     * Deletes the given Client.
+     * The client must exist in the address book.
+     */
     void deleteClient(Client toDelete);
 
+    /**
+     * Replaces the given Client {@code target} with {@code editedClient}.
+     * {@code client} must exist in the address book.
+     * The person identity of {@code editedClient} must not be the same as another existing cleint in the address book.
+     */
+    void setClient(Client target, Client editedClient);
+
+    /** Returns an unmodifiable view of the filtered client list */
     ObservableList<Client> getFilteredClientList();
 
+    /**
+     * Updates the filter of the filtered client list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
     void updateFilteredClientList(Predicate<Client> predicate);
 }

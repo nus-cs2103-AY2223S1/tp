@@ -14,7 +14,6 @@ import seedu.address.model.client.Birthday;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Income;
 import seedu.address.model.client.RiskAppetite;
-
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -22,7 +21,9 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 
-
+/**
+ * Jackson-friendly version of {@link Client}.
+ */
 public class JsonAdaptedClient {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Client's %s field is missing!";
 
@@ -133,7 +134,8 @@ public class JsonAdaptedClient {
         //TODO: IllegalClientException
 
         if (birthday == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Birthday.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Birthday.class.getSimpleName()));
         }
         final Birthday modelBirthday = new Birthday(birthday);
 
@@ -144,7 +146,8 @@ public class JsonAdaptedClient {
         final Income modelIncome = new Income(income);
 
         if (riskAppetite == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, RiskAppetite.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    RiskAppetite.class.getSimpleName()));
         }
 
         final RiskAppetite modelRiskAppetite = new RiskAppetite(riskAppetite);

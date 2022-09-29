@@ -1,12 +1,21 @@
 package seedu.address.model.client;
 
+/**
+ * Immutable representation of a Client's income
+ */
 public class Income {
 
-    public static String MESSAGE_FORMAT_CONSTRAINTS = "Error: Please enter a double value for income";
+    public static final String MESSAGE_FORMAT_CONSTRAINTS = "Error: Please enter a double value for income";
+    public final String value;
+
     private double income;
 
-    public String value;
 
+    /**
+     * Constructs an {@code Income}.
+     *
+     * @param income A valid email address.
+     */
     public Income(String income) {
         value = income;
         this.income = Double.valueOf(income);
@@ -16,6 +25,11 @@ public class Income {
         return income;
     }
 
+    /**
+     * Checks if income format is valid
+     * @param income
+     * @return
+     */
     public static boolean isValidFormat(String income) {
         try {
             double testIncome = Double.valueOf(income);
@@ -24,7 +38,6 @@ public class Income {
         }
         return true;
     }
-
     @Override
     public boolean equals(Object other) {
         if (other == this) {
