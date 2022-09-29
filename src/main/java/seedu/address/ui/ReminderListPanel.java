@@ -11,7 +11,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of persons to display reminders about the persons.
  */
 public class ReminderListPanel extends UiPart<Region> {
     private static final String FXML = "ReminderListPanel.fxml";
@@ -21,7 +21,7 @@ public class ReminderListPanel extends UiPart<Region> {
     private ListView<Person> reminderListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code ReminderListPanel} with the given {@code ObservableList}.
      */
     public ReminderListPanel(ObservableList<Person> personList) {
         super(FXML);
@@ -30,7 +30,7 @@ public class ReminderListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code ReminderCard}.
      */
     class ReminderListViewCell extends ListCell<Person> {
         @Override

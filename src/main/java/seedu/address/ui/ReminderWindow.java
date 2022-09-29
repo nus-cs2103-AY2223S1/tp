@@ -11,7 +11,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 
 /**
- * Controller for a help page
+ * Controller for Reminder popup Page
  */
 public class ReminderWindow extends UiPart<Stage> {
 
@@ -48,7 +48,7 @@ public class ReminderWindow extends UiPart<Stage> {
     }
 
     /**
-     * Shows the help window.
+     * Shows the reminder window.
      * @throws IllegalStateException
      *     <ul>
      *         <li>
@@ -72,21 +72,21 @@ public class ReminderWindow extends UiPart<Stage> {
     }
 
     /**
-     * Returns true if the help window is currently being shown.
+     * Returns true if the reminder window is currently being shown.
      */
     public boolean isShowing() {
         return getRoot().isShowing();
     }
 
     /**
-     * Hides the help window.
+     * Hides the reminder window.
      */
     public void hide() {
         getRoot().hide();
     }
 
     /**
-     * Focuses on the help window.
+     * Focuses on the reminder window.
      */
     public void focus() {
         getRoot().requestFocus();
