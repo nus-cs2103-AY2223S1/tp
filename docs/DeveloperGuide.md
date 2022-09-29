@@ -333,7 +333,7 @@ and the **Actor** is the `user`, unless specified otherwise)
 
     * 2a1. ArtBuddy shows an error message.
 
-      Use case resumes at step 2.
+      Use case ends.
 
 **Use case: Add a customer**
 
@@ -351,7 +351,7 @@ and the **Actor** is the `user`, unless specified otherwise)
 
     * 2a1. ArtBuddy shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
 **Use case: Open a customer**
 
@@ -373,7 +373,7 @@ and the **Actor** is the `user`, unless specified otherwise)
 
     * 2a1. ArtBuddy shows an error message.
 
-      Use case resumes at step 2.
+      Use case ends.
 
 **Use case: Delete a commission**
 
@@ -395,7 +395,7 @@ and the **Actor** is the `user`, unless specified otherwise)
 
     * 2a1. ArtBuddy shows an error message.
 
-      Use case resumes at step 2.
+      Use case ends.
 
 **Use case: Add a commission**
 
@@ -413,7 +413,7 @@ and the **Actor** is the `user`, unless specified otherwise)
 
     * 2a1. ArtBuddy shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
 
 *{More to be added}*
