@@ -1,5 +1,5 @@
 # User Guide
-Travelr is a desktop app for managing trips and events, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Travelr can get your contact management tasks done faster than traditional GUI apps.
+Travelr is a desktop app for managing trips and events, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Travelr can get your trip management tasks done faster than traditional GUI apps.
 - [Quick start](#quick-start)
 - [Features](#features)
    * [Adding events: `add -e`](#adding-events-add--e)
