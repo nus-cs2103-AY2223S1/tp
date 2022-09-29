@@ -282,6 +282,29 @@ Internship applications can stretch over a long period of time, making it hard t
 
 (For all use cases below, the **System** is the `CinternS` and the **Actor** is the `user`, unless specified otherwise)
 
+**Use case: Add an internship application**
+
+**MSS**
+
+1.  User inputs their application details (i.e. company 
+name, position applied, application platform, application 
+date, document submitted, etc.)
+2.  CinternS adds the application into the database.
+    
+    Use case ends.
+
+**Extensions**
+
+* 1a. CinternS detects the user has entered invalid data format.
+
+  * 1a1. CinternS prompts a warning message and requests the user to reenter.
+  
+  * 1a2. User inputs the application by using the correct format.
+
+    Use case resumes at step 2.
+
+<br>
+
 **Use case:  Delete an internship application**
 
 **MSS**
@@ -304,30 +327,36 @@ Internship applications can stretch over a long period of time, making it hard t
     * 3a1. CinternS shows an error message.
 
       Use case resumes at step 2.
+      
 * 3b. The given index is out of bound.
-    * 3b1. CinternS shows an error message.<br>
+
+    * 3b1. CinternS shows an error message.
+    
       Use case resumes at step 2.
 
 <br>
 
-**Use case: Add an internship application**
+**Use case: List all existing internship applications**
 
-**MSS**
+**MSS** 
 
-1.  User inputs their application details (i.e. company 
-name, position applied, application platform, application 
-date, document submitted, etc.)
-2.  CinternS adds the application into the database.
-    Use case ends.
+1. User enters the command to list all existing internship applications.
+2. CinternS responds with the list of internship applications and their current status.
+   Use case ends.
 
 **Extensions**
+* 1a. The command is invalid or not recognised.
 
-* 1a. CinternS detects the user has entered invalid data format.
-  * 1a1. CinternS prompts a warning message and requests the user to reenter.
-    1a2. User inputs the application by using the correct format.
-    Use case resumes at step2.
+   * 1a1. CinternS shows an error message and prompts user to reenter command
+    
+     Use case resumes at step 1.
 
-*{More to be added}*
+* 2a. The list is empty.
+
+   * 2a1. CinternS shows an error message.
+   
+     Use case ends.
+
 
 ### Non-Functional Requirements
 
