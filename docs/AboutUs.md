@@ -15,7 +15,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/jjtan444)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/jjtan444.md)]
 
 * Role: Developer
 * Responsibilities: Deliverables and deadlines
