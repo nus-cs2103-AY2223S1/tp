@@ -9,7 +9,6 @@ TruthTable is a task-management software specially targeted towards tech-savy un
 teams in software engineering modules to build projects. It helps track the team's progress and delegate tasks
 effectively.
 
-
 Given below are my contributions to the project.
 
 * **New Feature**: To be added soon.
@@ -20,7 +19,6 @@ Given below are my contributions to the project.
 
 * **Project management**:
     * To be added soon.
-
 
 * **Enhancements to existing features**:
     * To be added soon.
