@@ -11,7 +11,8 @@ and it has a GUI created with JavaFX. It is written in Java, and has about 10 kL
 
 Given below are my contributions to the project.
 
-* **Code contributed**: to be added soon
+* **Code contributed**: 
+  * to be added soon
 
 * **Enhancements implemented**:
   * to be added soon
