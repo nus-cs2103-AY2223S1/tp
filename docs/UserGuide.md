@@ -14,9 +14,9 @@ ModQuik is a desktop app for NUS CS Professors, optimised for use via a Command 
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `modquik.jar` from [here](https://github.com/AY2223S1-CS2103T-W17-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your ModQuik.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -24,13 +24,13 @@ ModQuik is a desktop app for NUS CS Professors, optimised for use via a Command 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`list students m/CS2101`** : Lists all students in CS2101 module.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add`**`n/John Doe r/student m/CS2105 p/98765432 e/johnd@example.com` : Adds a student named `John Doe` to CS2103T module.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`delete`**`3` : Deletes the 3rd person shown in the current list.
 
-   * **`clear`** : Deletes all contacts.
+   * **`clear reminders`** : Deletes all reminders.
 
    * **`exit`** : Exits the app.
 
@@ -59,7 +59,7 @@ ModQuik is a desktop app for NUS CS Professors, optimised for use via a Command 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -70,7 +70,7 @@ Adds a module into list of modules.
 
 Format: `add module m/MODULE`
 
-### list module : `list mod`
+### Listing all modules : `list mod`
 
 Shows the list of modules that the user is in charge of.
 
@@ -82,30 +82,32 @@ Deletes a module from the list of modules.
 
 Format: `delete mod m/MODULE`
 
-### Adding a person: `add`
+### Adding a person: `add person`
 
-Adds a person to the address book.
+Adds a person to the specified module.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add m/MODULE r/ROLE n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​`
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
+* The `ROLE` of the person can only be either student or TA.  
+
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add m/CS2103T n/John Doe r/TA p/98765432 e/johnd@example.com`
+* `add m/CS2105 n/Betsy Crowe t/friend e/betsycrowe@example.com p/1234567 t/criminal`
 
-### Listing all persons : `list students`
+### Listing all persons : `list person`
 
-Shows a list of all students in a specified module.
+Shows a list of all persons in a specified module.
 
-Format: `list students m/MODULE`
+Format: `list person m/MODULE [r/ROLE]`
 
-### Editing a person : `edit`
+### Editing a person : `edit person`
 
-Edits an existing person in the address book.
+Edits an existing person in a specified module.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -118,11 +120,11 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find students`
+### Locating persons by name: `find person`
 
-Finds students whose names contain any of the given keywords.
+Finds students or TAs whose names contain any of the given keywords.
 
-Format: `find student KEYWORD [MORE_KEYWORDS]`
+Format: `find KEYWORD [m/MODULE] [r/ROLE] [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -134,33 +136,49 @@ Format: `find student KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a person : `delete person`
 
-Deletes the specified person from the address book.
+Deletes the specified person from the list of people.
 
-Format: `delete INDEX`
+Format: `delete INDEX [m/MODULE] [r/ROLE]`
 
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
+* `list` followed by `delete 2` deletes the 2nd person in the list of people.
+* `list m/CS2103T` followed by `delete 3` deletes the 3rd person in the CS2103T module.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Adding a tutorial : `add tut`
+
+Adds a tutorial to the tutorial database.
+
+Format: `add tutorial m/MODULE t/TIMESLOT v/VENUE n/NAME`
+
+### Deleting a tutorial : `delete tut`
+
+Deletes a specified tutorial from the tutorial database.
+
+Format: `delete tutorial INDEX`
+
+* Deletes the tutorial at the specified `INDEX`.
+* The index refers to the index number shown in the displayed tutorial list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+### Clearing all tutorials : `clear tut`
+
+Clears all tutorials in a specified module.
+
+Format: `clear tut [m/MODULE]`
+
 ### Adding a consultation : `add consult`
 
 Adds a consultation to the consultation database.
 
-Format: `add consult t/TIMESLOT`
-
-### Adding a consultation : `add consult`
-
-Adds a consultation to the consultation database.
-
-Format: `add consult t/TIMESLOT`
+Format: `add consult t/TIMESLOT v/VENUE [n/NAME] [r/DESCRIPTION]`
 
 ### Deleting a consultation : `delete consult`
 
@@ -168,11 +186,21 @@ Deletes a specified consultation from the consultation database.
 
 Format: `delete consult INDEX`
 
+* Deletes the consultation at the specified `INDEX`.
+* The index refers to the index number shown in the displayed consultation list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+### Clearing all consultations : `clear consult`
+
+Clears all consultations.
+
+Format: `clear consult`
+
 ### Adding a reminder : `add remminder`
 
 Adds a reminder to the list of reminders.
 
-Format: `add reminder r/DESCRIPTION`
+Format: `add reminder r/DESCRIPTION [d/DEADLINE]`
 
 ### Deleting a reminder : `delete reminder`
 
@@ -180,11 +208,15 @@ Deletes the specified reminder from the list of reminders.
 
 Format: `delete reminder INDEX`
 
-### Clearing all entries : `clear`
+* Deletes the reminder at the specified `INDEX`.
+* The index refers to the index number shown in the displayed reminder list.
+* The index **must be a positive integer** 1, 2, 3, …​
 
-Clears all entries from the address book.
+### Clearing all entries : `clear reminder`
 
-Format: `clear`
+Clears all reminders.
+
+Format: `clear reminder`
 
 ### Exiting the program : `exit`
 
@@ -194,14 +226,14 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+ModQuik data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+ModQuik data are saved as a JSON file `[JAR file location]/data/modquik.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, ModQuik will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -213,7 +245,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ModQuik home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
