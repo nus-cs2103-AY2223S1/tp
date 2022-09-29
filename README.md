@@ -14,6 +14,9 @@
 * For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
 * This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
 
+##Features
+* Manage your contacts and keep track of the modules they are taking
+
 ### Adding a contact: `addc`
 
 Adds a contact to the contact list.
