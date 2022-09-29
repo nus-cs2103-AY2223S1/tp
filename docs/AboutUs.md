@@ -47,7 +47,7 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Developer
 * Responsibilities: Documentation + Deliverables and deadlines
 
-### Johannes
+### Johannes Davis
 
 <img src="images/jwdavis0200.png" width="200px">
 
