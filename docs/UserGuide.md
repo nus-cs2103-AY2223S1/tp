@@ -33,7 +33,7 @@ NutriGoals is a desktop app that tracks a user’s diet and calorie consumption.
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -65,17 +65,11 @@ Example:
 
 * `edit dinner 2 rice 300` edits the 2nd food item for dinner to rice with 300 calories. 
 
-### Show the daily calorie intake: `review`
+### Showing the daily calorie intake: `review`
 
-Show the total calories consumed and the food consumed for the day.
+Shows the total calories consumed and the list of food items recorded for the day.
 
 Format: `review`
-
-### Listing all food items consumed : `list`
-
-Shows a list of all food items recorded for that day.
-
-Format: `list`
 
 ### Exiting the program : `exit`
 
@@ -91,7 +85,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous NutriGoals home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
