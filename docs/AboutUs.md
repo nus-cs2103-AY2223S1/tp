@@ -31,13 +31,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Marcus Low Hui Yu
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/marcuslowhuiyu.png" width="200px">
 
 [[github](http://github.com/marcuslowhuiyu)]
 [[portfolio](team/marcuslowhuiyu.md)]
 
-* Role: [to be added]
-* Responsibilities: [to be added]
+* Role: Developer
+* Responsibilities: Testing
 
 ### Neo Jia Han
 
