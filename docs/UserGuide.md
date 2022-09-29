@@ -25,7 +25,7 @@ WorkBook (WB) is a **desktop app for CS/tech students who are applying for inter
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`add`**`n/Meta d/2022-09-15 e/hrmonkey@example.com a/John street, block 123, #01-01` : Adds an internship from `Meta` to the WorkBook.
+   * **`add`**`c/Meta d/2022-09-15 e/hrmonkey@example.com a/John street, block 123, #01-01` : Adds an internship from `Meta` to the WorkBook.
 
    * **`delete`**`3` : Deletes the 3rd internship shown in the current list.
 
@@ -44,16 +44,16 @@ WorkBook (WB) is a **desktop app for CS/tech students who are applying for inter
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/COMPANY_NAME`, `COMPANY_NAME` is a parameter which can be used as `add n/Meta`.
+  e.g. in `add c/COMPANY`, `COMPANY` is a parameter which can be used as `add c/Meta`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/COMPANY_NAME [t/TAG]` can be used as `n/Meta t/unattainable` or as `n/Meta`.
+  e.g `c/COMPANY [t/TAG]` can be used as `c/Meta t/unattainable` or as `c/Meta`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/unattainable`, `t/unattainable t/devops` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/unattainable`, `t/unattainable t/AWS` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/COMPANY_NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/COMPANY_NAME` is also acceptable.
+  e.g. if the command specifies `c/COMPANY p/PHONE_NUMBER`, `p/PHONE_NUMBER c/COMPANY` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
@@ -175,9 +175,9 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/COMPANY_NAME d/YYYY-MM-DD e/EMAIL a/ADDRESS_OF_INTERNSHIP [t/TAG]…​` <br> e.g., `add n/Meta d/2022-09-15 e/hrmonkey@example.com a/John street, block 123, #01-01`
+**Add** | `add c/COMPANY d/YYYY-MM-DD e/EMAIL a/ADDRESS_OF_INTERNSHIP [t/TAG]…​` <br> e.g., `add c/Meta d/2022-09-15 e/hrmonkey@example.com a/John street, block 123, #01-01`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/COMPANY_NAME] [d/YYYY-MM-DD] [e/EMAIL] [a/ADDRESS_OF_INTERNSHIP] [t/TAG]…​​`<br> e.g.,`edit 2 n/META e/hrmonkey@example.com`
+**Edit** | `edit INDEX [c/COMPANY] [d/YYYY-MM-DD] [e/EMAIL] [a/ADDRESS_OF_INTERNSHIP] [t/TAG]…​​`<br> e.g.,`edit 2 c/META e/hrmonkey@example.com`
 **Help** | `help`
 **Exit** | `exit`
