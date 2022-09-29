@@ -140,7 +140,20 @@ Format: `mark t/TASK_INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Example:
-* `mark t/2` marks the 2nd task as done in JARVIS.
+* `mark t/2` marks the 2nd task as done.
+
+### Marking a task as not done : `unmark`
+
+Marks a task as not done.
+
+Format: `unmark t/TASK_INDEX`
+
+**Things to Note:**
+* The index refers to the index number shown in the displayed list of tasks.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Example:
+* `unmark t/2` marks the 2nd task as not done.
 
 ### Deleting a student / task : `delete`
 
@@ -209,4 +222,5 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Mark** | `mark t/TASK_INDEX` <br> e.g., `mark t/2`
+**Unmark** | `unmark t/TASK_INDEX` <br> e.g., `unmark t/2`
 **Help** | `help`
