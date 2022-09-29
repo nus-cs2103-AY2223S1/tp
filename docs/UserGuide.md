@@ -146,6 +146,28 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Viewing a commission: `opencom` [coming soon]
+
+Opens a commission and shows its relevant details and image.
+
+Format: `opencom INDEX`
+
+* This index is one-indexed, based on the customer’s commission list.
+
+Example:
+* `opencom 14`
+
+### Deleting a commission: `delcom` [coming soon]
+
+Deletes a commission and images related to the commission.
+
+Format: `delcom INDEX`
+
+* This index is one-indexed, based on the customer’s commission list.
+
+Example:
+* `delcom 14`
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -202,4 +224,6 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
+**Open Commission** | `opencom INDEX`<br> e.g., `opencom 14`
+**Delete Commission** | `delcom INDEX`<br> e.g., `delcom 14`
 **Help** | `help`
