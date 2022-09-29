@@ -57,3 +57,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: UI
+
+### Luo Tian You
+
+<img src="images/LuoTianYou.jpg" width="200px">
+
+[[github](https://github.com/HakkaNgin)]
+
+* Role: Developer
+* Responsibilities: Development
