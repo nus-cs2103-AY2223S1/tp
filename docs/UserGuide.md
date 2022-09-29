@@ -24,13 +24,13 @@ JARVIS is a **desktop app for a CS1101S Teaching Assistant to manage students an
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`list s`** : Lists all students.
 
-   * **`add`**`s/John Tan` : Adds a student named `John Tan` to JARVIS.
+   * **`add s/John Tan`** : Adds a student named `John Tan` to JARVIS.
 
-   * **`delete`**`s/3` : Deletes the 3rd student shown in the student list.
+   * **`delete s/3`** : Deletes the 3rd student shown in the student list.
 
-   * **`clear`** : Deletes all contacts.
+   * **`clear`** : Deletes all students and tasks.
 
    * **`exit`** : Exits the app.
 
@@ -45,19 +45,16 @@ JARVIS is a **desktop app for a CS1101S Teaching Assistant to manage students an
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add s/STUDENT_NAME`, `NAME` is a parameter which can be used as `add s/John Tan`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g `t/TASK_NAME [d/DATE]` can be used as `t/Mark quest 2 d/23-09-2023` or as `t/Mark quest 2`.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `t/TASK_NAME d/DATE`, `d/DATE t/TASK_NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g. if you specify `s/John Tan s/Sally Yeoh`, only `s/Sally Yeoh` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -139,8 +136,8 @@ Marks a task as done.
 Format: `mark t/TASK_INDEX`
 
 **Things to Note:**
-* The index refers to the index number shown in the displayed list of tasks.
-* The index **must be a positive integer** 1, 2, 3, …​
+* `TASK_INDEX` refers to the index number shown in the displayed list of tasks.
+* `TASK_INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Example:
 * `mark t/2` marks the 2nd task as done.
@@ -152,13 +149,13 @@ Marks a task as not done.
 Format: `unmark t/TASK_INDEX`
 
 **Things to Note:**
-* The index refers to the index number shown in the displayed list of tasks.
-* The index **must be a positive integer** 1, 2, 3, …​
+* `TASK_INDEX` refers to the index number shown in the displayed list of tasks.
+* `TASK_INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Example:
 * `unmark t/2` marks the 2nd task as not done.
 
-### Deleting a student / task : `delete`
+### Deleting a student/task : `delete`
 
 Deletes the specified student or task from their respective lists.
 
@@ -168,12 +165,12 @@ Deletes the specified student or task from their respective lists.
   - Format: `delete t/TASK_INDEX`
 
 **Things to Note:**
-* The index refers to the index number shown in the displayed list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* `STUDENT_INDEX` and `TASK_INDEX` refer to the index number shown in the respective displayed list.
+* `STUDENT_INDEX` and `TASK_INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list s` followed by `delete s/2` deletes the 2nd student in JARVIS.
-* `list t` followed by `delete t/1` deletes the 1st task in JARVIS.
+* `delete s/2` deletes the 2nd student in JARVIS.
+* `delete t/1` deletes the 1st task in JARVIS.
 
 ### Recording a student's mastery check result: `mc`
 
@@ -239,7 +236,8 @@ Action | Format, Examples
 **Delete** | `delete s/STUDENT_INDEX` or `delete t/TASK_INDEX` <br> e.g., `delete s/3` or `delete t/2`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
+**List** | `list s` or `list t`
 **Mark** | `mark t/TASK_INDEX` <br> e.g., `mark t/2`
 **Unmark** | `unmark t/TASK_INDEX` <br> e.g., `unmark t/2`
+**Mastery Check**| `mc MC_NUM s/STUDENT_INDEX r/RESULT` <br> e.g., `mc 1 s/1 r/PASS`
 **Help** | `help`
