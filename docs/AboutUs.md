@@ -5,29 +5,31 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `cobb[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Qi Zhi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/riccqi.png" width="200px">
+
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/jchilling.md)]
 
-* Role: Project Advisor
+[[github](https://github.com/riccqi)]
+[[portfolio](team/riccqi.md)]
 
-### Jane Doe
+* Role: Integration
 
-<img src="images/johndoe.png" width="200px">
+### Chrysline Lim
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/jchilling.md)]
+<img src="images/chryslinelim.png" width="200px">
 
-* Role: Team Lead
-* Responsibilities: UI
+[[github](http://github.com/chryslinelim)]
+[[portfolio](team/chryslinelim.md)]
+
+* Role: Developer
+* Responsibilities: Documentation
 
 ### Chen Hung-Yu
 
