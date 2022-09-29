@@ -257,7 +257,9 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* need to store all the past activities that are done
+* keep track of ongoing and future activities
+* organize all the activities for better look up
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
