@@ -14,45 +14,47 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/guokweijie.png" width="200px">
 
 [[github](https://github.com/guokweijie)]
+
 [[portfolio](team/guokweijie.md)]
 
 * Role: Team Lead
+
+### Wadia Ganim
+
+<img src="images/wadia82.png" width="200px">
+
+[[github](http://github.com/wadia82)]
+
+[[portfolio](team/wadia82.md)]
+
+* Role: Scheduling and Tracking
 
 ### Fu Zanwen
 
 <img src="images/fuzanwenn.png" width="200px">
 
-[[github](http://github.com/fuzanwenn)]
+[[github](http://github.com/Fuzanwenn)]
+
+[[portfolio](team/fuzanwenn.md)]
 
 * Role: Documentation
-* Responsibilities: the quality of various project documents
-
-### Li Tianze
-
-<img src="images/tzl0.png" width="200px">
-
-[[github](http://github.com/tzl0)]
-[[portfolio](team/tzl0.md)]
-
-* Role: Developer
-* Responsibilities: Data
 
 ### Gregory Wong Twee Loong
 
 <img src="images/specops2016.png" width="200px">
 
-[[github](http://github.com/specops2016)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/SpecOps2016)]
+
+[[portfolio](team/specops2016.md)]
 
 * Role: Testing
-* Responsibilities: Testing + Project Development
 
-### James Doe
+### Li Tianze
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tzl0.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/TZL0)]
 
-* Role: Developer
-* Responsibilities: UI
+[[portfolio](team/tzl0.md)]
+
+* Role: Integration

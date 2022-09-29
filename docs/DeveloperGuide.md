@@ -253,7 +253,10 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ## **Appendix: Requirements**
 
-### Product scope
+**Product scope**
+* Only provides necessary information that we want to retrieve for patients, except sensitive medical information 
+like health problems
+* Does not execute any of the real-world tasks except to remind the admin staff
 
 **Target user profile**:
 
@@ -270,6 +273,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
+
 | Priority | As a …​                                    | I want to …​         | So that I can…​                                                        |
 |----------|--------------------------------------------| ------------------- | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions | refer to instructions when I forget how to use the App                 |
@@ -279,6 +283,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | find a person by name | locate details of persons without having to go through the entire list |
 | `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
 | `*`      | user with many persons in the address book | sort persons by name| locate a person easily                                                 |
+=======
 
 *{More to be added}*
 
@@ -338,13 +343,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. Should come with automated unit tests and open source code.
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Doctor**: A person who uses the app
+* **Patient**: A customer who goes to see a doctor
 
 --------------------------------------------------------------------------------------------------------------------
 
