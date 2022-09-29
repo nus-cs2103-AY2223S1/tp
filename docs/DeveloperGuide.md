@@ -270,16 +270,40 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a …​                                                 | I want to …​                                                              | So that I can…​                                               |
+|----------|---------------------------------------------------------|---------------------------------------------------------------------------|---------------------------------------------------------------|
+| `* * *`  | artist                                                  | exit from the program                                                     |                                                               |
+| `* * *`  | artist                                                  | get a list of all my commissions of one specific customer                 |                                                               |
+| `* * *`  | new user                                                | get help                                                                  | know how to use the product                                   |
+| `* * *`  | artist eager to improve his craft                       | review past feedback given by customers                                   | better the quality of my subsequent works                     |
+| `* * *`  | artist                                                  | delete commissions                                                        |                                                               |
+| `* * *`  | artist                                                  | view uploaded images of my previous commissions                           |                                                               |
+| `* * *`  | artist                                                  | upload images of art                                                      |                                                               |
+| `* * *`  | artist                                                  | create a customer entry                                                   |                                                               |
+| `* * *`  | artist with loyal customers                             | see customer's repeated payment / commissions                             | start a loyalty program to encourage their purchases          |
+| `* *`    | artist                                                  | prioritize my commissions                                                 | keep track of the most urgent commissions                     |
+| `* *`    | artist                                                  | categorize the artstyle of my commissions                                 |                                                               |
+| `* *`    | artist                                                  | sort my commissions by due date                                           | easily access all commissions with pressing due dates         |
+| `* *`    | artist                                                  | search for commissions by date                                            |                                                               |
+| `* *`    | artist                                                  | search for commissions by type                                            |                                                               |
+| `* *`    | artist                                                  | search for commissions by name                                            |                                                               |
+| `* *`    | artist who can offer multiple kinds of commissions      | categorize the commissions                                                | better analyse the commissions.                               |
+| `* *`    | artist who has similar customers                        | categorize them into groups                                               | systematically review their feedback and apply the takeaways. |
+| `* *`    | artist who works traditionally                          | retain iterations of my work from the sketch phase to the final rendering |                                                               |
+| `* *`    | artist who creates non-commissioned works               | determine potential customers who might be interested to purchase them    |                                                               |
+| `* *`    | busy artist with several commissions ongoing            | track the deadlines of each commission                                    | ensure my work is delivered on time                           |
+| `* *`    | busy artist with several commissions ongoing            | track my progress in each of them                                         |                                                               |
+| `* *`    | artist keen to make my hobby a side hustle              | determine the type of commissions that have proven lucrative              | focus my efforts into these genres                            |
+| `* *`    | artist                                                  | update images of art                                                      | re-upload the image if I uploaded the wrong file              |
+| `* *`    | artist                                                  | calculate my monthly income                                               |                                                               |
+| `*`      | artist who may receive multiples of the same commission | duplicate my commissions                                                  | not have to manually enter the same information every time    |
+| `*`      | long-time user                                          | hide/archive old commissions                                              | not be distracted by too much information                     |
+| `*`      | artist                                                  | store image references used when drawing the commission                   |                                                               |
+| `*`      | artist                                                  | clear all existing commissions                                            |                                                               |
+| `*`      | artist                                                  | search for commissions by customers                                       |                                                               |
+| `*`      | artist                                                  | search for commissions by multiple types(intersect)                       |                                                               |
+| `*`      | artist                                                  | search for commissions by multiple types(union)                           |                                                               |
+| `*`      | artist who works on multiple devices                    | transfer my application data from one device to the other                 |                                                               |
 
 ### Use cases
 
