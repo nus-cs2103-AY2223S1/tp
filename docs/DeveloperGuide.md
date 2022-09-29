@@ -320,10 +320,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list all students or find a student
+2.  Class-ify shows a list of student(s)
+3.  User requests to delete a specific student in the list
+4.  Class-ify deletes the student
 
     Use case ends.
 
@@ -335,7 +335,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Class-ify shows an error message.
 
       Use case resumes at step 2.
 
@@ -392,14 +392,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Student**: a person studying in a secondary school. A student typically takes up to 8 subjects and thus, may be taught by up to 8 teachers.
+* **Teacher**: a person teaching a subject in a secondary school. A teacher usually teaches 3 to 5 classes. Each class has roughly 20 students.
 * **CLI**: Command Line Interface (CLI) is a text-based User Interface (UI) used to run programs.
 Through the CLI, users interact with the application by typing in text commands
-* **Use case**: A description of a set of sequences of actions, including variants, 
-that a system performs to yield an observable result of value to an actor
 * **MSS**: Main Success Scenario (MSS) describes the most straightforward interaction for a given use case, 
 which assumes that nothing goes wrong
-* **Non-Functional Requirements**: The constraints under which the system is developed and operated
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
