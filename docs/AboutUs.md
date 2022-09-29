@@ -33,14 +33,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 
-### Johnny Doe
+### Gui Ling Ling
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ling-ui.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[github](http://github.com/ling-ui)
+
+[portfolio](team/ling-ui.md)
 
 * Role: Developer
-* Responsibilities: Data
 
 ### Jean Doe
 
