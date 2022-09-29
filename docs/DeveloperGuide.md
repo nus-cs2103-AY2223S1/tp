@@ -257,59 +257,36 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of module tasks
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage module tasks faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- |--------------------------------------------| ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | NUS student                                | view the list of tasks I need to complete        | start implementing those tasks.               |
-| `* * *`  | NUS student                                | create the tasks in the tasklist               | add the list of tasks that need to be completed                                                                       |
-| `* * *`  | NUS student                                | mark a task as complete        | have a better idea of what I have completed.                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​     | I want to …​                               | So that I can…​                                    |
+|----------|-------------|--------------------------------------------|----------------------------------------------------|
+| `* * *`  | NUS student | view the list of tasks I need to complete  | start implementing those tasks.                    |
+| `* * *`  | NUS student | create the tasks in the tasklist           | add the list of tasks that need to be completed    |
+| `* * *`  | NUS student | mark a task as complete                    | have a better idea of what I have completed.       |
+| `* *`    | NUS student | tag the tasks in my tasklist with a number | order the task that I would like to complete first |
+
 
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `MODPRO` and the **Actor** is the `NUS student`, unless specified otherwise)
 
-**Use case: Delete a person**
 
-**MSS**
-
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
-
-      Use case resumes at step 2.
-
-**Use case: List tasks in task list**
+**Use case: Add a task into task list**
 
 **MSS**
 
@@ -350,9 +327,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+**Use Case: Tag the order to complete task**
 
-*{More to be added}*
+**MSS**
+1. NUS student requests to tag the order of task in task list
+2. MODPRO adds the tag to the task in the task list 
 
+    Use case ends.
+
+**Extensions**
+* 1a. The given index for the task to tag is invalid
+  * 1a1. MODPRO shows an error message </br>
+  Use case ends.
 
 *{More to be added}*
 
@@ -367,8 +353,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
