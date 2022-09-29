@@ -391,14 +391,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Student**: a person studying in a secondary school. A student typically takes up to 8 subjects and thus, may be taught by up to 8 teachers.
+* **Teacher**: a person teaching a subject in a secondary school. A teacher usually teaches 3 to 5 classes. Each class has roughly 20 students.
 * **CLI**: Command Line Interface (CLI) is a text-based User Interface (UI) used to run programs.
 Through the CLI, users interact with the application by typing in text commands
-* **Use case**: A description of a set of sequences of actions, including variants, 
-that a system performs to yield an observable result of value to an actor
 * **MSS**: Main Success Scenario (MSS) describes the most straightforward interaction for a given use case, 
 which assumes that nothing goes wrong
-* **Non-Functional Requirements**: The constraints under which the system is developed and operated
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
