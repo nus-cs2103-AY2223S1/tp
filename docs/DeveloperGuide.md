@@ -402,6 +402,9 @@ _{More to be added}_
 
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
 - **Private contact detail**: A contact detail that is not meant to be shared with others
+- **Entries**: Profile of a person which contains all the necessary details about the person
+
+_{More to be added}_
 
 ---
 
