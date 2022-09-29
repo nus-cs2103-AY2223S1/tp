@@ -270,14 +270,38 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                | I can …​                                                                                                                                | So that I can…​                                                       |
+|----------|----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------|
+| `* * *`  | responsible SOC professor              | clear/mark done a project                                                                                                               | student can graduate with a Honoured degree.                          |
+| `* * *`  | first time user                        | view a list of commands that I can try as well as the details of each command                                                           | I can quickly start to manage my students’ FYPs using this system/app |
+| `* * *`  | critical SoC professor                 | search the projects using some keywords                                                                                                 | track the progress of projects has been of interest to me             |
+| `* * *`  | organised SoC professor                | remove Students if they dropped a FYP that was under me                                                                                 | keep the database neat and organised                                  |
+| `* * *`  | organised SoC professor                | remove Students if they completed a FYP that was under me, and move to a “completed” database table                                     | keep the database neat and organised [coming soon]                    |
+| `* * *`  | organised SoC professor                | add Students if they are taking FYP under me                                                                                            | keep track of those FYP projects under me easily [coming soon]        |
+| `* * *`  | student with many email accounts       | update my e-mail address when I change on the app                                                                                       | my professors can contact me when they need to                        |
+| `* * *`  | SOC professor                          | view the list of all students taking their FYP under me                                                                                 | get to know with my own students more                                 |
+| `* *`    | responsible student                    | check my upcoming deadlines with an option to see yet-to-submit deliverables                                                            | will not miss any submission deadlines by accident                    |
+| `* *`    | SoC professor                          | view the progress updates that my students upload                                                                                       | deliberate about what the next course of action should be             |
+| `* *`    | eager to learn student                 | receive feedback (read comments and suggestions) from my professor                                                                      | I can set a direction to make progress for my FYP                     |
+| `* *`    | responsible student                    | update my FYP progress through the app                                                                                                  | professor can be informed on my progress                              |
+| `* *`    | critical student                       | provide feedbacks on my FYP guidance and evaluation                                                                                     | so that I can help the FYP management team to further improve         |
+| `* *`    | helpful SoC professor                  | put tags on my student's FYP project so that I can let him/her know whether they are “Ahead of time”, “Up to task” or “Behind schedule” | they can be informed of their progress relative to the timeline       |
+| `* *`    | non-confrontational (i.e. shy) student | push certain tags (e.g. “Assistance required!”, “Unable to complete :(”) to the application                                             | gather my professor’s attention without direct confrontation          |
+| `*`      | fun-seeking professor/FYP student      | end “stickers” (similar to Telegram stickers) or emoji so that the app                                                                  | is more appealing to use                                              |
+| `*`      | FYP student                            | update my availability slots on the app                                                                                                 | my professor knows when I will be available to meet                   |
+| `*`      | well-versed SoC professor              | sort my student’s FYP based on what specialisation they are taking                                                                      | I can better organise the FYPs                                        |
+| `*`      | very metalicious SoC professor         | see student's FYP sorted by research area first, followed by alphabetical order                                                         | I can gain quick easy access to the details required                  |
+| `*`      |                                        |                                                                                                                                         |                                                                       |
+
+
+
+
+
+
+| `*`      | user with many persons in the address book | sort persons by name                                                                                | locate a person easily                                                 |
+| `* * *`  | user                                       | find a person by name                                                                               | locate details of persons without having to go through the entire list |
+| `* *`    | user                                       | hide private contact details                                                                        | minimize chance of someone else seeing them by accident                |
+| `*`      | user with many persons in the address book | sort persons by name                                                                                | locate a person easily                                                 |
 
 *{More to be added}*
 
