@@ -18,15 +18,15 @@ You can reach us at the email `cobb[at]comp.nus.edu.sg`
 
 * Role: Integration
 
-### Jane Doe
+### Chrysline Lim
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chryslinelim.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/chryslinelim)]
+[[portfolio](team/chryslinelim.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Documentation
 
 ### Johnny Doe
 
