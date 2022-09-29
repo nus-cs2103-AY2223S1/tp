@@ -21,10 +21,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Guo Qi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/nusdg.png" width="200px">
 
 [[github](http://github.com/NUSDG)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/nusdg.md)]
 
 * Role: Developer
 * Responsibilities: Testing
@@ -40,7 +40,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Keith Png
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/keithpjx.png" width="200px">
 
 [[github](http://github.com/KeithPJX)]
 [[portfolio](team/johndoe.md)]
