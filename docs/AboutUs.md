@@ -31,7 +31,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Gregg Chan
 
-<img src="images/Hoodineee.png" width="200px">
+<img src="images/hoodineee.png" width="200px">
 
 [[github](http://github.com/Hoodineee)]
 [[portfolio](team/johndoe.md)]
