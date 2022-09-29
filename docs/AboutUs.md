@@ -60,3 +60,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Deliverable and deadlines
+
+### Samuel Pang
+
+<img src="images/sampy147.png" width="200px">
+
+[[github](http://github.com/Sampy147)]
+
+* Role: Developer
+* Responsibilities: Documentation and Code quality
