@@ -269,7 +269,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Value proposition**:
 
-* manage clients' contacts faster than a typical mouse/GUI driven app
+* manage clients' information faster than a typical mouse/GUI driven app
 * view scheduled meetings with client's details in one glance
 * less effort to recall client's information, more effort to satisfy client's needs
 
