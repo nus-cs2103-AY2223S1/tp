@@ -334,6 +334,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
+**Use case: Open a commission**
+
+**MSS**
+1. User enters a command to open a specific commission.
+2. AB shows the commission’s details.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. AB detects an invalid command format.
+  * 1a1. AB displays an error message informing User of the command format.
+
+    Use case ends.
+
+* 1b. AB detects the selected commission does not exist.
+  * 1b1. AB displays an error message.
+
+    Use case ends.
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
