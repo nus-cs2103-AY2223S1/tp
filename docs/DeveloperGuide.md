@@ -317,8 +317,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Exercise**: Activity requiring physical effort, carried out to sustain or improve health and fitness
+* **Reps**: Number of times you perform a specific exercise
+* **Sets**: Number of cycles of reps that you complete
+* **Weight**: Total weight (include barbell if applicable exclude body weight)
 
 --------------------------------------------------------------------------------------------------------------------
 
