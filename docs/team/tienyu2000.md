@@ -1,4 +1,7 @@
-# Tien's Project Portfolio Page
+---
+layout: page
+title: Tien's Project Portfolio Page
+---
 
 ## Project: Workbook
 
