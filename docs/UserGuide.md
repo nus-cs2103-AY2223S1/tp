@@ -30,8 +30,8 @@ _To be updated ..._
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+* Items with `…` after them can be used multiple times including zero times.<br>
+  e.g. `[t/TAG]…` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -57,7 +57,7 @@ Format: `help`
 
 Adds a patient to the patient list.
 
-Format: `addPatient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/TASK_DESCRIPTION…​`
+Format: `addPatient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/TASK_DESCRIPTION…`
 
 Examples:
 * `addPatient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Administer 3ml of example medicine`
@@ -77,7 +77,7 @@ Format: `editPatient INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]`
 
 * Edits the patient at the specified `INDEX`.
 * The index refers to the index number shown in the displayed patient list.
-* The index ***must be a positive integer*** 1, 2, 3, …​
+* The index ***must be a positive integer*** 1, 2, 3, …
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the patient will be removed i.e adding of tags is not cumulative.
@@ -119,7 +119,7 @@ Format: `deletePatient INDEX`
 
 * Deletes the patient at the specified `INDEX`.
 * The index refers to the index number shown in the displayed patient list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd patient in the patient book.
@@ -199,7 +199,7 @@ Format: `deleteTask PATIENT_INDEX TASK_INDEX`
 * Deletes the task at the specified `TASK_INDEX` of the patient at the specified `PATIENT_INDEX`.
 * The task index refers to the index number shown in the task list of a patient.
 * The patient index refers to the index number shown in the displayed patient list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
 * `list` followed by `deleteTask 2 3` deletes the 3rd task of the 2nd person in the patient list.
