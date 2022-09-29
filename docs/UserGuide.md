@@ -10,7 +10,7 @@ TABS helps project team leaders **overview tasks assigned to group members**. It
   - Locating persons by name: finduser
   - Deleting a person : deleteuser
   - Adding a group: addgroup
-  - Add member to  group: addmember
+  - Add member to group: addmember
   - Assign member a task: assigntask
   - Locate group by name: display
   - Delete a group: deletegroup
