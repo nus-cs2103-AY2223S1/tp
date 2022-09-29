@@ -16,11 +16,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/laxus2308)]
 [[portfolio](team/laxus2308.md)]
 
-* Role: Team Lead, Scheduling and Tracking
+* Role: Developer
 * Responsibilities: 
-  - Overall project coordination
-  - Define, assign and track project tasks
-  - Logic Component
+  * Team Lead, overall project coordination
+  * Define, assign and track project tasks
+  * Logic Component
 
 ### Yong Chang Sheng
 
