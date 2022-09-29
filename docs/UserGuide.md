@@ -32,15 +32,15 @@ Something goes here...
 
 # Tables of Contents
 
-1. [Quick Start](#quickStart)
+1. [Quick Start](#quick-start)
 2. [Features](#features)
-3. [Information Stored](#info)
+3. [Information Stored](#information-stored)
 
-   3.1 [Item](#infoItem)
+   3.1 [Item](#info-Item)
 
    3.2 [Tag](#infoTag)
 
-4. [Commands](#command)
+4. [Commands](#commands)
 
    4.1 [Items](#item)
 
@@ -81,32 +81,32 @@ Something goes here...
    4.6 [Help](#help)
 
    4.7 [Exit the programme](#exit)
-5. [Command Summary](#commandSummary)
-6. [Troubleshooting](#troubleshoot)
+5. [Command Summary](#command-summary)
+6. [Troubleshooting](#troubleshooting)
 7. [FAQ](#faq)
-8. [Future Extensions](#futureExtensions)
-9. [Thank you](#thankyou)
+8. [Future Extensions](#future-extensions)
+9. [Acknowledgements](#acknowledgements)
 10. [Glossary](#glossary)
 
-## <a id="quickStart"></a> Quick Start
+## Quick Start
 
 Something goes here...
 
-## <a id="features"></a> Features
+## Features
 
 Something goes here...
 
-## <a id="info"></a> Information Stored
+## Information Stored
 
-### <a id="infoItem"></a> Item
+### Item
 
-### <a id="infoTag"></a> Tag
+### Tag
 
-## <a id="command"></a> Commands
+## Commands
 
 INDIVIDUAL COMMANDS GO HERE
 
-## <a id="commandSummary"></a> Command Summary
+## Command Summary
 
 <table>
 <thead>
@@ -201,15 +201,15 @@ INDIVIDUAL COMMANDS GO HERE
 </tbody>
 </table>
 
-## <a id="troubleshoot"></a> Troubleshooting
+## Troubleshooting
 
 Something goes here...
 
-## <a id="faq"></a> FAQ
+## FAQ
 
 Something goes here...
 
-## <a id="futureExtensions"></a> Future Extensions
+## Future Extensions
 
 (NOT COMPLETED)
 
@@ -227,7 +227,7 @@ Something goes here...
 4. (Last priority) Order management a. Grouping of items b. Creation of menu with specific items c. Record menu items
    bought d. Statistics
 
-## Thank you!
+## Acknowledgements
 
 Something goes here...
 
