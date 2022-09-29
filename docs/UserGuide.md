@@ -119,23 +119,18 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Listing a single student: `view`
 
-Finds persons whose names contain any of the given keywords.
+Shows the full record of a student, including all stored details, using the given student's name or student's id.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `view n/[name]` or `view id/[id]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Only the name or the id is searched, depending on the given input.
+* Only full names / full ids will be matched e.g. `Han` will not match `Hans`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `view n/John` returns the record for the student named `john`
 
 ### Deleting individual student record : `delete`
 
