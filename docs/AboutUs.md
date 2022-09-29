@@ -21,7 +21,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Denzel Tan
 
-<img src="images/denzel.png" width="200px">
+<img src="images/danzzzerl.png" width="200px">
 
 [[github](http://github.com/danzzzerl)]
 [[portfolio](team/danzzzerl.md)]
