@@ -43,8 +43,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/danielk0k.png" width="200px">
 
-[[github](http://github.com/danielk0k)]
-[[portfolio](team/danielkok.md)]
+[[github](https://github.com/danielk0k)]
+[[portfolio](team/danielk0k.md)]
 
 * Role: Developer
 * Responsibilities: Integration
