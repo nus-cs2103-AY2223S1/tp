@@ -302,7 +302,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User enters add project command with project details using prefixes.
+1. User request to add project.
 2. HR Pro Max++ records the project details and display added project.
 
    Use case ends.
@@ -366,7 +366,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User add a project(UC01).
-2. User writes command to edit project details with new arguments.
+2. User request to edit project in Project list with new arguments 
 3. HR Pro Max++ records the change in local storage and display project
 with updated details.
 
@@ -378,8 +378,7 @@ with updated details.
     * 3a1. HR Pro Max++ shows error
 
       Use case resume at step 2.
-
-
+    
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
