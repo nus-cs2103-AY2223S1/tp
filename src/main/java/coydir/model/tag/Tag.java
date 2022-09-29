@@ -1,7 +1,7 @@
 package coydir.model.tag;
 
-import static java.util.Objects.requireNonNull;
 import static coydir.commons.util.AppUtil.checkArgument;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a Tag in the address book.

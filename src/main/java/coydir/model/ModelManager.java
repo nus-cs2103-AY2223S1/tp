@@ -1,17 +1,17 @@
 package coydir.model;
 
-import static java.util.Objects.requireNonNull;
 import static coydir.commons.util.CollectionUtil.requireAllNonNull;
+import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import coydir.commons.core.GuiSettings;
 import coydir.commons.core.LogsCenter;
 import coydir.model.person.Person;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 
 /**
  * Represents the in-memory model of the address book data.

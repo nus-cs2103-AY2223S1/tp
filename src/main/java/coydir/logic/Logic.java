@@ -2,13 +2,13 @@ package coydir.logic;
 
 import java.nio.file.Path;
 
-import javafx.collections.ObservableList;
 import coydir.commons.core.GuiSettings;
 import coydir.logic.commands.CommandResult;
 import coydir.logic.commands.exceptions.CommandException;
 import coydir.logic.parser.exceptions.ParseException;
 import coydir.model.ReadOnlyAddressBook;
 import coydir.model.person.Person;
+import javafx.collections.ObservableList;
 
 /**
  * API of the Logic component

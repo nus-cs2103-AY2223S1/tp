@@ -2,6 +2,12 @@ package coydir.ui;
 
 import java.util.logging.Logger;
 
+import coydir.commons.core.GuiSettings;
+import coydir.commons.core.LogsCenter;
+import coydir.logic.Logic;
+import coydir.logic.commands.CommandResult;
+import coydir.logic.commands.exceptions.CommandException;
+import coydir.logic.parser.exceptions.ParseException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -10,12 +16,6 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import coydir.commons.core.GuiSettings;
-import coydir.commons.core.LogsCenter;
-import coydir.logic.Logic;
-import coydir.logic.commands.CommandResult;
-import coydir.logic.commands.exceptions.CommandException;
-import coydir.logic.parser.exceptions.ParseException;
 
 /**
  * The Main Window. Provides the basic application layout containing

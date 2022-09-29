@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
-import javafx.collections.ObservableList;
 import coydir.commons.core.GuiSettings;
 import coydir.commons.core.LogsCenter;
 import coydir.logic.commands.Command;
@@ -16,6 +15,7 @@ import coydir.model.Model;
 import coydir.model.ReadOnlyAddressBook;
 import coydir.model.person.Person;
 import coydir.storage.Storage;
+import javafx.collections.ObservableList;
 
 /**
  * The main LogicManager of the app.

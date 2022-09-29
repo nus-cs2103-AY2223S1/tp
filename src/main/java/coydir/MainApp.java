@@ -5,8 +5,6 @@ import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
 
-import javafx.application.Application;
-import javafx.stage.Stage;
 import coydir.commons.core.Config;
 import coydir.commons.core.LogsCenter;
 import coydir.commons.core.Version;
@@ -30,6 +28,8 @@ import coydir.storage.StorageManager;
 import coydir.storage.UserPrefsStorage;
 import coydir.ui.Ui;
 import coydir.ui.UiManager;
+import javafx.application.Application;
+import javafx.stage.Stage;
 
 /**
  * Runs the application.

@@ -1,7 +1,7 @@
 package coydir.model;
 
-import javafx.collections.ObservableList;
 import coydir.model.person.Person;
+import javafx.collections.ObservableList;
 
 /**
  * Unmodifiable view of an address book

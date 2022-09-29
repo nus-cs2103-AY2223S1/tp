@@ -1,11 +1,11 @@
 package coydir.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static coydir.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static coydir.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static coydir.logic.parser.CliSyntax.PREFIX_NAME;
 import static coydir.logic.parser.CliSyntax.PREFIX_PHONE;
 import static coydir.logic.parser.CliSyntax.PREFIX_TAG;
+import static java.util.Objects.requireNonNull;
 
 import coydir.logic.commands.exceptions.CommandException;
 import coydir.model.Model;

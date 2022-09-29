@@ -1,12 +1,12 @@
 package coydir.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static coydir.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static coydir.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static coydir.logic.parser.CliSyntax.PREFIX_NAME;
 import static coydir.logic.parser.CliSyntax.PREFIX_PHONE;
 import static coydir.logic.parser.CliSyntax.PREFIX_TAG;
 import static coydir.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static java.util.Objects.requireNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;

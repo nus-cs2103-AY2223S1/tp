@@ -1,7 +1,7 @@
 package coydir.commons.util;
 
-import static java.util.Objects.requireNonNull;
 import static coydir.commons.util.AppUtil.checkArgument;
+import static java.util.Objects.requireNonNull;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
