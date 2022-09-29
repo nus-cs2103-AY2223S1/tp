@@ -18,7 +18,10 @@ Project team leaders can:
 
 ## User stories
 
-####Priorities: High (must have) - ``* * *``, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+#### Priorities: 
+- High (must have) - ``* * *``
+- Medium (nice to have) - `* *`
+- Low (unlikely to have) - `*`
 
 | Priority  | As a ...          | I want to ...                                                                  | So that I can ...                                                                      |
 |:----------|:------------------|:-------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------|
@@ -62,7 +65,8 @@ For all use cases below, the **System** is TABS and the **Actor** is the user, u
 1. User indicates they want help.
 2. TABS Displays UG link.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
+&nbsp;&nbsp;
+Use case ends.
 
 ### UC2: Add a person
 
@@ -71,15 +75,19 @@ For all use cases below, the **System** is TABS and the **Actor** is the user, u
 1. User requests add a person.
 2. TABS display that person is successfully added.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
+&nbsp;&nbsp;
+Use case ends.
 
 **Extensions:**
 
+&nbsp;&nbsp; 
 1a. The contact already exists in TABS.
 
-&nbsp;&nbsp;&nbsp;&nbsp;1.a.1 TABS displays that the person already exists in the program.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1a1. TABS displays that the person already exists in the program.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
+&nbsp;&nbsp;
+Use case ends.
 
 ### UC3: Edit a person’s details
 
@@ -88,15 +96,19 @@ For all use cases below, the **System** is TABS and the **Actor** is the user, u
 1. User requests to edit an existing contact.
 2. TABS displays the modified contact.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
+&nbsp;&nbsp;
+Use case ends.
 
 **Extensions:**
 
+&nbsp;&nbsp;
 1a. The contact specified is not found in TABS.
 
-&nbsp;&nbsp;&nbsp;&nbsp;1a1. TABS terminates the operation by the user and displays error messages.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1a1. TABS terminates the operation by the user and displays error messages.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
+&nbsp;&nbsp;
+Use case ends.
 
 ### UC4: Find a person
 
@@ -105,12 +117,15 @@ For all use cases below, the **System** is TABS and the **Actor** is the user, u
 1. User requests to find an existing contact.
 2. TABS displays the contacts found.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
+&nbsp;&nbsp;
+Use case ends.
 
 **Extensions**
 
+&nbsp;&nbsp;
 2a. The list is empty.
 
+&nbsp;&nbsp;
 Use case ends.
 
 ### UC5: Delete a person
@@ -120,15 +135,19 @@ Use case ends.
 1. User requests to delete an existing contact.
 2. TABS displays that the contact is successfully deleted.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
+&nbsp;&nbsp;
+Use case ends.
 
 **Extensions:**
 
+&nbsp;&nbsp;
 1a. The contact specified is not found in TABS.
 
-&nbsp;&nbsp;&nbsp;&nbsp;1a1. TABS terminates the operation by the user and indicates error messages.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1a1. TABS terminates the operation by the user and indicates error messages.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
+&nbsp;&nbsp;
+Use case ends.
 
 ### UC6: Add a group
 
@@ -137,15 +156,19 @@ Use case ends.
 1. User requests add a group.
 2. TABS displays the added group.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
+&nbsp;&nbsp;
+Use case ends.
 
 **Extensions:**
 
+&nbsp;&nbsp;
 1a. The group already exists in TABS.
 
-&nbsp;&nbsp;&nbsp;&nbsp;1a1. TABS displays that the group already exists inside TABS.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+1a1. TABS displays that the group already exists inside TABS.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
+&nbsp;&nbsp;
+Use case ends.
 
 ### UC7: Display a group
 
@@ -154,15 +177,19 @@ Use case ends.
 1. User requests to display an existing group.
 2. TABS displays the group with its members.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
+&nbsp;&nbsp;
+Use case ends.
 
 **Extensions:**
 
+&nbsp;&nbsp;
 1a. The group specified is not found in TABS.
 
-&nbsp;&nbsp;&nbsp;&nbsp;1a1. TABS terminates the operation by the user and displays error messages.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1a1. TABS terminates the operation by the user and displays error messages.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
+&nbsp;&nbsp;
+Use case ends.
 
 ### UC8: Find a group
 
@@ -171,12 +198,15 @@ Use case ends.
 1. User requests to find an existing group.
 2. TABS displays the groups found.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
+&nbsp;&nbsp;
+Use case ends.
 
 **Extensions:**
 
+&nbsp;&nbsp;
 2a. The list is empty.
 
+&nbsp;&nbsp;
 Use case ends.
 
 ### UC9: Delete a group
@@ -186,15 +216,19 @@ Use case ends.
 1. User requests to delete an existing group.
 2. TABS displays that the group is successfully deleted.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
+&nbsp;&nbsp;
+Use case ends.
 
 **Extensions:**
 
+&nbsp;&nbsp;
 1a. The contact specified is not found in TABS.
 
-&nbsp;&nbsp;&nbsp;&nbsp;1a1. TABS terminates the operation by the user.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1a1. TABS terminates the operation by the user.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
+&nbsp;&nbsp;
+Use case ends.
 
 ### UC10: Add a person to group
 
@@ -203,21 +237,28 @@ Use case ends.
 1. User requests to add an existing contact to an existing group.
 2. TABS displays that the contact specified is added to the group.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
+&nbsp;&nbsp;
+Use case ends.
 
 **Extensions:**
 
+&nbsp;&nbsp;
 1a. The contact specified is not found in TABS.
 
-&nbsp;&nbsp;&nbsp;&nbsp;1a1. TABS terminates the operation by the user.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1a1. TABS terminates the operation by the user.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
+&nbsp;&nbsp;
+Use case ends.
 
+&nbsp;&nbsp;
 1b. The group specified is not found in TABS.
 
-&nbsp;&nbsp;&nbsp;&nbsp;1b1. TABS terminates the operation by the user.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1b1. TABS terminates the operation by the user.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
+&nbsp;&nbsp;
+Use case ends.
 
 ### UC11: Remove a person from group
 
@@ -226,21 +267,28 @@ Use case ends.
 1. User requests to remove an existing contact from an existing group.
 2. TABS displays that the contact specified is removed from the group.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
+&nbsp;&nbsp;
+Use case ends.
 
 **Extensions:**
 
+&nbsp;&nbsp;
 1a. The contact specified is not found in TABS.
 
-&nbsp;&nbsp;&nbsp;&nbsp;1a1. TABS terminates the operation by the user.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1a1. TABS terminates the operation by the user.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
+&nbsp;&nbsp;
+Use case ends.
 
+&nbsp;&nbsp;
 1b. The group specified is not found in TABS.
 
-&nbsp;&nbsp;&nbsp;&nbsp;1b1. TABS terminates the operation by the user.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1b1. TABS terminates the operation by the user.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
+&nbsp;&nbsp;
+Use case ends.
 
 ### UC12: Assign a task to a member
 
@@ -249,21 +297,28 @@ Use case ends.
 1. User requests to assign a task.
 2. TABS displays that the task is tagged to the person specified under the group.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
+&nbsp;&nbsp;
+Use case ends.
 
 **Extensions:**
 
+&nbsp;&nbsp;
 1a. The contact specified is not found in TABS.
 
-&nbsp;&nbsp;&nbsp;&nbsp;1a1. TABS terminates the operation by the user.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1a1. TABS terminates the operation by the user.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
+&nbsp;&nbsp;
+Use case ends.
 
+&nbsp;&nbsp;
 1b. The group specified is not found in TABS.
 
-&nbsp;&nbsp;&nbsp;&nbsp;1b1. TABS terminates the operation by the user.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1b1. TABS terminates the operation by the user.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
+&nbsp;&nbsp;
+Use case ends.
 
 ### UC13: Remove a task from a person
 
@@ -272,21 +327,28 @@ Use case ends.
 1. User requests to remove a task from a person.
 2. TABS displays that the task is successfully removed.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
+&nbsp;&nbsp;
+Use case ends.
 
 **Extensions:**
 
+&nbsp;&nbsp;
 2a. The person specified is not found in TABS.
 
-&nbsp;&nbsp;&nbsp;&nbsp;2a1. TABS terminates the operation by the user.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+2a1. TABS terminates the operation by the user.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
+&nbsp;&nbsp;
+Use case ends.
 
+&nbsp;&nbsp;
 3a. The person does not have the specified task.
 
-&nbsp;&nbsp;&nbsp;&nbsp;3a1. TABS terminates the operation by the user.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+3a1. TABS terminates the operation by the user.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
+&nbsp;&nbsp;
+Use case ends.
 
 ### UC14: Assign a tag to a person
 
@@ -295,15 +357,19 @@ Use case ends.
 1. User requests to assign a tag to a person in TABS.
 2. TABS displays that the tag is added to the person specified.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
+&nbsp;&nbsp;
+Use case ends.
 
 **Extensions:**
 
+&nbsp;&nbsp;
 1a. The contact specified is not found in TABS.
 
-&nbsp;&nbsp;&nbsp;&nbsp;1a1. TABS terminates the operation by the user.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1a1. TABS terminates the operation by the user.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
+&nbsp;&nbsp;
+Use case ends.
 
 ### UC15: Remove a tag from a person
 
@@ -312,21 +378,28 @@ Use case ends.
 1. User requests to remove a tag from a person.
 2. TABS displays that the tag is successfully removed.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
+&nbsp;&nbsp;
+Use case ends.
 
 **Extensions:**
 
-2a. The person specified is not found in TABS.
+&nbsp;&nbsp;
+1a. The person specified is not found in TABS.
 
-&nbsp;&nbsp;&nbsp;&nbsp;2a1. TABS terminates the operation by the user.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+1a1. TABS terminates the operation by the user.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
+&nbsp;&nbsp;
+Use case ends.
 
-3a. The person does not have the specified tag.
+&nbsp;&nbsp;
+1a. The person does not have the specified tag.
 
-&nbsp;&nbsp;&nbsp;&nbsp;3a1. TABS terminates the operation by the user.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1a1. TABS terminates the operation by the user.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
+&nbsp;&nbsp;
+Use case ends.
 
 ### UC16: Group assignment of task
 
@@ -335,39 +408,49 @@ Use case ends.
 1. User requests to add a task to a group.
 2. TABS displays that the task is successfully added.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
+&nbsp;&nbsp;
+Use case ends.
 
 **Extensions:**
 
-2a. The group specified is not found in TABS.
+&nbsp;&nbsp;
+1a. The group specified is not found in TABS.
 
-&nbsp;&nbsp;&nbsp;&nbsp;2a1. TABS terminates the operation by the user.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1a1. TABS terminates the operation by the user.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
+&nbsp;&nbsp;
+Use case ends.
 
 ### UC17: Group removal of task
 
 **MSS**
 
 1. User requests to remove a task from a group.
-2. TABS searches for the group.
-3. TABS displays that the task is successfully removed.
+2. TABS displays that the task is successfully removed.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
+&nbsp;&nbsp;
+Use case ends.
 
 **Extensions:**
 
-2a. The group specified is not found in TABS.
+&nbsp;&nbsp;
+1a. The group specified is not found in TABS.
 
-&nbsp;&nbsp;&nbsp;&nbsp;2a1. TABS terminates the operation by the user.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1a1. TABS terminates the operation by the user.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
+&nbsp;&nbsp;
+Use case ends.
 
-3a. The person does not have the specified task.
+&nbsp;&nbsp;
+1a. The person does not have the specified task.
 
-&nbsp;&nbsp;&nbsp;&nbsp;3a1. TABS moves on to the next person in the group.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1a1. TABS moves on to the next person in the group.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
+&nbsp;&nbsp;
+Use case ends.
 
 ### UC18: Group assignment of tag
 
@@ -376,15 +459,19 @@ Use case ends.
 1. User requests to add a tag to a group.
 2. TABS displays that the tag is successfully added.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
+&nbsp;&nbsp;
+Use case ends.
 
 Extensions:
 
-2a. The group specified is not found in TABS.
+&nbsp;&nbsp;
+1a. The group specified is not found in TABS.
 
-&nbsp;&nbsp;&nbsp;&nbsp;2a1. TABS terminates the operation by the user.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1a1. TABS terminates the operation by the user.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
+&nbsp;&nbsp;
+Use case ends.
 
 ### UC19: Group removal of tag
 
@@ -393,21 +480,28 @@ Extensions:
 1. User requests to remove a tag from a group.
 2. TABS displays that the tag is successfully removed.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
+&nbsp;&nbsp;
+Use case ends.
 
 **Extensions:**
 
-2a. The group specified is not found in TABS.
+&nbsp;&nbsp;
+1a. The group specified is not found in TABS.
 
-&nbsp;&nbsp;&nbsp;&nbsp;2a1. TABS terminates the operation by the user.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1a1. TABS terminates the operation by the user.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
+&nbsp;&nbsp;
+Use case ends.
 
-3a. The person does not have the specified tag.
+&nbsp;&nbsp;
+1a. The person does not have the specified tag.
 
-&nbsp;&nbsp;&nbsp;&nbsp;3a1. TABS moves on to the next person in the group.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1a1. TABS moves on to the next person in the group.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
+&nbsp;&nbsp;
+Use case ends.
 
 ### UC20: Notifications
 
@@ -416,12 +510,15 @@ Extensions:
 1. User boots up the application/requests for notifications.
 2. TABS provides notifications on upcoming deadlines/completed tasks.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
+&nbsp;&nbsp;
+Use case ends.
 
 **Extensions:**
 
+&nbsp;&nbsp;
 1a. List is empty.
 
+&nbsp;&nbsp;
 Use case ends.
 
 ---
