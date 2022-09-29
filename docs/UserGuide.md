@@ -2,7 +2,7 @@
 layout: page
 title: User Guide
 ---
-
+                                                                                                                                                               |
 TrackO is a **desktop app built for small business owners to help them manage orders and their inventory, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you prefer and are fast at typing, TrackO can get your order and inventory management tasks done faster than traditional GUI apps.
 
 * Table of Contents
@@ -55,6 +55,32 @@ TrackO is a **desktop app built for small business owners to help them manage or
   e.g. if the command specifies `list 123`, it will be interpreted as `list`.
 
 </div>
+
+### Adding an order: `addo`
+
+Adds an order to the list of tracked orders.
+
+Format: `addo i/ITEM_NAME q/ORDER_QUANTITY cn/CUSTOMER_NAME ca/CUSTOMER_ADDRESS ce/CUSTOMER_EMAIL cc/CUSTOMER_CONTACT`
+
+* Adds an order to be tracked in the application
+* Added orders will track the time that it was created
+
+Examples:
+* `addo i/Fountain Pen q/3 cn/John Doe ca/48 Westwood Terrace ce/johndoe@example.com cc/91234567`
+* `addo i/White Socks q/2 cn/Betty White ca/39 Ocean Drive ce/bettywhite@example.com cc/92345678`
+
+### Deleting an order: `deleteo`
+
+Deletes an order from the list of tracked orders.
+
+Format: `deleteo INDEX`
+
+* Deletes the order at the specified INDEX.
+* The index refers to the index number shown in the displayed order list.
+* The index must be a positive integer 1, 2, 3, …
+
+Examples:
+* `listo` followed by `deleteo 2` deletes the 2nd order from the order list.
 
 ### Listing all orders : `listo`
 
@@ -154,11 +180,13 @@ Format: `exit`
 ## Command summary
 | Action          | Format, Examples |
 |-----------------|------------------ |
-| **List Orders** | `listo`|
-| **Find Order**  | `findo KEYWORD [MORE_KEYWORDS]`|
-| **Add Inventory** | `addi n/NAME [t/TAG]…​` <br> e.g., `addi n/Chair t/Furniture`|
-| **Delete Inventory** | `deletei INDEX`<br> e.g., `deletei 3`|
-| **Tag Inventory** | `tagi INDEX [t/TAG]…​` <br> e.g, `tagi 1 t/Perishable t/Premium`|
-| **List Inventory** | `listi`  |
-| **Find Inventory** | `findi KEYWORD [MORE_KEYWORDS]` <br/> e.g., `find blue shirt`|
-| **Exit**        | `exit`|
+| **Add An Order** | `addo i/ITEM_NAME q/ORDER_QUANTITY cn/CUSTOMER_NAME ca/CUSTOMER_ADDRESS ce/CUSTOMER_EMAIL cc/CUSTOMER_CONTACT` <br> e.g., `addo i/Fountain Pen q/3 cn/John Doe ca/48 Westwood Terrace ce/johndoe@example.com cc/91234567` |
+| **Delete An Order** | `deleteo INDEX` <br> e.g., `delete 2` |
+| **List All Orders** | `listo` |
+| **Find Order(s)**  | `findo KEYWORD [MORE_KEYWORDS]` |
+| **Add An Inventory Item** | `addi n/NAME [t/TAG]…​` <br> e.g., `addi n/Chair t/Furniture` |
+| **Delete An Inventory Item** | `deletei INDEX`<br> e.g., `deletei 3` |
+| **Tag An Inventory Item** | `tagi INDEX [t/TAG]…​` <br> e.g, `tagi 1 t/Perishable t/Premium` |
+| **List All Inventory Items** | `listi` |
+| **Find Inventory Item(s)** | `findi KEYWORD [MORE_KEYWORDS]` <br/> e.g., `find blue shirt` |
+| **Exit** | `exit`|
