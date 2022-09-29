@@ -270,14 +270,26 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                                    | I want to …​                                                                   | So that I can…​                                                        |
+|----------|------------------------------------------------------------|--------------------------------------------------------------------------------|------------------------------------------------------------------------|
+| `* * *`  | new user                                                   | see usage instructions                                                         | refer to instructions when I forget how to use the App                 |
+| `* * *`  | user                                                       | add a new person                                                               |                                                                        |
+| `* * *`  | user                                                       | delete a person                                                                | remove entries that I no longer need                                   |
+| `* * *`  | user                                                       | find a person by name                                                          | locate details of persons without having to go through the entire list |
+| `* * *`  | SOC student who has many (computing) modules in a semester | have a platform to keep track of all my submissions/tasks                      |                                                                        |
+| `* * *`  | busy SOC student                                           | keep track of what I have to complete                                          | not miss out on any deadlines                                          |
+| `* * *`  | typical SOC student who has too many assignments           | keep track of the status of my assignments                                     |                                                                        |
+| `* * *`  | SOC student with many assignments and tasks                | use the search feature to find the task I am looking for                       |                                                                        |
+| `* *`    | SOC student working on a group project                     | see all the contacts of those people in my group project                       | easily contact them                                                    |
+| `* *`    | user                                                       | hide private contact details                                                   | minimize chance of someone else seeing them by accident                |
+| `*`      | future thinking SOC CS Student                             | list tasks and events for the next 7 days                                      | plan what I want to do better                                          |
+| `*`      | SOC student with many digital files to organize            | link a task to relevant local files (pdf, pptx, etc.)                          | open them quickly                                                      |
+| `*`      | overwhelmed SOC student                                    | filter tasks by whether or not they are graded                                 | decide on what to do first                                             |
+| `*`      | SOC student                                                | assign an estimated time to complete for each task                             | realistically estimate how much I can accomplish in a day              |
+| `*`      | future thinking SOC student                                | prioritize my tasks                                                            | plan what I should be working on first                                 |
+| `*`      | forgetful SOC student                                      | be greeted (or warned) with a list of urgent/overdue tasks when I open the app | remind myself about them                                               |
+| `*`      | SOC student who has many venues to keep track of           | store the venues associated with my tasks                                      |                                                                        |
+| `*`      | user with many persons in the address book                 | sort persons by name                                                           | locate a person easily                                                 |
 
 *{More to be added}*
 
@@ -285,14 +297,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Finding contacts by module**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to find persons taking a specific module.
+2.  CodeConnect requests for module code.
+3.  User types in module code.
+4.  CodeConnect shows a list of persons taking that module.
+
+**Extensions**
+
+* 3a. The list is empty.
+
+  Use case ends.
+
+* 3b. The given module code is invalid.
+
+    * 3a1. CodeConnect shows an error message.
+
+      Use case resumes at step 3.
+
+**Use case: Mark a task as complete**
+
+**MSS**
+
+1.  User requests to list tasks
+2.  CodeConnect shows a list of tasks
+3.  User requests to mark a specific task in the list as complete
+4.  CodeConnect marks the task as complete
 
     Use case ends.
 
@@ -304,11 +337,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. CodeConnect shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Delete a person**
+
+**MSS**
+
+1.  User requests to find persons taking a specific module.
+2.  CodeConnect requests for module code.
+3.  User types in module code.
+4.  CodeConnect shows a list of persons taking that module.
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. The list is empty.
+
+  Use case ends.
+
+* 3b. The given module code is invalid.
+
+    * 3a1. CodeConnect shows an error message.
+
+      Use case resumes at step 3.
 
 ### Non-Functional Requirements
 
