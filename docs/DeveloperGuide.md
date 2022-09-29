@@ -364,6 +364,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case: Mark a task**
+
+**MSS**
+
+1. User requests to list tasks
+2. YellowBook shows a list of tasks
+3. User requests to mark a specific task in the list
+4. YellowBook marks that task as done
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. YellowBook shows an error message.
+
+      Use case resumes at step 2.
+
 *{More to be added}*
 
 ### Non-Functional Requirements
