@@ -270,75 +270,189 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                | I can …​                                                                                                                                | So that I can…​                                                       |
-|----------|----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------|
-| `* * *`  | responsible SOC professor              | clear/mark done a project                                                                                                               | student can graduate with a Honoured degree.                          |
-| `* * *`  | first time user                        | view a list of commands that I can try as well as the details of each command                                                           | I can quickly start to manage my students’ FYPs using this system/app |
-| `* * *`  | critical SoC professor                 | search the projects using some keywords                                                                                                 | track the progress of projects has been of interest to me             |
-| `* * *`  | organised SoC professor                | remove Students if they dropped a FYP that was under me                                                                                 | keep the database neat and organised                                  |
-| `* * *`  | organised SoC professor                | remove Students if they completed a FYP that was under me, and move to a “completed” database table                                     | keep the database neat and organised [coming soon]                    |
-| `* * *`  | organised SoC professor                | add Students if they are taking FYP under me                                                                                            | keep track of those FYP projects under me easily [coming soon]        |
-| `* * *`  | student with many email accounts       | update my e-mail address when I change on the app                                                                                       | my professors can contact me when they need to                        |
-| `* * *`  | SOC professor                          | view the list of all students taking their FYP under me                                                                                 | get to know with my own students more                                 |
-| `* *`    | responsible student                    | check my upcoming deadlines with an option to see yet-to-submit deliverables                                                            | will not miss any submission deadlines by accident                    |
-| `* *`    | SoC professor                          | view the progress updates that my students upload                                                                                       | deliberate about what the next course of action should be             |
-| `* *`    | eager to learn student                 | receive feedback (read comments and suggestions) from my professor                                                                      | I can set a direction to make progress for my FYP                     |
-| `* *`    | responsible student                    | update my FYP progress through the app                                                                                                  | professor can be informed on my progress                              |
-| `* *`    | critical student                       | provide feedbacks on my FYP guidance and evaluation                                                                                     | so that I can help the FYP management team to further improve         |
-| `* *`    | helpful SoC professor                  | put tags on my student's FYP project so that I can let him/her know whether they are “Ahead of time”, “Up to task” or “Behind schedule” | they can be informed of their progress relative to the timeline       |
-| `* *`    | non-confrontational (i.e. shy) student | push certain tags (e.g. “Assistance required!”, “Unable to complete :(”) to the application                                             | gather my professor’s attention without direct confrontation          |
-| `*`      | fun-seeking professor/FYP student      | end “stickers” (similar to Telegram stickers) or emoji so that the app                                                                  | is more appealing to use                                              |
-| `*`      | FYP student                            | update my availability slots on the app                                                                                                 | my professor knows when I will be available to meet                   |
-| `*`      | well-versed SoC professor              | sort my student’s FYP based on what specialisation they are taking                                                                      | I can better organise the FYPs                                        |
-| `*`      | very metalicious SoC professor         | see student's FYP sorted by research area first, followed by alphabetical order                                                         | I can gain quick easy access to the details required                  |
-| `*`      |                                        |                                                                                                                                         |                                                                       |
-
-
-
-
-
-
-| `*`      | user with many persons in the address book | sort persons by name                                                                                | locate a person easily                                                 |
-| `* * *`  | user                                       | find a person by name                                                                               | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details                                                                        | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name                                                                                | locate a person easily                                                 |
+| Priority | As a …​                                | I can …​                                                                                                                                | So that I can…​                                                               |
+|----------|----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
+| `* * *`  | responsible SOC professor              | clear/mark done a project                                                                                                               | student can graduate with a Honoured degree.                                  |
+| `* * *`  | first time user                        | view a list of commands that I can try as well as the details of each command                                                           | I can quickly start to manage my students’ FYPs using this system/app         |
+| `* * *`  | critical SoC professor                 | search the projects using some keywords                                                                                                 | track the progress of projects has been of interest to me                     |
+| `* * *`  | organised SoC professor                | remove Students if they dropped a FYP that was under me                                                                                 | keep the database neat and organised                                          |
+| `* * *`  | organised SoC professor                | remove Students if they completed a FYP that was under me, and move to a “completed” database table                                     | keep the database neat and organised [coming soon]                            |
+| `* * *`  | organised SoC professor                | add Students if they are taking FYP under me                                                                                            | keep track of those FYP projects under me easily                              |
+| `* * *`  | student with many email accounts       | update my e-mail address when I change on the app                                                                                       | my professors can contact me when they need to [coming soon]                  |
+| `* * *`  | SOC professor                          | view the list of all students taking their FYP under me                                                                                 | get to know with my own students more                                         |
+| `* *`    | responsible student                    | check my upcoming deadlines with an option to see yet-to-submit deliverables                                                            | will not miss any submission deadlines by accident [coming soon]              |
+| `* *`    | SoC professor                          | view the progress updates that my students upload                                                                                       | deliberate about what the next course of action should be [coming soon]       |
+| `* *`    | eager to learn student                 | receive feedback (read comments and suggestions) from my professor                                                                      | I can set a direction to make progress for my FYP [coming soon]               |
+| `* *`    | responsible student                    | update my FYP progress through the app                                                                                                  | professor can be informed on my progress [coming soon]                        |
+| `* *`    | critical student                       | provide feedbacks on my FYP guidance and evaluation                                                                                     | so that I can help the FYP management team to further improve [coming soon]   |
+| `* *`    | helpful SoC professor                  | put tags on my student's FYP project so that I can let him/her know whether they are “Ahead of time”, “Up to task” or “Behind schedule” | they can be informed of their progress relative to the timeline [coming soon] |
+| `* *`    | non-confrontational (i.e. shy) student | push certain tags (e.g. “Assistance required!”, “Unable to complete :(”) to the application                                             | gather my professor’s attention without direct confrontation [coming soon]    |
+| `*`      | fun-seeking professor/FYP student      | end “stickers” (similar to Telegram stickers) or emoji so that the app                                                                  | is more appealing to use [coming soon]                                        |
+| `*`      | FYP student                            | update my availability slots on the app                                                                                                 | my professor knows when I will be available to meet [coming soon]             |
+| `*`      | well-versed SoC professor              | sort my student’s FYP based on what specialisation they are taking                                                                      | I can better organise the FYPs [coming soon]                                  |
+| `*`      | very meticulous SoC professor          | see student's FYP sorted by research area first, followed by alphabetical order                                                         | I can gain quick easy access to the details required [coming soon]            |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `JerylFypManager` and the **Actor** is the `Professor`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - Adding FYP**
+
+**Preconditions: Professor knows the details of FYP to be added**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  Professor requests to add a student FYP into the list
+2.  JerylFypManager adds the FYP details 
 
-    Use case ends.
+    Use case ends
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The request given is invalid 
+  * 1a1. JerylFypManager shows an error message
+  * 1a2. Professor enters a new request
+  
+  Steps 1a1-1a2 are repeated until the request entered is correct
 
-  Use case ends.
+  Use case resumes from step 2
 
-* 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+**Use case: UC02 - Searching Keyword**
 
-      Use case resumes at step 2.
+**Preconditions: Professor can recall part of the project name**
+
+**MSS**
+
+1.  Professor wants to track the status of certain project(s)
+2.  Professor searches the project(s) using a specified keyword
+3.  JerylFypManager displays the search results with a brief summary for each project
+
+    Use case ends
+
+**Extensions**
+
+* 2a. The keyword given does not match any project name
+    * 2a1. JerylFypManager shows an error message indicating “There is no match”
+    * 2a2. Professor tries again with another keyword
+
+  Steps 2a1-2a2 are repeated until some projects are matched
+
+  Use case resumes from step 3
+
+
+**Use case: UC03 - Marking Project Status**
+
+**Guarantees:**
+* Project Status goes from “Yet to Start” (YTS) to “In Progress”  (IP); (or alternatively, from “In Progress” (IP) to “Done” (DONE)
+
+
+**Preconditions: Existence of said FYP in database**
+
+**MSS**
+
+1.  Professor wants to modify the status of his student’s project, and he/she specifies the desired status change
+2.  JerylFypManager toggles the status of the project
+
+    Use case ends
+
+**Extensions**
+
+* 1a. Professor’s input of Student’s ID / Status Tag is incorrect (e.g. misspell) / accessing FYP not in database
+    * 1a1. JerylFypManager shows an error message
+    * 1a2. Professor keys in his input again
+
+    Steps 1a1-1a2 are repeated until the request entered is correct
+
+  Use case resumes from step 2
+
+
+**Use case: UC04 - Removing FYP**
+
+**Preconditions: Professor can recall the name/id of the FYP**
+
+**MSS**
+
+1.  Professor requests to remove a student FYP into the list
+2.  JerylFypManager removes the FYP details
+
+    Use case ends
+
+**Extensions**
+
+* 1a. The request given is invalid
+    * 1a1. JerylFypManager shows an error message
+    * 1a2. Professor enters a new request
+
+  Steps 1a1-1a2 are repeated until the request entered is correct
+
+  Use case resumes from step 2
+
+
+**Use case: UC05 - Help List**
+
+**Preconditions: Nil**
+
+**MSS**
+
+1.  Professor requests from JerylFypManager to list all possible commands
+2.  JerylFypManager shows the list of possible commands and format to be entered in
+
+    Use case ends
+
+**Extensions**
+
+* Nil
+
+
+**Use case: UC06 - List FYPs**
+
+**Preconditions: There exist FYP(s) in JerylFypManager**
+
+**MSS**
+
+1.  Professor requests for JerylFypManager to show the list of FYPs
+2.  JerylFypManager shows a list of FYPs to the professor
+
+    Use case ends
+
+
+**Extensions**
+
+* 2a. There are currently no FYPs that the professor is overseeing
+    * 2a1. JerylFypManager tells the professor that he is currently not overseeing any FYPs
+
+  Use case ends
+
+
+**Use case: UC07 - Exit JerylFypManager**
+
+**Preconditions: Nil**
+
+**MSS**
+
+1.  Professor requests to exit JerylFypManager
+2.  JerylFypManager shows exit message
+3.  JerylFypManager application is closed
+
+    Use case ends
+
+**Extensions**
+
+* Nil
+
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+2.  User with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3.  As a busy SoC professor, I want to be able to see my students’ project titles and summaries at one glance, so that I do not have to waste time clicking into different links to access them.
+4.  As an insecure FYP student, I have to be able to ring or notify my professor(s) for help via the platform, so that I get the immediate help that I require.
+5.  As a fun-seeking professor/FYP student , I want to be able to send “stickers” (similar to Telegram stickers) or emoji, so that the app is more appealing to use.
 
 *{More to be added}*
 
