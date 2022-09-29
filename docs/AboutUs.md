@@ -30,6 +30,16 @@ You can reach us at the email `cobb[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Documentation
+* 
+### Chng Ian
+
+<img src="images/chngchngchng.png" width="200px">
+
+[[github]](http://github.com/chnghchngchng)
+[[portfolio]](team/chngian.md)
+
+* Role: Developer
+* Responsibilities: CLI Commands, Integration
 
 ## Zsigmond Poh
 
