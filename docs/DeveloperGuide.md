@@ -270,57 +270,135 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​            | I want to …​                                      |
-|----------|--------------------|---------------------------------------------------|
-| `* * *`  | forgetful gym user | add exercises to the app                          |
-| `* * *`  | forgetful gym user | delete exercises from the app                     |
-| `* * *`  | forgetful gym user | list out my past exercises on the app             |
-| `* * *`  | forgetful gym user | associate reps/sets number to an exercise         |
+| Priority | As a …​  | I want to …​                              |
+|----------|----------|-------------------------------------------|
+| `* * *`  | gym user | add exercises to the app                  |
+| `* * *`  | gym user | delete exercises from the app             |
+| `* * *`  | gym user | list out my past exercises on the app     |
+| `* * *`  | gym user | associate reps/sets number to an exercise |
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `Gim` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case 1: Help**
+
+System: Gim <br>
+Use case: UC01 - Request for help <br>
+Actor: User <br>
+Guarantees: Help message displayed.
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests for help.
+2. Gim displays help message.
 
-    Use case ends.
+Use case ends.
+
+**Use case 2: Add an exercise**
+
+System: Gim <br>
+Use case: UC02 - Add an exercise <br>
+Actor: User <br>
+Guarantees: exercise keyed will be added to storage.
+
+**MSS**
+
+1. User requests to add an exercise.
+2. Gim adds the exercise into storage.
+
+   Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. User enters the command wrongly.
+
+    * 1a1. Gim shows an error message.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+**Use case 3: Delete an exercise**
 
-    * 3a1. AddressBook shows an error message.
+System: Gim <br>
+Use case: UC03 - Delete an exercise <br>
+Actor: User <br>
+Guarantees: Selected exercise will be deleted from storage.
 
-      Use case resumes at step 2.
+**MSS**
+
+1. User requests to delete an exercise.
+2. Gim deletes the exercise.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User enters the command wrongly.
+    * 1a1. Gim displays the error message.
+
+      Use case ends.
+
+* 1b. User enters an exercise that does not exist in the app.
+    * 1b1. Gim displays that the exercise does not exist.
+
+      Use case ends.
+
+**Use case 4: List exercises**
+
+System: Gim <br>
+Use case: UC04 - List exercises <br>
+Actor: User <br>
+Guarantees: All stored exercises will be displayed.
+
+**MSS**
+
+1. User requests to list all stored exercises.
+2. Gim lists the stored exercises.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. Gim has no stored exercises.
+    * 2a1. Gim displays the error message.
+
+      Use case ends.
+
+
+**Use case 5: Exit Gim**
+
+System: Gim <br>
+Use case: UC05 - Exit Gim <br>
+Actor: User <br>
+Guarantees: Gim will exit.
+
+**MSS**
+
+1. User requests to exit Gim.
+2. Gim exits.
+
+   Use case ends.
+
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 exercises without a noticeable sluggishness in performance for typical usage.
+3. Should work without an internet connection.
+4. Should be able to support frequent updating of data.
+5. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
 
 ### Glossary
-
+* **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Exercise**: Activity requiring physical effort, carried out to sustain or improve health and fitness
 * **Reps**: Number of times you perform a specific exercise
 * **Sets**: Number of cycles of reps that you complete
-* **Weight**: Total weight (include barbell if applicable exclude body weight)
+* **Weight**: Total weight (include barbell if applicable, exclude body weight)
 
 --------------------------------------------------------------------------------------------------------------------
 

@@ -39,7 +39,7 @@ Gim is a **desktop app for managing gym exercises, optimized for use via a Comma
 ## Features
 
 
-### Viewing help : `help`
+### Viewing help : `:help`
 
 Access the help menu, containing the information about the commands.
 
@@ -64,7 +64,7 @@ Format: `:a <exercise name> <weight(kg)> <sets> <reps>`
 * `:a Squat 30 3 5` Adds a squat exercise of weight 30kg for 3 sets of 5 reps
 
 
-### Listing all exercises : `list`
+### Listing all exercises : `:ls`
 
 Shows a list of all exercises.
 
