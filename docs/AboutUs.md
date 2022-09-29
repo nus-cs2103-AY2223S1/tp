@@ -9,15 +9,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Ryan Guai
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ryanguai.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/ryanguai)]
+[[portfolio](team/ryanguai.md)]
 
-* Role: Project Advisor
+* Role: Team Lead
 
 ### Jane Doe
 
@@ -29,31 +28,30 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Tan Jun Wei
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/junwei-tan.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/ryanguai.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/ryanguai.md)]
+[[github](http://github.com/junwei-tan)] [[portfolio](team/junwei-tan.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Testing
 
-### James Doe
+### Felicia Gan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/feliciagan.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/ryanguai.md)]
+[[github](http://github.com/feliciagan)]
+[[portfolio](team/feliciagan.md)]
 
-* Role: Developer
+* Role: Code Quality
+
+### Alvin Tan
+
+<img src="images/alvintfl.png" width="200px">
+
+[[github](http://github.com/alvintfl)]
+[[portfolio](team/alvintfl.md)]
+
+* Role: Integration
 * Responsibilities: UI
