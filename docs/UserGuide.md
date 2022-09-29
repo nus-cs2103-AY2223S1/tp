@@ -149,7 +149,7 @@ Examples:
 
 ### Deleting a Meeting : `delMeeting`
 
-Delete a meeting from MyInsuRec.
+Deletes a meeting from MyInsuRec.
 
 Format: `delMeeting i/INDEX`
 
@@ -158,7 +158,7 @@ Format: `delMeeting i/INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `listMeeing` followed by `delMeeting 2` deletes the 2nd Meeting in the meeting list.
+* `listMeeting` followed by `delMeeting 2` deletes the 2nd Meeting in the meeting list.
 
 ### Clearing all entries : `clear`
 
