@@ -132,6 +132,32 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
+### Marking a task as done : `mark`
+
+Marks a task as done.
+
+Format: `mark t/TASK_INDEX`
+
+**Things to Note:**
+* The index refers to the index number shown in the displayed list of tasks.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Example:
+* `mark t/2` marks the 2nd task as done.
+
+### Marking a task as not done : `unmark`
+
+Marks a task as not done.
+
+Format: `unmark t/TASK_INDEX`
+
+**Things to Note:**
+* The index refers to the index number shown in the displayed list of tasks.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Example:
+* `unmark t/2` marks the 2nd task as not done.
+
 ### Deleting a student / task : `delete`
 
 Deletes the specified student or task from their respective lists.
@@ -214,4 +240,6 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
+**Mark** | `mark t/TASK_INDEX` <br> e.g., `mark t/2`
+**Unmark** | `unmark t/TASK_INDEX` <br> e.g., `unmark t/2`
 **Help** | `help`
