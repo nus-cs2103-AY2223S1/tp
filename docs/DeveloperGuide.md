@@ -283,30 +283,112 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `WorkBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - Add an internship application**
 
-**MSS**
+**Main Success Scenario (MSS)**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to add an internship.
+2.  WorkBook adds the internship.
+3.  WorkBook displays internship addition is successful.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The internship already exists.
 
-  Use case ends.
+    * 1a1. WorkBook shows an error message.
 
-* 3a. The given index is invalid.
+      Use case ends.
 
-    * 3a1. AddressBook shows an error message.
+**Use case: UC02 - Delete an internship application**
 
-      Use case resumes at step 2.
+**Main Success Scenario (MSS)**
+
+1. User requests to delete an internship.
+2. WorkBook deletes the internship.
+3. WorkBook displays list of internships remaining when successful.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+    Use case ends.
+
+* 1b. The given index is invalid.
+
+    * 1b1. WorkBook shows an error message.
+
+      Use case ends.
+
+**Use case: UC03 - Edit an internship application**
+
+**Main Success Scenario (MSS)**
+
+1. User requests to edit an internship.
+2. WorkBook edits the internship.
+3. WorkBook displays list of internships when successful.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+    * 1a1. WorkBook shows an error message.
+
+      Use case ends.
+
+* 1b. The given field is invalid.
+
+    * 1b1. WorkBook shows an error message.
+
+      Use case ends.
+
+* 1c. The edited internship is identical to one in the list.
+
+    * 1c1. WorkBook shows an error message.
+
+      Use case ends.
+
+**Use case: UC04 - Clear list of internship applications**
+
+**Main Success Scenario (MSS)**
+
+1. User requests to clear list.
+2. List is cleared.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+    * 1a1. WorkBook shows an error message.
+
+      Use case ends.
+
+**Use case: UC05 - Display help message**
+
+**Main Success Scenario (MSS)**
+
+1. User requests for help.
+2. Help message is shown.
+
+   Use case ends.
+
+**Use case: UC06 - Exit application**
+
+**Main Success Scenario (MSS)**
+
+1. User requests to exit program.
+2. WorkBook exits and closes.
+
+   Use case ends.
 
 *{More to be added}*
 
