@@ -19,7 +19,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jerome Hoo
+### Jerome Hoo Jun Jie
 
 <img src="images/jeromehjj.png" width="200px">
 
