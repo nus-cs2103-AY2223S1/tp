@@ -167,7 +167,7 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from Coydir.
 
 Format: `clear`
 
