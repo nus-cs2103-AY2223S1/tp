@@ -44,7 +44,7 @@ done faster and more securely than traditional GUI apps.
     * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact
       named `John Doe` to the Address Book.
 
-    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+    * **`delete`**` 3` : Deletes the 3rd contact shown in the current list.
 
     * **`clear`** : Deletes all contacts.
 
@@ -67,7 +67,7 @@ done faster and more securely than traditional GUI apps.
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -82,6 +82,7 @@ done faster and more securely than traditional GUI apps.
 
 </div>
 
+---
 ### Adding a client: `add`
 
 Adds a client to the financial book.
@@ -93,12 +94,14 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$100000 m/12-Jan-2022`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/ABC street p/1234567 i/$10 m/23-Feb-2022`
 
+---
 ### Listing all persons : `list`
 
 Shows a list of all persons in the address book.
 
 Format: `list`
 
+---
 ### Editing a person : `edit`
 
 Edits an existing client in the financial book.
@@ -116,9 +119,10 @@ Examples:
   and `johndoe@example.com` respectively.
 * `edit 2 n/Betsy Crower` Edits the name of the 2nd person to be `Betsy Crower`.
 
+---
 ### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified person from the financial book.
 
 Format: `delete INDEX`
 
@@ -131,23 +135,27 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+---
 ### Listing all clients: `list`
 
 Show a list of all clients in the financial book
 
 Format: `list`
 
+---
 ### Exiting the application : `exit`
 
 Exits the application.
 
 Format: `exit`
 
+---
 ### Saving the data
 
 AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to
 save manually.
 
+---
 ### Editing the data file
 
 AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to
@@ -157,6 +165,7 @@ update data directly by editing that data file.
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
 </div>
 
+---
 ### Importing data from external sources [coming soon]
 
 --------------------------------------------------------------------------------------------------------------------
