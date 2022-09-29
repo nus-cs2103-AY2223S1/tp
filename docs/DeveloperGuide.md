@@ -257,42 +257,45 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of people and their details
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* needs to retrieve information quickly
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage and retrieve people's information faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                | I can …​                                     | So that…​                                               |
+|--------|----------------------------------------|----------------------------------------------|---------------------------------------------------------|
+| `* * *` | policeman                              | find a person using part of their ID or name | I can retrieve the person's details quickly             |
+| `* * *` | backend law enforcement staff          | add people and their details into Sherlock   | these information can be quickly and easily accessible  |
+| `* * *` | policeman                              | see a person's full criminal history         |                                                         |
+| `* * *` | detective                              | edit a person's details in Sherlock          | I can update the system with new information            |
+| `* *`  | law enforcement security officer       | allow only specific users into the system    | the information stored in Sherlock remains confidential |
+| `*`    | law enforcement administrative officer | import information from existing databases   | I can set up Sherlock quickly         |                                        |                                              |                                                         |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Sherlock` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
+**Preconditions: User is logged in**
+
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list persons.
+2.  Sherlock shows a list of persons.
+3.  User requests to delete a specific person in the list.
+4.  Sherlock deletes the person.
 
     Use case ends.
 
@@ -304,9 +307,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+  * 3a1. AddressBook shows an error message.
 
-      Use case resumes at step 2.
+    Use case resumes at step 2.
+    
+**Use case: Find a person**
+
+**Preconditions: User is logged in**
+
+**MSS**
+
+1.  User enters a person's partial/full ID or name.
+2.  Sherlock shows a list of persons with names/IDs corresponding to what was entered.
+3.  User selects the person that he/she is looking for.
+4.  Sherlock displays the full details of the person.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+    Use case ends.
 
 *{More to be added}*
 
@@ -321,7 +343,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
