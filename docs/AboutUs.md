@@ -9,12 +9,22 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
+### Shawn Kok
+
+<img src="images/kokje.png" width="200px">
+
+[[github](https://github.com/Kok-je)]
+[[portfolio](team/kok-je.md)]
+
+- Role: Developer
+- Responsibilities: Testing, Integration, Intellij expert, In charge of Model, UI, Storage
+
 ### Chao Yung
 
 <img src="images/chao890.png" width="200px">
 
 [[github](https://github.com/chao890)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/chao890.md)]
 
 - Role: Developer
 - Responsibilities: Documentation, Git Expert
