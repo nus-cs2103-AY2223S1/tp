@@ -257,13 +257,16 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
+* property agent 
+* needs to manage a significant number of buyers, sellers and properties concurrently
+* often overwhelmed by a disorganised and inefficient database
+* wants to keep track of all information neatly categorised in one place
+* takes too long to manually go through each property to find one that matches a buyer's requirements 
+* prefers desktop apps over other types
+* can type fast and prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: increases efficiency and convenience by allowing quick text-based inputs, separate functionalities for two contact bases (buyers and sellers) and properties, and optimized searching and filtering to automate property to buyer matches
 
 
 ### User stories
@@ -272,10 +275,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
+| `* * *`  | property agent                             | add and edit buyer information                 | |
+| `* * *`  | property agent                             | add and edit seller information               |                                                                        |
+| `* * *`  | property agent                             | add and edit property information                |                                    |
+| `* * *`  | disorganised property agent                | categorise contacts as "buyer" or "seller       | keep track of demand and supply |
 | `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
 | `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
 
