@@ -3,7 +3,9 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+ArtBuddy (AB) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while
+still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB can get your contact management
+tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -14,7 +16,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `artbuddy.jar` from [here](https://github.com/AY2223S1-CS2103T-W11-3/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
@@ -73,19 +75,21 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a customer: `addcus`
 
-Adds a person to the address book.
+Adds a customer to ArtBuddy.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `addcus n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A customer can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `addcus n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/animal cartoons t/vip`
+Creates the customer entry for John Doe with his details including multiple tags. 
+* `addcus n/Betsy Crowe e/betsycrowe@example.com p/12345867`
+Creates the customer entry for Betsy Crowe with her email and phone number.
 
 ### Listing all persons : `list`
 
@@ -142,11 +146,57 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Clearing all entries : `clear`
+### Viewing a commission: `opencom` [coming soon]
 
-Clears all entries from the address book.
+Opens a commission and shows its relevant details and image.
 
-Format: `clear`
+Format: `opencom INDEX`
+
+* This index is one-indexed, based on the customer’s commission list.
+
+Example:
+* `opencom 14`
+
+### Deleting a commission: `delcom` [coming soon]
+
+Deletes a commission and images related to the commission.
+
+Format: `delcom INDEX`
+
+* This index is one-indexed, based on the customer’s commission list.
+
+Example:
+* `delcom 14`
+
+### Adding iteration to a commission: `additer`
+Adds an image at the specified file path to the current commission.
+
+Format: `additer FILEPATH`
+
+* The file path specified should be an absolute path from your root directory.
+* The command requires a commission to be selected.
+* The image name will assume the filename specified in the command.
+* Currently, only image file types .png, .jpg, .bmp and .gif are supported
+* In addition, you can currently only upload one image per commission. Trying to add an image to a commission with an
+  existing image will not be allowed. Your existing image will not be overridden, but the new image will not be added to
+  your commission. To replace a commission image, first delete the image before adding a new image.
+
+<div markdown="span" class="alert alert-info">
+**:information_source: Notes about images in ArtBuddy:**<br>
+
+ArtBuddy creates a copy of each file you upload. This means that you can edit, delete, or
+move your original copy of the file without affecting the uploaded image on ArtBuddy.
+</div>
+
+Example: `additer /Users/John/Downloads/Clown.png`
+
+### Deleting iteration from commission: `deliter`
+Deletes an iteration from a commission.
+
+Format: `deliter [INDEX]`
+* The command requires a commission to be selected.
+* As each commission currently has only one image, the command will simply delete the image tied to the current commission, if it exists.
+* You may want to note that your local copy of the image will not be deleted.
 
 ### Exiting the program : `exit`
 
@@ -156,17 +206,33 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+ArtBuddy data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+ArtBuddy data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, ArtBuddy will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+### Listing all customers `[coming in v2.0]`
+
+_Details coming soon ..._
+
+### Editing a customer `[coming in v2.0]`
+
+_Details coming soon ..._
+
+### Locating customer by name `[coming in v2.0]`
+
+_Details coming soon ..._
+
+### Clearing all customers `[coming in v2.0]`
+
+_Details coming soon ..._
+
+### Clearing all commissions `[coming in v2.0]`
 
 _Details coming soon ..._
 
@@ -183,10 +249,13 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
+**Add customer** | `addcus n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [t/TAG]…​`  <br> e.g., `addcus n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/animal cartoons`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
+**Open Commission** | `opencom INDEX`<br> e.g., `opencom 14`
+**Delete Commission** | `delcom INDEX`<br> e.g., `delcom 14`
+**Add Iteration** | `additer FILEPATH`<br> e.g., `additer /Users/John/Downloads/Bread.jpeg`
+**Delete Iteration**| `deliter INDEX`<br> e.g., `deliter 1`
 **Help** | `help`

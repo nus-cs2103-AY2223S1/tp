@@ -19,6 +19,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: Storage
 
+### Leong See Leng
+
+<img src="images/seelengxd.png" width="200px">
+
+[[github](http://github.com/seelengxd)]
+[[portfolio](team/seelengxd.md)]
+
+* Role: Developer
+* Responsibilities: Model, Code Quality
+
 ### Chloe Lim
 
 <img src="images/chloeelim.png" width="200px">
@@ -28,3 +38,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: UI, Integration
+
+### Ng Xing Yu
+
+<img src="images/ngxingyu.png" alt="ngxingyu" width="200px">
+
+[[github](http://github.com/ngxingyu)]
+[[portfolio](team/ngxingyu.md)]
+
+* Role: Developer
+* Responsibilities: Logic + Testing

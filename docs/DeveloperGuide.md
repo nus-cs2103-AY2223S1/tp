@@ -23,7 +23,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+    :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-W11-3/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -36,7 +36,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-W11-3/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-W11-3/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -69,13 +69,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W11-3/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-W11-3/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-W11-3/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -86,7 +86,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-W11-3/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -114,7 +114,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W11-3/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -135,7 +135,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W11-3/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -270,16 +270,40 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a …​                                                 | I want to …​                                                              | So that I can…​                                               |
+|----------|---------------------------------------------------------|---------------------------------------------------------------------------|---------------------------------------------------------------|
+| `* * *`  | artist                                                  | exit from the program                                                     |                                                               |
+| `* * *`  | artist                                                  | get a list of all my commissions of one specific customer                 |                                                               |
+| `* * *`  | new user                                                | get help                                                                  | know how to use the product                                   |
+| `* * *`  | artist eager to improve his craft                       | review past feedback given by customers                                   | better the quality of my subsequent works                     |
+| `* * *`  | artist                                                  | delete commissions                                                        |                                                               |
+| `* * *`  | artist                                                  | view uploaded images of my previous commissions                           |                                                               |
+| `* * *`  | artist                                                  | upload images of art                                                      |                                                               |
+| `* * *`  | artist                                                  | create a customer entry                                                   |                                                               |
+| `* * *`  | artist with loyal customers                             | see customer's repeated payment / commissions                             | start a loyalty program to encourage their purchases          |
+| `* *`    | artist                                                  | prioritize my commissions                                                 | keep track of the most urgent commissions                     |
+| `* *`    | artist                                                  | categorize the artstyle of my commissions                                 |                                                               |
+| `* *`    | artist                                                  | sort my commissions by due date                                           | easily access all commissions with pressing due dates         |
+| `* *`    | artist                                                  | search for commissions by date                                            |                                                               |
+| `* *`    | artist                                                  | search for commissions by type                                            |                                                               |
+| `* *`    | artist                                                  | search for commissions by name                                            |                                                               |
+| `* *`    | artist who can offer multiple kinds of commissions      | categorize the commissions                                                | better analyse the commissions.                               |
+| `* *`    | artist who has similar customers                        | categorize them into groups                                               | systematically review their feedback and apply the takeaways. |
+| `* *`    | artist who works traditionally                          | retain iterations of my work from the sketch phase to the final rendering |                                                               |
+| `* *`    | artist who creates non-commissioned works               | determine potential customers who might be interested to purchase them    |                                                               |
+| `* *`    | busy artist with several commissions ongoing            | track the deadlines of each commission                                    | ensure my work is delivered on time                           |
+| `* *`    | busy artist with several commissions ongoing            | track my progress in each of them                                         |                                                               |
+| `* *`    | artist keen to make my hobby a side hustle              | determine the type of commissions that have proven lucrative              | focus my efforts into these genres                            |
+| `* *`    | artist                                                  | update images of art                                                      | re-upload the image if I uploaded the wrong file              |
+| `* *`    | artist                                                  | calculate my monthly income                                               |                                                               |
+| `*`      | artist who may receive multiples of the same commission | duplicate my commissions                                                  | not have to manually enter the same information every time    |
+| `*`      | long-time user                                          | hide/archive old commissions                                              | not be distracted by too much information                     |
+| `*`      | artist                                                  | store image references used when drawing the commission                   |                                                               |
+| `*`      | artist                                                  | clear all existing commissions                                            |                                                               |
+| `*`      | artist                                                  | search for commissions by customers                                       |                                                               |
+| `*`      | artist                                                  | search for commissions by multiple types(intersect)                       |                                                               |
+| `*`      | artist                                                  | search for commissions by multiple types(union)                           |                                                               |
+| `*`      | artist who works on multiple devices                    | transfer my application data from one device to the other                 |                                                               |
 
 ### Use cases
 
@@ -340,10 +364,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+2.  Should be able to hold up to 500 customers, 2000 commissions and 8000 iterations without a noticeable sluggishness
+in performance for typical usage.
+3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be 
+able to accomplish most of the tasks faster using commands than using the mouse.
+4. The app should be designed for and used by a single user.
+5. The app data should be stored in a human-editable text file and not a DBMS.
+6. Images and other app assets should be stored locally and not in a remote server.
+7. The app should be well tested with a coverage of above 65% to allow bugs to be found more easily.
+8. The product should be usable on all standard screen resolutions above 1280x720.
+9. The product should be packaged within a single JAR file with a filesize of up to 100MB.
 
 ### Glossary
 
