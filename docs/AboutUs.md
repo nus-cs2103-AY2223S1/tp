@@ -5,19 +5,18 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `peiyee88@nus.edu.sg` or `xxxxx@nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Pei Yee Cheng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/peiyee88.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/peiyee88)]
+[[portfolio](team/peiyee88.md)]
 
-* Role: Project Advisor
+* Role: Developer
 
 ### Jane Doe
 
