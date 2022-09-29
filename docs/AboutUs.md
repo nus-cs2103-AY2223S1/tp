@@ -50,7 +50,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Ang Kuang Long
 
-<img src="images/kuanglong.png" width="200px">
+<img src="images/angkl0.png" width="200px">
 
 [[github](http://github.com/angkl0)]
 [[portfolio](team/angkl0.md)]
