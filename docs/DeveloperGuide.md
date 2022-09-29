@@ -257,27 +257,45 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* home-based small business owners who want to manage orders and inventory information efficiently
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: offers a CLI-based application for home-based small
+business owners who prefer to type more/are more efficient at typing to
+allow them to save time on managing orders and logistics instead of
+traditional GUI applications such as Excel, or even pen and paper.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                      | I want to …​                                                            | So that I can…​                                                                   |
+|----------|----------------------------------------------|-------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
+| `* * *`  | business owner                               | add orders easily                                                       | keep track of ongoing orders                                                      |
+| `* * *`  | business owner                               | delete entire orders                                                    |                                                                                   |
+| `* * *`  | busy business owner                          | list all orders                                                         | see all my ongoing orders in one place and keep track of them                     |
+| `* * *`  | business owner                               | add items to my inventory                                               | keep track of additions to my inventory                                           |
+| `* * *`  | business owner                               | delete items from my inventory                                          | have an updated list of inventory items                                           |
+| `* * *`  | business owner                               | list all items in my inventory                                          | see all items in my inventory in one place                                        |
+| `* * *`  | business owner                               | tag inventory items                                                     | keep an organised inventory of items                                              |
+| `* *  `  | busy business owner                          | find orders                                                             | locate an order without manually searching through the entire list                |
+| `* *  `  | business owner                               | find items in my inventory                                              | locate an item in my inventory without manually searching through the entire list |
+| `* * `   | business owner                               | edit order details                                                      | update changes to orders                                                          |
+| `* *  `  | business owner                               | edit inventory item details                                             | update changes to inventory                                                       |
+| `* *  `  | business owner                               | see which orders have been paid for                                     | press customers for payment                                                       |
+| `* *  `  | business owner                               | mark orders as completed                                                | not get mixed up with ones that have not been completed yet                       |
+| `* *  `  | business owner                               | sort orders by expected delivery time                                   | know which orders are due first                                                   |
+| `* *  `  | business owner                               | sort orders by delivery address                                         | optimise delivery routes                                                          |
+| `* *  `  | business owner                               | sort orders by urgency (e.g. by deadline, or days outstanding)          | know which orders I have to prepare first                                         |
+| `* *  `  | business owner                               | look at my total earnings                                               | better optimise my earnings                                                       |
+| `*    `  | business owner                               | export all business data                                                | save the data elsewhere if needed                                                 |
+| `*    `  | business owner who is new to the application | import my current database of order and inventory information to TrackO | seamlessly transfer from other applications to TrackO                             |
+| `*   `   | business owner who is a new user             | use more verbose commands to complete my tasks                          | get more used to the syntax of the commands in the application                    |
+| `*   `   | tired business owner working at night        | view the application's GUI in dark mode                                 | my eyes don't get strained                                                        |
 
 *{More to be added}*
 
