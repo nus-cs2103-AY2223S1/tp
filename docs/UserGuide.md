@@ -206,7 +206,7 @@ Format: `exit`
 -------------------|------------------
 **Add User** | `adduser [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…` <br> e.g., `adduser n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Delete User** | `deleteuser NAME`<br> e.g. `deleteuser James Ho`                                                                                                                                     
-**Edit User** | `edituser NAME [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br> e.g.,`edituser 2 n/James Lee e/jameslee@example.com`                                                                
+**Edit User** | `edituser NAME [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br> e.g.`edituser 2 n/James Lee e/jameslee@example.com`                                                                
 **Find User** | `finduser KEYWORD [MORE_KEYWORDS]`<br> e.g. `finduser James Jake`                                                                                                                                   
 **List** | `list`                                                                                                                                                                                               
 **Add Group** | `addgroup GROUP` <br> e.g. `addgroup CS2103T`                                                                                                                                                         
