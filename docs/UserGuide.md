@@ -183,19 +183,18 @@ Project data is saved in the hard disk automatically after any command that chan
 | **Help**      | `help`                                                                                                                                                               |
 
 ## Prefix Summary
-Prefixes with singular letter are meant for project details. 
+Prefixes that start with `s` are for project staff member details.
+Prefixes without the prefix `s` are meant for project and/or client details.
 
-Prefixes that are starting with `s` and not singular letter is for project member details.
-
-| Prefix  |  Meaning   | Format/ Examples     |
-|---------|------------|----------------------|
-| **n/**  |            |                      |
-| **b/**  |            |                      |
-| **d/**  |            |                      |
-| **c/**  |            |                      |
-| **t/**  |            |                      |
-| **sn/** |            |                      |
-| **si/** |            |                      |
-| **sd/** |            |                      |
-| **st/** |            |                      |
-| **sc/** |            |                      |
+| Prefix  | Meaning                | Format/ Examples    |
+|---------|------------------------|---------------------|
+| **pn/** | Project name           | pn/PROJECT_NAME     |
+| **sn/** | Staff name             | sn/NAME             |
+| **si/** | Staff insurance status | si/INSURANCE_STATUS |
+| **st/** | Staff title            | st/STAFF_TITLE      |
+| **sd/** | Staff department       | sd/STAFF_DEPARTMENT |
+| **p/**  | Phone number           | p/PHONE_NUMBER      |
+| **e/**  | Email                  | e/EMAIL             |
+| **b/**  | Project budget         | b/PROJECT_BUDGET    |
+| **d/**  | Project deadline       | d/PROJECT_DEADLINE  |
+| **c/**  | Project client         | c/PROJECT_CLIENT    |
