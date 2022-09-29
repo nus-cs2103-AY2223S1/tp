@@ -300,6 +300,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. System shows an error message.
 
+      Use case ends.
 
 **Use case: List all meetings**
 
@@ -314,7 +315,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list has no meetings.
 
-    * System informs the user that there are no meetings on the list.
+    * 2a1. System informs the user that there are no meetings on the list.
+
+      Use case ends.
 
 
 *{More to be added}*
