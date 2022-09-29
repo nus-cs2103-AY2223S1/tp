@@ -1,5 +1,6 @@
-# Developer Guide
-
+---
+layout: page
+title: Developer guide
 ---
 
 ## Product Scope
