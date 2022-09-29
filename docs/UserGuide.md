@@ -2,17 +2,41 @@
 layout: page
 title: User Guide
 ---
+<h1 align="center">:book: Welcome to CLInkedIn User Guide!</h1>
 
-CLInkedIn is a **desktop address book application made for Recruiting and Hiring Managers to keep track of candidates and their job applications.** The application is optimized for use via a **Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CLInkedIn can get your Recruitment tasks done faster than traditional GUI apps.
+Welcome to the CLInkedIn User Guide! If you are a recruiter who is using CLInkedIn, or someone who is curious to find out more about CLInkedIn and its features, look no further!
 
-* Table of Contents
+In this user guide, you will find instructions on how to install CLInkedIn and a guide on how to use CLInkedIn's numerous features.
+
+💻 Are you a Developer? Do check out the [CLInkedIn Developer Guide](https://ay2223s1-cs2103t-t13-3.github.io/tp/DeveloperGuide.html) for more technical information!
+
+## Table of Contents
 {:toc}
+
+## Introduction 
+![Ui](images/Ui.png)
+
+CLInkedIn is a **desktop address book application made for Recruiting and Hiring Managers to keep track of candidates and their job applications.** The application is optimized for use via a **Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). 
+
+If you can type fast, CLInkedIn can get your Recruitment tasks done faster than traditional GUI apps.
+
+--------------------------------------------------------------------------------------------------------------------
+## Useful Notations
+
+While exploring CLInkedIn's features with this user guide, do take note of these symbols used in the user guide and what information they represent.
+
+| Symbol | Meaning |
+| :----: | ------- |
+| :information_source: | Important information |
+| :exclamation: | Warning or caution |
+| :bulb: | Additional information such as tips or notes |
+| :wrench: | Help with common technical issues |
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java [`11`](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) or above installed in your Computer.
 
 1. Download the latest `CLInkedIn.jar` from [here](https://github.com/AY2223S1-CS2103T-T13-3/tp/releases).
 
@@ -209,6 +233,26 @@ Examples: `deleteTagType GPA`
 
 - Deletes the `GPA` tag type.
 
+### Adding recruitment status: `status`
+
+Adds a recruitment status to the person. 
+
+<div markdown="span" class="alert alert-primary">:bulb: **Note:** Due to the subjectivity of recruitment statuses per job and per recruiter, there will be no categorisation of recruitment statuses and hence no type checking of valid/invalid statuses. All inputs by the user are assumed to be valid.
+</div>
+
+Format: `status INDEX STATUS`
+* The INDEX refers to the index number shown in the displayed person list.
+* The index must be a positive integer 1, 2, 3, …​ 
+
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+A person can have a minimum of 0 recruitment statuses and a maximum of 1 recruitment status. Calling the `status` command on the same person will update their recruitment status to the latest input.
+</div>
+
+Examples:
+* `status 1 Rejected` adds a recruitment status of `Rejected` to the 1st person in the address book.
+* `status 2 Interviewed` adds a recruitment status of `Interviewed` to the 2nd person in the address book.
+* `status 2 Accepted` updates the recruitment status of the 2nd person in the address book from `Interviewed` to `Accepted`.
+
 ### Adding optional information
 
 Adds additional optional information (notes) to a person
@@ -247,26 +291,6 @@ CLInkedIn data are saved as a JSON file `[JAR file location]/data/clinkedin.json
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, CLInkedIn will discard all data and start with an empty data file at the next run.
 </div>
-
-### Adding recruitment status: `status`
-
-Adds a recruitment status to the person. 
-
-<div markdown="span" class="alert alert-primary">:bulb: **Note:** Due to the subjectivity of recruitment statuses per job and per recruiter, there will be no categorisation of recruitment statuses and hence no type checking of valid/invalid statuses. All inputs by the user are assumed to be valid.
-</div>
-
-Format: `status INDEX STATUS`
-* The INDEX refers to the index number shown in the displayed person list.
-* The index must be a positive integer 1, 2, 3, …​ 
-
-<div markdown="span" class="alert alert-primary">:bulb: **Note:**
-A person can have a minimum of 0 recruitment statuses and a maximum of 1 recruitment status. Calling the `status` command on the same person will update their recruitment status to the latest input.
-</div>
-
-Examples:
-* `status 1 Rejected` adds a recruitment status of `Rejected` to the 1st person in the address book.
-* `status 2 Interviewed` adds a recruitment status of `Interviewed` to the 2nd person in the address book.
-* `status 2 Accepted` updates the recruitment status of the 2nd person in the address book from `Interviewed` to `Accepted`.
 
 --------------------------------------------------------------------------------------------------------------------
 
