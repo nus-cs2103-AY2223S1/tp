@@ -48,12 +48,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: `to be added soon`
 * Responsibilities: `to be added soon`
 
-### James Doe
+### Ng Qi Ting
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/nqt230.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[github](http://github.com/nqt230)
+[portfolio](team/nqt230.md)
 
 * Role: Developer
 * Responsibilities: UI
