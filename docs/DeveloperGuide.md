@@ -373,11 +373,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  The system should work on any **Mainstream OS**.
+1.  The system should work in 64-bit environments.
 2.  The app should open within 5 seconds.
 3.  uNivUSal should be able to hold at least 100 contacts.
 4.  The app should be usable by a novice who has never used our app.
-5.  The app should work on multiple platforms(Windows, MacOS)
+5.  The app should work on **Mainstream OS**.
 
 *{More to be added}*
 
