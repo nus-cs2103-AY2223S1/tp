@@ -3,17 +3,6 @@
 
 ![Ui](docs/images/Ui.png)
 
-* This is **a sample project for Software Engineering (SE) students**.<br>
-  Example usages:
-  * as a starting point of a course project (as opposed to writing everything from scratch)
-  * as a case study
-* The project simulates an ongoing software project for a desktop application (called _AddressBook_) used for managing contact details.
-  * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
-  * It comes with a **reasonable level of user and developer documentation**.
-* It is named `AddressBook Level 3` (`AB3` for short) because it was initially created as a part of a series of `AddressBook` projects (`Level 1`, `Level 2`, `Level 3` ...).
-* For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
-* This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
-
 # About
 
 Have you ever been struggling with a coding assignment for days, wanting to reach out to a friend, but not knowing who?
@@ -26,12 +15,13 @@ CodeConnect allows you to quickly manage your tasks and contacts through a text 
 
 * Keep track of your tasks, their deadlines, and the modules they belong to
   * Mark them as complete or uncompleted
+  * Have your contacts and tasks all listed out in a specified order!!
 * Manage your contacts and keep track of the modules they are taking
 
 ## Usage
 
 
-### Finding tasks: 'find'
+### Finding tasks: `find`
 
 Finds tasks from your task list via keywords, or via module. 
 
@@ -83,6 +73,17 @@ Format:
 Example:
 `unmark 3`
 
+### Listing tasks: `list`
+
+Listing all tasks either in the order of the most recent task added or timing of deadline.
+
+Format:
+`list / list time`
+
+Examples:
+* `list` (order of most recent task added)
+* `list time` (order of timing of deadline)
+
 ### Adding a contact: `addc`
 
 Adds a contact to the contact list.
@@ -91,7 +92,7 @@ Format: `addc {name} /email {email} /hp {phone number} /mods {module1} {module2}
 
 Examples:
 * `addc Bob Martin /email bobbymartini@gmail.com /hp 98765432 /mods CS1101S CS1231S`
-* `addc Betsy Crowe /email betsycrowe@gmail.com hp/ 89985432`
+* `addc Betsy Crowe /email betsycrowe@gmail.com /hp 89985432`
 
 ### Deleting a contact: `delc`
 
@@ -112,3 +113,13 @@ Format:
 Examples:
 * `findc /n John` returns `john`, `John Doe`
 * `findc /m CS1231S` returns `Alex Yeoh`, `David Li`
+
+### Listing contacts: `listc`
+
+Listing out all contacts in the contact list.
+
+Format:
+`listc`
+
+Examples:
+* `listc`

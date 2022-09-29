@@ -125,6 +125,15 @@ Examples:
 * `find /t homework` returns `Science homework`, `Math homework`
 * `find /m CS1101S` returns `Problem set 4`, `Reading assignment 2`
 
+### Listing all tasks : `list`
+
+Shows a list of all tasks.
+
+Format: `list` /  `list time`
+
+* List displays a list of all tasks in the order of most recent task added
+* List time displays a list of all tasks in the order of nearest deadline
+
 ### Managing contacts
 
 #### Adding a contact: `addc`
@@ -135,13 +144,13 @@ Format: `addc {name} /email {email} /hp {phone number} /mods {module1} {module2}
 
 Examples:
 * `addc Bob Martin /email bobbymartini@gmail.com /hp 98765432 /mods CS1101S CS1231S`
-* `addc Betsy Crowe /email betsycrowe@gmail.com hp/ 89985432`
+* `addc Betsy Crowe /email betsycrowe@gmail.com /hp 89985432`
 
-#### Listing all persons : `list`
+### Listing all persons : `listc`
 
 Shows a list of all persons in the address book.
 
-Format: `list`
+Format: `listc`
 
 #### Editing a person : `edit`
 
@@ -228,10 +237,11 @@ Action | Format, Examples
 **Mark task** | `mark {task_index}` <br> e.g. `mark 3`
 **Unmark task** | `unmark {task_index}` <br> e.g. `unmark 3`
 **Find tasks** | `find /t {task}` <br> `find /m {module}`<br> e.g., `find /t homework`, <br> `find /m CS1101S`
+**List tasks** | `list` / `list time`
 **Add contact** | `addc {name} /email {email} /hp {phone number} /mods {module1} {module2}...` <br> e.g., `addc Bob Martin /email bobbymartini@gmail.com /hp 98765432 /mods CS1101S CS1231S`
 **Clear** | `clear`
 **Delete contact** | `delc {contact_index}`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find contacts** | `findc /n {name}` <br> `findc /m {module}`<br> e.g., `findc /n John`, <br> `findc /m CS1231S`
-**List** | `list`
+**List contacts** | `listc`
 **Help** | `help`
