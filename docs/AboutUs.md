@@ -50,10 +50,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Ng Qi Ting
 
-<img src="images/qiting.png" width="200px">
+<img src="images/nqt230.png" width="200px">
 
 [github](http://github.com/nqt230)
-[portfolio](team/ngqiting.md)
+[portfolio](team/nqt230.md)
 
 * Role: Developer
 * Responsibilities: UI
