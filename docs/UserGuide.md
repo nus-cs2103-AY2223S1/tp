@@ -135,36 +135,36 @@ Creates a new group with no members.
 
 Format: `addgroup  GROUP`
 
-* Creates a group with the specified GROUP
+* Creates a group with the specified `GROUP`
 
 Examples:
 
-Adds an existing contact to an existing group in TABS.
-
-* addgroup CS2103T
+* `addgroup CS2103T`
 
 ### Adding a member : `addmember`
+
+Adds an existing person to an existing group in TABS.
 
 Format: `addmember GROUP NAME`
 
 Examples:
 
-* addmember CS2103T UserName
-* addmember CS2101 DefaultUser
+* `addmember CS2103T UserName`
+* `addmember CS2101 DefaultUser`
 
-### Assigning a task to a user: `assigntask`
+### Assigning a task to a person: `assigntask`
 
-Assigns a task to a user in TABS.
+Assigns a task to a person in TABS.
 
 Format: `assigntask NAME t/TASK`
 
-* Assigns a TASK to a user with the specified NAME.
-* TASK is of type String.
+* Assigns a `TASK` to a person with the specified `NAME`.
+* `TASK` is of type String.
 
 Examples:
 
-* assigntask n/John t/TeamProject assigns TeamProject task to user John.
-* assigntask n/Billy Tom t/Team Delta Project assigns Team Delta Project to user Billy Tom.
+* `assigntask n/John t/TeamProject` assigns TeamProject task to person John.
+* `assigntask n/Billy Tom t/Team Delta Project` assigns Team Delta Project to person Billy Tom.
 
 ### Display a group : `display`
 
@@ -174,11 +174,11 @@ Displays the group members allocated to the specified group. Instead of details,
 
 Format: `display GROUP`
 
-Lists the members associated with the GROUP and their tasks.
+Lists the members associated with the `GROUP` and their tasks.
 
 Examples:
 
-* display CS2103T displays the users under group CS2103T
+* `display CS2103T` displays the users under group CS2103T
 
 ### Deleting a group : `deletegroup`
 
@@ -186,11 +186,11 @@ Deletes the specified group from the address book.
 
 Format: `deletegroup GROUP`
 
-Deletes the group with the group name GROUP.
+Deletes the group with the group name `GROUP`.
 
 Examples:
 
-* deletegroup CS2103T deletes the group CS2103T
+* `deletegroup CS2103T` deletes the group CS2103T
 
 ### Exiting the program : `exit`
 
