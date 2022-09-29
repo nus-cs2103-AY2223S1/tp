@@ -18,6 +18,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/johndoe.md)]
 
 * Role: TBC
+* Responsibilities: TBC
 
 ### Liang Guo Yang
 
@@ -53,7 +54,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/zylee348)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/leeziyang.md)]
 
 * Role: TBC
 * Responsibilities: TBC
