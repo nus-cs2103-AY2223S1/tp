@@ -92,7 +92,7 @@ Examples:
 * `new student n/Jonathan Tan id/123A pn/George Tan a/10 Kent Ridge View hp/91234567`
 * `new student n/Sally Teo id/789B pn/Amy Toh a/200 River Valley Street hp/97654321`
 
-### Listing all persons : `view all`
+### Listing all students : `view all`
 
 Shows a list of all students in the class.
 For each student in the list, only the Student's Name and Student's ID are displayed.
@@ -102,40 +102,34 @@ To view the full record of a student, use the `view` command instead.
 
 Format: `view all`
 
-### Editing a person : `edit`
+### Editing a student : `edit`
 
-Edits an existing person in the address book.
+Edits the respective details of an existing student in the class list.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit [index] n/[name of student] id/[id of student] pn/[name of parent]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
+:bulb: Note:
+* Edits the person at the specified `index`. The index refers to the index number shown in the current displayed list. The index **must be a positive integer** 1, 2, 3, …​
+* Any tag can be used to edit the respective information.
+* At least one tag must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 pn/91234567 a/8 College Ave East` Edits the parent phone number and address of the 1st student to be `91234567` and `8 College Ave East` respectively.
+*  `edit 2 n/Jacob Teo` Edits the name of the 2nd student to be `Jacob Teo`.
 
-### Locating persons by name: `find`
+### Listing a single student: `view`
 
-Finds persons whose names contain any of the given keywords.
+Shows the full record of a student, including all stored details, using the given student's name or student's id.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `view n/[name]` or `view id/[id]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Only the name or the id is searched, depending on the given input.
+* Only full names / full ids will be matched e.g. `Han` will not match `Hans`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `view n/John` returns the record for the student named `john`
 
 ### Deleting individual student record : `delete`
 
@@ -186,12 +180,13 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+|                 Action                | Format                                                                                                                  | Example                                                                          |  
+|:-------------------------------------:|:------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------|
+|         Add individual student        | `new student n/[name of student] id/[ID of student] pn/[name of parent] a/[home address] hp/[mobile number of parent]`  | _new student n/Jonathan Tan id/123A pn/George Tan a/Kent Ridge View hp/91234567_ |
+|      View all student information     | `view all`                                                                                                              | _view all_                                                                       |
+|  View individual student information  | `view n/[name]` or `view id/[id]`                                                                                       | _view n/Jonathan Tan_                                                            |
+| Update individual student information | `update [index] n/[name] id/[id] pn/[name of parent] a/[home address] hp/[mobile number of parent]`                     | _update 1 a/Kent Ridge View_                                                     |
+|       Delete individual student       | `delete n/[name]` or `delete id/[id]`                                                                                   | _delete n/Jonathan Tan_                                                          |
+|                  Exit                 | `exit`                                                                                                                  | _exit_                                                                           |
+
+                                                                                                                              

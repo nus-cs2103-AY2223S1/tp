@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Linus Chan
 
-<img src="images/linuschan.png" width="200px">
+<img src="images/linuschancs.png" width="200px">
 
 [[github](https://github.com/linuschancs)]
 [[portfolio](team/linuschancs.md)]
@@ -19,15 +19,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead / Developer
 * Responsibilities: Deliverables and Scheduling
 
-### Jane Doe
+### Chia Min Jiun
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/minjiunn.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/minjiunn)]
 [[portfolio](team/minjiunn.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Testing
 
 ### Jerome Pui
 
@@ -43,8 +43,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/danielk0k.png" width="200px">
 
-[[github](http://github.com/danielk0k)]
-[[portfolio](team/danielkok.md)]
+[[github](https://github.com/danielk0k)]
+[[portfolio](team/danielk0k.md)]
 
 * Role: Developer
 * Responsibilities: Integration
