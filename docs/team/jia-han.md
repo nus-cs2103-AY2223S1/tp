@@ -1,4 +1,6 @@
-Jia Han's Project Portfolio Page
+---
+layout: page
+title: Jia Han's Project Portfolio Page
 ---
     
 ## Overview of TutHub
