@@ -181,13 +181,13 @@ _Details coming soon ..._
 
 ## Command summary
 
-|                 Action                | Format                                                                                                                 | Example                                                                                  |  
-|:-------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------|
-|         Add individual student        | `new student n/[name of student] id/[ID of student] pn/[name of parent] a/[home address] hp/[mobile number of parent]` | _new student n/Jonathan Tan id/123A pn/George Tan a/Kent Ridge View hp/91234567_         |
-|      View all student information     | `view all`                                                                                                             | _view all_                                                                               |
-|  View individual student information  | `view n/[name]` or `view id/[id]`                                                                                      | _view Jonathan Tan view 123A_                                                            |
-| Update individual student information | `update [index] n/[name] id/[id] pn/[name of parent] a/[home address] hp/[mobile number of parent]`                    | _update 1 a/Kent Ridge View_                                                             |
-|       Delete individual student       | `delete n/[name] or delete id/[id]`                                                                                    | _delete Jonathan Tan delete 123A_                                                        |
-|                  Exit                 | `exit`                                                                                                                 | _exit_                                                                                   |
+|                 Action                | Format                                                                                                                  | Example                                                                          |  
+|:-------------------------------------:|:------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------|
+|         Add individual student        | `new student n/[name of student] id/[ID of student] pn/[name of parent] a/[home address] hp/[mobile number of parent]`  | _new student n/Jonathan Tan id/123A pn/George Tan a/Kent Ridge View hp/91234567_ |
+|      View all student information     | `view all`                                                                                                              | _view all_                                                                       |
+|  View individual student information  | `view n/[name]` or `view id/[id]`                                                                                       | _view n/Jonathan Tan_                                                            |
+| Update individual student information | `update [index] n/[name] id/[id] pn/[name of parent] a/[home address] hp/[mobile number of parent]`                     | _update 1 a/Kent Ridge View_                                                     |
+|       Delete individual student       | `delete n/[name]` or `delete id/[id]`                                                                                   | _delete n/Jonathan Tan_                                                          |
+|                  Exit                 | `exit`                                                                                                                  | _exit_                                                                           |
 
                                                                                                                               
