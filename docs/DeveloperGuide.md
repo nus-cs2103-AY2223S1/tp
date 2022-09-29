@@ -283,7 +283,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `YellowBook` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: Add a contact**
+
+**MSS**
+
+1.  User request to add a contact
+2.  YellowBook adds the contact
+
+    Use case ends.
+    
+**Extensions**
+
+* 1a. The details of the contact are incomplete.
+     
+    * 1a1. YellowBook shows an error message.
+
+	     Use case ends.
+    
+* 1b. The contact given already exists.
+	   
+    * 1b1. YellowBook shows an error message.
+  
+      Use case ends.
 
 **Use case: Delete a person**
 
