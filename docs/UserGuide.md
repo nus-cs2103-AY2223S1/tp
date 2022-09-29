@@ -66,32 +66,37 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a client: `addClient`
 
-Adds a person to the address book.
+Adds a new client to MyInsuRec.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Format: `addClient n/NAME p/PHONE_NUMBER [e/EMAIL]`
+* Adds a client having name `NAME`.
+* A client must have a NAME and a PHONE_NUMBER.
+* Email is optional.
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `addClient n/John Tan p/0123456789`
+* `addClient n/John Tan p/0123456789 e/johntan@insurec.com`
 
 ### Listing all persons : `list`
 
 Shows a list of all persons in the address book.
 
 Format: `list`
+
+### Listing meetings: `listMeeting`
+
+List all meetings in MyInsuRec.
+
+Format: `listMeeting`
 
 ### Editing a person : `edit`
 
@@ -148,7 +153,7 @@ Clears all entries from the address book.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+### Exiting MyInsuRec : `exit`
 
 Exits the program.
 
@@ -181,12 +186,14 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action                | Format, Examples                                                                                                                                                     |
+|-----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add client**        | `addClient n/NAME p/PHONE_NUMBER [e/EMAIL]` <br> e.g.,<li>`addClient n/John Tan p/0123456789`</li><li>`addClient n/John Tan p/0123456789 e/johntan@insurec.com`</li> |
+| **List all clients**  | `listClient`                                                                                                                                                         |
+| **View client**       | `viewClient i/INDEX` <br> e.g., <li>`viewClient i/1`</li>                                                                                                            |
+| **Delete client**     | `delMeeting i/INDEX` <br> e.g., <li>`delClient i/1`</li>                                                                                                             |
+| **Add meeting**       | `addMeeting n/NAME d/DATE t/TIME` <br> e.g., <li>`addMeeting n/Thomas d/28092022 t/1400`</li>                                                                        |
+| **List all meetings** | `listMeeting`                                                                                                                                                        |
+| **View meeting**      | `viewMeeting i/INDEX` <br> e.g., <li>viewMeeting i/1</li>                                                                                                            |
+| **Delete meeting**    | `delMeeting i/INDEX` <br> e.g., <li>delMeeting i/1</li>                                                                                                              |
+| **Exit**              | `exit`                                                                                                                                                               |
