@@ -34,3 +34,11 @@ Roles:
 [[github](https://github.com/shaniceng)]
 
 * Role: (deciding)
+
+### Singh Abdullah Alexander
+
+<img src="images/singhabdullahalexander.png" width="200px">
+
+[[github](https://github.com/alexandermula)]
+
+* Role: Documentation
