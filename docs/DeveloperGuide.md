@@ -307,32 +307,102 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `JARVIS` and the **Actor** is `AVENGER`, unless specified otherwise)
 
-**Use case: Delete a person**
-
+####**Use case: UC3 - List students**
 **MSS**
+1. Avenger requests to list students.
+2. JARVIS displays list of students.
+   
+    Use case ends.
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+**Extensions**
+* 1a. JARVIS detects an error in the format of the input command.
+  * 1a1. JARVIS requests user to re-input their command.
+  * 1a2. Avenger inputs command.
+
+  Steps 1a1-1a2 are repeated until the command entered is correct. 
+
+  Use case resumes from step 2.
+
+####**Use case: UC4 - List tasks**
+**MSS**
+1. Avenger requests to list tasks.
+2. JARVIS displays list of tasks.
 
     Use case ends.
 
 **Extensions**
+ * 1a. JARVIS detects an error in the format of the input command.
+   * 1a1. JARVIS requests user to re-input their command.
+   * 1a2. Avenger inputs command.
+   
+   Steps 1a1-1a2 are repeated until the command entered is correct.
 
-* 2a. The list is empty.
+   Use case resumes from step 2.
+ 
+####**Use case: UC5 - Delete a student**  
+Preconditions:  There are existing students in JARVIS.  
 
+**MSS**
+1. Avenger <ins>requests to list students(UC3)</ins>.
+2. JARVIS displays the list of students.
+3. Avenger inputs command to delete a student.
+4. JARVIS displays list of student after successfully deleting the task.  
+    Use case ends.
+
+**Extensions**
+* 3a. JARVIS detects an error in the format of the input command.
+  * 3a1. JARVIS requests user to re-input their command.
+  * 3a2. Avenger inputs command.
+  
+  Steps 3a1-3a2 are repeated until the command entered is correct.  
+  Use case resumes from step 4.
+
+
+####**Use case: UC6 - Delete task**  
+Preconditions: There are existing tasks in JARVIS.  
+
+**MSS:**
+1. Avenger <ins>requests to list task (UC4)</ins>.
+2. JARVIS displays the list of tasks.
+3. Avenger inputs command to delete a task.
+4. JARVIS displays list of tasks after successfully deleting the task.  
+   Use case ends.
+
+**Extensions:**
+* 3a. JARVIS detects an error in the format of the input command.
+  * 3a1. JARVIS requests user to re-input their command.
+  * 3a2. Avenger inputs command.  
+    Steps 3a1-3a2 are repeated until the command entered is correct.  
+    Use case resumes from step 4.
+
+    
+####**Use case: UC7 - Clear all students and tasks**
+Preconditions: There are existing tasks and/or students in JARVIS.  
+Guarantees: All students and tasks will be deleted.  
+
+**MSS:**
+1. Avenger inputs command to clear all data.
+2. JARVIS requests for confirmation message.
+3. Avenger confirms.
+4. JARVIS display success message.
+
+**Extensions:**
+* 1a. JARVIS detects an error in the format of the input command.
+  * 1a1. JARVIS requests user to re-input their command.
+  * 1a2. Avenger inputs command.  
+  Steps 1a1-1a2 are repeated until the command entered is correct.  
+  Use case resumes from step 2.
+* 2a. Avenger failed to provide confirmation message.
+  * 2a1. Avenger input invalid confirmation.  
   Use case ends.
 
-* 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
 
-      Use case resumes at step 2.
 
-*{More to be added}*
+
+
 
 ### Non-Functional Requirements
 
