@@ -117,11 +117,14 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd internship application in WorkBook.
 * `find Meta` followed by `delete 1` deletes the 1st internship application within the results of the `find` command.
 
-### Clearing all entries : `clear`
+### Clearing all existing internship applications : `clear`
 
-Clears all entries from the address book.
+Clears all internship applications in the Workbook.
 
 Format: `clear`
+
+Example:
+* `clear` removes all internship applications in the workbook.
 
 ### Exiting the program : `exit`
 
