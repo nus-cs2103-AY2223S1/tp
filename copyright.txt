@@ -1,5 +1,10 @@
 ﻿Some code adapted from http://code.makery.ch/library/javafx-8-tutorial/ by Marco Jakob
 
+Copyright by Freepik - https://www.flaticon.com/
+- food-where_icon.png
+- review.png
+- stall.png
+
 Copyright by Susumu Yoshida - http://www.mcdodesign.com/
 - address_book_32.png
 - AddressApp.ico
