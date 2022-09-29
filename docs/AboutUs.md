@@ -25,7 +25,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/kangqiao322.png" width="200px">
 
 [[github](https://github.com/kangqiao322)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/kangqiao322.md)]
 
 * Role: Developer
 * Responsibilities: Something
