@@ -284,7 +284,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | pre-event marketer                                   | view all the upcoming marketing events in the system sorted in the order that they were added into the system | have a high level overview of all marketing events and be mentally prepared for each of them |
 | `* * *`  | pre-event marketer who handles many marketing events | add marketing events                                                                                          | keep the system up to date with changes that happen to the marketing plans                   |
 | `* * *`  | pre-event marketer who handles many marketing events | delete marketing events                                                                                       | remove marketing events that I no longer need                                                |
-| `* *`    | marketer with many customer contacts                 | sort all customer contacts by name, date of birth and gender                                                  | locate people more easily and obtain contact lists of different demographic groups           |
+| `* *`    | marketer with many customer contacts                 | sort all customer contacts by name, date of birth or gender                                                    | locate people more easily and obtain contact lists of different demographic groups           |
 
 *{More to be added}*
 
@@ -395,9 +395,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1. Should work on any mainstream OS as long as it has Java 11 or above installed.
-2. App should not require installation to work, i.e. it is portable
+2. App should not require installation to work (i.e. it is portable)
 3. App should work well for standard screen resolutions 1920x1080 and higher, as well as for screen scales 100% and 125%.
-4. App should be usable (i.e., all functions can be used even if the user experience is not optimal) for resolutions 1280x720 and higher, as well as for screen scales 150%.
+4. App should be usable (i.e. all functions can be used even if the user experience is not optimal) for resolutions 1280x720 and higher, as well as for screen scales 150%.
 5. Should be able to hold up to 1000 customers and 200 events without a noticeable sluggishness in performance for typical usage.
 6. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 7. The system should respond within 5 seconds.
