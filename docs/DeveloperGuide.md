@@ -265,7 +265,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: This app aims to be a unified platform that helps the user manage all of their internship applications
+**Value proposition**: This app aims to be a unified platform that helps the user manage all his/her internship applications
 
 
 ### User stories
