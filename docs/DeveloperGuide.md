@@ -257,27 +257,39 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* is a Computing student 
+* is looking and applying for internships
+* likes to organize his/her data in one place
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: This app aims to be a unified platform that helps the user manage all their internship applications
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                           | I want to …​                                                                                | So that I can…​                                                                          |
+| -------- |-----------------------------------|---------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|
+| `* * *`  | student                           | add an internship position that I have applied to                                           | begin tracking my internship application progress                                        |
+| `* * *`  | student                           | update an internship position that I have applied to                                        | keep the tracker updated on the current state of my internship application               |
+| `* * *`  | student                           | add an interview date to an internship application                                          | track when my interview for that particular internship application is coming up          |
+| `* * *`  | student                           | filter my internship applications according to position                                     | view all my internship applications for that particular position that I am interested in |
+| `* *`    | student                           |  delete an internship that I am not interested in anymore                         | get rid of internship applications that are not relevant to me anymore                   |
+| `*`      | student                           |  add an interview date to an application in the "Interview" stage                 | track when my interview is coming up.                                                    |
+| `*`      | student                           | add an expiry date to an application that is in the “Online Assessment” stage.              | keep track of when I have to complete the Online Assesment by                            |
+| `*`      | student                           |  rank all my internship applications                                              | decide which applications that I have to focus on more.                                  |
+| `*`      | student                           | move an existing application to the "Rejection" stage and provide a reason why I got rejected | keep track of common trends or reasons for my failed applications                        |
+| `*`      | easily confused student           | prevent myself from adding the same internship application twice                 | I dont get distracted by duplicate internships                                           |
+| `*`      | broke student                     | sort the internships based on pay                                                           | determine which applications are more worth it in this current economic state.           |
+| `*`      | less experienced student with CLI | view the list of commands                                                                   | familiarise myself with the commands.                                                    |
+| `*`      | less experienced student          | view some helpful resources                                                                 | understand the hiring process and tech landscapes better.                                |
+| `*`      | anxious student                   |  switch to a calender view                                                        |       easily see all my upcoming interviews/OAs/expiring offers                      |
+
+
 
 *{More to be added}*
 
