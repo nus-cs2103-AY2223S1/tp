@@ -349,7 +349,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Customer**: A contact detail. Contains information about the customer, and a list of commissions.
-* **Commission**: An art piece requested by a customer that has been delivered or under progress. Contains specifics about the commission and list of iterations.
+* **Commission**: An art piece requested by a customer that has been delivered or is in progress. Contains specifics about the commission and a list of iterations.
 * **Iteration**: A single version of a commission. Contains an image and a text comment on the image. 
 --------------------------------------------------------------------------------------------------------------------
 
