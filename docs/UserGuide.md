@@ -5,8 +5,16 @@ title: User Guide
 
 uNivUSal is a desktop app for managing contacts catered to CS2103T students, TAs, and professors, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, uNivUSal can get your contact management tasks done faster than traditional GUI apps.
 
-* Table of Contents
-{:toc}
+* Quick start
+* Features
+   * Viewing help : help
+   * Adding a person: add
+   * Listing all persons : list
+   * Editing a person : edit
+   * Deleting a person : delete
+   * Clearing all entries : clear
+* Command summary
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -147,6 +155,9 @@ Examples:
 Clears all entries from the address book.
 
 Format: `clear`
+* Deletes every person in the address book.
+* Only a blank address book will remain.
+
 
 ### Exiting the program : `exit`
 
