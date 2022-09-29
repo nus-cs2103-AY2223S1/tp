@@ -72,19 +72,20 @@ Shows a message explaining how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding an internship application: `add`
 
-Adds a person to the address book.
+Adds an internship application to WorkBook.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add c/COMPANY d/DATE_APPLIED e/COMPANY_EMAIL r/ROLE [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+* Adds an internship application to the next index.
+* Date must be properly formatted (YYYY-MM-DD).
+* Email domain must be properly formatted (example@domain.com).
+* An application can have any number of tags (including 0).
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add c/Meta d/2022-09-15 e/hrmonkey@example.com r/Frontend`
+* `add c/Bytedance d/2022-04-20 e/bytehr@dance.com r/Backend t/high pay`
 
 ### Editing a person : `edit`
 
