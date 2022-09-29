@@ -66,9 +66,9 @@ Something goes here...
 
    4.3 [Listing](#list)
 
-   &emsp; 4.3.1 [List all items](#listItems)
+   &emsp; 4.3.1 [List all items](#list-items)
 
-   &emsp; 4.3.2 [List all tags](#listTags)
+   &emsp; 4.3.2 [List all tags](#list-tags)
 
    4.4 [Searching](#find)
 
@@ -104,7 +104,97 @@ Something goes here...
 
 ## Commands
 
-INDIVIDUAL COMMANDS GO HERE
+#### List items
+
+Command: `list`
+
+> Description: Lists all the items in the inventory.
+
+---
+
+Example:
+Input
+
+```
+list
+```
+
+Output
+
+```
+Here are the items in your inventory:
+Onions
+Details about onions
+Tomatoes
+Details about tomatoes
+Chicken wings
+Details about chicken wings
+```
+
+####  List tags
+
+Command: `list tags`
+
+> Description: Lists all the tags that the user has created.
+
+---
+
+Example:
+Input
+
+```
+list tags
+```
+
+Output
+
+```
+Here are the tags that are available:
+Fruits
+Vegetables
+Spices
+```
+
+### Find
+
+Command: `find NAME`
+
+> Description: Find an inventory item based on the given keywords
+> The search is case-insensitive. (e.g apples will match Apples)
+> The order of the keyword does not matter e.g (rose apple will match apple rose)
+> Only the item name is searched
+
+---
+
+Example:
+Input
+
+```
+find apple
+```
+
+Output
+
+```
+Here are the results matching your search
+Green apple
+Rose apple
+```
+
+#### Bye
+
+Command: `bye`
+
+> Description: Exits Foodrem program.
+
+---
+
+Example:
+Input
+
+```
+bye
+```
 
 ## Command Summary
 
