@@ -22,7 +22,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Chang Si Kai
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/sikai00.png" width="200px">
 
 [[github](http://github.com/sikai00)]
 [[portfolio](team/sikai00.md)]
