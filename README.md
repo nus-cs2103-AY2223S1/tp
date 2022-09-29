@@ -4,7 +4,7 @@
 
 ![Ui](docs/images/Ui.png)
 
-SoCompiler is a desktop app to help users manage their modules and contacts, optimized for use via a Command Line 
+SoCompiler is a desktop app to help users manage their modules and contacts, optimized for use via a Command Line
 Interface(CLI) while still retaining the benefits of a Graphical User Interface (GUI).
 
 ## Useful Links

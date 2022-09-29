@@ -319,9 +319,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. SoCompiler shows an error message
 
         Use case ends.
-  
+
 * 1b. Necessary fields are empty.
-    
+
     * 1b1. SoCompiler shows an error message
 
         Use case ends.
