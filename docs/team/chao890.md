@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Chor Chao Yung's Project Portfolio Page
+title: Chao Yung's Project Portfolio Page
 ---
 
 ### Project: Coydir
