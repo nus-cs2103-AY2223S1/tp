@@ -15,7 +15,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/Tan-Jin-Waye)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/tanjinwaye.md)]
 
 * Role: TBC
 * Responsibilities: TBC
