@@ -1,13 +1,13 @@
 package coydir.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static coydir.logic.commands.CommandTestUtil.assertCommandFailure;
 import static coydir.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static coydir.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static coydir.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static coydir.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static coydir.testutil.TypicalPersons.getTypicalAddressBook;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 

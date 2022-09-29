@@ -1,6 +1,5 @@
 package coydir.logic;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static coydir.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static coydir.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static coydir.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
@@ -9,6 +8,7 @@ import static coydir.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static coydir.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static coydir.testutil.Assert.assertThrows;
 import static coydir.testutil.TypicalPersons.AMY;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 import java.nio.file.Path;

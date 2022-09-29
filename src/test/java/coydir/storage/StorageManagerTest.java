@@ -1,8 +1,8 @@
 package coydir.storage;
 
+import static coydir.testutil.TypicalPersons.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static coydir.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.nio.file.Path;
 

@@ -1,12 +1,12 @@
 package coydir.storage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static coydir.testutil.Assert.assertThrows;
 import static coydir.testutil.TypicalPersons.ALICE;
 import static coydir.testutil.TypicalPersons.HOON;
 import static coydir.testutil.TypicalPersons.IDA;
 import static coydir.testutil.TypicalPersons.getTypicalAddressBook;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.io.IOException;
 import java.nio.file.Path;

@@ -1,7 +1,7 @@
 package coydir.commons.util;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static coydir.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 

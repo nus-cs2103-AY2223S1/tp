@@ -1,8 +1,8 @@
 package coydir.commons.core;
 
+import static coydir.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static coydir.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 

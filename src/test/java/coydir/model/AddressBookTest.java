@@ -1,13 +1,13 @@
 package coydir.model;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static coydir.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static coydir.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static coydir.testutil.Assert.assertThrows;
 import static coydir.testutil.TypicalPersons.ALICE;
 import static coydir.testutil.TypicalPersons.getTypicalAddressBook;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -16,11 +16,11 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import coydir.model.person.Person;
 import coydir.model.person.exceptions.DuplicatePersonException;
 import coydir.testutil.PersonBuilder;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class AddressBookTest {
 

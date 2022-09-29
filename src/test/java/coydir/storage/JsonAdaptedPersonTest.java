@@ -1,9 +1,9 @@
 package coydir.storage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static coydir.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
 import static coydir.testutil.Assert.assertThrows;
 import static coydir.testutil.TypicalPersons.BENSON;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;

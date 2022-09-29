@@ -1,13 +1,13 @@
 package coydir.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static coydir.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static coydir.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static coydir.logic.parser.CliSyntax.PREFIX_NAME;
 import static coydir.logic.parser.CliSyntax.PREFIX_PHONE;
 import static coydir.logic.parser.CliSyntax.PREFIX_TAG;
 import static coydir.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Arrays;
