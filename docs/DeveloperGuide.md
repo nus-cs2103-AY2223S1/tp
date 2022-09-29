@@ -275,30 +275,45 @@ focus on what matters more: matching the right people for the right job.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                            | I want to …​                                                                 | So that I can…​                                                              |
-|----------|------------------------------------|------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
-| `* * *`  | potential user exploring the app   | see the sample data                                                          | easily play around and understand how the app works                             |
-| `* * *`  | new user                           | see the list of available things I can do with the app                       | learn how to use the app fully                                                  |
-| `* * *`  | new user                           | read the user guide                                                          | I understand all the commands and features available in the app before using it |
-| `* * *`  | user                               | delete fields and data                                                       |                                                                                 | 
-| `* * *`  | user                               | add applicants                                                               |                                                                                 |
-| `* * *`  | user                               | mass add applicants' data                                                    | conveniently import my data quickly and without hassle                          |
-| `* * *`  | user                               | view all details of my selected Applicant                                    | avoid opening and working with multiple files                                   |
-| `* * *`  | user                               | see the summary statistics of my data                                        | have a higher-level view of the data                                            |
-| `* * *`  | user ready to start using the app  | clear all current data                                                       | get rid of sample/experimental data I used for exploring the app                |
-| `* * *`  | user                               | edit my data manually just by inputting a command to the query               | so that I can modify it in a shorter time in case of a typo.                    |
-| `* *  `  | user                               | edit key information that I care about conveniently from my high-level view  | so that I can keep my focus to do what matters                                  |
-| `* * *`  | user                               | update my data for existing applicants                                       | so that I can view their latest details in case of reapplication                |
-| `*    `  | user                               | delete applicants that I note as unqualified                                 | so that I do not waste too much space                                           |
-| `* *  `  | user                               | create new applicant attributes                                              | so that I can easily describe applicants based on my preference                 |
-| `*    `  | user                               | view a data visualization/dashboard                                          | so that I can easily and visually get the key information I need and care about |
-| `* *  `  | user                               | customize my UI/UX settings e.g., Color settings, font size                  | so that the application can cater to my needs                                   |
-| `*    `  | user                               | make my own pseudo commands/macros                                           | so that I can improve my efficiency with the app                                |
-| `* * *`  | user                               | import data from others                                                      | so that I can receive resources from other users                                |
-| `* * *`  | user                               | export my data                                                               | so that I can share resources with others                                       |
-| `* *  `  | user                               | add a custom field to my data                                                | so that I can have more flexible records                                        |
-| `*    `  | user                               | add profile pictures to my records                                           | so that I can see who I’m looking at                                            |
-
+| Priority | As a …​                           | I want to …​                                                                             | So that I can…​                                                                                                                  |
+|----------|-----------------------------------|------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
+| `* * *`  | potential user exploring the app  | see the sample data                                                                      | easily play around and understand how the app works                                                                              |
+| `* * *`  | new user                          | see the list of available things I can do with the app                                   | learn how to use the app fully                                                                                                   |
+| `* * *`  | new user                          | read the user guide                                                                      | I understand all the commands and features available in the app before using it                                                  |
+| `* * *`  | user                              | delete fields and data                                                                   |                                                                                                                                  | 
+| `* * *`  | user                              | add applicants                                                                           |                                                                                                                                  |
+| `* * *`  | user                              | mass add applicants' data                                                                | conveniently import my data quickly and without hassle                                                                           |
+| `* * *`  | user                              | view all details of my selected Applicant                                                | avoid opening and working with multiple files                                                                                    |
+| `* * *`  | user                              | see the summary statistics of my data                                                    | have a higher-level view of the data                                                                                             |
+| `* * *`  | user ready to start using the app | clear all current data                                                                   | get rid of sample/experimental data I used for exploring the app                                                                 |
+| `* * *`  | user                              | close the app by inputing "exit" command                                                 |                                                                                                                                  |
+| `* * *`  | user                              | add an additional value to the field I am inserting                                      | if my value is currently not in the list (e.g. list of Universities, list of Majors) so that I can enter my data more accurately |
+| `* * *`  | user                              | delete the existing values in a field                                                    | so that I easily modify and customise my value for a field (e.g. Major, University)                                              |
+| `* *`    | user                              | add an open Role                                                                         | keep track of who applied to the role                                                                                            |
+| `* * *`  | user                              | search for applicants by name                                                            | quickly find what I need                                                                                                         |
+| `* *`    | user                              | filter applicants based on certain fields/criteria/categories                            | obtain filtered data based on the criteria that I want                                                                           |
+| `* *`    | user                              | archive old data                                                                         | see the last few months/years data only                                                                                          |
+| `* * `   | user                              | auto-archive applicants data and store the updated one when they applied to another role | see only the updated data of the applicant and all the roles the applied to                                                      |
+| `* * `   | user                              | see the archived data                                                                    | see how the applicants progress over the time                                                                                    |
+| `* *`    | user                              | see the summary statistics of a particular applicant's details                           | see how they progress over the time                                                                                              |
+| `*`      | user                              | give KIV tag to applicants                                                               |                                                                                                                                  |
+| `*`      | user                              | customize my UI/UX settings e.g., Colour settings, font size                             | cater the application to my needs                                                                                                |
+| `*`      | user                              | add references to external documents to my records                                       | keep things related to each other easily accessible                                                                              |
+| `* *`    | user                              | have different key views which contain important related data                            | package and declutter unneeded data and focus on what's at hand                                                                  |
+| `* * *`  | user                              | modify current fields                                                                    | keep my data up to date                                                                                                          |
+| `*`      | user                              | make and customize my own views                                                          | get to decide what groups of data matter to my, and empower myself on what I care about                                          |
+| `* * *`  | user                               | edit my data manually just by inputting a command to the query                          | so that I can modify it in a shorter time in case of a typo.                                                                     |
+| `* *  `  | user                               | edit key information that I care about conveniently from my high-level view             | so that I can keep my focus to do what matters                                                                                   |
+| `* * *`  | user                               | update my data for existing applicants                                                  | so that I can view their latest details in case of reapplication                                                                 |
+| `*    `  | user                               | delete applicants that I note as unqualified                                            | so that I do not waste too much space                                                                                            |
+| `* *  `  | user                               | create new applicant attributes                                                         | so that I can easily describe applicants based on my preference                                                                  |
+| `*    `  | user                               | view a data visualization/dashboard                                                     | so that I can easily and visually get the key information I need and care about                                                  |
+| `* *  `  | user                               | customize my UI/UX settings e.g., Color settings, font size                             | so that the application can cater to my needs                                                                                    |
+| `*    `  | user                               | make my own pseudo commands/macros                                                      | so that I can improve my efficiency with the app                                                                                 |
+| `* * *`  | user                               | import data from others                                                                 | so that I can receive resources from other users                                                                                 |
+| `* * *`  | user                               | export my data                                                                          | so that I can share resources with others                                                                                        |
+| `* *  `  | user                               | add a custom field to my data                                                           | so that I can have more flexible records                                                                                         |
+| `*    `  | user                               | add profile pictures to my records                                                      | so that I can see who I’m looking at                                                                                             |
 
 *{More to be added}*
 
@@ -321,6 +336,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. The given format is invalid.
 
     * 3a1. InternConnect shows an error message.
+
+      Use case ends.
+
+
+**Use case: Modify an applicant**
+
+**MSS**
+
+1.  User requests to modify an applicant with its specifiers
+2.  InternConnect modifies the applicant
+3.  InternConnect shows the updated applicant
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. InternConnect detects that the specifiers given is invalid.
+
+    * 1a1. InternConnect shows an error message.
+
+      Use case ends.
+
+* 1b. InternConnect detects that the INDEX given is invalid.
+
+    * 1b1. InternConnect shows an error message.
 
       Use case ends.
 
