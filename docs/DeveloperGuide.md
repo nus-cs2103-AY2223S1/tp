@@ -275,17 +275,30 @@ focus on what matters more: matching the right people for the right job.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                            | I want to …​                                            | So that I can…​                                                                 |
-|----------|------------------------------------|---------------------------------------------------------|---------------------------------------------------------------------------------|
-| `* * *`  | potential user exploring the app   | see the sample data                                     | easily play around and understand how the app works                             |
-| `* * *`  | new user                           | see the list of available things I can do with the app  | learn how to use the app fully                                                  |
-| `* * *`  | new user                           | read the user guide                                     | I understand all the commands and features available in the app before using it |
-| `* * *`  | user                               | delete fields and data                                  |                                                                                 | 
-| `* * *`  | user                               | add applicants                                          |                                                                                 |
-| `* * *`  | user                               | mass add applicants' data                               | conveniently import my data quickly and without hassle                          |
-| `* * *`  | user                               | view all details of my selected Applicant               | avoid opening and working with multiple files                                   |
-| `* * *`  | user                               | see the summary statistics of my data                   | have a higher-level view of the data                                            |
-| `* * *`  | user ready to start using the app  | clear all current data                                  | get rid of sample/experimental data I used for exploring the app                |
+| Priority | As a …​                           | I want to …​                                                                             | So that I can…​                                                                         |
+|----------|-----------------------------------|------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|
+| `* * *`  | potential user exploring the app  | see the sample data                                                                      | easily play around and understand how the app works                                     |
+| `* * *`  | new user                          | see the list of available things I can do with the app                                   | learn how to use the app fully                                                          |
+| `* * *`  | new user                          | read the user guide                                                                      | I understand all the commands and features available in the app before using it         |
+| `* * *`  | user                              | delete fields and data                                                                   |                                                                                         | 
+| `* * *`  | user                              | add applicants                                                                           |                                                                                         |
+| `* * *`  | user                              | mass add applicants' data                                                                | conveniently import my data quickly and without hassle                                  |
+| `* * *`  | user                              | view all details of my selected Applicant                                                | avoid opening and working with multiple files                                           |
+| `* * *`  | user                              | see the summary statistics of my data                                                    | have a higher-level view of the data                                                    |
+| `* * *`  | user ready to start using the app | clear all current data                                                                   | get rid of sample/experimental data I used for exploring the app                        |
+| `* *`    | user                              | add an open Role                                                                         | keep track of who applied to the role                                                   |
+| `* * *`  | user                              | search for applicants by name                                                            | quickly find what I need                                                                |
+| `* *`    | user                              | filter applicants based on certain fields/criteria/categories                            | obtain filtered data based on the criteria that I want                                  |
+| `* *`    | user                              | archive old data                                                                         | see the last few months/years data only                                                 |
+| `* * `   | user                              | auto-archive applicants data and store the updated one when they applied to another role | see only the updated data of the applicant and all the roles the applied to             |
+| `* * `   | user                              | see the archived data                                                                    | see how the applicants progress over the time                                           |
+| `* *`    | user                              | see the summary statistics of a particular applicant's details                           | see how they progress over the time                                                     |
+| `*`      | user                              | give KIV tag to applicants                                                               |                                                                                         |
+| `*`      | user                              | customize my UI/UX settings e.g., Colour settings, font size                             | cater the application to my needs                                                       |
+| `*`      | user                              | add references to external documents to my records                                       | keep things related to each other easily accessible                                     |
+| `* *`    | user                              | have different key views which contain important related data                            | package and declutter unneeded data and focus on what's at hand                         |
+| `* * *`  | user                              | modify current fields                                                                    | keep my data up to date                                                                 |
+| `*`      | user                              | make and customize my own views                                                          | get to decide what groups of data matter to my, and empower myself on what I care about |
 *{More to be added}*
 
 ### Use cases
