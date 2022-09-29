@@ -36,11 +36,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/luyiting0913.md)]
 
 - Role: Developer
-<<<<<<< HEAD
-- Responsibilities: Dev Ops + Threading
-=======
 - Responsibilities: User Stories Planning
->>>>>>> 2bdbcf7ad121ba4266d933c7898bb570207bfd43
 
 ### Yeo Jun Jie
 
