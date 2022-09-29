@@ -257,13 +257,13 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Programmers who love vim and want to hit the gym for some exercise but they are too occupied with work to recall their progressions and don’t know / remember what to do next
+* They may also find it hard to remember their statistics on each exercise
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
+* Leverage on their blazing speed on vim to save, write and view gym data in a familiar fashion
+* Provides a fast platform for users to track their gym progress or workout routine
+* Has vim-like shortcuts to make things more efficient for vim lovers
 
 
 ### User stories
