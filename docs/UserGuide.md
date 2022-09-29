@@ -69,7 +69,7 @@ Format: `help`
 
 Adds an applicant to InternConnect.
 
-Format: `dd name/NAME phone/PHONE email/EMAIL [specifier/SPECIFIER_DETAIL]`
+Format: `add name/NAME phone/PHONE email/EMAIL [specifier/SPECIFIER_DETAIL]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of specifiers (including 0)
