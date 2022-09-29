@@ -113,6 +113,19 @@ Examples:
 - `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 - `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
+### View details of a person: `view`
+
+View the details of an existing person in the address book.
+
+Format: `view UID`
+
+- Can use with `find` to check the UID of a person
+- UID need to be precise in order for the program to locate the correct person
+
+Examples:
+
+- `view 12345` returns the details of person with uid 12345
+
 ### Locating persons by name: `find`
 
 Finds persons whose names contain any of the given keywords.
