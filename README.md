@@ -1,4 +1,5 @@
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![Java CI](https://github.com/AY2223S1-CS2103T-T10-3/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2223S1-CS2103T-T10-3/tp/actions/workflows/gradle.yml)
+[![codecov](https://codecov.io/gh/AY2223S1-CS2103T-T10-3/tp/branch/master/graph/badge.svg?token=K13DUI69HX)](https://codecov.io/gh/AY2223S1-CS2103T-T10-3/tp)
 
 # WorkBook (WB)
 
