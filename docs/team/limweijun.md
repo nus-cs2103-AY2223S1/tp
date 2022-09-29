@@ -3,7 +3,7 @@ layout: page
 title: Lim Wei Jun's Project Portfolio Page
 ---
 
-### Project: Teaching Assistant's Assistant
+### Project: Teaching Assistant Assistant
 
 Teaching Assistant Assistant (TAA) is a desktop app for Teaching Assistants (TAs). It keeps track of TAs’ students, tutorial groups, and tasks.
 
