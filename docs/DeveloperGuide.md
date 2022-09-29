@@ -373,9 +373,14 @@ Guarantees: All students and tasks will be deleted.
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1.  Should work on Windows, Linux, and OS-X platforms that has version 11 of Java (i.e. no other Java versions) installed.
+2.  Should work without requiring an installer and be packaged in a single jar file
+3.  All data for the system should be stored locally in a human editable text file, and not be dependent on any remote server
+4.  GUI should not cause any resolution-related inconveniences for standard screen resolutions (1920 x 1080 and higher) and screen scales 100% and 125%
+5.  GUI should be usable (i.e. all functionality can be used, not necessarily optimally) for screen resolutions 1280 x 720 and higher, and for screen scales 150% 
+6.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands over other means of input.
+7.  The product is intended only for a single user (i.e. not a multi-user product)
+8.  The system is not required to handle the actual grading of student's works  
 
 *{More to be added}*
 
