@@ -2,20 +2,21 @@
 
 TABS helps project team leaders **overview tasks assigned to group members**. It is targeted at individuals with less programming background i.e. **less CLI-intensive** in nature.
 
-- Quick start
-- Features
-  - Adding a person: adduser
-  - Listing all persons: list
-  - Edit a person: edituser
-  - Locating persons by name: finduser
-  - Deleting a person : deleteuser
-  - Adding a group: addgroup
-  - Add member to group: addmember
-  - Assign member a task: assigntask
-  - Locate group by name: display
-  - Delete a group: deletegroup
-  - Exiting the program : exit
-- Command summary
+- [`Quick start`](#quick-start)
+- [`Features`](#features)
+  - Adding a person: [`adduser`](#adding-a-person-adduser)
+  - Listing all persons: [`list`](#listing-all-persons--list)
+  - Edit a person: [`edituser`](#editing-a-person--edituser)
+  - Locating persons by name: [`finduser`](#locating-persons-by-name-finduser)
+  - Deleting a person : [`deleteuser`](#deleting-a-person--deleteuser)
+  - Adding a group: [`addgroup`](#creating-a-group--addgroup)
+  - Add member to  group: [`addmember`](#adding-a-member--addmember)
+  - Assign member a task: [`assigntask`](#assigning-a-task-to-a-user-assigntask)
+  - Locate group by name: [`display`](#display-a-group--display)
+  - Delete a group: [`deletegroup`](#deleting-a-group--deletegroup)
+  - Exiting the program : [`exit`](#exiting-the-program--exit)
+- [`Command summary`](#command-summary)
+
 
 ---
 ## Quick start
