@@ -97,13 +97,13 @@ _Details coming soon ..._
 
 ## Command summary
 
- Action     | Format                             | Examples
-------------|----------------------------------- | --------------------------------------------------------------------  
- **Add**    | `add FOOD_ITEM CALORIES MEAL_TYPE` | ` add donut 1000 breakfast`
- **Delete** | `delete MEAL_TYPE FOOD_ITEM`       |  `delete lunch cake`                                                                         
- **Edit**   | `edit MEAL_TYPE INDEX UPDATED_FOOD_ITEM CALORIES`         | `edit dinner 2 rice 300 ` 
- **review** | `review`                           | `review`                                                                 
- **List**   | `list`                             |    `list`                                                                                                     
- **exit**   | `exit`                             |    `exit`                                                                                                     
+| Action     | Format                                            | Examples                    |
+|------------|---------------------------------------------------|-----------------------------|
+| **Add**    | `add FOOD_ITEM CALORIES MEAL_TYPE`                | ` add donut 1000 breakfast` |
+| **Delete** | `delete MEAL_TYPE FOOD_ITEM`                      | `delete lunch cake`         |
+| **Edit**   | `edit MEAL_TYPE INDEX UPDATED_FOOD_ITEM CALORIES` | `edit dinner 2 rice 300 `   |
+| **review** | `review`                                          | `review`                    |
+| **List**   | `list`                                            | `list`                      |
+| **exit**   | `exit`                                            | `exit`                      |
 
 
