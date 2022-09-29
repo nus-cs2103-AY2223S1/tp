@@ -146,6 +146,22 @@ Examples:
 * `list s` followed by `delete s/2` deletes the 2nd student in JARVIS.
 * `list t` followed by `delete t/1` deletes the 1st task in JARVIS.
 
+### Recording a student's mastery check result: `mc`
+
+Records the mastery check result for the specified student.
+
+* Recording a student's mastery check result
+  - Format: `mc MC_NUM s/STUDENT_INDEX r/RESULT`
+
+**Things to Note:**
+* `MC_NUM` refers to the mastery check number (either 1 or 2).
+* `STUDENT_INDEX` refers to the index number of the student shown in the displayed list.
+* `RESULT` is either "PASS" or "FAIL"
+
+Examples:
+* `mc 1 s/1 r/PASS` marks the 1st student's result for MC1 as a "PASS".
+* `mc 2 s/2 r/FAIL` marks the 2nd student's result for MC2 as a "FAIL".
+
 ### Clearing all entries : `clear`
 
 Clears all student and task from JARVIS.
