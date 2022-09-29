@@ -15,9 +15,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditProfileDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -25,7 +22,6 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.profile.NameContainsKeywordsPredicate;
 import seedu.address.model.profile.Profile;
-import seedu.address.testutil.EditProfileDescriptorBuilder;
 import seedu.address.testutil.ProfileBuilder;
 import seedu.address.testutil.ProfileUtil;
 
@@ -46,21 +42,25 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
     }
 
-    @Test
-    public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
-    }
+    /* This test has been commented out as the delete and edit commands have been temporarily
+    disabled during option flag implementation. */
 
-    @Test
-    public void parseCommand_edit() throws Exception {
-        Profile profile = new ProfileBuilder().build();
-        EditProfileDescriptor descriptor = new EditProfileDescriptorBuilder(profile).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + ProfileUtil.getEditProfileDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
-    }
+    //    @Test
+    //    public void parseCommand_delete() throws Exception {
+    //        DeleteCommand command = (DeleteCommand) parser.parseCommand(
+    //                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+    //        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+    //    }
+    //
+    //    @Test
+    //    public void parseCommand_edit() throws Exception {
+    //        Profile profile = new ProfileBuilder().build();
+    //        EditProfileDescriptor descriptor = new EditProfileDescriptorBuilder(profile).build();
+    //        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
+    //                + INDEX_FIRST_PERSON.getOneBased() + " "
+    //                + ProfileUtil.getEditProfileDescriptorDetails(descriptor));
+    //        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+    //    }
 
     @Test
     public void parseCommand_exit() throws Exception {
