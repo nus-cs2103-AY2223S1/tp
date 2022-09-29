@@ -264,7 +264,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * is reasonably comfortable using CLI apps
 * needs to oversee many marketing events
 * needs to track customer activity in own department store
-* has a need to generate statistics based of customer data
+* needs to generate statistics based of customer data
 
 **Value proposition**: A one stop marketing tool that allows department stores to manage and organize their customer contacts for usage in the company’s various marketing plans
 
