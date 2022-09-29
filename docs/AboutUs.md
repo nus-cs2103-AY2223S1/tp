@@ -19,15 +19,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: Overall project coordination, deliverables and deadlines
 
-### Jane Doe
+### Adee Aryaa
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/adeearyaa.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/adeearyaa)]
+[[portfolio](team/adeearyaa.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Code Quality
+* Responsibilities: Ensures that Code follows a common style and is of maximum readability
 
 ### Glemen Neo
 
