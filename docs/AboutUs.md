@@ -16,7 +16,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/ruihan00)]
 [[portfolio](team/ruihan00.md)]
 
-* Role: Project Advisor
+* Role: Project Task Tracker
 
 ### Emily Ong Hui Qi
 
@@ -55,4 +55,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/jasonyapzx.md)]
 
 * Role: Developer
-* Responsibilities: Scheduling and Tracking of tasks
+* Responsibilities: Project Manager
