@@ -15,12 +15,16 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
     * to be added soon
+  
 * **Contributions to UG**
     * to be added soon
+  
 * **Contributions to DG**
     * to be added soon
+  
 * **Contributions to team tasks**:
     * to be added soon
+  
 * **Contributions beyond the project team**:
   
  
