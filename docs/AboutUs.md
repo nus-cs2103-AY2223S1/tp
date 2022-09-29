@@ -26,8 +26,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/fannyjian)]
 [[portfolio](team/fannyjian.md)]
 
-* Role: [to be added]
-* Responsibilities: [to be added]
+* Role: Developer
+* Responsibilities: Documentation, Deliverables and deadline, In charge of UI
 
 ### Marcus Low Hui Yu
 
