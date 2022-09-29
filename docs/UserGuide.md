@@ -25,7 +25,7 @@ WorkBook (WB) is a **desktop app for CS/tech students who are applying for inter
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`add`**`c/Meta d/2022-09-15 e/hrmonkey@example.com a/John street, block 123, #01-01` : Adds an internship from `Meta` to the WorkBook.
+   * **`add`**`c/Meta d/2022-09-15 e/hrmonkey@example.com r/Frontend` : Adds an internship from `Meta` to the WorkBook.
 
    * **`delete`**`3` : Deletes the 3rd internship shown in the current list.
 
@@ -175,9 +175,9 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add c/COMPANY d/YYYY-MM-DD e/EMAIL a/ADDRESS_OF_INTERNSHIP [t/TAG]…​` <br> e.g., `add c/Meta d/2022-09-15 e/hrmonkey@example.com a/John street, block 123, #01-01`
+**Add** | `add c/COMPANY d/YYYY-MM-DD e/EMAIL r/ROLE [t/TAG]…​` <br> e.g., `add c/Meta d/2022-09-15 e/hrmonkey@example.com r/Frontend`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [c/COMPANY] [d/YYYY-MM-DD] [e/EMAIL] [a/ADDRESS_OF_INTERNSHIP] [t/TAG]…​​`<br> e.g.,`edit 2 c/META e/hrmonkey@example.com`
+**Edit** | `edit INDEX [c/COMPANY] [d/YYYY-MM-DD] [e/EMAIL] [r/ROLE] [t/TAG]…​​`<br> e.g.,`edit 2 c/META e/hrmonkey@example.com`
 **Help** | `help`
 **Exit** | `exit`
