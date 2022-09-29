@@ -188,7 +188,7 @@ Creates a new event in the address book.
 
 Format: `create t/EVENT_TITLE d/DATE t/TIME p/PURPOSE`
 
-* The compulsory parameters are: event title (t), date (d), time (t) and purpose (p)
+* The compulsory parameters are: event title (`t`), date (`d`), time (`t`) and purpose (`p`)
 
 Examples:
 * `create t/Shoe Sale 30% d/30-05-2022 t/11:00 p/Discount on all shoes for up to 30%`
@@ -200,13 +200,13 @@ Removes an existing event in the address book.
 
 Format: `remove INDEX`
 
-* Removes the event at the specified INDEX. 
-* The index refers to the index number shown in the displayed person list 
+* Removes the event at the specified `INDEX`. 
+* The index refers to the index number shown in the displayed event list 
 * The index must be a positive integer 1, 2, 3, …, and it must be within the range of the event list index.
 
 Examples:
-* `delete 2 after displaying all events with display removes event at index 2`
-* `delete 7 after displaying all events with display removes event at index 7`
+* `delete 2` after displaying all events with display removes event at index 2
+* `delete 7` after displaying all events with display removes event at index 7
 
 ### Display all events: `display`
 
