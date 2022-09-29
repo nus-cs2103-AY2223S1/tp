@@ -15,7 +15,7 @@ public class ReminderCommand extends Command {
     public static final String MESSAGE_NOT_IMPLEMENTED_YET =
             "Remind command not implemented yet!";
 
-    public static final String SHOWING_REMINDER_MESSAGE = "Displaying reminders.";
+    public static final String SHOWING_REMINDER_MESSAGE = "Displayed upcoming birthdays reminders.";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {

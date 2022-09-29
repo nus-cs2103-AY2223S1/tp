@@ -67,7 +67,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-        reminderWindow = new ReminderWindow();
+        reminderWindow = new ReminderWindow(logic.getAddressBook().getPersonList());
     }
 
     public Stage getPrimaryStage() {
