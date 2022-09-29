@@ -26,17 +26,17 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/e1010101)]
 [[portfolio](team/johndoe.md)]
 
-* Role: X
+* Role: Team Lead, UI/UX, Feature Developer
 * Responsibilities: X
 
 ### Gregg Chan
 
-<img src="images/Hoodineee.png" width="200px">
+<img src="images/hoodineee.png" width="200px">
 
 [[github](http://github.com/Hoodineee)]
 [[portfolio](team/johndoe.md)]
 
-* Role: X
+* Role: Scheduling and Tracking, Feature Developer
 * Responsibilities: X
 
 ### Jonathan Goh
@@ -46,7 +46,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/jgyj123)]
 [[portfolio](team/johndoe.md)]
 
-* Role: X
+* Role: Component XYZ, Deliverables and Deadlines, Feature Developer
 * Responsibilities: X
 
 ### Soo Jia Xi
@@ -56,7 +56,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/joosxi)]
 [[portfolio](team/johndoe.md)]
 
-* Role: X
+* Role: Documentation, Feature Developer
 * Responsibilities: X
 
 ### Xiao Ying
@@ -66,5 +66,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/xiaoying1129)]
 [[portfolio](team/johndoe.md)]
 
-* Role: X
+* Role: Component XYZ, Feature Developer
 * Responsibilities: X
