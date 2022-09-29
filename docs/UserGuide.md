@@ -3,7 +3,9 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+CodeConnect is a **desktop app for managing your daily task and your contacts optimized for use via a Command Line Interface** (CLI) 
+while still having the benefits of a Graphical User Interface (GUI). 
+If you can type fast, CodeConnect can get your tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -14,9 +16,9 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `CodeConnect.jar` from [here]().
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -24,11 +26,11 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`listc`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`add`**`add Finish homework /by 2022-12-12 /mod CS2040S` : Adds a task named `Finish homework` to the Task Manager.
+   
+   * **`delete`**`1` : Deletes the 1st task shown in the current list.
 
    * **`clear`** : Deletes all contacts.
 
@@ -125,7 +127,7 @@ Examples:
 * `find /t homework` returns `Science homework`, `Math homework`
 * `find /m CS1101S` returns `Problem set 4`, `Reading assignment 2`
 
-### Listing all tasks : `list`
+#### Listing all tasks : `list`
 
 Shows a list of all tasks.
 
@@ -151,19 +153,6 @@ Examples:
 Shows a list of all persons in the address book.
 
 Format: `listc`
-
-#### Editing a person : `edit`
-
-Edits an existing person in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
 
 #### Deleting a person : `delc`
 
@@ -205,14 +194,14 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+CodeConnect data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+CodeConnect data are saved as a JSON file `[JAR file location]/data/codeconnect.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, CodeConnect will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -224,7 +213,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CodeConnect home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -239,9 +228,9 @@ Action | Format, Examples
 **Find tasks** | `find /t {task}` <br> `find /m {module}`<br> e.g., `find /t homework`, <br> `find /m CS1101S`
 **List tasks** | `list` / `list time`
 **Add contact** | `addc {name} /email {email} /hp {phone number} /mods {module1} {module2}...` <br> e.g., `addc Bob Martin /email bobbymartini@gmail.com /hp 98765432 /mods CS1101S CS1231S`
-**Clear** | `clear`
+**Clear contacts** | `clear`
 **Delete contact** | `delc {contact_index}`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit contact** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find contacts** | `findc /n {name}` <br> `findc /m {module}`<br> e.g., `findc /n John`, <br> `findc /m CS1231S`
 **List contacts** | `listc`
 **Help** | `help`
