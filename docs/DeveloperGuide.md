@@ -257,11 +257,13 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+Secondary School Teachers who:
+* Teaches 3 to 5 classes a year
+* Manages about 60 to 100 students with varying needs
+* Finds paperwork time-consuming and messy
+* Finds it difficult to keep track of the progress of each individual student
+* Prefers typing to mouse interactions
+* Types fast and is reasonably comfortable using CLI apps
 
 **Value proposition**: manage contacts faster than a typical mouse/GUI driven app
 
@@ -311,7 +313,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `Class-ify` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
@@ -335,6 +337,41 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: Edit a student's details**
+
+**MSS**
+
+1.  User requests to list all students or find a student
+2.  Class-ify shows a list of student(s)
+3.  User requests to edit particular fields (specified through tags) of the student in a specific index of the list
+4.  Class-ify updates the details to the respective fields of the student
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. Class-ify shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. No tags were specified.
+
+    * 3b1. Class-ify shows an error message.
+
+      Use case resumes at step 2.
+
+* 3c. The given tags do not exist.
+
+  * 3b1. Class-ify shows an error message.
+
+    Use case resumes at step 2.
 
 *{More to be added}*
 
