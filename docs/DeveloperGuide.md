@@ -275,7 +275,7 @@ focus on what matters more: matching the right people for the right job.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                            | I want to …​                                                           | So that I can…​                                                              |
+| Priority | As a …​                            | I want to …​                                                                 | So that I can…​                                                              |
 |----------|------------------------------------|------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
 | `* * *`  | potential user exploring the app   | see the sample data                                                          | easily play around and understand how the app works                             |
 | `* * *`  | new user                           | see the list of available things I can do with the app                       | learn how to use the app fully                                                  |
@@ -298,7 +298,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                               | export my data                                                               | so that I can share resources with others                                       |
 | `* *  `  | user                               | add a custom field to my data                                                | so that I can have more flexible records                                        |
 | `*    `  | user                               | add profile pictures to my records                                           | so that I can see who I’m looking at                                            |
-
 
 
 *{More to be added}*
@@ -350,6 +349,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case: View an applicant**
+
+**MSS**
+
+1.  User requests to view an applicant of a particular index number
+2.  InternConnect shows the detailed data of the applicant
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given index number is invalid.
+
+    * 1a1. InternConnect shows an error message.
+
+      Use case ends.
 
 **Use case: Exit**
 
