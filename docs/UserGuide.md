@@ -118,23 +118,18 @@ Examples:
 *  `edit 1 pn/91234567 a/8 College Ave East` Edits the parent phone number and address of the 1st student to be `91234567` and `8 College Ave East` respectively.
 *  `edit 2 n/Jacob Teo` Edits the name of the 2nd student to be `Jacob Teo`.
 
-### Locating persons by name: `find`
+### Listing a single student: `view`
 
-Finds persons whose names contain any of the given keywords.
+Shows the full record of a student, including all stored details, using the given student's name or student's id.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `view n/[name]` or `view id/[id]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Only the name or the id is searched, depending on the given input.
+* Only full names / full ids will be matched e.g. `Han` will not match `Hans`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `view n/John` returns the record for the student named `john`
 
 ### Deleting individual student record : `delete`
 
@@ -185,12 +180,13 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+|                 Action                | Format                                                                                                                  | Example                                                                          |  
+|:-------------------------------------:|:------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------|
+|         Add individual student        | `new student n/[name of student] id/[ID of student] pn/[name of parent] a/[home address] hp/[mobile number of parent]`  | _new student n/Jonathan Tan id/123A pn/George Tan a/Kent Ridge View hp/91234567_ |
+|      View all student information     | `view all`                                                                                                              | _view all_                                                                       |
+|  View individual student information  | `view n/[name]` or `view id/[id]`                                                                                       | _view n/Jonathan Tan_                                                            |
+| Update individual student information | `update [index] n/[name] id/[id] pn/[name of parent] a/[home address] hp/[mobile number of parent]`                     | _update 1 a/Kent Ridge View_                                                     |
+|       Delete individual student       | `delete n/[name]` or `delete id/[id]`                                                                                   | _delete n/Jonathan Tan_                                                          |
+|                  Exit                 | `exit`                                                                                                                  | _exit_                                                                           |
+
+                                                                                                                              
