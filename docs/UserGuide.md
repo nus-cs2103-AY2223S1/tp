@@ -64,7 +64,9 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 </div>
 
-### Viewing help : `help`
+### Getting help
+
+#### Viewing help : `help`
 
 Shows a message explaning how to access the help page.
 
@@ -72,8 +74,52 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
+### Managing tasks
 
-### Adding a person: `add`
+#### Adding a task: `add`
+
+Adds a task to the task manager.
+
+Format:
+`add {task_name} /by {deadline} /mod {module_code}`
+
+Examples:
+* `add finish problem set 5 /by Week 6 Sunday /mod CS2040S`
+* `add finish SEP application /by 2359 today`
+
+#### Deleting a task: `del`
+
+Deletes a task from the task manager list.
+
+Format:
+`del {task_index}`
+
+Example:
+`del 5`
+
+#### Marking a task: `mark`
+
+Marks a task as completed in the task manager list.
+
+Format:
+`mark {task_index}`
+
+Example:
+`mark 3`
+
+#### Unmarking a task: `unmark`
+
+Marks a task as incomplete in the task manager list.
+
+Format:
+`unmark {task_index}`
+
+Example:
+`unmark 3`
+
+### Managing contacts
+
+#### Adding a person: `add`
 
 Adds a person to the address book.
 
@@ -87,13 +133,13 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+#### Listing all persons : `list`
 
 Shows a list of all persons in the address book.
 
 Format: `list`
 
-### Editing a person : `edit`
+#### Editing a person : `edit`
 
 Edits an existing person in the address book.
 
@@ -110,7 +156,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+#### Locating persons by name: `find`
 
 Finds persons whose names contain any of the given keywords.
 
@@ -128,7 +174,7 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+#### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
 
@@ -142,13 +188,15 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Clearing all entries : `clear`
+#### Clearing all entries : `clear`
 
 Clears all entries from the address book.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+### Finishing up
+
+#### Exiting the program : `exit`
 
 Exits the program.
 
@@ -183,6 +231,10 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
+**Add task** | `add {taskname} /by {deadline} /mod {module_code}` <br> e.g. `add finish problem set 5 /by Week 6 Sunday /mod CS2040S`
+**Delete task** | `del {task_index}` <br> e.g. `delete 5`
+**Mark task** | `mark {task_index}` <br> e.g. `mark 3`
+**Unmark task** | `unmark {task_index}` <br> e.g. `unmark 3`
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
