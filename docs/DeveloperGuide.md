@@ -254,10 +254,12 @@ _{Explain here how the data archiving feature will be implemented}_
 ## **Appendix: Requirements**
 
 ### Product scope
+**Product scope**
+* Provides updated information and data based on curriculum and module schedule based on NUSMods.
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a plan to map, plan and organize a timetable that has over 1000 potential modules to fill up with.
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -270,14 +272,21 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                                  | I want to …​                                                               | So that I can…​                                                           |
+| -------- |----------------------------------------------------------|----------------------------------------------------------------------------|---------------------------------------------------------------------------|
+| `* * *`  | student                                                  | see usage instructions                                                     | refer to instructions when I forget the commands                          |
+| `* * *`  | student                                                  | add modules to my timetable                                                | edit and organize my timetable                                            |
+| `* * *`  | NUS student who is not too proficient in CLI             | easily adapt and learn the functions and commands the application has      | use the application efficiently                                           |
+| `* * *`  | student                                                  | delete a module                                                            | remove modules that I no longer need                                      |
+| `* * *`  | student                                                  | search a module by name                                                    | locate details of the module without having to go through the entire list |
+| `* * *`  | student                                                  | view pre-requisites for a class, and what class is a pre-requisite         | plan my studies appropriately                                             |
+| `* * *`  | student                                                  | search for and add classes from NUSMods to my schedule                     | have the most up to date information on my schedule                       |
+| `* * *`  | student interested in CLI apps                           | have most/all key features to be accessible by just the keyboard           | harness the full potential of CLI apps                                    |
+| `* * *`  | forgetful student                                        | easily access my weekly/daily schedule (time, venue and details of lesson) | attend my lessons punctually                                              |
+| `* * *`  | student that work in areas with poor internet connection | access the features in CLIMods                                             | still use CLIMods                                                         |
+| `* * *`  | student (non freshman)                                   | track and add modules I have taken                                         | keep track of my progress in University                                   |
+| `* * *`  | student                                                  | know what modules are offered in NUS                                       | find modules to do to fulfill my graduation requirement                   |
+| `* *`    | potential user exploring CLIMods                         | have a tutorial or detailed documentation on features of app               | easily adapt and use the app proficiently                                 |
 
 *{More to be added}*
 
@@ -285,14 +294,60 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Find a module**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to find a module
+2.  AddressBook requests for details of the module to find
+3.  User enters the requested details
+4.  AddressBook finds and display details of the module
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. The given module request is invalid.
+
+    * 3a1. AddressBook shows an error message where module does not exist.
+
+* 3b. The user's command is invalid.
+
+    * 3a1. AddressBook shows an error message where command is non-existent.
+
+      Use case resumes at step 2.
+
+**Use case: Add a module**
+
+**MSS**
+
+1.  User requests to add a module
+2.  AddressBook requests for details of the module to add
+3.  User enters the requested details
+4.  AddressBook adds the module
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. The given module request is invalid.
+
+    * 3a1. AddressBook shows an error message where module does not exist.
+
+* 3b. The user's command is invalid.
+
+    * 3a1. AddressBook shows an error message where command is non-existent.
+  
+      Use case resumes at step 2.
+
+**Use case: Delete a module**
+
+**MSS**
+
+1.  User requests to list modules
+2.  AddressBook shows a list of modules
+3.  User requests to delete a specific module in the list
+4.  AddressBook deletes the module
 
     Use case ends.
 
@@ -302,7 +357,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The given name is invalid.
 
     * 3a1. AddressBook shows an error message.
 
@@ -313,15 +368,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+2.  Should be able to hold up to 1000 modules without a noticeable sluggishness in performance for typical usage.
 
 *{More to be added}*
 
 ### Glossary
+* **Student**: The person who uses the app
+* **Module(s)**: The modules/class to be taken by the students
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+*{More to be added}*
 
 --------------------------------------------------------------------------------------------------------------------
 
