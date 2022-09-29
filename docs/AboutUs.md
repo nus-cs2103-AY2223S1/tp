@@ -9,6 +9,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
+### Timothy Jonathan Koei
+
+<img src="images/t1mzzz.png" width="200px">
+
+[[github](http://github.com/t1mzzz)]
+[[portfolio](team/t1mzzz.md)]
+
+* Role: Team Lead
+* Responsibilities: Project Coordination
+
 ### Adriel Soh
 
 <img src="images/johndoe.png" width="200px">
@@ -16,7 +26,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/leirdas)]
 [[portfolio](team/leirdas.md)]
 
-* Role: [to be added]
+* Role: Developer
 * Responsibilities: [to be added]
 
 ### Fanny Jian
@@ -46,15 +56,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/jia-han)]
 [[portfolio](team/jia-han.md)]
 
-* Role: [to be added]
-* Responsibilities: [to be added]
-
-### Timothy Jonathan Koei
-
-<img src="images/t1mzzz.png" width="200px">
-
-[[github](http://github.com/t1mzzz)]
-[[portfolio](team/t1mzzz.md)]
-
-* Role: [to be added]
+* Role: Developer
 * Responsibilities: [to be added]
