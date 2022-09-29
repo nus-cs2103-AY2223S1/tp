@@ -282,8 +282,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | -------- | ------------------------------------------------ | ---------------------------------------------------------------------- | ------------------------------------------------------ |
 | `* * *`  | new user                                         | see usage instructions                                                 | refer to instructions when I forget how to use the App |
 | `* * *`  | Teaching Assistant                               | be able to manage (CRUD) a list of my students                         |                                                        |
-| `* * *`  | Teaching Assistant                               | be able to manage (CRUD) any student’s task list                       |
-|          |
+| `* * *`  | Teaching Assistant                               | be able to manage (CRUD) any student’s task list                       |                                                        |
 | `* * *`  | Teaching Assistant                               | keep track of which students’ assignments I have graded and not graded | can find the ungraded assignments faster               |
 | `* * *`  | Teaching Assistant with multiple tutorial groups | keep track of which student is in which group                          | manage students based on their tutorial groups         |
 | `* * *`  | Teaching Assistant                               | be able to assign deadlines to my tasks                                | keep track of the upcoming tasks easily                |
