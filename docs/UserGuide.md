@@ -64,13 +64,10 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 </div>
 
+
 ### Getting help
 
 #### Viewing help : `help`
-
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
 
 Format: `help`
 
@@ -117,6 +114,17 @@ Format:
 Example:
 `unmark 3`
 
+#### Searching for tasks: `find`
+
+Find tasks whose names contain any of the given keywords, or find them by their tagged module.
+
+Format:
+`find /t {task}` `find /m {module}`
+
+Examples:
+* `find /t homework` returns `Science homework`, `Math homework`
+* `find /m CS1101S` returns `Problem set 4`, `Reading assignment 2`
+
 ### Managing contacts
 
 #### Adding a person: `add`
@@ -152,28 +160,6 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * You can remove all the person’s tags by typing `t/` without
     specifying any tags after it.
 
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-
-#### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
 #### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
@@ -187,6 +173,17 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+#### Searching for persons: `findc`
+
+Finds persons whose names contain any of the given keywords, or find persons who take a particular module.
+
+Format: 
+`findc /n {name}` `findc /m {module}`
+
+Examples:
+* `findc /n John` returns `john`, `John Doe`
+* `findc /m CS1231S` returns `Alex Yeoh`, `David Li`
 
 #### Clearing all entries : `clear`
 
@@ -235,10 +232,11 @@ Action | Format, Examples
 **Delete task** | `del {task_index}` <br> e.g. `delete 5`
 **Mark task** | `mark {task_index}` <br> e.g. `mark 3`
 **Unmark task** | `unmark {task_index}` <br> e.g. `unmark 3`
+**Find tasks** | `find /t {task}` <br> `find /m {module}`<br> e.g., `find /t homework`, <br> `find /m CS1101S`
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Find contacts** | `findc /n {name}` <br> `findc /m {module}`<br> e.g., `findc /n John`, <br> `findc /m CS1231S`
 **List** | `list`
 **Help** | `help`

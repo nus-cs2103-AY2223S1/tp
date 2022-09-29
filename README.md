@@ -21,6 +21,18 @@
 
 ## Usage
 
+
+### Finding tasks: 'find'
+
+Finds tasks from your task list via keywords, or via module. 
+
+Format:
+`find /t {task}`, `find /m {module}`
+
+Examples:
+* `find /t homework` returns `Science homework`, `Math homework`
+* `find /m CS1101S` returns `Problem set 4`, `Reading assignment 2`
+
 ### Adding a task: `add`
 
 Adds a task to the task manager.
@@ -61,3 +73,15 @@ Format:
 
 Example:
 `unmark 3`
+
+### Finding contacts: `findc`
+
+Find persons in your contacts via keywords, or via module.
+
+Format:
+`findc /n {name}` `findc /m {module}`
+
+Examples:
+* `findc /n John` returns `john`, `John Doe`
+* `findc /m CS1231S` returns `Alex Yeoh`, `David Li`
+
