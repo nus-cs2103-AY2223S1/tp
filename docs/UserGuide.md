@@ -110,7 +110,8 @@ Format: `edit [index] n/[name of student] id/[id of student] pn/[name of parent]
 
 :bulb: Note:
 * Edits the person at the specified `index`. The index refers to the index number shown in the current displayed list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
+* Any tag can be used to edit the respective information.
+* At least one tag must be provided.
 * Existing values will be updated to the input values.
 
 Examples:
