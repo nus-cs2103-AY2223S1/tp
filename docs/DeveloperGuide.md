@@ -255,29 +255,27 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
+**Target user profile**: NUS Professors.
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
-
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: we want to evolve AB3 such that the fast-typist professors are able to search up the students and tutors in their courses, as well as the tasks assigned to each of them more efficiently.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                    | I want to …​                    | So that I can…​                               |
+|----------|--------------------------------------------|---------------------------------|-----------------------------------------------|
+| `* * *`  | professor                                  | add student into my course      | track the list of students in my module       |
+| `* * `   | professor                                  | edit a student's information    | change student's information                  |
+| `* * *`  | professor                                  | remove a student from my course | remove students who decide to drop the module |
+| `* * *`  | professor                                  | set reminders for myself        | keep track of any tasks I have                |
+| `* * *`  | professor                                  | edit reminders for myself       | change the description of my task             |
+| `* * *`  | professor                                  | add a new consult slot          | keep track of all my consults                 |
+| `* * *`  | professor                                  | delete a consult slot           | remove consults that are cancelled            |
+| `* * *`  | professor                                  | add a new tutorial slot         | keep track of all my tutorials                |
+| `* * `   | professor                                  | edit a tutorial slot            | change the details of my tutorial             |
+| `* * *`  | professor                                  | delete a tutorial slot          | remove unwanted tutorials                     |
 
 *{More to be added}*
 
