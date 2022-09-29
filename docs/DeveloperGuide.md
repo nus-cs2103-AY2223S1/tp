@@ -302,32 +302,155 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TrackO` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - Add an order**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to add an order.
+2. System adds the order.
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. User inputs incomplete order data. <br>
+  - 1a1. System informs user of the incomplete data.
+  
+    Use case ends.
+
+**Use case: UC02 - Delete an order**
+
+**MSS**
+
+1. User requests to delete an order.
+2. System deletes the order.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+- 1a. The order the user wishes to delete does not exist.
+      
+  - 1a1. System informs the user of the non-existent order.
+    
+     Use case ends.
+- 2a. The list has no orders.
+  
+  - 2a1. System informs the user of the empty order list.
+  
+    Use case ends.
 
-  Use case ends.
+**Use case: UC03 - Listing orders**
 
-* 3a. The given index is invalid.
+**MSS**
 
-    * 3a1. AddressBook shows an error message.
+1. User requests to list all orders.
+2. System lists all orders.
 
-      Use case resumes at step 2.
+    Use case ends.
 
-*{More to be added}*
+**Extensions**
+
+- 2a. The list of orders is empty.
+    - 2a1. System informs the user that the list is empty.
+  
+      Use case ends.
+
+**Use case: UC04 - Find orders**
+
+**MSS**
+
+1. User requests to find an order.
+2. System finds the order and informs the user of its details.
+
+    Use case ends.
+
+**Extensions**
+
+- 1a. The order the user is trying to find does not exist.
+  - 1a1. System informs the user that the order does not exist.
+    
+    Use case ends.
+
+**Use case: UC05 - Add an inventory item**
+
+**MSS**
+
+1. User requests to add an inventory item.
+2. System adds the inventory item.
+
+    Use case ends.
+
+**Extensions**
+
+- 1a. User inputs incomplete details of the item.
+  - 1a1. System informs user of the incomplete details.
+    
+    Use case ends.
+
+**Use case: UC06 - Delete an inventory item**
+
+**MSS**
+
+1. User requests to delete an inventory item.
+2. System deletes the inventory item.
+
+    Use case ends.
+
+**Extensions**
+
+- 1a. The item that the user requests to delete does not exist.
+  - 1a1. System informs user of the non-existent item.
+    
+    Use case ends.
+
+- 2a. The list of inventory items is empty.
+    - 2a1. System informs user that the list of items is empty.
+
+      Use case ends.
+
+**Use case: UC07 - List all inventory items**
+
+**MSS**
+
+1. User requests to list all inventory items.
+2. System lists all inventory items.
+
+    Use case ends.
+
+**Extensions**
+
+- 2a. The list of inventory items is empty.
+  - 2a1. System informs user of the empty list.
+
+    Use case ends.
+
+**Use case: UC08 - Find an inventory item**
+
+**MSS**
+
+1. User requests to find an inventory item.
+2. System finds the item and informs the user of its details.
+
+    Use case ends.
+
+**Extensions**
+
+- 1a. The inventory item that the user requests to find does not exist.
+  - 1a1. System informs the user of the non-existent item.
+
+    Use case ends.
+
+**Use case: UC09 - Tag an inventory item**
+
+**MSS**
+
+1. User requests to tag an inventory item.
+2. System tags the inventory item.
+
+    Use case ends.
 
 ### Non-Functional Requirements
 
