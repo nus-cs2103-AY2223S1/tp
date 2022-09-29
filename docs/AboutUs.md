@@ -35,7 +35,7 @@ You can reach us at the email `cobb[at]comp.nus.edu.sg`
 
 <img src="images/zsiggg.png" width="200px">
 
-[[github](http://github.com/zsiggg)] 
+[[github](http://github.com/zsiggg)]
 [[portfolio](team/zsiggg.md)]
 
 * Role: Developer
@@ -45,7 +45,7 @@ You can reach us at the email `cobb[at]comp.nus.edu.sg`
 
 <img src="images/andre.png" width="200px">
 
-[[github](http://github.com/jchilling)] 
+[[github](http://github.com/jchilling)]
 [[portfolio](team/jchilling.md)]
 
 * Role: Developer

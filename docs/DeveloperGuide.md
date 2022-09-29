@@ -346,7 +346,7 @@ Use case ends.
 **Preconditions**: Prospective buyer has been added.
 
 **MSS:**
-1. User <u>lists all properties (Use case: List properties)</u>. 
+1. User <u>lists all properties (Use case: List properties)</u>.
 2. User finds the property that suits the buyer.
 3. User edits the property to record that it has been bought by the buyer.
 
