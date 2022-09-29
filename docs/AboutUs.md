@@ -48,12 +48,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Ang Kuang Long
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kuanglong.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/angkl0)]
+[[portfolio](team/angkl0.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Adding, deleting, editing and tagging contacts
