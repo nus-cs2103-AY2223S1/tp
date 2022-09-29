@@ -42,5 +42,4 @@ Given below are my contributions to the project.
 * **Tools**:
     * Integrated a third party library (Natty) to the project ([\#42]())
     * Integrated a new Github plugin (CircleCI) to the team repo
-
 * _{you can add/remove categories in the list above}
