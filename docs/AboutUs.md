@@ -48,7 +48,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Li Yingming
 
-<img src="images/yingming23.png.jpg" width="200px">
+<img src="images/yingming23.png" width="200px">
 
 [[github](http://github.com/Yingming23)]
 [[portfolio](team/yingming23.md)]
