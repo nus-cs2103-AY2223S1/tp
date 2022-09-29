@@ -86,7 +86,6 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
    Use case ends.
 
-
 **Extensions**
 
 - 1a. Student name does not exist in the system.
