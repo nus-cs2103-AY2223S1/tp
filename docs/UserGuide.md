@@ -112,6 +112,21 @@ Shows all tasks stored in the task list.
 
 Format: `listT`
 
+### Adding Tasks: `task d/DESCRIPTION D/DEADLINE`
+
+Adds a task to the task list. 
+The deadline of the task is allowed to be empty. Newly added tasks are marked as not done. 
+Throws an exception if the description of the task is empty. 
+Throws an exception if the deadline of the task is not in dd-mm-yyyy format.
+
+Format: `task d/buy milk D/12-09-2022`
+
+### Removing Tasks: `delete i/INDEX`
+
+Removes the specified task from the task list. Throws an exception if task does not exist.
+
+Format: `delete i/12`
+
 ### Marking task as done: `mark`
 
 Marks a task in the task list as done.
@@ -167,11 +182,11 @@ If your changes to the data file makes its format invalid, YellowBook will disca
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**listC** | `listC`
-**deleteC** | `deleteC INDEX` <br> e.g., `deleteC 1`
-**editC** | `editC INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [d/Description]` <br> e.g., `editC 1 n/John p/12345678`
-**listT** | `listT`
-**mark** | `mark INDEX` <br> e.g., `mark 1`
-**unmark** | `unmark INDEX` <br> e.g., `unmark 1`
+| Action     | Format, Examples                                                                                     |
+|------------|------------------------------------------------------------------------------------------------------|
+| **listC**  | `listC`                                                                                              |
+| **deleteC** | `deleteC INDEX` <br> e.g., `deleteC 1`                                                               | 
+| **editC**  | `editC INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [d/Description]` <br> e.g., `editC 1 n/John p/12345678`  |
+| **listT**  | `listT`                                                                                              |
+| **mark**   | `mark INDEX` <br> e.g., `mark 1`                                                                     |
+| **unmark** | `unmark INDEX` <br> e.g., `unmark 1`                                                                 |

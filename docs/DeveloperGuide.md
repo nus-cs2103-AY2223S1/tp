@@ -257,29 +257,62 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* is a university student
+* is involved in many projects
+* has a need to manage a significant number of project contacts and tasks
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
 
+* manage project contacts and tasks faster than a typical mouse/GUI driven app
+* manage many group projects at the same time
+* provide a central location for managing project contacts and tasks together
+* track progress on various tasks to ensure milestones are met
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                                      |
+| -------- | ------------------------------------------ | ------------------------------ | ------------------------------------------------------------------------------------ |
+| `* * *`  | technically competent student who prefers typing to clicking | have a CLI   | perform operations quickly | 
+| `* * *`  | student who is part of many group projects | keep track of the contact information of my groupmates | communicate with my team |
+| `* * *`  | student who is part of many group projects | track the progress of each group towards its goals | know if everyone is putting in their share of work |
+| `* * *`  | student who often has to email others | store people’s emails    | remember their emails | 
+| `* * *`  | student who prefers calling                | see the person’s phone number  | call them |
+| `* * *`  | student who prefers visiting someone in person |  see the person’s address  | visit them |
+| `* * *`  | SWE student                                | save the github usernames of my contacts | view their repo |
+| `* * *`  | student                                    | edit the information on people’s profiles | update the information when necessary | 
+| `* * *`  | student who pefers a compact social circle | delete contacts                | stop keeping old contacts |
+| `* * *`  | team leader                                | add and remove people from a project when forming the project group | know who is part of the project group |
+| `* * *`  | team leader                                | remove a project and the people associated with it once the project is done | avoid cluttering my workspace |
+| `* * *`  | team member                                | group contacts                 | know which people are involved in which projects | 
+| `* * *`  | team member                                | give status updates on individual tasks | inform the group on my progress |
+| `* * *`  | forgetful student                          | keep track of my tasks         | know which tasks need to be completed |
+| `* * *`  | forgetful student                          | mark tasks as complete         | know if I have completed the task already | 
+| `* * *`  | forgetful student                          | note the deadline of my tasks  | complete my tasks on time | 
+| `* * *`  | forgetful person                           | save people’s profiles with photos | remember their names | 
+| `* * *`  | forgetful person                           | keep notes on the people I’ve met | remember important things about them | 
+| `* *`    | team leader                                | see my team’s progress towards completing their assigned tasks | know if my team is on track |
+| `* *`    | team leader                                | assign tasks to my team members | divide the work efficiently |
+| `* *`    | team leader                                | archive a project and the people associated with it once the project is done | avoid cluttering my workspace|
+| `* *`    | team member                                | send reminders to other team members | remind them to do their work | 
+| `* *`    | team member                                | use an idea board | generate inspiration with my teammates | 
+| `* *`    | anxious student                            | see the percentage completion of the tasks | feel at ease | 
+| `* *`    | anxious student                            | see if I am on track with my deadlines | be assured that my tasks are not behind schedule | 
+| `* *`    | forgetful student                          | be reminded of upcoming deadlines | ensure that I won't miss them | 
+| `* *`    | artistic student                           | change the colour palette of my UI to my preference | enjoy looking at the UI | 
+| `* *`    | student with color blindness               | have my software be composed of minimal colors | distinguish all elements |
+| `* *`    | student who does work late at night        | use dark mode                  | choose not to strain my eyes | 
+| `*`      | student who struggles with remembering identities | add nicknames to my contacts | better identify them |
+| `*`      | student who prefers pen and paper          | print out my tasks             | annotate on it physically | 
+| `*`      | artistic student                           | have the software I use to look aesthetic | enjoy using them |
+| `*`      | student who is bad with names              | see the person’s first name emphasized | know how to address the person| 
+| `*`      | student with poor eyesight                 | ensure that my software have big fonts and large buttons | distinguish all elements | 
+| `*`      | animal loving person                       | have some cute animals in the background | feel entertained while managing my tasks | 
 
 ### Use cases
 
