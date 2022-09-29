@@ -294,59 +294,63 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Pupilist` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Add attendance**
 
 **MSS**
 1. User requests to find a student attendance record.
-2. AddressBook shows the Student name and his attendance record.
+2. Pupilist shows the Student name and his attendance record.
 3. User chooses to increment attendance record of student to mark him as attended.
-4. AddressBook tells User that the command is successful.
+4. Pupilist tells User that the command is successful.
 	
 	Use case ends.
 
 **Extensions**
 
 * 1a. No Student specified found.
-	* 1a1. AddressBook tells user no such student found.
+	* 1a1. Pupilist tells user no such student found.
 	  Use case resumes at step 1
 	  
-**Use case: view students' information**
+**Use case: View students' information**
 1. User requests to list students by their user-specified tagged information.
-2. AddressBook shows a list of students names along with the requested information.
+2. Pupilist shows a list of students names along with the requested information.
 
-	Use case ends.
+    Use case ends.
+
 **Extensions**
 
 * 1a. The list is empty.
-	* 1a1. AddressBook shows an empty list
-  Use case ends.
+    * 1a1. Pupilist shows an empty list
+  
+      Use case ends.
+	
 
 * 2a. Invalid information tag request.
-	* 2a1. AddressBook shows error to indicate invalid command.
-  Use case ends.
+    * 2a1. Pupilist shows error to indicate invalid command.
+  
+      Use case ends.
 
 **Use case: Delete a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  Pupilist shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  Pupilist deletes the person
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The list is empty.      
+ Use case ends.
 
-  Use case ends.
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Pupilist shows an error message.
 
       Use case resumes at step 2.
 
@@ -367,11 +371,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+
 * 3a. The homework description is invalid.
 
     * 3a1. Pupilist shows an error message.
 
       Use case resumes at step 2.
+
 
 * 3b. The given index is invalid.
 
@@ -379,7 +385,59 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Add lesson plan**
+
+**MSS**
+
+1.  User requests to list students.
+2.  Pupilist shows a list of students.
+3.  User requests to add a lesson plan to a specific student.
+4.  Pupilist adds a lesson plan to the student.
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. Pupilist detects an error in the lesson plan description.
+
+    * 3a1. Pupilist displays an error message.
+
+      Use case resumes at step 3.
+
+
+* 3b. Pupilist detects an error in the selected index.
+
+    * 3b1. Pupilist displays an error message.
+
+      Use case resumes at step 3.
+    
+
+**Use case: Purge data**
+
+**MSS**
+
+1. User requests to purge data.
+2. Pupilist requests for confirmation.
+3. User confirms.
+4. Pupilist clears the data in the file and system.
+
+    Use case ends.  
+  
+**Extensions**
+
+* 2a. User chooses to cancel.
+  * 2a1. User cancels the command.
+
+    Use case ends.
+
+
+* 3a. Pupilist detects an error in clearing the file.
+
+    * 3a1. Pupilist displays an error message.
+
+      Use case ends.
+    
+    *{More to be added}*
 
 ### Non-Functional Requirements
 
@@ -391,8 +449,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
+* **Attendance**: The date of the lesson attended
+* **Card**: The details of a student
+* **Grade Progress**: The current grade of the student and their standard of work
+* **Homework**: Work assigned to a student and whether or not they completed it
+* **Lesson plan**: What the tutor intends to do for each student or what has been covered
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
