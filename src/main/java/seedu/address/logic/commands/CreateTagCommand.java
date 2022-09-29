@@ -52,13 +52,10 @@ public class CreateTagCommand extends TagCommandGroup {
             }
         }
 
-        if (duplicateTags.isEmpty()) {
-            return new CommandResult(String.format(MESSAGE_SUCCESS, Tag.toString(tagsToAdd)));
-        } else {
-            return new CommandResult(
-                    String.format(MESSAGE_DUPLICATE_TAGS, Tag.toString(duplicateTags)) + "\n"
-                            + String.format(MESSAGE_SUCCESS, Tag.toString(nonDuplicateTags)));
-        }
+        String duplicateMessage = duplicateTags.isEmpty() ? "" : String.format(MESSAGE_DUPLICATE_TAGS, Tag.toString(duplicateTags)) + "\n";
+        String successMessage = nonDuplicateTags.isEmpty() ? "" : String.format(MESSAGE_SUCCESS, Tag.toString(nonDuplicateTags));
+
+        return new CommandResult(duplicateMessage + successMessage);
     }
 
     @Override
