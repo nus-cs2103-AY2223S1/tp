@@ -291,41 +291,67 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is `TA Assist` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `TA Assist` and the **Actor** is the `User`, unless specified otherwise)
 
-**Use case: UC1 - Give a student a score for a session in a class**
+**Use case: UC1 - Enter focus mode for a class**
 
 **MSS**
-
 1. User requests to enter focus mode for a class.
 2. TA Assist enters focus mode for the class.
-3. User requests to allocate a score for a specific student in the class, for a specific session.
-4. TA Assist updates the score for the student. 
+3. TA Assist indicates that the user is in the focus mode for the class.
+4. TA Assist lists all the students in the class.
+5. TA Assist lists all the sessions in the class.
+
+    Use case ends.
+
+**Extensions**
+* *a. User requests to exit focus mode.
+    * *a1. TA Assist exits focus mode.
+    * *a2. TA Assist indicates that the user has exited focus mode.
+
+      Use case ends.
+
+* 2a. The class does not exist.
+  * 2a1. TA Assist tells the user that the class does not exist.
+    
+    Use case ends
+  
+* 4a. The list of students is empty.
+  
+  Use case resumes at step 5.
+
+* 5a. The list of sessions is empty.
+
+  Use case ends.
+
+**Use case: UC2 - Give a student a score for a session in a class**
+
+**MSS**
+1. User requests to <u>enter focus mode for a class (UC1)</u>.
+2. User requests to allocate a score for a specific student in the class, for a specific session.
+3. TA Assist updates the score for the student. 
+4. TA Assist indicates that the score for the student has been updated.
 
    Use case ends.
 
 **Extensions**
+* 3a. The student does not exist in the class.
+  * 3a1. TA Assist tells the user that the student does not exist.
 
-* 2a. The class does not exist.
-  * 2a1. TA Assist tells the user that the class does not exist.
+    Use case ends.
   
-* 4a. The student does not exist in the class.
-  * 4a1. TA Assist tells the user that the student does not exist.
+* 3b. The session does not exist in the class.
+  * 3b1. TA Assist tells the user that the session does not exist.
 
-    Use case resumes at step 3.
-  
-* 4b. The session does not exist in the class.
-  * 4b1. TA Assist tells the user that the session does not exist.
+    Use case ends.
 
-    Use case resumes at step 3.
-
-**Use case: UC2 - Add a student**
+**Use case: UC3 - Add a student**
 
 **MSS**
+1. User requests to add a student with the specified name and information.
+2. TA Assist creates a student with the given name.
+3. TA Assist indicates that the student has been added.
 
-1. User requests to add a student with the specified name and optionally, the phone number, email address, home address and class name.
-2. TA Assist adds the student with the given information.
-    
    Use case ends.
 
 **Extensions**
@@ -333,15 +359,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 2a1. TA Assist shows an error message.
   
     Use case ends.
+
+* 2b. The student already exists.
+  * 2b1. TA Assist tells the user that the student already exists.
+    
+    Use case ends.
+
+* 2c. The student's phone number, email address, home address and/or class is/are provided.
+  * 2c1. TA Assist creates a student with a name along with these information.
   
-**Use case: UC3 - Delete a student**
+    Use case resumes at step 3.
+  
+**Use case: UC4 - Delete a student**
 
 **MSS**
-
 1. User requests to list students.
 2. TA Assist shows a list of students.
 3. User requests to delete a specific student in the list.
 4. TA Assist deletes the student.
+5. TA Assist indicates that the student has been deleted.
 
    Use case ends.
 
@@ -351,60 +387,50 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 * 3a. The given index is invalid.
-  * 3a1. TA Assist shows an error message.
+  * 3a1. TA Assist indicates that the index is invalid.
   
     Use case resumes at step 2.
 
-**Use case: UC4 - Create a class**
+**Use case: UC5 - Create a class**
 
 **MSS**
-
 1. User requests to create a new class with the specified class name.
 2. TA Assist creates a new class with the given class name.
+3. TA Assist indicates that the class has been created.
+
    Use case ends.
 
 **Extensions**
-* 2a. TA Assist detects that a class with the same name already exists.
+* 2a. The class already exists.
   * 2a1. TA Assist tells the user that the class already exists.
     
     Use case ends.
 
-**Use case: UC5 - Create a session in a class**
+* 2b. The class name is empty.
+  * 2b1. TA Assist shows an error message.
+    
+    Use case ends.
+
+**Use case: UC6 - Create a session in a class**
 
 **MSS**
-1. User requests to enter focus mode for a class.
-2. TA Assist enters focus mode for the class.
-3. User requests to create a new session for the class.
-4. TA Assist creates a new session for the class.
+1. User requests to <u>enter focus mode for a class (UC1)</u>.
+2. User requests to create a new session for the class.
+3. TA Assist creates a new session for the class.
+4. TA Assist indicates that the session has been created.
 
     Use case ends.
 
 **Extensions**
-* 2a. The class does not exist.
-  * 2a1. TA Assist tells User that the class does not exist.
-  
-    Use case ends.
-  
-* 3a. User chooses to not create a session for the class.
-  * 3a1. User requests to exist focus mode.
-  * 3a2. TA Assist exits focus mode.
-
-    Use case ends.
-  
-* 4a. The session already exists.
-  * 4a1. TA Assist tells the user that the session already exsits.
+* 3a. The session already exists.
+  * 3a1. TA Assist tells the user that the session already exists.
   
     Use case ends.
 
-**Use case: UC6 - List students in a class**
+* 3b. The session name is empty.
+    * 3b1. TA Assist shows an error message.
 
-**MSS**
-1. User requests to enter focus mode for a class.
-2. TA Assist enters focus mode for the class.
-3. User requests to list all the students in the class.
-4. TA Assist displays the list of students in the class.
-    
-    Use case ends.
+      Use case ends.
 
 *{More to be added}*
 ### Non-Functional Requirements
