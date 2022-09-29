@@ -7,7 +7,7 @@ inventory in your daily restaurants operations. It is a convenient and efficient
 wastage and a constant supply of fresh food to increase revenue and improve the quality of food. With a few quick
 commands, you can have complete control of your perishable goods.
 
-**Acknowledgements**
+**Acknowledgements** <br>
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org)
 
 NOTE: README content has to be discussed and updated as v1.1 deliverable
