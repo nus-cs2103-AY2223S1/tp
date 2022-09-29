@@ -174,6 +174,18 @@ Exits the program.
 
 Format: `exit`
 
+### Saving the data
+
+InternConnect data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+### Editing the data file
+
+InternConnect data are saved as a JSON file `[JAR file location]/data/internconnect.json`. Advanced users are welcome to update data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, InternConnect will discard all data and start with an empty data file at the next run.
+</div>
+
 -----------------------------------------------------------------------------------------------------
 
 ## Command summary
