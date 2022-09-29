@@ -257,29 +257,32 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* is a tutor
+* has a need to manage a significant number of students
+* wants to organise their class in multiple ways
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: help tutors better keep track of their students’ progress in their assigned module.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                     | I want to …​                                         | So that I can…​                                                        |
+|----------|---------------------------------------------|------------------------------------------------------|------------------------------------------------------------------------|
+| `* * *`  | new user                                    | see usage instructions                               | refer to instructions when I forget how to use the App                 |
+| `* * *`  | tutor                                       | add a new student                                    |                                                                        |
+| `* * *`  | tutor                                       | delete a student                                     | remove entries that I no longer need                                   |
+| `* * *`  | tutor                                       | mark students who are present and absent from class  | keep track of attendance using this application                        |
+| `* * *`  | tutor                                       | find a student by name                               | locate details of persons without having to go through the entire list |
+| `* *`    | tutor with many persons in the address book | sort students by name                                | locate a student easily                                                |
+| `* *`    | tutor                                       | filter the students by attribute                     | locate a student easily                                                |
+| `* *`    | tutor                                       | create new labels to tag my students with            | better differentiate the students                                      |
 
-*{More to be added}*
 
 ### Use cases
 
@@ -312,16 +315,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. The software should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. The software should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. The software should be able to start up in 30 seconds.
+4. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+5. The software should be able to be used without an installer.
+6. The software should not depend on a remote server.
+7. If the software crashes or becomes unresponsive, the student records should not be lost.
+8. The GUI should work well (i.e., should not cause any resolution-related inconveniences to the user) for standard screen resolutions 1920x1080 and higher and for screen scales 100% and 125%.
+9. The GUI should be usable (i.e., all functions can be used even if the user experience is not optimal) for resolutions 1280x720 and higher and for screen scales 150%.
+10. The software should be packaged into a single JAR file.
+11. The software should not exceed 100MB in size.
+12. The documentation should not exceed 15MB per file.
+13. The software and documentation should be accessible for users who have a basic command of the English language.
 
 ### Glossary
 
+* **Tutor**: Teaching assistant for the specific module
+* **Student**: A person that is partaking in a module.
+* **Module**: The university class that the student is enrolled in, encoded by a unique module code consisting of a 2-3 letter prefix that generally denotes the discipline, and 4 digits at the back, the first of which indicates the level of the module.
+* **JAR file**: package file format typically used to aggregate many Java class files and associated metadata and resources into one file for distribution.
+* **GUI**: main interface that the user interacts with to input commands and view results.
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Tag**: A label for students defined by the user, possibly shared by multiple students.
+* **Attribute**: Characteristics of students that all students have.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
