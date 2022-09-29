@@ -56,6 +56,29 @@ TrackO is a **desktop app built for small business owners to help them manage or
 
 </div>
 
+### Listing all orders : `listo`
+
+Shows a list of all orders in the store has.
+
+Format: `listo`
+
+### Locating orders by keyword: `findo`
+
+Find order with item names containing any of the given keywords.
+
+Format: `findo KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `keychain` will match `Keychain`
+* The order of the keywords does not matter. e.g. `apple keychain` will match `Keychain Apple`
+* Only the name is searched.
+* Only full words will be matched e.g. `keychains` will not match `keychain`
+* Orders matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `apple keychain` will return `apple painting`, `banana keychain`
+
+Examples:
+* `findo keychain` returns `banana keychain` and `keychain`
+* `findo apple keychain` returns `apple painting`, `banana keychain`<br>
+
 ### Adding an inventory item: `addi`
 
 Adds an item to the list of tracked inventory.
@@ -129,12 +152,13 @@ Exits the program.
 Format: `exit`
 
 ## Command summary
-
-Action | Format, Examples
---------|------------------
-**Add Inventory** | `addi n/NAME [t/TAG]…​` <br> e.g., `addi n/Chair t/Furniture`
-**Delete Inventory** | `deletei INDEX`<br> e.g., `deletei 3`
-**Tagi** | `tagi INDEX [t/TAG]…​` <br> e.g, `tagi 1 t/Perishable t/Premium`
-**listi** | `listi`
-**findi** | `findi KEYWORD [MORE_KEYWORDS]` <br/> e.g., `find blue shirt`
-**Exit** | `exit`
+| Action          | Format, Examples |
+|-----------------|------------------ |
+| **List Orders** | `listo`|
+| **Find Order**  | `findo KEYWORD [MORE_KEYWORDS]`|
+| **Add Inventory** | `addi n/NAME [t/TAG]…​` <br> e.g., `addi n/Chair t/Furniture`|
+| **Delete Inventory** | `deletei INDEX`<br> e.g., `deletei 3`|
+| **Tag Inventory** | `tagi INDEX [t/TAG]…​` <br> e.g, `tagi 1 t/Perishable t/Premium`|
+| **List Inventory** | `listi`  |
+| **Find Inventory** | `findi KEYWORD [MORE_KEYWORDS]` <br/> e.g., `find blue shirt`|
+| **Exit**        | `exit`|
