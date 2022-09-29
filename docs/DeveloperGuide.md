@@ -273,11 +273,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- |--------------------------------------------| ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | NUS student                                | view the list of tasks I need to complete        | start implementing those tasks.               |
-| `* * *`  | user                                       | add a new person               |                                                                        |
+| `* * *`  | NUS student                                | create the tasks in the tasklist               | add the list of tasks that need to be completed                                                                       |
 | `* * *`  | NUS student                                | mark a task as complete        | have a better idea of what I have completed.                                   |
 | `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
 | `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
 | `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+
 
 *{More to be added}*
 
@@ -307,6 +308,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: List tasks in task list**
+
+**MSS**
+
+1. User requests to add a task
+2. MODPRO shows the task added
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given description is empty.
+
+    * 1a1. MODPRO shows an error message.
+
+      Use case ends.      
 
 **Use case: List tasks in task list**
 
