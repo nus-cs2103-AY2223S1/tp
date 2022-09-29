@@ -64,7 +64,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 </div>
 
-## Section 3: Tasks
+## Section 3: Tags
 ### Listing all tags : `taglist`
 
 Shows a list of all existing tags in the address book.
