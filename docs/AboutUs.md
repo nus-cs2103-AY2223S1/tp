@@ -51,7 +51,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Timothy Jonathan Koei
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/t1mzzz.png" width="200px">
 
 [[github](http://github.com/t1mzzz)]
 [[portfolio](team/t1mzzz.md)]
