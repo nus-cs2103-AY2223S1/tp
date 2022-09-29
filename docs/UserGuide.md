@@ -70,19 +70,19 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-### Adding a Project: `addProj`
+### Adding a Project: `add`
 
 Adds a project to Project list.
 
-Format: `addProj pn/PROJECT_NAME pb/PROJECT_BUDGET pd/PROJECt_DEADLINE pc/PROJECT_CLIENT [t/TAG]…​`
+Format: `add pn/PROJECT_NAME pb/PROJECT_BUDGET pd/PROJECt_DEADLINE pc/PROJECT_CLIENT [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A project can have any number of tags (including 0)
 </div>
 
 Examples:
-* `addProj pn/2103T_TP pb/100000 pd/2022-01-01 pc/Max`
-* `addProj pn/CS2100 pc/Darren t/Tiring pb/1000 pd/2022-01-01 t/Fun time`
+* `add pn/2103T_TP pb/100000 pd/2022-01-01 pc/Max`
+* `add pn/CS2100 pc/Darren t/Tiring pb/1000 pd/2022-01-01 t/Fun time`
 
 ### Deleting a Project : `delete`
 
@@ -108,7 +108,7 @@ Format: `listProj`
 
 Adds a staff member info to Project in project list.
 
-Format: `addStaff pn/PROJECT_NAME sn/NAME si/INSURANCE_STATUS sd/DEPARTMENT st/TITLE sc/CONTACT NUMBER` 
+Format: `addStaff pn/PROJECT_NAME sn/STAFF_NAME si/INSURANCE_STATUS sd/STAFF_DEPARTMENT st/STAFF_TITLE sc/CONTACT NUMBER` 
 
 * All fields for staff member are required
 
@@ -171,16 +171,16 @@ Project data is saved in the hard disk automatically after any command that chan
 
 ## Command summary
 
-| Action        | Format, Examples                                                                                                                                                     |
-|---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**       | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Add staff** | `addstaff`                                                                                                                                                             |
-| **Clear**     | `clear`                                                                                                                                                              |
-| **Delete**    | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                  |
-| **Edit**      | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                          |
-| **Find**      | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                           |
-| **List**      | `list`                                                                                                                                                               |
-| **Help**      | `help`                                                                                                                                                               |
+| Action          | Format, Examples                                                                                   |
+|-----------------|----------------------------------------------------------------------------------------------------|
+| **Add project** | `add pn/PROJECT_NAME  [t/TAG]…​` <br> e.g., `add pn/DUKE pc/Darmith pd/2022-10-25 pb/10000 t/funz` |
+| **Add staff**   | `addstaff pn/PROJECT_NAME sn/STAFF_NAME…​` <br> e.g., `addstaff pn/DUKE sn/DEXTER si/true sd/HR`   |
+| **Clear**       | `clear`                                                                                            |
+| **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                |
+| **Edit**        | `edit INDEX [pn/PROJECT_NAME] [pd/PROJECT_DEADLINE]…​`<br> e.g.,`edit 2 pn/ROOFUS pb/1350000`      |
+| **Find**        | `find pn/PROJECT_NAME`<br> e.g., `find DUKE`                                                       |
+| **List**        | `list`                                                                                             |
+| **Help**        | `help`                                                                                             |
 
 ## Prefix Summary
 Prefixes that start with `s` are for project staff member details.
@@ -189,12 +189,12 @@ Prefixes without the prefix `s` are meant for project and/or client details.
 | Prefix  | Meaning                | Format/ Examples    |
 |---------|------------------------|---------------------|
 | **pn/** | Project name           | pn/PROJECT_NAME     |
-| **sn/** | Staff name             | sn/NAME             |
+| **sn/** | Staff name             | sn/STAFF_NAME       |
 | **si/** | Staff insurance status | si/INSURANCE_STATUS |
 | **st/** | Staff title            | st/STAFF_TITLE      |
 | **sd/** | Staff department       | sd/STAFF_DEPARTMENT |
-| **p/**  | Phone number           | p/PHONE_NUMBER      |
-| **e/**  | Email                  | e/EMAIL             |
-| **b/**  | Project budget         | b/PROJECT_BUDGET    |
-| **d/**  | Project deadline       | d/PROJECT_DEADLINE  |
-| **c/**  | Project client         | c/PROJECT_CLIENT    |
+| **pp/** | Phone number           | pp/PHONE_NUMBER     |
+| **ep/** | Email                  | pe/PROJECT_EMAIL    |
+| **pb/** | Project budget         | pb/PROJECT_BUDGET   |
+| **pd/** | Project deadline       | pd/PROJECT_DEADLINE |
+| **pc/** | Project client         | pc/PROJECT_CLIENT   |
