@@ -48,3 +48,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Logic + Testing
+
+### James Chiu
+
+<img src="images/zlimez.png" alt="jameschiu" width="200px">
+
+[[github](http://github.com/zlimez)]
+[[portfolio](team/zlimez.md)]
+
+* Role: Developer
+* Responsibilities: Model + Documentation
