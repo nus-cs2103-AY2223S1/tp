@@ -43,15 +43,18 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 
-### Jean Doe
+### Chang Jing Yan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/changjy44.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[homepage](https://www.linkedin.com/in/chang-jing-yan-079928146/)
+
+[github](http://github.com/changjy44) 
+
+[portfolio](team/changjy44.md)
+
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
 
 ### James Doe
 
