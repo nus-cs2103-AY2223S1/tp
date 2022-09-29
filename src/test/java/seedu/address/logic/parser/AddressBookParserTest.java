@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,12 +12,12 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.profile.AddProfileCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.profile.NameContainsKeywordsPredicate;
 import seedu.address.model.profile.Profile;
@@ -30,10 +29,11 @@ public class AddressBookParserTest {
     private final AddressBookParser parser = new AddressBookParser();
 
     @Test
-    public void parseCommand_add() throws Exception {
+    public void parseCommand_addProfile() throws Exception {
         Profile profile = new ProfileBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(ProfileUtil.getAddCommand(profile));
-        assertEquals(new AddCommand(profile), command);
+        AddProfileCommand command =
+                (AddProfileCommand) parser.parseCommand(ProfileUtil.getAddProfileCommand(profile));
+        assertEquals(new AddProfileCommand(profile), command);
     }
 
     @Test
