@@ -34,14 +34,17 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
   * Code Quality
   * UI Component
 
-### Johnny Doe
+### Neo Sun Han
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/neosunhan.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/neosunhan)]
+[[portfolio](team/neosunhan.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities:
+  * Documentation
+  * Model Component
 
 ### Sng Su May, Rachael
 
