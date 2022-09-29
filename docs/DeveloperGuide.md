@@ -300,7 +300,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 <br>
 
-**Use case: edit a person**
+**Use case: Edit a person**
 
 **MSS**
 
