@@ -257,28 +257,25 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Programmers who love vim and want to hit the gym for some exercise but they are too occupied with work to recall their progressions and don’t know / remember what to do next
+* They may also find it hard to remember their statistics on each exercise
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
+* Leverage on their blazing speed on vim to save, write and view gym data in a familiar fashion
+* Provides a fast platform for users to track their gym progress or workout routine
+* Has vim-like shortcuts to make things more efficient for vim lovers
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
+| Priority | As a …​            | I want to …​                                      |
+|----------|--------------------|---------------------------------------------------|
+| `* * *`  | forgetful gym user | add exercises to the app                          |
+| `* * *`  | forgetful gym user | delete exercises from the app                     |
+| `* * *`  | forgetful gym user | list out my past exercises on the app             |
+| `* * *`  | forgetful gym user | associate reps/sets number to an exercise         |
 *{More to be added}*
 
 ### Use cases
@@ -320,8 +317,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Exercise**: Activity requiring physical effort, carried out to sustain or improve health and fitness
+* **Reps**: Number of times you perform a specific exercise
+* **Sets**: Number of cycles of reps that you complete
+* **Weight**: Total weight (include barbell if applicable exclude body weight)
 
 --------------------------------------------------------------------------------------------------------------------
 
