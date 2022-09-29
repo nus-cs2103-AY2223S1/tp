@@ -187,4 +187,4 @@ Format: `exit`
 | **Display Group** | `display GROUP` <br> e.g., display CS2103T                                                                                                                                            |
 | **Delete Group**  | `deletegroup GROUP` <br> e.g., deletegroup CS2103T                                                                                                                                    |
 | **Exit**          | `exit`                                                                                                                                                                                |
-=======
+
