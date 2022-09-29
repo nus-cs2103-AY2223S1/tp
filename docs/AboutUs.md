@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Tan Jin Waye
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tan-jin-waye.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/Tan-Jin-Waye)]
@@ -22,7 +22,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Liang Guo Yang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lianguoyang.png" width="200px">
 
 [[github](http://github.com/LianGuoYang)]
 [[portfolio](team/lianguoyang.md)]
@@ -32,7 +32,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Cedric Chia
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/cedricchia123.png" width="200px">
 
 [[github](http://github.com/CedricChia123)] [[portfolio](team/johndoe.md)]
 
@@ -41,7 +41,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Aloysius Neo
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/aloynz.png" width="200px">
 
 [[github](http://github.com/Aloynz)]
 [[portfolio](team/johndoe.md)]
@@ -51,7 +51,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Lee Zi Yang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zylee348.png" width="200px">
 
 [[github](http://github.com/zylee348)]
 [[portfolio](team/johndoe.md)]
