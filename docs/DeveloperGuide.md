@@ -257,14 +257,17 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* is a SoC student TA who wants to manage a lot of tasks and students in their care
+* has a need to manage different students of varying learning speeds
+* needs a way to mass manage all their students and respective tasks
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**: 
+* manage contacts faster than a typical mouse/GUI driven app
+* a way for student TAs to efficiently keep track of students' progress and tasks
 
 ### User stories
 
@@ -279,7 +282,43 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
 | `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
 
-*{More to be added}*
+* As a Teaching Assistant, I want to be able to manage (CRUD) a list of my students. `* * *`
+* As a Teaching Assistant, I want to be able to manage (CRUD) any student’s task list. `* * *`
+* As a Teaching Assistant, I want to keep track of which students’ assignments I have graded and not graded. `* * *`
+* As a Teaching Assistant with multiple tutorial groups, I want to keep track of which student is in which group. `* * *`
+* As a Teaching Assistant, I want to be able to assign deadlines to my tasks. `* * *`
+* As a Teaching Assistant, I want a way to do mass actions (e.g. create a task for each student in a group) so that I can save unnecessary time `* *`
+* As a Teaching Assistant, I want to leave comments on students’ submissions so that students can learn from their mistakes. `* *`
+* As a busy Teaching Assistant, I want to prioritise tasks based on their deadline. `* *`
+
+**(To be added)**
+
+* As a Teaching Assistant, I want to manage each of my student’s progress. `*`
+* As a Teaching Assistant, I want to manage each of my student’s class participation marks. `*`
+* As a Teaching Assistant, I want to be able to estimate how much time I need to complete my tasks. `*`
+* As a Teaching Assistant, I want to be able to categorise students based on how much help I think they need. `*`
+* As a Teaching Assistant, I want to be able to see which student’s question I should reply to first. `*`
+* As a Teaching Assistant, I need to know where and when my next tutorial is held. `*`
+* As a Teaching Assistant, I need to know students' performance in exams. `*`
+* As a Teaching Assistant, I want to divide students into pairs randomly during lessons to encourage teamwork. `*`
+* As a Teaching Assistant, I want to categorise submissions based on students. `*`
+* As a Teaching Assistant, I want to filter out assignments submitted after the deadline so I can penalise accordingly. `*`
+* As a Teaching Assistant, I need to take attendance (mass selection) (for convenience) `*`
+* As a Teaching Assistant, I want to leave comments on students’ submissions so that students can learn from their mistakes. `*`
+* As a Teaching Assistant, I want to send notifications to students who failed to submit their homework on time. `*`
+* As a Teaching Assistant, I want to view the distribution/summary of scores so I can see how well my students have understood the knowledge. `*`
+* As a Teaching Assistant, I want a way to send out mass email so that I won’t miss out on any of my students `*`
+* As a Teaching Assistant, I want a way to do mass actions so that I can save unnecessary time `*`
+* As a Teaching Assistant, I want to track each of my student’s strengths and weaknesses so that I can better nurture their individual learning progress. `*`
+* As a Teaching Assistant, I want a way to separate my stronger and weaker students so that it is easier for me to help them strive towards their academic goal. `*`
+* As a Teaching Assistant, I want a way to classify my students learning at different speeds so that I can better help them grow at their own learning pace. `*`
+* As a Teaching Assistant, I want to classify asked questions to a folder so that my students can refer to it easily without having me to spend unnecessary time repeating myself. `*`
+* As a Teaching Assistant, I want to have fine-grained control over the commands I send using flags in the command line `*`
+* As a Teaching Assistant, I want to be able to use the command line to pipe the output of my program to pipe to different Unix commands `*`
+* As a Teaching Assistant, I want to be able to automate certain tasks such as marking off certain tasks if they are certain events that have passed `*`
+* As a Teaching Assistant, I want a way to export and keep offsite backups of my data so that I do not need to worry of any corruption issues or loss of data** `*`
+* As a Teaching Assistant, I want a way to import data into the program so that I can have multiple systems with the same persistent data.* `*`
+* As a Teaching Assistant, I want a way to randomly select a student’s name in the class so someone can respond to in-class questions. `*`
 
 ### Use cases
 
