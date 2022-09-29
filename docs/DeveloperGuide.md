@@ -342,6 +342,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+* 1b. InternConnect detects that the INDEX given is invalid.
+
+    * 1b1. InternConnect shows an error message.
+
+      Use case ends.
+
 
 **Use case: Delete an applicant**
 
