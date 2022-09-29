@@ -46,22 +46,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Code quality
 
-### Jean Doe
+### Lim Ai Lin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/limailin.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/LimAiLin)]
+[[portfolio](team/LimAiLin.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
+* Role: Documentation and Testing
