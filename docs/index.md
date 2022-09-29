@@ -1,9 +1,9 @@
 ---
 layout: page
-title: AddressBook Level-3
+title: InternConnect
 ---
 
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![CI Status](https://github.com/AY2223S1-CS2103-F14-2/tp/actions/workflows/gradle.yml/badge.svg?branch=master&event=push)](https://github.com/AY2223S1-CS2103-F14-2/tp/actions)
 [![codecov](https://codecov.io/gh/AY2223S1-CS2103-F14-2/tp/branch/master/graph/badge.svg?token=TENHJGDILP)](https://codecov.io/gh/AY2223S1-CS2103-F14-2/tp)
 
 ![Ui](images/Ui.png)

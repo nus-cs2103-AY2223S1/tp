@@ -275,17 +275,41 @@ focus on what matters more: matching the right people for the right job.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------------------- | ---------------------------------------------------------------------- |
-| `* * *`  | user                                       | mass add applicants' data                   | conveniently import my data quickly and without hassle                 |
-| `* * *`  | user                                       | view all details of my selected Applicant   | avoid opening and working with multiple files                          |
-| `* * *`  | user                                       | see the summary statistics of my data       | have a higher-level view of the data                                   |
-
+| Priority | As a …​                            | I want to …​                                            | So that I can…​                                                                 |
+|----------|------------------------------------|---------------------------------------------------------|---------------------------------------------------------------------------------|
+| `* * *`  | potential user exploring the app   | see the sample data                                     | easily play around and understand how the app works                             |
+| `* * *`  | new user                           | see the list of available things I can do with the app  | learn how to use the app fully                                                  |
+| `* * *`  | new user                           | read the user guide                                     | I understand all the commands and features available in the app before using it |
+| `* * *`  | user                               | delete fields and data                                  |                                                                                 | 
+| `* * *`  | user                               | add applicants                                          |                                                                                 |
+| `* * *`  | user                               | mass add applicants' data                               | conveniently import my data quickly and without hassle                          |
+| `* * *`  | user                               | view all details of my selected Applicant               | avoid opening and working with multiple files                                   |
+| `* * *`  | user                               | see the summary statistics of my data                   | have a higher-level view of the data                                            |
+| `* * *`  | user ready to start using the app  | clear all current data                                  | get rid of sample/experimental data I used for exploring the app                |
 *{More to be added}*
 
 ### Use cases
 
 (For all use cases below, the **System** is the `InternConnect` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: Add an applicant**
+
+**MSS**
+
+1.  User requests to add an applicant with its specifiers
+2.  InternConnect adds an applicant
+3.  InternConnect shows the updated list of applicants
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. The given format is invalid.
+
+    * 3a1. InternConnect shows an error message.
+
+      Use case ends.
+
 
 **Use case: Delete an applicant**
 
@@ -310,6 +334,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. InternConnect shows an error message.
 
       Use case resumes at step 2.
+
 
 **Use case: Exit**
 
