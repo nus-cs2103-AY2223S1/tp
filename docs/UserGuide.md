@@ -1,4 +1,4 @@
-# InTrack User Guide
+# Introduction
 
 InTrack is a **desktop app for managing your internship applications, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, InTrack can get your internship management tasks done faster than traditional GUI apps.
 
@@ -72,7 +72,7 @@ Format: `help`
 
 Adds a new internship application to the tracker.
 
-Format: ` add p/POSITION c/COMPANY e/EMAIL a/ADDRESS [t/TAG]…`
+Format: `add p/POSITION c/COMPANY e/EMAIL a/ADDRESS [t/TAG]…`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 An internship can have any number of tags (including 0)
