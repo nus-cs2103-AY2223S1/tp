@@ -5,7 +5,9 @@ title: Lee Zi Yang's Project Portfolio Page
 
 ### Project: TABS
 
-TABS is a 
+TABS helps project team leaders **overview tasks assigned to group members**. It 
+is targeted at individuals  with less programming
+background i.e. **less CLI-intensive** in nature.
 
 Given below are my contributions to the project.
 
