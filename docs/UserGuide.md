@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+JARVIS is a **desktop app for a CS1101S Teaching Assistant to manage students and tasks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, JARVIS can help manage your class efficiently.
 
 * Table of Contents
 {:toc}
@@ -14,9 +14,9 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `JARVIS.jar` from [here](https://github.com/AY2223S1-CS2103T-T11-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for JARVIS.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -26,9 +26,9 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add`**`s/John Tan` : Adds a student named `John Tan` to JARVIS.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`delete`**`s/3` : Deletes the 3rd student shown in the student list.
 
    * **`clear`** : Deletes all contacts.
 
@@ -73,19 +73,20 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a student/task: `add`
 
-Adds a person to the address book.
+Adds a student or task to JARVIS.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+- Add a student
+  - Format: `add s/NAME`
+- Add a task with a deadline
+  - Format: `add t/TASK_DESC [d/DATE]`
+  - d/DATE is optional
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add s/John Tan`
+* `add t/Consultation d/12-09-2023`
 
 ### Listing all persons : `list`
 
@@ -128,25 +129,30 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a student / task : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified student or task from their respective lists.
 
-Format: `delete INDEX`
+* Delete a student at specified index
+  - Format: `delete s/STUDENT_INDEX`
+* Delete a task at specified index
+  - Format: `delete t/TASK_INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+**Things to Note:**
+* The index refers to the index number shown in the displayed list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list s` followed by `delete s/2` deletes the 2nd student in JARVIS.
+* `list t` followed by `delete t/1` deletes the 1st task in JARVIS.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all student and task from JARVIS.
 
 Format: `clear`
+
+#### **Warning! This action is irreversible! Please think twice before you use this**
 
 ### Exiting the program : `exit`
 
@@ -175,7 +181,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous JARVIS home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -183,9 +189,9 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add s/NAME`, `add t/TASK_DESC [d/DATE]` <br> e.g., `add s/John Tan`, `add t/Consultation d/12-09-2023`
 **Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Delete** | `delete s/STUDENT_INDEX` or `delete t/TASK_INDEX` <br> e.g., `delete s/3` or `delete t/2`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`

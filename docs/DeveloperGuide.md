@@ -255,31 +255,55 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
+**Target user profile**: CS1101S TA
 
-* has a need to manage a significant number of contacts
+* has to keep track of significant number of tasks
+  * grade mission and quests
+  * schedule mastery checks
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage students and tasks in an organised manner easily and quickly
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                           | I want to …​                                                    | So that I …​                                                                               |
+|----------|-----------------------------------|-----------------------------------------------------------------|--------------------------------------------------------------------------------------------|
+| `* * *`  | potential user                    | find the installation/setup instructions                        | can install the app properly                                                               |
+| `* * *`  | user ready to start using the app | see the basic commands                                          | can learn how to use the most basic features of the app                                    |
+| `* * *`  | user ready to start using the app | add the students in my tutorial class into the app              | can track the students' attendance and grades                                              |
+| `* * *`  | user                              | add my tasks                                                    | will not forget to do any of the tasks                                                     |
+| `* * *`  | user                              | mark tasks as done                                              | can focus on the remaining tasks                                                           |
+| `* * *`  | user                              | mark tasks as not done                                          | can go back and redo tasks that are incomplete                                             |
+| `* * *`  | clumsy user                       | delete tasks                                                    | can remove tasks I have wrongfully added                                                   |
+| `* * *`  | clumsy user                       | delete students                                                 | can remove students I have wrongfully added                                                |
+| `* * *`  | user                              | list the tasks that I need to do                                | can see all my tasks                                                                       |
+| `* * *`  | user                              | list students in my class                                       | can see all my students with relevant details                                              |
+| `* * *`  | user                              | see my students' mastery check completion status                | know which students I have not seen for mastery check                                      |
+| `* * *`  | user                              | update my students' mastery check completion status             | can keep track of which students I have already seen for mastery check                     |
+| `* *`    | first time user                   | see the app being populated with sample students and tasks      | can try out the functions of the app                                                       |
+| `* *`    | user ready to start using the app | clear all current data                                          | can get rid of the sample data used for exploring the app and input my own data            |
+| `*`      | user                              | assign different priorites to my tasks                          | can focus on the more important tasks                                                      |
+| `*`      | user ready to start using the app | import my timetable for the semester	                           | can plan my TA duties in sync with tasks from other modules                                |
+| `*`      | user                              | add in mastery check timeslots                                  | can keep track of when and who I have to see for mastery check and I can make preparations | 
+| `*`      | user                              | detect if there any schedule conflicts in my upcoming tasks     | resolve those conflicts and complete all my tasks                                          |
+| `*`      | user                              | add in timeslots for consultations	                             | can keep track of details of consultation and students                                     |
+| `*`      | user                              | get the task with the next earliest deadline	                   | can plan my schedule accordingly                                                           |
+| `*`      | user                              | receive reminders about upcoming deadlines                      | am able to meet all my deadlines on time                                                   |
+| `*`      | user                              | receive notifications when my students submit their assignments | know that I have assignments to grade                                                      |
+| `*`      | user                              | keep track of my students' level of participation               | decide how to assign tutorial participation exp for each student                           |
+| `*`      | user                              | keep track of my students' grades                               | can focus more on the weaker students                                                      |
+| `*`      | user                              | send notifications to my students                               | can remind them to submit their work                                                       |
+| `*`      | user                              | see performance statistics on each assignment                   | can spend more time on topics that my students are weak in                                 |
+| `*`      | user                              | see attendance statistics for studios                           | can understand the needs of my students better                                             |
+| `*`      | user                              | hide irrelevant data                                            | can focus on the more relevant data                                                        |
 
-*{More to be added}*
+
 
 ### Use cases
 
@@ -319,9 +343,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *{More to be added}*
 
 ### Glossary
-
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Mastery check**: An assessment where students in pairs must present what they have learnt in the module to their TA, and the TA will assess the students’ understanding of the concepts.
+* **Avenger**: A teaching assistant (TA) who is responsible for teaching a studio class.
+* **Studio**: A tutorial class with up to 8 students.
+* **XP**: Points that will count towards a student’s grade
+* **Source Academy**: Online platform used for CS1101S.
+* **Mission**: Assignment on Source Academy
+* **Quest**: Optional assignment on Source Academy
 
 --------------------------------------------------------------------------------------------------------------------
 

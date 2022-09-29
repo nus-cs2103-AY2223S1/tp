@@ -22,15 +22,17 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
   - Define, assign and track project tasks
   - Logic Component
 
-### Jane Doe
+### Yong Chang Sheng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/rycs2812.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/rycs2812)]
+[[portfolio](team/rycs2812.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities:
+  * Code Quality
+  * UI Component
 
 ### Johnny Doe
 
@@ -41,22 +43,26 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Sng Su May, Rachael
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/rachaelsng.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/rachaelsng)]
+[[portfolio](team/rachaelsng.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities:
+  * Testing of the project
+  * Storage Component
+
+### Fong Yih Jie
+
+<img src="images/fongyj.png" width="200px">
+
+[[github](http://github.com/fongyj)]
+[[portfolio](team/fongyj.md)]
+
+* Role: Developer
+* Responsibilities: 
+  * Deliverables and deadlines, Integration
+  * Commons Component
