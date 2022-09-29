@@ -320,6 +320,7 @@ and the **Actor** is the `user`, unless specified otherwise)
 1. ArtBuddy shows a list of customers
 2. User requests to delete a specific customer in the list
 3. ArtBuddy deletes the customer and all the customer's commissions
+4. ArtBuddy updates the displayed list of customers
 
     Use case ends.
 
