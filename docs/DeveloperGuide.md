@@ -309,6 +309,38 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `JARVIS` and the **Actor** is `AVENGER`, unless specified otherwise)
 
+####**Use case: UC3 - List students**
+**MSS**
+1. Avenger requests to list students.
+2. JARVIS displays list of students.
+   
+    Use case ends.
+
+**Extensions**
+* 1a. JARVIS detects an error in the format of the input command.
+  * 1a1. JARVIS requests user to re-input their command.
+  * 1a2. Avenger inputs command.
+
+  Steps 1a1-1a2 are repeated until the command entered is correct. 
+
+  Use case resumes from step 2.
+
+####**Use case: UC4 - List tasks**
+**MSS**
+1. Avenger requests to list tasks.
+2. JARVIS displays list of tasks.
+
+    Use case ends.
+
+**Extensions**
+ * 1a. JARVIS detects an error in the format of the input command.
+   * 1a1. JARVIS requests user to re-input their command.
+   * 1a2. Avenger inputs command.
+   
+   Steps 1a1-1a2 are repeated until the command entered is correct.
+
+   Use case resumes from step 2.
+ 
 ####**Use case: UC5 - Delete a student**  
 Preconditions:  There are existing students in JARVIS.  
 
@@ -323,6 +355,7 @@ Preconditions:  There are existing students in JARVIS.
 * 3a. JARVIS detects an error in the format of the input command.
   * 3a1. JARVIS requests user to re-input their command.
   * 3a2. Avenger inputs command.
+  
   Steps 3a1-3a2 are repeated until the command entered is correct.  
   Use case resumes from step 4.
 
