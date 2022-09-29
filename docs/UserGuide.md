@@ -45,10 +45,10 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
-  e.g. in `addClient n/NAME ...`, `NAME` is a parameter which can be used as `addClient n/John ...`.
+  e.g. in `addClient n/NAME ...`, `NAME` is a parameter which can be used as `addClient n/John Tan ...`.
 
 * Items in square brackets are optional, while those not in square brackets are compulsory.<br>
-  e.g `addClient n/NAME p/PHONE_NUMBER [e/EMAIL]` can be used as `addClient n/John p/12345678 e/John@abc.com` or as `addClient n/John p/12345678`.
+  e.g `addClient n/NAME p/PHONE_NUMBER [e/EMAIL]` can be used as `addClient n/John Tan p/12345678 e/John@abc.com` or as `addClient n/John Tan p/12345678`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
