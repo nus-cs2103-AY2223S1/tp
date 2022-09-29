@@ -18,6 +18,7 @@
 
 * Keep track of your tasks, their deadlines, and the modules they belong to
   * Mark them as complete or uncompleted
+* Manage your contacts and keep track of the modules they are taking
 
 ## Usage
 
@@ -74,6 +75,25 @@ Format:
 Example:
 `unmark 3`
 
+### Adding a contact: `addc`
+
+Adds a contact to the contact list.
+
+Format: `addc {name} /email {email} /hp {phone number} /mods {module1} {module2}...`
+
+Examples:
+* `addc Bob Martin /email bobbymartini@gmail.com /hp 98765432 /mods CS1101S CS1231S`
+* `addc Betsy Crowe /email betsycrowe@gmail.com hp/ 89985432`
+
+### Deleting a contact: `delc`
+
+Deletes the specified contact from the contact list.
+
+Format: `delc {contact_index}`
+
+Example:
+* `delc 2` deletes the contact at index 2 in the contact list.
+
 ### Finding contacts: `findc`
 
 Find persons in your contacts via keywords, or via module.
@@ -84,4 +104,3 @@ Format:
 Examples:
 * `findc /n John` returns `john`, `John Doe`
 * `findc /m CS1231S` returns `Alex Yeoh`, `David Li`
-

@@ -48,12 +48,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Integration, CI expert
 * Responsibilities: adding/deleting/marking/unmarking tasks
 
-### James Doe
+### Ang Kuang Long
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/angkl0.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/angkl0)]
+[[portfolio](team/angkl0.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Adding, deleting, editing and tagging contacts

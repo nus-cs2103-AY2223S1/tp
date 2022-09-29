@@ -341,6 +341,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case: Edit a contact**
+
+**MSS**
+
+1.  User requests to list contacts
+2.  CodeConnect shows a list of contacts
+3.  User inputs index of contact and its updated information
+4.  CodeConnect updates the contact according to the input given
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. CodeConnect shows an error message.
+
+      Use case resumes at step 2.
+
 **Use case: Delete a person**
 
 **MSS**
