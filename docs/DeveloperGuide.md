@@ -257,14 +257,21 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
+* insurance agent
 * has a need to manage a significant number of contacts
+* has a need to look up client's information
+* has a need to track a significant amount of meetings
+* requires reminders regarding meeting schedules.
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
 
+* manage clients' information faster than a typical mouse/GUI driven app
+* view scheduled meetings with client's details in one glance
+* less effort to recall client's information, more effort to satisfy client's needs
 
 ### User stories
 
