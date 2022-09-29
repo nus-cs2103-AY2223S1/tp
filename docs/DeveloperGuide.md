@@ -283,30 +283,39 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `MyInsuRec` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a client**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to add a client.
+2. System adds the client.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. User inputs incomplete client data.
 
-  Use case ends.
+    * 1a1. System shows an error message.
 
-* 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+**Use case: List all meetings**
 
-      Use case resumes at step 2.
+**MSS**
+
+1. User requests for a list of all meetings.
+2. System shows a list of all meetings.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list has no meetings.
+
+    * System informs the user that there are no meetings on the list.
+
 
 *{More to be added}*
 
