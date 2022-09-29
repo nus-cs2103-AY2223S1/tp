@@ -53,7 +53,7 @@ You can reach us at the email `cobb[at]comp.nus.edu.sg`
 
 ### Chen Hung-Yu
 
-<img src="images/andre.png" width="200px">
+<img src="images/jchilling.png" width="200px">
 
 [[github](http://github.com/jchilling)]
 [[portfolio](team/jchilling.md)]
