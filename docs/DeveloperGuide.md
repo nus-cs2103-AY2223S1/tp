@@ -270,19 +270,22 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​  | I want to …​                              |
+<br>
+
+| Priority | As a …   | I want to …                               |
 |----------|----------|-------------------------------------------|
 | `* * *`  | gym user | add exercises to the app                  |
 | `* * *`  | gym user | delete exercises from the app             |
 | `* * *`  | gym user | list out my past exercises on the app     |
 | `* * *`  | gym user | associate reps/sets number to an exercise |
-*{More to be added}*
+
+<br>*{More to be added}*
 
 ### Use cases
 
 (For all use cases below, the **System** is `Gim` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case 1: Help**
+#### Use case 1: Help
 
 System: Gim <br>
 Use case: UC01 - Request for help <br>
@@ -293,32 +296,29 @@ Guarantees: Help message displayed.
 
 1. User requests for help.
 2. Gim displays help message.
-
 Use case ends.
 
-**Use case 2: Add an exercise**
+#### Use case 2: Add an exercise
 
 System: Gim <br>
 Use case: UC02 - Add an exercise <br>
 Actor: User <br>
-Guarantees: exercise keyed will be added to storage.
+Guarantees: Input exercise will be added to storage.
 
 **MSS**
 
 1. User requests to add an exercise.
 2. Gim adds the exercise into storage.
-
-   Use case ends.
+Use case ends.
 
 **Extensions**
 
 * 1a. User enters the command wrongly.
 
-    * 1a1. Gim shows an error message.
+    * 1a1. Gim shows an error message. 
+Use case ends.
 
-  Use case ends.
-
-**Use case 3: Delete an exercise**
+#### Use case 3: Delete an exercise
 
 System: Gim <br>
 Use case: UC03 - Delete an exercise <br>
@@ -329,22 +329,19 @@ Guarantees: Selected exercise will be deleted from storage.
 
 1. User requests to delete an exercise.
 2. Gim deletes the exercise.
-
-   Use case ends.
+Use case ends.
 
 **Extensions**
 
 * 1a. User enters the command wrongly.
-    * 1a1. Gim displays the error message.
-
-      Use case ends.
+    * 1a1. Gim displays the error message. 
+Use case ends.
 
 * 1b. User enters an exercise that does not exist in the app.
     * 1b1. Gim displays that the exercise does not exist.
+Use case ends.
 
-      Use case ends.
-
-**Use case 4: List exercises**
+#### Use case 4: List exercises 
 
 System: Gim <br>
 Use case: UC04 - List exercises <br>
@@ -355,18 +352,16 @@ Guarantees: All stored exercises will be displayed.
 
 1. User requests to list all stored exercises.
 2. Gim lists the stored exercises.
-
-   Use case ends.
+Use case ends.
 
 **Extensions**
 
 * 2a. Gim has no stored exercises.
     * 2a1. Gim displays the error message.
+Use case ends.
 
-      Use case ends.
 
-
-**Use case 5: Exit Gim**
+#### Use case 5: Exit Gim
 
 System: Gim <br>
 Use case: UC05 - Exit Gim <br>
@@ -377,8 +372,7 @@ Guarantees: Gim will exit.
 
 1. User requests to exit Gim.
 2. Gim exits.
-
-   Use case ends.
+Use case ends.
 
 
 *{More to be added}*
