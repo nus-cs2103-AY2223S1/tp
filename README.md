@@ -13,3 +13,30 @@
 * It is named `AddressBook Level 3` (`AB3` for short) because it was initially created as a part of a series of `AddressBook` projects (`Level 1`, `Level 2`, `Level 3` ...).
 * For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
 * This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+
+## Features
+
+* Have your contacts and tasks all listed out in a specified order!!
+
+## Usage
+
+### Listing tasks: `list`
+
+Listing all tasks either in the order of the most recent task added or timing of deadline.
+
+Format:
+`list / list time`
+
+Examples:
+* `list` (order of most recent task added)
+* `list time` (order of timing of deadline)
+
+### Listing contacts: `list`
+
+Listing out all contacts in the contact list.
+
+Format:
+`listc`
+
+Examples:
+* `listc`
