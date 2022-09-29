@@ -149,7 +149,7 @@ Examples:
 
 ### Adding a meeting : `addMeeting`
 
-Add a new meeting to MyInsuRec. 
+Adds a new meeting to MyInsuRec. 
 DATE should be in DDMMYYYY format and TIME should be in 24-hour format.
 
 Format: `addMeeting n/NAME d/DATE t/TIME`
