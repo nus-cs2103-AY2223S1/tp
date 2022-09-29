@@ -49,7 +49,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [homepage](https://www.linkedin.com/in/chang-jing-yan-079928146/)
 
-[github](http://github.com/changjy44) 
+[github](http://github.com/changjy44)
 
 [portfolio](team/changjy44.md)
 
