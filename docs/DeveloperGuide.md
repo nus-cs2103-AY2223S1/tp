@@ -283,28 +283,76 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `InTrack` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - View usage instructions**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to view usage instructions.
+2. InTrack displays the usage instructions.
 
     Use case ends.
 
+**Use case: UC02 - View all current internship applications**
+
+**MSS**
+
+1. User requests to list internship applications.
+2. InTrack displays a list of internship applications.
+
+   Use case ends.
+
+**Use case: UC03 - Add a new internship application**
+
+**MSS**
+
+1. User requests to add a new internship application to the list. 
+2. InTrack adds the new internship application.
+
+   Use case ends.
+
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The given command has an invalid format.
 
-  Use case ends.
+    * 1a1. InTrack shows an error message.
+
+      Use case ends.
+
+**Use case: UC04 - Delete an internship application**
+
+**MSS**
+
+1. User <u>views list of current internship applications (UC02)</u>.
+2. User requests to delete a specific internship application in the list.
+3. InTrack deletes the internship application.
+
+   Use case ends.
+
+**Extensions**
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. InTrack shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: UC05 - Mark an internship application as completed**
+
+**MSS**
+
+1. User <u>views list of current internship applications (UC02)</u>.
+2. User requests to mark a specific internship application in the list as completed.
+3. InTrack marks the internship application as completed.
+
+   Use case ends.
+
+**Extensions**
+
+* 3a. The given index is invalid.
+
+    * 3a1. InTrack shows an error message.
 
       Use case resumes at step 2.
 
