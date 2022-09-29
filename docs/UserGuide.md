@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Healthcare Xpress is a **desktop app for managing patients that require home-visits and nurses, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Healthcare Xpress can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -26,7 +26,8 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add`** **'c/P n/John p/98765432 e/john@example.com g/M a/Bishan street, block
+     123, #01-01 t/Asthma d/2022-12-12 1350`** : Adds a patient named John to Healthcare Xpress.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
@@ -73,19 +74,25 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a nurse or patient: `add`
 
-Adds a person to the address book.
+Adds a patient to the Healthcare Xpress book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add c/P n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS d/DATE_AND_TIME [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+
+* A person can have any number of tags (including 0).
+
+* Date and time need to be in the format of yyyy-MM-dd HHmm.
+
+* To add a patient, type c/P specifically.
+
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add c/P n/John p/98765432 e/john@example.com g/M a/Bishan street, block 123, #01-01 t/Asthma d/2022-12-12 1350`
+* `add c/P n/Betsy t/VIP e/betsy@example.com g/F a/Bugis street d/2022-12-02 1400 p/98345432 t/Heart disease t/children`
 
 ### Listing all persons : `list`
 
@@ -183,7 +190,7 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add c/CATEGORY n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS d/DATE_AND_TIME [t/TAG]…​` <br> e.g., `add c/P n/John p/98765432 e/john@example.com g/M a/Bishan street, block 123, #01-01 t/Asthma d/2022-12-12 1350`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
