@@ -3,10 +3,11 @@ layout: page
 title: WorkBook User Guide
 ---
 
-WorkBook (WB) is a **desktop app for CS/tech students who are applying for internships to manage their internship applications, optimized for use via a Command Line Interface (CLI)** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, WB can get your internship management tasks done faster than traditional GUI apps.
+WorkBook (WB) is a **desktop app for CS/tech students who are applying for internships to manage their internship applications, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, WB can get your internship management tasks done faster than traditional GUI apps.
 
 
 **_Table of Contents_**
+{:toc}
 * Quick Start
 * Features
 * FAQ
@@ -20,7 +21,7 @@ WorkBook (WB) is a **desktop app for CS/tech students who are applying for inter
 
 2. Download the latest `workbook.jar` from [here](https://github.com/AY2223S1-CS2103T-T10-3/tp).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for your WorkBook.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -49,16 +50,16 @@ WorkBook (WB) is a **desktop app for CS/tech students who are applying for inter
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Meta`.
+  e.g. in `add n/COMPANY_NAME`, `COMPANY_NAME` is a parameter which can be used as `add n/Meta`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/Meta t/unattainable` or as `n/Meta`.
+  e.g `n/COMPANY_NAME [t/TAG]` can be used as `n/Meta t/unattainable` or as `n/Meta`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/unattainable`, `t/unattainable t/devops` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/COMPANY_NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/COMPANY_NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
@@ -186,10 +187,10 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME d/YYYY-MM-DD e/EMAIL a/ADDRESS_OF_INTERNSHIP [t/TAG]…​` <br> e.g., `add n/Meta d/2022-09-15 e/hrmonkey@example.com a/John street, block 123, #01-01`
+**Add** | `add n/COMPANY_NAME d/YYYY-MM-DD e/EMAIL a/ADDRESS_OF_INTERNSHIP [t/TAG]…​` <br> e.g., `add n/Meta d/2022-09-15 e/hrmonkey@example.com a/John street, block 123, #01-01`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [d/YYYY-MM-DD] [e/EMAIL] [a/ADDRESS_OF_INTERNSHIP] [t/TAG]…​​`<br> e.g.,`edit 2 n/META e/hrmonkey@example.com`
+**Edit** | `edit INDEX [n/COMPANY_NAME] [d/YYYY-MM-DD] [e/EMAIL] [a/ADDRESS_OF_INTERNSHIP] [t/TAG]…​​`<br> e.g.,`edit 2 n/META e/hrmonkey@example.com`
 **List** | `list`
 **Help** | `help`
 **Exit** | `exit`
