@@ -35,7 +35,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Ong Han Wei
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/rexong.png" width="200px">
 
 [[github](http://github.com/rexong)]
 [[portfolio](team/rexong.md)]
