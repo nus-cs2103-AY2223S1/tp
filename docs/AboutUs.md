@@ -26,8 +26,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/tanxuanyun)]
 [[portfolio](team/tanxuanyun.md)]
 
-* Role: TBC
-* Responsibilities: TBC
+* Role: `to be added soon`
+* Responsibilities: `to be added soon`
 
 ### Johnny Doe
 
