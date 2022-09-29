@@ -3,7 +3,10 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Teaching Assistant Assistant (TAA) is a **desktop app for Teaching Assistants (TA) to track student progress and tasks,
+optimized for use via a Command Line Interface** (CLI) while still having the
+benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done
+faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -13,7 +16,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
-
+[comment]: <> (TODO: Add our release here)
 1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
@@ -24,13 +27,11 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`task list`** : Lists all tasks.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`task add NAME`** : Adds a new task with the specified `NAME`.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
+   * **`task remove NAME`** : Deletes the specified task.
 
    * **`exit`** : Exits the app.
 
@@ -42,6 +43,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 <div markdown="block" class="alert alert-info">
 
+[comment]: <> (TODO: Change this)
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
@@ -64,109 +66,82 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 </div>
 
-### Viewing help : `help`
+### Add students : `student add studentName`
+* Command `student add <studentName>`
+* Adds a student to the list of students
 
-Shows a message explaning how to access the help page.
+### Remove students : `student remove studentName`
+* Command `student remove <studentName>`
+* Removes the named student from the list of students
 
-![help message](images/helpMessage.png)
+### Rename students : `student rename oldStudentName newStudentName`
+* Command `student rename <oldStudentName> <newStudentName>`
+* Updates the name of the student
 
-Format: `help`
+### List students : `student list`
+* Command `student list`
+* Abbreviate with `students`
+* Shows a list of all students
+
+### Add new task : `task add newTaskName`
+* Command `task add <studentName>`
+* Adds a task to the list of tasks
+* The task is initially assigned to no students
+
+### Remove task : `task remove taskName`
+* Command `task remove <taskName>`
+* Removes the named task from the list of tasks
+
+### Rename students : `task rename oldStudentName newStudentName`
+* Command `task rename <oldTaskName> <newTaskName>`
+* Updates the name of the task
+
+### Add deadline to task : `task deadline taskName deadline`
+* Command `task deadline <taskName> <deadline>`
+* Adds a deadline to the task
+
+### List tasks : `task list`
+* Command `task list`
+* Abbreviate with `tasks`
+* Shows a list of tasks
+
+### Mark tasks : `task mark taskNumber`
+* Command `task mark <taskNumber>`
+* Marks the task with the task number on the list.
+
+### Unmark tasks : `task unmark taskNumber`
+* Command `task unmark <taskNumber>`
+* Unmarks the task with the task number on the list.
+
+### Assign a task to a student : `task assign taskName studentName`
+* Command `task assign <taskName> <studentName>`
+* Assign the task `taskName` to the student `studentName`.
 
 
-### Adding a person: `add`
+### Add new group : `group add newGroupName`
+* Command `group add <newGroupName>`
+* Adds a new group with the name `newGroupName`
 
-Adds a person to the address book.
+### Rename group : `group rename oldGroupName newGroupName`
+* Command `group rename <oldGroupName> <newGroupName>`
+* Renames the group from `oldGroupName` to `newGroupName`
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+### Remove group : `group remove groupName`
+* Command `group remove <groupName>`
+* Removes the group named `groupName`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+### Enrol a student into a group : `group enrol groupName studentName`
+* Command `group enrol <groupName> <studentName>`
+* Enrols a student to the group
 
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+### Expel a student from a group : `group expel groupName studentName`
+* Command `group expel <groupName> <studentName>`
+* Removes the student `studentName` from the group `groupName`.
 
-### Listing all persons : `list`
+### View the list of students in a group : `group roster groupName`
+* Command `group roster <groupName>`
+* Displays a list of students enrolled in `groupName`.
 
-Shows a list of all persons in the address book.
-
-Format: `list`
-
-### Editing a person : `edit`
-
-Edits an existing person in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
-
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-
-### Clearing all entries : `clear`
-
-Clears all entries from the address book.
-
-Format: `clear`
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
-
-### Saving the data
-
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div>
-
-### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
 
@@ -181,6 +156,7 @@ _Details coming soon ..._
 
 ## Command summary
 
+[comment]: <> (TODO: Update this)
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
