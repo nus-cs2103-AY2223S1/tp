@@ -309,142 +309,183 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `JARVIS` and the **Actor** is `AVENGER`, unless specified otherwise)
 
-####**Use case: UC3 - List students**
+**Use case: UC3 - List students**
+
 **MSS**
+
 1. Avenger requests to list students.
 2. JARVIS displays list of students.
-   
-    Use case ends.
+
+Use case ends.
 
 **Extensions**
+
 * 1a. JARVIS detects an error in the format of the input command.
   * 1a1. JARVIS requests user to re-input their command.
   * 1a2. Avenger inputs command.
 
-  Steps 1a1-1a2 are repeated until the command entered is correct. 
+    Steps 1a1-1a2 are repeated until the command entered is correct. 
 
-  Use case resumes from step 2.
+    Use case resumes from step 2.
 
-####**Use case: UC4 - List tasks**
+**Use case: UC4 - List tasks**
+
 **MSS**
+
 1. Avenger requests to list tasks.
 2. JARVIS displays list of tasks.
 
-    Use case ends.
+Use case ends.
 
 **Extensions**
- * 1a. JARVIS detects an error in the format of the input command.
-   * 1a1. JARVIS requests user to re-input their command.
-   * 1a2. Avenger inputs command.
-   
-   Steps 1a1-1a2 are repeated until the command entered is correct.
 
-   Use case resumes from step 2.
+* 1a. JARVIS detects an error in the format of the input command.
+  * 1a1. JARVIS requests user to re-input their command.
+  * 1a2. Avenger inputs command.
+   
+    Steps 1a1-1a2 are repeated until the command entered is correct.
+
+    Use case resumes from step 2.
  
-####**Use case: UC5 - Delete a student**  
+**Use case: UC5 - Delete a student**
+
 Preconditions:  There are existing students in JARVIS.  
 
 **MSS**
+
 1. Avenger <ins>requests to list students(UC3)</ins>.
 2. JARVIS displays the list of students.
 3. Avenger inputs command to delete a student.
 4. JARVIS displays list of student after successfully deleting the task.  
-    Use case ends.
+
+Use case ends.
 
 **Extensions**
+
 * 3a. JARVIS detects an error in the format of the input command.
   * 3a1. JARVIS requests user to re-input their command.
   * 3a2. Avenger inputs command.
   
-  Steps 3a1-3a2 are repeated until the command entered is correct.  
-  Use case resumes from step 4.
+    Steps 3a1-3a2 are repeated until the command entered is correct.  
+
+    Use case resumes from step 4.
 
 
-####**Use case: UC6 - Delete task**  
+**Use case: UC6 - Delete task**
+
 Preconditions: There are existing tasks in JARVIS.  
 
 **MSS:**
+
 1. Avenger <ins>requests to list task (UC4)</ins>.
 2. JARVIS displays the list of tasks.
 3. Avenger inputs command to delete a task.
 4. JARVIS displays list of tasks after successfully deleting the task.  
-   Use case ends.
+Use case ends.
 
 **Extensions:**
+
 * 3a. JARVIS detects an error in the format of the input command.
   * 3a1. JARVIS requests user to re-input their command.
   * 3a2. Avenger inputs command.  
+    
     Steps 3a1-3a2 are repeated until the command entered is correct.  
+
     Use case resumes from step 4.
 
     
-####**Use case: UC7 - Clear all students and tasks**
-Preconditions: There are existing tasks and/or students in JARVIS.  
-Guarantees: All students and tasks will be deleted.  
+**Use case: UC7 - Clear all students and tasks**
+
+Preconditions: There are existing tasks and/or students in JARVIS.
+
+Guarantees: All students and tasks will be deleted.
 
 **MSS:**
+
 1. Avenger inputs command to clear all data.
 2. JARVIS requests for confirmation message.
 3. Avenger confirms.
 4. JARVIS display success message.
 
+Use case ends.
+
 **Extensions:**
+
 * 1a. JARVIS detects an error in the format of the input command.
   * 1a1. JARVIS requests user to re-input their command.
   * 1a2. Avenger inputs command.  
-  Steps 1a1-1a2 are repeated until the command entered is correct.  
-  Use case resumes from step 2.
+    
+    Steps 1a1-1a2 are repeated until the command entered is correct.  
+
+    Use case resumes from step 2.
+
 * 2a. Avenger failed to provide confirmation message.
   * 2a1. Avenger input invalid confirmation.  
-  Use case ends.
 
-####**Use case: UC8 - Mark task as done**
+    Use case ends.
+
+**Use case: UC8 - Mark task as done**
+
 Preconditions: There are existing tasks in JARVIS
+
 Guarantees: Specified task is marked as done
 
 **MSS:**
+
 1. Avenger inputs command to mark a task as done.
 2. JARVIS displays list of tasks with the aforementioned task marked as done.
-   Use case ends.
+
+Use case ends.
 
 **Extensions:**
+
 * 1a. JARVIS detects an error in the format of the input command.
   * 1a1. JARVIS requests user to re-input their command.
   * 1a2. Avenger inputs command.
-  Steps 1a1-1a2 are repeated until the command entered is correct.
-  Use case resumes from step 2.
+
+    Steps 1a1-1a2 are repeated until the command entered is correct.
+
+    Use case resumes from step 2.
+
 * 1b. JARVIS detects no task at specified task index.
   * 1b1. JARVIS informs user no task is found.
   * 1b2.  JARVIS displays the list of task and requests user to re-input their command.
   * 1b3. Avenger inputs command.
-  Steps 1b2-1b3 are repeated until the command entered is correct.
-  Use case resumes from step 2.
 
-####**Use case: UC9 - Mark task as not done**
+    Steps 1b2-1b3 are repeated until the command entered is correct.
+
+    Use case resumes from step 2.
+
+**Use case: UC9 - Mark task as not done**
+
 Preconditions: There are existing tasks in JARVIS
+
 Guarantees: Specified task is marked as not done
 
 **MSS:**
 1. Avenger inputs command to mark a task as not done.
 2. JARVIS displays list of tasks with the aforementioned task marked as not done.
-   Use case ends.
+
+Use case ends.
 
 **Extensions:**
+
 * 1a. JARVIS detects an error in the format of the input command.
   * 1a1. JARVIS requests user to re-input their command.
   * 1a2. Avenger modifies and re-inputs command.
-  Steps 1a1-1a2 are repeated until the command entered is correct.
-  Use case resumes from step 2.
+
+    Steps 1a1-1a2 are repeated until the command entered is correct.
+
+    Use case resumes from step 2.
+
 * 1b. JARVIS detects no task at specified task index.
   * 1b1. JARVIS informs user no task is found.
   * 1b2.  JARVIS displays the list of task and requests user to re-input their command.
   * 1b3. Avenger inputs command.
-  Steps 1b2-1b3 are repeated until the command entered is correct.
-  Use case resumes from step 2.
 
+    Steps 1b2-1b3 are repeated until the command entered is correct.
 
-
-
+    Use case resumes from step 2.
 
 ### Non-Functional Requirements
 
