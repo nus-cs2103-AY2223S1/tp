@@ -88,11 +88,14 @@ Examples:
 * `add s/John Tan`
 * `add t/Consultation d/12-09-2023`
 
-### Listing all persons : `list`
+### Listing all students/tasks : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all students or tasks stored.
 
-Format: `list`
+- List students
+    - Format: `list s`
+- List tasks
+    - Format: `list t`
 
 ### Editing a person : `edit`
 
