@@ -255,7 +255,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**: Duke The Market aims to help marketers of department stores to manage customer profiles and keep track of target customers in market plan rollouts.
+**Target user profile**: Duke The Market aims to help marketers of department stores better manage customer profiles and keep track of target customers during market plan rollouts.
 
 * needs to manage a significant number of customer contacts
 * prefers desktop apps over other types
@@ -273,19 +273,18 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                              | I want to …​                                                                       | So that I can…​                                                                                               |
-|----------|------------------------------------------------------|------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
-| `* * *`  | new user                                             | see usage instructions                                                             | refer to instructions when I forget how to use the App                                                        |
-| `* * *`  | frequent user                                        | update new data immediately                                                        | I can exit and enter the product freely                                                                       |
-| `* * *`  | frequent user                                        | enter and exit the product in a short amount of time                               | use the product on the fly                                                                                    |
-| `* * *`  | marketer                                             | add a new customer contact                                                         | keep track of all customers and enlarge the customer base over time                                           |
-| `* * *`  | marketer                                             | delete a customer contact                                                          | remove entries that I no longer need                                                                          |
-| `* * *`  | marketer                                             | find a customer contact by name                                                    | locate details of persons without having to go through the entire list                                        |
-| `*`      | marketer                                             | hide private customer contact details                                              | minimize chance of someone else seeing them by accident                                                       |
-| `* * *`  | pre-event marketer                                   | view all the upcoming marketing events in the system sorted in chronological order | have a high level overview of the frequency of the marketing events and be mentally prepared for each of them |
-| `* * *`  | pre-event marketer who handles many marketing events | add marketing events                                                               | keep the system up to date with changes that happen to the marketing plans                          |
-| `* * *`  | pre-event marketer who handles many marketing events | delete marketing events                                                            | remove marketing events that I no longer need                                                                 |
-| `* *`    | marketer with many customer contacts                 | sort all customer contacts by name, date of birth and gender                       | locate people more easily and obtain contact lists of different demographic groups                            |
+| Priority | As a …​                                              | I want to …​                                                                                                  | So that I can…​                                                                              |
+|----------|------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
+| `* * *`  | new user                                             | see usage instructions                                                                                        | refer to instructions when I forget how to use the App                                       |
+| `* * *`  | frequent user                                        | update new data immediately                                                                                   | I can exit and enter the product freely                                                      |
+| `* * *`  | frequent user                                        | enter and exit the product in a short amount of time                                                          | use the product on the fly                                                                   |
+| `* * *`  | marketer                                             | add a new customer contact                                                                                    | keep track of all customers and enlarge the customer base over time                          |
+| `* * *`  | marketer                                             | delete a customer contact                                                                                     | remove entries that I no longer need                                                         |
+| `* * *`  | marketer                                             | find a customer contact by name                                                                               | locate details of customers without having to go through the entire list                     |
+| `* * *`  | pre-event marketer                                   | view all the upcoming marketing events in the system sorted in the order that they were added into the system | have a high level overview of all marketing events and be mentally prepared for each of them |
+| `* * *`  | pre-event marketer who handles many marketing events | add marketing events                                                                                          | keep the system up to date with changes that happen to the marketing plans                   |
+| `* * *`  | pre-event marketer who handles many marketing events | delete marketing events                                                                                       | remove marketing events that I no longer need                                                |
+| `* *`    | marketer with many customer contacts                 | sort all customer contacts by name, date of birth and gender                                                  | locate people more easily and obtain contact lists of different demographic groups           |
 
 *{More to be added}*
 
@@ -293,14 +292,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, **UC** is the `Use Case`, the **System** is `Duke The Market` and the **Actor** is the `user`, unless specified otherwise)
 
-**UC01: Delete a person**
+**UC01: Delete a customer**
 
 **MSS**
 
-1. User requests to list persons
-2. Duke The Market shows a list of persons
-3. User requests to delete a specific person in the list
-4. Duke The Market deletes the person
+1. User requests to list customers
+2. Duke The Market shows a list of customers
+3. User requests to delete a specific customer in the list
+4. Duke The Market deletes the customer
 
    Use case ends.
 
@@ -317,12 +316,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 
-**UC02: Add a person**
+**UC02: Add a customer**
 
 **MSS**
 
-1.  User requests to add a person of specific name, phone number, email, address, gender and date of birth
-2.  Duke The Market adds the person
+1.  User requests to add a customer of specific name, phone number, email, address, gender and date of birth
+2.  Duke The Market adds the customer
 
     Use case ends.
 
@@ -338,7 +337,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case resumes at step 2.
 
 * 1b. User enters data for an individual who already exists in the database.
-    * 1b1. Duke The Market shows an error message that the user is a duplicate person
+    * 1b1. Duke The Market shows an error message that the user is a duplicate customer
     * 1b2. User enters new data
 
   Steps 1b1-1b2 are repeated until the data entered is correct.
@@ -399,13 +398,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. App should not require installation to work, i.e. it is portable
 3. App should work well for standard screen resolutions 1920x1080 and higher, as well as for screen scales 100% and 125%.
 4. App should be usable (i.e., all functions can be used even if the user experience is not optimal) for resolutions 1280x720 and higher, as well as for screen scales 150%.
-5. Should be able to hold up to 1000 persons and 200 events without a noticeable sluggishness in performance for typical usage.
+5. Should be able to hold up to 1000 customers and 200 events without a noticeable sluggishness in performance for typical usage.
 6. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 7. The system should respond within 5 seconds.
 8. Data should be stored locally in a human editable text file.
 9. Data should not be stored using an external database management system (DBMS)
 10. File size of the data should not exceed 1GB (should be stored in a space saving manner)
-11. App should be an executable (Double clicked or can be run using the `java -jar` command).
+11. App should be an executable (Double-clicked or can be run using the `java -jar` command).
 
 
 *{More to be added}*
