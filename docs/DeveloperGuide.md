@@ -309,14 +309,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: View a Customer**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list customers
+2.  ArtBuddy shows a list of customers
+3.  User requests to open customer in the list
+4.  ArtBuddy shows the list of commissions the customer made and the details of the customer
 
     Use case ends.
 
@@ -328,11 +328,38 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. ArtBuddy shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Delete a Customer**
+
+**MSS**
+
+1.  User requests to list customers
+2.  ArtBuddy shows a list of customers
+3.  User requests to delete a customer in the list
+4.  ArtBuddy warns the user that all commissions under the customer will be deleted, and confirms whether the user still wants to proceed
+5.  User confirms.
+6.  ArtBuddy deletes the customer
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. ArtBuddy shows an error message.
+
+      Use case resumes at step 2.
+
+* 4a. The user chooses not to proceed with the deletion.
+
+  Use case ends.
 
 ### Non-Functional Requirements
 
@@ -351,8 +378,9 @@ able to accomplish most of the tasks faster using commands than using the mouse.
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-
+* **Customer**: A contact detail. Contains information about the customer, and a list of commissions.
+* **Commission**: An art piece requested by a customer that has been delivered or is in progress. Contains specifics about the commission and a list of iterations.
+* **Iteration**: A single version of a commission. Contains an image and a text comment on the image. 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
