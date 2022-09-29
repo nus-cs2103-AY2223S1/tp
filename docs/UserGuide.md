@@ -24,11 +24,11 @@ ModQuik is a desktop app for NUS CS Professors, optimised for use via a Command 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list students m/CS2101`** : Lists all students in CS2101 module.
+   * **`list student m/CS2101`** : Lists all students in CS2101 module.
 
    * **`add`**`n/John Doe r/student m/CS2105 p/98765432 e/johnd@example.com` : Adds a student named `John Doe` to CS2103T module.
 
-   * **`delete`**`3` : Deletes the 3rd person shown in the current list.
+   * **`delete person`**`3` : Deletes the 3rd person shown in the current list.
 
    * **`clear reminders`** : Deletes all reminders.
 
@@ -107,7 +107,7 @@ Format: `list person m/MODULE [r/ROLE]`
 
 Edits an existing person in a specified module.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [m/MODULE] [p/PHONE] [e/EMAIL] [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -253,9 +253,9 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add Person** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho m/CS2102 r/student p/22224444 e/jamesho@example.com t/friend t/colleague`
+**Add Person** | `add m/MODULE r/ROLE n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​` <br> e.g., `add n/James Ho m/CS2102 r/student p/22224444 e/jamesho@example.com t/friend t/colleague`
 **List Person** | `list person m/MODULE [r/ROLE]`<br> e.g., `list person m/CS2103T`
-**Edit Person** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit Person** | `edit INDEX [n/NAME] [m/MODULE] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find Person** | `find person KEYWORD [m/MODULE] [r/ROLE] [MORE_KEYWORDS]`<br> e.g., `find person john m/CS2103T`
 **Delete Person** | `delete person INDEX [m/MODULE] [r/ROLE]`<br> e.g., `delete person 2 m/CS2103T r/ta`
 **Add Tutorial** | `add tut m/MODULE t/TIMESLOT v/VENUE n/NAME` <br> e.g., `add tut m/CS2103T t/1800-2000 v/COM1-0205 n/JohnFoo`
