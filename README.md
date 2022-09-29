@@ -2,6 +2,15 @@
 
 ![Ui](docs/images/Ui.png)
 
+FoodRem is an application that enables you to efficiently keep track of
+inventory in your daily restaurants operations. It is a convenient and efficient administrative tool to ensure less food
+wastage and a constant supply of fresh food to increase revenue and improve the quality of food. With a few quick
+commands, you can have complete control of your perishable goods.
+
+**Acknowledgements**
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org)
+
+NOTE: README content has to be discussed and updated as v1.1 deliverable
 * This is **a sample project for Software Engineering (SE) students**.<br>
   Example usages:
   * as a starting point of a course project (as opposed to writing everything from scratch)
