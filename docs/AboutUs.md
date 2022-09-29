@@ -48,12 +48,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Integration
 * Responsibilities: Versioning of codebase/releases and overall maintenance of the repository.
 
-### James Doe
+### Tien Yu
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tienyu2000.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/adeearyaa.md)]
+[[github](http://github.com/tienyu2000)]
+[[portfolio](team/tienyu2000.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Documentation
+* Responsibilities: JavaDocs to generate API documentation in HTML format
