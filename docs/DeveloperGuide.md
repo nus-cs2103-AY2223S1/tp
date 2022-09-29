@@ -296,7 +296,7 @@ Guarantees: Help message displayed.
 
 1. User requests for help.
 2. Gim displays help message.
-Use case ends.
+<br>Use case ends.
 
 #### Use case 2: Add an exercise
 
@@ -309,14 +309,14 @@ Guarantees: Input exercise will be added to storage.
 
 1. User requests to add an exercise.
 2. Gim adds the exercise into storage.
-Use case ends.
+<br>Use case ends.
 
 **Extensions**
 
 * 1a. User enters the command wrongly.
 
     * 1a1. Gim shows an error message. 
-Use case ends.
+<br>Use case ends.
 
 #### Use case 3: Delete an exercise
 
@@ -329,17 +329,17 @@ Guarantees: Selected exercise will be deleted from storage.
 
 1. User requests to delete an exercise.
 2. Gim deletes the exercise.
-Use case ends.
+<br>Use case ends.
 
 **Extensions**
 
 * 1a. User enters the command wrongly.
     * 1a1. Gim displays the error message. 
-Use case ends.
+<br>Use case ends.
 
 * 1b. User enters an exercise that does not exist in the app.
     * 1b1. Gim displays that the exercise does not exist.
-Use case ends.
+<br>Use case ends.
 
 #### Use case 4: List exercises 
 
@@ -352,13 +352,13 @@ Guarantees: All stored exercises will be displayed.
 
 1. User requests to list all stored exercises.
 2. Gim lists the stored exercises.
-Use case ends.
+<br>Use case ends.
 
 **Extensions**
 
 * 2a. Gim has no stored exercises.
     * 2a1. Gim displays the error message.
-Use case ends.
+<br>Use case ends.
 
 
 #### Use case 5: Exit Gim
@@ -372,7 +372,7 @@ Guarantees: Gim will exit.
 
 1. User requests to exit Gim.
 2. Gim exits.
-Use case ends.
+<br>Use case ends.
 
 
 *{More to be added}*
