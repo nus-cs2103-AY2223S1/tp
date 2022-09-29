@@ -1,21 +1,25 @@
-# User Guide
+---
+layout: page
+title: User guide
+---
 
 TABS helps project team leaders **overview tasks assigned to group members**. It is targeted at individuals with less programming background i.e. **less CLI-intensive** in nature.
 
-- Quick start
-- Features
-  - Adding a person: adduser
-  - Listing all persons: list
-  - Edit a person: edituser
-  - Locating persons by name: finduser
-  - Deleting a person : deleteuser
-  - Adding a group: addgroup
-  - Add member to  group: addmember
-  - Assign member a task: assigntask
-  - Locate group by name: display
-  - Delete a group: deletegroup
-  - Exiting the program : exit
-- Command summary
+- [`Quick start`](#quick-start)
+- [`Features`](#features)
+  - Adding a person: [`adduser`](#adding-a-person-adduser)
+  - Listing all persons: [`list`](#listing-all-persons--list)
+  - Edit a person: [`edituser`](#editing-a-person--edituser)
+  - Locating persons by name: [`finduser`](#locating-persons-by-name-finduser)
+  - Deleting a person : [`deleteuser`](#deleting-a-person--deleteuser)
+  - Adding a group: [`addgroup`](#creating-a-group--addgroup)
+  - Add member to  group: [`addmember`](#adding-a-member--addmember)
+  - Assign member a task: [`assigntask`](#assigning-a-task-to-a-user-assigntask)
+  - Locate group by name: [`display`](#display-a-group--display)
+  - Delete a group: [`deletegroup`](#deleting-a-group--deletegroup)
+  - Exiting the program : [`exit`](#exiting-the-program--exit)
+- [`Command summary`](#command-summary)
+
 
 ---
 ## Quick start
@@ -62,8 +66,8 @@ Adds a person to the address book.
 
 Format: `adduser n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+<div markdown="span" class="alert alert-primary">:bulb: 
+<b>Tip:</b> A person can have any number of tags (including 0)
 </div>
 
 Examples:
@@ -108,7 +112,9 @@ Format: `finduser KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `finduser John` returns `john` and `John Doe`
-* `finduser alex david` returns `Alex Yeoh`, `David Li`<br>
+* `finduser alex david` returns `Alex Yeoh`, `David Li`
+<br>
+<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### Deleting a person : `deleteuser`
@@ -192,19 +198,17 @@ Exits the program.
 
 Format: `exit`
 
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## Command summary
-
-| Action            | Format, Examples                                                                                                                                                                      |
-|-------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add User**      | `adduser [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g., `adduser n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Delete User**   | `deleteuser NAME`<br> e.g., `deleteuser James Ho`                                                                                                                                     |
-| **Edit User**     | `edituser NAME [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edituser 2 n/James Lee e/jameslee@example.com`                                                    |
-| **Find User**     | `finduser KEYWORD [MORE_KEYWORDS]`<br> e.g., `finduser James Jake`                                                                                                                    |
-| **List**          | `list`                                                                                                                                                                                |
-| **Add Group**     | `addgroup GROUP` <br> e.g., addgroup CS2103T                                                                                                                                          |
-| **Add Member**    | `addmember [g/GROUP] [n/NAME]` <br> e.g., addmember g/CS2103T n/James Lee, addmember g/CS2101 n/DefaultUser                                                                           |
-| **Assign Task**   | `assigntask [n/NAME] [t/TASK]` <br> e.g., assigntask n/John t/TeamProject                                                                                                             |
-| **Display Group** | `display GROUP` <br> e.g., display CS2103T                                                                                                                                            |
-| **Delete Group**  | `deletegroup GROUP` <br> e.g., deletegroup CS2103T                                                                                                                                    |
-| **Exit**          | `exit`                                                                                                                                                                                |
-=======
+ Action            | Format, Examples                                                                                                                                                                      
+-------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ **Add User**      | `adduser [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g., `adduser n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`  **Delete User**   | `deleteuser NAME`<br> e.g., `deleteuser James Ho`                                                                                                                                     
+ **Edit User**     | `edituser NAME [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edituser 2 n/James Lee e/jameslee@example.com`                                                 
+ **Find User**     | `finduser KEYWORD [MORE_KEYWORDS]`<br> e.g., `finduser James Jake`                                                                                                                    
+ **List**          | `list`                                                                                                                                                                                
+ **Add Group**     | `addgroup GROUP` <br> e.g., addgroup CS2103T                                                                                                                                          
+ **Add Member**    | `addmember [g/GROUP] [n/NAME]` <br> e.g., addmember g/CS2103T n/James Lee, addmember g/CS2101 n/DefaultUser                                                                           
+ **Assign Task**   | `assigntask [n/NAME] [t/TASK]` <br> e.g., assigntask n/John t/TeamProject                                                                                                             
+ **Display Group** | `display GROUP` <br> e.g., display CS2103T                                                                                                                                            
+ **Delete Group**  | `deletegroup GROUP` <br> e.g., deletegroup CS2103T                                                                                                                                    
+ **Exit**          | `exit`                                                                                                                                                                                
