@@ -312,9 +312,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 persons and 1000 internships without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. A user will not be able to communicate with the people in the contact. 
+5. A user will not be able to share contacts with others.
+6. Should work only for single user.
+7. The data should be stored in a human editable text file
+8. The GUI should work well for standard screen resolutions 1920x1080 and higher and for screen scales 100% and 125%. 
+9. The GUI should be usable for resolutions 1280x720 and higher and for screen scales 150%.
+
 
 *{More to be added}*
 
