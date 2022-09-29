@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Song Ivan
 
-<img src="images/Songivan.png" width="200px">
+<img src="images/songivan00.png" width="200px">
 
 [[github](https://github.com/songivan00)]
 [[portfolio](team/songivan00.md)]
