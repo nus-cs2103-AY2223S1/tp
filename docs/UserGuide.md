@@ -8,10 +8,6 @@ WorkBook (WB) is a **desktop app for CS/tech students who are applying for inter
 
 **_Table of Contents_**
 {:toc}
-* Quick Start
-* Features
-* FAQ
-* Command Summary
 
 --------------------------------------------------------------------------------------------------------------------
 
