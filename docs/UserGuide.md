@@ -114,7 +114,7 @@ Examples:
 * `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 * `edit 2 dt/Bachelors-Masters` Edits the Degree tag `Bachelors` of the 2nd person to be `Masters`.
 
-### Adding a tag to an exiting person : `addTag`
+### Adding a tag to an existing person : `addTag`
 
 Adds a tag to an existing person in the address book.
 
@@ -127,7 +127,7 @@ Examples:
 * `addTag 3 st/Java` Adds a **Skill** tag `Java` to the 3rd person.
 * `edit 2 dt/Bachelors` Adds a **Degree** tag `Bachelors` to the 2nd person.
 
-### Deleting a tag of an exiting person : `deleteTag`
+### Deleting a tag of an existing person : `deleteTag`
 
 Deletes a tag of an existing person in the address book.
 
@@ -140,9 +140,9 @@ Examples:
 * `deleteTag 3 st/Java` Deletes the **Skill** tag `Java` of the 3rd person.
 * `deleteTag 2 dt/Bachelors` Deletes the **Degree** tag `Bachelors` of the 2nd person.
 
-### Locating persons by name: `search`
+### Searching personal information and tags: `search`
 
-Searches persons whose names contain any of the given keywords.
+Searches persons whose personal information and tags contain any of the given keywords.
 
 Format: `search KEYWORD [MORE_KEYWORDS]`
 
@@ -291,7 +291,7 @@ Examples:
 | **Create**        | `create TAG_TYPE TAG_ALIAS` <br> e.g., `create GPA gpat`                                                                                                                                                                                                             |
 | **EditTagType**   | `editTagType OLD_TAG_TYPE-NEW_TAG_TYPE OLD_TAG_ALIAS-NEW_TAG_ALIAS` <br> e.g., `editTagType GPA-Grade gpat-grdt`                                                                                                                                                     |
 | **DeleteTagType** | `deleteTagType TAG_TYPE` <br> e.g., `deleteTagType GPA`                                                                                                                                                                                                              |
-| **Search**        | `search KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                                         |
+| **Search**        | `search KEYWORD [MORE_KEYWORDS]`<br> e.g., `search James Jake`                                                                                                                                                                                                       |
 | **List**          | `list`                                                                                                                                                                                                                                                               |
 | **Status**        | `status INDEX s/STATUS` <br> e.g., `status 1 s/Rejected`                                                                                                                                                                                                             |
 | **Help**          | `help`                                                                                                                                                                                                                                                               |
