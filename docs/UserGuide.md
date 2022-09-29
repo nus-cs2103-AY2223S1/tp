@@ -42,23 +42,23 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in UPPER_CASE are the parameter details to be supplied by the user.  
-  e.g., in add name/NAME, NAME is a parameter which can be used as add name/Bobby Doe.
+* Words in `UPPER_CASE` are the parameter details to be supplied by the user.  
+  e.g., in `add name/NAME`, `NAME` is a parameter which can be used as `add name/Bobby Doe`.
 
-* Parameter specifier/ can be any combination of the parameters listed under each command’s section, e.g. for add command, specifier/SPECIFIER_DETAIL can be used as job/420 gender/M country/Singapore, or as country/Singapore
+* Parameter `specifier/` can be any combination of the parameters listed under each command’s section, e.g. for add command, `specifier/SPECIFIER_DETAIL` can be used as `job/420 gender/M country/Singapore`, or as `country/Singapore`
 
 * Items in square brackets are optional.
-  e.g., name/NAME phone/PHONE email/EMAIL [specifier/SPECIFIER_DETAIL] can be used as name/Bobby phone/91234567 email/bob@example.com job/420 or as name/Bobby phone/91234567 email/bob@example.com.
+  e.g., `name/NAME phone/PHONE email/EMAIL [specifier/SPECIFIER_DETAIL]` can be used as `name/Bobby phone/91234567 email/bob@example.com job/420` or as `name/Bobby phone/91234567 email/bob@example.com`.
 
-* Parameters can be in any order.  
-* e.g., if the command specifies name/NAME phone/PHONE email/EMAIL, name/NAME email/EMAIL phone/PHONE is also acceptable.
+* Parameters can be in any order.
+  e.g., if the command specifies `name/NAME phone/PHONE email/EMAIL`, `name/NAME email/EMAIL phone/PHONE` is also acceptable.
 
-* Extraneous parameters for commands that do not take in parameters (such as help, list, exit and clear) will be ignored.  
-  e.g., if the command specifies help 123, it will be interpreted as help.
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, and `clear`) will be ignored.  
+  e.g., if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
 
-### Viewing help : `help`
+### Viewing help: `help`
 
 Shows a message explaning how to access the help page.
 
@@ -67,7 +67,7 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding an applicant : `add`
+### Adding an applicant: `add`
 
 Adds an applicant to InternConnect.
 
@@ -78,19 +78,19 @@ A person can have any number of specifiers (including 0)
 </div>
 
 Specifiers:
-* job/JOB_ID
-* nationality/NATIONALITY
-* address/ADDRESS
-* postal/POSTAL_CODE
-* country/COUNTRY_OF_RESIDENCE
-* cap/CAP
-* gender/GENDER
-* faculty/FACULTY
-* major/MAJOR
-* dob/DATE_OF_BIRTH
-* admission/ADMISSION_DATE
-* graduation/GRADUATION_DATE
-* available/START_DATE_END_DATE
+* `job/JOB_ID`
+* `nationality/NATIONALITY`
+* `address/ADDRESS`
+* `postal/POSTAL_CODE`
+* `country/COUNTRY_OF_RESIDENCE`
+* `cap/CAP`
+* `gender/GENDER`
+* `faculty/FACULTY`
+* `major/MAJOR`
+* `dob/DATE_OF_BIRTH`
+* `admission/ADMISSION_DATE`
+* `graduation/GRADUATION_DATE`
+* `available/START_DATE_END_DATE`
 
 Examples:
 * `add name/Bobby phone/91234567 email/bob@example.com job/420`
@@ -101,6 +101,12 @@ Examples:
 Shows a list of all persons in the address book.
 
 Format: `list`
+
+### View the detail of an applicant: `view`
+
+Shows a detailed view of a selected applicant listed in InternConnect.
+
+Format: `view INDEX`
 
 
 ### Editing an applicant : `edit`
@@ -141,7 +147,7 @@ Examples:
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 
-### Deleting an applicant : `delete`
+### Deleting an applicant: `delete`
 
 Deletes the specified applicant from InternConnect.
 
@@ -156,30 +162,43 @@ Examples:
 * `find Betsy` followed by `delete 1` deletes the 1st applicant in the results of the `find` command.
 
 
-### Clearing all entries : `clear`
+### Clearing all entries: `clear`
 
 Clears all entries from the address book.
 
 Format: `clear`
 
 
-### Exiting the program : `exit`
+### Exiting the program: `exit`
 
 Exits the program.
 
 Format: `exit`
 
+### Saving the data
+
+InternConnect data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+### Editing the data file
+
+InternConnect data are saved as a JSON file `[JAR file location]/data/internconnect.json`. Advanced users are welcome to update data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, InternConnect will discard all data and start with an empty data file at the next run.
+</div>
+
 -----------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                               |
-|------------|------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add name/NAME phone/PHONE email/EMAIL [specifier/SPECIFIER_DETAIL]` <br> e.g., `add name/Bobby phone/91234567 email/bob@example.com job/420`  |
-| **Clear**  | `clear`                                                                                                                                        |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                            |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                    |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                     |  
-| **List**   | `list`                                                                                                                                         | 
-| **Help**   | `help`                                                                                                                                         |
-| **Exit**   | `exit`                                                                                                                                         |
+| Action     | Format, Examples                                                                                                                              |
+|------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add name/NAME phone/PHONE email/EMAIL [specifier/SPECIFIER_DETAIL]` <br> e.g., `add name/Bobby phone/91234567 email/bob@example.com job/420` |
+| **Clear**  | `clear`                                                                                                                                       |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                           |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                   |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                    |
+| **View**   | `view INDEX`<br> e.g., `view 2`                                                                                                                |
+| **List**   | `list`                                                                                                                                        | 
+| **Help**   | `help`                                                                                                                                        |
+| **Exit**   | `exit`                                                                                                                                        |

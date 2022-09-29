@@ -275,17 +275,20 @@ focus on what matters more: matching the right people for the right job.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                           | I want to …​                                                                             | So that I can…​                                                                         |
-|----------|-----------------------------------|------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|
-| `* * *`  | potential user exploring the app  | see the sample data                                                                      | easily play around and understand how the app works                                     |
-| `* * *`  | new user                          | see the list of available things I can do with the app                                   | learn how to use the app fully                                                          |
-| `* * *`  | new user                          | read the user guide                                                                      | I understand all the commands and features available in the app before using it         |
-| `* * *`  | user                              | delete fields and data                                                                   |                                                                                         | 
-| `* * *`  | user                              | add applicants                                                                           |                                                                                         |
-| `* * *`  | user                              | mass add applicants' data                                                                | conveniently import my data quickly and without hassle                                  |
-| `* * *`  | user                              | view all details of my selected Applicant                                                | avoid opening and working with multiple files                                           |
-| `* * *`  | user                              | see the summary statistics of my data                                                    | have a higher-level view of the data                                                    |
-| `* * *`  | user ready to start using the app | clear all current data                                                                   | get rid of sample/experimental data I used for exploring the app                        |
+| Priority | As a …​                            | I want to …​                                             | So that I can…​                                                                                                                  |
+|----------|------------------------------------|----------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
+| `* * *`  | potential user exploring the app   | see the sample data                                      | easily play around and understand how the app works                                                                              |
+| `* * *`  | new user                           | see the list of available things I can do with the app   | learn how to use the app fully                                                                                                   |
+| `* * *`  | new user                           | read the user guide                                      | I understand all the commands and features available in the app before using it                                                  |
+| `* * *`  | user                               | delete fields and data                                   |                                                                                                                                  | 
+| `* * *`  | user                               | add applicants                                           |                                                                                                                                  |
+| `* * *`  | user                               | mass add applicants' data                                | conveniently import my data quickly and without hassle                                                                           |
+| `* * *`  | user                               | view all details of my selected Applicant                | avoid opening and working with multiple files                                                                                    |
+| `* * *`  | user                               | see the summary statistics of my data                    | have a higher-level view of the data                                                                                             |
+| `* * *`  | user ready to start using the app  | clear all current data                                   | get rid of sample/experimental data I used for exploring the app                                                                 |
+| `* * *`  | user                               | close the app by inputing "exit" command                 |                                                                                                                                  |
+| `* * *`  | user                               | add an additional value to the field I am inserting      | if my value is currently not in the list (e.g. list of Universities, list of Majors) so that I can enter my data more accurately |
+| `* * *`  | user                               | delete the existing values in a field                    | so that I easily modify and customise my value for a field (e.g. Major, University)                                              |
 | `* *`    | user                              | add an open Role                                                                         | keep track of who applied to the role                                                   |
 | `* * *`  | user                              | search for applicants by name                                                            | quickly find what I need                                                                |
 | `* *`    | user                              | filter applicants based on certain fields/criteria/categories                            | obtain filtered data based on the criteria that I want                                  |
@@ -373,6 +376,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case: View an applicant**
+
+**MSS**
+
+1.  User requests to view an applicant of a particular index number
+2.  InternConnect shows the detailed data of the applicant
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given index number is invalid.
+
+    * 1a1. InternConnect shows an error message.
+
+      Use case ends.
 
 **Use case: Exit**
 
