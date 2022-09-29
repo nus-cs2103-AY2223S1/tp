@@ -34,7 +34,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/cedricchia123.png" width="200px">
 
-[[github](http://github.com/CedricChia123)] [[portfolio](team/cedricchia.md)]
+[[github](http://github.com/CedricChia123)]
+[[portfolio](team/cedricchia.md)]
 
 * Role: TBC
 * Responsibilities: TBC
@@ -44,7 +45,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/aloynz.png" width="200px">
 
 [[github](http://github.com/Aloynz)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/aloynz.md)]
 
 * Role: TBC
 * Responsibilities: TBC
@@ -54,7 +55,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/zylee348.png" width="200px">
 
 [[github](http://github.com/zylee348)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/zylee348.md)]
 
 * Role: TBC
 * Responsibilities: TBC
