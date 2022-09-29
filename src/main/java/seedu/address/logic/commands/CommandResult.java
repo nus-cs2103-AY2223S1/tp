@@ -30,6 +30,11 @@ public class CommandResult {
         this.showReminder = false;
     }
 
+    /**
+     * Construcsts a {@code CommandResult} with the specified fields.
+     * @param feedbackToUser
+     * @param showReminder
+     */
     public CommandResult(String feedbackToUser, boolean showReminder) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = false;

@@ -67,7 +67,6 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-        reminderWindow = new ReminderWindow(logic.getAddressBook().getPersonList());
     }
 
     public Stage getPrimaryStage() {
@@ -112,6 +111,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        reminderWindow = new ReminderWindow(logic.getAddressBook().getPersonList());
+
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 

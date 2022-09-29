@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
@@ -19,12 +20,15 @@ public class ReminderWindow extends UiPart<Stage> {
     private static final Logger logger = LogsCenter.getLogger(ReminderWindow.class);
     private static final String FXML = "ReminderWindow.fxml";
     private ObservableList<Person> personObservableList;
+    private PersonListPanel personListPanel;
 
     @FXML
     private Label reminderMessage;
+    @FXML
+    private StackPane personListPanelPlaceholder;
 
     /**
-     * Creates a new HelpWindow.
+     * Creates a new ReminderWindow.
      *
      * @param root Stage to use as the root of the HelpWindow.
      */
@@ -34,15 +38,13 @@ public class ReminderWindow extends UiPart<Stage> {
     }
 
     /**
-     * Creates a new HelpWindow.
+     * Creates a new ReminderWindow.
      */
     public ReminderWindow(ObservableList<Person> personObservableList) {
         this(new Stage());
         this.personObservableList = personObservableList;
-    }
-
-    public String getList() {
-        return personObservableList.toString();
+        this.personListPanel = new PersonListPanel(personObservableList);
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
     }
 
     /**
