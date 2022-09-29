@@ -30,7 +30,7 @@ WorkBook (WB) is a **desktop app for CS/tech students who are applying for inter
 
    * **`list`** : Lists all internships added.
 
-   * **`add`**`n/Meta d/2022-09-15 e/hrmonkey@example.com a/John street, block 123, #01-01` : Adds an intership from `Meta` to the WorkBook.
+   * **`add`**`n/Meta d/2022-09-15 e/hrmonkey@example.com a/John street, block 123, #01-01` : Adds an internship from `Meta` to the WorkBook.
 
    * **`delete`**`3` : Deletes the 3rd internship shown in the current list.
 
@@ -70,7 +70,7 @@ WorkBook (WB) is a **desktop app for CS/tech students who are applying for inter
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
