@@ -257,42 +257,69 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* is an internship campus recruiter
+* has a need to manage a significant number of applicants
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
+a one-stop, convenient, and efficient platform to manage and empower 
+how internship campus recruiters work with their applicants’ data. 
+Say goodbye to opening multiple windows to retrieve the information you need and 
+focus on what matters more: matching the right people for the right job.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
+| Priority | As a …​                            | I want to …​                                            | So that I can…​                                                                 |
+|----------|------------------------------------|---------------------------------------------------------|---------------------------------------------------------------------------------|
+| `* * *`  | potential user exploring the app   | see the sample data                                     | easily play around and understand how the app works                             |
+| `* * *`  | new user                           | see the list of available things I can do with the app  | learn how to use the app fully                                                  |
+| `* * *`  | new user                           | read the user guide                                     | I understand all the commands and features available in the app before using it |
+| `* * *`  | user                               | delete fields and data                                  |                                                                                 | 
+| `* * *`  | user                               | add applicants                                          |                                                                                 |
+| `* * *`  | user                               | mass add applicants' data                               | conveniently import my data quickly and without hassle                          |
+| `* * *`  | user                               | view all details of my selected Applicant               | avoid opening and working with multiple files                                   |
+| `* * *`  | user                               | see the summary statistics of my data                   | have a higher-level view of the data                                            |
+| `* * *`  | user ready to start using the app  | clear all current data                                  | get rid of sample/experimental data I used for exploring the app                |
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `InternConnect` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add an applicant**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to add an applicant with its specifiers
+2.  InternConnect adds an applicant
+3.  InternConnect shows the updated list of applicants
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. The given format is invalid.
+
+    * 3a1. InternConnect shows an error message.
+
+      Use case ends.
+
+
+**Use case: Delete an applicant**
+
+**MSS**
+
+1.  User requests to list applicants
+2.  InternConnect shows a list of applicants
+3.  User requests to delete a specific applicant in the list
+4.  InternConnect deletes the applicant
+5.  InternConnect shows the updated list of applicants
 
     Use case ends.
 
@@ -304,24 +331,52 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. InternConnect shows an error message.
 
       Use case resumes at step 2.
+
+
+**Use case: Exit**
+
+**MSS**
+
+1.  User requests to exit from InternConnect
+2.  InternConnect is closed
+
+    Use case ends.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+2.  Should be able to hold up to 1000 applicants without a noticeable sluggishness in performance for typical usage.
+3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) 
+    should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  GUI should be color-blind friendly
+5.  Data should be stored locally and not use any database management system.
+6.  The application should work with a single JAR file, and should work without requiring an installer.
+7.  The application size should not exceed 100MB.
+8.  Application should not use more than 4GB of RAM.
+9.  The product should be for a single user i.e. (not a multi-user product).
+10. The data should be stored locally and should be in a human editable text file.
+11. The GUI should work well (i.e., should not cause any resolution-related inconveniences to the user) for, 
+    standard screen resolutions 1920x1080 and higher, and, for screen scales 100% and 125%. 
+    
+    In addition, the GUI should be usable (i.e., all functions can be used even if the user experience is not optimal) for, 
+    resolutions 1280x720 and higher, and, for screen scales 150%.
 
 *{More to be added}*
 
 ### Glossary
 
+* **Applicant**: An applicant refers to a person who has applied for a role. 
+  Applicant and Person can be used interchangeably as they refer to the same thing.
+* **Role**: Role and Job are used interchangeably. They refer to a job opening that an applicant applied for.
+* **Command Line Interface (CLI)**: Text-based user interface
+* **Graphical User Interface (GUI)**: Graphic-based user interface
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+
 
 --------------------------------------------------------------------------------------------------------------------
 
