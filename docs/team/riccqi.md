@@ -4,7 +4,7 @@ title: Qi Zhi's Project Portfolio Page
 ---
 
 ### Project: Cobb
- 
+
 Cobb is a desktop address book application for property agents. The user interacts with it using a CLI, and it has a GUI created with JavaFX.
 
 Given below are my contributions to the project.

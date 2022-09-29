@@ -72,7 +72,7 @@ Cobb can also run on any machine, *without the need for an internet connection*.
   e.g `-n John Doe` or `--name John Doe` will define the parameter `name` to store the value `John Doe`.
 
 
-* If commands are missing specific parameters required for it to execute, an error message will be displayed that contains information about the syntax of the command and its required parameters. 
+* If commands are missing specific parameters required for it to execute, an error message will be displayed that contains information about the syntax of the command and its required parameters.
 
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -273,7 +273,7 @@ If the problem persists, report the bug to us!
 **A**: Unfortunately, there is no way for you to recover your data after you have deleted it. However, we are working on a way to make data persist in the future, so stay tuned!
 
 **Q**: How do I uninstall Cobb? <br>
-**A**: We are sad to see you go :( Cobb is not installed onto your hard drive, so you only need to delete the `cobb.jar` file as well as any associated data files. 
+**A**: We are sad to see you go :( Cobb is not installed onto your hard drive, so you only need to delete the `cobb.jar` file as well as any associated data files.
 
 --------------------------------------------------------------------------------------------------------------------
 

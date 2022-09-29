@@ -31,11 +31,22 @@ You can reach us at the email `cobb[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Documentation
 
+## Zsigmond Poh
+
+<img src="images/zsiggg.png" width="200px">
+
+[[github](http://github.com/zsiggg)]
+[[portfolio](team/zsiggg.md)]
+
+* Role: Developer
+* Responsibilities: Deliverables and Deadlines
+
 ### Chen Hung-Yu
 
 <img src="images/andre.png" width="200px">
 
-[[github](http://github.com/jchilling)] [[portfolio](team/jchilling.md)]
+[[github](http://github.com/jchilling)]
+[[portfolio](team/jchilling.md)]
 
 * Role: Developer
 * Responsibilities: Data

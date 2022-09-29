@@ -297,30 +297,96 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `Cobb` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+### Use case: Add a person
 
-**MSS**
+**MSS:**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User chooses to add a new person.
+2. User enters the details of the person (e.g. their requirements) and his/her status as a buyer/seller.
 
-    Use case ends.
+Use case ends.
 
 **Extensions**
+* 2a. The person already exists.
+* 2b. Cobb shows an error message.
 
-* 2a. The list is empty.
+Use case ends.
 
-  Use case ends.
+### Use case: Add a property
 
-* 3a. The given index is invalid.
+**MSS:**
 
-    * 3a1. AddressBook shows an error message.
+1. User chooses to add a new property.
+2. User enters the details of the property.
+3. If available, user enters the details of the buyer/seller.
 
-      Use case resumes at step 2.
+Use case ends.
+
+**Extensions**
+* 2a. The property already exists.
+* 2b. Cobb shows an error message.
+
+Use case ends.
+
+### Use case: List properties
+
+**MSS:**
+
+1. User chooses to list all properties.
+2. User chooses the order in which to list the properties.
+
+Use case ends.
+
+**Extensions**
+* 2a. There are no properties.
+* 2b. Cobb shows an error message.
+
+Use case ends.
+
+### Use case: Delete irrelevant properties
+
+**MSS:**
+
+1. User <u>lists properties (Use case: List properties)</u>.
+2. User finds properties that are not relevant anymore (e.g. already sold).
+3. User deletes these properties.
+
+Use case ends.
+
+### Use case: Match buyer to property
+
+**Preconditions**: Prospective buyer has been added.
+
+**MSS:**
+1. User <u>lists all properties (Use case: List properties)</u>.
+2. User finds the property that suits the buyer.
+3. User edits the property to record that it has been bought by the buyer.
+
+Use case ends.
+
+**Extensions**
+* 2a. A suitable property is not found.
+
+Use case ends.
+
+* 2b. Buyer rejects the suitable property found.
+
+Use case ends.
+
+### Use case: New buyer
+
+**MSS:**
+1. User gets a new buyer.
+2. User <u>adds the buyer (Use case: Add person)</u>.
+3. User tries to <u>match the buyer to a property (Use case: Match buyer to property)</u>.
+
+**Extensions:**
+2a. Buyer already exists.
+2b. User edits the existing buyer with new requirements, if necessary.
+
+Use case continues at 3.
 
 *{More to be added}*
 
