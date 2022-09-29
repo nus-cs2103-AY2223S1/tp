@@ -355,7 +355,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC04 - Display help message**
+**Use case: UC04 - Clear list of internship applications**
+
+**Main Success Scenario (MSS)**
+
+1. User requests to clear list.
+2. List is cleared.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+    * 1a1. WorkBook shows an error message.
+
+      Use case ends.
+
+**Use case: UC05 - Display help message**
 
 **Main Success Scenario (MSS)**
 
@@ -364,7 +381,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Use case: UC05 - Exit application**
+**Use case: UC06 - Exit application**
 
 **Main Success Scenario (MSS)**
 
