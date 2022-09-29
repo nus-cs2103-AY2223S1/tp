@@ -270,14 +270,15 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                              | So that I can…​                                                        |
-| -------- |--------------------------------------------|-------------------------------------------|------------------------------------------------------------------------|
-| `* * *`  | NUS student                                | view the list of tasks I need to complete | start implementing those tasks.                                        |
-| `* * *`  | NUS student                                | create the tasks in the tasklist          | add the list of tasks that need to be completed                        |
-| `* * *`  | user                                       | delete a person                           | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name                     | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details              | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name                      | locate a person easily                                                 |
+| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
+| -------- |--------------------------------------------| ------------------------------ | ---------------------------------------------------------------------- |
+| `* * *`  | NUS student                                | view the list of tasks I need to complete        | start implementing those tasks.               |
+| `* * *`  | NUS student                                | create the tasks in the tasklist               | add the list of tasks that need to be completed                                                                       |
+| `* * *`  | NUS student                                | mark a task as complete        | have a better idea of what I have completed.                                   |
+| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
+| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
+| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+
 
 *{More to be added}*
 
@@ -332,6 +333,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. MODPRO displays the list of tasks
 
    Use case ends.
+   
+**Use case: Mark a task as complete**
+
+**MSS**
+1. User requests to mark a specific task as complete
+2. MODPRO marks the task
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given index is invalid.
+
+    * 1a1. MODPRO shows an error message..
+
+      Use case ends.
+
+
+*{More to be added}*
+
 
 *{More to be added}*
 
