@@ -257,14 +257,20 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
+* an SOC student
+* needs support with his academics
+* has friends that he is willing to ask for help
+* misses deadlines
+* cannot remember all the details of his assignments and exams
 * has a need to manage a significant number of contacts
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
 
+Search for contacts for help with a particular task faster than having to think about who is taking the same module as you.
 
 ### User stories
 
@@ -278,6 +284,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
 | `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
 | `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+
+| Priority | As a …​                                    | I want to …​                               | So that I can…​                                   |
+|----------|--------------------------------------------|--------------------------------------------|---------------------------------------------------|
+| `* * *`  | busy SOC student                           | track what I have to complete              | not miss out on any deadlines                     |
+| `* * *`  | organised student                          | store my contacts from school              |                                                   |
+| `* * *`  | SOC student who is overloading             | manage all my module tasks in one place    | track important tasks and details                 |
+| `* * *`  | SOC student with contacts in SOC           | store and manage contacts                  | know who is taking the same modules as me quickly |
+| `* * *`  | SOC student stuck on an assignment         | search for contacts taking the same module | contact them quickly to ask for help              |
 
 *{More to be added}*
 
@@ -315,11 +329,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Should be able to export application data to another computer for portability.
 
 *{More to be added}*
 
 ### Glossary
 
+* **GUI**: Graphical User Interface
+* **CLI**: Command Line Interface - Where you can execute commands by typing them
+* **JSON**: A file format that uses human-readable text to store and transmit data objects consisting of attribute–value pairs and arrays
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 

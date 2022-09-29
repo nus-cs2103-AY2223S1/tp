@@ -13,3 +13,11 @@
 * It is named `AddressBook Level 3` (`AB3` for short) because it was initially created as a part of a series of `AddressBook` projects (`Level 1`, `Level 2`, `Level 3` ...).
 * For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
 * This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+
+# About
+
+Have you ever been struggling with a coding assignment for days, wanting to reach out to a friend, but not knowing who?
+Do you ever get overwhelmed with tasks, not knowing which to prioritize?
+
+CodeConnect solves both these problems at once by integrating your contacts with your tasks! CodeConnect is a command based application written in Java that runs locally in your computer. Our motivation was to provide a simple and friendly solution to the hectic life of computing students.
+CodeConnect allows you to quickly manage your tasks and contacts through a text based command line interface, with the option of using your mouse for quicker navigation. Tasks and contacts can be easily searched for and sorted to, to provide enhanced organization and management functionality.
