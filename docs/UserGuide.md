@@ -72,6 +72,18 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
+### Managing tasks
+
+### Listing all tasks : `list`
+
+Shows a list of all tasks.
+
+Format: `list` /  `list time`
+
+* List displays a list of all tasks in the order of most recent task added
+* List time displays a list of all tasks in the order of nearest deadline
+
+### Managing contacts
 
 ### Adding a person: `add`
 
@@ -87,11 +99,11 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+### Listing all persons : `listc`
 
 Shows a list of all persons in the address book.
 
-Format: `list`
+Format: `listc`
 
 ### Editing a person : `edit`
 
@@ -181,12 +193,13 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action            | Format, Examples                                                                                                                                                      |
+|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **List tasks**    | `list` / `list time`                                                                                                                                                  |
+| **Add**           | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Clear**         | `clear`                                                                                                                                                               |
+| **Delete**        | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
+| **Edit**          | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
+| **Find**          | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
+| **List contacts** | `listc`                                                                                                                                                               |
+| **Help**          | `help`                                                                                                                                                                |
