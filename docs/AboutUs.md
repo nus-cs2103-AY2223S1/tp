@@ -19,15 +19,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Denzel Tan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/denzel.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/danzzzerl)]
+[[portfolio](team/danzzzerl.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: finding tasks/contacts
 
 ### Jonathan Lam
 
@@ -39,22 +39,22 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Storage and Data Management
 
-### Jean Doe
+### Poomklao Teerawatthanaprapha
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/parnikkapore.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/parnikkapore)]
+[[portfolio](team/parnikkapore.md)]
+
+* Role: Integration, CI expert
+* Responsibilities: adding/deleting/marking/unmarking tasks
+
+### Ang Kuang Long
+
+<img src="images/angkl0.png" width="200px">
+
+[[github](http://github.com/angkl0)]
+[[portfolio](team/angkl0.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
+* Responsibilities: Adding, deleting, editing and tagging contacts

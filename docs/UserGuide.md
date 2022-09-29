@@ -64,36 +64,86 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 </div>
 
-### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+### Getting help
 
-![help message](images/helpMessage.png)
+#### Viewing help : `help`
 
 Format: `help`
 
+### Managing tasks
 
-### Adding a person: `add`
+#### Adding a task: `add`
 
-Adds a person to the address book.
+Adds a task to the task manager.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Format:
+`add {task_name} /by {deadline} /mod {module_code}`
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add finish problem set 5 /by Week 6 Sunday /mod CS2040S`
+* `add finish SEP application /by 2359 today`
 
-### Listing all persons : `list`
+#### Deleting a task: `del`
+
+Deletes a task from the task manager list.
+
+Format:
+`del {task_index}`
+
+Example:
+`del 5`
+
+#### Marking a task: `mark`
+
+Marks a task as completed in the task manager list.
+
+Format:
+`mark {task_index}`
+
+Example:
+`mark 3`
+
+#### Unmarking a task: `unmark`
+
+Marks a task as incomplete in the task manager list.
+
+Format:
+`unmark {task_index}`
+
+Example:
+`unmark 3`
+
+#### Searching for tasks: `find`
+
+Find tasks whose names contain any of the given keywords, or find them by their tagged module.
+
+Format:
+`find /t {task}` `find /m {module}`
+
+Examples:
+* `find /t homework` returns `Science homework`, `Math homework`
+* `find /m CS1101S` returns `Problem set 4`, `Reading assignment 2`
+
+### Managing contacts
+
+#### Adding a contact: `addc`
+
+Adds a contact to the contact list.
+
+Format: `addc {name} /email {email} /hp {phone number} /mods {module1} {module2}...`
+
+Examples:
+* `addc Bob Martin /email bobbymartini@gmail.com /hp 98765432 /mods CS1101S CS1231S`
+* `addc Betsy Crowe /email betsycrowe@gmail.com hp/ 89985432`
+
+#### Listing all persons : `list`
 
 Shows a list of all persons in the address book.
 
 Format: `list`
 
-### Editing a person : `edit`
+#### Editing a person : `edit`
 
 Edits an existing person in the address book.
 
@@ -106,49 +156,39 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * You can remove all the person’s tags by typing `t/` without
     specifying any tags after it.
 
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+#### Deleting a person : `delc`
 
-### Locating persons by name: `find`
+Deletes the specified contact from the contact list.
 
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
-
-Format: `delete INDEX`
+Format: `delc {contact_index}`
 
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `delc 2` deletes the contact at index 2 in the contact list.
 
-### Clearing all entries : `clear`
+#### Searching for persons: `findc`
+
+Finds persons whose names contain any of the given keywords, or find persons who take a particular module.
+
+Format: 
+`findc /n {name}` `findc /m {module}`
+
+Examples:
+* `findc /n John` returns `john`, `John Doe`
+* `findc /m CS1231S` returns `Alex Yeoh`, `David Li`
+
+#### Clearing all entries : `clear`
 
 Clears all entries from the address book.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+### Finishing up
+
+#### Exiting the program : `exit`
 
 Exits the program.
 
@@ -183,10 +223,15 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add task** | `add {taskname} /by {deadline} /mod {module_code}` <br> e.g. `add finish problem set 5 /by Week 6 Sunday /mod CS2040S`
+**Delete task** | `del {task_index}` <br> e.g. `delete 5`
+**Mark task** | `mark {task_index}` <br> e.g. `mark 3`
+**Unmark task** | `unmark {task_index}` <br> e.g. `unmark 3`
+**Find tasks** | `find /t {task}` <br> `find /m {module}`<br> e.g., `find /t homework`, <br> `find /m CS1101S`
+**Add contact** | `addc {name} /email {email} /hp {phone number} /mods {module1} {module2}...` <br> e.g., `addc Bob Martin /email bobbymartini@gmail.com /hp 98765432 /mods CS1101S CS1231S`
 **Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Delete contact** | `delc {contact_index}`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Find contacts** | `findc /n {name}` <br> `findc /m {module}`<br> e.g., `findc /n John`, <br> `findc /m CS1231S`
 **List** | `list`
 **Help** | `help`
