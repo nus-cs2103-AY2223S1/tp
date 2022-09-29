@@ -108,14 +108,14 @@ Note: Address cannot be empty. It must contain at least 1 character.
 5. Email
     - Email may contain any kinds of `character`, other than white space ` `
     - Email must contain a `@`
-    
+
 ```yaml
 Note: Email cannot be empty. It must contain at least 1 character.
 ```
 
 6. Class Date
     - Class Date must be in the format YYYY-MM-DD {start time}-{end time}
-    
+
 ```yaml
 Note: Start time and End time must be in 24hour format.
 ```
@@ -170,7 +170,7 @@ Notes about the command format:
   `update` command valid.
 ```
 
-Format: `update n/NAME [p/PHONE_NUMBER] [np/NEXT_OF_KIN_PHONE_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS] 
+Format: `update n/NAME [p/PHONE_NUMBER] [np/NEXT_OF_KIN_PHONE_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS]
 [paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES]`
 
 Examples:
