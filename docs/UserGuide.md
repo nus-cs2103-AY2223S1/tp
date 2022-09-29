@@ -181,12 +181,13 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+|                 Action                | Format                                                                                                                 | Example                                                                                  |  
+|:-------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------|
+|         Add individual student        | `new student n/[name of student] id/[ID of student] pn/[name of parent] a/[home address] hp/[mobile number of parent]` | _new student n/Jonathan Tan id/123A pn/George Tan a/Kent Ridge View hp/91234567_         |
+|      View all student information     | `view all`                                                                                                             | _view all_                                                                               |
+|  View individual student information  | `view n/[name]` or `view id/[id]`                                                                                      | _view Jonathan Tan view 123A_                                                            |
+| Update individual student information | `update [index] n/[name] id/[id] pn/[name of parent] a/[home address] hp/[mobile number of parent]`                    | _update 1 a/Kent Ridge View_                                                             |
+|       Delete individual student       | `delete n/[name] or delete id/[id]`                                                                                    | _delete Jonathan Tan delete 123A_                                                        |
+|                  Exit                 | `exit`                                                                                                                 | _exit_                                                                                   |
+
+                                                                                                                              
