@@ -64,15 +64,6 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 </div>
 
-### Viewing help : `help`
-
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-
 ### Creating a new student record : `new student`
 
 Creates a new student record with the name of the student and other relevant details such as:
@@ -141,9 +132,9 @@ Examples:
 * `delete Jonathan Tan` deletes student record with student's name as 'Jonathan Tan'.
 * `delete 123A` deletes student record with students' ID as '123A'.
 
-### Clearing all entries : `clear`
+### Clearing all student records : `clear`
 
-Clears all entries from the address book.
+Clears all student records from local storage.
 
 Format: `clear`
 
