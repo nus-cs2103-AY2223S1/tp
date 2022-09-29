@@ -328,8 +328,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+| Word | Meaning                                                                                             |
+| --- |-----------------------------------------------------------------------------------------------------|
+| Mainstream OS | Windows, Linux, Unix, OS-X                                                                          |
+| GUI | A graphical user interface, which is the visual display you see when using HobbyList                |
+| Index | A number that you can use to refer to a particular activity                                         |
+| Tag | A word (eg. `Entertainment`, `Sport`) that you can attach to the activities to easily identify them |
 
 --------------------------------------------------------------------------------------------------------------------
 
