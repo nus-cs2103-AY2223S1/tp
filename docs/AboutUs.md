@@ -50,7 +50,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Responsibilities: UI and Design
 
 ### Ying Ting
-<img src="images/yingting.png" width="200px">
+<img src="images/ytingtan.png" width="200px">
 
 [[github](http://github.com/ytingtan)]
 [[portfolio](team/ytingtan.md)]
