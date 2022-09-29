@@ -270,14 +270,22 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …          | I want to …                       | So that I can…                          |
+|----------|-----------------|-----------------------------------|-----------------------------------------|
+| `* * *`  | user            | add activity                      | track my activities                     |
+| `* * *`  | user            | delete activity                   | make mistakes                           |
+| `* * *`  | user            | view activities                   | look at what I have done                |
+| `* *`    | busy CS student | quickly write commands            | save time adding entries                |
+| `* *`    | new user        | type "help" for help              | try the commands and use the app        |
+| `* *`    | new user        | clear all activities              | quickly clear the sample data           |
+| `* *`    | new user        | see sample data                   | get to know how the app works           |
+| `* *`    | user            | tag an activity with a type       | know what type of activity it is        |
+| `* *`    | user            | add an activity description       | know what the activity is about         | 
+| `*`      | long time user  | use shortcuts for commands        | enter commands faster                   |
+| `*`      | food enthusiast | review restaurants                | note down my opinions of the restaurant |
+| `*`      | food enthusiast | rate restaurants                  | note down my opinions of the restaurant |
+| `*`      | gym user        | keep track of dates of activities | record when I did the activity          |
+| `*`      | long time user  | search activities with keywords   | quickly find certain activity           |
 
 *{More to be added}*
 
