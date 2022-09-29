@@ -1,4 +1,4 @@
-# CLInkedIn
+# :memo: CLInkedIn
 
 CLInkedIn is a desktop contact management Java application made for Recruiters to manage their contacts list of candidates.  
 CLInkedIn operates mainly using a Command Line Interface (CLI), but still has a Graphical User Interface (GUI) made with JavaFX for improved user experience.

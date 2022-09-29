@@ -140,23 +140,23 @@ Examples:
 * `deleteTag 3 st/Java` Deletes the **Skill** tag `Java` of the 3rd person.
 * `deleteTag 2 dt/Bachelors` Deletes the **Degree** tag `Bachelors` of the 2nd person.
 
-### Locating persons by name: `find`
+### Locating persons by name: `search`
 
-Finds persons whose names contain any of the given keywords.
+Searches persons whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `search KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
+* The personal information and tags will be searched.  
 * Only full words will be matched e.g. `Han` will not match `Hans`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `search John` returns `john` and `John Doe`
+* `search Java` returns list of candidates with Java skills 
+* `search alex david` returns `Alex Yeoh`, `David Li`<br>
 
 ### Deleting a person : `delete`
 
@@ -208,6 +208,21 @@ Format: `deleteTagType TAG_TYPE`
 Examples: `deleteTagType GPA`
 
 - Deletes the `GPA` tag type.
+
+### Adding optional information
+
+Adds additional optional information (notes) to a person
+
+Format: `note INDEX n/NOTE`
+* The INDEX refers to the index number shown in the displayed person list.
+* The index must be a positive integer 1, 2, 3, …​
+
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+A person can have any number of notes (including 0)
+</div>
+
+Examples:
+* `note 4 n/Strong in Java` adds a note `Strong in Java` to the 4th person in the address book.
 
 ### Clearing all entries : `clear`
 
@@ -264,18 +279,21 @@ Examples:
 
 ## Command summary
 
-| Action            | Format, Examples                                                                                                                                                                                                                                                      |
-|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**           | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [st/SKILL_TAG] [dt/DEGREE_TAG] [jt/JOB_TYPE_TAG] [<alias>/TAG]…​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 st/Java`                                                    |
-| **Clear**         | `clear`                                                                                                                                                                                                                                                               |
-| **Delete**        | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                   |
-| **Edit**          | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [st/OLD_SKILL_TAG-NEW_SKILL_TAG] [dt/OLD_DEGREE_TAG-NEW_DEGREE_TAG] [jt/OLD_JOB_TYPE_TAG-NEW_JOB_TYPE_TAG] [<alias>/OLD_TAG-NEW_TAG]…​`<br> e.g.,`edit 1 p/91234567 e/johndoe@example.com dt/Bachelors-Masters`  |
-| **AddTag**        | `addTag INDEX [st/SKILL_TAG] [dt/DEGREE_TAG] [jt/JOB_TYPE_TAG] [<alias>/TAG]…​`<br> e.g., `addTag 3 st/Java`                                                                                                                                                          |
-| **deleteTag**     | `deleteTag INDEX [st/SKILL_TAG] [dt/DEGREE_TAG] [jt/JOB_TYPE_TAG] [<alias>/TAG]…​`<br> e.g., `deleteTag 2 dt/Bachelors`<br/>                                                                                                                                          |
-| **Create**        | `create TAG_TYPE TAG_ALIAS` <br> e.g., `create GPA gpat`                                                                                                                                                                                                              |
-| **EditTagType**   | `editTagType OLD_TAG_TYPE-NEW_TAG_TYPE OLD_TAG_ALIAS-NEW_TAG_ALIAS` <br> e.g., `editTagType GPA-Grade gpat-grdt`                                                                                                                                                      |
-| **DeleteTagType** | `deleteTagType TAG_TYPE` <br> e.g., `deleteTagType GPA`                                                                                                                                                                                                               |
-| **Find**          | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                                            |
-| **List**          | `list`                                                                                                                                                                                                                                                                |
-| **Help**          | `help`                                                                                                                                                                                                                                                                |
+
+| Action            | Format, Examples                                                                                                                                                                                                                                                     |
+|-------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**           | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [st/SKILL_TAG] [dt/DEGREE_TAG] [jt/JOB_TYPE_TAG] [<alias>/TAG]…​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 st/Java`                                                   |
+| **Clear**         | `clear`                                                                                                                                                                                                                                                              |
+| **Delete**        | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                  |
+| **Edit**          | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [st/OLD_SKILL_TAG-NEW_SKILL_TAG] [dt/OLD_DEGREE_TAG-NEW_DEGREE_TAG] [jt/OLD_JOB_TYPE_TAG-NEW_JOB_TYPE_TAG] [<alias>/OLD_TAG-NEW_TAG]…​`<br> e.g.,`edit 1 p/91234567 e/johndoe@example.com dt/Bachelors-Masters` |
+| **AddTag**        | `addTag INDEX [st/SKILL_TAG] [dt/DEGREE_TAG] [jt/JOB_TYPE_TAG] [<alias>/TAG]…​`<br> e.g., `addTag 3 st/Java`                                                                                                                                                         |
+| **deleteTag**     | `deleteTag INDEX [st/SKILL_TAG] [dt/DEGREE_TAG] [jt/JOB_TYPE_TAG] [<alias>/TAG]…​`<br> e.g., `deleteTag 2 dt/Bachelors`<br/>                                                                                                                                         |
+| **Create**        | `create TAG_TYPE TAG_ALIAS` <br> e.g., `create GPA gpat`                                                                                                                                                                                                             |
+| **EditTagType**   | `editTagType OLD_TAG_TYPE-NEW_TAG_TYPE OLD_TAG_ALIAS-NEW_TAG_ALIAS` <br> e.g., `editTagType GPA-Grade gpat-grdt`                                                                                                                                                     |
+| **DeleteTagType** | `deleteTagType TAG_TYPE` <br> e.g., `deleteTagType GPA`                                                                                                                                                                                                              |
+| **Search**        | `search KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                                         |
+| **List**          | `list`                                                                                                                                                                                                                                                               |
+| **Status**        | `status INDEX s/STATUS` <br> e.g., `status 1 s/Rejected`                                                                                                                                                                                                             |
+| **Help**          | `help`                                                                                                                                                                                                                                                               |
+
 

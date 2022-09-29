@@ -41,10 +41,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Marcus Tan
 
-<img src="images/marcustan.png" width="200px">
+<img src="images/emptygx.png" width="200px">
 
 [[github](http://github.com/emptygx)]
-[[portfolio](team/marcustan.md)]
+[[portfolio](team/emptygx.md)]
 
 * Role: Developer
 * Responsibilities: UI and Design
