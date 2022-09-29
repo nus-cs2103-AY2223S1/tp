@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Jolyn's Project Portfolio Page
+title: Nguyen Minh Tuan's Project Portfolio Page
 ---
 
 ### Project: CinternS
@@ -9,7 +9,18 @@ CinternS is a desktop app for managing internship applications, optimised for us
 
 Given below are my contributions to the project.
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=jolynloh&breakdown=true)
+* **New Feature**: to be added soon
+    * What it does: to be added soon
+    * Justification: to be added soon
+    * Highlights: to be added soon
+    * Credits: to be added soon
+
+* **New Feature**: to be added soon
+
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=nmtuan2001&breakdown=true)
+
+* **Project management**:
+    * to be added soon
 
 * **Enhancements to existing features**:
     * to be added soon
@@ -21,5 +32,8 @@ Given below are my contributions to the project.
         * to be added soon
 
 * **Community**:
-    * include contributions to team-based tasks, review/mentoring contributions, contributions beyond proj team
     * to be added soon
+
+* **Tools**:
+    * to be added soon
+
