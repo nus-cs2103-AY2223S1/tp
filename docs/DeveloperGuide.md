@@ -321,7 +321,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-* a. At any time, Medical administrator choose to exit the program.
+* *a. At any time, Medical administrator choose to exit the program.
   
   Use case ends. 
 
@@ -346,8 +346,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1b. Medical Administrator request to list nurses only.
 
-    Use case ends. 
+    * 1b1. Healthcare Xpress shows that list of nurses.
 
+    * 1b2. Medical administrator request to mark the nurse.
+
+    * 1b3. Healthcare Xpress shows an error message.
+        
+        Use case ends. 
+  
 * 1c. Medical Administrator request to get a specific patient.
 
     * 1c1. Healthcare Xpress shows that patient. 
@@ -372,7 +378,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-* a. At any time, Medical administrator choose to exit the program.
+* *a. At any time, Medical administrator choose to exit the program.
 
   Use case ends.
 
@@ -418,7 +424,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
       Use case ends. 
   
-* a. At any time, Medical administrator choose to exit the program.
+* *a. At any time, Medical administrator choose to exit the program.
 
   Use case ends.
 
@@ -458,7 +464,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-* a. At any time, Medical administrator choose to exit the program.
+* *a. At any time, Medical administrator choose to exit the program.
 
   Use case ends.
 
@@ -498,11 +504,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-* a. At any time, Medical administrator choose to exit the program.
+* *a. At any time, Medical administrator choose to exit the program.
 
   Use case ends.
 
-**Use case: UC06 - Add a date and time to patient**
+**Use case: UC06 - Add a home-visit date and time to patient**
 
 **MSS**
 
@@ -530,7 +536,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
 * 1c. Medical Administrator request to list nurses only.
 
-  Use case ends.
+    * 1c1. Healthcare Xpress shows that list of nurses.
+
+    * 1c2. Medical administrator request to add a date and time to the nurse.
+
+    * 1c3. Healthcare Xpress shows an error message.
+
+      Use case ends.
 
 * 2a. The list is empty.
 
@@ -548,11 +560,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-* a. At any time, Medical administrator choose to exit the program.
+* *a. At any time, Medical administrator choose to exit the program.
 
   Use case ends.
 
-**Use case: UC07 - Delete a date and time to patient**
+**Use case: UC07 - Delete a home-visit date and time to patient**
 
 **MSS**
 
@@ -580,7 +592,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1c. Medical Administrator request to list nurses only.
 
-  Use case ends.
+    * 1c1. Healthcare Xpress shows that list of nurses.
+
+    * 1c2. Medical administrator request to delete a date and time to the nurse.
+
+    * 1c3. Healthcare Xpress shows an error message.
+
+      Use case ends.
 
 * 2a. The list is empty.
 
@@ -598,7 +616,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-* a. At any time, Medical administrator choose to exit the program.
+* *a. At any time, Medical administrator choose to exit the program.
 
   Use case ends.
 
@@ -650,18 +668,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
       Use case resumes at step 2.
 
-* a. At any time, Medical administrator choose to exit the program.
+* *a. At any time, Medical administrator choose to exit the program.
 
   Use case ends.
 
-**Use case: UC09 - Delete a patient from the nurse**
+**Use case: UC09 - Remove a patient or patients from a nurse**
 
 **MSS**
 
 1.  Medical administrator requests to list patients and nurses according to general or specific groups.
 2.  HealthCare Xpress shows a list of patients and nurses that satisfy the group's condition.
-3.  Medical administrator requests to delete a patient from the nurses.
-4.  HealthCare Xpress delete the patient from the nurse.
+3.  Medical administrator requests to remove a patient from the nurse or remove all patients from a nurse.
+4.  HealthCare Xpress remove the patient/patients from the nurse.
 
     Use case ends.
 
@@ -676,7 +694,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1b1. Healthcare Xpress shows that patient/nurse.
 
-    * 1b2. Medical administrator requests to delete that patient from a nurse or delete a patient from that nurse.
+    * 1b2. Medical administrator requests to remove that patient from a nurse or remove a patient from that nurse.
 
       Use case resumes from step 4.
 
@@ -696,7 +714,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-* a. At any time, Medical administrator choose to exit the program.
+* *a. At any time, Medical administrator choose to exit the program.
 
   Use case ends.
 
