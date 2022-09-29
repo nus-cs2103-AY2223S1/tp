@@ -13,7 +13,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: to be confirmed
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=maxng17&breakdown=true)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=reneeyeow02&breakdown=true)
 
 * **Project management**: to be confirmed
 
