@@ -27,7 +27,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/adeearyaa.md)]
 
 * Role: Code Quality
-* Responsibilities: Ensures that Code follows a common style and is of maximum readability
+* Responsibilities: Ensures that Code follows a common style and achieves maximum readability
 
 ### Glemen Neo
 
