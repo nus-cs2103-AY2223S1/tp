@@ -153,13 +153,13 @@ Format: `exit`
 
 ## Command summary
 
-|Action  | Format, Examples |
-|--------|------------------ |
-|**List Orders**| `listo`|
-|**Find an Order** | `findo KEYWORD [MORE_KEYWORDS]`|
-|**Add Inventory** | `addi n/NAME [t/TAG]…​` <br> e.g., `addi n/Chair t/Furniture`|
-|**Delete Inventory** | `deletei INDEX`<br> e.g., `deletei 3`|
-|**Tagi** | `tagi INDEX [t/TAG]…​` <br> e.g, `tagi 1 t/Perishable t/Premium`|
-|**listi** | `listi`  |
-|**findi** | `findi KEYWORD [MORE_KEYWORDS]` <br/> e.g., `find blue shirt`|
-|**Exit** | `exit`|
+| Action          | Format, Examples |
+|-----------------|------------------ |
+| **List Orders** | `listo`|
+| **Find Order**  | `findo KEYWORD [MORE_KEYWORDS]`|
+| **Add Inventory** | `addi n/NAME [t/TAG]…​` <br> e.g., `addi n/Chair t/Furniture`|
+| **Delete Inventory** | `deletei INDEX`<br> e.g., `deletei 3`|
+| **Tag Inventory** | `tagi INDEX [t/TAG]…​` <br> e.g, `tagi 1 t/Perishable t/Premium`|
+| **List Inventory** | `listi`  |
+| **Find Inventory** | `findi KEYWORD [MORE_KEYWORDS]` <br/> e.g., `find blue shirt`|
+| **Exit**        | `exit`|
