@@ -34,7 +34,6 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
-        helpMessage.setText(HELP_MESSAGE);
     }
 
     /**
@@ -42,6 +41,19 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow() {
         this(new Stage());
+    }
+
+    /**
+     * Initializes the HelpWindow.
+     */
+    @FXML
+    public void initialize() {
+        helpMessage.setText(HELP_MESSAGE);
+        /*
+         * On some systems, the stage won't be resized to fit the content.
+         * This is a workaround to force the stage to resize.
+         */
+        getRoot().widthProperty().addListener((observable, oldValue, newValue) -> getRoot().sizeToScene());
     }
 
     /**
