@@ -9,25 +9,25 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Lee I-Shiuan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ish1506.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/ish1506)]
+[[portfolio](team/ish1506.md)]
 
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
+* Role: Developer
 * Responsibilities: UI
+
+### Tan Xuan Yun
+
+<img src="images/tanxuanyun.png" width="200px">
+
+[[github](http://github.com/tanxuanyun)]
+[[portfolio](team/tanxuanyun.md)]
+
+* Role: `to be added soon`
+* Responsibilities: `to be added soon`
 
 ### Lee Cheng Da
 

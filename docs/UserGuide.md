@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+InterNUS is a desktop app for **managing internship applications, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, InterNUS can get your internship management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -66,26 +66,40 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Displays a list of commands and a link to the user guide.
 
-![help message](images/helpMessage.png)
+`Screen shot to be added soon`
 
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a person: `addp`
 
-Adds a person to the address book.
+Adds a person to InterNUS.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `addp n/NAME e/EMAIL [p/PHONE_NUMBER] [i/INTERNSHIP] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A person can have any number of tags (including 0). Phone number is optional, and internship is optional too.
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `addp n/John Doe e/johnd@example.com p/98765432 i/Shopee_Front End Engineer`
+* `addp n/Betsy Crowe t/friend e/betsycrowe@example.com`
+
+### Adding an Internship: `addi`
+
+Adds an Internship to InterNUS.
+
+Format: `addi c/COMPANY_NAME r/ROLE s/STATUS [d/DATE_OF_INTERVIEW]…​`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Date of interview can be left blank, since it is possible that an interview is not scheduled yet.
+</div>
+
+Examples:
+* `addi n/TikTok r/Data Engineer s/rejected`
+* `addi n/Grab r/Full Stack Developer s/awaiting interview d/2020-12-20`
 
 ### Listing all persons : `list`
 
@@ -156,14 +170,15 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+InterNUS data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+InterNUS data is saved as a JSON file. `[JAR file location]`/data/addressbook.json.
+Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, InterNUS will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
