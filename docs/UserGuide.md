@@ -62,8 +62,8 @@ Adds a person to the address book.
 
 Format: `adduser n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+<div markdown="span" class="alert alert-primary">:bulb: 
+<b>Tip:</b> A person can have any number of tags (including 0)
 </div>
 
 Examples:
@@ -108,7 +108,9 @@ Format: `finduser KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `finduser John` returns `john` and `John Doe`
-* `finduser alex david` returns `Alex Yeoh`, `David Li`<br>
+* `finduser alex david` returns `Alex Yeoh`, `David Li`
+<br>
+<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### Deleting a person : `deleteuser`
