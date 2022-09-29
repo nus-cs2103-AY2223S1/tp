@@ -21,7 +21,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Chia Min Jiun
 
-<img src="images/chiaminjiun.png" width="200px">
+<img src="images/minjiunn.png" width="200px">
 
 [[github](http://github.com/minjiunn)]
 [[portfolio](team/minjiunn.md)]
