@@ -108,6 +108,7 @@ Examples:
 * `add n/John p/92781123 e/john@example.com a/Donald street, block 248, #02-04 g/m`
 * `add n/Charlotte p/81286623 e/charlotte@example.com a/Charity street, block 101, #10-82  g/F`
 
+
 ### Listing all persons : `list`
 
 Shows a list of all persons in the address book.
@@ -161,6 +162,7 @@ Examples:
 * `edit 2 g/f`
 * `edit 3 g/F`
 
+
 ### Locating persons by name: `find`
 
 Finds persons whose names contain any of the given keywords.
@@ -192,6 +194,41 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+### Creating an event: `create`
+
+Creates a new event in the address book.
+
+Format: `create t/EVENT_TITLE d/DATE t/TIME p/PURPOSE`
+
+* The compulsory parameters are: event title (`t`), date (`d`), time (`t`) and purpose (`p`)
+
+Examples:
+* `create t/Shoe Sale 30% d/30-05-2022 t/11:00 p/Discount on all shoes for up to 30%`
+* `create t/Banana Discount 10% d/20-04-2022 t/14:00 p/10% discount on all bananas`
+
+### Removing an event: `remove`
+
+Removes an existing event in the address book.
+
+Format: `remove INDEX`
+
+* Removes the event at the specified `INDEX`. 
+* The index refers to the index number shown in the displayed event list 
+* The index must be a positive integer 1, 2, 3, …, and it must be within the range of the event list index.
+
+Examples:
+* `delete 2` after displaying all events with display removes event at index 2
+* `delete 7` after displaying all events with display removes event at index 7
+
+### Display all events: `display`
+
+Shows a list of all existing events in the address book.
+
+Format: `display`
+
+Examples:
+* `display`
 
 ### Clearing all entries : `clear`
 
