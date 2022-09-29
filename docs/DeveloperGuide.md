@@ -428,6 +428,23 @@ Guarantees: All students and tasks will be deleted.
   Use case ends.
 
 
+####**Use case: UC10 - Record student's mastery check result**
+Preconditions: There are existing students in JARVIS.   
+
+**MSS:**
+1. Avenger <ins>requests to list students (UC3)</ins>
+2. JARVIS displays the list of students
+3. Avenger inputs command to record a student’s master check result
+4. JARVIS displays list of student and mastery check results, with the aforementioned student’s updated result
+   Use case ends.
+
+**Extensions:**
+* 3a. JARVIS detects an error in the format of the input command.
+  * 3a1. JARVIS requests user to re-input their command.
+  * 3a2. Avenger inputs command.  
+  Steps 3a1-3a2 are repeated until the command entered is correct.  
+  Use case resumes from step 3.
+
 
 
 
