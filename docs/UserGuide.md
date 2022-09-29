@@ -88,11 +88,14 @@ Examples:
 * `add s/John Tan`
 * `add t/Consultation d/12-09-2023`
 
-### Listing all persons : `list`
+### Listing all students/tasks : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all students or tasks stored.
 
-Format: `list`
+- List students
+    - Format: `list s`
+- List tasks
+    - Format: `list t`
 
 ### Editing a person : `edit`
 
@@ -129,6 +132,32 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
+### Marking a task as done : `mark`
+
+Marks a task as done.
+
+Format: `mark t/TASK_INDEX`
+
+**Things to Note:**
+* The index refers to the index number shown in the displayed list of tasks.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Example:
+* `mark t/2` marks the 2nd task as done.
+
+### Marking a task as not done : `unmark`
+
+Marks a task as not done.
+
+Format: `unmark t/TASK_INDEX`
+
+**Things to Note:**
+* The index refers to the index number shown in the displayed list of tasks.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Example:
+* `unmark t/2` marks the 2nd task as not done.
+
 ### Deleting a student / task : `delete`
 
 Deletes the specified student or task from their respective lists.
@@ -145,6 +174,22 @@ Deletes the specified student or task from their respective lists.
 Examples:
 * `list s` followed by `delete s/2` deletes the 2nd student in JARVIS.
 * `list t` followed by `delete t/1` deletes the 1st task in JARVIS.
+
+### Recording a student's mastery check result: `mc`
+
+Records the mastery check result for the specified student.
+
+* Recording a student's mastery check result
+  - Format: `mc MC_NUM s/STUDENT_INDEX r/RESULT`
+
+**Things to Note:**
+* `MC_NUM` refers to the mastery check number (either 1 or 2).
+* `STUDENT_INDEX` refers to the index number of the student shown in the displayed list.
+* `RESULT` is either "PASS" or "FAIL"
+
+Examples:
+* `mc 1 s/1 r/PASS` marks the 1st student's result for MC1 as a "PASS".
+* `mc 2 s/2 r/FAIL` marks the 2nd student's result for MC2 as a "FAIL".
 
 ### Clearing all entries : `clear`
 
@@ -195,4 +240,6 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
+**Mark** | `mark t/TASK_INDEX` <br> e.g., `mark t/2`
+**Unmark** | `unmark t/TASK_INDEX` <br> e.g., `unmark t/2`
 **Help** | `help`
