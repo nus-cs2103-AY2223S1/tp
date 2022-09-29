@@ -8,9 +8,9 @@
 
 * The user interacts with it using a CLI, and it has a GUI created with JavaFX.
 
-* For information on the application's features and usage, see our **[User Guide](https://github.com/AY2223S1-CS2103T-T12-1/tp/blob/master/docs/UserGuide.md)**.
+* For information on the application's features and usage, see our **[User Guide](https://ay2223s1-cs2103t-t12-1.github.io/tp/UserGuide.html)**.
 
-* If you wish to have a more in-depth understanding of our project, check out our **[Developer's Guide](https://github.com/AY2223S1-CS2103T-T12-1/tp/blob/master/docs/DeveloperGuide.md)**.
+* If you wish to have a more in-depth understanding of our project, check out our **[Developer's Guide](https://ay2223s1-cs2103t-t12-1.github.io/tp/DeveloperGuide.html)**.
 
 
 ### Target user
