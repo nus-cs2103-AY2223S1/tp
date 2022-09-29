@@ -338,7 +338,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case resumes at step 2.
 
 * 1b. User enters data for an individual who already exists in the database.
-    * 1b1. Duke The Market returns error: informs User of duplicate person
+    * 1b1. Duke The Market shows an error message that the user is a duplicate person
     * 1b2. User enters new data
 
   Steps 1b1-1b2 are repeated until the data entered is correct.
@@ -384,7 +384,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. Duke The Market shows a list of events
 3. User requests to show customers who may be interested in an upcoming event in the list
 4. Duke The Market shows the customers who may be interested in that upcoming event
-5. User requests to export the customers' email addresses to a specified file (UC04)
+5. User requests to <ins>export the customers' email addresses to a specified file (UC04)</ins>
 
    Use case ends.
 
@@ -405,7 +405,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 8. Data should be stored locally in a human editable text file.
 9. Data should not be stored using an external database management system (DBMS)
 10. File size of the data should not exceed 1GB (should be stored in a space saving manner)
-11. App should be an executable (Double clicked or can be run using the “java -jar” command).
+11. App should be an executable (Double clicked or can be run using the `java -jar` command).
 
 
 *{More to be added}*
