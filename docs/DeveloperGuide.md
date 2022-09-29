@@ -285,14 +285,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
 | `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
 
-| Priority | As a …​                                    | I want to …​                               | So that I can…​                                   |
-|----------|--------------------------------------------|--------------------------------------------|---------------------------------------------------|
-| `* * *`  | busy SOC student                           | track what I have to complete              | not miss out on any deadlines                     |
-| `* * *`  | organised student                          | store my contacts from school              |                                                   |
-| `* * *`  | SOC student who is overloading             | manage all my module tasks in one place    | track important tasks and details                 |
-| `* * *`  | SOC student with contacts in SOC           | store and manage contacts                  | know who is taking the same modules as me quickly |
-| `* * *`  | SOC student stuck on an assignment         | search for contacts taking the same module | contact them quickly to ask for help              |
-
 *{More to be added}*
 
 ### Use cases
