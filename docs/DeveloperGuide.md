@@ -348,9 +348,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Customer**: A contact detail, contains information about the customer, and a list of Commissions.
-* **Commission**: A single commission made by a customer, contains specifics about the commission and list of Iterations.
-* **Iteration**: A single iteration of the commission, contains an image for the commission and a text comment on the image. 
+* **Customer**: A contact detail. Contains information about the customer, and a list of commissions.
+* **Commission**: An art piece requested by a customer that has been delivered or under progress. Contains specifics about the commission and list of iterations.
+* **Iteration**: A single version of a commission. Contains an image and a text comment on the image. 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
