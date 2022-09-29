@@ -168,6 +168,36 @@ Format: `delcom INDEX`
 Example:
 * `delcom 14`
 
+### Adding iteration to a commission: `additer`
+Adds an image at the specified file path to the current commission.
+
+Format: `additer FILEPATH`
+
+* The file path specified should be an absolute path from your root directory.
+* The command requires a commission to be selected.
+* The image name will assume the filename specified in the command.
+* Currently, only image file types .png, .jpg, .bmp and .gif are supported
+* In addition, you can currently only upload one image per commission. Trying to add an image to a commission with an
+  existing image will not be allowed. Your existing image will not be overridden, but the new image will not be added to
+  your commission. To replace a commission image, first delete the image before adding a new image.
+
+<div markdown="span" class="alert alert-info">
+**:information_source: Notes about images in ArtBuddy:**<br>
+
+ArtBuddy creates a copy of each file you upload. This means that you can edit, delete, or
+move your original copy of the file without affecting the uploaded image on ArtBuddy.
+</div>
+
+Example: `additer /Users/John/Downloads/Clown.png`
+
+### Deleting iteration from commission: `deliter`
+Deletes an iteration from a commission.
+
+Format: `deliter [INDEX]`
+* The command requires a commission to be selected.
+* As each commission currently has only one image, the command will simply delete the image tied to the current commission, if it exists.
+* You may want to note that your local copy of the image will not be deleted.
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -226,4 +256,6 @@ Action | Format, Examples
 **List** | `list`
 **Open Commission** | `opencom INDEX`<br> e.g., `opencom 14`
 **Delete Commission** | `delcom INDEX`<br> e.g., `delcom 14`
+**Add Iteration** | `additer FILEPATH`<br> e.g., `additer /Users/John/Downloads/Bread.jpeg`
+**Delete Iteration**| `deliter INDEX`<br> e.g., `deliter 1`
 **Help** | `help`
