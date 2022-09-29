@@ -367,7 +367,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 5. System should be usable by a Computing student who has never applied to an internship before
 6. System should be easily usable by the majority of Year 2+ Computing students
 
+
 *{More to be added}*
+
 
 ### Glossary
 
