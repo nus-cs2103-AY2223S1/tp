@@ -302,6 +302,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                              | have different key views which contain important related data                            | package and declutter unneeded data and focus on what's at hand                                                                  |
 | `* * *`  | user                              | modify current fields                                                                    | keep my data up to date                                                                                                          |
 | `*`      | user                              | make and customize my own views                                                          | get to decide what groups of data matter to my, and empower myself on what I care about                                          |
+| `* * *`  | user                               | edit my data manually just by inputting a command to the query                          | so that I can modify it in a shorter time in case of a typo.                                                                     |
+| `* *  `  | user                               | edit key information that I care about conveniently from my high-level view             | so that I can keep my focus to do what matters                                                                                   |
+| `* * *`  | user                               | update my data for existing applicants                                                  | so that I can view their latest details in case of reapplication                                                                 |
+| `*    `  | user                               | delete applicants that I note as unqualified                                            | so that I do not waste too much space                                                                                            |
+| `* *  `  | user                               | create new applicant attributes                                                         | so that I can easily describe applicants based on my preference                                                                  |
+| `*    `  | user                               | view a data visualization/dashboard                                                     | so that I can easily and visually get the key information I need and care about                                                  |
+| `* *  `  | user                               | customize my UI/UX settings e.g., Color settings, font size                             | so that the application can cater to my needs                                                                                    |
+| `*    `  | user                               | make my own pseudo commands/macros                                                      | so that I can improve my efficiency with the app                                                                                 |
+| `* * *`  | user                               | import data from others                                                                 | so that I can receive resources from other users                                                                                 |
+| `* * *`  | user                               | export my data                                                                          | so that I can share resources with others                                                                                        |
+| `* *  `  | user                               | add a custom field to my data                                                           | so that I can have more flexible records                                                                                         |
+| `*    `  | user                               | add profile pictures to my records                                                      | so that I can see who I’m looking at                                                                                             |
+
 *{More to be added}*
 
 ### Use cases
@@ -401,6 +414,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  InternConnect is closed
 
     Use case ends.
+
+**Use case: Help**
+
+**MSS**
+1. User requests for help
+2. InternConnect shows a pop-up window with the link to the User Guide
+    
+    Use case ends.
+
+**Use case: Find an applicant**
+
+**MSS**
+1. User requests to find all applicants with matching keywords in its specified fields
+2. InternConnect lists all applicants who match the request
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 1b. The given specifier(s) are invalid.
+
+    * 1b1. InternConnect shows an error message.
+
+      Use case ends.
 
 *{More to be added}*
 

@@ -60,9 +60,7 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 
 ### Viewing help: `help`
 
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
+Shows a message explaining how to access the help page.
 
 Format: `help`
 
@@ -71,7 +69,7 @@ Format: `help`
 
 Adds an applicant to InternConnect.
 
-Format: `dd name/NAME phone/PHONE email/EMAIL [specifier/SPECIFIER_DETAIL]`
+Format: `add name/NAME phone/PHONE email/EMAIL [specifier/SPECIFIER_DETAIL]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of specifiers (including 0)
@@ -128,23 +126,25 @@ Examples:
 *  `edit 2 name/Betty` Edits the name of the 2nd person to be `Betty`.
 
 
-### Locating persons by name: `find`
+### Locating person's fields by field: `find`
 
 Finds persons whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find specifier/KEYWORD [more_specifier/MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* The search is case-insensitive. E.g., `bobby` will match `Bobby`.
+* The order of the keywords does not matter. E.g., `Bobby cortez` will match `Cortez bobby`.
+* Only full words will be matched e.g., `Bobby` will not match `Bobbys`.
+  
+  <!--- Can consider a flag for subwords in future increments) -->
+
+* Applicants matching at least one keyword will be returned (i.e., OR search). E.g., `Bobby Cortez` will return `Bobby Lacruz`, `Alexander Cortez`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find name/Bobby ` Returns applicants with names matching `bobby` and `Bobby Cortez`
+* `find gender/F cap/5 ` returns female applicants with a CAP of 5
+
+<br>
 
 
 ### Deleting an applicant: `delete`
