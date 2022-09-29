@@ -19,9 +19,9 @@ Project team leaders can:
 ## User stories
 
 #### Priorities: 
-- High (must have) - ``* * *``
+- High (must have) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- `* * *`
 - Medium (nice to have) - `* *`
-- Low (unlikely to have) - `*`
+- Low (unlikely to have) &nbsp;- `*`
 
 | Priority  | As a ...          | I want to ...                                                                  | So that I can ...                                                                      |
 |:----------|:------------------|:-------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------|
