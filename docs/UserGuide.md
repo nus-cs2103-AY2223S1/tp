@@ -203,13 +203,13 @@ Format: `exit`
  Action | Format, Examples                                                                                                                                                                                     
 -------------------|------------------
 **Add User** | `adduser [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…` <br> e.g., `adduser n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Delete User** | `deleteuser NAME`<br> e.g., `deleteuser James Ho`                                                                                                                                     
+**Delete User** | `deleteuser NAME`<br> e.g. `deleteuser James Ho`                                                                                                                                     
 **Edit User** | `edituser NAME [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br> e.g.,`edituser 2 n/James Lee e/jameslee@example.com`                                                                
-**Find User** | `finduser KEYWORD [MORE_KEYWORDS]`<br> e.g., `finduser James Jake`                                                                                                                                   
+**Find User** | `finduser KEYWORD [MORE_KEYWORDS]`<br> e.g. `finduser James Jake`                                                                                                                                   
 **List** | `list`                                                                                                                                                                                               
-**Add Group** | `addgroup GROUP` <br> e.g., addgroup CS2103T                                                                                                                                                         
-**Add Member** | `addmember [g/GROUP] [n/NAME]` <br> e.g., addmember g/CS2103T n/James Lee, addmember g/CS2101 n/DefaultUser                                                                                          
-**Assign Task** | `assigntask [n/NAME] [t/TASK]` <br> e.g., assigntask n/John t/TeamProject                                                                                                                            
-**Display Group** | `display GROUP` <br> e.g., display CS2103T                                                                                                                                                           
-**Delete Group** | `deletegroup GROUP` <br> e.g., deletegroup CS2103T                                                                                                                                                   
+**Add Group** | `addgroup GROUP` <br> e.g. `addgroup CS2103T`                                                                                                                                                         
+**Add Member** | `addmember [g/GROUP] [n/NAME]` <br> e.g. `addmember g/CS2103T n/James Lee, addmember g/CS2101 n/DefaultUser`                                                                                          
+**Assign Task** | `assigntask [n/NAME] [t/TASK]` <br> e.g. `assigntask n/John t/TeamProject`                                                                                                                            
+**Display Group** | `display GROUP` <br> e.g. `display CS2103T`                                                                                                                                                           
+**Delete Group** | `deletegroup GROUP` <br> e.g. `deletegroup CS2103T`                                                                                                                                                   
 **Exit** | `exit`                                                                                                                                                                                               
