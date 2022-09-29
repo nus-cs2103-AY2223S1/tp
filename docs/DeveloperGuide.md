@@ -257,27 +257,32 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* tech-savvy
+* university student
+* has a need to manage tasks from school
 * prefer desktop apps over other types
-* can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage module tasks faster than a typical mouse/GUI driven app and organise them by certain parameters
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​        | I want to …​                                                              | So that I can…​                             |
+|--------|----------------|---------------------------------------------------------------------------|---------------------------------------------|
+| `* * *` | beginner user  | add tasks                                                                 | keep track of the tasks on hand             |
+| `* * *` | beginner user  | delete tasks                                                              | remove tasks that are no longer relevant    |
+| `* * *` | beginner user  | tag my tasks to a specific module or commitment                           | organise them better                        |
+| `* * *` | beginner user  | keep track of deadlines related to added tasks                            |                                             |
+| `* * *` | beginner user  | see all the tasks I have that have yet to be completed                    | easily identify tasks to work on            |
+| `* *`  | potential user | see example tasks that show how the app displays tasks and their statuses | have a better idea of how the app functions |
+| `* *`  | beginner user  | edit the task names                                                       | rectify mistakes                            |
+| `* *`  | familiar user  | sort my tasks by due date                                                 | easily see which are the most urgent        |
+
+
 
 *{More to be added}*
 
