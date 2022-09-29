@@ -1,6 +1,8 @@
 ---
 layout: page
+
 title: John's Project Portfolio Page
+
 ---
 
 ### Project: InTrack
