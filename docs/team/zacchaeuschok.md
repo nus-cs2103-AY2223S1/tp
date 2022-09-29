@@ -11,7 +11,7 @@ It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
-## Code Contributed 
+## Code Contributed
 
 To be added soon
 
