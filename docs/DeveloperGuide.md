@@ -286,18 +286,76 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `uNivUSal` and the **Actor** is the `user`, unless specified otherwise)
+<br>
+</br>
+
+**Use case: Get Help**
+
+**MSS**
+
+1. User enters command ‘help’
+2. uNivUSal displays help message to user
+
+    Use case ends.
+<br>
+
+**Use case: edit a person**
+
+**MSS**
+
+1. User wants to edit a person in uNivUSal
+2. User requests to list people
+3. uNivUSal shows a list of people
+4. User edits the relevant fields they wish to edit of the person using edit command
+5. uNivUSal displays the person with updated fields
+
+   Use case ends.
+   <br>
+
+
+**Use case: List people in uNivUSal**
+
+**MSS**
+
+1. User requests for the list of people in uNivUSal
+2. uNivUSal displays the list of people to user
+
+    Use case ends.
+<br>
 
 **Use case: Delete a person**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to list people
+2. uNivUSal shows a list of people
+3. User selects person to be deleted based on the index
+4. User deletes person from uNivUSal using delete command and the person’s index
+5. uNivUSal displays updated list
 
     Use case ends.
+<br>
+
+**Use case: Clear uNivUSal**
+
+**MSS**
+
+1. User enters command ‘clear’
+2. System clears all the contacts in uNivUSal
+
+    Use case ends.
+<br>
+
+**Use case: Add a person**
+
+**MSS**
+
+1. User wants to add a person to uNivUSal
+2. User enters command ‘add’
+
+   Use case ends.
+<br>
 
 **Extensions**
 
@@ -307,7 +365,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. uNivUSal shows an error message.
 
       Use case resumes at step 2.
 
