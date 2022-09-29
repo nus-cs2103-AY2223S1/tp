@@ -19,6 +19,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: UI
 
+### Tan Xuan Yun
+
+<img src="images/tanxuanyun.png" width="200px">
+
+[[github](http://github.com/tanxuanyun)]
+[[portfolio](team/tanxuanyun.md)]
+
+* Role: `to be added soon`
+* Responsibilities: `to be added soon`
+
 ### Johnny Doe
 
 <img src="images/johndoe.png" width="200px">
