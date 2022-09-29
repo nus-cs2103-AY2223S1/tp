@@ -45,8 +45,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/tanhl2000)] [[portfolio](team/tanhl2000.md)]
 
-* Role: Integration
-* Responsibilities: Merging team commits
+* Role: Developer
+* Responsibilities: Integration
 
 ### Jean Doe
 
