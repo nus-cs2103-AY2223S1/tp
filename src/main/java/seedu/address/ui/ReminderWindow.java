@@ -15,17 +15,17 @@ import seedu.address.model.person.Person;
  */
 public class ReminderWindow extends UiPart<Stage> {
 
-    public static final String REMINDER_MESSAGE = "This is from the reminder component!";
+    public static final String REMINDER_MESSAGE = "Here are your upcoming reminders:";
 
     private static final Logger logger = LogsCenter.getLogger(ReminderWindow.class);
     private static final String FXML = "ReminderWindow.fxml";
     private ObservableList<Person> personObservableList;
-    private PersonListPanel personListPanel;
+    private ReminderListPanel reminderListPanel;
 
     @FXML
     private Label reminderMessage;
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane reminderListPanelPlaceholder;
 
     /**
      * Creates a new ReminderWindow.
@@ -43,8 +43,8 @@ public class ReminderWindow extends UiPart<Stage> {
     public ReminderWindow(ObservableList<Person> personObservableList) {
         this(new Stage());
         this.personObservableList = personObservableList;
-        this.personListPanel = new PersonListPanel(personObservableList);
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        this.reminderListPanel = new ReminderListPanel(personObservableList);
+        reminderListPanelPlaceholder.getChildren().add(reminderListPanel.getRoot());
     }
 
     /**

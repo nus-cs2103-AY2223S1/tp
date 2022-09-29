@@ -13,13 +13,16 @@
     <scene>
         <Scene>
             <stylesheets>
-                <URL value="@ReminderWindow.css" />
                 <URL value="@DarkTheme.css" />
+                <URL value="@ReminderWindow.css" />
             </stylesheets>
 
             <VBox alignment="CENTER" fx:id="reminderMessageContainer">
                 <children>
-                    <Label fx:id="reminderMessage" text="Label">
+                    <Label fx:id="reminderMessage" text="Label" styleClass="reminder-header">
+                        <padding>
+                            <Insets top="10" right="10" bottom="10" left="10" />
+                        </padding>
                         <HBox.margin>
                             <Insets right="5.0" />
                         </HBox.margin>
@@ -28,7 +31,7 @@
                         <padding>
                             <Insets top="10" right="10" bottom="10" left="10" />
                         </padding>
-                        <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                        <StackPane fx:id="reminderListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
                     </VBox>
                 </children>
                 <opaqueInsets>
