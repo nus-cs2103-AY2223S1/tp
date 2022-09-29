@@ -420,6 +420,27 @@ Guarantees: Specified task is marked as done
   Steps 1b2-1b3 are repeated until the command entered is correct.
   Use case resumes from step 2.
 
+####**Use case: UC9 - Mark task as not done**
+Preconditions: There are existing tasks in JARVIS
+Guarantees: Specified task is marked as not done
+
+**MSS:**
+1. Avenger inputs command to mark a task as not done.
+2. JARVIS displays list of tasks with the aforementioned task marked as not done.
+   Use case ends.
+
+**Extensions:**
+* 1a. JARVIS detects an error in the format of the input command.
+  * 1a1. JARVIS requests user to re-input their command.
+  * 1a2. Avenger modifies and re-inputs command.
+  Steps 1a1-1a2 are repeated until the command entered is correct.
+  Use case resumes from step 2.
+* 1b. JARVIS detects no task at specified task index.
+  * 1b1. JARVIS informs user no task is found.
+  * 1b2.  JARVIS displays the list of task and requests user to re-input their command.
+  * 1b3. Avenger inputs command.
+  Steps 1b2-1b3 are repeated until the command entered is correct.
+  Use case resumes from step 2.
 
 
 
