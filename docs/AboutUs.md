@@ -38,15 +38,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Poomklao Teerawatthanaprapha
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/parnikkapore.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/parnikkapore)]
+[[portfolio](team/parnikkapore.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Integration, CI expert
+* Responsibilities: adding/deleting/marking/unmarking tasks
 
 ### James Doe
 
