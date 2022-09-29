@@ -380,7 +380,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. The given index is invalid.
 
     * 3a1. FRIDAY shows an error message.
-    
+
       Use case resumes at step 2.
 
 * 3b. The given details have the wrong formats or tags
