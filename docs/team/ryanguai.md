@@ -9,30 +9,30 @@ YellowBook is for university students who are involved in many projects and have
 
 Given below are my contributions to the project.
 
-* **New Feature**: 
-  * What it does: 
-  * Justification: 
-  * Highlights: 
+* **New Feature**:
+  * What it does:
+  * Justification:
+  * Highlights:
   * Credits:
 
-* **New Feature**: 
+* **New Feature**:
 
 * **Code contributed**: [RepoSense link]()
 
 * **Project management**:
-  * 
+  *
 
 * **Enhancements to existing features**:
   *
-  
+
 * **Documentation**:
   * User Guide:
-    * 
+    *
   * Developer Guide:
-    * 
+    *
 
 * **Community**:
-  * 
-  
+  *
+
 * **Tools**:
-  * 
+  *
