@@ -15,7 +15,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/johnrhimawan)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/johnrhimawan.md)]
 
 * Role: Developer
 * Responsibilities: Something
@@ -44,7 +44,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/bigcrushes.png" width="200px">
 
 [[github](http://github.com/bigcrushes)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/bigcrushes.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
