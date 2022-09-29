@@ -266,7 +266,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * needs to track customer activity in own department store
 * needs to generate statistics based of customer data
 
-**Value proposition**: A one stop marketing tool that allows department stores to manage and organize their customer contacts for usage in the company’s various marketing plans
+**Value proposition**: A one-stop marketing tool that allows department stores to manage and organize their customer contacts for usage in the company’s various marketing plans
 
 
 ### User stories
