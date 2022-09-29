@@ -1,9 +1,10 @@
 package seedu.travelr.storage;
 
-import seedu.travelr.commons.exceptions.IllegalValueException;
-import seedu.travelr.model.tag.Tag;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+
+import seedu.travelr.commons.exceptions.IllegalValueException;
+import seedu.travelr.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Tag}.

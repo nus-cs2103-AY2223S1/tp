@@ -2,13 +2,13 @@ package seedu.travelr.ui;
 
 import java.util.logging.Logger;
 
-import seedu.travelr.commons.core.LogsCenter;
-import seedu.travelr.model.person.Person;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
+import seedu.travelr.commons.core.LogsCenter;
+import seedu.travelr.model.person.Person;
 
 /**
  * Panel containing the list of persons.

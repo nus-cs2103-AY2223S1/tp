@@ -2,15 +2,15 @@ package seedu.travelr.ui;
 
 import java.util.logging.Logger;
 
-import seedu.travelr.MainApp;
-import seedu.travelr.commons.core.LogsCenter;
-import seedu.travelr.commons.util.StringUtil;
-import seedu.travelr.logic.Logic;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import seedu.travelr.MainApp;
+import seedu.travelr.commons.core.LogsCenter;
+import seedu.travelr.commons.util.StringUtil;
+import seedu.travelr.logic.Logic;
 
 /**
  * The manager of the UI component.

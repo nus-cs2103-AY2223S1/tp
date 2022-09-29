@@ -5,6 +5,8 @@ import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
 
+import javafx.application.Application;
+import javafx.stage.Stage;
 import seedu.travelr.commons.core.Config;
 import seedu.travelr.commons.core.LogsCenter;
 import seedu.travelr.commons.core.Version;
@@ -28,8 +30,6 @@ import seedu.travelr.storage.StorageManager;
 import seedu.travelr.storage.UserPrefsStorage;
 import seedu.travelr.ui.Ui;
 import seedu.travelr.ui.UiManager;
-import javafx.application.Application;
-import javafx.stage.Stage;
 
 /**
  * Runs the application.

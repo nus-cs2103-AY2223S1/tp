@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import seedu.travelr.commons.core.GuiSettings;
 import seedu.travelr.commons.core.LogsCenter;
 import seedu.travelr.logic.commands.Command;
@@ -15,7 +16,6 @@ import seedu.travelr.model.Model;
 import seedu.travelr.model.ReadOnlyAddressBook;
 import seedu.travelr.model.person.Person;
 import seedu.travelr.storage.Storage;
-import javafx.collections.ObservableList;
 
 /**
  * The main LogicManager of the app.

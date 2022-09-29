@@ -1,7 +1,11 @@
 package seedu.travelr.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.travelr.logic.parser.CliSyntax.*;
+import static seedu.travelr.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.travelr.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.travelr.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.travelr.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.travelr.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;

@@ -1,7 +1,11 @@
 package seedu.travelr.logic.parser;
 
 import static seedu.travelr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.travelr.logic.parser.CliSyntax.*;
+import static seedu.travelr.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.travelr.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.travelr.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.travelr.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 import java.util.stream.Stream;

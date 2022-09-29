@@ -2,12 +2,6 @@ package seedu.travelr.ui;
 
 import java.util.logging.Logger;
 
-import seedu.travelr.commons.core.GuiSettings;
-import seedu.travelr.commons.core.LogsCenter;
-import seedu.travelr.logic.Logic;
-import seedu.travelr.logic.commands.CommandResult;
-import seedu.travelr.logic.commands.exceptions.CommandException;
-import seedu.travelr.logic.parser.exceptions.ParseException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -16,6 +10,12 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import seedu.travelr.commons.core.GuiSettings;
+import seedu.travelr.commons.core.LogsCenter;
+import seedu.travelr.logic.Logic;
+import seedu.travelr.logic.commands.CommandResult;
+import seedu.travelr.logic.commands.exceptions.CommandException;
+import seedu.travelr.logic.parser.exceptions.ParseException;
 
 /**
  * The Main Window. Provides the basic application layout containing

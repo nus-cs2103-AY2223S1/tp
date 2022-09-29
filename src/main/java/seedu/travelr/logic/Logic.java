@@ -2,6 +2,7 @@ package seedu.travelr.logic;
 
 import java.nio.file.Path;
 
+import javafx.collections.ObservableList;
 import seedu.travelr.commons.core.GuiSettings;
 import seedu.travelr.logic.commands.CommandResult;
 import seedu.travelr.logic.commands.exceptions.CommandException;
@@ -9,7 +10,6 @@ import seedu.travelr.logic.parser.exceptions.ParseException;
 import seedu.travelr.model.Model;
 import seedu.travelr.model.ReadOnlyAddressBook;
 import seedu.travelr.model.person.Person;
-import javafx.collections.ObservableList;
 
 /**
  * API of the Logic component

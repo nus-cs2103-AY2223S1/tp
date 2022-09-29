@@ -2,8 +2,8 @@ package seedu.travelr.commons.util;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.travelr.MainApp;
 import javafx.scene.image.Image;
+import seedu.travelr.MainApp;
 
 /**
  * A container for App specific utility functions

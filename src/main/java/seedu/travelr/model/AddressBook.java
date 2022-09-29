@@ -4,9 +4,9 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import javafx.collections.ObservableList;
 import seedu.travelr.model.person.Person;
 import seedu.travelr.model.person.UniquePersonList;
-import javafx.collections.ObservableList;
 
 /**
  * Wraps all data at the address-book level

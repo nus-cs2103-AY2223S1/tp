@@ -2,7 +2,11 @@ package seedu.travelr.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.travelr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.travelr.logic.parser.CliSyntax.*;
+import static seedu.travelr.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.travelr.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.travelr.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.travelr.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -11,9 +15,9 @@ import java.util.Set;
 
 import seedu.travelr.commons.core.index.Index;
 import seedu.travelr.logic.commands.EditCommand;
+import seedu.travelr.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.travelr.logic.parser.exceptions.ParseException;
 import seedu.travelr.model.tag.Tag;
-import seedu.travelr.logic.commands.EditCommand.EditPersonDescriptor;
 
 /**
  * Parses input arguments and creates a new EditCommand object

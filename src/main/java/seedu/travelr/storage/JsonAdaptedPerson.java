@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.travelr.commons.exceptions.IllegalValueException;
 import seedu.travelr.model.person.Address;
 import seedu.travelr.model.person.Email;
@@ -13,8 +16,6 @@ import seedu.travelr.model.person.Name;
 import seedu.travelr.model.person.Person;
 import seedu.travelr.model.person.Phone;
 import seedu.travelr.model.tag.Tag;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Jackson-friendly version of {@link Person}.

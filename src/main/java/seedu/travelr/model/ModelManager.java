@@ -7,11 +7,11 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.travelr.commons.core.GuiSettings;
 import seedu.travelr.commons.core.LogsCenter;
 import seedu.travelr.model.person.Person;
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 
 /**
  * Represents the in-memory model of the address book data.
