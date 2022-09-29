@@ -303,7 +303,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user with many contacts | sort contacts by multiple fields                           | organise my contacts list with greater degree                              |
 | `*`      | user with many contacts | mark some contacts as my favourites                        | spot them easily among other contacts                                      |
 | `*`      | user with many contacts | sort favourite contacts before others                      | see them before other contacts                                             |
-| `*`      | user                    | view suggestions of contacts matching the name I am typing | find a contact without typing the full name                                |
 | `*`      | user                    | change the order of information for contacts               | view more important information before others                              |
 | `*`      | user                    | customise the theme of the app                             | adjust it to my comfort and liking                                         |
 *{More to be added}*
