@@ -23,7 +23,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/emilyong.png" width="200px">
 
 [[github](http://github.com/EmilyOng)]
-[[portfolio](team/EmilyOng.md)]
+[[portfolio](team/emilyong.md)]
 
 * Role: Developer
 * Responsibilities: UI
