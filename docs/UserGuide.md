@@ -253,7 +253,7 @@ Examples:
 * `status 2 Interviewed` adds a recruitment status of `Interviewed` to the 2nd person in the address book.
 * `status 2 Accepted` updates the recruitment status of the 2nd person in the address book from `Interviewed` to `Accepted`.
 
-### Adding optional information
+### Adding optional information: `note`
 
 Adds additional optional information (notes) to a person
 
