@@ -177,7 +177,7 @@ Examples:
 
 __Optional Parameter 2: Date of Birth__
 
-Format: `edit INDEX [n/NAME] [d/DOB]`
+Format: `edit INDEX [d/DOB]`
 
 - Edits the date of birth of a person in the contact list. Date formats accepted are: d.M.yyyy, dd MMM yyyy, M d, yyyy
 - `INDEX` must be **a positive integer** (i.e 1,2,3…)
