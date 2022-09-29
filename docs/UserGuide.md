@@ -29,8 +29,6 @@ WorkBook (WB) is a **desktop app for CS/tech students who are applying for inter
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all internships added.
-
    * **`add`**`n/Meta d/2022-09-15 e/hrmonkey@example.com a/John street, block 123, #01-01` : Adds an internship from `Meta` to the WorkBook.
 
    * **`delete`**`3` : Deletes the 3rd internship shown in the current list.
@@ -91,12 +89,6 @@ A person can have any number of tags (including 0)
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-
-### Listing all persons : `list`
-
-Shows a list of all persons in the address book.
-
-Format: `list`
 
 ### Editing a person : `edit`
 
@@ -191,6 +183,5 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/COMPANY_NAME] [d/YYYY-MM-DD] [e/EMAIL] [a/ADDRESS_OF_INTERNSHIP] [t/TAG]…​​`<br> e.g.,`edit 2 n/META e/hrmonkey@example.com`
-**List** | `list`
 **Help** | `help`
 **Exit** | `exit`
