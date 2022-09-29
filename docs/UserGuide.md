@@ -117,23 +117,34 @@ Examples:
 - `list -p` followed by `edit 2 n/Betsy Crower t/ p/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags, as well as deleting the phone number associated with the person, without deleting the internship associated with the person.
 - `list -i` followed by `edit 2 s/Rejected d/` Edits the status of the 2nd internship to `Rejected` and deletes the date of interview.
 
-### Locating persons by name: `find`
+
+### Locating persons by name : `find -p`
 
 Finds persons whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+Format: `find -p KEYWORD`
+- The search is case-insensitive. e.g **hans** will match **Hans**
+- Only the person name is searched.
+- Partial words will be matched e.g. **Han** will match **Hans**
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+- `find -p John` returns **john** and **John Doe**
+
+
+### Locating internships by name : `find -i`
+
+Finds internships whose names contain any of the given keywords.
+
+Format: `find -i KEYWORD`
+- The search is case-insensitive. e.g **abc pte ltd_software engineer** will match **ABC Pte Ltd_Software Engineer**
+- Only the internship name is searched.
+- Partial words will be matched e.g. **ltd** will match **XYZ Ltd_Full Stack**
+
+Examples:
+- `find -i` **Shopee** returns **Shopee_Front End Engineer** and **Shopee_Full Stack**
+- `find -i` **Shopee_Front** returns **Shopee_Front End Engineer**
+- `find -i` **Back End** returns **ByteDance_Back End Engineer** and **Google_Back End Engineer**
+
 
 ### Deleting a person or internship by index : `delete`
 
@@ -189,12 +200,12 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action     | Format, Examples                                                                                                                                                      |
+|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Clear**  | `clear`                                                                                                                                                               |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
+| **Find**   | `find -i/p KEYWORD`<br> e.g., `find -p James Jake`, `find -i frontend engineer`                                                                                       |
+| **List**   | `list`                                                                                                                                                                |
+| **Help**   | `help`                                                                                                                                                                |
