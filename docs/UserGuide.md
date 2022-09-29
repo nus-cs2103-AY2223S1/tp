@@ -105,5 +105,3 @@ _Details coming soon ..._
 | **review** | `review`                                          | `review`                    |
 | **List**   | `list`                                            | `list`                      |
 | **exit**   | `exit`                                            | `exit`                      |
-
-
