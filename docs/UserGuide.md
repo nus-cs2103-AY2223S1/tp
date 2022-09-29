@@ -1,5 +1,6 @@
 ---
-layout: page title: User Guide
+layout: page
+title: User Guide
 ---
 
 User Guide
@@ -41,33 +42,23 @@ more effectively than traditional GUI apps.
 
 1. Copy the file to the folder you want to use as the _home folder_ for your SETA.
 
-<<<<<<< HEAD
-
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app
    contains some sample data.<br>
    ![Ui](images/userguide-screenshots/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`liststu`** and pressing Enter will
    go to the student page, listing all the students.<br>
-   =======
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app
-   contains some sample data.<br>
-   ![Ui](images/userguide-screenshots/ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
-   open the help window.<br>
-
-> > > > > > > dd07c27 (Format the file)
 Some example commands you can try:
 
-    * **`liststu`** : Lists all students.
+* **`liststu`** : Lists all students.
 
-    * **`addstu`**`n/John Lim Jun Jie t/@johnlimjj e/johnlim@example.com` : Adds a student named `John Lim Jun Jie` to
-      the student list.
+* **`addstu`**`n/John Lim Jun Jie t/@johnlimjj e/johnlim@example.com` : Adds a student named `John Lim Jun Jie` to
+  the student list.
 
-    * **`deletestu`**`3` : Deletes the 3rd student shown in the current list.
+* **`deletestu`**`3` : Deletes the 3rd student shown in the current list.
 
-    * **`exit`** : Exits the app.
+* **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
