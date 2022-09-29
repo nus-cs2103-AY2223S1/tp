@@ -1,5 +1,5 @@
 {
-  "persons": [ {
+  "profiles": [ {
     "name": "Valid Profile",
     "phone": "9482424",
     "email": "hans@example.com",

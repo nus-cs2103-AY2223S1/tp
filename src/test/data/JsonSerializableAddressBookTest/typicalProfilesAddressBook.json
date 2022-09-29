@@ -1,6 +1,6 @@
 {
   "_comment": "AddressBook save file which contains the same Profile values as in TypicalProfiles#getTypicalAddressBook()",
-  "persons" : [ {
+  "profiles" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",
     "email" : "alice@example.com",
