@@ -371,8 +371,15 @@ _{More to be added}_
 
 ### Glossary
 
-- **Mainstream OS**: Windows, Linux, Unix, OS-X
-- **Private contact detail**: A contact detail that is not meant to be shared with others
+- **Mainstream OS**: Windows, Linux, Unix, MacOS
+- **TA**: Teaching Assistant, a student who helps the lecturer in a class
+- **CRUD**: Create, Read, Update, Delete. The four main functions that are implemented by a persistent storage application.
+- **SoC**: School of Computing, National University of Singapore
+- **CLI**: Command Line Interface
+- **GUI**: Graphical User Interface
+- **32-bit/64-bit**: The number of bits that a computer's CPU (Central Processing Unit) can process at one time. 32-bit CPUs can only process 32 bits of data at one time, while 64-bit CPUs can process 64 bits of data at one time.
+  64-bit CPUs are more powerful than 32-bit CPUs, but 32-bit CPUs are still more common in computers.
+- **Disk Space**: The amount of space available on a computer's hard disk for storing data.
 
 ---
 
