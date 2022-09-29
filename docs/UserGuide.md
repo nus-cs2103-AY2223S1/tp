@@ -85,7 +85,7 @@ Examples:
 ### Removing students FYP: `delete`
 
 Removes a FYP from the FYP manager. A FYP could be deleted for the following reasons:
-* Student dropped the FYP 
+* Student dropped the FYP
 * Student finished the FYP
 
 Format: `delete STUDENT_ID`
@@ -109,7 +109,7 @@ Examples:
 * `mark A0123456G DONE`
 * `mark A0234567H YTS`
 
-### Searching keyword: `find`
+### Searching keyword: `find` [pending implementation]
 
 Finds projects whose names contain any of the given keyword(s).
 

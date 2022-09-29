@@ -9,15 +9,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Leong Ming Jian Eugene
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/eugenelmj.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/eugenelmj)]
+[[portfolio](team/eugenelmj.md)]
 
 * Role: Project Advisor
+* Responsibilities: Meeting Minutes
 
 ### Nicholas Russell Saerang
 
@@ -26,10 +26,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/russelldash332)]
 [[portfolio](team/russelldash332.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Team Lead, Git Expert
+* Responsibilities: Project Coordination
 
-### Chua Yu Xuan Jordan 
+### Chua Yu Xuan Jordan
 
 <img src="images/jordanchua.png" width="200px">
 
@@ -37,24 +37,34 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/jordanchua.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Storage
 
-### Jean Doe
+### Zhang Yuhao
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yh-15.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/YH-15)]
+[[portfolio](team/yh-15.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Testing
 
-### James Doe
+### Liu Han
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/sweetpotato0213.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/SweetPotato0213)]
+[[portfolio](team/sweetpotato0213.md)]
 
 * Role: Developer
 * Responsibilities: UI
+
+### Poh Yu Jie
+
+<img src="images/pokezardvgc.png" width="200px">
+
+[[github](http://github.com/PokezardVGC)]
+[[portfolio](team/pokezardvgc.md)]
+
+* Role: Developer
+* Responsibilities: Documentation + Code Quality

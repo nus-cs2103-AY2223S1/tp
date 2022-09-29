@@ -6,4 +6,4 @@ labels: 'type.Story'
 assignees: ''
 
 ---
-... so that I can 
+... so that I can
