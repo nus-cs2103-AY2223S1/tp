@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Linus Chan
 
-<img src="images/linuschan.png" width="200px">
+<img src="images/linuschancs.png" width="200px">
 
 [[github](https://github.com/linuschancs)]
 [[portfolio](team/linuschancs.md)]
