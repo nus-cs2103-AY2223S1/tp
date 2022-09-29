@@ -196,9 +196,9 @@ If your changes to the data file makes its format invalid, InternConnect will di
 | **Add**    | `add name/NAME phone/PHONE email/EMAIL [specifier/SPECIFIER_DETAIL]` <br> e.g., `add name/Bobby phone/91234567 email/bob@example.com job/420` |
 | **Clear**  | `clear`                                                                                                                                       |
 | **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                           |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                   |
+| **Edit**   | `edit INDEX [name/NAME] [phone/PHONE] [email/EMAIL] [specifier/SPECIFIER_DETAIL]…​`<br> e.g.,`edit 1 phone/91234567 email/bob@example.com`    |
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                    |
-| **View**   | `view INDEX`<br> e.g., `view 2`                                                                                                                |
+| **View**   | `view INDEX`<br> e.g., `view 2`                                                                                                               |
 | **List**   | `list`                                                                                                                                        | 
 | **Help**   | `help`                                                                                                                                        |
 | **Exit**   | `exit`                                                                                                                                        |
