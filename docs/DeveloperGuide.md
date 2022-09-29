@@ -324,6 +324,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 
+**Use case: Modify an applicant**
+
+**MSS**
+
+1.  User requests to modify an applicant with its specifiers
+2.  InternConnect modifies the applicant
+3.  InternConnect shows the updated applicant
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. InternConnect detects that the specifiers given is invalid.
+
+    * 1a1. InternConnect shows an error message.
+
+      Use case ends.
+
+
 **Use case: Delete an applicant**
 
 **MSS**
