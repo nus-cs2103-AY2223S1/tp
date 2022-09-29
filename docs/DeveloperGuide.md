@@ -274,7 +274,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | -------- |--------------------------------------------| ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | NUS student                                | view the list of tasks I need to complete        | start implementing those tasks.               |
 | `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
+| `* * *`  | NUS student                                | mark a task as complete        | have a better idea of what I have completed.                                   |
 | `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
 | `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
 | `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
@@ -315,6 +315,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. MODPRO displays the list of tasks
 
    Use case ends.
+   
+**Use case: Mark a task as complete**
+
+**MSS**
+1. User requests to mark a specific task as complete
+2. MODPRO marks the task
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given index is invalid.
+
+    * 1a1. MODPRO shows an error message..
+
+      Use case ends.
+
+
+*{More to be added}*
+
 
 *{More to be added}*
 
