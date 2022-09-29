@@ -103,22 +103,23 @@ Shows a list of all persons in the address book.
 Format: `list`
 
 
-### Editing a person : `edit`
+### Editing an applicant : `edit`
 
-Edits an existing person in the address book.
+Edits an existing applicant in InternConnect.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [name/NAME] [phone/PHONE] [email/EMAIL] [specifier/SPECIFIER_DETAIL]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the applicant at the specified `INDEX`. 
+* The index refers to the index number shown in the displayed applicant list. 
+* The index **must be a positive integer** 1, 2, 3, …​ and not exceed the total records listed.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+* When modifying tags, the existing tags of the applicant will be removed i.e adding of tags is not cumulative.
+* You can remove all the applicant’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 phone/91234567 email/bob@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `bob@example.com` respectively.
+*  `edit 2 name/Betty` Edits the name of the 2nd person to be `Betty`.
 
 
 ### Locating persons by name: `find`
