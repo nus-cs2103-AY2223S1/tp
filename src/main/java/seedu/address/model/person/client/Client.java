@@ -1,4 +1,4 @@
-package seedu.address.model.person.Client;
+package seedu.address.model.person.client;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
