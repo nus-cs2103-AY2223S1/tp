@@ -55,3 +55,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: To be Added
+
+### Tin Jingyao
+
+<img src="images/tin-jy.png" width="200px">
+
+[[github](http://github.com/tin-jy)]
+[[portfolio](team/tin-jy.md)]
+
+* Role: Developer
+* Responsibilities: To be Added
