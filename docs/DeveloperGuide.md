@@ -383,6 +383,68 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+**Use case: Add iteration to a commission**<br>
+**Guarantees:**
+* An iteration, with an associated image, will be added to the specified commission only if its creation is successful
+* The new iteration will not be created if the image provided is not valid (e.g. it does not exist, or it is not
+  of the correct image format)
+
+**MSS:**
+1. User <u>opens a commission they want to edit (Open Commission)</u>.
+2. User enters the command to add an iteration to the commission selected, specifying the image to use for the
+   iteration using an absolute file path.
+3. AB creates a new iteration for the commission, associated with the image specified.
+4. AB updates the GUI to also show the new iteration.
+
+   Use case ends.
+
+**Extensions:**
+* 2a. The user enters a command that AB does not recognise.
+    * 2a1. AB shows an error message, and asks the user to enter a correct command.
+    * 2a2. User enters a new command.
+
+      Steps 2a1 and 2a2 are repeated until the command is correctly entered.
+
+      Use case resumes from step 3.
+
+* 2b. The specified file path the user specifies is invalid or does not exist.
+    * 2b1. AB shows an error message, and asks the user for a new command with a valid file path that exists.
+    * 2b2. User enters a new command.
+
+      Steps 2b1 and 2b2 are repeated until the command is correctly entered.
+
+      Use case resumes from step 3.
+
+* 2c. The specified file under the file path is not a valid file type.
+    * 2c1. AB lets the user know that the file is not supported, and requests for a new command
+      with a file of support file types.
+    * 2c2. User enters a new command.
+
+      Steps 2c1 and 2c2 are repeated until the command is correctly entered.
+
+      Use case resumes from step 3.
+
+**Use case: Delete an iteration of a commission<br>
+Preconditions: AB currently has a commission opened.<br>**
+
+**MSS:**
+1. Artist enters a command to delete a specified iteration of the commission.
+2. AB deletes the specified iteration and updates the GUI.
+   Use case ends.
+
+**Extensions:**
+* 1a. The user enters a command that AB does not recognise.
+    * 1a1. AB shows an error message, and asks the user to enter a correct command.
+    * 1a2. User enters a new command.<br>
+      Steps 1a1 and 1a2 are repeated until the command is correctly entered.<br>
+      Use case resumes from step 2.
+
+* 1b. The user tries to delete an iteration that does not exist.
+    * 1b1. AB shows an error message and asks the user to specify an iteration that exists.
+    * 1b2. User enters a new command.<br>
+      Steps 1b1 and 1b2 are repeated until the command is valid.<br>
+      Use case resumes from step 2.
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
