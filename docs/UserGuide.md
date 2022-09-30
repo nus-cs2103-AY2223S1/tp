@@ -1,8 +1,7 @@
 ---
-layout: page 
+layout: page
 title: User Guide
 ---
-
 # FoodRem User Guide
 
 ## About
