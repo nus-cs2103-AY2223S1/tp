@@ -339,8 +339,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Meeting**: An event that the user with the client at a specific date and time.
 
 --------------------------------------------------------------------------------------------------------------------
 
