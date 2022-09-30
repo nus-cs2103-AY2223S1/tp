@@ -41,13 +41,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Neo Jia Han
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jia-han.png" width="200px">
 
 [[github](http://github.com/jia-han)]
 [[portfolio](team/jia-han.md)]
 
-* Role: [to be added]
-* Responsibilities: [to be added]
+* Role: Developer
+* Responsibilities: Code quality, In charge of Model
 
 ### Timothy Jonathan Koei
 
