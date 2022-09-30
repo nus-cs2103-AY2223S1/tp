@@ -346,7 +346,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  YellowBook shows a list of persons
 3.  User requests to delete a specific person in the list
 4.  AddressBook deletes the person
 
@@ -360,7 +360,79 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. YellowBook shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Add a task**
+
+**MSS**
+
+1.  User requests to list tasks
+2.  YellowBook shows a list of tasks
+3.  User requests to delete a specific task in the list
+4.  YellowBook deletes the task
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. YellowBook shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Add a task**
+
+**MSS**
+
+1.  User requests to list tasks
+2.  YellowBook shows a list of tasks
+3.  User requests to add a task to the list
+4.  YellowBook adds the task to the end of the list
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. The user gives an invalid date format.
+
+    * 3a1. YellowBook shows an error message.
+
+      Use case resumes at step 2.
+
+* 3a. The user does not provide a task description.
+
+    * 3a1. YellowBook shows an error message.
+
+      Use case resumes at step 2.
+
+
+**Use case: Delete a task**
+
+**MSS**
+
+1.  User requests to list tasks
+2.  YellowBook shows a list of tasks
+3.  User requests to delete a specific task in the list
+4.  YellowBook deletes the task
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. YellowBook shows an error message.
 
       Use case resumes at step 2.
 
@@ -387,13 +459,48 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**MSS**
+
+1. User requests to list tasks
+2. YellowBook shows a list of tasks
+3. User requests to find a task tagged to specific contact
+4. YellowBook shows a list of task tagged to that contact
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. There is no contact matching specified keywords.
+
+    * 3a1. YellowBook shows an error message.
+
+      Use case resumes at step 2.
+  
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 30,000 persons without a noticeable sluggishness in performance for typical usage.
+3. Should be able to hold up to 30,000 tasks without a noticeable sluggishness in performance for typical usage.
+4. A user with above average typing speed for regular English text 
+(i.e. not code, not system admin commands) should be able to accomplish 
+most of the tasks faster using commands than using the mouse.
+5. Contact/task/tag names should contain alphanumeric characters and/or spaces and/or symbols.
+6. Contact/task/tag names should be case-insensitive.
+7. Contact phone numbers should contain numbers only.
+8. Should be usable by first-time user without referencing external guides.
+9. GUI should be usable by colour blind users.
+10. Should work on both 32-bit and 64-bit environments.
+11. GUI should appear as-designed on screens with resolutions from 1024x576 to 3840x2160.
+12. Should display a visual prompt when YellowBook is processing an user input.
+13. The project is expected to deliver a new iteration every 2 weeks.
+14. Should work without an active internet connection.
+15. Data files from YellowBook v1.1 onwards should be compatible with the future versions.
 
 *{More to be added}*
 
