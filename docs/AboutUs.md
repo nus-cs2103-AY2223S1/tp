@@ -9,6 +9,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
+### Mai Ting Kai
+
+<img src="images/ferusel.png" width="200px">
+
+[[github](https://github.com/ferusel)]
+[[portfolio](team/ferusel.md)]
+
+- Role: Team Lead
+
 ### Richard Dominick
 
 <img src="images/richdom2185.png" width="200px">
