@@ -52,8 +52,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/nqt230.png" width="200px">
 
-[github](http://github.com/nqt230)
-[portfolio](team/nqt230.md)
+[[github](http://github.com/nqt230)]
+[[portfolio](team/nqt230.md)]
 
 * Role: Developer
 * Responsibilities: UI
