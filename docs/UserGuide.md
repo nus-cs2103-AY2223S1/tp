@@ -30,7 +30,7 @@ guest management tasks done faster than traditional GUI apps.
 
    * **`list`** : Lists all guests.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com ci/19-05-2022 co/24-05-2022 ng/3`: Adds a guest named `John Doe` to the Guest Book.
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com ci/19-05-2022 co/24-05-2022 ng/3`: Adds a guest named `John Doe` to the guest book.
 
    * **`delete`**`3` : Deletes the 3rd guest shown in the current list.
 
@@ -74,7 +74,7 @@ guest management tasks done faster than traditional GUI apps.
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -168,7 +168,7 @@ GuestBook data are saved in the hard disk automatically after any command that c
 
 ### Editing the data file
 
-GuestBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+GuestBook data are saved as a JSON file `[JAR file location]/data/guestbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, GuestBook will discard all data and start with an empty data file at the next run.
