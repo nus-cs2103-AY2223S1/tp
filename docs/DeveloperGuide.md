@@ -257,13 +257,16 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
+* An artist who works through commissions
+* has a need to manage clients and commissions
+* wants to review past commission works and feedbacks
+* wants to market himself to the right clients
+* prefers desktop apps over other types
 * is reasonably comfortable using CLI apps
+* prefers typing to mouse interactions
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
+Allows artists to hone their craft systematically and tune their artworks to fit the taste of their clients which ultimately builds their reputation.
 
 
 ### User stories
@@ -307,30 +310,111 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `ArtBuddy`
+and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: Delete a customer**
+
+**MSS**
+
+1. ArtBuddy shows a list of customers
+2. User requests to delete a specific customer in the list
+3. ArtBuddy deletes the customer and all the customer's commissions
+4. ArtBuddy updates the displayed list of customers
+
+   Use case end.
+
+**Extensions**
+
+* 1a. The customer list is empty.
+
+  Use case ends.
+
+* 2a. The given index is invalid.
+    * 2a1. ArtBuddy shows an error message.
+
+      Use case ends.
 
 **Use case: View a Customer**
 
 **MSS**
 
-1.  User requests to list customers
-2.  ArtBuddy shows a list of customers
-3.  User requests to open customer in the list
-4.  ArtBuddy shows the list of commissions the customer made and the details of the customer
+1. User requests to list customers
+2. ArtBuddy shows a list of customers
+3. User requests to open customer in the list
+4. ArtBuddy shows the list of commissions the customer made and the details of the customer
+
+    Use case ends.
+
+
+**Extensions**
+
+* 1a. The customer list is empty.
+
+    Use case ends.
+* 2a. The given index is invalid.
+
+    * 2a1. ArtBuddy shows an error message.
+
+      Use case ends.
+
+**Use case: Add a customer**
+
+**MSS**
+
+1. ArtBuddy shows a list of customers
+2. User requests to add a customer and his or her details to the list
+3. ArtBuddy shows the updated list of customers
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. Necessary customer details not given.
+
+    * 2a1. ArtBuddy shows an error message.
+
+      Use case ends.
+    
+**Use case: Delete a commission**
+
+**MSS**
+
+1. ArtBuddy shows the list of commissions from the opened customer
+2. User requests to delete a specific commission in the list
+3. ArtBuddy deletes the commission and updates the list displayed
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The commission list is empty.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 2a. The given index is invalid.
 
-    * 3a1. ArtBuddy shows an error message.
+    * 2a1. ArtBuddy shows an error message.
 
-      Use case resumes at step 2.
+      Use case ends.
+
+**Use case: Add a commission**
+
+**MSS**
+
+1. ArtBuddy shows the list of commissions from the opened customer
+2. User requests to add a commission and its related details to the list
+3. ArtBuddy adds the commission and updates the list displayed
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. Necessary commission details not given.
+
+    * 2a1. ArtBuddy shows an error message.
+    
+      Use case ends.
 
 **Use case: Delete a Customer**
 
