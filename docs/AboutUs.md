@@ -9,6 +9,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
+### Bryan Lim Jing Xiang
+
+<img src="images/bryanljx.png" width="200px">
+
+[[github](https://github.com/bryanljx)]
+[[portfolio](team/bryanljx.md)]
+
+- Role: Project Member
+
 ### Richard Dominick
 
 <img src="images/richdom2185.png" width="200px">
