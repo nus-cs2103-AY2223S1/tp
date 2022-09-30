@@ -270,25 +270,30 @@ _{Explain here how the data archiving feature will be implemented}_
 
 (For all use cases below, the **System** is `FoodRem` and the **Actor** is the `purchasing manager`, unless specified otherwise)
 
-**Use case:**
+#### UC1: Add Item to Inventory
+Use Case: UC1 - Add Item to Inventory
+MSS:
+1. User adds an item to the inventory.
+2. FoodRem adds the item into the inventory list.
+   Use Case ends.
 
-**MSS**
+Extensions:
+* 1a. If the item name already exists in the inventory, FoodRem will throw an error.
+    * 1a1. User will re-enter command until the new item is correct.
+      Use case resumes from Step 2.
 
-1.  Add Info Here
 
-    Use case ends.
+#### UC2: Update Item in Inventory
+Use Case: UC2 - Update Item in Inventory
+MSS:
+1. User updates an inventory item's detail.
+2. FoodRem updates the detail of the inventory item.
+   Use case ends.
 
-**Extensions**
-
-* 1a. Add Info Here.
-
-  Use case ends.
-
-* 3a. Add Info Here.
-
-    * 3a1. Add Info Here.
-
-      Use case resumes at step 2.
+Extensions:
+* 1a. If the item does not exist in the inventory, FoodRem will throw an error.
+    * 1a1. User will re-enter command until the correct item is given (i.e item exists in inventory).
+      Use case resumes from Step 2.
 
 *{More to be added}*
 
