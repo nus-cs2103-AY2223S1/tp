@@ -10,10 +10,10 @@ RC4HDB is a **desktop app for managing RC4 housing related information, optimize
 * [Quick Start](#quick-start)
 * [Features](#features)
     * [Viewing help : help](#viewing-help--help)
-    * [Adding a resident : add](#adding-a-resident-add)
+    * [Adding a resident : add](#adding-a-resident--add)
     * [Listing all residents : list](#listing-all-residents--list)
     * [Editing an existing resident : edit](#editing-an-existing-resident--edit)
-    * [Locating residents by names : find](#locating-residents-by-name-find)
+    * [Locating residents by names : find](#locating-residents-by-name--find)
     * [Filtering residents by field : filter](#filtering-residents-by-field--filter)
     * [Deleting a resident : delete](#deleting-a-resident--delete)
     * [Clearing all entries : clear](#clearing-all-entries--clear)
@@ -21,8 +21,9 @@ RC4HDB is a **desktop app for managing RC4 housing related information, optimize
     * [Saving the data](#saving-the-data)
     * [Editing the data file](#editing-the-data-file)
     * [Importing from csv file : import](#importing-from-csv-file--import)
-    * [Exporting to csv file : export](#exporting-to-csv-file-export)
+    * [Exporting to csv file : export](#exporting-to-csv-file--export)
     * [CSV file format](#csv-file-format)
+    * [Format for resident fields](#format-for-resident-fields)
 * [Frequently Asked Questions](#faq)
 * [Command Summary](#command-summary)
 
@@ -63,7 +64,7 @@ RC4HDB is a **desktop app for managing RC4 housing related information, optimize
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken, unless otherwise specified.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
@@ -84,17 +85,17 @@ Format: `help`
 
 ### Adding a resident : `add`
 
-Adds a resident to the database.
+Adds a resident to the database. The format for resident fields can be found [here](#format-for-resident-fields).
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL f/FLOOR u/UNIT [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL r/FLOOR-UNIT g/GENDER h/HOUSE m/MATRIC_NUMBER [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A resident can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 f/5 u/88` adds a resident named John Doe, with a phone number, floor and unit number.
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com f/12 u/10 p/1234567 t/criminal` adds a resident named Betsy Crowe, with a phone number, floor and unit number, and 2 tags, *friend* and *criminal*.
+* `add n/John Doe p/98765432 e/johnDoe@gmail.com r/5-1 g/M h/D m/A9876543B` adds a resident named John Doe, with relevant personal and student information.
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com r/2-3 p/1234567 m/A3456789B g/F h/A` adds a resident named Betsy Crowe, with relevant personal and student information.
 
 ### Listing all residents : `list`
 
@@ -106,29 +107,29 @@ Format: `list`
 
 Edits the data of an existing resident in the RC4HDB database.
 
-Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [f/FLOOR] [u/UNIT] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/FLOOR-UNIT] [g/GENDER] [h/HOUSE] [m/MATRIC_NUMBER] [t/TAG]…​`
 
-* Edits the resident at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the resident at the specified `INDEX`. The index refers to the index number shown in the displayed residents list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without specifying any tags after it.
+* When editing tags, the existing tags of the resident will be removed i.e adding of tags is not cumulative.
+* You can remove all the resident’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 f/5 u/8` Edits the phone number, floor and unit number of the 1st person to be `91234567`, floor `5` and unit `8` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 p/91234567 r/5-8` Edits the phone number, room number of the 1st resident to be `91234567`, and `5-8` respectively.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd resident to be `Betsy Crower` and clears all existing tags.
 
 ### Locating residents by name : `find`
 
 Finds residents whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find NAME [ADDITIONAL_NAMES]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Residents matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
@@ -140,19 +141,19 @@ Examples:
 
 Shows a list of residents whose fields match the input keywords.
 
-Format: `filter [/specifier] KEY:VALUE [ADDITIONAL_KEYS:ADDITIONAL VALUES]`
+Format: `filter [/SPECIFIER] KEY/VALUE [ADDITIONAL_KEYS/ADDITIONAL_VALUES]`
 
 * The default specifier, if not specified by the user is `/all`.
 * Currently, only two specifiers are supported:
   * `/all` returns a resident if it fulfills **all** of the specified keywords (Logical AND operation).
   * `/any` returns a resident if it fulfills **any** of the specified keywords (Logical OR operation).
-* Repeated keys are not permitted for `/all` specifier, e.g. `filter /all house:Draco house:Aquila` will not work.
-* Valid keys are those included when [adding](#adding-a-resident--add) or [editing](#editing-an-existing-resident--edit) a resident e.g. `NAME, PHONE_NUMBER, EMAIL, FLOOR, UNIT, and TAG`
+* Repeated keys are not permitted for `/all` specifier, e.g. `filter /all h/D h/A` will not work.
+* Valid keys are those included [here](#format-for-resident-fields), and any additional tags.
 
 Examples:
-* `filter /all house:Draco gender:Male` returns residents who are in Draco house, **and** are Male.
-* `filter /any house:Draco house:Aquila` returns residents belonging to either `Draco` **or** `Aquila` house.
-* `filter major:ComputerScience` returns residents who are in ComputerScience
+* `filter /all h/D g/M` returns residents who are in Draco house, **and** are Male.
+* `filter /any h/D h/A` returns residents belonging to either `Draco` **or** `Aquila` house.
+* `filter g/M` returns residents who are male.
 
 ### Deleting a resident : `delete`
 
@@ -160,7 +161,7 @@ Deletes the specified resident from the RC4HDB database.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
+* Deletes the resident at the specified `INDEX`.
 * The index refers to the index number shown in the displayed resident list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
@@ -186,7 +187,7 @@ RC4HDB data are saved in the hard disk automatically after any command that chan
 
 ### Editing the data file
 
-RC4HDB data are saved as a JSON file `[JAR file location]/data/RC4data.json`. Advanced users are welcome to update data directly by editing that data file.
+RC4HDB data are saved as a JSON file `[JAR file location]/data/FILE_NAME.json`, where `FILE_NAME` is the name of the current data file. Advanced users are welcome to update data directly by editing that data file.
 
 :information_source: Do take note that this is not the recommended method to edit data.<br>
 
@@ -219,17 +220,51 @@ Examples:
 
 ### CSV file format
 
-| INDEX 	| NAME 	| PHONE NUMBER 	|    EMAIL      | FLOOR 	| UNIT NUMBER 	| TAGS 	|
-|-------	|------	|--------------	| ------        | -------	|-------------	|------	|
-| 1      	| John Doe | 91234567  	| johnDoe@gmail.com       | 05      	|  08         	| Male 	|
-| 2      	| Maggie Smith	| 98765432	| maggieSmith@gmail.com        | 04   	|  01         	| Female|
+| INDEX | NAME         | PHONE_NUMBER | EMAIL                 | FLOOR-UNIT | GENDER | HOUSE  | MATRIC_NUMBER | TAGS   |
+|-------|--------------|--------------|-----------------------|------------|--------|--------|---------------|--------|
+| 1     | John Doe     | 91234567     | johnDoe@gmail.com     |    5-8     | M      | D      | A9876543B     | -      |
+| 2     | Maggie Smith | 98765432     | maggieSmith@gmail.com |    4-1     | F      | A      | A3456789B     | Friend |
 
 <br>
 
-<!---
-### Archiving data files `[coming in v2.0]`
 
-_Details coming soon ..._ --->
+### Format for resident fields
+
+`n/NAME`
+* Must be a string
+* Spaces are allowed
+
+`p/PHONE_NUMBER`
+* Must be an **8**-digit non-negative integer
+
+`e/EMAIL`
+* Can be any string, valid or invalid email
+
+`r/FLOOR-UNIT`
+* The floor number and unit number must be separated by a hyphen
+* Both floor and unit number must be a non-negative integer
+* e.g. `5-8`
+
+`g/GENDER`
+* `M` or `F`
+
+`h/HOUSE`
+* Represents the RC4 house that the resident is allocated to
+* Must be either `D`, `U`, `L`, `A`, `N`
+* `D` stands for **Draco**, `U` for **Ursa**, `L` for **Leo**, `A` for **Aquila**, `N` for **Noctua**
+
+`m/MATRIC_NUMBER`
+* Must be an uppercase `A`, followed by a **7**-digit non-negative integer and an uppercase alphabet.
+* e.g. `A0123456A`
+
+`t/TAG`
+* Represents any other key that could be used to identify a resident
+* Must be a string. No restrictions on formatting
+* Optional. A resident can have any number of tags, including 0
+* When editing tags, the existing tags of the resident will be removed i.e adding of tags is not cumulative.
+* You can remove all the resident’s tags by typing `t/` without specifying any tags after it.
+
+_More details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -248,11 +283,11 @@ _Details coming soon ..._ --->
 Action | Format, Examples
 --------|------------------
 **Help** | `help`
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL r/FLOOR-UNIT g/GENDER h/HOUSE m/MATRIC_NUMBER [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com r/2-1 g/M h/D m/A9876543B`
 **List** | `list`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/FLOOR-UNIT] [g/GENDER] [h/HOUSE] [m/MATRIC_NUMBER] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**Filter** | `filter [/specifier] KEY:VALUE [ADDITIONAL_KEYS:ADDITIONAL_VALUES]` <br> e.g., `filter /all house:Draco gender:Male`
+**Filter** | `filter [/specifier] KEY:VALUE [ADDITIONAL_KEYS:ADDITIONAL_VALUES]` <br> e.g., `filter /all h/D g/M`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Clear** | `clear`
 **Exit** | `exit`
