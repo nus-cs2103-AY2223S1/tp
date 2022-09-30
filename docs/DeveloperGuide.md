@@ -302,27 +302,32 @@ Extensions:
     Use case resumes from Step 2.
 
 #### UC3: Delete Item from Inventory
+
 Use Case: UC2 - Delete Item from Inventory
 MSS:
+
 1. User deletes an item from inventory.
 2. FoodRem removes item from inventory.
    Use case ends.
 
 Extensions:
-* 1a. Item does not exist in inventory.
-    * 1a1. FoodRem displays error to user that item does not exist in inventory.
-      Use case resumes from step 1.
+
+- 1a. Item does not exist in inventory.
+  - 1a1. FoodRem displays error to user that item does not exist in inventory.
+    Use case resumes from step 1.
 
 #### UC4: Create Tag
+
 Use Case: UC4 - Create Tag
 MSS:
+
 1. User creates a tag.
 
 Extensions:
-* 1a. Tag already exists.
-    * 1a1. FoodRem displays error warning to user.
-      Use case resumes from step 1.
 
+- 1a. Tag already exists.
+  - 1a1. FoodRem displays error warning to user.
+    Use case resumes from step 1.
 
 #### UC9: Increment/Decrement Quantity of Item
 
@@ -362,62 +367,79 @@ _{More to be added}_
 ### Glossary
 
 ### A
+
 #### Argument
+
 > A value that is passed into a command.
 
 Example:
 `tag create food`, where food is the argument to the command `tag create`
 
 ### B
+
 #### Bought Date
+
 > Date where an item was purchased. Usually in the format dd/mm/yyyy.
 
-*TODO: CHANGE FORMAT OF DATETIME AFTER CONFIRMING IMPLEMENTATION DETAILS.*
+_TODO: CHANGE FORMAT OF DATETIME AFTER CONFIRMING IMPLEMENTATION DETAILS._
 
 ### C
+
 #### Command
+
 > A feature or function that FoodRem can perform.
->
+
 ### E
+
 #### Expiry Date
+
 > Date where an item spoils, expires, or becomes unusable. Usually in the format dd/mm/yyyy.
 >
-*TODO: CHANGE FORMAT OF DATETIME AFTER CONFIRMING IMPLEMENTATION DETAILS.*
+> _TODO: CHANGE FORMAT OF DATETIME AFTER CONFIRMING IMPLEMENTATION DETAILS._
 
 ### F
+
 #### Flag
+
 > A marker or delimiter signifying a potentially optional argument to a command.
 
 MISSING EXAMPLE
 
 ### I
+
 #### Input
+
 > The text that a user would enter into FoodRem.
 
 #### Item
+
 > Represents a thing that is stored and kept track by FoodRem.
 
 Example: Creating a `potato` item
 `[item] new n/potato`
 
-
 ### O
+
 #### Output
+
 > The result of calling a Command.
->  Results are displayed in the GUI, here: (ADD SCREENSHOT)
+> Results are displayed in the GUI, here: (ADD SCREENSHOT)
 
 ### Q
+
 #### Quantity
+
 > The frequency of item(s) kept track by FoodRem.
 
 ### T
+
 #### Tag
+
 > The main method of categorizing items in FoodRem. A tag may be attached to zero or more items.
 
 Example:
 Tagging an item in the first index as the tag `ingredient`:
 `tag 1 ingredient`
-
 
 ---
 
