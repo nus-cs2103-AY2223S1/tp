@@ -152,8 +152,8 @@ Deletes the customer from the ArtBuddy.
 
 Format: `delcus INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the customer at the specified `INDEX`.
+* The index refers to the index number shown in the displayed customer list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
