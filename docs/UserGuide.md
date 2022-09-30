@@ -113,7 +113,7 @@ Input
 ```
 item new potato
 ```
-Output:
+Output
 ```
 Item  “potato” successfully created
 ```
@@ -132,7 +132,7 @@ Input
 ```
 delete 1
 ```
-Output:
+Output
 ```
 (Item exists): Item “potato” successfully deleted!
 (Item does not exist): No item to be found at index 1. Use “list items” or “find NAME” to find the index of the item to be deleted.
@@ -151,6 +151,7 @@ Command: `list`
 ---
 
 Example:
+
 Input
 
 ```
@@ -178,6 +179,7 @@ Command: `list tags`
 ---
 
 Example:
+
 Input
 
 ```
@@ -205,6 +207,7 @@ Command: `find NAME`
 ---
 
 Example:
+
 Input
 
 ```
@@ -228,6 +231,7 @@ Command: `bye`
 ---
 
 Example:
+
 Input
 
 ```
