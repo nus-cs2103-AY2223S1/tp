@@ -98,7 +98,8 @@ public class DateTimeProcessor {
         return month + " " + date + " " + year + " " + outputTime;
     }
 
-    public static void main(String[] args) {
+    // for debugging
+    /*public static void main(String[] args) {
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy", Locale.US)
             .withResolverStyle(ResolverStyle.SMART);
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HHmm", Locale.US)
@@ -109,6 +110,6 @@ public class DateTimeProcessor {
         } catch (ParseException e) {
             System.out.println(e);
         }
-    }
+    }*/
 
 }

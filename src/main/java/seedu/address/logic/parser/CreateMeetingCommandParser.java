@@ -14,8 +14,8 @@ public class CreateMeetingCommandParser implements Parser<FindCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the CreateMeetingCommand
      * and returns a CreateMeetingCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
      * @return a command to create a new meeting
+     * @throws ParseException if the user input does not conform the expected format
      */
     public CreateMeetingCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
