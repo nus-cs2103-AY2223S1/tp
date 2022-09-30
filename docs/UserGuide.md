@@ -73,19 +73,17 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a task: `add`
 
-Adds a person to the address book.
+Adds a person to the task list.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Format: `add <module> <taskName> [--tag <tag>]`
+* `module` must not contain spaces 
+* `taskName` can contain spaces 
+* After a task has been added, it will be assigned to a taskId as represented in the task list.
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add CS2103T Task 1 --tag homework`
 
 ### Listing all persons : `list`
 
@@ -128,20 +126,20 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a task : `delete`
 
-Deletes the specified person from the address book.
+Deletes a task from the task list.
 
-Format: `delete INDEX`
+Format: `delete <taskId>`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* `taskId` refers to the taskId shown in the displayed full task list. This value should be a non-zero positive integer.
+* `taskId` refers to the index number shown in the displayed task list.
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-
+Examples: 
+* `delete 1`
+  * Deletes 1st task in the task list.
+  * Remaining tasks’ taskId will be automatically updated. 
+  
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
