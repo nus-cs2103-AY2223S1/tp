@@ -77,6 +77,7 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
       Use case resumes at step 2.
 
+[](#use-case-update-a-student-contact-detail)
 ### Use case: Update a student contact detail
 
 **MSS**
@@ -147,3 +148,18 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
     - 3b1. Teacher’s Pet shows a message indicating student’s attendance is already marked as present.
 
         Use case resumes at step 2.
+
+### Use case: Allocate a slot for future class
+
+**MSS**
+
+1. Teacher requests to find the next available slot for class
+2. Teacher discuss with the student about whether the proposed slot is possible
+3. Teacher [update](#use-case-update-a-student-contact-detail) the student record with the next class date
+
+**Extensions**
+
+- 2a. The student cannot make it on the proposed slot
+  - Step 1-2 is repeated until a mutually-agreed slot is found.
+    
+    Use case resumes at step 3.
