@@ -324,7 +324,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 10. Should not face any error or system failure 95% of the time. (Reliability)
 11. Should support the use of the UK English language. (Localisation)
 12. Should be available to users 99% of the time. (Availability)
-13. Should not take up more than 20 minutes to maintain the application when an error is encountered. (Maintainability)
+13. Maintainence should not take up more than 20 minutes when an error is encountered. (Maintainability)
 14. Should be easily moved from one computing environment to another without any change in its behaviour or performance. ie. should not require an installer.  (Portability)
 15. Should take less than 2GB of storage space. 
 16. Data should be stored locally in the user's operating device. 
