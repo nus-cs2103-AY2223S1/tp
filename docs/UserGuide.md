@@ -8,11 +8,11 @@ MODPRO is a desktop application which helps NUS students in tracking the progres
 ## Table of Contents
 - [Quick Start](#quick-start)
 - [Features](#features)
-  - [Adding task functions](#tagging-task-order-coming-soon-in-v12)
-  - [Tagging task order](#tagging-task-order-coming-soon-in-v12)
-  - [List](#list-coming-soon-in-v2)
-  - [Marking a task as complete](#Marking-a-task-as-complete-coming-soon-in-v12)
-  - [Deleting task function](#Deleting-task-function-coming-soon-in-v12)
+  - [Adding task functions](#adding-task-functions-coming-soon-in-v12)
+  - [Tagging priority of task](#tagging-priority-of-task-coming-soon-in-v12)
+  - [List](#list-coming-soon-in-v12)
+  - [Marking a task as complete](#marking-a-task-as-complete-coming-soon-in-v12)
+  - [Deleting task function](#deleting-task-function-coming-soon-in-v12)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -47,19 +47,18 @@ Examples:
 
 `add CS2103T Quiz` adds CS2103T Quiz task into task list
 
-### Tagging task order [Coming Soon in v1.2]
-Tags the order that the task is scheduled to be completed in
+### Tagging priority of task [Coming Soon in v1.2]
+Tags the priority to complete task 
 
-Format: `tag task (number)`
-* If the number chosen is not currently in used, the task will be assigned this tag
-* If the number chosen is already in used, an error message will inform the user to select another number
-* If no number is given, an error message will appear to inform the user to key in a number
+Format: `tag TASK /p PRIORITY_STATUS`
+* Tags one of three priorities("high", "medium", "low") to the task
+* If the priority status is not "high", "medium" or "low", an error message will appear to inform the user to key in a valid priority status
 
 Examples:
 
-`tag CS2105 Quiz (1)` tags CS2105 Quiz as 1st task to complete
+`tag CS2105 Quiz /p high` tags CS2105 Quiz as high priority task to complete
 
-`tag CS2103T Quiz (2)` tags CS2103T Quiz as 2nd task to complete
+`tag CS2103T Quiz /p low` tags CS2103T Quiz as low priority task to complete
 
 
 ### List [Coming Soon in v1.2]
@@ -109,11 +108,11 @@ Examples:
 
 ## Summary of Commands
 
-| Command    | Format and Examples                                                     |
-|------------|-------------------------------------------------------------------------|
-| **Add**    | **Format**: `add TASK`<br/> **Example**: `add CS2105 Assignment 1`      |
-| **Tag**    | **Format**: `tag task (number)`<br/> **Example**: `tag CS2105 Quiz (1)` |
-| **List**   | **Format**: `list`<br/> **Example**:`list`                              |
-| **Mark**   | **Format**: `mark INDEX`<br/> **Example**:`mark 1`                      |
-| **Delete** | **Format**: `delete INDEX`<br/> **Example**:`delete 1`                  |
+| Command    | Format and Examples                                                                   |
+|------------|---------------------------------------------------------------------------------------|
+| **Add**    | **Format**: `add TASK`<br/> **Example**: `add CS2105 Assignment 1`                    |
+| **Tag**    | **Format**: `tag TASK /p PRIORITY_STATUS`<br/> **Example**: `tag CS2105 Quiz /p high` |
+| **List**   | **Format**: `list`<br/> **Example**:`list`                                            |
+| **Mark**   | **Format**: `mark INDEX`<br/> **Example**:`mark 1`                                    |
+| **Delete** | **Format**: `delete INDEX`<br/> **Example**:`delete 1`                                |
 
