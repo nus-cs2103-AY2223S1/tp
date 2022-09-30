@@ -463,9 +463,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 30,000 persons without a noticeable sluggishness in performance for typical usage.
+3. Should be able to hold up to 30,000 tasks without a noticeable sluggishness in performance for typical usage.
+4. A user with above average typing speed for regular English text 
+(i.e. not code, not system admin commands) should be able to accomplish 
+most of the tasks faster using commands than using the mouse.
+5. Contact/task/tag names should contain alphanumeric characters and/or spaces and/or symbols.
+6. Contact/task/tag names should be case-insensitive.
+7. Contact phone numbers should contain numbers only.
+8. Should be usable by first-time user without referencing external guides.
+9. GUI should be usable by colour blind users.
+10. Should work on both 32-bit and 64-bit environments.
+11. GUI should appear as-designed on screens with resolutions from 1024x576 to 3840x2160.
+12. Should display a visual prompt when YellowBook is processing an user input.
+13. The project is expected to deliver a new iteration every 2 weeks.
+14. Should work without an active internet connection.
+15. Data files from YellowBook v1.1 onwards should be compatible with the future versions.
 
 *{More to be added}*
 
