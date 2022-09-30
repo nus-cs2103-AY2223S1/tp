@@ -176,7 +176,7 @@ Step 2. The user executes `delete 5` command to delete the 5th person in the add
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -211,7 +211,7 @@ Step 5. The user then decides to execute the command `list`. Commands that do no
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -273,7 +273,7 @@ This product is for private nurses to help manage the details and needs of their
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                     | I want to …​                                                      | So that I can…​                                                         |
+| Priority | As a …                                     | I want to …                                                      | So that I can…                                                         |
 | -------- | ------------------------------------------ | ---------------------------------------------------------------- | ---------------------------------------------------------------------- |
 | `* * *`  | user                                       | add a person                                                     |                                                                        |
 | `* * *`  | user                                       | delete a person                                                  | remove entries that I no longer need                                   |
@@ -320,6 +320,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Use cases
 
 (For all use cases below, the **System** is the `UniNurse` application and the **Actor** is the `user`, unless specified otherwise)
+
+---
+
+**Use case: See the list of all patients**
+
+**MSS**
+
+1. User requests to list patients.
+2. UniNurse shows a list of patients.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
 
 ---
 
@@ -376,14 +393,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 ---
 
-**Use case: Delete a person**
+**Use case: Delete a patient**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list patients
+2.  UniNurse shows a list of patients
+3.  User requests to delete a specific patient in the list
+4.  UniNurse deletes the patient
 
     Use case ends.
 
@@ -395,10 +412,124 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. UniNurse shows an error message.
 
       Use case resumes at step 2.
 
+---
+**Use case: Find patients with keywords**
+
+**MSS**
+
+1. User requests to find patients whose names have specified keywords
+2. UniNurse shows a list of patients whose names have specified keywords
+   
+   Use case ends.
+
+**Extensions**
+
+* 1a. No keywords are given
+   * 1a1. UniNurse shows an error message
+  
+     Use case ends. 
+
+---
+**Use case: Add a task to a specified patient**
+
+**MSS**
+
+1. User requests to list patients
+2. UniNurse shows a list of patients
+3. User requests to add a task with its description to a specific patient 
+4. UniNurse adds the task to a patient 
+   
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty
+
+  Use case ends.
+
+* 3a. The given patient index is invalid.
+
+    * 3a1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given task details is invalid
+
+    * 3b1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+---
+
+**Use case: Edit a task associated with a specified patient**
+
+**MSS**
+
+1. User requests to list patients and/or their tasks
+2. UniNurse shows a list of patients with their tasks
+3. User requests to edit a task with its description they want to change, by specifying the specific patient and specific task
+4. UniNurse edits the task description of the chosen task of the specified patient
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty
+
+  Use case ends.
+
+* 3a. The given patient index is invalid.
+
+    * 3a1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given task index of the specified patient is invalid.
+
+    * 3b1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+* 3c. The given task details is invalid
+  
+    * 3c1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+---
+
+**Use case: Delete a task associated with a specified patient**
+
+**MSS**
+1. User requests to list patients and/or their tasks.
+2. UniNurse shows a list of patients with their tasks.
+3. User requests to delete a task by specifying the specific patient and specific task.
+4. UniNurse deletes the task of the specified patient.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given patient index is invalid.
+
+  * 3a1. UniNurse shows an error message.
+    
+    Use case resumes at step 2.
+
+* 3b. The given task index of the specified patient is invalid.
+
+    * 3b1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+    
 ---
 
 **Use case: See the list of tasks to be completed**
@@ -445,9 +576,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Any user action should produce a result within 1 second.
+5. Each person should be able to hold up to 50 tasks without a noticeable sluggishness in performance for typical usage.
+6. A user should be able to easily access tasks associated with a patient.
+7. The product is not required to handle data between multiple users.
 
 *{More to be added}*
 
@@ -484,7 +619,7 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+1. _{ more test cases … }_
 
 ### Deleting a person
 
@@ -501,7 +636,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+1. _{ more test cases … }_
 
 ### Saving data
 
@@ -509,4 +644,4 @@ testers are expected to do more *exploratory* testing.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+1. _{ more test cases … }_
