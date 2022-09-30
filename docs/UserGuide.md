@@ -142,6 +142,27 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Marking a patient as visited : `mark`
+
+Marks a specific patient in the record system as having been visited.
+The patient should be specified using an INDEX.
+
+Format: `mark [INDEX]`
+
+* If marking after performing a get operation, there is no need to provide an index.
+* If marking after performing retrieving a patient list, an index number is required.
+* Marks the patient at the specified index number as visited.
+* The index **must be a positive integer** 1, 2, 3, ...
+
+Examples:
+* `list c/P` followed by `mark 1` marks the 1st patient in the list of patients as having been visited.
+* `list c/P t/Kidney Disease a/Toa Payoh` followed by `mark 2` marks the 2nd patient who suffers from
+  kidney disease and lives in Toa Payoh as having been visited.
+* `list c/P g/F n/Betty` followed by `mark 3` marks the 3rd patient who is a female and is named Betty
+  as having been visited.
+* `get n/JAMES c/P p/81234567` followed by `mark` marks patient named James with phone number 81234567
+  as having been visited.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
