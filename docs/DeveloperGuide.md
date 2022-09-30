@@ -257,56 +257,75 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
+* insurance agent
 * has a need to manage a significant number of contacts
+* has a need to look up client's information
+* has a need to track a significant amount of meetings
+* requires reminders regarding meeting schedules.
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
 
+* manage clients' information faster than a typical mouse/GUI driven app
+* view scheduled meetings with client's details in one glance
+* less effort to recall client's information, more effort to satisfy client's needs
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a(n) …​      | I want to …​            | So that I can…​                             |
+|----------|-----------------|-------------------------|---------------------------------------------|
+| `* * *`  | insurance agent | add client meetings     | keep track of when to meet clients          |
+| `* * *`  | insurance agent | add client details      | keep track of my client's details           |
+| `* * *`  | insurance agent | delete clients' details | remove clients whom I am no longer serving. |
+| `* * *`  | insurance agent | view all my clients     | see who I am providing services to          |
+| `* * *`  | insurance agent | delete client meetings  | remove meetings that are canceled           |
+| `* * *`  | insurance agent | view client meetings    | see when I have meetings                    |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `MyInsuRec` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a client**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to add a client.
+2. System adds the client.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. User inputs incomplete client data.
 
-  Use case ends.
+    * 1a1. System shows an error message.
 
-* 3a. The given index is invalid.
+      Use case ends.
 
-    * 3a1. AddressBook shows an error message.
+**Use case: List all meetings**
 
-      Use case resumes at step 2.
+**MSS**
+
+1. User requests for a list of all meetings.
+2. System shows a list of all meetings.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list has no meetings.
+
+    * 2a1. System informs the user that there are no meetings on the list.
+
+      Use case ends.
+
 
 *{More to be added}*
 
