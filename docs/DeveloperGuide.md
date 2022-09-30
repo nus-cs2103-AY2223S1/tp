@@ -271,6 +271,31 @@ _{More to be added}_
 
 (For all use cases below, the **System** is `FoodRem` and the **Actor** is the `purchasing manager`, unless specified otherwise)
 
+#### UC1: Add Item to Inventory
+Use Case: UC1 - Add Item to Inventory
+MSS:
+1. User adds an item to the inventory.
+2. FoodRem adds the item into the inventory list.
+   Use Case ends.
+
+Extensions:
+* 1a. If the item name already exists in the inventory, FoodRem will throw an error.
+    * 1a1. User will re-enter command until the new item is correct.
+      Use case resumes from Step 2.
+
+
+#### UC2: Update Item in Inventory
+Use Case: UC2 - Update Item in Inventory
+MSS:
+1. User updates an inventory item's detail.
+2. FoodRem updates the detail of the inventory item.
+   Use case ends.
+
+Extensions:
+* 1a. If the item does not exist in the inventory, FoodRem will throw an error.
+    * 1a1. User will re-enter command until the correct item is given (i.e item exists in inventory).
+      Use case resumes from Step 2.
+
 #### UC9: Increment/Decrement Quantity of Item
 
 Use Case: UC9 - Increment/Decrement Quantity of Item
@@ -292,7 +317,7 @@ MSS:
 2. User selects a criteria to sort the list by
 3. The list items are reordered according to the chosen criterion
 
-_{More to be added}_
+*{More to be added}*
 
 ### Non-Functional Requirements
 
