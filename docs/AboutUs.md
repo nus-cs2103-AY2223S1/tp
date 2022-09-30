@@ -23,7 +23,7 @@ You can reach us at the email `peiyee88@nus.edu.sg` or `xxxxx@nus.edu.sg`
 <img src="images/Kartikeya_ProfilePicture.JPG" width="200px">
 
 ([github](http://github.com/kxrt))
-([portfolio](team/kartikeya.md))
+([portfolio](team/kxrt.md))
 
 * Role: Developer 
 ### Kartikeya -
