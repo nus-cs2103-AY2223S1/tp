@@ -255,16 +255,16 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**: Employees and Employers working in team-based projects
+**Target user profile**: Tech Lead managing multiple teams in a software company and designating different tasks to teams
 
 * Experienced in using applications
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of teams
 * prefer desktop apps over other types
 * can type fast
-* has a need to manage a significant  number of teams
+* has a need to distribute and track a significant number of tasks 
 
 
-**Value proposition**: manage and find information of teams easily and quickly given the large amount of teams that employees are in
+**Value proposition**: Create teams and distribute members amongst teams. Assign and track tasks to teams.
 
 ### User stories
 
