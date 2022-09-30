@@ -286,16 +286,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `StudMap` and the **Actor** is the `Tutor`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Delete a Student**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  Tutor requests to list students
+2.  StudMap shows a list of students
+3.  Tutor requests to delete a specific student in the list
+4.  StudMap deletes the student
 
     Use case ends.
 
@@ -307,9 +307,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. StudMap shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: Add a Student**
+
+**MSS**
+
+1.  Tutor requests to add a student
+2.  StudMap adds the student
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given format for users is invalid
+
+    * 1a1. StudMap shows an error message.
+  
+      Use case ends.
+
 
 *{More to be added}*
 
