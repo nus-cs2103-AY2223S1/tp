@@ -147,6 +147,28 @@ Output
 (Item does not exist): No item to be found at index 1. Use “list items” or “find NAME” to find the index of the item to be deleted.
 ```
 
+#### Item Update
+
+Command: `item set ITEM_NAME [ARGS]`
+
+> Description: Updates properties of an item.
+
+---
+
+Example:
+
+Input
+
+```
+item set ARGS
+```
+
+Output
+
+```
+Item successfully updated
+```
+
 ## Commands
 
 ### Tags
