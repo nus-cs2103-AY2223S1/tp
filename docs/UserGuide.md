@@ -77,16 +77,14 @@ Adds a student to the Teacher’s Pet.
 1. Student’s Name
     - Student’s Name must not be empty
     - Student’s Name must only contain alphabetical letters.
-    
 ```yaml
 Note: Duplicates students are not allowed!
 ```
 
-2. Student’s Contact Number 
+2. Student’s Contact Number
    - Contact number must only contain numerical digits between `0` and `9`
    - White spaces between numbers will be automatically removed. eg: `8123 4556` will be converted to `81234567`
    - Number must have 8 digits and starts with either ‘8’ or ‘9’
-
 ```yaml
 Note: Contact number cannot be empty. It must contain at least 1 digit.
 ```
@@ -95,7 +93,6 @@ Note: Contact number cannot be empty. It must contain at least 1 digit.
     - Next of Kin’s Number must only contain numerical digits between `0` and `9`
     - Next of Kin’s Number must have 8 digits and starts with either ‘8’ or ‘9’
     - White spaces between numbers will be automatically removed. eg: `8123 4556` will be converted to `81234567`
-    
 ```yaml
 Note: Next of Kin’s number cannot be empty. It must contain at least 1 digit.
 ```
@@ -103,7 +100,7 @@ Note: Next of Kin’s number cannot be empty. It must contain at least 1 digit.
 4. Address
     - Address must not be empty
     - Address may contain any kinds of character
-    
+
 ```yaml
 Note: Address cannot be empty. It must contain at least 1 character.
 ```
@@ -111,14 +108,14 @@ Note: Address cannot be empty. It must contain at least 1 character.
 5. Email
     - Email may contain any kinds of `character`, other than white space ` `
     - Email must contain a `@`
-    
+
 ```yaml
 Note: Email cannot be empty. It must contain at least 1 character.
 ```
 
 6. Class Date
     - Class Date must be in the format YYYY-MM-DD {start time}-{end time}
-    
+
 ```yaml
 Note: Start time and End time must be in 24hour format.
 ```
@@ -173,7 +170,7 @@ Notes about the command format:
   `update` command valid.
 ```
 
-Format: `update n/NAME [p/PHONE_NUMBER] [np/NEXT_OF_KIN_PHONE_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS] 
+Format: `update n/NAME [p/PHONE_NUMBER] [np/NEXT_OF_KIN_PHONE_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS]
 [paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES]`
 
 Examples:

@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Caden Cheong Jun Kai
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/cadencjk.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/johndoe)
@@ -21,17 +21,17 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Sean Er Wen Han
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/seanflyyy.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/seanflyyy)]
+[[portfolio](team/seanflyyy.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
 
 ### Sim Fang Ling, Joan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/sjoann.png" width="200px">
 
 [[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
 
