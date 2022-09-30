@@ -160,7 +160,6 @@ Examples:
 * `delcus 2`
   Deletes the 2nd person in the ArtBuddy and all commissions made by the person.
 
-
 ### Viewing a commission: `opencom` [coming soon]
 
 Opens a commission and shows its relevant details and image.
