@@ -8,6 +8,15 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ## Project team
 
+### Darren Teo
+
+<img src="images/darren.png" width="200px">
+
+[[github](https://github.com/darrentde)]
+
+[[portfolio](team/darren.md)]
+
+* Role: Developer
 
 ### Chua Ming Quan
 
