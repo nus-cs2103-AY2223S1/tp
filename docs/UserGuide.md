@@ -14,9 +14,9 @@ TutHub is a **desktop app for tech-savvy tuition agents who want to keep track o
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `tuthub.jar` from [here](https://github.com/AY2223S1-CS2103T-T15-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for Tuthub.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -26,7 +26,7 @@ TutHub is a **desktop app for tech-savvy tuition agents who want to keep track o
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add`**`n/John Doe p/98765432 g/M e/johnd@example.com s/40` : Adds a contact named `John Doe` to Tuthub.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
@@ -48,19 +48,16 @@ TutHub is a **desktop app for tech-savvy tuition agents who want to keep track o
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/s2math` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/s2math`, `t/s2math t/s2chem` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* Extraneous parameters for commands that do not take in parameters (such as `list` and `exit`) will be ignored.<br>
+  e.g. if the command specifies `list 123`, it will be interpreted as `list`.
 
 </div>
 
@@ -68,9 +65,9 @@ TutHub is a **desktop app for tech-savvy tuition agents who want to keep track o
 
 [coming soon]
 
-### Adding a person: `add`
+### Adding a tutor: `add`
 
-Adds a person to the address book.
+Adds a tutor to the Tuthub.
 
 Format: `add n/NAME p/PHONE_NUMBER g/GENDER e/EMAIL s/SALARY [t/TAG]…​`
 
@@ -82,23 +79,23 @@ Examples:
 * `add n/John Doe p/98765432 g/M e/johnd@example.com s/40`
 * `add n/Betsy Crowe t/s2chem g/F e/betsycrowe@example.com s/30 p/1234567 t/s2math`
 
-### Listing all persons : `list`
+### Listing all tutors : `list`
 
 Shows a list of all tutors registered in TutHub.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing a tutor : `edit`
 
 [coming soon]
 
-### Locating persons by name: `find`
+### Locating tutor by name: `find`
 
 [coming soon]
 
-### Deleting a person : `delete`
+### Deleting a tutor : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified tutor from Tuthub.
 
 Format: `delete INDEX`
 
@@ -107,7 +104,7 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
+* `list` followed by `delete 2` deletes the 2nd person in Tuthub.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ### Clearing all entries : `clear`
@@ -137,7 +134,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Tuthub home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -145,7 +142,7 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/Betsy Crowe t/s2chem g/F e/betsycrowe@example.com s/30 p/1234567 t/s2math`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **List** | `list`
 **Save** | `save`
