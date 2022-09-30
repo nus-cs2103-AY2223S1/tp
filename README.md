@@ -14,7 +14,6 @@ Getting started:
 ```bash
 > ./gradlew clean run
 ```
-
   * The project is a desktop application used for managing contact details.
     * It is **written in OOP fashion**. It provides a **reasonably well-written** code base(around 6 KLoC), without being overwhelmingly big.
     * It comes with a **reasonable level of user and developer documentation**.

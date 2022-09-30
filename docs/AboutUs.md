@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Zacchaeus Chok
 
-<img src="images/zacchaeus.png" width="200px">
+<img src="images/zacchaeuschok.png" width="200px">
 
 [[github](https://github.com/zacchaeuschok)]
 [[portfolio](team/zacchaeuschok.md)]
