@@ -98,7 +98,7 @@ Opens a customer and shows customer details and switches tab to commissions to s
 Format: `opencus INDEX`
 
 * Views the customer at `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* The index refers to the index number shown in the displayed customer list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
