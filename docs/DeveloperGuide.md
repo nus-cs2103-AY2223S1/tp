@@ -282,6 +282,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
+
 ### Use cases
 
 (For all use cases below, the **System** is the `Sherlock` and the **Actor** is the `user`, unless specified otherwise)
