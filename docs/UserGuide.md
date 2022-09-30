@@ -26,7 +26,6 @@ is a **desktop app for managing contacts, optimized for use via a Command Line I
    * **`del`**`3` : Deletes the 3rd contact shown in the current list.
 
    * **`get`** : Retrieve contact's information
- 
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -93,7 +92,6 @@ Examples:
   ![result for 'find alex david'](images/findAlexDavidResult.png)
   
 #### by next-of-kin data: `/nok`
-
 Finds next-of-kin data which contain any of the given keywords.
 
 Format: `get /nok NEXT-OF-KIN_NAME`
@@ -112,9 +110,7 @@ Format: `get /hw HOSPITAL_WING`
 * The search is case-insensitive. e.g `souTh` will match `South`
 * All the patients in that hospital wing will be returned.
   e.g. `get /hw SOUTH` will return `John` `Peter` `Mary`
-
-
-
+ 
 ### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
@@ -166,14 +162,14 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Get /n** | `get /n NAME`<br> e.g., `get /n John`
-**Get /nok** | `get /nok NEXT-OF-KIN_DATA`<br> e.g., `get /nok John`
-**Get /hw** | `get /hw HOSPITAL_WING`<br> e.g., `get /hw South`
-**List** | `list`
-**Help** | `help`
+| Action       | Format, Examples                                                                                                                                                      |
+|--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Clear**    | `clear`                                                                                                                                                               |
+| **Delete**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
+| **Edit**     | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
+| **Get /n**   | `get /n NAME`<br> e.g., `get /n John`                                                                                                                                 |
+| **Get /nok** | `get /nok NEXT-OF-KIN_DATA`<br> e.g., `get /nok John`                                                                                                                 |
+| **Get /hw**  | `get /hw HOSPITAL_WING`<br> e.g., `get /hw South`                                                                                                                     |
+| **List**     | `list`                                                                                                                                                                |
+| **Help**     | `help`                                                                                                                                                                |
