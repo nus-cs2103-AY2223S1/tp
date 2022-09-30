@@ -77,6 +77,7 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
       Use case resumes at step 2.
 
+[](#use-case-update-a-student-contact-detail)
 ### Use case: Update a student contact detail
 
 **MSS**
@@ -147,3 +148,40 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
     - 3b1. Teacher’s Pet shows a message indicating student’s attendance is already marked as present.
 
         Use case resumes at step 2.
+
+### Use case: Allocate a slot for future class
+
+**MSS**
+
+1. Teacher requests to find the next available slot for class
+2. Teacher discusses with the student about whether the proposed slot is possible
+3. Teacher [update](#use-case-update-a-student-contact-detail) the student record with the next class date
+
+**Extensions**
+
+- 2a. The student cannot make it on the proposed slot
+  - Step 1-2 is repeated until a mutually-agreed slot is found.
+
+    Use case resumes at step 3.
+
+## Non-Functional Requirement
+
+1. Should work on any *mainstream OS* as long as it has Java`11` or above installed.
+2. Should be able to hold up to 50 students without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text _(i.e. not code, not system admin commands)_ should
+   be able to accomplish most of the tasks faster using commands than using the mouse.
+4. If the user wants to complete something, he can do it within 3 commands maximum.
+5. The application can store the changed user data after the application has been closed and load from memory when it is
+   opened.
+6. The UI page should load when first launched within 2 seconds.
+
+## Glossary
+
+| Terms         | Definition                              |
+|---------------|-----------------------------------------|
+| Mainstream OS | Windows, Linux, Unix, OS-X              |
+| CLI           | Command Line Interface                  |
+| Class         | The 1-1 tutoring time slot of a student |
+
+Note:
+- Command Line Interface: Text based user interface for the user to interact with, by passing in single line commands.
