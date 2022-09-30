@@ -285,18 +285,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `ProfNUS` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a module**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to list modules
+2. ProfNUS shows a list of modules 
+3. User requests to add a module to the list
+4. ProfNUS adds the module
 
-    Use case ends.
+   Use case ends.
+
+
+
+**Use case: Delete a module**
+
+**MSS**
+
+1. User requests to list modules
+2. ProfNUS shows a list of modules
+3. User requests to delete a module in the list
+4. ProfNUS deletes the module
+
+   Use case ends.
 
 **Extensions**
 
@@ -306,7 +319,99 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. ProfNUS shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Add a student**
+
+**MSS**
+
+1. User requests to list modules
+2. ProfNUS shows a list of modules
+3. User request to list students in a particular module
+4. ProfNUS shows a list of students
+5. User requests to add a specific student to the list
+6. ProfNUS adds the student
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+
+
+**Use case: Delete a student**
+
+**MSS**
+
+1. User requests to list modules
+2. ProfNUS shows a list of modules
+3. User request to list students in a particular module
+4. ProfNUS shows a list of students
+5. User requests to delete a specific student in the list
+6. ProfNUS deletes the student
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 4a. The list is empty.
+
+  Use case ends.
+
+* 5a. The given index is invalid.
+
+    * 5a1. ProfNUS shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Add an event**
+
+**MSS**
+
+1. User requests to list modules
+2. ProfNUS shows a list of modules
+3. User requests to add an event to the module
+4. ProfNUS adds the event
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+
+
+**Use case: Delete an event**
+
+**MSS**
+
+1. User requests to list modules
+2. ProfNUS shows a list of modules 
+3. User requests to delete an event in the module
+4. ProfNUS deletes the event
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. ProfNUS shows an error message.
 
       Use case resumes at step 2.
 
