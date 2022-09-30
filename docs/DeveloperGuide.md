@@ -270,25 +270,54 @@ _{Explain here how the data archiving feature will be implemented}_
 
 (For all use cases below, the **System** is `FoodRem` and the **Actor** is the `purchasing manager`, unless specified otherwise)
 
+#### UC1: Add Item to Inventory
+Use Case: UC1 - Add Item to Inventory
+MSS:
+1. User adds an item to the inventory.
+2. FoodRem adds the item into the inventory list.
+   Use Case ends.
+
+Extensions:
+* 1a. If the item name already exists in the inventory, FoodRem will throw an error.
+    * 1a1. User will re-enter command until the new item is correct.
+      Use case resumes from Step 2.
+
+
+#### UC2: Update Item in Inventory
+Use Case: UC2 - Update Item in Inventory
+MSS:
+1. User updates an inventory item's detail.
+2. FoodRem updates the detail of the inventory item.
+   Use case ends.
+
+Extensions:
+* 1a. If the item does not exist in the inventory, FoodRem will throw an error.
+    * 1a1. User will re-enter command until the correct item is given (i.e item exists in inventory).
+      Use case resumes from Step 2.
+
+#### UC3: Delete Item from Inventory
+Use Case: UC2 - Delete Item from Inventory
+MSS:
+1. User deletes an item from inventory.
+2. FoodRem removes item from inventory.
+   Use case ends.
+
+Extensions:
+* 1a. Item does not exist in inventory.
+    * 1a1. FoodRem displays error to user that item does not exist in inventory.
+      Use case resumes from step 1.
+
+#### UC4: Create Tag
+Use Case: UC4 - Create Tag
+MSS:
+1. User creates a tag.
+
+Extensions:
+* 1a. Tag already exists.
+    * 1a1. FoodRem displays error warning to user.
+      Use case resumes from step 1.
+
 **Use case:**
-
-**MSS**
-
-1.  Add Info Here
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. Add Info Here.
-
-  Use case ends.
-
-* 3a. Add Info Here.
-
-    * 3a1. Add Info Here.
-
-      Use case resumes at step 2.
 
 *{More to be added}*
 
@@ -307,7 +336,63 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Glossary
 
-*{More to be added}*
+### A
+#### Argument
+> A value that is passed into a command.
+
+Example:
+`tag create food`, where food is the argument to the command `tag create`
+
+### B
+#### Bought Date
+> Date where an item was purchased. Usually in the format dd/mm/yyyy.
+
+*TODO: CHANGE FORMAT OF DATETIME AFTER CONFIRMING IMPLEMENTATION DETAILS.*
+
+### C
+#### Command
+> A feature or function that FoodRem can perform.
+>
+### E
+#### Expiry Date
+> Date where an item spoils, expires, or becomes unusable. Usually in the format dd/mm/yyyy.
+>
+*TODO: CHANGE FORMAT OF DATETIME AFTER CONFIRMING IMPLEMENTATION DETAILS.*
+
+### F
+#### Flag
+> A marker or delimiter signifying a potentially optional argument to a command.
+
+MISSING EXAMPLE
+
+### I
+#### Input
+> The text that a user would enter into FoodRem.
+
+#### Item
+> Represents a thing that is stored and kept track by FoodRem.
+
+Example: Creating a `potato` item
+`[item] new n/potato`
+
+
+### O
+#### Output
+> The result of calling a Command.
+>  Results are displayed in the GUI, here: (ADD SCREENSHOT)
+
+### Q
+#### Quantity
+> The frequency of item(s) kept track by FoodRem.
+
+### T
+#### Tag
+> The main method of categorizing items in FoodRem. A tag may be attached to zero or more items.
+
+Example:
+Tagging an item in the first index as the tag `ingredient`:
+`tag 1 ingredient`
+
 
 
 --------------------------------------------------------------------------------------------------------------------

@@ -44,7 +44,7 @@ Something goes here...
 
    4.1 [Items](#item)
 
-   &emsp; 4.1.1 [Create a new item](#itemNew)
+   &emsp; 4.1.1 [Create a new item](#item-new)
 
    &emsp; 4.1.2 [Increase the quantity of an item](#itemDec)
 
@@ -52,7 +52,7 @@ Something goes here...
 
    &emsp; 4.1.4 [Update an item](#itemSet)
 
-   &emsp; 4.1.4 [Delete an item](#itemDelete)
+   &emsp; 4.1.4 [Delete an item](#item-delete)
 
    4.2 [Tags](#tag)
 
@@ -99,6 +99,44 @@ Something goes here...
 ## Information Stored
 
 ### Item
+#### Item New
+
+Command: `item new ITEM_NAME`
+
+> Description: Creates a new item with the provided item_name.
+
+---
+
+Example: 
+
+Input
+```
+item new potato
+```
+Output
+```
+Item  “potato” successfully created
+```
+
+#### Item Delete
+
+Command: `[item] delete ITEM_INDEX`
+
+> Description: Deletes a specified item. Returns a warning if the item does not exist. 
+
+---
+
+Example: 
+
+Input
+```
+delete 1
+```
+Output
+```
+(Item exists): Item “potato” successfully deleted!
+(Item does not exist): No item to be found at index 1. Use “list items” or “find NAME” to find the index of the item to be deleted.
+```
 
 ## Commands
 
@@ -204,6 +242,7 @@ Command: `list`
 ---
 
 Example:
+
 Input
 
 ```
@@ -222,7 +261,7 @@ Chicken wings
 Details about chicken wings
 ```
 
-####  List tags
+#### List tags
 
 Command: `list tags`
 
@@ -231,6 +270,7 @@ Command: `list tags`
 ---
 
 Example:
+
 Input
 
 ```
@@ -258,6 +298,7 @@ Command: `find NAME`
 ---
 
 Example:
+
 Input
 
 ```
@@ -272,6 +313,74 @@ Green apple
 Rose apple
 ```
 
+#### Help
+
+Command: `help`
+
+> Description: Displays a list of commands that can be used.
+
+---
+
+Example:
+
+Input
+
+```
+help
+```
+
+Output:
+
+```
+list:
+    Lists all the items/tags that the user has created.
+
+    Usage:
+        List items:  "list items"
+        List tags:   "list tags"
+
+item:
+    Create / Delete / Increment quantity / Decrement quantity /
+    Set quantity / Set expiry date / Set bought date, of an item.
+
+    Flags:
+        Name:        n/
+        Quantity:    qty/
+        Expiry Date: exp/
+        Bought Date: bgt/
+
+    Usage:
+        Create:      "item new n/Potatoes"
+        Delete:      "item del 1"
+        Increment:   "item inc 1 10"
+        Decrement:   "item dec 1 10"
+        Set:         "item set 1 n/Potatoes qty/10"
+
+find:
+    Find an inventory item based on the given keywords.
+
+    Usage:
+        Find:        "find potato carrots"
+
+tag:
+    Create / Rename / Set item tied to / Delete, a tag.
+
+    Flags:
+        Name:        n/
+
+    Usage:
+        Create:      "tag create food"
+        Rename:      "tag rename food n/foodie"
+        Set item:    "tag 1 2 7 71 food"
+        Delete:      "tag delete food"
+
+bye:
+    Exits Foodrem program.
+
+    Usage:
+        Exit:       "bye"
+```
+
 #### Bye
 
 Command: `bye`
@@ -281,6 +390,7 @@ Command: `bye`
 ---
 
 Example:
+
 Input
 
 ```
