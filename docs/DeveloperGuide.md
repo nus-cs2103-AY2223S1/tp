@@ -283,16 +283,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TruthTable` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a member to a team**
+
+Preconditions: The current working team is set to the team that the member should be added to.
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to add member and provides member name
+2. TruthTable adds the member
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. There is no name provided.
+
+    * 1a1. TruthTable shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: Delete a member from a team**
+
+Preconditions: The current working team is set to the team that the member should be deleted from.
+
+**MSS**
+
+1.  User requests to list members
+2.  TruthTable shows a list of members
+3.  User requests to delete a specific member in the list
+4.  TruthTable deletes the member
 
     Use case ends.
 
@@ -304,19 +325,193 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. TruthTable shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: List all members of a team**
+
+Preconditions: The current working team is set to the team that the member should be deleted from.
+
+**MSS**
+
+1.  User requests to list members
+2.  TruthTable shows a list of members belonging to the team
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+**Use case: Add a task to a team**
+
+Preconditions: The current working team is set to the team that the task should be added to.
+
+**MSS**
+
+1.  User requests to add task member and provides task name and task deadline
+2.  TruthTable adds the task to the list of tasks
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. There is no task name provided.
+
+    * 1a1. TruthTable shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. There is no task deadline provided.
+
+    * 1b1. TruthTable shows an error message.
+
+      Use case resumes at step 1.
+
+* 1c. The task deadline is badly formatted.
+
+    * 1c1. TruthTable shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: Delete a task from a team**
+
+Preconditions: The current working team is set to the team that the task should be deleted from.
+
+**MSS**
+
+1.  User requests to list tasks
+2.  TruthTable shows a list of tasks
+3.  User requests to delete a specific task in the list
+4.  TruthTable deletes the task
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. TruthTable shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: List all tasks of a team**
+
+Preconditions: The current working team is set to the team that the member should be deleted from.
+
+**MSS**
+
+1.  User requests to list tasks
+2.  TruthTable shows a list of tasks belonging to the team
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+**Use case: Add deadline to existing task**
+
+Preconditions: The current working team is set to the team that has the existing task.
+
+**MSS**
+
+1.  User requests to list tasks
+2.  TruthTable shows a list of tasks
+3.  User requests to add deadline to specific task in the list
+4.  TruthTable adds deadline to task
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. TruthTable shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given deadline is invalid.
+
+    * 3b1. TruthTable shows an error message. 
+
+      Use case resumes at step 2.
+
+**Use case: Create new team**
+
+**MSS**
+
+1.  User requests create new team and provides new team name
+2.  TruthTable creates a new team and sets current working team to new team
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given team name is used for an existing team already.
+
+    * 1a1. TruthTable shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. There is no team name given.
+
+    * 1b1. TruthTable shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: Change current working team**
+
+**MSS**
+
+1.  User requests to change current working team
+2.  TruthTable sets current working team to specified team
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. There is no team name given.
+
+    * 1a1. TruthTable shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: List all teams**
+
+**MSS**
+
+1. User requests to list all teams managed by user
+2. TruthTable shows a list of teams
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Does not require internet connection.
+5. Any changes to the data should be saved permanently and automatically.
 
 ### Glossary
 
