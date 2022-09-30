@@ -30,7 +30,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Wong Yew Jon
 
-<img src="images/wongyewjon.png" width="200px"> 
+<img src="images/wongyewjon.png" width="200px">
 
 [[github](http://github.com/wongyewjon)]
 [[portfolio](team/wongyewjon.md)]
