@@ -18,24 +18,16 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Team Lead
 * Responsibilities: Deliverables and deadlines, Scheduling and tracking
 
-### Jane Doe
+### Lau Jun Jie
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/blopapple.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/blopapple)]
+[[portfolio](team/blopapple.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Code quality
+
 
 ### Shaugn Tan Sean Hon
 
