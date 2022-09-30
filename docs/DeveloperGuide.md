@@ -465,8 +465,6 @@ able to accomplish most of the tasks faster using commands than using the mouse.
 --------------------------------------------------------------------------------------------------------------------
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 * **FYP**: Final Year Project taken by year 4 undergraduate SoC students
 * **SoC**: School of Computing in National University of Singapore
 * **JerylFypManager**: used by SoC Professors supervising student's FYP project
