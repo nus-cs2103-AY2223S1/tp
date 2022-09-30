@@ -270,13 +270,13 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​     | I want to …​                               | So that I can…​                                    |
-|----------|-------------|--------------------------------------------|----------------------------------------------------|
-| `* * *`  | NUS student | view the list of tasks I need to complete  | start implementing those tasks.                    |
-| `* * *`  | NUS student | create the tasks in the tasklist           | add the list of tasks that need to be completed    |
-| `* * *`  | NUS student | mark a task as complete                    | have a better idea of what I have completed.       |
-| `* *`    | NUS student | tag the tasks in my tasklist with a number | order the task that I would like to complete first |
-| `* * *`  | NUS student | delete the tasks in my tasklist            | remove them if added wrongly.                      |
+| Priority | As a …​     | I want to …​                                  | So that I can…​                                         |
+|----------|-------------|-----------------------------------------------|---------------------------------------------------------|
+| `* * *`  | NUS student | view the list of tasks I need to complete     | start implementing those tasks.                         |
+| `* * *`  | NUS student | create the tasks in the tasklist              | add the list of tasks that need to be completed         |
+| `* * *`  | NUS student | mark a task as complete                       | have a better idea of what I have completed.            |
+| `* *`    | NUS student | tag the priority of the tasks in the tasklist | prioritise the task that I would like to complete first |
+| `* * *`  | NUS student | delete the tasks in my tasklist               | remove them if added wrongly.                           |
 
 
 
@@ -328,16 +328,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use Case: Tag the order to complete task**
+**Use Case: Tag the priority to complete task**
 
 **MSS**
-1. NUS student requests to tag the order of task in task list
+1. NUS student requests to tag the priority of task in task list
 2. MODPRO adds the tag to the task in the task list
 
    Use case ends.
 
 **Extensions**
-* 1a. The given index for the task to tag is invalid
+* 1a. The given priority status for the task is invalid
     * 1a1. MODPRO shows an error message </br>
       Use case ends.
 
@@ -359,7 +359,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 tasks without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
