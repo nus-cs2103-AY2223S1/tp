@@ -18,7 +18,7 @@ You can reach us at the email `peiyee88@nus.edu.sg` or `xxxxx@nus.edu.sg`
 
 * Role: Developer
 
-### Kartikeya - 
+### Kartikeya -
 
 <img src="images/Kartikeya_ProfilePicture.JPG" width="200px">
 
