@@ -321,6 +321,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 7.  Product is expected to be updated with a new set of features or bugfixes once every two weeks.
 8.  Should be able to read from local disk storage (i.e. persistent storage functionality).
 9.  Product is not designed to work between different disk storages (i.e. only can read and write to local disk storage).
+10.  Should work offline without network connectivity.
+11.  Should only be accessible by Hackathon group leaders.
 
 *{More to be added}*
 
