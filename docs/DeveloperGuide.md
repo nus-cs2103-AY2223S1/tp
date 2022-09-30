@@ -275,17 +275,17 @@ Hackathon participants - particularly team member with project management role
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                 | I want to …​                                        | So that I can…​                                                                   |
-|----------|--------------------------------------------|--------------------------------------------------------|--------------------------------------------------------------------------------------|
-| `* * *`  | hackathon team leader                      | see all tasks                                          | have an overview of what needs to be done                                            |
-| `* * *`  | hackathon team leader                      | add a task to the task list,                           | include task that needs to be done                                                   |
-| `* * *`  | hackathon team leader                      | delete a task                                          | remove tasks that are accidentally added                                             |
-| `* * *`  | hackathon team leader                      | edit a task                                            | rectify mistakes in task details                                                     |
-| `* * *`  | hackathon team leader                      | assign a task                                          | allocate task to a team member                                                       |
-| `* * *`  | hackathon team leader                      | mark task as done                                      | I can keep a moving record of what we have done                                      |
-| `* * *`  | hackathon team leader                      | mark task as not done                                  | in case we have tasks that end up being incomplete or the task requirements modified |
-| `* *`    | hackathon team leader                      | see which tasks are done/ not done                     | plan the way forward                                                                 |
-| `* *`    | hackathon team leader                      | add further description to a task                      | add more details to a task                                                           |                             |
+| Priority | As a …​                                 | I want to …​                        | So that I can…​                                                                   |
+|----------|--------------------------------------------|-------------------------------------|--------------------------------------------------------------------------------------|
+| `* * *`  | hackathon team leader                      | see all tasks                       | have an overview of what needs to be done                                            |
+| `* * *`  | hackathon team leader                      | add a task to the task list,        | include task that needs to be done                                                   |
+| `* * *`  | hackathon team leader                      | delete a task                       | remove tasks that are accidentally added                                             |
+| `* * *`  | hackathon team leader                      | edit a task                         | rectify mistakes in task details                                                     |
+| `* * *`  | hackathon team leader                      | assign a task                       | allocate task to a team member                                                       |
+| `* * *`  | hackathon team leader                      | mark task as done                   | I can keep a moving record of what we have done                                      |
+| `* * *`  | hackathon team leader                      | mark task as not done               | in case we have tasks that end up being incomplete or the task requirements modified |
+| `* *`    | hackathon team leader                      | see which tasks are done/ not done  | plan the way forward                                                                 |
+| `* *`    | hackathon team leader                      | add further descriptions to ga task | add more details to a task                                                           |                             |
 
 *{More to be added}*
 
