@@ -44,7 +44,7 @@ Something goes here...
 
    4.1 [Items](#item)
 
-   &emsp; 4.1.1 [Create a new item](#itemNew)
+   &emsp; 4.1.1 [Create a new item](#item-new)
 
    &emsp; 4.1.2 [Increase the quantity of an item](#itemDec)
 
@@ -52,7 +52,7 @@ Something goes here...
 
    &emsp; 4.1.4 [Update an item](#itemSet)
 
-   &emsp; 4.1.4 [Delete an item](#itemDelete)
+   &emsp; 4.1.4 [Delete an item](#item-delete)
 
    4.2 [Tags](#tag)
 
@@ -99,6 +99,43 @@ Something goes here...
 ## Information Stored
 
 ### Item
+#### Item New
+
+Command: `item new ITEM_NAME`
+
+> Description: Creates a new item with the provided item_name.
+
+---
+
+Example: 
+
+Input
+```
+item new potato
+```
+Output:
+```
+Item  “potato” successfully created
+```
+
+#### Item Delete
+
+Command: `[item] delete ITEM_INDEX`
+
+> Description: Deletes a specified item. Returns a warning if the item does not exist. 
+
+---
+
+Example: 
+
+Input
+```
+delete 1
+```
+Output:
+```
+(Item exists): Item “potato” successfully deleted!
+(Item does not exist): No item to be found at index 1. Use “list items” or “find NAME” to find the index of the item to be deleted.
 
 ### Tag
 
