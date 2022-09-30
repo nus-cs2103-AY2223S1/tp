@@ -9,7 +9,7 @@ title: Financial Advisor Planner
 
 ![Ui](images/Ui.png)
 
-**Financial Advisor Planner is a desktop application for managing your contact details.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+**Financial Advisor Planner is a desktop application for financial advisors to manage clients' contact details.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
 * If you are interested in using Financial Advisor Planner, head over to the [_Quick Start_ section of the **User Guide**](https://ay2223s1-cs2103t-w09-2.github.io/tp/UserGuide.html#quick-start).
 * If you are interested about developing Financial Advisor Planner, the [**Developer Guide**](https://ay2223s1-cs2103t-w09-2.github.io/tp/DeveloperGuide.html) is a good place to start .
