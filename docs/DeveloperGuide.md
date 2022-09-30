@@ -292,7 +292,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `MyInsuRec` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add a client**
+**Use case: UC1 - Add a client**
 
 **MSS**
 
@@ -309,7 +309,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: List all meetings**
+**Use case: UC2 List all meetings**
 
 **MSS**
 
