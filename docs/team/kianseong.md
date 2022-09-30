@@ -11,6 +11,5 @@ Overview: A short overview of your product to provide some context to the reader
 - Documentation
 - Contributions to team-based tasks
   - Review/mentoring contributions: Links to PRs reviewed, instances of helping team members in other ways.
-  - Keep in mind that evaluators will use the PPP to estimate your project effort. We recommend that you mention things that will earn you a fair score e.g., explain how deep the enhancement is, why it is complete, how hard it was to implement etc.
-- Contributions to the Developer Guide (Extracts): Reproduce the parts in the Developer Guide that you wrote. Alternatively, you can show the various diagrams you contributed. 
+- Contributions to the Developer Guide (Extracts): Reproduce the parts in the Developer Guide that you wrote.
 - Contributions to the User Guide (Extracts): Reproduce the parts in the User Guide that you wrote.

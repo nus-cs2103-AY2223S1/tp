@@ -41,7 +41,7 @@ GitHub: [@KIANSEONG](https://github.com/KIANSEONG)
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/yilinzyl)] 
+[[github](http://github.com/yilinzyl)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
@@ -56,4 +56,3 @@ GitHub: [@KIANSEONG](https://github.com/KIANSEONG)
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
-
