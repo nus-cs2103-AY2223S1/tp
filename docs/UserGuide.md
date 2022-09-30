@@ -83,6 +83,7 @@ done faster and more securely than traditional GUI apps.
 </div>
 
 ---
+
 ### Adding a client: `add`
 
 Adds a client to the financial book.
@@ -95,6 +96,7 @@ Examples:
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/ABC street p/1234567 i/$10 m/23-Feb-2022`
 
 ---
+
 ### Listing all persons : `list`
 
 Shows a list of all persons in the address book.
@@ -102,6 +104,7 @@ Shows a list of all persons in the address book.
 Format: `list`
 
 ---
+
 ### Editing a person : `edit`
 
 Edits an existing client in the financial book.
@@ -120,6 +123,7 @@ Examples:
 * `edit 2 n/Betsy Crower` Edits the name of the 2nd person to be `Betsy Crower`.
 
 ---
+
 ### Deleting a person : `delete`
 
 Deletes the specified person from the financial book.
@@ -136,6 +140,7 @@ Examples:
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ---
+
 ### Listing all clients: `list`
 
 Show a list of all clients in the financial book
@@ -143,6 +148,7 @@ Show a list of all clients in the financial book
 Format: `list`
 
 ---
+
 ### Exiting the application : `exit`
 
 Exits the application.
@@ -150,12 +156,14 @@ Exits the application.
 Format: `exit`
 
 ---
+
 ### Saving the data
 
 AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to
 save manually.
 
 ---
+
 ### Editing the data file
 
 AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to
@@ -166,6 +174,7 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 </div>
 
 ---
+
 ### Importing data from external sources [coming soon]
 
 --------------------------------------------------------------------------------------------------------------------
