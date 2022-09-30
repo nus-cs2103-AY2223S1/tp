@@ -272,9 +272,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a ...              | I want to ...                                                                            | So that I can...                                                                                     |
 |----------|-----------------------|------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
-| `* * *`  | new user              | See usage instructions                                                                   | Refer to instructions when I forget how to use the App                                               |
+| `* * *`  | New User              | See usage instructions                                                                   | Refer to instructions when I forget how to use the App                                               |
 | `* * *`  | Team Leader           | View completed tasks                                                                     | Track the status of the project                                                                      |
-| `* * *`  | Team Leader           | Add new tasks                                                                            | Add project requirements and track things to do                                                      |
+| `* * *`  | Team Leader           | Add new tasks                                                                            | Track things my team needs to do                                                                     |
 | `* * *`  | Team Leader           | Add team members with their contact information                                          | Keep track of my team members and contact them with their preferred mode of communication            |
 | `* * *`  | Team Leader           | View tasks based on contact’s name/email                                                 | Keep track of each person’s tasks                                                                    |
 | `* * *`  | Team Leader           | Assign deadlines to tasks                                                                | Track whether we are meeting deadlines for all tasks or not                                          |
@@ -346,6 +346,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Member**: A person in the team, working on a project.
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Repo**: A short-form for "repository" (usually on a platform such as GitHub or GitLab)
 * **Task**: Anything that needs to be completed for the project to move forward.
 * **Team Leader**: The person in-charge of a project, typically a software engineering project.
 
