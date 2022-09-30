@@ -298,30 +298,130 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `FABook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - Requesting for help**
 
 **MSS**
+1.  User requests for help
+2.  FABook shows an external link for help
+3.  User refers to link for help
+    Use case ends.
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
+**Use case: UC02 - Creating a client**
+
+**MSS**
+1.  User creates a client
+2.  FABook adds the client to its contents
+3.  FABook informs user that input client has been added
 4.  AddressBook deletes the person
-
     Use case ends.
 
 **Extensions**
+* 1a. Format of creation is invalid.
+    * 1a1. FABook shows an error message with suggested format.
+    Use case ends.
 
+**Use case: UC03 - List all clients**
+
+**MSS**
+1.  User requests to list clients
+2.  FABook shows a list of clients
+    Use case ends.
+
+**Extensions**
 * 2a. The list is empty.
-
   Use case ends.
 
-* 3a. The given index is invalid.
+**Use case: UC04 - Updating a client's information**
 
-    * 3a1. AddressBook shows an error message.
+**MSS**
+1.  User requests to update a specific client's information
+2.  FABook updates the given client's information
+3.  FABook informs user of updated client's information
+    Use case ends.
 
+**Extensions**
+* 1a. The name is not found.
+  * 1a1. FABook shows an error message with suggested format.
+    Use case ends.
+
+* 1b. No input optional field was given.
+  * 1b1. FABook shows an error message with suggested format
+    Use case ends.
+
+* 1c. Input optional field is in the wrong format.
+    * 1c. FABook shows an error message with suggested format
+      Use case ends.
+
+**Use case: UC05 - Finding a client by name**
+
+**MSS**
+1. User requests to find a specific client by name
+2. FABook shows a list of matching clients
+3. FABook informs the user of number of clients found
+    Use case ends.
+
+**Extensions**
+* 1a. No client name was provided.
+    * 1a1. FABook shows an error message with suggested format 
+      Use case ends.
+
+* 1b. No such client name was found. 
+    * 1b1. FABook shows an error message with suggested format
+      Use case ends.
+
+**Use case: UC06 - Finding a client by phone number**
+
+**MSS**
+1. User requests to find a specific client by phone number
+2. FABook shows a list of matching clients
+3. FABook informs the user of number of clients found
+   Use case ends.
+
+**Extensions**
+* 1a. No client number was provided.
+    * 1a1. FABook shows an error message with suggested format
+      Use case ends.
+
+* 1b. No such client number was found.
+    * 1b1. FABook shows an error message with suggested format
+      Use case ends.
+
+* 1c. No full phone number provided.
+    * 1c1. FABook shows an error message with suggested format
+      Use case ends.
+
+**Use case: UC07 - Delete a person**
+
+**MSS**
+1. User requests to <u>list clients (UC03)</u>
+2. User requests to delete a specific person in the list
+3. FABook deletes the person
+    Use case ends.
+
+**Extensions**
+* 1a. The list is empty.
+  Use case ends.
+
+* 2a. The given name is invalid.
+    * 2a1. FABook shows an error message with suggested format
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: UC08 - Clearing all entries**
+
+**MSS**
+1.  User requests to clear all entries
+2.  FABook removes all clients' information
+3.  FABook informs the user that all information has been cleared
+    Use case ends.
+
+**Use case: UC08 - Exiting FABook**
+
+**MSS**
+1. User requests to exit
+2. FABook closes
+   Use case ends.
+
+{More to be added}*
 
 ### Non-Functional Requirements
 

@@ -69,7 +69,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/reagantan00.png" width="200px">
 
 [github](http://github.com/reagantan00) |
-[portfolio](team/reagantan.md)
+[portfolio](team/reagantan00.md)
 
 * Role: Developer
 * Responsibilities:
