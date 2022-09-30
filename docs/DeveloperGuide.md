@@ -271,25 +271,26 @@ _{More to be added}_
 
 (For all use cases below, the **System** is `FoodRem` and the **Actor** is the `purchasing manager`, unless specified otherwise)
 
-**Use case:**
+#### UC9: Increment/Decrement Quantity of Item
 
-**MSS**
+Use Case: UC9 - Increment/Decrement Quantity of Item
+MSS:
 
-1.  Add Info Here
+1. User increases/decreases the amount of the item in the inventory
+   Extensions:
 
-    Use case ends.
+- 1a. Item does not exist
+  1a1. Foodrem displays an error.
+  1a2. Foodrem asks the user if they want to try again
 
-**Extensions**
+#### UC10: Sorting List of Items by Criteria
 
-- 1a. Add Info Here.
+Use Case: UC10 - Sorting List of Items by Criteria
+MSS:
 
-  Use case ends.
-
-- 3a. Add Info Here.
-
-  - 3a1. Add Info Here.
-
-    Use case resumes at step 2.
+1. User lists items
+2. User selects a criteria to sort the list by
+3. The list items are reordered according to the chosen criterion
 
 _{More to be added}_
 
