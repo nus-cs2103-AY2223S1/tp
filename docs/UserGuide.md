@@ -158,7 +158,7 @@ Format: `delcus INDEX`
 
 Examples:
 * `delcus 2`
-  Deletes the 2nd person in the ArtBuddy and all commissions made by the person.
+  Deletes the 2nd customer in the ArtBuddy and all commissions made by the customer.
 
 ### Viewing a commission: `opencom` [coming soon]
 
