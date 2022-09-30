@@ -21,13 +21,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Adriel Soh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/leirdas.png" width="200px">
 
 [[github](https://github.com/leirdas)]
 [[portfolio](team/leirdas.md)]
 
 * Role: Developer
-* Responsibilities: [to be added]
+* Responsibilities: Implementation of features
 
 ### Fanny Jian
 
