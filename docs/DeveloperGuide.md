@@ -527,6 +527,7 @@ able to accomplish most of the tasks faster using commands than using the mouse.
 * **Customer**: A contact detail. Contains information about the customer, and a list of commissions.
 * **Commission**: An art piece requested by a customer that has been delivered or is in progress. Contains specifics about the commission and a list of iterations.
 * **Iteration**: A single version of a commission. Contains an image and a text comment on the image. 
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
