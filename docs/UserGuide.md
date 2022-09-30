@@ -112,7 +112,7 @@ __Optional Parameter 2: Date of Birth__
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/DOB]`
 
-- Adds date of birth to a person in the contact list. Date formats accepted are: dd.MM.yyyy ; dd MMM yyyy ; M d, yyyy
+- Adds date of birth to a person in the contact list. Date formats accepted are: dd.mm.yyyy ; dd MMM yyyy ; month dd, yyyy
 - NAME can contain more than 1 word.
 
 
