@@ -13,9 +13,6 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
-import jarvis.testutil.Assert;
-import jarvis.testutil.PersonBuilder;
-import javafx.collections.ObservableList;
 import jarvis.commons.core.GuiSettings;
 import jarvis.logic.commands.exceptions.CommandException;
 import jarvis.model.AddressBook;
@@ -23,12 +20,14 @@ import jarvis.model.Model;
 import jarvis.model.ReadOnlyAddressBook;
 import jarvis.model.ReadOnlyUserPrefs;
 import jarvis.model.person.Person;
+import jarvis.testutil.PersonBuilder;
+import javafx.collections.ObservableList;
 
 public class AddCommandTest {
 
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> new AddCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
@@ -48,7 +47,7 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
-        Assert.assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
     }
 
     @Test

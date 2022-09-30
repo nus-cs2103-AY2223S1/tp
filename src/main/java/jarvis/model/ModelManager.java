@@ -9,7 +9,6 @@ import java.util.logging.Logger;
 
 import jarvis.commons.core.GuiSettings;
 import jarvis.commons.core.LogsCenter;
-import jarvis.commons.util.CollectionUtil;
 import jarvis.model.person.Person;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -28,7 +27,7 @@ public class ModelManager implements Model {
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        CollectionUtil.requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
@@ -107,7 +106,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
-        CollectionUtil.requireAllNonNull(target, editedPerson);
+        requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
     }

@@ -5,11 +5,10 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import jarvis.commons.exceptions.DataConversionException;
-import jarvis.model.AddressBook;
 import jarvis.model.ReadOnlyAddressBook;
 
 /**
- * Represents a storage for {@link AddressBook}.
+ * Represents a storage for {@link jarvis.model.AddressBook}.
  */
 public interface AddressBookStorage {
 

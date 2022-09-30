@@ -7,14 +7,12 @@ import static jarvis.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import jarvis.testutil.Assert;
-
 public class IndexTest {
 
     @Test
     public void createOneBasedIndex() {
         // invalid index
-        Assert.assertThrows(IndexOutOfBoundsException.class, () -> Index.fromOneBased(0));
+        assertThrows(IndexOutOfBoundsException.class, () -> Index.fromOneBased(0));
 
         // check equality using the same base
         assertEquals(1, Index.fromOneBased(1).getOneBased());
@@ -28,7 +26,7 @@ public class IndexTest {
     @Test
     public void createZeroBasedIndex() {
         // invalid index
-        Assert.assertThrows(IndexOutOfBoundsException.class, () -> Index.fromZeroBased(-1));
+        assertThrows(IndexOutOfBoundsException.class, () -> Index.fromZeroBased(-1));
 
         // check equality using the same base
         assertEquals(0, Index.fromZeroBased(0).getZeroBased());

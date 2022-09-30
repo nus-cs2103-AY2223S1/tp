@@ -8,12 +8,12 @@ import java.util.Set;
 
 import jarvis.commons.core.index.Index;
 import jarvis.commons.util.StringUtil;
+import jarvis.logic.parser.exceptions.ParseException;
 import jarvis.model.person.Address;
 import jarvis.model.person.Email;
 import jarvis.model.person.Name;
 import jarvis.model.person.Phone;
 import jarvis.model.tag.Tag;
-import jarvis.logic.parser.exceptions.ParseException;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.

@@ -3,8 +3,6 @@ package jarvis.model.person;
 import static java.util.Objects.requireNonNull;
 import static jarvis.commons.util.AppUtil.checkArgument;
 
-import jarvis.commons.util.AppUtil;
-
 /**
  * Represents a Person's email in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
@@ -42,7 +40,7 @@ public class Email {
      */
     public Email(String email) {
         requireNonNull(email);
-        AppUtil.checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
         value = email;
     }
 

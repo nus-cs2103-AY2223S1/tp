@@ -6,25 +6,23 @@ import static jarvis.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import jarvis.testutil.Assert;
-
 public class NameTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> new Name(null));
+        assertThrows(NullPointerException.class, () -> new Name(null));
     }
 
     @Test
     public void constructor_invalidName_throwsIllegalArgumentException() {
         String invalidName = "";
-        Assert.assertThrows(IllegalArgumentException.class, () -> new Name(invalidName));
+        assertThrows(IllegalArgumentException.class, () -> new Name(invalidName));
     }
 
     @Test
     public void isValidName() {
         // null name
-        Assert.assertThrows(NullPointerException.class, () -> Name.isValidName(null));
+        assertThrows(NullPointerException.class, () -> Name.isValidName(null));
 
         // invalid name
         assertFalse(Name.isValidName("")); // empty string

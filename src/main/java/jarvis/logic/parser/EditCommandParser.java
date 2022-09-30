@@ -1,6 +1,7 @@
 package jarvis.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static jarvis.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static jarvis.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static jarvis.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static jarvis.logic.parser.CliSyntax.PREFIX_NAME;
@@ -12,9 +13,9 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
-import jarvis.commons.core.Messages;
 import jarvis.commons.core.index.Index;
 import jarvis.logic.commands.EditCommand;
+import jarvis.logic.commands.EditCommand.EditPersonDescriptor;
 import jarvis.logic.parser.exceptions.ParseException;
 import jarvis.model.tag.Tag;
 
@@ -38,10 +39,10 @@ public class EditCommandParser implements Parser<EditCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
-        EditCommand.EditPersonDescriptor editPersonDescriptor = new EditCommand.EditPersonDescriptor();
+        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }

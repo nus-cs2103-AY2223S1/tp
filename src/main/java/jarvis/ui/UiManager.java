@@ -2,6 +2,7 @@ package jarvis.ui;
 
 import java.util.logging.Logger;
 
+import jarvis.MainApp;
 import jarvis.commons.core.LogsCenter;
 import jarvis.commons.util.StringUtil;
 import jarvis.logic.Logic;
@@ -10,7 +11,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import jarvis.MainApp;
 
 /**
  * The manager of the UI component.

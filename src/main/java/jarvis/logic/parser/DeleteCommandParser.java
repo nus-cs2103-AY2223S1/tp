@@ -1,6 +1,7 @@
 package jarvis.logic.parser;
 
-import jarvis.commons.core.Messages;
+import static jarvis.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import jarvis.commons.core.index.Index;
 import jarvis.logic.commands.DeleteCommand;
 import jarvis.logic.parser.exceptions.ParseException;
@@ -21,7 +22,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             return new DeleteCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
         }
     }
 

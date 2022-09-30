@@ -3,8 +3,6 @@ package jarvis.model.person;
 import static java.util.Objects.requireNonNull;
 import static jarvis.commons.util.AppUtil.checkArgument;
 
-import jarvis.commons.util.AppUtil;
-
 /**
  * Represents a Person's phone number in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
@@ -24,7 +22,7 @@ public class Phone {
      */
     public Phone(String phone) {
         requireNonNull(phone);
-        AppUtil.checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
         value = phone;
     }
 

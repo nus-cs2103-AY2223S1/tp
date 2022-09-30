@@ -4,13 +4,13 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import jarvis.model.AddressBook;
+import jarvis.model.ReadOnlyAddressBook;
 import jarvis.model.person.Address;
 import jarvis.model.person.Email;
 import jarvis.model.person.Name;
 import jarvis.model.person.Person;
 import jarvis.model.person.Phone;
-import jarvis.model.AddressBook;
-import jarvis.model.ReadOnlyAddressBook;
 import jarvis.model.tag.Tag;
 
 /**

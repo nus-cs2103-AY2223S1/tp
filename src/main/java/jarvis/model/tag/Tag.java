@@ -3,8 +3,6 @@ package jarvis.model.tag;
 import static java.util.Objects.requireNonNull;
 import static jarvis.commons.util.AppUtil.checkArgument;
 
-import jarvis.commons.util.AppUtil;
-
 /**
  * Represents a Tag in the address book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
@@ -23,7 +21,7 @@ public class Tag {
      */
     public Tag(String tagName) {
         requireNonNull(tagName);
-        AppUtil.checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.tagName = tagName;
     }
 

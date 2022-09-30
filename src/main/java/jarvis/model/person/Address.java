@@ -3,8 +3,6 @@ package jarvis.model.person;
 import static java.util.Objects.requireNonNull;
 import static jarvis.commons.util.AppUtil.checkArgument;
 
-import jarvis.commons.util.AppUtil;
-
 /**
  * Represents a Person's address in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
@@ -28,7 +26,7 @@ public class Address {
      */
     public Address(String address) {
         requireNonNull(address);
-        AppUtil.checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
         value = address;
     }
 

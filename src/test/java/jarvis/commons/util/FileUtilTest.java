@@ -6,8 +6,6 @@ import static jarvis.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import jarvis.testutil.Assert;
-
 public class FileUtilTest {
 
     @Test
@@ -19,7 +17,7 @@ public class FileUtilTest {
         assertFalse(FileUtil.isValidPath("a\0"));
 
         // null path -> throws NullPointerException
-        Assert.assertThrows(NullPointerException.class, () -> FileUtil.isValidPath(null));
+        assertThrows(NullPointerException.class, () -> FileUtil.isValidPath(null));
     }
 
 }

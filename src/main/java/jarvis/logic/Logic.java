@@ -27,7 +27,7 @@ public interface Logic {
     /**
      * Returns the AddressBook.
      *
-     * @see Model#getAddressBook()
+     * @see jarvis.model.Model#getAddressBook()
      */
     ReadOnlyAddressBook getAddressBook();
 

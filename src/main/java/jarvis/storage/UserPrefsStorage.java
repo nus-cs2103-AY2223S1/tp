@@ -9,7 +9,7 @@ import jarvis.model.ReadOnlyUserPrefs;
 import jarvis.model.UserPrefs;
 
 /**
- * Represents a storage for {@link UserPrefs}.
+ * Represents a storage for {@link jarvis.model.UserPrefs}.
  */
 public interface UserPrefsStorage {
 
@@ -27,7 +27,7 @@ public interface UserPrefsStorage {
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
 
     /**
-     * Saves the given {@link ReadOnlyUserPrefs} to the storage.
+     * Saves the given {@link jarvis.model.ReadOnlyUserPrefs} to the storage.
      * @param userPrefs cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
