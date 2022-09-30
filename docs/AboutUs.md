@@ -21,10 +21,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Meng Qiaoran
 
-<img src="images/qiaoran.png" width="200px">
+<img src="images/qiaoran-m.png" width="200px">
 
 [[github](http://github.com/Qiaoran-M)]
-[[portfolio](team/qiaoran.md)]
+[[portfolio](team/qiaoran-m.md)]
 
 * Role: Developer
 * Responsibilities: Testing
