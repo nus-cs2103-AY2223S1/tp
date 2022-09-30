@@ -67,9 +67,10 @@ WorkBook (WB) is a **desktop app for CS/tech students who are applying for inter
 
 Shows a message explaining how to access the help page.
 
-![help message](images/helpMessage.png)
-
 Format: `help`
+
+Example:
+* `help` displays a message and link to access the help page.
 
 
 ### Adding an internship application: `add`
