@@ -52,7 +52,6 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-
 ### Adding a patient: `addPatient`
 
 Adds a patient to the patient list.
@@ -63,13 +62,7 @@ Examples:
 * `addPatient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Administer 3ml of example medicine`
 * `addPatient n/Betsy Crowe p/87901234 e/betsy@example.com a/Jane street blk 420 #01-69 d/Change dressing on left arm`
 
-### Listing all persons : `list`
-
-Shows a list of all persons in the address book.
-
-Format: `list`
-
-### Editing a patient’s details : `edit`
+### Editing a patient’s details: `edit`
 
 Edits an existing patient in the patient list.
 
@@ -88,9 +81,9 @@ Example:
 * `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
 * `edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
 
-### Listing all persons : `list`
+### Listing all patients: `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all patients.
 
 Format: `list`
 
@@ -111,7 +104,7 @@ Examples:
 * `find alex david` returns `Alex Tan` & `David Ho`.
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a patient : `deletePatient`
+### Deleting a patient: `deletePatient`
 
 Deletes the specified patient from the patient list.
 
@@ -125,42 +118,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd patient in the patient book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Listing all tasks : `listTask`
-
-Shows a list of all tasks to be completed.
-
-Format: `listTask`
-
-Examples:
-
-Suppose the following patients were added.
-
-`addPatient n/John Doe d/Administer 3ml of example medicine`
-
-`addPatient n/Betsy Crowe d/Change dressing on left arm`
-* `listTask` will display:
-    * `Administer 3ml of example medicine FOR John Doe`
-    * `Change dressing on left arm FOR Betsy Crowe`
-
-### View all tasks associated with a patient : `viewTask`
-
-Shows all the tasks that are associated with the specified patient.
-
-Format: `viewTask INDEX`
-
-Examples:
-
-Suppose the following patients were added.
-
-`addPatient n/John Doe d/Administer 3ml of example medicine`
-
-`addPatient n/Betsy Crowe d/Change dressing on left arm`
-* `viewTask 1` will display:
-    * `Administer 3ml of example medicine`
-* `viewTask 2` will display:
-    * `Change dressing on left arm`
-
-### Adding a task : `addTask`
+### Adding a task: `addTask`
 
 Edits the specified task associated with a patient.
 
@@ -174,7 +132,7 @@ Examples:
 * `list` followed by `addTask 1 d/Administer 3ml of example medicine` adds a task to the 1st person in the patient list.
 * `find Betsy` followed by `addTask 2 d/Change dressing on left arm` adds a task to the 2nd person in results of the `find` command.
 
-### Editing a task : `editTask`
+### Editing a task: `editTask`
 
 Edits the specified task associated with a patient.
 
@@ -189,8 +147,7 @@ Examples:
 * `list` followed by `editTask 1 1 d/Administer 3ml of example medicine` edits the description of the 1st task of the 1st person in the patient list.
 * `find Betsy` followed by `editTask 2 3 d/Change dressing on left arm` edits the description of the 3rd task of the 2nd person in results of the `find` command.
 
-
-### Deleting a task : `deleteTask`
+### Deleting a task: `deleteTask`
 
 Deletes the specified task associated with a patient.
 
@@ -205,13 +162,48 @@ Examples:
 * `list` followed by `deleteTask 2 3` deletes the 3rd task of the 2nd person in the patient list.
 * `find Betsy` followed by `deleteTask 1 2` deletes the 2nd task of the 1st person in results of the find command.
 
-### Clearing all entries : `clear`
+### Listing all tasks: `listTask`
 
-Clears all entries from the address book.
+Shows a list of all tasks to be completed.
+
+Format: `listTask`
+
+Examples:
+
+Suppose the following patients were added.
+
+`addPatient n/John Doe d/Administer 3ml of example medicine`
+
+`addPatient n/Betsy Crowe d/Change dressing on left arm`
+* `listTask` will display:
+  * `Administer 3ml of example medicine FOR John Doe`
+  * `Change dressing on left arm FOR Betsy Crowe`
+  
+### View all tasks associated with a patient: `viewTask`
+
+Shows all the tasks that are associated with the specified patient.
+
+Format: `viewTask INDEX`
+
+Examples:
+
+Suppose the following patients were added.
+
+`addPatient n/John Doe d/Administer 3ml of example medicine`
+
+`addPatient n/Betsy Crowe d/Change dressing on left arm`
+* `viewTask 1` will display:
+  * `Administer 3ml of example medicine`
+* `viewTask 2` will display:
+  * `Change dressing on left arm`
+
+### Clearing all entries: `clear`
+
+Clears all patient entries.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+### Exiting the program: `exit`
 
 Exits the program.
 
