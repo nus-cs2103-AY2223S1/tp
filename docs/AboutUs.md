@@ -25,7 +25,7 @@ You can reach us at the email `peiyee88@nus.edu.sg` or `xxxxx@nus.edu.sg`
 ([github](http://github.com/kxrt))
 ([portfolio](team/kxrt.md))
 
-* Role: Developer 
+* Role: Developer
 
 ### Zhehao
 
