@@ -279,10 +279,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | hospital staff         | retrieve patients by ward number                  | attend to them quickly |
 | `* * *`  | hospital staff         | retrieve patients by floor number                 | attend to them quickly |
 | `* * *`  | hospital staff         | retrieve patients by hospital wings               | attend to them quickly |
-| `* *`    | hospital staff         | check if patient is inpatient or for daily checkup| knows where to direct them  |
-| `*`      | hospital staff         | create patient profiles                           | store new patients into the system                          |
-| `*`      |nurse                   | retrieve patients by medication                   | find out a list of patients under each medication             |
-| `*`      | hospital staff         | remove patients from the database                 | remove redundant entries that are no longer necessary                |
+| `* * *`  | hospital staff         | check if patient is inpatient or for daily checkup| knows where to direct them  |
+| `* * *`  | hospital staff         | create patient profiles                           | store new patients into the system                          |
+| `* * *`  |nurse                   | retrieve patients by medication                   | find out a list of patients under each medication             |
+| `* * *`  | hospital staff         | remove patients from the database                 | remove redundant entries that are no longer necessary                |
 
 *{More to be added}*
 
