@@ -14,7 +14,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `MyInsuRec.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `MyInsuRec.jar` from [here](https://github.com/AY2223S1-CS2103T-W16-4/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your MyInsuRec.
 
@@ -24,9 +24,9 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   1. view client command
-   2. add client command
-   3. delete client command
+   1. `viewClient`: View a particular client
+   2. `addClient`: Add a client
+   3. `deleteClient`: Delete client
 
 1. Refer to the [Features](#features) below for details of each command.
 
