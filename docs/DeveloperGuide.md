@@ -256,7 +256,7 @@ _{Explain here how the data archiving feature will be implemented}_
 ### Product scope
 
 **Target user profile**:
-
+Inventory managers who are proficient with typing for small F&B businesses
 
 
 **Value proposition**:  
