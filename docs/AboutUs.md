@@ -18,15 +18,14 @@ You can reach us at the email `peiyee88@nus.edu.sg` or `xxxxx@nus.edu.sg`
 
 * Role: Developer
 
-### Jane Doe
+### Kartikeya -
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/Kartikeya_ProfilePicture.JPG" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+([github](http://github.com/kxrt))
+([portfolio](team/kxrt.md))
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer 
 
 ### Johnny Doe
 
