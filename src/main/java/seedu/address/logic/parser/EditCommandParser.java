@@ -5,21 +5,26 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MINECRAFT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MINECRAFT_SERVER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SOCIALS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SOCIAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMEZONE;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Consumer;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.utils.CheckedFunction;
 import seedu.address.model.person.Social;
+import seedu.address.model.server.Server;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -33,10 +38,11 @@ public class EditCommandParser implements Parser<EditCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public EditCommand parse(String args) throws ParseException {
+
         requireNonNull(args);
+
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MINECRAFT_NAME, PREFIX_PHONE,
-                        PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_SOCIALS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MINECRAFT_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_SOCIAL, PREFIX_TAG, PREFIX_MINECRAFT_SERVER, PREFIX_TIMEZONE);
 
         Index index;
 
@@ -65,8 +71,16 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
-        parseSocialsForEdit(argMultimap.getAllValues(PREFIX_SOCIALS)).ifPresent(editPersonDescriptor::setSocial);
+        if (argMultimap.getValue(PREFIX_TIMEZONE).isPresent()) {
+            editPersonDescriptor.setTimeZone(ParserUtil.parseTimeZone(argMultimap.getValue(PREFIX_TIMEZONE).get()));
+        }
+
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG))
+                .ifPresent(editPersonDescriptor::setTags);
+        parseSocialsForEdit(argMultimap.getAllValues(PREFIX_SOCIAL))
+                .ifPresent(editPersonDescriptor::setSocials);
+        parseMinecraftServersForEdit(argMultimap.getAllValues(PREFIX_MINECRAFT_SERVER))
+                .ifPresent(editPersonDescriptor::setServers);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -97,6 +111,15 @@ public class EditCommandParser implements Parser<EditCommand> {
             return Optional.empty();
         }
         return Optional.of(ParserUtil.parseSocials(socials));
+    }
+
+    private Optional<Set<Server>> parseMinecraftServersForEdit(Collection<String> servers) throws ParseException {
+        assert servers != null;
+
+        if (servers.isEmpty()) {
+            return Optional.empty();
+        }
+        return Optional.of(ParserUtil.parseServers(servers));
     }
 
 }

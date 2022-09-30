@@ -2,6 +2,8 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Collections;
@@ -24,30 +26,28 @@ public class Person {
 
     // Data fields
     private final Address address;
-    
     private final Set<Social> socials;
-
     private final TimeZone timeZone;
-
-    private Set<Server> servers = new HashSet<>();
-
-    private final Set<Tag> tags = new HashSet<>();
+    private final Set<Server> servers;
+    private final Set<Tag> tags;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, MinecraftName minecraftName, Phone phone, Email email,
-                  Address address, Set<Social> socialsList, Set<Tag> tags, Set<Server> servers, TimeZone timeZone) {
-        requireAllNonNull(name, minecraftName, phone, email, address, tags);
+
+
+    public Person(Name name, MinecraftName minecraftName, Phone phone, Email email, Address address, Set<Social> socials, Set<Tag> tags, Set<Server> servers, TimeZone timeZone) {
+        requireAllNonNull(name, minecraftName);
+
         this.name = name;
         this.minecraftName = minecraftName;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.socials = socialsList;
-        this.tags.addAll(tags);
-        this.servers.addAll(servers);
-        this.timeZone = timeZone;
+        this.phone = phone == null ? new Phone("") : phone;
+        this.email = email == null ? new Email("") : email;
+        this.address = address == null ? new Address("") : address;
+        this.socials = socials == null ? new HashSet<>() : socials;
+        this.tags = tags == null ? new HashSet<>() : tags;
+        this.servers = servers == null ? new HashSet<>() : servers;
+        this.timeZone = timeZone == null ? new TimeZone("") : timeZone;
     }
 
     public Name getName() {
@@ -120,11 +120,7 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
-                && otherPerson.getMinecraftName().equals(getMinecraftName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getMinecraftName().equals(getMinecraftName());
     }
 
     @Override
@@ -135,21 +131,11 @@ public class Person {
 
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
 
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
-        }
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getName()).append("; Minecraft Username: ").append(getMinecraftName());
         return builder.toString();
+
     }
 
 }
