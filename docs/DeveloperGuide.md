@@ -295,7 +295,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to add member
+1.  User requests to add a new member
 2.  HackAssist shows a list of fields to input (Name, Rating of Ability, Role)
 3.  User inputs fields
 4.  HackAssist shows list of all members, including new member  
