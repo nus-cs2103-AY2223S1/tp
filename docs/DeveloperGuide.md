@@ -313,28 +313,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 (For all use cases below, the **System** is `ArtBuddy`
 and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a customer**
-
-**MSS**
-
-1. ArtBuddy shows a list of customers
-2. User requests to delete a specific customer in the list
-3. ArtBuddy deletes the customer and all the customer's commissions
-4. ArtBuddy updates the displayed list of customers
-
-   Use case end.
-
-**Extensions**
-
-* 1a. The customer list is empty.
-
-  Use case ends.
-
-* 2a. The given index is invalid.
-    * 2a1. ArtBuddy shows an error message.
-
-      Use case ends.
-
 **Use case: View a Customer**
 
 **MSS**
