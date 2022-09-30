@@ -18,6 +18,14 @@ You can reach us at the email `peiyee88@nus.edu.sg` or `xxxxx@nus.edu.sg`
 
 * Role: Developer
 
+### Kartikeya - 
+
+<img src="images/Kartikeya_ProfilePicture.JPG" width="200px">
+
+([github](http://github.com/kxrt))
+([portfolio](team/kartikeya.md))
+
+* Role: Developer 
 ### Kartikeya -
 
 <img src="images/Kartikeya_ProfilePicture.JPG" width="200px">
@@ -35,7 +43,7 @@ You can reach us at the email `peiyee88@nus.edu.sg` or `xxxxx@nus.edu.sg`
 [[portfolio](team/charles1026.md)]
 
 * Role: Developer
-* Responsibilities: Sandbagging
+* Responsibilities: Data
 
 ### Jean Doe
 
