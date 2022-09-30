@@ -62,7 +62,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Tina Agarwal
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/thing1thing2.png" width="200px">
 
 [[github](http://github.com/Thing1Thing2)]
 [[portfolio](team/thing1thing2.md)]
