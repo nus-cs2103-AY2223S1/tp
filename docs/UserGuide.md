@@ -26,8 +26,8 @@ Healthcare Xpress is a **desktop app for managing patients that require home-vis
 
    * **`list`** : Lists all contacts.
 
-   * **`add`** **'c/P n/John p/98765432 e/john@example.com g/M a/Bishan street, block
-     123, #01-01 t/Asthma d/2022-12-12 1350`** : Adds a patient named John to Healthcare Xpress.
+   * **`add`** **`c/P n/John p/98765432 e/john@example.com g/M a/Bishan street, block
+     123, #01-01 t/Asthma d/2022-12-12 1350`** : Adds a patient named **`John`** to Healthcare Xpress.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
@@ -80,12 +80,11 @@ Adds a patient to the Healthcare Xpress book.
 
 Format: `add c/P n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS d/DATE_AND_TIME [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary"> 
 
+:bulb:**Tips:**
 * A person can have any number of tags (including 0).
-
 * Date and time need to be in the format of yyyy-MM-dd HHmm.
-
 * To add a patient, type c/P specifically.
 
 </div>
