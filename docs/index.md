@@ -1,6 +1,6 @@
 ---
 layout: page
-title: AddressBook Level-3
+title: Coydir
 ---
 
 [![Java CI](https://github.com/AY2223S1-CS2103T-T15-1/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2223S1-CS2103T-T15-1/tp/actions/workflows/gradle.yml)
