@@ -1,9 +1,9 @@
 package seedu.address.model.person;
 
-import java.util.Comparator;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.util.Comparator;
 
 /**
  * Represents a Person's name in the address book.

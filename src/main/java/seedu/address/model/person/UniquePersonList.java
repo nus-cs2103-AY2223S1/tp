@@ -5,7 +5,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.concurrent.ConcurrentMap;
 import java.util.Comparator;
 
 import javafx.collections.FXCollections;
@@ -99,6 +98,10 @@ public class UniquePersonList implements Iterable<Person> {
         internalList.setAll(persons);
     }
 
+    /**
+     * Sorts the contents of this list using the comparator
+     * @param comparator comparator used in sorting 
+     */
     public void sort(Comparator<Person> comparator) {
         FXCollections.sort(internalList, comparator);
         for (Person p : internalList) {

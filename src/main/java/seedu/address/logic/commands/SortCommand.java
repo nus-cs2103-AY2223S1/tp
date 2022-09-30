@@ -14,15 +14,23 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
+/**
+ * Sorts the address book
+ */
 public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
-    private static final String INVALID_MESSAGE = "There is either no such client details " +
-                                                    "or the sorting metric is invalid.";
+    private static final String INVALID_MESSAGE = "There is either no such client details "
+                                                    + "or the sorting metric is invalid.";
     private static final String MESSAGE_SUCCESS = "Clients sorted by ";
 
     private String toSort;
 
+    /**
+     * Creates a sort command to sort the address book according to
+     * user specified metric
+     * @param toSort user specified metric
+     */
     public SortCommand(String toSort) {
         requireNonNull(toSort);
         this.toSort = toSort;
