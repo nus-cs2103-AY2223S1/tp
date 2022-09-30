@@ -1,4 +1,4 @@
-#ProfNUS
+# ProfNUS
 
 [![CI Status](https://github.com/AY2223S1-CS2103T-W11-2/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103T-W11-2/tp/actions)
 
