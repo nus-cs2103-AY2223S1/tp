@@ -15,8 +15,8 @@ done faster and more securely than traditional GUI apps.
 - [Quick Start](#quick-start)
 - [Features](#features)
     * [Adding a client: `add`](#adding-a-client-add)
-    * [Editing a client: `edit`]
-    * [Deleting a client : `delete`]
+    * [Editing a client: `edit`](#editing-a-client--edit)
+    * [Deleting a client : `delete`](#deleting-a-client--delete)
     * [Listing all clients : `list`](#listing-all-clients-list)
     * [Exiting the application : `exit`](#exiting-the-application--exit)
     * [Saving the data](#saving-the-data)
@@ -95,45 +95,45 @@ Examples:
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/ABC street p/1234567 i/$10 m/23-Feb-2022`
 
 ---
-### Listing all persons : `list`
+### Listing all client : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all clients in the address book.
 
 Format: `list`
 
 ---
-### Editing a person : `edit`
+### Editing a client : `edit`
 
 Edits an existing client in the financial book.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/MONTHLY_INCOME] [m/UPCOMING_MEETING_DATES]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list.
+* Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list.
   The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
 Examples:
 
-* `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567`
+* `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567`
   and `johndoe@example.com` respectively.
-* `edit 2 n/Betsy Crower` Edits the name of the 2nd person to be `Betsy Crower`.
+* `edit 2 n/Betsy Crower` Edits the name of the 2nd client to be `Betsy Crower`.
 
 ---
-### Deleting a person : `delete`
+### Deleting a client : `delete`
 
-Deletes the specified person from the financial book.
+Deletes the specified client from the financial book.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the client at the specified `INDEX`.
+* The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd client in the address book.
+* `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
 ---
 ### Listing all clients: `list`
@@ -180,15 +180,10 @@ the data of your previous AddressBook home folder.
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-
-**
-Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/MONTHLY_INCOME m/UPCOMING_MEETING_DATES​` <br>
-e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$100000 m/12-Jan-2022`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**
-Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br>
-e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**List** | `list`
+Action               | Format, Examples
+---------------------|------------------
+**Add**              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/MONTHLY_INCOME m/UPCOMING_MEETING_DATES​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$100000 m/12-Jan-2022`
+**Delete**           | `delete INDEX`<br> e.g., `delete 3`
+**Edit**             | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**List**             | `list`
 **Exit application** | `exit`
