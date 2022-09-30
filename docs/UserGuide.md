@@ -32,7 +32,7 @@ title: User Guide
 
    * **`mark A0123456G IP`** - marks the FYP project of the student with ID A0123456G as _In Progress_
 
-   * find machine - searches any FYP project names that has “machine” in its name, for example it will output the FYP project with “Machine Learning” in its name
+   * **`find machine`** - searches any FYP project names that has “machine” in its name, for example it will output the FYP project with “Machine Learning” in its name
 
    * **`help add`** - shows a message on how to use the `add` command
 
