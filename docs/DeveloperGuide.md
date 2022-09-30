@@ -294,150 +294,151 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
+--------------------------------------------------------------------------------------------------------------------
 ### Use cases
 
 (For all use cases below, the **System** is the `JerylFypManager` and the **Actor** is the `Professor`, unless specified otherwise)
 
-**Use case: UC01 - Adding FYP**
+**1. Use case: UC01 - Adding FYP**
 
 **Preconditions: Professor knows the details of FYP to be added**
 
 **MSS**
 
-1.  Professor requests to add a student FYP into the list
-2.  JerylFypManager adds the FYP details 
+1.  Professor requests to add a student FYP into the list.
+2.  JerylFypManager adds the FYP details.
 
-    Use case ends
+    Use case ends.
 
 **Extensions**
 
-* 1a. The request given is invalid 
-  * 1a1. JerylFypManager shows an error message
-  * 1a2. Professor enters a new request
+* 1a. The request given is invalid.
+  * 1a1. JerylFypManager shows an error message.
+  * 1a2. Professor enters a new request.
   
-  Steps 1a1-1a2 are repeated until the request entered is correct
+  Steps 1a1-1a2 are repeated until the request entered is correct.
 
-  Use case resumes from step 2
+  Use case resumes from step 2.
 
 
-**Use case: UC02 - Searching Keyword**
+**2. Use case: UC02 - Searching Keyword**
 
 **Preconditions: Professor can recall part of the project name**
 
 **MSS**
 
-1.  Professor wants to track the status of certain project(s)
-2.  Professor searches the project(s) using a specified keyword
-3.  JerylFypManager displays the search results with a brief summary for each project
+1.  Professor wants to track the status of certain project(s).
+2.  Professor searches the project(s) using a specified keyword.
+3.  JerylFypManager displays the search results with a brief summary for each project.
 
-    Use case ends
+    Use case ends.
 
 **Extensions**
 
-* 2a. The keyword given does not match any project name
-    * 2a1. JerylFypManager shows an error message indicating “There is no match”
-    * 2a2. Professor tries again with another keyword
+* 2a. The keyword given does not match any project name.
+    * 2a1. JerylFypManager shows an error message.
+    * 2a2. Professor tries again with another keyword.
 
-  Steps 2a1-2a2 are repeated until some projects are matched
+  Steps 2a1-2a2 are repeated until some projects are matched.
 
-  Use case resumes from step 3
+  Use case resumes from step 3.
 
 
-**Use case: UC03 - Marking Project Status**
+**3. Use case: UC03 - Marking Project Status**
 
 **Guarantees:**
-* Project Status goes from “Yet to Start” (YTS) to “In Progress”  (IP); (or alternatively, from “In Progress” (IP) to “Done” (DONE)
+* Project Status goes from “Yet to Start” (YTS) to “In Progress”  (IP); (or alternatively, from “In Progress” (IP) to “Done” (DONE).
 
 
 **Preconditions: Existence of said FYP in database**
 
 **MSS**
 
-1.  Professor wants to modify the status of his student’s project, and he/she specifies the desired status change
-2.  JerylFypManager toggles the status of the project
+1.  Professor wants to modify the status of his student’s project, and he/she specifies the desired status change.
+2.  JerylFypManager toggles the status of the project.
 
-    Use case ends
+    Use case ends.
 
 **Extensions**
 
-* 1a. Professor’s input of Student’s ID / Status Tag is incorrect (e.g. misspell) / accessing FYP not in database
-    * 1a1. JerylFypManager shows an error message
-    * 1a2. Professor keys in his input again
+* 1a. Professor’s input of Student’s ID / Status Tag is incorrect (e.g. misspell) / accessing FYP that does not exist.
+    * 1a1. JerylFypManager shows an error message.
+    * 1a2. Professor keys in his input again.
 
-    Steps 1a1-1a2 are repeated until the request entered is correct
+    Steps 1a1-1a2 are repeated until the request entered is correct.
 
-  Use case resumes from step 2
+  Use case resumes from step 2.
 
 
-**Use case: UC04 - Removing FYP**
+**4. Use case: UC04 - Removing FYP**
 
 **Preconditions: Professor can recall the name/id of the FYP**
 
 **MSS**
 
-1.  Professor requests to remove a student FYP into the list
-2.  JerylFypManager removes the FYP details
+1.  Professor requests to remove a student FYP into the list.
+2.  JerylFypManager removes the FYP details.
 
-    Use case ends
+    Use case ends.
 
 **Extensions**
 
-* 1a. The request given is invalid
-    * 1a1. JerylFypManager shows an error message
-    * 1a2. Professor enters a new request
+* 1a. The request given is invalid.
+    * 1a1. JerylFypManager shows an error message.
+    * 1a2. Professor enters a new request.
 
-  Steps 1a1-1a2 are repeated until the request entered is correct
+  Steps 1a1-1a2 are repeated until the request entered is correct.
 
-  Use case resumes from step 2
+  Use case resumes from step 2.
 
 
-**Use case: UC05 - Help List**
+**5. Use case: UC05 - Help List**
 
 **Preconditions: Nil**
 
 **MSS**
 
-1.  Professor requests from JerylFypManager to list all possible commands
-2.  JerylFypManager shows the list of possible commands and format to be entered in
+1.  Professor requests from JerylFypManager to list all possible commands.
+2.  JerylFypManager shows the list of possible commands and format to be entered in.
 
-    Use case ends
+    Use case ends.
 
 **Extensions**
 
 * Nil
 
 
-**Use case: UC06 - List FYPs**
+**6. Use case: UC06 - List FYPs**
 
 **Preconditions: There exist FYP(s) in JerylFypManager**
 
 **MSS**
 
-1.  Professor requests for JerylFypManager to show the list of FYPs
-2.  JerylFypManager shows a list of FYPs to the professor
+1.  Professor requests for JerylFypManager to show the list of FYPs.
+2.  JerylFypManager shows a list of FYPs to the professor.
 
-    Use case ends
+    Use case ends.
 
 
 **Extensions**
 
-* 2a. There are currently no FYPs that the professor is overseeing
-    * 2a1. JerylFypManager tells the professor that he is currently not overseeing any FYPs
+* 2a. There are currently no FYPs that the professor is overseeing.
+    * 2a1. JerylFypManager tells the professor that he is currently not overseeing any FYPs.
 
-  Use case ends
+  Use case ends.
 
 
-**Use case: UC07 - Exit JerylFypManager**
+**7. Use case: UC07 - Exit JerylFypManager**
 
 **Preconditions: Nil**
 
 **MSS**
 
-1.  Professor requests to exit JerylFypManager
-2.  JerylFypManager shows exit message
-3.  JerylFypManager application is closed
+1.  Professor requests to exit JerylFypManager.
+2.  JerylFypManager shows exit message.
+3.  JerylFypManager application is closed.
 
-    Use case ends
+    Use case ends.
 
 **Extensions**
 
@@ -446,20 +447,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
+--------------------------------------------------------------------------------------------------------------------
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  User with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-3.  As a busy SoC professor, I want to be able to see my students’ project titles and summaries at one glance, so that I do not have to waste time clicking into different links to access them.
-4.  As an insecure FYP student, I have to be able to ring or notify my professor(s) for help via the platform, so that I get the immediate help that I require.
-5.  As a fun-seeking professor/FYP student , I want to be able to send “stickers” (similar to Telegram stickers) or emoji, so that the app is more appealing to use.
+2.  User with above average typing speed for regular English text (i.e. not code, not system admin commands) should be 
+able to accomplish most of the tasks faster using commands than using the mouse.
+3.  The system should respond in at most 1 second.
+4.  A user with no coding background should be able to use JerylFypManager.
+5.  Notification sent to users upon updates to FYPs.
+6.  Personal details of students should only be accessible by supervising professor.
+7.  System should be able to support the whole SoC cohort (around 1500 users) at the same time.
+8.  JerylFypManager is accessible 24/7.
 
 *{More to be added}*
 
+--------------------------------------------------------------------------------------------------------------------
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **FYP**: Final Year Project taken by year 4 undergraduate SoC students
+* **SoC**: School of Computing in National University of Singapore
+* **JerylFypManager**: used by SoC Professors supervising student's FYP project
+* **Professor**: A academic staff of SoC who supervisor's a student's FYP
+* **Student**: A year 4 SoC student taking FYP
 
 --------------------------------------------------------------------------------------------------------------------
 
