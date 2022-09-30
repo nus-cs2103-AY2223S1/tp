@@ -266,10 +266,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                    | So that I can…​                               |
 |----------|--------------------------------------------|---------------------------------|-----------------------------------------------|
-| `* * *`  | professor                                  | add student into my course      | track the list of students in my module       |
+| `* * *`  | professor                                  | add a module                    |                                               |
+| `* * *`  | professor                                  | list all my modules             |                                               |
+| `* * *`  | professor                                  | remove a module                 |                                               |
+| `* * *`  | professor                                  | add student into my module      | track the list of students in my module       |
 | `* * `   | professor                                  | edit a student's information    | change student's information                  |
-| `* * *`  | professor                                  | remove a student from my course | remove students who decide to drop the module |
-| `* * *`  | professor                                  | set reminders for myself        | keep track of any tasks I have                |
+| `* * *`  | professor                                  | remove a student from my module | remove students who decide to drop the module |
+| `* * *`  | professor                                  | add reminders for myself        | keep track of any tasks I have                |
 | `* * *`  | professor                                  | edit reminders for myself       | change the description of my task             |
 | `* * *`  | professor                                  | add a new consult slot          | keep track of all my consults                 |
 | `* * *`  | professor                                  | delete a consult slot           | remove consults that are cancelled            |
@@ -346,7 +349,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 * **TA**: A teaching assistant
 
 --------------------------------------------------------------------------------------------------------------------
