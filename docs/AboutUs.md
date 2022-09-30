@@ -33,7 +33,7 @@ Roles:
 
 [[github](https://github.com/shaniceng)]
 
-* Role: (deciding)
+* Role: (Deliverables and deadlines, Scheduling and tracking)
 
 ### Singh Abdullah Alexander
 
