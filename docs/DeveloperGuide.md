@@ -290,9 +290,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `MyInsuRec` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `MyInsuRec` and the **Actor** is the `insurance agent`, unless specified otherwise)
 
-**Use case: Add a client**
+**Use case: UC1 - Add a client**
 
 **MSS**
 
@@ -309,7 +309,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: List all meetings**
+**Use case: UC2 List all meetings**
 
 **MSS**
 
@@ -318,11 +318,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
+**Use case: UC3 Delete a meeting**
+
+**MSS**
+
+1. User requests for a list of all meetings (UC2).
+2. System shows a list of all meetings.
+3. User requests to delete one meeting from the list.
+4. System deletes the meeting specified by the user.
+5. System informs user that the specified meeting is deleted.
+
+   Use case ends.
+
 **Extensions**
 
-* 2a. The list has no meetings.
+* 3a. User deletes a meeting that was not shown in the list.
 
-    * 2a1. System informs the user that there are no meetings on the list.
+    * 3a1. System shows an error message.
 
       Use case ends.
 
