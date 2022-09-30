@@ -309,6 +309,80 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
+**Use case: View a Customer**
+
+**MSS**
+
+1.  User requests to list customers
+2.  ArtBuddy shows a list of customers
+3.  User requests to open customer in the list
+4.  ArtBuddy shows the list of commissions the customer made and the details of the customer
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. ArtBuddy shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Delete a Customer**
+
+**MSS**
+
+1.  User requests to list customers
+2.  ArtBuddy shows a list of customers
+3.  User requests to delete a customer in the list
+4.  ArtBuddy warns the user that all commissions under the customer will be deleted, and confirms whether the user still wants to proceed
+5.  User confirms.
+6.  ArtBuddy deletes the customer
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. ArtBuddy shows an error message.
+
+      Use case resumes at step 2.
+
+* 4a. The user chooses not to proceed with the deletion.
+
+  Use case ends.
+
+**Use case: Open a commission**
+
+**Preconditions: AB currently has a customer open.**
+
+**MSS**
+1. User enters a command to open a specific commission.
+2. AB shows the commission’s details.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. AB detects an invalid command format.
+  * 1a1. AB displays an error message informing User of the command format.
+
+    Use case ends.
+
+* 1b. AB detects the selected commission does not exist.
+  * 1b1. AB displays an error message.
+
+    Use case ends.
+
 **Use case: Add iteration to a commission**<br>
 **Guarantees:**
 * An iteration, with an associated image, will be added to the specified commission only if its creation is successful
@@ -350,7 +424,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes from step 3.
 
-Use case: Delete an iteration of a commission<br>
+**Use case: Delete an iteration of a commission<br>
 Preconditions: AB currently has a commission opened.<br>**
 
 **MSS:**
@@ -371,8 +445,6 @@ Preconditions: AB currently has a commission opened.<br>**
       Steps 1b1 and 1b2 are repeated until the command is valid.<br>
       Use case resumes from step 2.
 
-*{More to be added}*
-
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -390,8 +462,9 @@ able to accomplish most of the tasks faster using commands than using the mouse.
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-
+* **Customer**: A contact detail. Contains information about the customer, and a list of commissions.
+* **Commission**: An art piece requested by a customer that has been delivered or is in progress. Contains specifics about the commission and a list of iterations.
+* **Iteration**: A single version of a commission. Contains an image and a text comment on the image. 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
