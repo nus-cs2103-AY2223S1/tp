@@ -11,3 +11,4 @@
   * It comes with a **reasonable level of user and developer documentation**.
 * It is named `Financial Advisor Planner` (`FAP` for short) because it allows financial advisors to plan their schedule and appointments with clients
 * For the detailed documentation of this project, see the **[Financial Advisor Planner Website](https://ay2223s1-cs2103t-w09-2.github.io/tp/)**.
+* This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
