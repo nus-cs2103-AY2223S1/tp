@@ -5,7 +5,6 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
@@ -19,18 +18,28 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 
-[//]: # (### Jane Doe)
+### Chua Ming Quan
 
-[//]: # ()
-[//]: # (<img src="images/johndoe.png" width="200px">)
+<img src="images/chuamingquan.png" width="200px">
 
-[//]: # ()
-[//]: # ([[github]&#40;http://github.com/johndoe&#41;])
+[[github](https://github.com/https://github.com/mqchua)]
+[[portfolio](team/chuamingquan.md)]
 
-[//]: # ([[portfolio]&#40;team/johndoe.md&#41;])
+* Role: Developer
 
-[//]: # ()
-[//]: # (* Role: Team Lead)
+### Tin En Hao
 
-[//]: # (* Responsibilities: UI)
+<img src="images/tinenhao.png" width="200px">
 
+[[github](https://github.com/tinenhao)]
+[[portfolio](team/tinenhao.md)]
+
+* Role: Developer
+
+### Justin Widodo
+<img src="images/justinwidodo.png" width="200px">
+
+[[github](https://github.com/GenFusion122)]
+[[portfolio](team/justinwidodo.md)]
+
+* Role: Developer
