@@ -40,7 +40,9 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/LuoTianYou.jpg" width="200px">
 
-[[github](https://github.com/HakkaNgin)]
+[github](https://github.com/HakkaNgin)
+
+[portfolio](team/luotianyou.md)
 
 * Role: Developer
 * Responsibilities: Development
