@@ -204,14 +204,14 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action                | Format, Examples                                                                                                                                                     |
-|-----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add client**        | `addClient n/NAME p/PHONE_NUMBER [e/EMAIL]` <br> e.g.,<li>`addClient n/John Tan p/0123456789`</li><li>`addClient n/John Tan p/0123456789 e/johntan@insurec.com`</li> |
-| **List all clients**  | `listClient`                                                                                                                                                         |
-| **View client**       | `viewClient i/INDEX` <br> e.g., <li>`viewClient i/1`</li>                                                                                                            |
-| **Delete client**     | `delMeeting i/INDEX` <br> e.g., <li>`delClient i/1`</li>                                                                                                             |
-| **Add meeting**       | `addMeeting n/NAME d/DATE t/TIME` <br> e.g., <li>`addMeeting n/Thomas d/28092022 t/1400`</li>                                                                        |
-| **List all meetings** | `listMeeting`                                                                                                                                                        |
-| **View meeting**      | `viewMeeting i/INDEX` <br> e.g., <li>viewMeeting i/1</li>                                                                                                            |
-| **Delete meeting**    | `delMeeting i/INDEX` <br> e.g., <li>delMeeting i/1</li>                                                                                                              |
-| **Exit**              | `exit`                                                                                                                                                               |
+| Action                | Format, Examples                                                                                                                                                   |
+|-----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add client**        | `addClient n/NAME p/PHONE_NUMBER [e/EMAIL]` <br> e.g., <br> • `addClient n/John Tan p/0123456789` <br> • `addClient n/John Tan p/0123456789 e/johntan@insurec.com` |
+| **List all clients**  | `listClient`                                                                                                                                                       |
+| **View client**       | `viewClient i/INDEX` <br> e.g., <br> • `viewClient i/1`                                                                                                            |
+| **Delete client**     | `delMeeting i/INDEX` <br> e.g., <br> • `delClient i/1`                                                                                                             |
+| **Add meeting**       | `addMeeting n/NAME d/DATE t/TIME` <br> e.g., <br> • `addMeeting n/Thomas d/28092022 t/1400`                                                                        |
+| **List all meetings** | `listMeeting`                                                                                                                                                      |
+| **View meeting**      | `viewMeeting i/INDEX` <br> e.g., <br> • `viewMeeting i/1`                                                                                                          |
+| **Delete meeting**    | `delMeeting i/INDEX` <br> e.g., <br> • `delMeeting i/1`                                                                                                            |
+| **Exit**              | `exit`                                                                                                                                                             |
