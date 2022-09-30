@@ -313,42 +313,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `InterNUS` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add a contact person for an internship**
+**Use case: UC1 - Delete a person**
 
 **MSS**
 
-1. User adds a person to the contact list
-2. InterNUS creates a new person contact
-3. User adds an internship to the internship list
-4. InterNUS creates a new internship entry
-5. User requests to set a specific person as the contact person for a specific internship
-6. InterNUS sets the person as the contact person for the internship
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The desired person to set as the contact person is already in the list
-
-    * 1a1. No new person is created.
-
-      Use case resumes at step 3.
-
-* 3a. The desired internship to set the contact person for is already in the list.
-
-    * 3a1. No new internship is created.
-
-      Use case resumes at step 5.
-
-
-**Use case: Delete a person**
-
-**MSS**
-
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list persons.
+2.  InterNUS shows a list of persons.
+3.  User requests to delete a specific person in the list.
+4.  InterNUS deletes the person.
 
     Use case ends.
 
@@ -360,11 +332,105 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. InterNUS shows an error message.
 
-      Use case resumes at step 2.
+      Use case ends.
+
+* 3b. The person found at the index is a contact person for an internship
+    * 3b1. InterNUS looks up the affected internship.
+
+    * 3b2. InterNUS removes the contact person from the internship.
+
+      Use case resumes at step 4.
+
+
+**Use case: UC2 - Delete an internship**
+
+**MSS**
+
+1.  User requests to list internships.
+2.  InterNUS shows a list of internships.
+3.  User requests to delete a specific internship in the list.
+4.  InterNUS deletes the internship.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. InterNUS shows an error message.
+
+      Use case ends.
+
+* 3b. The internship found at the index is associated with a person.
+
+    * 3b1. InterNUS looks up the affected person.
+
+    * 3b2. InterNUS removes the internship from the person.
+
+      Use case resumes at step 4.
+
+
+**Use case: UC3 - Add a contact person to an internship**
+
+**MSS**
+
+1. User adds an internship to the internship list
+2. InterNUS creates a new internship entry
+3. User adds a person to the contact list
+4. InterNUS creates a new person contact
+5. User requests to set a specific person as the contact person for a specific internship
+6. InterNUS sets the person as the contact person for the internship
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The desired internship to set the contact person for is already in the list.
+
+    * 1a1. No new internship is created.
+
+      Use case resumes at step 3.
+
+* 3a. The desired person to set as the contact person is already in the list
+
+    * 3a1. No new person is created.
+
+      Use case resumes at step 5.
+
+
+**Use case: UC4 - Add an interview date for an internship**
+
+**MSS**
+
+1. User adds an internship to the internship list.
+2. InterNUS creates a new internship entry.
+3. User requests to set the interview date of a specific internship.
+4. InterNUS sets the interview date for the internship.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The desired internship to set the interview date for is already in the list.
+
+    * 1a1. No new internship is created.
+
+      Use case resumes at step 3.
+
+* 3a. The interview date given is invalid.
+
+    * 3a1. InterNUS notifies the user why the given date is invalid.
+    
+      Use case ends.
 
 *{More to be added}*
+
 
 ### Non-Functional Requirements
 
