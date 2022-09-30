@@ -9,7 +9,7 @@ title: Chew Yew Keng's Project Portfolio Page
 
  Given below are my contributions to the project.
 
- - ### New Feature: 
+ - ### New Feature:
  - ### Code contributed:
  - ### Enhancements implemented:
  - ### Contributions to the UG:

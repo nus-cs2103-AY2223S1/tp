@@ -30,8 +30,8 @@ Financial Advisor Planner (FAP) is a **desktop app for Financial Advisors (FA) t
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
-   * **`clear`** : Deletes all contacts.
-    
+   * **`clear`** : Deletes all contacts. 
+
    * **`find`** `John`: looks for contact that matches keyword ‘John’
 
    * **`exit`** : Exits the app.
@@ -91,7 +91,7 @@ A person can have any number of tags (including 0) </div>
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/200000 r/Medium s/5000`
 * `Add n/Betsy Crowe t/friend i/0 r/High e/betsycrow@example.com a/Newgate Prison p/1234567 s/0`
- 
+
 ### Listing all persons : `list`
 
 Shows a list of all persons in the client list.
@@ -132,7 +132,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
 * Only full words will be matched e.g. Han will not match Hans
 * Persons matching at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang
-* The search also applies to other information available such as mobile number or policy numbers. 
+* The search also applies to other information available such as mobile number or policy numbers.
   E.g John Doe has the mobile number 87438807
     * find 87438807 will return John Doe
 * The search can be limited to certain categories by using find [CATEGORY] KEYWORD instead.
