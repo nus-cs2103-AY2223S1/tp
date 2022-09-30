@@ -267,8 +267,10 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Value proposition**: manage contacts faster than a typical mouse/GUI driven app
 
-
 ### User stories
+
+Link to Most Updated User Stories:
+[Click here](https://github.com/orgs/AY2223S1-CS2103-F14-1/projects/2)
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -292,16 +294,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `CLIMods` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Find a module**
 
 **MSS**
 
 1.  User requests to find a module
-2.  AddressBook requests for details of the module to find
+2.  CLIMods requests for details of the module to find
 3.  User enters the requested details
-4.  AddressBook finds and display details of the module
+4.  CLIMods finds and display details of the module
 
     Use case ends.
 
@@ -309,11 +311,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given module request is invalid.
 
-    * 3a1. AddressBook shows an error message where module does not exist.
+    * 3a1. CLIMods shows an error message where module does not exist.
 
 * 3b. The user's command is invalid.
 
-    * 3a1. AddressBook shows an error message where command is non-existent.
+    * 3a1. CLIMods shows an error message where command is non-existent.
 
       Use case resumes at step 2.
 
@@ -322,9 +324,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to add a module
-2.  AddressBook requests for details of the module to add
+2.  CLIMods requests for details of the module to add
 3.  User enters the requested details
-4.  AddressBook adds the module
+4.  CLIMods adds the module
 
     Use case ends.
 
@@ -332,11 +334,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given module request is invalid.
 
-    * 3a1. AddressBook shows an error message where module does not exist.
+    * 3a1. CLIMods shows an error message where module does not exist.
 
 * 3b. The user's command is invalid.
 
-    * 3a1. AddressBook shows an error message where command is non-existent.
+    * 3a1. CLIMods shows an error message where command is non-existent.
   
       Use case resumes at step 2.
 
@@ -345,9 +347,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list modules
-2.  AddressBook shows a list of modules
+2.  CLIMods shows a list of modules
 3.  User requests to delete a specific module in the list
-4.  AddressBook deletes the module
+4.  CLIMods deletes the module
 
     Use case ends.
 
@@ -359,7 +361,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given name is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. CLIMods shows an error message.
 
       Use case resumes at step 2.
 
