@@ -14,27 +14,28 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest NotioNUS.jar from [here](https://github.com/AY2223S1-CS2103T-F12-3/tp).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Move the file to the folder you want to use as the home folder for NotioNUS
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+4. Double-click the file to start the application. A GUI as shown below should appear.
+	Note: The application will contain some sample data when launched.
+<br>
+   ![Ui](images/user-guide/Ui.png)
+
+5. Type the command in the “COMMAND INPUT” box and press “ENTER” to execute the command<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   - `ls -a` :
+    Lists all contacts.
+   - `add <module> <taskName> [--tag <tag>]` : 
+    Adds a task called `taskName` from the module `module` into the task list.
+   - `delete <taskId>` : 
+   	Deletes the task in the task list with task id `taskId`.
+   - `edit <taskId> <module> <taskName>` : 
+   	Changes the module and task name of the task with `taskId` to `module` and `taskName` respectively.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
-
-   * **`exit`** : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
