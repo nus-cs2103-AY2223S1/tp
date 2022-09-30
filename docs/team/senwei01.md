@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Gerald Teo Jin Wei's Project Portfolio Page
+title: Lee Sen Wei's Project Portfolio Page
 ---
 
 ## Project: Financial Advisor Planner

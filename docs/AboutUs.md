@@ -13,7 +13,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/senwei01.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/senwei01)]
 [[portfolio](team/senwei01.md)]
 
@@ -21,17 +20,17 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Chew Yew Keng
 
-<img src="images/yewkeng.png" width="200px">
+<img src="images/rgonslayer.png" width="200px">
 
 [[github](http://github.com/rgonslayer)]
-[[portfolio](team/yewkeng.md)]
+[[portfolio](team/rgonslayer.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
 
 ### Wong Yew Jon
 
-<img src="images/wongyewjon.png" width="200px"> 
+<img src="images/wongyewjon.png" width="200px">
 
 [[github](http://github.com/wongyewjon)]
 [[portfolio](team/wongyewjon.md)]
