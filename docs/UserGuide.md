@@ -29,6 +29,8 @@ TutHub is a **desktop app for tech-savvy tuition agents who want to keep track o
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   
+   * **`save`** : Saves the data to your local device. 
 
    * **`clear`** : Deletes all contacts.
 
@@ -114,9 +116,9 @@ Examples:
 
 [coming soon]
 
-### Saving the data
+### Saving the data : `save`
 
-Saves the data in the hard disk.
+Saves the data to the local hard disk.
 
 ### Exiting the program : `exit`
 
