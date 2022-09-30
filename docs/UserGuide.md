@@ -1,15 +1,14 @@
-# Introduction
+---
+layout: page
+title: User Guide
+---
 
-InTrack is a **desktop app for managing your internship applications, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, InTrack can get your internship management tasks done faster than traditional GUI apps.
+InTrack is a **desktop app for managing your internship applications, optimized for use via a Command Line Interface** 
+(CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, InTrack can get your 
+internship management tasks done faster than traditional GUI apps.
 
-
-- [Quick Start](#quick-start)
-- [Features](#features)
-  * [Viewing help](#viewing-help--help)
-  * [Adding an internship application](#adding-an-internship-application-add)
-  * [Listing all internship applications](#listing-all-internship-applications--list)
-  * [Deleting an internship application](#deleting-an-internship-application--delete)
-  * [Marking completion status of an internship application](#marking-completion-status-of-an-internship-application--mark)
+* Table of Contents
+* {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -128,11 +127,11 @@ InTrack data are saved in the hard disk automatically after any command that cha
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Help** | `help`
-**Add** | `add p/POSITION c/COMPANY e/EMAIL a/ADDRESS [t/TAG]…` <br> e.g., `add p/Software Engineer Intern c/Google e/email@gmail.com a/1600 Amphitheatre Parkway t/Urgent`
-**Delete** | `delete INDEX`<br> e.g., `delete 1`
-**Mark** | `mark INDEX`<br> e.g., `mark 1`
-**List** | `list`
+| Action     | Format, Examples                                                                                                                                                  |
+|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**   | `help`                                                                                                                                                            |
+| **Add**    | `add p/POSITION c/COMPANY e/EMAIL a/ADDRESS [t/TAG]…` <br> e.g., `add p/Software Engineer Intern c/Google e/email@gmail.com a/1600 Amphitheatre Parkway t/Urgent` |
+| **Delete** | `delete INDEX`<br> e.g., `delete 1`                                                                                                                               |
+| **Mark**   | `mark INDEX`<br> e.g., `mark 1`                                                                                                                                   |
+| **List**   | `list`                                                                                                                                                            |
 
