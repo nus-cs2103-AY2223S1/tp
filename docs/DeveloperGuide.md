@@ -336,7 +336,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: Open a commission**
 
-Preconditions: AB currently has a customer open.
+**Preconditions: AB currently has a customer open.**
 
 **MSS**
 1. User enters a command to open a specific commission.
