@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Vaishnav Muralidharan
 
-<img src="images/Vaishnav Formal photo.png" width="200px">
+<img src="images/vshnv2001.png" width="200px">
 
 
 [[github](https://github.com/johndoe)]
