@@ -368,6 +368,8 @@ _{More to be added}_
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Documentation: user guide should be sufficiently clear such that all users can understand how to use the app after reading the guide.
+5. The product should be easy to use by person with little experience of using a command line application.
 
 _{More to be added}_
 
