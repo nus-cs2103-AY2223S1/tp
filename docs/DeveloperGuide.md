@@ -297,6 +297,19 @@ Extensions:
 
 *{More to be added}*
 
+#### UC7: Rename Tags
+Use Case: UC7 - Rename Tags
+MSS:
+1.
+Extensions:
+1.
+#### UC8: Remove Tag from Item
+Use Case: UC8 - Remove Tag from Item
+MSS:
+1.
+Extensions:
+1.
+
 ### Non-Functional Requirements
 
 1. The product should work on any mainstream OS (Windows, macOS, Linux) that has Java 11 or above installed.
