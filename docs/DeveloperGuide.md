@@ -255,29 +255,37 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
+**Target User**
+
+Hackathon participants - particularly team member with project management role
+
 **Target user profile**:
 
+* has a need to allocate and track tasks to team members 
 * has a need to manage a significant number of contacts
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: help with project management tasks and team formation in Hackathons
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                 | I want to …​                                        | So that I can…​                                                                   |
+|----------|--------------------------------------------|--------------------------------------------------------|--------------------------------------------------------------------------------------|
+| `* * *`  | hackathon team leader                      | see all tasks                                          | have an overview of what needs to be done                                            |
+| `* * *`  | hackathon team leader                      | add a task to the task list,                           | include task that needs to be done                                                   |
+| `* * *`  | hackathon team leader                      | delete a task                                          | remove tasks that are accidentally added                                             |
+| `* * *`  | hackathon team leader                      | edit a task                                            | rectify mistakes in task details                                                     |
+| `* * *`  | hackathon team leader                      | assign a task                                          | allocate task to a team member                                                       |
+| `* * *`  | hackathon team leader                      | mark task as done                                      | I can keep a moving record of what we have done                                      |
+| `* * *`  | hackathon team leader                      | mark task as not done                                  | in case we have tasks that end up being incomplete or the task requirements modified |
+| `* *`    | hackathon team leader                      | see which tasks are done/ not done                     | plan the way forward                                                                 |
+| `* *`    | hackathon team leader                      | add further description to a task                      | add more details to a task                                                           |                             |
 
 *{More to be added}*
 
