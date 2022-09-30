@@ -1,13 +1,15 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.person.UniquePersonList;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
-public class GetIDCommand extends Command {
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+
+/**
+ * Finds the ID of student in the list.
+ */
+public class GetIdCommand extends Command {
 
     public static final String COMMAND_WORD = "getID";
 
@@ -17,7 +19,7 @@ public class GetIDCommand extends Command {
 
     public static final String MISSING_NAME_EXCEPTION = "Please provide a name.";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD  + ": finds the ID in the list identified by the name.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": finds the ID in the list identified by the name.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME \n"
             + "Example: " + COMMAND_WORD + " "
@@ -25,7 +27,7 @@ public class GetIDCommand extends Command {
 
     private final String targetName;
 
-    public GetIDCommand(String targetName) {
+    public GetIdCommand(String targetName) {
         this.targetName = targetName;
     }
 
@@ -35,11 +37,11 @@ public class GetIDCommand extends Command {
         if (targetName.isBlank()) {
             throw new CommandException(MISSING_NAME_EXCEPTION);
         }
-        int ID = model.getID(targetName);
-        if (ID == -1) {
+        int id = model.getID(targetName);
+        if (id == -1) {
             throw new CommandException(GET_ID_FAILURE);
         } else {
-            return new CommandResult(String.format(GET_ID_SUCCESS, ID));
+            return new CommandResult(String.format(GET_ID_SUCCESS, id));
         }
     }
 }
