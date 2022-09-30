@@ -14,13 +14,8 @@ Getting started:
 ```bash
 > ./gradlew clean run
 ```
-
   * The project is a desktop application used for managing contact details.
     * It is **written in OOP fashion**. It provides a **reasonably well-written** code base(around 6 KLoC), without being overwhelmingly big.
     * It comes with a **reasonable level of user and developer documentation**.
   * It is named `Condonery` and was evolved from `AddressBook` project.
   * For the detailed documentation of this project, see the **[Condonery Product Website](https://ay2223s1-cs2103-w14-1.github.io/tp/)**.
-  * This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info. 
-  
-
-
