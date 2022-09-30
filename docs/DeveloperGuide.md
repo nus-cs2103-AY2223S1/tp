@@ -77,6 +77,27 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
       Use case resumes at step 2.
 
+### Use case: Update a student contact detail
+
+**MSS**
+
+1. Teacher requests to update contact number of a specific student in the list
+2. Teacher’s Pet updates the student
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. Student name does not exist in the system.
+    - 1a1. Teacher’s Pet shows an error message.
+
+  Use case ends.
+
+- 1b. The given contact number is invalid.
+    - 1b1. Teacher’s Pet shows an error message.
+
+  Use case ends.
+
 ### Use case: **Find student contact details**
 
 **MSS**
