@@ -233,12 +233,12 @@ _Details coming soon ..._
 Action | Format, Examples
 --------|------------------
 **Add customer** | `addcus n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [t/TAG]…​`  <br> e.g., `addcus n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/animal cartoons`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
+**Open customer** | `opencus INDEX`<br> e.g., `opencus 14`
+**Delete customer** | `delcus INDEX`<br> e.g., `delcus 10`
+**Add commission** | `addcom n/TITLE f/FEE d/DEADLINE [t/TAG]`<br> e.g., `addcom n/Rimuru f/40 d/2022-11-01 t/traditional t/chibi`
 **Open Commission** | `opencom INDEX`<br> e.g., `opencom 14`
 **Delete Commission** | `delcom INDEX`<br> e.g., `delcom 14`
 **Add Iteration** | `additer FILEPATH`<br> e.g., `additer /Users/John/Downloads/Bread.jpeg`
 **Delete Iteration**| `deliter INDEX`<br> e.g., `deliter 1`
+**Exit** | `exit`
 **Help** | `help`
