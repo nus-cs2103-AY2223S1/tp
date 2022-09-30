@@ -312,9 +312,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any mainstream OS as long as it has Java 11 or above installed. (compatibility) 
+2. Should be able to hold up to 1000 users without a noticeable lag in performance for typical usage. (performance)
+3. Should have a response time less than or equal to 5 seconds given any command. (Performance)
+4. Should take less than 2GB of memory while in operation. (Performance)
+5. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse. (Usability) 
+6. The error rate of the commands entered by the user should not exceed 5%. (Usability)
+7. Should take an user less than 1 day to familiarise with all the main commands used for the application. (Usability - learnability)
+8. An user who returned to the interface after stopping for some time should be able to use the application efficiently right away. (Usability - memorability)
+9. Should provide a pleasant user experience and a high user satisfactory level. (Usability - satisfaction) 
+10. Should not face any error or system failure 95% of the time. (Reliability)
+11. Should support the use of the UK English language. (Localisation)
+12. Should be available to users 99% of the time. (Availability)
+13. Should not take up more than 20 minutes to maintain the application when an error is encountered. (Maintainability)
+14. Should be easily moved from one computing environment to another without any change in its behaviour or performance. ie. should not require an installer.  (Portability)
+15. Should take less than 2GB of storage space. 
+16. Data should be stored locally in the user's operating device. 
+
 
 *{More to be added}*
 
