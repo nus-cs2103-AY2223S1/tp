@@ -19,7 +19,7 @@ Given below are my contributions to the project.
 
 * **Project management**:
     * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub (remove)
-    * Project Lead 
+    * Project Lead
 
 * **Enhancements to existing features**:
     * Updated the GUI color scheme (Pull requests [\#33](), [\#34]()) (remove)
