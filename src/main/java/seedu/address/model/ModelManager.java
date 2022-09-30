@@ -147,6 +147,7 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(other.filteredPersons);
     }
 
+    @Override
     public int getID(String targetName) {
         ObservableList<Person> personList = addressBook.getPersonList();
         for (int i = 0; i < personList.size(); i++) {
