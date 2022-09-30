@@ -136,6 +136,7 @@ Output:
 ```
 (Item exists): Item “potato” successfully deleted!
 (Item does not exist): No item to be found at index 1. Use “list items” or “find NAME” to find the index of the item to be deleted.
+```
 
 ### Tag
 
