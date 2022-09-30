@@ -34,8 +34,8 @@ public class CreateMeetingCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         String[] personName = personToMeet.split("\\s+");
-        NameContainsKeywordsPredicate personNameArray
-            = new NameContainsKeywordsPredicate(Arrays.asList(personName));
+        NameContainsKeywordsPredicate personNameArray =
+            new NameContainsKeywordsPredicate(Arrays.asList(personName));
         model.updateFilteredPersonList(personNameArray);
         ObservableList<Person> listOfPeople = model.getFilteredPersonList();
         if (listOfPeople.isEmpty()) {
