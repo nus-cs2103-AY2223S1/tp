@@ -154,7 +154,7 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 **MSS**
 
 1. Teacher requests to find the next available slot for class
-2. Teacher discuss with the student about whether the proposed slot is possible
+2. Teacher discusses with the student about whether the proposed slot is possible
 3. Teacher [update](#use-case-update-a-student-contact-detail) the student record with the next class date
 
 **Extensions**
@@ -163,3 +163,4 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
   - Step 1-2 is repeated until a mutually-agreed slot is found.
     
     Use case resumes at step 3.
+  
