@@ -100,6 +100,8 @@ Something goes here...
 
 ### Item
 
+## Commands
+
 ### Tags
 
 #### Tag Create
@@ -192,8 +194,6 @@ Output:
 (Tag does not exist): Tag “vegetables” does not exist. Use “list tags” to view the list of existing tags.
 (Item does not exist): Item index 1 does not exist. Use “list items” to view the list of existing items, or “find” to use the index to tag items.
 ```
-
-## Commands
 
 #### List items
 
