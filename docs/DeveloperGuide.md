@@ -323,6 +323,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ---
 
+**Use case: See the list of all patients**
+
+**MSS**
+
+1. User requests to list patients.
+2. UniNurse shows a list of patients.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+---
+
 **Use case: Add a patient**
 
 **MSS**
@@ -483,6 +500,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+---
+
+**Use case: Delete a task associated with a specified patient**
+
+**MSS**
+1. User requests to list patients and/or their tasks.
+2. UniNurse shows a list of patients with their tasks.
+3. User requests to delete a task by specifying the specific patient and specific task.
+4. UniNurse deletes the task of the specified patient.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given patient index is invalid.
+
+  * 3a1. UniNurse shows an error message.
+    
+    Use case resumes at step 2.
+
+* 3b. The given task index of the specified patient is invalid.
+
+    * 3b1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+    
 ---
 
 **Use case: See the list of tasks to be completed**
