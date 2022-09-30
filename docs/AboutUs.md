@@ -7,29 +7,19 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ## Project team
 
-### Shawn Kok
-
-<img src="images/kok-je.png" width="200px">
-
-[[github](https://github.com/Kok-je)]
-[[portfolio](team/kok-je.md)]
-
-- Role: Developer
-- Responsibilities: Testing, Integration, IntelliJ expert, In charge of Model, UI, Storage
-
 ### Chao Yung
 
-<img src="images/chao890.png" width="200px">
+<kbd><img src="images/chao890.png" width="200px"></kbd>
 
 [[github](https://github.com/chao890)]
 [[portfolio](team/chao890.md)]
 
-- Role: Developer
-- Responsibilities: Documentation, Git Expert
+- Role: Developer, Git Expert
+- Responsibilities: Documentation
 
 ### Kevin Chang
 
-<img src="images/kevinchangjk.png" width="200px">
+<kbd><img src="images/kevinchangjk.png" width="200px"></kbd>
 
 [[github](http://github.com/kevinchangjk)]
 [[portfolio](team/kevinchangjk.md)]
@@ -39,7 +29,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Prittam Ravi
 
-<img src="images/prit3010.png" width="200px">
+<kbd><img src="images/prit3010.png" width="200px"></kbd>
 
 [[github](https://github.com/prit3010)]
 [[portfolio](team/prit3010.md)]
@@ -47,9 +37,19 @@ We are a team based in the [School of Computing, National University of Singapor
 - Role: Team Lead
 - Responsibilities: Scheduling & Tracking, Deliverables & Deadlines
 
+### Shawn Kok
+
+<kbd><img src="images/kok-je.png" width="200px"></kbd>
+
+[[github](https://github.com/Kok-je)]
+[[portfolio](team/kok-je.md)]
+
+- Role: Developer, IntelliJ expert, Figma expert
+- Responsibilities: Testing, Integration, UI
+
 ### Ng Shi Jun
 
-<img src="images/ngshijun.png" width="200px">
+<kbd><img src="images/ngshijun.png" width="200px"></kbd>
 
 [[github](http://github.com/ngshijun)]
 [[portfolio](team/ngshijun.md)]
