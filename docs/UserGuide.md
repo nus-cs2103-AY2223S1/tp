@@ -152,6 +152,19 @@ Examples:
 * `addMeeting n/John Tan d/28092022 t/1400`
 * `addMeeting n/John Tan t/1400 d/28092022`
 
+### Deleting a Meeting : `delMeeting`
+
+Deletes a meeting from MyInsuRec.
+
+Format: `delMeeting i/INDEX`
+
+* Deletes the meeting at the specified `INDEX`.
+* The index refers to the index number shown in the displayed meeting list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `listMeeting` followed by `delMeeting 2` deletes the 2nd Meeting in the meeting list.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
