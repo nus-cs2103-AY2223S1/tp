@@ -320,6 +320,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
+* **Medical Administrator**: A person who oversees, plan, direct, and coordinate health care delivery.
+* **Patients**: A person receiving or registered to receive medical treatment.
+* **Nurses**: A person trained to care for the sick or infirm, especially in a hospital.
+* **HealthCare Xpress**: A desktop app for managing patients that require home-visits.
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
