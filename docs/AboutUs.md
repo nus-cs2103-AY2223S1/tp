@@ -17,7 +17,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/lyuting47.md)]
 
 * Role: Developer
-* Responsibilities: [to be added]
+* Responsibilities: Code Quality
 
 ### Wayne Zhang Si Yuan
 
@@ -27,7 +27,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/waynezsy.md)]
 
 * Role: Developer
-* Responsibilities: [to be added]
+* Responsibilities: Team Lead, Deliverables and Deadlines
 
 ### Wong Rende
 
@@ -37,7 +37,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/wr3nd3.md)]
 
 * Role: Developer
-* Responsibilities: [to be added]
+* Responsibilities: Documentation
 
 <img src="images/tsammeow.png" width="200px">
 
@@ -45,7 +45,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/tsammeow.md)]
 
 * Role: Developer
-* Responsibilities: [to be added]
+* Responsibilities: Testing
 
 ### Bryan Yang
 
@@ -55,4 +55,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/thesoggy.md)]
 
 * Role: Developer
-* Responsibilities: [to be added]
+* Responsibilities: Integration
