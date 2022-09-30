@@ -266,10 +266,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                    | So that I can…​                               |
 |----------|--------------------------------------------|---------------------------------|-----------------------------------------------|
-| `* * *`  | professor                                  | add student into my course      | track the list of students in my module       |
+| `* * *`  | professor                                  | add a module                    |                                               |
+| `* * *`  | professor                                  | list all my modules             |                                               |
+| `* * *`  | professor                                  | remove a module                 |                                               |
+| `* * *`  | professor                                  | add student into my module      | track the list of students in my module       |
 | `* * `   | professor                                  | edit a student's information    | change student's information                  |
-| `* * *`  | professor                                  | remove a student from my course | remove students who decide to drop the module |
-| `* * *`  | professor                                  | set reminders for myself        | keep track of any tasks I have                |
+| `* * *`  | professor                                  | remove a student from my module | remove students who decide to drop the module |
+| `* * *`  | professor                                  | add reminders for myself        | keep track of any tasks I have                |
 | `* * *`  | professor                                  | edit reminders for myself       | change the description of my task             |
 | `* * *`  | professor                                  | add a new consult slot          | keep track of all my consults                 |
 | `* * *`  | professor                                  | delete a consult slot           | remove consults that are cancelled            |
@@ -335,16 +338,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 500 students and TAs without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 students and TAs without a noticeable sluggishness in performance for typical usage.
+3. A professor with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. The application should process all commands in a reasonably short time (less than 5 seconds).
+5. The application should be able to run without Internet connectivity.
+6. The source code should be open source.
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 * **TA**: A teaching assistant
 
 --------------------------------------------------------------------------------------------------------------------

@@ -51,6 +51,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/limailin.png" width="200px">
 
 [[github](http://github.com/LimAiLin)]
-[[portfolio](team/LimAiLin.md)]
+[[portfolio](team/limailin.md)]
 
 * Role: Documentation and Testing
