@@ -1,6 +1,5 @@
 package jarvis.logic;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static jarvis.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static jarvis.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static jarvis.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
@@ -9,6 +8,7 @@ import static jarvis.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static jarvis.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static jarvis.testutil.Assert.assertThrows;
 import static jarvis.testutil.TypicalPersons.AMY;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 import java.nio.file.Path;

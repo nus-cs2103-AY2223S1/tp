@@ -1,17 +1,17 @@
 package jarvis.storage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static jarvis.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
 
-import jarvis.testutil.TypicalPersons;
 import jarvis.commons.exceptions.IllegalValueException;
 import jarvis.commons.util.JsonUtil;
 import jarvis.model.AddressBook;
+import jarvis.testutil.TypicalPersons;
 
 public class JsonSerializableAddressBookTest {
 

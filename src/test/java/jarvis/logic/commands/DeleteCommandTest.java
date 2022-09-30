@@ -1,13 +1,13 @@
 package jarvis.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static jarvis.logic.commands.CommandTestUtil.assertCommandFailure;
 import static jarvis.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static jarvis.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static jarvis.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static jarvis.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static jarvis.testutil.TypicalPersons.getTypicalAddressBook;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 

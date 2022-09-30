@@ -2,8 +2,8 @@ package jarvis.commons.util;
 
 import static java.util.Objects.requireNonNull;
 
-import javafx.scene.image.Image;
 import jarvis.MainApp;
+import javafx.scene.image.Image;
 
 /**
  * A container for App specific utility functions

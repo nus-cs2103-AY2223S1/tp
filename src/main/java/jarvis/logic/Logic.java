@@ -6,7 +6,6 @@ import jarvis.commons.core.GuiSettings;
 import jarvis.logic.commands.CommandResult;
 import jarvis.logic.commands.exceptions.CommandException;
 import jarvis.logic.parser.exceptions.ParseException;
-import jarvis.model.Model;
 import jarvis.model.ReadOnlyAddressBook;
 import jarvis.model.person.Person;
 import javafx.collections.ObservableList;

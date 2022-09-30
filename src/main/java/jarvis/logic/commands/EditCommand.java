@@ -1,12 +1,12 @@
 package jarvis.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static jarvis.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static jarvis.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static jarvis.logic.parser.CliSyntax.PREFIX_NAME;
 import static jarvis.logic.parser.CliSyntax.PREFIX_PHONE;
 import static jarvis.logic.parser.CliSyntax.PREFIX_TAG;
 import static jarvis.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static java.util.Objects.requireNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;

@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 
-import jarvis.commons.exceptions.DataConversionException;
 import jarvis.commons.core.Config;
+import jarvis.commons.exceptions.DataConversionException;
 
 /**
  * A class for accessing the Config File.

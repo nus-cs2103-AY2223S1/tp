@@ -1,10 +1,10 @@
 package jarvis.logic.commands;
 
+import static jarvis.testutil.Assert.assertThrows;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static jarvis.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;

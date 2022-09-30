@@ -1,10 +1,10 @@
 package jarvis.logic.parser;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static jarvis.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static jarvis.testutil.Assert.assertThrows;
 import static jarvis.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;

@@ -1,13 +1,13 @@
 package jarvis.model.person;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static jarvis.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static jarvis.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static jarvis.testutil.Assert.assertThrows;
 import static jarvis.testutil.TypicalPersons.ALICE;
 import static jarvis.testutil.TypicalPersons.BOB;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;

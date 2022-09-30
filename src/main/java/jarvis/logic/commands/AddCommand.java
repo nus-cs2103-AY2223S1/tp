@@ -1,11 +1,11 @@
 package jarvis.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static jarvis.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static jarvis.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static jarvis.logic.parser.CliSyntax.PREFIX_NAME;
 import static jarvis.logic.parser.CliSyntax.PREFIX_PHONE;
 import static jarvis.logic.parser.CliSyntax.PREFIX_TAG;
+import static java.util.Objects.requireNonNull;
 
 import jarvis.logic.commands.exceptions.CommandException;
 import jarvis.model.Model;

@@ -1,7 +1,7 @@
 package jarvis.model.person;
 
-import static java.util.Objects.requireNonNull;
 import static jarvis.commons.util.AppUtil.checkArgument;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a Person's name in the address book.

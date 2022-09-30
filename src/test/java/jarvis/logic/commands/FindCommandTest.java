@@ -1,14 +1,14 @@
 package jarvis.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static jarvis.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static jarvis.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static jarvis.testutil.TypicalPersons.CARL;
 import static jarvis.testutil.TypicalPersons.ELLE;
 import static jarvis.testutil.TypicalPersons.FIONA;
 import static jarvis.testutil.TypicalPersons.getTypicalAddressBook;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;

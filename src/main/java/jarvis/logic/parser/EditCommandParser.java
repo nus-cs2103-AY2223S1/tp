@@ -1,12 +1,12 @@
 package jarvis.logic.parser;
 
-import static java.util.Objects.requireNonNull;
 import static jarvis.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static jarvis.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static jarvis.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static jarvis.logic.parser.CliSyntax.PREFIX_NAME;
 import static jarvis.logic.parser.CliSyntax.PREFIX_PHONE;
 import static jarvis.logic.parser.CliSyntax.PREFIX_TAG;
+import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.Collections;
