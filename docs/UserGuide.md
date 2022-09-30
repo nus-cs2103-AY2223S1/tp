@@ -75,7 +75,7 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+### 1.Adds a person to the address book.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
@@ -86,6 +86,19 @@ A person can have any number of tags (including 0)
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+
+### 2. Adds a nurse to the Healthcare Xpress book
+
+Format:`add c/N n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER [t/TAG]`
+
+> 💡 Tip: A nurse can have any number of tags (including 0).
+> You may type it in any order.
+> To add a nurse, type c/N specifically.
+
+Examples:
+- `add c/N n/Jason p/98723432 e/jason@example.com g/M t/Asthma `
+- `add c/N n/Betsy t/handle children well e/betsy@example.com g/F p/98345432 t/Heart disease `
+
 
 ### Listing all persons : `list`
 
