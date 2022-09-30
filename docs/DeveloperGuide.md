@@ -363,6 +363,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Performance requirement: The system should respond within a second.
+5. Technical requirement: The system should work on both 32-bit and 64-bit environments.
+6. Constraints: The product should be for a single user i.e. (not a multi-user product).
+7. Constraints: The product needs to be developed in a breadth-first incremental manner over the project duration.
+8. Constraints: The data should be stored locally and should be in a human editable text file.
+9. Constraints: The file size of the deliverables should be reasonable. Product (i.e. JAR/ZIP file) should not exceed 100 MB. Documents (i.e. PDF files) should not exceed 150 MB.
 
 *{More to be added}*
 
