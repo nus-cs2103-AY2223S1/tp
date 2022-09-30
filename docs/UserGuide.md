@@ -91,6 +91,20 @@ Creates the customer entry for John Doe with his details including multiple tags
 * `addcus n/Betsy Crowe e/betsycrowe@example.com p/12345867`
 Creates the customer entry for Betsy Crowe with her email and phone number.
 
+### Viewing a customer: `opencus` [coming soon]
+
+Opens a customer and shows customer details and switches tab to commissions to show commissions made by the customer.
+
+Format: `opencus INDEX`
+
+* Views the customer at `INDEX`.
+* The index refers to the index number shown in the displayed customer list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `opencus 2`
+  Shows details about the customer, and switches tab to commissions
+
 ### Listing all persons : `list`
 
 Shows a list of all persons in the address book.
@@ -132,19 +146,19 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a customer : `delcus` [coming soon]
 
-Deletes the specified person from the address book.
+Deletes the customer from the ArtBuddy.
 
-Format: `delete INDEX`
+Format: `delcus INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the customer at the specified `INDEX`.
+* The index refers to the index number shown in the displayed customer list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `delcus 2`
+  Deletes the 2nd customer in the ArtBuddy and all commissions made by the customer.
 
 ### Viewing a commission: `opencom` [coming soon]
 
