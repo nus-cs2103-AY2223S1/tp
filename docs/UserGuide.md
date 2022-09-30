@@ -108,6 +108,19 @@ Examples:
 * `add n/John p/92781123 e/john@example.com a/Donald street, block 248, #02-04 g/m`
 * `add n/Charlotte p/81286623 e/charlotte@example.com a/Charity street, block 101, #10-82  g/F`
 
+__Optional Parameter 2: Date of Birth__
+
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/DOB]`
+
+- Adds date of birth to a person in the contact list. Date formats accepted are: dd.mm.yyyy ; dd MMM yyyy ; month dd, yyyy
+- NAME can contain more than 1 word.
+
+
+Examples:
+* `add n/John Wang p/98765432 e/johnwang@example.com a/John street, block 123, #01-01 d/20.03.2000`
+* `add n/John p/92781123 e/john@example.com a/Donald street, block 248, #02-04 d/20 MAR 2000`
+* `add n/Charlotte p/81286623 e/charlotte@example.com a/Charity street, block 101, #10-82 d/March 20, 2000`
+
 
 ### Listing all persons : `list`
 
@@ -162,6 +175,19 @@ Examples:
 * `edit 2 g/f`
 * `edit 3 g/F`
 
+__Optional Parameter 2: Date of Birth__
+
+Format: `edit INDEX [d/DOB]`
+
+- Edits the date of birth of a person in the contact list. Date formats accepted are: dd.mm.yyyy; dd MMM yyyy; month dd, yyyy
+- `INDEX` must be **a positive integer** (i.e 1,2,3…)
+- `INDEX` must be within the range of the contact list index (i.e from 1 to size of contact list).
+
+
+Examples:
+* `edit 1 d/20.03.2000`
+* `edit 2 d/20 MAR 2000`
+* `edit 3 d/March 20, 2000`
 
 ### Locating persons by name: `find`
 
