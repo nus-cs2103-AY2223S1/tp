@@ -459,6 +459,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**MSS**
+
+1. User requests to list tasks
+2. YellowBook shows a list of tasks
+3. User requests to find a task tagged to specific contact
+4. YellowBook shows a list of task tagged to that contact
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. There is no contact matching specified keywords.
+
+    * 3a1. YellowBook shows an error message.
+
+      Use case resumes at step 2.
+  
 *{More to be added}*
 
 ### Non-Functional Requirements
