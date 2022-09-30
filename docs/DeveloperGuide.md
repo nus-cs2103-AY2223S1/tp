@@ -257,42 +257,67 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of clients 
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* requires a secure app to store sensitive client details
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage contacts faster than a typical mouse/GUI driven app while ensuring that client details are safe and secure. 
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                    | I want to …​                                                           | So that I can…​                                                                           |
+|----------|--------------------------------------------|------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
+| `* * *`  | financial advisor                          | add new client                                                         | keep track of the client's profile                                                        |
+| `* * *`  | financial advisor                          | delete a client                                                        | remove entries that are no longer needed                                                  |
+| `* * *`  | financial advisor                          | edit a client's profile                                                | update relevant and up-to-date information of the client                               |
+| `* * *`  | financial advisor                          | search clients by name                                                 | retrieve information of clients without having to go through the entire list              |
+| `* * *`  | financial advisor                          | sort clients by alphabetical order                                     | have an organised list of contacts                                                        |
+| `* * *`  | financial advisor                          | store important information of clients                                 | make pivotal decisions on how to better suit the clients' needs based on their information |
+| `* * `   | financial advisor                        | view the list of clients that are scheduled for meeting on a given day | be reminded and keep track of the scheduled meetings                                      |
+| `* *`    | financial advisor | have an image of my client                                             | remember and recognise the clients during the meetings                                    |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Financial Advisor Planner` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a client**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User inputs add command with the client's information
+2.  Financial Advisor Planner adds the client and their information to the list 
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Input fields are invalid
+
+  * 1a1. Financial Advisor Planner shows an error message.
+
+    Use case ends.
+* 1b. Any of the mandatory fields are not input by the user
+
+    * 1b1. Financial Advisor Planner shows an error message.
+
+      Use case ends.
+
+**Use case: Delete a client**
+
+**MSS**
+
+1.  User requests to list clients
+2.  Financial Advisor Planner shows a list of clients 
+3.  User requests to delete a specific client in the list
+4.  Financial Advisor Planner deletes the client 
 
     Use case ends.
 
@@ -304,10 +329,52 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Financial Advisor Planner shows an error message.
 
       Use case resumes at step 2.
 
+**Use case: Edit client details**
+
+**MSS**
+
+1. User requests to list clients
+2. Financial Advisor Planner shows a list of clients
+3. User requests to edit the details of a client at the specified index 
+4. Financial Advisor Planner edits the details of the specified client in the list 
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. User did not input any arguments.
+
+    * 3a1. Financial Advisor Planner shows an error message.
+    
+      Use case resumes at step 2. 
+  
+* 3b. The given index is invalid. 
+
+    * 3b1. Financial Advisor Planner shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Clear Financial Advisor Planner**
+
+**MSS**
+
+1.  User requests to clear the list of clients
+2.  Financial Advisor Planner shows a success message 
+
+    Use case ends.
+
+**Use case: Find client**
+
+**MSS**
+
+1.  User requests to find clients containing input keyword(s)
+2.  Financial Advisor Planner shows a list of clients with the matching keyword(s)
+
+    Use case ends.
 *{More to be added}*
 
 ### Non-Functional Requirements
@@ -315,15 +382,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
+4.  Should execute command within 1 second 
+5.  Should work without an internet connection
+6.  Should be reliable and bug free 
+7.  Stored data should be backwards compatible with older versions 
+8.  Stored data should be secure and only accessible by user 
+9.  User interface should be usable for beginners
+ 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **CLI**: Command Line Interface
+* **GUI**: Graphical User Interface
+
+*{More to be added}*
 
 --------------------------------------------------------------------------------------------------------------------
+
 
 ## **Appendix: Instructions for manual testing**
 

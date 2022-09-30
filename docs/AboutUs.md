@@ -9,51 +9,52 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Lee Sen Wei
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/senwei01.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/senwei01)]
+[[portfolio](team/senwei01.md)]
 
 * Role: Project Advisor
 
-### Jane Doe
+### Chew Yew Keng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yewkeng.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/rgonslayer)]
+[[portfolio](team/yewkeng.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Wong Yew Jon
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/wongyewjon.png" width="200px"> 
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/wongyewjon)]
+[[portfolio](team/wongyewjon.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Muhammad Mus'ab Bin Mustaffa
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/muhdmusab.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/muhdmusab)]
+[[portfolio](team/muhdmusab.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Gerald Teo Jin Wei
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jialatteo.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/jialatteo)]
+[[portfolio](team/jialatteo.md)]
 
 * Role: Developer
 * Responsibilities: UI
