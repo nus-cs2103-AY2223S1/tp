@@ -343,17 +343,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Add a patient**
 
 **MSS**
-1. User adds a patient to patient list with patient details
-2. UniNurse shows the list of patients with the newly added patient
+1. User adds a patient to patient list with patient details.
+2. UniNurse shows the list of patients with the newly added patient.
 
    Use case ends.
 
 **Extensions**
-* 1a. The given details are invalid
+* 1a. The given details are invalid.
 
     * 1a1. UniNurse shows an error message.
 
-      Use case resumes at step 1
+      Use case resumes at step 1.
 
 ---
 
@@ -361,16 +361,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to list patients
-2. UniNurse shows a list of patients
-3. User requests to edit a patient profile with the information that they want to change
-4. UniNurse edits the patient
+1. User requests to list patients.
+2. UniNurse shows a list of patients.
+3. User requests to edit a patient profile with the information that they want to change.
+4. UniNurse edits the patient.
 
    Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty
+* 2a. The list is empty.
 
   Use case ends.
 
@@ -380,13 +380,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-* 3b. The given details to edit are invalid
+* 3b. The given details to edit are invalid.
 
     * 3b1. UniNurse shows an error message.
 
       Use case resumes at step 2.
 
-* 3c. The new details to be updated are invalid
+* 3c. The new details to be updated are invalid.
 
     * 3b1. UniNurse shows an error message.
 
@@ -397,10 +397,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list patients
-2.  UniNurse shows a list of patients
-3.  User requests to delete a specific patient in the list
-4.  UniNurse deletes the patient
+1. User requests to list patients.
+2. UniNurse shows a list of patients.
+3. User requests to delete a specific patient in the list.
+4. UniNurse deletes the patient.
 
     Use case ends.
 
@@ -421,15 +421,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to find patients whose names have specified keywords
-2. UniNurse shows a list of patients whose names have specified keywords
+1. User requests to find patients whose names have specified keywords.
+2. UniNurse shows a list of patients whose names have specified keywords.
    
    Use case ends.
 
 **Extensions**
 
-* 1a. No keywords are given
-   * 1a1. UniNurse shows an error message
+* 1a. No keywords are given.
+   * 1a1. UniNurse shows an error message.
   
      Use case ends. 
 
@@ -438,16 +438,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to list patients
-2. UniNurse shows a list of patients
-3. User requests to add a task with its description to a specific patient 
-4. UniNurse adds the task to a patient 
+1. User requests to list patients.
+2. UniNurse shows a list of patients.
+3. User requests to add a task with its description to a specific patient.
+4. UniNurse adds the task to a patient.
    
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty
+* 2a. The list is empty.
 
   Use case ends.
 
@@ -457,7 +457,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-* 3b. The given task details is invalid
+* 3b. The given task details is invalid.
 
     * 3b1. UniNurse shows an error message.
 
@@ -469,16 +469,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to list patients and/or their tasks
-2. UniNurse shows a list of patients with their tasks
-3. User requests to edit a task with its description they want to change, by specifying the specific patient and specific task
-4. UniNurse edits the task description of the chosen task of the specified patient
+1. User requests to list patients and/or their tasks.
+2. UniNurse shows a list of patients with their tasks.
+3. User requests to edit a task with its description they want to change, by specifying the specific patient and specific task.
+4. UniNurse edits the task description of the chosen task of the specified patient.
 
    Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty
+* 2a. The list is empty.
 
   Use case ends.
 
@@ -494,7 +494,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-* 3c. The given task details is invalid
+* 3c. The given task details is invalid.
   
     * 3c1. UniNurse shows an error message.
 
@@ -536,8 +536,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list tasks
-2.  UniNurse shows a list of tasks together with patient name
+1.  User requests to list tasks.
+2.  UniNurse shows a list of tasks together with patient name.
 
     Use case ends.
 
@@ -553,8 +553,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list tasks for patient at a specified index
-2.  UniNurse shows a list of tasks for the specified patient
+1.  User requests to list tasks for patient at a specified index.
+2.  UniNurse shows a list of tasks for the specified patient.
 
     Use case ends.
 
