@@ -23,7 +23,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](https://github.com/jovitaanderson)]
 
-* Role: (deciding)
+* Role: Team Lead
 
 ### Shanice Ng Wen Yi
 
