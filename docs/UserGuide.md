@@ -179,7 +179,7 @@ __Optional Parameter 2: Date of Birth__
 
 Format: `edit INDEX [d/DOB]`
 
-- Edits the date of birth of a person in the contact list. Date formats accepted are: d.M.yyyy, dd MMM yyyy, M d, yyyy
+- Edits the date of birth of a person in the contact list. Date formats accepted are: dd.mm.yyyy; dd MMM yyyy; month dd, yyyy
 - `INDEX` must be **a positive integer** (i.e 1,2,3…)
 - `INDEX` must be within the range of the contact list index (i.e from 1 to size of contact list).
 
