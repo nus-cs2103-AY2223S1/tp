@@ -257,71 +257,63 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+
+**Value proposition**:  
 
 
 ### User stories
-
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
-
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `FoodRem` and the **Actor** is the `purchasing manager`, unless specified otherwise)
 
-**Use case: Delete a person**
+#### UC1: Add Item to Inventory
+Use Case: UC1 - Add Item to Inventory
+MSS:
+1. User adds an item to the inventory.
+2. FoodRem adds the item into the inventory list.
+   Use Case ends.
 
-**MSS**
+Extensions:
+* 1a. If the item name already exists in the inventory, FoodRem will throw an error.
+    * 1a1. User will re-enter command until the new item is correct.
+      Use case resumes from Step 2.
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
 
-    Use case ends.
+#### UC2: Update Item in Inventory
+Use Case: UC2 - Update Item in Inventory
+MSS:
+1. User updates an inventory item's detail.
+2. FoodRem updates the detail of the inventory item.
+   Use case ends.
 
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
-
-      Use case resumes at step 2.
+Extensions:
+* 1a. If the item does not exist in the inventory, FoodRem will throw an error.
+    * 1a1. User will re-enter command until the correct item is given (i.e item exists in inventory).
+      Use case resumes from Step 2.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. The product should work on any mainstream OS (Windows, macOS, Linux) that has Java 11 or above installed.
+2. The product should be able to hold up to 1000 items without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. A user should not experience excessive sluggishness when searching and sorting items.
+5. The product should be for a single user (i.e. not a multi-user product where different users can run the application at different times on a shared computer).
+6. The data of the application is stored locally.
+7. A user must be able to view at least 5 tags when an item is displayed.
+8. A user must be able to view at least 5 items with minimal scrolling if there are no tags added to each item.
+9. A user should be able to use the app after reading the help instructions.
 
-*{More to be added}*
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+*{More to be added}*
+
 
 --------------------------------------------------------------------------------------------------------------------
 
