@@ -21,7 +21,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Kartikeya -
 
-<img src="images/Kartikeya_ProfilePicture.JPG" width="200px">
+<img src="images/Kartikeya_ProfilePicture.png" width="200px">
 
 ([github](http://github.com/kxrt))
 ([portfolio](team/kxrt.md))
