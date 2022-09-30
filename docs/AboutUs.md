@@ -9,7 +9,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Shawn Kok
 
-<img src="images/kokje.png" width="200px">
+<img src="images/kok-je.png" width="200px">
 
 [[github](https://github.com/Kok-je)]
 [[portfolio](team/kok-je.md)]
