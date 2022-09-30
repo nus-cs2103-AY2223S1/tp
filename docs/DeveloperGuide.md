@@ -270,6 +270,28 @@ _{Explain here how the data archiving feature will be implemented}_
 
 (For all use cases below, the **System** is `FoodRem` and the **Actor** is the `purchasing manager`, unless specified otherwise)
 
+#### UC3: Delete Item from Inventory
+Use Case: UC2 - Delete Item from Inventory
+MSS:
+1. User deletes an item from inventory.
+2. FoodRem removes item from inventory.
+   Use case ends.
+
+Extensions:
+* 1a. Item does not exist in inventory.
+    * 1a1. FoodRem displays error to user that item does not exist in inventory.
+      Use case resumes from step 1.
+
+#### UC4: Create Tag
+Use Case: UC4 - Create Tag
+MSS:
+1. User creates a tag.
+
+Extensions:
+* 1a. Tag already exists.
+    * 1a1. FoodRem displays error warning to user.
+      Use case resumes from step 1.
+
 **Use case:**
 
 **MSS**
