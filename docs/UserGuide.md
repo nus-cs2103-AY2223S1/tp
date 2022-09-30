@@ -8,7 +8,7 @@ InTrack is a **desktop app for managing your internship applications, optimized 
 internship management tasks done faster than traditional GUI apps.
 
 * Table of Contents
-* {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -58,7 +58,7 @@ internship management tasks done faster than traditional GUI apps.
 
 </div>
 
-### Viewing help : `help`
+### Viewing help: `help`
 
 Shows a message explaining how to access the help page.
 
