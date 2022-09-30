@@ -13,7 +13,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/senwei01.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/senwei01)]
 [[portfolio](team/senwei01.md)]
 
@@ -31,7 +30,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Wong Yew Jon
 
-<img src="images/wongyewjon.png" width="200px"> 
+<img src="images/wongyewjon.png" width="200px">
 
 [[github](http://github.com/wongyewjon)]
 [[portfolio](team/wongyewjon.md)]

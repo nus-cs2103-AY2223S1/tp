@@ -257,14 +257,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of clients 
+* has a need to manage a significant number of clients
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 * requires a secure app to store sensitive client details
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app while ensuring that client details are safe and secure. 
+**Value proposition**: manage contacts faster than a typical mouse/GUI driven app while ensuring that client details are safe and secure.
 
 
 ### User stories
@@ -293,7 +293,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User inputs add command with the client's information
-2.  Financial Advisor Planner adds the client and their information to the list 
+2.  Financial Advisor Planner adds the client and their information to the list
 
     Use case ends.
 
@@ -315,9 +315,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list clients
-2.  Financial Advisor Planner shows a list of clients 
+2.  Financial Advisor Planner shows a list of clients
 3.  User requests to delete a specific client in the list
-4.  Financial Advisor Planner deletes the client 
+4.  Financial Advisor Planner deletes the client
 
     Use case ends.
 
@@ -339,8 +339,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to list clients
 2. Financial Advisor Planner shows a list of clients
-3. User requests to edit the details of a client at the specified index 
-4. Financial Advisor Planner edits the details of the specified client in the list 
+3. User requests to edit the details of a client at the specified index
+4. Financial Advisor Planner edits the details of the specified client in the list
 
     Use case ends.
 
@@ -348,11 +348,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. User did not input any arguments.
 
-    * 3a1. Financial Advisor Planner shows an error message.
-    
-      Use case resumes at step 2. 
+    * 3a1. Financial Advisor Planner shows an error message. 
   
-* 3b. The given index is invalid. 
+      Use case resumes at step 2.
+  
+* 3b. The given index is invalid.
 
     * 3b1. Financial Advisor Planner shows an error message.
 
@@ -363,7 +363,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to clear the list of clients
-2.  Financial Advisor Planner shows a success message 
+2.  Financial Advisor Planner shows a success message
 
     Use case ends.
 
@@ -379,16 +379,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  Should execute command within 1 second 
-5.  Should work without an internet connection
-6.  Should be reliable and bug free 
-7.  Stored data should be backwards compatible with older versions 
-8.  Stored data should be secure and only accessible by user 
-9.  User interface should be usable for beginners
- 
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Should execute command within 1 second
+5. Should work without an internet connection
+6. Should be reliable and bug free
+7. Stored data should be backwards compatible with older versions
+8. Stored data should be secure and only accessible by user
+9. User interface should be usable for beginners
+
 *{More to be added}*
 
 ### Glossary
