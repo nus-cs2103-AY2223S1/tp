@@ -17,3 +17,8 @@ optimized for use via a Command Line Interface (CLI), with all the benefits of a
 * It is named `MyInsuRec` because it helps financial advisors to keep track of their clients and meetings.
 * For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
 * This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+
+## Links
+* [MyInsuRec Product Website](https://ay2223s1-cs2103t-w16-4.github.io/tp)
+* [MyInsuRec Developer Guide](https://ay2223s1-cs2103t-w16-4.github.io/tp/DeveloperGuide)
+* [MyInsuRec User Guide](https://ay2223s1-cs2103t-w16-4.github.io/tp/UserGuide)
