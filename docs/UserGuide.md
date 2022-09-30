@@ -64,6 +64,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 </div>
 
+
 ## Section 1: Contacts
 
 ### Add a contact: `add`
@@ -172,6 +173,25 @@ Examples:
 
 * `listT` followed by `unmark 1` marks the first task in the displayed task list as undone.
 * `find task -t book` followed by `unmark 1` marks the first result of the find command as undone.
+
+## Section 3: Tags
+### Listing all tags : `taglist`
+
+Shows a list of all existing tags in the address book.
+
+Format: `taglist`
+
+### Adding a tag : `addtag i/INDEX n/TAG_NAME`
+
+Adds a tag to an existing contact in the address book. Each contact can have multiple tags. If there is no existing tag with the same name, tag is added to the tag list. Throws an exception if contact does not exist.
+
+Format: `addtag i/12 n/CS2103T`
+
+### Removing a tag : `rmtag i/INDEX n/TAG_NAME`
+
+Removes a tag from an existing contact in the address book. If contact is last remaining person with said tag, tag is removed from the tag list. Throws an exception if contact or tag does not exist.
+
+Format: `rmtag i/14 n/CS2101`
 
 ## YellowBook data
 ### Saving the data
