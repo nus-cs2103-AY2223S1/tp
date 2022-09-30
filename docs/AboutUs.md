@@ -43,6 +43,20 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 
+
+### Chang Jing Yan
+
+<img src="images/changjy44.png" width="200px">
+
+[homepage](https://www.linkedin.com/in/chang-jing-yan-079928146/)
+
+[github](http://github.com/changjy44)
+
+[portfolio](team/changjy44.md)
+
+* Role: Developer
+
+
 ### Gui Ming Jiang
 
 <img src="images/mjgui.png" width="200px">
@@ -51,13 +65,3 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/mjgui.md)]
 
 * Role: Developer
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
