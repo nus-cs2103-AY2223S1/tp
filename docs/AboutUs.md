@@ -9,6 +9,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
+### Bryan Lim Jing Xiang
+
+<img src="images/bryanljx.jpg" width="200px">
+
+[[github](https://github.com/bryanljx)]
+[[portfolio](team/bryanljx.md)]
+
+* Role: Project Member, Tech Lead
+* Responsibilities: PR review
+
 ### Tan Wei Lie Eugene
 
 <img src="images/eugenetanwl3881.png" width="200px">
