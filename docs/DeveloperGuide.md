@@ -275,36 +275,36 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                 | I want to …​                                               | So that I can…​                                                            |
-|----------|-------------------------|------------------------------------------------------------|----------------------------------------------------------------------------|
-| `* * *`  | new user                | see usage instructions                                     | refer to instructions when I forget how to use the App                     |
-| `* * *`  | user                    | add a new contact                                          |                                                                            |
-| `* * *`  | user                    | delete a contact                                           | remove entries that I no longer need                                       |
-| `* * *`  | user                    | view all my contacts                                       | keep track of all my contacts                                              |
-| `* *`    | user                    | edit a contact                                             | update it or correct mistakes                                              |
-| `* *`    | user                    | clear all my contacts                                      | save time deleting them one by one                                         |
-| `* *`    | user                    | create a new tag                                           | categorise my contacts                                                     |
-| `* *`    | user                    | delete a tag                                               | remove redundant tags                                                      |
-| `* *`    | user                    | edit a tag                                                 | provide better naming                                                      |
-| `* *`    | user                    | tag a contact                                              | add it to a category                                                       |
-| `* *`    | user                    | untag a contact                                            | remove it from a category                                                  |
-| `* *`    | user                    | search using a name, phone number, email or address        | find a contact easily without reading through the list                     |
-| `* *`    | user                    | search with a tag                                          | find groups of contacts that share a common tag                            |
-| `* *`    | user                    | search with multiple tags                                  | narrow my search results to only contacts that have all the specified tags |
-| `* *`    | user                    | search with multiple tags                                  | broaden my result results to contacts that have any of the specified tags  |
-| `* *`    | user                    | view contacts related to my search query                   | find contacts even when I mistype their name                               |
-| `* *`    | user                    | hide private contact details                               | minimize chance of someone else seeing them by accident                    |
-| `* *`    | user                    | show private contact details                               | view them when I need to                                                   |
-| `* *`    | user                    | have an autocomplete for the names that I am searching     | search faster by names and minimize the chance of an unsuccessful search.  |
-| `* *`    | user                    | have an autocomplete for the tags that I am searching      | search faster by tags and minimize the chance of an unsuccessful search.   |
-| `* *`    | user with many contacts | specify the default order of my contacts                   | avoid re-sorting the list everytime                                        |
-| `* *`    | user with many contacts | sort contacts by name, email, phone number, or address     | organise my contacts list                                                  |
-| `* *`    | user with many contacts | sort contacts according to tags                            | view contacts with a specified tag before other contacts                   |
-| `* *`    | user with many contacts | sort contacts by multiple fields                           | organise my contacts list with greater degree                              |
-| `*`      | user with many contacts | mark some contacts as my favourites                        | spot them easily among other contacts                                      |
-| `*`      | user with many contacts | sort favourite contacts before others                      | see them before other contacts                                             |
-| `*`      | user                    | change the order of information for contacts               | view more important information before others                              |
-| `*`      | user                    | customise the theme of the app                             | adjust it to my comfort and liking                                         |
+| Priority | As a …​                 | I want to …​                                           | So that I can…​                                                            |
+|----------|-------------------------|--------------------------------------------------------|----------------------------------------------------------------------------|
+| `* * *`  | new user                | see usage instructions                                 | refer to instructions when I forget how to use the App                     |
+| `* * *`  | user                    | add a new contact                                      |                                                                            |
+| `* * *`  | user                    | delete a contact                                       | remove entries that I no longer need                                       |
+| `* * *`  | user                    | view all my contacts                                   | keep track of all my contacts                                              |
+| `* *`    | user                    | edit a contact                                         | update it or correct mistakes                                              |
+| `* *`    | user                    | clear all my contacts                                  | save time deleting them one by one                                         |
+| `* *`    | user                    | create a new tag                                       | categorise my contacts                                                     |
+| `* *`    | user                    | delete a tag                                           | remove redundant tags                                                      |
+| `* *`    | user                    | edit a tag                                             | provide better naming                                                      |
+| `* *`    | user                    | tag a contact                                          | add it to a category                                                       |
+| `* *`    | user                    | untag a contact                                        | remove it from a category                                                  |
+| `* *`    | user                    | search using a name, phone number, email or address    | find a contact easily without reading through the list                     |
+| `* *`    | user                    | search with a tag                                      | find groups of contacts that share a common tag                            |
+| `* *`    | user                    | search with multiple tags                              | narrow my search results to only contacts that have all the specified tags |
+| `* *`    | user                    | search with multiple tags                              | broaden my result results to contacts that have any of the specified tags  |
+| `* *`    | user                    | view contacts related to my search query               | find contacts even when I mistype their name                               |
+| `* *`    | user                    | hide private contact details                           | minimize chance of someone else seeing them by accident                    |
+| `* *`    | user                    | show private contact details                           | view them when I need to                                                   |
+| `* *`    | user                    | have an autocomplete for the names that I am searching | search faster by names and minimize the chance of an unsuccessful search   |
+| `* *`    | user                    | have an autocomplete for the tags that I am searching  | search faster by tags and minimize the chance of an unsuccessful search    |
+| `* *`    | user with many contacts | specify the default order of my contacts               | avoid re-sorting the list everytime                                        |
+| `* *`    | user with many contacts | sort contacts by name, email, phone number, or address | organise my contacts list                                                  |
+| `* *`    | user with many contacts | sort contacts according to tags                        | view contacts with a specified tag before other contacts                   |
+| `* *`    | user with many contacts | sort contacts by multiple fields                       | organise my contacts list with greater degree                              |
+| `*`      | user with many contacts | mark some contacts as my favourites                    | spot them easily among other contacts                                      |
+| `*`      | user with many contacts | sort favourite contacts before others                  | see them before other contacts                                             |
+| `*`      | user                    | change the order of information for contacts           | view more important information before others                              |
+| `*`      | user                    | customise the theme of the app                         | adjust it to my comfort and liking                                         |
 *{More to be added}*
 
 ### Use cases
@@ -463,6 +463,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **CLI**: A text-based user interface used to run programs
 * **GUI**: A graphical user interface (GUI) is a form of user interface that allows users to interact with programs through graphical icons and audio indicator
+* **JavaFX**: A Java library used to develop client applications
+* **kLoC**: Stands for thousands of lines of code
+* **NUS**: National University of Singapore 
+* **SoC**: School of Computing, a computing school in NUS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Autocomplete**: A feature that shows a list of completed words or strings without the user needing to type them in full
 --------------------------------------------------------------------------------------------------------------------

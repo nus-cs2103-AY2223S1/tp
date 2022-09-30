@@ -100,12 +100,12 @@ Format: `list`
 Sort the list of contacts displayed by certain attribute(s).
 
 Default sorting orders:
-* Alphabetical order for *names*, *emails*, *addresses*
-* Increasing order for *phone numbers*
-* Sorts contacts that have a specified *tag* before those without the *tag*
+* Alphabetical order for *names*, *emails*, *addresses*.
+* Increasing order for *phone numbers*.
+* Sorts contacts that have a specified *tag* before those without the *tag*.
 
 Format: `sort [n/] [p/] [e/] [a/] [t/TAG]…​`
-* Add `!` in front of an attribute to sort in reverse order
+* Add `!` in front of an attribute to sort in reverse order.
 
 Example:
 * `sort n/` sorts the currently displayed list of contacts by their names.
@@ -172,10 +172,10 @@ Format: `search [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 * Displays a list of relevant contacts related to the search query if no search result available.
 
 Example:
-* `search t/family` returns all people tagged with family in the contact list
-* `search p/86178789` returns all contacts with that phone number
-* `search t/cs2103t and t/tp` returns all contacts tagged with both cs2103t and tp
-* `search t/friends or t/family` returns all contacts tagged with either friends or family
+* `search t/family` returns all people tagged with family in the contact list.
+* `search p/86178789` returns all contacts with that phone number.
+* `search t/cs2103t and t/tp` returns all contacts tagged with both cs2103t and tp.
+* `search t/friends or t/family` returns all contacts tagged with either friends or family.
 * `search n/Johm` is supposed to return an empty result since there is no person named `Johm` in the contact list, but now it will return people with names similar to that, for example, `John`.
 
 ### Autocomplete: `search`
@@ -216,7 +216,7 @@ Format: `customise hide [p/] [e/] [a/] [t/]`
 * If the information specified is already hidden, it will stay hidden.
 
 Example:
-* `customise hide e/` The application no longer shows emails in the contact list
+* `customise hide e/` The application no longer shows emails in the contact list.
 
 ### Show Contact Details: `customise show`
 
@@ -228,7 +228,7 @@ Format: `customise show [p/] [e/] [a/] [t/]`
 * If the information specified is already shown, it will stay shown.
 
 Example:
-* `customise show a/` The application now shows addresses in the contact list
+* `customise show a/` The application now shows addresses in the contact list.
 
 ### Customise Order of Details: `customise order`
 
@@ -240,7 +240,7 @@ Format: `customise order [p/] [e/] [a/] [t/]`
 
 Example:
 
-* `customise order a/ e/ p/` The application now shows address first, followed by email, phone, then tags
+* `customise order a/ e/ p/` The application now shows address first, followed by email, phone, then tags.
 
 ### Clearing all entries : `clear`
 
