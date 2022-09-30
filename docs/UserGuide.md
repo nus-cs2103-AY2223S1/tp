@@ -108,11 +108,37 @@ Examples:
 * `add n/John p/92781123 e/john@example.com a/Donald street, block 248, #02-04 g/m`
 * `add n/Charlotte p/81286623 e/charlotte@example.com a/Charity street, block 101, #10-82  g/F`
 
+__Optional Parameter 2: Date of Birth__
+
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/DOB]`
+
+- Adds date of birth to a person in the contact list. Date formats accepted are: dd.mm.yyyy ; dd MMM yyyy ; month dd, yyyy
+- NAME can contain more than 1 word.
+
+
+Examples:
+* `add n/John Wang p/98765432 e/johnwang@example.com a/John street, block 123, #01-01 d/20.03.2000`
+* `add n/John p/92781123 e/john@example.com a/Donald street, block 248, #02-04 d/20 MAR 2000`
+* `add n/Charlotte p/81286623 e/charlotte@example.com a/Charity street, block 101, #10-82 d/March 20, 2000`
+
 ### Listing all persons : `list`
 
 Shows a list of all persons in the address book.
 
-Format: `list`
+Format: `list [s/FIELD]`
+
+* Sorts the contacts by the specified field in **ascending** order. `FIELD` must take one the following values:
+  * `n` sort by name
+  * `d` Sort by date of birth
+  * `g` Sort by gender
+
+* It is optional to specify the field to sort by. If no field is specified, persons are listed in the order they were inserted.
+* At most one field can be specified. i.e. Cannot specify 2nd or 3rd criteria to sort by.
+* Persons with an empty field that is being used to sort will be placed at the top of the list.
+
+Examples:
+* `list` Lists all persons without sorting them.
+* `list s/n` Lists all persons sorted by their names.
 
 ### Editing a contact : `edit`
 
@@ -148,6 +174,20 @@ Examples:
 * `edit 2 g/f`
 * `edit 3 g/F`
 
+__Optional Parameter 2: Date of Birth__
+
+Format: `edit INDEX [d/DOB]`
+
+- Edits the date of birth of a person in the contact list. Date formats accepted are: dd.mm.yyyy; dd MMM yyyy; month dd, yyyy
+- `INDEX` must be **a positive integer** (i.e 1,2,3…)
+- `INDEX` must be within the range of the contact list index (i.e from 1 to size of contact list).
+
+
+Examples:
+* `edit 1 d/20.03.2000`
+* `edit 2 d/20 MAR 2000`
+* `edit 3 d/March 20, 2000`
+
 ### Locating persons by name: `find`
 
 Finds persons whose names contain any of the given keywords.
@@ -179,6 +219,41 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+### Creating an event: `create`
+
+Creates a new event in the address book.
+
+Format: `create t/EVENT_TITLE d/DATE t/TIME p/PURPOSE`
+
+* The compulsory parameters are: event title (`t`), date (`d`), time (`t`) and purpose (`p`)
+
+Examples:
+* `create t/Shoe Sale 30% d/30-05-2022 t/11:00 p/Discount on all shoes for up to 30%`
+* `create t/Banana Discount 10% d/20-04-2022 t/14:00 p/10% discount on all bananas`
+
+### Removing an event: `remove`
+
+Removes an existing event in the address book.
+
+Format: `remove INDEX`
+
+* Removes the event at the specified `INDEX`. 
+* The index refers to the index number shown in the displayed event list 
+* The index must be a positive integer 1, 2, 3, …, and it must be within the range of the event list index.
+
+Examples:
+* `delete 2` after displaying all events with display removes event at index 2
+* `delete 7` after displaying all events with display removes event at index 7
+
+### Display all events: `display`
+
+Shows a list of all existing events in the address book.
+
+Format: `display`
+
+Examples:
+* `display`
 
 ### Clearing all entries : `clear`
 
