@@ -30,7 +30,9 @@ Financial Advisor Planner (FAP) is a **desktop app for Financial Advisors (FA) t
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
-   * **`clear`** : Deletes all contacts. 
+   * **`clear`** : Deletes all contacts.
+
+   * **'sort'**'alphabet' : Sorts the contacts in alphabetical order.
 
    * **`find`** `John`: looks for contact that matches keyword ‘John’
 
@@ -58,7 +60,7 @@ Financial Advisor Planner (FAP) is a **desktop app for Financial Advisors (FA) t
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command but if you specify it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
@@ -161,7 +163,11 @@ Examples:
 
 Sorts the contacts shown in the list of clients by alphabetical order.
 
-Format: `clear`
+Format: `sort alphabet`
+
+* Returns all the contacts in alphabetical order
+  ![result for 'sort alphabet'](images/sortAlphabetResult.png)
+
 
 ### Clearing all entries : `clear`
 
@@ -208,6 +214,8 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [i/YEARLY_INCOME] [r/RISK_APPETITE] [s/MONTHLY_SAVINGS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Exit** | `exit`
 **Find** | `find KEYWORD [MORE_KEYWORDS]` <br> `find [CATEGORY] KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
+**Sort Alphabet** | `sort alphabet` 
