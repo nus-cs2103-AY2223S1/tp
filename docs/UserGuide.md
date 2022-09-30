@@ -91,6 +91,20 @@ Creates the customer entry for John Doe with his details including multiple tags
 * `addcus n/Betsy Crowe e/betsycrowe@example.com p/12345867`
 Creates the customer entry for Betsy Crowe with her email and phone number.
 
+### Viewing a customer: `opencus` [coming soon]
+
+Opens a customer and shows customer details and switches tab to commissions to show commissions made by the customer.
+
+Format: `opencus INDEX`
+
+* Views the customer at `INDEX`.
+* The index refers to the index number shown in the displayed customer list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `opencus 2`
+  Shows details about the customer, and switches tab to commissions
+
 ### Listing all persons : `list`
 
 Shows a list of all persons in the address book.
@@ -124,19 +138,19 @@ Examples:
 * `addcom n/Rimuru f/40 d/2022-11-01 t/traditional t/chibi` creates the commission entry titled "Rimuru" with the given fee, due date and tags.
 * `addcom n/Tokyo Ghoul Kaneki f/50 d/2022-10-15` creates a commission entry titled with the given fee and due date.
 
-### Deleting a person : `delete`
+### Deleting a customer : `delcus` [coming soon]
 
-Deletes the specified person from the address book.
+Deletes the customer from the ArtBuddy.
 
-Format: `delete INDEX`
+Format: `delcus INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the customer at the specified `INDEX`.
+* The index refers to the index number shown in the displayed customer list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `delcus 2`
+  Deletes the 2nd customer in the ArtBuddy and all commissions made by the customer.
 
 ### Viewing a commission: `opencom` [coming soon]
 
@@ -159,6 +173,36 @@ Format: `delcom INDEX`
 
 Example:
 * `delcom 14`
+
+### Adding iteration to a commission: `additer`
+Adds an image at the specified file path to the current commission.
+
+Format: `additer FILEPATH`
+
+* The file path specified should be an absolute path from your root directory.
+* The command requires a commission to be selected.
+* The image name will assume the filename specified in the command.
+* Currently, only image file types .png, .jpg, .bmp and .gif are supported
+* In addition, you can currently only upload one image per commission. Trying to add an image to a commission with an
+  existing image will not be allowed. Your existing image will not be overridden, but the new image will not be added to
+  your commission. To replace a commission image, first delete the image before adding a new image.
+
+<div markdown="span" class="alert alert-info">
+**:information_source: Notes about images in ArtBuddy:**<br>
+
+ArtBuddy creates a copy of each file you upload. This means that you can edit, delete, or
+move your original copy of the file without affecting the uploaded image on ArtBuddy.
+</div>
+
+Example: `additer /Users/John/Downloads/Clown.png`
+
+### Deleting iteration from commission: `deliter`
+Deletes an iteration from a commission.
+
+Format: `deliter [INDEX]`
+* The command requires a commission to be selected.
+* As each commission currently has only one image, the command will simply delete the image tied to the current commission, if it exists.
+* You may want to note that your local copy of the image will not be deleted.
 
 ### Exiting the program : `exit`
 
@@ -218,4 +262,6 @@ Action | Format, Examples
 **List** | `list`
 **Open Commission** | `opencom INDEX`<br> e.g., `opencom 14`
 **Delete Commission** | `delcom INDEX`<br> e.g., `delcom 14`
+**Add Iteration** | `additer FILEPATH`<br> e.g., `additer /Users/John/Downloads/Bread.jpeg`
+**Delete Iteration**| `deliter INDEX`<br> e.g., `deliter 1`
 **Help** | `help`
