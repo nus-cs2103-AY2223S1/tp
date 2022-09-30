@@ -277,14 +277,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a(n) …​      | I want to …​            | So that I can…​                             |
+|----------|-----------------|-------------------------|---------------------------------------------|
+| `* * *`  | insurance agent | add client meetings     | keep track of when to meet clients          |
+| `* * *`  | insurance agent | add client details      | keep track of my client's details           |
+| `* * *`  | insurance agent | delete clients' details | remove clients whom I am no longer serving. |
+| `* * *`  | insurance agent | view all my clients     | see who I am providing services to          |
+| `* * *`  | insurance agent | delete client meetings  | remove meetings that are canceled           |
+| `* * *`  | insurance agent | view client meetings    | see when I have meetings                    |
 
 *{More to be added}*
 
