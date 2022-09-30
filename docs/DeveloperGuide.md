@@ -10,45 +10,13 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-- {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 ---
 
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
-
----
-
-## **Purpose**
-
-### **Target User Profile**
-
-Our target user is a Chief Human Resources Officer (CHRO) who:
-
-- types fast
-- is comfortable with using CLI for inputting commands
-- needs a centralized platform for accessing and updating employees’ data
-- is a Top-level management executive in charge of an organization's employees
-
-### **Value Proposition**
-
-Coydir enables the Company’s HR executive to quickly access the list of all employees, and make necessary updates based on changes in the company’s structure. This grants excellent visualization of the company structure, which will be useful in company organization or restructuring.
-
-### User Stories
-
-_Currently for Coydir v1.2_
-
-Our user stories represent what we as Coydir's developers postulate our product users would feel when using Coydir. They are therefore the main considerations for our current and future product features.
-
-Here are the user stories:
-
-- As a user, I can add people into the database, so that I can keep the database updated with the employee list.
-- As a user, I can delete people from the database, so that I can keep the database updated with the employee list.
-- As a user, I can list people in the database, so that I can keep track of who is in the company.
-- As a user, I can edit details of employees, so that I can correct the details of the employees.
-- As a user, I can view contact details of employee, so that I can contact them if necessary.
-- As a user, I can save my data, so that I can load the data I input previously.
 
 ---
 
@@ -293,26 +261,31 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-- has a need to manage a significant number of contacts
-- prefer desktop apps over other types
-- can type fast
-- prefers typing to mouse interactions
-- is reasonably comfortable using CLI apps
+Our target user is a Chief Human Resources Officer (CHRO) who:
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+- types fast
+- is comfortable with using CLI for inputting commands
+- needs a centralized platform for accessing and updating employees’ data
+- is a Top-level management executive in charge of an organization's employees
+
+**Value proposition**:
+
+Coydir enables the Company’s HR executive to quickly access the list of all employees, and make necessary updates based on changes in the company’s structure. This grants excellent visualization of the company structure, which will be useful in company organization or restructuring.
 
 ### User stories
 
+_Currently for Coydir v1.2_
+
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ---------------------------- | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-
+| Priority | As a …​ | I want to …​                      | So that I can…​                                  |
+| -------- | ------- | --------------------------------- | ------------------------------------------------ |
+| `* * *`  | user    | add a new person                  | keep the database updated with the employee list |
+| `* * *`  | user    | delete a person                   | remove entries that I no longer need             |
+| `* * *`  | user    | list people in the database       | keep track of who is in the company              |
+| `* * *`  | user    | edit details of employees         | correct the details of the employees             |
+| `* * *`  | user    | view contact details of employees | contact them if necessary                        |
+| `* * *`  | user    | save my data                      | load the data I input previously                 |
 
 _{More to be added}_
 
