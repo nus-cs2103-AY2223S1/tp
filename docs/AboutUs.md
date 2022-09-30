@@ -50,7 +50,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Vinod s/o Jaya Kumar
 
-<img src="images/vinod.png" width="200px">
+<img src="images/vinodjayakumar124.png" width="200px">
 
 [[github](http://github.com/Vinodjayakumar124)]
 [[portfolio](team/vinodjayakumar124.md)]
