@@ -29,14 +29,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Code Monkey
 * Responsibilities: Generate code  
 
-### Johnny Doe
+### Zhao Yige
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zhaoyige.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/misterpuffin.md)]
+[[github](http://github.com/frrramses)] [[portfolio](team/frrramses.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Code Crocodile 
+* Responsibilities: Random Ideas & Random Codes
 
 ### Jean Doe
 
