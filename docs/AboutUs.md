@@ -19,7 +19,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Kartikeya - 
+### Kartikeya -
 
 <img src="images/Kartikeya_ProfilePicture.JPG" width="200px">
 
