@@ -8,7 +8,6 @@ We are a team based in the [School of Computing, National University of Singapor
 You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
-
 ### Mai Ting Kai
 
 <img src="images/ferusel.png" width="200px">
@@ -17,6 +16,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/ferusel.md)]
 
 - Role: Team Lead
+
+### Bryan Lim Jing Xiang
+
+<img src="images/bryanljx.png" width="200px">
+
+[[github](https://github.com/bryanljx)]
+[[portfolio](team/bryanljx.md)]
+
+- Role: Project Member
+
 
 ### Richard Dominick
 
@@ -36,15 +45,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 - Role: Project Member
 
-### Jane Doe
+### Tan Yi Xian
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yixiann.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/yixiann)]
 
-- Role: Team Lead
-- Responsibilities: UI
+[[portfolio](team/yixiann.md)]
+
+- Role: Secretary
 
 ### Johnny Doe
 
