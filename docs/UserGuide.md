@@ -2,6 +2,7 @@
 layout: page
 title: User Guide
 ---
+
 # FoodRem User Guide
 
 ## About
@@ -16,10 +17,10 @@ commands, you can have complete control of your perishable goods.
 
 1. Add, update and delete inventory items
 2. Search and sort food items by:
-    - Name
-    - Quantity
-    - Bought date
-    - Expiry date
+   - Name
+   - Quantity
+   - Bought date
+   - Expiry date
 3. Tag items to group them into categories
 
 ## Purpose, Scope and Audience
@@ -81,6 +82,7 @@ Something goes here...
    4.6 [Help](#help)
 
    4.7 [Exit the programme](#exit)
+
 5. [Command Summary](#command-summary)
 6. [Troubleshooting](#troubleshooting)
 7. [FAQ](#faq)
@@ -99,6 +101,7 @@ Something goes here...
 ## Information Stored
 
 ### Item
+
 #### Item New
 
 Command: `item new ITEM_NAME`
@@ -107,13 +110,16 @@ Command: `item new ITEM_NAME`
 
 ---
 
-Example: 
+Example:
 
 Input
+
 ```
 item new potato
 ```
+
 Output
+
 ```
 Item  “potato” successfully created
 ```
@@ -122,17 +128,20 @@ Item  “potato” successfully created
 
 Command: `[item] delete ITEM_INDEX`
 
-> Description: Deletes a specified item. Returns a warning if the item does not exist. 
+> Description: Deletes a specified item. Returns a warning if the item does not exist.
 
 ---
 
-Example: 
+Example:
 
 Input
+
 ```
 delete 1
 ```
+
 Output
+
 ```
 (Item exists): Item “potato” successfully deleted!
 (Item does not exist): No item to be found at index 1. Use “list items” or “find NAME” to find the index of the item to be deleted.
