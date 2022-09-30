@@ -138,9 +138,100 @@ Output
 (Item does not exist): No item to be found at index 1. Use “list items” or “find NAME” to find the index of the item to be deleted.
 ```
 
-### Tag
-
 ## Commands
+
+### Tags
+
+#### Tag Create
+
+Command: `tag create TAG_NAME`
+
+> Description: Creates a tag with the provided tag_name.
+
+---
+
+Example:
+
+Input
+
+```
+tag create vegetables
+```
+
+Output:
+
+```
+Tag “vegetables” successfully created
+```
+
+#### Tag Rename
+
+Command: `tag rename TAG_NAME n/NEW_NAME`
+
+> Description: Renames a tag with the provided tag_name and new_name.
+
+---
+
+Example:
+
+Input
+
+```
+tag rename Food n/Foodie
+```
+
+Output:
+
+```
+(Tag new name): tag “Food” successfully renamed into "Foodie"
+(Tag no change): tag “Food” is already named "Food"
+(Tag had no name): tag “Food” will be named as "Food" as no new name was provided.
+```
+
+#### Tag Delete
+
+Command: `tag delete TAG_NAME`
+
+> Description: Deletes a specified tag. Returns a warning if the tag does not exist.
+
+---
+
+Example:
+
+Input
+
+```
+tag delete vegetables
+```
+
+Output:
+
+```
+(Tag exists): Tag “vegetables” successfully deleted!
+(Tag does not exist): Tag “vegetables” does not exist. Use “list tags” to view the list of existing tags.
+```
+
+#### Tag Item
+
+Command: `tag item ITEM_INDEX TAG_NAME`
+
+> Description: Associates an item with a specified tag. Returns a warning if the tag or item does not exist.
+
+Example:
+
+Input
+
+```
+tag item 1 vegetables
+```
+
+Output:
+
+```
+(Tag, Item exists): “bok choy” successfully tagged as “vegetables”!
+(Tag does not exist): Tag “vegetables” does not exist. Use “list tags” to view the list of existing tags.
+(Item does not exist): Item index 1 does not exist. Use “list items” to view the list of existing items, or “find” to use the index to tag items.
+```
 
 #### List items
 
