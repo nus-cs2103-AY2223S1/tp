@@ -20,10 +20,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Chew Yew Keng
 
-<img src="images/yewkeng.png" width="200px">
+<img src="images/rgonslayer.png" width="200px">
 
 [[github](http://github.com/rgonslayer)]
-[[portfolio](team/yewkeng.md)]
+[[portfolio](team/rgonslayer.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
