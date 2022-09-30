@@ -38,3 +38,9 @@ Given below are my contributions to the project.
 
 * **Contributions beyond the project team**:
     * to be added soon
+
+* **Community**:
+    * to be added soon
+
+* **Tools**:
+    * to be added soon
