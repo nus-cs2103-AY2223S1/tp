@@ -363,6 +363,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Authorised Users**: Professors and Teaching Assistants handling their respective modules
 
 --------------------------------------------------------------------------------------------------------------------
 
