@@ -13,25 +13,18 @@ You can reach us at the email `peiyee88@nus.edu.sg` or `xxxxx@nus.edu.sg`
 
 <img src="images/peiyee88.png" width="200px">
 
-[[github](https://github.com/peiyee88)]
-[[portfolio](team/peiyee88.md)]
+([github](https://github.com/peiyee88))
+([portfolio](team/peiyee88.md))
 
 * Role: Developer
 
-<<<<<<< HEAD
-### Kartikeya -
-=======
-### Kartikeya - 
->>>>>>> d746cc7 (Update AboutUs with personal details)
+### Kartikeya
 
 <img src="images/Kartikeya_ProfilePicture.JPG" width="200px">
 
 ([github](http://github.com/kxrt))
-<<<<<<< HEAD
 ([portfolio](team/kxrt.md))
-=======
-([portfolio](team/kartikeya.md))
->>>>>>> d746cc7 (Update AboutUs with personal details)
+
 
 * Role: Developer
 
@@ -49,7 +42,7 @@ You can reach us at the email `peiyee88@nus.edu.sg` or `xxxxx@nus.edu.sg`
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+([portfolio](team/johndoe.md))
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
