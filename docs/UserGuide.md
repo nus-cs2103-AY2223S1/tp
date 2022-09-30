@@ -121,6 +121,7 @@ Examples:
 * `add n/John p/92781123 e/john@example.com a/Donald street, block 248, #02-04 d/20 MAR 2000`
 * `add n/Charlotte p/81286623 e/charlotte@example.com a/Charity street, block 101, #10-82 d/March 20, 2000`
 
+
 ### Listing all persons : `list`
 
 Shows a list of all persons in the address book.
