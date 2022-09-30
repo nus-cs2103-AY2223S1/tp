@@ -270,58 +270,83 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                | I want to …​                                      | So that I can…​                                                                         |
+|-------| -------------------------------------- |---------------------------------------------------|-----------------------------------------------------------------------------------------|
+| `***` | user                                   | add a new contact to my contact list              |                                                                                         |
+| `***` | user                                   | edit existing contacts in my contact list         |                                                                                         |
+| `***` | user                                   | delete contacts in my contact list                |                                                                                         |
+| `***` | user                                   | view all my contacts                              |                                                                                         |
+| `***` | user                                   | search for specific contacts                      | find particular people                                                                  |
+| `***` | user                                   | add a new meeting                                 | keep track of my meetings with the people in the database                               |
+| `***` | user                                   | edit my existing meetings                         |                                                                                         |
+| `***` | user                                   | delete my existing meetings                       |                                                                                         |
+| `***` | user                                   | view all my meetings                              | have an overview of the people I will be meeting at certain timings and plan my schedule |
+| `***` | user                                   | search for specific meetings                      |                                                                                         |
+| `***` | user                                   | add multiple tags to my contacts                  | categorise them more accurately                                                         |
+| `***` | user                                   | add meeting times with people on my contact list  | better remember these meetings                                                          |
+| `**`  | user                                   | prioritise my upcoming meetings                   | better manage my time                                                                   |
+| `**`  | user                                   | sort my meetings based on priority                | see my meetings with greater priority on the top                                        |
+| `*`  | user                                   | customise the theme                               |                                                                                         |
+| `**` | user                                   | share my contacts                                 | share with my friends                                                                   |
+| `**` | user                                   | share my meeting schedule                         | communicate with other people my availability                                           |
+| `**` | user                                   | import my meeting schedule                        |                                                                                         |
+| `*` | user                                   | view the calendar in a day/week/month/year format |                                                                  |
 
-*{More to be added}*
+
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `YellowPages` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Find all contacts taking same module**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User opens the software
+2. System displays the welcome message and makes CLI ready for user input
+3. User inputs command search for all contacts with the tag
+4. Software displays acknowledgement message
+5. Software searches for contacts associated with the tag and displays the entire list
+6. Use case ends
+   
+**Use case: Find all contacts taking same module**
 
-    Use case ends.
+**MSS**
 
-**Extensions**
+1. User opens the software
+2. System displays the welcome message and makes CLI ready for user input
+3. User inputs command search for all contacts with the tag
+4. Software displays acknowledgement message
+5. Software searches for contacts associated with the tag and displays the entire list
+6. Use case ends
 
-* 2a. The list is empty.
+**Use case: Create meeting with 2 contacts**
 
-  Use case ends.
+**MSS**
 
-* 3a. The given index is invalid.
+1. User opens software
+2. System displays the welcome message and makes CLI ready for user input
+3. User inputs command to create a meeting at a specific timing with specific contacts
+4. Software displays acknowledgement message
+5. Software creates meeting object with 2 contacts associated at specified time
+6. Software displays creation message with meeting name and 2 contacts
+7. Use case ends
 
-    * 3a1. AddressBook shows an error message.
-
-      Use case resumes at step 2.
-
-*{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+* Domain rules: User should ideally be a student or staff of NUS
+* Constraints: - Data from the original database cannot be modified
+* Technical requirements: Program should work on both Mac and Windows
+* Performance requirements: Opening the app should be within two seconds.
+* Quality requirements: System should be usable by anyone, and does not require a guide
+* Process requirements: Project expected to be completed by week 10
+* Notes about project scope: The product is not required to interface with other messaging apps
 
-*{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
