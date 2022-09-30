@@ -3,15 +3,15 @@ layout: page
 title: Long Time No See
 ---
 
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![CI Status](https://github.com/AY2223S1-CS2103T-W13-2/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103T-W13-2/tp/actions)
 [![codecov](https://codecov.io/gh/AY2223S1-CS2103T-W13-2/tp/branch/master/graph/badge.svg?token=CXJL1N6BQP)](https://codecov.io/gh/AY2223S1-CS2103T-W13-2/tp)
 
 ![Ui](images/Ui.png)
 
-**AddressBook is a desktop application for managing your contact details.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+**Long Time No See (LTNS)** is a desktop task tracking app made for student financial advisors to manage their contact base and stay connected with their clients. Made simpler with an intuitive and minimalistic graphical user interface (GUI) and customised functionalities to pinpoint your needs, LTNS will enable you to stay close to your dearest clients!<br>
 
-* If you are interested in using AddressBook, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
-* If you are interested about developing AddressBook, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
+* If you are interested in using LongTimeNoSee, head over to the [**User Guide**](UserGuide.html).
+* If you are interested about developing LongTimeNoSee, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
 
 
 **Acknowledgements**
