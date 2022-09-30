@@ -25,7 +25,7 @@ Roles:
 
 [[github](https://github.com/jovitaanderson)]
 
-* Role: (deciding)
+* Role: Team Lead
 
 ### Shanice Ng Wen Yi
 
