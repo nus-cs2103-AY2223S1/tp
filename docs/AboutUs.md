@@ -8,6 +8,16 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ## Project team
 
+
+### Chua Ming Quan
+
+<img src="images/chuamingquan.png" width="200px">
+
+[[github](https://github.com/https://github.com/mqchua)]
+[[portfolio](team/chuamingquan.md)]
+
+* Role: Developer
+
 ### Tin En Hao
 
 <img src="images/tinenhao.png" width="200px">
