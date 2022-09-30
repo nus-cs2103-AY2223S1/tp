@@ -308,6 +308,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+
+**Use case: Mark student as present for class**
+
+**MSS**
+
+1.  Teacher requests to list students
+2.  Teacher’s Pet shows a list of students
+3.  Teacher requests to mark a specific student in the list as present for class
+4.  Teacher’s Pet marks the student as present for class
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    - 3a1. Teacher’s Pet shows an error message.
+
+        Use case resumes at step 2.
+
+* 3b. The student’s attendance is already marked as present.
+
+    - 3b1. Teacher’s Pet shows a message indicating student’s attendance is already marked as present.
+
+        Use case resumes at step 2.
+
 *{More to be added}*
 
 ### Non-Functional Requirements
