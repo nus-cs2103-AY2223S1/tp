@@ -257,33 +257,46 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to contact and liaise with many clients to sell their products
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* split clients according to potential and secured
+* has many different types of clients (etc. high/low accident rate, injury-prone)
+* has difficulty remembering clients' information
+* faces trouble in scheduling client meet-ups for both time and location
+* wish to filter based on address
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
+* manage clients faster than a typical mouse/GUI driven app
+* categorise client according to status and risk for the user to plan their schedule
+* inbuilt calendar to track meetings
+* search system via location and client meetup suggestions
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                    | I want to …​                  | So that I can…​                                                       |
+|----------|--------------------------------------------|-------------------------------|-----------------------------------------------------------------------|
+| `* * *`  | new user                                   | see usage instructions        | refer to instructions when I forget how to use the App                |
+| `* * *`  | user                                       | add a new client              |                                                                       |
+| `* * *`  | user                                       | delete a client               | remove entries that I no longer need                                  |
+| `* * *`  | user                                       | find a client by name         | locate details of clients without having to go through the entire list|
+| `* * *`  | user                                       | save written information      | access previously saved information                                   |
+| `* *`    | user                                       | find a client by address      | locate details of clients in a designated area                        |
+| `* *`    | user                                       | have a schedule reminder      | keep track of when and which clients I am meeting                     |
+| `* *`    | tech-savvy user                            | input shortcut commands       | be more efficient using the app                                       |
+| `* *`    | user                                       | update a client's information | make changes whenever clients' information update                     |
+| `*`      | user with many persons in the client book  | sort clients by name          | locate a client easily                                                |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `FABook` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
@@ -321,7 +334,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 

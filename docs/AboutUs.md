@@ -44,24 +44,25 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Liao Yu-Chuan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/isanidiot.png" width="200px">
 
 [github](http://github.com/isanidiot) |
-[portfolio](team/liaoyuchuan.md)
+[portfolio](team/yuchuan.md)
 
 * Role: Developer
 * Responsibilities: Data
 
 ### Peter Fung
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/fungusta.png" width="200px">
 
 [github](http://github.com/fungusta) |
 [portfolio](team/peterfung.md)
 
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: 
+  * Ensuring that deadlines are met
 
 ### Reagan Tan
 
