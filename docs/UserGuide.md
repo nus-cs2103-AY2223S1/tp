@@ -1,7 +1,7 @@
 ---
-layout: page
-title: User Guide
+layout: page title: User Guide
 ---
+
 # FoodRem User Guide
 
 ## About
@@ -131,7 +131,7 @@ Chicken wings
 Details about chicken wings
 ```
 
-####  List tags
+#### List tags
 
 Command: `list tags`
 
@@ -179,6 +179,74 @@ Output
 Here are the results matching your search
 Green apple
 Rose apple
+```
+
+#### Help
+
+Command: `help`
+
+> Description: Displays a list of commands that can be used.
+
+---
+
+Example:
+
+Input
+
+```
+help
+```
+
+Output:
+
+```
+list:
+    Lists all the items/tags that the user has created.
+
+    Usage:
+        List items:  "list items"
+        List tags:   "list tags"
+
+item:
+    Create / Delete / Increment quantity / Decrement quantity /
+    Set quantity / Set expiry date / Set bought date, of an item.
+
+    Flags:
+        Name:        n/
+        Quantity:    qty/
+        Expiry Date: exp/
+        Bought Date: bgt/
+
+    Usage:
+        Create:      "item new n/Potatoes"
+        Delete:      "item del 1"
+        Increment:   "item inc 1 10"
+        Decrement:   "item dec 1 10"
+        Set:         "item set 1 n/Potatoes qty/10"
+
+find:
+    Find an inventory item based on the given keywords.
+
+    Usage:
+        Find:        "find potato carrots"
+
+tag:
+    Create / Rename / Set item tied to / Delete, a tag.
+
+    Flags:
+        Name:        n/
+
+    Usage:
+        Create:      "tag create food"
+        Rename:      "tag rename food n/foodie"
+        Set item:    "tag 1 2 7 71 food"
+        Delete:      "tag delete food"
+
+bye:
+    Exits Foodrem program.
+
+    Usage:
+        Exit:       "bye"
 ```
 
 #### Bye
