@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import java.util.Comparator;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -17,6 +19,15 @@ public class Name {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+
+    public static final Comparator<Person> NAME_COMPARATOR = new Comparator<Person>() {
+        public int compare(Person p1, Person p2) {
+            return p1.getName().fullName.compareTo(p2.getName().fullName);
+        }
+    };
+
+    public static final String SORT_NAME = "name";
+
 
     public final String fullName;
 
@@ -50,6 +61,7 @@ public class Name {
                 || (other instanceof Name // instanceof handles nulls
                 && fullName.equals(((Name) other).fullName)); // state check
     }
+
 
     @Override
     public int hashCode() {

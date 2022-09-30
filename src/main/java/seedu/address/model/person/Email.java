@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import java.util.Comparator;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -30,6 +32,20 @@ public class Email {
     private static final String DOMAIN_LAST_PART_REGEX = "(" + DOMAIN_PART_REGEX + "){2,}$"; // At least two chars
     private static final String DOMAIN_REGEX = "(" + DOMAIN_PART_REGEX + "\\.)*" + DOMAIN_LAST_PART_REGEX;
     public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@" + DOMAIN_REGEX;
+    public static final String AT_SYMBOL = "@";
+    public static final String DOT = ".";
+    public static final Comparator<Person> EMAIL_COMPARATOR = new Comparator<Person>() {
+        public int compare(Person p1, Person p2) {
+            int platformCompare = p1.getEmail().getPlatform().compareTo(p2.getEmail().getPlatform());
+            int nameCompare = p1.getEmail().getEmailName().toLowerCase()
+                    .compareTo(p2.getEmail().getEmailName().toLowerCase());
+            if (platformCompare == 0) { // same email platform used
+                return nameCompare;
+            }
+            return platformCompare;
+        }
+    };
+    public static final String SORT_EMAIL = "email";
 
     public final String value;
 
@@ -49,6 +65,23 @@ public class Email {
      */
     public static boolean isValidEmail(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns the email name before the @ symbol
+     */
+    private String getEmailName() {
+        return this.value.substring(0, value.indexOf(AT_SYMBOL));
+    }
+
+    /**
+     * Returns the email platform which the email is using
+     * eg. example@gmail.com will return gmail
+     */
+    private String getPlatform() {
+        int index = value.indexOf(AT_SYMBOL);
+        String temp = value.substring(index + 1, value.length());
+        return temp.substring(0, temp.indexOf(DOT));
     }
 
     @Override
