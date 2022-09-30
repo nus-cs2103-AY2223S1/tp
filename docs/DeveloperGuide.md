@@ -309,13 +309,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**System: ArtBuddy (AB)**<br>
 **Use case: Add iteration to a commission**<br>
-**Actor: Artist**<br>
 **Guarantees:**
 * An iteration, with an associated image, will be added to the specified commission only if its creation is successful
-* The new iteration will not be created if the image provided is not valid (eg: it does not exist, or it is not
-  of the correct format)
+* The new iteration will not be created if the image provided is not valid (e.g. it does not exist, or it is not
+  of the correct image format)
 
 **MSS:**
 1. User <u>opens a commission they want to edit (Open Commission)</u>.
@@ -352,9 +350,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes from step 3.
 
-**System: ArtBuddy (AB)<br>
 Use case: Delete an iteration of a commission<br>
-Actor: Artist<br>
 Preconditions: AB currently has a commission opened.<br>**
 
 **MSS:**
