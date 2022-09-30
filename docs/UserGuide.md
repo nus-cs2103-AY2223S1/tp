@@ -8,15 +8,15 @@ title: User Guide
 Sherlock is a **desktop app for law enforcement officers to easily manage the particulars of citizens optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interfac (GUI). If you can type fast, Sherlock can retrieve information for potential suspects faster than traditional GUI apps.
 
 * Table of Contents
-  * [Quick Start](#quick-start)
-  * [Features](#features) `(Version 1.2)`
-    * Listing all persons: [`list`](#listing-all-persons--list)
-    * Adding a person: [`add`](#adding-a-person-add)
-    * Editing a person: [`edit`](#editing-a-person--edit)
-    * Locating persons by: [`find`](#locating-persons-by-name-find)
-    * Deleting a person: [`delete`](#deleting-a-person--delete)
-  * [FAQ](#faq)
-  * [Command Summary](#command-summary)
+    * [Quick Start](#quick-start)
+    * [Features](#features) `(Version 1.2)`
+        * Listing all persons: [`list`](#listing-all-persons--list)
+        * Adding a person: [`add`](#adding-a-person-add)
+        * Editing a person: [`edit`](#editing-a-person--edit)
+        * Locating persons by: [`find`](#locating-persons-by-name-find)
+        * Deleting a person: [`delete`](#deleting-a-person--delete)
+    * [FAQ](#faq)
+    * [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -34,11 +34,11 @@ Sherlock is a **desktop app for law enforcement officers to easily manage the pa
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all persons in Sherlock.
+    * **`list`** : Lists all persons in Sherlock.
 
-   * **`add`**`id/12345678 n/John Doe p/98765432 a/John street, block 123, #01-01` : Adds a person named `John Doe` to Sherlock.
+    * **`add`**`id/12345678 n/John Doe p/98765432 a/John street, block 123, #01-01` : Adds a person named `John Doe` to Sherlock.
 
-   * **`delete`**`id/12345678` : Deletes the person with `ID number 12345678` from Sherlock.
+    * **`delete`**`id/12345678` : Deletes the person with `ID number 12345678` from Sherlock.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -110,7 +110,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+  specifying any tags after it.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -189,10 +189,10 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add id/ID_NUMBER n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`…​` <br> e.g., add id/1234 n/John Doe p/98765432 a/John street, block 123, #01-01`
 **Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Delete** | `delete id/ID`<br> e.g., `delete id/2356`
+**Edit** | `edit ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 1234 n/James Lee e/jameslee@example.com`
+**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`, `find 1234`
 **List** | `list`
 **Help** | `help`
