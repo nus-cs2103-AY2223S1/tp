@@ -290,7 +290,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  YellowBook shows a list of persons
 3.  User requests to delete a specific person in the list
 4.  AddressBook deletes the person
 
@@ -304,7 +304,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. YellowBook shows an error message.
 
       Use case resumes at step 2.
 
@@ -313,9 +313,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list tasks
-2.  AddressBook shows a list of tasks
+2.  YellowBook shows a list of tasks
 3.  User requests to delete a specific task in the list
-4.  AddressBook deletes the task
+4.  YellowBook deletes the task
 
     Use case ends.
 
@@ -327,7 +327,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. YellowBook shows an error message.
 
       Use case resumes at step 2.
 
@@ -336,9 +336,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list tasks
-2.  AddressBook shows a list of tasks
+2.  YellowBook shows a list of tasks
 3.  User requests to add a task to the list
-4.  AddressBook adds the task to the end of the list
+4.  YellowBook adds the task to the end of the list
 
     Use case ends.
 
@@ -346,13 +346,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The user gives an invalid date format.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. YellowBook shows an error message.
 
       Use case resumes at step 2.
 
 * 3a. The user does not provide a task description.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. YellowBook shows an error message.
 
       Use case resumes at step 2.
 
@@ -362,9 +362,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list tasks
-2.  AddressBook shows a list of tasks
+2.  YellowBook shows a list of tasks
 3.  User requests to delete a specific task in the list
-4.  AddressBook deletes the task
+4.  YellowBook deletes the task
 
     Use case ends.
 
@@ -376,7 +376,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. YellowBook shows an error message.
 
       Use case resumes at step 2.
 
