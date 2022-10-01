@@ -50,7 +50,7 @@ public class CustomerCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(customer.getName().fullName);
         phone.setText(customer.getPhone().value);
-        address.setText(customer.getAddress().toString());
+        address.setText(customer.getAddress().map(address -> address.value).orElse(""));
         email.setText(customer.getEmail().value);
         customer.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

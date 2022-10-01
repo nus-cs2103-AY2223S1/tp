@@ -125,11 +125,6 @@ public class EditCommand extends Command {
             && editCustomerDescriptor.equals(e.editCustomerDescriptor);
     }
 
-    @Override
-    public String toString() {
-        return editCustomerDescriptor.getAddress().toString();
-    }
-
     /**
      * Stores the details to edit the customer with. Each non-empty field value will replace the
      * corresponding field value of the customer.

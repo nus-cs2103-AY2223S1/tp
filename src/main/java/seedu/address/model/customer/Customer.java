@@ -128,7 +128,7 @@ public class Customer {
 
         Optional<Address> address = getAddress();
         if (address.isPresent()) {
-            builder.append("; Address: ").append(getAddress());
+            builder.append("; Address: ").append(getAddress().get());
         }
 
         Set<Tag> tags = getTags();
