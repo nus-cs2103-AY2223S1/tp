@@ -85,6 +85,25 @@ Format: `add <module> <taskName> [--tag <tag>]`
 Examples:
 * `add CS2103T Task 1 --tag homework`
 
+### Marking a task as completed: `mark`
+
+Mark a task as complete.
+
+Format: `mark <taskId>`
+* `taskId`: This refers to the taskId shown in the displayed full task list. This value should be a non-zero positive integer.
+
+Example: `mark 2`
+
+### Tagging a task: `tag`
+
+Allows you to tag a task.
+
+Format : `tag <taskId> <tag>`
+* `taskId`: This refers to the taskId shown in the displayed full task list. This value should be a non-zero positive integer.
+* `tag`: The word to tag the task with
+
+Example: `tag 2 optional`
+
 ### Listing all tasks : `li -a`
 
 Shows a list of all tasks in the task list.

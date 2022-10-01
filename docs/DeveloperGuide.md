@@ -288,32 +288,78 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+Unless specified otherwise, the **System** is the `NotioNUS` application and the **Actor** is the `user`.
 
-**Use case: Delete a person**
+**Use Case: UC1 - Add a task**
 
-**MSS**
+**MSS:**
+1. User requests to add a task into the task list
+2. NotioNUS adds task into task list and displays it
+   
+   Use case ends.
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+**Extensions:**
 
-    Use case ends.
+* 1a. User does not provide the required information for the task
+  * 1a1. NotioNUS shows an error, requesting the user re-enter their task
+  
+     Use case ends.
 
-**Extensions**
+**Use Case: UC2 - Edit a task**
 
-* 2a. The list is empty.
+**MSS:**
 
-  Use case ends.
+1. User finds the id associated with the task
+2. User requests to edit the task
+3. NotioNUS edits the task and displays it
 
-* 3a. The given index is invalid.
+   Use case ends.
 
-    * 3a1. AddressBook shows an error message.
+**Extensions:**
 
-      Use case resumes at step 2.
+* 2a. User provides an invalid ID
+  * 2a1. NotioNUS shows an error, requesting the user check the task id
+     
+    Use case starts from 1.
 
-*{More to be added}*
+
+* 2b. User does not provide any changes
+  * 2b1. NotioNUS provides a note that nothing was changed
+
+    Use case ends
+
+**Use Case: UC3 - Delete a task**
+
+**MSS:**
+
+1. User finds the id associated with the task
+2. User requests to delete the task
+3. NotioNUS deletes the task and updates the view
+   
+   Use case ends.
+
+**Extensions:**
+
+* 2a. User provides an invalid ID
+  * 2a1. NotioNUS shows an error, requesting the user check the task id
+
+    Use case starts from 1.
+
+**Use Case: UC4 - Tag a task**
+
+**MSS:**
+
+1. User creates a task (UC1)
+2. With the task id, user requests to tag the task
+3. NotioNUS tags the task and displays it
+   Use case ends.
+
+**Extensions:**
+* 2a. User provides an invalid ID 
+  * 2a1. NotioNUS shows an error, requesting the user check the task id
+  
+    Use case starts from 1.
+
 
 ### Non-Functional Requirements
 
