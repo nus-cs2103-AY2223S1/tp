@@ -35,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private StatisticsWindow statisticsWindow;
+    
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -67,7 +68,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-        statisticsWindow = new StatisticsWindow();
+        statisticsWindow = new StatisticsWindow(logic.getAddressBook().getPersonList());
     }
 
     public Stage getPrimaryStage() {
