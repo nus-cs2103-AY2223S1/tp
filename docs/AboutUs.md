@@ -8,6 +8,7 @@ We are a team based in the [School of Computing, National University of Singapor
 You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
+
 ### Mai Ting Kai
 
 <img src="images/ferusel.png" width="200px">
@@ -25,7 +26,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/bryanljx.md)]
 
 - Role: Project Member
-
 
 ### Richard Dominick
 
