@@ -14,14 +14,14 @@ ProfNUS is a **desktop application which helps SOC Professors who have many modu
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `ProfNUS.jar` from [here](https://github.com/AY2223S1-CS2103T-W11-2/tp/releases).
+1. Download the latest `ProfNUS.jar` from [here](https://github.com/AY2223S1-CS2103T-W11-2/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your ProfNUS application.
+1. Copy the file to the folder you want to use as the _home folder_ for your ProfNUS application.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`list`** : Lists all contacts.
@@ -34,12 +34,12 @@ ProfNUS is a **desktop application which helps SOC Professors who have many modu
 
    * **`exit`** : Exits the app.
 
-6. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
-{needs to update and consistent with our new added features}
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
@@ -64,6 +64,11 @@ ProfNUS is a **desktop application which helps SOC Professors who have many modu
 
 </div>
 
+### Viewing help : `help`
+
+Shows a message explaning how to access the help page.
+
+Format: `help`
 
 
 ### Adding a person: `addstu`
@@ -92,10 +97,11 @@ Format: `list MODULE_NAME [MORE_MODULE_NAMES]`
 - Only exact module matches will be returned. e.g. CS1231 will not match CS1231S
 
 Examples:
-- `list CS1101S` returns Alex Yeoh and Bernice Yu
+- `list CS1101S returns` Alex Yeoh and Bernice Yu
 - `list CS1101S CS1231S` returns Bernice Yu only`
 
 ![list](images/userguide/list.png)
+
 
 ### Viewing list of modules : `mlist`
 
@@ -104,6 +110,7 @@ Shows a list of all modules in the ProfNUS application.
 ![mlist](images/userguide/mlist.png)
 
 Format: `mlist`
+
 
 ### Editing a person : `edit`
 
@@ -121,6 +128,24 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+
+### Locating persons by name: `find`
+
+Finds persons whose names contain any of the given keywords.
+
+Format: `find KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `hans` will match `Hans`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Only the name is searched.
+* Only full words will be matched e.g. `Han` will not match `Hans`
+* Persons matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+
+Examples:
+* `find John` returns `john` and `John Doe`
+* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+  ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### Deleting a person : `delete`
 
@@ -194,7 +219,7 @@ If your changes to the data file makes its format invalid, ProfNUS will discard 
 
 Finds a student based on some keywords, with all information showing up.
 
-Format: `find KEYWORD [MORE_KEYWORD]`
+Format: `find keyword`
 
 
 **Tip:** Keyword  person can have any number of tags or modules (including 0).
@@ -208,11 +233,8 @@ Format: `find KEYWORD [MORE_KEYWORD]`
 
   <div align=center><img src="./images/find Adam Do.png" width="500px"></div>
 
-### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
 
-Format: `help`
 
 ### Archiving data files `[coming in v2.0]`
 
@@ -226,17 +248,15 @@ _Details coming soon ..._
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ProfNUS home folder.
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## Command summary
 
-| Action                     | Format                                                               | Example                                                                                                                                                                     |
-|----------------------------|----------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| add a person               | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ [m/MODULE]…​` | `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` <br> `add n/Adam Doink t/TA e/ad4md01nk@example.com a/Kent Ridge Hall p/1234567 m/CS1101S` |
-| edit a person              | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`      | `edit 1 p/91234567 e/johndoe@example.com` <br> `edit 2 n/Betsy Crower t/`                                                                                                   |
-| detele a person            | `delete INDEX`                                                       | `delete 1`                                                                                                                                                                  |
-| clear                      | `clear`                                                              | `clear`                                                                                                                                                                     |
-| list modules               | `list MODULE_NAME [MORE_MODULE_NAMES]`                               | `list CS1101S` <br>`list CS1101S CS1231S`                                                                                                                                   |
-| list all modules           | `mlist`                                                              | `mlist`                                                                                                                                                                     |
-| view the teaching schedule | `view schedule [-w WEEKDAY] [-m MODULE_CODE] [-d DATE] [-h] [-v]`    | `view schedule -w Monday -m CS2103T` <br>`view schedule -d 2022-09-12` <br> `view schedule -h`                                                                              |
-| find a person              | `find KEYWORD [MORE_KEYWORD]`                                        | `find Adam Do`                                                                                                                                                              |
-| help                       | `help`                                                               | `help`                                                                                                                                                                      | 
-| exit                       | `exit`                                                               | `exit`                                                                                                                                                                      | 
+Action | Format, Examples
+--------|------------------
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Clear** | `clear`
+**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**List** | `list`
+**Help** | `help`
