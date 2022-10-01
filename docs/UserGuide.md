@@ -182,17 +182,17 @@ view g/female ra/chinese re/christian
 
 ### Duplicate a person : `duplicate`
 
-Clones a specified person from the address book.
+Clones a specified person from the app.
 
 Format: `duplicate INDEX`
 
-* Clones the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+- Clones the person at the specified `INDEX`.
+- The index refers to the index number shown in the displayed person list.
+- The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* Use `find Alex` to list all the persons whose name contains Alex, followed by `duplicate 1` to clone the first person in the result and finally use edit command to edit the data of the cloned person.
 
+- Use `find Alex` to list all the persons whose name contains Alex, followed by `duplicate 1` to clone the first person in the result and finally use edit command to edit the data of the cloned person.
 
 ### Viewing a person: `view`
 
@@ -205,6 +205,7 @@ Fields must be non-empty.
 </div>
 
 Examples:
+
 ```
 view g/female ra/chinese re/christian
 > Index: 15 Jane Doe 91234567 jane_doe@example.com, …
