@@ -97,7 +97,7 @@ Examples:
 
 *`listC` followed by `deleteC 1` deletes the first contact in the address book.
 
-*`find contact -n John` followed by `deleteC 1` deletes the first result of the `find` command.
+*`findC John` followed by `deleteC 1` deletes the first result of the `findC` command.
 
 ## Editing a contact: `editC`
 
@@ -169,20 +169,28 @@ Shows all tasks stored in the task list.
 
 Format: `listT`
 
-### Adding Tasks: `addT d/DESCRIPTION D/DEADLINE`
+### Adding Tasks: `addT`
 
 Adds a task to the task list. 
 The deadline of the task is allowed to be empty. Newly added tasks are marked as not done. 
 Throws an exception if the description of the task is empty. 
 Throws an exception if the deadline of the task is not in dd-mm-yyyy format.
 
-Format: `addT d/buy milk D/12-09-2022`
+Format: `addT d/DESCRIPTION D/DEADLINE`
 
-### Removing Tasks: `delete i/INDEX`
+Example:
+
+* `addT d/buy milk D/12-09-2022` will add the task "buy milk" with deadline 12 September 2022
+
+### Removing Tasks: `deleteT`
 
 Removes the specified task from the task list. Throws an exception if task does not exist.
 
-Format: `deleteT i/12`
+Format: `deleteT i/INDEX`
+
+Example:
+
+* `deleteT i/12` will delete the 12th task in the task list
 
 ### Marking task as done: `markT`
 
@@ -198,7 +206,7 @@ Examples:
 
 * `listT` followed by `markT 1` marks the first task in the displayed task list as done.
 
-* `find task -t book` followed by `markT 1` marks the first result of the find command as done.
+* `findT book` followed by `markT 1` marks the first result of the `findT` command as done.
 
 ### Marking task as undone: `unmarkT`
 
@@ -237,9 +245,9 @@ Example:
 Filters tasks whose labels contain any of the given keywords.
 Filters applied consecutively are stacked.
 
-Format: `findT KEYWORD [MORE_KEYWORDS]`
+Format: `filterT KEYWORD [MORE_KEYWORDS]`
 
-* The filer is case-insensitive, e.g. `cs2103t` will match `CS2103T`.
+* The filter is case-insensitive, e.g. `cs2103t` will match `CS2103T`.
 
 * The order of the keywords does not matter, e.e. `software cs2103t` will match
   `CS2103T Software Engineering`.
@@ -257,8 +265,8 @@ Example:
 
 Examples:
 
-* `listT` followed by `unmark 1` marks the first task in the displayed task list as undone.
-* `find task -t book` followed by `unmark 1` marks the first result of the find command as undone.
+* `listT` followed by `unmarkT 1` marks the first task in the displayed task list as undone.
+* `findT book` followed by `unmarkT 1` marks the first result of the `findT` command as undone.
 
 ## Section 3: Labels
 ### Listing all labels : `listL`
@@ -267,29 +275,45 @@ Shows a list of all existing labels in the address book.
 
 Format: `listL`
 
-### Adding a label to a contact : `addL c/INDEX n/label_NAME`
+### Adding a label to a contact : `addL`
 
 Adds a label to an existing contact in the address book. Each contact can have multiple labels. If there is no existing label with the same name, label is added to the label list. Throws an exception if contact does not exist.
 
-Format: `addL i/12 n/CS2103T`
+Format: `addL c/INDEX n/label_NAME`
 
-### Removing a label from a contact : `deleteL i/INDEX n/label_NAME`
+Example:
+
+* `addL c/12 n/CS2103T` will add the label "CS2103T" to the 12th contact on the contact list
+
+### Removing a label from a contact : `deleteL`
 
 Removes a label from an existing contact in the address book. If contact is last remaining person with said label, label is removed from the label list. Throws an exception if contact or label does not exist.
 
-Format: `deleteL i/14 n/CS2101`
+Format: `deleteL c/INDEX n/label_NAME`
 
-### Adding a label to a task : `addL t/INDEX n/label_NAME`
+Example:
+
+* `deleteL c/14 n/CS2101` will remove the label "CS2101" from the 14th contact on the contact list
+
+### Adding a label to a task : `addL`
 
 Adds a label to an existing task in the address book. Each task can have multiple labels. If there is no existing label with the same name, label is added to the label list. Throws an exception if task does not exist.
 
-Format: `addL t/12 n/CS2103T`
+Format: `addL t/INDEX n/label_NAME`
 
-### Removing a label from a task : `deleteL t/INDEX n/label_NAME`
+Example:
+
+* `addL t/12 n/CS2103T` will add the label "CS2103T" to the 12th task on the task list
+
+### Removing a label from a task : `deleteL`
 
 Removes a label from an existing task in the address book. If contact is last remaining person with said label, label is removed from the label list. Throws an exception if task or label does not exist.
 
-Format: `deleteL t/14 n/CS2101`
+Format: `deleteL t/INDEX n/label_NAME`
+
+Example: 
+
+* `deleteL t/14 n/CS2101` will remove the label "CS2101" from the 14th task on the task list
 
 ## Automatic tab switching
 
@@ -332,10 +356,11 @@ If your changes to the data file makes its format invalid, YellowBook will disca
 | **findC** | `findC KEYWORD [MORE_KEYWORDS]` <br> e.g., `findC Phineas Ferb`                                     |
 | **filterC** | `filterC KEYWORD [MORE_KEYWORDS]` <br> e.g., `filterT cs2103t`                                      |                                                                                                 |
 | **listT**   | `listT`                                                                                             |
+| **addT**   |  `addT d/DESCRIPTION D/DEADLINE`                                                                                           |
 | **markT**    | `markT INDEX` <br> e.g., `mark 1`                                                                    |
 | **unmarkT**  | `unmarkT INDEX` <br> e.g., `unmark 1`                                                                |
 | **searchT** | `findT KEYWORD [MORE_KEYWORDS]` <br> e.g., `findT cs2103t`                                          |
 | **filterT** | `filterT KEYWORD [MORE_KEYWORDS]` <br> e.g., `filterT cs2103t`                                      |
 | **listL**   | `listL`                                                                                             |
-| **addL**   | `addL i/INDEX n/LABEL_NAME`                                                                              |
-| **deleteL**   | `deleteL i/INDEX n/LABEL_NAME`                                                                                            |
+| **addL**   | `addL c/INDEX n/LABEL_NAME` OR  `addL t/INDEX n/LABEL_NAME`                                                                            |
+| **deleteL**   | `deleteL c/INDEX n/LABEL_NAME` OR `deleteL t/INDEX n/LABEL_NAME`                                                                                           |
