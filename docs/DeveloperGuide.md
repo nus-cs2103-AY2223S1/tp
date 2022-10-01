@@ -430,24 +430,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: UC07 - Delete a person**
 
 **MSS**
-1. User requests to <u>list clients (UC03)</u>
+1. User requests to <u>find a client by name(UC05)</u>
 
-2. User requests to delete a specific person in the list
+2. User requests to delete a specific client by name in the list
 
 3. FABook deletes the person
 
     Use case ends.
-
-**Extensions**
-* 1a. The list is empty.
-
-  Use case ends.
-
-* 2a. The given name is invalid.
-
-    * 2a1. FABook shows an error message with suggested format
-  
-      Use case resumes at step 2.
 
 **Use case: UC08 - Clearing all entries**
 
