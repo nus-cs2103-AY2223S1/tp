@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Person;
 
 /**
@@ -30,6 +31,7 @@ public class TypicalPersons {
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
+            .withAppointment(new Appointment("Sore Throat", "2019-12-10 16:30"))
             .withTags("owesMoney", "friends").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").build();
@@ -71,6 +73,12 @@ public class TypicalPersons {
     }
 
     public static List<Person> getTypicalPersons() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(new PersonBuilder(ALICE).build(),
+                new PersonBuilder(BENSON).build(),
+                new PersonBuilder(CARL).build(),
+                new PersonBuilder(DANIEL).build(),
+                new PersonBuilder(ELLE).build(),
+                new PersonBuilder(FIONA).build(),
+                new PersonBuilder(GEORGE).build()));
     }
 }
