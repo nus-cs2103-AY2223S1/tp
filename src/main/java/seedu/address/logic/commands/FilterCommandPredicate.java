@@ -35,9 +35,18 @@ public class FilterCommandPredicate {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof NameContainsKeywordsPredicate // instanceof handles nulls
-                        && namePredicate.equals(((FilterCommandPredicate) other).namePredicate)) // state check
-                        && tagsPredicate.equals(((FilterCommandPredicate) other).tagsPredicate); // state check
+        if (other == this) {
+            return true;
+        }
+        // instanceof handles nulls
+        if (!(other instanceof FilterCommandPredicate)) {
+            return false;
+        }
+        FilterCommandPredicate otherPredicate = (FilterCommandPredicate) other;
+        boolean isNamePredicateEquals = (namePredicate == null && otherPredicate.namePredicate == null)
+                || namePredicate.equals(otherPredicate.namePredicate);
+        boolean isTagsPredicateEquals = (tagsPredicate == null && otherPredicate.tagsPredicate == null)
+                || tagsPredicate.equals(otherPredicate.tagsPredicate);
+        return isNamePredicateEquals && isTagsPredicateEquals;
     }
 }

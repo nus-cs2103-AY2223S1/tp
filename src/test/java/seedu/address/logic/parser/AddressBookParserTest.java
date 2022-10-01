@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -20,6 +21,7 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FilterCommand;
+import seedu.address.logic.commands.FilterCommandPredicate;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -69,11 +71,14 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_find() throws Exception {
+    public void parseCommand_filter() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FilterCommand command = (FilterCommand) parser
-                .parseCommand(FilterCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FilterCommand(new NameContainsKeywordsPredicate(keywords)), command);
+                .parseCommand(FilterCommand.COMMAND_WORD + " " + PREFIX_NAME
+                        + keywords.stream().collect(Collectors.joining(",")));
+
+        NameContainsKeywordsPredicate namePredicate = new NameContainsKeywordsPredicate(keywords);
+        assertEquals(new FilterCommand(new FilterCommandPredicate(namePredicate, null)), command);
     }
 
     @Test

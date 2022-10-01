@@ -17,7 +17,7 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.removeFilterFromFilteredPersonList(null);
+        model.clearFiltersInFilteredPersonList();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
