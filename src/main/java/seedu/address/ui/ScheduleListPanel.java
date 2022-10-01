@@ -24,9 +24,6 @@ public class ScheduleListPanel extends UiPart<Region> {
     private ListView<Person> scheduleListView;
 
     @FXML
-    private Label title;
-
-    @FXML
     private Label classDate;
 
     /**
@@ -36,7 +33,6 @@ public class ScheduleListPanel extends UiPart<Region> {
         super(FXML);
         String currDate = LocalDate.now().format(DateTimeFormatter.ofPattern("d MMM yyyy"));
 
-        title.setText("Schedule for");
         classDate.setText(currDate);
         scheduleListView.setItems(scheduleList);
         scheduleListView.setCellFactory(listView -> new ScheduleListViewCell());
