@@ -50,7 +50,8 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 Add a new team member to the user’s team. Will throw an error if the member already exists in the team.
 
-Format: `add member “MEMBER_NAME”`
+Format: 
+* `add member “MEMBER_NAME”`
 
 Examples:
 * `add member egg`
