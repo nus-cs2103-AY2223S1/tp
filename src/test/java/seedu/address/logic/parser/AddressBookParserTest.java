@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -22,22 +21,44 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ProfCommand;
+import seedu.address.logic.commands.StudentCommand;
+import seedu.address.logic.commands.TaCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Student;
+import seedu.address.model.person.TeachingAssistant;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.ProfessorBuilder;
+import seedu.address.testutil.StudentBuilder;
+import seedu.address.testutil.TeachingAssistantBuilder;
 
 public class AddressBookParserTest {
 
     private final AddressBookParser parser = new AddressBookParser();
 
     @Test
-    public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+    public void parseCommand_addStudent() throws Exception {
+        Student person = new StudentBuilder().build();
+        StudentCommand command = (StudentCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
+        assertEquals(new StudentCommand(person), command);
+    }
+
+    @Test
+    public void parseCommand_addProfessor() throws Exception {
+        Person person = new ProfessorBuilder().build();
+        ProfCommand command = (ProfCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
+        assertEquals(new ProfCommand(person), command);
+    }
+
+    @Test
+    public void parseCommand_addTeachingAssistant() throws Exception {
+        TeachingAssistant person = new TeachingAssistantBuilder().build();
+        System.out.println(person);
+        TaCommand command = (TaCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
+        assertEquals(new TaCommand(person), command);
     }
 
     @Test
@@ -55,7 +76,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Person person = new PersonBuilder().build();
+        Student person = new StudentBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
