@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -257,27 +257,32 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
+* for hospital staff
+* prefer CLI over GUI
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+
+**Value proposition**: The product aims to enhance and increase the productivity and efficiency of hospital staff in terms of patients management, within a single hospital/clinic only.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                | I want to …​                                      | So that I can…​                                                        |
+| -------- | ---------------------- | ------------------------------------------------- | ---------------------------------------------------------------------- |
+| `* * *`  | doctor                 | search for patients by name                       | view medication patient is currently taking and prescribe new medication based on that info |
+| `* * *`  | doctor                 | retrieve patient contact info and next-of-kin data| quickly and efficiently contact the patient or someone near them                                                                     |
+| `* * *`  | hospital administrator | check the total number of patients in my hospital | know when my hospital is oversubscribed
+| `* * *`  | hospital staff         | retrieve patients by ward number                  | attend to them quickly |
+| `* * *`  | hospital staff         | retrieve patients by floor number                 | attend to them quickly |
+| `* * *`  | hospital staff         | retrieve patients by hospital wings               | attend to them quickly |
+| `* * *`  | hospital staff         | check if patient is inpatient or for daily checkup| knows where to direct them  |
+| `* * *`  | hospital staff         | create patient profiles                           | store new patients into the system                          |
+| `* * *`  |nurse                   | retrieve patients by medication                   | find out a list of patients under each medication             |
+| `* * *`  | hospital staff         | remove patients from the database                 | remove redundant entries that are no longer necessary                |
 
 *{More to be added}*
 
@@ -285,7 +290,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Delete a patient**
 
 **MSS**
 
@@ -308,12 +313,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+
+
 *{More to be added}*
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 patients without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
