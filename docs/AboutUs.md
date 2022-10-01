@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### T Neethesh
 
-<img src="images/neethesh_26.png" width="200px">
+<img src="images/neethesh26.png" width="200px">
 
 [[github](https://github.com/Neethesh26)]
 [[portfolio](team/johndoe.md)]
