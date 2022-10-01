@@ -170,7 +170,13 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app, then overwrite the myinsurec_data.json file created by the app with the version of the file from the previous computer.
+
+**Q**: I accidentally closed the app, will my data still be there?<br>
+**A**: Yes, your data is saved automatically after every action.
+
+**Q**: My computer does not recognise the file type jar. How do I open the app?<br>
+**A**: Install Java version 11 and above from the official Java website.
 
 --------------------------------------------------------------------------------------------------------------------
 
