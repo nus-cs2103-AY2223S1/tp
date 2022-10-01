@@ -110,7 +110,27 @@ Format: `get /hw HOSPITAL_WING`
 * The search is case-insensitive. e.g `souTh` will match `South`
 * All the patients in that hospital wing will be returned.
   e.g. `get /hw SOUTH` will return `John` `Peter` `Mary`
- 
+
+#### by floor number: `/fn`
+
+Finds patients in that particular floor number.
+
+Format: `get /fn FLOOR_NUMBER`
+
+* All the patients in that floor number will be returned.
+* The floor number refers to the floor number the patient is on.
+  e.g. `get /fn 2` will return `John` `Peter` `Mary`
+
+#### by ward number: `/wn`
+
+Finds patients in that particular ward number.
+
+Format: `get /wn WARD_NUMBER`
+
+* All the patients in that ward number will be returned.
+* The ward number refers to the ward the patient is in.
+  e.g. `get /wn D12` will return `John` `Peter` `Mary`
+
 ### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
@@ -171,5 +191,7 @@ _Details coming soon ..._
 | **Get /n**   | `get /n NAME`<br> e.g., `get /n John`                                                                                                                                 |
 | **Get /nok** | `get /nok NEXT-OF-KIN_DATA`<br> e.g., `get /nok John`                                                                                                                 |
 | **Get /hw**  | `get /hw HOSPITAL_WING`<br> e.g., `get /hw South`                                                                                                                     |
+| **Get /fn**  | `get /fn FLOOR_NUMBER` <br> e.g., `get /fn 2`                                                                                                                         |
+| **Get /wn**  | `get /wn WARD_NUMBER` <br> e.g., `get /wn D12`                                                                                                                        |
 | **List**     | `list`                                                                                                                                                                |
 | **Help**     | `help`                                                                                                                                                                |
