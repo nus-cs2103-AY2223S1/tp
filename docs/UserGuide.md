@@ -95,12 +95,6 @@ Format: `viewClient i/INDEX`
 Examples:
 * `listClient` followed by `viewClient i/1` displays information about the 1st client in MyInsuRec.
 
-### Listing meetings: `listMeeting`
-
-List all meetings in MyInsuRec.
-
-Format: `listMeeting`
-
 ### Deleting a client : `delClient`
 
 Deletes the specified client from MyInsuRec.
@@ -127,6 +121,12 @@ Format: `addMeeting n/NAME d/DATE t/TIME`
 Examples:
 * `addMeeting n/John Tan d/28092022 t/1400`
 * `addMeeting n/John Tan t/1400 d/28092022`
+
+### Listing meetings: `listMeeting`
+
+List all meetings in MyInsuRec.
+
+Format: `listMeeting`
 
 ### Deleting a Meeting : `delMeeting`
 
