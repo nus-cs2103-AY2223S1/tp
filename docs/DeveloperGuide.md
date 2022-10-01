@@ -258,7 +258,7 @@ _{Explain here how the data archiving feature will be implemented}_
 **Target user profile**:
 
 * is acting as a secretary or a treasurer of a club with a lot of people
-* has a need of a convenient way to organise paperwork and general information about the club
+* has a need for a convenient way to organise paperwork and general information about the club
 * has a need to manage a significant number of contacts
 * has a requirement to keep notes and tabs on people and projects
 * prefer desktop apps over other types
