@@ -80,9 +80,8 @@ public class AddAddressCommand extends Command {
         Email updatedEmail = personToAddAddress.getEmail();
         Address updatedAddress = addAddressDescriptor.getAddress().orElse(personToAddAddress.getAddress());
         Set<Tag> updatedTags = personToAddAddress.getTags();
-        Remark updatedRemark = personToAddAddress.getRemark();
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedRemark);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
 
     @Override
