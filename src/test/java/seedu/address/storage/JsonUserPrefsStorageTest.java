@@ -1,8 +1,8 @@
-package seedu.address.storage;
+package swift.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static seedu.address.testutil.Assert.assertThrows;
+import static swift.testutil.Assert.assertThrows;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -12,9 +12,9 @@ import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.address.commons.core.GuiSettings;
-import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.UserPrefs;
+import swift.commons.core.GuiSettings;
+import swift.commons.exceptions.DataConversionException;
+import swift.model.UserPrefs;
 
 public class JsonUserPrefsStorageTest {
 

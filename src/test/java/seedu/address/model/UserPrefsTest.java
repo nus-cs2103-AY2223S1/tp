@@ -1,6 +1,6 @@
-package seedu.address.model;
+package swift.model;
 
-import static seedu.address.testutil.Assert.assertThrows;
+import static swift.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 

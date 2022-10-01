@@ -1,4 +1,4 @@
-package seedu.address.testutil;
+package swift.testutil;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

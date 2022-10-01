@@ -1,13 +1,13 @@
-package seedu.address.logic.parser;
+package swift.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static swift.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static swift.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static swift.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static swift.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.DeleteCommand;
+import swift.logic.commands.DeleteCommand;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations

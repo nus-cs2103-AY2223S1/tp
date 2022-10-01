@@ -1,4 +1,4 @@
-package seedu.address.commons.core;
+package swift.commons.core;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;

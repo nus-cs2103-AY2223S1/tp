@@ -1,12 +1,12 @@
-package seedu.address.logic.commands;
+package swift.logic.commands;
 
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT;
+import static swift.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static swift.logic.commands.ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
+import swift.model.Model;
+import swift.model.ModelManager;
 
 public class ExitCommandTest {
     private Model model = new ModelManager();

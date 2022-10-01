@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package swift.ui;
 
 import javafx.beans.DefaultProperty;
 

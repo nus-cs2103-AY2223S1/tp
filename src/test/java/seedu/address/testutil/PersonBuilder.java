@@ -1,15 +1,15 @@
-package seedu.address.testutil;
+package swift.testutil;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.util.SampleDataUtil;
+import swift.model.person.Address;
+import swift.model.person.Email;
+import swift.model.person.Name;
+import swift.model.person.Person;
+import swift.model.person.Phone;
+import swift.model.tag.Tag;
+import swift.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Person objects.

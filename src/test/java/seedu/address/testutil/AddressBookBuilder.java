@@ -1,7 +1,7 @@
-package seedu.address.testutil;
+package swift.testutil;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.person.Person;
+import swift.model.AddressBook;
+import swift.model.person.Person;
 
 /**
  * A utility class to help with building Addressbook objects.
