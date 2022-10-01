@@ -2,12 +2,11 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.ReadOnlyAddressBook;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 
@@ -16,14 +15,12 @@ import java.time.LocalDateTime;
  */
 public class StatisticsWindow extends UiPart<Stage> {
 
-    // To be updated when attributes of students are added
-    public static final String HEADER = "Your Teaching Statistics:                            \n\n"
-            + "Total number of students: XX\n" + "Total Revenue: $XX\n" + "Total amount owed: $XX";
-
+    private static final int INDEX_OF_STUDENT_COUNT = 0;
+    private static final int INDEX_OF_MONEY_COLLECTED = 1;
+    private static final int INDEX_OF_MONEY_OWED = 2;
     private static final Logger logger = LogsCenter.getLogger(StatisticsWindow.class);
     private static final String FXML = "StatisticsWindow.fxml";
-
-    private final ObservableList<Person> personList;
+    private final ReadOnlyAddressBook addressBook;
 
 
     @FXML
@@ -33,18 +30,18 @@ public class StatisticsWindow extends UiPart<Stage> {
      * Creates a new StatisticsWindow.
      *
      * @param root Stage to use as the root of the StatisticsWindow.
-     * @param personList ObservableList to use as the list of students in the system.
+     * @param addressBook AddressBook used to calculate the statistics.
      */
-    public StatisticsWindow(Stage root, ObservableList<Person> personList) {
+    public StatisticsWindow(Stage root, ReadOnlyAddressBook addressBook) {
         super(FXML, root);
-        this.personList = personList;
+        this.addressBook = addressBook;
     }
 
     /**
      * Creates a new StatisticsWindow.
      */
-    public StatisticsWindow(ObservableList<Person> personList) {
-        this(new Stage(), personList);
+    public StatisticsWindow(ReadOnlyAddressBook addressBook) {
+        this(new Stage(), addressBook);
     }
 
     /**
@@ -98,12 +95,27 @@ public class StatisticsWindow extends UiPart<Stage> {
      * Updates the message to show the latest statistical values.
      */
     public void updateStatisticsMessage() {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-        LocalDateTime now = LocalDateTime.now();
+        int[] statistics = addressBook.getStatistics();
+
+        int studentCount = statistics[INDEX_OF_STUDENT_COUNT];
+        int moneyCollected = statistics[INDEX_OF_MONEY_COLLECTED];
+        int moneyOwed = statistics[INDEX_OF_MONEY_OWED];
+
+        String dateAndTime = getDateAndTime();
+
         statisticsMessage.setText(String.format("Your Teaching Statistics:                            \n\n"
                 + "Total number of students: %d\n" + "Total Revenue: $%d\n" + "Total amount owed: $%d\n" +
                         "________________________________________\n" +
                         "Status correct as of: %s",
-                personList.size(), 2, 3, dtf.format(now)));
+                studentCount, moneyCollected, moneyOwed, dateAndTime));
+    }
+
+    /**
+     * Returns current date and time.
+     */
+    public String getDateAndTime() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        return dtf.format(now);
     }
 }

@@ -14,4 +14,8 @@ public interface ReadOnlyAddressBook {
      */
     ObservableList<Person> getPersonList();
 
+    /**
+     * Returns an array of values which represents the statistical values of the address book.
+     */
+    int[] getStatistics();
 }

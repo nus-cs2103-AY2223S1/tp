@@ -85,6 +85,37 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Returns the number of people in the list.
+     */
+    public int size() {
+        return internalList.size();
+    }
+
+    /**
+     * Returns the amount of money collected from the list of people.
+     */
+    public int getMoneyCollected() {
+        int totalMoney = 0;
+        for (Person person : internalList) {
+            // Replace with actual figure when Person has money attribute.
+            totalMoney += 2;
+        }
+        return totalMoney;
+    }
+
+    /**
+     * Returns the amount of money owed from the list of people.
+     */
+    public int getMoneyOwed() {
+        int totalMoney = 0;
+        for (Person person : internalList) {
+            // Replace with actual figure when Person has money attribute.
+            totalMoney += 3;
+        }
+        return totalMoney;
+    }
+
+    /**
      * Replaces the contents of this list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
