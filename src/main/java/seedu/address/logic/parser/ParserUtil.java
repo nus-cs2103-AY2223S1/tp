@@ -10,6 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -108,6 +109,28 @@ public class ParserUtil {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
         return new Tag(trimmedTag);
+    }
+
+    /**
+     * Parses a {@code String reason} and {@code String dateTime} into a {@code Appointment}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code reason} or {@code dateTime} is invalid.
+     */
+    public static Appointment parseAppointment(String reason, String dateTime) throws ParseException {
+        requireNonNull(dateTime);
+        requireNonNull(reason);
+        String trimmedReason = reason.trim();
+        String trimmedDateTime = dateTime.trim();
+
+        if (!Appointment.isValidReason(trimmedReason)) {
+            throw new ParseException(Appointment.REASON_MESSAGE_CONSTRAINTS);
+        }
+
+        if (!Appointment.isValidDateTime(dateTime)) {
+            throw new ParseException(Appointment.DATE_MESSAGE_CONSTRAINTS);
+        }
+        return new Appointment(trimmedReason, trimmedDateTime);
     }
 
     /**
