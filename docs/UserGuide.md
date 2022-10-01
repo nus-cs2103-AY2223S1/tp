@@ -14,9 +14,9 @@ SectresBook helps **secretaries** to maintain all the information of the members
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/AY2223S1-CS2103T-W12-2/tp/releases).
+1. Download the latest `SectresBook.jar` from [here](https://github.com/AY2223S1-CS2103T-W12-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your SectresBook.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -28,7 +28,9 @@ SectresBook helps **secretaries** to maintain all the information of the members
 
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`delete 3`** : Deletes the 3rd contact shown in the current list.
+   
+   * **`help`**: Open the UserGuide in your default web browser.
 
    * **`clear`** : Deletes all contacts.
 
@@ -75,7 +77,7 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds a person to the SectresBook.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
@@ -89,7 +91,7 @@ Examples:
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all persons in the SectresBook.
 
 Format: `list`
 
@@ -127,7 +129,7 @@ Examples:
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified person from the aSectresBook.
 
 Format: `delete INDEX`
 
@@ -157,9 +159,15 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries of people from the SectresBook.
 
 Format: `clear`
+
+### Adding Notes `[coming in v1.2.1]`
+
+### Editing Notes `[coming in v1.2.1]`
+
+### Deleting Notes `[coming in v1.2.1]`
 
 ### Exiting the program : `exit`
 
@@ -169,14 +177,14 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+SectresBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+AddressBook data are saved as a JSON file `[JAR file location]/data/sectresbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, SectresBook will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -189,6 +197,10 @@ _Details coming soon ..._
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+
+**Q**: Double clicking the jar file does not open the jar file!
+
+**A**: Make sure that Java 11 is install on your computer. You may also open the terminal or command prompt and type `java -jar SectresBook.jar`.
 
 --------------------------------------------------------------------------------------------------------------------
 
