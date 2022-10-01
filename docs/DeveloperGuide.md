@@ -7,13 +7,13 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
+## **Acknowledgements** (OUTDATED)
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## **Setting up, getting started** (OUTDATED)
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
@@ -21,12 +21,28 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## **Design**
 
+RC4HDB has the idea of providing a flexible product which functions well, yet not too complex. Keeping this in mind, 
+the developers are pursuing an iterative approach, adding new features and functionalities amidst the evolving requirements.
+This gives rise to the following main guiding principles for RC4HDB: 
+
+**Maintainability**
+
+This project was adapted from an application called [`AddressBook Level 3 (AB3)`](https://se-education.org/addressbook-level3/).
+The developers of `AB 3` have developed in a manner that facilitates easy modification of components. This design allows the functionalities
+implemented to be easily changed depending on the goals of the developers. Building upon the existing components in `AB3`, the developers are to
+add additional classes to the major components including [**`UI`**](#ui-component), [**`Logic`**](#logic-component) , [**`Model`**](#model-component), [**`Storage`**](#storage-component).
+
+**Command Line Interface (CLI) Oriented**
+
+[**CLI**](#glossary) gives the user an easy way to type commands. This is especially useful for a target audience which is familiar with the process of performing admin tasks
+using a computer. For users who type fast, RC4HDB will be highly efficient and quick to respond, replacing their existing processes of managing their housing database.
+
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
-### Architecture
+### Architecture (OUTDATED)
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -67,7 +83,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-### UI component
+### UI component (OUTDATED)
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
@@ -84,7 +100,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
-### Logic component
+### Logic component (OUTDATED)
 
 **API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
@@ -133,7 +149,7 @@ The `Model` component,
 </div>
 
 
-### Storage component
+### Storage component (OUTDATED)
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -150,7 +166,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## **Implementation** (OUTDATED)
 
 This section describes some noteworthy details on how certain features are implemented.
 
@@ -241,7 +257,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## **Documentation, logging, testing, configuration, dev-ops** (OUTDATED)
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -257,18 +273,18 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* works in the housing management team for RC4 with several other co-workers
-* has a need to manage a significant number of residents in RC4
+* works in the housing management team for [**RC4**](glossary) with several other co-workers
+* has a need to manage a significant number of residents in [**RC4**](glossary)
 * is responsible for performing a wide variety of tasks including liasing with students/staff
 * requires quick access to contact details and other relevant resident information
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* is reasonably comfortable using [**CLI**](#glossary) apps
 
 **Value proposition**:
 
-* manage contacts faster than a typical mouse/GUI driven app
+* manage contacts faster than a typical mouse/Graphic User Interface (GUI) driven app
 * requires less technical knowledge to perform complex tasks
 * easier on the eyes, as compared to compressed rows of data on Excel
 
@@ -282,19 +298,19 @@ They have been extensively documented [here](https://github.com/AY2223S1-CS2103T
 2. Moderate `* *` - nice to have
 3. Low `*` - unlikely to have
 
-| Priority | As a ...      | I want to ...                                                      | So that ...                                      |
-|----------|---------------|--------------------------------------------------------------------|--------------------------------------------------|
-| `***`    | user          | view relevant information about RC4 residents                      |                                                  |
-| `**`     | user          | specify which fields I want to see when listing data               | my screen is less cluttered                      |
-| `**`     | user          | import my old data into the application                            |                                                  |
-| `**`     | user          | view a smaller list of RC4 residents that pass certain conditions  |                                                  |
-| `**`     | user          | search for residents using a portion of their names                | I do not have to remember their exact names      | 
-| `*`      | user          | export residents' data in a familiar format                        |                                                  |
-| `*`      | new user      | see sample data                                                    | I can see how the app will look like when in use |
-| `*`      | user          | delete multiple residents' data from the app quickly               | I can save time                                  |
-| `*`      | advanced user | give residents roles                                               | I can further categorize them                    |
-| `*`      | user          | use the system without referring to the user guide                 |                                                  |
-| `*`      | user          | switch between different data files                                |                                                  |
+| Priority | As a ...      | I want to ...                                                                     | So that ...                                      |
+|----------|---------------|-----------------------------------------------------------------------------------|--------------------------------------------------|
+| `***`    | user          | view relevant information about [**RC4**](glossary) residents                     |                                                  |
+| `**`     | user          | specify which fields I want to see when listing data                              | my screen is less cluttered                      |
+| `**`     | user          | import my old data into the application                                           |                                                  |
+| `**`     | user          | view a smaller list of [**RC4**](glossary) residents that pass certain conditions |                                                  |
+| `**`     | user          | search for residents using a portion of their names                               | I do not have to remember their exact names      | 
+| `*`      | user          | export residents' data in a familiar format                                       |                                                  |
+| `*`      | new user      | see sample data                                                                   | I can see how the app will look like when in use |
+| `*`      | user          | delete multiple residents' data from the app quickly                              | I can save time                                  |
+| `*`      | advanced user | give residents roles                                                              | I can further categorize them                    |
+| `*`      | user          | use the system without referring to the user guide                                |                                                  |
+| `*`      | user          | switch between different data files                                               |                                                  |
 
 *{More to be added}*
 
@@ -316,21 +332,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 (For all use cases below, the **System** is the `RC4HDB` and the **Actor** is the `user`, unless specified otherwise)
 
 
-**Use case: Getting help with the application**
+**Use case: UC1. Getting help with the application**
 
 **MSS**
-1. User needs help in utilizing RC4HDB.
-2. User uses the help command.
-3. RC4HDB displays a message that directs the user to our user guide.
+1. User needs help related to RC4HDB.
+2. RC4HDB displays a message that directs the user to our user guide.
 
     Use case ends.
 
-**Use case: Adding a single resident**
+**Use case: UC2. Add a single resident**
 
 **MSS**
-1. New resident moves into RC4.
+1. New resident moves into [**RC4**](glossary).
 2. User gets personal details of the resident.
-3. User uses the add command to add the resident.
+3. User adds the resident.
 4. RC4HDB adds the resident to the data file.
 5. RC4HDB displays the name and other information of the resident.
 
@@ -344,58 +359,56 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 3.
 
-**Use case: Listing out information of all residents**
+**Use case: UC3. Listing out information of all residents**
 
 **MSS**
-1. User wants to see the full list of residents in RC4.
-2. User uses the list command.
-3. RC4HDB displays the details of all residents in RC4.
+1. User wants to see the full list of residents in [**RC4**](glossary).
+2. RC4HDB displays the details of all residents in [**RC4**](glossary).
 
     Use case ends.
 
-**Extension**
+**Extensions**
 * 2a. The list is empty.
 
     Use case ends.
 
 
-**Use case: Editing a single resident’s information**
+**Use case: UC4. Editing a single resident’s information**
 
 **MSS**
-1. Resident has a change in personal information.
-2. User needs to edit the resident's information in RC4HDB.
-3. User looks at which category the information falls under.
-4. User uses the edit command to edit the resident information.
-5. RC4HDB updates the information of the specified resident.
-6. RC4HDB displays a message detailing the changes made.
+1. Resident has a specific change in personal information.
+2. User edits the resident's information in RC4HDB.
+3. RC4HDB updates the information of the specified resident.
+4. RC4HDB displays a message detailing the changes made.
 
     Use case ends.
 
 **Extensions**
 
-* 3a. There is no relevant category for that information.
-
+* 2a. There is no relevant category for that information.
+  * 2a1. RC4HDB shows an error message.
+  
     Use case ends.
 
 
-* 4a. User enters resident information in an invalid format.
+* 2b. User enters resident information in an invalid format.
 
-    * 4a1. RC4HDB shows an error message.
+    * 2b1. RC4HDB shows an error message.
 
-      Use case resumes at step 3.
+      Use case resumes at step 2.
 
 
-**Use case: Finding a resident’s information by their name**
+**Use case: UC 5. Finding a resident’s information by their name**
 
 **MSS**
 1. User wants to search for a resident’s information.
-2. User uses the find command to find the resident.
-3. RC4HDB searches the database for the user's input.
+2. User finds a resident by their name.
+3. RC4HDB searches the database for the given name.
 4. RC4HDB displays the resident's information.
 
     Use case ends.
 
-**Extension**
+**Extensions**
 
 * 3a. RC4HDB cannot find any resident matching the user input.
 
@@ -411,17 +424,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 
-**Use case: Filtering the list of all residents by specific fields**
+**Use case: UC 6. Filtering the list of all residents by specific fields**
 
 **MSS**
 1. User wants to see a list of residents that fall under a certain category.
-2. User uses the filter command to filter the list of residents.
-3. RC4HDB applies the filter.
-4. RC4HDB shows the filtered list.
+2. User uses filters the list of residents. 
+3. RC4HDB shows the filtered list.
 
     Use case ends.
 
-**Extension**
+**Extensions**
 
 * 2a. User enters an invalid specifier i.e. one that is not `/all` or `/any`.
 
@@ -451,52 +463,51 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 
-**Use case: Deleting a single resident**
+**Use case: UC 7. Deleting a single resident**
 
 **MSS**
-1. Resident moves out of RC4.
-2. User uses the delete command to remove the resident from RC4HDB.
+1. Resident moves out of [**RC4**](glossary).
+2. User deletes the resident.
 3. RC4HDB removes the corresponding resident from the database.
 4. RC4HDB displays the details of that resident that has been deleted.
 
     Use case ends.
 
-**Extension**
+**Extensions**
 
-* 2a. User enters an invalid index.
+* 2a. User enters an invalid input.
 
     * 2a1. RC4HDB shows an error message.
 
       Use case resumes at step 2.
 
 
-* 3a. RC4HDB cannot find any resident matching the user input.
+* 2b. RC4HDB cannot find any resident matching the user input.
 
-    * 3a1. RC4HDB shows an error message.
+    * 2b1. RC4HDB shows an error message.
 
       Use case resumes at step 2.
 
 
-**Use case: Clearing all data**
+**Use case: UC 8. Clearing all data**
 
 **MSS**
 1. User wants to clear all data from the current working file.
-2. User uses the clear command.
-3. RC4HDB replaces the current data file with an empty data file with the same name.
-4. RC4HDB shows a success message.
+2. RC4HDB replaces the current data file with an empty data file with the same name.
+3. RC4HDB shows a success message.
 
     Use case ends.
 
-**Use case: Exiting the application**
+**Use case: UC 9. Exiting the application**
 
 **MSS**
 1. User has completed his/her tasks and wants to exit the application.
-2. User uses the exit command.
+2. User exits the application.
 3. RC4HDB application closes.
 
     Use case ends.
 
-**Extension**
+**Extensions**
 
 * 2a. User clicks on the exit button.
 
@@ -505,38 +516,38 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 
-**Use case: Importing data from .csv file**
+**Use case: UC 10. Importing data from [**CSV**](#glossary) file**
 
 **MSS**
 1. User has a data file with resident’s information, and wants to view it in RC4HDB.
-2. User uses the import command to import the CSV file.
-3. RC4HDB reads the file stored in the file path entered by the user.
-4. RC4HDB displays the name of the csv file after the file has been read.
+2. User imports the file.
+3. RC4HDB reads the file.
+4. RC4HDB displays the name of the [**CSV**](#glossary) file after the file has been read.
 5. RC4HDB displays all the information stored in the file.
 
     Use case ends.
 
-**Extension**
-* 1a. Information in the CSV file has not been stored in the proper format.
-
-    * 1a1. RC4HDB shows an error message.
-
-      Use case resumes at step 2.
-
-
-* 2a. No file could be found at the specified file path.
+**Extensions**
+* 2a. Information in the [**CSV**](#glossary) file has not been stored in the proper format.
 
     * 2a1. RC4HDB shows an error message.
 
       Use case resumes at step 2.
 
 
-**Use case: Exporting data to .csv file**
+* 3a. No file could be found at the specified file path.
+
+    * 3a1. RC4HDB shows an error message.
+
+      Use case resumes at step 2.
+
+
+**Use case: UC 11. Exporting data to [**CSV**](#glossary) file**
 
 **MSS**
-1. User wants the data in a CSV file.
-2. User uses the export command, followed by the full file path and new file name.
-3. RC4HDB creates a new CSV file in the file path entered by the user.
+1. User wants the data in a [**CSV**](#glossary) file.
+2. User exports the file.
+3. RC4HDB creates a new [**CSV**](#glossary) file using user input.
 4. RC4HDB shows a success message.
 
     Use case ends.
@@ -547,9 +558,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 #### Accessibility
 * The application must not require an internet connection to work
-* Inputs must be done through the Command Line Interface (CLI)
+* Inputs must be done through the [`Command Line Interface (CLI)`](#glossary)
 * The application must be sufficiently light-weight to be run by older computer systems
-* Should work on any mainstream OS as long as it has Java 11 or above installed
+* Should work on any [`Mainstream OS`](#glossary) as long as it has Java 11 or above installed
 * A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse
 
 #### Quality
@@ -557,14 +568,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 #### Technical
 * The system must be able to handle approximately 300 to 500 entries without a noticeable sluggishness in performance for typical usage
-* The system must be flexible and extensible for potential overhaul or changes to the RC4 housing management system
+* The system must be flexible and extensible for potential overhaul or changes to the [**RC4**](glossary) housing management system
 
 *{More to be added}*
 
 ### Glossary
 * **Command Line Interface (CLI)**: An area in the application interface for users to input commands
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Comma-Separated Values (CSV)**: A delimited text file that uses a comma to separate values and each line of the file is a data record 
 * **Display Window**: An area in the application interface for users to view the output of their commands
+* **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **NUS**: The National University of Singapore
 * **RC4**: Residential College 4 which resides in NUS
 * **Resident**: A NUS student who lives in RC4
