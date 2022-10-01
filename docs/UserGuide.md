@@ -27,9 +27,9 @@ done faster and more securely than traditional GUI apps.
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `finbook.jar` from [here]().
 
-1. Copy the file to the folder you want to use as the home folder for your FinBook.
+1. Copy the file to the folder you want to use as the home folder for your financial book.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app
    contains some sample data.<br>
@@ -42,7 +42,7 @@ done faster and more securely than traditional GUI apps.
     * **`list`** : Lists all contacts.
 
     * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact
-      named `John Doe` to the Address Book.
+      named `John Doe` to the financial book.
 
     * **`delete`**` 3` : Deletes the 3rd contact shown in the current list.
 
@@ -99,7 +99,7 @@ Examples:
 
 ### Listing all client : `list`
 
-Shows a list of all clients in the address book.
+Shows a list of all clients in the financial book.
 
 Format: `list`
 
@@ -136,7 +136,7 @@ Format: `delete INDEX`
 
 Examples:
 
-* `list` followed by `delete 2` deletes the 2nd client in the address book.
+* `list` followed by `delete 2` deletes the 2nd client in the financial book.
 * `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
 ---
@@ -159,18 +159,18 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to
+Financial book data are saved in the hard disk automatically after any command that changes the data. There is no need to
 save manually.
 
 ---
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to
+Financial book data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to
 update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, financial book will discard all data and start with an empty data file at the next run.
 </div>
 
 ---
@@ -183,7 +183,7 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
-the data of your previous AddressBook home folder.
+the data of your previous financial book home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
