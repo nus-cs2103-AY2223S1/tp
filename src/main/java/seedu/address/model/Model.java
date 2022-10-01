@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.client.Client;
 import seedu.address.model.person.Person;
 
 /**
@@ -14,6 +15,8 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+
+    Predicate<Client> PREDICATE_SHOW_ALL_CLIENTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -91,4 +94,40 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+
+
+    // Colin's versions
+
+    /**
+     * Returns true if a person with the same identity as {@code Client} exists in the address book.
+     */
+    boolean hasClient(Client toAdd);
+
+    /**
+     * Adds the client specified.
+     */
+    void addClient(Client toAdd);
+
+    /**
+     * Deletes the given Client.
+     * The client must exist in the address book.
+     */
+    void deleteClient(Client toDelete);
+
+    /**
+     * Replaces the given Client {@code target} with {@code editedClient}.
+     * {@code client} must exist in the address book.
+     * The person identity of {@code editedClient} must not be the same as another existing cleint in the address book.
+     */
+    void setClient(Client target, Client editedClient);
+
+    /** Returns an unmodifiable view of the filtered client list */
+    ObservableList<Client> getFilteredClientList();
+
+    /**
+     * Updates the filter of the filtered client list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredClientList(Predicate<Client> predicate);
 }
