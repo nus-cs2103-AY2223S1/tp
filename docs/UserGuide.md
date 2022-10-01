@@ -97,7 +97,7 @@ Examples:
 
 ### Delete task from team : `delete task`
 
-Delete an existing task from the team. Will throw an error if the task is not found in the user’s team.
+Delete an existing task from the team. Will display an error message if the task is not found in the user’s team.
 
 Format: `delete task “TASK_NAME”`
 
