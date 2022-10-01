@@ -3,7 +3,8 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+YellowBook is a **desktop application for university students** who are involved in many projects to organize their project contacts and tasks.
+YellowBook is optimised for use via a Command Line Interface (CLI).
 
 * Table of Contents
 {:toc}
@@ -14,9 +15,9 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `yellowbook.jar` from [here]().
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your YellowBook.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -24,15 +25,11 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`listC`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`addC`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to YellowBook.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
-
-   * **`exit`** : Exits the app.
+   * **`deleteC`**`3` : Deletes the 3rd contact shown in the current contact list.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -48,10 +45,10 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [t/LABEL]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/LABEL]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -59,27 +56,26 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `listC`, `listT`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
 
-
 ## Section 1: Contacts
 
-### Add a contact: `add`
+### Add a contact: `addC`
 
 Adds a contact to the address book.
 
-Format:  `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/DESCRIPTION]`
+Format:  `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/DESCRIPTION]`
 
 * The description of a contact is optional.
 
 Examples: 
 
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `addC n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 
-* `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 d/Weird person.`
+* `addC n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 d/Weird person.`
 
 ### Listing all contacts: `listC`
 
@@ -99,9 +95,9 @@ Format: `deleteC INDEX`
 
 Examples:
 
-*`listC` followed by `deleteC 1` deletes the first contact in the address book.
+* `listC` followed by `deleteC 1` deletes the first contact in the address book.
 
-*`find contact -n John` followed by `deleteC 1` deletes the first result of the `find` command.
+* `findC John` followed by `deleteC 1` deletes the first result of the `findC` command.
 
 ## Editing a contact: `editC`
 
@@ -136,16 +132,16 @@ Format: `findC KEYWORD [MORE_KEYWORDS]`
 * Only full words will be matched. e.g. `Doofenshmirt` will not match `Doofenshmirtz`.
 
 * Contacts matching at least one keyword will be returned. e.g. `Perry Dr.`
-  will match `Perry the Platypus` and `Dr. Doofenshmirtz`
+  will match `Perry the Platypus` and `Dr. Doofenshmirtz`.
 
 Example:
 
-* `findC flynn` will return `Candace Flynn` and `Phineas Flynn`
-* `findC Phineas Ferb` will return `Phineas Flynn` and  `Ferb Flynn`
+* `findC flynn` will return `Candace Flynn` and `Phineas Flynn`.
+* `findC Phineas Ferb` will return `Phineas Flynn` and  `Ferb Flynn`.
 
-### Filtering contacts by tag: `filterC`
+### Filtering contacts by label: `filterC`
 
-Filters contacts whose tags contain any of the given keywords.
+Filters contacts whose labels contain any of the given keywords.
 Filters applied consecutively are stacked.
 
 Format: `filterC KEYWORD [MORE_KEYWORDS]`
@@ -155,16 +151,16 @@ Format: `filterC KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter, e.e. `software cs2103t` will match
   `CS2103T Software Engineering`.
 
-* Only the contact's tag is filtered.
+* Only the contact's label is filtered.
 
 * Only full words will be matched. e.g. `cs2103t` will not match `cs2103`.
 
-* Tags matching at least one keyword will be returned. e.g. `cs2103t cs2101` will match
-  `CS2103T Software Engineering` and `CS2101 Effective Communication for Computing Professionals`
+* Labels matching at least one keyword will be returned. e.g. `cs2103t cs2101` will match
+  `CS2103T Software Engineering` and `CS2101 Effective Communication for Computing Professionals`.
 
 Example:
 
-* `filterT cs2103t` will return contacts with tag `CS2103T Software Engineering`
+* `filterC cs2103t` will return contacts with label `CS2103T Software Engineering`.
 
 ## Section 2: Tasks
 ### Listing all tasks: `listT`
@@ -173,26 +169,34 @@ Shows all tasks stored in the task list.
 
 Format: `listT`
 
-### Adding Tasks: `task d/DESCRIPTION D/DEADLINE`
+### Adding Tasks: `addT`
 
 Adds a task to the task list. 
 The deadline of the task is allowed to be empty. Newly added tasks are marked as not done. 
 Throws an exception if the description of the task is empty. 
 Throws an exception if the deadline of the task is not in dd-mm-yyyy format.
 
-Format: `task d/buy milk D/12-09-2022`
+Format: `addT d/DESCRIPTION D/DEADLINE`
 
-### Removing Tasks: `delete i/INDEX`
+Example:
+
+* `addT d/buy milk D/12-09-2022` will add the task "buy milk" with deadline 12 September 2022.
+
+### Removing Tasks: `deleteT`
 
 Removes the specified task from the task list. Throws an exception if task does not exist.
 
-Format: `delete i/12`
+Format: `deleteT i/INDEX`
 
-### Marking task as done: `mark`
+Example:
+
+* `deleteT i/12` will delete the 12th task in the task list.
+
+### Marking task as done: `markT`
 
 Marks a task in the task list as done.
 
-Format: `mark INDEX`
+Format: `markT INDEX`
 
 * Index of a task is its index number on the task list.
 
@@ -200,23 +204,28 @@ Format: `mark INDEX`
 
 Examples:
 
-* `listT` followed by `mark 1` marks the first task in the displayed task list as done.
+* `listT` followed by `markT 1` marks the first task in the displayed task list as done.
 
-* `find task -t book` followed by `mark 1` marks the first result of the find command as done.
+* `findT book` followed by `markT 1` marks the first result of the `findT` command as done.
 
-### Marking task as undone: `unmark`
+### Marking task as undone: `unmarkT`
 
 Marks a task in the task list as undone.
 
-Format: `unmark INDEX`
+Format: `unmarkT INDEX`
 
 * Index of a task is its index number on the task list.
 
 * INDEX must be a positive integer more than 0.
 
+Examples:
+
+* `listT` followed by `unmarkT 1` marks the first task in the displayed task list as undone.
+* `findT book` followed by `unmarkT 1` marks the first result of the `findT` command as undone.
+
 ### Locating tasks by name: `findT`
 
-Finds tags whose names contain any of the given keywords.
+Finds labels whose names contain any of the given keywords.
 
 Format: `findT KEYWORD [MORE_KEYWORDS]`
 
@@ -229,59 +238,90 @@ Format: `findT KEYWORD [MORE_KEYWORDS]`
 
 * Only full words will be matched. e.g. `cs2103t` will not match `cs2103`.
 
-* Tags matching at least one keyword will be returned. e.g. `cs2103t cs2101` will match
-  `CS2103T Software Engineering` and `CS2101 Effective Communication for Computing Professionals`
+* Labels matching at least one keyword will be returned. e.g. `cs2103t cs2101` will match
+  `CS2103T Software Engineering` and `CS2101 Effective Communication for Computing Professionals`.
 
 Example:
 
-* `findT cs2103t` will return tasks with tag `CS2103T Software Engineering`
+* `findT cs2103t` will return tasks with label `CS2103T Software Engineering`.
 
-### Filtering tasks by tag: `filterT`
+### Filtering tasks by label: `filterT`
 
-Filters tasks whose tags contain any of the given keywords.
+Filters tasks whose labels contain any of the given keywords.
 Filters applied consecutively are stacked.
 
-Format: `findT KEYWORD [MORE_KEYWORDS]`
+Format: `filterT KEYWORD [MORE_KEYWORDS]`
 
-* The filer is case-insensitive, e.g. `cs2103t` will match `CS2103T`.
+* The filter is case-insensitive, e.g. `cs2103t` will match `CS2103T`.
 
 * The order of the keywords does not matter, e.e. `software cs2103t` will match
   `CS2103T Software Engineering`.
 
-* Only the tasks's tag is filtered.
+* Only the tasks's label is filtered.
 
 * Only full words will be matched. e.g. `cs2103t` will not match `cs2103`.
 
-* Tags matching at least one keyword will be returned. e.g. `cs2103t cs2101` will match
-  `CS2103T Software Engineering` and `CS2101 Effective Communication for Computing Professionals`
+* Labels matching at least one keyword will be returned. e.g. `cs2103t cs2101` will match
+  `CS2103T Software Engineering` and `CS2101 Effective Communication for Computing Professionals`.
 
 Example:
 
-* `filterT cs2103t` will return tasks with tag `CS2103T Software Engineering`
+* `filterT cs2103t` will return tasks with label `CS2103T Software Engineering`.
 
-Examples:
+## Section 3: Labels
+### Listing all labels: `listL`
 
-* `listT` followed by `unmark 1` marks the first task in the displayed task list as undone.
-* `find task -t book` followed by `unmark 1` marks the first result of the find command as undone.
+Shows a list of all existing labels in the address book.
 
-## Section 3: Tags
-### Listing all tags : `taglist`
+Format: `listL`
 
-Shows a list of all existing tags in the address book.
+### Adding a label to a contact: `addL`
 
-Format: `taglist`
+Adds a label to an existing contact in the address book. Each contact can have multiple labels. If there is no existing label with the same name, label is added to the label list. Throws an exception if contact does not exist.
 
-### Adding a tag : `addtag i/INDEX n/TAG_NAME`
+Format: `addL c/INDEX n/label_NAME`
 
-Adds a tag to an existing contact in the address book. Each contact can have multiple tags. If there is no existing tag with the same name, tag is added to the tag list. Throws an exception if contact does not exist.
+Example:
 
-Format: `addtag i/12 n/CS2103T`
+* `addL c/12 n/CS2103T` will add the label "CS2103T" to the 12th contact on the contact list.
 
-### Removing a tag : `rmtag i/INDEX n/TAG_NAME`
+### Removing a label from a contact: `deleteL`
 
-Removes a tag from an existing contact in the address book. If contact is last remaining person with said tag, tag is removed from the tag list. Throws an exception if contact or tag does not exist.
+Removes a label from an existing contact in the address book. If contact is last remaining person with said label, label is removed from the label list. Throws an exception if contact or label does not exist.
 
-Format: `rmtag i/14 n/CS2101`
+Format: `deleteL c/INDEX n/label_NAME`
+
+Example:
+
+* `deleteL c/14 n/CS2101` will remove the label "CS2101" from the 14th contact on the contact list.
+
+### Adding a label to a task: `addL`
+
+Adds a label to an existing task in the address book. Each task can have multiple labels. If there is no existing label with the same name, label is added to the label list. Throws an exception if task does not exist.
+
+Format: `addL t/INDEX n/label_NAME`
+
+Example:
+
+* `addL t/12 n/CS2103T` will add the label "CS2103T" to the 12th task on the task list.
+
+### Removing a label from a task: `deleteL`
+
+Removes a label from an existing task in the address book. If contact is last remaining person with said label, label is removed from the label list. Throws an exception if task or label does not exist.
+
+Format: `deleteL t/INDEX n/label_NAME`
+
+Example: 
+
+* `deleteL t/14 n/CS2101` will remove the label "CS2101" from the 14th task on the task list.
+
+## Automatic tab switching
+
+Depending on the command you enter, you will see the open tab in the GUI switch automatically. 
+For example, when using a task-related command, the tab switches to "Task" and the task list is displayed. 
+
+The result of the entered command is displayed.
+For example, after adding a new contact, the list shown on the GUI is the updated list with your new contact included.
 
 ## YellowBook data
 ### Saving the data
@@ -310,13 +350,17 @@ If your changes to the data file makes its format invalid, YellowBook will disca
 | Action     | Format, Examples                                                                                     |
 |------------|------------------------------------------------------------------------------------------------------|
 | **listC**   | `listC`                                                                                             |
+| **addC**   | `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/DESCRIPTION]` <br> e.g., `addC n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`                                                                                            |
 | **deleteC** | `deleteC INDEX` <br> e.g., `deleteC 1`                                                              | 
 | **editC**   | `editC INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [d/Description]` <br> e.g., `editC 1 n/John p/12345678` |
-| **searchC** | `findC KEYWORD [MORE_KEYWORDS]` <br> e.g., `findC Phineas Ferb`                                     |
+| **findC** | `findC KEYWORD [MORE_KEYWORDS]` <br> e.g., `findC Phineas Ferb`                                     |
 | **filterC** | `filterC KEYWORD [MORE_KEYWORDS]` <br> e.g., `filterT cs2103t`                                      |                                                                                                 |
 | **listT**   | `listT`                                                                                             |
-| **mark**    | `mark INDEX` <br> e.g., `mark 1`                                                                    |
-| **unmark**  | `unmark INDEX` <br> e.g., `unmark 1`                                                                |
+| **addT**   |  `addT d/DESCRIPTION D/DEADLINE`                                                                                           |
+| **markT**    | `markT INDEX` <br> e.g., `mark 1`                                                                    |
+| **unmarkT**  | `unmarkT INDEX` <br> e.g., `unmark 1`                                                                |
 | **searchT** | `findT KEYWORD [MORE_KEYWORDS]` <br> e.g., `findT cs2103t`                                          |
 | **filterT** | `filterT KEYWORD [MORE_KEYWORDS]` <br> e.g., `filterT cs2103t`                                      |
-
+| **listL**   | `listL`                                                                                             |
+| **addL**   | `addL c/INDEX n/LABEL_NAME` OR  `addL t/INDEX n/LABEL_NAME`                                                                            |
+| **deleteL**   | `deleteL c/INDEX n/LABEL_NAME` OR `deleteL t/INDEX n/LABEL_NAME`                                                                                           |
