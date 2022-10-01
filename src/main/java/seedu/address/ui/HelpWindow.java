@@ -15,7 +15,7 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
+    public static final String USERGUIDE_URL = "https://ay2223s1-cs2103t-t12-1.github.io/tp/UserGuide.html";
     public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
@@ -34,7 +34,6 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
-        helpMessage.setText(HELP_MESSAGE);
     }
 
     /**
@@ -42,6 +41,19 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow() {
         this(new Stage());
+    }
+
+    /**
+     * Initializes the HelpWindow.
+     */
+    @FXML
+    public void initialize() {
+        helpMessage.setText(HELP_MESSAGE);
+        /*
+         * On some systems, the stage won't be resized to fit the content.
+         * This is a workaround to force the stage to resize.
+         */
+        getRoot().widthProperty().addListener((observable, oldValue, newValue) -> getRoot().sizeToScene());
     }
 
     /**
