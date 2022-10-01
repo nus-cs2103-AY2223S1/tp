@@ -33,7 +33,7 @@ You can reach us at the email `climods[at]comp.nus.edu.sg`
 
 <img src="images/seeksaveserve.png" width="200px">
 
-[[github](http://github.com/SeekSaveServe)] [[portfolio](team/PeiChengYi.md)]
+[[github](http://github.com/SeekSaveServe)] [[portfolio](team/seeksaveserve.md)]
 
 * Role: Developer
 * Responsibilities: Data
