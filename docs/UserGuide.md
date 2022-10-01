@@ -129,7 +129,7 @@ Example:
 ![Add](images/UiAdd.png)
 
 ```yaml
-Note: Amount paid, Amount owed, Additional notes fields are to be updated via `update` command.
+Note: Amount paid, Amount owed, Additional notes fields are to be updated via `edit` command.
 ```
 
 ---
@@ -251,9 +251,9 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 | Action                                                                                               | Format, Examples |
 |------------------------------------------------------------------------------------------------------| --- |
 | Add                                                                                                  | add n/NAME p/CONTACT_NUMBER np/NEXT_OF_KIN_CONTACT_NUMBER a/ADDRESS e/EMAIL dt/CLASS_DATE
-e.g., add n/John Doe p/98765432 np/90123291 a/Street ABC e/johnd@example.com dt/2022-09-20 1800-2000 |
-| Update                                                                                               | update n/NAME [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS] [paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES]
-e.g., update n/Ben Tan p/98765431                                                                    |
+ e.g., add n/John Doe p/98765432 np/90123291 a/Street ABC e/johnd@example.com dt/2022-09-20 1800-2000 |
+| Edit                                                                                                 | edit INDEX [n/NAME] [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS] [paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES]
+ e.g., edit p/98765431                                                                    |
 | View statistics                                                                                      | statistics |
 | Help                                                                                                 | help |
 | Exit                                                                                                 | exit |
