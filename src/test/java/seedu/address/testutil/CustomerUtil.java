@@ -8,7 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddCustomerCommand;
 import seedu.address.logic.commands.EditCommand.EditCustomerDescriptor;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.tag.Tag;
@@ -22,7 +22,7 @@ public class CustomerUtil {
      * Returns an add command string for adding the {@code customer}.
      */
     public static String getAddCommand(Customer customer) {
-        return AddCommand.COMMAND_WORD + " " + getCustomerDetails(customer);
+        return AddCustomerCommand.COMMAND_WORD + " " + getCustomerDetails(customer);
     }
 
     /**
@@ -33,7 +33,7 @@ public class CustomerUtil {
         sb.append(PREFIX_NAME + customer.getName().fullName + " ");
         sb.append(PREFIX_PHONE + customer.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + customer.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + customer.getAddress().value + " ");
+        sb.append(PREFIX_ADDRESS + customer.getAddress().getValue() + " ");
         customer.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -48,7 +48,7 @@ public class CustomerUtil {
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
-        descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
+        descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.getValue()).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

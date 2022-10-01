@@ -19,10 +19,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.customer.Address;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.Email;
 import seedu.address.model.customer.Name;
+import seedu.address.model.customer.NullableAddress;
 import seedu.address.model.customer.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -76,7 +76,7 @@ public class EditCommand extends Command {
         Name updatedName = editCustomerDescriptor.getName().orElse(customerToEdit.getName());
         Phone updatedPhone = editCustomerDescriptor.getPhone().orElse(customerToEdit.getPhone());
         Email updatedEmail = editCustomerDescriptor.getEmail().orElse(customerToEdit.getEmail());
-        Address updatedAddress = editCustomerDescriptor.getAddress().orElse(customerToEdit.getAddress());
+        NullableAddress updatedAddress = editCustomerDescriptor.getAddress().orElse(customerToEdit.getAddress());
         Set<Tag> updatedTags = editCustomerDescriptor.getTags().orElse(customerToEdit.getTags());
 
         return new Customer(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
@@ -129,7 +129,7 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
-        private Address address;
+        private NullableAddress address;
         private Set<Tag> tags;
 
         public EditCustomerDescriptor() {
@@ -178,11 +178,11 @@ public class EditCommand extends Command {
             this.email = email;
         }
 
-        public Optional<Address> getAddress() {
+        public Optional<NullableAddress> getAddress() {
             return Optional.ofNullable(address);
         }
 
-        public void setAddress(Address address) {
+        public void setAddress(NullableAddress address) {
             this.address = address;
         }
 

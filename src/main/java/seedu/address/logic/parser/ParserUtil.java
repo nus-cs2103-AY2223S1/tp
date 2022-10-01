@@ -10,8 +10,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.customer.Address;
+import seedu.address.model.customer.AddressFactory;
 import seedu.address.model.customer.Email;
 import seedu.address.model.customer.Name;
+import seedu.address.model.customer.NullableAddress;
 import seedu.address.model.customer.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -71,13 +73,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code address} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
+    public static NullableAddress parseAddress(String address) throws ParseException {
         requireNonNull(address);
         String trimmedAddress = address.trim();
         if (!Address.isValidAddress(trimmedAddress)) {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return AddressFactory.fromString(trimmedAddress);
     }
 
     /**

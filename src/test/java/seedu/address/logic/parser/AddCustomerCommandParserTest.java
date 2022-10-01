@@ -31,7 +31,7 @@ import static seedu.address.testutil.TypicalCustomers.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddCustomerCommand;
 import seedu.address.model.customer.Address;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.Email;
@@ -40,8 +40,8 @@ import seedu.address.model.customer.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.CustomerBuilder;
 
-public class AddCommandParserTest {
-    private AddCommandParser parser = new AddCommandParser();
+public class AddCustomerCommandParserTest {
+    private final AddCustomerCommandParser parser = new AddCustomerCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
@@ -49,29 +49,29 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedCustomer));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCustomerCommand(expectedCustomer));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedCustomer));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCustomerCommand(expectedCustomer));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedCustomer));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCustomerCommand(expectedCustomer));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedCustomer));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCustomerCommand(expectedCustomer));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedCustomer));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCustomerCommand(expectedCustomer));
 
         // multiple tags - all accepted
         Customer expectedCustomerMultipleTags = new CustomerBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedCustomerMultipleTags));
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCustomerCommand(expectedCustomerMultipleTags));
     }
 
     @Test
@@ -79,12 +79,12 @@ public class AddCommandParserTest {
         // zero tags
         Customer expectedCustomer = new CustomerBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
-                new AddCommand(expectedCustomer));
+                new AddCustomerCommand(expectedCustomer));
     }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCustomerCommand.MESSAGE_USAGE);
 
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
@@ -136,6 +136,6 @@ public class AddCommandParserTest {
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCustomerCommand.MESSAGE_USAGE));
     }
 }

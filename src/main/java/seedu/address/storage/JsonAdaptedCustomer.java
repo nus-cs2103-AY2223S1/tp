@@ -11,9 +11,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.customer.Address;
+import seedu.address.model.customer.AddressFactory;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.Email;
 import seedu.address.model.customer.Name;
+import seedu.address.model.customer.NullableAddress;
 import seedu.address.model.customer.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -53,7 +55,7 @@ class JsonAdaptedCustomer {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        address = source.getAddress().value;
+        address = source.getAddress().getValue();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -95,12 +97,19 @@ class JsonAdaptedCustomer {
         final Email modelEmail = new Email(email);
 
         if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                NullableAddress.class.getSimpleName()));
         }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        NullableAddress modelAddress;
+        if (address.equals("")) {
+            modelAddress = AddressFactory.EMPTY_ADDRESS;
+        } else {
+            if (!Address.isValidAddress(address)) {
+                throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+            }
+            modelAddress = new Address(address);
         }
-        final Address modelAddress = new Address(address);
+
 
         final Set<Tag> modelTags = new HashSet<>(customerTags);
         return new Customer(modelName, modelPhone, modelEmail, modelAddress, modelTags);

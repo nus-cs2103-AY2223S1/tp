@@ -14,16 +14,16 @@ import seedu.address.model.customer.Customer;
 /**
  * Adds a customer to the address book.
  */
-public class AddCommand extends Command {
+public class AddCustomerCommand extends Command {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "addcus";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a customer to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
+            + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
@@ -34,14 +34,14 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New customer added: %1$s";
-    public static final String MESSAGE_DUPLICATE_CUSTOMER = "This customer already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_CUSTOMER = "This customer already exists in art buddy";
 
     private final Customer toAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Customer}
      */
-    public AddCommand(Customer customer) {
+    public AddCustomerCommand(Customer customer) {
         requireNonNull(customer);
         toAdd = customer;
     }
@@ -61,7 +61,7 @@ public class AddCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
+                || (other instanceof AddCustomerCommand // instanceof handles nulls
+                && toAdd.equals(((AddCustomerCommand) other).toAdd));
     }
 }
