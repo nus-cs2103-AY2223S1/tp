@@ -62,6 +62,10 @@ public class Person {
         listOfAppointments.add(appointment);
     }
 
+    public Appointment cancelAppointment(int apptIndex) {
+        return listOfAppointments.remove(apptIndex);
+    }
+
     public boolean hasSameAppointment(Appointment appointment) {
         return listOfAppointments.stream().anyMatch(x -> x.isSameTime(appointment));
     }
