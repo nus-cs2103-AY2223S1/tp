@@ -39,7 +39,7 @@ In our case, we would want to begin the tracing at the very point where the App 
 
 <img src="../images/ArchitectureSequenceDiagram.png" width="550" />
 
-According to the sequence diagram you saw earlier (and repeated above for reference), the `UI` component yields control to the `Logic` component through a method named `execute`. Searching through the code base for an `execute()` method that belongs to the `Logic` component yields a promising candidate in `seedu.Logic`.
+According to the sequence diagram you saw earlier (and repeated above for reference), the `UI` component yields control to the `Logic` component through a method named `execute`. Searching through the code base for an `execute()` method that belongs to the `Logic` component yields a promising candidate in `seedu.address.logic.Logic`.
 
 <img src="../images/tracing/searchResultsForExecuteMethod.png" />
 
