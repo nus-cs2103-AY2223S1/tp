@@ -6,7 +6,7 @@ title: T Neethesh's Project Portfolio Page
 ###Project: SectresBook
 
 Sectresbook helps secretaries to maintain all the information of the members of their club by collating a list
-of identifiable information, past records and future tasks. 
+of identifiable information, past records and future tasks.
 
 Given below are my contributions to the project.
 
@@ -17,7 +17,7 @@ Given below are my contributions to the project.
   * Credits: TODO
 
 * **Code contributed:** [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=w12&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&tabAuthor=Neethesh26&tabRepo=AY2223S1-CS2103T-W12-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
-* **Project Management:** 
+* **Project Management:**
   * to be added soon
 
 
@@ -35,4 +35,3 @@ Given below are my contributions to the project.
 
 * **Community:**
   * to be added soon
-  
