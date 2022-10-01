@@ -303,17 +303,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1b. The given specifications are nurses and areas only.
 
-    * 1c1. Healthcare Xpress shows an error message.
+    * 1b1. Healthcare Xpress shows an error message.
 
       Use case ends.
 
 * 1c. There are no patients/nurses that satisfy the specifications.
 
-    * 1b1. Healthcare Xpress shows a blank list.
+    * 1c1. Healthcare Xpress shows a blank list.
 
       Use case ends.
 
-* *a. At any time, Medical administrator choose to exit the program.
+* *a. At any time, medical administrator choose to exit the program.
 
   Use case ends.
 
@@ -339,7 +339,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-* *a. At any time, Medical administrator choose to exit the program.
+* *a. At any time, medical administrator choose to exit the program.
 
   Use case ends.
 
@@ -360,7 +360,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-* *a. At any time, Medical administrator chooses to exit the program.
+* *a. At any time, medical administrator chooses to exit the program.
 
   Use case ends.
 
@@ -370,7 +370,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  Medical administrator requests to <u>list patients / nurses (UC01)</u> or <u>find a specific patient / nurse (UC02)</u>.
 2.  Medical administrator requests to mark a specific patient.
-3.  HealthCare Xpress marks the patient as visited.
+3.  Healthcare Xpress marks the patient as visited.
 
     Use case ends.
 
@@ -395,7 +395,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-* *a. At any time, Medical administrator chooses to exit the program.
+* *a. At any time, medical administrator chooses to exit the program.
 
   Use case ends.
 
@@ -405,7 +405,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  Medical administrator requests to <u>list patients / nurses (UC01)</u> or <u>find a specific patient / nurse (UC02)</u>.
 2.  Medical administrator requests to edit a patient / nurse and provides the details to be edited.
-3.  HealthCare Xpress edits the specific details of the patient / nurse.
+3.  Healthcare Xpress edits the specific details of the patient / nurse.
 
     Use case ends.
 
@@ -422,7 +422,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-* *a. At any time, Medical administrator chooses to exit the program.
+* *a. At any time, medical administrator chooses to exit the program.
 
   Use case ends.
 
@@ -432,7 +432,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  Medical administrator requests to <u>list patients / nurses (UC01)</u> or <u>find a specific patient / nurse (UC02)</u>.
 2.  Medical administrator requests to add a tag / many tags to a patient / nurse and provides each tag's details.
-3.  HealthCare Xpress adds the tag / tags of specific details to the patient / nurse.
+3.  Healthcare Xpress adds the tag / tags of specific details to the patient / nurse.
 
     Use case ends.
 
@@ -449,7 +449,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-* *a. At any time, Medical administrator chooses to exit the program.
+* *a. At any time, medical administrator chooses to exit the program.
 
   Use case ends.
 
@@ -459,7 +459,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  Medical administrator requests to <u>list patients / nurses (UC01)</u> or <u>find a specific patient / nurse (UC02)</u>.
 2.  Medical administrator requests to delete a specific tag / many tags from a patient / nurse.
-3.  HealthCare Xpress deletes the tag / tags from the patient / nurse.
+3.  Healthcare Xpress deletes the tag / tags from the patient / nurse.
 
     Use case ends.
 
@@ -476,7 +476,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-* *a. At any time, Medical administrator chooses to exit the program.
+* *a. At any time, medical administrator chooses to exit the program.
 
   Use case ends.
 
@@ -486,7 +486,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  Medical administrator requests to <u>list patients / nurses (UC01)</u> or <u>find a specific patient / nurse (UC02)</u>.
 2.  Medical administrator requests to add a date and time with or without recurring status to a patient.
-3.  HealthCare Xpress add the date and time for home-visits to the patient.
+3.  Healthcare Xpress add the date and time for home-visits to the patient.
 
     Use case ends.
 
@@ -517,7 +517,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-* *a. At any time, Medical administrator chooses to exit the program.
+* *a. At any time, medical administrator chooses to exit the program.
 
   Use case ends.
 
@@ -527,7 +527,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  Medical administrator requests to <u>list patients / nurses (UC01)</u> or <u>find a specific patient / nurse (UC02)</u>.
 2.  Medical administrator requests to delete date and time from a patient.
-3.  HealthCare Xpress deletes the date and time for home-visits from the patient.
+3.  Healthcare Xpress deletes the date and time for home-visits from the patient.
 
     Use case ends.
 
@@ -552,7 +552,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-* *a. At any time, Medical administrator chooses to exit the program.
+* *a. At any time, medical administrator chooses to exit the program.
 
   Use case ends.
 
@@ -599,7 +599,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends. 
 
-* *a. At any time, Medical administrator choose to exit the program.
+* *a. At any time, medical administrator choose to exit the program.
 
   Use case ends.
 
@@ -665,7 +665,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-* *a. At any time, Medical administrator choose to exit the program.
+* *a. At any time, medical administrator choose to exit the program.
 
   Use case ends.
 
@@ -692,7 +692,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-* *a. At any time, Medical administrator choose to exit the program.
+* *a. At any time, medical administrator choose to exit the program.
 
   Use case ends.
 
