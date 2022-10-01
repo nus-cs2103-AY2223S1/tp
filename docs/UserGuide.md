@@ -147,7 +147,7 @@ Edits an existing student in the list.
 - Amount owed
 - Additional notes
 
-1. Phone number, Next of Kin’s phone number, Email, Address, and Class Date follow the same convention as in Adding a student:
+1. Student's Name, Phone number, Next of Kin’s phone number, Email, Address, and Class Date follow the same convention as in Adding a student:
     [`add` section](#adding-a-studentadd)
 2. Amount paid
     - Amount paid can be an integer or a double.
