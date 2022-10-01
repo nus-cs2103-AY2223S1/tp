@@ -37,15 +37,15 @@ You can reach us at the email `peiyee88@nus.edu.sg` or `xxxxx@nus.edu.sg`
 * Role: Developer
 * Responsibilities: Sandbagging
 
-### Jean Doe
+### Ryan Tan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ryan-tan00.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+([github](https://github.com/Ryan-Tan00))
+[[portfolio](team/ryan-tan00.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Sandbagging BUT harder
 
 ### James Doe
 
