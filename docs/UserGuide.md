@@ -83,6 +83,18 @@ List all clients in MyInsuRec.
 
 Format: `listClient`
 
+### Viewing a client: `viewClient`
+
+View details associated with a client, such as client's name and phone number.
+
+Format: `viewClient i/INDEX`
+* Displays information about the client at the specific `INDEX`.
+* The index refers to the index number shown in the displayed clients' list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `listClient` followed by `viewClient i/1` displays information about the 1st client in MyInsuRec.
+
 ### Listing meetings: `listMeeting`
 
 List all meetings in MyInsuRec.
@@ -100,8 +112,8 @@ Format: `delClient i/INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delClient i/2` deletes the 2nd client in the address book.
-g
+* `listClient` followed by `delClient i/2` deletes the 2nd client in the address book.
+
 ### Adding a meeting : `addMeeting`
 
 Adds a new meeting to MyInsuRec. 
