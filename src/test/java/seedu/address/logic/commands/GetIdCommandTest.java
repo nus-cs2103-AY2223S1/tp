@@ -31,11 +31,4 @@ public class GetIdCommandTest {
         assertCommandFailure(command, model, expectedMessage);
     }
 
-    @Test
-    public void execute_missingNameParameter() {
-        String expectedMessage = String.format(GetIdCommand.MISSING_NAME_EXCEPTION);
-        GetIdCommand command = new GetIdCommand("");
-        assertCommandFailure(command, model, expectedMessage);
-    }
-
 }
