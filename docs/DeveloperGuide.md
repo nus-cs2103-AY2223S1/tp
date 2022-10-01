@@ -292,10 +292,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC1 - Listing all tutor profiles**
 
+System: TutHub <br>
+Use case: UC1 - Listing all tutor profiles <br>
+Actor: User <br>
+Guarantees: All stored user profiles to be shown. (if any)
+
 **MSS**
 
-1.  User requests to list persons
-2.  Tuthub shows a list of persons
+1.  User requests to list persons.
+2.  Tuthub shows a list of persons.
 
     Use case ends.
 
@@ -307,10 +312,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC2 - Add a person**
 
+System: TutHub <br>
+Use case: UC2 - Add tutor profile <br>
+Actor: User <br>
+Guarantees: Tutor profile will be stored when user correctly inputs details.
+
 **MSS**
 
-1.  User requests to add a tutor profile in the list
-2.  Tuthub shows the list of tutors with the new tutor profile added
+1.  User requests to add a tutor profile in the list.
+2.  Tuthub shows the list of tutors with the new tutor profile added.
 
     Use case ends.
 
@@ -326,12 +336,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC3 - Delete a person**
 
+System: TutHub <br>
+Use case: UC3 - Deleting a tutor profile <br>
+Actor: User <br>
+Guarantees: Tutor profile will be deleted.
+
 **MSS**
 
-1.  User requests to list persons
-2.  Tuthub shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  Tuthub deletes the person
+1.  User requests to list persons.
+2.  Tuthub shows a list of persons.
+3.  User requests to delete a specific person in the list.
+4.  Tuthub deletes the person.
 
     Use case ends.
 
@@ -349,10 +364,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC4 - Exit the program**
 
+System: TutHub <br>
+Use case: UC4 - Exit TutHub <br>
+Actor: User <br>
+Guarantees: TutHub application will close.
+
 **MSS**
 
-1.  User requests to exit Tuthub
-2.  Tuthub saves list of tutor profiles in hard disk
+1.  User requests to exit Tuthub.
+2.  Tuthub saves list of tutor profiles in hard disk.
 
     Use case ends.
 
@@ -362,13 +382,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. Performance requirement: The system should respond within a second.
-5. Technical requirement: The system should work on both 32-bit and 64-bit environments.
-6. Constraints: The product should be for a single user i.e. (not a multi-user product).
-7. Constraints: The product needs to be developed in a breadth-first incremental manner over the project duration.
-8. Constraints: The data should be stored locally and should be in a human editable text file.
-9. Constraints: The file size of the deliverables should be reasonable. Product (i.e. JAR/ZIP file) should not exceed 100 MB. Documents (i.e. PDF files) should not exceed 150 MB.
+3. Should work without internet connection.
+4. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+5. Performance requirement: The system should respond within a second.
+6. Technical requirement: The system should work on both 32-bit and 64-bit environments.
+7. Constraints: The product should be for a single user i.e. (not a multi-user product).
+8. Constraints: The product needs to be developed in a breadth-first incremental manner over the project duration.
+9. Constraints: The data should be stored locally and should be in a human editable text file.
+10. Constraints: The file size of the deliverables should be reasonable. Product (i.e. JAR/ZIP file) should not exceed 100 MB. Documents (i.e. PDF files) should not exceed 150 MB.
 
 *{More to be added}*
 
