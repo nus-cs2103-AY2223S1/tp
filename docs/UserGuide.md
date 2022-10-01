@@ -121,16 +121,16 @@ Examples:
 
 ### Locating persons by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds persons whose names contain any of the given keywords or through their given ID.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find KEYWORD/ID [MORE_KEYWORDS/MORE_ID]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Only the name/ID is searched.
+* Only full words or ID will be matched e.g. `Han` will not match `Hans` / `123` will not match `1234`
+* Persons matching at least one keyword will be returned (i.e. OR search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+
 
 Examples:
 * `find John` returns `john` and `John Doe`
@@ -139,17 +139,17 @@ Examples:
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified person from Sherlock.
 
-Format: `delete INDEX`
+Format: `delete id/ID`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the person at the specified ID
+* The ID refers to the unique identification number assigned to the person
 * The index **must be a positive integer** 1, 2, 3, …​
 
+
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `delete id/2356`
 
 ### Clearing all entries : `clear`
 
@@ -195,7 +195,7 @@ Action | Format, Examples
 **Add** | `add id/ID_NUMBER n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`…​` <br> e.g., add id/1234 n/John Doe p/98765432 a/John street, block 123, #01-01`
 **Clear** | `clear`
 **Delete** | `delete id/ID`<br> e.g., `delete id/2356`
-**Edit** | `edit ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 1234 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`, `find 1234`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Find** | `find KEYWORD/ID [MORE_KEYWORDS/MORE_ID]`<br> e.g., `find James Jake`, `find 1234`
 **List** | `list`
 **Help** | `help`
