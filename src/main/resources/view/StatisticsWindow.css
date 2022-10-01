@@ -1,5 +1,17 @@
-#statisticsMessage {
+#refreshButton, #statisticsMessage {
     -fx-text-fill: white;
+}
+
+#refreshButton {
+    -fx-background-color: dimgray;
+}
+
+#refreshButton:hover {
+    -fx-background-color: gray;
+}
+
+#refreshButton:armed {
+    -fx-background-color: darkgray;
 }
 
 #statisticsMessageContainer {
