@@ -81,6 +81,20 @@ Example:
 * `editPatient 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
 * `editPatient 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
 
+### Deleting a patient: `deletePatient`
+
+Deletes the specified patient from the patient list.
+
+Format: `deletePatient INDEX`
+
+* Deletes the patient at the specified `INDEX`.
+* The index refers to the index number shown in the displayed patient list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+Examples:
+* `list` followed by `deletePatient 2` deletes the 2nd patient in the patient book.
+* `find Betsy` followed by `deletePatient 1` deletes the 1st person in the results of the `find` command.
+
 ### Listing all patients: `list`
 
 Shows a list of all patients.
@@ -103,20 +117,6 @@ Examples:
 * `find jo` returns `Joe` and `John`.
 * `find alex david` returns `Alex Tan` & `David Ho`.
   ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a patient: `deletePatient`
-
-Deletes the specified patient from the patient list.
-
-Format: `deletePatient INDEX`
-
-* Deletes the patient at the specified `INDEX`.
-* The index refers to the index number shown in the displayed patient list.
-* The index **must be a positive integer** 1, 2, 3, …
-
-Examples:
-* `list` followed by `deletePatient 2` deletes the 2nd patient in the patient book.
-* `find Betsy` followed by `deletePatient 1` deletes the 1st person in the results of the `find` command.
 
 ### Adding a task: `addTask`
 
