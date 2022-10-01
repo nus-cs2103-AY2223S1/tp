@@ -270,23 +270,20 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​  | I can  …​                                          | So that I can…​                                         |
-|----------|----------|----------------------------------------------------|---------------------------------------------------------|
-| `* * *`  | user     | see my basic information (EPIC)                    |                                                         |
-| `* * *`  | user     | see my name                                        |                                                         |
-| `* * *`  | user     | see my email                                       |                                                         |
-| `* * *`  | user     | see my contact number                              |                                                         |
-| `* *  `  | user     | have different role as employer or employee        | have different features and privilege                   |
-| `* * *`  | employer | change the team structure                          | manage the teams (EPIC)                                 |
-| `* * *`  | employer | make a new team                                    | delegate work efficiently                               |
-| `* * *`  | employer | change the name of the team                        | the name of the team is always up-to-date               |
-| `* * *`  | employer | delete a team                                      | remove teams after their project is done                |
-| `* * *`  | employer | add members to a team                              | update the team when a new member joins                 |
-| `* * *`  | employer | remove members from a team                         | update when an employee leaves the department/company   |
-| `* * `   | user     | search for information about employees in the team | know which teams I am currently in                      |
-| `* * *`  | user     | view the teams I am in                             | minimize chance of someone else seeing them by accident |
-| `*`      | user     | retrieve my colleague’s email                      | easily contact them                                     |
-| `* * *`  | user     | see all the members in a team                      | know who to contact or work with                        |
+| Priority | As a …​   | I can  …​                              | So that I can…​                                    |
+|----------|-----------|----------------------------------------|----------------------------------------------------|
+| `* * *`  | tech lead | change the team structure              | manage the teams (EPIC)                            |
+| `* * *`  | tech lead | create a new team                      |                                                    |
+| `* * *`  | tech lead | edit the name of the team              | keep the team information up to date               |
+| `* * *`  | tech lead | add members to a team                  | update the team when a new member joins            |
+| `* * *`  | tech lead | remove members from a team             | keep the team information up to date               |
+| `* * *`  | tech lead | edit the information of members        | update their information when there is a change    |
+| `* * *`  | tech lead | manage the tasks for the company       | have an overview of the task in the company (EPIC) |
+| `* * *`  | tech lead | create a task                          |                                                    |
+| `* * *`  | tech lead | delete a task                          | unwanted tasks can be removed                      |
+| `* * *`  | tech lead | update a task name                     | respond to changes in the requirements             |
+| `* *  `  | tech lead | set the status of the task to complete | know which task is completed and which task is not |
+| `* *  `  | tech lead | set a deadline for the task            | know when the task should be completed             |
 
 *{More to be added}*
 
