@@ -11,11 +11,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Quah Kian Seong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kianseong.png" width="200px">
 
-[[github](https://github.com/KIANSEONG)]
+GitHub: [@KIANSEONG](https://github.com/KIANSEONG)
 
-* Role: Project Advisor
+* Role: Team Lead
 
 ### Wang Xinyi
 
@@ -25,6 +25,7 @@ GitHub: [@wxy1203](https://github.com/wxy1203)
 
 * Role: Team Member
 * Responsibilities: Various
+
 
 ### Brandon Thio
 
@@ -41,7 +42,7 @@ GitHub: [@beetee17](https://github.com/beetee17)
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/yilinzyl)] 
+[[github](http://github.com/yilinzyl)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
@@ -56,4 +57,3 @@ GitHub: [@beetee17](https://github.com/beetee17)
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
-
