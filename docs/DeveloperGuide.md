@@ -430,8 +430,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+1. **Mainstream OS**: Windows, Linux, Unix, OS-X
+2. **Private contact detail**: A contact detail that is not meant to be shared with others
+3. **SoC**: School of Computing, National University of Singapore
+4. **Module**: Courses provided by professors from SoC
+5. **CLI**: Command-Line Interface(CLI), which receives commands from a user in the form of lines of text
+
 
 --------------------------------------------------------------------------------------------------------------------
 
