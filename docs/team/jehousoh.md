@@ -3,9 +3,12 @@ layout: page
 title: Soh Je Hou's Project Portfolio Page
 ---
 
-### Project: GuestList
+### Project: GuestBook
 
-GuestList is a one stop access to get all the necessary guest data. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC. This project is based off AddressBook - Level 3.
+GuestBook is a one stop access to get all the necessary guest data. 
+The user interacts with it using a CLI, and it has a GUI created with JavaFX. 
+It is written in Java, and has about 10 kLoC. 
+This project is based off AddressBook - Level 3.
 
 Given below are my contributions to the project.
 
@@ -34,4 +37,10 @@ Given below are my contributions to the project.
   * to be added soon
 
 * **Contributions beyond the project team**: 
+  * to be added soon
+
+* **Community**:
+  * to be added soon
+
+* **Tools**:
   * to be added soon

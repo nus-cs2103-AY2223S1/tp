@@ -3,8 +3,8 @@
 
 ![Ui](docs/images/Ui.png)
 
-# GuestList
-* GuestList is a **one stop access for Hotel Managers to keep track of their guests' data**.
+# GuestBook
+* GuestBook is a **one stop access for Hotel Managers to keep track of their guests' data**.
   * Ideal for Hotel Managers of small to medium sized hotels who have many guests staying.
   * Used to keep track of guests details and search based on their names.
 
