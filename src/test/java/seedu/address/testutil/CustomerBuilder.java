@@ -7,7 +7,6 @@ import seedu.address.model.customer.Address;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.Email;
 import seedu.address.model.customer.Name;
-import seedu.address.model.customer.NullableAddress;
 import seedu.address.model.customer.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -25,7 +24,7 @@ public class CustomerBuilder {
     private Name name;
     private Phone phone;
     private Email email;
-    private NullableAddress address;
+    private Address address;
     private Set<Tag> tags;
 
     /**
@@ -46,7 +45,7 @@ public class CustomerBuilder {
         name = customerToCopy.getName();
         phone = customerToCopy.getPhone();
         email = customerToCopy.getEmail();
-        address = customerToCopy.getAddress();
+        address = customerToCopy.getAddress().orElse(null);
         tags = new HashSet<>(customerToCopy.getTags());
     }
 
@@ -61,7 +60,7 @@ public class CustomerBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Customer} that we are building.
      */
-    public CustomerBuilder withTags(String ... tags) {
+    public CustomerBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
@@ -71,6 +70,14 @@ public class CustomerBuilder {
      */
     public CustomerBuilder withAddress(String address) {
         this.address = new Address(address);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Address} of the {@code Customer} that we are building to null.
+     */
+    public CustomerBuilder withoutAddress() {
+        this.address = null;
         return this;
     }
 
@@ -90,8 +97,17 @@ public class CustomerBuilder {
         return this;
     }
 
+    /**
+     * Builds a customer with the given details.
+     *
+     * @return a customer with the given details.
+     */
     public Customer build() {
-        return new Customer(name, phone, email, address, tags);
+        if (address == null) {
+            return new Customer(name, phone, email, tags);
+        } else {
+            return new Customer(name, phone, email, address, tags);
+        }
     }
 
 }

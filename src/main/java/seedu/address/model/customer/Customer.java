@@ -5,13 +5,14 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Customer in the address book.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Guarantees: apart from address, all details are present and not null, field values are validated, immutable.
  */
 public class Customer {
 
@@ -21,13 +22,28 @@ public class Customer {
     private final Email email;
 
     // Data fields
-    private final NullableAddress address;
     private final Set<Tag> tags = new HashSet<>();
+
+    // Optional fields
+    private final Address address;
 
     /**
      * Every field must be present and not null.
      */
-    public Customer(Name name, Phone phone, Email email, NullableAddress address, Set<Tag> tags) {
+    public Customer(Name name, Phone phone, Email email, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = null;
+        this.tags.addAll(tags);
+    }
+
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Customer(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -48,8 +64,8 @@ public class Customer {
         return email;
     }
 
-    public NullableAddress getAddress() {
-        return address;
+    public Optional<Address> getAddress() {
+        return Optional.ofNullable(address);
     }
 
     /**
@@ -70,7 +86,7 @@ public class Customer {
         }
 
         return otherCustomer != null
-                && otherCustomer.getName().equals(getName());
+            && otherCustomer.getName().equals(getName());
     }
 
     /**
@@ -89,10 +105,10 @@ public class Customer {
 
         Customer otherCustomer = (Customer) other;
         return otherCustomer.getName().equals(getName())
-                && otherCustomer.getPhone().equals(getPhone())
-                && otherCustomer.getEmail().equals(getEmail())
-                && otherCustomer.getAddress().equals(getAddress())
-                && otherCustomer.getTags().equals(getTags());
+            && otherCustomer.getPhone().equals(getPhone())
+            && otherCustomer.getEmail().equals(getEmail())
+            && otherCustomer.getAddress().equals(getAddress())
+            && otherCustomer.getTags().equals(getTags());
     }
 
     @Override
@@ -105,13 +121,13 @@ public class Customer {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail());
+            .append("; Phone: ")
+            .append(getPhone())
+            .append("; Email: ")
+            .append(getEmail());
 
-        NullableAddress address = getAddress();
-        if (!address.isEmpty()) {
+        Optional<Address> address = getAddress();
+        if (address.isPresent()) {
             builder.append("; Address: ").append(getAddress());
         }
 

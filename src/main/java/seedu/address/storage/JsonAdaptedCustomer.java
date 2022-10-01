@@ -3,6 +3,7 @@ package seedu.address.storage;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -11,11 +12,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.customer.Address;
-import seedu.address.model.customer.AddressFactory;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.Email;
 import seedu.address.model.customer.Name;
-import seedu.address.model.customer.NullableAddress;
 import seedu.address.model.customer.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -37,8 +36,8 @@ class JsonAdaptedCustomer {
      */
     @JsonCreator
     public JsonAdaptedCustomer(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                               @JsonProperty("email") String email, @JsonProperty("address") String address,
+                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -55,10 +54,14 @@ class JsonAdaptedCustomer {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        address = source.getAddress().getValue();
+        if (source.getAddress().isPresent()) {
+            address = source.getAddress().get().value;
+        } else {
+            address = "";
+        }
         tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
+            .map(JsonAdaptedTag::new)
+            .collect(Collectors.toList()));
     }
 
     /**
@@ -98,21 +101,22 @@ class JsonAdaptedCustomer {
 
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                NullableAddress.class.getSimpleName()));
+                Address.class.getSimpleName()));
         }
-        NullableAddress modelAddress;
+        Optional<Address> modelAddress;
         if (address.equals("")) {
-            modelAddress = AddressFactory.EMPTY_ADDRESS;
+            modelAddress = Optional.empty();
         } else {
             if (!Address.isValidAddress(address)) {
                 throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
             }
-            modelAddress = new Address(address);
+            modelAddress = Optional.of(new Address(address));
         }
 
 
         final Set<Tag> modelTags = new HashSet<>(customerTags);
-        return new Customer(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return modelAddress.map(value -> new Customer(modelName, modelPhone, modelEmail, value, modelTags))
+            .orElseGet(() -> new Customer(modelName, modelPhone, modelEmail, modelTags));
     }
 
 }

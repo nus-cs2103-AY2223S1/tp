@@ -35,7 +35,7 @@ public class EditCustomerDescriptorBuilder {
         descriptor.setName(customer.getName());
         descriptor.setPhone(customer.getPhone());
         descriptor.setEmail(customer.getEmail());
-        descriptor.setAddress(customer.getAddress());
+        descriptor.setAddress(customer.getAddress().orElse(null));
         descriptor.setTags(customer.getTags());
     }
 

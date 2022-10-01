@@ -45,6 +45,9 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setCustomer(model.getFilteredCustomerList().get(0), editedCustomer);
 
+        System.out.println(String.format("%s\n %s\n %s", model.getFilteredCustomerList().get(0),
+            editedCustomer, expectedModel.getAddressBook().getCustomerList().get(0)));
+
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 

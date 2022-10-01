@@ -13,11 +13,10 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCustomerCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.customer.AddressFactory;
+import seedu.address.model.customer.Address;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.Email;
 import seedu.address.model.customer.Name;
-import seedu.address.model.customer.NullableAddress;
 import seedu.address.model.customer.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -53,12 +52,17 @@ public class AddCustomerCommandParser implements Parser<AddCustomerCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Optional<String> rawAddress = argMultimap.getValue(PREFIX_ADDRESS);
-        NullableAddress address = rawAddress.isEmpty()
-            ? AddressFactory.EMPTY_ADDRESS
-            : ParserUtil.parseAddress(rawAddress.get());
+        Optional<Address> address = rawAddress.isEmpty()
+            ? Optional.empty()
+            : Optional.of(ParserUtil.parseAddress(rawAddress.get()));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Customer customer = new Customer(name, phone, email, address, tagList);
+        Customer customer;
+        if (address.isEmpty()) {
+            customer = new Customer(name, phone, email, tagList);
+        } else {
+            customer = new Customer(name, phone, email, address.get(), tagList);
+        }
 
         return new AddCustomerCommand(customer);
     }

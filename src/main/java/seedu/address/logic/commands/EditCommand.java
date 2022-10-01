@@ -19,10 +19,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.customer.Address;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.Email;
 import seedu.address.model.customer.Name;
-import seedu.address.model.customer.NullableAddress;
 import seedu.address.model.customer.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -76,10 +76,14 @@ public class EditCommand extends Command {
         Name updatedName = editCustomerDescriptor.getName().orElse(customerToEdit.getName());
         Phone updatedPhone = editCustomerDescriptor.getPhone().orElse(customerToEdit.getPhone());
         Email updatedEmail = editCustomerDescriptor.getEmail().orElse(customerToEdit.getEmail());
-        NullableAddress updatedAddress = editCustomerDescriptor.getAddress().orElse(customerToEdit.getAddress());
+        Optional<Address> updatedAddress = Optional.ofNullable(
+            editCustomerDescriptor.getAddress().orElse(customerToEdit.getAddress().orElse(null)));
         Set<Tag> updatedTags = editCustomerDescriptor.getTags().orElse(customerToEdit.getTags());
-
-        return new Customer(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        if (updatedAddress.isEmpty()) {
+            return new Customer(updatedName, updatedPhone, updatedEmail, updatedTags);
+        } else {
+            return new Customer(updatedName, updatedPhone, updatedEmail, updatedAddress.get(), updatedTags);
+        }
     }
 
     @Override
@@ -121,6 +125,11 @@ public class EditCommand extends Command {
             && editCustomerDescriptor.equals(e.editCustomerDescriptor);
     }
 
+    @Override
+    public String toString() {
+        return editCustomerDescriptor.getAddress().toString();
+    }
+
     /**
      * Stores the details to edit the customer with. Each non-empty field value will replace the
      * corresponding field value of the customer.
@@ -129,7 +138,7 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
-        private NullableAddress address;
+        private Address address;
         private Set<Tag> tags;
 
         public EditCustomerDescriptor() {
@@ -178,11 +187,11 @@ public class EditCommand extends Command {
             this.email = email;
         }
 
-        public Optional<NullableAddress> getAddress() {
+        public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
         }
 
-        public void setAddress(NullableAddress address) {
+        public void setAddress(Address address) {
             this.address = address;
         }
 
@@ -224,5 +233,6 @@ public class EditCommand extends Command {
                 && getAddress().equals(e.getAddress())
                 && getTags().equals(e.getTags());
         }
+
     }
 }

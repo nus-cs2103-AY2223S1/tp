@@ -21,7 +21,7 @@ public class CustomerUtil {
     /**
      * Returns an add command string for adding the {@code customer}.
      */
-    public static String getAddCommand(Customer customer) {
+    public static String getAddCustomerCommand(Customer customer) {
         return AddCustomerCommand.COMMAND_WORD + " " + getCustomerDetails(customer);
     }
 
@@ -33,7 +33,9 @@ public class CustomerUtil {
         sb.append(PREFIX_NAME + customer.getName().fullName + " ");
         sb.append(PREFIX_PHONE + customer.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + customer.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + customer.getAddress().getValue() + " ");
+        if (!customer.getAddress().isEmpty()) {
+            sb.append(PREFIX_ADDRESS + customer.getAddress().get().value + " ");
+        }
         customer.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -48,7 +50,7 @@ public class CustomerUtil {
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
-        descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.getValue()).append(" "));
+        descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
