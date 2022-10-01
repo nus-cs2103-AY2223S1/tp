@@ -135,7 +135,7 @@ Format: `delClient i/INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delClient 2` deletes the 2nd client in the address book.
+* `list` followed by `delClient i/2` deletes the 2nd client in the address book.
 g
 ### Adding a meeting : `addMeeting`
 
@@ -162,7 +162,7 @@ Format: `delMeeting i/INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `listMeeting` followed by `delMeeting 2` deletes the 2nd Meeting in the meeting list.
+* `listMeeting` followed by `delMeeting i/2` deletes the 2nd Meeting in the meeting list.
 
 ### Clearing all entries : `clear`
 
