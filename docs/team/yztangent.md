@@ -13,7 +13,7 @@ to be added soon
 ### Summary of Contributions
 
 * **Code
-  contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=tanyuanzheng&breakdown=true)
+  contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=yztangent&breakdown=true)
 
 * **Enhancements implemented**:
     * to be added soon
