@@ -24,7 +24,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
  
 
-[[github](http://github.com/johndoe)]
+[[github](https://github.com/lizekai-richard)]
 [[portfolio](team/lizekai-richard.md)]
 
 * Role: Developer
