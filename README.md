@@ -3,7 +3,7 @@
 ![Ui](docs/images/Ui.png)
 
 #EZLead
-* This is **a sample project for Software Engineering (SE) students**.<br>
+* This is **a project for Software Engineering (SE) students**.<br>
   Example usages:
   * As a tech lead, you can edit the team information and team members in the team
   * As a tech lead, you can assign tasks to each team. 
