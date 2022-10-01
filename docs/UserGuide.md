@@ -69,6 +69,7 @@ Format: `help`
 Adds a new client to MyInsuRec.
 
 Format: `addClient n/NAME p/PHONE_NUMBER [e/EMAIL]`
+
 * Adds a client having name `NAME`.
 * A client must have a NAME and a PHONE_NUMBER.
 * Email is optional.
@@ -88,6 +89,7 @@ Format: `listClient`
 View details associated with a client, such as client's name and phone number.
 
 Format: `viewClient i/INDEX`
+
 * Displays information about the client at the specific `INDEX`.
 * The index refers to the index number shown in the displayed clients' list.
 * The index **must be a positive integer** 1, 2, 3, …​
@@ -106,7 +108,7 @@ Format: `delClient i/INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `listClient` followed by `delClient i/2` deletes the 2nd client in the address book.
+* `listClient` followed by `delClient i/2` deletes the 2nd client in MyInsuRec.
 
 ### Adding a meeting : `addMeeting`
 
@@ -140,12 +142,6 @@ Format: `delMeeting i/INDEX`
 
 Examples:
 * `listMeeting` followed by `delMeeting i/2` deletes the 2nd Meeting in the meeting list.
-
-### Clearing all entries : `clear`
-
-Clears all entries from the address book.
-
-Format: `clear`
 
 ### Exiting MyInsuRec : `exit`
 
