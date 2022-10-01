@@ -29,15 +29,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Brandon Thio
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/brandon.png" width="200px">
 
-[[github](https://github.com/beetee17)]
+GitHub: [@beetee17](https://github.com/beetee17)
 [[portfolio](team/johndoe.md)]
 
 * Role: Team Member
 * Responsibilities: Various
 
 ### Zheng Yilin
+
 
 <img src="images/johndoe.png" width="200px">
 
