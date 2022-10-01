@@ -40,7 +40,7 @@ Roles:
 
 ### Singh Abdullah Alexander
 
-<img src="images/singhabdullahalexander.png" width="200px">
+<img src="images/alexandermula.png" width="200px">
 
 [[github](https://github.com/alexandermula)]
 
@@ -49,7 +49,7 @@ Roles:
 
 ### Tan Yuan Zheng
 
-<img src="images/tanyuanzheng.png" width="200px">
+<img src="images/yztangent.png" width="200px">
 
 [[github](https://github.com/YZTangent)]
 
