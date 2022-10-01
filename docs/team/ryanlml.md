@@ -17,7 +17,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
 
-* **Code contributed**: [RepoSense link](https://ay2223s1-cs2103-f13-2.github.io/tp/team/ryanlml.html)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=ryanlml&breakdown=true)
 
 * **Project management**:
   * TO BE ADDED LATER
