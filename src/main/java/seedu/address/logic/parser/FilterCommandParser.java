@@ -45,9 +45,7 @@ public class FilterCommandParser implements Parser<FilterCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
         final String commandSpecifier = matcher.group(MATCH_GROUP_SPECIFIER);
-        System.out.println(commandSpecifier);
         final String arguments = matcher.group(MATCH_GROUP_ARGUMENTS);
-        System.out.println(arguments);
 
         // no clear specifier
         if (commandSpecifier == null) {
