@@ -129,7 +129,7 @@ Examples:
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the aSectresBook.
+Deletes the specified person from the SectresBook.
 
 Format: `delete INDEX`
 
