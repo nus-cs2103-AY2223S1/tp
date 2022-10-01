@@ -77,11 +77,11 @@ Examples:
 * `addClient n/John Tan p/0123456789`
 * `addClient n/John Tan p/0123456789 e/johntan@insurec.com`
 
-### Listing all persons : `list`
+### Listing all clients : `listClient`
 
-Shows a list of all persons in the address book.
+List all clients in MyInsuRec.
 
-Format: `list`
+Format: `listClient`
 
 ### Listing meetings: `listMeeting`
 
