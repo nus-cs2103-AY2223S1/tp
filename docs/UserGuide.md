@@ -95,9 +95,9 @@ Format: `deleteC INDEX`
 
 Examples:
 
-*`listC` followed by `deleteC 1` deletes the first contact in the address book.
+* `listC` followed by `deleteC 1` deletes the first contact in the address book.
 
-*`findC John` followed by `deleteC 1` deletes the first result of the `findC` command.
+* `findC John` followed by `deleteC 1` deletes the first result of the `findC` command.
 
 ## Editing a contact: `editC`
 
@@ -155,7 +155,7 @@ Format: `filterC KEYWORD [MORE_KEYWORDS]`
 
 * Only full words will be matched. e.g. `cs2103t` will not match `cs2103`.
 
-* labels matching at least one keyword will be returned. e.g. `cs2103t cs2101` will match
+* Labels matching at least one keyword will be returned. e.g. `cs2103t cs2101` will match
   `CS2103T Software Engineering` and `CS2101 Effective Communication for Computing Professionals`
 
 Example:
@@ -233,7 +233,7 @@ Format: `findT KEYWORD [MORE_KEYWORDS]`
 
 * Only full words will be matched. e.g. `cs2103t` will not match `cs2103`.
 
-* labels matching at least one keyword will be returned. e.g. `cs2103t cs2101` will match
+* Labels matching at least one keyword will be returned. e.g. `cs2103t cs2101` will match
   `CS2103T Software Engineering` and `CS2101 Effective Communication for Computing Professionals`
 
 Example:
@@ -256,7 +256,7 @@ Format: `filterT KEYWORD [MORE_KEYWORDS]`
 
 * Only full words will be matched. e.g. `cs2103t` will not match `cs2103`.
 
-* labels matching at least one keyword will be returned. e.g. `cs2103t cs2101` will match
+* Labels matching at least one keyword will be returned. e.g. `cs2103t cs2101` will match
   `CS2103T Software Engineering` and `CS2101 Effective Communication for Computing Professionals`
 
 Example:
