@@ -132,12 +132,12 @@ Format: `findC KEYWORD [MORE_KEYWORDS]`
 * Only full words will be matched. e.g. `Doofenshmirt` will not match `Doofenshmirtz`.
 
 * Contacts matching at least one keyword will be returned. e.g. `Perry Dr.`
-  will match `Perry the Platypus` and `Dr. Doofenshmirtz`
+  will match `Perry the Platypus` and `Dr. Doofenshmirtz`.
 
 Example:
 
-* `findC flynn` will return `Candace Flynn` and `Phineas Flynn`
-* `findC Phineas Ferb` will return `Phineas Flynn` and  `Ferb Flynn`
+* `findC flynn` will return `Candace Flynn` and `Phineas Flynn`.
+* `findC Phineas Ferb` will return `Phineas Flynn` and  `Ferb Flynn`.
 
 ### Filtering contacts by label: `filterC`
 
@@ -156,11 +156,11 @@ Format: `filterC KEYWORD [MORE_KEYWORDS]`
 * Only full words will be matched. e.g. `cs2103t` will not match `cs2103`.
 
 * Labels matching at least one keyword will be returned. e.g. `cs2103t cs2101` will match
-  `CS2103T Software Engineering` and `CS2101 Effective Communication for Computing Professionals`
+  `CS2103T Software Engineering` and `CS2101 Effective Communication for Computing Professionals`.
 
 Example:
 
-* `filterC cs2103t` will return contacts with label `CS2103T Software Engineering`
+* `filterC cs2103t` will return contacts with label `CS2103T Software Engineering`.
 
 ## Section 2: Tasks
 ### Listing all tasks: `listT`
@@ -180,7 +180,7 @@ Format: `addT d/DESCRIPTION D/DEADLINE`
 
 Example:
 
-* `addT d/buy milk D/12-09-2022` will add the task "buy milk" with deadline 12 September 2022
+* `addT d/buy milk D/12-09-2022` will add the task "buy milk" with deadline 12 September 2022.
 
 ### Removing Tasks: `deleteT`
 
@@ -190,7 +190,7 @@ Format: `deleteT i/INDEX`
 
 Example:
 
-* `deleteT i/12` will delete the 12th task in the task list
+* `deleteT i/12` will delete the 12th task in the task list.
 
 ### Marking task as done: `markT`
 
@@ -218,6 +218,11 @@ Format: `unmarkT INDEX`
 
 * INDEX must be a positive integer more than 0.
 
+Examples:
+
+* `listT` followed by `unmarkT 1` marks the first task in the displayed task list as undone.
+* `findT book` followed by `unmarkT 1` marks the first result of the `findT` command as undone.
+
 ### Locating tasks by name: `findT`
 
 Finds labels whose names contain any of the given keywords.
@@ -234,11 +239,11 @@ Format: `findT KEYWORD [MORE_KEYWORDS]`
 * Only full words will be matched. e.g. `cs2103t` will not match `cs2103`.
 
 * Labels matching at least one keyword will be returned. e.g. `cs2103t cs2101` will match
-  `CS2103T Software Engineering` and `CS2101 Effective Communication for Computing Professionals`
+  `CS2103T Software Engineering` and `CS2101 Effective Communication for Computing Professionals`.
 
 Example:
 
-* `findT cs2103t` will return tasks with label `CS2103T Software Engineering`
+* `findT cs2103t` will return tasks with label `CS2103T Software Engineering`.
 
 ### Filtering tasks by label: `filterT`
 
@@ -257,25 +262,20 @@ Format: `filterT KEYWORD [MORE_KEYWORDS]`
 * Only full words will be matched. e.g. `cs2103t` will not match `cs2103`.
 
 * Labels matching at least one keyword will be returned. e.g. `cs2103t cs2101` will match
-  `CS2103T Software Engineering` and `CS2101 Effective Communication for Computing Professionals`
+  `CS2103T Software Engineering` and `CS2101 Effective Communication for Computing Professionals`.
 
 Example:
 
-* `filterT cs2103t` will return tasks with label `CS2103T Software Engineering`
-
-Examples:
-
-* `listT` followed by `unmarkT 1` marks the first task in the displayed task list as undone.
-* `findT book` followed by `unmarkT 1` marks the first result of the `findT` command as undone.
+* `filterT cs2103t` will return tasks with label `CS2103T Software Engineering`.
 
 ## Section 3: Labels
-### Listing all labels : `listL`
+### Listing all labels: `listL`
 
 Shows a list of all existing labels in the address book.
 
 Format: `listL`
 
-### Adding a label to a contact : `addL`
+### Adding a label to a contact: `addL`
 
 Adds a label to an existing contact in the address book. Each contact can have multiple labels. If there is no existing label with the same name, label is added to the label list. Throws an exception if contact does not exist.
 
@@ -283,9 +283,9 @@ Format: `addL c/INDEX n/label_NAME`
 
 Example:
 
-* `addL c/12 n/CS2103T` will add the label "CS2103T" to the 12th contact on the contact list
+* `addL c/12 n/CS2103T` will add the label "CS2103T" to the 12th contact on the contact list.
 
-### Removing a label from a contact : `deleteL`
+### Removing a label from a contact: `deleteL`
 
 Removes a label from an existing contact in the address book. If contact is last remaining person with said label, label is removed from the label list. Throws an exception if contact or label does not exist.
 
@@ -293,7 +293,7 @@ Format: `deleteL c/INDEX n/label_NAME`
 
 Example:
 
-* `deleteL c/14 n/CS2101` will remove the label "CS2101" from the 14th contact on the contact list
+* `deleteL c/14 n/CS2101` will remove the label "CS2101" from the 14th contact on the contact list.
 
 ### Adding a label to a task : `addL`
 
@@ -303,7 +303,7 @@ Format: `addL t/INDEX n/label_NAME`
 
 Example:
 
-* `addL t/12 n/CS2103T` will add the label "CS2103T" to the 12th task on the task list
+* `addL t/12 n/CS2103T` will add the label "CS2103T" to the 12th task on the task list.
 
 ### Removing a label from a task : `deleteL`
 
@@ -313,7 +313,7 @@ Format: `deleteL t/INDEX n/label_NAME`
 
 Example: 
 
-* `deleteL t/14 n/CS2101` will remove the label "CS2101" from the 14th task on the task list
+* `deleteL t/14 n/CS2101` will remove the label "CS2101" from the 14th task on the task list.
 
 ## Automatic tab switching
 
