@@ -1,6 +1,6 @@
 ---
 layout: page
-title: LinkedOn
+title: EZLead
 ---
 
 [![CI Status](https://github.com/AY2223S1-CS2103T-W09-3/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103T-W09-3/tp/actions)
@@ -8,10 +8,10 @@ title: LinkedOn
 
 ![Ui](images/Ui.png)
 
-**LinkedOn is a desktop application used for managing teams in a work place.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+**EZLead is a desktop application used by tech leads for managing teams in a work place.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
-* If you are interested in using LinkedOn, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
-* If you are interested about developing LinkedOn, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
+* If you are interested in using EZLead, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
+* If you are interested about developing EZLead, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
 
 
 **Acknowledgements**
