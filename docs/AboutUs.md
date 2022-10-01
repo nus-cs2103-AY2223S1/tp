@@ -13,17 +13,18 @@ You can reach us at the email `peiyee88@nus.edu.sg` or `xxxxx@nus.edu.sg`
 
 <img src="images/peiyee88.png" width="200px">
 
-[[github](https://github.com/peiyee88)]
-[[portfolio](team/peiyee88.md)]
+([github](https://github.com/peiyee88))
+([portfolio](team/peiyee88.md))
 
 * Role: Developer
 
-### Kartikeya -
+### Kartikeya
 
 <img src="images/kxrt.png" width="200px">
 
 ([github](http://github.com/kxrt))
 ([portfolio](team/kxrt.md))
+
 
 * Role: Developer
 
@@ -35,7 +36,6 @@ You can reach us at the email `peiyee88@nus.edu.sg` or `xxxxx@nus.edu.sg`
 [[portfolio](team/charles1026.md)]
 
 * Role: Developer
-* Responsibilities: Sandbagging
 
 ### Ryan Tan
 
