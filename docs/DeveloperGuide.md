@@ -335,7 +335,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  Should be usable by a novice who has never used a command line interface.
-5.  Common actions should require few input actions to accomplish.
+5.  Common actions should require 5 or less input phrases to accomplish.
 6.  UI should be intuitive and easy to understand.
 
 ### Glossary
