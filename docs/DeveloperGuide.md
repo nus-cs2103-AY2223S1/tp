@@ -19,19 +19,19 @@ Project team leaders can:
 ## User stories
 
 #### Priorities: 
-- High (must have) - ``* * *``
+- High (must have) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- `* * *`
 - Medium (nice to have) - `* *`
-- Low (unlikely to have) - `*`
+- Low (unlikely to have) &nbsp;- `*`
 
 | Priority  | As a ...          | I want to ...                                                                  | So that I can ...                                                                      |
 |:----------|:------------------|:-------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------|
-| ``* * *`` | beginner user     | add contacts to my app                                                         ||     |
+| ``* * *`` | beginner user     | add contacts to my app                                                         |                                                                                        |
 | `* * *`   | beginner user     | remove existing contacts on my app                                             | remove entries that I no longer need                                                   |
-| `* * *`   | beginner user     | create a group                                                                 ||     |
+| `* * *`   | beginner user     | create a group                                                                 |                                                                                        |
 | `* * *`   | beginner user     | add members to a group                                                         |                                                                                        |
 | `* *`     | intermediate user | locate a particular contact                                                    | quickly find a member                                                                  |
-| `* * *`   | intermediate user | assign tasks to members                                                        ||     |
-| `* *`     | intermediate user | have a quick overview of tasks assigned to members in the group                ||     |
+| `* * *`   | intermediate user | assign tasks to members                                                        |                                                                                        |
+| `* *`     | intermediate user | have a quick overview of tasks assigned to members in the group                |                                                                                        |
 | `* *`     | intermediate user | create a tag specific to the group project                                     | quickly assign tags to members                                                         |
 | `* *`     | intermediate user | place tags on group members                                                    | better identify their role                                                             |
 | `* *`     | intermediate user | assign multiple tags to a user if needed                                       | identify their roles more specifically                                                 |
@@ -39,8 +39,8 @@ Project team leaders can:
 | `* *`     | advanced user     | view deadlines for each project                                                | periodically use this for self-reminder                                                |
 | `* *`     | advanced user     | have a rough sense of the workload of every member in the group                | assign future tasks with more confidence                                               |
 | `*`       | advanced user     | view a member’s tasks in more detail                                           | assign future tasks to them with more confidence                                       |
-| `* * *`   | advanced user     | add more tasks to a member                                                     ||
-| `* * *`   | advanced user     | delete tasks from a member                                                     ||
+| `* * *`   | advanced user     | add more tasks to a member                                                     |                                                                                        |                       
+| `* * *`   | advanced user     | delete tasks from a member                                                     |                                                                                        |
 | `*`       | advanced user     | categorise the tasks assigned into different levels of intensity               | not judge workload based solely on the number of tasks per member                      |
 | `* * *`   | advanced user     | delete unused groups after the project is completed                            | declutter my app                                                                       |
 | `* * *`   | advanced user     | delete existing tags if they are no longer relevant                            | declutter my app                                                                       |
