@@ -95,7 +95,7 @@ Format: `viewClient i/INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `listClient` followed by `viewClient i/1` displays information about the 1st client in MyInsuRec.
+* `viewClient i/1`
 
 ### Deleting a client : `delClient`
 
@@ -108,7 +108,7 @@ Format: `delClient i/INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `listClient` followed by `delClient i/2` deletes the 2nd client in MyInsuRec.
+* `delClient i/2`
 
 ### Adding a meeting : `addMeeting`
 
@@ -141,7 +141,7 @@ Format: `delMeeting i/INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `listMeeting` followed by `delMeeting i/2` deletes the 2nd Meeting in the meeting list.
+* `delMeeting i/2`
 
 ### Exiting MyInsuRec : `exit`
 
