@@ -67,6 +67,8 @@ Format:
 
 Examples:
 * `delete member “potato”`
+* `delete member --index=2`
+* `delete member -i 2`
 
 
 ### Listing all members of the team : `list members`
