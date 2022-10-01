@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.commission.UniqueCommissionList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,6 +24,7 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final UniqueCommissionList commissions = new UniqueCommissionList();
 
     /**
      * Every field must be present and not null.
@@ -34,6 +36,11 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+    }
+
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, UniqueCommissionList commissions) {
+        this(name, phone, email, address, tags);
+        this.commissions.setCommissions(commissions);
     }
 
     public Name getName() {
@@ -50,6 +57,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public UniqueCommissionList getCommissions() {
+        return commissions;
     }
 
     /**
