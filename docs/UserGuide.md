@@ -84,7 +84,7 @@ A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t\Human Resources`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/HumanResources`
 * `add n/Neethesh t/Vice-president e/neethesh@example.com a/Happy Avenue p/91234567`
 
 ### Listing all persons : `list`
@@ -102,7 +102,6 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 Example of usage:
 
 `edit 1 p/99999999` can be used to easily update a person’s contact information.
-
 
 ### Locating persons by name: `find`
 
@@ -124,6 +123,25 @@ Examples:
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 * `find lid` returns `David Li` since email username of David (`lidavid@example.com`) contains `lid`
   ![result for 'find lid'](images/findlidResult.png)
+
+### Locating persons by tag: `find`
+
+Finds persons that have the given tag.
+
+Format: `find t/TAG`
+
+* The tag search is case-insensitive. e.g `finance` will match `Finance`
+* Only the tag is searched.
+* Only full words will be matched e.g. `Tech` will not match `Technology`
+* Persons matching at least one tag will be returned (i.e. `OR` search).
+  e.g. `Finance` will return 
+  * `John (tag: Finance)`,
+  * `Caroline (tag: Finance) (tag: Tech)`,
+  * `Bob (tag:Finance) (tag:HumanResources)`
+
+Examples:
+* `find t/Finance` returns `John`, `Caroline` and `Bob`
+  ![result for 'find t/Finance'](images/findTagFinance.png)
 
 ### Deleting a person : `delete`
 
