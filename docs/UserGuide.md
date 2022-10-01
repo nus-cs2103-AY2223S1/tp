@@ -106,9 +106,11 @@ Format: `list`
 
 Edits an existing person in Sherlock.
 
-Format: `edit ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit id/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br>
+`edit index/INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the person at the specified `ID`. The ID refers to the unique Identification number assigned to the person.
+* Edits the person at the specified `ID` or `INDEX`. The ID refers to the unique Identification number assigned to the person. 
+The index refers to the index of the person after using the find/list feature.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
@@ -116,8 +118,9 @@ Format: `edit ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
   specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* `edit index/1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+* `edit index/2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* `edit id/1234 n/Charlie Crackshot` Edits the name of the person with ID 1234 to be `Charlie Crackshot`.
 
 ### Locating persons by name: `find`
 
@@ -141,15 +144,17 @@ Examples:
 
 Deletes the specified person from Sherlock.
 
-Format: `delete id/ID`
+Format: `delete id/ID` <br> `delete index/INDEX`
 
-* Deletes the person at the specified ID
+* Deletes the person at the specified ID or index.
 * The ID refers to the unique identification number assigned to the person
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index refers to the index of the person after using the find/list feature.
+* The id or index **must be a positive integer** 1, 2, 3, …​
 
 
 Examples:
 * `delete id/2356`
+* `delete index/1`
 
 ### Clearing all entries : `clear`
 
@@ -194,8 +199,8 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add id/ID_NUMBER n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`…​` <br> e.g., add id/1234 n/John Doe p/98765432 a/John street, block 123, #01-01`
 **Clear** | `clear`
-**Delete** | `delete id/ID`<br> e.g., `delete id/2356`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Delete** | `delete INDEX/ID`<br> e.g., `delete index/1`, `delete id/2356`
+**Edit** | `edit INDEX/ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit index/2 n/James Lee e/jameslee@example.com`,`edit id/1234 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD/ID [MORE_KEYWORDS/MORE_ID]`<br> e.g., `find James Jake`, `find 1234`
 **List** | `list`
 **Help** | `help`
