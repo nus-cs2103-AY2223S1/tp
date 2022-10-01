@@ -87,7 +87,7 @@ Examples:
 
 ### Assign task to team member: `assign task`
 
-Assign an existing task to a team member in the user’s team. Will throw an error if either the team member or the task is not found in the user’s team.
+Assign an existing task to a team member in the user’s team. Will display an error message if either the team member or the task is not found in the user’s team.
 
 Format: `assign task “TASK_NAME” “TEAM_MEMBER”`
 
