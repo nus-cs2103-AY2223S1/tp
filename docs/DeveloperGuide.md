@@ -257,42 +257,43 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of surveyees
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage surveyees faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​ | I want to …​                                                               | So that I can…​                                                              |
+|----------|---------|----------------------------------------------------------------------------|------------------------------------------------------------------------------|
+| `* * *`  | user    | use 'add' in the command line                                              | I can add a new surveyee quickly                                             |
+| `* * *`  | user    | use 'edit' in the command line                                             | I can edit a surveyee quickly                                                |
+| `* * *`  | user    | use 'delete' in the command line                                           | I can delete a surveyee quickly                                              |
+| `* * *`  | user    | use 'view' in the command line                                             | I can view my surveyees' information quickly                                 |
+| `* *`    | user    | use 'duplicate' in the command line                                        | I can use an existing surveyee as a template for a new surveyee to save time |
+| `* *`    | user    | use 'view <attribute>' to view only surveyees of specific attribute        | I can save time when looking for surveyees with a specific attribute         |
+| `* *`    | user    | use 'delete <attribute>' to delete all surveyees with a specific attribute | I can save time when deleting surveyees with a specific attribute            |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Survin` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Delete a surveyee**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list surveyees
+2.  Survin shows a list of surveyees
+3.  User requests to delete a specific surveyee in the list
+4.  Survin deletes the surveyee
 
     Use case ends.
 
@@ -304,7 +305,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Survin shows an error message.
 
       Use case resumes at step 2.
 

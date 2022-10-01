@@ -95,9 +95,9 @@ Format: `list`
 
 ### Editing a person : `edit`
 
-Edits an existing person in the app.
+Edits an existing person in Survin.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [ra/RACE] [re/RELIGION] [s/SURVEYS]…`
 
 - Edits the surveyee at the specified INDEX. The index refers to the index number of the surveyee you wish to edit, as shown in the display list. The index must be a **positive integer**.
 - At least one of the optional fields has to be provided.
@@ -174,6 +174,37 @@ Fields must be non-empty.
 
 Examples:
 
+```
+view g/female ra/chinese re/christian
+> Index: 15 Jane Doe 91234567 jane_doe@example.com, …
+> Index: 19 Jenette Doe 81234567 jenette_doe@example.com, …
+```
+
+### Duplicate a person : `duplicate`
+
+Clones a specified person from the address book.
+
+Format: `duplicate INDEX`
+
+* Clones the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* Use `find Alex` to list all the persons whose name contains Alex, followed by `duplicate 1` to clone the first person in the result and finally use edit command to edit the data of the cloned person.
+
+
+### Viewing a person: `view`
+
+Views the attributes of all surveyees with some specified attributes.
+
+Format: `[n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [ra/RACE] [re/RELIGION] [s/NAME OF SURVEY]`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Fields must be non-empty.
+</div>
+
+Examples:
 ```
 view g/female ra/chinese re/christian
 > Index: 15 Jane Doe 91234567 jane_doe@example.com, …
