@@ -1,9 +1,7 @@
 ---
 layout: page
-title: Project Portfolio Page for
+title: Project Portfolio Page for Alvin Jiang
 ---
-
-<!-- Insert name above -->
 
 ## Overview
 
@@ -17,7 +15,7 @@ I contributed code to the following modules/classes:
 2. *Enter contributions here*
 3. *Enter contributions here*
 
-You may view these contributions in more detail at [this link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=<github-username>&breakdown=true).
+You may view these contributions in more detail at [this link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=alvinjiang1&breakdown=true).
 
 <!-- Please replace the placeholder in the above URL with your github username. -->
 
@@ -60,8 +58,10 @@ I contributed to the following team-based tasks:
 
 I reviewed the following pull requests:
 1. [Add profile photo for Nicholas #21](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/21)
-2.
-3.
+2. [Create skeletal project portfolio page #22](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/22)
+3. [Edit README #28](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/28)
+4. [Update index.md #29](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/29)
+5. [Update UG and DG #30](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/30)
 
 I also gave guidance to my team on the following matters:
 1. *Enter contributions here*
@@ -73,7 +73,7 @@ I also gave guidance to my team on the following matters:
 Beyond the project team, I also participated actively in the forum.
 
 These are some threads in which I offered help to my classmates:
-1. [Clarification of definition of single-level design #231](https://github.com/nus-cs2103-AY2223S1/forum/issues/231)
+1. []()
 2. []()
 3. []()
 
