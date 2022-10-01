@@ -10,7 +10,6 @@ import static seedu.address.model.person.Person.SORT_DEFAULT;
 import static seedu.address.model.person.Phone.PHONE_COMPARATOR;
 import static seedu.address.model.person.Phone.SORT_PHONE;
 
-
 import java.util.Comparator;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -60,7 +59,7 @@ public class SortCommand extends Command {
         case SORT_DEFAULT:
             comparator = DEFAULT_COMPARATOR;
             break;
-            
+
         default:
             throw new CommandException(INVALID_MESSAGE);
         }
@@ -79,7 +78,7 @@ public class SortCommand extends Command {
             return false;
         }
 
-    SortCommand e = (SortCommand) other;
+        SortCommand e = (SortCommand) other;
         return this.toSort == ((SortCommand) other).toSort;
     }
 
