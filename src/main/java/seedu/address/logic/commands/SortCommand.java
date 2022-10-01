@@ -5,8 +5,11 @@ import static seedu.address.model.person.Email.EMAIL_COMPARATOR;
 import static seedu.address.model.person.Email.SORT_EMAIL;
 import static seedu.address.model.person.Name.NAME_COMPARATOR;
 import static seedu.address.model.person.Name.SORT_NAME;
+import static seedu.address.model.person.Person.DEFAULT_COMPARATOR;
+import static seedu.address.model.person.Person.SORT_DEFAULT;
 import static seedu.address.model.person.Phone.PHONE_COMPARATOR;
 import static seedu.address.model.person.Phone.SORT_PHONE;
+
 
 import java.util.Comparator;
 
@@ -54,6 +57,10 @@ public class SortCommand extends Command {
             comparator = PHONE_COMPARATOR;
             break;
 
+        case SORT_DEFAULT:
+            comparator = DEFAULT_COMPARATOR;
+            break;
+            
         default:
             throw new CommandException(INVALID_MESSAGE);
         }

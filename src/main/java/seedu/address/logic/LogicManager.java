@@ -47,10 +47,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            if (!(command instanceof SortCommand)) {
-                // we do not want to change the storage when sorting
-                storage.saveAddressBook(model.getAddressBook());
-            }
+            storage.saveAddressBook(model.getAddressBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
