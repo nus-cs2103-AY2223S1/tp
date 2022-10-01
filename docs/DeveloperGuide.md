@@ -285,7 +285,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `TruthTable` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add a member to a team**
+**Use case: UC01 - Add a member to a team**
 
 Preconditions: The current working team is set to the team that the member should be added to.
 
@@ -304,7 +304,7 @@ Preconditions: The current working team is set to the team that the member shoul
 
       Use case resumes at step 1.
 
-**Use case: Delete a member from a team**
+**Use case: UC02 - Delete a member from a team**
 
 Preconditions: The current working team is set to the team that the member should be deleted from.
 
@@ -329,7 +329,7 @@ Preconditions: The current working team is set to the team that the member shoul
 
       Use case resumes at step 2.
 
-**Use case: List all members of a team**
+**Use case: UC03 - List all members of a team**
 
 Preconditions: The current working team is set to the team that the member should be deleted from.
 
@@ -346,7 +346,7 @@ Preconditions: The current working team is set to the team that the member shoul
 
   Use case ends.
 
-**Use case: Add a task to a team**
+**Use case: UC04 - Add a task to a team**
 
 Preconditions: The current working team is set to the team that the task should be added to.
 
@@ -377,7 +377,7 @@ Preconditions: The current working team is set to the team that the task should 
 
       Use case resumes at step 1.
 
-**Use case: Delete a task from a team**
+**Use case: UC05 - Delete a task from a team**
 
 Preconditions: The current working team is set to the team that the task should be deleted from.
 
@@ -402,7 +402,7 @@ Preconditions: The current working team is set to the team that the task should 
 
       Use case resumes at step 2.
 
-**Use case: List all tasks of a team**
+**Use case: UC06 - List all tasks of a team**
 
 Preconditions: The current working team is set to the team that the member should be deleted from.
 
@@ -419,7 +419,7 @@ Preconditions: The current working team is set to the team that the member shoul
 
   Use case ends.
 
-**Use case: Add deadline to existing task**
+**Use case: UC07 - Add deadline to existing task**
 
 Preconditions: The current working team is set to the team that has the existing task.
 
@@ -450,7 +450,7 @@ Preconditions: The current working team is set to the team that has the existing
 
       Use case resumes at step 2.
 
-**Use case: Create new team**
+**Use case: UC08 - Create new team**
 
 **MSS**
 
@@ -473,7 +473,7 @@ Preconditions: The current working team is set to the team that has the existing
 
       Use case resumes at step 1.
 
-**Use case: Change current working team**
+**Use case: UC09 - Change current working team**
 
 **MSS**
 
@@ -490,7 +490,7 @@ Preconditions: The current working team is set to the team that has the existing
 
       Use case resumes at step 1.
 
-**Use case: List all teams**
+**Use case: UC10 - List all teams**
 
 **MSS**
 
