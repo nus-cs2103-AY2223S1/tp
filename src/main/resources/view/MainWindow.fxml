@@ -71,7 +71,7 @@
                   <Insets bottom="10.0" />
                 </VBox.margin>
               </HBox>
-              <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+              <StackPane fx:id="stallListPanelPlaceholder" VBox.vgrow="ALWAYS" />
             </VBox>
           </StackPane>
 
