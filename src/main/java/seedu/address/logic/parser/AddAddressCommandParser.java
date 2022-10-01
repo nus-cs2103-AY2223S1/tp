@@ -1,8 +1,8 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddAddressCommand;
@@ -31,7 +31,8 @@ public class AddAddressCommandParser implements Parser<AddAddressCommand> {
             index = ParserUtil.parseIndex(indexAndAddress[0]);
             addAddressDescriptor.setAddress(ParserUtil.parseAddress(indexAndAddress[1]));
         } catch (ParseException | IndexOutOfBoundsException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAddressCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAddressCommand.MESSAGE_USAGE),
+                    pe);
         }
 
         if (!addAddressDescriptor.isAddressAdded()) {
