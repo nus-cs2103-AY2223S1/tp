@@ -14,7 +14,8 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
     private final Set<String> keywords;
 
     /**
-     * Converts keywords to lower and removes all duplicates.
+     * Creates a {@code NameContainsKeywordsPredicates} with keywords converted
+     * to lower and duplicates removed.
      *
      * @param keywords List of names to filter for.
      */
