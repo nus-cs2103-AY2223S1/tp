@@ -330,30 +330,67 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TAA` and the **User** is the `teaching assistant`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case UC1: Add a student**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User chooses to add a student record.
+2. TAA displays the page for adding student.
+3. User inputs the details of the student.
+4. User confirms the details.
+5. TAA add the record to the system.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
-- 2a. The list is empty.
+- 3a. TAA checks for duplicates and incorrect formating.
 
-  Use case ends.
+- 3a1. TAA requests for correct data and format.
 
-- 3a. The given index is invalid.
+- 3a2. User inputs the correct data.
 
-  - 3a1. AddressBook shows an error message.
+- Steps 3a1-3a2 are repeated until the data entered are correct.
 
-    Use case resumes at step 2.
+  Use case resumes from step 4.
+
+**Use case UC2: Edit a student record**
+
+**MSS**
+
+1. User searches for his/her name or ID.
+2. TAA displays all the students records with a matching signature.
+3. User chooses the correct student.
+4. User edit the student record.
+5. User confirms the update.
+6. TAA saves the new student record.
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. TAA cannot find any student record with a matching signature.
+
+- 2b. TAA requests for re-enter.
+
+- 2c. User re-enter the student name or ID
+
+  Use case resume from step 3.
+
+**Use case UC3: Tag a student who has not finished his/her assignments**
+
+**MSS**
+
+1. User searches for his/her name or ID.
+2. TAA displays all the students records with a matching signature.
+3. User chooses the correct student.
+4. User chooses the type of tag.
+5. User confirms the tagging action.
+6. TAA register the tag and update accordingly.
+
+   Use case ends.
 
 _{More to be added}_
 
@@ -371,15 +408,15 @@ _{More to be added}_
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **TA**: Teaching Assistant, a student who helps the lecturer in a class
-* **CRUD**: Create, Read, Update, Delete. The four main functions that are implemented by a persistent storage application.
-* **SoC**: School of Computing, National University of Singapore
-* **CLI**: Command Line Interface
-* **GUI**: Graphical User Interface
-* **32-bit/64-bit**: The number of bits that a computer's CPU (Central Processing Unit) can process at one time. 32-bit CPUs can only process 32 bits of data at one time, while 64-bit CPUs can process 64 bits of data at one time. 
-64-bit CPUs are more powerful than 32-bit CPUs, but 32-bit CPUs are still more common in computers.
-* **Disk Space**: The amount of space available on a computer's hard disk for storing data.
+- **Mainstream OS**: Windows, Linux, Unix, MacOS
+- **TA**: Teaching Assistant, a student who helps the lecturer in a class
+- **CRUD**: Create, Read, Update, Delete. The four main functions that are implemented by a persistent storage application.
+- **SoC**: School of Computing, National University of Singapore
+- **CLI**: Command Line Interface
+- **GUI**: Graphical User Interface
+- **32-bit/64-bit**: The number of bits that a computer's CPU (Central Processing Unit) can process at one time. 32-bit CPUs can only process 32 bits of data at one time, while 64-bit CPUs can process 64 bits of data at one time.
+  64-bit CPUs are more powerful than 32-bit CPUs, but 32-bit CPUs are still more common in computers.
+- **Disk Space**: The amount of space available on a computer's hard disk for storing data.
 
 ---
 
