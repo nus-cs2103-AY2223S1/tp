@@ -95,6 +95,23 @@ Shows a list of all persons in the address book.
 
 Format: `list`
 
+### Sort Contacts : `sort`
+
+Sort the list of contacts displayed by certain attribute(s).
+
+Default sorting orders:
+* Alphabetical order for *names*, *emails*, *addresses*.
+* Increasing order for *phone numbers*.
+* Sorts contacts that have a specified *tag* before those without the *tag*.
+
+Format: `sort [n/] [p/] [e/] [a/] [t/TAG]…​`
+* Add `!` in front of an attribute to sort in reverse order.
+
+Example:
+* `sort n/` sorts the currently displayed list of contacts by their names.
+* `sort !t/friend` sorts contacts of friends *below* all other contacts.
+* `sort t/friend n/` first sorts contacts of friends *above* all other contacts. Then it separately sorts the contacts of friends and contacts of non-friends by their names.
+
 ### Editing a person : `edit`
 
 Edits an existing person in the address book.
@@ -112,23 +129,36 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Create a Tag: `tag create`
 
-Finds persons whose names contain any of the given keywords.
+Creates a new tag
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `tag create t/TAG`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+Example:
+* `tag create t/family` creates a `family` tag.
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+### Edit a tag: `tag edit`
+
+Renames an existing tag.
+
+Format: `tag edit t/TAG1 t/ TAG2`
+
+* `TAG1` is the current name of the tag and `TAG2` is the new name of the tag.
+
+Example:
+* `tag edit t/friend t/bestFriend` changes the friend tag to a bestFriend tag.
+
+### Add a Tag to a Contact: `tag add`
+
+Adds an existing tag to an existing contact.
+
+Format: `tag add n/NAME t/TAG`
+
+* `NAME` is the name of the contact to add `TAG` to.
+
+Example:
+* `tag add n/John Doe t/friend` adds the friend tag to John Doe.
 
 ###  Search for a Contact: `search`
 
@@ -142,12 +172,25 @@ Format: `search [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 * Displays a list of relevant contacts related to the search query if no search result available.
 
 Example:
-* `search t/family` returns all people tagged with family in the contact list
-* `search p/86178789` returns all contacts with that phone number
-* `search t/cs2103t and t/tp` returns all contacts tagged with both cs2103t and tp
-* `search t/friends or t/family` returns all contacts tagged with either friends or family
+* `search t/family` returns all people tagged with family in the contact list.
+* `search p/86178789` returns all contacts with that phone number.
+* `search t/cs2103t and t/tp` returns all contacts tagged with both cs2103t and tp.
+* `search t/friends or t/family` returns all contacts tagged with either friends or family.
 * `search n/Johm` is supposed to return an empty result since there is no person named `Johm` in the contact list, but now it will return people with names similar to that, for example, `John`.
 
+### Autocomplete: `search`
+
+Show a list of names or tags that match the current search query.
+This feature is only available when searching for names or tags.
+
+Format: `search [n/NAME_PREFIX]`, `search [t/TAG_PREFIX]`
+
+* Only names or tags with their prefix that match the current name or tag search query will be returned. E.g. `An` will match `Angel` but not `Jordan`.
+* The search is case-insensitive. E.g `hans` will match `Hans`.
+
+Example:
+* `search n/An` will show a list of names that start with `An`.
+* `search t/fa` will show a list of tags that start with `fa`.
 
 ### Deleting a person : `delete`
 
@@ -173,7 +216,7 @@ Format: `customise hide [p/] [e/] [a/] [t/]`
 * If the information specified is already hidden, it will stay hidden.
 
 Example:
-* `customise hide e/` The application no longer shows emails in the contact list
+* `customise hide e/` The application no longer shows emails in the contact list.
 
 ### Show Contact Details: `customise show`
 
@@ -185,7 +228,7 @@ Format: `customise show [p/] [e/] [a/] [t/]`
 * If the information specified is already shown, it will stay shown.
 
 Example:
-* `customise show a/` The application now shows addresses in the contact list
+* `customise show a/` The application now shows addresses in the contact list.
 
 ### Customise Order of Details: `customise order`
 
@@ -197,7 +240,7 @@ Format: `customise order [p/] [e/] [a/] [t/]`
 
 Example:
 
-* `customise order a/ e/ p/` The application now shows address first, followed by email, phone, then tags
+* `customise order a/ e/ p/` The application now shows address first, followed by email, phone, then tags.
 
 ### Clearing all entries : `clear`
 
@@ -238,14 +281,17 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Customise** |  `customise hide [p/] [e/] [a/] [t/]` <br> `customise show [p/] [e/] [a/] [t/]` <br> `customise order [p/] [e/] [a/] [t/]` <br> e.g, `customise order a/ e/ p/`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**Search** | `search [n/NAME] [p/PHONE_NUMBER] ...`<br> e.g., `seach n/John Doe t/cs2103t`
-**List** | `list`
-**Help** | `help`
+| Action         | Format, Examples                                                                                                                                                      |
+|----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**        | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Clear**      | `clear`                                                                                                                                                               |
+| **Customise**  | `customise hide [p/] [e/] [a/] [t/]` <br> `customise show [p/] [e/] [a/] [t/]` <br> `customise order [p/] [e/] [a/] [t/]` <br> e.g, `customise order a/ e/ p/`        |
+| **Delete**     | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
+| **Edit**       | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
+| **Search**     | `search [n/NAME] [p/PHONE_NUMBER] ...`<br> e.g., `seach n/John Doe t/cs2103t`                                                                                         |
+| **List**       | `list`                                                                                                                                                                |
+| **Sort**       | `sort [n/] [p/] [e/] [a/] [t/TAG]…​` <br> e.g., `sort t/friend n/`                                                                                                    |
+| **Help**       | `help`                                                                                                                                                                |
+| **Create Tag** | `tag create t/TAG` <br> e.g., `tag create t/friend`                                                                                                                   |
+| **Edit Tag**   | `tag edit t/TAG1 t/TAG2`  <br> e.g., `tag edit t/friend t/bestFriend`                                                                                                 |
+| **Add Tag**    | `tag add n/NAME t/TAG` <br> e.g., `tag add n/John Doe t/friend`                                                                                                       |

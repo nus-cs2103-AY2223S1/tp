@@ -255,74 +255,220 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
+**Target user profile**: NUS SoC Student
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* has a need to manage a significant number of contacts (from NUS modules and co-curricular activities)
+* prefer desktop apps over other types (easy access to laptop for NUS/SoC modules)
+* can type fast (from SoC coding modules)
+* prefers typing to mouse interactions (from SoC coding modules)
+* is reasonably comfortable using CLI apps (from SoC coding modules)
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
+
+* manage contacts faster than a typical mouse/GUI driven app
+* organise and separate their school contacts from personal contacts
+* practice and train their typing speed
+* increase their familiarity with using CLI tools
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
+| Priority | As a …​                 | I want to …​                                           | So that I can…​                                                            |
+|----------|-------------------------|--------------------------------------------------------|----------------------------------------------------------------------------|
+| `* * *`  | new user                | see usage instructions                                 | refer to instructions when I forget how to use the App                     |
+| `* * *`  | user                    | add a new contact                                      |                                                                            |
+| `* * *`  | user                    | delete a contact                                       | remove entries that I no longer need                                       |
+| `* * *`  | user                    | view all my contacts                                   | keep track of all my contacts                                              |
+| `* *`    | user                    | edit a contact                                         | update it or correct mistakes                                              |
+| `* *`    | user                    | clear all my contacts                                  | save time deleting them one by one                                         |
+| `* *`    | user                    | create a new tag                                       | categorise my contacts                                                     |
+| `* *`    | user                    | delete a tag                                           | remove redundant tags                                                      |
+| `* *`    | user                    | edit a tag                                             | provide better naming                                                      |
+| `* *`    | user                    | tag a contact                                          | add it to a category                                                       |
+| `* *`    | user                    | untag a contact                                        | remove it from a category                                                  |
+| `* *`    | user                    | search using a name, phone number, email or address    | find a contact easily without reading through the list                     |
+| `* *`    | user                    | search with a tag                                      | find groups of contacts that share a common tag                            |
+| `* *`    | user                    | search with multiple tags                              | narrow my search results to only contacts that have all the specified tags |
+| `* *`    | user                    | search with multiple tags                              | broaden my result results to contacts that have any of the specified tags  |
+| `* *`    | user                    | view contacts related to my search query               | find contacts even when I mistype their name                               |
+| `* *`    | user                    | hide private contact details                           | minimize chance of someone else seeing them by accident                    |
+| `* *`    | user                    | show private contact details                           | view them when I need to                                                   |
+| `* *`    | user                    | have an autocomplete for the names that I am searching | search faster by names and minimize the chance of an unsuccessful search   |
+| `* *`    | user                    | have an autocomplete for the tags that I am searching  | search faster by tags and minimize the chance of an unsuccessful search    |
+| `* *`    | user with many contacts | specify the default order of my contacts               | avoid re-sorting the list everytime                                        |
+| `* *`    | user with many contacts | sort contacts by name, email, phone number, or address | organise my contacts list                                                  |
+| `* *`    | user with many contacts | sort contacts according to tags                        | view contacts with a specified tag before other contacts                   |
+| `* *`    | user with many contacts | sort contacts by multiple fields                       | organise my contacts list with greater degree                              |
+| `*`      | user with many contacts | mark some contacts as my favourites                    | spot them easily among other contacts                                      |
+| `*`      | user with many contacts | sort favourite contacts before others                  | see them before other contacts                                             |
+| `*`      | user                    | change the order of information for contacts           | view more important information before others                              |
+| `*`      | user                    | customise the theme of the app                         | adjust it to my comfort and liking                                         |
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `SoConnect` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  SoConnect shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  SoConnect deletes the person
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The list is empty.
 
   Use case ends.
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. SoConnect shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Search contacts**
+
+**MSS**
+
+1.  User requests to search a specific word in the list
+2.  SoConnect shows a list of persons related to the word.
+
+    Use case ends.
+
+**Extension**
+* 1a. The list is empty.
+
+  Use case ends
+
+* 3a. There is no input after search.
+
+    * 3a1. SoConnect shows the same list of persons.
+
+      Use case ends.
+
+**Use case: Edit a tag**
+
+**MSS**
+
+1.  User requests for list of tags.
+2.  SoConnect shows the list of tags.
+3.  User changes a tag.
+4.  SoConnect updates the tag.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. There are no tags.
+
+  Use case ends.
+
+* 3a. There is no such current tag.
+
+    * 3a1. SoConnect shows an error message.
+
+      Use case resumes at step 2
+
+* 3b. The new tag already exist.
+
+    * 3b1. SoConnect shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Add tag to Contact**
+
+**MSS**
+
+1.  User requests for the name of the contact.
+2.  SoConnect gives the contact with the right name.
+3.  User requests to add tag to the contact.
+4.  SoConnect adds the tag to the contact.
+
+    Use case ends.
+
+**Extensions**
+
+*  1a. There is no such name in the contacts.
+
+    * 1a1. SoConnect shows an error message.
+
+      Use case resumes at step 1.
+
+*  3a. There is no such tag in the taglist.
+
+    * 3a1. SoConnect shows aan error message.
+
+      Use case resumes at step 2.
+
+**Use case: Autocomplete a word**
+
+**MSS**
+
+1.  User inputs word
+2.  SoConnect gives a selection of possible words.
+3.  User chooses the right word.
+4.  SoConnect changes inputted word to the chosen word.
+
+    Use case ends.
+
+**Extension**
+*  1a. The word changes.
+
+    * 1a1. SoConnect updates the selection of possible words.
+
+      Use case resumes at step 3.
+
+**Use case: sort by name**
+
+**MSS**
+
+1.  User request sort by name
+2.  SoConnect sorts the list by name.
+
+    Use case ends.
+
+**Use case: Hide all contact's phone number**
+
+**MSS**
+
+1.  User requests phone number to be hidden.
+2.  SoConnect removes phone number from displaying in the contact.
+
+    Use case ends.
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+4.  Should be for a single user i.e. (not a multi-user product).
+5.  Should have its data stored locally and the data should be in a human editable text file.
+6.  Should not use a Database Management System for data storage.
+7.  Should work without requiring an installer.
+8.  Should not depend on a remote server.
+9.  Should not cause any resolution-related inconveniences to the user.
+10. Should be packaged in a single JAR file and its size should not exceed 100MB.
+11. Should not have hard-to-test features or features that make the product hard-to-test i.e. (Features that require creating user accounts, login, logout etc., audio-related features and Features that depend heavily on remote APIs)
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **CLI**: A text-based user interface used to run programs
+* **GUI**: A graphical user interface (GUI) is a form of user interface that allows users to interact with programs through graphical icons and audio indicator
+* **JavaFX**: A Java library used to develop client applications
+* **kLoC**: Stands for thousands of lines of code
+* **NUS**: National University of Singapore 
+* **SoC**: School of Computing, a computing school in NUS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-
+* **Autocomplete**: A feature that shows a list of completed words or strings without the user needing to type them in full
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
