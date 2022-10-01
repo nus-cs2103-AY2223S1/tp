@@ -37,15 +37,15 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Developer
 * Responsibilities: Data, Testing, Project Management
 
-### Jean Doe
+### Kang Zong Xian
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kangzongxian.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/kangzongxian)]
+[[portfolio](team/kangzongxian.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Code Quality, Documentation
 
 ### Ho Cheng En Bryan
 
