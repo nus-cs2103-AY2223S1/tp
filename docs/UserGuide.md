@@ -14,9 +14,9 @@ FABook is a **desktop app for managing contacts, optimized for a financial advis
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `FABook.jar` from [here](https://github.com/AY2223S1-CS2103T-T10-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+4. Copy the file to the folder you want to use as the _home folder_ for your FABook.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -64,14 +64,12 @@ FABook is a **desktop app for managing contacts, optimized for a financial advis
 
 Shows a message explaning how to access the help page.
 
-![help message](images/helpMessage.png)
-
 Format: `help`
 
 
 ### Creating a contact: `create`
 
-Creates a contact that is stored in the address book and contains their contact information. Any contact information that is not available can be updated later.
+Creates a contact that is stored in the FABook and contains their contact information. Any contact information that is not available can be updated later.
 
 Format: `create name:NAME [num:PHONE_NUMBER] [address:ADDRESS] [meeting_time:TIME]`
 
@@ -89,13 +87,13 @@ Format: `c name:NAME [num:PHONE_NUMBER] [address:ADDRESS] [meeting_time:TIME]`
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all persons in the FABook.
 
 Format: `list`
 
 ### Updating a person : `update`
 
-Searches for a contact that is stored in the address book and updates its contact information.
+Searches for a contact that is stored in the FABook and updates its contact information.
 
 Format: `update name:NAME [num:PHONE_NUMBER] [address:ADDRESS] [meeting_time:TIME]`
 
@@ -132,7 +130,6 @@ Format: `find NAME…`
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
   
 :white_check_mark: **Tip:**
 Input shortcut: `f` can be used in place of `find`.
@@ -159,18 +156,18 @@ Format: `f NUMBER`
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified person from the FABook.
 
 Format: `delete NAME`
 
 * Deletes the person with the specified `NAME`.
 
 Examples:
-* `delete Aaron Judge` deletes `Aaron Judge` in the address book.
+* `delete Aaron Judge` deletes `Aaron Judge` in the FABook.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from the FABook.
 
 Format: `clear`
 
@@ -193,7 +190,7 @@ FABook data are saved in the hard disk automatically after any command that chan
 FABook data are saved as a text file `[JAR file location]/data/fabook.text`. Advanced users are welcome to update data directly by editing that data file.
 
 :exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, FABook will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -205,7 +202,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FABook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
