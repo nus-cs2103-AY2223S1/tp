@@ -120,11 +120,11 @@
 /*    -fx-border-width: 1;*/
 /*}*/
 
-.list-cell:filled:hover #cardPane {
-    /* when selected, what's the color */
-    -fx-background-color: #FFFFE0;
-    -fx-border-width: 1;
-}
+/*.list-cell:filled:hover #cardPane {*/
+/*    !* when selected, what's the color *!*/
+/*    -fx-background-color: #FFFFE0;*/
+/*    -fx-border-width: 1;*/
+/*}*/
 
 .list-cell .label {
     -fx-text-fill: rainbow; /* text color */
