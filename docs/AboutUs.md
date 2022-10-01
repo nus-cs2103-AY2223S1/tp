@@ -25,7 +25,8 @@ Roles:
 
 [[github](https://github.com/jovitaanderson)]
 
-* Role: Team Lead
+Roles: 
+* Team Lead
 
 ### Shanice Ng Wen Yi
 
@@ -33,7 +34,9 @@ Roles:
 
 [[github](https://github.com/shaniceng)]
 
-* Role: (Deliverables and deadlines, Scheduling and tracking)
+Roles: 
+* Deliverables and deadlines
+* Scheduling and tracking
 
 ### Singh Abdullah Alexander
 
@@ -41,7 +44,8 @@ Roles:
 
 [[github](https://github.com/alexandermula)]
 
-* Role: Documentation
+Roles: 
+* Documentation
 
 ### Tan Yuan Zheng
 
@@ -49,4 +53,5 @@ Roles:
 
 [[github](https://github.com/YZTangent)]
 
-* Role: (deciding)
+Roles: 
+* Testing
