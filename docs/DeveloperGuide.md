@@ -257,64 +257,207 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+NUS CS Students who wish to keep track of their friends to work with
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
 
+We help NUS CS Students to have a collection of fellow NUS CS Students to find people to collaborate with for CS work and projects
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                    | I want to …​                                     | So that I can…​                                                        |
+|--------| ------------------------------------------ |--------------------------------------------------| ---------------------------------------------------------------------- |
+| `* * *` | new user                                   | see usage instructions                           | refer to instructions when I forget how to use the App                 |
+| `* * *` | user                                       | save a new contact                               | contact them if i wish to collaborate with them                                                                       |
+| `* * *` | user                                       | delete a person                                  | remove entries that I no longer need                                   |
+| `* * *` | user                                       | list out all my friend's contact/ info           | look through all my contacts at once |
+| `* * *` | user                                       | keep track of the modules I have taken           | plan my modules easily                |
+| `* * *` | user                                       | keep track of my friend's current modules        | so that i know which modules i can collaborate with them for                |
+| `* * *` | user                                       | keep track of my friend's previous modules       | consult my friends on those modules, if i am currently taking them                |
+| `* * *` | user                                       | see what modules my friends are planning to take | plan my modules together with them                |
+| `* *`  | user                                       | edit my friends' contact information             | change and update the contacts in my friend's list to make sure it is always up to date                |
+| `*`    | user                                       | view my own exam schedule                        | be clear on which exams are coming up                |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+**System: ConnectNUS**
 
-**Use case: Delete a person**
+**Use case: UC1 - See usage instructions**
+
+**Actor: CS Students**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. CS Student chooses to see usage instructions. 
+2. ConnectNUS displays the usage instructions. 
+3. Use case ends. 
+4. Use case ends.
 
-    Use case ends.
+**System: ConnectNUS**
+
+**Use case: UC2 - Save a new contact**
+
+**Actor: CS Students**
+
+**MSS**
+
+1. CS Student chooses to save a new contact. 
+2. ConnectNUS requests for details of the contact to be saved. 
+3. CS Student enters the requested details. 
+4. ConnectNUS saves the contact and updates the data file. 
+5. Use case ends.
+
+**Extensions**
+
+* 3a. ConnectNUS detects an error in the entered data
+
+    * 3a1. ConnectNUS requests for the correct data.
+    * 3a2. CS Student enters new data.
+    * Steps 3a-3b are repeated until the data entered are correct.
+    Use case resumes at step 4.
+
+**System: ConnectNUS**
+
+**Use case: UC3 - Delete a person**
+
+**Actor: CS Students**
+
+**MSS**
+
+1. CS Student requests to delete a specific index of contact. 
+2. ConnectNUS deletes the contact and updates data file. 
+3. Use case ends.
+
+**Extensions**
+
+* 1a. ConnectNUS detects an error in the command format or invalid index.
+    * 1a1. ConnectNUS requests for the correct format or index.
+    * User enters a new command in the correct format or index.
+      Steps 1a1-1a2 are repeated until the data entered are correct.
+      Use case resumes at step 2.
+
+**System: ConnectNUS**
+
+**Use case: UC4 - List out all my friend’s contact/information**
+
+**Actor: CS Students**
+
+**MSS**
+
+1. CS Student requests to list all contact information. 
+2. ConnectNUS shows a list of contacts based on the order that the contacts are added. 
+3. Use case ends
 
 **Extensions**
 
 * 2a. The list is empty.
+    Use case ends.
 
+**System: ConnectNUS**
+
+**Use case: UC5 - Keep track of modules taken by user**
+
+**Actor: CS Students**
+
+**MSS**
+
+1. CS Student requests to list all modules. 
+2. ConnectNUS shows a list of modules the CS Student has taken. 
+3. Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
   Use case ends.
 
-* 3a. The given index is invalid.
+**System: ConnectNUS**
 
-    * 3a1. AddressBook shows an error message.
+**Use case: UC6 - Keep track of friend’s current modules**
 
+**Actor: CS Students**
+
+**MSS**
+
+1. CS Student requests to list all modules of a specific index of contact. 
+2. ConnectNUS shows a list of modules the specified friend has taken. 
+3. Use case ends.
+
+
+**Extensions**
+
+* 1a. ConnectNUS detects an error in the command format.
+    * 1a1. ConnectNUS requests for the correct format.
+    * User enters a new command in the correct format.
+      Steps 1a1-1a2 are repeated until the data entered are correct.
       Use case resumes at step 2.
+
+* 2a. The list is empty. 
+      Use case ends.
+
+**System: ConnectNUS**
+
+**Use case: UC7 - Keep track of friend’s previous modules**
+
+**Actor: CS Students**
+
+**MSS**
+
+1. User requests to list all previous modules of a specific index of contact 
+2. ConnectNUS shows a list of modules the specified friend has taken previously. 
+3. Use case ends.
+
+**Extensions**
+
+* 1a. ConnectNUS detects an error in the command format.
+    * 1a1. ConnectNUS requests for the correct format.
+    * User enters a new command in the correct format.
+      Steps 1a1-1a2 are repeated until the data entered are correct.
+      Use case resumes at step 2.
+
+* 2a. The list is empty.
+  Use case ends.
+
+**System: ConnectNUS**
+
+**Use case: UC8 - Keep track of friend’s module plan**
+
+**Actor: CS Students**
+
+**MSS**
+
+1. CS Student requests to list a friend’s module plan of a specific index of contact 
+2. ConnectNUS shows a list of modules the specified friend has taken previously. 
+3. Use case ends.
+
+**Extensions**
+
+* 1a. ConnectNUS detects an error in the command format.
+    * 1a1. ConnectNUS requests for the correct format.
+    * User enters a new command in the correct format.
+      Steps 1a1-1a2 are repeated until the data entered are correct.
+      Use case resumes at step 2.
+
+* 2a. The list is empty.
+  Use case ends.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Should be a result of evolving AB3 code base 
+5. Should be for a single user 
+6. Should not use any Database Management System 
+7. Should be platform independent and work on Windows, Linus and OS-X. 
+8. Should work without an installer and without approved third-party frameworks/libraries/services. 
+9. Should be able to package into a single JAR file. 
+10. JAR file size should not exceed 100MB and Documents should not exceed 15 MB per file.
 
 *{More to be added}*
 
@@ -322,6 +465,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **PlantUML**: A tool for specifying various diagrams in a textual form
 
 --------------------------------------------------------------------------------------------------------------------
 
