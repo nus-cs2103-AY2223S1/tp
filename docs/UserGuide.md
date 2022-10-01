@@ -122,7 +122,7 @@ Note: Start time and End time must be in 24hour format.
 
 Format: `add n/NAME p/CONTACT_NUMBER np/NEXT_OF_KIN_CONTACT_NUMBER a/ADDRESS e/EMAIL dt/CLASS_DATE`
 
-Examples:
+Example:
 
 - `add n/Ben Tan p/87201223 np/90125012 a/Avenue 712 e/BenTan@gmail.com dt/2022-04-19 1500-1600`
 
@@ -134,10 +134,11 @@ Note: Amount paid, Amount owed, Additional notes fields are to be updated via `u
 
 ---
 
-### Update student details: `update`
+### Edit student details: `edit`
 
-Allows the user to update the students details including:
+Edits an existing student in the list.
 
+- Student’s Name
 - Phone number
 - Next of Kin’s phone number
 - Address
@@ -145,12 +146,6 @@ Allows the user to update the students details including:
 - Amount paid
 - Amount owed
 - Additional notes
-
-```yaml
-Notes:
-Student’s Name must be provided to uniquely identify the student.
-Student’s Name must exist in the records beforehand.
-```
 
 1. Phone number, Next of Kin’s phone number, Email, Address, and Class Date follow the same convention as in Adding a student:
     [`add` section](#adding-a-studentadd)
@@ -165,23 +160,19 @@ Student’s Name must exist in the records beforehand.
     - Additional notes is a String and can be empty.
 
 ```yaml
-Notes about the command format:
-- All the fields except `NAME` are optional but **at least one** of these fields must exist in order to make the
-  `update` command valid.
+Important:
+- note **at least one** of these fields must exist in order to make the
+  `edit` command valid.
 ```
 
-Format: `update n/NAME [p/PHONE_NUMBER] [np/NEXT_OF_KIN_PHONE_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS]
+Format: `edit INDEX [n/NAME] [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS] 
 [paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES]`
 
-Examples:
+Example:
 
-- `update n/Ben Tan h/98765432`
+- `edit 1 e/Ben2022@gmail.com`
 
-![UiUpdate1](images/UiUpdate1.png)
-
-- `update n/Ben Tan owed/10 paid/25.5`
-
-![UiUpdate2](images/UiUpdate2.png)
+![UiEdit](images/UiEdit.png)
 
 ---
 ### View all students: `list`
@@ -213,6 +204,20 @@ Format: `statistics`
 
 ![UiStatistics](images/UiStatistics.png)
 
+---
+### Get ID: `getID`
+
+Obtains index of student in the list.
+
+Format: `getID n/NAME`
+
+Example:
+
+- `getID n/Ben Tan`
+
+![UiGetId](images/UiGetId.png)
+
+---
 ### Exiting the program : `exit`
 
 Exits the program.
