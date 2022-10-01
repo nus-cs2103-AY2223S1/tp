@@ -37,7 +37,7 @@ public class ProfCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_DUPLICATE_PERSON = "This Professor already exists in the address book";
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New professor added: %1$s";
 
     private final Person toAdd;
 
