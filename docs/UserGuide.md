@@ -295,7 +295,7 @@ Example:
 
 * `deleteL c/14 n/CS2101` will remove the label "CS2101" from the 14th contact on the contact list.
 
-### Adding a label to a task : `addL`
+### Adding a label to a task: `addL`
 
 Adds a label to an existing task in the address book. Each task can have multiple labels. If there is no existing label with the same name, label is added to the label list. Throws an exception if task does not exist.
 
@@ -305,7 +305,7 @@ Example:
 
 * `addL t/12 n/CS2103T` will add the label "CS2103T" to the 12th task on the task list.
 
-### Removing a label from a task : `deleteL`
+### Removing a label from a task: `deleteL`
 
 Removes a label from an existing task in the address book. If contact is last remaining person with said label, label is removed from the label list. Throws an exception if task or label does not exist.
 
