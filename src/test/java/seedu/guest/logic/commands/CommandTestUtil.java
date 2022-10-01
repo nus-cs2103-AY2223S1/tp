@@ -17,8 +17,8 @@ import seedu.guest.commons.core.index.Index;
 import seedu.guest.logic.commands.exceptions.CommandException;
 import seedu.guest.model.GuestBook;
 import seedu.guest.model.Model;
-import seedu.guest.model.guest.NameContainsKeywordsPredicate;
 import seedu.guest.model.guest.Guest;
+import seedu.guest.model.guest.NameContainsKeywordsPredicate;
 import seedu.guest.testutil.EditPersonDescriptorBuilder;
 
 /**

@@ -7,8 +7,8 @@ import java.util.stream.Stream;
 import seedu.guest.logic.commands.EditCommand.EditGuestDescriptor;
 import seedu.guest.model.guest.Address;
 import seedu.guest.model.guest.Email;
-import seedu.guest.model.guest.Name;
 import seedu.guest.model.guest.Guest;
+import seedu.guest.model.guest.Name;
 import seedu.guest.model.guest.Phone;
 import seedu.guest.model.tag.Tag;
 

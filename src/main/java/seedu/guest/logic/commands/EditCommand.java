@@ -19,7 +19,11 @@ import seedu.guest.commons.core.index.Index;
 import seedu.guest.commons.util.CollectionUtil;
 import seedu.guest.logic.commands.exceptions.CommandException;
 import seedu.guest.model.Model;
-import seedu.guest.model.guest.*;
+import seedu.guest.model.guest.Address;
+import seedu.guest.model.guest.Email;
+import seedu.guest.model.guest.Guest;
+import seedu.guest.model.guest.Name;
+import seedu.guest.model.guest.Phone;
 import seedu.guest.model.tag.Tag;
 
 /**

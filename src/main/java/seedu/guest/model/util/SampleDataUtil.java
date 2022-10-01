@@ -6,7 +6,11 @@ import java.util.stream.Collectors;
 
 import seedu.guest.model.GuestBook;
 import seedu.guest.model.ReadOnlyGuestBook;
-import seedu.guest.model.guest.*;
+import seedu.guest.model.guest.Address;
+import seedu.guest.model.guest.Email;
+import seedu.guest.model.guest.Guest;
+import seedu.guest.model.guest.Name;
+import seedu.guest.model.guest.Phone;
 import seedu.guest.model.tag.Tag;
 
 /**

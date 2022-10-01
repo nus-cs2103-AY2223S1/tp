@@ -32,8 +32,11 @@ import static seedu.guest.testutil.TypicalPersons.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.guest.logic.commands.AddCommand;
-import seedu.guest.model.guest.*;
+import seedu.guest.model.guest.Address;
+import seedu.guest.model.guest.Email;
 import seedu.guest.model.guest.Guest;
+import seedu.guest.model.guest.Name;
+import seedu.guest.model.guest.Phone;
 import seedu.guest.model.tag.Tag;
 import seedu.guest.testutil.PersonBuilder;
 
