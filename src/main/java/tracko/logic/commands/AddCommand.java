@@ -3,9 +3,9 @@ package tracko.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import tracko.logic.commands.exceptions.CommandException;
+import tracko.logic.parser.CliSyntax;
 import tracko.model.Model;
 import tracko.model.person.Person;
-import tracko.logic.parser.CliSyntax;
 
 /**
  * Adds a person to the address book.

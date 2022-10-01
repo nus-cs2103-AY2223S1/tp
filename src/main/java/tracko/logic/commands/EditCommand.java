@@ -13,6 +13,7 @@ import tracko.commons.core.Messages;
 import tracko.commons.core.index.Index;
 import tracko.commons.util.CollectionUtil;
 import tracko.logic.commands.exceptions.CommandException;
+import tracko.logic.parser.CliSyntax;
 import tracko.model.Model;
 import tracko.model.person.Address;
 import tracko.model.person.Email;
@@ -20,7 +21,6 @@ import tracko.model.person.Name;
 import tracko.model.person.Person;
 import tracko.model.person.Phone;
 import tracko.model.tag.Tag;
-import tracko.logic.parser.CliSyntax;
 
 /**
  * Edits the details of an existing person in the address book.

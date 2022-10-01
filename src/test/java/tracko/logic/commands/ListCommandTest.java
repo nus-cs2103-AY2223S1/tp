@@ -1,6 +1,7 @@
 package tracko.logic.commands;
 
 import static tracko.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static tracko.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static tracko.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static tracko.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -27,12 +28,12 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        CommandTestUtil.assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        CommandTestUtil.showPersonAtIndex(model, INDEX_FIRST_PERSON);
-        CommandTestUtil.assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }
