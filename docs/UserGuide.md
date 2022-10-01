@@ -26,7 +26,7 @@ MyInsuRec is a **desktop app for financial advisors, optimized for use via a Com
 
    1. `viewClient`: View a particular client
    2. `addClient`: Add a client
-   3. `deleteClient`: Delete client
+   3. `delClient`: Delete client
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -124,7 +124,7 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a client : `delClient`
 
 Deletes the specified person from the address book.
 
@@ -209,7 +209,7 @@ _Details coming soon ..._
 | **Add client**        | `addClient n/NAME p/PHONE_NUMBER [e/EMAIL]` <br> e.g., <br> • `addClient n/John Tan p/0123456789` <br> • `addClient n/John Tan p/0123456789 e/johntan@insurec.com` |
 | **List all clients**  | `listClient`                                                                                                                                                       |
 | **View client**       | `viewClient i/INDEX` <br> e.g., <br> • `viewClient i/1`                                                                                                            |
-| **Delete client**     | `delMeeting i/INDEX` <br> e.g., <br> • `delClient i/1`                                                                                                             |
+| **Delete client**     | `delClient i/INDEX` <br> e.g., <br> • `delClient i/1`                                                                                                              |
 | **Add meeting**       | `addMeeting n/NAME d/DATE t/TIME` <br> e.g., <br> • `addMeeting n/Thomas d/28092022 t/1400`                                                                        |
 | **List all meetings** | `listMeeting`                                                                                                                                                      |
 | **View meeting**      | `viewMeeting i/INDEX` <br> e.g., <br> • `viewMeeting i/1`                                                                                                          |
