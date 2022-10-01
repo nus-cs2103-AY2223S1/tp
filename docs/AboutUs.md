@@ -19,13 +19,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Wang Xinyi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/Xinyi.png" width="200px">
 
-[[github](https://github.com/wxy1203)]
+GitHub: [@wxy1203](https://github.com/wxy1203)
 
-
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Team Member
+* Responsibilities: Various
 
 ### Brandon Thio
 
