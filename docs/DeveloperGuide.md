@@ -309,7 +309,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC2 List all meetings**
+**Use case: UC2 List all clients**
+
+**MSS**
+
+1. User requests for a list of all clients.
+2. System shows a list of all clients.
+
+   Use case ends.
+
+**Use case: UC3 List all meetings**
 
 **MSS**
 
@@ -318,7 +327,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Use case: UC3 Delete a meeting**
+**Use case: UC4 Delete a meeting**
 
 **MSS**
 
