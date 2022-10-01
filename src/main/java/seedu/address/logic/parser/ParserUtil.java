@@ -112,11 +112,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a string into a LocalDateTime. Leading and trailing whitespaces will be trimmed.
+     * Parses a {@code String reason} and {@code String dateTime} into a {@code Appointment}.
+     * Leading and trailing whitespaces will be trimmed.
      *
-     * @param dateTime The given dateTime string.
-     * @return The LocalDateTime representing the given dateTime.
-     * @throws ParseException if the given dateTime is invalid.
+     * @throws ParseException if the given {@code reason} or {@code dateTime} is invalid.
      */
     public static Appointment parseAppointment(String reason, String dateTime) throws ParseException {
         requireNonNull(dateTime);
