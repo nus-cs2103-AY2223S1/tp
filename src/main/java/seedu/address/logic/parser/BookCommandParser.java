@@ -5,8 +5,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REASON;
 
-import java.time.LocalDateTime;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.BookCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -29,9 +27,8 @@ public class BookCommandParser implements Parser<BookCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, BookCommand.MESSAGE_USAGE), pe);
         }
 
-        String reason = ParserUtil.parseReason(argMultimap.getValue(PREFIX_REASON).get());
-        LocalDateTime dateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_DATE).get());
-        Appointment appointment = new Appointment(reason, dateTime);
+        Appointment appointment = ParserUtil.parseAppointment(argMultimap.getValue(PREFIX_REASON).get(),
+                argMultimap.getValue(PREFIX_DATE).get());
         return new BookCommand(index, appointment);
     }
 }

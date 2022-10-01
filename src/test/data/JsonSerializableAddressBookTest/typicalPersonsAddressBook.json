@@ -12,7 +12,10 @@
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
-    "appointments" : [ ],
+    "appointments" : [ {
+      "reason" : "Sore Throat",
+      "dateTime" : "2019-12-10 16:30"
+    } ],
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",

@@ -2,8 +2,6 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -120,31 +118,20 @@ public class ParserUtil {
      * @return The LocalDateTime representing the given dateTime.
      * @throws ParseException if the given dateTime is invalid.
      */
-    public static LocalDateTime parseDateTime(String dateTime) throws ParseException {
+    public static Appointment parseAppointment(String reason, String dateTime) throws ParseException {
         requireNonNull(dateTime);
-        String trimmedDateTime = dateTime.trim();
-        try {
-            String str = String.join(" ", trimmedDateTime.split("\\s+", 2));
-            return LocalDateTime.parse(str, Appointment.DATE_FORMATTER);
-        } catch (DateTimeParseException e) {
-            throw new ParseException(Appointment.DATE_MESSAGE_CONSTRAINTS);
-        }
-    }
-
-    /**
-     * Parses a string and trims all leading and trailing whitespaces.
-     *
-     * @param reason The given reason to be parsed.
-     * @return The trimmed string.
-     * @throws ParseException if the given reason is invalid.
-     */
-    public static String parseReason(String reason) throws ParseException {
         requireNonNull(reason);
         String trimmedReason = reason.trim();
-        if (trimmedReason.equals("")) {
+        String trimmedDateTime = dateTime.trim();
+
+        if (!Appointment.isValidReason(trimmedReason)) {
             throw new ParseException(Appointment.REASON_MESSAGE_CONSTRAINTS);
         }
-        return trimmedReason;
+
+        if (!Appointment.isValidDateTime(dateTime)) {
+            throw new ParseException(Appointment.DATE_MESSAGE_CONSTRAINTS);
+        }
+        return new Appointment(trimmedReason, trimmedDateTime);
     }
 
     /**

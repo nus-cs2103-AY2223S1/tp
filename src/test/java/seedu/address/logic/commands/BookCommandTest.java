@@ -5,8 +5,6 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
-import java.time.LocalDateTime;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
@@ -23,7 +21,7 @@ public class BookCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     private final Appointment appointment = new Appointment("Sore Throat",
-            LocalDateTime.of(2022, 12, 10, 16, 30));
+            "2022-12-10 16:30");
 
 
     @Test
