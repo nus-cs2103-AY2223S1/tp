@@ -5,24 +5,26 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Person;
+import seedu.address.model.customer.Customer;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
-
     /**
-     * Replaces user prefs data with the data in {@code userPrefs}.
+     * {@code Predicate} that always evaluate to true
      */
-    void setUserPrefs(ReadOnlyUserPrefs userPrefs);
+    Predicate<Customer> PREDICATE_SHOW_ALL_CUSTOMERS = unused -> true;
 
     /**
      * Returns the user prefs.
      */
     ReadOnlyUserPrefs getUserPrefs();
+
+    /**
+     * Replaces user prefs data with the data in {@code userPrefs}.
+     */
+    void setUserPrefs(ReadOnlyUserPrefs userPrefs);
 
     /**
      * Returns the user prefs' GUI settings.
@@ -45,43 +47,49 @@ public interface Model {
     void setAddressBookFilePath(Path addressBookFilePath);
 
     /**
+     * Returns the AddressBook
+     */
+    ReadOnlyAddressBook getAddressBook();
+
+    /**
      * Replaces address book data with the data in {@code addressBook}.
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
-
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a customer with the same identity as {@code customer} exists in the address book.
      */
-    boolean hasPerson(Person person);
+    boolean hasCustomer(Customer customer);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given customer.
+     * The customer must exist in the address book.
      */
-    void deletePerson(Person target);
+    void deleteCustomer(Customer target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given customer.
+     * {@code customer} must not already exist in the address book.
      */
-    void addPerson(Person person);
+    void addCustomer(Customer customer);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given customer {@code target} with {@code editedCustomer}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The customer identity of {@code editedCustomer} must not be the same as another existing customer
+     * in the address book.
      */
-    void setPerson(Person target, Person editedPerson);
-
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    void setCustomer(Customer target, Customer editedCustomer);
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Returns an unmodifiable view of the filtered customer list
+     */
+    ObservableList<Customer> getFilteredCustomerList();
+
+    /**
+     * Updates the filter of the filtered customer list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredCustomerList(Predicate<Customer> predicate);
 }
