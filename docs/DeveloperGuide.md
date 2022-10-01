@@ -272,14 +272,16 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​       | I want to …​                                | So that I can…​                             |
+|----------|---------------|---------------------------------------------|---------------------------------------------|
+| `* * *`  | SoC Professor | View the contact information of my students | I can contact them                          |
+| `* * *`  | SoC Professor | View the list of modules                    | Better plan my module's timeslots           |
+| `* * *`  | SoC Professor | Edit the information of my students         | Rectify inaccuracies in student information |
+| `* * *`  | SoC Professor | Find a student                              |                                             |
+| `* * *`  | SoC Professor | Add new student to a module                 |                                             |
+| `* * *`  | SoC Professor | Add a module                                |                                             |
+| `* * *`  | SoC Professor | Delete a module                             |                                             |
+| `* *`    | SoC Professor | View my teaching timetable                  | Plan my activities in advance               |
 
 *{More to be added}*
 

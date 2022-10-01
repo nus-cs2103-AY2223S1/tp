@@ -249,8 +249,6 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
-
 
 ## Command summary
 
@@ -258,8 +256,9 @@ _Details coming soon ..._
 |----------------------------|----------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | add a person               | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ [m/MODULE]…​` | `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` <br> `add n/Adam Doink t/TA e/ad4md01nk@example.com a/Kent Ridge Hall p/1234567 m/CS1101S` |
 | edit a person              | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`      | `edit 1 p/91234567 e/johndoe@example.com` <br> `edit 2 n/Betsy Crower t/`                                                                                                   |
-| detele a person            | `delete INDEX`                                                       | `delete 1`                                                                                                                                                                  |
+| delete a person            | `delete INDEX`                                                       | `delete 1`                                                                                                                                                                  |
 | clear                      | `clear`                                                              | `clear`                                                                                                                                                                     |
+| add a module               | `madd`                                                               | `madd CS2100`                                                                                                                                                               |
 | list modules               | `list MODULE_NAME [MORE_MODULE_NAMES]`                               | `list CS1101S` <br>`list CS1101S CS1231S`                                                                                                                                   |
 | list all modules           | `mlist`                                                              | `mlist`                                                                                                                                                                     |
 | view the teaching schedule | `view schedule [-w WEEKDAY] [-m MODULE_CODE] [-d DATE] [-h] [-v]`    | `view schedule -w Monday -m CS2103T` <br>`view schedule -d 2022-09-12` <br> `view schedule -h`                                                                              |
