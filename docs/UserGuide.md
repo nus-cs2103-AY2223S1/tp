@@ -4,6 +4,11 @@ title: User Guide
 ---
 
 
+<p align="center">
+    <img src="images/LTNS_logo.png" width="200" height="200">
+</p>
+
+
 Long Time No See (LTNS) is a  **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of an **intuitive and minimalistic Graphical User Interface (GUI)**. Made simpler with an intuitive and minimalistic graphical user interface (GUI) and customised functionalities to pinpoint your needs, LTNS will enable you to stay close to your dearest clients!
 
 # Table of Contents
@@ -15,12 +20,14 @@ Long Time No See (LTNS) is a  **desktop app for managing contacts, optimized for
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start (To be revised with GUI mockups?)
+## Quick start 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `` from [here](). 
 
-1. Copy the file to the folder you want to use as the _home folder_ for your LTNS
+1. Download the latest `LTNS.jar` from [here](https://github.com/AY2223S1-CS2103T-W13-2/tp/releases).
+
+
+1. Copy the file to the folder you want to use as the _home folder_ for your LTNS.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br> 
    ![Ui](images/Ui.png)
@@ -50,6 +57,10 @@ Long Time No See (LTNS) is a  **desktop app for managing contacts, optimized for
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+
+* Words in round brackets and separated by a `/` are options for parameters to be supplied by the user. <br>
+Only one parameter can be specified. <br>
+e.g `(n/NAME)/(p/PHONE)` can be used as `n/John Doe` or as `p/12341234`
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -114,23 +125,36 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Search for contacts: `find`
 
-Finds persons whose names contain any of the given keywords.
+Search for contacts based on certain metrics 
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find (n/NAME)/(p/PHONE)/(e/EMAIL)/(a/ADDRESS)/(t/TAG)…​ `
 
+For `NAME`:
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
+For `TAG`:
+* The search is case-insensitive. e.g `friends` will match `Friends`
+* Only full words will be matched e.g. `colleagues` will not match `colleague`
+* Note: Only one tag can be specified
+
+For non-textual information i.e `PHONE`, `EMAIL`, `ADDRESS`:
+* The search is case-sensitive. e.g `hans@email.com` will not match `Hans@email.com`
+* Only full searches will be matched e.g `12341234` will not match `1234`
+
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+
+* `find n/John` returns `john` and `John Doe`
+* `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find p/12341234` returns contacts with `12341234` as their phone number
+* `find t/friends` returns contacts with a `friends` tag
+
 
 ### Deleting a person : `delete`
 

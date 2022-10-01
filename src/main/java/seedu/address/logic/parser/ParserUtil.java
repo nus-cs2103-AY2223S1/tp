@@ -9,11 +9,15 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.client.Birthday;
+import seedu.address.model.client.Income;
+import seedu.address.model.client.RiskAppetite;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -120,5 +124,47 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code String birthday} into a {@code Birthday}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Birthday parseBirthday(String birthday) throws ParseException {
+        requireNonNull(birthday);
+        String trimmedBirthday = birthday.trim();
+        if (!Birthday.isValidFormat(trimmedBirthday)) {
+            throw new ParseException(Birthday.MESSAGE_FORMAT_CONSTRAINTS);
+        }
+        if (!Birthday.isValidBirthday(trimmedBirthday)) {
+            throw new ParseException(Birthday.MESSAGE_DATE_CONSTRAINTS);
+        }
+        return new Birthday(birthday);
+    }
+
+    /**
+     * Parses {@code String income} into a {@code income}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Income parseIncome(String income) throws ParseException {
+        requireNonNull(income);
+        String trimmedIncome = income.trim();
+        if (!Income.isValidFormat(trimmedIncome)) {
+            throw new ParseException(Income.MESSAGE_FORMAT_CONSTRAINTS);
+        }
+        return new Income(income);
+    }
+
+    /**
+     * Parses {@code String RA} into a {@code RiskAppetite}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static RiskAppetite parseRA(String ra) throws ParseException {
+        requireNonNull(ra);
+        String trimmedRiskAppetiteTag = ra.trim();
+        if (!RiskAppetite.isValidFormat(trimmedRiskAppetiteTag)) {
+            throw new ParseException(RiskAppetite.MESSAGE_FORMAT_CONSTRAINTS);
+        }
+        return new RiskAppetite(ra);
     }
 }

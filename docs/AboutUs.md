@@ -9,25 +9,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Hong Sheng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/loyhongshenggg.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/loyhongshenggg)]
+[[portfolio](team/loyhongshenggg.md)]
 
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Team Lead and Developer
+* Responsibilities: UI/UX of LTNS, Wireframing/Figma diagram, Main reviewer for Damien
+* In-charge of features: Ui, LTNS main UI/UX, pin function
 
 ### Damien Koh
 
@@ -61,13 +52,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Responsibilities:Integration, Testing, Main Reviewer for Marcus
 * In-Charge of Features: Client Class Management 
 
+### Marcus Chua
 
-### James Doe
+<img src="images/marcusczh.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/marcusczh)]
+[[portfolio](team/marcusczh.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Code quality, integration, Main reviewer for Reuben
+* In-charge of features: find
+
+

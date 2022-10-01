@@ -257,7 +257,9 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of clients
+* Is a student financial advisor
+* Has a  need to store additional client-related information
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -446,7 +448,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Client**: A client is a person being served by the financial advisor.
+*  **Policy**: An investment or insurance policy that is being sold by an insurance company, through the financial advisor.
+*  **Financial advisor**: A professional paid to offer financial advice to clients
+
 
 --------------------------------------------------------------------------------------------------------------------
 
