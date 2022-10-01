@@ -14,7 +14,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/johndoe.png" width="200px">
 
 [[github](https://github.com/castryl)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/castryl.md)]
 
 * Role: Developer
 * Responsibilities: Documentation
@@ -33,7 +33,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/deepimpactmir.png" width="200px">
 
-[[github](http://github.com/deepimpactmir)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/deepimpactmir)]
+[[portfolio](team/deepimpactmir.md)]
 
 - Role: Developer
 - Responsibilities: Code quality
@@ -43,7 +44,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/keithpjx.png" width="200px">
 
 [[github](http://github.com/KeithPJX)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/keithpjx.md)]
 
 * Role: Developer
 * Responsibilities: Deliverables and deadlines
@@ -53,7 +54,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/ryanlml.png" width="200px">
 
 [[github](http://github.com/ryanlml)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/ryanlml.md)]
 
 * Role: Developer
 * Responsibilities: Integration
