@@ -27,7 +27,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-
 ### Brandon Thio
 
 <img src="images/brandon.png" width="200px">
@@ -38,16 +37,18 @@ GitHub: [@beetee17](https://github.com/beetee17)
 * Role: Team Member
 * Responsibilities: Various
 
-### Johnny Doe
+### Zheng Yilin
+
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/yilinzyl)] 
+[[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Amresh
 
 <img src="images/johndoe.png" width="200px">
 
@@ -57,12 +58,3 @@ GitHub: [@beetee17](https://github.com/beetee17)
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
