@@ -273,8 +273,8 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* works in the housing management team for [**RC4**](glossary) with several other co-workers
-* has a need to manage a significant number of residents in [**RC4**](glossary)
+* works in the housing management team for [**RC4**](#glossary) with several other co-workers
+* has a need to manage a significant number of residents in [**RC4**](#glossary)
 * is responsible for performing a wide variety of tasks including liasing with students/staff
 * requires quick access to contact details and other relevant resident information
 * prefer desktop apps over other types
@@ -298,19 +298,19 @@ They have been extensively documented [here](https://github.com/AY2223S1-CS2103T
 2. Moderate `* *` - nice to have
 3. Low `*` - unlikely to have
 
-| Priority | As a ...      | I want to ...                                                                     | So that ...                                      |
-|----------|---------------|-----------------------------------------------------------------------------------|--------------------------------------------------|
-| `***`    | user          | view relevant information about [**RC4**](glossary) residents                     |                                                  |
-| `**`     | user          | specify which fields I want to see when listing data                              | my screen is less cluttered                      |
-| `**`     | user          | import my old data into the application                                           |                                                  |
-| `**`     | user          | view a smaller list of [**RC4**](glossary) residents that pass certain conditions |                                                  |
-| `**`     | user          | search for residents using a portion of their names                               | I do not have to remember their exact names      | 
-| `*`      | user          | export residents' data in a familiar format                                       |                                                  |
-| `*`      | new user      | see sample data                                                                   | I can see how the app will look like when in use |
-| `*`      | user          | delete multiple residents' data from the app quickly                              | I can save time                                  |
-| `*`      | advanced user | give residents roles                                                              | I can further categorize them                    |
-| `*`      | user          | use the system without referring to the user guide                                |                                                  |
-| `*`      | user          | switch between different data files                                               |                                                  |
+| Priority | As a ...      | I want to ...                                                                      | So that ...                                      |
+|----------|---------------|------------------------------------------------------------------------------------|--------------------------------------------------|
+| `***`    | user          | view relevant information about [**RC4**](#glossary) residents                     |                                                  |
+| `**`     | user          | specify which fields I want to see when listing data                               | my screen is less cluttered                      |
+| `**`     | user          | import my old data into the application                                            |                                                  |
+| `**`     | user          | view a smaller list of [**RC4**](#glossary) residents that pass certain conditions |                                                  |
+| `**`     | user          | search for residents using a portion of their names                                | I do not have to remember their exact names      | 
+| `*`      | user          | export residents' data in a familiar format                                        |                                                  |
+| `*`      | new user      | see sample data                                                                    | I can see how the app will look like when in use |
+| `*`      | user          | delete multiple residents' data from the app quickly                               | I can save time                                  |
+| `*`      | advanced user | give residents roles                                                               | I can further categorize them                    |
+| `*`      | user          | use the system without referring to the user guide                                 |                                                  |
+| `*`      | user          | switch between different data files                                                |                                                  |
 
 *{More to be added}*
 
@@ -343,7 +343,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: UC2. Add a single resident**
 
 **MSS**
-1. New resident moves into [**RC4**](glossary).
+1. New resident moves into [**RC4**](#glossary).
 2. User gets personal details of the resident.
 3. User adds the resident.
 4. RC4HDB adds the resident to the data file.
@@ -362,8 +362,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: UC3. Listing out information of all residents**
 
 **MSS**
-1. User wants to see the full list of residents in [**RC4**](glossary).
-2. RC4HDB displays the details of all residents in [**RC4**](glossary).
+1. User wants to see the full list of residents in [**RC4**](#glossary).
+2. RC4HDB displays the details of all residents in [**RC4**](#glossary).
 
     Use case ends.
 
@@ -466,7 +466,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: UC 7. Deleting a single resident**
 
 **MSS**
-1. Resident moves out of [**RC4**](glossary).
+1. Resident moves out of [**RC4**](#glossary).
 2. User deletes the resident.
 3. RC4HDB removes the corresponding resident from the database.
 4. RC4HDB displays the details of that resident that has been deleted.
@@ -516,7 +516,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 
-**Use case: UC 10. Importing data from [**CSV**](#glossary) file**
+**Use case: UC 10. Importing data from [CSV](#glossary) file**
 
 **MSS**
 1. User has a data file with resident’s information, and wants to view it in RC4HDB.
@@ -542,7 +542,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 
-**Use case: UC 11. Exporting data to [**CSV**](#glossary) file**
+**Use case: UC 11. Exporting data to [CSV](#glossary) file**
 
 **MSS**
 1. User wants the data in a [**CSV**](#glossary) file.
@@ -568,7 +568,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 #### Technical
 * The system must be able to handle approximately 300 to 500 entries without a noticeable sluggishness in performance for typical usage
-* The system must be flexible and extensible for potential overhaul or changes to the [**RC4**](glossary) housing management system
+* The system must be flexible and extensible for potential overhaul or changes to the [**RC4**](#glossary) housing management system
 
 *{More to be added}*
 
