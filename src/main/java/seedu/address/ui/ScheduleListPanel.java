@@ -34,8 +34,7 @@ public class ScheduleListPanel extends UiPart<Region> {
      */
     public ScheduleListPanel(ObservableList<Person> scheduleList) {
         super(FXML);
-        LocalDate now = LocalDate.now();
-        String currDate = now.format(DateTimeFormatter.ofPattern("d MMM yyyy"));
+        String currDate = LocalDate.now().format(DateTimeFormatter.ofPattern("d MMM yyyy"));
 
         title.setText("Schedule for");
         classDate.setText(currDate);
