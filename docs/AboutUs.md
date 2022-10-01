@@ -50,10 +50,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Zico
 
-<img src="images/Zico.png" width="200px">
+<img src="images/zicotjia.png" width="200px">
 
 [[github](http://github.com/zicotjia)]
-[[portfolio](team/zico.md)]
+[[portfolio](team/zicotjia.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Integration + git expert
