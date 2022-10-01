@@ -303,7 +303,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `TrackO` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: UC01 - Add an order**
+**Use case: UC01 - Adding an order**
 
 **MSS**
 
@@ -319,7 +319,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
     Use case resumes at 1.
 
-**Use case: UC02 - Delete an order**
+**Use case: UC02 - Deleting an order**
 
 **MSS**
 
@@ -358,7 +358,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
       Use case ends.
 
-**Use case: UC04 - Find orders**
+**Use case: UC04 - Finding orders**
 
 **MSS**
 
@@ -374,7 +374,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     Use case ends.
 
-**Use case: UC05 - Add an inventory item**
+**Use case: UC05 - Adding an inventory item**
 
 **MSS**
 
@@ -390,7 +390,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     Use case resumes at 1.
 
-**Use case: UC06 - Delete an inventory item**
+**Use case: UC06 - Deleting an inventory item**
 
 **MSS**
 
@@ -411,7 +411,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC07 - List all inventory items**
+**Use case: UC07 - Listing all inventory items**
 
 **MSS**
 
@@ -427,7 +427,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC08 - Find an inventory item**
+**Use case: UC08 - Finding an inventory item**
 
 **MSS**
 
@@ -443,7 +443,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC09 - Tag an inventory item**
+**Use case: UC09 - Tagging an inventory item**
 
 **MSS**
 
