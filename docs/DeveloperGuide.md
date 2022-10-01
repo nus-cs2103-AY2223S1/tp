@@ -285,434 +285,412 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Healthcare Xpress` and the **Actor** is the `medical administrator`, unless specified otherwise)
 
-**Use case: UC01 - Delete a patient/nurse**
+**Use case: UC01 - List Patients / Nurses**
 
 **MSS**
 
-1.  Medical administrator requests to list patients,nurses or both according to general or specific groups.
-2.  Healthcare Xpress shows a list of patients/nurses that satisfy the group's condition.
-3.  Medical administrator requests to delete a specific patient/nurse in the list.
-4.  Healthcare Xpress deletes the patient/nurse.
+1. Medical administrator requests to list patients,nurses or both with or without specifications.
+2. Healthcare Xpress shows a list of patients/nurses that satisfy the specifications.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
-* 1a. The given input is invalid.
+* 1a. The given inputs/specifications are invalid.
 
     * 1a1. Healthcare Xpress shows an error message.
 
-      Use case restart. 
+      Use case ends.
 
-* 1b. Medical administrator get a specific patient/nurse.
+* 1b. The given specifications are nurses and areas only.
 
-    * 1b1. Healthcare Xpress shows that patient/nurse.
-  
-    * 1b2. Medical administrator requests to delete that patient/nurse.
-  
-      Use case resumes from step 4.
-    
-* 2a. The list is empty.
+    * 1c1. Healthcare Xpress shows an error message.
 
-  Use case ends.
+      Use case ends.
 
-* 3a. The given index is invalid.
+* 1c. There are no patients/nurses that satisfy the specifications.
 
-    * 3a1. Healthcare Xpress shows an error message.
+    * 1b1. Healthcare Xpress shows a blank list.
 
-      Use case resumes at step 2.
-
-* *a. At any time, Medical administrator choose to exit the program.
-  
-  Use case ends. 
-
-
-**Use case: UC02 - Mark a patient**
-
-**MSS**
-
-1.  Medical administrator requests to list patients according to general or specific groups.
-2.  HealthCare Xpress shows a list of patients that satisfy the group's condition.
-3.  Medical administrator requests to mark a specific patient in the list.
-4.  HealthCare Xpress mark the patient as visited.
-
-    Use case ends.
-
-**Extensions**
-* 1a. The given input is invalid.
-
-    * 1a1. Healthcare Xpress shows an error message.
-
-      Use case restarts.
-
-* 1b. Medical Administrator request to list nurses only.
-
-    * 1b1. Healthcare Xpress shows that list of nurses.
-
-    * 1b2. Medical administrator request to mark the nurse.
-
-    * 1b3. Healthcare Xpress shows an error message.
-        
-        Use case ends. 
-  
-* 1c. Medical Administrator request to get a specific patient.
-
-    * 1c1. Healthcare Xpress shows that patient. 
-
-    * 1c2. Medical administrator requests to mark that patient.
-
-      Use case resumes from step 4.   
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. Healthcare Xpress shows an error message.
-
-      Use case resumes at step 2.
-
-* 3b. The given index is not a patient.
-
-    * 3b1. Healthcare Xpress shows an error message.
-
-      Use case resumes at step 2.
+      Use case ends.
 
 * *a. At any time, Medical administrator choose to exit the program.
 
   Use case ends.
 
-**Use case: UC03 - Edit a patient/nurse**
+**Use case: UC02 - Find a Specific Patient / Nurse**
 
 **MSS**
 
-1.  Medical administrator requests to list patients/nurses according to general or specific groups.
-2.  HealthCare Xpress shows a list of patients/nurses that satisfy the group's condition.
-3.  Medical administrator requests to edit a patient/nurse and provides the details to edit.
-4.  HealthCare Xpress edits the specific details of the patient/nurse.
+1. Medical administrator requests to find a specific patient/nurse.
+2. Healthcare Xpress shows that specific patient/nurse.
+
+   Use case ends.
+
+**Extensions**
+* 1a. The given inputs are invalid.
+
+    * 1a1. Healthcare Xpress shows an error message.
+
+      Use case ends.
+
+* 1b. There is not only one patient/nurse that can match the find inputs.
+
+    * 1b1. Healthcare Xpress returns a list of patients/nurses that matched and the first one being the most matched.
+
+      Use case ends.
+
+* *a. At any time, Medical administrator choose to exit the program.
+
+  Use case ends.
+
+**Use case: UC03 - Delete a Patient / Nurse**
+
+**MSS**
+
+1. Medical administrator requests to <u>list patients / nurses (UC01)</u> or <u>find a specific patient / nurse (UC02)</u>.
+2. Medical administrator requests to delete a patient/nurse.
+3. Healthcare Xpress deletes the patient/nurse.
+
+   Use case ends.
+
+**Extensions**
+* 2a. The given id number is invalid.
+
+    * 2a1. Healthcare Xpress shows an error message.
+
+      Use case resumes at step 1.
+
+* *a. At any time, Medical administrator chooses to exit the program.
+
+  Use case ends.
+
+**Use case: UC04 - Mark a Patient**
+
+**MSS**
+
+1.  Medical administrator requests to <u>list patients / nurses (UC01)</u> or <u>find a specific patient / nurse (UC02)</u>.
+2.  Medical administrator requests to mark a specific patient.
+3.  HealthCare Xpress marks the patient as visited.
 
     Use case ends.
 
 **Extensions**
-* 1a. The given input is invalid.
+* 1a. Only nurse/nurses are shown.
 
-    * 1a1. Healthcare Xpress shows an error message.
+    * 1a1. Medical administrator requests to mark a nurse.
 
-      Use case restarts.
+    * 1a2. Healthcare Xpress shows an error message.
 
-* 1b. Medical Administrator request to get a specific patient/nurse.
+      Use case ends.
 
-    * 1b1. Healthcare Xpress shows that patient/nurse.
+* 2a. The given id number is invalid.
 
-    * 1b2. Medical administrator requests to edit that patient/nurse and provides the details to edit.
+    * 2a1. Healthcare Xpress shows an error message.
 
-      Use case resumes from step 4.
+      Use case resumes at step 1.
 
-* 2a. The list is empty.
+* 2b. The given id number is not a patient.
+
+    * 2b1. Healthcare Xpress shows an error message.
+
+      Use case resumes at step 1.
+
+* *a. At any time, Medical administrator chooses to exit the program.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+**Use case: UC05 - Edit a Patient / Nurse**
 
-    * 3a1. Healthcare Xpress shows an error message.
+**MSS**
 
-      Use case resumes at step 2.
+1.  Medical administrator requests to <u>list patients / nurses (UC01)</u> or <u>find a specific patient / nurse (UC02)</u>.
+2.  Medical administrator requests to edit a patient / nurse and provides the details to be edited.
+3.  HealthCare Xpress edits the specific details of the patient / nurse.
 
-* 3b. Medical administrator requests to delete all tags from a patient/nurse.
+    Use case ends.
 
-    * 3b1. Healthcare Xpress deletes all the tags for that patient/nurse.
-  
+**Extensions**
+* 2a. The given id number is invalid.
+
+    * 2a1. Healthcare Xpress shows an error message.
+
+      Use case resumes at step 1.
+
+* 2b. The given details to be edited is invalid / in wrong format.
+
+    * 2b1. Healthcare Xpress shows an error message.
+
+      Use case resumes at step 1.
+
+* *a. At any time, Medical administrator chooses to exit the program.
+
+  Use case ends.
+
+**Use case: UC06 - Add Tag / Tags to a Patient / Nurse**
+
+**MSS**
+
+1.  Medical administrator requests to <u>list patients / nurses (UC01)</u> or <u>find a specific patient / nurse (UC02)</u>.
+2.  Medical administrator requests to add a tag / many tags to a patient / nurse and provides each tag's details.
+3.  HealthCare Xpress adds the tag / tags of specific details to the patient / nurse.
+
+    Use case ends.
+
+**Extensions**
+* 2a. The given id number is invalid.
+
+    * 2a1. Healthcare Xpress shows an error message.
+
+      Use case resumes at step 1.
+
+* 2b. The given details is invalid / in the wrong format.
+
+    * 2b1. Healthcare Xpress shows an error message.
+
+      Use case resumes at step 1.
+
+* *a. At any time, Medical administrator chooses to exit the program.
+
+  Use case ends.
+
+**Use case: UC07 - Delete a Specific Tag / Many Tags from a Patient / Nurse**
+
+**MSS**
+
+1.  Medical administrator requests to <u>list patients / nurses (UC01)</u> or <u>find a specific patient / nurse (UC02)</u>.
+2.  Medical administrator requests to delete a specific tag / many tags from a patient / nurse.
+3.  HealthCare Xpress deletes the tag / tags from the patient / nurse.
+
+    Use case ends.
+
+**Extensions**
+* 2a. The given id number is invalid.
+
+    * 2a1. Healthcare Xpress shows an error message.
+
+      Use case resumes at step 1.
+
+* 2b. The given index of the tag / tags is out of bound.
+
+    * 2b2. Healthcare Xpress shows an error message.
+
+      Use case resumes at step 1.
+
+* *a. At any time, Medical administrator chooses to exit the program.
+
+  Use case ends.
+
+**Use case: UC08 - Add a Home-Visit Date and Time to a Patient**
+
+**MSS**
+
+1.  Medical administrator requests to <u>list patients / nurses (UC01)</u> or <u>find a specific patient / nurse (UC02)</u>.
+2.  Medical administrator requests to add a date and time with or without recurring status to a patient.
+3.  HealthCare Xpress add the date and time for home-visits to the patient.
+
+    Use case ends.
+
+**Extensions**
+* 1a. Only nurse/nurses are shown.
+
+    * 1a1. Medical administrator request to add a date and time to the nurse.
+
+    * 1a2. Healthcare Xpress shows an error message.
+
+      Use case ends.
+
+* 2a. The given id number is invalid.
+
+    * 2a1. Healthcare Xpress shows an error message.
+
+      Use case resumes at step 1.
+
+* 2b. The given id number is not a patient.
+
+    * 2b1. Healthcare Xpress shows an error message.
+
+      Use case resumes at step 1.
+
+* 2c. The given date and time is invalid or in wrong format.
+
+    * 2c1. Healthcare Xpress shows an error message.
+
+      Use case resumes at step 1.
+
+* *a. At any time, Medical administrator chooses to exit the program.
+
+  Use case ends.
+
+**Use case: UC09 - Delete a Home-Visit Date and Time from a Patient**
+
+**MSS**
+
+1.  Medical administrator requests to <u>list patients / nurses (UC01)</u> or <u>find a specific patient / nurse (UC02)</u>.
+2.  Medical administrator requests to delete date and time from a patient.
+3.  HealthCare Xpress deletes the date and time for home-visits from the patient.
+
+    Use case ends.
+
+**Extensions**
+* 1a. Only nurse/nurses are shown.
+
+    * 1a1. Medical administrator request to delete a date and time from the nurse.
+
+    * 1a2. Healthcare Xpress shows an error message.
+
+      Use case ends.
+
+* 2a. The given id number is invalid.
+
+    * 2a1. Healthcare Xpress shows an error message.
+
+      Use case resumes at step 1.
+
+* 2b. The given id number is not a patient.
+
+    * 2b1. Healthcare Xpress shows an error message.
+
+      Use case resumes at step 1.
+
+* *a. At any time, Medical administrator chooses to exit the program.
+
+  Use case ends.
+
+**Use case: UC10 - Update a Home-Visit Date and Time for a Patient**
+
+**MSS**
+
+1.  Medical administrator requests to <u>list patients / nurses (UC01)</u> or <u>find a specific patient / nurse (UC02)</u>.
+2.  Medical administrator requests to update date and time from a patient.
+3.  Healthcare Xpress updates the date and time for home-visits from the patient.
+
+    Use case ends.
+
+**Extensions**
+* 1a. Only nurse/nurses are shown.
+
+    * 1a1. Medical administrator request to update a date and time from the nurse.
+
+    * 1a2. Healthcare Xpress shows an error message.
+
+      Use case ends.
+
+* 2a. The given id number is invalid.
+
+    * 2a1. Healthcare Xpress shows an error message.
+
+      Use case resumes at step 1.
+
+* 2b. The given id number is not a patient.
+
+    * 2b1. Healthcare Xpress shows an error message.
+
+      Use case resumes at step 1.
+
+* 2c. The new date and time given is invalid or in wrong format.
+
+    * 2c1. Healthcare Xpress shows an error message.
+
+      Use case resumes at step 1.
+
+* 2d. The patient has been assigned to a nurse and the new updated date and time crashes with that nurse existing schedule.
+
+    * 2d2. Healthcare Xpress shows an error message.
+
       Use case ends. 
-  
-* *a. At any time, Medical administrator choose to exit the program.
-
-  Use case ends.
-
-**Use case: UC04 - Add a tag to patient/nurse**
-
-**MSS**
-
-1.  Medical administrator requests to list patients/nurses according to general or specific groups.
-2.  HealthCare Xpress shows a list of patients/nurses that satisfy the group's condition.
-3.  Medical administrator requests to add a tag to a patient/nurse and provides the tag's details.
-4.  HealthCare Xpress add the tag of specific details to the patient/nurse.
-
-    Use case ends.
-
-**Extensions**
-* 1a. The given input is invalid.
-
-    * 1a1. Healthcare Xpress shows an error message.
-
-      Use case restarts.
-
-* 1b. Medical Administrator request to get a specific patient/nurse.
-
-    * 1b1. Healthcare Xpress shows that patient/nurse.
-
-    * 1b2. Medical administrator requests to add tag to the patient/nurse and provides the tag's details.
-
-      Use case resumes from step 4.
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. Healthcare Xpress shows an error message.
-
-      Use case resumes at step 2.
 
 * *a. At any time, Medical administrator choose to exit the program.
 
   Use case ends.
 
-**Use case: UC05 - Delete a specific tag from a patient/nurse**
+**Use case: UC11 - Assign a patient to the nurse**
 
 **MSS**
 
-1.  Medical administrator requests to list patients/nurses according to general or specific groups.
-2.  HealthCare Xpress shows a list of patients/nurses that satisfy the group's condition.
-3.  Medical administrator requests to delete a specific tag from a patient/nurse.
-4.  HealthCare Xpress delete the tag of specific details from the patient/nurse.
+1.  Medical administrator requests to <u>list patients / nurses (UC01)</u> or <u>find a specific patient / nurse (UC02)</u>.
+2.  Medical administrator requests to assign a patient to a nurse.
+3.  Healthcare Xpress assigns the patient to the nurse.
 
     Use case ends.
 
 **Extensions**
-* 1a. The given input is invalid.
+* 2a. Any given id number is invalid.
+    
+    * 2a1. Healthcare Xpress shows an error message.                    
 
-    * 1a1. Healthcare Xpress shows an error message.
+      Use case resumes at step 1.
 
-      Use case restarts.
+* 2b. The given id numbers are both patients or nurses. 
 
-* 1b. Medical Administrator request to get a specific patient/nurse.
+    * 2b1. Healthcare Xpress shows an error message.
 
-    * 1b1. Healthcare Xpress shows that patient/nurse.
+      Use case resumes at step 1.
 
-    * 1b2. Medical administrator requests to delete tag of specific details from that patient/nurse.
+* 2c. The given id number's nurse has another home-visit at the same date and time.
 
-      Use case resumes from step 4.
+    * 2c1. Healthcare Xpress shows an error message.
 
-* 2a. The list is empty.
+      Use case resumes at step 1.
+
+* *a. At any time, Medical administrator chooses to exit the program.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+**Use case: UC12 - Remove a patient / all patients from a nurse**
 
-    * 3a1. Healthcare Xpress shows an error message.
+**MSS**
 
-      Use case resumes at step 2.
+1.  Medical administrator requests to <u>list patients / nurses (UC01)</u> or <u>find a specific patient / nurse (UC02)</u>.
+2.  Medical administrator requests to remove a patient or all patients from a nurse.
+3.  Healthcare Xpress removes the patient / all patients from the nurse.
+
+    Use case ends.
+
+**Extensions**
+* 2a. Any given id number is invalid.
+
+    * 2a1. Healthcare Xpress shows an error message.
+
+      Use case resumes at step 1.
+
+* 2b. One given id number is not a nurse.
+
+    * 2b1. Healthcare Xpress shows an error message.
+
+      Use case resumes at step 1. 
+
+* 2c. Two given id numbers is both patients or both nurses.
+
+    * 2c1. Healthcare Xpress shows an error message.
+
+      Use case resumes at step 1.
 
 * *a. At any time, Medical administrator choose to exit the program.
 
   Use case ends.
 
-**Use case: UC06 - Add a home-visit date and time to patient**
+**Use case: UC13 - Swap a patient's nurse**
 
 **MSS**
 
-1.  Medical administrator requests to list patients according to general or specific groups.
-2.  HealthCare Xpress shows a list of patients that satisfy the group's condition.
-3.  Medical administrator requests to add a date and time to a patient.
-4.  HealthCare Xpress add the date and time for home-visits to the patient.
+1.  Medical administrator requests to <u>list patients / nurses (UC01)</u> or <u>find a specific patient / nurse (UC02)</u>.
+2.  Medical administrator requests to swap a patient's nurse. 
+3.  Healthcare Xpress swaps the patient's nurse to a new nurse. 
 
     Use case ends.
 
 **Extensions**
-* 1a. The given input is invalid.
+* 2a. Any given id number is invalid.
 
-    * 1a1. Healthcare Xpress shows an error message.
+    * 2a1. Healthcare Xpress shows an error message.
 
-      Use case restarts.
+      Use case resumes at step 1.
 
-* 1b. Medical Administrator request to get a specific patient.
+* 2b. The three given id numbers do not belong to two nurses and one patient.
 
-    * 1b1. Healthcare Xpress shows that patient.
+    * 2b1. Healthcare Xpress shows an error message.
 
-    * 1b2. Medical administrator requests to add date and time to that patient.
-
-      Use case resumes from step 4.
-  
-* 1c. Medical Administrator request to list nurses only.
-
-    * 1c1. Healthcare Xpress shows that list of nurses.
-
-    * 1c2. Medical administrator request to add a date and time to the nurse.
-
-    * 1c3. Healthcare Xpress shows an error message.
-
-      Use case ends.
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. Healthcare Xpress shows an error message.
-
-      Use case resumes at step 2.
-
-* 3b. The given index is not a patient.
-
-    * 3b1. Healthcare Xpress shows an error message.
-
-      Use case resumes at step 2.
-
-* *a. At any time, Medical administrator choose to exit the program.
-
-  Use case ends.
-
-**Use case: UC07 - Delete a home-visit date and time to patient**
-
-**MSS**
-
-1.  Medical administrator requests to list patients according to general or specific groups.
-2.  HealthCare Xpress shows a list of patients that satisfy the group's condition.
-3.  Medical administrator requests to delete a date and time from a patient.
-4.  HealthCare Xpress delete the date and time for home-visits from the patient.
-
-    Use case ends.
-
-**Extensions**
-* 1a. The given input is invalid.
-
-    * 1a1. Healthcare Xpress shows an error message.
-
-      Use case restarts.
-
-* 1b. Medical Administrator request to get a specific patient.
-
-    * 1b1. Healthcare Xpress shows that patient.
-
-    * 1b2. Medical administrator requests to delete date and time from that patient.
-
-      Use case resumes from step 4.
-
-* 1c. Medical Administrator request to list nurses only.
-
-    * 1c1. Healthcare Xpress shows that list of nurses.
-
-    * 1c2. Medical administrator request to delete a date and time to the nurse.
-
-    * 1c3. Healthcare Xpress shows an error message.
-
-      Use case ends.
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. Healthcare Xpress shows an error message.
-
-      Use case resumes at step 2.
-
-* 3b. The given index is not a patient.
-
-    * 3b1. Healthcare Xpress shows an error message.
-
-      Use case resumes at step 2.
-
-* *a. At any time, Medical administrator choose to exit the program.
-
-  Use case ends.
-
-**Use case: UC08 - Add a patient to the nurse**
-
-**MSS**
-
-1.  Medical administrator requests to list patients and nurses according to general or specific groups.
-2.  HealthCare Xpress shows a list of patients and nurses that satisfy the group's condition.
-3.  Medical administrator requests to add a patient to a nurse.
-4.  HealthCare Xpress add the patient to the nurse.
-
-    Use case ends.
-
-**Extensions**
-* 1a. The given input is invalid.
-
-    * 1a1. Healthcare Xpress shows an error message.
-
-      Use case restarts.
-
-* 1b. Medical Administrator request to get a specific patient/nurse.
-
-    * 1b1. Healthcare Xpress shows that patient/nurse.
-
-    * 1b2. Medical administrator requests to add that patient to a nurse or add a patient to that nurse.
-
-      Use case resumes from step 4.
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. Healthcare Xpress shows an error message.
-
-      Use case resumes at step 2.
-
-* 3b. The given index is both patients or both nurses.
-
-    * 3b1. Healthcare Xpress shows an error message.
-
-      Use case resumes at step 2.
-
-* 3c. The given index's nurse has another home-visit at that date and time.
-
-    * 3c1. Healthcare Xpress shows an error message.
-  
-      Use case resumes at step 2.
-
-* *a. At any time, Medical administrator choose to exit the program.
-
-  Use case ends.
-
-**Use case: UC09 - Remove a patient or patients from a nurse**
-
-**MSS**
-
-1.  Medical administrator requests to list patients and nurses according to general or specific groups.
-2.  HealthCare Xpress shows a list of patients and nurses that satisfy the group's condition.
-3.  Medical administrator requests to remove a patient from the nurse or remove all patients from a nurse.
-4.  HealthCare Xpress remove the patient/patients from the nurse.
-
-    Use case ends.
-
-**Extensions**
-* 1a. The given input is invalid.
-
-    * 1a1. Healthcare Xpress shows an error message.
-
-      Use case restarts.
-
-* 1b. Medical Administrator request to get a specific patient/nurse.
-
-    * 1b1. Healthcare Xpress shows that patient/nurse.
-
-    * 1b2. Medical administrator requests to remove that patient from a nurse or remove a patient from that nurse.
-
-      Use case resumes from step 4.
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. Healthcare Xpress shows an error message.
-
-      Use case resumes at step 2.
-
-* 3b. The given index is both patients or both nurses.
-
-    * 3b1. Healthcare Xpress shows an error message.
-
-      Use case resumes at step 2.
+      Use case resumes at step 1.
 
 * *a. At any time, Medical administrator choose to exit the program.
 
