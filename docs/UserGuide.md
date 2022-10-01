@@ -27,7 +27,7 @@ bobaBot is a **desktop application** for managing customers’ membership detail
 
     * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a customer named `John Doe` to bobaBot.
 
-    * **`delete`**`3` : Deletes the 3rd customer shown in the current list.
+    * **`delete`**`n/Charlie Puth` : Deletes the 3rd customer with name Charlie Puth shown in the current list.
 
     * **`clear`** : Deletes all customers.
 
@@ -65,7 +65,7 @@ bobaBot is a **desktop application** for managing customers’ membership detail
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -104,30 +104,13 @@ Examples:
 
 ### Listing all customers : `list`
 
-Shows a list of all customers in the address book.
+Shows a list of all Customers in bobaBot.
 
 Format: `list`
 
-### Editing a customer : `edit`
-
-Edits an existing customer in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the customer at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the customer’s tags by typing `t/` without
-  specifying any tags after it.
-
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st customer to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd customer to be `Betsy Crower` and clears all existing tags.
-
 ### Locating persons by name: `find`
 
-Finds customers whose names contain any of the given keywords.
+Finds Customers whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -166,7 +149,7 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all Customers from the bobaBot.
 
 Format: `clear`
 
@@ -178,14 +161,14 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+bobaBot data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+bobaBot data are saved as a JSON file `[JAR file location]/data/bobaBot.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, bobaBot will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -203,13 +186,14 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                      |
-|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL [r/REWARD] [t/TAG]…` <br> e.g., ` add n/Betsy Crowe t/friend e/betsycrowe@example.com p/1234567 r/5000 t/gold`                     |
-| **Clear**  | `clear`                                                                                                                                                               |
-| **Delete** | `delete n/NAME` or `delete p/PHONE_NUMBER` or `delete e/EMAIL` <br> e.g., `delete n/Alex Yeoh`, `delete p/87438807`, `delete e/alexyeoh@example.com`                  |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
-| **List**   | `list`                                                                                                                                                                |
-| **Help**   | `help`                                                                                                                                                                |
+| Action     | Format, Examples                                                                                                                                                                             |
+|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL [r/REWARD] [t/TAG]…` <br> e.g., ` add n/Betsy Crowe t/friend e/betsycrowe@example.com p/1234567 r/5000 t/gold`                                            |
+| **Update** | `update n/NAME` or `update p/PHONE_NUMBER` or `update e/EMAIL [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/REWARD] [t/TAG]…​`<br> e.g.,`update n/John Doe p/91234567 e/johndoe@example.com r/1000` |
+| **Delete** | `delete n/NAME` or `delete p/PHONE_NUMBER` or `delete e/EMAIL` <br> e.g., `delete n/Alex Yeoh`, `delete p/87438807`, `delete e/alexyeoh@example.com`                                         |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find alex david`                                                                                                                                   |
+| **Clear**  | `clear`                                                                                                                                                                                      |
+| **List**   | `list`                                                                                                                                                                                       |
+| **Help**   | `help`                                                                                                                                                                                       |
+| **Exit**   | `exit`                                                                                                                                                                                       |
 

@@ -274,7 +274,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |----------|---------|--------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
 | `* * *`  | cashier | quickly search for customers’ membership details within the system             | verify their rewards/points                                                      |
 | `* * *`  | cashier | search for customer details through various inputs (email, phone number, name) | retrieve their information flexibly                                              |
-| `* * *`  | cashier | update customer/s membership details (vouchers, points, rewards)               | remove the voucher/points once they claim them                                   |
+| `* * *`  | cashier | update customers' membership details (vouchers, points, rewards)               | remove the voucher/points once they claim them                                   |
 | `* * *`  | cashier | add new members to my list                                                     | apply for membership for customers                                               |
 | `* * *`  | cashier | remove members from the list                                                   | make sure membership details are correct for customers who are no longer members |
 
@@ -408,8 +408,17 @@ Guarantee: bobaBot will be exited.
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 Customers without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 cashiers at bubble tea shops without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  The system should respond fast within 0.5 second, so as to speed up the ordering at counters
+5.  bobaBot should be able to work on any computers, either 32-bit or 64-bit, slow or fast, as the computers at counters may be old and slow
+6.  The database should be able to handle frequent changes of data efficiently
+7.  bobaBot should be usable by workers who are not familiar with command lines, and easy to learn
+8.  The management of customers' data should follow PDPA
+9.  Should work when some data is missing or inaccurate
+10. The source code should be open source
+11. The source code and project management should follow the requirements and principles in CS2103T
+12. Should handle large amount of customers' data, like 10,000 customers
 
 *{More to be added}*
 
@@ -417,6 +426,9 @@ Guarantee: bobaBot will be exited.
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **User**: The staff of the boba shop
+* **Customer**: The customer of the boba shop
+* **Customer's detail**: Any information in the system related to the customer
 
 --------------------------------------------------------------------------------------------------------------------
 
