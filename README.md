@@ -2,18 +2,16 @@
 
 ![Ui](docs/images/Ui.png)
 
-#LinkedOn
-* This is **a project for Software Engineering (SE) students**.<br>
-
+#EZLead
+* This is **a sample project for Software Engineering (SE) students**.<br>
   Example usages:
-  * As a team lead, you can create teams and add members into the team. 
-  * As a team lead, you can add tasks into each team and set deadlines for the task.
-
-* The project simulates an ongoing software project for a desktop application used for managing teams in a work place.
+  * As a tech lead, you can edit the team information and team members in the team
+  * As a tech lead, you can assign tasks to each team. 
+* The project simulates an ongoing software project for a desktop application used for managing teams in a work place by tech leads.
   * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
   * It comes with a **reasonable level of user and developer documentation**.
-* It is named `LinkedOn` because it lets the team lead easily link up tasks to a team and manage the tasks easily.
-* For the detailed documentation of this project, see the **[LinkedOn Product Website](https://ay2223s1-cs2103t-w09-3.github.io/tp/)**.
+* It is named `EZLead` because it makes the life of tech leads easier to manage the many tasks within the company.
+* For the detailed documentation of this project, see the **[EZLead Product Website](https://ay2223s1-cs2103t-w09-3.github.io/tp/)**.
 
 ## Adapted from AddressBook-Level3
 * For the detailed documentation of this project, see the [Address Book Product Website](https://se-education.org/addressbook-level3)
