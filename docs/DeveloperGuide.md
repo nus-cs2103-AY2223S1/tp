@@ -309,7 +309,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC2 List all meetings**
+**Use case: UC2 View a client**
+
+**MSS**
+
+1. User selects client to view.
+2. System displays the client information.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User selects non-existent client.
+
+    * 1a1. System shows an error message.
+
+      Use case ends.
+
+**Use case: UC3 List all meetings**
 
 **MSS**
 
@@ -318,7 +335,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Use case: UC3 Delete a meeting**
+**Use case: UC4 Delete a meeting**
 
 **MSS**
 
