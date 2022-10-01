@@ -4,9 +4,11 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.commission.Commission;
 import seedu.address.model.commission.UniqueCommissionList;
 import seedu.address.model.tag.Tag;
 
@@ -39,6 +41,11 @@ public class Person {
     }
 
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, UniqueCommissionList commissions) {
+        this(name, phone, email, address, tags);
+        this.commissions.setCommissions(commissions);
+    }
+
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, List<Commission> commissions) {
         this(name, phone, email, address, tags);
         this.commissions.setCommissions(commissions);
     }
