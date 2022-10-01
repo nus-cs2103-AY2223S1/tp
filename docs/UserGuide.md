@@ -74,7 +74,7 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds a person to the app.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
@@ -89,32 +89,21 @@ Examples:
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all persons in the app.
 
 Format: `list`
 
 ### Editing a person : `edit`
 
-Edits an existing person in the address book.
+Edits an existing person in the app.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-<<<<<<< Updated upstream
-
-- Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-- At least one of the optional fields must be provided.
-- Existing values will be updated to the input values.
-- When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-- You can remove all the person’s tags by typing `t/` without
-  specifying any tags after it.
-  =======
-
-* Edits the surveyee at the specified INDEX. The index refers to the index number of the surveyee you wish to edit, as shown in the display list. The index must be a positive integer.
-* At least one of the optional fields has to be provided.
-* Existing value in specified field will be updated to the new value.
-* When editing name of surveys, the existing surveys of the person will be removed i.e adding of surveys is not cumulative.
-* You can remove all the person’s surveys by typing `s/` without specifying any surveys after it.
-  > > > > > > > Stashed changes
+- Edits the surveyee at the specified INDEX. The index refers to the index number of the surveyee you wish to edit, as shown in the display list. The index must be a **positive integer**.
+- At least one of the optional fields has to be provided.
+- Existing value in specified field will be updated to the new value.
+- When editing name of surveys, the existing surveys of the person will be removed i.e adding of surveys is not cumulative.
+- You can remove all the person’s surveys by typing `s/` without specifying any surveys after it.
 
 Examples:
 
@@ -155,15 +144,13 @@ Format: delete INDEX, delete [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER]
 
 Example:
 
-- `list` followed by `delete 2` deletes the 2nd person in the address book.
+- `list` followed by `delete 2` deletes the 2nd person in the app.
 - `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 - `delete ra/Chinese re/christian` Deletes all surveyees that are Chinese and Christian.
 
-# <<<<<<< Updated upstream
-
 ### Duplicate a person : `duplicate`
 
-Clones a specified person from the address book.
+Clones a specified person in the app.
 
 Format: `duplicate INDEX`
 
@@ -193,11 +180,9 @@ view g/female ra/chinese re/christian
 > Index: 19 Jenette Doe 81234567 jenette_doe@example.com, …
 ```
 
-> > > > > > > Stashed changes
-
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from the app.
 
 Format: `clear`
 
@@ -213,7 +198,7 @@ Survin are saved in the hard disk automatically after any command that changes t
 
 ### Editing the data file
 
-Survin data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+Survin data are saved as a JSON file `[JAR file location]/data/survin.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, Survin will discard all data and start with an empty data file at the next run.
