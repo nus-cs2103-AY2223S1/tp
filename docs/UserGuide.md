@@ -2,11 +2,19 @@
 layout: page
 title: User Guide
 ---
+#uNivUSal
+uNivUSal is a desktop app for managing contacts catered to CS2103T students, TAs, and professors, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, uNivUSal can get your contact management tasks done faster than traditional GUI apps.
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+* Quick start
+* Features
+   * Viewing help : help
+   * Adding a person: add
+   * Listing all persons : list
+   * Editing a person : edit
+   * Deleting a person : delete
+   * Clearing all entries : clear
+* Command summary
 
-* Table of Contents
-{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -24,7 +32,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`list`** : Lists all CS2103T personnels.
 
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
@@ -66,7 +74,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining the basic features of the app and also provides a link to the website.
 
 ![help message](images/helpMessage.png)
 
@@ -89,7 +97,7 @@ Examples:
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all persons in the CS2103T module.
 
 Format: `list`
 
@@ -107,8 +115,8 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
   specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 p/91234567 e/janedoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `janedoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and **clears** all existing tags.
 
 ### Adding an address : `address`
 
@@ -160,6 +168,9 @@ Examples:
 Clears all entries from the address book.
 
 Format: `clear`
+* Deletes every person in the address book.
+* Only a blank address book will remain.
+
 
 ### Exiting the program : `exit`
 
@@ -189,6 +200,8 @@ _Details coming soon ..._
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+
+_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
