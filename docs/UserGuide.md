@@ -50,7 +50,8 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 Add a new team member to the user’s team. Will throw an error if the member already exists in the team.
 
-Format: `add member “MEMBER_NAME”`
+Format: 
+* `add member “MEMBER_NAME”`
 
 Examples:
 * `add member egg`
@@ -89,7 +90,7 @@ Examples:
 
 ### Assign task to team member: `assign task`
 
-Assign an existing task to a team member in the user’s team. Will throw an error if either the team member or the task is not found in the user’s team.
+Assign an existing task to a team member in the user’s team. Will display an error message if either the team member or the task is not found in the user’s team.
 
 Format: `assign task “TASK_NAME” “TEAM_MEMBER”`
 
@@ -99,7 +100,7 @@ Examples:
 
 ### Delete task from team : `delete task`
 
-Delete an existing task from the team. Will throw an error if the task is not found in the user’s team.
+Delete an existing task from the team. Will display an error message if the task is not found in the user’s team.
 
 Format: `delete task “TASK_NAME”`
 
