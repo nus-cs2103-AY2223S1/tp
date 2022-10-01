@@ -22,7 +22,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/johndoe.png" width="200px">
 
 [[github](https://github.com/wxy1203)]
-[[portfolio](team/johndoe.md)]
+
 
 * Role: Team Lead
 * Responsibilities: UI
