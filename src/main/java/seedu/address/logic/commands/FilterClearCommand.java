@@ -34,10 +34,14 @@ public class FilterClearCommand extends FilterCommand {
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
 
-
+    /**
+     * Clear filters in {@code model}. Will clear all filters if {@code predicate} is {@code null}.
+     *
+     * @params model Model which the filter will be updated.
+     */
     private void clearSpecifiedFilters(Model model) {
         if (predicate == null) {
-            model.removeFilterFromFilteredPersonList(null);
+            model.clearFiltersInFilteredPersonList();
             return;
         }
         if (predicate.getNamePredicate() != null) {

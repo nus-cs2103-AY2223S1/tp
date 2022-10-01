@@ -86,8 +86,12 @@ public interface Model {
     void addNewFilterToFilteredPersonList(Predicate<Person> predicate);
 
     /**
+     * Clears the set of filters in the fitlered person list.
+     */
+    void clearFiltersInFilteredPersonList();
+
+    /**
      * Removes the filter given by {@code predicate} from the set of filters for the fitlered person list.
-     * Clears the set of filters if {@code predicate} is {@code null}.
      */
     void removeFilterFromFilteredPersonList(Predicate<Person> predicate);
 }

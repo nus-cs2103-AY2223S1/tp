@@ -137,18 +137,21 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void clearFiltersInFilteredPersonList() {
+        personPredicates.clear();
+        updateFilteredPersonList();
+    }
+
+    @Override
     public void removeFilterFromFilteredPersonList(Predicate<Person> predicate) {
-        if (predicate == null) {
-            personPredicates.clear();
-        } else {
-            personPredicates.remove(predicate);
-        }
+        requireNonNull(predicate);
+        personPredicates.remove(predicate);
         updateFilteredPersonList();
     }
 
     private void updateFilteredPersonList() {
         Predicate<Person> predicate =
-                personPredicates.stream().reduce(notused -> true, (pred1, pred2) -> pred1.and(pred2));
+                personPredicates.stream().reduce(PREDICATE_SHOW_ALL_PERSONS, (pred1, pred2) -> pred1.and(pred2));
         filteredPersons.setPredicate(predicate);
     }
 
