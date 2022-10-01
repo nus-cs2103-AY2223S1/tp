@@ -3,7 +3,9 @@ layout: page
 title: User Guide
 ---
 
-HackAssist is a **desktop app for helping hackathon team leaders manage project tasks and team formation, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, HackAssist can get your task management done faster than traditional GUI apps.
+HackAssist is a desktop app for helping hackathon team leaders manage project tasks and team formation more easily.
+
+It is optimized for use via a **Command Line Interface** (CLI) while still having the benefits of a **Graphical User Interface** (GUI). If you can type fast, HackAssist can get your task management done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -14,7 +16,7 @@ HackAssist is a **desktop app for helping hackathon team leaders manage project 
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `HackASsist.jar` from [here](https://github.com/AY2223S1-CS2103T-F12-2/tp/releases).
+1. Download the latest `HackAssist.jar` from [here](https://github.com/AY2223S1-CS2103T-F12-2/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your HackAssist.
 
@@ -26,11 +28,11 @@ HackAssist is a **desktop app for helping hackathon team leaders manage project 
 
    * **`view Tasks`** : Lists all tasks in tasklist.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add task coding assignment`** : Adds a task `coding assignment` to the task list.
 
    * **`delete task`**`3` : Deletes the 3rd task in the task list.
 
-   * **`clear`** : Deletes all contacts.
+   * **`help`** : Displays help text.
 
    * **`exit`** : Exits the app.
 
