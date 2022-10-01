@@ -26,6 +26,9 @@ public class GetIdCommandParser implements Parser<GetIdCommand> {
         }
 
         String name = argMultimap.getValue(PREFIX_NAME).get().trim();
+        if (name.isBlank()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, GetIdCommand.MESSAGE_USAGE));
+        }
 
         return new GetIdCommand(name);
     }

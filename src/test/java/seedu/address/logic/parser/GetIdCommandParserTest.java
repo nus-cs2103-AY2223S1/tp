@@ -15,6 +15,7 @@ public class GetIdCommandParserTest {
     @Test
     public void parse_invalidArgs_throwsMissingNameException() {
         assertParseFailure(parser, " ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, GetIdCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "n/ ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, GetIdCommand.MESSAGE_USAGE));
     }
 
     @Test
