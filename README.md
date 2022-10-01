@@ -13,9 +13,9 @@
 * It is named `EZLead` because it makes the life of tech leads easier to manage the many tasks within the company.
 * For the detailed documentation of this project, see the **[EZLead Product Website](https://ay2223s1-cs2103t-w09-3.github.io/tp/)**.
 
-### Adapted from AddressBook-Level
-* For the detailed documentation of AddressBook project, see the [Address Book Product Website](https://se-education.org/addressbook-level3)
-* AddressBook project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+## Adapted from AddressBook-Level3
+* For the detailed documentation of this project, see the [Address Book Product Website](https://se-education.org/addressbook-level3)
+* This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
 
 ### Site Map
 * [About Us](https://github.com/AY2223S1-CS2103T-W09-3/tp/blob/master/docs/AboutUs.md)

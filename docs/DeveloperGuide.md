@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* EZLead is evolved from AddressBook Level 3, a desktop app that manage contacts through CLI.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -255,43 +255,44 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**: Employees and Employers working in team-based projects
+**Target user profile**: Tech Lead managing multiple teams in a software company and designating different tasks to teams
 
 * Experienced in using applications
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of teams
 * prefer desktop apps over other types
 * can type fast
-* has a need to manage a significant  number of teams
+* has a need to distribute and track a significant number of tasks 
 
 
-**Value proposition**: manage and find information of teams easily and quickly given the large amount of teams that employees are in
+**Value proposition**: Create teams and distribute members amongst teams. Assign and track tasks to teams.
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                                  | So that I can…​                                                        |
-|----------|--------------------------------------------|-----------------------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions                        | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person                              |                                                                        |
-| `* * *`  | user                                       | delete a person                               | remove entries that I no longer need                                   |
-| `* * *`  | employer                                   | add a team                                    |                                                                        |
-| `* * *`  | employer                                   | delete a team                                 | remove teams that I no longer need                                     |
-| `* * *`  | employer                                   | add team members into a team                  | update the team information                                            |
-| `* * *`  | employer                                   | remove team members from a team               | remove a user from a team                                              |
-| `* * *`  | employer                                   | change the name of the team                   | update team information                                                |
-| `* * *`  | employee                                   | see what teams I am in                        |                                                                        |
-| `* * *`  | employee                                   | see my team members in a specific team        | know who is in my team                                                 |
-| `* * *`  | employee                                   | search the contact information of my teammate | contact them                                                           |
-| `* * *`  | user                                       | find a person by name                         | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details                  | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name                          | locate a person easily                                                 |
+| Priority | As a …​  | I can  …​                                          | So that I can…​                                         |
+|----------|----------|----------------------------------------------------|---------------------------------------------------------|
+| `* * *`  | user     | see my basic information (EPIC)                    |                                                         |
+| `* * *`  | user     | see my name                                        |                                                         |
+| `* * *`  | user     | see my email                                       |                                                         |
+| `* * *`  | user     | see my contact number                              |                                                         |
+| `* *  `  | user     | have different role as employer or employee        | have different features and privilege                   |
+| `* * *`  | employer | change the team structure                          | manage the teams (EPIC)                                 |
+| `* * *`  | employer | make a new team                                    | delegate work efficiently                               |
+| `* * *`  | employer | change the name of the team                        | the name of the team is always up-to-date               |
+| `* * *`  | employer | delete a team                                      | remove teams after their project is done                |
+| `* * *`  | employer | add members to a team                              | update the team when a new member joins                 |
+| `* * *`  | employer | remove members from a team                         | update when an employee leaves the department/company   |
+| `* * `   | user     | search for information about employees in the team | know which teams I am currently in                      |
+| `* * *`  | user     | view the teams I am in                             | minimize chance of someone else seeing them by accident |
+| `*`      | user     | retrieve my colleague’s email                      | easily contact them                                     |
+| `* * *`  | user     | see all the members in a team                      | know who to contact or work with                        |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `LinkUp` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `EZLead` and the **Actor** is the `Tech Lead`, unless specified otherwise)
 
 **Use case: First time initiation / No account records**
 
@@ -324,14 +325,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Adding account into a team**
+**Use case: Adding member into a team**
 
 **MSS**
 
 1. User requests to list all team
-2. LinkUp show a list of teams
-3. User requests to add an account into the teams through username
-4. LinkUp add the account into the team
+2. EZLead show a list of teams
+3. User requests to add a member into the teams through username
+4. EZLead add the member into the team
 
 **Extensions**
 
@@ -341,7 +342,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given username does not exist.
 
-    * 3a1. LinkUp shows an error message.
+    * 3a1. EZlead shows an error message.
 
       Use case resumes at step 2.
 
@@ -350,9 +351,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list all users
-2.  LinkUp shows a list of persons
+2.  EZLead shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  LinkUp deletes the person
+4.  EZLead deletes the person
 
     Use case ends.
 
@@ -373,15 +374,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User specify the name of the team
-2. LinkUp create a team with specified name with User as leader
+2. EZLead create a team with specified name with User as leader
 3. User specify account username to add into the team
-4. LinkUp add the accounts into the team
+4. EZLead add the accounts into the team
 
 **Extension**
 
 * 1a. Another team with the same name already exist.
 
-     * 1a1. LinkUp shows an error message
+     * 1a1. EZLead shows an error message
 
       Use case resumes at step 1.
 
@@ -390,9 +391,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 500 team members without a noticeable sluggishness in performance for typical usage.
+3. Should be able to hold up to 1000 tasks without a noticeable sluggishness in performance for typical usage.
+4. Should be able to hold up to 100 teams without a noticeable sluggishness in performance for typical usage.
+5. Each operation should be completed within 0.5second so that the team lead can add tasks quickly
 
 *{More to be added}*
 
