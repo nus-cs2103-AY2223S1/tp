@@ -251,12 +251,20 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+
+## Command summary
+
+| Action                     | Format                                                               | Example                                                                                                                                                                     |
+|----------------------------|----------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| add a person               | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ [m/MODULE]…​` | `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` <br> `add n/Adam Doink t/TA e/ad4md01nk@example.com a/Kent Ridge Hall p/1234567 m/CS1101S` |
+| edit a person              | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`      | `edit 1 p/91234567 e/johndoe@example.com` <br> `edit 2 n/Betsy Crower t/`                                                                                                   |
+| detele a person            | `delete INDEX`                                                       | `delete 1`                                                                                                                                                                  |
+| clear                      | `clear`                                                              | `clear`                                                                                                                                                                     |
+| list modules               | `list MODULE_NAME [MORE_MODULE_NAMES]`                               | `list CS1101S` <br>`list CS1101S CS1231S`                                                                                                                                   |
+| list all modules           | `mlist`                                                              | `mlist`                                                                                                                                                                     |
+| view the teaching schedule | `view schedule [-w WEEKDAY] [-m MODULE_CODE] [-d DATE] [-h] [-v]`    | `view schedule -w Monday -m CS2103T` <br>`view schedule -d 2022-09-12` <br> `view schedule -h`                                                                              |
+| find a person              | `find KEYWORD [MORE_KEYWORD]`                                        | `find Adam Do`                                                                                                                                                              |
+| help                       | `help`                                                               | `help`                                                                                                                                                                      | 
+| exit                       | `exit`                                                               | `exit`                                                                                                                                                                      | 
+
+
