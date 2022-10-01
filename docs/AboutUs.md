@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Low Weimin, Ian
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/castryl.png" width="200px">
 
 [[github](https://github.com/castryl)]
 [[portfolio](team/castryl.md)]
