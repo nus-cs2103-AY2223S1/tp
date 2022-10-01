@@ -11,6 +11,8 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.Label?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="FoodWhere" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
   <icons>
@@ -47,22 +49,55 @@
         </StackPane>
 
         <HBox prefWidth="400" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
-
           <StackPane minWidth="300" styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
-            <VBox fx:id="personList" minWidth="300.0" prefWidth="300.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+            <VBox fx:id="stallList" minWidth="300.0" prefWidth="300.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
               <padding>
                 <Insets bottom="10" left="10" right="10" top="10" />
               </padding>
+              <HBox spacing="10.0" styleClass="label-list-panel-background" alignment="CENTER">
+                <children>
+                  <ImageView pickOnBounds="true" preserveRatio="true" fitHeight="25.0" fitWidth="25.0">
+                    <image>
+                      <Image url="@../images/stall.png" />
+                    </image>
+                  </ImageView>
+                  <Label text="Stalls" textAlignment="CENTER" textFill="WHITE" styleClass="label-list-panel">
+                    <padding>
+                      <Insets bottom="5.0" top="5.0" />
+                    </padding>
+                  </Label>
+                </children>
+                <VBox.margin>
+                  <Insets bottom="10.0" />
+                </VBox.margin>
+              </HBox>
               <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
             </VBox>
           </StackPane>
 
           <StackPane minWidth="300" styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
-            <VBox fx:id="reviewList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+            <VBox fx:id="reviewList" minWidth="300.0" prefWidth="300.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
               <padding>
-                <Insets top="10" right="10" bottom="10" left="10" />
+                <Insets bottom="10" left="10" right="10" top="10" />
               </padding>
-              <StackPane fx:id="reviewListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+              <HBox spacing="10.0" styleClass="label-list-panel-background" alignment="CENTER">
+                <children>
+                  <ImageView pickOnBounds="true" preserveRatio="true" fitHeight="25.0" fitWidth="25.0">
+                    <image>
+                      <Image url="@../images/review.png" />
+                    </image>
+                  </ImageView>
+                  <Label text="Reviews" textAlignment="CENTER" textFill="WHITE" styleClass="label-list-panel">
+                    <padding>
+                      <Insets bottom="5.0" top="5.0" />
+                    </padding>
+                  </Label>
+                </children>
+                <VBox.margin>
+                  <Insets bottom="10.0" />
+                </VBox.margin>
+              </HBox>
+              <StackPane fx:id="reviewListPanelPlaceholder" VBox.vgrow="ALWAYS" />
             </VBox>
           </StackPane>
         </HBox>

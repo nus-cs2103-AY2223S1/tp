@@ -24,6 +24,17 @@
     -fx-opacity: 1;
 }
 
+.label-list-panel-background {
+    -fx-background-color: #273549;
+}
+
+.label-list-panel {
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: white;
+    -fx-opacity: 1;
+}
+
 .text-field {
     -fx-font-size: 12pt;
     -fx-font-family: "Segoe UI Semibold";
