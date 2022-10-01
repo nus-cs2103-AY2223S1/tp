@@ -347,7 +347,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. Medical administrator requests to <u>list patients / nurses (UC01)</u> or <u>find a specific patient / nurse (UC02)</u>.
+1. Medical administrator requests to <ins>list patients / nurses (UC01)</ins> or <ins>find a specific patient / nurse (UC02)</ins>.
 2. Medical administrator requests to delete a patient/nurse.
 3. Healthcare Xpress deletes the patient/nurse.
 
@@ -368,7 +368,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  Medical administrator requests to <u>list patients / nurses (UC01)</u> or <u>find a specific patient / nurse (UC02)</u>.
+1.  Medical administrator requests to <ins>list patients / nurses (UC01)</ins> or <ins>find a specific patient / nurse (UC02)</ins>.
 2.  Medical administrator requests to mark a specific patient.
 3.  Healthcare Xpress marks the patient as visited.
 
@@ -403,7 +403,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  Medical administrator requests to <u>list patients / nurses (UC01)</u> or <u>find a specific patient / nurse (UC02)</u>.
+1.  Medical administrator requests to <ins>list patients / nurses (UC01)</ins> or <ins>find a specific patient / nurse (UC02)</ins>.
 2.  Medical administrator requests to edit a patient / nurse and provides the details to be edited.
 3.  Healthcare Xpress edits the specific details of the patient / nurse.
 
@@ -430,7 +430,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  Medical administrator requests to <u>list patients / nurses (UC01)</u> or <u>find a specific patient / nurse (UC02)</u>.
+1.  Medical administrator requests to <ins>list patients / nurses (UC01)</ins> or <ins>find a specific patient / nurse (UC02)</ins>.
 2.  Medical administrator requests to add a tag / many tags to a patient / nurse and provides each tag's details.
 3.  Healthcare Xpress adds the tag / tags of specific details to the patient / nurse.
 
@@ -457,7 +457,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  Medical administrator requests to <u>list patients / nurses (UC01)</u> or <u>find a specific patient / nurse (UC02)</u>.
+1.  Medical administrator requests to <ins>list patients / nurses (UC01)</ins> or <ins>find a specific patient / nurse (UC02)</ins>.
 2.  Medical administrator requests to delete a specific tag / many tags from a patient / nurse.
 3.  Healthcare Xpress deletes the tag / tags from the patient / nurse.
 
@@ -484,7 +484,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  Medical administrator requests to <u>list patients / nurses (UC01)</u> or <u>find a specific patient / nurse (UC02)</u>.
+1.  Medical administrator requests to <ins>list patients / nurses (UC01)</ins> or <ins>find a specific patient / nurse (UC02)</ins>.
 2.  Medical administrator requests to add a date and time with or without recurring status to a patient.
 3.  Healthcare Xpress add the date and time for home-visits to the patient.
 
@@ -525,7 +525,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  Medical administrator requests to <u>list patients / nurses (UC01)</u> or <u>find a specific patient / nurse (UC02)</u>.
+1.  Medical administrator requests to <ins>list patients / nurses (UC01)</ins> or <ins>find a specific patient / nurse (UC02)</ins>.
 2.  Medical administrator requests to delete date and time from a patient.
 3.  Healthcare Xpress deletes the date and time for home-visits from the patient.
 
@@ -560,7 +560,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  Medical administrator requests to <u>list patients / nurses (UC01)</u> or <u>find a specific patient / nurse (UC02)</u>.
+1.  Medical administrator requests to <ins>list patients / nurses (UC01)</ins> or <ins>find a specific patient / nurse (UC02)</ins>.
 2.  Medical administrator requests to update date and time from a patient.
 3.  Healthcare Xpress updates the date and time for home-visits from the patient.
 
@@ -607,7 +607,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  Medical administrator requests to <u>list patients / nurses (UC01)</u> or <u>find a specific patient / nurse (UC02)</u>.
+1.  Medical administrator requests to <ins>list patients / nurses (UC01)</ins> or <ins>find a specific patient / nurse (UC02)</ins>.
 2.  Medical administrator requests to assign a patient to a nurse.
 3.  Healthcare Xpress assigns the patient to the nurse.
 
@@ -640,7 +640,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  Medical administrator requests to <u>list patients / nurses (UC01)</u> or <u>find a specific patient / nurse (UC02)</u>.
+1.  Medical administrator requests to <ins>list patients / nurses (UC01)</ins> or <ins>find a specific patient / nurse (UC02)</ins>.
 2.  Medical administrator requests to remove a patient or all patients from a nurse.
 3.  Healthcare Xpress removes the patient / all patients from the nurse.
 
@@ -673,7 +673,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  Medical administrator requests to <u>list patients / nurses (UC01)</u> or <u>find a specific patient / nurse (UC02)</u>.
+1.  Medical administrator requests to <ins>list patients / nurses (UC01)</ins> or <ins>find a specific patient / nurse (UC02)</ins>.
 2.  Medical administrator requests to swap a patient's nurse. 
 3.  Healthcare Xpress swaps the patient's nurse to a new nurse. 
 
