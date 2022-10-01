@@ -115,8 +115,8 @@ Format: `deletePatient INDEX`
 * The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd patient in the patient book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `deletePatient 2` deletes the 2nd patient in the patient book.
+* `find Betsy` followed by `deletePatient 1` deletes the 1st person in the results of the `find` command.
 
 ### Adding a task: `addTask`
 
@@ -160,7 +160,7 @@ Format: `deleteTask PATIENT_INDEX TASK_INDEX`
 
 Examples:
 * `list` followed by `deleteTask 2 3` deletes the 3rd task of the 2nd person in the patient list.
-* `find Betsy` followed by `deleteTask 1 2` deletes the 2nd task of the 1st person in results of the find command.
+* `find Betsy` followed by `deleteTask 1 2` deletes the 2nd task of the 1st person in results of the `find` command.
 
 ### Listing all tasks: `listTask`
 
