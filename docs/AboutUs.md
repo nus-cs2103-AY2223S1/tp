@@ -38,15 +38,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Amadeus Chi Song yi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ama-chi.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/ama-chi)]
+[[portfolio](team/ama-chi.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: _To be determined_
 
 ### James Doe
 
