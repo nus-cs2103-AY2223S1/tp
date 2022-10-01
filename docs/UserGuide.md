@@ -14,9 +14,9 @@ ProfNUS is a **desktop application which helps SOC Professors who have many modu
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `ProfNUS.jar` from [here](https://github.com/AY2223S1-CS2103T-W11-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your ProfNUS application.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -26,7 +26,7 @@ ProfNUS is a **desktop application which helps SOC Professors who have many modu
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the ProfNUS application.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
@@ -68,14 +68,12 @@ ProfNUS is a **desktop application which helps SOC Professors who have many modu
 
 Shows a message explaning how to access the help page.
 
-![help message](images/helpMessage.png)
-
 Format: `help`
 
 
 ### Adding a person: `addstu`
 
-Adds a person to the address book.
+Adds a person to the module.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ [m/MODULE]…​`
 
@@ -107,7 +105,7 @@ Examples:
 
 ### Viewing list of modules : `mlist`
 
-Shows a list of all modules in the address book.
+Shows a list of all modules in the ProfNUS application.
 
 ![mlist](images/userguide/mlist.png)
 
@@ -116,7 +114,7 @@ Format: `mlist`
 
 ### Editing a person : `edit`
 
-Edits an existing person in the address book.
+Edits an existing person in the ProfNUS application.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
@@ -151,7 +149,7 @@ Examples:
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified person from the ProfNUS application.
 
 Format: `delete INDEX`
 
@@ -160,12 +158,12 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
+* `list` followed by `delete 2` deletes the 2nd person in the list of students.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from the ProfNUS application.
 
 Format: `clear`
 
@@ -177,13 +175,13 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+ProfNUS data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Viewing your teaching schedule
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+ProfNUS data are saved as a JSON file `[JAR file location]/data/profnus.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, ProfNUS will discard all data and start with an empty data file at the next run.
 </div>
 ### View your teaching schedule: `view schedule`
 
@@ -247,7 +245,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ProfNUS home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
