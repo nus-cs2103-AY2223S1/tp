@@ -1,4 +1,4 @@
-package seedu.address.commons.core;
+package seedu.address.logic.commands.commons.core;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;

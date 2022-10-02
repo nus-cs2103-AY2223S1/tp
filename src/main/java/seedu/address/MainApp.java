@@ -7,12 +7,12 @@ import java.util.logging.Logger;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import seedu.address.commons.core.Config;
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.core.Version;
-import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.commons.util.ConfigUtil;
-import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.commons.core.Config;
+import seedu.address.logic.commands.commons.core.LogsCenter;
+import seedu.address.logic.commands.commons.core.Version;
+import seedu.address.logic.commands.commons.exceptions.DataConversionException;
+import seedu.address.logic.commands.commons.util.ConfigUtil;
+import seedu.address.logic.commands.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
 import seedu.address.model.AddressBook;
