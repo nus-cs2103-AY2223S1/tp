@@ -1,6 +1,6 @@
 
 # checkUp
-is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, checkUp can get your contact management tasks done faster than traditional GUI apps.
+is a **desktop app for managing patient details, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, checkUp can get your patient management tasks done faster than traditional GUI apps.
 
 
 
@@ -9,7 +9,6 @@ is a **desktop app for managing contacts, optimized for use via a Command Line I
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
-
 
 1. Download the latest `checkUp.jar` from [here](https://github.com/AY2223S1-CS2103T-W16-3/tp/releases).
 
@@ -57,9 +56,9 @@ is a **desktop app for managing contacts, optimized for use via a Command Line I
 
 </div>
 
-### Adding a person: `add`
+### Adding a patient: `add`
 
-Adds a person to the address book.
+Adds a patient to checkUp.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
@@ -72,10 +71,10 @@ Examples:
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
 
-### Locating persons: `get`
+### Locating patients: `get`
 #### by name: `/n`
 
-Finds persons whose names contain any of the given keywords.
+Finds patients whose names contain any of the given keywords.
 
 Format: `get /n NAME`
 
@@ -83,7 +82,7 @@ Format: `get /n NAME`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Patients matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
@@ -98,7 +97,7 @@ Format: `get /nok NEXT-OF-KIN_NAME`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* The person's contact matching the keyword will be returned.
+* The patient's contact matching the keyword will be returned.
   e.g. `Hans Bo` will return `12345678`
   
 #### by hospital wing: `/hw`
@@ -144,6 +143,16 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+### Obtaining total patient count: `count`
+
+Finds total number of patients.
+
+Format: `count`
+
+* A count of all existing patients in the hospital will be returned.
+* The count will be a non-negative integer (>= 0).  
+  eg. `count` returns `452` when there are 452 patients noted within the hospital.
 
 ### Clearing all entries : `clear`
 
@@ -193,5 +202,6 @@ _Details coming soon ..._
 | **Get /hw**  | `get /hw HOSPITAL_WING`<br> e.g., `get /hw South`                                                                                                                     |
 | **Get /fn**  | `get /fn FLOOR_NUMBER` <br> e.g., `get /fn 2`                                                                                                                         |
 | **Get /wn**  | `get /wn WARD_NUMBER` <br> e.g., `get /wn D12`                                                                                                                        |
+| **Count**    | `count`                                                                                                                                                               |
 | **List**     | `list`                                                                                                                                                                |
 | **Help**     | `help`                                                                                                                                                                |
