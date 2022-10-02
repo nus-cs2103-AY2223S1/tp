@@ -22,7 +22,6 @@ public class MarkCommand extends Command {
             + "INDEX_OF_APPOINTMENT (must be a positive integer)";
 
     public static final String MESSAGE_MARK_PERSON_SUCCESS = "Marked appointment %1$s for Person: %2$s";
-    public static final String MESSAGE_NOT_MARKED = "All 2 indexes must be provided to mark.";
     public static final String MESSAGE_ALREADY_MARKED = "This appointment is already marked.";
 
     private final Index indexOfPerson;
@@ -62,7 +61,6 @@ public class MarkCommand extends Command {
         }
 
         appointmentToMark.mark();
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_MARK_PERSON_SUCCESS,
                 indexOfAppointment.getOneBased(),
                 personToMarkFor.getName()));
