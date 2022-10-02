@@ -1,11 +1,8 @@
 package seedu.address.model.module;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.person.Person;
