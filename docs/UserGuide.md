@@ -29,7 +29,7 @@ Healthcare Xpress is a **desktop app for managing patients that require home-vis
    * **`add`** **`c/P n/John p/98765432 e/john@example.com g/M a/Bishan street, block
      123, #01-01 t/Asthma d/2022-12-12 1350`** : Adds a patient named **`John`** to Healthcare Xpress.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`delete`**`-id 3` : Deletes the nurse of patient with an id of 3.
 
    * **`clear`** : Deletes all contacts.
 
@@ -134,19 +134,19 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a nurse or a patient : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified nurse or patient from the records system.
 
-Format: `delete INDEX`
+Format: `delete -id ID`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Deletes the nurse or patient with the specified `ID`.
+* The ID refers to the unique ID number shown in the displayed person list.
+* The ID **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete -id 2` deletes the nurse of patient with an id of 2.
+* `find -n Betsy` followed by `delete -id 1` deletes the nurse of patient with an id of 1.
 
 ### Clearing all entries : `clear`
 
@@ -191,7 +191,7 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add c/CATEGORY n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS d/DATE_AND_TIME [t/TAG]…​` <br> e.g., `add c/P n/John p/98765432 e/john@example.com g/M a/Bishan street, block 123, #01-01 t/Asthma d/2022-12-12 1350`
 **Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Delete** | `delete -id ID`<br> e.g., `delete -id 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
