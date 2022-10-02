@@ -99,8 +99,8 @@ public class AddCommandParserTest {
     public void parse_optionalFieldsMissing_success() {
         // zero tags
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
-        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY +
-                GENDER_DESC_AMY + BIRTHDATE_DESC_AMY + RACE_DESC_AMY + RELIGION_DESC_AMY + SURVEY_DESC_AMY,
+        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
+                + GENDER_DESC_AMY + BIRTHDATE_DESC_AMY + RACE_DESC_AMY + RELIGION_DESC_AMY + SURVEY_DESC_AMY,
                 new AddCommand(expectedPerson));
     }
 
@@ -109,28 +109,28 @@ public class AddCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
         // missing name prefix
-        assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB +
-                GENDER_DESC_BOB + BIRTHDATE_DESC_BOB + RACE_DESC_BOB + RELIGION_DESC_BOB + SURVEY_DESC_BOB,
+        assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + GENDER_DESC_BOB + BIRTHDATE_DESC_BOB + RACE_DESC_BOB + RELIGION_DESC_BOB + SURVEY_DESC_BOB,
                 expectedMessage);
 
         // missing phone prefix
-        assertParseFailure(parser, NAME_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB +
-                GENDER_DESC_BOB + BIRTHDATE_DESC_BOB + RACE_DESC_BOB + RELIGION_DESC_BOB + SURVEY_DESC_BOB,
+        assertParseFailure(parser, NAME_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + GENDER_DESC_BOB + BIRTHDATE_DESC_BOB + RACE_DESC_BOB + RELIGION_DESC_BOB + SURVEY_DESC_BOB,
                 expectedMessage);
 
         // missing email prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB + ADDRESS_DESC_BOB +
-                GENDER_DESC_BOB + BIRTHDATE_DESC_BOB + RACE_DESC_BOB + RELIGION_DESC_BOB + SURVEY_DESC_BOB,
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB + ADDRESS_DESC_BOB
+                + GENDER_DESC_BOB + BIRTHDATE_DESC_BOB + RACE_DESC_BOB + RELIGION_DESC_BOB + SURVEY_DESC_BOB,
                 expectedMessage);
 
         // missing address prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VALID_ADDRESS_BOB +
-                GENDER_DESC_BOB + BIRTHDATE_DESC_BOB + RACE_DESC_BOB + RELIGION_DESC_BOB + SURVEY_DESC_BOB,
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VALID_ADDRESS_BOB
+                + GENDER_DESC_BOB + BIRTHDATE_DESC_BOB + RACE_DESC_BOB + RELIGION_DESC_BOB + SURVEY_DESC_BOB,
                 expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB + VALID_ADDRESS_BOB +
-                VALID_GENDER_BOB + VALID_BIRTHDATE_BOB + VALID_RACE_BOB + VALID_RELIGION_BOB + VALID_SURVEY_BOB,
+        assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB + VALID_ADDRESS_BOB
+                + VALID_GENDER_BOB + VALID_BIRTHDATE_BOB + VALID_RACE_BOB + VALID_RELIGION_BOB + VALID_SURVEY_BOB,
                 expectedMessage);
     }
 
@@ -167,9 +167,9 @@ public class AddCommandParserTest {
                 Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB  + ADDRESS_DESC_BOB
-                + GENDER_DESC_BOB + BIRTHDATE_DESC_BOB + RACE_DESC_BOB + RELIGION_DESC_BOB + SURVEY_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + ADDRESS_DESC_BOB + GENDER_DESC_BOB + BIRTHDATE_DESC_BOB + RACE_DESC_BOB + RELIGION_DESC_BOB
+                + SURVEY_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }

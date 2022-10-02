@@ -28,8 +28,8 @@ import seedu.address.model.tag.Tag;
  */
 class JsonAdaptedPerson {
 
-    private static final String DATE_FORMAT = "y-M-d";
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    private static final String DATE_FORMAT = "y-M-d";
 
     private final String name;
     private final String phone;
@@ -135,7 +135,8 @@ class JsonAdaptedPerson {
         final Gender modelGender = new Gender(gender);
 
         if (birthdate == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Birthdate.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Birthdate.class.getSimpleName()));
         }
         if (!Birthdate.isValidBirthdate(birthdate)) {
             throw new IllegalValueException(Birthdate.MESSAGE_CONSTRAINTS);
@@ -151,7 +152,8 @@ class JsonAdaptedPerson {
         final Race modelRace = new Race(race);
 
         if (religion == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Religion.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Religion.class.getSimpleName()));
         }
         if (!Religion.isValidReligion(religion)) {
             throw new IllegalValueException(Religion.MESSAGE_CONSTRAINTS);

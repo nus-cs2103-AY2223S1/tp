@@ -154,6 +154,10 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Builds a new Person with default parameters or given parameters.
+     * @return a Person with stated parameters
+     */
     public Person build() {
         return new Person(name, phone, email, address, gender,
                 birthdate, race, religion, survey, tags);

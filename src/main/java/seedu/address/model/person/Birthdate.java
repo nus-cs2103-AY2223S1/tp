@@ -13,12 +13,12 @@ import java.time.format.DateTimeParseException;
  */
 public class Birthdate {
 
-    private static final String DATE_FORMAT = "y-M-d";
-
     public static final String MESSAGE_CONSTRAINTS =
             "Birthdate should be in the format of yyyy-mm-dd, and it should not be blank";
+    private static final String DATE_FORMAT = "y-M-d";
 
     public final LocalDate birthdate;
+
 
     /**
      * Constructs a {@code Birthdate}.

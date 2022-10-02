@@ -9,12 +9,11 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Gender {
 
+    public static final String MESSAGE_CONSTRAINTS =
+            "Gender should only be 'male', 'female', or 'others', and it should not be blank";
     private static final String MALE = "male";
     private static final String FEMALE = "female";
     private static final String OTHERS = "others";
-
-    public static final String MESSAGE_CONSTRAINTS =
-            "Gender should only be 'male', 'female', or 'others', and it should not be blank";
 
     public final String gender;
 
