@@ -35,6 +35,11 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+
+        // Temporarily set active customer to the first customer.
+        // TODO: Should be removed by implementer of the opencus command.
+        this.addressBook.setActiveCustomer(this.addressBook.getPersonList().get(0));
+
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredCommissions = new FilteredList<>(this.addressBook.getCommissionList());
     }
