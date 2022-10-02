@@ -15,6 +15,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.University;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -28,6 +29,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String university;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -36,11 +38,12 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("university") String university, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.university = university;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -54,6 +57,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        university = source.getUniversity().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -102,8 +106,14 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (university == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, University.class.getSimpleName()));
+        }
+        final University modelUniversity = new University(university);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelUniversity, modelTags);
     }
 
 }

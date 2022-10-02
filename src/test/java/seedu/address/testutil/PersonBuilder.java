@@ -8,6 +8,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.University;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -20,11 +21,13 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_UNIVERSITY = "Stanford University";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
+    private University university;
     private Set<Tag> tags;
 
     /**
@@ -35,6 +38,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        university = new University(DEFAULT_UNIVERSITY);
         tags = new HashSet<>();
     }
 
@@ -46,6 +50,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        university = personToCopy.getUniversity();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -89,8 +94,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code University} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withUniversity(String university) {
+        this.university = new University(university);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, phone, email, address, university, tags);
     }
 
 }

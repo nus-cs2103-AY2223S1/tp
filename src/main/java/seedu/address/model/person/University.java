@@ -18,7 +18,7 @@ public class University {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String name;
+    public final String value;
 
     /**
      * Constructs an {@code University}.
@@ -28,7 +28,7 @@ public class University {
     public University(String universityName) {
         requireNonNull(universityName);
         checkArgument(isValidUniversity(universityName), MESSAGE_CONSTRAINTS);
-        name = universityName;
+        value = universityName;
     }
 
     /**
@@ -40,19 +40,19 @@ public class University {
 
     @Override
     public String toString() {
-        return name;
+        return value;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof University // instanceof handles nulls
-                && name.equals(((University) other).name)); // state check
+                && value.equals(((University) other).value)); // state check
     }
 
     @Override
     public int hashCode() {
-        return name.hashCode();
+        return value.hashCode();
     }
 
 }
