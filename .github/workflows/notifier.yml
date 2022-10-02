@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Notify telegram groups on pull request changes
-        uses: appleboy/telegram-action@master
+        uses: appleboy/telegram-action@v0.1.1
         with:
           to: ${{ secrets.TELEGRAM_TO }} # don't change
           token: ${{ secrets.TELEGRAM_TOKEN }} # don't change
