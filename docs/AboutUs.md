@@ -50,9 +50,9 @@ GitHub: [@beetee17](https://github.com/beetee17)
 
 ### Amresh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/amresh2000.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+Github: [@amresh2000](http://github.com/amresh2000)
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
