@@ -25,7 +25,7 @@ public class ReviewCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Person person;
+    public final Person review;
 
     @FXML
     private HBox cardPane;
@@ -47,7 +47,7 @@ public class ReviewCard extends UiPart<Region> {
      */
     public ReviewCard(Person person, int displayedIndex) {
         super(FXML);
-        this.person = person;
+        this.review = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
@@ -73,6 +73,6 @@ public class ReviewCard extends UiPart<Region> {
         // state check
         ReviewCard card = (ReviewCard) other;
         return id.getText().equals(card.id.getText())
-                && person.equals(card.person);
+                && review.equals(card.review);
     }
 }
