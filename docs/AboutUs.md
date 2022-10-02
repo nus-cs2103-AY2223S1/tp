@@ -13,8 +13,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/kennethsim2000.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/kennethsim2000)]
+[[portfolio](team/kennethsim2000.md)]
 
 * Role: Team Lead
 * Responsibilities: Overall project coordination and code quality
@@ -25,7 +25,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/alwhgithub)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/alwhgithub.md)]
 
 * Role: Testing
 * Responsibilities: Ensures the testing of the project is done properly and on time
@@ -34,8 +34,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/albertarielw.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/albertarielw)]
+[[portfolio](team/albertarielw.md)]
 
 * Role: Management of Deliverables
 * Responsibilities: Ensure project deliverables are defined, assigned, and done on time in the right format
@@ -54,7 +54,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/paotheroo.PNG" width="200px">
 
 [[github](http://github.com/paotheroo)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/paotheroo.md)]
 
 * Role: Documentation
 * Responsibilities: Quality of various project documents
