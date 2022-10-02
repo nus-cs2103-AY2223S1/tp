@@ -19,7 +19,7 @@ GitHub: [@KIANSEONG](https://github.com/KIANSEONG)
 
 ### Wang Xinyi
 
-<img src="images/Xinyi.png" width="200px">
+<img src="images/wxy1203.png" width="200px">
 
 GitHub: [@wxy1203](https://github.com/wxy1203)
 
