@@ -18,6 +18,12 @@ public abstract class SelectAppointmentCommand extends Command {
     protected final Index indexOfPerson;
     protected final Index indexOfAppointment;
 
+    /**
+     * Creates command that selects an appointment according to the index of a person and the index of the appointment.
+     *
+     * @param indexOfPerson Index of the person in the filtered person list.
+     * @param indexOfAppointment Index of the appointment of the specified person.
+     */
     public SelectAppointmentCommand(Index indexOfPerson, Index indexOfAppointment) {
         requireNonNull(indexOfPerson);
         requireNonNull(indexOfAppointment);

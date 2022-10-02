@@ -21,8 +21,10 @@ public class UnmarkCommand extends SelectAppointmentCommand {
     public static final String MESSAGE_ALREADY_UNMARKED = "This appointment is already unmarked.";
 
     /**
-     * @param indexOfPerson index of the person in the filtered person list to unmark.
-     * @param indexOfAppointment index of the appointment of the specified person to unmark.
+     * Creates an unmark command containing the index of a person and the index of an appointment.
+     *
+     * @param indexOfPerson Index of the person in the filtered person list to unmark.
+     * @param indexOfAppointment Index of the appointment of the specified person to unmark.
      */
     public UnmarkCommand(Index indexOfPerson, Index indexOfAppointment) {
         super(indexOfPerson, indexOfAppointment);
