@@ -272,15 +272,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                | I can …​                                                                                                                                | So that I can…​                                                               |
 |----------|----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
-| `* * *`  | responsible SOC professor              | clear/mark done a project                                                                                                               | student can graduate with a Honoured degree.                                  |
-| `* * *`  | first time user                        | view a list of commands that I can try as well as the details of each command                                                           | I can quickly start to manage my students’ FYPs using this system/app         |
+| `* * *`  | responsible SoC professor              | clear/mark done a project                                                                                                               | provide timely updates for my students to track their FYP progress            |
+| `* * *`  | first time user                        | view a list of commands that I can try as well as the details of each command                                                           | quickly start to manage my students’ FYPs using this system/app               |
 | `* * *`  | critical SoC professor                 | search the projects using some keywords                                                                                                 | track the progress of projects has been of interest to me                     |
-| `* * *`  | organised SoC professor                | remove Students if they dropped a FYP that was under me                                                                                 | keep the database neat and organised                                          |
-| `* * *`  | organised SoC professor                | remove Students if they completed a FYP that was under me, and move to a “completed” database table                                     | keep the database neat and organised [coming soon]                            |
-| `* * *`  | organised SoC professor                | add Students if they are taking FYP under me                                                                                            | keep track of those FYP projects under me easily                              |
-| `* * *`  | student with many email accounts       | update my e-mail address when I change on the app                                                                                       | my professors can contact me when they need to [coming soon]                  |
-| `* * *`  | SOC professor                          | view the list of all students taking their FYP under me                                                                                 | get to know with my own students more                                         |
-| `* *`    | responsible student                    | check my upcoming deadlines with an option to see yet-to-submit deliverables                                                            | will not miss any submission deadlines by accident [coming soon]              |
+| `* * *`  | organised SoC professor                | remove Students if they dropped a FYP that was under me                                                                                 | keep the consolidated list of FYPs neat and organised                         |
+| `* * *`  | organised SoC professor                | remove Students if they completed a FYP that was under me, and move to a “completed” database table                                     | keep the consolidated list of FYPs neat and organised [coming soon]           |
+| `* * *`  | organised SoC professor                | add students if they are taking FYP under me                                                                                            | keep track of those FYP projects under me easily                              |
+| `* * *`  | student with many email accounts       | update my e-mail address when I change on the app                                                                                       | be easily contacted by my professors when they need to find me [coming soon]  |
+| `* * *`  | SoC professor                          | view the list of all students taking their FYP under me                                                                                 | get to know more information about my own students                            |
+| `* *`    | responsible student                    | check my upcoming deadlines with an option to see yet-to-submit deliverables                                                            | avoid missing any submission deadlines by accident [coming soon]              |
 | `* *`    | SoC professor                          | view the progress updates that my students upload                                                                                       | deliberate about what the next course of action should be [coming soon]       |
 | `* *`    | eager to learn student                 | receive feedback (read comments and suggestions) from my professor                                                                      | I can set a direction to make progress for my FYP [coming soon]               |
 | `* *`    | responsible student                    | update my FYP progress through the app                                                                                                  | professor can be informed on my progress [coming soon]                        |
@@ -290,7 +290,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | fun-seeking professor/FYP student      | end “stickers” (similar to Telegram stickers) or emoji so that the app                                                                  | is more appealing to use [coming soon]                                        |
 | `*`      | FYP student                            | update my availability slots on the app                                                                                                 | my professor knows when I will be available to meet [coming soon]             |
 | `*`      | well-versed SoC professor              | sort my student’s FYP based on what specialisation they are taking                                                                      | I can better organise the FYPs [coming soon]                                  |
-| `*`      | very meticulous SoC professor          | see student's FYP sorted by research area first, followed by alphabetical order                                                         | I can gain quick easy access to the details required [coming soon]            |
+| `*`      | meticulous SoC professor   　　　       　 | see student's FYP sorted by research area first, followed by alphabetical order                                                         | I can gain quick easy access to the details required [coming soon]            |
 
 *{More to be added}*
 
@@ -361,7 +361,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. Professor’s input of Student’s ID / Status Tag is incorrect (e.g. misspell) / accessing FYP that does not exist.
+* 1a. Professor’s input of Student’s ID / Status Tag is incorrect (e.g. misspell), or Professor is accessing FYP that does not exist.
     * 1a1. JerylFypManager shows an error message.
     * 1a2. Professor keys in his input again.
 
@@ -372,11 +372,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **4. Use case: UC04 - Removing FYP**
 
-**Preconditions: Professor can recall the name/id of the FYP**
+**Preconditions: Professor can recall the name/ID of the FYP**
 
 **MSS**
 
-1.  Professor requests to remove a student FYP into the list.
+1.  Professor requests to remove a student FYP from the list.
 2.  JerylFypManager removes the FYP details.
 
     Use case ends.
@@ -399,7 +399,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  Professor requests from JerylFypManager to list all possible commands.
-2.  JerylFypManager shows the list of possible commands and format to be entered in.
+2.  JerylFypManager shows the list of possible commands and the format to be entered in.
 
     Use case ends.
 
@@ -465,11 +465,11 @@ able to accomplish most of the tasks faster using commands than using the mouse.
 --------------------------------------------------------------------------------------------------------------------
 ### Glossary
 
-* **FYP**: Final Year Project taken by year 4 undergraduate SoC students
-* **SoC**: School of Computing in National University of Singapore
-* **JerylFypManager**: used by SoC Professors supervising student's FYP project
-* **Professor**: A academic staff of SoC who supervisor's a student's FYP
-* **Student**: A year 4 SoC student taking FYP
+* **FYP**: Final Year Project, taken by SoC students in their final year of study
+* **SoC**: School of Computing, in National University of Singapore
+* **JerylFypManager**: A platform used by SoC Professors for supervising student's FYP
+* **Professor**: An academic staff of SoC who is supervising a student's FYP
+* **Student**: A SoC student who is taking FYP in their final year of study
 
 --------------------------------------------------------------------------------------------------------------------
 
