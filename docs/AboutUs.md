@@ -14,7 +14,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 [[github](https://github.com/darrentde)]
 
-[[portfolio](team/darren.md)]
+[[portfolio](team/darrentde.md)]
 
 * Role: Developer
 
@@ -23,7 +23,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="team/images/chuamingquan.png" width="200px">
 
 [[github](https://github.com/https://github.com/mqchua)]
-[[portfolio](team/chuamingquan.md)]
+[[portfolio](team/mqchua.md)]
 
 * Role: Developer
 
@@ -40,7 +40,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="team/images/justinwidodo.png" width="200px">
 
 [[github](https://github.com/GenFusion122)]
-[[portfolio](team/justinwidodo.md)]
+[[portfolio](team/GenFusion122.md)]
 
 * Role: Developer
 * Responsibilities: UI
@@ -51,7 +51,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 [github](https://github.com/HakkaNgin)
 
-[portfolio](team/luotianyou.md)
+[portfolio](team/HakkaNgin.md)
 
 * Role: Developer
 * Responsibilities: Development
