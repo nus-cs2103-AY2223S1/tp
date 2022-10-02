@@ -286,16 +286,57 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `SectresBook` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: Add a person**
+
+**MSS**
+1. User requests to add a person.
+2. SectresBook adds the person to the list of persons.
+
+    Use case ends.
+
+**Extensions**
+* 1a. The given person already exists.
+  * 1a1. SectresBook shows an error message.
+
+    Use case ends.
+* 1b. Necessary fields are incomplete/empty.
+  * 1b1. Sectresbook shows an error message.
+
+    Use case ends.
+
+**Use case: Update a person**
+
+**MSS**
+1. User requests to list persons.
+2. SectresBook shows a list of persons.
+3. User requests to update a specific person in the list.
+4. SectresBook updates information of the person.
+
+    Use case ends.
+
+**Extensions**
+* 2a. The list is empty.
+
+    Use case ends.
+* 3a. The given index is invalid.
+  * 3a1. SectresBook shows an error message.
+
+    Use case resumes at step 2.
+* 3b. The command line arguments are invalid.
+  * 3b1. SectresBook shows an error message.
+
+    Use case resumes at step 2.
 
 **Use case: Delete a person**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list persons.
+2.  SectresBook shows a list of persons.
+3.  User requests to delete a specific person in the list.
+4.  SectresBook deletes the person.
 
     Use case ends.
 
@@ -307,9 +348,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. SectresBook shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: Find a person**
+
+**MSS**
+1. User request to find using keyword.
+2. SectressBook shows a list of persons matching keyword.
+
+    Use case ends.
+
+**Use case: Display list of persons**
+
+**MSS**
+1. User requests to list persons.
+2. SectresBook displays the list of persons stored.
+
+    Use case ends.
 
 *{More to be added}*
 
