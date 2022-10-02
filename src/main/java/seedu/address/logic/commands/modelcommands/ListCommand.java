@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.modelcommand;
+package seedu.address.logic.commands.modelcommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;

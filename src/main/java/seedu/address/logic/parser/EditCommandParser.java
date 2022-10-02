@@ -14,8 +14,8 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.modelcommand.EditCommand;
-import seedu.address.logic.commands.modelcommand.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.modelcommands.EditCommand;
+import seedu.address.logic.commands.modelcommands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
