@@ -1,5 +1,7 @@
 package seedu.address.logic;
 
+import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
@@ -10,6 +12,9 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.misccommand.MiscCommand;
+import seedu.address.logic.commands.modelcommand.ModelCommand;
+import seedu.address.logic.commands.storagecommand.StorageCommand;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
@@ -41,9 +46,8 @@ public class LogicManager implements Logic {
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
-        CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
-        commandResult = command.execute(model);
+        CommandResult commandResult = execute(command);
 
         try {
             storage.saveAddressBook(model.getAddressBook());
@@ -52,6 +56,28 @@ public class LogicManager implements Logic {
         }
 
         return commandResult;
+    }
+
+    /**
+     * Determines the type of {@code Command} that is being executed and passes the appropriate arguments to it.
+     * <p>
+     * Note: When more types of commands are added to the application, add them in this method accordingly.
+     * <p/>
+     *
+     * @param command The command to be executed.
+     * @return The {@code CommandResult} from executing the command.
+     * @throws CommandException if the command does not belong to any of the command groups.
+     */
+    private CommandResult execute(Command command) throws CommandException {
+        if (command instanceof MiscCommand) {
+            return ((MiscCommand) command).execute();
+        } else if (command instanceof ModelCommand) {
+            return ((ModelCommand) command).execute(model);
+        } else if (command instanceof StorageCommand) {
+            return ((StorageCommand) command).execute(storage);
+        } else {
+            throw new CommandException(MESSAGE_UNKNOWN_COMMAND);
+        }
     }
 
     @Override
