@@ -23,6 +23,7 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private Set<Appointment> appointments = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -52,12 +53,20 @@ public class Person {
         return address;
     }
 
+    public Set<Appointment> getAppointments() {
+        return appointments;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public void setAppointments(Set<Appointment> newAppointments) {
+        appointments = newAppointments;
     }
 
     /**
@@ -92,13 +101,14 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getAppointments().equals(getAppointments());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags, appointments);
     }
 
     @Override
@@ -111,6 +121,14 @@ public class Person {
                 .append(getEmail())
                 .append("; Address: ")
                 .append(getAddress());
+
+        Set<Appointment> appointments = getAppointments();
+        if (!appointments.isEmpty()) {
+            builder.append("; Appointments: ");
+            appointments.forEach(
+                    appointment -> builder.append(appointment + " ")
+            );
+        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
