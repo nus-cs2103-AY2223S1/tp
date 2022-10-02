@@ -1,12 +1,10 @@
 package taskbook.model.task;
 
-import static taskbook.commons.util.CollectionUtil.requireAllNonNull;
-
 import java.util.Objects;
 
+import taskbook.commons.util.CollectionUtil;
 import taskbook.model.person.Person;
 import taskbook.model.task.enums.Assignment;
-import taskbook.commons.util.CollectionUtil;
 
 /**
  * Represents a Task in the address book.

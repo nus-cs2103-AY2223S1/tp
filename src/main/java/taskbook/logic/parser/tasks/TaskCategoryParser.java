@@ -1,11 +1,11 @@
 package taskbook.logic.parser.tasks;
 
+import taskbook.commons.core.Messages;
 import taskbook.logic.commands.Command;
 import taskbook.logic.commands.tasks.TaskAddCommand;
 import taskbook.logic.commands.tasks.TaskDeleteCommand;
 import taskbook.logic.commands.tasks.TaskListCommand;
 import taskbook.logic.parser.exceptions.ParseException;
-import taskbook.commons.core.Messages;
 
 /**
  * Parses user input of task category.

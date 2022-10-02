@@ -3,9 +3,11 @@ package taskbook.logic.parser.contacts;
 import java.util.Set;
 import java.util.stream.Stream;
 
+import taskbook.commons.core.Messages;
 import taskbook.logic.commands.contacts.ContactAddCommand;
 import taskbook.logic.parser.ArgumentMultimap;
 import taskbook.logic.parser.ArgumentTokenizer;
+import taskbook.logic.parser.CliSyntax;
 import taskbook.logic.parser.Parser;
 import taskbook.logic.parser.ParserUtil;
 import taskbook.logic.parser.Prefix;
@@ -16,8 +18,6 @@ import taskbook.model.person.Name;
 import taskbook.model.person.Person;
 import taskbook.model.person.Phone;
 import taskbook.model.tag.Tag;
-import taskbook.commons.core.Messages;
-import taskbook.logic.parser.*;
 
 /**
  * Parses input arguments and creates a new ContactAddCommand object
@@ -31,11 +31,23 @@ public class ContactAddCommandParser implements Parser<ContactAddCommand> {
      */
     public ContactAddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_PHONE, CliSyntax.PREFIX_EMAIL, CliSyntax.PREFIX_ADDRESS, CliSyntax.PREFIX_TAG);
+                ArgumentTokenizer.tokenize(
+                        args,
+                        CliSyntax.PREFIX_NAME,
+                        CliSyntax.PREFIX_PHONE,
+                        CliSyntax.PREFIX_EMAIL,
+                        CliSyntax.PREFIX_ADDRESS,
+                        CliSyntax.PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_ADDRESS, CliSyntax.PREFIX_PHONE, CliSyntax.PREFIX_EMAIL)
+        if (!arePrefixesPresent(
+                argMultimap,
+                CliSyntax.PREFIX_NAME,
+                CliSyntax.PREFIX_ADDRESS,
+                CliSyntax.PREFIX_PHONE,
+                CliSyntax.PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, ContactAddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(
+                    Messages.MESSAGE_INVALID_COMMAND_FORMAT, ContactAddCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(CliSyntax.PREFIX_NAME).get());

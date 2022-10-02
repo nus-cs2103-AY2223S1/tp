@@ -9,10 +9,11 @@ import taskbook.commons.core.index.Index;
 import taskbook.logic.commands.Command;
 import taskbook.logic.commands.CommandResult;
 import taskbook.logic.commands.exceptions.CommandException;
+import taskbook.logic.parser.CliSyntax;
 import taskbook.logic.parser.contacts.ContactCategoryParser;
 import taskbook.model.Model;
 import taskbook.model.person.Person;
-import taskbook.logic.parser.CliSyntax;
+
 
 /**
  * Deletes a person identified using it's displayed index from the task book.

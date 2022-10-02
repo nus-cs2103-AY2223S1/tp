@@ -12,11 +12,11 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
+import taskbook.commons.core.Messages;
 import taskbook.commons.core.index.Index;
 import taskbook.logic.commands.EditCommand;
 import taskbook.logic.parser.exceptions.ParseException;
 import taskbook.model.tag.Tag;
-import taskbook.commons.core.Messages;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -38,7 +38,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(
+                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
         EditCommand.EditPersonDescriptor editPersonDescriptor = new EditCommand.EditPersonDescriptor();

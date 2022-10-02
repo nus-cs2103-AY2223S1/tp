@@ -1,9 +1,8 @@
 package taskbook.model.person;
 
-import taskbook.commons.util.AppUtil;
-
 import static java.util.Objects.requireNonNull;
-import static taskbook.commons.util.AppUtil.checkArgument;
+
+import taskbook.commons.util.AppUtil;
 
 /**
  * Represents a Person's address in the address book.

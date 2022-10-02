@@ -4,9 +4,9 @@ import taskbook.commons.core.index.Index;
 import taskbook.logic.commands.Command;
 import taskbook.logic.commands.CommandResult;
 import taskbook.logic.commands.exceptions.CommandException;
+import taskbook.logic.parser.CliSyntax;
 import taskbook.logic.parser.tasks.TaskCategoryParser;
 import taskbook.model.Model;
-import taskbook.logic.parser.CliSyntax;
 
 /**
  * Deletes a task identified using it's displayed index from the task book.

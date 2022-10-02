@@ -2,9 +2,11 @@ package taskbook.logic.parser.tasks;
 
 import java.util.stream.Stream;
 
+import taskbook.commons.core.Messages;
 import taskbook.logic.commands.tasks.TaskAddCommand;
 import taskbook.logic.parser.ArgumentMultimap;
 import taskbook.logic.parser.ArgumentTokenizer;
+import taskbook.logic.parser.CliSyntax;
 import taskbook.logic.parser.Parser;
 import taskbook.logic.parser.ParserUtil;
 import taskbook.logic.parser.Prefix;
@@ -12,8 +14,6 @@ import taskbook.logic.parser.exceptions.ParseException;
 import taskbook.model.person.Name;
 import taskbook.model.task.Description;
 import taskbook.model.task.enums.Assignment;
-import taskbook.commons.core.Messages;
-import taskbook.logic.parser.*;
 
 /**
  * Parses input arguments and creates a new TaskAddCommand object
@@ -45,7 +45,8 @@ public class TaskAddCommandParser implements Parser<TaskAddCommand> {
 
         if (!arePrefixesPresent(argMultimap, firstPrefix, CliSyntax.PREFIX_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, TaskAddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(
+                    Messages.MESSAGE_INVALID_COMMAND_FORMAT, TaskAddCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(firstPrefix).get());

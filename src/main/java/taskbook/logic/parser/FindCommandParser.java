@@ -2,10 +2,10 @@ package taskbook.logic.parser;
 
 import java.util.Arrays;
 
+import taskbook.commons.core.Messages;
 import taskbook.logic.commands.FindCommand;
 import taskbook.logic.parser.exceptions.ParseException;
 import taskbook.model.person.NameContainsKeywordsPredicate;
-import taskbook.commons.core.Messages;
 
 /**
  * Parses input arguments and creates a new FindCommand object

@@ -7,9 +7,9 @@ import taskbook.commons.core.GuiSettings;
 import taskbook.logic.commands.CommandResult;
 import taskbook.logic.commands.exceptions.CommandException;
 import taskbook.logic.parser.exceptions.ParseException;
+import taskbook.model.Model;
 import taskbook.model.ReadOnlyAddressBook;
 import taskbook.model.person.Person;
-import taskbook.model.Model;
 
 /**
  * API of the Logic component

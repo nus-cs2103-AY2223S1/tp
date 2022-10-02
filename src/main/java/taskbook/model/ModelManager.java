@@ -1,7 +1,6 @@
 package taskbook.model;
 
 import static java.util.Objects.requireNonNull;
-import static taskbook.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
@@ -11,8 +10,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import taskbook.commons.core.GuiSettings;
 import taskbook.commons.core.LogsCenter;
-import taskbook.model.person.Person;
 import taskbook.commons.util.CollectionUtil;
+import taskbook.model.person.Person;
 
 /**
  * Represents the in-memory model of the address book data.

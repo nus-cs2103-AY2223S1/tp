@@ -1,16 +1,15 @@
 package taskbook.model.task;
 
 import static java.util.Objects.requireNonNull;
-import static taskbook.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import taskbook.commons.util.CollectionUtil;
 import taskbook.model.task.exceptions.DuplicateTaskException;
 import taskbook.model.task.exceptions.TaskNotFoundException;
-import taskbook.commons.util.CollectionUtil;
 
 /**
  * A list of tasks that enforces uniqueness between its elements and does not allow nulls.

@@ -1,14 +1,12 @@
 package taskbook.model.person;
 
-import static taskbook.commons.util.CollectionUtil.requireAllNonNull;
-
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import taskbook.model.tag.Tag;
 import taskbook.commons.util.CollectionUtil;
+import taskbook.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.

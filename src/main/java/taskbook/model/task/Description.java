@@ -1,9 +1,8 @@
 package taskbook.model.task;
 
-import taskbook.commons.util.AppUtil;
-
 import static java.util.Objects.requireNonNull;
-import static taskbook.commons.util.AppUtil.checkArgument;
+
+import taskbook.commons.util.AppUtil;
 
 /**
  * Represents a Task's description in the task book.

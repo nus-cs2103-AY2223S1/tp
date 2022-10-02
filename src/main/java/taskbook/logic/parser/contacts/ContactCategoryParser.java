@@ -1,11 +1,11 @@
 package taskbook.logic.parser.contacts;
 
+import taskbook.commons.core.Messages;
 import taskbook.logic.commands.Command;
 import taskbook.logic.commands.contacts.ContactAddCommand;
 import taskbook.logic.commands.contacts.ContactDeleteCommand;
 import taskbook.logic.commands.contacts.ContactListCommand;
 import taskbook.logic.parser.exceptions.ParseException;
-import taskbook.commons.core.Messages;
 
 /**
  * Parses user input of contact category.

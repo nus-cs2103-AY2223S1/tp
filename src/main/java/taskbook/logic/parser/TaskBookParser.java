@@ -3,13 +3,13 @@ package taskbook.logic.parser;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import taskbook.commons.core.Messages;
 import taskbook.logic.commands.Command;
 import taskbook.logic.commands.HelpCommand;
 import taskbook.logic.parser.categoryless.CategorylessParser;
 import taskbook.logic.parser.contacts.ContactCategoryParser;
 import taskbook.logic.parser.exceptions.ParseException;
 import taskbook.logic.parser.tasks.TaskCategoryParser;
-import taskbook.commons.core.Messages;
 
 /**
  * Parses user input into different categories of commands.

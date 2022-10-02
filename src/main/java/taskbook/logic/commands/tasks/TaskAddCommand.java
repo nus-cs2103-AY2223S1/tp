@@ -3,12 +3,12 @@ package taskbook.logic.commands.tasks;
 import taskbook.logic.commands.Command;
 import taskbook.logic.commands.CommandResult;
 import taskbook.logic.commands.exceptions.CommandException;
+import taskbook.logic.parser.CliSyntax;
 import taskbook.logic.parser.tasks.TaskCategoryParser;
 import taskbook.model.Model;
 import taskbook.model.person.Name;
 import taskbook.model.task.Description;
 import taskbook.model.task.enums.Assignment;
-import taskbook.logic.parser.CliSyntax;
 
 /**
  * Adds a task to the task book.

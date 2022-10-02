@@ -1,9 +1,9 @@
 package taskbook.logic.parser.categoryless;
 
+import taskbook.commons.core.Messages;
 import taskbook.logic.commands.Command;
 import taskbook.logic.commands.categoryless.ExitCommand;
 import taskbook.logic.parser.exceptions.ParseException;
-import taskbook.commons.core.Messages;
 
 /**
  * Parses user input without a category.
