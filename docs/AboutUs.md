@@ -23,7 +23,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/alwhgithub.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/alwhgithub)]
 [[portfolio](team/alwhgithub.md)]
 
@@ -51,7 +50,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Low Zan Hao
 
-<img src="images/paotheroo.PNG" width="200px">
+<img src="images/paotheroo.png" width="200px">
 
 [[github](http://github.com/paotheroo)]
 [[portfolio](team/paotheroo.md)]
