@@ -23,6 +23,7 @@ public class Appointment {
 
     public final String reason;
     public final LocalDateTime dateTime;
+    private boolean isMarked;
 
     private final DateTimeFormatter stringFormatter = DateTimeFormatter.ofPattern("MMM d yyyy HH:mm");
 
@@ -39,6 +40,7 @@ public class Appointment {
         this.reason = reason;
         String str = String.join(" ", dateTime.split("\\s+", 2));
         this.dateTime = LocalDateTime.parse(str, DATE_FORMATTER);
+        this.isMarked = false;
     }
 
     /**
@@ -75,6 +77,18 @@ public class Appointment {
             return false;
         }
         return true;
+    }
+
+    public boolean isMarked() {
+        return isMarked;
+    }
+
+    public void mark() {
+        this.isMarked = true;
+    }
+
+    public void unmark() {
+        this.isMarked = false;
     }
 
     @Override
