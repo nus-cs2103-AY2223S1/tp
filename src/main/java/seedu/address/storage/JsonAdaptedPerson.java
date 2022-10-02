@@ -109,6 +109,9 @@ class JsonAdaptedPerson {
         if (university == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, University.class.getSimpleName()));
         }
+        if (!University.isValidUniversity(university)) {
+            throw new IllegalValueException(University.MESSAGE_CONSTRAINTS);
+        }
         final University modelUniversity = new University(university);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
