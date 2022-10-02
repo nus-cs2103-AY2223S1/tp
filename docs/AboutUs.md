@@ -11,7 +11,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Chua Ming Quan
 
-<img src="images/chuamingquan.png" width="200px">
+<img src="team/images/chuamingquan.png" width="200px">
 
 [[github](https://github.com/https://github.com/mqchua)]
 [[portfolio](team/chuamingquan.md)]
@@ -20,7 +20,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Tin En Hao
 
-<img src="images/tinenhao.png" width="200px">
+<img src="team/images/tinenhao.png" width="200px">
 
 [[github](https://github.com/tinenhao)]
 [[portfolio](team/tinenhao.md)]
@@ -28,7 +28,7 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Developer
 
 ### Justin Widodo
-<img src="images/justinwidodo.png" width="200px">
+<img src="team/images/justinwidodo.png" width="200px">
 
 [[github](https://github.com/GenFusion122)]
 [[portfolio](team/justinwidodo.md)]
@@ -38,7 +38,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Luo Tian You
 
-<img src="images/LuoTianYou.jpg" width="200px">
+<img src="team/images/LuoTianYou.jpg" width="200px">
 
 [github](https://github.com/HakkaNgin)
 
