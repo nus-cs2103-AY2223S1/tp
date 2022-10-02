@@ -70,6 +70,6 @@ public class CommandResult {
 
     @Override
     public String toString() {
-        return String.format("feedback: %s|%b|%b", feedbackToUser, showHelp, exit);
+        return String.format("CommandResult: %s%s%s", feedbackToUser, showHelp ? "|H" : "", exit ? "|E" : "");
     }
 }

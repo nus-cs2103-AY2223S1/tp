@@ -77,7 +77,7 @@ public class EditCommand extends Command {
         Phone updatedPhone = editCustomerDescriptor.getPhone().orElse(customerToEdit.getPhone());
         Email updatedEmail = editCustomerDescriptor.getEmail().orElse(customerToEdit.getEmail());
         Optional<Address> updatedAddress = Optional.ofNullable(
-            editCustomerDescriptor.getAddress().orElse(customerToEdit.getAddress().orElse(null)));
+                editCustomerDescriptor.getAddress().orElse(customerToEdit.getAddress().orElse(null)));
         Set<Tag> updatedTags = editCustomerDescriptor.getTags().orElse(customerToEdit.getTags());
         if (updatedAddress.isEmpty()) {
             return new Customer(updatedName, updatedPhone, updatedEmail, updatedTags);
@@ -122,7 +122,7 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-            && editCustomerDescriptor.equals(e.editCustomerDescriptor);
+                && editCustomerDescriptor.equals(e.editCustomerDescriptor);
     }
 
     /**
@@ -223,10 +223,10 @@ public class EditCommand extends Command {
             EditCustomerDescriptor e = (EditCustomerDescriptor) other;
 
             return getName().equals(e.getName())
-                && getPhone().equals(e.getPhone())
-                && getEmail().equals(e.getEmail())
-                && getAddress().equals(e.getAddress())
-                && getTags().equals(e.getTags());
+                    && getPhone().equals(e.getPhone())
+                    && getEmail().equals(e.getEmail())
+                    && getAddress().equals(e.getAddress())
+                    && getTags().equals(e.getTags());
         }
 
     }

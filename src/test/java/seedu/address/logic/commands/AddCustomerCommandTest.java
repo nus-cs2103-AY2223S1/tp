@@ -37,7 +37,7 @@ public class AddCustomerCommandTest {
         CommandResult commandResult = new AddCustomerCommand(validCustomer).execute(modelStub);
 
         assertEquals(String.format(AddCustomerCommand.MESSAGE_SUCCESS, validCustomer),
-            commandResult.getFeedbackToUser());
+                commandResult.getFeedbackToUser());
         assertEquals(Collections.singletonList(validCustomer), modelStub.customersAdded);
     }
 
@@ -48,7 +48,7 @@ public class AddCustomerCommandTest {
         ModelStub modelStub = new ModelStubWithCustomer(validCustomer);
 
         assertThrows(CommandException.class,
-            AddCustomerCommand.MESSAGE_DUPLICATE_CUSTOMER, () -> addCustomerCommand.execute(modelStub));
+                AddCustomerCommand.MESSAGE_DUPLICATE_CUSTOMER, () -> addCustomerCommand.execute(modelStub));
     }
 
     @Test

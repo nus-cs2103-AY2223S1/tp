@@ -33,14 +33,14 @@ public class AddCustomerCommandIntegrationTest {
         expectedModel.addCustomer(validCustomer);
 
         assertCommandSuccess(new AddCustomerCommand(validCustomer), model,
-            String.format(AddCustomerCommand.MESSAGE_SUCCESS, validCustomer), expectedModel);
+                String.format(AddCustomerCommand.MESSAGE_SUCCESS, validCustomer), expectedModel);
     }
 
     @Test
     public void execute_duplicateCustomer_throwsCommandException() {
         Customer customerInList = model.getAddressBook().getCustomerList().get(0);
         assertCommandFailure(new AddCustomerCommand(customerInList),
-            model, AddCustomerCommand.MESSAGE_DUPLICATE_CUSTOMER);
+                model, AddCustomerCommand.MESSAGE_DUPLICATE_CUSTOMER);
     }
 
 }
