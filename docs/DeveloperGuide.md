@@ -348,7 +348,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests for a <u>[list of all meetings (UC4)](#use-case-uc4---list-all-meetings)</u>.
+1. User requests for a [list of all meetings (UC4)](#use-case-uc4---list-all-meetings).
 2. System shows a list of all meetings.
 3. User requests to delete one meeting from the list.
 4. System deletes the meeting specified by the user.
