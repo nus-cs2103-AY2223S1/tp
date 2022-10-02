@@ -31,7 +31,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Zhao Yige
 
-<img src="images/zhaoyige.png" width="200px">
+<img src="images/frrramses.png" width="200px">
 
 [[github](http://github.com/frrramses)] [[portfolio](team/frrramses.md)]
 
