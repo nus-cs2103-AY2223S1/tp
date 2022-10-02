@@ -7,13 +7,7 @@
 financial advisors stay connected with their clients. *MyInsuRec* is best suited for the quick typist, as it is 
 optimized for use via a Command Line Interface (CLI), with all the benefits of a Graphical User Interface (GUI).
 
-* This is **a sample project for Software Engineering (SE) students**.<br>
-  Example usages:
-  * as an insurance client tracker
-  * as a meeting tracker
 * The project simulates an ongoing software project for a desktop application (called _MyInsuRec_) used for managing clients' details and meetings for an insurance agent.
-  * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
-  * It comes with a **reasonable level of user and developer documentation**.
 * It is named `MyInsuRec` because it helps financial advisors to keep track of their clients and meetings.
 
 ## Links
