@@ -18,6 +18,8 @@ repositories {
 
 checkstyle {
     toolVersion = '10.2'
+    checkstyleTest.enabled = false
+    checkstyleMain.enabled = false
 }
 
 test {
