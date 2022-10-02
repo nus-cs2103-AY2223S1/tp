@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.internship.Internship;
+import seedu.address.model.internship.InternshipId;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -16,24 +18,39 @@ import seedu.address.model.tag.Tag;
 public class Person {
 
     // Identity fields
+    private final PersonId personId;
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final InternshipId internshipId;
 
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null except internship.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(
+            PersonId personId,
+            Name name,
+            Phone phone,
+            Email email,
+            Address address,
+            InternshipId internshipId,
+            Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
+        this.personId = personId;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.internshipId = internshipId;
         this.tags.addAll(tags);
+    }
+
+    public PersonId getPersonId() {
+        return personId;
     }
 
     public Name getName() {
@@ -50,6 +67,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public InternshipId getInternshipId() {
+        return internshipId;
     }
 
     /**
@@ -88,10 +109,12 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
+        return otherPerson.getPersonId().equals(getPersonId())
+                && otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getInternshipId().equals(getInternshipId())
                 && otherPerson.getTags().equals(getTags());
     }
 
