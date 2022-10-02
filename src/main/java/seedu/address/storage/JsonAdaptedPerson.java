@@ -149,7 +149,7 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Race.MESSAGE_CONSTRAINTS);
         }
         final Race modelRace = new Race(race);
-        
+
         if (religion == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Religion.class.getSimpleName()));
         }
@@ -167,7 +167,7 @@ class JsonAdaptedPerson {
         final Survey modelSurvey = new Survey(survey);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, 
+        return new Person(modelName, modelPhone, modelEmail, modelAddress,
                 modelGender, modelBirthdate, modelRace,
                 modelReligion, modelSurvey, modelTags);
     }

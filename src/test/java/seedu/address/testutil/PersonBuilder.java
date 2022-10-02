@@ -137,7 +137,7 @@ public class PersonBuilder {
         this.race = new Race(race);
         return this;
     }
-    
+
     /**
      * Sets the {@code Religion} of the {@code Person} that we are building.
      */
@@ -145,7 +145,7 @@ public class PersonBuilder {
         this.religion = new Religion(religion);
         return this;
     }
-    
+
     /**
      * Sets the {@code Survey} of the {@code Person} that we are building.
      */

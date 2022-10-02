@@ -17,7 +17,7 @@ public class ReligionTest {
         assertFalse(Religion.isValidReligion(" "));
         assertFalse(Religion.isValidReligion("^"));
         assertFalse(Religion.isValidReligion("Buddhist^"));
-        
+
         // valid name
         assertTrue(Religion.isValidReligion("Buddhist")); // alphabets only
         assertTrue(Religion.isValidReligion("12345")); // numbers only
