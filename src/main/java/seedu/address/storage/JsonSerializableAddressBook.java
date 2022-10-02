@@ -12,6 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -20,15 +21,20 @@ import seedu.address.model.person.Person;
 class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_TAG = "Tags list contains duplicate tag(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+    public JsonSerializableAddressBook(
+            @JsonProperty("persons") List<JsonAdaptedPerson> persons,
+            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.persons.addAll(persons);
+        this.tags.addAll(tags);
     }
 
     /**
@@ -38,6 +44,7 @@ class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        tags.addAll(source.getTags().stream().map(JsonAdaptedTag::new).collect(Collectors.toList()));
     }
 
     /**
@@ -53,6 +60,13 @@ class JsonSerializableAddressBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
             addressBook.addPerson(person);
+        }
+        for (JsonAdaptedTag jsonAdaptedTag : tags) {
+            Tag tag = jsonAdaptedTag.toModelType();
+            if (addressBook.hasTag(tag)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_TAG);
+            }
+            addressBook.createTag(tag);
         }
         return addressBook;
     }

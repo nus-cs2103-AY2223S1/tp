@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -14,6 +15,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -113,9 +115,30 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
     }
+
+    // =========== Filtered Person List Accessors
+    // =============================================================
+    @Override
+    public boolean hasTag(Tag tag) {
+        requireNonNull(tag);
+        return addressBook.hasTag(tag);
+    }
+
+    @Override
+    public void addTag(Tag tag) {
+        requireNonNull(tag);
+        addressBook.createTag(tag);
+    }
+
+
+    @Override
+    public void removeTags(Person target, Collection<Tag> tags) {
+        addressBook.removeTags(target, tags);
+        clearFiltersInFilteredPersonList();
+    }
+
 
     // =========== Filtered Person List Accessors
     // =============================================================
