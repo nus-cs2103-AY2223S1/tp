@@ -17,5 +17,5 @@ Customer -up-> "*" Tag
 Customer *--> Name
 Customer *--> Phone
 Customer *--> Email
-Customer *--> Address
+Customer *--> "0..1" Address
 @enduml

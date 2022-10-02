@@ -35,11 +35,11 @@ ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniqueCustomerList
-UniqueCustomerList --> "~* all" Customer
+UniqueCustomerList --> "~* all\n" Customer
 Customer *--> Name
 Customer *--> Phone
 Customer *--> Email
-Customer *--> Address
+Customer *--> "0..1" Address
 Customer *--> "*" Tag
 
 Name -[hidden]right-> Phone
