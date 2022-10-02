@@ -101,4 +101,10 @@ public interface Model {
 
     /** Returns {@code true} if person is target person, {@code false} otherwise */
     boolean isTargetPerson(Person person);
+
+    /** Returns {@code true} if target person is present, {@code false} otherwise */
+    boolean hasTargetPerson();
+
+    /** Returns the target {@code Person} */
+    Person getTargetPerson();
 }

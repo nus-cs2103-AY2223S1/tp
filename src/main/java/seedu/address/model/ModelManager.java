@@ -170,4 +170,14 @@ public class ModelManager implements Model {
     public boolean isTargetPerson(Person person) {
         return targetPerson.isSamePerson(person);
     }
+
+    @Override
+    public boolean hasTargetPerson() {
+        return targetPerson.isPresent();
+    }
+
+    @Override
+    public Person getTargetPerson() {
+        return targetPerson.get();
+    }
 }

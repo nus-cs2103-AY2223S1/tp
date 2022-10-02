@@ -31,6 +31,11 @@ public class TargetPerson {
         targetPersonList.add(targetPerson.get());
     }
 
+    /** Returns the target {@code Person} */
+    public Person get() {
+        return targetPerson.orElseThrow();
+    }
+
     /**
      * Set target to none.
      */
@@ -42,6 +47,11 @@ public class TargetPerson {
     /** Returns {@code true} if person is target person, {@code false} otherwise */
     public boolean isSamePerson(Person person) {
         return targetPerson.equals(Optional.of(person));
+    }
+
+    /** Returns {@code true} if target person is present, {@code false} otherwise */
+    public boolean isPresent() {
+        return targetPerson.isPresent();
     }
 
 }
