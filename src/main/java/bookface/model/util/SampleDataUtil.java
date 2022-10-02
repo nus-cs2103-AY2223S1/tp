@@ -4,12 +4,12 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import bookface.model.AddressBook;
+import bookface.model.ReadOnlyAddressBook;
 import bookface.model.person.Email;
 import bookface.model.person.Name;
 import bookface.model.person.Person;
 import bookface.model.person.Phone;
-import bookface.model.AddressBook;
-import bookface.model.ReadOnlyAddressBook;
 import bookface.model.tag.Tag;
 
 

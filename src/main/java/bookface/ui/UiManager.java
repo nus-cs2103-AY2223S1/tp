@@ -2,6 +2,7 @@ package bookface.ui;
 
 import java.util.logging.Logger;
 
+import bookface.MainApp;
 import bookface.commons.core.LogsCenter;
 import bookface.commons.util.StringUtil;
 import bookface.logic.Logic;
@@ -9,7 +10,6 @@ import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
-import bookface.MainApp;
 import javafx.stage.Stage;
 
 
