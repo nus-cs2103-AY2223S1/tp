@@ -137,6 +137,14 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addMeeting(Meeting newMeeting) {
+        addressBook.addMeeting(newMeeting);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    //=========== Others ================================================================================
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {

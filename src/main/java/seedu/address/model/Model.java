@@ -94,10 +94,18 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
-     * Creates a new meetign with a person in the address book.
+     * Creates a new meeting with a person in the address book.
      *
+     * @param otherPerson the contact in the address book to create a meeting with
      * @return a new meeting
      */
-    public Meeting createNewMeeting(Person otherPerson);
+    Meeting createNewMeeting(Person otherPerson);
+
+    /**
+     * Adds a new meeting to the address book.
+     *
+     * @param newMeeting the new meeting to add to address book
+     */
+    void addMeeting(Meeting newMeeting);
 
 }

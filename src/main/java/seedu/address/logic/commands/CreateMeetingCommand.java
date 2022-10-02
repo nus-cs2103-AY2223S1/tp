@@ -7,6 +7,7 @@ import java.util.Arrays;
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 
@@ -34,8 +35,10 @@ public class CreateMeetingCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         String[] personName = personToMeet.split("\\s+");
+        // Takes in the name of the address book contact, split by words in the name
         NameContainsKeywordsPredicate personNameArray =
             new NameContainsKeywordsPredicate(Arrays.asList(personName));
+        // updates the list of persons in address book based on predicate
         model.updateFilteredPersonList(personNameArray);
         ObservableList<Person> listOfPeople = model.getFilteredPersonList();
         if (listOfPeople.isEmpty()) {
@@ -43,7 +46,8 @@ public class CreateMeetingCommand extends Command {
         }
         Person otherPerson = listOfPeople.get(0);
 
-        model.createNewMeeting(otherPerson);
+        Meeting newMeeting = model.createNewMeeting(otherPerson);
+        model.addMeeting(newMeeting);
 
         return new CommandResult(String.format(MESSAGE_CREATE_MEETING_SUCCESS, this.personToMeet));
     }

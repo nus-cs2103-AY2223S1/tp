@@ -24,10 +24,10 @@ public class CreateMeetingCommandParser implements Parser<FindCommand> {
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        String name = trimmedArgs;
+        String contactName = trimmedArgs;
         // String[] nameKeywords = trimmedArgs.split("\\s+"); // split by whitespace
 
-        return new CreateMeetingCommand(name);
+        return new CreateMeetingCommand(contactName);
     }
 
 }
