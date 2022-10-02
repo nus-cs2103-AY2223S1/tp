@@ -94,7 +94,14 @@ public class Appointment {
 
     @Override
     public String toString() {
-        return dateTime.format(stringFormatter) + " for " + reason;
+        String statusIcon = "[" + getStateIcon() + "]";
+        return statusIcon + " " + dateTime.format(stringFormatter) + " for " + reason;
+    }
+
+    private String getStateIcon() {
+        String markedIcon = "✅";
+        String unmarkedIcon = "❌";
+        return isMarked ? markedIcon: unmarkedIcon;
     }
 
     @Override

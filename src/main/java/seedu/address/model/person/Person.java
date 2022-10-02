@@ -54,6 +54,7 @@ public class Person {
     public Address getAddress() {
         return address;
     }
+
     public List<Appointment> getAppointments() {
         return listOfAppointments;
     }
