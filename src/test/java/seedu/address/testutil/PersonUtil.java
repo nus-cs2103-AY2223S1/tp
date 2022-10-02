@@ -1,11 +1,17 @@
 package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RACE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RELIGION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SURVEY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
@@ -17,6 +23,7 @@ import seedu.address.model.tag.Tag;
  * A utility class for Person.
  */
 public class PersonUtil {
+    private static final String DATE_FORMAT = "y-M-d";
 
     /**
      * Returns an add command string for adding the {@code person}.
@@ -34,6 +41,12 @@ public class PersonUtil {
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
+        sb.append(PREFIX_GENDER + person.getGender().gender + " ");
+        sb.append(PREFIX_BIRTHDATE
+                + person.getBirthdate().birthdate.format(DateTimeFormatter.ofPattern(DATE_FORMAT)) + " ");
+        sb.append(PREFIX_RACE + person.getRace().race + " ");
+        sb.append(PREFIX_RELIGION + person.getReligion().religion + " ");
+        sb.append(PREFIX_SURVEY + person.getSurvey().survey + " ");
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -49,6 +62,11 @@ public class PersonUtil {
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
+        descriptor.getGender().ifPresent(gender -> sb.append(PREFIX_GENDER).append(gender.gender).append(" "));
+        descriptor.getBirthdate().ifPresent(birthdate -> sb.append(PREFIX_BIRTHDATE).append(birthdate.birthdate).append(" "));
+        descriptor.getRace().ifPresent(race -> sb.append(PREFIX_RACE).append(race.race).append(" "));
+        descriptor.getReligion().ifPresent(religion -> sb.append(PREFIX_RELIGION).append(religion.religion).append(" "));
+        descriptor.getSurvey().ifPresent(survey -> sb.append(PREFIX_RELIGION).append(survey.survey).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
