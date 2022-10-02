@@ -115,6 +115,8 @@ public class Appointment {
         }
 
         Appointment otherAppointment = (Appointment) other;
-        return otherAppointment.reason.equals(reason) && otherAppointment.dateTime.equals(dateTime);
+        return otherAppointment.reason.equals(reason)
+                && otherAppointment.dateTime.equals(dateTime)
+                && (otherAppointment.isMarked == isMarked);
     }
 }
