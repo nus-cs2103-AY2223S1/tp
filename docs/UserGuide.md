@@ -30,7 +30,7 @@ It is optimized for use via a **Command Line Interface** (CLI) while still havin
 
    * **`add task coding assignment`** : Adds a task `coding assignment` to the task list.
 
-   * **`delete task`**`3` : Deletes the 3rd task in the task list.
+   * **`delete task`**`3` : Deletes the 3rd task from the task list.
 
    * **`help`** : Displays help text.
 
