@@ -234,10 +234,35 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+### \[Proposed\] Personalising the UI
 
-_{Explain here how the data archiving feature will be implemented}_
+#### Proposed Implementation
 
+#### Design considerations:
+
+### \[Proposed\] Remark field for entries
+
+#### Proposed Implementation
+
+#### Design considerations:
+
+### \[Proposed\] Tag command
+
+#### Proposed Implementation
+
+#### Design considerations:
+
+### \[Proposed\] Filter command
+
+#### Proposed Implementation
+
+#### Design considerations:
+
+### \[Proposed\] Show command
+
+#### Proposed Implementation
+
+#### Design considerations:
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -257,71 +282,297 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
+* new financial advisor
 * has a need to manage a significant number of contacts
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* does not like repetitive work
+* prefers to have minimal traveling expenses
+* likes motivational quotes
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
 
+* manage contacts faster than a typical mouse/GUI driven app
+* keep track of the user's contacts and meeting schedule easily, but communication with contacts is not covered.
+* stay motivated to engage with his clients
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​  | I want to …​                                            | So that I can…​                                                        |
+|----------|----------|---------------------------------------------------------|------------------------------------------------------------------------|
+| `* * *`  | new user | see usage instructions                                  | refer to instructions when I forget how to use the App                 |
+| `* * *`  | user     | add client information                                  |                                                                        |
+| `* * *`  | user     | delete client information                               | remove entries that I no longer need                                   |
+| `* * *`  | user     | modify a client entry easily                            | ensure that client information is up to date                           |
+| `* * *`  | user     | filter my clients by name                               | locate details of clients without having to go through the entire list |
+| `* *`    | user     | classify my clients with different tags                 | know who to prioritise                                                 |
+| `* *`    | user     | filter my clients based on tags assigned to them        | access relevant client data easily                                     |
+| `* *`    | user     | view clients from a certain demographic                 | get a better overview of what my client base is like                   |
+| `* *`    | user     | get things done fast with minimal typing                | save time                                                              |
+| `* *`    | user     | remember details that clients tell me about their lives | use them to form an emotional connection with clients                  |
+| `* *`    | user     | keep track of my client's phone number and address      | contact them easily                                                    |
+| `*`      | user     | sort clients by name                                    | locate a client easily                                                 |
 
-*{More to be added}*
 
 ### Use cases
+(For all use cases below, the **System** is the `Rapportbook` and the **Actor** is the `user`, unless specified otherwise)
+#### Use case: List contacts
+1. User requests to list contacts.
+2. Rapportbook shows a list of contacts.  
+   Use case ends.
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
-
-**Use case: Delete a person**
+#### Use case: Add a contact
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to add a contact and provides details of contacts.
+2. Rapportbook indicates that contact has been added.  
+   Use case ends.
 
+**Extensions**
+
+* 1a. User does not input the required details for the contact.
+    * Use case resumes at step 1.
+
+#### Use case: Delete a contact
+
+**MSS**
+
+1. User [lists contacts](#use-case-list-contacts).
+2. User requests to delete a specific contact in the list.
+3. Rapportbook deletes the contact.  
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+  Use case ends.
+
+* 2a. The given index is invalid.
+    * 2a1. Rapportbook shows an error message.
+    * Use case resumes at step 2.
+
+#### Use case: Edit a contact
+
+**MSS**
+
+1. User [lists contacts](#use-case-list-contacts).
+2. User requests to edit a specific contact in the list by specifying fields and their updated values.
+3. Rapportbook edits the contact based on what the user specified.  
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.  
+  Use case ends.
+
+* 2a. The given index is invalid.
+    * 2a1. Rapportbook shows an error message. 
+    * Use case resumes at step 2.
+* 2b. No fields were specified
+    * 2b1. Rapportbook shows an error message. 
+    * Use case resumes at step 2.
+* 2c. Updated values is not in the right format.
+    * 2c1. Rapportbook shows an error message. 
+    * Use case resumes at step 2.
+* 2d. No index was specified but there is a [contact shown](#use-case-show-contact).
+    * Use case resumes at step 3.
+* 2e. No index was specified and there is no [contact shown](#use-case-show-contact).
+    * Rapportbook shows an error message.
+    * Use case resumes at step 2.
+
+#### Use case: Filter contacts
+
+**MSS**
+
+1. User requests to filter contacts of a certain tag and/or name.
+2. Rapportbook shows a list of contacts that matches his filter query.  
+   Use case ends.
+
+**Extensions**
+
+* 1a. The tag specified does not exist.
+	* 1a1. Rapportbook shows an error message.
+	* Use case resumes at step 1.
+* 1b. The name specified does not exist.
+	* 1a1. Rapportbook shows an error message.
+	* Use case resumes at step 1.
+
+	Use case ends.
+
+#### Use case: Clearing filters
+
+**MSS**
+
+1. User requests to clear a filter that was applied.
+2. Rapportbook shows a list of contacts that without the filter applied.  
+   Use case ends.
+
+**Extensions**
+
+* 1a. The tag specified does not exist.
+	* 1a1. Rapportbook shows an error message.
+	* Use case resumes at step 1.
+* 1b. The name specified does not exist.
+	* 1a1. Rapportbook shows an error message.
+	* Use case resumes at step 1.
+
+	Use case ends.
+
+#### Use case: Show contact
+
+**MSS**
+
+1. User [lists contacts](#use-case-list-contacts).
+2. User requests to show a specific contact in the list.
+3. Rapportbook displays the contact in a separate panel for the user.  
+   Use case ends. 
+
+**Extensions**
+
+* 1a. The list is empty.
+  Use case ends.
+
+* 2a. The given index is invalid.
+    * 2a1. Rapportbook shows an error message.
+    * Use case resumes at step 2.
+
+#### Use case: Create tag(s)
+
+**MSS**
+
+1. User requests to create a certain tag or multiple tags.
+2. Rapportbook creates the corresponding tag(s).
+3. Rapportbook shows success message.
+   Use case ends.
+
+**Extensions**
+
+* 2a. At least one of the specified tag(s) already exist.
+    * 2a1. Rapportbook shows a message indicating that the tag(s) already exists.
+    * 2a2. Rapportbook creates any tags that does not exist.
+    * Use case resumes at step 3.
+
+#### Use case: Add tag(s) to contact
+
+**MSS**
+
+1.  User [lists contacts](#use-case-list-contacts).
+2.  User requests to tag a specific contact in the list with certain tag(s).
+3.  Rapportbook shows success message.  
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
-
+* 1a. The list is empty.  
   Use case ends.
 
-* 3a. The given index is invalid.
+* 2a. The given index is invalid.
+    * 2a1. Rapportbook shows an error message.
+    * Use case resumes at step 2.
+* 2b. At least one of the specified tag(s) do not exist.
+    * 2b1. Rapportbook shows an error message.
+    * Use case resumes at step 2.
+* 2c. Contact already tagged with certain tag(s) specified but not all the tag(s) specified.
+    * 2c1. Rapportbook tags the contact with the missing tag(s).
+    * 2c2. Rapportbook shows a message indicating which tag(s) the contact already has and which tag(s) were added.  
+      Use case ends.
+* 2d. Contact already tagged with all tag(s) specified.
+    * 2d1. Rapportbook shows a message indicating that no tags were added.  
+      Use case ends.
 
-    * 3a1. AddressBook shows an error message.
+#### Use case: Remove tag(s) from contact
 
-      Use case resumes at step 2.
+**MSS**
 
-*{More to be added}*
+1.  User [lists contacts](#use-case-list-contacts).
+2.  User requests to remove certain tag(s) from a specific contact in the list.
+3.  Rapportbook shows success message.  
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.  
+  Use case ends.
+
+* 2a. The given index is invalid.
+    * 2a1. Rapportbook shows an error message.
+    * Use case resumes at step 2.
+* 2b. At least one of the specified tag(s) do not exist.
+    * 2b1. Rapportbook shows an error message.
+    * Use case resumes at step 2.
+* 2c. Contact already has at least one of the tag(s) specified.
+    * 2c1. Rapportbook shows a message indicating which specified tag(s) the contact already has.  
+    * Use case resumes at step 2.
+
+#### Use case: Request help manual
+1. User requests help for application usage.
+2. Rapportbook opens another window that contains a link to the help manual.  
+   Use case ends.
+
+#### Use case: Exit application
+1. User requests to exit the application.
+2. Rapportbook closes all windows and exits gracefully.  
+   Use case ends.
+
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+**Constraints**
+1. Rapportbook must be able to be packaged into a single executable JAR file that is less than 100MB.
 
-*{More to be added}*
+**Data requirements**
+1. Data should be stored locally and in a human editable text file.
+2. No database managed system should be used.
+
+**Technical requirements**
+1. Rapportbook should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Rapportbook should work on 64-bit environments.
+3. Rapportbook should work in an offline environment.
+4. Rapportbook should work without requiring an installer.
+
+**Performance requirements**
+1. Rapportbook should be able to hold up to 1000 contacts without a noticeable delay in performance for typical usage.
+2. Rapportbook should be able to load and store up to 1000 contacts without a noticeable delay in performance.
+3. Rapportbook should be able to respond to user requests in less than 1 second when there are less than 1000 contacts.
+
+**Process requirements**
+1. Rapportbook development schedule:
+    * **v1.1** by 29 September 2022, Thursday, Week 7
+    * **v1.2** by 13 October 2022, Thursday, Week 9
+    * **v1.3** by 27 October 2022, Thursday, Week 11
+    * **v1.4** by 3 November 2022, Thursday, Week 12
+2. Pull requests should be approved by at least one other team member before merging into the master branch on GitHub.
+3. Rapportbook code should follow the Object-oriented paradigm primarily.
+
+**Quality requirements**
+1. A user with above average typing speed should be able to accomplish most tasks faster using commands than using the 
+mouse. 
+2. Rapportbook GUI should work well for standard screen resolutions 1920x1080 and higher, and for screen scales 100% and 
+125%.
+3. Rapportbook GUI should be usable for screen resolutions 1280x720 and higher, and, for screen scales 150%.
+
+**Project scope**
+1. Rapportbook is a single user product.
+2. Rapportbook does not handle communication with clients.
+3. Rapportbook does not send notifications to the user.
+
+**Noteworthy points**
+1. Rapportbook features should be easy to test.
+2. Rapportbook should not rely on external APIs to work.
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Mainstream OS**: Windows, Linux, Unix, OS-X.
+* **Client**: A person that is using the services of our target user.
+* **Contact**: A client profile containing their name, phone number, and other relevant information.
+* **Field**: A piece of information in a contact (e.g. name, phone number).
+* **Entry**: A contact.
+* **Private contact detail**: A contact detail that is not meant to be shared with others.
 
 --------------------------------------------------------------------------------------------------------------------
 
