@@ -1,10 +1,10 @@
 package bookface.logic.parser;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static bookface.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static bookface.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static bookface.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,7 +12,6 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import bookface.testutil.TypicalIndexes;
 import bookface.logic.commands.AddUserCommand;
 import bookface.logic.commands.ClearCommand;
 import bookface.logic.commands.DeleteUserCommand;
@@ -28,6 +27,7 @@ import bookface.model.person.Person;
 import bookface.testutil.EditPersonDescriptorBuilder;
 import bookface.testutil.PersonBuilder;
 import bookface.testutil.PersonUtil;
+import bookface.testutil.TypicalIndexes;
 
 public class AddressBookParserTest {
 
@@ -49,7 +49,8 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteUserCommand command = (DeleteUserCommand) parser.parseCommand(
-                DeleteUserCommand.COMMAND_WORD + DeleteUserCommand.COMMAND_WORD_USER + " " + TypicalIndexes.INDEX_FIRST_PERSON.getOneBased());
+                DeleteUserCommand.COMMAND_WORD + DeleteUserCommand.COMMAND_WORD_USER + " "
+                        + TypicalIndexes.INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new DeleteUserCommand(TypicalIndexes.INDEX_FIRST_PERSON), command);
     }
 
@@ -58,7 +59,8 @@ public class AddressBookParserTest {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + TypicalIndexes.INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+                + TypicalIndexes.INDEX_FIRST_PERSON.getOneBased() + " "
+                + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(TypicalIndexes.INDEX_FIRST_PERSON, descriptor), command);
     }
 
@@ -84,8 +86,10 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListUsersCommand.COMMAND_WORD + ListUsersCommand.COMMAND_WORD_USER) instanceof ListUsersCommand);
-        assertTrue(parser.parseCommand(ListUsersCommand.COMMAND_WORD + ListUsersCommand.COMMAND_WORD_USER + " 3") instanceof ListUsersCommand);
+        assertTrue(parser.parseCommand(ListUsersCommand.COMMAND_WORD
+                + ListUsersCommand.COMMAND_WORD_USER) instanceof ListUsersCommand);
+        assertTrue(parser.parseCommand(ListUsersCommand.COMMAND_WORD
+                + ListUsersCommand.COMMAND_WORD_USER + " 3") instanceof ListUsersCommand);
     }
 
     @Test

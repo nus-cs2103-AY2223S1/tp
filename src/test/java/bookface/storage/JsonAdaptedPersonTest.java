@@ -1,9 +1,9 @@
 package bookface.storage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static bookface.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
 import static bookface.testutil.Assert.assertThrows;
 import static bookface.testutil.TypicalPersons.BENSON;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;

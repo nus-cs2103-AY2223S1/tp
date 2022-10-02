@@ -1,10 +1,10 @@
 package bookface.logic.commands;
 
+import static bookface.testutil.Assert.assertThrows;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static bookface.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -13,7 +13,6 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.ObservableList;
 import bookface.commons.core.GuiSettings;
 import bookface.logic.commands.exceptions.CommandException;
 import bookface.model.AddressBook;
@@ -22,6 +21,7 @@ import bookface.model.ReadOnlyAddressBook;
 import bookface.model.ReadOnlyUserPrefs;
 import bookface.model.person.Person;
 import bookface.testutil.PersonBuilder;
+import javafx.collections.ObservableList;
 
 public class AddCommandTest {
 
@@ -47,7 +47,8 @@ public class AddCommandTest {
         AddUserCommand addCommand = new AddUserCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
-        assertThrows(CommandException.class, AddUserCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddUserCommand
+                .MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
     }
 
     @Test

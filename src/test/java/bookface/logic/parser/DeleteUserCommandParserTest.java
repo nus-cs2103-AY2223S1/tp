@@ -6,8 +6,8 @@ import static bookface.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
 
-import bookface.testutil.TypicalIndexes;
 import bookface.logic.commands.DeleteUserCommand;
+import bookface.testutil.TypicalIndexes;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -27,6 +27,7 @@ public class DeleteUserCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteUserCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "a", String
+                .format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteUserCommand.MESSAGE_USAGE));
     }
 }

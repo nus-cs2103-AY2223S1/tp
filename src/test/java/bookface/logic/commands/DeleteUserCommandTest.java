@@ -1,19 +1,19 @@
 package bookface.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static bookface.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static bookface.testutil.TypicalPersons.getTypicalAddressBook;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import bookface.testutil.TypicalIndexes;
 import bookface.commons.core.Messages;
 import bookface.commons.core.index.Index;
 import bookface.model.Model;
 import bookface.model.ModelManager;
 import bookface.model.UserPrefs;
 import bookface.model.person.Person;
+import bookface.testutil.TypicalIndexes;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for

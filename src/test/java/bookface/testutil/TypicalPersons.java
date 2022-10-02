@@ -37,10 +37,13 @@ public class TypicalPersons {
             .withEmail("hans@example.com").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
-    public static final Person AMY = new PersonBuilder().withName(CommandTestUtil.VALID_NAME_AMY).withPhone(CommandTestUtil.VALID_PHONE_AMY)
+    public static final Person AMY = new PersonBuilder().withName(CommandTestUtil.VALID_NAME_AMY)
+            .withPhone(CommandTestUtil.VALID_PHONE_AMY)
             .withEmail(CommandTestUtil.VALID_EMAIL_AMY).withTags(CommandTestUtil.VALID_TAG_FRIEND).build();
-    public static final Person BOB = new PersonBuilder().withName(CommandTestUtil.VALID_NAME_BOB).withPhone(CommandTestUtil.VALID_PHONE_BOB)
-            .withEmail(CommandTestUtil.VALID_EMAIL_BOB).withTags(CommandTestUtil.VALID_TAG_HUSBAND, CommandTestUtil.VALID_TAG_FRIEND)
+    public static final Person BOB = new PersonBuilder().withName(CommandTestUtil.VALID_NAME_BOB)
+            .withPhone(CommandTestUtil.VALID_PHONE_BOB)
+            .withEmail(CommandTestUtil.VALID_EMAIL_BOB).withTags(CommandTestUtil.VALID_TAG_HUSBAND,
+                    CommandTestUtil.VALID_TAG_FRIEND)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

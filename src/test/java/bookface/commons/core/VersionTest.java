@@ -1,8 +1,8 @@
 package bookface.commons.core;
 
+import static bookface.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static bookface.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 

@@ -1,12 +1,12 @@
 package bookface.model;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static bookface.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static bookface.testutil.Assert.assertThrows;
 import static bookface.testutil.TypicalPersons.ALICE;
 import static bookface.testutil.TypicalPersons.BENSON;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;

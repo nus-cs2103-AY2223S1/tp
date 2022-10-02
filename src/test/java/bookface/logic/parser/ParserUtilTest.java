@@ -1,9 +1,9 @@
 package bookface.logic.parser;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static bookface.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static bookface.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -12,12 +12,12 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import bookface.testutil.TypicalIndexes;
 import bookface.logic.parser.exceptions.ParseException;
 import bookface.model.person.Email;
 import bookface.model.person.Name;
 import bookface.model.person.Phone;
 import bookface.model.tag.Tag;
+import bookface.testutil.TypicalIndexes;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";

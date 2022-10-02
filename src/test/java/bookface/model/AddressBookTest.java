@@ -1,12 +1,12 @@
 package bookface.model;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static bookface.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static bookface.testutil.Assert.assertThrows;
 import static bookface.testutil.TypicalPersons.ALICE;
 import static bookface.testutil.TypicalPersons.getTypicalAddressBook;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -15,11 +15,11 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import bookface.model.person.Person;
 import bookface.model.person.exceptions.DuplicatePersonException;
 import bookface.testutil.PersonBuilder;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class AddressBookTest {
 

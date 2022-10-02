@@ -1,12 +1,12 @@
 package bookface.storage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static bookface.testutil.Assert.assertThrows;
 import static bookface.testutil.TypicalPersons.ALICE;
 import static bookface.testutil.TypicalPersons.HOON;
 import static bookface.testutil.TypicalPersons.IDA;
 import static bookface.testutil.TypicalPersons.getTypicalAddressBook;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.io.IOException;
 import java.nio.file.Path;
