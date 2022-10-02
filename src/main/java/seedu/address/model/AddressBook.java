@@ -162,6 +162,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         activeCustomer = customer;
     }
 
+    public Person getActiveCustomer() {
+        return activeCustomer;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

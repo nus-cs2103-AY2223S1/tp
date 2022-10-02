@@ -97,4 +97,6 @@ public interface Model {
     ObservableList<Commission> getFilteredCommissionList();
 
     void updateFilteredCommissionList(Predicate<Person> predicate);
+
+    void updateActivePerson();
 }

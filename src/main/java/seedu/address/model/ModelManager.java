@@ -125,6 +125,17 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    /**
+     * Clones active person - useful to force GUI update
+     */
+    @Override
+    public void updateActivePerson() {
+        Person activeCustomer = addressBook.getActiveCustomer();
+        Person activeCustomerClone = activeCustomer.getClone();
+        setPerson(activeCustomer, activeCustomerClone);
+        addressBook.setActiveCustomer(activeCustomerClone);
+    }
+
     @Override
     public boolean hasCommission(Commission commission) {
         requireNonNull(commission);

@@ -98,6 +98,10 @@ public class Person {
                 && otherPerson.getName().equals(getName());
     }
 
+    public Person getClone() {
+        return new Person(name, phone, email, address, tags, commissions);
+    }
+
     /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
