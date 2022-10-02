@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.travelr.commons.exceptions.IllegalValueException;
 import seedu.travelr.model.AddressBook;
 import seedu.travelr.model.ReadOnlyAddressBook;
-import seedu.travelr.model.person.Person;
+import seedu.travelr.model.trip.Trip;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -19,16 +19,17 @@ import seedu.travelr.model.person.Person;
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_TRIP = "Trips list contains duplicate trip(s).";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedTrip> trips = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * TODO: Rename JsonProperty in local data file from persons to trips 
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableAddressBook(@JsonProperty("trips") List<JsonAdaptedTrip> trips) {
+        this.trips.addAll(trips);
     }
 
     /**
@@ -37,7 +38,7 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        trips.addAll(source.getTripList().stream().map(JsonAdaptedTrip::new).collect(Collectors.toList()));
     }
 
     /**
@@ -47,12 +48,12 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(person)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+        for (JsonAdaptedTrip jsonAdaptedTrip : trips) {
+            Trip trip = jsonAdaptedTrip.toModelType();
+            if (addressBook.hasTrip(trip)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_TRIP);
             }
-            addressBook.addPerson(person);
+            addressBook.hasTrip(trip);
         }
         return addressBook;
     }
