@@ -83,6 +83,7 @@ public class ModelManager implements Model {
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         this.addressBook.resetData(addressBook);
+        clearTargetPerson();
     }
 
     @Override
@@ -99,6 +100,10 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
+
+        if (isTargetPerson(target)) {
+            clearTargetPerson();
+        }
     }
 
     @Override
@@ -112,6 +117,10 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+
+        if (isTargetPerson(target)) {
+            setTargetPerson(editedPerson);
+        }
     }
 
     //=========== Filtered Person List Accessors =============================================================

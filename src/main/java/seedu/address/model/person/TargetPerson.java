@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
  * Represents a Target Person when the application is running.
@@ -28,12 +29,12 @@ public class TargetPerson {
     public void set(Person person) {
         targetPerson = Optional.of(person);
         targetPersonList.clear();
-        targetPersonList.add(targetPerson.get());
+        targetPersonList.add(person);
     }
 
     /** Returns the target {@code Person} */
     public Person get() {
-        return targetPerson.orElseThrow();
+        return targetPerson.orElseThrow(PersonNotFoundException::new);
     }
 
     /**
