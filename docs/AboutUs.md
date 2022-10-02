@@ -19,16 +19,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead and Code Quality In-Charge
 * Responsibilities: Commons
 
-### John Benedict
-
-<img src="images/johnbenedictyan.png" width="200px">
-
-[[github](http://github.com/johnbenedictyan)]
-[[portfolio](team/johnbenedictyan.md)]
-
-* Role: Team Lead, Code Quality
-* Responsibilities: Commons
-
 ### Phoong Xiang Han
 
 <img src="images/xhphoong.png" width="200px">
