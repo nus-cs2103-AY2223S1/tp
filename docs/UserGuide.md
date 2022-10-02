@@ -93,11 +93,16 @@ Examples:
 * `add c/P n/John p/98765432 e/john@example.com g/M a/Bishan street, block 123, #01-01 t/Asthma d/2022-12-12 1350`
 * `add c/P n/Betsy t/VIP e/betsy@example.com g/F a/Bugis street d/2022-12-02 1400 p/98345432 t/Heart disease t/children`
 
-### Listing all persons : `list`
+### Listing nurses or patients : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of specified nurses or patients, or all nurses and patients if no specifications were provided.
 
-Format: `list`
+Format: `list [c/CATEGORY] [t/TAG] [g/GENDER] [a/ADDRESS]`
+
+Examples:
+* `list c/NURSE` - Lists all nurses enrolled in the database.
+* `list c/PATIENT t/DIABETIC g/M` - Lists all male diabetic patients enrolled in the database.
+* `list c/PATIENT a/Bugis t/Heart Disease` - List all patients tagged with heart disease in the Bugis region.
 
 ### Editing a person : `edit`
 
@@ -194,5 +199,7 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
+**List** | `list [c/CATEGORY] [t/TAG] [g/GENDER] [a/ADDRESS]`<br> e.g., `list c/NURSE`
 **Help** | `help`
+
+
