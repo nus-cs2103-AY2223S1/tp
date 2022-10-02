@@ -1,10 +1,8 @@
 name: GitHub Notifier
 
 on:
-  pull_request:
-    types: [opened, edited, ready_for_review, review_requested, reopened]
-  pull_request_review_comment:
-    types: [created]
+  workflow_run:
+    workflows: ["PR Updates"]
 
 jobs:
   build:
