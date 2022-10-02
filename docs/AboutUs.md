@@ -52,7 +52,7 @@ GitHub: [@beetee17](https://github.com/beetee17)
 
 <img src="images/amresh2000.png" width="200px">
 
-[[github](http://github.com/amresh2000)]
+Github: [@amresh2000](http://github.com/amresh2000)
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
