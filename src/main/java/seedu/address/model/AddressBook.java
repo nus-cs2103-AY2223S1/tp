@@ -2,9 +2,11 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -15,6 +17,8 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    // May need to change this to iterable list
+    private final ArrayList<Meeting> meetings;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +29,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        meetings = new ArrayList<>();
     }
 
     public AddressBook() {}
@@ -91,6 +96,16 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+    }
+
+    //// meeting-level operations
+
+    /**
+     * Adds a person to the address book.
+     * The person must not already exist in the address book.
+     */
+    public void addMeeting(Meeting newMeeting) {
+        this.meetings.add(newMeeting);
     }
 
     //// util methods
