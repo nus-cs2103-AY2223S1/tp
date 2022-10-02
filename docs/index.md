@@ -1,18 +1,18 @@
 ---
 layout: page
-title: AddressBook Level-3
+title: GREWZ
 ---
 
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103T-W12-4/tp/actions)
+[![CI Status](https://github.com/AY2223S1-CS2103T-W12-4/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103T-W12-4/tp/actions)
 [![codecov](https://codecov.io/gh/AY2223S1-CS2103T-W12-4/tp/branch/master/graph/badge.svg?token=UFZ3FQBSRS)](https://codecov.io/gh/AY2223S1-CS2103T-W12-4/tp)
 
 
 ![Ui](images/Ui.png)
 
-**AddressBook is a desktop application for managing your contact details.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+**GREWZ is a desktop application for managing your contact details.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
-* If you are interested in using AddressBook, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
-* If you are interested about developing AddressBook, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
+* If you are interested in using GREWZ, head over to the [_Quick Start_ section of the **User Guide**](https://ay2223s1-cs2103t-w12-4.github.io/tp/UserGuide.html#quick-start).
+* If you are interested about developing GREWZ, the [**Developer Guide**](https://ay2223s1-cs2103t-w12-4.github.io/tp/DeveloperGuide.html) is a good place to start.
 
 
 **Acknowledgements**
