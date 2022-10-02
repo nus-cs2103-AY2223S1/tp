@@ -1,14 +1,16 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.util.CollectionUtil.isAnyNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.ParserUtil.parseCommaSeparatedKeywords;
+import static seedu.address.logic.parser.ParserUtil.parseNameQueryPredicate;
+import static seedu.address.logic.parser.ParserUtil.parseTagsQueryPredicate;
 
 import java.util.List;
-import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.FilterClearCommand;
@@ -17,7 +19,6 @@ import seedu.address.logic.commands.FilterCommandPredicate;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.TagMatchesQueryPredicate;
-import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new FilterCommand object
@@ -67,7 +68,7 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         NameContainsKeywordsPredicate nameQueryPredicate = constructNameQueryPredicate(argMultimap);
         TagMatchesQueryPredicate tagsQueryPredicate = constructTagsQueryPredicate(argMultimap);
 
-        if (nameQueryPredicate == null && tagsQueryPredicate == null) {
+        if (!isAnyNonNull(nameQueryPredicate, tagsQueryPredicate)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
         return new FilterCommandPredicate(nameQueryPredicate, tagsQueryPredicate);
@@ -92,13 +93,15 @@ public class FilterCommandParser implements Parser<FilterCommand> {
      *
      * @param argMultimap ArgumentMultimap of tokens.
      * @return Name filtering predicate.
+     * @throws ParseException If an error occurs during parsing.
      */
-    private NameContainsKeywordsPredicate constructNameQueryPredicate(ArgumentMultimap argMultimap) {
+    private NameContainsKeywordsPredicate constructNameQueryPredicate(ArgumentMultimap argMultimap)
+            throws ParseException {
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME) || !argMultimap.getPreamble().isEmpty()) {
             return null;
         }
-        List<String> nameKeywords = splitCommaSeparatedKeywords(argMultimap.getAllValues(PREFIX_NAME));
-        return new NameContainsKeywordsPredicate(nameKeywords);
+        List<String> nameKeywords = parseCommaSeparatedKeywords(argMultimap.getAllValues(PREFIX_NAME));
+        return parseNameQueryPredicate(nameKeywords);
     }
 
     /**
@@ -106,27 +109,16 @@ public class FilterCommandParser implements Parser<FilterCommand> {
      *
      * @param argMultimap ArgumentMultimap of tokens.
      * @return Tag filtering predicate.
+     * @throws ParseException If an error occurs during parsing.
      */
     private TagMatchesQueryPredicate constructTagsQueryPredicate(ArgumentMultimap argMultimap) throws ParseException {
         if (!arePrefixesPresent(argMultimap, PREFIX_TAG) || !argMultimap.getPreamble().isEmpty()) {
             return null;
         }
-        List<String> tagKeywords = splitCommaSeparatedKeywords(argMultimap.getAllValues(PREFIX_TAG));
-        Set<Tag> tagSetQuery = ParserUtil.parseTags(tagKeywords);
-        return new TagMatchesQueryPredicate(tagSetQuery);
+        List<String> tagKeywords = parseCommaSeparatedKeywords(argMultimap.getAllValues(PREFIX_TAG));
+        return parseTagsQueryPredicate(tagKeywords);
     }
 
-    /**
-     * Split comma separated separate keywords in each entry into a list of keywords.
-     *
-     * @param keywords List of comma separated keywords
-     * @return A list of separated keywords without commas.
-     */
-    private List<String> splitCommaSeparatedKeywords(List<String> keywords) {
-        return keywords.stream()
-                .flatMap((keyword) -> ParserUtil.parseCommaSeparatedKeywords(keyword).stream())
-                .collect(Collectors.toList());
-    }
 
     private boolean hasArguments(String arguments) {
         return arguments.length() != 0;
@@ -139,7 +131,6 @@ public class FilterCommandParser implements Parser<FilterCommand> {
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
-
 }
 
 

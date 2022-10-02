@@ -1,7 +1,7 @@
 package seedu.address.model.person;
 
+import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
@@ -19,7 +19,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
      *
      * @param keywords List of names to filter for.
      */
-    public NameContainsKeywordsPredicate(List<String> keywords) {
+    public NameContainsKeywordsPredicate(Collection<String> keywords) {
         this.keywords = new HashSet<>();
         keywords.forEach((keyword) -> this.keywords.add(keyword.toLowerCase()));
     }
