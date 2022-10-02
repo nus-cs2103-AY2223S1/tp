@@ -1,13 +1,21 @@
 package seedu.address.model.commission;
 
-import java.time.LocalDate;
-
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
+
+/**
+ * Represents a Commission's name in the address book.
+ * Guarantees: immutable;
+ */
 public class Deadline {
 
     public final LocalDate deadline;
 
+    /**
+     * Initialises a deadline.
+     * @param deadline Date of the deadline.
+     */
     public Deadline(LocalDate deadline) {
         requireNonNull(deadline);
         this.deadline = deadline;

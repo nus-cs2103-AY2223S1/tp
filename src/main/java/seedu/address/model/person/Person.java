@@ -40,11 +40,18 @@ public class Person {
         this.tags.addAll(tags);
     }
 
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, UniqueCommissionList commissions) {
+    /**
+     * Initialises Person with a UniqueCommissionList of commissions.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                  UniqueCommissionList commissions) {
         this(name, phone, email, address, tags);
         this.commissions.setCommissions(commissions);
     }
 
+    /**
+     * Initialises Person with a list of commissions.
+     */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, List<Commission> commissions) {
         this(name, phone, email, address, tags);
         this.commissions.setCommissions(commissions);

@@ -13,10 +13,11 @@ import seedu.address.model.commission.exceptions.DuplicateCommissionException;
 
 /**
  * A list of commissions that enforces uniqueness between its elements and does not allow nulls.
- * A commission is considered unique by comparing using {@code Commission#isSameCommission(Commission)}. As such, adding and updating of
- * commissions uses Commission#isSameCommission(Commission) for equality so as to ensure that the commission being added or updated is
- * unique in terms of identity in the UniqueCommissionList. However, the removal of a commission uses Commission#equals(Object) so
- * as to ensure that the commission with exactly the same fields will be removed.
+ * A commission is considered unique by comparing using {@code Commission#isSameCommission(Commission)}. As such, adding
+ * and updating of commissions uses Commission#isSameCommission(Commission) for equality so as to ensure that the
+ * commission being added or updated is unique in terms of identity in the UniqueCommissionList. However, the removal of
+ * a commission uses Commission#equals(Object) so as to ensure that the commission with exactly the same fields will be
+ * removed.
  *
  * Supports a minimal set of list operations.
  *
@@ -51,7 +52,8 @@ public class UniqueCommissionList implements Iterable<Commission> {
     /**
      * Replaces the commission {@code target} in the list with {@code editedCommission}.
      * {@code target} must exist in the list.
-     * The commission identity of {@code editedCommission} must not be the same as another existing commission in the list.
+     * The commission identity of {@code editedCommission} must not be the same as another existing commission
+     * in the list.
      */
     public void setCommission(Commission target, Commission editedCommission) {
         requireAllNonNull(target, editedCommission);

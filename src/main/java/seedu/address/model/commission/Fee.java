@@ -1,9 +1,9 @@
 package seedu.address.model.commission;
 
-import java.util.Objects;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.util.Objects;
 
 /**
  * Represents a Commission's fee in the address book.
