@@ -302,9 +302,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 * 3a. The given index is invalid.
   * 3a1. AddressBook shows an error message.
-    
+
     Use case resumes at step 2.
-* 3b. The command line arguments are invalid. 
+* 3b. The command line arguments are invalid.
   * 3b1. AddressBook shows an error message.
 
     Use case resumes at step 2.
@@ -331,7 +331,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
-
 
 *{More to be added}*
 
