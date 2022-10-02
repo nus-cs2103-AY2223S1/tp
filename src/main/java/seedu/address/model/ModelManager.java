@@ -132,16 +132,11 @@ public class ModelManager implements Model {
         addressBook.createTag(tag);
     }
 
-
     @Override
     public void removeTags(Person target, Collection<Tag> tags) {
         addressBook.removeTags(target, tags);
         clearFiltersInFilteredPersonList();
     }
-
-
-    // =========== Filtered Person List Accessors
-    // =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
