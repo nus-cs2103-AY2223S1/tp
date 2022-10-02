@@ -3,8 +3,8 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.person.*;
-import seedu.address.model.person.Student;
+import seedu.address.model.student.*;
+import seedu.address.model.student.Student;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 

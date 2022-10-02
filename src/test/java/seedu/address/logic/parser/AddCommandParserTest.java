@@ -32,8 +32,8 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.model.person.*;
-import seedu.address.model.person.Student;
+import seedu.address.model.student.*;
+import seedu.address.model.student.Student;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.StudentBuilder;
 
