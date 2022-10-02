@@ -9,15 +9,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### Shawn
+### Shawn Lee
 
-<img src="images/snigloo.png" width="200px">
+<img src="images/xenonshawn.png" width="200px">
 
-[[github](https://github.com/snigloo)]
-[[portfolio](team/snigloo.md)]
+[[github](http://github.com/xenonshawn)]
+[[portfolio](team/xenonshawn.md)]
 
 * Role: Team Lead
-* Responsibilities: UI/UX
+* Responsibilities: Code Quality
 
 ### Lin Leyi
 
@@ -38,15 +38,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Testing
 * Responsibilities: Data
 
-### Shawn Lee
+### Shawn Ng
 
-<img src="images/xenonshawn.png" width="200px">
+<img src="images/snigloo.png" width="200px">
 
-[[github](http://github.com/xenonshawn)]
-[[portfolio](team/xenonshawn.md)]
+[[github](https://github.com/snigloo)]
+[[portfolio](team/snigloo.md)]
 
 * Role: Developer
-* Responsibilities: Code Quality
+* Responsibilities: UI/UX
 
 ### Asher Lim
 
