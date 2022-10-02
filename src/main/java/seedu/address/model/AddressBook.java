@@ -18,7 +18,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
 
-    private final UniqueCommissionList commissions;
+    private Person activeCustomer;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -29,7 +29,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
-        commissions = new UniqueCommissionList();
     }
 
     public AddressBook() {}
@@ -53,21 +52,12 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the contents of the person list with {@code commissions}.
-     * {@code commissions} must not contain duplicate commissions.
-     */
-    public void setCommissions(List<Commission> commissions) {
-        this.commissions.setCommissions(commissions);
-    }
-
-    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
-        setCommissions(newData.getCommissionList());
     }
 
     //// person-level operations
@@ -114,7 +104,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public boolean hasCommission(Commission commission) {
         requireNonNull(commission);
-        return commissions.contains(commission);
+        return getUniqueCommissionList().contains(commission);
     }
 
     /**
@@ -122,7 +112,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The commission must not already exist in the address book.
      */
     public void addCommission(Commission commission) {
-        commissions.add(commission);
+        getUniqueCommissionList().add(commission);
     }
 
     /**
@@ -133,7 +123,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setCommission(Commission target, Commission editedCommission) {
         requireNonNull(editedCommission);
 
-        commissions.setCommission(target, editedCommission);
+        getUniqueCommissionList().setCommission(target, editedCommission);
     }
 
     /**
@@ -141,7 +131,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code key} must exist in the address book.
      */
     public void removeCommission(Commission key) {
-        commissions.remove(key);
+        getUniqueCommissionList().remove(key);
     }
 
     //// util methods
@@ -157,9 +147,18 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
+    public UniqueCommissionList getUniqueCommissionList() {
+        return activeCustomer.getCommissions();
+    }
+
     @Override
     public ObservableList<Commission> getCommissionList() {
-        return commissions.asUnmodifiableObservableList();
+        return getUniqueCommissionList().asUnmodifiableObservableList();
+    }
+
+    public void setActiveCustomer(Person customer) {
+        requireNonNull(customer);
+        activeCustomer = customer;
     }
 
     @Override
