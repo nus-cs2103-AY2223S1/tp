@@ -130,13 +130,13 @@ Examples:
 
 ### Mark an appointment as completed:  `mark`
 
-Marks a specified appointment `INDEX_2` for a specified patient at `INDEX_1` as completed.
+Marks a specified appointment `APPOINTMENT_INDEX` for a specified patient at `PATIENT_INDEX` as completed.
 
-Format: `mark INDEX_1 INDEX_2`
+Format: `mark PATIENT_INDEX APPOINTMENT_INDEX`
 
-* `INDEX_1` refers to the index number of the patient shown in the displayed patient list.
-* `INDEX_2` refers to the index number of the appointment to be marked for the desired patient.
-* Values of `INDEX_1` and `INDEX_2` **must be a positive integer** 1, 2, 3, …​
+* `PATIENT_INDEX` refers to the index number of the patient shown in the displayed patient list.
+* `APPOINTMENT_INDEX` refers to the index number of the appointment to be marked for the desired patient.
+* Values of `PATIENT_INDEX` and `APPOINTMENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `mark 3 1`
