@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import seedu.travelr.logic.commands.FindCommand;
 import seedu.travelr.logic.parser.exceptions.ParseException;
-import seedu.travelr.model.person.NameContainsKeywordsPredicate;
+import seedu.travelr.model.trip.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object

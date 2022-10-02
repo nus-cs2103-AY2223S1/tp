@@ -1,7 +1,7 @@
 package seedu.travelr.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.travelr.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.travelr.model.Model.PREDICATE_SHOW_ALL_TRIPS;
 
 import seedu.travelr.model.Model;
 
@@ -18,7 +18,7 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredTripList(PREDICATE_SHOW_ALL_TRIPS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

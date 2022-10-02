@@ -6,7 +6,7 @@ import static seedu.travelr.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.travelr.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.travelr.model.Model.PREDICATE_SHOW_ALL_TRIPS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -19,12 +19,12 @@ import seedu.travelr.commons.core.index.Index;
 import seedu.travelr.commons.util.CollectionUtil;
 import seedu.travelr.logic.commands.exceptions.CommandException;
 import seedu.travelr.model.Model;
-import seedu.travelr.model.person.Address;
-import seedu.travelr.model.person.Email;
-import seedu.travelr.model.person.Name;
-import seedu.travelr.model.person.Person;
-import seedu.travelr.model.person.Phone;
 import seedu.travelr.model.tag.Tag;
+import seedu.travelr.model.trip.Address;
+import seedu.travelr.model.trip.Email;
+import seedu.travelr.model.trip.Name;
+import seedu.travelr.model.trip.Phone;
+import seedu.travelr.model.trip.Trip;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -46,60 +46,60 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_TRIP_SUCCESS = "Edited Trip: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_TRIP = "This trip already exists in the address book.";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditTripDescriptor editTripDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param index              of the person in the filtered person list to edit
+     * @param editTripDescriptor details to edit the person with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditTripDescriptor editTripDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editTripDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editTripDescriptor = new EditTripDescriptor(editTripDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Trip> lastShownList = model.getFilteredTripList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_TRIP_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Trip tripToEdit = lastShownList.get(index.getZeroBased());
+        Trip editedTrip = createEditedTrip(tripToEdit, editTripDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (!tripToEdit.isSameTrip(editedTrip) && model.hasTrip(editedTrip)) {
+            throw new CommandException(MESSAGE_DUPLICATE_TRIP);
         }
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        model.setTrip(tripToEdit, editedTrip);
+        model.updateFilteredTripList(PREDICATE_SHOW_ALL_TRIPS);
+        return new CommandResult(String.format(MESSAGE_EDIT_TRIP_SUCCESS, editedTrip));
     }
 
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    private static Trip createEditedTrip(Trip tripToEdit, EditTripDescriptor editTripDescriptor) {
+        assert tripToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Name updatedName = editTripDescriptor.getName().orElse(tripToEdit.getName());
+        Phone updatedPhone = editTripDescriptor.getPhone().orElse(tripToEdit.getPhone());
+        Email updatedEmail = editTripDescriptor.getEmail().orElse(tripToEdit.getEmail());
+        Address updatedAddress = editTripDescriptor.getAddress().orElse(tripToEdit.getAddress());
+        Set<Tag> updatedTags = editTripDescriptor.getTags().orElse(tripToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Trip(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
 
     @Override
@@ -117,27 +117,28 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editTripDescriptor.equals(e.editTripDescriptor);
     }
 
     /**
      * Stores the details to edit the person with. Each non-empty field value will replace the
      * corresponding field value of the person.
      */
-    public static class EditPersonDescriptor {
+    public static class EditTripDescriptor {
         private Name name;
         private Phone phone;
         private Email email;
         private Address address;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {}
+        public EditTripDescriptor() {
+        }
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditTripDescriptor(EditTripDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
@@ -209,12 +210,12 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditTripDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditTripDescriptor e = (EditTripDescriptor) other;
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())

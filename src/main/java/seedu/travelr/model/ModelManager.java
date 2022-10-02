@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.travelr.commons.core.GuiSettings;
 import seedu.travelr.commons.core.LogsCenter;
-import seedu.travelr.model.person.Person;
+import seedu.travelr.model.trip.Trip;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -21,7 +21,7 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Trip> filteredTrips;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -33,7 +33,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredTrips = new FilteredList<>(this.addressBook.getTripList());
     }
 
     public ModelManager() {
@@ -88,44 +88,44 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public boolean hasTrip(Trip trip) {
+        requireNonNull(trip);
+        return addressBook.hasTrip(trip);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public void deleteTrip(Trip target) {
+        addressBook.removeTrip(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addTrip(Trip trip) {
+        addressBook.addTrip(trip);
+        updateFilteredTripList(PREDICATE_SHOW_ALL_TRIPS);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setTrip(Trip target, Trip editedTrip) {
+        requireAllNonNull(target, editedTrip);
 
-        addressBook.setPerson(target, editedPerson);
+        addressBook.setTrip(target, editedTrip);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Trip List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Trip} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Trip> getFilteredTripList() {
+        return filteredTrips;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredTripList(Predicate<Trip> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredTrips.setPredicate(predicate);
     }
 
     @Override
@@ -144,7 +144,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredTrips.equals(other.filteredTrips);
     }
 
 }

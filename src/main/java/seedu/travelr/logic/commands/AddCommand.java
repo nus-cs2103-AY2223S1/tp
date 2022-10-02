@@ -9,7 +9,7 @@ import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.travelr.logic.commands.exceptions.CommandException;
 import seedu.travelr.model.Model;
-import seedu.travelr.model.person.Person;
+import seedu.travelr.model.trip.Trip;
 
 /**
  * Adds a person to the address book.
@@ -33,28 +33,28 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New trip added: %1$s";
+    public static final String MESSAGE_DUPLICATE_TRIP = "This trip already exists in the address book";
 
-    private final Person toAdd;
+    private final Trip toAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public AddCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddCommand(Trip trip) {
+        requireNonNull(trip);
+        toAdd = trip;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (model.hasTrip(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_TRIP);
         }
 
-        model.addPerson(toAdd);
+        model.addTrip(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

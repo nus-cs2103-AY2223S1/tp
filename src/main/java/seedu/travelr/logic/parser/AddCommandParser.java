@@ -12,12 +12,12 @@ import java.util.stream.Stream;
 
 import seedu.travelr.logic.commands.AddCommand;
 import seedu.travelr.logic.parser.exceptions.ParseException;
-import seedu.travelr.model.person.Address;
-import seedu.travelr.model.person.Email;
-import seedu.travelr.model.person.Name;
-import seedu.travelr.model.person.Person;
-import seedu.travelr.model.person.Phone;
 import seedu.travelr.model.tag.Tag;
+import seedu.travelr.model.trip.Address;
+import seedu.travelr.model.trip.Email;
+import seedu.travelr.model.trip.Name;
+import seedu.travelr.model.trip.Phone;
+import seedu.travelr.model.trip.Trip;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -27,6 +27,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
@@ -44,9 +45,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, address, tagList);
+        Trip trip = new Trip(name, phone, email, address, tagList);
 
-        return new AddCommand(person);
+        return new AddCommand(trip);
     }
 
     /**
