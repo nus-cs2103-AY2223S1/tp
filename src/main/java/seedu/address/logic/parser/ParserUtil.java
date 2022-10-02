@@ -38,25 +38,7 @@ public class ParserUtil {
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
-
-    /**
-     * Parses a string of {@code oneBasedIndex}es seperated by spaces into a list of {@code Index} and returns it.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the specified indexes is invalid (not non-zero unsigned integer).
-     */
-    public static List<Index> parseIndexes(String oneBasedIndexes) throws ParseException {
-        String indexSeparator = " ";
-        String trimmedIndexes = oneBasedIndexes.trim();
-        String[] indexes = trimmedIndexes.split(indexSeparator);
-
-        List<Index> indexList = new ArrayList<>();
-        for (String index : indexes) {
-            indexList.add(parseIndex(index));
-        }
-        return indexList;
-    }
-
+    
     /**
      * Parses a string of {@code oneBasedIndex}es seperated by spaces into a list of {@code Index} of exactly size
      * {@code parseCount} and returns it. Leading and trailing whitespaces will be trimmed.
