@@ -1,3 +1,8 @@
+---
+layout: page
+title: User Guide
+---
+
 # GithubContact
 
 GithubContact is **an address book integrated with Github's Public API, targeted at programmers to help them communicate and collaborate smoothly.**
