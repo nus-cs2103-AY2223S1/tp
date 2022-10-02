@@ -38,7 +38,7 @@ public class ParserUtil {
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
-    
+
     /**
      * Parses a string of {@code oneBasedIndex}es seperated by spaces into a list of {@code Index} of exactly size
      * {@code parseCount} and returns it. Leading and trailing whitespaces will be trimmed.
