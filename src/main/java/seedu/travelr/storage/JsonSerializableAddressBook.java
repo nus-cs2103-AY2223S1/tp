@@ -25,7 +25,7 @@ class JsonSerializableAddressBook {
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
-     * TODO: Rename JsonProperty in local data file from persons to trips 
+     * TODO: Rename JsonProperty in local data file from persons to trips
      */
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("trips") List<JsonAdaptedTrip> trips) {

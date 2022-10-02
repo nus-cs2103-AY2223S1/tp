@@ -19,7 +19,7 @@ public class TripListPanel extends UiPart<Region> {
 
     @FXML
     private ListView<Trip> personListView;
-    
+
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */

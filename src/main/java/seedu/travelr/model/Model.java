@@ -11,9 +11,11 @@ import seedu.travelr.model.trip.Trip;
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
     Predicate<Trip> PREDICATE_SHOW_ALL_TRIPS = unused -> true;
- 
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -49,7 +51,9 @@ public interface Model {
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
-    /** Returns the AddressBook */
+    /**
+     * Returns the AddressBook
+     */
     ReadOnlyAddressBook getAddressBook();
 
     /**
@@ -76,11 +80,14 @@ public interface Model {
      */
     void setTrip(Trip target, Trip editedTrip);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /**
+     * Returns an unmodifiable view of the filtered person list
+     */
     ObservableList<Trip> getFilteredTripList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTripList(Predicate<Trip> predicate);

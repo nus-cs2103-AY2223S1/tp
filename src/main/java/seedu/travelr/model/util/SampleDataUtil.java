@@ -6,12 +6,12 @@ import java.util.stream.Collectors;
 
 import seedu.travelr.model.AddressBook;
 import seedu.travelr.model.ReadOnlyAddressBook;
+import seedu.travelr.model.tag.Tag;
 import seedu.travelr.model.trip.Address;
 import seedu.travelr.model.trip.Email;
 import seedu.travelr.model.trip.Name;
-import seedu.travelr.model.trip.Trip;
 import seedu.travelr.model.trip.Phone;
-import seedu.travelr.model.tag.Tag;
+import seedu.travelr.model.trip.Trip;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.

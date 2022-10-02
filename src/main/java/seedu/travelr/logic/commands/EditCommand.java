@@ -19,12 +19,12 @@ import seedu.travelr.commons.core.index.Index;
 import seedu.travelr.commons.util.CollectionUtil;
 import seedu.travelr.logic.commands.exceptions.CommandException;
 import seedu.travelr.model.Model;
+import seedu.travelr.model.tag.Tag;
 import seedu.travelr.model.trip.Address;
 import seedu.travelr.model.trip.Email;
 import seedu.travelr.model.trip.Name;
-import seedu.travelr.model.trip.Trip;
 import seedu.travelr.model.trip.Phone;
-import seedu.travelr.model.tag.Tag;
+import seedu.travelr.model.trip.Trip;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -54,7 +54,7 @@ public class EditCommand extends Command {
     private final EditTripDescriptor editTripDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
+     * @param index              of the person in the filtered person list to edit
      * @param editTripDescriptor details to edit the person with
      */
     public EditCommand(Index index, EditTripDescriptor editTripDescriptor) {
@@ -73,7 +73,7 @@ public class EditCommand extends Command {
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TRIP_DISPLAYED_INDEX);
         }
-        
+
         Trip tripToEdit = lastShownList.get(index.getZeroBased());
         Trip editedTrip = createEditedTrip(tripToEdit, editTripDescriptor);
 
@@ -131,7 +131,8 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Tag> tags;
 
-        public EditTripDescriptor() {}
+        public EditTripDescriptor() {
+        }
 
         /**
          * Copy constructor.

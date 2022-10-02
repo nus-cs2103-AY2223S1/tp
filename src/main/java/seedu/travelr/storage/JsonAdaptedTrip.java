@@ -10,12 +10,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.travelr.commons.exceptions.IllegalValueException;
+import seedu.travelr.model.tag.Tag;
 import seedu.travelr.model.trip.Address;
 import seedu.travelr.model.trip.Email;
 import seedu.travelr.model.trip.Name;
-import seedu.travelr.model.trip.Trip;
 import seedu.travelr.model.trip.Phone;
-import seedu.travelr.model.tag.Tag;
+import seedu.travelr.model.trip.Trip;
 
 /**
  * Jackson-friendly version of {@link Trip}.

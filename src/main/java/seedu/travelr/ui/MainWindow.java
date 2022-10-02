@@ -40,7 +40,7 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem helpMenuItem;
-    
+
     // TODO: Refactor
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -79,6 +79,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -163,7 +164,7 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow.hide();
         primaryStage.hide();
     }
-    
+
     // TODO: Refactor once UI done
     public TripListPanel getPersonListPanel() {
         return tripListPanel;
