@@ -7,12 +7,12 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.TargetPerson;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -23,7 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private final ObservableList<Person> targetPersonList;
+    private final TargetPerson targetPerson;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -36,7 +36,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        targetPersonList = FXCollections.observableArrayList();
+        targetPerson = new TargetPerson();
     }
 
     public ModelManager() {
@@ -152,30 +152,22 @@ public class ModelManager implements Model {
 
     //=========== Target Person Accessors =============================================================
     @Override
-    public ObservableList<Person> getTargetPersonList() {
-        return targetPersonList;
+    public ObservableList<Person> getTargetPersonAsObservableList() {
+        return targetPerson.getAsObservableList();
     }
 
     @Override
-    public void setTargetPerson(Person targetPerson) {
-        if (targetPersonList.size() > 0) {
-            targetPersonList.remove(0);
-        }
-        targetPersonList.add(targetPerson);
+    public void setTargetPerson(Person person) {
+        targetPerson.set(person);
     }
 
     @Override
     public void clearTargetPerson() {
-        if (targetPersonList.size() > 0) {
-            targetPersonList.remove(0);
-        }
+        targetPerson.clear();
     }
 
     @Override
     public boolean isTargetPerson(Person person) {
-        if (targetPersonList.size() > 0) {
-            return targetPersonList.get(0).isSamePerson(person);
-        }
-        return false;
+        return targetPerson.isSamePerson(person);
     }
 }

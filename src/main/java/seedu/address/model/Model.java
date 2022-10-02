@@ -86,7 +86,7 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /** Returns an unmodifiable view of the list of target person */
-    ObservableList<Person> getTargetPersonList();
+    ObservableList<Person> getTargetPersonAsObservableList();
 
     /**
      * Set the given person as target.
