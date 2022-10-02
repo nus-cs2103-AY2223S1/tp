@@ -10,26 +10,26 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Darren Teo
 
-<img src="images/darren.png" width="200px">
+<img src="team/images/darrentde.png" width="200px">
 
 [[github](https://github.com/darrentde)]
 
-[[portfolio](team/darren.md)]
+[[portfolio](team/darrentde.md)]
 
 * Role: Developer
 
 ### Chua Ming Quan
 
-<img src="images/chuamingquan.png" width="200px">
+<img src="team/images/mqchua.png" width="200px">
 
 [[github](https://github.com/https://github.com/mqchua)]
-[[portfolio](team/chuamingquan.md)]
+[[portfolio](team/mqchua.md)]
 
 * Role: Developer
 
 ### Tin En Hao
 
-<img src="images/tinenhao.png" width="200px">
+<img src="team/images/tinenhao.png" width="200px">
 
 [[github](https://github.com/tinenhao)]
 [[portfolio](team/tinenhao.md)]
@@ -37,21 +37,21 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Developer
 
 ### Justin Widodo
-<img src="images/justinwidodo.png" width="200px">
+<img src="team/images/genfusion122.png" width="200px">
 
 [[github](https://github.com/GenFusion122)]
-[[portfolio](team/justinwidodo.md)]
+[[portfolio](team/genfusion122.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Development
 
 ### Luo Tian You
 
-<img src="images/LuoTianYou.jpg" width="200px">
+<img src="team/images/hakkangin.png" width="200px">
 
 [github](https://github.com/HakkaNgin)
 
-[portfolio](team/luotianyou.md)
+[portfolio](team/hakkangin.md)
 
 * Role: Developer
 * Responsibilities: Development
