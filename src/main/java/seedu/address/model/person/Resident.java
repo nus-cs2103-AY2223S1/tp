@@ -30,7 +30,8 @@ public class Resident {
     /**
      * Every field must be present and not null.
      */
-    public Resident(Name name, Phone phone, Email email, Room room, Gender gender, House house, MatricNumber matricNumber, Set<Tag> tags) {
+    public Resident(Name name, Phone phone, Email email, Room room, Gender gender,
+                    House house, MatricNumber matricNumber, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, room, gender, house, matricNumber, tags);
         this.name = name;
         this.phone = phone;
@@ -54,13 +55,21 @@ public class Resident {
         return email;
     }
 
-    public Room getRoom() {return room;}
+    public Room getRoom() {
+        return room;
+    }
 
-    public Gender getGender() {return gender;}
+    public Gender getGender() {
+        return gender;
+    }
 
-    public House getHouse() {return house;}
+    public House getHouse() {
+        return house;
+    }
 
-    public MatricNumber getMatricNumber() {return matricNumber;}
+    public MatricNumber getMatricNumber() {
+        return matricNumber;
+    }
 
 
     /**
