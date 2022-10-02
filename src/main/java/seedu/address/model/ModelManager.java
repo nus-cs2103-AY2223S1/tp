@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.commission.Commission;
 import seedu.address.model.person.Person;
 
 /**
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Commission> filteredCommissions;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +36,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredCommissions = new FilteredList<>(this.addressBook.getCommissionList());
     }
 
     public ModelManager() {
@@ -111,6 +114,30 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public boolean hasCommission(Commission commission) {
+        requireNonNull(commission);
+        return addressBook.hasCommission(commission);
+    }
+
+    @Override
+    public void deleteCommission(Commission target) {
+        addressBook.removeCommission(target);
+    }
+
+    @Override
+    public void addCommission(Commission commission) {
+        addressBook.addCommission(commission);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void setCommission(Commission target, Commission editedCommission) {
+        requireAllNonNull(target, editedCommission);
+
+        addressBook.setCommission(target, editedCommission);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -124,6 +151,23 @@ public class ModelManager implements Model {
 
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        filteredPersons.setPredicate(predicate);
+    }
+
+    //=========== Filtered Commission List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Commission} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Commission> getFilteredCommissionList() {
+        return filteredCommissions;
+    }
+
+    @Override
+    public void updateFilteredCommissionList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }

@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.commission.Commission;
 import seedu.address.model.person.Person;
 
 /**
@@ -76,6 +77,14 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    boolean hasCommission(Commission commission);
+
+    void deleteCommission(Commission target);
+
+    void addCommission(Commission commission);
+
+    void setCommission(Commission target, Commission editedCommission);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
@@ -84,4 +93,8 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    ObservableList<Commission> getFilteredCommissionList();
+
+    void updateFilteredCommissionList(Predicate<Person> predicate);
 }
