@@ -72,7 +72,7 @@ public class TagCommand extends TagCommandGroup {
         tags.addAll(personToTag.getTags());
         tags.addAll(nonDuplicateTags);
         Person taggedPerson = new Person(personToTag.getName(), personToTag.getPhone(),
-                personToTag.getEmail(), personToTag.getAddress(), tags);
+                personToTag.getEmail(), personToTag.getAddress(), personToTag.getRemark(), tags);
 
         model.setPerson(personToTag, taggedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

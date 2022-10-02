@@ -118,7 +118,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         Person untaggedPerson = new Person(
                 target.getName(), target.getPhone(), target.getEmail(),
-                target.getAddress(), newTags);
+                target.getAddress(), target.getRemark(), newTags);
         persons.setPerson(target, untaggedPerson);
     }
 
