@@ -76,7 +76,10 @@ Format: `help`
 
 Adds a person to the app.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER b/BIRTHDATE ra/RACE re/RELIGION s/SURVEY [t/TAG]…`
+
+- Adds a surveyee with the all the descriptions listed.
+- All descriptors have to be specified and follow their own specified format.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
@@ -84,8 +87,8 @@ A person can have any number of tags (including 0)
 
 Examples:
 
-- `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-- `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+- `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/male b/1989-10-1 ra/White American re/Christian s/Environment Survey` Adds a person with the descriptions as stated.
+- `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal g/female b/1991-11-31 ra/Chinese re/Buddhist s/Prison Survey` 
 
 ### Listing all persons : `list`
 
@@ -97,13 +100,13 @@ Format: `list`
 
 Edits an existing person in Survin.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [ra/RACE] [re/RELIGION] [s/SURVEYS]…`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [ra/RACE] [re/RELIGION] [s/SURVEYS] [t/TAG]…`
 
 - Edits the surveyee at the specified INDEX. The index refers to the index number of the surveyee you wish to edit, as shown in the display list. The index must be a **positive integer**.
 - At least one of the optional fields has to be provided.
 - Existing value in specified field will be updated to the new value.
-- When editing name of surveys, the existing surveys of the person will be removed i.e adding of surveys is not cumulative.
-- You can remove all the person’s surveys by typing `s/` without specifying any surveys after it.
+- When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+- You can remove all the person’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
 
