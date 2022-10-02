@@ -162,7 +162,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code reason} or {@code dateTime} is invalid.
      */
-    public static Appointment parseAppointment(String reason, String dateTime) throws ParseException {
+    public static Appointment parseAppointment(String reason, String dateTime, boolean isMarked) throws ParseException {
         requireNonNull(dateTime);
         requireNonNull(reason);
         String trimmedReason = reason.trim();
@@ -175,7 +175,7 @@ public class ParserUtil {
         if (!Appointment.isValidDateTime(dateTime)) {
             throw new ParseException(Appointment.DATE_MESSAGE_CONSTRAINTS);
         }
-        return new Appointment(trimmedReason, trimmedDateTime);
+        return new Appointment(trimmedReason, trimmedDateTime, isMarked);
     }
 
     /**

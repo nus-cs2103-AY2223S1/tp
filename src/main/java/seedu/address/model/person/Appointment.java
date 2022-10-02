@@ -29,18 +29,19 @@ public class Appointment {
 
 
     /**
-     * Creates an appointment object with the given reason and time.
+     * Creates an appointment object with the given reason, time, and status.
      *
      * @param reason The given reason for appointment.
      * @param dateTime The given time to book the appointment.
+     * @param isMarked Status of the appointment.
      */
-    public Appointment(String reason, String dateTime) {
+    public Appointment(String reason, String dateTime, boolean isMarked) {
         checkArgument(isValidReason(reason), REASON_MESSAGE_CONSTRAINTS);
         checkArgument(isValidDateTime(dateTime), DATE_MESSAGE_CONSTRAINTS);
         this.reason = reason;
         String str = String.join(" ", dateTime.split("\\s+", 2));
         this.dateTime = LocalDateTime.parse(str, DATE_FORMATTER);
-        this.isMarked = false;
+        this.isMarked = isMarked;
     }
 
     /**

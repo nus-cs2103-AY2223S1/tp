@@ -28,7 +28,8 @@ public class BookCommandParser implements Parser<BookCommand> {
         }
 
         Appointment appointment = ParserUtil.parseAppointment(argMultimap.getValue(PREFIX_REASON).get(),
-                argMultimap.getValue(PREFIX_DATE).get());
+                argMultimap.getValue(PREFIX_DATE).get(),
+                false);
         return new BookCommand(index, appointment);
     }
 }
