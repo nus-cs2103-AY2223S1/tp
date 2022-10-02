@@ -19,13 +19,13 @@ GitHub: [@KIANSEONG](https://github.com/KIANSEONG)
 
 ### Wang Xinyi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/Xinyi.png" width="200px">
 
-[[github](https://github.com/wxy1203)]
-[[portfolio](team/johndoe.md)]
+GitHub: [@wxy1203](https://github.com/wxy1203)
 
-* Role: Project Advisor
-* Responsibilities: UI
+* Role: Team Member
+* Responsibilities: Various
+
 
 ### Brandon Thio
 
