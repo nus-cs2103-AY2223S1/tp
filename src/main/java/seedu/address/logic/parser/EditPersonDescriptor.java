@@ -1,14 +1,18 @@
 package seedu.address.logic.parser;
 
-import seedu.address.commons.util.CollectionUtil;
-import seedu.address.model.person.*;
-import seedu.address.model.tag.Tag;
-
-import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+
+import seedu.address.commons.util.CollectionUtil;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Appointment;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.tag.Tag;
 
 /**
  * Stores the details to edit the person with. Each non-empty field value will replace the
@@ -20,8 +24,7 @@ public class EditPersonDescriptor {
     private Email email;
     private Address address;
     private Set<Tag> tags;
-    private LocalDateTime localdateTime;
-
+    private Set<Appointment> appointments;
     public EditPersonDescriptor() {}
 
     /**
@@ -34,14 +37,14 @@ public class EditPersonDescriptor {
         setEmail(toCopy.email);
         setAddress(toCopy.address);
         setTags(toCopy.tags);
-        setDate(toCopy.localdateTime);
+        setAppointments(toCopy.appointments);
     }
 
     /**
      * Returns true if at least one field is edited.
      */
     public boolean isAnyFieldEdited() {
-        return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+        return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, appointments);
     }
 
     public void setName(Name name) {
@@ -72,12 +75,16 @@ public class EditPersonDescriptor {
         this.address = address;
     }
 
-    public void setDate(LocalDateTime localdateTime) {
-        this.localdateTime= localdateTime;
+    /**
+     * Sets {@code appointments} to this object's {@code appointments}.
+     * A defensive copy of {@code appointments} is used internally.
+     */
+    public void setAppointments(Set<Appointment> appointments) {
+        this.appointments = (appointments != null) ? new HashSet<>(appointments) : null;
     }
 
-    public Optional<LocalDateTime> getDate() {
-        return Optional.ofNullable(localdateTime);
+    public Optional<Set<Appointment>> getAppointments() {
+        return Optional.ofNullable(appointments);
     }
 
     public Optional<Address> getAddress() {
@@ -116,6 +123,29 @@ public class EditPersonDescriptor {
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
+
+    /**
+     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * edited with a new appointment from {@code editPersonDescriptor}.
+     */
+    public static Person createEditedPersonWithNewAppointment(Person personToEdit,
+                                                              EditPersonDescriptor editPersonDescriptor) {
+        assert personToEdit != null;
+
+        Set<Appointment> updatedAppointments = personToEdit.getAppointments();
+        editPersonDescriptor.appointments.forEach(updatedAppointments::add);
+
+        Name name = personToEdit.getName();
+        Phone phone = personToEdit.getPhone();
+        Email email = personToEdit.getEmail();
+        Address address = personToEdit.getAddress();
+        Set<Tag> tags = personToEdit.getTags();
+        Person newPerson = new Person(name, phone, email, address, tags);
+
+        newPerson.setAppointments(updatedAppointments);
+        return newPerson;
+    }
+
 
     @Override
     public boolean equals(Object other) {
