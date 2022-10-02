@@ -40,13 +40,13 @@ GitHub: [@beetee17](https://github.com/beetee17)
 ### Zheng Yilin
 
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yilinzyl.png" width="200px">
 
-[[github](http://github.com/yilinzyl)]
+Github: [@yilinzyl](http://github.com/yilinzyl)
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Team Member
+* Responsibilities: Various
 
 ### Amresh
 
