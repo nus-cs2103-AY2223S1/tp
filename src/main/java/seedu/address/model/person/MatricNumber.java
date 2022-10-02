@@ -10,8 +10,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class MatricNumber {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Matriculation Number should begin with 'A', followed by " +
-                    "7 non-negative digits, and ends with an uppercase alphabet";
+            "Matriculation Number should begin with 'A', followed by "
+                    + "7 non-negative digits, and ends with an uppercase alphabet";
 
     /**
      * The first character of the Matriculation Number must be 'A'.
