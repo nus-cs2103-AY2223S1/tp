@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
@@ -12,6 +11,9 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Person;
 
+/**
+ * Marks an appointment for the given patient as complete.
+ */
 public class MarkCommand extends Command {
     public static final String COMMAND_WORD = "mark";
 

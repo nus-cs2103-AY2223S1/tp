@@ -101,7 +101,7 @@ public class Appointment {
     private String getStateIcon() {
         String markedIcon = "✅";
         String unmarkedIcon = "❌";
-        return isMarked ? markedIcon: unmarkedIcon;
+        return isMarked ? markedIcon : unmarkedIcon;
     }
 
     @Override

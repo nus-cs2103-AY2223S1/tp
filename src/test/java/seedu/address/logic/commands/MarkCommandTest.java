@@ -26,7 +26,8 @@ class MarkCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
-    Appointment markedAppointment = new Appointment("Sore Throat", "2019-12-10 16:30", true);
+    private final Appointment markedAppointment =
+            new Appointment("Sore Throat", "2019-12-10 16:30", true);
 
     @Test
     public void execute_markUnmarkedAppointment_success() {
