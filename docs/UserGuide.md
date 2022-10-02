@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+NotioNUS is a **desktop app for managing module tasks, which can be used via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, NotioNUS can get your task management done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -20,8 +20,8 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 4. Double-click the file to start the application. A GUI as shown below should appear.
 	Note: The application will contain some sample data when launched.
-<br>
-   ![Ui](images/user-guide/Ui.png)
+
+    ![Ui](images/user-guide/Ui.png)
 
 5. Type the command in the “COMMAND INPUT” box and press “ENTER” to execute the command<br>
    Some example commands you can try:
@@ -40,38 +40,11 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ## Features
 
-<div markdown="block" class="alert alert-info">
+### Getting help : `help`
 
-**:information_source: Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-</div>
-
-### Viewing help : `help`
-
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
+Displays list of commands and information about NotioNUS.
 
 Format: `help`
-
 
 ### Adding a task: `add`
 
@@ -122,36 +95,18 @@ Shows a list of all tasks under the same module.
 
 Format: `ls --module <module>`
 
-### Editing a person : `edit`
+### Editing a task : `edit`
 
 Edits an existing task in the task list.
 
 Format: `edit <taskId> <module> <taskname>`
 
-* Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the task at the specified `taskId`. The taskId refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
 * All fields must be provided.
 * Existing values will be updated to the input values.
 
 Examples:
 *  `edit 1 CS2103T ip` Edits the taskName to ip.
-
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### Deleting a task : `delete`
 
@@ -159,8 +114,7 @@ Deletes a task from the task list.
 
 Format: `delete <taskId>`
 
-* `taskId` refers to the taskId shown in the displayed full task list. This value should be a non-zero positive integer.
-* `taskId` refers to the index number shown in the displayed task list.
+* `taskId` refers to the index number shown in the displayed task list. This value should be a non-zero positive integer.
 
 Examples: 
 * `delete 1`
@@ -181,17 +135,21 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+NotioNUS data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+NotioNUS data are saved as a JSON file `[JAR file location]/data/notionusdata.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div>
+
+**Caution:**
+If your changes to the data file makes its format invalid, NotioNUS will discard all data and start with an empty data file at the next run.
 
 ### Archiving data files `[coming in v2.0]`
+
+_Details coming soon ..._
+
+### Find tasks by name `[coming in v2.0]`
 
 _Details coming soon ..._
 
@@ -199,19 +157,18 @@ _Details coming soon ..._
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+To be added..
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit <taskId> <module> <taskname>…​`<br> e.g.,`edit 1 CS2103T ip`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `li -a` `li -u` `li --module <module>`
-**Help** | `help`
+| Action     | Format, Examples                                                    |
+|------------|---------------------------------------------------------------------|
+| **Add**    | `add m/MODULE n/taskName [--tag <tag>]`                             |
+| **Clear**  | `clear`                                                             |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                 |
+| **Edit**   | `edit <taskId> <module> <taskname>…​`<br> e.g.,`edit 1 CS2103T ip`  |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`          |
+| **List**   | `li -a` `li -u` `li --module <module>`                              |
+| **Help**   | `help`                                                              |
