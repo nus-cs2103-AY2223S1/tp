@@ -8,9 +8,11 @@ import bookface.model.person.Email;
 import bookface.model.person.Name;
 import bookface.model.person.Person;
 import bookface.model.person.Phone;
-import bookface.model.tag.Tag;
 import bookface.model.AddressBook;
 import bookface.model.ReadOnlyAddressBook;
+import bookface.model.tag.Tag;
+
+
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.

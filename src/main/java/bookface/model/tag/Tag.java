@@ -1,9 +1,11 @@
 package bookface.model.tag;
 
+import static java.util.Objects.requireNonNull;
+
 import bookface.commons.util.AppUtil;
 
-import static java.util.Objects.requireNonNull;
-import static bookface.commons.util.AppUtil.checkArgument;
+
+
 
 /**
  * Represents a Tag in the address book.

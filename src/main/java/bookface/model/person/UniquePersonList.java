@@ -1,7 +1,6 @@
 package bookface.model.person;
 
 import static java.util.Objects.requireNonNull;
-import static bookface.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;

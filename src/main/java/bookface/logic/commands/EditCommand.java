@@ -1,10 +1,11 @@
 package bookface.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static bookface.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static bookface.logic.parser.CliSyntax.PREFIX_NAME;
 import static bookface.logic.parser.CliSyntax.PREFIX_PHONE;
 import static bookface.logic.parser.CliSyntax.PREFIX_TAG;
+import static java.util.Objects.requireNonNull;
+
 
 import java.util.Collections;
 import java.util.HashSet;

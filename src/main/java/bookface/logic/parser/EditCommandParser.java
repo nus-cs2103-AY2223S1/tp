@@ -1,10 +1,10 @@
 package bookface.logic.parser;
 
-import static java.util.Objects.requireNonNull;
 import static bookface.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static bookface.logic.parser.CliSyntax.PREFIX_NAME;
 import static bookface.logic.parser.CliSyntax.PREFIX_PHONE;
 import static bookface.logic.parser.CliSyntax.PREFIX_TAG;
+import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -14,8 +14,9 @@ import java.util.Set;
 import bookface.commons.core.Messages;
 import bookface.commons.core.index.Index;
 import bookface.logic.commands.EditCommand;
-import bookface.model.tag.Tag;
 import bookface.logic.parser.exceptions.ParseException;
+import bookface.model.tag.Tag;
+
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -37,7 +38,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditCommand.MESSAGE_USAGE), pe);
         }
 
         EditCommand.EditPersonDescriptor editPersonDescriptor = new EditCommand.EditPersonDescriptor();
