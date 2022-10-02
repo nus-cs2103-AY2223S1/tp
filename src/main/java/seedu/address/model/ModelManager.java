@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.commission.Commission;
+import seedu.address.model.commission.UniqueCommissionList;
 import seedu.address.model.person.Person;
 
 /**
@@ -36,12 +37,17 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
 
-        // Temporarily set active customer to the first customer.
-        // TODO: Should be removed by implementer of the opencus command.
-        this.addressBook.setActiveCustomer(this.addressBook.getPersonList().get(0));
-
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredCommissions = new FilteredList<>(this.addressBook.getCommissionList());
+
+        // Temporarily set active customer to the first customer.
+        // TODO: Should be fixed by implementer of the opencus command.
+        if (this.addressBook.getPersonList().size() > 0) {
+            this.addressBook.setActiveCustomer(this.addressBook.getPersonList().get(0));
+            filteredCommissions = new FilteredList<>(this.addressBook.getCommissionList());
+        } else {
+            // TODO: figure out how to fix filteredCommissions
+            filteredCommissions = new FilteredList<>(new UniqueCommissionList().asUnmodifiableObservableList());
+        }
     }
 
     public ModelManager() {
