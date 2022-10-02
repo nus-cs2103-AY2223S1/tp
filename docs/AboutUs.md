@@ -19,15 +19,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### John Benedict
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/johnbenedictyan.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/johnbenedictyan)]
+[[portfolio](team/johnbenedictyan.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Team Lead, Code Quality
+* Responsibilities: Commons
 
 ### Johnny Doe
 
