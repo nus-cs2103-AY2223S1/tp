@@ -344,7 +344,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Use case: UC5 - Delete a meeting**
+#### Use case: UC5 - Delete a meeting
 
 **MSS**
 
