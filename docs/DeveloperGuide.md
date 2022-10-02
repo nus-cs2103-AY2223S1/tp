@@ -378,6 +378,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
+* **Mainstream OS**: Windows, MacOS, Unix
 * **Meeting**: An event that the user with the client at a specific date and time.
 
 --------------------------------------------------------------------------------------------------------------------
