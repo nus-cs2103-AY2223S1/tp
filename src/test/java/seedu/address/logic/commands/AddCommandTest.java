@@ -149,7 +149,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Person> getTargetPersonList() {
+        public ObservableList<Person> getTargetPersonAsObservableList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -165,6 +165,16 @@ public class AddCommandTest {
 
         @Override
         public boolean isTargetPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasTargetPerson() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Person getTargetPerson() {
             throw new AssertionError("This method should not be called.");
         }
     }
