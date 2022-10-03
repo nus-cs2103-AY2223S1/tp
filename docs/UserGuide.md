@@ -81,7 +81,7 @@ Format:`add c/N n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary"> 
 
-:💡:**Tips**: 
+:bulb:**Tips**: 
 * A nurse can have any number of tags (including 0).
 * You may type it in any order.
 * To add a nurse, type c/N specifically.
