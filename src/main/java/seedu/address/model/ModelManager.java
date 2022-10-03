@@ -127,16 +127,6 @@ public class ModelManager implements Model {
         addressBook.setCustomer(target, editedCustomer);
     }
 
-    /**
-     * Clones active person - useful to force GUI update
-     */
-    @Override
-    public void updateActiveCustomer() {
-        Customer activeCustomerClone = activeCustomer.getClone();
-        setCustomer(activeCustomer, activeCustomerClone);
-        setActiveCustomer(activeCustomerClone);
-    }
-
     @Override
     public boolean hasCommission(Commission commission) {
         requireNonNull(commission);
@@ -204,6 +194,23 @@ public class ModelManager implements Model {
 
     public Customer getActiveCustomer() {
         return activeCustomer;
+    }
+
+    /**
+     * Clones active person - useful to force GUI update.
+     */
+    @Override
+    public void updateActiveCustomer() {
+        Customer activeCustomerClone = activeCustomer.getClone();
+        setCustomer(activeCustomer, activeCustomerClone);
+        setActiveCustomer(activeCustomerClone);
+    }
+
+    /**
+     * Return whether there is an active customer.
+     */
+    public boolean hasActiveCustomer() {
+        return activeCustomer != null;
     }
 
     public ObservableList<Commission> getCommissionList() {
