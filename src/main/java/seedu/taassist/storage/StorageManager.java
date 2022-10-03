@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 
 import seedu.taassist.commons.core.LogsCenter;
 import seedu.taassist.commons.exceptions.DataConversionException;
-import seedu.taassist.model.ReadOnlyAddressBook;
+import seedu.taassist.model.ReadOnlyTaAssist;
 import seedu.taassist.model.ReadOnlyUserPrefs;
 import seedu.taassist.model.UserPrefs;
 
@@ -17,14 +17,14 @@ import seedu.taassist.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
+    private TaAssistStorage taAssistStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
-        this.addressBookStorage = addressBookStorage;
+    public StorageManager(TaAssistStorage taAssistStorage, UserPrefsStorage userPrefsStorage) {
+        this.taAssistStorage = taAssistStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -50,29 +50,29 @@ public class StorageManager implements Storage {
 
     @Override
     public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+        return taAssistStorage.getAddressBookFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyTaAssist> readAddressBook() throws DataConversionException, IOException {
+        return readAddressBook(taAssistStorage.getAddressBookFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyTaAssist> readAddressBook(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return taAssistStorage.readAddressBook(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void saveAddressBook(ReadOnlyTaAssist addressBook) throws IOException {
+        saveAddressBook(addressBook, taAssistStorage.getAddressBookFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+    public void saveAddressBook(ReadOnlyTaAssist addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        taAssistStorage.saveAddressBook(addressBook, filePath);
     }
 
 }

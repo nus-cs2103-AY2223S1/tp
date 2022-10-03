@@ -1,6 +1,6 @@
 package seedu.taassist.testutil;
 
-import seedu.taassist.model.AddressBook;
+import seedu.taassist.model.TaAssist;
 import seedu.taassist.model.student.Student;
 
 /**
@@ -8,27 +8,27 @@ import seedu.taassist.model.student.Student;
  * Example usage: <br>
  *     {@code AddressBook ab = new AddressBookBuilder().withStudent("John", "Doe").build();}
  */
-public class AddressBookBuilder {
+public class TaAssistBuilder {
 
-    private AddressBook addressBook;
+    private TaAssist addressBook;
 
-    public AddressBookBuilder() {
-        addressBook = new AddressBook();
+    public TaAssistBuilder() {
+        addressBook = new TaAssist();
     }
 
-    public AddressBookBuilder(AddressBook addressBook) {
+    public TaAssistBuilder(TaAssist addressBook) {
         this.addressBook = addressBook;
     }
 
     /**
      * Adds a new {@code Student} to the {@code AddressBook} that we are building.
      */
-    public AddressBookBuilder withStudent(Student student) {
+    public TaAssistBuilder withStudent(Student student) {
         addressBook.addStudent(student);
         return this;
     }
 
-    public AddressBook build() {
+    public TaAssist build() {
         return addressBook;
     }
 }

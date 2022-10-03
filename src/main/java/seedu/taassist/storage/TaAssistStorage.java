@@ -5,12 +5,13 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.taassist.commons.exceptions.DataConversionException;
-import seedu.taassist.model.ReadOnlyAddressBook;
+import seedu.taassist.model.ReadOnlyTaAssist;
+import seedu.taassist.model.TaAssist;
 
 /**
- * Represents a storage for {@link seedu.taassist.model.AddressBook}.
+ * Represents a storage for {@link TaAssist}.
  */
-public interface AddressBookStorage {
+public interface TaAssistStorage {
 
     /**
      * Returns the file path of the data file.
@@ -18,28 +19,28 @@ public interface AddressBookStorage {
     Path getAddressBookFilePath();
 
     /**
-     * Returns AddressBook data as a {@link ReadOnlyAddressBook}.
+     * Returns AddressBook data as a {@link ReadOnlyTaAssist}.
      *   Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyTaAssist> readAddressBook() throws DataConversionException, IOException;
 
     /**
      * @see #getAddressBookFilePath()
      */
-    Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyTaAssist> readAddressBook(Path filePath) throws DataConversionException, IOException;
 
     /**
-     * Saves the given {@link ReadOnlyAddressBook} to the storage.
+     * Saves the given {@link ReadOnlyTaAssist} to the storage.
      * @param addressBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
+    void saveAddressBook(ReadOnlyTaAssist addressBook) throws IOException;
 
     /**
-     * @see #saveAddressBook(ReadOnlyAddressBook)
+     * @see #saveAddressBook(ReadOnlyTaAssist)
      */
-    void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException;
+    void saveAddressBook(ReadOnlyTaAssist addressBook, Path filePath) throws IOException;
 
 }

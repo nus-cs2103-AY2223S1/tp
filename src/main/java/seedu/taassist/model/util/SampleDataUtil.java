@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.taassist.model.AddressBook;
-import seedu.taassist.model.ReadOnlyAddressBook;
+import seedu.taassist.model.ReadOnlyTaAssist;
+import seedu.taassist.model.TaAssist;
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.student.Address;
 import seedu.taassist.model.student.Email;
@@ -40,8 +40,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyTaAssist getSampleAddressBook() {
+        TaAssist sampleAb = new TaAssist();
         for (Student sampleStudent : getSampleStudents()) {
             sampleAb.addStudent(sampleStudent);
         }

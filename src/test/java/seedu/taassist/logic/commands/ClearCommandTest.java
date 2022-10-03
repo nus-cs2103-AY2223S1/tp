@@ -5,9 +5,9 @@ import static seedu.taassist.testutil.TypicalStudents.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.taassist.model.AddressBook;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.ModelManager;
+import seedu.taassist.model.TaAssist;
 import seedu.taassist.model.UserPrefs;
 
 public class ClearCommandTest {
@@ -24,7 +24,7 @@ public class ClearCommandTest {
     public void execute_nonEmptyAddressBook_success() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel.setAddressBook(new AddressBook());
+        expectedModel.setAddressBook(new TaAssist());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }

@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.taassist.commons.core.GuiSettings;
 import seedu.taassist.model.student.NameContainsKeywordsPredicate;
-import seedu.taassist.testutil.AddressBookBuilder;
+import seedu.taassist.testutil.TaAssistBuilder;
 
 public class ModelManagerTest {
 
@@ -26,7 +26,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
+        assertEquals(new TaAssist(), new TaAssist(modelManager.getAddressBook()));
     }
 
     @Test
@@ -95,8 +95,8 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withStudent(ALICE).withStudent(BENSON).build();
-        AddressBook differentAddressBook = new AddressBook();
+        TaAssist addressBook = new TaAssistBuilder().withStudent(ALICE).withStudent(BENSON).build();
+        TaAssist differentAddressBook = new TaAssist();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true

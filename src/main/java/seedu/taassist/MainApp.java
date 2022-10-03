@@ -15,18 +15,18 @@ import seedu.taassist.commons.util.ConfigUtil;
 import seedu.taassist.commons.util.StringUtil;
 import seedu.taassist.logic.Logic;
 import seedu.taassist.logic.LogicManager;
-import seedu.taassist.model.AddressBook;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.ModelManager;
-import seedu.taassist.model.ReadOnlyAddressBook;
+import seedu.taassist.model.ReadOnlyTaAssist;
 import seedu.taassist.model.ReadOnlyUserPrefs;
+import seedu.taassist.model.TaAssist;
 import seedu.taassist.model.UserPrefs;
 import seedu.taassist.model.util.SampleDataUtil;
-import seedu.taassist.storage.AddressBookStorage;
-import seedu.taassist.storage.JsonAddressBookStorage;
+import seedu.taassist.storage.JsonTaAssistStorage;
 import seedu.taassist.storage.JsonUserPrefsStorage;
 import seedu.taassist.storage.Storage;
 import seedu.taassist.storage.StorageManager;
+import seedu.taassist.storage.TaAssistStorage;
 import seedu.taassist.storage.UserPrefsStorage;
 import seedu.taassist.ui.Ui;
 import seedu.taassist.ui.UiManager;
@@ -56,8 +56,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        TaAssistStorage taAssistStorage = new JsonTaAssistStorage(userPrefs.getAddressBookFilePath());
+        storage = new StorageManager(taAssistStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -74,8 +74,8 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyTaAssist> addressBookOptional;
+        ReadOnlyTaAssist initialData;
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
@@ -84,10 +84,10 @@ public class MainApp extends Application {
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            initialData = new TaAssist();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            initialData = new TaAssist();
         }
 
         return new ModelManager(initialData, userPrefs);

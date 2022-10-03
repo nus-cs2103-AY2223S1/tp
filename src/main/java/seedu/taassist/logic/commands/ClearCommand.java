@@ -2,8 +2,8 @@ package seedu.taassist.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.taassist.model.AddressBook;
 import seedu.taassist.model.Model;
+import seedu.taassist.model.TaAssist;
 
 /**
  * Clears the address book.
@@ -17,7 +17,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setAddressBook(new AddressBook());
+        model.setAddressBook(new TaAssist());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

@@ -12,7 +12,7 @@ import seedu.taassist.model.student.UniqueStudentList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSameStudent comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class TaAssist implements ReadOnlyTaAssist {
 
     private final UniqueStudentList students;
 
@@ -27,12 +27,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         students = new UniqueStudentList();
     }
 
-    public AddressBook() {}
+    public TaAssist() {}
 
     /**
      * Creates an AddressBook using the Students in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public TaAssist(ReadOnlyTaAssist toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -50,7 +50,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyTaAssist newData) {
         requireNonNull(newData);
 
         setStudents(newData.getStudentList());
@@ -110,8 +110,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && students.equals(((AddressBook) other).students));
+                || (other instanceof TaAssist // instanceof handles nulls
+                && students.equals(((TaAssist) other).students));
     }
 
     @Override

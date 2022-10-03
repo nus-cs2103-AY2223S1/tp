@@ -20,7 +20,7 @@ import seedu.taassist.logic.parser.exceptions.ParseException;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class TaAssistParser {
 
     /**
      * Used for initial separation of command word and args.

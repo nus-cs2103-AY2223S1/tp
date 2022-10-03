@@ -15,8 +15,8 @@ import java.util.List;
 
 import seedu.taassist.commons.core.index.Index;
 import seedu.taassist.logic.commands.exceptions.CommandException;
-import seedu.taassist.model.AddressBook;
 import seedu.taassist.model.Model;
+import seedu.taassist.model.TaAssist;
 import seedu.taassist.model.student.NameContainsKeywordsPredicate;
 import seedu.taassist.model.student.Student;
 import seedu.taassist.testutil.EditStudentDescriptorBuilder;
@@ -104,7 +104,7 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        TaAssist expectedAddressBook = new TaAssist(actualModel.getAddressBook());
         List<Student> expectedFilteredList = new ArrayList<>(actualModel.getFilteredStudentList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));

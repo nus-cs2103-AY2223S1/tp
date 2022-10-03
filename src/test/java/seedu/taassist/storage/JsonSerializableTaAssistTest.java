@@ -10,10 +10,10 @@ import org.junit.jupiter.api.Test;
 
 import seedu.taassist.commons.exceptions.IllegalValueException;
 import seedu.taassist.commons.util.JsonUtil;
-import seedu.taassist.model.AddressBook;
+import seedu.taassist.model.TaAssist;
 import seedu.taassist.testutil.TypicalStudents;
 
-public class JsonSerializableAddressBookTest {
+public class JsonSerializableTaAssistTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableAddressBookTest");
     private static final Path TYPICAL_STUDENTS_FILE = TEST_DATA_FOLDER.resolve("typicalStudentsAddressBook.json");
@@ -22,25 +22,25 @@ public class JsonSerializableAddressBookTest {
 
     @Test
     public void toModelType_typicalStudentsFile_success() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_STUDENTS_FILE,
-                JsonSerializableAddressBook.class).get();
-        AddressBook addressBookFromFile = dataFromFile.toModelType();
-        AddressBook typicalStudentsAddressBook = TypicalStudents.getTypicalAddressBook();
+        JsonSerializableTaAssist dataFromFile = JsonUtil.readJsonFile(TYPICAL_STUDENTS_FILE,
+                JsonSerializableTaAssist.class).get();
+        TaAssist addressBookFromFile = dataFromFile.toModelType();
+        TaAssist typicalStudentsAddressBook = TypicalStudents.getTypicalAddressBook();
         assertEquals(addressBookFromFile, typicalStudentsAddressBook);
     }
 
     @Test
     public void toModelType_invalidStudentFile_throwsIllegalValueException() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(INVALID_STUDENT_FILE,
-                JsonSerializableAddressBook.class).get();
+        JsonSerializableTaAssist dataFromFile = JsonUtil.readJsonFile(INVALID_STUDENT_FILE,
+                JsonSerializableTaAssist.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
 
     @Test
     public void toModelType_duplicateStudents_throwsIllegalValueException() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_STUDENT_FILE,
-                JsonSerializableAddressBook.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializableAddressBook.MESSAGE_DUPLICATE_STUDENT,
+        JsonSerializableTaAssist dataFromFile = JsonUtil.readJsonFile(DUPLICATE_STUDENT_FILE,
+                JsonSerializableTaAssist.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableTaAssist.MESSAGE_DUPLICATE_STUDENT,
                 dataFromFile::toModelType);
     }
 

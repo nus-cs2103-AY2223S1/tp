@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.taassist.model.AddressBook;
+import seedu.taassist.model.TaAssist;
 import seedu.taassist.model.student.Student;
 
 /**
@@ -62,8 +62,8 @@ public class TypicalStudents {
     /**
      * Returns an {@code AddressBook} with all the typical students.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static TaAssist getTypicalAddressBook() {
+        TaAssist ab = new TaAssist();
         for (Student student : getTypicalStudents()) {
             ab.addStudent(student);
         }

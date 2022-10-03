@@ -22,9 +22,9 @@ import seedu.taassist.model.student.Student;
 import seedu.taassist.model.student.exceptions.DuplicateStudentException;
 import seedu.taassist.testutil.StudentBuilder;
 
-public class AddressBookTest {
+public class TaAssistTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final TaAssist addressBook = new TaAssist();
 
     @Test
     public void constructor() {
@@ -38,7 +38,7 @@ public class AddressBookTest {
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
+        TaAssist newData = getTypicalAddressBook();
         addressBook.resetData(newData);
         assertEquals(newData, addressBook);
     }
@@ -49,7 +49,7 @@ public class AddressBookTest {
         Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Student> newStudents = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newStudents);
+        TaAssistStub newData = new TaAssistStub(newStudents);
 
         assertThrows(DuplicateStudentException.class, () -> addressBook.resetData(newData));
     }
@@ -86,10 +86,10 @@ public class AddressBookTest {
     /**
      * A stub ReadOnlyAddressBook whose students list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class TaAssistStub implements ReadOnlyTaAssist {
         private final ObservableList<Student> students = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Student> students) {
+        TaAssistStub(Collection<Student> students) {
             this.students.setAll(students);
         }
 

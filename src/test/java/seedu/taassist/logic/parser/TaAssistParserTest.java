@@ -29,9 +29,9 @@ import seedu.taassist.testutil.EditStudentDescriptorBuilder;
 import seedu.taassist.testutil.StudentBuilder;
 import seedu.taassist.testutil.StudentUtil;
 
-public class AddressBookParserTest {
+public class TaAssistParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final TaAssistParser parser = new TaAssistParser();
 
     @Test
     public void parseCommand_add() throws Exception {
