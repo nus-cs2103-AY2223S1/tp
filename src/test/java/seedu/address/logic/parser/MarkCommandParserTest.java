@@ -24,7 +24,7 @@ class MarkCommandParserTest {
     }
 
     @Test
-    public void parse_ValidArgs2_returnsMarkCommand() {
+    public void parse_validArgs2_returnsMarkCommand() {
         assertParseSuccess(parser, "  3  2  ", new MarkCommand(INDEX_THIRD_PERSON, INDEX_SECOND_APPOINTMENT));
     }
 
