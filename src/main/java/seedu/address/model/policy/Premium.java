@@ -3,6 +3,10 @@ package seedu.address.model.policy;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents what a policy premium is.
+ * Guarantees: immutable; name is valid as declared in {@link #isValidPremium(String)}
+ */
 public class Premium {
 
     public static final String MESSAGE_CONSTRAINTS = "Premium can take any numeric value, and it should not be blank";

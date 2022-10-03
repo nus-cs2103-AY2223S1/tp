@@ -1,25 +1,20 @@
 package seedu.address.storage;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.policy.Commission;
-import seedu.address.model.policy.Company;
-import seedu.address.model.policy.Coverage;
-import seedu.address.model.policy.Policy;
-import seedu.address.model.policy.Title;
-import seedu.address.model.tag.Tag;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.policy.Commission;
+import seedu.address.model.policy.Company;
+import seedu.address.model.policy.Coverage;
+import seedu.address.model.policy.Policy;
+import seedu.address.model.policy.Title;
 
 /**
  * Jackson-friendly version of {@link Policy}.
@@ -75,20 +70,22 @@ class JsonAdaptedPolicy {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Title.class.getSimpleName()));
         }
         if (!Title.isValidTitle(title)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Title.MESSAGE_FORMAT_CONSTRAINTS);
         }
         final Title modelTitle = new Title(title);
 
         if (company == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Company.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Company.class.getSimpleName()));
         }
         if (!Company.isValidCompany(company)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Company.MESSAGE_FORMAT_CONSTRAINTS);
         }
         final Company modelCompany = new Company(company);
 
         if (commission == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Commission.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Commission.class.getSimpleName()));
         }
         if (!Commission.isValidCommission(commission)) {
             throw new IllegalValueException(Commission.MESSAGE_CONSTRAINTS);

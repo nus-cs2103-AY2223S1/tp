@@ -9,8 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Commission {
 
-    public static final String MESSAGE_CONSTRAINTS = "Commissions should take the format of '1st yr %, 2nd yr %, " +
-            " 3rd year and beyond %'  : ";
+    public static final String MESSAGE_CONSTRAINTS = "Commissions should take the format of '1st yr %, 2nd yr %, "
+            + " 3rd year and beyond %'  : ";
 
     /*
      * The first character of the address must not be a whitespace,

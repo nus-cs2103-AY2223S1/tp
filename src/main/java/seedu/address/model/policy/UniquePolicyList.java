@@ -1,21 +1,28 @@
 package seedu.address.model.policy;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
-import seedu.address.model.policy.exceptions.DuplicatePolicyException;
-import seedu.address.model.policy.exceptions.PolicyNotFoundException;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.model.policy.exceptions.DuplicatePolicyException;
+import seedu.address.model.policy.exceptions.PolicyNotFoundException;
 
-public class UniquePolicyList implements Iterable<Policy>{
+/**
+ * A list of policies that enforces uniqueness between its elements and does not allow nulls.
+ * A person is considered unique by comparing using {@code Policy#isSamePolicy(Policy)}. As such, adding and updating of
+ * policies uses Policy#isSamePolicy(Policy) for equality to ensure that the person being added or updated is
+ * unique in terms of identity in the UniquePolicyList. However, the removal of a policy uses Policy#equals(Object) so
+ * as to ensure that the person with exactly the same fields will be removed.
+ *
+ * Supports a minimal set of list operations.
+ *
+ * @see Policy#isSamePolicy(Policy)
+ */
+public class UniquePolicyList implements Iterable<Policy> {
 
     private final ObservableList<Policy> internalList = FXCollections.observableArrayList();
     private final ObservableList<Policy> internalUnmodifiableList =

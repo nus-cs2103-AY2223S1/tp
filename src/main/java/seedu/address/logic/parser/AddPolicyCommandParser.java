@@ -1,5 +1,14 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMISSION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COVERAGES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
+
+import java.util.Set;
+import java.util.stream.Stream;
+
 import seedu.address.logic.commands.AddPolicyCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.policy.Commission;
@@ -8,15 +17,9 @@ import seedu.address.model.policy.Coverage;
 import seedu.address.model.policy.Policy;
 import seedu.address.model.policy.Title;
 
-import java.util.Set;
-import java.util.stream.Stream;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMISSION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_COVERAGES;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
-
+/**
+ * Parses input arguments and creates a new AddPolicyCommand object.
+ */
 public class AddPolicyCommandParser {
 
     /**

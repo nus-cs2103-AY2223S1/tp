@@ -1,11 +1,10 @@
 package seedu.address.model.client;
 
-import seedu.address.model.policy.Company;
-import seedu.address.model.policy.Policy;
-import seedu.address.model.policy.Premium;
-
 import java.time.LocalDate;
 import java.util.Objects;
+
+import seedu.address.model.policy.Policy;
+import seedu.address.model.policy.Premium;
 
 /**
  * An assigned policy is an encapsulation of the necessary details
@@ -25,10 +24,10 @@ public class AssignedPolicy {
      * @param endDate
      */
     public AssignedPolicy(Policy policy, Premium premium, LocalDate startDate, LocalDate endDate) {
-         this.startDate = startDate;
-         this.endDate = endDate;
-         this.premium = premium;
-         this.policy = policy;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.premium = premium;
+        this.policy = policy;
     }
 
     public Policy getPolicy() {
