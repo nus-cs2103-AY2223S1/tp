@@ -10,6 +10,8 @@ TABS is a desktop scheduler application used by people managing team projects. I
 ### Contributions
 
 Given below are my contributions to the project.
+* **Code contributed**: 
+  * [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=tan-jin-waye)
 
 * **New Features**:
   * To be updated.
