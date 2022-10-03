@@ -48,7 +48,7 @@ public class ParserUtil {
      *     indexes is not exactly {@code parseCount}
      */
     public static List<Index> parseIndexes(String oneBasedIndexes, int parseCount) throws ParseException {
-        String indexSeparator = " ";
+        String indexSeparator = "\\s+";
         String trimmedIndexes = oneBasedIndexes.trim();
         String[] indexes = trimmedIndexes.split(indexSeparator);
 
