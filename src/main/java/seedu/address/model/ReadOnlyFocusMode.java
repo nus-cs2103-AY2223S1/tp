@@ -21,14 +21,6 @@ public interface ReadOnlyFocusMode {
 
     /**
      * TODO: replace with class
-     * Sets a new class to focus on.
-     *
-     * @param classToFocus Class corresponding to the focus mode.
-     */
-    void setFocusedClass(Tag classToFocus);
-
-    /**
-     * TODO: replace with class
      * Returns the class currently being focused on.
      *
      * @return Class currently being focused on.

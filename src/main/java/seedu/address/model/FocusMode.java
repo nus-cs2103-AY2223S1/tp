@@ -32,18 +32,14 @@ public class FocusMode implements ReadOnlyFocusMode {
     @Override
     public void exit() {
         this.isActive = false;
-    }
-
-    //TODO: replace with class
-    @Override
-    public void setFocusedClass(Tag focusedClass) {
-        requireNonNull(focusedClass);
-        this.focusedClass = focusedClass;
+        this.focusedClass = null;
     }
 
     //TODO: replace with class
     @Override
     public Tag getFocusedClass() {
+        // this getter method should not be called if the focused class is null (if focus mode is inactive)
+        requireNonNull(focusedClass);
         return focusedClass;
     }
 
