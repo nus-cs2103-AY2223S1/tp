@@ -348,7 +348,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**User case: UC04 - View upcoming events**
+**Use case: UC04 - View upcoming events**
 
 **MSS**
 
