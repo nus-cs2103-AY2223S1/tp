@@ -8,15 +8,16 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.company.exceptions.DuplicateCompanyException;
 import seedu.address.model.company.exceptions.CompanyNotFoundException;
+import seedu.address.model.company.exceptions.DuplicateCompanyException;
 
 /**
  * A list of companies that enforces uniqueness between its elements and does not allow nulls.
- * A company is considered unique by comparing using {@code Company#isSameCompany(Company)}. As such, adding and updating of
- * companies uses Company#isSameCompany(Company) for equality so as to ensure that the company being added or updated is
- * unique in terms of identity in the UniqueCompanyList. However, the removal of a company uses Company#equals(Object) so
- * as to ensure that the company with exactly the same fields will be removed.
+ * A company is considered unique by comparing using {@code Company#isSameCompany(Company)}.
+ * As such, adding and updating of companies uses Company#isSameCompany(Company) for equality to ensure that the
+ * company being added or updated is unique in terms of identity in the UniqueCompanyList.
+ * However, the removal of a company uses Company#equals(Object) to ensure that the company with exactly
+ * the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *

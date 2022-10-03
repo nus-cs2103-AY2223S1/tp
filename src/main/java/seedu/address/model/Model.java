@@ -72,7 +72,7 @@ public interface Model {
     /**
      * Replaces the given company {@code target} with {@code editedCompany}.
      * {@code target} must exist in the address book.
-     * The company identity of {@code editedCompany} must not be the same as another existing company in the address book.
+     * The identity of {@code editedCompany} must not be the same as another existing company in the address book.
      */
     void setCompany(Company target, Company editedCompany);
 
