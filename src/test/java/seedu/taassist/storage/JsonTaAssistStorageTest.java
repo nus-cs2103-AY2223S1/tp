@@ -20,7 +20,7 @@ import seedu.taassist.model.ReadOnlyTaAssist;
 import seedu.taassist.model.TaAssist;
 
 public class JsonTaAssistStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonTaAssistStorageTest");
 
     @TempDir
     public Path testFolder;
@@ -47,17 +47,17 @@ public class JsonTaAssistStorageTest {
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("notJsonFormatAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readAddressBook("notJsonFormatTaAssist.json"));
     }
 
     @Test
     public void readAddressBook_invalidStudentAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidStudentAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readAddressBook("invalidStudentTaAssist.json"));
     }
 
     @Test
     public void readAddressBook_invalidAndValidStudentAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidStudentAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidStudentTaAssist.json"));
     }
 
     @Test
