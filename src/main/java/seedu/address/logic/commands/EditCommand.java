@@ -5,7 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROFILES;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -44,9 +44,9 @@ public class EditCommand extends Command {
             + PREFIX_EMAIL + "johndoe@example.com "
             + PREFIX_TAG + "CS2103T";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Profile: %1$s";
+    public static final String MESSAGE_EDIT_PROFILE_SUCCESS = "Edited Profile: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This profile already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PROFILE = "This profile already exists in the address book.";
 
     private final Index index;
     private final EditProfileDescriptor editProfileDescriptor;
@@ -69,19 +69,19 @@ public class EditCommand extends Command {
         List<Profile> lastShownList = model.getFilteredProfileList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_PROFILE_DISPLAYED_INDEX);
         }
 
         Profile profileToEdit = lastShownList.get(index.getZeroBased());
         Profile editedProfile = createEditedProfile(profileToEdit, editProfileDescriptor);
 
         if (!profileToEdit.isSameProfile(editedProfile) && model.hasProfile(editedProfile)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_PROFILE);
         }
 
         model.setProfile(profileToEdit, editedProfile);
-        model.updateFilteredProfileList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedProfile));
+        model.updateFilteredProfileList(PREDICATE_SHOW_ALL_PROFILES);
+        return new CommandResult(String.format(MESSAGE_EDIT_PROFILE_SUCCESS, editedProfile));
     }
 
     /**

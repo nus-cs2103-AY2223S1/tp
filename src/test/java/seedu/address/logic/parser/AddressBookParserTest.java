@@ -48,8 +48,8 @@ public class AddressBookParserTest {
     //    @Test
     //    public void parseCommand_delete() throws Exception {
     //        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-    //                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-    //        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+    //                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PROFILE.getOneBased());
+    //        assertEquals(new DeleteCommand(INDEX_FIRST_PROFILE), command);
     //    }
     //
     //    @Test
@@ -57,9 +57,9 @@ public class AddressBookParserTest {
     //        Profile profile = new ProfileBuilder().build();
     //        EditProfileDescriptor descriptor = new EditProfileDescriptorBuilder(profile).build();
     //        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-    //                + INDEX_FIRST_PERSON.getOneBased() + " "
+    //                + INDEX_FIRST_PROFILE.getOneBased() + " "
     //                + ProfileUtil.getEditProfileDescriptorDetails(descriptor));
-    //        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+    //        assertEquals(new EditCommand(INDEX_FIRST_PROFILE, descriptor), command);
     //    }
 
     @Test
