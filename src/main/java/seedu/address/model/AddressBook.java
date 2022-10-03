@@ -56,6 +56,26 @@ public class AddressBook implements ReadOnlyAddressBook {
         setPersons(newData.getPersonList());
     }
 
+    public void sortByName() {
+        persons.sortByName();
+    }
+
+    public void sortByPhone() {
+        persons.sortByPhone();
+    }
+
+    public void sortByEmail() {
+        persons.sortByEmail();
+    }
+
+    public void sortByAddress() {
+        persons.sortByAddress();
+    }
+
+    public void reverseSort() {
+        persons.reverseSort();
+    }
+
     //// person-level operations
 
     /**
