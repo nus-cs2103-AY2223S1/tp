@@ -10,22 +10,21 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.MarkCommand;
+import seedu.address.logic.commands.UnmarkCommand;
 
-class MarkCommandParserTest {
-
-    private final MarkCommandParser parser = new MarkCommandParser();
+class UnmarkCommandParserTest {
+    private final UnmarkCommandParser parser = new UnmarkCommandParser();
     private final String parseExceptionInvalidCommandMessage =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE);
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnmarkCommand.MESSAGE_USAGE);
 
     @Test
     public void parse_validArgs1_returnsMarkCommand() {
-        assertParseSuccess(parser, "1 1", new MarkCommand(INDEX_FIRST_PERSON, INDEX_FIRST_APPOINTMENT));
+        assertParseSuccess(parser, "1 1", new UnmarkCommand(INDEX_FIRST_PERSON, INDEX_FIRST_APPOINTMENT));
     }
 
     @Test
     public void parse_ValidArgs2_returnsMarkCommand() {
-        assertParseSuccess(parser, "  3  2  ", new MarkCommand(INDEX_THIRD_PERSON, INDEX_SECOND_APPOINTMENT));
+        assertParseSuccess(parser, "  3  2  ", new UnmarkCommand(INDEX_THIRD_PERSON, INDEX_SECOND_APPOINTMENT));
     }
 
     @Test

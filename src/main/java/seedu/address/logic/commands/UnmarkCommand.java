@@ -43,4 +43,18 @@ public class UnmarkCommand extends SelectAppointmentCommand {
                 indexOfAppointment.getOneBased(),
                 getTargetPerson(model).getName()));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof UnmarkCommand)) {
+            return false;
+        }
+
+        UnmarkCommand otherCommand = (UnmarkCommand) other;
+        return hasSameIndexOfPerson(otherCommand) && hasSameIndexOfAppointment(otherCommand);
+    }
 }

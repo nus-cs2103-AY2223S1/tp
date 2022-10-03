@@ -55,4 +55,12 @@ public abstract class SelectAppointmentCommand extends Command {
         Person targetPerson = lastShownList.get(indexOfPerson.getZeroBased());
         return targetPerson;
     }
+
+    protected boolean hasSameIndexOfPerson(SelectAppointmentCommand other) {
+        return indexOfPerson.equals(other.indexOfPerson);
+    }
+
+    protected boolean hasSameIndexOfAppointment(SelectAppointmentCommand other) {
+        return indexOfAppointment.equals(other.indexOfAppointment);
+    }
 }

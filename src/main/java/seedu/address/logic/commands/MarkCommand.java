@@ -43,4 +43,18 @@ public class MarkCommand extends SelectAppointmentCommand {
                 indexOfAppointment.getOneBased(),
                 getTargetPerson(model).getName()));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof MarkCommand)) {
+            return false;
+        }
+
+        MarkCommand otherCommand = (MarkCommand) other;
+        return hasSameIndexOfPerson(otherCommand) && hasSameIndexOfAppointment(otherCommand);
+    }
 }
