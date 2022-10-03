@@ -46,4 +46,12 @@ public class Calorie {
     public String toString() {
         return value + " calories";
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other instanceof Calorie) {
+            return this.value.equals(((Calorie) other).value);
+        }
+        return false;
+    }
 }

@@ -13,9 +13,9 @@ public class TargetCommand extends Command {
     public static final String COMMAND_WORD = "target";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + "Sets a daily calorie target intake\n"
-        + "Parameters: [Integer]...\n"
+        + "Parameters: [Integer]\n"
         + "Example: " + COMMAND_WORD + " 5000";
-    public static final String MESSAGE_TARGET_SET = "Your calorie target set is %1$s";
+    public static final String MESSAGE_TARGET_SET_SUCCESS = "Your calorie target set: %1$s";
 
     private final Calorie calorieTarget;
     public TargetCommand(Calorie calorie) {
@@ -34,7 +34,7 @@ public class TargetCommand extends Command {
         requireNonNull(model);
         model.setCalorieTarget(this.calorieTarget);
         return new CommandResult(
-            String.format(MESSAGE_TARGET_SET, model.getCalorieTarget())
+            String.format(MESSAGE_TARGET_SET_SUCCESS, model.getCalorieTarget())
         );
     }
 
