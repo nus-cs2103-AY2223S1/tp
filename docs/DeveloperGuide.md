@@ -301,12 +301,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | first time hotel manager  | know the available commands         | use the application fully                 |
+| `* * *`  | hotel manager     | view a list of all the guests          |  browse all my guests' data at once |
+| `* * *`  | hotel manager   | view the contact number of the guest | contact them in an emergency |
+| `* * *`  | hotel manager | view the name of the guest | verify the guest |
+| `* * *`  | hotel manager | view the email address of the guest | contact the guest via email |
+| `* * *`  | hotel manager | be able to exit the program | close it when I don't need to use it |
+| `* * *`  | first time hotel manager | be able to delete data of all guests at one go | have a clean slate to work on should I need to |
+| `* * *`  | hotel manager | view the checkin date and time of a guest | prepare the room for the incoming guests |
+| `* * *`  | hotel manager | view the checkout date and time of a guest | I can prepare when to clean the room |
+| `* * *`  | hotel manager | delete a guest after they check out of my hotel | I do not keep unneeded data on my guests |
+| `* * *`  | hotel manager | be able to save the details of the guests | the data is not lost between sessions |
+| `* * *`  | hotel manager | view the number of guests in each room | I can prepare proper bed suites |
+| `* * *`  | hotel manager | add the details of a new guest when they are staying at my hotel | I know who is staying at my hotel |
+| `* *`    | hotel manager | be able to edit the name of the guest | update it if there are any changes |
+| `* *`    | hotel manager | be able to edit the email address of the guest | I can update it if there are any changes |
+| `* *`    | hotel manager | be able to edit the number of guests | update it if there are any changes |
+| `* *`    | hotel manager | be able to edit when a guest is checking in | update it if there are any changes |
+| `* *`    | hotel manager | be able to edit when a guest is checking out | update it if there are any changes |
+| `* *`    | hotel manager | be able to edit the contact number of the guest | update it if there are any changes |
 
 *{More to be added}*
 
