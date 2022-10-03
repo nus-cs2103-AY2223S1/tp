@@ -11,6 +11,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.taassist.commons.core.GuiSettings;
 import seedu.taassist.commons.core.LogsCenter;
+import seedu.taassist.model.moduleclass.ModuleClass;
+import seedu.taassist.model.student.IsPartOfClassPredicate;
 import seedu.taassist.model.student.Student;
 
 /**
@@ -22,6 +24,7 @@ public class ModelManager implements Model {
     private final TaAssist taAssist;
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
+    private ModuleClass focusedClass;
 
     /**
      * Initializes a ModelManager with the given taAssist and userPrefs.
@@ -147,4 +150,27 @@ public class ModelManager implements Model {
                 && filteredStudents.equals(other.filteredStudents);
     }
 
+    //=========== Handles focus mode state ==================================================================
+    @Override
+    public void enterFocusMode(ModuleClass classToFocus) {
+        requireNonNull(classToFocus);
+        this.focusedClass = classToFocus;
+        IsPartOfClassPredicate predicate = new IsPartOfClassPredicate(classToFocus);
+        updateFilteredStudentList(predicate);
+    }
+
+    @Override
+    public void exitFocusMode() {
+        focusedClass = null;
+    }
+
+    @Override
+    public boolean isInFocusMode() {
+        return focusedClass != null;
+    }
+
+    @Override
+    public ModuleClass getFocusedClass() {
+        return focusedClass;
+    }
 }

@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.taassist.logic.commands.AddCommand;
+import seedu.taassist.logic.commands.ClassCommand;
 import seedu.taassist.logic.commands.ClearCommand;
 import seedu.taassist.logic.commands.Command;
 import seedu.taassist.logic.commands.DeleteCommand;
@@ -61,6 +62,9 @@ public class TaAssistParser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case ClassCommand.COMMAND_WORD:
+            return new ClassCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

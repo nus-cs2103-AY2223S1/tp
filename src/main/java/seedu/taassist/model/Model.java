@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.taassist.commons.core.GuiSettings;
+import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.student.Student;
 
 /**
@@ -85,4 +86,16 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
+
+    /** Enters focus mode. */
+    void enterFocusMode(ModuleClass classToFocus);
+
+    /** Exits focus mode. */
+    void exitFocusMode();
+
+    /** Checks if the focus mode is active. */
+    boolean isInFocusMode();
+
+    /** Returns module class currently in focus. */
+    ModuleClass getFocusedClass();
 }

@@ -20,6 +20,7 @@ import seedu.taassist.model.Model;
 import seedu.taassist.model.ReadOnlyTaAssist;
 import seedu.taassist.model.ReadOnlyUserPrefs;
 import seedu.taassist.model.TaAssist;
+import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.student.Student;
 import seedu.taassist.testutil.StudentBuilder;
 
@@ -145,6 +146,26 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredStudentList(Predicate<Student> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void enterFocusMode(ModuleClass classToFocus) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void exitFocusMode() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isInFocusMode() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ModuleClass getFocusedClass() {
             throw new AssertionError("This method should not be called.");
         }
     }
