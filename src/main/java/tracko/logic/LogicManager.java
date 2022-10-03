@@ -14,6 +14,7 @@ import tracko.logic.parser.AddressBookParser;
 import tracko.logic.parser.exceptions.ParseException;
 import tracko.model.Model;
 import tracko.model.ReadOnlyAddressBook;
+import tracko.model.ReadOnlyTrackO;
 import tracko.model.person.Person;
 import tracko.storage.Storage;
 
@@ -47,6 +48,7 @@ public class LogicManager implements Logic {
 
         try {
             storage.saveAddressBook(model.getAddressBook());
+            storage.saveTrackO(model.getTrackO());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -70,6 +72,16 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ReadOnlyTrackO getTrackO() {
+        return model.getTrackO();
+    }
+
+    @Override
+    public Path getOrdersFilePath() {
+        return model.getOrdersFilePath();
+    }
+
+    @Override
     public GuiSettings getGuiSettings() {
         return model.getGuiSettings();
     }
@@ -78,4 +90,6 @@ public class LogicManager implements Logic {
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
     }
+
+
 }

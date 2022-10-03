@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import tracko.logic.commands.AddCommand;
+import tracko.logic.commands.AddOrderCommand;
 import tracko.logic.commands.ClearCommand;
 import tracko.logic.commands.Command;
 import tracko.logic.commands.DeleteCommand;
@@ -42,7 +43,12 @@ public class AddressBookParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
+        System.out.println(commandWord);
+        System.out.println(arguments);
         switch (commandWord) {
+
+        case AddOrderCommand.COMMAND_WORD:
+            return new AddOrderCommandParser().parse(arguments);
 
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);

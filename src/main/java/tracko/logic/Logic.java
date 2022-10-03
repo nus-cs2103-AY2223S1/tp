@@ -9,6 +9,7 @@ import tracko.logic.commands.exceptions.CommandException;
 import tracko.logic.parser.exceptions.ParseException;
 import tracko.model.Model;
 import tracko.model.ReadOnlyAddressBook;
+import tracko.model.ReadOnlyTrackO;
 import tracko.model.person.Person;
 
 /**
@@ -38,6 +39,16 @@ public interface Logic {
      * Returns the user prefs' address book file path.
      */
     Path getAddressBookFilePath();
+
+    /**
+     * Returns the TrackO.
+     */
+    ReadOnlyTrackO getTrackO();
+
+    /**
+     * Returns the user pref's order list file path.
+     */
+    Path getOrdersFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
