@@ -27,9 +27,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditCompanyDescriptor;
 import seedu.address.model.company.Address;
-import seedu.address.model.company.Email;
 import seedu.address.model.company.Name;
-import seedu.address.model.company.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditCompanyDescriptorBuilder;
 
@@ -82,7 +80,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC  + VALID_ADDRESS_AMY,
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC + VALID_ADDRESS_AMY,
                 Name.MESSAGE_CONSTRAINTS);
     }
 
@@ -125,7 +123,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_COMPANY;
-        String userInput = targetIndex.getOneBased()+ ADDRESS_DESC_AMY
+        String userInput = targetIndex.getOneBased() + ADDRESS_DESC_AMY
                 + TAG_DESC_FRIEND + ADDRESS_DESC_AMY + TAG_DESC_FRIEND
                 + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND;
 
