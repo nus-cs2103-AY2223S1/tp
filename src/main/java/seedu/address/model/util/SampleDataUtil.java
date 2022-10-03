@@ -4,9 +4,12 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import seedu.address.logic.parser.DateTimeParser;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Appointment;
+import seedu.address.model.person.DateTime;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -57,4 +60,14 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
+    /**
+     * Returns a tag set containing the list of strings given.
+     */
+    public static Set<Appointment> getAppointmentSet(String... strings) {
+        return Arrays.stream(strings)
+                .map(DateTimeParser::getLocalDateTimeFromString)
+                .map(DateTime::new)
+                .map(Appointment::new)
+                .collect(Collectors.toSet());
+    }
 }
