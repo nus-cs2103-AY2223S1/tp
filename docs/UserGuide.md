@@ -26,8 +26,12 @@ Healthcare Xpress is a **desktop app for managing patients that require home-vis
 
    * **`list`** : Lists all contacts.
 
+
+   * **`add`**`add c/N n/Jason p/98723432 e/jason@example.com g/M t/Asthma` : Adds a nurse named `Jason` to the Healthcare Xpress book.
+
    * **`add`** **`c/P n/John p/98765432 e/john@example.com g/M a/Bishan street, block
-     123, #01-01 t/Asthma d/2022-12-12 1350`** : Adds a patient named **`John`** to Healthcare Xpress.
+     123, #01-01 t/Asthma d/2022-12-12 1350`** : Adds a patient named **`John`** to Healthcare Xpress book.
+
 
    * **`delete`**`-id 3` : Deletes the nurse of patient with an id of 3.
 
@@ -76,22 +80,40 @@ Format: `help`
 
 ### Adding a nurse or patient: `add`
 
-Adds a patient to the Healthcare Xpress book.
+1. Adds a patient to the Healthcare Xpress book.
 
 Format: `add c/P n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS d/DATE_AND_TIME [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary"> 
 
 :bulb:**Tips:**
-* A person can have any number of tags (including 0).
+* A patient can have any number of tags (including 0).
 * Date and time need to be in the format of yyyy-MM-dd HHmm.
 * To add a patient, type c/P specifically.
 
 </div>
 
-Examples:
+Examples: 
 * `add c/P n/John p/98765432 e/john@example.com g/M a/Bishan street, block 123, #01-01 t/Asthma d/2022-12-12 1350`
 * `add c/P n/Betsy t/VIP e/betsy@example.com g/F a/Bugis street d/2022-12-02 1400 p/98345432 t/Heart disease t/children`
+
+2. Adds a nurse to the Healthcare Xpress book
+
+Format:`add c/N n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER [t/TAG]…​`
+
+<div markdown="span" class="alert alert-primary"> 
+
+:bulb:**Tips**: 
+* A nurse can have any number of tags (including 0).
+* You may type it in any order.
+* To add a nurse, type c/N specifically.
+
+</div>
+
+Examples:
+* `add c/N n/Jason p/98723432 e/jason@example.com g/M t/Asthma`
+* `add c/N n/Betsy t/handle children well e/betsy@example.com g/F p/98345432 t/Heart disease`
+
 
 ### Listing nurses or patients : `list`
 
@@ -210,7 +232,9 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add c/CATEGORY n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS d/DATE_AND_TIME [t/TAG]…​` <br> e.g., `add c/P n/John p/98765432 e/john@example.com g/M a/Bishan street, block 123, #01-01 t/Asthma d/2022-12-12 1350`
+
+**Add** | `add c/N n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER [t/TAG]…​` <br> e.g., `add c/N n/Jason p/98723432 e/jason@example.com g/M t/Asthma ` 
+**Add** | `add c/P n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS d/DATE_AND_TIME [t/TAG]…​` <br> e.g., `add c/P n/John p/98765432 e/john@example.com g/M a/Bishan street, block 123, #01-01 t/Asthma d/2022-12-12 1350`
 **Clear** | `clear`
 **Delete** | `delete -id ID`<br> e.g., `delete -id 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`

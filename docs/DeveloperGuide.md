@@ -746,6 +746,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
+* **Medical Administrator**: A person who oversees, plan, direct, and coordinate home-visits for patients.
+* **Patients**: A person receiving or registered to receive home visits due to special needs.
+* **Nurses**: A person trained to care for the sick or infirm, especially trained to do home-visiting.
+* **Healthcare Xpress**: A desktop app for managing patients that require home-visits.
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
