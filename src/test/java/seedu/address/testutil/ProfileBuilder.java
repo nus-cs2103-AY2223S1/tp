@@ -1,9 +1,14 @@
 package seedu.address.testutil;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import seedu.address.model.profile.Email;
 import seedu.address.model.profile.Name;
 import seedu.address.model.profile.Phone;
 import seedu.address.model.profile.Profile;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Profile objects.
@@ -17,6 +22,7 @@ public class ProfileBuilder {
     private Name name;
     private Phone phone;
     private Email email;
+    private Set<Tag> tags;
 
     /**
      * Creates a {@code ProfileBuilder} with the default details.
@@ -25,6 +31,7 @@ public class ProfileBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
+        tags = new HashSet<>();
     }
 
     /**
@@ -34,6 +41,7 @@ public class ProfileBuilder {
         name = profileToCopy.getName();
         phone = profileToCopy.getPhone();
         email = profileToCopy.getEmail();
+        tags = new HashSet<>(profileToCopy.getTags());
     }
 
     /**
@@ -41,6 +49,14 @@ public class ProfileBuilder {
      */
     public ProfileBuilder withName(String name) {
         this.name = new Name(name);
+        return this;
+    }
+
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Profile} that we are building.
+     */
+    public ProfileBuilder withTags(String ... tags) {
+        this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
 
@@ -61,7 +77,7 @@ public class ProfileBuilder {
     }
 
     public Profile build() {
-        return new Profile(name, phone, email);
+        return new Profile(name, phone, email, tags);
     }
 
 }

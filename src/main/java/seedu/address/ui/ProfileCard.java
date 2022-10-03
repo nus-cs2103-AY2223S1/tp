@@ -1,7 +1,10 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.profile.Profile;
@@ -33,6 +36,8 @@ public class ProfileCard extends UiPart<Region> {
     private Label phone;
     @FXML
     private Label email;
+    @FXML
+    private FlowPane tags;
 
     /**
      * Creates a {@code ProfileCode} with the given {@code Profile} and index to display.
@@ -44,6 +49,9 @@ public class ProfileCard extends UiPart<Region> {
         name.setText(profile.getName().fullName);
         phone.setText(profile.getPhone().value);
         email.setText(profile.getEmail().value);
+        profile.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override

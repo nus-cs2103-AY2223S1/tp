@@ -84,7 +84,7 @@ public class LogicManagerTest {
         String addProfileCommand = AddProfileCommand.COMMAND_WORD + " " + PREFIX_OPTION
                 + AddProfileCommand.COMMAND_OPTION
                 + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY;
-        Profile expectedProfile = new ProfileBuilder(AMY).build();
+        Profile expectedProfile = new ProfileBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addProfile(expectedProfile);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

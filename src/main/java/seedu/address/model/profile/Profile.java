@@ -2,7 +2,12 @@ package seedu.address.model.profile;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
+
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Profile in the address book.
@@ -15,14 +20,18 @@ public class Profile {
     private final Phone phone;
     private final Email email;
 
+    // Data fields
+    private final Set<Tag> tags = new HashSet<>();
+
     /**
      * Every field must be present and not null.
      */
-    public Profile(Name name, Phone phone, Email email) {
-        requireAllNonNull(name, phone, email);
+    public Profile(Name name, Phone phone, Email email, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.tags.addAll(tags);
     }
 
     public Name getName() {
@@ -35,6 +44,14 @@ public class Profile {
 
     public Email getEmail() {
         return email;
+    }
+
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
     }
 
     /**
@@ -67,13 +84,14 @@ public class Profile {
         Profile otherProfile = (Profile) other;
         return otherProfile.getName().equals(getName())
                 && otherProfile.getPhone().equals(getPhone())
-                && otherProfile.getEmail().equals(getEmail());
+                && otherProfile.getEmail().equals(getEmail())
+                && otherProfile.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email);
+        return Objects.hash(name, phone, email, tags);
     }
 
     @Override
@@ -85,6 +103,11 @@ public class Profile {
                 .append("; Email: ")
                 .append(getEmail());
 
+        Set<Tag> tags = getTags();
+        if (!tags.isEmpty()) {
+            builder.append("; Tags: ");
+            tags.forEach(builder::append);
+        }
         return builder.toString();
     }
 

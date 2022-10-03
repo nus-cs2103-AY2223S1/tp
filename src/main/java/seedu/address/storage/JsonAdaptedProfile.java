@@ -1,5 +1,11 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -8,6 +14,7 @@ import seedu.address.model.profile.Email;
 import seedu.address.model.profile.Name;
 import seedu.address.model.profile.Phone;
 import seedu.address.model.profile.Profile;
+import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Profile}.
@@ -19,16 +26,20 @@ class JsonAdaptedProfile {
     private final String name;
     private final String phone;
     private final String email;
+    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedProfile} with the given profile details.
      */
     @JsonCreator
     public JsonAdaptedProfile(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email) {
+            @JsonProperty("email") String email, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
+        if (tagged != null) {
+            this.tagged.addAll(tagged);
+        }
     }
 
     /**
@@ -38,6 +49,9 @@ class JsonAdaptedProfile {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
+        tagged.addAll(source.getTags().stream()
+                .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -46,6 +60,11 @@ class JsonAdaptedProfile {
      * @throws IllegalValueException if there were any data constraints violated in the adapted profile.
      */
     public Profile toModelType() throws IllegalValueException {
+        final List<Tag> profileTags = new ArrayList<>();
+        for (JsonAdaptedTag tag : tagged) {
+            profileTags.add(tag.toModelType());
+        }
+
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -69,8 +88,8 @@ class JsonAdaptedProfile {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
         }
         final Email modelEmail = new Email(email);
-
-        return new Profile(modelName, modelPhone, modelEmail);
+        final Set<Tag> modelTags = new HashSet<>(profileTags);
+        return new Profile(modelName, modelPhone, modelEmail, modelTags);
     }
 
 }
