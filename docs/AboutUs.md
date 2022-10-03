@@ -26,7 +26,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/jeromehjj)]
 [[portfolio](team/jeromehjj.md)]
 
-* Role: _To be determined_
+* Role: Developer
 * Responsibilities: _To be determined_
 
 ### Johnny Doe
