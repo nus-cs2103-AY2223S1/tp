@@ -276,7 +276,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |----------|-----------------------------|-----------------------------------------------------------|-------------------------------------------------------|
 | `* * *`  | teacher assistant           | be able to add comments                                   | monitor my students' progress.                        |
 | `* * *`  | teacher assistant           | be able to retrieve my student's contact details          | look them up easily.                                  |
-| `* * *`  | teacher assistant           | be able to recognise my students from different tutorials | know what my students look like.                      |
+| `* * *`  | teacher assistant           | be able to recognise my students from different tutorials | identify them.                                        |
 | `* * *`  | teacher assistant           | track the date and time while using my app                | so that I can be on time for my classes.              |
 | `* * *`  | forgetful teacher assistant | record attendance                                         | keep track of my students.                            |
 | `* * *`  | teacher assistant           | add student's profiles flexibly                           | create profiles based on limited student information. |
