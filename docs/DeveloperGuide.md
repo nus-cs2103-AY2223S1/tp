@@ -257,42 +257,87 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* need to store all the past activities that are done
+* keep track of ongoing and future activities
+* organize all the activities for better look up
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Provide a place for our users to store all the activities that are done, 
+ongoing or todo and organises it for them so it will be easier to trace back using specific activities. 
+Mainly CLI with many shortcuts to benefit people who type fast.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new activity               |                                                                        |
-| `* * *`  | user                                       | delete a activity                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a activity by name          | locate details of activities without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many activities in the description book | sort activities by name           | locate a activity easily                                                 |
+| Priority | As a …          | I want to …                       | So that I can…                          |
+|----------|-----------------|-----------------------------------|-----------------------------------------|
+| `* * *`  | user            | add activity                      | track my activities                     |
+| `* * *`  | user            | delete activity                   | make mistakes                           |
+| `* * *`  | user            | view activities                   | look at what I have done                |
+| `* *`    | busy CS student | quickly write commands            | save time adding entries                |
+| `* *`    | new user        | type "help" for help              | try the commands and use the app        |
+| `* *`    | new user        | clear all activities              | quickly clear the sample data           |
+| `* *`    | new user        | see sample data                   | get to know how the app works           |
+| `* *`    | user            | tag an activity with a type       | know what type of activity it is        |
+| `* *`    | user            | add an activity description       | know what the activity is about         | 
+| `*`      | long time user  | use shortcuts for commands        | enter commands faster                   |
+| `*`      | food enthusiast | review restaurants                | note down my opinions of the restaurant |
+| `*`      | food enthusiast | rate restaurants                  | note down my opinions of the restaurant |
+| `*`      | gym user        | keep track of dates of activities | record when I did the activity          |
+| `*`      | long time user  | search activities with keywords   | quickly find certain activity           |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `HobbyList` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a activity**
+**Use case: Add an activity**
 
 **MSS**
 
-1.  User requests to list activities
-2.  AddressBook shows a list of activities
+1. User requests to add an activity to the list
+2. HobbyList adds that activity to the list and shows a confirmed message
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The activity is already existed.
+
+    * 1a1. HobbyList shows a message to announce the user.
+
+      Use case ends.
+
+**Use case: List all activities**
+
+**MSS**
+
+1.  User requests to see all activities
+2.  HobbyList shows a list of activities
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+  * 2a1. HobbyList shows a message to announce the user.
+
+    Use case ends.
+
+**Use case: Delete an activity**
+
+**MSS**
+
+1.  User requests to list out all activities
+2.  HobbyList shows a list of activities
 3.  User requests to delete a specific activity in the list
-4.  AddressBook deletes the activity
+4.  HobbyList deletes the activity
 
     Use case ends.
 
@@ -304,7 +349,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. HobbyList shows an error message.
 
       Use case resumes at step 2.
 
@@ -320,8 +365,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+| Word | Meaning                                                                                             |
+| --- |-----------------------------------------------------------------------------------------------------|
+| Mainstream OS | Windows, Linux, Unix, OS-X                                                                          |
+| GUI | A graphical user interface, which is the visual display you see when using HobbyList                |
+| Index | A number that you can use to refer to a particular activity                                         |
+| Tag | A word (eg. `Entertainment`, `Sport`) that you can attach to the activities to easily identify them |
 
 --------------------------------------------------------------------------------------------------------------------
 
