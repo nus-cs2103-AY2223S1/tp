@@ -20,6 +20,10 @@ checkstyle {
     toolVersion = '10.2'
 }
 
+checkstyleMain {
+    exclude("**/org/openapitools/client/**")
+}
+
 test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
