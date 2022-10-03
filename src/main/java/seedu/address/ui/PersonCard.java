@@ -10,6 +10,7 @@ import javafx.scene.layout.Region;
 import seedu.address.logic.Logic;
 import seedu.address.model.person.Person;
 
+
 /**
  * An UI component that displays information of a {@code Person}.
  */
@@ -86,13 +87,13 @@ public class PersonCard extends UiPart<Region> {
         flowpanes[order[3]] = attributeD;
 
         if (flowpanes[0] != null) {
-            flowpanes[0].getChildren().add(new Label(person.getPhone().value));
+            flowpanes[0].getChildren().add(new Label(person.getAddress().value));
         }
         if (flowpanes[1] != null) {
-            flowpanes[1].getChildren().add(new Label(person.getAddress().value));
+            flowpanes[1].getChildren().add(new Label(person.getEmail().value));
         }
         if (flowpanes[2] != null) {
-            flowpanes[2].getChildren().add(new Label(person.getEmail().value));
+            flowpanes[2].getChildren().add(new Label(person.getPhone().value));
         }
         if (flowpanes[3] != null) {
             person.getTags().stream()
@@ -106,13 +107,42 @@ public class PersonCard extends UiPart<Region> {
      *
      * @return the required order
      */
-    public int[] orderAttributes() {
+    private int[] orderAttributes() {
         int[] order = new int[4];
         String orderStr = logic.getGuiSettings().getAttributeOrder();
-        for (int i = 0; i < 4; i++) {
-            //to be replaced with enum
-            order[i] = Integer.parseInt(String.valueOf(orderStr.charAt(i)));
+        String[] orderArr = orderStr.trim().split(">");
+
+        if (orderArr.length != 4) {
+            //Returns default order when the orderStr is not in correct format.
+            order = new int[]{3, 2, 1, 0};
+            return order;
         }
+
+        for (int i = 0; i < 4; i++) {
+            order[i] = convertToIndex(orderArr[i]);
+        }
+
         return order;
+    }
+
+    /**
+     * Converts the given attribute into the index corresponding to the attribute.
+     *
+     * @param attribute the string representation of the attribute
+     * @return an index that corresponds to the attribute
+     */
+    private int convertToIndex(String attribute) {
+        switch(attribute) {
+        case "ADDRESS":
+            return 0;
+        case "EMAIL":
+            return 1;
+        case "PHONE":
+            return 2;
+        case "TAGS":
+            return 3;
+        default:
+            throw new IllegalArgumentException();
+        }
     }
 }
