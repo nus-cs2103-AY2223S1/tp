@@ -2,7 +2,7 @@
 layout: page
 title: User Guide
 ---
-#uNivUSal
+# uNivUSal
 
 uNivUSal is a **desktop app for managing contacts catered to CS2103T students, TAs, and professors**, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, uNivUSal can get your contact management tasks done faster than traditional GUI apps.
 
