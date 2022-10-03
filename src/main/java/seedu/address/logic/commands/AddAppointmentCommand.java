@@ -1,60 +1,76 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.EditPersonDescriptor.createEditedPersonWithNewAppointment;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import java.util.List;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.EditPersonDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-
+/**
+ * Adds appointment(s) for a particular client.
+ */
 public class AddAppointmentCommand extends Command {
     public static final String COMMAND_WORD = "addappt";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Schedules an appointment with a specific client "
+            + "by the index number used in the displayed person list"
             + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
-            + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + "Parameters: INDEX (must be a positive integer) "
+            + "[" + PREFIX_DATE + "DATE AND TIME]...\n"
+            + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_DATE + "21-Jan-2023 12:30 PM ";
 
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "You have already scheduled "
+            + "an appointment at this timing for this client";
 
-    private final Person toAdd;
+    private final Index index;
+    private final EditPersonDescriptor editPersonDescriptor;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public AddAppointmentCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddAppointmentCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+        requireNonNull(index);
+        requireNonNull(editPersonDescriptor);
+        this.index = index;
+        this.editPersonDescriptor = editPersonDescriptor;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        model.addPerson(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        Person personToEdit = lastShownList.get(index.getZeroBased());
+        Person editedPerson = createEditedPersonWithNewAppointment(personToEdit, editPersonDescriptor);
+
+        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+            throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
+        }
+
+        model.setPerson(personToEdit, editedPerson);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, editedPerson));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
+                || (other instanceof AddAppointmentCommand // instanceof handles nulls
+                && index.equals(((AddAppointmentCommand) other).index))
+                && editPersonDescriptor.equals(((AddAppointmentCommand) other).editPersonDescriptor);
     }
 }
