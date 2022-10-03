@@ -3,46 +3,73 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 /**
  * Represents a Task's name in the task list.
  * Guarantees: immutable; is valid as declared in {@link #isValidDeadline(String)}
  *
- * TODO: Actually parse the deadline
  */
 public class Deadline {
 
-    public static final String MESSAGE_CONSTRAINTS = "Deadlines should not be blank";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Deadlines should be entered in the format \"2006-01-15 15:04\"";
 
-    /*
-     * The first character of the name must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "\\S[\\S ]*";
+    //@@author parnikkapore-reused
+    // Date format taken from https://github.com/angkl0/ip/blob/master/src/main/java/duke/tasks/Deadline.java#L39
+    // and https://github.com/angkl0/ip/blob/master/src/main/java/duke/commands/DeadlineCommand.java#L42
+    private static final DateTimeFormatter WRITE_FORMATTER = DateTimeFormatter.ofPattern("hh:mm a 'on' dd/MM/yyyy");
+    private static final DateTimeFormatter READ_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
-    public final String deadline;
+    public final LocalDateTime deadline;
 
     /**
      * Constructs a {@code Name}.
      *
-     * @param deadline A valid deadline.
+     * @param deadlineString A valid deadline written as a string.
      */
-    public Deadline(String deadline) {
+    public Deadline(String deadlineString) {
+        requireNonNull(deadlineString);
+        checkArgument(isValidDeadline(deadlineString), MESSAGE_CONSTRAINTS);
+
+        LocalDateTime newDeadline;
+        try {
+            newDeadline = LocalDateTime.parse(deadlineString, READ_FORMATTER);
+        } catch (DateTimeParseException e) {
+            assert false : "Checked deadline string should not fail to parse?";
+            newDeadline = LocalDateTime.now(); // A good enough fallback
+        }
+
+        this.deadline = newDeadline;
+    }
+
+    public Deadline(LocalDateTime deadline) {
         requireNonNull(deadline);
-        checkArgument(isValidDeadline(deadline), MESSAGE_CONSTRAINTS);
         this.deadline = deadline;
     }
 
-    /**
-     * Returns true if a given string is a valid name.
-     */
-    public static boolean isValidDeadline(String test) {
-        return test.matches(VALIDATION_REGEX);
+    public LocalDateTime getAsDateTime() {
+        return deadline;
     }
 
+    /**
+     * Returns true if a given string is a valid deadline.
+     */
+    public static boolean isValidDeadline(String test) {
+        try {
+            LocalDateTime.parse(test, READ_FORMATTER);
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+
+        return true;
+    }
 
     @Override
     public String toString() {
-        return deadline;
+        return deadline.format(WRITE_FORMATTER);
     }
 
     @Override
