@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -94,4 +95,8 @@ public interface Model {
     boolean hasTag(Tag tag);
 
     void addTag(Tag tag);
+
+    void editTag(Tag oldTag, Tag newTag);
+
+    ObservableList<Tag> getTagList();
 }

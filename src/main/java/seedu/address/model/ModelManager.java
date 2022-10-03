@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -23,6 +24,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final ObservableList<Tag> tags;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -35,6 +37,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.tags = this.addressBook.getTagList();
     }
 
     public ModelManager() {
@@ -123,6 +126,10 @@ public class ModelManager implements Model {
         addressBook.addTag(tag);
     }
 
+    @Override
+    public void editTag(Tag oldTag, Tag newTag) {
+        addressBook.editTag(oldTag, newTag);
+    }
 
     //=========== Filtered Person List Accessors =============================================================
 
@@ -160,4 +167,9 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(other.filteredPersons);
     }
 
+    //========== Tag List Accessors ===========================================================================
+
+    public ObservableList<Tag> getTagList() {
+        return tags;
+    }
 }

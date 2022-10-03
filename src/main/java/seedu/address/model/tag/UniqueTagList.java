@@ -31,7 +31,7 @@ public class UniqueTagList implements Iterable<Tag> {
 
     public void editTag(Tag oldTag, Tag newTag ) {
         int index = tagArrayList.indexOf(oldTag);
-        tagArrayList.add(index, newTag);
+        tagArrayList.set(index, newTag);
     }
 
     public boolean hasTag(Tag tag) {

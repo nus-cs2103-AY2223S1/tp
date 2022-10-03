@@ -1,34 +1,40 @@
 package seedu.address.logic.parser;
 
+import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.TagCreateCommand;
 import seedu.address.logic.commands.TagEditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.*;
 
-public class TagCreateCommandParser implements Parser<TagCreateCommand> {
+public class TagEditCommandParser implements Parser<TagEditCommand> {
 
-    /**
-     * Parses the given {@code String} of arguments in the context of the TagCreateCommand
-     * and returns an TagCreateCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
-     */
-    public TagCreateCommand parse(String args) throws ParseException {
+    @Override
+    public TagEditCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_TAG)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCreateCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagEditCommand.MESSAGE_USAGE));
         }
 
-        Tag tag = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
+        List<Tag> tagList = ParserUtil.parseTagsIntoList(argMultimap.getAllValues(PREFIX_TAG));
 
-        return new TagCreateCommand(tag);
+        if (tagList.size() != 2) {
+            throw new ParseException(TagEditCommand.MESSAGE_NOT_EDITED);
+        }
+
+        Tag oldTagName = tagList.get(0);
+        Tag newTagName = tagList.get(1);
+
+        return new TagEditCommand(oldTagName, newTagName);
     }
 
     /**
@@ -40,4 +46,3 @@ public class TagCreateCommandParser implements Parser<TagCreateCommand> {
     }
 
 }
-
