@@ -30,7 +30,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Lan Jingbo
 
-<img src="images/lanjingbo.png" width="200px">
+<img src="images/Lan-Jingbo.png" width="200px">
 
 [[github](http://github.com/Lan-Jingbo)] [[portfolio](team/lanjingbo.md)]
 
