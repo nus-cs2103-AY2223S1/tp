@@ -153,6 +153,22 @@ Examples:
 * `list` followed by `delete -id 2` deletes the nurse of patient with an id of 2.
 * `find -n Betsy` followed by `delete -id 1` deletes the nurse of patient with an id of 1.
 
+### Marking a patient as visited : `mark`
+
+Marks a specific patient in the records system as having been visited.
+
+Format: `mark -id ID`
+
+* Marks the patient with the specified 'ID' as having been visited.
+* The ID refers to the unique ID shown in the displayed person list.
+* The ID **must be a positive integer** 1, 2, 3, ...
+* `list` or `find` operations can be performed first to get the ID of the desired patient.
+
+Examples:
+* `mark -id 1` marks the patient with ID of 1 as having been visited.
+* `list c/P` followed by `mark -id 1` marks the patient with ID of 1 as having been visited.
+* `find -n John` followed by `mark -id 1` marks the patient with ID of 1 as having been visited.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -200,6 +216,7 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list [c/CATEGORY] [t/TAG] [g/GENDER] [a/ADDRESS]`<br> e.g., `list c/NURSE`
+**Mark** | `mark -id ID` <br> e.g., `mark -id 1`
 **Help** | `help`
 
 

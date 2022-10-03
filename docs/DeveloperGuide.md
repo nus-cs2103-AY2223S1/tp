@@ -726,11 +726,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Technical Requirements:
+    1. The application should work on any _mainstream OS_, such as Windows, Linux, and macOS, as long as it has Java `11` or above installed.
+    2. The application should be compatible with both _32-bit_ and _64-bit_ environments.
+2. Performance Requirements:
+    1. Should be able to hold up to _10000 patients and nurses_ without noticeable sluggishness in performance for typical usage.
+    2. The application should be able to launch within _5 seconds_.
+    3. The application should be able to respond to each command within _1 second_.
+3. Quality requirements:
+    1. A user with above average typing speed for regular English text (i.e. not code, not system admin commands)
+       should be able to accomplish most of the tasks faster using commands than using the mouse.
+    2. A user with minimal knowledge on how to operate text-based applications should be able to quickly learn how to use it.
+4. Constraints:
+    1. Each version of the application should be _backwards compatible_ with data produced by earlier versions.
+    2. Specifications of dates and times should be compliant with ISO 8601 standard, and in the GMT+8 time zone.
+5. Project Scope:
+    1. The application is not required to handle the printing of the patient-nurse visitation schedule.
 
-*{More to be added}*
 
 ### Glossary
 
