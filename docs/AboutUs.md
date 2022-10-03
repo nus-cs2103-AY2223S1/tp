@@ -24,7 +24,7 @@ You can reach us at the email `climods[at]comp.nus.edu.sg`
 <img src="images/zupey.png" width="200px">
 
 [[github](http://github.com/zupey)]
-[[portfolio](team/Linus.md)]
+[[portfolio](team/zupey.md)]
 
 * Role: Developer
 * Responsibilities: Coder
