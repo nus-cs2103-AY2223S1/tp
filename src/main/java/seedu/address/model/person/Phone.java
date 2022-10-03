@@ -38,6 +38,10 @@ public class Phone {
         return value;
     }
 
+    public int compareTo(Phone other) {
+        return Integer.parseInt(value) - Integer.parseInt(other.value);
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
