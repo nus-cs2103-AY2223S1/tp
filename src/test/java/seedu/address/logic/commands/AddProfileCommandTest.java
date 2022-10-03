@@ -49,9 +49,7 @@ public class AddProfileCommandTest {
         ModelStub modelStub = new ModelStubWithProfile(validProfile);
 
         assertThrows(CommandException.class,
-                AddProfileCommand.MESSAGE_DUPLICATE_PROFILE,
-                () -> addProfileCommand.execute(modelStub)
-        );
+                AddProfileCommand.MESSAGE_DUPLICATE_PROFILE, () -> addProfileCommand.execute(modelStub));
     }
 
     @Test

@@ -1,16 +1,11 @@
 package seedu.address.testutil;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import seedu.address.logic.commands.EditCommand.EditProfileDescriptor;
 import seedu.address.model.profile.Address;
 import seedu.address.model.profile.Email;
 import seedu.address.model.profile.Name;
 import seedu.address.model.profile.Phone;
 import seedu.address.model.profile.Profile;
-import seedu.address.model.tag.Tag;
 
 /**
  * A utility class to help with building EditProfileDescriptor objects.
@@ -36,7 +31,6 @@ public class EditProfileDescriptorBuilder {
         descriptor.setPhone(profile.getPhone());
         descriptor.setEmail(profile.getEmail());
         descriptor.setAddress(profile.getAddress());
-        descriptor.setTags(profile.getTags());
     }
 
     /**
@@ -68,16 +62,6 @@ public class EditProfileDescriptorBuilder {
      */
     public EditProfileDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
-        return this;
-    }
-
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditProfileDescriptor}
-     * that we are building.
-     */
-    public EditProfileDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
         return this;
     }
 

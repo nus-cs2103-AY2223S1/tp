@@ -1,7 +1,5 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -52,9 +50,6 @@ public class ProfileCard extends UiPart<Region> {
         phone.setText(profile.getPhone().value);
         address.setText(profile.getAddress().value);
         email.setText(profile.getEmail().value);
-        profile.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override

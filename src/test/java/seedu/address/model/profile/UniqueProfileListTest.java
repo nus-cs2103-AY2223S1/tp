@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalProfiles.ALICE;
 import static seedu.address.testutil.TypicalProfiles.BOB;
@@ -42,7 +41,7 @@ public class UniqueProfileListTest {
     @Test
     public void contains_profileWithSameIdentityFieldsInList_returnsTrue() {
         uniqueProfileList.add(ALICE);
-        Profile editedAlice = new ProfileBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Profile editedAlice = new ProfileBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
                 .build();
         assertTrue(uniqueProfileList.contains(editedAlice));
     }
@@ -85,7 +84,7 @@ public class UniqueProfileListTest {
     @Test
     public void setProfile_editedProfileHasSameIdentity_success() {
         uniqueProfileList.add(ALICE);
-        Profile editedAlice = new ProfileBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Profile editedAlice = new ProfileBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
                 .build();
         uniqueProfileList.setProfile(ALICE, editedAlice);
         UniqueProfileList expectedUniqueProfileList = new UniqueProfileList();
