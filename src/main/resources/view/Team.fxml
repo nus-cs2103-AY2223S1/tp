@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+       <HBox spacing="15.0">
+           <VBox.margin>
+               <Insets bottom="10.0" top="10.0" />
+           </VBox.margin>
+          <children>
+              <Label />
+              <Label text="Team B" textFill="WHITE">
+                  <font>
+                      <Font size="18.0" />
+                  </font>
+              </Label>
+          </children>
+       </HBox>
+       <HBox prefHeight="100.0" prefWidth="200.0">
+          <children>
+              <VBox HBox.hgrow="ALWAYS">
+                  <padding>
+                      <Insets bottom="10" left="10" right="10" top="10" />
+                  </padding>
+                 <children>
+                     <HBox spacing="15.0">
+                        <children>
+                            <Label />
+                            <Label text="Members">
+                                <font>
+                                    <Font size="15.0" />
+                                </font>
+                           <HBox.margin>
+                              <Insets bottom="10.0" />
+                           </HBox.margin>
+                            </Label>
+                        </children>
+                     </HBox>
+                     <StackPane VBox.vgrow="ALWAYS">
+                        <children>
+                            <VBox>
+
+                </VBox>
+                            <ListView prefHeight="200.0" prefWidth="200.0" />
+                        </children>
+                     </StackPane>
+                 </children>
+              </VBox>
+              <VBox HBox.hgrow="ALWAYS">
+                  <padding>
+                      <Insets bottom="10" left="10" right="10" top="10" />
+                  </padding>
+                 <children>
+                     <HBox spacing="15.0">
+                        <children>
+                            <Label />
+                            <Label text="Tasks" textFill="WHITE">
+                                <font>
+                                    <Font size="15.0" />
+                                </font>
+                            </Label>
+                        </children>
+                     </HBox>
+                     <StackPane VBox.vgrow="ALWAYS">
+                        <children>
+                            <VBox />
+                            <ListView prefHeight="200.0" prefWidth="200.0" />
+                        </children>
+                     </StackPane>
+                 </children>
+              </VBox>
+          </children>
+       </HBox>
+   </children>
+</VBox>
