@@ -5,7 +5,9 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 
 /**
  * The API of the Model component.
@@ -84,4 +86,20 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Returns the index of the person with the same phone number.
+     *
+     * @param phone Phone number to search
+     * @return index of the person with the same phone number
+     */
+    int findNum(Phone phone);
+
+    /**
+     * Returns the index of the person with the same email.
+     *
+     * @param email Email to search
+     * @return index of the person with the same email
+     */
+    int findEmail(Email email);
 }
