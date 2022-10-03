@@ -310,13 +310,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | first time hotel manager | be able to delete data of all guests at one go                   | have a clean slate to work on should I need to                             |
 | `* * *`  | hotel manager            | view the checkin date and time of a guest                        | prepare the room for the incoming guests                                   |
 | `* * *`  | hotel manager            | view the checkout date and time of a guest                       | prepare when to clean the room                                             |
-| `* * *`  | hotel manager            | delete a guest after they check out of my hotel                  | I do not keep unneeded data on my guests                                   |
+| `* * *`  | hotel manager            | delete a guest after they check out of my hotel                  | do not keep unneeded data on my guests                                     |
 | `* * *`  | hotel manager            | be able to save the details of the guests                        | the data is not lost between sessions                                      |
 | `* * *`  | hotel manager            | search guests by keyword                                         | see details of specific guests                                             |
 | `* * *`  | hotel manager            | view the number of guests in each room                           | prepare proper bed suites                                                  |
-| `* * *`  | hotel manager            | add the details of a new guest when they are staying at my hotel | I know who is staying at my hotel                                          |
+| `* * *`  | hotel manager            | add the details of a new guest when they are staying at my hotel | know who is staying at my hotel                                            |
 | `* *`    | hotel manager            | be able to edit the name of the guest                            | update it if there are any changes                                         |
-| `* *`    | hotel manager            | be able to edit the email address of the guest                   | I can update it if there are any changes                                   |
+| `* *`    | hotel manager            | be able to edit the email address of the guest                   | update it if there are any changes                                         |
 | `* *`    | hotel manager            | be able to edit the number of guests                             | update it if there are any changes                                         |
 | `* *`    | hotel manager            | be able to edit when a guest is checking in                      | update it if there are any changes                                         |
 | `* *`    | hotel manager            | be able to edit when a guest is checking out                     | update it if there are any changes                                         |
@@ -330,7 +330,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* `     | breakfast manager        | get the details of how many guests are eating breakfast          | prepare the appropriate amount of food                                     |
 | `* `     | lunch manager            | get the details of how many guests are eating lunch              | prepare the appropriate amount of food                                     |
 | `* `     | dinner manager           | get the details of how many guests are eating dinner             | prepare the appropriate amount of food                                     |
-| `* `     | hotel cleaner            | get the details of if a room has been cleaned                    | I will not waste time cleaning the room again                              |
+| `* `     | hotel cleaner            | get the details of if a room has been cleaned                    | do not waste time cleaning the room again                                  |
 | `* `     | hotel cleaner            | mark a room as clean                                             | other cleaners will not need to waste time cleaning the room again         |
 | `* `     | butler                   | get the details of any special requests from the guests          | serve every guest properly                                                 |
 
