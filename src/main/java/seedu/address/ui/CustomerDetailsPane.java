@@ -84,6 +84,6 @@ public class CustomerDetailsPane extends UiPart<Region> {
 
         // state check
         CustomerDetailsPane pane = (CustomerDetailsPane) other;
-        return pane.customer.isSameCustomer(((CustomerDetailsPane) other).customer);
+        return customer.isSameCustomer(pane.customer);
     }
 }
