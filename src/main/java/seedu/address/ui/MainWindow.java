@@ -33,7 +33,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private CompanyListPanel companyListPanel;
     private ResultDisplay resultDisplay;
-    private UserGuideWindow userGuideWindow;
+    private HelpWindow helpWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -65,7 +65,7 @@ public class MainWindow extends UiPart<Stage> {
 
         setAccelerators();
 
-        userGuideWindow = new UserGuideWindow();
+        helpWindow = new HelpWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -140,10 +140,10 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleHelp() {
-        if (!userGuideWindow.isShowing()) {
-            userGuideWindow.show();
+        if (!helpWindow.isShowing()) {
+            helpWindow.show();
         } else {
-            userGuideWindow.focus();
+            helpWindow.focus();
         }
     }
 
@@ -159,7 +159,7 @@ public class MainWindow extends UiPart<Stage> {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
-        userGuideWindow.hide();
+        helpWindow.hide();
         primaryStage.hide();
     }
 
