@@ -1,4 +1,4 @@
-# Chua Ming Quan's Project Portfolio Page
+# Luo Tian You's Project Portfolio Page
 
 ### Project: Yellow Pages
 Yellow Pages is a desktop address book application used for students in universities. User interaction is done through CLI and its GUI is created using JavaFX
@@ -10,7 +10,7 @@ Contributions:
 	- *Highlights*:
 	- *Credits*:
 
-- **Code contributed**: [RepoSense link]()
+- **Code contributed**: [RepoSense link](https://github.com/HakkaNgin/tp)
 
 -   **Project management**: WIP
 
