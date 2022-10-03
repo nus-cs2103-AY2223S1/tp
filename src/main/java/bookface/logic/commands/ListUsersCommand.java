@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import bookface.model.Model;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all users in the user list to the user.
  */
 public class ListUsersCommand extends Command {
 
@@ -18,7 +18,7 @@ public class ListUsersCommand extends Command {
             + ": List all users.\n"
             + "Example: " + COMMAND_WORD + COMMAND_WORD_USER;
 
-    public static final String MESSAGE_SUCCESS = "Listed all persons";
+    public static final String MESSAGE_SUCCESS = "Listed all users";
 
     @Override
     public CommandResult execute(Model model) {

@@ -11,7 +11,7 @@ import bookface.model.Model;
 import bookface.model.person.Person;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a user identified using it's displayed index from the user list.
  */
 public class DeleteUserCommand extends Command {
 
@@ -21,7 +21,7 @@ public class DeleteUserCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + COMMAND_WORD_USER
-            + ": Deletes the user identified by the index number used in the displayed person list.\n"
+            + ": Deletes the user identified by the index number used in the displayed user list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + COMMAND_WORD_USER + " 1";
 

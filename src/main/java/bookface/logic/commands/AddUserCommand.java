@@ -11,7 +11,7 @@ import bookface.model.Model;
 import bookface.model.person.Person;
 
 /**
- * Adds a person to the address book.
+ * Adds a user to the user list.
  */
 public class AddUserCommand extends Command {
 
@@ -20,7 +20,7 @@ public class AddUserCommand extends Command {
     public static final String COMMAND_WORD_USER = " user";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + COMMAND_WORD_USER
-            + ": Adds a user to the address book. "
+            + ": Adds a user to the user list. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -36,7 +36,7 @@ public class AddUserCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New user added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This user already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This user already exists in the user list.";
 
     private final Person toAdd;
 
