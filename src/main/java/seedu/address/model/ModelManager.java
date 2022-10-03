@@ -13,7 +13,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.commission.Commission;
 import seedu.address.model.commission.UniqueCommissionList;
-import seedu.address.model.person.Person;
+import seedu.address.model.customer.Customer;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -23,7 +23,7 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Customer> filteredCustomers;
     private final FilteredList<Commission> filteredCommissions;
 
     /**
@@ -37,12 +37,12 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
 
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredCustomers = new FilteredList<>(this.addressBook.getCustomerList());
 
         // Temporarily set active customer to the first customer.
         // TODO: Should be fixed by implementer of the opencus command.
-        if (this.addressBook.getPersonList().size() > 0) {
-            this.addressBook.setActiveCustomer(this.addressBook.getPersonList().get(0));
+        if (this.addressBook.getCustomerList().size() > 0) {
+            this.addressBook.setActiveCustomer(this.addressBook.getCustomerList().get(0));
             filteredCommissions = new FilteredList<>(this.addressBook.getCommissionList());
         } else {
             // TODO: figure out how to fix filteredCommissions
@@ -102,37 +102,37 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public boolean hasCustomer(Customer customer) {
+        requireNonNull(customer);
+        return addressBook.hasCustomer(customer);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public void deleteCustomer(Customer target) {
+        addressBook.removeCustomer(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addCustomer(Customer customer) {
+        addressBook.addCustomer(customer);
+        updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setCustomer(Customer target, Customer editedCustomer) {
+        requireAllNonNull(target, editedCustomer);
 
-        addressBook.setPerson(target, editedPerson);
+        addressBook.setCustomer(target, editedCustomer);
     }
-
+    
     /**
      * Clones active person - useful to force GUI update
      */
     @Override
-    public void updateActivePerson() {
-        Person activeCustomer = addressBook.getActiveCustomer();
-        Person activeCustomerClone = activeCustomer.getClone();
-        setPerson(activeCustomer, activeCustomerClone);
+    public void updateActiveCustomer() {
+        Customer activeCustomer = addressBook.getActiveCustomer();
+        Customer activeCustomerClone = activeCustomer.getClone();
+        setCustomer(activeCustomer, activeCustomerClone);
         addressBook.setActiveCustomer(activeCustomerClone);
     }
 
@@ -150,7 +150,7 @@ public class ModelManager implements Model {
     @Override
     public void addCommission(Commission commission) {
         addressBook.addCommission(commission);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
     }
 
     @Override
@@ -159,22 +159,22 @@ public class ModelManager implements Model {
 
         addressBook.setCommission(target, editedCommission);
     }
-
-    //=========== Filtered Person List Accessors =============================================================
+    
+    //=========== Filtered Customer List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Customer} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Customer> getFilteredCustomerList() {
+        return filteredCustomers;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredCustomerList(Predicate<Customer> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredCustomers.setPredicate(predicate);
     }
 
     //=========== Filtered Commission List Accessors =============================================================
@@ -189,9 +189,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredCommissionList(Predicate<Person> predicate) {
+    public void updateFilteredCommissionList(Predicate<Commission> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredCommissions.setPredicate(predicate);
     }
 
     @Override
@@ -210,7 +210,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredCustomers.equals(other.filteredCustomers);
     }
 
 }
