@@ -20,13 +20,16 @@ public class ListUsersCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all persons";
 
-
-
-
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(MESSAGE_SUCCESS);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ListUsersCommand); // all instances of listuserscommand are equal
     }
 }
