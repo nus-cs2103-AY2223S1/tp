@@ -1,7 +1,5 @@
 package taskbook.logic.commands;
 
-import static taskbook.logic.commands.CommandTestUtil.assertCommandSuccess;
-
 import org.junit.jupiter.api.Test;
 
 import taskbook.model.Model;

@@ -1,8 +1,7 @@
 package taskbook.model;
 
-import static taskbook.testutil.Assert.assertThrows;
-
 import org.junit.jupiter.api.Test;
+
 import taskbook.testutil.Assert;
 
 public class UserPrefsTest {

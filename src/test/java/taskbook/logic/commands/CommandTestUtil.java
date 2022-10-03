@@ -2,7 +2,6 @@ package taskbook.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static taskbook.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,13 +9,13 @@ import java.util.List;
 
 import taskbook.commons.core.index.Index;
 import taskbook.logic.commands.exceptions.CommandException;
+import taskbook.logic.parser.CliSyntax;
 import taskbook.model.AddressBook;
 import taskbook.model.Model;
 import taskbook.model.person.NameContainsKeywordsPredicate;
 import taskbook.model.person.Person;
-import taskbook.testutil.EditPersonDescriptorBuilder;
-import taskbook.logic.parser.CliSyntax;
 import taskbook.testutil.Assert;
+import taskbook.testutil.EditPersonDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -48,7 +47,7 @@ public class CommandTestUtil {
     public static final String INVALID_NAME_DESC = " " + CliSyntax.PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + CliSyntax.PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + CliSyntax.PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_ADDRESS_DESC = " " + CliSyntax.PREFIX_ADDRESS; // empty string not allowed for addresses
+    public static final String INVALID_ADDRESS_DESC = " " + CliSyntax.PREFIX_ADDRESS; // empty string not allowed
     public static final String INVALID_TAG_DESC = " " + CliSyntax.PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";

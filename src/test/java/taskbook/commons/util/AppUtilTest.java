@@ -1,9 +1,9 @@
 package taskbook.commons.util;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static taskbook.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
+
 import taskbook.testutil.Assert;
 
 public class AppUtilTest {
@@ -32,6 +32,7 @@ public class AppUtilTest {
     @Test
     public void checkArgument_falseWithErrorMessage_throwsIllegalArgumentException() {
         String errorMessage = "error message";
-        Assert.assertThrows(IllegalArgumentException.class, errorMessage, () -> AppUtil.checkArgument(false, errorMessage));
+        Assert.assertThrows(IllegalArgumentException.class,
+                errorMessage, () -> AppUtil.checkArgument(false, errorMessage));
     }
 }

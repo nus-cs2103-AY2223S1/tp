@@ -1,7 +1,6 @@
 package taskbook.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static taskbook.testutil.Assert.assertThrows;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -10,7 +9,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import taskbook.commons.core.Messages;
 import taskbook.logic.commands.CommandResult;
+import taskbook.logic.commands.CommandTestUtil;
 import taskbook.logic.commands.contacts.ContactAddCommand;
 import taskbook.logic.commands.contacts.ContactListCommand;
 import taskbook.logic.commands.exceptions.CommandException;
@@ -24,10 +25,8 @@ import taskbook.model.person.Person;
 import taskbook.storage.JsonAddressBookStorage;
 import taskbook.storage.JsonUserPrefsStorage;
 import taskbook.storage.StorageManager;
-import taskbook.testutil.PersonBuilder;
-import taskbook.commons.core.Messages;
-import taskbook.logic.commands.CommandTestUtil;
 import taskbook.testutil.Assert;
+import taskbook.testutil.PersonBuilder;
 import taskbook.testutil.TypicalPersons;
 
 public class LogicManagerTest {
@@ -78,7 +77,8 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = ContactCategoryParser.CATEGORY_WORD + " " + ContactAddCommand.COMMAND_WORD
-            + CommandTestUtil.NAME_DESC_AMY + CommandTestUtil.PHONE_DESC_AMY + CommandTestUtil.EMAIL_DESC_AMY + CommandTestUtil.ADDRESS_DESC_AMY;
+            + CommandTestUtil.NAME_DESC_AMY + CommandTestUtil.PHONE_DESC_AMY
+            + CommandTestUtil.EMAIL_DESC_AMY + CommandTestUtil.ADDRESS_DESC_AMY;
         Person expectedPerson = new PersonBuilder(TypicalPersons.AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);

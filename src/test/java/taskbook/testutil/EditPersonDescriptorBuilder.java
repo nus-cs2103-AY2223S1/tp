@@ -4,13 +4,13 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import taskbook.logic.commands.EditCommand;
 import taskbook.model.person.Address;
 import taskbook.model.person.Email;
 import taskbook.model.person.Name;
 import taskbook.model.person.Person;
 import taskbook.model.person.Phone;
 import taskbook.model.tag.Tag;
-import taskbook.logic.commands.EditCommand;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.

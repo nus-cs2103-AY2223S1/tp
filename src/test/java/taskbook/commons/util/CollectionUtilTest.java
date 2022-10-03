@@ -2,8 +2,6 @@ package taskbook.commons.util;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static taskbook.commons.util.CollectionUtil.requireAllNonNull;
-import static taskbook.testutil.Assert.assertThrows;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -11,6 +9,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+
 import taskbook.testutil.Assert;
 
 public class CollectionUtilTest {

@@ -3,18 +3,17 @@ package taskbook.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static taskbook.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 import java.util.Arrays;
 import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import taskbook.commons.core.Messages;
 import taskbook.model.Model;
 import taskbook.model.ModelManager;
 import taskbook.model.UserPrefs;
 import taskbook.model.person.NameContainsKeywordsPredicate;
-import taskbook.commons.core.Messages;
 import taskbook.testutil.TypicalPersons;
 
 /**
@@ -68,7 +67,8 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         CommandTestUtil.assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(TypicalPersons.CARL, TypicalPersons.ELLE, TypicalPersons.FIONA), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(TypicalPersons.CARL, TypicalPersons.ELLE, TypicalPersons.FIONA),
+                model.getFilteredPersonList());
     }
 
     /**

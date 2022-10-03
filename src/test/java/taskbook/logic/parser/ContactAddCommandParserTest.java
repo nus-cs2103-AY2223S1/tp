@@ -30,6 +30,7 @@ import static taskbook.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
+import taskbook.commons.core.Messages;
 import taskbook.logic.commands.contacts.ContactAddCommand;
 import taskbook.logic.parser.contacts.ContactAddCommandParser;
 import taskbook.model.person.Address;
@@ -39,7 +40,6 @@ import taskbook.model.person.Person;
 import taskbook.model.person.Phone;
 import taskbook.model.tag.Tag;
 import taskbook.testutil.PersonBuilder;
-import taskbook.commons.core.Messages;
 
 public class ContactAddCommandParserTest {
     private ContactAddCommandParser parser = new ContactAddCommandParser();
@@ -85,7 +85,8 @@ public class ContactAddCommandParserTest {
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, ContactAddCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                ContactAddCommand.MESSAGE_USAGE);
 
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,

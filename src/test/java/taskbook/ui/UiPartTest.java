@@ -2,7 +2,6 @@ package taskbook.ui;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static taskbook.testutil.Assert.assertThrows;
 
 import java.net.URL;
 import java.nio.file.Path;

@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static taskbook.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static taskbook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static taskbook.testutil.Assert.assertThrows;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -18,8 +17,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import taskbook.model.person.Person;
 import taskbook.model.person.exceptions.DuplicatePersonException;
-import taskbook.testutil.PersonBuilder;
 import taskbook.testutil.Assert;
+import taskbook.testutil.PersonBuilder;
 import taskbook.testutil.TypicalPersons;
 
 public class AddressBookTest {
@@ -46,7 +45,8 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(TypicalPersons.ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Person editedAlice = new PersonBuilder(TypicalPersons.ALICE)
+                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Person> newPersons = Arrays.asList(TypicalPersons.ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newPersons);
@@ -73,7 +73,8 @@ public class AddressBookTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addPerson(TypicalPersons.ALICE);
-        Person editedAlice = new PersonBuilder(TypicalPersons.ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Person editedAlice = new PersonBuilder(TypicalPersons.ALICE)
+                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(addressBook.hasPerson(editedAlice));
     }

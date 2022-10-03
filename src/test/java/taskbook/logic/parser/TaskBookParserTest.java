@@ -8,6 +8,7 @@ import static taskbook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 
+import taskbook.commons.core.Messages;
 import taskbook.logic.commands.Command;
 import taskbook.logic.commands.HelpCommand;
 import taskbook.logic.commands.categoryless.ExitCommand;
@@ -23,7 +24,6 @@ import taskbook.logic.parser.tasks.TaskCategoryParser;
 import taskbook.model.person.Person;
 import taskbook.testutil.PersonBuilder;
 import taskbook.testutil.PersonUtil;
-import taskbook.commons.core.Messages;
 
 public class TaskBookParserTest {
 
@@ -75,13 +75,15 @@ public class TaskBookParserTest {
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
-        assertThrows(ParseException.class, String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand(""));
+        assertThrows(ParseException.class, String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                HelpCommand.MESSAGE_USAGE), ()
+                -> parser.parseCommand(""));
     }
 
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
-        assertThrows(ParseException.class, Messages.MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+        assertThrows(ParseException.class, Messages.MESSAGE_UNKNOWN_COMMAND, ()
+            -> parser.parseCommand("unknownCommand"));
     }
 
     private Command parseCommandWithCategory(String category, String commandWithoutCategory) throws ParseException {

@@ -2,12 +2,12 @@ package taskbook.testutil;
 
 import java.util.Set;
 
+import taskbook.logic.commands.EditCommand;
 import taskbook.logic.commands.contacts.ContactAddCommand;
 import taskbook.logic.commands.contacts.ContactDeleteCommand;
+import taskbook.logic.parser.CliSyntax;
 import taskbook.model.person.Person;
 import taskbook.model.tag.Tag;
-import taskbook.logic.commands.EditCommand;
-import taskbook.logic.parser.CliSyntax;
 
 /**
  * A utility class for Person.
@@ -51,7 +51,8 @@ public class PersonUtil {
         descriptor.getName().ifPresent(name -> sb.append(CliSyntax.PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(CliSyntax.PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(CliSyntax.PREFIX_EMAIL).append(email.value).append(" "));
-        descriptor.getAddress().ifPresent(address -> sb.append(CliSyntax.PREFIX_ADDRESS).append(address.value).append(" "));
+        descriptor.getAddress().ifPresent(address
+                -> sb.append(CliSyntax.PREFIX_ADDRESS).append(address.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

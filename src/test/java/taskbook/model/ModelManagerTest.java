@@ -3,7 +3,6 @@ package taskbook.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static taskbook.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -95,7 +94,8 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withPerson(TypicalPersons.ALICE).withPerson(TypicalPersons.BENSON).build();
+        AddressBook addressBook = new AddressBookBuilder()
+                .withPerson(TypicalPersons.ALICE).withPerson(TypicalPersons.BENSON).build();
         AddressBook differentAddressBook = new AddressBook();
         UserPrefs userPrefs = new UserPrefs();
 

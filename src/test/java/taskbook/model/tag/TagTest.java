@@ -1,8 +1,7 @@
 package taskbook.model.tag;
 
-import static taskbook.testutil.Assert.assertThrows;
-
 import org.junit.jupiter.api.Test;
+
 import taskbook.testutil.Assert;
 
 public class TagTest {

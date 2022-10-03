@@ -6,9 +6,9 @@ import static taskbook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 
+import taskbook.commons.core.Messages;
 import taskbook.logic.commands.contacts.ContactDeleteCommand;
 import taskbook.logic.parser.contacts.ContactDeleteCommandParser;
-import taskbook.commons.core.Messages;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
