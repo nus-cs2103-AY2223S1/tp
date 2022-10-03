@@ -85,10 +85,4 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    /**
-     * Gets ID in the list, identified by name.
-     * @param targetName Name used to find the ID.
-     * @return int.
-     */
-    int getID(String targetName);
 }
