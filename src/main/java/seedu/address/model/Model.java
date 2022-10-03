@@ -98,7 +98,7 @@ public interface Model {
     void updateFilteredCustomerList(Predicate<Customer> predicate);
 
     /**
-     * Returns the currently selected customer or null if no customer is currently selected.
+     * Returns ObservableObject containing the currently selected customer or null if no customer is currently selected.
      */
     ObservableObject<Customer> getSelectedCustomer();
 }
