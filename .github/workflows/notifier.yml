@@ -1,0 +1,21 @@
+name: GitHub Notifier
+
+on:
+  workflow_run:
+    workflows: ["PR Updates"]
+    types:
+      - completed
+
+jobs:
+  build:
+    name: Telegram Notify
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify telegram group on pull request changes
+        uses: appleboy/telegram-action@v0.1.1
+        with:
+          to: ${{ secrets.TELEGRAM_TO }} # don't change
+          token: ${{ secrets.TELEGRAM_TOKEN }} # don't change
+          message: |
+            **${{ github.event.pull_request.title }}**
+            @${{ github.actor }} created/updated a pull request.
