@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import seedu.address.model.moduleclass.ModuleClass;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -21,7 +22,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -150,12 +150,22 @@ public class AddCommandTest {
         }
 
         @Override
-        public void enterFocusMode(Tag classToFocus) {
+        public void enterFocusMode(ModuleClass classToFocus) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void exitFocusMode() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isInFocusMode() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ModuleClass getFocusedClass() {
             throw new AssertionError("This method should not be called.");
         }
     }

@@ -4,29 +4,25 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.function.Predicate;
 
-import seedu.address.model.tag.Tag;
+import seedu.address.model.moduleclass.ModuleClass;
 
 /**
- * Tests that a {@code Person} is part of a class
- * TODO: replace tags with class
+ * Tests that a {@code Person} is part of a class.
  */
 public class IsPartOfClassPredicate implements Predicate<Person> {
-    //TODO: replace with class
-    private Tag targetClass;
+    private final ModuleClass targetClass;
 
 
     /**
-     * TODO: replace with class
      * Returns a predicate that checks if a Person object is part of the {@code targetClass}.
      *
      * @param targetClass Class to check against the Person object.
      */
-    public IsPartOfClassPredicate(Tag targetClass) {
+    public IsPartOfClassPredicate(ModuleClass targetClass) {
         requireNonNull(targetClass);
         this.targetClass = targetClass;
     }
 
-    //TODO: replace with class
     /**
      * Tests if a Person object is part of the target class.
      *
@@ -35,7 +31,7 @@ public class IsPartOfClassPredicate implements Predicate<Person> {
      */
     @Override
     public boolean test(Person person) {
-        return person.getTags().stream().anyMatch(tag -> tag.equals(targetClass));
+        return person.getModuleClasses().stream().anyMatch(moduleClass -> moduleClass.equals(targetClass));
     }
 
     @Override

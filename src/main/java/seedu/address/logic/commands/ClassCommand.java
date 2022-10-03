@@ -5,11 +5,10 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.moduleclass.ModuleClass;
 
 /**
  * Enters focus mode for the specified class
- * TODO: replace tag with class
  */
 public class ClassCommand extends Command {
 
@@ -19,14 +18,12 @@ public class ClassCommand extends Command {
             + "Parameters: CLASS_NAME\n"
             + "Example: " + COMMAND_WORD + " CS1101S";
 
-    //TODO: replace with class
-    private final Tag targetClass;
+    private final ModuleClass targetClass;
 
     /**
-     * Creates an ClassCommand that enters focus mode for the specified {@code Tag}.
-     * TODO: replace with class
+     * Creates an ClassCommand that enters focus mode for the specified {@code targetClass}.
      */
-    public ClassCommand(Tag targetClass) {
+    public ClassCommand(ModuleClass targetClass) {
         this.targetClass = targetClass;
     }
 

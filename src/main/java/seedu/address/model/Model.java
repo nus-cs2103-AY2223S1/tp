@@ -5,8 +5,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.moduleclass.ModuleClass;
 import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
 
 /**
  * The API of the Model component.
@@ -86,10 +86,15 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    //TODO: replace with class
     /** Enters focus mode. */
-    void enterFocusMode(Tag classToFocus);
+    void enterFocusMode(ModuleClass classToFocus);
 
     /** Exits focus mode. */
     void exitFocusMode();
+
+    /** Checks if the focus mode is active. */
+    boolean isInFocusMode();
+
+    /** Returns module class currently in focus. */
+    ModuleClass getFocusedClass();
 }
