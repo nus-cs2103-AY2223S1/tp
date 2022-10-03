@@ -17,6 +17,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
+import seedu.address.model.Calorie;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
@@ -120,6 +121,22 @@ public class AddCommandTest {
 
         @Override
         public ReadOnlyAddressBook getAddressBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * @param calorieTarget Sets the user's calorie target
+         */
+        @Override
+        public void setCalorieTarget(Calorie calorieTarget) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * @return Calorie User's calorie target
+         */
+        @Override
+        public Calorie getCalorieTarget() {
             throw new AssertionError("This method should not be called.");
         }
 

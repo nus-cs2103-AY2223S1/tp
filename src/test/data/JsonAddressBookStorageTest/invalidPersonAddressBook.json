@@ -4,5 +4,8 @@
     "phone": "9482424",
     "email": "hans@example.com",
     "address": "4th street"
-  } ]
+  } ],
+  "calorieTarget" : {
+    "value" : "2000"
+  }
 }

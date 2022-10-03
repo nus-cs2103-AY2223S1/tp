@@ -15,6 +15,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private Calorie calorieTarget = new Calorie(); // defaults calorie to 2000 on the first edit to the book
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -22,12 +23,12 @@ public class AddressBook implements ReadOnlyAddressBook {
      *
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
-     */
-    {
+    */ {
         persons = new UniquePersonList();
     }
 
-    public AddressBook() {}
+    public AddressBook() {
+    }
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
@@ -52,7 +53,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-
+        setCalorieTarget(newData.getCalorieTarget());
         setPersons(newData.getPersonList());
     }
 
@@ -93,6 +94,19 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    public void setCalorieTarget(Calorie calorie) {
+        requireNonNull(calorie);
+        this.calorieTarget = calorie;
+    }
+
+    /**
+     * @return Calorie
+     */
+    @Override
+    public Calorie getCalorieTarget() {
+        return this.calorieTarget;
+    }
+
     //// util methods
 
     @Override
@@ -106,11 +120,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+            || (other instanceof AddressBook // instanceof handles nulls
+            && persons.equals(((AddressBook) other).persons)
+            && this.calorieTarget.equals(((AddressBook) other).calorieTarget));
     }
 
     @Override

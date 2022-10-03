@@ -30,7 +30,6 @@ public class ModelManager implements Model {
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
-
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
@@ -85,6 +84,23 @@ public class ModelManager implements Model {
     @Override
     public ReadOnlyAddressBook getAddressBook() {
         return addressBook;
+    }
+
+    /**
+     * @param calorieTarget Sets the user's calorie target
+     */
+    @Override
+    public void setCalorieTarget(Calorie calorieTarget) {
+        requireNonNull(calorieTarget);
+        addressBook.setCalorieTarget(calorieTarget);
+    }
+
+    /**
+     * @return Calorie User's calorie target
+     */
+    @Override
+    public Calorie getCalorieTarget() {
+        return this.addressBook.getCalorieTarget();
     }
 
     @Override
@@ -142,9 +158,10 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+        boolean isEqual = addressBook.equals(other.addressBook)
+            && userPrefs.equals(other.userPrefs)
+            && filteredPersons.equals(other.filteredPersons);
+        return isEqual;
     }
 
 }
