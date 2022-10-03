@@ -5,11 +5,11 @@ on:
     types: [pr-opened]
 
 jobs:
-  notify:
-    name: Telegram notify
+  build:
+    name: Telegram Notify
     runs-on: ubuntu-latest
     steps:
-      - name: Notify telegram groups on pull request changes
+      - name: Notify telegram group on pull request changes
         uses: appleboy/telegram-action@v0.1.1
         with:
           to: ${{ secrets.TELEGRAM_TO }} # don't change

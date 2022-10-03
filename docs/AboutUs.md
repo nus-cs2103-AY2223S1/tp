@@ -32,7 +32,7 @@ GitHub: [@wxy1203](https://github.com/wxy1203)
 <img src="images/brandon.png" width="200px">
 
 GitHub: [@beetee17](https://github.com/beetee17)
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/brandon.md)]
 
 * Role: Team Member
 * Responsibilities: Various
@@ -40,20 +40,20 @@ GitHub: [@beetee17](https://github.com/beetee17)
 ### Zheng Yilin
 
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yilinzyl.png" width="200px">
 
-[[github](http://github.com/yilinzyl)]
-[[portfolio](team/johndoe.md)]
+Github: [@yilinzyl](http://github.com/yilinzyl)
+[[portfolio](team/yilinzyl.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Team Member
+* Responsibilities: Various
 
 ### Amresh
 
 <img src="images/amresh2000.png" width="200px">
 
 Github: [@amresh2000](http://github.com/amresh2000)
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/amresh.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
