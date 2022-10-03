@@ -3,7 +3,19 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+<div align="center">
+
+<h1>rapportbook.io User Guide</h1>
+
+Welcome to the rapportbook.io user guide! (Mockup done in Balsamiq mockups.)
+
+</div>
+
+{:refdef: style="text-align: center;"}
+![Mockup](images/mockup1.png)
+{: refdef}
+
+rapportbook.io is a **desktop app for managing client information for your financial advising needs, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 * Table of Contents
 {:toc}
@@ -13,26 +25,14 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
+  - If you are unable to launch the application because you do not have Java `11` or above installed, install it from [this page.](https://www.oracle.com/java/technologies/downloads/#java11)
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `rapportbook.jar` from [here](https://github.com/AY2223S1-CS2103T-T13-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your copy of rapportbook.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
-
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * **`list`** : Lists all contacts.
-
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
-
-   * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -45,19 +45,16 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add n=NAME`, `NAME` is a parameter which can be used as `add n=Homer`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g `tag create TAG1 [TAG2]` can be used as `tag create potential` or as `tag create potential high-priority`.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n=NAME p=PHONE_NUMBER`, `p=PHONE_NUMBER n=NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g. if you specify `p=12341234 p=56785678`, only `p=56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -73,80 +70,131 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a client: `add`
 
-Adds a person to the address book.
+Adds the information of a client to rapportbook.io.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n=NAME p=PHONE_NUMBER e=EMAIL a=ADDRESS po=POSTAL_CODE dob=DATE_OF_BIRTH [r=REMARKS]​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+<div markdown="span" class="alert alert-primary">:bulb: **Recap:**
+Fields in square brackets `[]` (i.e. `[r=REMARKS]`) is an optional field.
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n=Bob p=95788172 e=bob@gmail.com a=Jurong East Jejantas po=123123 dob=1/1/2000 r=Janitor`
+* `add n=Laufey p=98980184 e=laufey@u.nus.edu a=123,Clementi po=928572 dob=2/10/2001`
 
-### Listing all persons : `list`
+### Deleting of a client: `delete`
 
-Shows a list of all persons in the address book.
-
-Format: `list`
-
-### Editing a person : `edit`
-
-Edits an existing person in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
-
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
-
-Format: `delete INDEX`
+Deletes a client from rapportbook.io.
 
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
+Format: `delete INDEX`
+
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `delete 1`
 
-### Clearing all entries : `clear`
+### Viewing the information of a client : `show`
 
-Clears all entries from the address book.
+Displays a client's information stored in rapportbook.io by index.
 
-Format: `clear`
+Format: `show INDEX​`
+
+Examples:
+* `show 1`
+
+### Editing of client information : `edit`
+
+Edits the information of a client within rapportbook.io.
+
+Format: `edit INDEX [n=NAME] [p=PHONE] [e=EMAIL] [a=ADDRESS] [po=POSTAL_CODE] [dob=DATE_OF_BIRTH] [r=REMARKS]`
+
+* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** (i.e. 1, 2, 3, …​)
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+
+Examples:
+*  `edit 1 n=Laufey p=0162626003 r=Bluebirds in the spring` Edits the first client entry to have the name `Laufey`, have the phone number `0162626003` and have the remarks `Bluebirds in the spring`.
+*  `edit 2 n=Homer e=homer@simp.com a=742 Evergreen Terrace` Edits the second client entry to have the name `Homer`, have the email address `homer@simp.com` and sets the address to `742 Evergreen Terrace`.
+
+### Creating a tag : `tag create`
+
+Creates a tag to categorise client entries. Creation of a tag must happen first before the usage of tags.
+
+Format: `tag create TAG [TAG2] [TAG3] … [TAGN]`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can create multiple tags at once by just separating the different tag names with spaces.
+</div>
+
+Examples:
+* `tag create potential` Creates a tag called `potential`
+* `tag create potential high-priority low-priority` Creates 3 tags called `potential`, `high-priority` and `low-priority`.
+
+### Tagging clients : `tag`
+
+Tags a client entry for categorising purposes. The index of hte contact and the tag name must be specified.
+
+Format: `tag INDEX TAG [TAG2] [TAG3] … [TAGN]`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can assign multiple tags to a client at once by separating the different tag names with spaces after the client index.
+</div>
+
+Example:
+* `tag 5 potential` Assigns the `potential` tag to the client entry at index 5.
+* `tag 5 potential high-prority` Assigns the `potential` and `high-priority` tags to the client entry at index 5.
+
+### Removing tags from clients : `tag remove`
+
+Removes a tag from a client entry if required.
+
+Format: `tag remove INDEX TAG [TAG2] [TAG3] … [TAGN]
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Like assignment of tags, you can also remove multiple tags from a client at once by separating the different tag names with spaces after the client index.
+</div>
+
+Example:
+* `tag remove 5 potential` Removes the `potential` tag from the client entry at index 5.
+* `tag remove 5 potential high-priority` Removes the `potential` and `high-priority` tags from the client entry at index 5.
+
+### Filtering client entries: `find`
+
+Filter clients by their name or the tags assigned to client entries.
+
+Format: `filter [n=NAME] [t=TAG]`
+
+* The search is case-insensitive. e.g `laufey` will match `Laufey`
+* Multiple names or tags can be searched by separating the different names/tags with commas (i.e. `n=homer,laufey` to search for both `homer` and `laufey`)
+* Search results will fulfil **at least one** of the search parameters (e.g. searching `n=homer t=potential` will bring up client entries with names including `homer`, even if they do not have the `potential` tag.)
+
+Examples:
+* `filter n=Laufey` Shows clients with `Laufey` as name.
+* `filter n=Homer,Laufey` Shows all clients with `Homer` **or** `Laufey` as name.
+* `filter t=high-priority` Shows clients with high-priority names.
+* `filter t=high-priority,potential` Shows all clients with `high-priority` tag **or** `potential` tag.
+* `filter n=Homer t=potential` Shows all clients with `Homer` name **or** `potential` tag.
+
+### Clearing filters
+
+Clear filters that are currently in effect.
+
+Format: `filter clear [n=NAME] [t=TAG]`
+
+Example:
+* `filter clear` Clear ALL filters.
+* `filter clear t=potential` Remove the `potential` tag filter.
+* `filter clcear t` Remove all tag filters
+
+### Return home
+
+Resets the view back to the homepage.
+
+Format: `home`
 
 ### Exiting the program : `exit`
 
@@ -156,26 +204,26 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+rapportbook.io data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+rapportbook.io data are saved as a JSON file `[JAR file location]/data/rapportbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, rapportbook.io will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+<!-- ### Archiving data files `[coming in v2.0]`
 
-_Details coming soon ..._
+_Details coming soon ..._ -->
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous rapportbook.io home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -183,10 +231,14 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
+**Show** | `show INDEX`
+**Add** | `add n=NAME p=PHONE_NUMBER e=EMAIL a=ADDRESS po=POSTAL_CODE dob=DATE_OF_BIRTH [r=REMARKS]​`
+**Delete** | `delete INDEX`
+**Edit** | `edit INDEX [n=NAME] [p=PHONE] [e=EMAIL] [a=ADDRESS] [po=POSTAL_CODE] [dob=DATE_OF_BIRTH] [r=REMARKS]`
+**Tag creation** | `tag create TAG [TAG2] [TAG3] … [TAGN]`
+**Tag** | `tag INDEX TAG`
+**Untag** | `tag remove INDEX TAG [TAG2] [TAG3] … [TAGN]`
+**Filter** | `filter [t=TAG] [n=NAME]`<br>`filter clear [t=TAG] [n=NAME]`
+**Home** | `home`
 **Help** | `help`
+**Exit** | `exit`
