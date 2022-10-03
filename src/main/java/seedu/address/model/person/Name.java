@@ -44,6 +44,10 @@ public class Name {
         return fullName;
     }
 
+    public int compareTo(Name other) {
+        return fullName.compareToIgnoreCase(other.fullName);
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

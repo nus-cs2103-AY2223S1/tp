@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
@@ -95,6 +96,38 @@ public class UniquePersonList implements Iterable<Person> {
         }
 
         internalList.setAll(persons);
+    }
+
+    /**
+     * Sorts the list by name, alphabetically.
+     */
+    public void sortByName() {
+        SortedList<Person> sorted = internalList.sorted((curr, next) -> curr.getName().compareTo(next.getName()));
+        internalList.setAll(sorted);
+    }
+
+    /**
+     * Sorts the list by phone number, in increasing order.
+     */
+    public void sortByPhone() {
+        SortedList<Person> sorted = internalList.sorted((curr, next) -> curr.getPhone().compareTo(next.getPhone()));
+        internalList.setAll(sorted);
+    }
+
+    /**
+     * Sorts the list by email, alphabetically.
+     */
+    public void sortByEmail() {
+        SortedList<Person> sorted = internalList.sorted((curr, next) -> curr.getEmail().compareTo(next.getEmail()));
+        internalList.setAll(sorted);
+    }
+
+    /**
+     * Sorts the list by address, alphabetically.
+     */
+    public void sortByAddress() {
+        SortedList<Person> sorted = internalList.sorted((curr, next) -> curr.getAddress().compareTo(next.getAddress()));
+        internalList.setAll(sorted);
     }
 
     /**

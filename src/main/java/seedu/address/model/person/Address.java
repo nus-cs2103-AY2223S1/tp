@@ -42,6 +42,10 @@ public class Address {
         return value;
     }
 
+    public int compareTo(Address other) {
+        return value.compareToIgnoreCase(other.value);
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
