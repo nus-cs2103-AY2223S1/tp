@@ -19,7 +19,7 @@ public class Deadline {
      */
     public static final String VALIDATION_REGEX = "^\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$";
 
-    public LocalDate projectDeadline;
+    private LocalDate projectDeadline;
 
     /**
      * Constructs a project Deadline.

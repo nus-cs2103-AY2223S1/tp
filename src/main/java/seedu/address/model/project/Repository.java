@@ -7,7 +7,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class Repository {
 
-    public String projectRepository;
+    private String projectRepository;
 
     /**
      * Construct's a project Repository.
