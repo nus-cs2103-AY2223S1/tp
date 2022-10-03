@@ -8,10 +8,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.internship.InternshipId;
-
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -19,9 +21,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonId;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
-
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Adds a person to the address book.
@@ -132,7 +131,7 @@ public class AddPersonCommand extends Command {
                 && phone.equals(((AddPersonCommand) other).phone)
                 && email.equals(((AddPersonCommand) other).email)
                 && address.equals(((AddPersonCommand) other).address)
-                && internshipId.equals(((AddPersonCommand) other).internshipId)
+                && internshipId != null && internshipId.equals(((AddPersonCommand) other).internshipId)
                 && tags.equals(((AddPersonCommand) other).tags));
     }
 }

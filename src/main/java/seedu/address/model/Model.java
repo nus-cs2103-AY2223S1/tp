@@ -14,6 +14,13 @@ import seedu.address.model.person.PersonId;
  * The API of the Model component.
  */
 public interface Model {
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Internship> PREDICATE_SHOW_ALL_INTERNSHIPS = unused -> true;
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -52,10 +59,6 @@ public interface Model {
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
 
-
-    /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
-
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
@@ -89,10 +92,6 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-
-    /** {@code Predicate} that always evaluate to true */
-    Predicate<Internship> PREDICATE_SHOW_ALL_INTERNSHIPS = unused -> true;
-
     /**
      * Returns true if an internship with the same identity as {@code internship} exists in the address book.
      */
@@ -113,7 +112,8 @@ public interface Model {
     /**
      * Replaces the given internship {@code target} with {@code editedInternship}.
      * {@code target} must exist in the address book.
-     * The internship identity of {@code editedInternship} must not be the same as another existing internship in the address book.
+     * The internship identity of {@code editedInternship}
+     * must not be the same as another existing internship in the address book.
      */
     void setInternship(Internship target, Internship editedInternship);
 

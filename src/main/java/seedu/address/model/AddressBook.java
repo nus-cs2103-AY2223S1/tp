@@ -99,6 +99,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.contains(person);
     }
 
+    /**
+     * Returns true if an internship with the same identity as {@code internship} exists in the address book.
+     */
     public boolean hasInternship(Internship internship) {
         requireNonNull(internship);
         return internships.contains(internship);

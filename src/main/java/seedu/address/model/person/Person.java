@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.InternshipId;
 import seedu.address.model.tag.Tag;
 
@@ -114,6 +113,7 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getInternshipId() != null
                 && otherPerson.getInternshipId().equals(getInternshipId())
                 && otherPerson.getTags().equals(getTags());
     }

@@ -11,7 +11,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import com.sun.javafx.fxml.ParseTraceElement;
 import seedu.address.logic.commands.AddPersonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.internship.InternshipId;
@@ -45,7 +44,7 @@ public class AddPersonCommandParser implements Parser<AddPersonCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         InternshipId internshipId =
-                ParserUtil.parseInternshipId(argMultimap.getValue(PREFIX_INTERNSHIP_ID).get());
+                ParserUtil.parseInternshipId(argMultimap.getValue(PREFIX_INTERNSHIP_ID).orElse(null));
 
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 

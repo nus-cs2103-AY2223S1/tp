@@ -1,21 +1,33 @@
 package seedu.address.model.internship;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
-
+/**
+ * Represents an Internship's status in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidStatus(String)}
+ */
 public class InternshipStatus {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Status can only be PENDING, REJECTED, ACCEPTED or COMPLETED, and it should not be blank";
 
+    /**
+     * Represents the possible states of an InternshipStatus.
+     */
     public enum State { PENDING, REJECTED, ACCEPTED, COMPLETED }
 
     public final State currentState;
 
+    /**
+     * Constructs a {@code InternshipStatus}.
+     *
+     * @param state A valid state as defined in the {@Code State} enum.
+     */
     public InternshipStatus(State state) {
         this.currentState = state;
     }
 
+    /**
+     * Returns true if the given String can be parsed to a valid state as defined in the {@Code State} enum.
+     */
     public static boolean isValidStatus(String test) {
         switch (test) {
         case "PENDING":

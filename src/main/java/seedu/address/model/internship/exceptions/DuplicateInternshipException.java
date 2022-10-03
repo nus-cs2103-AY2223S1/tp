@@ -1,8 +1,8 @@
 package seedu.address.model.internship.exceptions;
 
 /**
- * Signals that the operation will result in duplicate Internships (Internships are considered duplicates if they have the same
- * identity).
+ * Signals that the operation will result in duplicate Internships
+ * (Internships are considered duplicates if they have the same identity).
  */
 public class DuplicateInternshipException extends RuntimeException {
     public DuplicateInternshipException() {

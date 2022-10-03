@@ -13,10 +13,11 @@ import seedu.address.model.internship.exceptions.InternshipNotFoundException;
 
 /**
  * A list of internships that enforces uniqueness between its elements and does not allow nulls.
- * A internship is considered unique by comparing using {@code Internship#isSameInternship(Internship)}. As such, adding and updating of
- * internships uses Internship#isSameInternship(Internship) for equality so as to ensure that the internship being added or updated is
- * unique in terms of identity in the UniqueInternshipList. However, the removal of a internship uses Internship#equals(Object) so
- * as to ensure that the internship with exactly the same fields will be removed.
+ * An internship is considered unique by comparing using {@code Internship#isSameInternship(Internship)}.
+ * As such, adding and updating of internships uses Internship#isSameInternship(Internship) for equality
+ * to ensure that the internship being added or updated is unique in terms of identity in the UniqueInternshipList.
+ * However, the removal of an internship uses Internship#equals(Object)
+ * to ensure that the internship with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
@@ -36,12 +37,16 @@ public class UniqueInternshipList implements Iterable<Internship> {
         return internalList.stream().anyMatch(toCheck::isSameInternship);
     }
 
+    /**
+     * Returns an Internship with id that matches idToFind.
+     * If none is found, return null.
+     */
     public Internship findById(InternshipId idToFind) {
         return internalList
                 .stream()
                 .filter(i -> i != null && i.getInternshipId().equals(idToFind))
                 .findFirst()
-                .get();
+                .orElse(null);
     }
 
     /**
@@ -59,7 +64,8 @@ public class UniqueInternshipList implements Iterable<Internship> {
     /**
      * Replaces the internship {@code target} in the list with {@code editedInternship}.
      * {@code target} must exist in the list.
-     * The internship identity of {@code editedInternship} must not be the same as another existing internship in the list.
+     * The internship identity of {@code editedInternship}
+     * must not be the same as another existing internship in the list.
      */
     public void setInternship(Internship target, Internship editedInternship) {
         requireAllNonNull(target, editedInternship);

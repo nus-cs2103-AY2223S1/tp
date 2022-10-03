@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-
 import seedu.address.model.internship.CompanyName;
 import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.InternshipId;
@@ -12,8 +11,6 @@ import seedu.address.model.internship.InternshipRole;
 import seedu.address.model.internship.InternshipStatus;
 import seedu.address.model.internship.InterviewDate;
 import seedu.address.model.person.PersonId;
-
-import static seedu.address.model.internship.CompanyName.*;
 
 /**
  * Jackson-friendly version of {@link Internship}.
@@ -80,8 +77,8 @@ class JsonAdaptedInternship {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, CompanyName.class.getSimpleName()));
         }
-        if (!isValidName(companyName)) {
-            throw new IllegalValueException(MESSAGE_CONSTRAINTS);
+        if (!CompanyName.isValidName(companyName)) {
+            throw new IllegalValueException(CompanyName.MESSAGE_CONSTRAINTS);
         }
         final CompanyName modelCompanyName = new CompanyName(companyName);
 

@@ -48,7 +48,9 @@ public class ParserUtil {
      * @throws ParseException if the given {@code personId} is invalid.
      */
     public static PersonId parsePersonId(String personId) throws ParseException {
-        requireNonNull(personId);
+        if (personId == null) {
+            return null;
+        }
         String trimmedPersonId = personId.trim();
         if (!PersonId.isValidId(trimmedPersonId)) {
             throw new ParseException(PersonId.MESSAGE_CONSTRAINTS);
@@ -150,7 +152,9 @@ public class ParserUtil {
      * @throws ParseException if the given {@code internshipId} is invalid.
      */
     public static InternshipId parseInternshipId(String internshipId) throws ParseException {
-        requireNonNull(internshipId);
+        if (internshipId == null) {
+            return null;
+        }
         String trimmedInternshipId = internshipId.trim();
         if (!InternshipId.isValidId(trimmedInternshipId)) {
             throw new ParseException(InternshipId.MESSAGE_CONSTRAINTS);

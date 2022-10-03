@@ -1,12 +1,15 @@
 package seedu.address.model.internship;
 
-import static java.util.Objects.checkFromIndexSize;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Represents an Internship's interview date in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidDatetimeStr(String)} (String)}
+ */
 public class InterviewDate {
     public static final String MESSAGE_CONSTRAINTS =
             "Interview dates must be in the format yyyy-MM-dd HH:mm, and it should not blank";
@@ -17,6 +20,11 @@ public class InterviewDate {
 
     public final LocalDateTime datetime;
 
+    /**
+     * Constructs a {@code InterviewDate}.
+     *
+     * @param datetimeStr A valid String in the format yyyy-MM-dd HH:mm that represents a date and time.
+     */
     public InterviewDate(String datetimeStr) {
         requireNonNull(datetimeStr);
         checkArgument(isValidDatetimeStr(datetimeStr), MESSAGE_CONSTRAINTS);
@@ -26,7 +34,6 @@ public class InterviewDate {
     }
 
     public static boolean isValidDatetimeStr(String test) {
-
         return test.matches(VALIDATION_REGEX);
     }
 

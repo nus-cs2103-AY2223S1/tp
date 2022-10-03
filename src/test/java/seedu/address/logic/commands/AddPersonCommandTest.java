@@ -50,7 +50,8 @@ public class AddPersonCommandTest {
         AddPersonCommand addCommand = new AddPersonCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
-        assertThrows(CommandException.class, AddPersonCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddPersonCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
     }
 
     @Test
@@ -217,6 +218,16 @@ public class AddPersonCommandTest {
         public boolean hasPerson(Person person) {
             requireNonNull(person);
             return this.person.isSamePerson(person);
+        }
+
+        @Override
+        public Internship findInternshipById(InternshipId internshipId) {
+            return null;
+        }
+
+        @Override
+        public int getNextPersonId() {
+            return 0;
         }
     }
 

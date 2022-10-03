@@ -1,5 +1,13 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERNSHIP_ROLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERNSHIP_STATUS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEW_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_ID;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.internship.CompanyName;
@@ -11,16 +19,9 @@ import seedu.address.model.internship.InterviewDate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonId;
 
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
-import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERNSHIP_ROLE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERNSHIP_STATUS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEW_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_ID;
-
+/**
+ * Adds an internship to the address book.
+ */
 public class AddInternshipCommand extends Command {
     public static final String COMMAND_WORD = "addi";
 
@@ -120,7 +121,7 @@ public class AddInternshipCommand extends Command {
                 && companyName.equals(((AddInternshipCommand) other).companyName)
                 && internshipRole.equals(((AddInternshipCommand) other).internshipRole)
                 && internshipStatus.equals(((AddInternshipCommand) other).internshipStatus)
-                && contactPersonId.equals(((AddInternshipCommand) other).contactPersonId)
+                && contactPersonId != null && contactPersonId.equals(((AddInternshipCommand) other).contactPersonId)
                 && interviewDate.equals(((AddInternshipCommand) other).interviewDate));
     }
 }

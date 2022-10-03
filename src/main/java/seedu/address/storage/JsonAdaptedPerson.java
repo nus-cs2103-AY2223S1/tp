@@ -79,7 +79,8 @@ class JsonAdaptedPerson {
      */
     public Person toModelType() throws IllegalValueException {
         if (personId == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, PersonId.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, PersonId.class.getSimpleName()));
         }
         final PersonId modelPersonId = new PersonId(personId);
 

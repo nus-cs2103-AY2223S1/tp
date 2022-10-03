@@ -1,28 +1,44 @@
 package seedu.address.model.internship;
 
-import seedu.address.model.person.PersonId;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents an Internship's unique id in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidId(String)}
+ */
 public class InternshipId {
     public static final String MESSAGE_CONSTRAINTS =
             "Internship Id must be a non-negative number, and it should not be blank";
 
     public final Integer id;
 
+    /**
+     * Constructs a {@code InternshipId}.
+     * Takes a string id and parses it into an Integer.
+     *
+     * @param id A valid id.
+     */
     public InternshipId(String id) {
         requireNonNull(id);
         checkArgument(isValidId(id), MESSAGE_CONSTRAINTS);
         this.id = Integer.parseInt(id);
     }
 
+    /**
+     * Constructs a {@code InternshipId}.
+     *
+     * @param id A valid id.
+     */
     public InternshipId(Integer id) {
         requireNonNull(id);
         checkArgument(isValidId(id), MESSAGE_CONSTRAINTS);
         this.id = id;
     }
 
+    /**
+     * Returns true if the given String can be parsed into an Integer and is non-negative.
+     */
     public static boolean isValidId(String test) {
         try {
             return isValidId(Integer.parseInt(test));

@@ -36,12 +36,16 @@ public class UniquePersonList implements Iterable<Person> {
         return internalList.stream().anyMatch(toCheck::isSamePerson);
     }
 
+    /**
+     * Returns a Person with id that matches idToFind.
+     * If none is found, return null.
+     */
     public Person findById(PersonId idToFind) {
         return internalList
                 .stream()
                 .filter(p -> p != null && p.getPersonId().equals(idToFind))
                 .findFirst()
-                .get();
+                .orElse(null);
     }
 
     /**

@@ -6,6 +6,10 @@ import java.util.Objects;
 
 import seedu.address.model.person.PersonId;
 
+/**
+ * Represents a Internship in the address book.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
 public class Internship {
 
     // Identity fields
@@ -19,7 +23,7 @@ public class Internship {
     private final InterviewDate interviewDate;
 
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null except contact person.
      */
     public Internship(
             InternshipId internshipId,
@@ -61,6 +65,10 @@ public class Internship {
         return interviewDate;
     }
 
+    /**
+     * Returns true if both internships have the same company name and internship role.
+     * This defines a weaker notion of equality between two internships.
+     */
     public boolean isSameInternship(Internship otherInternship) {
         if (otherInternship == this) {
             return true;
@@ -86,6 +94,7 @@ public class Internship {
                 && otherInternship.getCompanyName().equals(getCompanyName())
                 && otherInternship.getInternshipRole().equals(getInternshipRole())
                 && otherInternship.getInternshipStatus().equals(getInternshipStatus())
+                && otherInternship.getContactPersonId() != null
                 && otherInternship.getContactPersonId().equals(getContactPersonId())
                 && otherInternship.getInterviewDate().equals(getInterviewDate());
     }

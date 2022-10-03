@@ -3,6 +3,10 @@ package seedu.address.model.internship;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents an Internship's role in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ */
 public class InternshipRole {
     public static final String MESSAGE_CONSTRAINTS =
             "Roles should only contain alphanumeric characters and spaces, and it should not be blank";
@@ -15,6 +19,11 @@ public class InternshipRole {
 
     public final String roleName;
 
+    /**
+     * Constructs a {@code Role}.
+     *
+     * @param name A valid role name.
+     */
     public InternshipRole(String name) {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
