@@ -19,17 +19,22 @@ import tracko.model.AddressBook;
 import tracko.model.Model;
 import tracko.model.ModelManager;
 import tracko.model.ReadOnlyAddressBook;
+import tracko.model.ReadOnlyTrackO;
 import tracko.model.ReadOnlyUserPrefs;
+import tracko.model.TrackO;
 import tracko.model.UserPrefs;
 import tracko.model.util.SampleDataUtil;
 import tracko.storage.AddressBookStorage;
 import tracko.storage.JsonAddressBookStorage;
+import tracko.storage.JsonTrackOStorage;
 import tracko.storage.JsonUserPrefsStorage;
 import tracko.storage.Storage;
 import tracko.storage.StorageManager;
+import tracko.storage.TrackOStorage;
 import tracko.storage.UserPrefsStorage;
 import tracko.ui.Ui;
 import tracko.ui.UiManager;
+
 
 /**
  * Runs the application.
@@ -57,7 +62,8 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        TrackOStorage trackOStorage = new JsonTrackOStorage(userPrefs.getOrdersFilePath());
+        storage = new StorageManager(addressBookStorage, trackOStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -74,8 +80,10 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+        // To be deleted
         Optional<ReadOnlyAddressBook> addressBookOptional;
         ReadOnlyAddressBook initialData;
+
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
@@ -90,7 +98,24 @@ public class MainApp extends Application {
             initialData = new AddressBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        Optional<ReadOnlyTrackO> trackOOptional;
+        ReadOnlyTrackO trackOData;
+
+        try {
+            trackOOptional = storage.readTrackO();
+            if (!trackOOptional.isPresent()) {
+                logger.info("TrackO data file not found. Will be starting with sample data points");
+            }
+            trackOData = trackOOptional.orElseGet(SampleDataUtil::getSampleTrackO);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty TrackO");
+            trackOData = new TrackO();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting iwth an empty TrackO");
+            trackOData = new TrackO();
+        }
+
+        return new ModelManager(initialData, trackOData, userPrefs);
     }
 
     private void initLogging(Config config) {
