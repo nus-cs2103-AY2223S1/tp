@@ -1,14 +1,14 @@
-package seedu.address.logic.commands;
+package swift.logic.commands;
 
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static swift.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static swift.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
+import swift.model.AddressBook;
+import swift.model.Model;
+import swift.model.ModelManager;
+import swift.model.UserPrefs;
 
 public class ClearCommandTest {
 

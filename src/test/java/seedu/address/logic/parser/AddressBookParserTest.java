@@ -1,11 +1,11 @@
-package seedu.address.logic.parser;
+package swift.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static swift.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static swift.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static swift.testutil.Assert.assertThrows;
+import static swift.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,21 +13,21 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.PersonUtil;
+import swift.logic.commands.AddCommand;
+import swift.logic.commands.ClearCommand;
+import swift.logic.commands.DeleteCommand;
+import swift.logic.commands.EditCommand;
+import swift.logic.commands.EditCommand.EditPersonDescriptor;
+import swift.logic.commands.ExitCommand;
+import swift.logic.commands.FindCommand;
+import swift.logic.commands.HelpCommand;
+import swift.logic.commands.ListCommand;
+import swift.logic.parser.exceptions.ParseException;
+import swift.model.person.NameContainsKeywordsPredicate;
+import swift.model.person.Person;
+import swift.testutil.EditPersonDescriptorBuilder;
+import swift.testutil.PersonBuilder;
+import swift.testutil.PersonUtil;
 
 public class AddressBookParserTest {
 

@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+package swift.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;

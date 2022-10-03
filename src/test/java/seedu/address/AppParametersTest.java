@@ -1,4 +1,4 @@
-package seedu.address;
+package swift;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

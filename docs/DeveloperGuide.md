@@ -146,7 +146,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `swiftbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
