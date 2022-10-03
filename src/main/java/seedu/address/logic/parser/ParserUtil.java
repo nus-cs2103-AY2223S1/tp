@@ -52,14 +52,15 @@ public class ParserUtil {
         String trimmedIndexes = oneBasedIndexes.trim();
         String[] indexes = trimmedIndexes.split(indexSeparator);
 
+        if (indexes.length != parseCount) {
+            throw new ParseException(MESSAGE_UNEXPECTED_INDEX_COUNT);
+        }
+
         List<Index> indexList = new ArrayList<>();
         for (String index : indexes) {
             indexList.add(parseIndex(index));
         }
 
-        if (indexList.size() != parseCount) {
-            throw new ParseException(MESSAGE_UNEXPECTED_INDEX_COUNT);
-        }
         return indexList;
     }
 
