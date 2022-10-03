@@ -8,7 +8,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.tag.TagManager;
+import seedu.address.model.tag.UniqueTagList;
 
 /**
  * Wraps all data at the address-book level
@@ -17,7 +17,7 @@ import seedu.address.model.tag.TagManager;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-    private final TagManager tagManager;
+    private final UniqueTagList tags;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -31,7 +31,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     {
-        tagManager = new TagManager();
+        tags = new UniqueTagList();
     }
 
     public AddressBook() {}
@@ -55,12 +55,20 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the tag list with {@code tags}.
+     * {@code tags} must not contain duplicate tags.
+     */
+    public void setTags(List<Tag> tags) {
+        this.tags.setTags(tags);
+    }
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setTags(newData.getTagList());
     }
 
     //// person-level operations
@@ -109,11 +117,11 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public boolean hasTag(Tag tag) {
         requireNonNull(tag);
-        return tagManager.hasTag(tag);
+        return tags.hasTag(tag);
     }
 
     public void addTag(Tag tag) {
-        tagManager.addTagToList(tag);
+        tags.addTagToList(tag);
     }
 
     //// util methods
@@ -127,6 +135,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Tag> getTagList() {
+        return tags.asUnmodifiableObservableList();
     }
 
     @Override

@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 public class TagCreateCommand extends Command {
 
-    public static final String COMMAND_WORD = "tag create";
+    public static final String COMMAND_WORD = "create";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a tag to the address book. "
             + "Parameters: "
