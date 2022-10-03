@@ -2,7 +2,8 @@ package bookface.testutil;
 
 import java.util.Set;
 
-import bookface.logic.commands.AddUserCommand;
+import bookface.logic.commands.add.AddCommand;
+import bookface.logic.commands.add.AddUserCommand;
 import bookface.logic.commands.EditCommand;
 import bookface.logic.parser.CliSyntax;
 import bookface.model.person.Person;
@@ -17,7 +18,7 @@ public class PersonUtil {
      * Returns an add command string for adding the {@code person}.
      */
     public static String getAddCommand(Person person) {
-        return AddUserCommand.COMMAND_WORD + AddUserCommand.COMMAND_WORD_USER + " " + getPersonDetails(person);
+        return AddCommand.COMMAND_WORD + " " + AddUserCommand.COMMAND_WORD + " " + getPersonDetails(person);
     }
 
     /**
@@ -25,11 +26,11 @@ public class PersonUtil {
      */
     public static String getPersonDetails(Person person) {
         StringBuilder sb = new StringBuilder();
-        sb.append(CliSyntax.PREFIX_NAME + person.getName().fullName + " ");
-        sb.append(CliSyntax.PREFIX_PHONE + person.getPhone().value + " ");
-        sb.append(CliSyntax.PREFIX_EMAIL + person.getEmail().value + " ");
-        person.getTags().stream().forEach(
-            s -> sb.append(CliSyntax.PREFIX_TAG + s.tagName + " ")
+        sb.append(CliSyntax.PREFIX_NAME).append(person.getName().fullName).append(" ");
+        sb.append(CliSyntax.PREFIX_PHONE).append(person.getPhone().value).append(" ");
+        sb.append(CliSyntax.PREFIX_EMAIL).append(person.getEmail().value).append(" ");
+        person.getTags().forEach(
+            s -> sb.append(CliSyntax.PREFIX_TAG).append(s.tagName).append(" ")
         );
         return sb.toString();
     }

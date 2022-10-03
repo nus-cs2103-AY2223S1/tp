@@ -1,4 +1,4 @@
-package bookface.logic.commands;
+package bookface.logic.commands.add;
 
 import static bookface.logic.commands.CommandTestUtil.assertCommandFailure;
 import static bookface.logic.commands.CommandTestUtil.assertCommandSuccess;

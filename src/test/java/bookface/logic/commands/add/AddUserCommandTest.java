@@ -1,4 +1,4 @@
-package bookface.logic.commands;
+package bookface.logic.commands.add;
 
 import static bookface.testutil.Assert.assertThrows;
 import static java.util.Objects.requireNonNull;
@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
+import bookface.logic.commands.CommandResult;
 import org.junit.jupiter.api.Test;
 
 import bookface.commons.core.GuiSettings;
@@ -23,7 +24,7 @@ import bookface.model.person.Person;
 import bookface.testutil.PersonBuilder;
 import javafx.collections.ObservableList;
 
-public class AddCommandTest {
+public class AddUserCommandTest {
 
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
@@ -59,11 +60,11 @@ public class AddCommandTest {
         AddUserCommand addBobCommand = new AddUserCommand(bob);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertEquals(addAliceCommand, addAliceCommand);
 
         // same values -> returns true
         AddUserCommand addAliceCommandCopy = new AddUserCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        assertEquals(addAliceCommand, addAliceCommandCopy);
 
         // different types -> returns false
         assertFalse(addAliceCommand.equals(1));

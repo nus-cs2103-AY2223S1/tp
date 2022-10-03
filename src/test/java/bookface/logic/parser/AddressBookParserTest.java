@@ -10,9 +10,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import bookface.logic.commands.add.AddCommand;
+import bookface.logic.commands.add.AddUserCommand;
 import org.junit.jupiter.api.Test;
 
-import bookface.logic.commands.AddUserCommand;
 import bookface.logic.commands.ClearCommand;
 import bookface.logic.commands.DeleteUserCommand;
 import bookface.logic.commands.EditCommand;
@@ -36,19 +37,19 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Person person = new PersonBuilder().build();
-        AddUserCommand command = (AddUserCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
+        AddCommand command = (AddCommand) parser.parse(PersonUtil.getAddCommand(person));
         assertEquals(new AddUserCommand(person), command);
     }
 
     @Test
     public void parseCommand_clear() throws Exception {
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
+        assertTrue(parser.parse(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
+        assertTrue(parser.parse(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
     }
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteUserCommand command = (DeleteUserCommand) parser.parseCommand(
+        DeleteUserCommand command = (DeleteUserCommand) parser.parse(
                 DeleteUserCommand.COMMAND_WORD + DeleteUserCommand.COMMAND_WORD_USER + " "
                         + TypicalIndexes.INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new DeleteUserCommand(TypicalIndexes.INDEX_FIRST_PERSON), command);
@@ -58,7 +59,7 @@ public class AddressBookParserTest {
     public void parseCommand_edit() throws Exception {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
+        EditCommand command = (EditCommand) parser.parse(EditCommand.COMMAND_WORD + " "
                 + TypicalIndexes.INDEX_FIRST_PERSON.getOneBased() + " "
                 + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(TypicalIndexes.INDEX_FIRST_PERSON, descriptor), command);
@@ -66,40 +67,40 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_exit() throws Exception {
-        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
-        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
+        assertTrue(parser.parse(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
+        assertTrue(parser.parse(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
     }
 
     @Test
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        FindCommand command = (FindCommand) parser.parse(
+                FindCommand.COMMAND_WORD + " " + String.join(" ", keywords));
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
     public void parseCommand_help() throws Exception {
-        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
-        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
+        assertTrue(parser.parse(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
+        assertTrue(parser.parse(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
     }
 
     @Test
     public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListUsersCommand.COMMAND_WORD
+        assertTrue(parser.parse(ListUsersCommand.COMMAND_WORD
                 + ListUsersCommand.COMMAND_WORD_USER) instanceof ListUsersCommand);
-        assertTrue(parser.parseCommand(ListUsersCommand.COMMAND_WORD
+        assertTrue(parser.parse(ListUsersCommand.COMMAND_WORD
                 + ListUsersCommand.COMMAND_WORD_USER + " 3") instanceof ListUsersCommand);
     }
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand(""));
+            -> parser.parse(""));
     }
 
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parse("unknownCommand"));
     }
 }
