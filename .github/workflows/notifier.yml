@@ -3,13 +3,15 @@ name: GitHub Notifier
 on:
   workflow_run:
     workflows: ["PR Updates"]
+    types:
+      - completed
 
 jobs:
   build:
-    name: Build
+    name: Telegram Notify
     runs-on: ubuntu-latest
     steps:
-      - name: Notify telegram groups on pull request changes
+      - name: Notify telegram group on pull request changes
         uses: appleboy/telegram-action@v0.1.1
         with:
           to: ${{ secrets.TELEGRAM_TO }} # don't change
