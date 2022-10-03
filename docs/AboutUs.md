@@ -29,10 +29,10 @@ GitHub: [@wxy1203](https://github.com/wxy1203)
 
 ### Brandon Thio
 
-<img src="images/brandon.png" width="200px">
+<img src="images/beetee17.png" width="200px">
 
 GitHub: [@beetee17](https://github.com/beetee17)
-[[portfolio](team/brandon.md)]
+[[portfolio](team/beetee17.md)]
 
 * Role: Team Member
 * Responsibilities: Various
