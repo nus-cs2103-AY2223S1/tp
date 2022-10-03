@@ -18,6 +18,7 @@ import seedu.address.model.customer.UniqueCustomerList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniqueCustomerList customers;
+    private final UniqueCommissionList commissions;
 
 
     /*
@@ -29,6 +30,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         customers = new UniqueCustomerList();
+        commissions = new UniqueCommissionList();
     }
 
     public AddressBook() {
@@ -52,6 +54,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.customers.setCustomers(customers);
     }
 
+    public void setCommissions(List<Commission> commissions) {
+        this.commissions.setCommissions(commissions);
+    }
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
@@ -59,6 +64,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setCustomers(newData.getCustomerList());
+        setCommissions(newData.getCommissionList());
     }
 
     //// customer-level operations
@@ -77,6 +83,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addCustomer(Customer p) {
         customers.add(p);
+        // Assumption: addCommission is NOT CALLED before adding the customer to the list
+        // Otherwise, there will be duplicates in commissions
+        p.getCommissions().forEach(commissions::add);
     }
 
     /**
@@ -87,7 +96,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setCustomer(Customer target, Customer editedCustomer) {
         requireNonNull(editedCustomer);
-
+        // Assumption: edits to commissions should already call the commission-level operations.
+        // Otherwise, combined commission list will not be updated correctly.
         customers.setCustomer(target, editedCustomer);
     }
 
@@ -96,6 +106,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code key} must exist in the address book.
      */
     public void removeCustomer(Customer key) {
+        key.getCommissions().forEach(commissions::remove);
         customers.remove(key);
     }
 
@@ -117,6 +128,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void addCommission(Customer customer, Commission commission) {
         requireAllNonNull(customer, commission);
         getUniqueCommissionList(customer).add(commission);
+        commissions.add(commission);
     }
 
     /**
@@ -126,9 +138,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      * customer's commission list.
      */
     public void setCommission(Customer customer, Commission target, Commission editedCommission) {
-        requireNonNull(editedCommission);
-
+        requireAllNonNull(customer, editedCommission);
         getUniqueCommissionList(customer).setCommission(target, editedCommission);
+        commissions.setCommission(target, editedCommission);
     }
 
     /**
@@ -136,7 +148,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code key} must exist in the customer's commission list.
      */
     public void removeCommission(Customer customer, Commission key) {
+        requireAllNonNull(customer, key);
         getUniqueCommissionList(customer).remove(key);
+        commissions.remove(key);
     }
 
     //// util methods
@@ -150,6 +164,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Customer> getCustomerList() {
         return customers.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Commission> getCommissionList() {
+        return commissions.asUnmodifiableObservableList();
     }
 
     public UniqueCommissionList getUniqueCommissionList(Customer customer) {
