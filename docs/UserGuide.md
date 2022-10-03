@@ -20,7 +20,7 @@ interactions recorded faster and simpler than traditional GUI applications.
   * [Listing all companies: `list`](#listing-all-companies--list)
   * [Locating companies by name: `find`](#locating-companies-by-name-find)
   * [Viewing help: `help`](#viewing-help--help)
-  * [Getting the User Guide: `user guide`](#getting-the-user-guide-user-guide)
+  * [Getting the User Guide: `user_guide`](#getting-the-user-guide-user-guide)
   * [Sorting the address book: `sort`](#sorting-the-address-book-sort)
   * [Creating a transaction: `transaction`](#creating-a-transaction-transaction)
   * [Saving the data](#saving-the-data)
@@ -177,11 +177,11 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * Companies matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Cold Storage` will return `Urban Storage`, `Cold Drink Store`
 
-### Getting the User Guide: `user guide`
+### Getting the User Guide: `user_guide`
 
 Returns the url to our user guide.
 
-Format: `user guide`
+Format: `user_guide`
 
 * Displays a pop-up that contains the link to our user guide.
 
@@ -259,5 +259,5 @@ _Details coming soon ..._
 | **Help**        | `help` or `help [COMMAND]` <br> e.g.,`help` or `help add` or `help sort`                                                                                                                                                                                                   |
 | **Sort**        | Coming Soon                                                                                                                                                                                                                                                                |
 | **Transaction** | `transaction coy/COMPANY_NAME g/GOODS q/QUANTITY pr/PRICE d/BUY` <br/> e.g `transaction coy/McDonalds g/apples q/100 pr/1.5 d/buy` <br/> `transaction coy/COMPANY_NAME g/GOODS q/QUANTITY pr/PRICE d/SELL` <br/> e.g. `transaction coy/KFC g/Chickens q/50 pr/2.55 d/SELL` |
-| **UserGuide**   | `user guide`                                                                                                                                                                                                                                                               |
+| **User Guide**  | `user_guide`                                                                                                                                                                                                                                                               |
 
