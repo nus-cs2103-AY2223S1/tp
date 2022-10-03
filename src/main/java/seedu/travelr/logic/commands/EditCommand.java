@@ -27,14 +27,14 @@ import seedu.travelr.model.trip.Phone;
 import seedu.travelr.model.trip.Trip;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of a Trip in Travelr.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the Trip identified "
+            + "by the index number used in the displayed trip list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
@@ -54,8 +54,8 @@ public class EditCommand extends Command {
     private final EditTripDescriptor editTripDescriptor;
 
     /**
-     * @param index              of the person in the filtered person list to edit
-     * @param editTripDescriptor details to edit the person with
+     * @param index              of the person in the filtered trip list to edit
+     * @param editTripDescriptor details to edit the trip with
      */
     public EditCommand(Index index, EditTripDescriptor editTripDescriptor) {
         requireNonNull(index);
@@ -87,8 +87,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Trip} with the details of {@code tripToEdit}
+     * edited with {@code editTripDescriptor}.
      */
     private static Trip createEditedTrip(Trip tripToEdit, EditTripDescriptor editTripDescriptor) {
         assert tripToEdit != null;

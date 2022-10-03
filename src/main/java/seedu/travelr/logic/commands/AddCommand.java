@@ -12,13 +12,13 @@ import seedu.travelr.model.Model;
 import seedu.travelr.model.trip.Trip;
 
 /**
- * Adds a person to the address book.
+ * Adds a Trip to Travelr.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a trip to Travelr. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -34,12 +34,12 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New trip added: %1$s";
-    public static final String MESSAGE_DUPLICATE_TRIP = "This trip already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_TRIP = "This trip already exists in Travelr";
 
     private final Trip toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Trip}
      */
     public AddCommand(Trip trip) {
         requireNonNull(trip);
