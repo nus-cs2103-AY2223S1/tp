@@ -30,7 +30,7 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, TrackO trackO, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyTrackO trackO, ReadOnlyUserPrefs userPrefs) {
         // After iteration, remove addressbook-related data/fields
         requireAllNonNull(addressBook, trackO, userPrefs);
 
