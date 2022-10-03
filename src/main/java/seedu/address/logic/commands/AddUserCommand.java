@@ -16,9 +16,9 @@ import seedu.address.model.person.Person;
  */
 public class AddUserCommand extends Command {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "adduser";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a user to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -33,15 +33,15 @@ public class AddUserCommand extends Command {
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New user added: %1$s";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This user already exists in the address book";
 
     private final Person toAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public AddCommand(Person person) {
+    public AddUserCommand(Person person) {
         requireNonNull(person);
         toAdd = person;
     }
@@ -61,7 +61,7 @@ public class AddUserCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
+                || (other instanceof AddUserCommand // instanceof handles nulls
+                && toAdd.equals(((AddUserCommand) other).toAdd));
     }
 }
