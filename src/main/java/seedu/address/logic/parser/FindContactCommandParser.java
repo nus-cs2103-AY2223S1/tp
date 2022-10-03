@@ -14,8 +14,8 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 public class FindContactCommandParser implements Parser<FindContactCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the FindCommand
-     * and returns a FindCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the FindContactCommand
+     * and returns a FindContactCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindContactCommand parse(String args) throws ParseException {
