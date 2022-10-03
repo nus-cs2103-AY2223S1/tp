@@ -26,7 +26,7 @@ public class MoneyTest {
         // invalid phone numbers
         assertFalse(Money.isValidMoney("")); // empty string
         assertFalse(Money.isValidMoney(" ")); // spaces only
-        assertFalse(Money.isValidMoney("-")); // negative sign only
+        assertFalse(Money.isValidMoney("-1.23")); // with negative sign in front
         assertFalse(Money.isValidMoney("0.")); // no numbers after decimal point
         assertFalse(Money.isValidMoney("0.12345")); // more than 2 numbers after decimal point
         assertFalse(Money.isValidMoney("phone")); // non-numeric
@@ -37,7 +37,6 @@ public class MoneyTest {
         assertTrue(Money.isValidMoney("911")); // no decimal point
         assertTrue(Money.isValidMoney("0.1")); // 1 number after decimal point
         assertTrue(Money.isValidMoney("0.12")); // 2 numbers after decimal point
-        assertTrue(Money.isValidMoney("-1.23")); // with negative sign
         assertTrue(Money.isValidMoney("124293842033123")); // long numbers
     }
 }

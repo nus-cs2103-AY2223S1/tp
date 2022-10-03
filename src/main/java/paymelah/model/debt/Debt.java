@@ -35,7 +35,7 @@ public class Debt {
     /**
      * Returns true only if both debts have the same data fields.
      *
-     * @param other The other {@link Debt} object to check.
+     * @param other The other {@code Debt} object to check.
      * @return true only if both debts have the same data fields.
      */
     @Override

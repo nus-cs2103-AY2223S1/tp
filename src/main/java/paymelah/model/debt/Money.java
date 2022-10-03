@@ -11,7 +11,7 @@ public class Money {
     public static final String MESSAGE_CONSTRAINTS =
             "Money amounts should only contain numbers to represent the amount in dollars";
 
-    public static final String VALIDATION_REGEX = "(-|)\\d{1,}(.\\d{1,2}|)";
+    public static final String VALIDATION_REGEX = "\\d{1,}(.\\d{1,2}|)";
     public final Float value;
 
     /**
