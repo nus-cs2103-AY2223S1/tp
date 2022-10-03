@@ -395,28 +395,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. GuestList shows an exit message
 3. GuestList exits the program
 
-**Use case: Get the check-in/out date of a guest**
-
-**MSS**
-1. User search for guest
-2. User request for check-in/out date of the guest
-3. The system show the check-in/out date
-
-**Extensions**
-* 1a. Cannot find the guest.
-  Use case ends.
-  
-**Use case: Edit the email address of guest**
-
-**MSS**
-1. User search for guest
-2. User request for changing the email address
-3. Save the changed address
-
-**Extensions**
-* 1a. Cannot find the guest.
-  Use case ends.
-
     Use case ends.
 
 
@@ -439,7 +417,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X, MacOS
+* **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Number of guests**: Refers to the total number of people staying in the hotel room
 * **Guest**: Refers to the person who booked the hotel room.
 
