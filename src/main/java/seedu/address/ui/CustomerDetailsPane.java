@@ -64,6 +64,7 @@ public class CustomerDetailsPane extends UiPart<Region> {
             phone.setText(customer.getPhone().value);
             address.setText(customer.getAddress().map(address -> address.value).orElse(""));
             email.setText(customer.getEmail().value);
+            tags.getChildren().clear();
             customer.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
