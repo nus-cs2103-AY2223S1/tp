@@ -1,16 +1,20 @@
-package bookface.logic.parser;
+package bookface.logic.parser.add;
 
 import static bookface.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static bookface.logic.parser.CliSyntax.PREFIX_NAME;
 import static bookface.logic.parser.CliSyntax.PREFIX_PHONE;
 import static bookface.logic.parser.CliSyntax.PREFIX_TAG;
-import static bookface.logic.parser.CliSyntax.PREFIX_USER;
 
 import java.util.Set;
 import java.util.stream.Stream;
 
 import bookface.commons.core.Messages;
-import bookface.logic.commands.AddUserCommand;
+import bookface.logic.commands.add.AddUserCommand;
+import bookface.logic.parser.ArgumentMultimap;
+import bookface.logic.parser.ArgumentTokenizer;
+import bookface.logic.parser.ArgumentsParsable;
+import bookface.logic.parser.ParserUtil;
+import bookface.logic.parser.Prefix;
 import bookface.logic.parser.exceptions.ParseException;
 import bookface.model.person.Email;
 import bookface.model.person.Name;
@@ -19,30 +23,17 @@ import bookface.model.person.Phone;
 import bookface.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates the relevant new AddCommand object for the relevant entity to be added
  */
-public class AddCommandParser implements Parser<AddUserCommand> {
+public class AddUserArgumentsParser implements ArgumentsParsable<AddUserCommand> {
 
-    /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
-     */
-    public AddUserCommand parse(String args) throws ParseException {
-
-        String trimmedString = args.trim();
-        String[] stringArray = trimmedString.split("\\s+");
-        String keyWord = stringArray[0];
-
-        if (stringArray.length < 2) {
-            throw new ParseException(
-                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddUserCommand.MESSAGE_USAGE));
-        }
-
+    @Override
+    public AddUserCommand parse(String arguments) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_USER, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_USER, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL)
+        //todo might be better to rewrite these checks using Optional.isPresent and Optional.orElseThrow
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                     AddUserCommand.MESSAGE_USAGE));
@@ -54,12 +45,7 @@ public class AddCommandParser implements Parser<AddUserCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Person person = new Person(name, phone, email, tagList);
-
-        if (keyWord.equals("user")) {
-            return new AddUserCommand(person);
-        }
-        throw new ParseException(
-                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddUserCommand.MESSAGE_USAGE));
+        return new AddUserCommand(person);
     }
 
     /**
@@ -69,5 +55,4 @@ public class AddCommandParser implements Parser<AddUserCommand> {
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
-
 }

@@ -4,7 +4,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import bookface.commons.core.Messages;
-import bookface.logic.commands.AddUserCommand;
 import bookface.logic.commands.ClearCommand;
 import bookface.logic.commands.Command;
 import bookface.logic.commands.DeleteUserCommand;
@@ -13,12 +12,14 @@ import bookface.logic.commands.ExitCommand;
 import bookface.logic.commands.FindCommand;
 import bookface.logic.commands.HelpCommand;
 import bookface.logic.commands.ListUsersCommand;
+import bookface.logic.commands.add.AddCommand;
+import bookface.logic.parser.add.AddCommandParser;
 import bookface.logic.parser.exceptions.ParseException;
 
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class AddressBookParser implements CommandParsable<Command> {
 
     /**
      * Used for initial separation of command word and args.
@@ -32,7 +33,8 @@ public class AddressBookParser {
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
      */
-    public Command parseCommand(String userInput) throws ParseException {
+    @Override
+    public Command parse(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
@@ -42,7 +44,7 @@ public class AddressBookParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-        case AddUserCommand.COMMAND_WORD:
+        case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:

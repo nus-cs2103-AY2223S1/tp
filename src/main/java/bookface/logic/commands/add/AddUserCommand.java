@@ -1,4 +1,4 @@
-package bookface.logic.commands;
+package bookface.logic.commands.add;
 
 import static bookface.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static bookface.logic.parser.CliSyntax.PREFIX_NAME;
@@ -6,6 +6,7 @@ import static bookface.logic.parser.CliSyntax.PREFIX_PHONE;
 import static bookface.logic.parser.CliSyntax.PREFIX_TAG;
 import static java.util.Objects.requireNonNull;
 
+import bookface.logic.commands.CommandResult;
 import bookface.logic.commands.exceptions.CommandException;
 import bookface.model.Model;
 import bookface.model.person.Person;
@@ -13,22 +14,20 @@ import bookface.model.person.Person;
 /**
  * Adds a user to the user list.
  */
-public class AddUserCommand extends Command {
+public class AddUserCommand extends AddCommand {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "user";
 
-    public static final String COMMAND_WORD_USER = " user";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + COMMAND_WORD_USER
+    public static final String MESSAGE_USAGE = AddCommand.COMMAND_WORD
+            + " " + COMMAND_WORD
             + ": Adds a user to the user list. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD
-            + COMMAND_WORD_USER
-            + " "
+            + "Example: " + AddCommand.COMMAND_WORD
+            + " " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
