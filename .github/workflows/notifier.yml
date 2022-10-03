@@ -1,12 +1,12 @@
 name: GitHub Notifier
 
 on:
-  workflow_run:
-    workflows: ["PR Updates"]
+  repository_dispatch:
+    types: [pr-opened]
 
 jobs:
-  build:
-    name: Build
+  notify:
+    name: Telegram notify
     runs-on: ubuntu-latest
     steps:
       - name: Notify telegram groups on pull request changes
@@ -14,6 +14,7 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_TO }} # don't change
           token: ${{ secrets.TELEGRAM_TOKEN }} # don't change
+          ref: ${{ github.event.client_payload.ref }}
           message: |
-            **${{ github.event.pull_request.title }}**
-            @${{ github.actor }} created/updated a pull request.
+            **${{ github.event.client_payload.title }}**
+            @${{ github.event.client_payload.creator }} opened a pull request.
