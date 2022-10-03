@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Eugene Tan's Project Portfolio Page
+title: Bryan Lim Jing Xiang's Project Portfolio Page
 ---
 
 ### Project: AddressBook Level 3

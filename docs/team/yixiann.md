@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Eugene Tan's Project Portfolio Page
+title: Tan Yi Xian's Project Portfolio Page
 ---
 
 ### Project: AddressBook Level 3

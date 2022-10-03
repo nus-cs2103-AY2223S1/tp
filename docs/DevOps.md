@@ -3,36 +3,34 @@ layout: page
 title: DevOps guide
 ---
 
-* Table of Contents
-{:toc}
+- Table of Contents
+  {:toc}
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Build automation
 
 This project uses Gradle for **build automation and dependency management**. **You are recommended to read [this Gradle Tutorial from the se-edu/guides](https://se-education.org/guides/tutorials/gradle.html)**.
 
-
 Given below are how to use Gradle for some important project tasks.
 
-
-* **`clean`**: Deletes the files created during the previous build tasks (e.g. files in the `build` folder).<br>
+- **`clean`**: Deletes the files created during the previous build tasks (e.g. files in the `build` folder).<br>
   e.g. `./gradlew clean`
 
-* **`shadowJar`**: Uses the ShadowJar plugin to creat a fat JAR file in the `build/lib` folder, *if the current file is outdated*.<br>
+- **`shadowJar`**: Uses the ShadowJar plugin to creat a fat JAR file in the `build/lib` folder, _if the current file is outdated_.<br>
   e.g. `./gradlew shadowJar`.
 
-* **`run`**: Builds and runs the application.<br>
+- **`run`**: Builds and runs the application.<br>
   **`runShadow`**: Builds the application as a fat JAR, and then runs it.
 
-* **`checkstyleMain`**: Runs the code style check for the main code base.<br>
+- **`checkstyleMain`**: Runs the code style check for the main code base.<br>
   **`checkstyleTest`**: Runs the code style check for the test code base.
 
-* **`test`**: Runs all tests.<
-  * `./gradlew test` — Runs all tests
-  * `./gradlew clean test` — Cleans the project and runs tests
+- **`test`**: Runs all tests.<
+  - `./gradlew test` — Runs all tests
+  - `./gradlew clean test` — Cleans the project and runs tests
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Continuous integration (CI)
 
@@ -59,16 +57,17 @@ Any warnings or errors will be printed out to the console.
 
 **If adding new checks:**
 
-* Checks are implemented as executable `check-*` scripts within the `.github` directory. The `run-checks.sh` script will automatically pick up and run files named as such. That is, you can add more such files if you need and the CI will do the rest.
+- Checks are implemented as executable `check-*` scripts within the `.github` directory. The `run-checks.sh` script will automatically pick up and run files named as such. That is, you can add more such files if you need and the CI will do the rest.
 
-* Check scripts should print out errors in the format `SEVERITY:FILENAME:LINE: MESSAGE`
-  * SEVERITY is either ERROR or WARN.
-  * FILENAME is the path to the file relative to the current directory.
-  * LINE is the line of the file where the error occurred and MESSAGE is the message explaining the error.
+- Check scripts should print out errors in the format `SEVERITY:FILENAME:LINE: MESSAGE`
 
-* Check scripts must exit with a non-zero exit code if any errors occur.
+  - SEVERITY is either ERROR or WARN.
+  - FILENAME is the path to the file relative to the current directory.
+  - LINE is the line of the file where the error occurred and MESSAGE is the message explaining the error.
 
---------------------------------------------------------------------------------------------------------------------
+- Check scripts must exit with a non-zero exit code if any errors occur.
+
+---
 
 ## Making a release
 

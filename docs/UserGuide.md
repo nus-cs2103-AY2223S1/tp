@@ -2,6 +2,7 @@
 layout: page
 title: User Guide
 ---
+
 # FoodRem User Guide
 
 ## About
@@ -16,10 +17,10 @@ commands, you can have complete control of your perishable goods.
 
 1. Add, update and delete inventory items
 2. Search and sort food items by:
-    - Name
-    - Quantity
-    - Bought date
-    - Expiry date
+   - Name
+   - Quantity
+   - Bought date
+   - Expiry date
 3. Tag items to group them into categories
 
 ## Purpose, Scope and Audience
@@ -44,7 +45,7 @@ Something goes here...
 
    4.1 [Items](#item)
 
-   &emsp; 4.1.1 [Create a new item](#itemNew)
+   &emsp; 4.1.1 [Create a new item](#item-new)
 
    &emsp; 4.1.2 [Increase the quantity of an item](#itemDec)
 
@@ -52,7 +53,7 @@ Something goes here...
 
    &emsp; 4.1.4 [Update an item](#itemSet)
 
-   &emsp; 4.1.4 [Delete an item](#itemDelete)
+   &emsp; 4.1.4 [Delete an item](#item-delete)
 
    4.2 [Tags](#tag)
 
@@ -81,6 +82,7 @@ Something goes here...
    4.6 [Help](#help)
 
    4.7 [Exit the programme](#exit)
+
 5. [Command Summary](#command-summary)
 6. [Troubleshooting](#troubleshooting)
 7. [FAQ](#faq)
@@ -100,9 +102,167 @@ Something goes here...
 
 ### Item
 
-### Tag
+#### Item New
+
+Command: `item new ITEM_NAME`
+
+> Description: Creates a new item with the provided item_name.
+
+---
+
+Example:
+
+Input
+
+```
+item new potato
+```
+
+Output
+
+```
+Item  “potato” successfully created
+```
+
+#### Item Delete
+
+Command: `[item] delete ITEM_INDEX`
+
+> Description: Deletes a specified item. Returns a warning if the item does not exist.
+
+---
+
+Example:
+
+Input
+
+```
+delete 1
+```
+
+Output
+
+```
+(Item exists): Item “potato” successfully deleted!
+(Item does not exist): No item to be found at index 1. Use “list items” or “find NAME” to find the index of the item to be deleted.
+```
+
+#### Item Update
+
+Command: `item set ITEM_NAME [ARGS]`
+
+> Description: Updates properties of an item.
+
+---
+
+Example:
+
+Input
+
+```
+item set ARGS
+```
+
+Output
+
+```
+Item successfully updated
+```
 
 ## Commands
+
+### Tags
+
+#### Tag Create
+
+Command: `tag create TAG_NAME`
+
+> Description: Creates a tag with the provided tag_name.
+
+---
+
+Example:
+
+Input
+
+```
+tag create vegetables
+```
+
+Output:
+
+```
+Tag “vegetables” successfully created
+```
+
+#### Tag Rename
+
+Command: `tag rename TAG_NAME n/NEW_NAME`
+
+> Description: Renames a tag with the provided tag_name and new_name.
+
+---
+
+Example:
+
+Input
+
+```
+tag rename Food n/Foodie
+```
+
+Output:
+
+```
+(Tag new name): tag “Food” successfully renamed into "Foodie"
+(Tag no change): tag “Food” is already named "Food"
+(Tag had no name): tag “Food” will be named as "Food" as no new name was provided.
+```
+
+#### Tag Delete
+
+Command: `tag delete TAG_NAME`
+
+> Description: Deletes a specified tag. Returns a warning if the tag does not exist.
+
+---
+
+Example:
+
+Input
+
+```
+tag delete vegetables
+```
+
+Output:
+
+```
+(Tag exists): Tag “vegetables” successfully deleted!
+(Tag does not exist): Tag “vegetables” does not exist. Use “list tags” to view the list of existing tags.
+```
+
+#### Tag Item
+
+Command: `tag item ITEM_INDEX TAG_NAME`
+
+> Description: Associates an item with a specified tag. Returns a warning if the tag or item does not exist.
+
+Example:
+
+Input
+
+```
+tag item 1 vegetables
+```
+
+Output:
+
+```
+(Tag, Item exists): “bok choy” successfully tagged as “vegetables”!
+(Tag does not exist): Tag “vegetables” does not exist. Use “list tags” to view the list of existing tags.
+(Item does not exist): Item index 1 does not exist. Use “list items” to view the list of existing items, or “find” to use the index to tag items.
+```
 
 #### List items
 
@@ -113,6 +273,7 @@ Command: `list`
 ---
 
 Example:
+
 Input
 
 ```
@@ -131,7 +292,7 @@ Chicken wings
 Details about chicken wings
 ```
 
-####  List tags
+#### List tags
 
 Command: `list tags`
 
@@ -140,6 +301,7 @@ Command: `list tags`
 ---
 
 Example:
+
 Input
 
 ```
@@ -167,6 +329,7 @@ Command: `find NAME`
 ---
 
 Example:
+
 Input
 
 ```
@@ -181,6 +344,74 @@ Green apple
 Rose apple
 ```
 
+#### Help
+
+Command: `help`
+
+> Description: Displays a list of commands that can be used.
+
+---
+
+Example:
+
+Input
+
+```
+help
+```
+
+Output:
+
+```
+list:
+    Lists all the items/tags that the user has created.
+
+    Usage:
+        List items:  "list items"
+        List tags:   "list tags"
+
+item:
+    Create / Delete / Increment quantity / Decrement quantity /
+    Set quantity / Set expiry date / Set bought date, of an item.
+
+    Flags:
+        Name:        n/
+        Quantity:    qty/
+        Expiry Date: exp/
+        Bought Date: bgt/
+
+    Usage:
+        Create:      "item new n/Potatoes"
+        Delete:      "item del 1"
+        Increment:   "item inc 1 10"
+        Decrement:   "item dec 1 10"
+        Set:         "item set 1 n/Potatoes qty/10"
+
+find:
+    Find an inventory item based on the given keywords.
+
+    Usage:
+        Find:        "find potato carrots"
+
+tag:
+    Create / Rename / Set item tied to / Delete, a tag.
+
+    Flags:
+        Name:        n/
+
+    Usage:
+        Create:      "tag create food"
+        Rename:      "tag rename food n/foodie"
+        Set item:    "tag 1 2 7 71 food"
+        Delete:      "tag delete food"
+
+bye:
+    Exits Foodrem program.
+
+    Usage:
+        Exit:       "bye"
+```
+
 #### Bye
 
 Command: `bye`
@@ -190,6 +421,7 @@ Command: `bye`
 ---
 
 Example:
+
 Input
 
 ```
