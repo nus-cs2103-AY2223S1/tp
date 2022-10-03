@@ -132,7 +132,6 @@ The `Model` component,
 
 </div>
 
-
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
@@ -238,7 +237,6 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -265,11 +263,10 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**:  
+**Value proposition**:
 1. track their debtors
 1. view total money owed from all debtors
 1. manage contacts faster than a typical mouse/GUI driven app
-
 
 ### User stories
 
@@ -290,16 +287,58 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `PayMeLah` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: Add a person**
+
+**MSS**
+
+1.  User requests to add a person
+1.  PayMeLah adds the person
+
+    Use case ends.
+
+**Extensions:**
+
+* 1a. The given input is invalid.
+
+    * 1a1. PayMeLah shows an error message.
+
+      Use case ends.  
+
+**Use case: Add a debt**
+
+**MSS**
+
+1.  User requests to list persons
+1.  PayMeLah shows a list of persons
+1.  User requests to add a debt to a specific person in the list
+1.  PayMeLah adds the debt to the person
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given input is invalid.
+
+    * 1a1. PayMeLah shows an error message.
+
+      Use case ends.
+
+* 3a. The given input is invalid.
+
+    * 3a1. PayMeLah shows an error message.
+
+      Use case resumes at step 2.
 
 **Use case: Delete a person**
 
 **MSS**
 
 1.  User requests to list persons
-1.  AddressBook shows a list of persons
+1.  PayMeLah shows a list of persons
 1.  User requests to delete a specific person in the list
-1.  AddressBook deletes the person
+1.  PayMeLah deletes the person
 
     Use case ends.
 
@@ -311,16 +350,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. PayMeLah shows an error message.
 
       Use case resumes at step 2.
 
+
+**Use case: Delete debt**
+
+**MSS**
+
+1.  User requests to list debtors
+1.  PayMeLah shows a list of debtors
+1.  User requests to delete the debts of a specific debtor in the list
+1.  PayMeLah deletes the debts of that person
+1.  PayMeLah displays that the person’s debts are deleted
+
+**Extensions**
+
+* 3a. The given index is invalid.
+
+    * 3a1. PayMeLah shows an error message
+
+      Use case resumes at step 3.
+      
 **Use case: List persons with debts**
 
 **MSS**
 
 1.  User requests to list persons with debts
-1.  AddressBook shows the list of persons
+1.  PayMeLah shows the list of persons
 
     Use case ends.
 
@@ -361,6 +419,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. PayMeLah shows an error message.
 
       Use case ends.
+
+**Use case: Get debt overview**
+
+**MSS**
+
+1. User requests to get overview of all debts
+1. PayMeLah shows the total sum of debts the user is owed.
+
+   Use case ends.
 
 *{More to be added}*
 

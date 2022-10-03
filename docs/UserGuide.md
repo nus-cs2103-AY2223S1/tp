@@ -106,6 +106,14 @@ Format: `deletedebt <person index>`
 Example:
 * `deletedebt 3`
 
+### Getting the statement
+
+Retrieves a statement of the total sum of debts you are owed.
+
+Format: `statement`
+
+Example: `statement` returns `You are owed $583.90 in total.`
+
 ### Listing all persons : `list`
 
 Shows a list of all persons in PayMeLah.
@@ -152,6 +160,23 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
+
+### Locating persons by debt description: `finddebt`
+
+Finds persons who are associated with any debts that match any of the given keywords.
+
+Format: `finddebt <keyword> [<more keywords>]`
+
+* The search is case-insensitive. e.g `burger` will match `Burger`
+* The order of the keywords does not matter. e.g. `Sharing Meal` will match `Meal Sharing`
+* Only the name is searched.
+* Only full words will be matched e.g. `Burger` will not match `Burgers`
+* Persons with debts matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `burger meal` will return people associated with debts that have descriptions `Chicken Burger` or `Meal Sharing`
+
+Examples:
+* `finddebt Burger` returns people associated with debts that have descriptions `burger` or `Chicken Burger`
+* `finddebt burger meal` returns people associated with debts that have descriptions `Chicken Burger` or `Meal Sharing`<br>
 
 ### Deleting a person : `delete`
 
@@ -210,6 +235,8 @@ Action | Format, Examples
 **Delete** | `delete <index>`<br> e.g., `delete 3`
 **Edit** | `edit <index> [n/<name>] [p/<phone number>] [e/<email>] [a/<address>] [t/<tag>]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find <keyword> [<more keywords>]`<br> e.g., `find James Jake`
+**Find debts** | `finddebt <keyword> [<more keywords>]`<br> e.g., `finddebt burger`
 **List** | `list`
 **List debtees** | `debtlist`
+**Get statement** | `statement`
 **Help** | `help`
