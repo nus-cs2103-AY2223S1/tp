@@ -21,7 +21,7 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 | 1   | Tutor who prefers flexibility                                                | Reschedule my class                                                                 | I can allow the students to more flexibility when arranging for a class | HIGH       |
 | 2   | Meticulous tutor                                                             | Add teaching notes                                                                  | so that I can record any additional information about the student.      | HIGH       |
 | 3   | Organised tutor                                                              | View which students I have in the day                                               | I know what to expect in the day                                        | HIGH       |
-| 4   | Tutor                                                                        | Update the students contact details                                                 | I am able to contact the student or next-of-kin whenever necessary      | HIGH       |
+| 4   | Tutor                                                                        | Edit the students contact details                                                   | I am able to contact the student or next-of-kin whenever necessary      | HIGH       |
 | 5   | Tutor with forgetful students                                                | Check how much a single student owes me                                             | I can remind the student to pay me                                      | HIGH       |
 | 6   | New user                                                                     | See which commands are available for me to use                                      | I know how to use the application                                       | HIGH       |
 | 7   | Tutor who has many students                                                  | Check the students’ phone number                                                    | I can contact them                                                      | HIGH       |
@@ -35,7 +35,7 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 | 15  | Forgetful tutor                                                              | Be warned if the addition of a new session will clash with a previously set session | I can have a peace of mind that my students’ sessions do not clash      | MEDIUM     |
 | 16  | Busy tutor                                                                   | Sort my students based on the class timing                                          | I know when is my next class                                            | MEDIUM     |
 | 17  | Tutor                                                                        | Search up the students by the class date                                            | I know which students I have on a specific day                          | MEDIUM     |
-| 18  | Tutor                                                                        | Update the students unpaid session                                                  | I can calculate how much money a student owes                           | MEDIUM     |
+| 18  | Tutor                                                                        | Edit the students unpaid session                                                    | I can calculate how much money a student owes                           | MEDIUM     |
 | 19  | Lazy tutor                                                                   | Use a single command to find multiple students                                      | Find multiple students quickly                                          | MEDIUM     |
 | 20  | Lazy tutor                                                                   | Use a single command to delete multiple students                                    | Delete multiple students quickly                                        | MEDIUM     |
 | 21  | Busy tutor                                                                   | Use shorter commands                                                                | I can simplify the commands by using aliases                            | MEDIUM     |
@@ -77,19 +77,19 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
       Use case resumes at step 2.
 
-[](#use-case-update-a-student-contact-detail)
-### Use case: Update a student contact detail
+[](#use-case-edit-a-student-contact-detail)
+### Use case: Edit a student contact detail
 
 **MSS**
 
-1. Teacher requests to update contact number of a specific student in the list
-2. Teacher’s Pet updates the student
+1. Teacher requests to edit contact number of a specific student in the list
+2. Teacher’s Pet edits the student
 
    Use case ends.
 
 **Extensions**
 
-- 1a. Student name does not exist in the system.
+- 1a. The given index is invalid.
     - 1a1. Teacher’s Pet shows an error message.
 
   Use case ends.
@@ -155,7 +155,7 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
 1. Teacher requests to find the next available slot for class
 2. Teacher discusses with the student about whether the proposed slot is possible
-3. Teacher [update](#use-case-update-a-student-contact-detail) the student record with the next class date
+3. Teacher [edits](#use-case-edit-a-student-contact-detail) the student record with the next class date
 
 **Extensions**
 
