@@ -26,7 +26,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add`**`add c/N n/Jason p/98723432 e/jason@example.com g/M t/Asthma` : Adds a nurse named `John Doe` to the Healthcare Xpress book.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
@@ -75,29 +75,22 @@ Format: `help`
 
 ### Adding a person: `add`
 
-### 1.Adds a person to the address book.
+### 2. Adds a nurse to the Healthcare Xpress book
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format:`add c/N n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+<div markdown="span" class="alert alert-primary"> 
+
+:💡:**Tips**: 
+* A nurse can have any number of tags (including 0).
+* You may type it in any order.
+* To add a nurse, type c/N specifically.
+
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-
-### 2. Adds a nurse to the Healthcare Xpress book
-
-Format:`add c/N n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER [t/TAG]`
-
-> 💡 Tip: A nurse can have any number of tags (including 0).
-> You may type it in any order.
-> To add a nurse, type c/N specifically.
-
-Examples:
-- `add c/N n/Jason p/98723432 e/jason@example.com g/M t/Asthma `
-- `add c/N n/Betsy t/handle children well e/betsy@example.com g/F p/98345432 t/Heart disease `
+- `add c/N n/Jason p/98723432 e/jason@example.com g/M t/Asthma`
+- `add c/N n/Betsy t/handle children well e/betsy@example.com g/F p/98345432 t/Heart disease`
 
 
 ### Listing all persons : `list`
@@ -196,7 +189,7 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add c/N n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER [t/TAG]…​` <br> e.g., `add c/N n/Jason p/98723432 e/jason@example.com g/M t/Asthma ` 
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
