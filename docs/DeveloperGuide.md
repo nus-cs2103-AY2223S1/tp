@@ -316,7 +316,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     1. The application should work on any _mainstream OS_, such as Windows, Linux, and macOS, as long as it has Java `11` or above installed.
     2. The application should be compatible with both _32-bit_ and _64-bit_ environments.
 2. Performance Requirements:
-    1. Should be able to hold up to _1000 patients and nurses_ without noticeable sluggishness in performance for typical usage.
+    1. Should be able to hold up to _10000 patients and nurses_ without noticeable sluggishness in performance for typical usage.
     2. The application should be able to launch within _5 seconds_.
     3. The application should be able to respond to each command within _1 second_.
 3. Quality requirements:
