@@ -8,7 +8,7 @@ import seedu.address.model.Model;
 import seedu.address.model.moduleclass.ModuleClass;
 
 /**
- * Enters focus mode for the specified class
+ * Enters focus mode for the specified class.
  */
 public class ClassCommand extends Command {
 

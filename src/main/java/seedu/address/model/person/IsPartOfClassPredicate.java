@@ -12,7 +12,6 @@ import seedu.address.model.moduleclass.ModuleClass;
 public class IsPartOfClassPredicate implements Predicate<Person> {
     private final ModuleClass targetClass;
 
-
     /**
      * Returns a predicate that checks if a Person object is part of the {@code targetClass}.
      *
