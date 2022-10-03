@@ -1,14 +1,12 @@
 package jarvis.model.util;
 
 import java.util.Arrays;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import jarvis.model.AddressBook;
 import jarvis.model.ReadOnlyAddressBook;
 import jarvis.model.student.*;
 import jarvis.model.student.Student;
-import jarvis.model.tag.Tag;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -32,14 +30,4 @@ public class SampleDataUtil {
         }
         return sampleAb;
     }
-
-    /**
-     * Returns a tag set containing the list of strings given.
-     */
-    public static Set<Tag> getTagSet(String... strings) {
-        return Arrays.stream(strings)
-                .map(Tag::new)
-                .collect(Collectors.toSet());
-    }
-
 }

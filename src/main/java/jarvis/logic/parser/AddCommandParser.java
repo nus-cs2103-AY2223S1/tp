@@ -1,20 +1,14 @@
 package jarvis.logic.parser;
 
 import static jarvis.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static jarvis.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static jarvis.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static jarvis.logic.parser.CliSyntax.PREFIX_NAME;
-import static jarvis.logic.parser.CliSyntax.PREFIX_PHONE;
-import static jarvis.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Set;
 import java.util.stream.Stream;
 
 import jarvis.logic.commands.AddCommand;
 import jarvis.logic.parser.exceptions.ParseException;
 import jarvis.model.student.*;
 import jarvis.model.student.Student;
-import jarvis.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AddCommand object

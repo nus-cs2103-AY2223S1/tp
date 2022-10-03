@@ -2,12 +2,7 @@ package jarvis.model.student;
 
 import static jarvis.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
-
-import jarvis.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.
