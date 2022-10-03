@@ -23,7 +23,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-F11-1/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -36,7 +36,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-F11-1/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-F11-1/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -69,13 +69,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-F11-1/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-F11-1/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-F11-1/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -86,7 +86,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-F11-1/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -114,7 +114,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-F11-1/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -135,7 +135,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-F11-1/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -257,42 +257,70 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Can type fast
+* Have some experience with Command Line Interfaces
+* Are actively seeking internship opportunities
+* Having trouble keeping track of multiple internship applications and their progress (over multiple rounds)
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+
+**Value proposition**:
+
+* Keep track of multiple company contacts and applications’ progress simultaneously (the reply rates from companies are very low)
+* Keep track of colleagues information post-internship
+* Keeping track of internship application windows of multiple companies
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​          | I want to …​                                                                                             | So that I can…​                                                                                        |
+|----------|------------------|----------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
+| * * *    | First time user  | I can see a summary of commands                                                                          | I can know the functionalities of the app quickly                                                      |
+| * * *    | First time user  | I can delete internship status                                                                           | so that I know that I have finished my interview process with the company                              |
+| * * *    | First time user  | I can see suggested information I need to fill in while I'm adding a contact                             | I don't have to keep referring to the help page to know the information I can add (email, company etc) |
+| * * *    | Second time user | I can pre-load my data from the previous session                                                         | I do not need to re-add everyone again                                                                 |
+| * * *    | Second time user | I can purge all current data                                                                             | I can get rid of sample contacts I used for exploring the app                                          |
+| * * *    | Lazy user        | search contacts by groups or tags                                                                        | I do not need to manually filter them                                                                  |
+| * * *    | User             | I can edit contacts                                                                                      | I do not need to delete and re-add to fix a typo error                                                 |
+| * * *    | User             | delete contacts individually                                                                             |                                                                                                        |
+| * * *    | User             | add the company name to each contact                                                                     | I know which company the contact is representing                                                       |
+| * * *    | User             | navigate the address book easily                                                                         | using the address book should not be a headache by itself                                              |
+| * * *    | User             | I can sort contact by interview status                                                                   | so that I can know which company interview I can prepare for                                           |
+| * * *    | User             | I can sort contact by interview date                                                                     | so that I can know when to prepare for interview                                                       |
+| * * *    | User             | I can see a reminder of the next upcoming interview on the homescreen                                    | so that I know the upcoming interview without opening the address book                                 |
+| * *      | First time user  | I can view user guide                                                                                    | so that I can know all the functions                                                                   |
+| * *      | First time user  | I can see the app populated with sample contacts                                                         | I can easily see how the app will look like when it is in use                                          |
+| * *      | Second time user | see tips suggesting shortcuts or shortforms                                                              | I can potentially achieve faster commands and actions                                                  |
+| * *      | Second time user | see a summary of the internship information I have keyed in so far on starting the app                   | I can know where I left off from the last time I used the app                                          |
+| * *      | Forgetful user   | search contacts by the time it was added                                                                 | I can figure out whom I added at that time                                                             |
+| * *      | Expert user      | Create tags with different priorities                                                                    | Sort contacts by priority                                                                              |
+| * *      | Expert user      | Mass import contacts directly                                                                            | Use the app on another device                                                                          |
+| * *      | Expert user      | Mass edit contacts (e.g. find and replace/set)                                                           | Set common information amongst groups of contacts quickly                                              |
+| * *      | User             | archive contacts                                                                                         | I know which internships I've been rejected from                                                       |
+| * *      | User             | Add colors to tags and contacts                                                                          | Distinguish between contacts easier in the GUI                                                         |
+| * *      | User             | I can purge all interview status                                                                         | so that I can still save all contact after I have found a job                                          |
+| *        | First time user  | I can update the application process attached to a company (application date, round1, interview dates..) | I can see my progress for the internships                                                              |
+| *        | Lazy user        | Leaving halfway when inputting contact information saves it as draft and lets me continue from last time | I dont lose my progress when accidentally leaving or can leave temporarily to work on it next time     |
+| *        | Forgetful user   | I can sort the companies by upcoming interview dates                                                     | I can see a clear timeline and prevent clashing dates                                                  |
+| *        | Expert user      | Create email templates per company                                                                       | Easily draft up internship application emails                                                          |
+| *        | User             | add job roles to each contact                                                                            | I know which role I'm contacting that particular person for (front-end, back-end etc)                  |
+| *        | User             | Personalize GUI colors and color themes (light mode, dark mode etc.)                                     | Make the app more visually appealing                                                                   |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `InterNUS` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC1 - Delete a person**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list persons.
+2.  InterNUS shows a list of persons.
+3.  User requests to delete a specific person in the list.
+4.  InterNUS deletes the person.
 
     Use case ends.
 
@@ -304,17 +332,118 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. InterNUS shows an error message.
 
-      Use case resumes at step 2.
+      Use case ends.
+
+* 3b. The person found at the index is a contact person for an internship
+    * 3b1. InterNUS looks up the affected internship.
+
+    * 3b2. InterNUS removes the contact person from the internship.
+
+      Use case resumes at step 4.
+
+
+**Use case: UC2 - Delete an internship**
+
+**MSS**
+
+1.  User requests to list internships.
+2.  InterNUS shows a list of internships.
+3.  User requests to delete a specific internship in the list.
+4.  InterNUS deletes the internship.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. InterNUS shows an error message.
+
+      Use case ends.
+
+* 3b. The internship found at the index is associated with a person.
+
+    * 3b1. InterNUS looks up the affected person.
+
+    * 3b2. InterNUS removes the internship from the person.
+
+      Use case resumes at step 4.
+
+
+**Use case: UC3 - Add a contact person to an internship**
+
+**MSS**
+
+1. User adds an internship to the internship list
+2. InterNUS creates a new internship entry
+3. User adds a person to the contact list
+4. InterNUS creates a new person contact
+5. User requests to set a specific person as the contact person for a specific internship
+6. InterNUS sets the person as the contact person for the internship
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The desired internship to set the contact person for is already in the list.
+
+    * 1a1. No new internship is created.
+
+      Use case resumes at step 3.
+
+* 3a. The desired person to set as the contact person is already in the list
+
+    * 3a1. No new person is created.
+
+      Use case resumes at step 5.
+
+
+**Use case: UC4 - Add an interview date for an internship**
+
+**MSS**
+
+1. User adds an internship to the internship list.
+2. InterNUS creates a new internship entry.
+3. User requests to set the interview date of a specific internship.
+4. InterNUS sets the interview date for the internship.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The desired internship to set the interview date for is already in the list.
+
+    * 1a1. No new internship is created.
+
+      Use case resumes at step 3.
+
+* 3a. The interview date given is invalid.
+
+    * 3a1. InterNUS notifies the user why the given date is invalid.
+    
+      Use case ends.
 
 *{More to be added}*
 
+
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 persons and 1000 internships without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. A user will not be able to communicate with the people in the contact. 
+5. A user will not be able to share contacts with others.
+6. Should work only for single user.
+7. The data should be stored in a human editable text file
+8. The GUI should work well for standard screen resolutions 1920x1080 and higher and for screen scales 100% and 125%. 
+9. The GUI should be usable for resolutions 1280x720 and higher and for screen scales 150%.
+
 
 *{More to be added}*
 
