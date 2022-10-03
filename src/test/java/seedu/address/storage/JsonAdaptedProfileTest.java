@@ -8,7 +8,6 @@ import static seedu.address.testutil.TypicalProfiles.BENSON;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.profile.Address;
 import seedu.address.model.profile.Email;
 import seedu.address.model.profile.Name;
 import seedu.address.model.profile.Phone;
@@ -16,13 +15,11 @@ import seedu.address.model.profile.Phone;
 public class JsonAdaptedProfileTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
-    private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
-    private static final String VALID_ADDRESS = BENSON.getAddress().toString();
 
     @Test
     public void toModelType_validProfileDetails_returnsProfile() throws Exception {
@@ -33,14 +30,14 @@ public class JsonAdaptedProfileTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedProfile profile =
-                new JsonAdaptedProfile(INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS);
+                new JsonAdaptedProfile(INVALID_NAME, VALID_PHONE, VALID_EMAIL);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, profile::toModelType);
     }
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedProfile profile = new JsonAdaptedProfile(null, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS);
+        JsonAdaptedProfile profile = new JsonAdaptedProfile(null, VALID_PHONE, VALID_EMAIL);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, profile::toModelType);
     }
@@ -48,14 +45,14 @@ public class JsonAdaptedProfileTest {
     @Test
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         JsonAdaptedProfile profile =
-                new JsonAdaptedProfile(VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_ADDRESS);
+                new JsonAdaptedProfile(VALID_NAME, INVALID_PHONE, VALID_EMAIL);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, profile::toModelType);
     }
 
     @Test
     public void toModelType_nullPhone_throwsIllegalValueException() {
-        JsonAdaptedProfile profile = new JsonAdaptedProfile(VALID_NAME, null, VALID_EMAIL, VALID_ADDRESS);
+        JsonAdaptedProfile profile = new JsonAdaptedProfile(VALID_NAME, null, VALID_EMAIL);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, profile::toModelType);
     }
@@ -63,30 +60,15 @@ public class JsonAdaptedProfileTest {
     @Test
     public void toModelType_invalidEmail_throwsIllegalValueException() {
         JsonAdaptedProfile profile =
-                new JsonAdaptedProfile(VALID_NAME, VALID_PHONE, INVALID_EMAIL, VALID_ADDRESS);
+                new JsonAdaptedProfile(VALID_NAME, VALID_PHONE, INVALID_EMAIL);
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, profile::toModelType);
     }
 
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
-        JsonAdaptedProfile profile = new JsonAdaptedProfile(VALID_NAME, VALID_PHONE, null, VALID_ADDRESS);
+        JsonAdaptedProfile profile = new JsonAdaptedProfile(VALID_NAME, VALID_PHONE, null);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, profile::toModelType);
-    }
-
-    @Test
-    public void toModelType_invalidAddress_throwsIllegalValueException() {
-        JsonAdaptedProfile profile =
-                new JsonAdaptedProfile(VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_ADDRESS);
-        String expectedMessage = Address.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, profile::toModelType);
-    }
-
-    @Test
-    public void toModelType_nullAddress_throwsIllegalValueException() {
-        JsonAdaptedProfile profile = new JsonAdaptedProfile(VALID_NAME, VALID_PHONE, VALID_EMAIL, null);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, profile::toModelType);
     }
 

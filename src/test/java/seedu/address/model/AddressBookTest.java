@@ -3,7 +3,6 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalProfiles.ALICE;
 import static seedu.address.testutil.TypicalProfiles.getTypicalAddressBook;
@@ -45,7 +44,7 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicateProfiles_throwsDuplicateProfileException() {
         // Two profiles with the same identity fields
-        Profile editedAlice = new ProfileBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
+        Profile editedAlice = new ProfileBuilder(ALICE)
                 .build();
         List<Profile> newProfiles = Arrays.asList(ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newProfiles);
@@ -72,8 +71,7 @@ public class AddressBookTest {
     @Test
     public void hasProfile_profileWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addProfile(ALICE);
-        Profile editedAlice = new ProfileBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
-                .build();
+        Profile editedAlice = new ProfileBuilder(ALICE).build();
         assertTrue(addressBook.hasProfile(editedAlice));
     }
 

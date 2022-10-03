@@ -1,7 +1,6 @@
 package seedu.address.testutil;
 
 import seedu.address.logic.commands.EditCommand.EditProfileDescriptor;
-import seedu.address.model.profile.Address;
 import seedu.address.model.profile.Email;
 import seedu.address.model.profile.Name;
 import seedu.address.model.profile.Phone;
@@ -30,7 +29,6 @@ public class EditProfileDescriptorBuilder {
         descriptor.setName(profile.getName());
         descriptor.setPhone(profile.getPhone());
         descriptor.setEmail(profile.getEmail());
-        descriptor.setAddress(profile.getAddress());
     }
 
     /**
@@ -54,14 +52,6 @@ public class EditProfileDescriptorBuilder {
      */
     public EditProfileDescriptorBuilder withEmail(String email) {
         descriptor.setEmail(new Email(email));
-        return this;
-    }
-
-    /**
-     * Sets the {@code Address} of the {@code EditProfileDescriptor} that we are building.
-     */
-    public EditProfileDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
         return this;
     }
 

@@ -15,18 +15,14 @@ public class Profile {
     private final Phone phone;
     private final Email email;
 
-    // Data fields
-    private final Address address;
-
     /**
      * Every field must be present and not null.
      */
-    public Profile(Name name, Phone phone, Email email, Address address) {
-        requireAllNonNull(name, phone, email, address);
+    public Profile(Name name, Phone phone, Email email) {
+        requireAllNonNull(name, phone, email);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
     }
 
     public Name getName() {
@@ -39,10 +35,6 @@ public class Profile {
 
     public Email getEmail() {
         return email;
-    }
-
-    public Address getAddress() {
-        return address;
     }
 
     /**
@@ -75,14 +67,13 @@ public class Profile {
         Profile otherProfile = (Profile) other;
         return otherProfile.getName().equals(getName())
                 && otherProfile.getPhone().equals(getPhone())
-                && otherProfile.getEmail().equals(getEmail())
-                && otherProfile.getAddress().equals(getAddress());
+                && otherProfile.getEmail().equals(getEmail());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address);
+        return Objects.hash(name, phone, email);
     }
 
     @Override
@@ -92,9 +83,7 @@ public class Profile {
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Email: ")
-                .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+                .append(getEmail());
 
         return builder.toString();
     }

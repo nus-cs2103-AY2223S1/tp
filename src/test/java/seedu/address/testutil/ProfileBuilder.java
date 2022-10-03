@@ -1,6 +1,5 @@
 package seedu.address.testutil;
 
-import seedu.address.model.profile.Address;
 import seedu.address.model.profile.Email;
 import seedu.address.model.profile.Name;
 import seedu.address.model.profile.Phone;
@@ -14,12 +13,10 @@ public class ProfileBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
     private Phone phone;
     private Email email;
-    private Address address;
 
     /**
      * Creates a {@code ProfileBuilder} with the default details.
@@ -28,7 +25,6 @@ public class ProfileBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
     }
 
     /**
@@ -38,7 +34,6 @@ public class ProfileBuilder {
         name = profileToCopy.getName();
         phone = profileToCopy.getPhone();
         email = profileToCopy.getEmail();
-        address = profileToCopy.getAddress();
     }
 
     /**
@@ -46,14 +41,6 @@ public class ProfileBuilder {
      */
     public ProfileBuilder withName(String name) {
         this.name = new Name(name);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Address} of the {@code Profile} that we are building.
-     */
-    public ProfileBuilder withAddress(String address) {
-        this.address = new Address(address);
         return this;
     }
 
@@ -74,7 +61,7 @@ public class ProfileBuilder {
     }
 
     public Profile build() {
-        return new Profile(name, phone, email, address);
+        return new Profile(name, phone, email);
     }
 
 }
