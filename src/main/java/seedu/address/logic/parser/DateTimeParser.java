@@ -19,7 +19,7 @@ public class DateTimeParser {
      * @param str String representing the LocalDateTime to be returned.
      * @return LocalDateTime parsed from the input String.
      */
-    public LocalDateTime getLocalDateTimeFromString(String str) {
+    public static LocalDateTime getLocalDateTimeFromString(String str) {
         return LocalDateTime.parse(str, DateTimeParser.dateTimeFormatter);
     }
 }
