@@ -324,6 +324,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Issue**: Issue on GitHub to track your work on a project
+* **Repository**: A repository (GitHub) contains all of your project's files
+* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Task**: An item or activity that needs to be completed and contributes towards the progress of the project
+* **User**: Person in charge of a software engineering project
+* **Private contact detail**: A contact detail that is not meant to be shared with others
+
+*{More to be added}*
 
 --------------------------------------------------------------------------------------------------------------------
 
