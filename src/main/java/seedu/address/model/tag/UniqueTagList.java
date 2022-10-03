@@ -1,16 +1,18 @@
 package seedu.address.model.tag;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
 
+/**
+ * A list of tags.
+ */
 public class UniqueTagList implements Iterable<Tag> {
 
     private final ObservableList<Tag> tagArrayList = FXCollections.observableArrayList();
@@ -29,11 +31,21 @@ public class UniqueTagList implements Iterable<Tag> {
         tagArrayList.add(tag);
     }
 
-    public void editTag(Tag oldTag, Tag newTag ) {
+    /**
+     * Edits the tag.
+     * @param oldTag The tag to be changed.
+     * @param newTag The tag to be changed into.
+     */
+    public void editTag(Tag oldTag, Tag newTag) {
         int index = tagArrayList.indexOf(oldTag);
         tagArrayList.set(index, newTag);
     }
 
+    /**
+     * Checks if the tag exists
+     * @param tag The tag to be checked
+     * @return True if the tag exists. False if otherwise.
+     */
     public boolean hasTag(Tag tag) {
         for (int i = 0; i < tagArrayList.size(); i++) {
             if (tagArrayList.get(i).equals(tag)) {
@@ -54,7 +66,7 @@ public class UniqueTagList implements Iterable<Tag> {
      */
     public void setTags(List<Tag> tags) {
         requireAllNonNull(tags);
-        if (!TagsAreUnique(tags)) {
+        if (!tagsAreUnique(tags)) {
             throw new DuplicatePersonException();
         }
 
@@ -83,9 +95,9 @@ public class UniqueTagList implements Iterable<Tag> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code tags} contains only unique tags.
      */
-    private boolean TagsAreUnique(List<Tag> tags) {
+    private boolean tagsAreUnique(List<Tag> tags) {
         for (int i = 0; i < tags.size() - 1; i++) {
             for (int j = i + 1; j < tags.size(); j++) {
                 if (tags.get(i).equals(tags.get(j))) {

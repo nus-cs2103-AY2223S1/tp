@@ -1,16 +1,19 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+
+import java.util.List;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-
-public class TagEditCommand extends Command{
+/**
+ * Edits a tag in the tagList.
+ */
+public class TagEditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
@@ -30,6 +33,11 @@ public class TagEditCommand extends Command{
     private final Tag oldTag;
     private final Tag newTag;
 
+    /**
+     * Constructs a TagEditCommand claass
+     * @param oldTag The tag to be changed.
+     * @param newTag The tag that is changed to.
+     */
     public TagEditCommand(Tag oldTag, Tag newTag) {
         this.newTag = newTag;
         this.oldTag = oldTag;
