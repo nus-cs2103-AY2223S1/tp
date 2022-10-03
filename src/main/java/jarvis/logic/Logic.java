@@ -7,7 +7,7 @@ import jarvis.logic.commands.CommandResult;
 import jarvis.logic.commands.exceptions.CommandException;
 import jarvis.logic.parser.exceptions.ParseException;
 import jarvis.model.ReadOnlyAddressBook;
-import jarvis.model.person.Person;
+import jarvis.model.student.Student;
 import javafx.collections.ObservableList;
 
 /**
@@ -31,7 +31,7 @@ public interface Logic {
     ReadOnlyAddressBook getAddressBook();
 
     /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Student> getFilteredPersonList();
 
     /**
      * Returns the user prefs' address book file path.

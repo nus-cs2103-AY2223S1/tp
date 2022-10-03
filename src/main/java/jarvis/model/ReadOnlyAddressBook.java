@@ -1,6 +1,6 @@
 package jarvis.model;
 
-import jarvis.model.person.Person;
+import jarvis.model.student.Student;
 import javafx.collections.ObservableList;
 
 /**
@@ -12,6 +12,6 @@ public interface ReadOnlyAddressBook {
      * Returns an unmodifiable view of the persons list.
      * This list will not contain any duplicate persons.
      */
-    ObservableList<Person> getPersonList();
+    ObservableList<Student> getPersonList();
 
 }

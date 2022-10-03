@@ -36,10 +36,10 @@ import org.junit.jupiter.api.Test;
 import jarvis.commons.core.index.Index;
 import jarvis.logic.commands.EditCommand;
 import jarvis.logic.commands.EditCommand.EditPersonDescriptor;
-import jarvis.model.person.Address;
-import jarvis.model.person.Email;
-import jarvis.model.person.Name;
-import jarvis.model.person.Phone;
+import jarvis.model.student.Address;
+import jarvis.model.student.Email;
+import jarvis.model.student.Name;
+import jarvis.model.student.Phone;
 import jarvis.model.tag.Tag;
 import jarvis.testutil.EditPersonDescriptorBuilder;
 

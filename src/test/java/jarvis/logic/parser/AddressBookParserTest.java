@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import jarvis.model.student.Student;
 import org.junit.jupiter.api.Test;
 
 import jarvis.logic.commands.AddCommand;
@@ -23,8 +24,7 @@ import jarvis.logic.commands.FindCommand;
 import jarvis.logic.commands.HelpCommand;
 import jarvis.logic.commands.ListCommand;
 import jarvis.logic.parser.exceptions.ParseException;
-import jarvis.model.person.NameContainsKeywordsPredicate;
-import jarvis.model.person.Person;
+import jarvis.model.student.NameContainsKeywordsPredicate;
 import jarvis.testutil.EditPersonDescriptorBuilder;
 import jarvis.testutil.PersonBuilder;
 import jarvis.testutil.PersonUtil;
@@ -35,9 +35,9 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+        Student student = new PersonBuilder().build();
+        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(student));
+        assertEquals(new AddCommand(student), command);
     }
 
     @Test
@@ -55,8 +55,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Person person = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
+        Student student = new PersonBuilder().build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(student).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);

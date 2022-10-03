@@ -8,7 +8,7 @@ import jarvis.commons.core.Messages;
 import jarvis.commons.core.index.Index;
 import jarvis.logic.commands.exceptions.CommandException;
 import jarvis.model.Model;
-import jarvis.model.person.Person;
+import jarvis.model.student.Student;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -33,15 +33,15 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Student> lastShownList = model.getFilteredPersonList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
+        Student studentToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.deletePerson(studentToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, studentToDelete));
     }
 
     @Override

@@ -5,11 +5,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import jarvis.logic.commands.EditCommand.EditPersonDescriptor;
-import jarvis.model.person.Address;
-import jarvis.model.person.Email;
-import jarvis.model.person.Name;
-import jarvis.model.person.Person;
-import jarvis.model.person.Phone;
+import jarvis.model.student.*;
+import jarvis.model.student.Student;
 import jarvis.model.tag.Tag;
 
 /**
@@ -30,13 +27,13 @@ public class EditPersonDescriptorBuilder {
     /**
      * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
      */
-    public EditPersonDescriptorBuilder(Person person) {
+    public EditPersonDescriptorBuilder(Student student) {
         descriptor = new EditPersonDescriptor();
-        descriptor.setName(person.getName());
-        descriptor.setPhone(person.getPhone());
-        descriptor.setEmail(person.getEmail());
-        descriptor.setAddress(person.getAddress());
-        descriptor.setTags(person.getTags());
+        descriptor.setName(student.getName());
+        descriptor.setPhone(student.getPhone());
+        descriptor.setEmail(student.getEmail());
+        descriptor.setAddress(student.getAddress());
+        descriptor.setTags(student.getTags());
     }
 
     /**

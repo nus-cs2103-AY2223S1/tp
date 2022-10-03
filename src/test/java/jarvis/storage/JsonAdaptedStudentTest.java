@@ -12,12 +12,12 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import jarvis.commons.exceptions.IllegalValueException;
-import jarvis.model.person.Address;
-import jarvis.model.person.Email;
-import jarvis.model.person.Name;
-import jarvis.model.person.Phone;
+import jarvis.model.student.Address;
+import jarvis.model.student.Email;
+import jarvis.model.student.Name;
+import jarvis.model.student.Phone;
 
-public class JsonAdaptedPersonTest {
+public class JsonAdaptedStudentTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";

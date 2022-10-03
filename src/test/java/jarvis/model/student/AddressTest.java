@@ -1,4 +1,4 @@
-package jarvis.model.person;
+package jarvis.model.student;
 
 import static jarvis.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertFalse;

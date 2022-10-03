@@ -1,4 +1,4 @@
-package jarvis.model.person.exceptions;
+package jarvis.model.student.exceptions;
 
 /**
  * Signals that the operation is unable to find the specified person.

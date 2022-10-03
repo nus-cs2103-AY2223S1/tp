@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import jarvis.commons.core.Messages;
 import jarvis.model.Model;
-import jarvis.model.person.NameContainsKeywordsPredicate;
+import jarvis.model.student.NameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.

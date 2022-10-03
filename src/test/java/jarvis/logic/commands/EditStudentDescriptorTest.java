@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 import jarvis.logic.commands.EditCommand.EditPersonDescriptor;
 import jarvis.testutil.EditPersonDescriptorBuilder;
 
-public class EditPersonDescriptorTest {
+public class EditStudentDescriptorTest {
 
     @Test
     public void equals() {

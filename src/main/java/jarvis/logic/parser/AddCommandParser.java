@@ -12,11 +12,8 @@ import java.util.stream.Stream;
 
 import jarvis.logic.commands.AddCommand;
 import jarvis.logic.parser.exceptions.ParseException;
-import jarvis.model.person.Address;
-import jarvis.model.person.Email;
-import jarvis.model.person.Name;
-import jarvis.model.person.Person;
-import jarvis.model.person.Phone;
+import jarvis.model.student.*;
+import jarvis.model.student.Student;
 import jarvis.model.tag.Tag;
 
 /**
@@ -44,9 +41,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, address, tagList);
+        Student student = new Student(name, phone, email, address, tagList);
 
-        return new AddCommand(person);
+        return new AddCommand(student);
     }
 
     /**

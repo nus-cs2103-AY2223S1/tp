@@ -13,7 +13,7 @@ import jarvis.logic.parser.AddressBookParser;
 import jarvis.logic.parser.exceptions.ParseException;
 import jarvis.model.Model;
 import jarvis.model.ReadOnlyAddressBook;
-import jarvis.model.person.Person;
+import jarvis.model.student.Student;
 import jarvis.storage.Storage;
 import javafx.collections.ObservableList;
 
@@ -60,7 +60,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
+    public ObservableList<Student> getFilteredPersonList() {
         return model.getFilteredPersonList();
     }
 

@@ -1,4 +1,4 @@
-package jarvis.model.person;
+package jarvis.model.student;
 
 import static jarvis.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;

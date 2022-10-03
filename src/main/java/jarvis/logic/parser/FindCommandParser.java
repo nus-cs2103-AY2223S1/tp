@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import jarvis.logic.commands.FindCommand;
 import jarvis.logic.parser.exceptions.ParseException;
-import jarvis.model.person.NameContainsKeywordsPredicate;
+import jarvis.model.student.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object

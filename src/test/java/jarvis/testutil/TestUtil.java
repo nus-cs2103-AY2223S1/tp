@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 
 import jarvis.commons.core.index.Index;
 import jarvis.model.Model;
-import jarvis.model.person.Person;
+import jarvis.model.student.Student;
 
 /**
  * A utility class for test cases.
@@ -49,7 +49,7 @@ public class TestUtil {
     /**
      * Returns the person in the {@code model}'s person list at {@code index}.
      */
-    public static Person getPerson(Model model, Index index) {
+    public static Student getPerson(Model model, Index index) {
         return model.getFilteredPersonList().get(index.getZeroBased());
     }
 }
