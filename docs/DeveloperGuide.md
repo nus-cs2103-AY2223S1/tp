@@ -283,6 +283,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | new business owner       | simply search for contacts                          | retrieve only the essential details I need                          |
 | `* * *`  | new business owner       | view a company's details and point-of-contact       | easily know who to contact for that company                         |
 | `* * *`  | busy business owner      | quickly retrieve the data of the company            | save time without having to go through multiple layers              |
+| `* * *`  | new business owner       | create a new company input                          | keep track of all the new business I work with                      |
+| `* * *`  | new business owner       | add a point of contact to a company                 | i know who to contact in that company                               |
 | `* *`    | careless business owner  | edit the details of point-of-contact                | correct the mistakes that I did                                     |
 | `* *`    | efficient business owner | sort the search result by price                     | quickly know which company I have made the most transaction with    |
 
