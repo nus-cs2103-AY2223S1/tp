@@ -11,7 +11,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Deadline {
 
-    public static final String MESSAGE_CONSTRAINTS = "Names should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Deadlines should not be blank";
 
     /*
      * The first character of the name must not be a whitespace,
