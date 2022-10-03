@@ -365,31 +365,185 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified
-otherwise)
+(For all use cases below, the **System** is `FinBook` and the **Actor** is the `FA`, unless specified otherwise)
 
-**Use case: Delete a person**
+---
+
+**Use case: UC 1 - Add a client**
+
+**Precondition:** System is unlocked by actor
+
+**MSS:**
+
+1. User requests to add a client
+2. System adds the client
+3. Use case ends
+
+---
+
+**Use case: UC 2 - Modify client details**
+
+**Precondition:** The list of clients is not empty
 
 **MSS**
 
-1. User requests to list persons
-2. AddressBook shows a list of persons
-3. User requests to delete a specific person in the list
-4. AddressBook deletes the person
-
-   Use case ends.
+1. Actor requests to list clients
+2. System shows a list of clients
+3. Actor requests to modify a specific client in the list
+4. System modifies the client’s details
 
 **Extensions**
+
+* 3a. The given index is invalid
+    * 3a1. System shows an error message
+
+  Use case resumes at step 2
+
+---
+
+**Use case: UC 3 - Search for client**
+
+**Precondition:** There is/are client(s) saved
+
+**MSS:**
+
+1. Actor enters search keyword(s)
+2. System shows a list of client(s)
+3. Use case ends
+
+**Extensions:**
+
+* 2a. There is no client name that matches keyword(s)
+    * 2a1. System shows empty list of clients
+
+  Use case ends
+
+---
+
+**Use case:  UC 4 - Delete a client**
+
+**Precondition:** There is/are client(s) saved
+
+**MSS:**
+
+1. Actor searches for client (**UC 3 - Search for client**)
+2. System shows a list of client(s)
+3. Actor requests to delete a specific client in the list
+4. System deletes client’s details
+5. Use case ends
+
+**Extensions:**
+
+* 2a. The list is empty.
+
+Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. System shows an error message.
+
+  Use case resumes at step 2.
+* 3b. The system asks for confirmation from actor
+    * If actor gives confirmation, use case resumes at step 4
+    * If actor does not confirm, use case resumes at step 5
+
+---
+
+**Use case: UC 5 - View private client details**
+
+**Precondition:** System is unlocked by actor
+
+**MSS:**
+
+1. System shows a list of clients
+2. Actor requests to view private client details of a client
+3. System shows private client details of the client
+4. Use case ends
+
+**Extensions:**
+
+* 2a. The system asks for confirmation from actor
+    * If actor gives confirmation, use case resumes at step 3
+    * If actor does not confirm, use case resumes at step 4
+
+---
+
+**Use case: UC 6 - Exit the application**
+
+**MSS:**
+
+1. Actor requests to exit the application
+2. System saves the latest client details and terminates the program
+3. Use case ends
+
+**Extensions:**
+
+* 1a. The system asks for confirmation from actor
+    * If actor gives confirmation, use case resumes at step 2
+    * If actor does not confirm, use case resumes at step 3
+
+---
+
+**Use case: UC 7 - Import external data**
+
+**Precondition:** Actor exported data from Google contacts as Google CSV
+
+**MSS:**
+
+1. Actor requests to import data from file
+2. System imports client data from file
+3. Use case ends
+
+**Extensions:**
+
+* 1a. The given file is invalid
+    * 1a.1 System shows an error message
+
+  Use case resumes at step 1
+
+---
+
+**Use case : UC 8 - View a client**
+
+**Precondition:** There is/are client(s) saved
+
+**MSS:**
+
+1. Actor finds the client they wish to view (**UC3: Search for Client**)
+2. System shows a list of client(s)
+3. Actor selects the client entry they wish to view
+4. Actor is shown a page of details about the client
+5. Use case ends
+
+**Extensions:**
 
 * 2a. The list is empty.
 
   Use case ends.
+* 3b. The system asks for confirmation from actor
+    * If actor gives confirmation, use case resumes at step 4
+    * If actor does not confirm, use case resumes at step 5
 
-* 3a. The given index is invalid.
+---
 
-    * 3a1. AddressBook shows an error message.
+**Use case: UC 9 - Import existing save file**
 
-      Use case resumes at step 2.
+**Precondition:** Actor has used system previously and has a save file
+
+**MSS:**
+
+1. Actor requests to import data from save file
+2. System imports client data from save file
+3. Use case ends
+
+**Extensions:**
+
+* 1a. The given save file is invalid
+    * 1a1. System shows an error message
+
+  Use case resumes at step 1
+
+---
 
 *{More to be added}*
 
