@@ -24,7 +24,7 @@ public class AddProfileCommand extends ProfileCommand {
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
-            + "Example: " + COMMAND_WORD + " "
+            + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com ";
