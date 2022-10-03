@@ -78,6 +78,31 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Sorts the address book by name in alphabetical order.
+     */
+    void sortByName();
+
+    /**
+     * Sorts the address book by phone number in increasing order.
+     */
+    void sortByPhone();
+
+    /**
+     * Sorts the address book by email in alphabetical order.
+     */
+    void sortByEmail();
+
+    /**
+     * Sorts the address book by address in alphabetical order.
+     */
+    void sortByAddress();
+
+    /**
+     * Sorts the address book in reverse order.
+     */
+    void reverseSort();
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
