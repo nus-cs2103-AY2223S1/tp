@@ -44,10 +44,11 @@ public class AddCommandTest {
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Person validPerson = new PersonBuilder().build();
-        AddUserCommand AddUserCommand = new AddUserCommand(validPerson);
+        AddUserCommand addUserCommand = new AddUserCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
-        assertThrows(CommandException.class, AddUserCommand.MESSAGE_DUPLICATE_PERSON, () -> AddUserCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddUserCommand.MESSAGE_DUPLICATE_PERSON, () -> addUserCommand.execute(modelStub));
     }
 
     @Test
