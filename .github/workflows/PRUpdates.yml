@@ -2,14 +2,16 @@ name: PR Updates
 
 on:
   pull_request:
-    types: [opened, edited, ready_for_review, review_requested, reopened]
-  pull_request_review_comment:
-    types: [created]
+    types: [opened, reopened]
 
 jobs:
-  dummy-workflow:
+  dispatch:
     runs-on: ubuntu-latest
-    name: dummy workflow
+    name: Trigger Telegram notifier workflow
     steps:
-      - name: Explanation
-        run: echo "this is a dummy workflow that triggers a workflow_run; it's necessary because otherwise the repo secrets will not be in scope for externally forked pull requests"
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.PAT }}
+          event-type: pr-opened
+          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}", "title": "${{ github.event.pull_request.title }}", "creator": "${{ github.actor }}"}'
