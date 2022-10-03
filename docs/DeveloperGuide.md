@@ -257,58 +257,472 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* medical administrator who has a need to manage a significant number of patients and nurses
 * prefer desktop apps over other types
-* can type fast
+* can type fast with precision
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage patient nurse relations faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …                | I can …                                                                                                  | So that …                                                                                                                                       |
+|----------|-----------------------|----------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
+| `*`      | medical administrator | export a current week’s schedule for nurses so that                                                      | they can check their schedules independently                                                                                                    |
+| `* * *`  | medical administrator | quickly add the details of a patients that require home visits so that                                   | retrieve them later                                                                                                                             |
+| `* * *`  | medical administrator | quickly add the details of the nurse                                                                     | retrieve them later for matching                                                                                                                |
+| `* * *`  | medical administrator | add the health conditions (eg heart disease, asthma, paralysed etc) of the patients as tags              | use this information to match the patient with the respective nurse that has experience in dealing with such disease                            |
+| `* *`    | medical administrator | add a list of diseases that the nurse dealt with before as tags                                          | give them the appropriate patient for a home visit                                                                                              |
+| `* * *`  | medical administrator | add patients to the existing list of patients that the nurse is going to home visit for the current week | use it to create the schedule for the nurse                                                                                                     |
+| `*`      | medical administrator | add the availability of the nurse                                                                        | use this information to assign the patient to them                                                                                              |
+| `* * *`  | medical administrator | add the date (and time + duration) of home visit appointments for the patient                            | schedule the nurses accordingly                                                                                                                 |
+| `*`      | medical administrator | add next of kin particulars for a patient                                                                | inform them in case of any emergency                                                                                                            |
+| `*`      | medical administrator | add the contact details of the patient's attending physician                                             | liaise with them regarding the patient's treatments and how the patient responds to them                                                        |
+| `* *`    | medical administrator | add patients' critical information                                                                       | quickly identify any essential information that needs to be taken note of during scheduling                                                     |
+| `*`      | medical administrator | store a nurse's schedule in a specific folder with the nurse’s name as the individual file’s name        |                                                                                                                                                 |
+| `*`      | medical administrator | create a file with the nurse's name for later storage of the schedule                                    |                                                                                                                                                 |
+| `* * *`  | medical administrator | store all the information of the patient and nurse in respective files                                   |                                                                                                                                                 |
+| `* * *`  | medical administrator | delete a patient who no longer requires home visits                                                      | I do not need to include them in the scheduled exercise                                                                                         |
+| `* * *`  | medical administrator | delete the nurse that is no longer in this department                                                    | I would not schedule an unavailable nurse                                                                                                       |
+| `* *`    | medical administrator | check how many patients are not yet scheduled for the current week ( /for a certain period)              | I know whether I have finished scheduling                                                                                                       |
+| `* *`    | medical administrator | check the list of unscheduled patients                                                                   | schedule them now                                                                                                                               |
+| `*`      | medical administrator | check the list of nurses not going for a home visit on a specific date                                   | if one of the nurses suddenly falls sick, I have to schedule her assigned patient with the other available nurse quickly                        |
+| `*`      | medical administrator | assess a patient's details by name and update their personal information or health condition             | if there are any changes, edit them accordingly                                                                                                 |
+| `*`      | medical administrator | assess a patient’s details by name and change their home visit’s date/ time                              | if the patient suddenly wants to change their appointment date/ time, also change it accordingly                                                |
+| `* * *`  | medical administrator | mark a patient as scheduled                                                                              | prevent scheduling a patient twice                                                                                                              |
+| `*`      | medical administrator | also unmark a patient as unscheduled                                                                     | if the patient changes the date for the home visits, I will remember to schedule the patient again by unmarking it                              |
+| `* * *`  | medical administrator | mark a nurse as fully scheduled                                                                          | I will not match the nurse with the remaining patients since their home visit schedule is already full                                          |
+| `* *`    | medical administrator | also unmark a nurse as not-fully scheduled                                                               | if one of their patients suddenly reschedules the dates, unmark the nurse and match the nurse with the remaining patients till it is full again |
+| `*`      | medical administrator | manage recurring home visits                                                                             | I do not need to keep updating the date/time of the home visits                                                                                 |
+| `*`      | medical administrator | create a one-week schedule that contains the list of all the required patient details for a nurse        | save it and export/send it to the nurse                                                                                                         |
+| `* *`    | medical administrator | check whether there are time crashes in a nurse's schedule                                               | if a time crash is detected, reschedule it again                                                                                                |
+| `*`      | medical administrator | check whether there are duplicate patients                                                               | the duplication can be detected and removed even if I accidentally add a patient into the system more than once                                 |
+| `*`      | medical administrator | sort the list of patients by home visit date                                                             | I know which patient I need to schedule first                                                                                                   |
+| `* * *`  | medical administrator | find patients by keywords/name (such as diabetic patient, Kent Ridge etc)                                | search the patients by keyword and assign them to the nurses                                                                                    |
+| `*`      | medical administrator | create location tags to label the patients                                                               | group them by labels and assign the groups to the nurses                                                                                        |
+| `* *`    | medical administrator | give patients different priorities                                                                       | if a patient’s condition is more serious, I need to assign more nurses / more experienced nurses to the patient’s home visits                   |
+| `*`      | medical administrator | archive the patient records                                                                              | there is still a record of the patient after deletion                                                                                           |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Healthcare Xpress` and the **Actor** is the `medical administrator`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - List Patients / Nurses**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. Medical administrator requests to list patients,nurses or both with or without specifications.
+2. Healthcare Xpress shows a list of patients/nurses that satisfy the specifications.
+
+   Use case ends.
+
+**Extensions**
+* 1a. The given inputs/specifications are invalid.
+
+    * 1a1. Healthcare Xpress shows an error message.
+
+      Use case ends.
+
+* 1b. The given specifications are nurses and areas only.
+
+    * 1b1. Healthcare Xpress shows an error message.
+
+      Use case ends.
+
+* 1c. There are no patients/nurses that satisfy the specifications.
+
+    * 1c1. Healthcare Xpress shows a blank list.
+
+      Use case ends.
+
+* *a. At any time, medical administrator choose to exit the program.
+
+  Use case ends.
+
+**Use case: UC02 - Find a Specific Patient / Nurse**
+
+**MSS**
+
+1. Medical administrator requests to find a specific patient/nurse.
+2. Healthcare Xpress shows that specific patient/nurse.
+
+   Use case ends.
+
+**Extensions**
+* 1a. The given inputs are invalid.
+
+    * 1a1. Healthcare Xpress shows an error message.
+
+      Use case ends.
+
+* 1b. There is not only one patient/nurse that can match the find inputs.
+
+    * 1b1. Healthcare Xpress returns a list of patients/nurses that matched and the first one being the most matched.
+
+      Use case ends.
+
+* *a. At any time, medical administrator choose to exit the program.
+
+  Use case ends.
+
+**Use case: UC03 - Delete a Patient / Nurse**
+
+**MSS**
+
+1. Medical administrator requests to <ins>list patients / nurses (UC01)</ins> or <ins>find a specific patient / nurse (UC02)</ins>.
+2. Medical administrator requests to delete a patient/nurse.
+3. Healthcare Xpress deletes the patient/nurse.
+
+   Use case ends.
+
+**Extensions**
+* 2a. The given id number is invalid.
+
+    * 2a1. Healthcare Xpress shows an error message.
+
+      Use case resumes at step 1.
+
+* *a. At any time, medical administrator chooses to exit the program.
+
+  Use case ends.
+
+**Use case: UC04 - Mark a Patient**
+
+**MSS**
+
+1.  Medical administrator requests to <ins>list patients / nurses (UC01)</ins> or <ins>find a specific patient / nurse (UC02)</ins>.
+2.  Medical administrator requests to mark a specific patient.
+3.  Healthcare Xpress marks the patient as visited.
 
     Use case ends.
 
 **Extensions**
+* 1a. Only nurse/nurses are shown.
 
-* 2a. The list is empty.
+    * 1a1. Medical administrator requests to mark a nurse.
+
+    * 1a2. Healthcare Xpress shows an error message.
+
+      Use case ends.
+
+* 2a. The given id number is invalid.
+
+    * 2a1. Healthcare Xpress shows an error message.
+
+      Use case resumes at step 1.
+
+* 2b. The given id number is not a patient.
+
+    * 2b1. Healthcare Xpress shows an error message.
+
+      Use case resumes at step 1.
+
+* *a. At any time, medical administrator chooses to exit the program.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+**Use case: UC05 - Edit a Patient / Nurse**
 
-    * 3a1. AddressBook shows an error message.
+**MSS**
 
-      Use case resumes at step 2.
+1.  Medical administrator requests to <ins>list patients / nurses (UC01)</ins> or <ins>find a specific patient / nurse (UC02)</ins>.
+2.  Medical administrator requests to edit a patient / nurse and provides the details to be edited.
+3.  Healthcare Xpress edits the specific details of the patient / nurse.
 
-*{More to be added}*
+    Use case ends.
+
+**Extensions**
+* 2a. The given id number is invalid.
+
+    * 2a1. Healthcare Xpress shows an error message.
+
+      Use case resumes at step 1.
+
+* 2b. The given details to be edited is invalid / in wrong format.
+
+    * 2b1. Healthcare Xpress shows an error message.
+
+      Use case resumes at step 1.
+
+* *a. At any time, medical administrator chooses to exit the program.
+
+  Use case ends.
+
+**Use case: UC06 - Add Tag / Tags to a Patient / Nurse**
+
+**MSS**
+
+1.  Medical administrator requests to <ins>list patients / nurses (UC01)</ins> or <ins>find a specific patient / nurse (UC02)</ins>.
+2.  Medical administrator requests to add a tag / many tags to a patient / nurse and provides each tag's details.
+3.  Healthcare Xpress adds the tag / tags of specific details to the patient / nurse.
+
+    Use case ends.
+
+**Extensions**
+* 2a. The given id number is invalid.
+
+    * 2a1. Healthcare Xpress shows an error message.
+
+      Use case resumes at step 1.
+
+* 2b. The given details is invalid / in the wrong format.
+
+    * 2b1. Healthcare Xpress shows an error message.
+
+      Use case resumes at step 1.
+
+* *a. At any time, medical administrator chooses to exit the program.
+
+  Use case ends.
+
+**Use case: UC07 - Delete a Specific Tag / Many Tags from a Patient / Nurse**
+
+**MSS**
+
+1.  Medical administrator requests to <ins>list patients / nurses (UC01)</ins> or <ins>find a specific patient / nurse (UC02)</ins>.
+2.  Medical administrator requests to delete a specific tag / many tags from a patient / nurse.
+3.  Healthcare Xpress deletes the tag / tags from the patient / nurse.
+
+    Use case ends.
+
+**Extensions**
+* 2a. The given id number is invalid.
+
+    * 2a1. Healthcare Xpress shows an error message.
+
+      Use case resumes at step 1.
+
+* 2b. The given index of the tag / tags is out of bound.
+
+    * 2b2. Healthcare Xpress shows an error message.
+
+      Use case resumes at step 1.
+
+* *a. At any time, medical administrator chooses to exit the program.
+
+  Use case ends.
+
+**Use case: UC08 - Add a Home-Visit Date and Time to a Patient**
+
+**MSS**
+
+1.  Medical administrator requests to <ins>list patients / nurses (UC01)</ins> or <ins>find a specific patient / nurse (UC02)</ins>.
+2.  Medical administrator requests to add a date and time with or without recurring status to a patient.
+3.  Healthcare Xpress add the date and time for home-visits to the patient.
+
+    Use case ends.
+
+**Extensions**
+* 1a. Only nurse/nurses are shown.
+
+    * 1a1. Medical administrator request to add a date and time to the nurse.
+
+    * 1a2. Healthcare Xpress shows an error message.
+
+      Use case ends.
+
+* 2a. The given id number is invalid.
+
+    * 2a1. Healthcare Xpress shows an error message.
+
+      Use case resumes at step 1.
+
+* 2b. The given id number is not a patient.
+
+    * 2b1. Healthcare Xpress shows an error message.
+
+      Use case resumes at step 1.
+
+* 2c. The given date and time is invalid or in wrong format.
+
+    * 2c1. Healthcare Xpress shows an error message.
+
+      Use case resumes at step 1.
+
+* *a. At any time, medical administrator chooses to exit the program.
+
+  Use case ends.
+
+**Use case: UC09 - Delete a Home-Visit Date and Time from a Patient**
+
+**MSS**
+
+1.  Medical administrator requests to <ins>list patients / nurses (UC01)</ins> or <ins>find a specific patient / nurse (UC02)</ins>.
+2.  Medical administrator requests to delete date and time from a patient.
+3.  Healthcare Xpress deletes the date and time for home-visits from the patient.
+
+    Use case ends.
+
+**Extensions**
+* 1a. Only nurse/nurses are shown.
+
+    * 1a1. Medical administrator request to delete a date and time from the nurse.
+
+    * 1a2. Healthcare Xpress shows an error message.
+
+      Use case ends.
+
+* 2a. The given id number is invalid.
+
+    * 2a1. Healthcare Xpress shows an error message.
+
+      Use case resumes at step 1.
+
+* 2b. The given id number is not a patient.
+
+    * 2b1. Healthcare Xpress shows an error message.
+
+      Use case resumes at step 1.
+
+* *a. At any time, medical administrator chooses to exit the program.
+
+  Use case ends.
+
+**Use case: UC10 - Update a Home-Visit Date and Time for a Patient**
+
+**MSS**
+
+1.  Medical administrator requests to <ins>list patients / nurses (UC01)</ins> or <ins>find a specific patient / nurse (UC02)</ins>.
+2.  Medical administrator requests to update date and time from a patient.
+3.  Healthcare Xpress updates the date and time for home-visits from the patient.
+
+    Use case ends.
+
+**Extensions**
+* 1a. Only nurse/nurses are shown.
+
+    * 1a1. Medical administrator request to update a date and time from the nurse.
+
+    * 1a2. Healthcare Xpress shows an error message.
+
+      Use case ends.
+
+* 2a. The given id number is invalid.
+
+    * 2a1. Healthcare Xpress shows an error message.
+
+      Use case resumes at step 1.
+
+* 2b. The given id number is not a patient.
+
+    * 2b1. Healthcare Xpress shows an error message.
+
+      Use case resumes at step 1.
+
+* 2c. The new date and time given is invalid or in wrong format.
+
+    * 2c1. Healthcare Xpress shows an error message.
+
+      Use case resumes at step 1.
+
+* 2d. The patient has been assigned to a nurse and the new updated date and time crashes with that nurse existing schedule.
+
+    * 2d2. Healthcare Xpress shows an error message.
+
+      Use case ends. 
+
+* *a. At any time, medical administrator choose to exit the program.
+
+  Use case ends.
+
+**Use case: UC11 - Assign a patient to the nurse**
+
+**MSS**
+
+1.  Medical administrator requests to <ins>list patients / nurses (UC01)</ins> or <ins>find a specific patient / nurse (UC02)</ins>.
+2.  Medical administrator requests to assign a patient to a nurse.
+3.  Healthcare Xpress assigns the patient to the nurse.
+
+    Use case ends.
+
+**Extensions**
+* 2a. Any given id number is invalid.
+    
+    * 2a1. Healthcare Xpress shows an error message.                    
+
+      Use case resumes at step 1.
+
+* 2b. The given id numbers are both patients or nurses. 
+
+    * 2b1. Healthcare Xpress shows an error message.
+
+      Use case resumes at step 1.
+
+* 2c. The given id number's nurse has another home-visit at the same date and time.
+
+    * 2c1. Healthcare Xpress shows an error message.
+
+      Use case resumes at step 1.
+
+* *a. At any time, Medical administrator chooses to exit the program.
+
+  Use case ends.
+
+**Use case: UC12 - Remove a patient / all patients from a nurse**
+
+**MSS**
+
+1.  Medical administrator requests to <ins>list patients / nurses (UC01)</ins> or <ins>find a specific patient / nurse (UC02)</ins>.
+2.  Medical administrator requests to remove a patient or all patients from a nurse.
+3.  Healthcare Xpress removes the patient / all patients from the nurse.
+
+    Use case ends.
+
+**Extensions**
+* 2a. Any given id number is invalid.
+
+    * 2a1. Healthcare Xpress shows an error message.
+
+      Use case resumes at step 1.
+
+* 2b. One given id number is not a nurse.
+
+    * 2b1. Healthcare Xpress shows an error message.
+
+      Use case resumes at step 1. 
+
+* 2c. Two given id numbers is both patients or both nurses.
+
+    * 2c1. Healthcare Xpress shows an error message.
+
+      Use case resumes at step 1.
+
+* *a. At any time, medical administrator choose to exit the program.
+
+  Use case ends.
+
+**Use case: UC13 - Swap a patient's nurse**
+
+**MSS**
+
+1.  Medical administrator requests to <ins>list patients / nurses (UC01)</ins> or <ins>find a specific patient / nurse (UC02)</ins>.
+2.  Medical administrator requests to swap a patient's nurse. 
+3.  Healthcare Xpress swaps the patient's nurse to a new nurse. 
+
+    Use case ends.
+
+**Extensions**
+* 2a. Any given id number is invalid.
+
+    * 2a1. Healthcare Xpress shows an error message.
+
+      Use case resumes at step 1.
+
+* 2b. The three given id numbers do not belong to two nurses and one patient.
+
+    * 2b1. Healthcare Xpress shows an error message.
+
+      Use case resumes at step 1.
+
+* *a. At any time, medical administrator choose to exit the program.
+
+  Use case ends.
 
 ### Non-Functional Requirements
 
