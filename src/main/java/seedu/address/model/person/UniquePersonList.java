@@ -43,6 +43,11 @@ public class UniquePersonList implements Iterable<Person> {
         return internalList.stream().map(Person::getPhone).collect(Collectors.toList()).indexOf(toCheck);
     }
 
+    public int contains(Email toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().map(Person::getEmail).collect(Collectors.toList()).indexOf(toCheck);
+    }
+
     /**
      * Adds a person to the list.
      * The person must not already exist in the list.

@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+
 /**
  * Stores mapping of prefixes to their respective arguments.
  * Each key may be associated with multiple argument values.
@@ -17,7 +20,8 @@ public class ArgumentMultimap {
 
     /** Prefixes mapped to their respective arguments**/
     private final Map<Prefix, List<String>> argMultimap = new HashMap<>();
-
+    private boolean phoneIdentifier = false;
+    private boolean emailIdentifier = false;
     /**
      * Associates the specified argument value with {@code prefix} key in this map.
      * If the map previously contained a mapping for the key, the new value is appended to the list of existing values.
@@ -26,6 +30,11 @@ public class ArgumentMultimap {
      * @param argValue Argument value to be associated with the specified prefix key
      */
     public void put(Prefix prefix, String argValue) {
+        if (prefix.equals(PREFIX_PHONE) && !emailIdentifier) {
+            phoneIdentifier = true;
+        } else if (prefix.equals(PREFIX_EMAIL) && !phoneIdentifier) {
+            emailIdentifier = true;
+        }
         List<String> argValues = getAllValues(prefix);
         argValues.add(argValue);
         argMultimap.put(prefix, argValues);
@@ -56,5 +65,13 @@ public class ArgumentMultimap {
      */
     public String getPreamble() {
         return getValue(new Prefix("")).orElse("");
+    }
+
+    public boolean getPhoneIdentifier() {
+        return phoneIdentifier;
+    }
+
+    public boolean getEmailIdentifier() {
+        return emailIdentifier;
     }
 }

@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -52,8 +53,10 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
-    private final Phone phoneIdentifier;
     private final EditPersonDescriptor editPersonDescriptor;
+
+    private Phone phoneIdentifier = null;
+    private Email emailIdentifier = null;
     private Index index;
 
     /**
@@ -68,10 +71,20 @@ public class EditCommand extends Command {
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
     }
 
+    public EditCommand(Email emailIdentifier, EditPersonDescriptor editPersonDescriptor) {
+        requireNonNull(emailIdentifier);
+        requireNonNull(editPersonDescriptor);
+
+        this.emailIdentifier = emailIdentifier;
+        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException, ParseException {
         requireNonNull(model);
-        this.index = Index.fromZeroBased(model.hasPerson(phoneIdentifier));
+        this.index = !isNull(this.phoneIdentifier)
+                ? Index.fromZeroBased(model.hasPerson(phoneIdentifier))
+                : Index.fromZeroBased(model.hasPerson(emailIdentifier));
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {

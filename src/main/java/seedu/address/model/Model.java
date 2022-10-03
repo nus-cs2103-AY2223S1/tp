@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 
@@ -59,6 +60,8 @@ public interface Model {
     boolean hasPerson(Person person);
 
     int hasPerson(Phone phone);
+
+    int hasPerson(Email email);
 
     /**
      * Deletes the given person.

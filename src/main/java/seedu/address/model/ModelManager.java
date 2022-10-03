@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 
@@ -93,10 +94,17 @@ public class ModelManager implements Model {
         requireNonNull(person);
         return addressBook.hasPerson(person);
     }
+
     @Override
     public int hasPerson(Phone phone) {
         requireNonNull(phone);
         return addressBook.hasPerson(phone);
+    }
+
+    @Override
+    public int hasPerson(Email email) {
+        requireNonNull(email);
+        return addressBook.hasPerson(email);
     }
 
     @Override
