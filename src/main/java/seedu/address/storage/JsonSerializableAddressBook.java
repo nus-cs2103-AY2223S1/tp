@@ -12,6 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
+import seedu.address.model.internship.Internship;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -23,12 +24,19 @@ class JsonSerializableAddressBook {
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
 
+    public static final String MESSAGE_DUPLICATE_INTERNSHIP = "Internships list contains duplicate internship(s).";
+
+    private final List<JsonAdaptedInternship> internships = new ArrayList<>();
+
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+    public JsonSerializableAddressBook(
+            @JsonProperty("persons") List<JsonAdaptedPerson> persons,
+            @JsonProperty("internships") List<JsonAdaptedInternship> internships) {
         this.persons.addAll(persons);
+        this.internships.addAll(internships);
     }
 
     /**
@@ -38,6 +46,7 @@ class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        internships.addAll(source.getInternshipList().stream().map(JsonAdaptedInternship::new).collect(Collectors.toList()));
     }
 
     /**
@@ -47,6 +56,7 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
+
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
             if (addressBook.hasPerson(person)) {
@@ -54,6 +64,15 @@ class JsonSerializableAddressBook {
             }
             addressBook.addPerson(person);
         }
+
+        for (JsonAdaptedInternship jsonAdaptedInternship : internships) {
+            Internship internship = jsonAdaptedInternship.toModelType();
+            if (addressBook.hasInternship(internship)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_INTERNSHIP);
+            }
+            addressBook.addInternship(internship);
+        }
+
         return addressBook;
     }
 
