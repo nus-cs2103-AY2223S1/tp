@@ -58,14 +58,6 @@ public class Person {
         return listOfAppointments;
     }
 
-    public void addAppointment(Appointment appointment) {
-        listOfAppointments.add(appointment);
-    }
-
-    public boolean hasSameAppointment(Appointment appointment) {
-        return listOfAppointments.stream().anyMatch(x -> x.isSameTime(appointment));
-    }
-
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
