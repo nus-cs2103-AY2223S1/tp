@@ -62,7 +62,7 @@ public class JsonTaAssistStorageTest {
 
     @Test
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempAddressBook.json");
+        Path filePath = testFolder.resolve("TempTaAssist.json");
         TaAssist original = getTypicalAddressBook();
         JsonTaAssistStorage jsonAddressBookStorage = new JsonTaAssistStorage(filePath);
 

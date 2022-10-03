@@ -16,7 +16,7 @@ import seedu.taassist.model.student.Student;
 /**
  * An Immutable AddressBook that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
+@JsonRootName(value = "taassist")
 class JsonSerializableTaAssist {
 
     public static final String MESSAGE_DUPLICATE_STUDENT = "Students list contains duplicate student(s).";
