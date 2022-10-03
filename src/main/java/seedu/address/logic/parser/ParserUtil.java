@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -10,6 +11,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Appointment;
+import seedu.address.model.person.DateTime;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -93,6 +96,40 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String dateAndTime} into an {@code Appointment}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     */
+    public static Appointment parseAppointment(String dateAndTime) {
+        requireNonNull(dateAndTime);
+        String trimmedDateAndTime = dateAndTime.trim();
+        return new Appointment(parseDateTime(trimmedDateAndTime));
+    }
+
+    /**
+     * Parses {@code Collection<String> datesAndTimes} into a {@code Set<Appointment>}.
+     */
+    public static Set<Appointment> parseAppointments(Collection<String> datesAndTimes) throws ParseException {
+        requireNonNull(datesAndTimes);
+        final Set<Appointment> appointmentSet = new HashSet<>();
+        for (String dateAndTime : datesAndTimes) {
+            appointmentSet.add(parseAppointment(dateAndTime));
+        }
+        return appointmentSet;
+    }
+
+    /**
+     * Parses a {@code String dateAndTime} into an {@code DateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static DateTime parseDateTime(String dateAndTime) {
+        requireNonNull(dateAndTime);
+        String trimmedDateAndTime = dateAndTime.trim();
+        LocalDateTime localDateTime = DateTimeParser.getLocalDateTimeFromString(trimmedDateAndTime);
+        return new DateTime(localDateTime);
     }
 
     /**
