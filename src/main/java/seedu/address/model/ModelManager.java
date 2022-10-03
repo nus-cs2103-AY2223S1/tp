@@ -23,8 +23,8 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private ModuleClass focusedClass;
     private final FilteredList<Student> filteredStudents;
+    private ModuleClass focusedClass;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
