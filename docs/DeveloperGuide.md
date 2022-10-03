@@ -278,12 +278,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
 | `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
 | `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | user                                      | add a task                     | so that I can track the progress of the project the member is working on |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Arrow` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: UC01 - Add a task to a person**
+
+**MSS**
+
+1. User requests to add task to a person and provides task deadline.
+2. Arrow adds the task to the list of tasks of the person
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. There is no task name provided.
+
+    * 1a1. Arrow shows an error message.
+
+    Use case resumes at step 1.
 
 **Use case: Delete a person**
 
@@ -315,8 +333,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  Should be able to hold up to 500 tasks without a noticeable sluggishness in performance for typical usage.
-4. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-5. Any changes to the data should be saved permanently and automatically.
+4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+5.  Any changes to the data should be saved permanently and automatically.
 
 *{More to be added}*
 
