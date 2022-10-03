@@ -14,8 +14,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CustomiseCommand;
 import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
 import seedu.address.logic.commands.CustomiseCommand.Attribute;
+import seedu.address.model.UserPrefs;
 
 class CustomiseCommandParserTest {
 
@@ -31,7 +31,7 @@ class CustomiseCommandParserTest {
     }
 
     @Test
-    public void parse_IncompleteArgs_returnsSameCommand() {
+    public void parse_incompleteArgs_returnsSameCommand() {
         Attribute[] attributes = new Attribute[]{ADDRESS, TAGS, PHONE, EMAIL};
         ModelManager model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         model.setGuiSettings(new GuiSettings(1000, 500, 300, 100, "ADDRESS>TAGS>PHONE>EMAIL"));
