@@ -184,6 +184,11 @@ public class AddCustomerCommandTest {
         public void updateActiveCustomer() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean hasActiveCustomer() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

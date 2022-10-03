@@ -109,4 +109,5 @@ public interface Model {
 
     void updateActiveCustomer();
 
+    boolean hasActiveCustomer();
 }
