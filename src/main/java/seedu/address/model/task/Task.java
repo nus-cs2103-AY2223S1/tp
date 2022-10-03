@@ -9,9 +9,9 @@ import java.util.Objects;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Task {
-    private TaskName name;
-    private Module module;
-    private Deadline deadline;
+    private final TaskName name;
+    private final Module module;
+    private final Deadline deadline;
 
     public Task(TaskName name, Module module, Deadline deadline) {
         requireAllNonNull(name, module, deadline);
@@ -65,14 +65,8 @@ public class Task {
 
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder("Task: ");
-
-        builder.append(this.getName())
-                .append("; Module: ")
-                .append(this.getModule())
-                .append("; Deadline: ")
-                .append(this.getDeadline());
-
-        return builder.toString();
+        return "Task: " + this.getName()
+                + "; Module: " + this.getModule()
+                + "; Deadline: " + this.getDeadline();
     }
 }

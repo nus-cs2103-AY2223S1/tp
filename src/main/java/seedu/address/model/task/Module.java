@@ -16,14 +16,14 @@ public class Module {
      * The first character of the name must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\S]+";
+    public static final String VALIDATION_REGEX = "\\S+";
 
     public final String module;
 
     /**
      * Constructs a {@code Module}.
      *
-     * @param module A valid  code.
+     * @param module A valid module code.
      */
     public Module(String module) {
         requireNonNull(module);

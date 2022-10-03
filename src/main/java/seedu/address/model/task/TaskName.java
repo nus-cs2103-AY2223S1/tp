@@ -15,7 +15,7 @@ public class TaskName {
      * The first character of the name must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\S][\\S ]*";
+    public static final String VALIDATION_REGEX = "\\S[\\S ]*";
 
     public final String fullName;
 
