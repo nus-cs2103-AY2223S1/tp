@@ -6,9 +6,9 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.logging.Logger;
 
-import javafx.application.Application;
 import hobbylist.commons.core.LogsCenter;
 import hobbylist.commons.util.FileUtil;
+import javafx.application.Application;
 
 /**
  * Represents the parsed command-line parameters given to the application.

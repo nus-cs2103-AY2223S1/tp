@@ -1,7 +1,6 @@
 package hobbylist.model.tag;
 
 import static java.util.Objects.requireNonNull;
-import static hobbylist.commons.util.AppUtil.checkArgument;
 
 import hobbylist.commons.util.AppUtil;
 

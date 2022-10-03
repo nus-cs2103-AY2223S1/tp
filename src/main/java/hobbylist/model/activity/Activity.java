@@ -1,7 +1,5 @@
 package hobbylist.model.activity;
 
-import static hobbylist.commons.util.CollectionUtil.requireAllNonNull;
-
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;

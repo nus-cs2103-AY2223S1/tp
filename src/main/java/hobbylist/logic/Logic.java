@@ -2,14 +2,14 @@ package hobbylist.logic;
 
 import java.nio.file.Path;
 
-import hobbylist.model.Model;
-import hobbylist.model.activity.Activity;
-import javafx.collections.ObservableList;
 import hobbylist.commons.core.GuiSettings;
 import hobbylist.logic.commands.CommandResult;
 import hobbylist.logic.commands.exceptions.CommandException;
 import hobbylist.logic.parser.exceptions.ParseException;
+import hobbylist.model.Model;
 import hobbylist.model.ReadOnlyHobbyList;
+import hobbylist.model.activity.Activity;
+import javafx.collections.ObservableList;
 
 /**
  * API of the Logic component

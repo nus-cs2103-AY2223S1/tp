@@ -4,12 +4,12 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import hobbylist.model.activity.Activity;
-import hobbylist.model.activity.Description;
-import hobbylist.model.activity.Name;
 import hobbylist.model.HobbyList;
 import hobbylist.model.ReadOnlyHobbyList;
+import hobbylist.model.activity.Activity;
+import hobbylist.model.activity.Description;
 import hobbylist.model.activity.Email;
+import hobbylist.model.activity.Name;
 import hobbylist.model.activity.Phone;
 import hobbylist.model.tag.Tag;
 

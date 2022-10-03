@@ -4,18 +4,18 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
-import hobbylist.logic.parser.AddressBookParser;
-import hobbylist.model.activity.Activity;
-import javafx.collections.ObservableList;
 import hobbylist.commons.core.GuiSettings;
 import hobbylist.commons.core.LogsCenter;
 import hobbylist.logic.commands.Command;
 import hobbylist.logic.commands.CommandResult;
 import hobbylist.logic.commands.exceptions.CommandException;
+import hobbylist.logic.parser.HobbyListParser;
 import hobbylist.logic.parser.exceptions.ParseException;
 import hobbylist.model.Model;
 import hobbylist.model.ReadOnlyHobbyList;
+import hobbylist.model.activity.Activity;
 import hobbylist.storage.Storage;
+import javafx.collections.ObservableList;
 
 /**
  * The main LogicManager of the app.
@@ -26,7 +26,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final HobbyListParser hobbyListParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,7 +34,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        hobbyListParser = new HobbyListParser();
     }
 
     @Override
@@ -42,7 +42,7 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = hobbyListParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {

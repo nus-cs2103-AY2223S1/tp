@@ -2,15 +2,15 @@ package hobbylist.ui;
 
 import java.util.logging.Logger;
 
+import hobbylist.MainApp;
+import hobbylist.commons.core.LogsCenter;
+import hobbylist.commons.util.StringUtil;
 import hobbylist.logic.Logic;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import hobbylist.MainApp;
-import hobbylist.commons.core.LogsCenter;
-import hobbylist.commons.util.StringUtil;
 
 /**
  * The manager of the UI component.

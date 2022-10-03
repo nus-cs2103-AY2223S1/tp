@@ -1,7 +1,6 @@
 package hobbylist.model;
 
 import static java.util.Objects.requireNonNull;
-import static hobbylist.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;

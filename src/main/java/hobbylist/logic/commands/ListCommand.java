@@ -1,7 +1,7 @@
 package hobbylist.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static hobbylist.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static java.util.Objects.requireNonNull;
 
 import hobbylist.model.Model;
 

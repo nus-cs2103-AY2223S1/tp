@@ -32,7 +32,7 @@ import hobbylist.model.activity.NameContainsKeywordsPredicate;
 
 public class DescriptionBookParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final HobbyListParser parser = new HobbyListParser();
 
     @Test
     public void parseCommand_add() throws Exception {

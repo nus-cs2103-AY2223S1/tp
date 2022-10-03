@@ -1,14 +1,13 @@
 package hobbylist.model.activity;
 
 import static java.util.Objects.requireNonNull;
-import static hobbylist.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 
 import hobbylist.commons.util.CollectionUtil;
-import hobbylist.model.activity.exceptions.DuplicateActivityException;
 import hobbylist.model.activity.exceptions.ActivityNotFoundException;
+import hobbylist.model.activity.exceptions.DuplicateActivityException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -23,7 +22,7 @@ import javafx.collections.ObservableList;
  *
  * @see Activity#isSamePerson(Activity)
  */
-public class UniquePersonList implements Iterable<Activity> {
+public class UniqueActivityList implements Iterable<Activity> {
 
     private final ObservableList<Activity> internalList = FXCollections.observableArrayList();
     private final ObservableList<Activity> internalUnmodifiableList =
@@ -80,7 +79,7 @@ public class UniquePersonList implements Iterable<Activity> {
         }
     }
 
-    public void setPersons(UniquePersonList replacement) {
+    public void setPersons(UniqueActivityList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -113,8 +112,8 @@ public class UniquePersonList implements Iterable<Activity> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniquePersonList // instanceof handles nulls
-                        && internalList.equals(((UniquePersonList) other).internalList));
+                || (other instanceof UniqueActivityList // instanceof handles nulls
+                        && internalList.equals(((UniqueActivityList) other).internalList));
     }
 
     @Override

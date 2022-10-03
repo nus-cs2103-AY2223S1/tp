@@ -2,13 +2,13 @@ package hobbylist.ui;
 
 import java.util.logging.Logger;
 
+import hobbylist.commons.core.LogsCenter;
 import hobbylist.model.activity.Activity;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-import hobbylist.commons.core.LogsCenter;
 
 /**
  * Panel containing the list of activities.

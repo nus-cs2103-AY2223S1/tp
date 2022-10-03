@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import hobbylist.model.activity.Activity;
-import hobbylist.model.activity.UniquePersonList;
+import hobbylist.model.activity.UniqueActivityList;
 import javafx.collections.ObservableList;
 
 /**
@@ -14,7 +14,7 @@ import javafx.collections.ObservableList;
  */
 public class HobbyList implements ReadOnlyHobbyList {
 
-    private final UniquePersonList persons;
+    private final UniqueActivityList persons;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,7 +24,7 @@ public class HobbyList implements ReadOnlyHobbyList {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
+        persons = new UniqueActivityList();
     }
 
     public HobbyList() {}

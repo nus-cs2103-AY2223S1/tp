@@ -1,13 +1,13 @@
 package hobbylist.ui;
 
 import hobbylist.logic.Logic;
+import hobbylist.logic.commands.CommandResult;
+import hobbylist.logic.commands.exceptions.CommandException;
+import hobbylist.logic.parser.exceptions.ParseException;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
-import hobbylist.logic.commands.CommandResult;
-import hobbylist.logic.commands.exceptions.CommandException;
-import hobbylist.logic.parser.exceptions.ParseException;
 
 /**
  * The UI component that is responsible for receiving user command inputs.

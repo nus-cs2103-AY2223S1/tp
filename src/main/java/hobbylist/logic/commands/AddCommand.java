@@ -2,10 +2,10 @@ package hobbylist.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import hobbylist.logic.parser.CliSyntax;
-import hobbylist.model.activity.Activity;
 import hobbylist.logic.commands.exceptions.CommandException;
+import hobbylist.logic.parser.CliSyntax;
 import hobbylist.model.Model;
+import hobbylist.model.activity.Activity;
 
 /**
  * Adds a person to the address book.

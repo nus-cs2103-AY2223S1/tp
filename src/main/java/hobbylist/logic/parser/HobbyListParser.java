@@ -20,7 +20,7 @@ import hobbylist.logic.parser.exceptions.ParseException;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class HobbyListParser {
 
     /**
      * Used for initial separation of command word and args.

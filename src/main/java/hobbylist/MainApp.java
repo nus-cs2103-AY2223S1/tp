@@ -5,19 +5,15 @@ import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
 
-import hobbylist.logic.Logic;
-import hobbylist.logic.LogicManager;
-import hobbylist.model.HobbyList;
-import hobbylist.ui.Ui;
-import hobbylist.ui.UiManager;
-import javafx.application.Application;
-import javafx.stage.Stage;
 import hobbylist.commons.core.Config;
 import hobbylist.commons.core.LogsCenter;
 import hobbylist.commons.core.Version;
 import hobbylist.commons.exceptions.DataConversionException;
 import hobbylist.commons.util.ConfigUtil;
 import hobbylist.commons.util.StringUtil;
+import hobbylist.logic.Logic;
+import hobbylist.logic.LogicManager;
+import hobbylist.model.HobbyList;
 import hobbylist.model.Model;
 import hobbylist.model.ModelManager;
 import hobbylist.model.ReadOnlyHobbyList;
@@ -30,6 +26,10 @@ import hobbylist.storage.JsonUserPrefsStorage;
 import hobbylist.storage.Storage;
 import hobbylist.storage.StorageManager;
 import hobbylist.storage.UserPrefsStorage;
+import hobbylist.ui.Ui;
+import hobbylist.ui.UiManager;
+import javafx.application.Application;
+import javafx.stage.Stage;
 
 /**
  * Runs the application.

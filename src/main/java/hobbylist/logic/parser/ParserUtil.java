@@ -8,12 +8,12 @@ import java.util.Set;
 
 import hobbylist.commons.core.index.Index;
 import hobbylist.commons.util.StringUtil;
+import hobbylist.logic.parser.exceptions.ParseException;
 import hobbylist.model.activity.Description;
 import hobbylist.model.activity.Email;
 import hobbylist.model.activity.Name;
 import hobbylist.model.activity.Phone;
 import hobbylist.model.tag.Tag;
-import hobbylist.logic.parser.exceptions.ParseException;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
