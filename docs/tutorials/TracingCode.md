@@ -60,7 +60,7 @@ public interface Logic {
      * @throws ParseException If an error occurs during parsing.
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
-...
+        ...
 }
 ```
 
@@ -120,7 +120,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 
         CommandResult commandResult;
         //Parse user input from String to a Command
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = addressBookParser.parse(commandText);
         //Executes the Command and stores the result
         commandResult = command.execute(model);
 
@@ -141,9 +141,9 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 1. _Step over_ the logging code since it is of no interest to us now.
    ![StepOver](../images/tracing/StepOver.png)
 
-1. _Step into_ the line where user input in parsed from a String to a Command, which should bring you to the `AddressBookParser#parseCommand()` method (partial code given below):
+1. _Step into_ the line where user input in parsed from a String to a Command, which should bring you to the `AddressBookParser#parse()` method (partial code given below):
    ``` java
-   public Command parseCommand(String userInput) throws ParseException {
+   public Command parse(String userInput) throws ParseException {
        ...
        final String commandWord = matcher.group("commandWord");
        final String arguments = matcher.group("arguments");
