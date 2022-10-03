@@ -26,6 +26,8 @@ public class ModelManager implements Model {
     private final FilteredList<Customer> filteredCustomers;
     private final FilteredList<Commission> filteredCommissions;
 
+    private Customer activeCustomer;
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -42,8 +44,8 @@ public class ModelManager implements Model {
         // Temporarily set active customer to the first customer.
         // TODO: Should be fixed by implementer of the opencus command.
         if (this.addressBook.getCustomerList().size() > 0) {
-            this.addressBook.setActiveCustomer(this.addressBook.getCustomerList().get(0));
-            filteredCommissions = new FilteredList<>(this.addressBook.getCommissionList());
+            setActiveCustomer(this.addressBook.getCustomerList().get(0));
+            filteredCommissions = new FilteredList<>(getCommissionList());
         } else {
             // TODO: figure out how to fix filteredCommissions
             filteredCommissions = new FilteredList<>(new UniqueCommissionList().asUnmodifiableObservableList());
@@ -130,26 +132,25 @@ public class ModelManager implements Model {
      */
     @Override
     public void updateActiveCustomer() {
-        Customer activeCustomer = addressBook.getActiveCustomer();
         Customer activeCustomerClone = activeCustomer.getClone();
         setCustomer(activeCustomer, activeCustomerClone);
-        addressBook.setActiveCustomer(activeCustomerClone);
+        setActiveCustomer(activeCustomerClone);
     }
 
     @Override
     public boolean hasCommission(Commission commission) {
         requireNonNull(commission);
-        return addressBook.hasCommission(commission);
+        return addressBook.hasCommission(activeCustomer, commission);
     }
 
     @Override
     public void deleteCommission(Commission target) {
-        addressBook.removeCommission(target);
+        addressBook.removeCommission(activeCustomer, target);
     }
 
     @Override
     public void addCommission(Commission commission) {
-        addressBook.addCommission(commission);
+        addressBook.addCommission(activeCustomer, commission);
         updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
     }
 
@@ -157,7 +158,7 @@ public class ModelManager implements Model {
     public void setCommission(Commission target, Commission editedCommission) {
         requireAllNonNull(target, editedCommission);
 
-        addressBook.setCommission(target, editedCommission);
+        addressBook.setCommission(activeCustomer, target, editedCommission);
     }
 
     //=========== Filtered Customer List Accessors =============================================================
@@ -192,6 +193,21 @@ public class ModelManager implements Model {
     public void updateFilteredCommissionList(Predicate<Commission> predicate) {
         requireNonNull(predicate);
         filteredCommissions.setPredicate(predicate);
+    }
+
+    //=========== Active Customer =============================================================
+
+    public void setActiveCustomer(Customer customer) {
+        requireNonNull(customer);
+        activeCustomer = customer;
+    }
+
+    public Customer getActiveCustomer() {
+        return activeCustomer;
+    }
+
+    public ObservableList<Commission> getCommissionList() {
+        return addressBook.getUniqueCommissionList(activeCustomer).asUnmodifiableObservableList();
     }
 
     @Override

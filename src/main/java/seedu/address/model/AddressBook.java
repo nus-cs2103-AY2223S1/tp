@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
@@ -18,7 +19,6 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniqueCustomerList customers;
 
-    private Customer activeCustomer;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -102,39 +102,41 @@ public class AddressBook implements ReadOnlyAddressBook {
     // commission-level operations
 
     /**
-     * Returns true if a commission with the same identity as {@code commission} exists in the address book.
+     * Returns true if a commission with the same identity as {@code commission} exists in the customer's
+     * commission list.
      */
-    public boolean hasCommission(Commission commission) {
-        requireNonNull(commission);
-        return getUniqueCommissionList().contains(commission);
+    public boolean hasCommission(Customer customer, Commission commission) {
+        requireAllNonNull(customer, commission);
+        return getUniqueCommissionList(customer).contains(commission);
     }
 
     /**
      * Adds a commission to the address book.
-     * The commission must not already exist in the address book.
+     * The commission must not already exist in the customer's commission list.
      */
-    public void addCommission(Commission commission) {
-        getUniqueCommissionList().add(commission);
+    public void addCommission(Customer customer, Commission commission) {
+        requireAllNonNull(customer, commission);
+        getUniqueCommissionList(customer).add(commission);
     }
 
     /**
      * Replaces the given person {@code target} in the list with {@code editedCommission}.
      * {@code target} must exist in the address book.
-     * The commission identity of {@code editedPerson} must not be the same as another existing commission in the
-     * address book.
+     * The commission identity of {@code editedCommission} must not be the same as another existing commission in the
+     * customer's commission list.
      */
-    public void setCommission(Commission target, Commission editedCommission) {
+    public void setCommission(Customer customer, Commission target, Commission editedCommission) {
         requireNonNull(editedCommission);
 
-        getUniqueCommissionList().setCommission(target, editedCommission);
+        getUniqueCommissionList(customer).setCommission(target, editedCommission);
     }
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in the customer's commission list.
      */
-    public void removeCommission(Commission key) {
-        getUniqueCommissionList().remove(key);
+    public void removeCommission(Customer customer, Commission key) {
+        getUniqueCommissionList(customer).remove(key);
     }
 
     //// util methods
@@ -150,22 +152,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         return customers.asUnmodifiableObservableList();
     }
 
-    public UniqueCommissionList getUniqueCommissionList() {
-        return activeCustomer.getCommissions();
-    }
-
-    @Override
-    public ObservableList<Commission> getCommissionList() {
-        return getUniqueCommissionList().asUnmodifiableObservableList();
-    }
-
-    public void setActiveCustomer(Customer customer) {
-        requireNonNull(customer);
-        activeCustomer = customer;
-    }
-
-    public Customer getActiveCustomer() {
-        return activeCustomer;
+    public UniqueCommissionList getUniqueCommissionList(Customer customer) {
+        return customer.getCommissions();
     }
 
     @Override
