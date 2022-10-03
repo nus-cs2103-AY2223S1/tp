@@ -30,6 +30,15 @@ uNivUSal
 * Role: Developer
 * Responsibilities: UI
 
+### Nicholas Patrick
+
+<img src="images/nicholaspatrick.png" width="200px">
+
+[[github](http://github.com/NicholasPatrick)] [[portfolio](team/nicholaspatrick.md)]
+
+* Role: Developer
+* Responsibilities: Data
+
 ### Jun Sheng
 
 <img src="images/jsincorporated.png" width="200px">
