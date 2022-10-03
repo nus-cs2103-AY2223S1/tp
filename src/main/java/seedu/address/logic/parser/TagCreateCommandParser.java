@@ -18,8 +18,7 @@ public class TagCreateCommandParser implements Parser<TagCreateCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public TagCreateCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TAG);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_TAG)
                 || !argMultimap.getPreamble().isEmpty()) {

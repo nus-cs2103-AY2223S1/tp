@@ -39,6 +39,8 @@ public class TagCommandParser {
         case TagEditCommand.COMMAND_WORD:
             return new TagEditCommandParser().parse(arguments);
 
+        case TagAddCommand.COMMAND_WORD:
+            return new TagAddCommandParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
