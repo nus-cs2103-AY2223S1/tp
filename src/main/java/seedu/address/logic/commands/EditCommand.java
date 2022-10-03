@@ -85,7 +85,8 @@ public class EditCommand extends Command {
         if (updatedAddress.isEmpty()) {
             return new Customer(updatedName, updatedPhone, updatedEmail, updatedTags, oldCommissions);
         } else {
-            return new Customer(updatedName, updatedPhone, updatedEmail, updatedAddress.get(), updatedTags, oldCommissions);
+            return new Customer(updatedName, updatedPhone, updatedEmail, updatedAddress.get(), updatedTags,
+                    oldCommissions);
         }
     }
 

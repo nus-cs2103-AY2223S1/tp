@@ -73,6 +73,9 @@ public class Customer {
         this.tags.addAll(tags);
     }
 
+    /**
+     * Initialises Customer with a list of commissions.
+     */
     public Customer(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
                   UniqueCommissionList commissions) {
         this(name, phone, email, address, tags);

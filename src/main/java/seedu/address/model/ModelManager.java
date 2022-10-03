@@ -124,7 +124,7 @@ public class ModelManager implements Model {
 
         addressBook.setCustomer(target, editedCustomer);
     }
-    
+
     /**
      * Clones active person - useful to force GUI update
      */
@@ -159,7 +159,7 @@ public class ModelManager implements Model {
 
         addressBook.setCommission(target, editedCommission);
     }
-    
+
     //=========== Filtered Customer List Accessors =============================================================
 
     /**
