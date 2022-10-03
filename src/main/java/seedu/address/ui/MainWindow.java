@@ -35,6 +35,10 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
+    private CustomerDetailsPane customerDetailsPane;
+    @FXML
+    private StackPane customerDetailsPanePlaceholder;
+
     @FXML
     private StackPane commandBoxPlaceholder;
 
@@ -121,6 +125,9 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        customerDetailsPane = new CustomerDetailsPane(logic.getSelectedCustomer());
+        customerDetailsPanePlaceholder.getChildren().add(customerDetailsPane.getRoot());
     }
 
     /**

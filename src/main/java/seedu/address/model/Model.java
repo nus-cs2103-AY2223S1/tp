@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.ObservableObject;
 import seedu.address.model.customer.Customer;
 
 /**
@@ -81,6 +82,9 @@ public interface Model {
      */
     void setCustomer(Customer target, Customer editedCustomer);
 
+    /** Specifies the given customer as the selected customer. */
+    void selectCustomer(Customer customer);
+
     /**
      * Returns an unmodifiable view of the filtered customer list
      */
@@ -92,4 +96,9 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredCustomerList(Predicate<Customer> predicate);
+
+    /**
+     * Returns the currently selected customer or null if no customer is currently selected.
+     */
+    ObservableObject<Customer> getSelectedCustomer();
 }
