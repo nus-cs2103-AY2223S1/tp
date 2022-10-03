@@ -15,7 +15,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-    private final Calorie calorieTarget;
+    private Calorie calorieTarget;
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -25,7 +25,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
-        calorieTarget = new Calorie(2000);
     }
 
     public AddressBook() {}
@@ -53,7 +52,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-
+        setCalorieTarget(newData.getCalorieTarget());
         setPersons(newData.getPersonList());
     }
 
@@ -94,6 +93,19 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    public void setCalorieTarget(Calorie calorie) {
+        requireNonNull(calorie);
+        this.calorieTarget = calorie;
+    }
+
+    /**
+     * @return Calorie
+     */
+    @Override
+    public Calorie getCalorieTarget() {
+        return this.calorieTarget;
+    }
+
     //// util methods
 
     @Override
@@ -107,10 +119,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
-    @Override
-    public Calorie getCalorieGoal() {
-        return this.calorieTarget;
-    }
 
     @Override
     public boolean equals(Object other) {

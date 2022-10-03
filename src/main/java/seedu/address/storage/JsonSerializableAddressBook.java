@@ -27,10 +27,11 @@ class JsonSerializableAddressBook {
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
+    // This constructor is for unit tests
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
         this.persons.addAll(persons);
-        this.calorieTarget = new Calorie(-20);
+        this.calorieTarget = new Calorie();
     }
 
     /**
@@ -40,7 +41,7 @@ class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
-        calorieTarget = source.getCalorieGoal();
+        calorieTarget = source.getCalorieTarget();
     }
 
     /**
@@ -57,6 +58,7 @@ class JsonSerializableAddressBook {
             }
             addressBook.addPerson(person);
         }
+        addressBook.setCalorieTarget(this.calorieTarget);
         return addressBook;
     }
 

@@ -99,7 +99,7 @@ public class AddressBookTest {
         }
 
         @Override
-        public Calorie getCalorieGoal() {
+        public Calorie getCalorieTarget() {
             return calorieGoal;
         }
     }

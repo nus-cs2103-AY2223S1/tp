@@ -14,5 +14,5 @@ public interface ReadOnlyAddressBook {
      */
     ObservableList<Person> getPersonList();
 
-    Calorie getCalorieGoal();
+    Calorie getCalorieTarget();
 }

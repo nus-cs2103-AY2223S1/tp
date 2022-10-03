@@ -53,6 +53,16 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
+     * @param calorieTarget Sets the user's calorie target
+     */
+    void setCalorieTarget(Calorie calorieTarget);
+
+    /**
+     * @return Calorie User's calorie target
+     */
+    Calorie getCalorieTarget();
+
+    /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     boolean hasPerson(Person person);
@@ -84,4 +94,5 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
 }

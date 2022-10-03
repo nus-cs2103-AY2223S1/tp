@@ -22,6 +22,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final Calorie calorieTarget;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -30,7 +31,7 @@ public class ModelManager implements Model {
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
-
+        this.calorieTarget = addressBook.getCalorieTarget();
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
@@ -85,6 +86,23 @@ public class ModelManager implements Model {
     @Override
     public ReadOnlyAddressBook getAddressBook() {
         return addressBook;
+    }
+
+    /**
+     * @param calorieTarget Sets the user's calorie target
+     */
+    @Override
+    public void setCalorieTarget(Calorie calorieTarget) {
+        requireNonNull(calorieTarget);
+        addressBook.setCalorieTarget(calorieTarget);
+    }
+
+    /**
+     * @return Calorie User's calorie target
+     */
+    @Override
+    public Calorie getCalorieTarget() {
+        return this.addressBook.getCalorieTarget();
     }
 
     @Override
