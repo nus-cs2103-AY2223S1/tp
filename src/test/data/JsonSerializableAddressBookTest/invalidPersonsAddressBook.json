@@ -1,5 +1,5 @@
 {
-  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
+  "_comment": "Contains an invalid person with invalid name",
   "persons" : [ {
     "type" : "s",
     "name" : "Alice Pauline",
@@ -10,7 +10,7 @@
     "moduleCode" : ""
   }, {
     "type" : "s",
-    "name" : "Benson Meier",
+    "name" : "Benson M@eier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "gender" : "Male",
