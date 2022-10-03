@@ -139,7 +139,7 @@ Format: `list [s/FIELD]`
 * Persons with an empty field that is being used to sort will be placed at the top of the list.
 
 Examples:
-* `list` Lists all persons without sorting them.
+* `list` Lists all persons in the order they were inserted.
 * `list s/n` Lists all persons sorted by their names.
 
 ### Editing a contact : `edit`
@@ -298,7 +298,7 @@ _Details coming soon ..._
 | **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                    |
 | **Edit**        | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [d/DOB] [t/TAG]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                  |
 | **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                             |
-| **List**        | `list`                                                                                                                                                                                 |
+| **List**        | `list  [s/FIELD]` <br> e.g., `list s/n`                                                                                                                                                |
 | **AddEvent**    | `addEvent n/EVENT_TITLE d/DATE t/TIME p/PURPOSE`<br> e.g.,`addEvent n/Shoe Sale 30% d/30-05-2022 t/11:00 p/Discount on all shoes for up to 30%`                                        |
 | **DeleteEvent** | `deleteEvent INDEX`<br> e.g., `deleteEvent 2`                                                                                                                                          |
 | **ListEvents**  | `listEvents`                                                                                                                                                                           |
