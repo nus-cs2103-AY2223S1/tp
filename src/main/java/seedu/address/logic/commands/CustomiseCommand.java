@@ -5,6 +5,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.Arrays;
+
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -90,5 +92,13 @@ public class CustomiseCommand extends Command {
         sb.append(attributes[attributes.length - 1]);
 
         return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || (other instanceof CustomiseCommand
+                && subCommand.equals(((CustomiseCommand) other).subCommand))
+                && Arrays.equals(arguments, ((CustomiseCommand) other).arguments);
     }
 }

@@ -25,7 +25,7 @@ public class GuiSettings implements Serializable {
         windowWidth = DEFAULT_WIDTH;
         windowHeight = DEFAULT_HEIGHT;
         windowCoordinates = null; // null represent no coordinates
-        attributeOrder = "3012";
+        attributeOrder = "ADDRESS>TAGS>PHONE>EMAIL";
     }
 
     /**
