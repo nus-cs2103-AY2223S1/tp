@@ -4,7 +4,7 @@ import seedu.taassist.model.TaAssist;
 import seedu.taassist.model.student.Student;
 
 /**
- * A utility class to help with building Addressbook objects.
+ * A utility class to help with building TaAssist objects.
  * Example usage: <br>
  *     {@code TaAssist ab = new TaAssistBuilder().withStudent("John", "Doe").build();}
  */

@@ -4,7 +4,7 @@ import javafx.collections.ObservableList;
 import seedu.taassist.model.student.Student;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of an TaAssist
  */
 public interface ReadOnlyTaAssist {
 

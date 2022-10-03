@@ -59,7 +59,7 @@ public class TaAssist implements ReadOnlyTaAssist {
     //// student-level operations
 
     /**
-     * Returns true if a student with the same identity as {@code student} exists in the address book.
+     * Returns true if a student with the same identity as {@code student} exists in TA-Assist.
      */
     public boolean hasStudent(Student student) {
         requireNonNull(student);
@@ -67,8 +67,8 @@ public class TaAssist implements ReadOnlyTaAssist {
     }
 
     /**
-     * Adds a student to the address book.
-     * The student must not already exist in the address book.
+     * Adds a student to TA-Assist.
+     * The student must not already exist in TA-Assist.
      */
     public void addStudent(Student p) {
         students.add(p);
@@ -76,7 +76,7 @@ public class TaAssist implements ReadOnlyTaAssist {
 
     /**
      * Replaces the given student {@code target} in the list with {@code editedStudent}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in TA-Assist.
      * The student identity of {@code editedStudent} must not be the same as another existing student in the address
      * book.
      */
@@ -88,7 +88,7 @@ public class TaAssist implements ReadOnlyTaAssist {
 
     /**
      * Removes {@code key} from this {@code TaAssist}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in TA-Assist.
      */
     public void removeStudent(Student key) {
         students.remove(key);

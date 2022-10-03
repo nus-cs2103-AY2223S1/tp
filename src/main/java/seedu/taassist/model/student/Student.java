@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.taassist.model.moduleclass.ModuleClass;
 
 /**
- * Represents a Student in the address book.
+ * Represents a Student in TA-Assist.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Student {

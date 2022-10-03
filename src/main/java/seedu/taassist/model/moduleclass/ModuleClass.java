@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Tag in the address book.
+ * Represents a Tag in TA-Assist.
  * Guarantees: immutable; name is valid as declared in {@link #isValidModuleClassName(String)}
  */
 public class ModuleClass {

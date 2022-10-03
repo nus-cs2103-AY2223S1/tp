@@ -14,7 +14,7 @@ import seedu.taassist.commons.core.LogsCenter;
 import seedu.taassist.model.student.Student;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of TA-Assist data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -29,7 +29,7 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlyTaAssist taAssist, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(taAssist, userPrefs);
 
-        logger.fine("Initializing with address book: " + taAssist + " and user prefs " + userPrefs);
+        logger.fine("Initializing with TaAssist: " + taAssist + " and user prefs " + userPrefs);
 
         this.taAssist = new TaAssist(taAssist);
         this.userPrefs = new UserPrefs(userPrefs);

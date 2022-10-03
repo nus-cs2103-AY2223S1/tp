@@ -6,12 +6,12 @@ import seedu.taassist.model.Model;
 import seedu.taassist.model.TaAssist;
 
 /**
- * Clears the address book.
+ * Clears TA-Assist.
  */
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
+    public static final String MESSAGE_SUCCESS = "TA-Assist has been cleared!";
 
 
     @Override
