@@ -1,5 +1,5 @@
 {
-  "_comment": "AddressBook save file which contains the same Student values as in TypicalStudents#getTypicalAddressBook()",
+  "_comment": "TaAssist save file which contains the same Student values as in TypicalStudents#getTypicalTaAssist()",
   "students" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",

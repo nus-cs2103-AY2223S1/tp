@@ -8,7 +8,7 @@ import static seedu.taassist.logic.commands.CommandTestUtil.assertCommandSuccess
 import static seedu.taassist.testutil.TypicalStudents.CARL;
 import static seedu.taassist.testutil.TypicalStudents.ELLE;
 import static seedu.taassist.testutil.TypicalStudents.FIONA;
-import static seedu.taassist.testutil.TypicalStudents.getTypicalAddressBook;
+import static seedu.taassist.testutil.TypicalStudents.getTypicalTaAssist;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -24,8 +24,8 @@ import seedu.taassist.model.student.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalTaAssist(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalTaAssist(), new UserPrefs());
 
     @Test
     public void equals() {

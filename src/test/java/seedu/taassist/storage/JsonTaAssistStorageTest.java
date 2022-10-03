@@ -6,7 +6,7 @@ import static seedu.taassist.testutil.Assert.assertThrows;
 import static seedu.taassist.testutil.TypicalStudents.ALICE;
 import static seedu.taassist.testutil.TypicalStudents.HOON;
 import static seedu.taassist.testutil.TypicalStudents.IDA;
-import static seedu.taassist.testutil.TypicalStudents.getTypicalAddressBook;
+import static seedu.taassist.testutil.TypicalStudents.getTypicalTaAssist;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -26,12 +26,12 @@ public class JsonTaAssistStorageTest {
     public Path testFolder;
 
     @Test
-    public void readAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> readAddressBook(null));
+    public void readTaAssist_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> readTaAssist(null));
     }
 
-    private java.util.Optional<ReadOnlyTaAssist> readAddressBook(String filePath) throws Exception {
-        return new JsonTaAssistStorage(Paths.get(filePath)).readAddressBook(addToTestDataPathIfNotNull(filePath));
+    private java.util.Optional<ReadOnlyTaAssist> readTaAssist(String filePath) throws Exception {
+        return new JsonTaAssistStorage(Paths.get(filePath)).readTaAssist(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -42,69 +42,69 @@ public class JsonTaAssistStorageTest {
 
     @Test
     public void read_missingFile_emptyResult() throws Exception {
-        assertFalse(readAddressBook("NonExistentFile.json").isPresent());
+        assertFalse(readTaAssist("NonExistentFile.json").isPresent());
     }
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("notJsonFormatTaAssist.json"));
+        assertThrows(DataConversionException.class, () -> readTaAssist("notJsonFormatTaAssist.json"));
     }
 
     @Test
-    public void readAddressBook_invalidStudentAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidStudentTaAssist.json"));
+    public void readTaAssist_invalidStudentTaAssist_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readTaAssist("invalidStudentTaAssist.json"));
     }
 
     @Test
-    public void readAddressBook_invalidAndValidStudentAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidStudentTaAssist.json"));
+    public void readTaAssist_invalidAndValidStudentTaAssist_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readTaAssist("invalidAndValidStudentTaAssist.json"));
     }
 
     @Test
-    public void readAndSaveAddressBook_allInOrder_success() throws Exception {
+    public void readAndSaveTaAssist_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempTaAssist.json");
-        TaAssist original = getTypicalAddressBook();
-        JsonTaAssistStorage jsonAddressBookStorage = new JsonTaAssistStorage(filePath);
+        TaAssist original = getTypicalTaAssist();
+        JsonTaAssistStorage jsonTaAssistStorage = new JsonTaAssistStorage(filePath);
 
         // Save in new file and read back
-        jsonAddressBookStorage.saveAddressBook(original, filePath);
-        ReadOnlyTaAssist readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
+        jsonTaAssistStorage.saveTaAssist(original, filePath);
+        ReadOnlyTaAssist readBack = jsonTaAssistStorage.readTaAssist(filePath).get();
         assertEquals(original, new TaAssist(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addStudent(HOON);
         original.removeStudent(ALICE);
-        jsonAddressBookStorage.saveAddressBook(original, filePath);
-        readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
+        jsonTaAssistStorage.saveTaAssist(original, filePath);
+        readBack = jsonTaAssistStorage.readTaAssist(filePath).get();
         assertEquals(original, new TaAssist(readBack));
 
         // Save and read without specifying file path
         original.addStudent(IDA);
-        jsonAddressBookStorage.saveAddressBook(original); // file path not specified
-        readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified
+        jsonTaAssistStorage.saveTaAssist(original); // file path not specified
+        readBack = jsonTaAssistStorage.readTaAssist().get(); // file path not specified
         assertEquals(original, new TaAssist(readBack));
 
     }
 
     @Test
-    public void saveAddressBook_nullAddressBook_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(null, "SomeFile.json"));
+    public void saveTaAssist_nullTaAssist_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveTaAssist(null, "SomeFile.json"));
     }
 
     /**
-     * Saves {@code addressBook} at the specified {@code filePath}.
+     * Saves {@code taAssist} at the specified {@code filePath}.
      */
-    private void saveAddressBook(ReadOnlyTaAssist addressBook, String filePath) {
+    private void saveTaAssist(ReadOnlyTaAssist taAssist, String filePath) {
         try {
             new JsonTaAssistStorage(Paths.get(filePath))
-                    .saveAddressBook(addressBook, addToTestDataPathIfNotNull(filePath));
+                    .saveTaAssist(taAssist, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
     }
 
     @Test
-    public void saveAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(new TaAssist(), null));
+    public void saveTaAssist_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveTaAssist(new TaAssist(), null));
     }
 }

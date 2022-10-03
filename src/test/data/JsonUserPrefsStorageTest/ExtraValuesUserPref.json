@@ -9,5 +9,5 @@
       "z" : 99
     }
   },
-  "addressBookFilePath" : "taassist.json"
+  "taAssistFilePath" : "taassist.json"
 }

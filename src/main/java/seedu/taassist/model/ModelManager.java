@@ -19,21 +19,21 @@ import seedu.taassist.model.student.Student;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final TaAssist addressBook;
+    private final TaAssist taAssist;
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given taAssist and userPrefs.
      */
-    public ModelManager(ReadOnlyTaAssist addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyTaAssist taAssist, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(taAssist, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + taAssist + " and user prefs " + userPrefs);
 
-        this.addressBook = new TaAssist(addressBook);
+        this.taAssist = new TaAssist(taAssist);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredStudents = new FilteredList<>(this.addressBook.getStudentList());
+        filteredStudents = new FilteredList<>(this.taAssist.getStudentList());
     }
 
     public ModelManager() {
@@ -65,42 +65,42 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getTaAssistFilePath() {
+        return userPrefs.getTaAssistFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setTaAssistFilePath(Path taAssistFilePath) {
+        requireNonNull(taAssistFilePath);
+        userPrefs.setTaAssistFilePath(taAssistFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== TaAssist ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyTaAssist addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setTaAssist(ReadOnlyTaAssist taAssist) {
+        this.taAssist.resetData(taAssist);
     }
 
     @Override
-    public ReadOnlyTaAssist getAddressBook() {
-        return addressBook;
+    public ReadOnlyTaAssist getTaAssist() {
+        return taAssist;
     }
 
     @Override
     public boolean hasStudent(Student student) {
         requireNonNull(student);
-        return addressBook.hasStudent(student);
+        return taAssist.hasStudent(student);
     }
 
     @Override
     public void deleteStudent(Student target) {
-        addressBook.removeStudent(target);
+        taAssist.removeStudent(target);
     }
 
     @Override
     public void addStudent(Student student) {
-        addressBook.addStudent(student);
+        taAssist.addStudent(student);
         updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
     }
 
@@ -108,14 +108,14 @@ public class ModelManager implements Model {
     public void setStudent(Student target, Student editedStudent) {
         requireAllNonNull(target, editedStudent);
 
-        addressBook.setStudent(target, editedStudent);
+        taAssist.setStudent(target, editedStudent);
     }
 
     //=========== Filtered Student List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Student} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedTaAssist}
      */
     @Override
     public ObservableList<Student> getFilteredStudentList() {
@@ -142,7 +142,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return taAssist.equals(other.taAssist)
                 && userPrefs.equals(other.userPrefs)
                 && filteredStudents.equals(other.filteredStudents);
     }

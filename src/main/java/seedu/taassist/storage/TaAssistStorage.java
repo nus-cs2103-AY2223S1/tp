@@ -16,31 +16,31 @@ public interface TaAssistStorage {
     /**
      * Returns the file path of the data file.
      */
-    Path getAddressBookFilePath();
+    Path getTaAssistFilePath();
 
     /**
-     * Returns AddressBook data as a {@link ReadOnlyTaAssist}.
+     * Returns TaAssist data as a {@link ReadOnlyTaAssist}.
      *   Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyTaAssist> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyTaAssist> readTaAssist() throws DataConversionException, IOException;
 
     /**
-     * @see #getAddressBookFilePath()
+     * @see #getTaAssistFilePath()
      */
-    Optional<ReadOnlyTaAssist> readAddressBook(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyTaAssist> readTaAssist(Path filePath) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyTaAssist} to the storage.
-     * @param addressBook cannot be null.
+     * @param taAssist cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveAddressBook(ReadOnlyTaAssist addressBook) throws IOException;
+    void saveTaAssist(ReadOnlyTaAssist taAssist) throws IOException;
 
     /**
-     * @see #saveAddressBook(ReadOnlyTaAssist)
+     * @see #saveTaAssist(ReadOnlyTaAssist)
      */
-    void saveAddressBook(ReadOnlyTaAssist addressBook, Path filePath) throws IOException;
+    void saveTaAssist(ReadOnlyTaAssist taAssist, Path filePath) throws IOException;
 
 }

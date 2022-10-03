@@ -37,20 +37,20 @@ public interface Model {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getTaAssistFilePath();
 
     /**
      * Sets the user prefs' address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setTaAssistFilePath(Path taAssistFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces address book data with the data in {@code taAssist}.
      */
-    void setAddressBook(ReadOnlyTaAssist addressBook);
+    void setTaAssist(ReadOnlyTaAssist taAssist);
 
-    /** Returns the AddressBook */
-    ReadOnlyTaAssist getAddressBook();
+    /** Returns the TaAssist */
+    ReadOnlyTaAssist getTaAssist();
 
     /**
      * Returns true if a student with the same identity as {@code student} exists in the address book.

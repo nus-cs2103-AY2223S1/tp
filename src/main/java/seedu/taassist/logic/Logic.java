@@ -24,11 +24,11 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the TaAssist.
      *
-     * @see seedu.taassist.model.Model#getAddressBook()
+     * @see seedu.taassist.model.Model#getTaAssist()
      */
-    ReadOnlyTaAssist getAddressBook();
+    ReadOnlyTaAssist getTaAssist();
 
     /** Returns an unmodifiable view of the filtered list of students */
     ObservableList<Student> getFilteredStudentList();
@@ -36,7 +36,7 @@ public interface Logic {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getTaAssistFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

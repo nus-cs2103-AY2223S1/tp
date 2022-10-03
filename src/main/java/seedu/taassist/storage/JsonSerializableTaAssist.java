@@ -14,7 +14,7 @@ import seedu.taassist.model.TaAssist;
 import seedu.taassist.model.student.Student;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable TaAssist that is serializable to JSON format.
  */
 @JsonRootName(value = "taassist")
 class JsonSerializableTaAssist {
@@ -24,7 +24,7 @@ class JsonSerializableTaAssist {
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given students.
+     * Constructs a {@code JsonSerializableTaAssist} with the given students.
      */
     @JsonCreator
     public JsonSerializableTaAssist(@JsonProperty("students") List<JsonAdaptedStudent> students) {
@@ -32,29 +32,29 @@ class JsonSerializableTaAssist {
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyTaAssist} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableTaAssist}.
      */
     public JsonSerializableTaAssist(ReadOnlyTaAssist source) {
         students.addAll(source.getStudentList().stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this address book into the model's {@code TaAssist} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public TaAssist toModelType() throws IllegalValueException {
-        TaAssist addressBook = new TaAssist();
+        TaAssist taAssist = new TaAssist();
         for (JsonAdaptedStudent jsonAdaptedStudent : students) {
             Student student = jsonAdaptedStudent.toModelType();
-            if (addressBook.hasStudent(student)) {
+            if (taAssist.hasStudent(student)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_STUDENT);
             }
-            addressBook.addStudent(student);
+            taAssist.addStudent(student);
         }
-        return addressBook;
+        return taAssist;
     }
 
 }

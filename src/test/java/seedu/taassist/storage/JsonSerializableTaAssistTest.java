@@ -24,9 +24,9 @@ public class JsonSerializableTaAssistTest {
     public void toModelType_typicalStudentsFile_success() throws Exception {
         JsonSerializableTaAssist dataFromFile = JsonUtil.readJsonFile(TYPICAL_STUDENTS_FILE,
                 JsonSerializableTaAssist.class).get();
-        TaAssist addressBookFromFile = dataFromFile.toModelType();
-        TaAssist typicalStudentsAddressBook = TypicalStudents.getTypicalAddressBook();
-        assertEquals(addressBookFromFile, typicalStudentsAddressBook);
+        TaAssist taAssistFromFile = dataFromFile.toModelType();
+        TaAssist typicalStudentsTaAssist = TypicalStudents.getTypicalTaAssist();
+        assertEquals(taAssistFromFile, typicalStudentsTaAssist);
     }
 
     @Test

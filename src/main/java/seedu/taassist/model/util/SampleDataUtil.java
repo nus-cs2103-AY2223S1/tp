@@ -14,7 +14,7 @@ import seedu.taassist.model.student.Phone;
 import seedu.taassist.model.student.Student;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code TaAssist} with sample data.
  */
 public class SampleDataUtil {
     public static Student[] getSampleStudents() {
@@ -40,7 +40,7 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyTaAssist getSampleAddressBook() {
+    public static ReadOnlyTaAssist getSampleTaAssist() {
         TaAssist sampleAb = new TaAssist();
         for (Student sampleStudent : getSampleStudents()) {
             sampleAb.addStudent(sampleStudent);

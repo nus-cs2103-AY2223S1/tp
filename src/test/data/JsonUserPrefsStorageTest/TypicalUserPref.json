@@ -7,5 +7,5 @@
       "y" : 100
     }
   },
-  "addressBookFilePath" : "taassist.json"
+  "taAssistFilePath" : "taassist.json"
 }

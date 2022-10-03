@@ -30,7 +30,7 @@ public class TaAssist implements ReadOnlyTaAssist {
     public TaAssist() {}
 
     /**
-     * Creates an AddressBook using the Students in the {@code toBeCopied}
+     * Creates an TaAssist using the Students in the {@code toBeCopied}
      */
     public TaAssist(ReadOnlyTaAssist toBeCopied) {
         this();
@@ -48,7 +48,7 @@ public class TaAssist implements ReadOnlyTaAssist {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code TaAssist} with {@code newData}.
      */
     public void resetData(ReadOnlyTaAssist newData) {
         requireNonNull(newData);
@@ -87,7 +87,7 @@ public class TaAssist implements ReadOnlyTaAssist {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code TaAssist}.
      * {@code key} must exist in the address book.
      */
     public void removeStudent(Student key) {

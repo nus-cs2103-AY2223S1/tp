@@ -12,7 +12,7 @@ import seedu.taassist.model.ReadOnlyUserPrefs;
 import seedu.taassist.model.UserPrefs;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of TaAssist data in local storage.
  */
 public class StorageManager implements Storage {
 
@@ -21,7 +21,7 @@ public class StorageManager implements Storage {
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code TaAssistStorage} and {@code UserPrefStorage}.
      */
     public StorageManager(TaAssistStorage taAssistStorage, UserPrefsStorage userPrefsStorage) {
         this.taAssistStorage = taAssistStorage;
@@ -46,33 +46,33 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ TaAssist methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return taAssistStorage.getAddressBookFilePath();
+    public Path getTaAssistFilePath() {
+        return taAssistStorage.getTaAssistFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyTaAssist> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(taAssistStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyTaAssist> readTaAssist() throws DataConversionException, IOException {
+        return readTaAssist(taAssistStorage.getTaAssistFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyTaAssist> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyTaAssist> readTaAssist(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return taAssistStorage.readAddressBook(filePath);
+        return taAssistStorage.readTaAssist(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyTaAssist addressBook) throws IOException {
-        saveAddressBook(addressBook, taAssistStorage.getAddressBookFilePath());
+    public void saveTaAssist(ReadOnlyTaAssist taAssist) throws IOException {
+        saveTaAssist(taAssist, taAssistStorage.getTaAssistFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyTaAssist addressBook, Path filePath) throws IOException {
+    public void saveTaAssist(ReadOnlyTaAssist taAssist, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        taAssistStorage.saveAddressBook(addressBook, filePath);
+        taAssistStorage.saveTaAssist(taAssist, filePath);
     }
 
 }

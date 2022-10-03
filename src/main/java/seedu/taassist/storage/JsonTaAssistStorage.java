@@ -15,7 +15,7 @@ import seedu.taassist.commons.util.JsonUtil;
 import seedu.taassist.model.ReadOnlyTaAssist;
 
 /**
- * A class to access AddressBook data stored as a json file on the hard disk.
+ * A class to access TaAssist data stored as a json file on the hard disk.
  */
 public class JsonTaAssistStorage implements TaAssistStorage {
 
@@ -27,32 +27,32 @@ public class JsonTaAssistStorage implements TaAssistStorage {
         this.filePath = filePath;
     }
 
-    public Path getAddressBookFilePath() {
+    public Path getTaAssistFilePath() {
         return filePath;
     }
 
     @Override
-    public Optional<ReadOnlyTaAssist> readAddressBook() throws DataConversionException {
-        return readAddressBook(filePath);
+    public Optional<ReadOnlyTaAssist> readTaAssist() throws DataConversionException {
+        return readTaAssist(filePath);
     }
 
     /**
-     * Similar to {@link #readAddressBook()}.
+     * Similar to {@link #readTaAssist()}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyTaAssist> readAddressBook(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyTaAssist> readTaAssist(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableTaAssist> jsonAddressBook = JsonUtil.readJsonFile(
+        Optional<JsonSerializableTaAssist> jsonTaAssist = JsonUtil.readJsonFile(
                 filePath, JsonSerializableTaAssist.class);
-        if (!jsonAddressBook.isPresent()) {
+        if (!jsonTaAssist.isPresent()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonAddressBook.get().toModelType());
+            return Optional.of(jsonTaAssist.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
@@ -60,21 +60,21 @@ public class JsonTaAssistStorage implements TaAssistStorage {
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyTaAssist addressBook) throws IOException {
-        saveAddressBook(addressBook, filePath);
+    public void saveTaAssist(ReadOnlyTaAssist taAssist) throws IOException {
+        saveTaAssist(taAssist, filePath);
     }
 
     /**
-     * Similar to {@link #saveAddressBook(ReadOnlyTaAssist)}.
+     * Similar to {@link #saveTaAssist(ReadOnlyTaAssist)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveAddressBook(ReadOnlyTaAssist addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveTaAssist(ReadOnlyTaAssist taAssist, Path filePath) throws IOException {
+        requireNonNull(taAssist);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableTaAssist(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableTaAssist(taAssist), filePath);
     }
 
 }

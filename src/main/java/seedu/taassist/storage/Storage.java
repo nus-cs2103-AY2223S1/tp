@@ -21,12 +21,12 @@ public interface Storage extends TaAssistStorage, UserPrefsStorage {
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getAddressBookFilePath();
+    Path getTaAssistFilePath();
 
     @Override
-    Optional<ReadOnlyTaAssist> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyTaAssist> readTaAssist() throws DataConversionException, IOException;
 
     @Override
-    void saveAddressBook(ReadOnlyTaAssist addressBook) throws IOException;
+    void saveTaAssist(ReadOnlyTaAssist taAssist) throws IOException;
 
 }

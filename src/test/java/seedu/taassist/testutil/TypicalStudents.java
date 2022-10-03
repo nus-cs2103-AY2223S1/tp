@@ -60,9 +60,9 @@ public class TypicalStudents {
     private TypicalStudents() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical students.
+     * Returns an {@code TaAssist} with all the typical students.
      */
-    public static TaAssist getTypicalAddressBook() {
+    public static TaAssist getTypicalTaAssist() {
         TaAssist ab = new TaAssist();
         for (Student student : getTypicalStudents()) {
             ab.addStudent(student);

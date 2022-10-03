@@ -7,7 +7,7 @@ import static seedu.taassist.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.taassist.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.taassist.testutil.Assert.assertThrows;
 import static seedu.taassist.testutil.TypicalStudents.ALICE;
-import static seedu.taassist.testutil.TypicalStudents.getTypicalAddressBook;
+import static seedu.taassist.testutil.TypicalStudents.getTypicalTaAssist;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -24,23 +24,23 @@ import seedu.taassist.testutil.StudentBuilder;
 
 public class TaAssistTest {
 
-    private final TaAssist addressBook = new TaAssist();
+    private final TaAssist taAssist = new TaAssist();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getStudentList());
+        assertEquals(Collections.emptyList(), taAssist.getStudentList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> taAssist.resetData(null));
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        TaAssist newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+    public void resetData_withValidReadOnlyTaAssist_replacesData() {
+        TaAssist newData = getTypicalTaAssist();
+        taAssist.resetData(newData);
+        assertEquals(newData, taAssist);
     }
 
     @Test
@@ -51,40 +51,40 @@ public class TaAssistTest {
         List<Student> newStudents = Arrays.asList(ALICE, editedAlice);
         TaAssistStub newData = new TaAssistStub(newStudents);
 
-        assertThrows(DuplicateStudentException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateStudentException.class, () -> taAssist.resetData(newData));
     }
 
     @Test
     public void hasStudent_nullStudent_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasStudent(null));
+        assertThrows(NullPointerException.class, () -> taAssist.hasStudent(null));
     }
 
     @Test
-    public void hasStudent_studentNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasStudent(ALICE));
+    public void hasStudent_studentNotInTaAssist_returnsFalse() {
+        assertFalse(taAssist.hasStudent(ALICE));
     }
 
     @Test
-    public void hasStudent_studentInAddressBook_returnsTrue() {
-        addressBook.addStudent(ALICE);
-        assertTrue(addressBook.hasStudent(ALICE));
+    public void hasStudent_studentInTaAssist_returnsTrue() {
+        taAssist.addStudent(ALICE);
+        assertTrue(taAssist.hasStudent(ALICE));
     }
 
     @Test
-    public void hasStudent_studentWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addStudent(ALICE);
+    public void hasStudent_studentWithSameIdentityFieldsInTaAssist_returnsTrue() {
+        taAssist.addStudent(ALICE);
         Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasStudent(editedAlice));
+        assertTrue(taAssist.hasStudent(editedAlice));
     }
 
     @Test
     public void getStudentList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getStudentList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> taAssist.getStudentList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose students list can violate interface constraints.
+     * A stub ReadOnlyTaAssist whose students list can violate interface constraints.
      */
     private static class TaAssistStub implements ReadOnlyTaAssist {
         private final ObservableList<Student> students = FXCollections.observableArrayList();
