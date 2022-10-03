@@ -10,11 +10,11 @@ interactions recorded faster and simpler than traditional GUI applications.
 
 * [Quick Start](#quick-start)
 * [Features](#features)
-  * [Adding a person: `add`](#adding-a-person-add)
+  * [Adding a company: `add`](#adding-a-company-add)
   * [Clearing all entries: `clear`](#clearing-all-entries--clear)
   * [Creating a company: `create`](#creating-a-company-create)
   * [Deleting a company: `delete`](#deleting-a-company--delete)
-  * [Editing a person: `edit`](#editing-a-person--edit)
+  * [Editing a company: `edit`](#editing-a-company--edit)
   * [Exiting the program: `exit`](#exiting-the-program--exit)
   * [Filtering the address book display: `filter`](#filtering-the-address-book-display--filter)
   * [Listing all companies: `list`](#listing-all-companies--list)
@@ -87,7 +87,7 @@ interactions recorded faster and simpler than traditional GUI applications.
 
 </div>
 
-### Adding a person: `add`
+### Adding a company: `add`
 
 Adds a point-of-contact to the company.
 
@@ -137,7 +137,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd company in the address book.
 * `find cold` followed by `delete 1` deletes the 1st company in the results of the `find` command.
 
-### Editing a person : `edit`
+### Editing a company : `edit`
 
 Coming Soon.
 
