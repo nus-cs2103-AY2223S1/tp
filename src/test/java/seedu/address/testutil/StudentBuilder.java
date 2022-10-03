@@ -9,7 +9,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Student objects.
  */
 public class StudentBuilder {
 
@@ -36,7 +36,7 @@ public class StudentBuilder {
     }
 
     /**
-     * Initializes the StudentBuilder with the data of {@code personToCopy}.
+     * Initializes the StudentBuilder with the data of {@code StudentToCopy}.
      */
     public StudentBuilder(Student studentToCopy) {
         name = studentToCopy.getName();
@@ -47,7 +47,7 @@ public class StudentBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code Name} of the {@code Student} that we are building.
      */
     public StudentBuilder withName(String name) {
         this.name = new Name(name);
@@ -55,7 +55,7 @@ public class StudentBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Student} that we are building.
      */
     public StudentBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
@@ -63,7 +63,7 @@ public class StudentBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Sets the {@code Address} of the {@code Student} that we are building.
      */
     public StudentBuilder withAddress(String address) {
         this.address = new Address(address);
@@ -71,7 +71,7 @@ public class StudentBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
+     * Sets the {@code Phone} of the {@code Student} that we are building.
      */
     public StudentBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
@@ -79,7 +79,7 @@ public class StudentBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code Email} of the {@code Student} that we are building.
      */
     public StudentBuilder withEmail(String email) {
         this.email = new Email(email);

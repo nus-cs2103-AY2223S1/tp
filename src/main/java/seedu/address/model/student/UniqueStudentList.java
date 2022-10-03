@@ -53,7 +53,7 @@ public class UniqueStudentList implements Iterable<Student> {
      * {@code target} must exist in the list.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
      */
-    public void setPerson(Student target, Student editedStudent) {
+    public void setStudent(Student target, Student editedStudent) {
         requireAllNonNull(target, editedStudent);
 
         int index = internalList.indexOf(target);
@@ -79,7 +79,7 @@ public class UniqueStudentList implements Iterable<Student> {
         }
     }
 
-    public void setPersons(UniqueStudentList replacement) {
+    public void setStudents(UniqueStudentList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -88,9 +88,9 @@ public class UniqueStudentList implements Iterable<Student> {
      * Replaces the contents of this list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void setPersons(List<Student> students) {
+    public void setStudents(List<Student> students) {
         requireAllNonNull(students);
-        if (!personsAreUnique(students)) {
+        if (!studentsAreUnique(students)) {
             throw new DuplicateStudentException();
         }
 
@@ -124,7 +124,7 @@ public class UniqueStudentList implements Iterable<Student> {
     /**
      * Returns true if {@code persons} contains only unique persons.
      */
-    private boolean personsAreUnique(List<Student> students) {
+    private boolean studentsAreUnique(List<Student> students) {
         for (int i = 0; i < students.size() - 1; i++) {
             for (int j = i + 1; j < students.size(); j++) {
                 if (students.get(i).isSameStudent(students.get(j))) {
