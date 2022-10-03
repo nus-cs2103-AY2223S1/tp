@@ -7,7 +7,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.moduleclass.ModuleClass;
 
 /**
- * Parses input arguments and creates a new ClassCommand object
+ * Parses input arguments and creates a new ClassCommand object.
  */
 public class ClassCommandParser implements Parser<ClassCommand> {
 
