@@ -264,7 +264,13 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### User stories
 
-*{More to be added}*
+Updating inventory items
+1. As a purchasing manager, I can rename my inventory items, so that I can update items with an incorrect name.
+2. As a purchasing manager, I can set the inventory quantity of my items.
+3. As a purchasing manager, I can set the date I bought my inventory, so that I know how long I have been keeping certain items..
+4. As a purchasing manager, I can set the date my inventory will expire, so that I know when certain items need to be consumed or used. 
+5. As a purchasing manager, I can increase the inventory quantity of my items, so that I can keep my stock updated when I purchase new items.. 
+6. As a purchasing manager, I can decrease the inventory quantity of my items.
 
 ### Use cases
 
@@ -295,20 +301,52 @@ Extensions:
     * 1a1. User will re-enter command until the correct item is given (i.e item exists in inventory).
       Use case resumes from Step 2.
 
-*{More to be added}*
+#### UC7: Rename a tag
+Use Case: UC7 - Rename a tag
+MSS:
+1. User chooses to view all tags.
+2. System shows all tags.
+3. User enters the command to rename desired tag.
+4. System informs user that the tag has been updated successfully.
 
-#### UC7: Rename Tags
-Use Case: UC7 - Rename Tags
-MSS:
-1.
 Extensions:
-1.
-#### UC8: Remove Tag from Item
-Use Case: UC8 - Remove Tag from Item
+* 3a. System detects that the new name already exist.
+  * 3a1. System requests for a new tag name that does not exist.
+  * 3a2. User re-enters the command to rename the desired tag.
+  * Steps 3a1-3a2 are repeated until the data entered are correct.
+    Use case resumes from step 4.
+
+
+* 3b. System detects that the name is in an incorrect format.
+  * 3b1. System requests for a new tag name that follows an acceptable format.
+  * 3b2. User re-enters the command to rename the desired tag.
+  * Steps 3b1-3b2 are repeated until the command entered is correct.
+    Use case resumes from step 4.
+
+
+#### UC8: Removing a tag from an item
+Use Case: UC8 - Removing a tag from an item
+Preconditions: User knows the name of the tag they are removing from an item.
 MSS:
-1.
+1. User enters the command to find the item of interest.
+2. System shows a list containing possible matching items.
+3. User enters command to remove the tag from the desired items.
+4. System informs user that the tag has been updated successfully.
+
 Extensions:
-1.
+* 1a. System detects that there is an issue with the command entered.
+    * 1a1. System requests for the command to be entered again.
+    * 1a2. User re-enters the command.
+    * Steps 1a1-1a2 are repeated until the command entered is correct.
+      Use case resumes from step 2.
+
+* 3a. System detects that there is an issue with the command entered.
+    * 3a1. System requests for the command to be entered again.
+    * 3a2. User re-enters the command.
+    * Steps 3a1-3a2 are repeated until the command entered is correct.
+      Use case resumes from step 4.
+
+*{More to be added}*
 
 ### Non-Functional Requirements
 
