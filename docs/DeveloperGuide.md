@@ -564,7 +564,11 @@ FinBook is not required to handle interaction between client and FA.
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **FA**: Financial advisor
+* **Client**: A client is a person whose financial data and details are managed by an FA
+* **Private client detail**: A client detail that is sensitive and not meant to be shared with others
+* **CSV**: A comma-separated values (CSV) file is a delimited text file that uses a comma to separate values
+* **System**: FinBook
 
 --------------------------------------------------------------------------------------------------------------------
 
