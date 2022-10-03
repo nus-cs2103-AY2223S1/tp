@@ -2,15 +2,15 @@
 layout: page
 title: User Guide
 ---
-**Plannit** is a **unified desktop application** that aims to **help NUS CS 
-students manage their academic details.**  It will be the **go-to platform** 
-for you to access all modules links and information without needing to 
+**Plannit** is a **unified desktop application** that aims to **help NUS CS
+students manage their academic details.**  It will be the **go-to platform**
+for you to access all modules links and information without needing to
 tediously navigate through multiple websites.
 
-This application is **optimized for use via a Command Line Interface** (CLI) 
+This application is **optimized for use via a Command Line Interface** (CLI)
 while still having the benefits of a Graphical User Interface (GUI).
 
-* Table of Contents
+* Table of Contents 
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -29,7 +29,7 @@ contains some sample data.<br>
 
 5. Type the command in the command box and press Enter to execute it. e.g. 
    `add module`. For more commands, you may refer to the [command summary](#11-command-summary)
-   
+
 6. Refer to the [Features](#2-features) for details of each command.
 
 ### 1.1. Command summary
@@ -40,10 +40,13 @@ contains some sample data.<br>
 | [`delete module`](#212-delete-module)   | `delete module   m/MODULE_CODE`                       | Delete module by module code                                                |
 | [`add task`](#221-add-task)             | `add    task     m/MODULE_CODE d/TASK_DESCRIPTION`    | Add task with specified module code and task description                    |
 | [`delete task`](#222-delete-task)       | `delete task     m/MODULE_CODE n/TASK_NUMBER`         | Delete task corresponding to specified task number of specified module code |
-| **CommandInBold**                       | `command format here`                                 |                                                                             |
-| **CommandInBold**                       | `command format here`                                 |                                                                             |
+| [`add link`](#231-add-link)             | `add    link     m/MODULE_CODE l/LINK_URL`            | Add link to a specified module code by its URL                              |
+| [`delete link`](#232-delete-link)       | `delete link     m/MODULE_CODE l/LINK_URL`            | Delete link from a specified module code by its URL                         |
 | [`add contact`](#241-add-contact)       | `add contact     n/NAME    e/EMAIL    p/PHONE_NUMBER` | Add contact with specified name, email, and phone number                    |
 | [`delete contact`](#242-delete-contact) | `delete contact  n/NAME`                              | Delete contact belonging to the specified name                              |
+| [`home`](#251-navigate-to-home)         | `home`                                                | Navigate to the home page                                                   |
+| [`goto`](#252-navigate-between-modules) | `goto m/MODULE_CODE`                                  | Navigate to specified module page                                           |
+| [`exit`](#26-exiting-the-program)       | `exit`                                                | Exit the program                                                            |
 
 ## 2. Features
 
@@ -64,7 +67,7 @@ contains some sample data.<br>
 the parameter will be taken.<br>
   e.g. if you specify `p/81234123 p/999`, only `p/999` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as 
+* Extraneous parameters for commands that do not take in parameters (such as
   `home`, `goto` and `exit`) will be ignored.<br>
   e.g. if the command specifies `home 123`, it will be interpreted as `home`.
 
@@ -79,7 +82,8 @@ This command will require one flag, and one flag is optional:
 * `t/`: (Optional flag) To be followed by the module title of the module to be added into Plannit.
 
 Format: `add module m/MODULE_CODE [t/MODULE_TITLE]`
-* A module has a module code and an optional module title.
+* You may optionally add a module title.
+* You cannot add a duplicate module code.
 
 Examples:
 ```
@@ -99,7 +103,7 @@ This command will require one flag:
 * `m/`: To be followed by the module code of the module to be deleted from Plannit.
 
 Format: `delete module m/MODULE_CODE`
-* The module code must correspond to an existing module in Plannit.
+* You cannot delete a non-existent module code.
 
 Example:
 
@@ -110,6 +114,7 @@ In the above example, we are deleting module CS2103T from Plannit.
 
 #### 2.1.3. Find module: `find module` [coming soon]
 [coming soon]
+
 <br>
 
 ### 2.2. Adding and deleting tasks
@@ -117,13 +122,13 @@ In the above example, we are deleting module CS2103T from Plannit.
 You may add a task using the `add task` command.
 
 This command will require two flags:
-* `m/`: This flag is to be followed immediately by the module code of the 
+* `m/`: To be followed by the module code of the
   module which the task is associated with.
-* `d/`: This flag is to be followed immediately by the task description.
+* `d/`: To be followed by the task description.
 
 Format: `add task m/MODULE_CODE d/TASK_DESCRIPTION`
 * Each task **must** belong to a specific module.
-* The given module code should be that of an existing module in Plannit.
+* You should provide a module code of an existing module in Plannit.
 
 Example:
 ```
@@ -133,17 +138,18 @@ In the above example, we are adding the task `Complete tP tasks for W07` to the
 module with module code `CS2103T`.
 
 #### 2.2.2. Delete task
-You may delete a task belonging to a particular module using the `delete 
+You may delete a task belonging to a particular module using the `delete
 task` command.
 
 This command will require two flags:
-* `m/`: This flag is to be followed immediately by the module code of the 
-  module which assigned the task. 
-* `n/`: This flag is to be followed immediately by the task number in the module.
+* `m/`: To be followed by the module code of the module which assigned the 
+  task.
+* `n/`: To be followed by the task number in the module.
 
 Format: `delete task m/MODULE_CODE n/TASK_NUMBER`
-* The given module code should be that of an existing module in Plannit. 
-* The given task number has to be that of an existing task in the module.
+* You should provide a module code of an existing module in Plannit.
+* You should provide a task number corresponding to that of an existing task in 
+  the module.
 
 Example:
 ```
@@ -152,28 +158,63 @@ delete task m/CS2103T n/3
 In the above example, we are deleting task number **3** from the module 
 with the module code `CS2103T`.
 
-#### 2.4.3. Finding tasks [coming soon]
+#### 2.2.3. Finding tasks [coming soon]
 [coming soon]
+
 <br>
 
 ### 2.3. Adding and deleting links
 #### 2.3.1. Add link
-#### 2.3.2. Delete link
+You may add a link to a specific module using the `add link` command.
 
+This command will require two flags:
+* `m/`: To be followed by the module code of the
+  module which is associated with the link.
+* `l/`: To be followed by the link URL.
+
+Format: `add link m/MODULE_CODE l/LINK_URL`
+* You cannot add a link URL to a non-existent module code.
+* You cannot add a duplicate link URL for a single module code.
+
+Example:
+```
+add module m/CS2040C l/visualgo.net/en
+```
+In the above example, we are adding the link with the URL `visualgo.net/en` 
+to the module with module code `CS2040C`.
+
+#### 2.3.2. Delete link
+You may delete a link from a specific module using the `delete link` command.
+
+This command will require two flags:
+* `m/`: To be followed by the module code of the
+  module which is associated with the link.
+* `l/`: To be followed by the link URL.
+
+Format: `delete link m/MODULE_CODE l/LINK_URL`
+* You cannot delete a link URL from a non-existent module code.
+* You cannot delete a non-existent link URL from a valid module code.
+
+Example:
+```
+delete module m/CS2040C l/visualgo.net/en
+```
+In the above example, we are deleting the link with the URL `visualgo.net/en`
+from the module with module code `CS2040C`.
 <br>
 
 ### 2.4. Adding and deleting contacts
 #### 2.4.1. Add contact
-
 This command will require two flags, and one optional flag:
-- `n/`: To be followed by the to-be-added contact name.
-- `e/`: To be followed by the email of the new contact.
-- `p/`: (Optional flag) To be followed by the phone number of the new contact.
+* `n/`: To be followed by the to-be-added contact name.
+* `e/`: To be followed by the email of the new contact.
+* `p/`: (Optional flag) To be followed by the phone number of the new contact.
 
-Format: `add contact n/NAME e/EMAIL p/PHONE_NUMBER`
-- Specifying a phone number is optional.
-- When adding a duplicate name, Plannit will display an error message.
-- Phone numbers are compulsory to be exactly 8 digits and without country code.
+Format: `add contact n/NAME e/EMAIL [p/PHONE_NUMBER]`
+* You cannot add a duplicate name into Plannit.
+* You may optionally specify a phone number.
+* You cannot specify any country code for phone number.
+* You cannot specify a non-8-digit phone number.
 
 Examples:  
 ```
@@ -187,14 +228,13 @@ In the above example, we are adding a contact with name `Dinosaur Lim`, email `d
 `91234567` into Plannit.
 
 #### 2.4.2. Delete contact
-
 You may delete a contact using the `delete contact` command.
 
 This command will require one flag:
-- `n/`: To be followed by the to-be-deleted contact name.
+* `n/`: To be followed by the to-be-deleted contact name.
 
 Format: `delete contact n/NAME`
-- If the provided `NAME` does not exist in Plannit, Plannit shows an error message.
+* You cannot delete a non-existent contact.
 
 Example:  
 ```
@@ -203,12 +243,32 @@ delete contact n/Dinosaur Lim
 In the above example, we are deleting a contact with name `Dinosaur Lim` from Plannit.
 
 ### 2.5. Navigation
-#### 2.5.1. Navigate to home
-#### 2.5.2. Navigate between modules
+With navigation functionalities, you now have the ability to navigate between different tabs in Plannit!
+
+#### 2.5.1 Navigate to home
+You may navigate back to the home page using the `home` command.
+
+Format:  `home`
+
+#### 2.5.2 Navigate between modules
+You may navigate between modules to view information belonging to a particular
+module using the `goto` command.
+
+This command will require one flag:
+* `m/`: To be followed by the module code of the module you are navigating to.
+
+Format: `goto m/MODULE_CODE`
+* You should provide a module code of an existing module in Plannit.
+
+Example:
+```
+goto m/CS2109S
+```
+In the above example, we are navigating to the module with module code `CS2109S`.
+
 <br>
 
-### 2.6. Exiting The Program : `exit`
-
+### 2.6. Exiting The Program
 Exits the program.
 
 Format: `exit`
@@ -228,7 +288,6 @@ load manually.
 <br>
 
 ### 2.9. Editing The Data File
-
 Plannit data is saved as a `JSON` file `[JAR file location]/data/plannit.json`. Advanced users are welcome to update 
 data directly by editing that data file.
 
@@ -238,12 +297,11 @@ all data and start with an empty data file at the next run.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
-## 3. Landing Page Visual Guide 
+## 3. Landing Page Visual Guide
 [coming soon]
 
 --------------------------------------------------------------------------------------------------------------------
 ## 4. FAQ
-
 **Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with 
 the file that contains the data of your previous Plannit home folder.
@@ -252,5 +310,3 @@ the file that contains the data of your previous Plannit home folder.
 [More questions coming soon]
 
 --------------------------------------------------------------------------------------------------------------------
-
-
