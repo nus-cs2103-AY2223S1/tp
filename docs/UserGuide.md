@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Healthcare Xpress is a **desktop app for managing patients that require home-visits and nurses, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Healthcare Xpress can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -26,9 +26,14 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
    * **`list`** : Lists all contacts.
 
+
    * **`add`**`add c/N n/Jason p/98723432 e/jason@example.com g/M t/Asthma` : Adds a nurse named `Jason` to the Healthcare Xpress book.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`add`** **`c/P n/John p/98765432 e/john@example.com g/M a/Bishan street, block
+     123, #01-01 t/Asthma d/2022-12-12 1350`** : Adds a patient named **`John`** to Healthcare Xpress book.
+
+
+   * **`delete`**`-id 3` : Deletes the nurse of patient with an id of 3.
 
    * **`clear`** : Deletes all contacts.
 
@@ -73,9 +78,26 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a nurse or patient: `add`
 
-### 2. Adds a nurse to the Healthcare Xpress book
+1. Adds a patient to the Healthcare Xpress book.
+
+Format: `add c/P n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS d/DATE_AND_TIME [t/TAG]…​`
+
+<div markdown="span" class="alert alert-primary"> 
+
+:bulb:**Tips:**
+* A patient can have any number of tags (including 0).
+* Date and time need to be in the format of yyyy-MM-dd HHmm.
+* To add a patient, type c/P specifically.
+
+</div>
+
+Examples: 
+* `add c/P n/John p/98765432 e/john@example.com g/M a/Bishan street, block 123, #01-01 t/Asthma d/2022-12-12 1350`
+* `add c/P n/Betsy t/VIP e/betsy@example.com g/F a/Bugis street d/2022-12-02 1400 p/98345432 t/Heart disease t/children`
+
+2. Adds a nurse to the Healthcare Xpress book
 
 Format:`add c/N n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER [t/TAG]…​`
 
@@ -89,15 +111,20 @@ Format:`add c/N n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER [t/TAG]…​`
 </div>
 
 Examples:
-- `add c/N n/Jason p/98723432 e/jason@example.com g/M t/Asthma`
-- `add c/N n/Betsy t/handle children well e/betsy@example.com g/F p/98345432 t/Heart disease`
+* `add c/N n/Jason p/98723432 e/jason@example.com g/M t/Asthma`
+* `add c/N n/Betsy t/handle children well e/betsy@example.com g/F p/98345432 t/Heart disease`
 
 
-### Listing all persons : `list`
+### Listing nurses or patients : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of specified nurses or patients, or all nurses and patients if no specifications were provided.
 
-Format: `list`
+Format: `list [c/CATEGORY] [t/TAG] [g/GENDER] [a/ADDRESS]`
+
+Examples:
+* `list c/NURSE` - Lists all nurses enrolled in the database.
+* `list c/PATIENT t/DIABETIC g/M` - Lists all male diabetic patients enrolled in the database.
+* `list c/PATIENT a/Bugis t/Heart Disease` - List all patients tagged with heart disease in the Bugis region.
 
 ### Editing a person : `edit`
 
@@ -134,19 +161,35 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a nurse or a patient : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified nurse or patient from the records system.
 
-Format: `delete INDEX`
+Format: `delete -id ID`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Deletes the nurse or patient with the specified `ID`.
+* The ID refers to the unique ID number shown in the displayed person list.
+* The ID **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete -id 2` deletes the nurse of patient with an id of 2.
+* `find -n Betsy` followed by `delete -id 1` deletes the nurse of patient with an id of 1.
+
+### Marking a patient as visited : `mark`
+
+Marks a specific patient in the records system as having been visited.
+
+Format: `mark -id ID`
+
+* Marks the patient with the specified 'ID' as having been visited.
+* The ID refers to the unique ID shown in the displayed person list.
+* The ID **must be a positive integer** 1, 2, 3, ...
+* `list` or `find` operations can be performed first to get the ID of the desired patient.
+
+Examples:
+* `mark -id 1` marks the patient with ID of 1 as having been visited.
+* `list c/P` followed by `mark -id 1` marks the patient with ID of 1 as having been visited.
+* `find -n John` followed by `mark -id 1` marks the patient with ID of 1 as having been visited.
 
 ### Clearing all entries : `clear`
 
@@ -189,10 +232,15 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
+
 **Add** | `add c/N n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER [t/TAG]…​` <br> e.g., `add c/N n/Jason p/98723432 e/jason@example.com g/M t/Asthma ` 
+**Add** | `add c/P n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS d/DATE_AND_TIME [t/TAG]…​` <br> e.g., `add c/P n/John p/98765432 e/john@example.com g/M a/Bishan street, block 123, #01-01 t/Asthma d/2022-12-12 1350`
 **Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Delete** | `delete -id ID`<br> e.g., `delete -id 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
+**List** | `list [c/CATEGORY] [t/TAG] [g/GENDER] [a/ADDRESS]`<br> e.g., `list c/NURSE`
+**Mark** | `mark -id ID` <br> e.g., `mark -id 1`
 **Help** | `help`
+
+
