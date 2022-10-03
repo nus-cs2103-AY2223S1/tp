@@ -20,18 +20,21 @@ public class Commission {
     private final Description description;
     private final Fee fee;
     private final Deadline deadline;
+    private final CompletionStatus completionStatus;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Commission(Title title, Description description, Fee fee, Deadline deadline, Set<Tag> tags) {
-        requireAllNonNull(title, description, fee, deadline, tags);
+    public Commission(Title title, Description description, Fee fee, Deadline deadline, Set<Tag> tags,
+                      CompletionStatus completionStatus) {
+        requireAllNonNull(title, description, fee, deadline, tags, completionStatus);
         this.title = title;
         this.description = description;
         this.fee = fee;
         this.deadline = deadline;
         this.tags.addAll(tags);
+        this.completionStatus = completionStatus;
     }
 
     public Title getTitle() {
@@ -48,6 +51,10 @@ public class Commission {
 
     public Deadline getDeadline() {
         return deadline;
+    }
+
+    public CompletionStatus getCompletionStatus() {
+        return completionStatus;
     }
 
     /**
@@ -106,7 +113,9 @@ public class Commission {
                 .append("; Fee: ")
                 .append(getFee())
                 .append("; Deadline: ")
-                .append(getDeadline());
+                .append(getDeadline())
+                .append("; Completed:")
+                .append(getCompletionStatus());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

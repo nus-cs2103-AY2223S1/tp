@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.commission.Commission;
+import seedu.address.model.commission.CompletionStatus;
 import seedu.address.model.commission.Deadline;
 import seedu.address.model.commission.Description;
 import seedu.address.model.commission.Fee;
@@ -30,6 +31,7 @@ public class JsonAdaptedCommission {
     private final Double fee;
     private final LocalDate deadline;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final Boolean isCompleted;
 
     /**
      * Constructs a {@code JsonAdaptedTitle} with the given person details.
@@ -38,7 +40,8 @@ public class JsonAdaptedCommission {
     public JsonAdaptedCommission(@JsonProperty("title") String title, @JsonProperty("description") String description,
                                  @JsonProperty("fee") Double fee,
                                  @JsonProperty("deadline") LocalDate deadline,
-                                 @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                                 @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                                 @JsonProperty("isCompleted") Boolean isCompleted) {
         this.title = title;
         this.description = description;
         this.fee = fee;
@@ -46,6 +49,7 @@ public class JsonAdaptedCommission {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        this.isCompleted = isCompleted;
     }
 
     /**
@@ -59,6 +63,7 @@ public class JsonAdaptedCommission {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        isCompleted = source.getCompletionStatus().isCompleted;
     }
 
     /**
@@ -108,7 +113,14 @@ public class JsonAdaptedCommission {
 
         final Set<Tag> modelTags = new HashSet<>(commissionTags);
 
-        return new Commission(modelTitle, modelDescription, modelFee, modelDeadline, modelTags);
+        if (isCompleted == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    CompletionStatus.class.getSimpleName()));
+        }
+
+        final CompletionStatus modelCompletionStatus = new CompletionStatus(isCompleted);
+
+        return new Commission(modelTitle, modelDescription, modelFee, modelDeadline, modelTags, modelCompletionStatus);
 
     }
 
