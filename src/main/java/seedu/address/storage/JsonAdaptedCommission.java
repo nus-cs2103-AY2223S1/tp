@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.commission.Commission;
 import seedu.address.model.commission.Deadline;
+import seedu.address.model.commission.Description;
 import seedu.address.model.commission.Fee;
 import seedu.address.model.commission.Title;
 import seedu.address.model.tag.Tag;
@@ -25,6 +26,7 @@ public class JsonAdaptedCommission {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Commission's %s field is missing!";
 
     private final String title;
+    private final String description;
     private final Double fee;
     private final LocalDate deadline;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -33,10 +35,12 @@ public class JsonAdaptedCommission {
      * Constructs a {@code JsonAdaptedTitle} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedCommission(@JsonProperty("title") String title, @JsonProperty("fee") Double fee,
+    public JsonAdaptedCommission(@JsonProperty("title") String title, @JsonProperty("description") String description,
+                                 @JsonProperty("fee") Double fee,
                                  @JsonProperty("deadline") LocalDate deadline,
                                  @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.title = title;
+        this.description = description;
         this.fee = fee;
         this.deadline = deadline;
         if (tagged != null) {
@@ -49,6 +53,7 @@ public class JsonAdaptedCommission {
      */
     public JsonAdaptedCommission(Commission source) {
         title = source.getTitle().title;
+        description = source.getDescription().description;
         fee = source.getFee().fee;
         deadline = source.getDeadline().deadline;
         tagged.addAll(source.getTags().stream()
@@ -71,6 +76,13 @@ public class JsonAdaptedCommission {
         }
 
         final Title modelTitle = new Title(title);
+
+        if (description == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Description.class.getSimpleName()));
+        }
+
+        final Description modelDescription = new Description(description);
 
         if (fee == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Fee.class.getSimpleName()));
@@ -96,7 +108,7 @@ public class JsonAdaptedCommission {
 
         final Set<Tag> modelTags = new HashSet<>(commissionTags);
 
-        return new Commission(modelTitle, modelFee, modelDeadline, modelTags);
+        return new Commission(modelTitle, modelDescription, modelFee, modelDeadline, modelTags);
 
     }
 

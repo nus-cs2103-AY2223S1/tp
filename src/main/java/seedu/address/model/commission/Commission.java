@@ -1,13 +1,13 @@
 package seedu.address.model.commission;
 
-import seedu.address.model.tag.Tag;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Commission in the address book.
@@ -17,6 +17,7 @@ public class Commission {
 
     // Identity fields
     private final Title title;
+    private final Description description;
     private final Fee fee;
     private final Deadline deadline;
     private final Set<Tag> tags = new HashSet<>();
@@ -24,9 +25,10 @@ public class Commission {
     /**
      * Every field must be present and not null.
      */
-    public Commission(Title title, Fee fee, Deadline deadline, Set<Tag> tags) {
-        requireAllNonNull(title, fee, deadline, tags);
+    public Commission(Title title, Description description, Fee fee, Deadline deadline, Set<Tag> tags) {
+        requireAllNonNull(title, description, fee, deadline, tags);
         this.title = title;
+        this.description = description;
         this.fee = fee;
         this.deadline = deadline;
         this.tags.addAll(tags);
@@ -34,6 +36,10 @@ public class Commission {
 
     public Title getTitle() {
         return title;
+    }
+
+    public Description getDescription() {
+        return description;
     }
 
     public Fee getFee() {
@@ -95,6 +101,8 @@ public class Commission {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getTitle())
+                .append("; Description: ")
+                .append(getDescription())
                 .append("; Fee: ")
                 .append(getFee())
                 .append("; Deadline: ")

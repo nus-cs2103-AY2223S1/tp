@@ -13,7 +13,7 @@ public class Title {
             "Titles should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
-     * The first character of the address must not be a whitespace,
+     * The first character of the title must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
@@ -47,8 +47,8 @@ public class Title {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.commission.Title // instanceof handles nulls
-                && title.equals(((seedu.address.model.commission.Title) other).title)); // state check
+                || (other instanceof Title // instanceof handles nulls
+                && title.equals(((Title) other).title)); // state check
     }
 
     @Override
