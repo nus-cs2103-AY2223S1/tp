@@ -1,6 +1,11 @@
 package seedu.address.storage;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,6 +15,7 @@ import seedu.address.model.commission.Commission;
 import seedu.address.model.commission.Deadline;
 import seedu.address.model.commission.Fee;
 import seedu.address.model.commission.Title;
+import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Commission}.
@@ -21,16 +27,21 @@ public class JsonAdaptedCommission {
     private final String title;
     private final Double fee;
     private final LocalDate deadline;
+    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedTitle} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedCommission(@JsonProperty("title") String title, @JsonProperty("fee") Double fee,
-                                 @JsonProperty("deadline") LocalDate deadline) {
+                                 @JsonProperty("deadline") LocalDate deadline,
+                                 @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.title = title;
         this.fee = fee;
         this.deadline = deadline;
+        if (tagged != null) {
+            this.tagged.addAll(tagged);
+        }
     }
 
     /**
@@ -40,6 +51,9 @@ public class JsonAdaptedCommission {
         title = source.getTitle().title;
         fee = source.getFee().fee;
         deadline = source.getDeadline().deadline;
+        tagged.addAll(source.getTags().stream()
+                .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -75,7 +89,14 @@ public class JsonAdaptedCommission {
 
         final Deadline modelDeadline = new Deadline(deadline);
 
-        return new Commission(modelTitle, modelFee, modelDeadline);
+        final List<Tag> commissionTags = new ArrayList<>();
+        for (JsonAdaptedTag tag : tagged) {
+            commissionTags.add(tag.toModelType());
+        }
+
+        final Set<Tag> modelTags = new HashSet<>(commissionTags);
+
+        return new Commission(modelTitle, modelFee, modelDeadline, modelTags);
 
     }
 
