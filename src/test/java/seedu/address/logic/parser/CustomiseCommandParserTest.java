@@ -13,8 +13,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CustomiseCommand;
-import seedu.address.model.ModelManager;
 import seedu.address.logic.commands.CustomiseCommand.Attribute;
+import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
 class CustomiseCommandParserTest {
