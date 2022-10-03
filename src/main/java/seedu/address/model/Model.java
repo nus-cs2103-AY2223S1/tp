@@ -85,7 +85,7 @@ public interface Model {
      * Updates the filter of the filtered student list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Student> predicate);
+    void updateFilteredStudentList(Predicate<Student> predicate);
 
     /** Enters focus mode. */
     void enterFocusMode(ModuleClass classToFocus);
