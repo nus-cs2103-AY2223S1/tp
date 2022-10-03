@@ -282,11 +282,6 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    && getGender().equals(e.getGender())
-                    && getBirthdate().equals(e.getBirthdate())
-                    && getRace().equals(e.getRace())
-                    && getReligion().equals(e.getReligion())
-                    && getSurvey().equals(e.getSurvey())
                     && getTags().equals(e.getTags());
         }
     }
