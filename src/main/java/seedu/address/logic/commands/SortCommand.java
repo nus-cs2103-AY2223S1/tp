@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -32,13 +33,15 @@ public class SortCommand extends Command {
     public static final String MESSAGE_WRONG_PREFIX = "Invalid parameter";
 
     private final Prefix parameter;
+    private final Boolean isReverse;
 
     /**
      * Creates a SortCommand to sort the address book.
      */
-    public SortCommand(Prefix prefix) {
-        requireNonNull(prefix);
+    public SortCommand(Prefix prefix, Boolean isReverse) {
+        requireAllNonNull(prefix, isReverse);
         this.parameter = prefix;
+        this.isReverse = isReverse;
     }
 
     @Override
@@ -55,6 +58,10 @@ public class SortCommand extends Command {
             model.sortByAddress();
         } else {
             throw new CommandException(MESSAGE_WRONG_PREFIX);
+        }
+
+        if (isReverse) {
+            model.reverseSort();
         }
 
         return new CommandResult(MESSAGE_SUCCESS + parameter.getPrefix());

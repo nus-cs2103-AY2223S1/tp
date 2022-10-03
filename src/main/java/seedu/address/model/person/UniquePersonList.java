@@ -131,6 +131,13 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Sorts the list in reverse order.
+     */
+    public void reverseSort() {
+        FXCollections.reverse(internalList);
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Person> asUnmodifiableObservableList() {

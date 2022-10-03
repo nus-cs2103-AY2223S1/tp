@@ -72,6 +72,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.sortByAddress();
     }
 
+    public void reverseSort() {
+        persons.reverseSort();
+    }
+
     //// person-level operations
 
     /**

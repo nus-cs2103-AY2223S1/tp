@@ -131,6 +131,11 @@ public class ModelManager implements Model {
         addressBook.sortByAddress();
     }
 
+    @Override
+    public void reverseSort() {
+        addressBook.reverseSort();
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
