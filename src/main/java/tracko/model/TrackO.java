@@ -6,6 +6,8 @@ import javafx.collections.ObservableList;
 import tracko.model.order.Order;
 import tracko.model.order.OrderList;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * Wraps all data at the root level
  */
@@ -19,8 +21,25 @@ public class TrackO implements ReadOnlyTrackO {
 
     public TrackO() {}
 
+    /**
+     * Creates an AddressBook using the data in the {@code toBeCopied}
+     */
+    public TrackO(ReadOnlyTrackO toBeCopied) {
+        this();
+        resetData(toBeCopied);
+    }
+
     public void setOrders(List<Order> orders) {
         this.orders.setOrders(orders);
+    }
+
+    /**
+     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     */
+    public void resetData(ReadOnlyTrackO newData) {
+        requireNonNull(newData);
+
+        setOrders(newData.getOrderList());
     }
 
     /**

@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import tracko.commons.core.GuiSettings;
+import tracko.model.order.Order;
 import tracko.model.person.Person;
 
 /**
@@ -84,4 +85,29 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    //TrackO=======================================================================================
+    /**
+     * Returns the user pref's orders file path.
+     */
+    Path getOrdersFilePath();
+
+    /**
+     * Sets the user pref's orders file path.
+     */
+    void setOrdersFilePath(Path ordersFilePath);
+
+    /**
+     * Replaces application data with the data in {@code trackO}
+     */
+    void setTrackO(ReadOnlyTrackO trackO);
+
+    /** Returns the TrackO */
+    ReadOnlyTrackO getTrackO();
+
+    /**
+     * Adds the given order.
+     */
+    void addOrder(Order order);
+
 }
