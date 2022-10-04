@@ -126,15 +126,11 @@ public class ParserUtil {
     /**
      * Parses a {@code String assignment} into a {@code Assignment}.
      * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code Assignment} is invalid.
      */
-    public static Assignment parseAssignment(String assignment) throws ParseException {
+    public static Assignment parseAssignment(String assignment) {
         requireNonNull(assignment);
         String trimmedAssignment = assignment.trim();
-        if (!Tag.isValidTagName(trimmedAssignment)) {
-            throw new ParseException(Assignment.MESSAGE_CONSTRAINTS);
-        }
+
         return new Assignment(trimmedAssignment);
     }
 }

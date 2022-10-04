@@ -42,7 +42,11 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+
         assignments = new HashMap<>();
+        ArrayList<Assignment> assignmentList = new ArrayList<>();
+        assignmentList.add(new Assignment(DEFAULT_ASSIGNMENT));
+        assignments.put(DEFAULT_GROUP, assignmentList);
     }
 
     /**
@@ -101,10 +105,13 @@ public class PersonBuilder {
      * Parses the {@code Assignments} into a {@code HashMap<String, ArrayList<Assignment>>}
      * and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withAssignments(String ... tags) {
+    public PersonBuilder withAssignments(String group, String assignment) {
         ArrayList<Assignment> assignmentList = new ArrayList<>();
-        assignmentList.add(new Assignment(DEFAULT_ASSIGNMENT));
-        this.assignments.put(DEFAULT_GROUP, assignmentList);
+        if (assignments.containsKey(group)) {
+            assignmentList = assignments.get(group);
+        }
+        assignmentList.add(new Assignment(assignment));
+        this.assignments.put(group, assignmentList);
         return this;
     }
 

@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Assignment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -33,6 +34,8 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_ASSIGNMENT_1 = "assignment 0";
+
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -193,4 +196,16 @@ public class ParserUtilTest {
 
         assertEquals(expectedTagSet, actualTagSet);
     }
+
+    @Test
+    public void parseAssignment_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseAssignment(null));
+    }
+
+    @Test
+    public void parseAssignment_validValueWithoutWhitespace_returnsAssignment() {
+        Assignment expectedAssignment = new Assignment(VALID_ASSIGNMENT_1);
+        assertEquals(expectedAssignment, ParserUtil.parseAssignment(VALID_ASSIGNMENT_1));
+    }
+
 }
