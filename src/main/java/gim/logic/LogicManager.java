@@ -14,7 +14,7 @@ import gim.logic.parser.AddressBookParser;
 import gim.logic.parser.exceptions.ParseException;
 import gim.model.Model;
 import gim.model.ReadOnlyAddressBook;
-import gim.model.person.Person;
+import gim.model.person.Exercise;
 import gim.storage.Storage;
 
 /**
@@ -60,8 +60,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Exercise> getFilteredExerciseList() {
+        return model.getFilteredExerciseList();
     }
 
     @Override

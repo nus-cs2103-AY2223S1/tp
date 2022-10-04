@@ -39,7 +39,7 @@ public class IndexTest {
 
     @Test
     public void equals() {
-        final Index fifthPersonIndex = Index.fromOneBased(5);
+        final Index fifthExerciseIndex = Index.fromOneBased(5);
 
         // same values -> returns true
         assertTrue(fifthPersonIndex.equals(Index.fromOneBased(5)));

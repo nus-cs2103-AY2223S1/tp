@@ -15,7 +15,7 @@ import gim.logic.parser.exceptions.ParseException;
 import gim.model.person.Address;
 import gim.model.person.Email;
 import gim.model.person.Name;
-import gim.model.person.Person;
+import gim.model.person.Exercise;
 import gim.model.person.Phone;
 import gim.model.tag.Tag;
 
@@ -44,7 +44,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, address, tagList);
+        Exercise person = new Exercise(name, phone, email, address, tagList);
 
         return new AddCommand(person);
     }

@@ -8,7 +8,7 @@ import gim.logic.commands.CommandResult;
 import gim.logic.commands.exceptions.CommandException;
 import gim.logic.parser.exceptions.ParseException;
 import gim.model.ReadOnlyAddressBook;
-import gim.model.person.Person;
+import gim.model.person.Exercise;
 
 /**
  * API of the Logic component
@@ -31,7 +31,7 @@ public interface Logic {
     ReadOnlyAddressBook getAddressBook();
 
     /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Exercise> getFilteredExerciseList();
 
     /**
      * Returns the user prefs' address book file path.

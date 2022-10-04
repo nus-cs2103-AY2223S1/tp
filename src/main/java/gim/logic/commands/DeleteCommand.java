@@ -8,7 +8,7 @@ import gim.commons.core.Messages;
 import gim.commons.core.index.Index;
 import gim.logic.commands.exceptions.CommandException;
 import gim.model.Model;
-import gim.model.person.Person;
+import gim.model.person.Exercise;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -33,14 +33,14 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Exercise> lastShownList = model.getFilteredExerciseList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePerson(personToDelete);
+        Exercise personToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.deleteExercise(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }
 
