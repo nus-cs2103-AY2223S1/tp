@@ -11,7 +11,7 @@ public class Tag {
 
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric "
             + "or in {Module}-{Tutorial Group} format";
-    public static final String VALIDATION_REGEX = "^[a-zA-Z]+(?:[-][a-zA-Z]+)?$"; // "\p{Alnum}+"
+    public static final String VALIDATION_REGEX = "^[a-zA-Z0-9]+(?:[-][a-zA-Z0-9]+)?$"; // "\p{Alnum}+"
 
     public final String tagName;
 
