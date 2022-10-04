@@ -78,7 +78,7 @@ class JsonAdaptedFood {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     MealType.class.getSimpleName()));
         }
-        if (!MealType.isValidPhone(phone)) {
+        if (!MealType.isValidMealType(phone)) {
             throw new IllegalValueException(MealType.MESSAGE_CONSTRAINTS);
         }
         final MealType modelMealType = new MealType(phone);

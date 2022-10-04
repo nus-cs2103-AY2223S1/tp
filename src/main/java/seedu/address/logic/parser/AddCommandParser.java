@@ -36,7 +36,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        MealType mealType = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
+        MealType mealType = ParserUtil.parseMealType(argMultimap.getValue(PREFIX_PHONE).get());
         Calorie calorie = new Calorie();
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 

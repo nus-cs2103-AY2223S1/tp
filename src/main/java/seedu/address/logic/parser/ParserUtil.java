@@ -55,10 +55,10 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code phone} is invalid.
      */
-    public static MealType parsePhone(String phone) throws ParseException {
+    public static MealType parseMealType(String phone) throws ParseException {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
-        if (!MealType.isValidPhone(trimmedPhone)) {
+        if (!MealType.isValidMealType(trimmedPhone)) {
             throw new ParseException(MealType.MESSAGE_CONSTRAINTS);
         }
         return new MealType(trimmedPhone);

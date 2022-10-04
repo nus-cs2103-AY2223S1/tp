@@ -5,13 +5,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's phone number in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidMealType(String)}
  */
 public class MealType {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, and it should be at least 3 digits long";
+            "Meal types should only be either Breakfast, Lunch or Dinner";
     public static final String VALIDATION_REGEX = "\\d{3,}";
     public final String value;
 
@@ -22,14 +22,14 @@ public class MealType {
      */
     public MealType(String phone) {
         requireNonNull(phone);
-        checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidMealType(phone), MESSAGE_CONSTRAINTS);
         value = phone;
     }
 
     /**
      * Returns true if a given string is a valid phone number.
      */
-    public static boolean isValidPhone(String test) {
+    public static boolean isValidMealType(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

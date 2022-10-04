@@ -22,19 +22,19 @@ public class MealTypeTest {
     @Test
     public void isValidPhone() {
         // null phone number
-        assertThrows(NullPointerException.class, () -> MealType.isValidPhone(null));
+        assertThrows(NullPointerException.class, () -> MealType.isValidMealType(null));
 
         // invalid phone numbers
-        assertFalse(MealType.isValidPhone("")); // empty string
-        assertFalse(MealType.isValidPhone(" ")); // spaces only
-        assertFalse(MealType.isValidPhone("91")); // less than 3 numbers
-        assertFalse(MealType.isValidPhone("phone")); // non-numeric
-        assertFalse(MealType.isValidPhone("9011p041")); // alphabets within digits
-        assertFalse(MealType.isValidPhone("9312 1534")); // spaces within digits
+        assertFalse(MealType.isValidMealType("")); // empty string
+        assertFalse(MealType.isValidMealType(" ")); // spaces only
+        assertFalse(MealType.isValidMealType("91")); // less than 3 numbers
+        assertFalse(MealType.isValidMealType("phone")); // non-numeric
+        assertFalse(MealType.isValidMealType("9011p041")); // alphabets within digits
+        assertFalse(MealType.isValidMealType("9312 1534")); // spaces within digits
 
         // valid phone numbers
-        assertTrue(MealType.isValidPhone("911")); // exactly 3 numbers
-        assertTrue(MealType.isValidPhone("93121534"));
-        assertTrue(MealType.isValidPhone("124293842033123")); // long phone numbers
+        assertTrue(MealType.isValidMealType("123")); // exactly 3 numbers
+        assertTrue(MealType.isValidMealType("12334"));
+        assertTrue(MealType.isValidMealType("1234567891011")); // long phone numbers
     }
 }
