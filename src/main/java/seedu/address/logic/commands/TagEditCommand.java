@@ -17,7 +17,8 @@ public class TagEditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits a tag to the taglist in the address book. "
+    public static final String MESSAGE_USAGE = TagCommand.COMMAND_WORD
+            + COMMAND_WORD + ": Edits a tag to the taglist in the address book. "
             + "Parameters: "
             + PREFIX_TAG + "TAG"
             + PREFIX_TAG + "TAG...\n"
