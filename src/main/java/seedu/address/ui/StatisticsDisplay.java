@@ -20,9 +20,10 @@ public class StatisticsDisplay extends UiPart<Region> {
         super(FXML);
     }
 
-    public void setFeedbackToUser(String feedbackToUser) {
-        requireNonNull(feedbackToUser);
-        resultDisplay.setText(feedbackToUser);
+    public void showStatisticsToUser(int numberOfStudents, int amountOwed, int amountCollected) {
+        resultDisplay.setText(String.format("Number of students: %d\n" +
+                "Total amount owed: $%d\n" +
+                "Total amount collected: $%d", numberOfStudents, amountOwed, amountCollected));
     }
 
 }
