@@ -1,5 +1,6 @@
 package seedu.address.logic.commands.tasks;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGN_FROM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGN_TO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
@@ -10,7 +11,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.tasks.TaskCategoryParser;
 import seedu.address.model.Model;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
 import seedu.address.model.task.Description;
+import seedu.address.model.task.Task;
 import seedu.address.model.task.enums.Assignment;
 
 /**
@@ -49,8 +52,16 @@ public class TaskAddCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+
         // Humphrey, you can use the model to query the AddressBook (to be renamed)
         // for the Person using Name.
+        Person personToAddTask = model.findPerson(name);
+        if (personToAddTask == null) {
+            throw new CommandException("Person not found!");
+        }
+        Task newTask = new Task(personToAddTask, this.assignment, this.description, this.isDone);
+        // add this task to the tasklist
         throw new CommandException("Task add command not implemented yet.");
     }
 }
