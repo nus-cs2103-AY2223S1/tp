@@ -11,10 +11,11 @@ import java.util.List;
 @JsonIdentityInfo(generator= ObjectIdGenerators.UUIDGenerator.class, property="@UUID")
 class JsonAdaptedClient {
 
-//    private final List<Meeting> meetings;
+    private final List<Meeting> meetings;
     private final String name;
 
     public JsonAdaptedClient(Client client) {
         name = client.getName();
+        meetings = new ArrayList<>();
     }
 }
