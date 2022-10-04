@@ -31,8 +31,8 @@ public class EventCommandParser implements Parser<EventCommand> {
                 .orElseThrow(() -> new ParseException(MESSAGE_FLAG_NOT_SPECIFIED));
 
         switch (option) {
-            default:
-                throw new ParseException(EventCommand.OPTION_UNKNOWN);
+        default:
+            throw new ParseException(EventCommand.OPTION_UNKNOWN);
         }
     }
 }
