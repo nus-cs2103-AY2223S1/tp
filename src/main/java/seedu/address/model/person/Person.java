@@ -62,7 +62,7 @@ public class Person {
     }
 
     public NetWorth getNetWorth() {
-        return netWorth;
+         return netWorth;
     }
 
     /**
