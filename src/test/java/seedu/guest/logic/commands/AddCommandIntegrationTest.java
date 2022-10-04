@@ -26,7 +26,7 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newPerson_success() {
+    public void execute_newGuest_success() {
         Guest validGuest = new PersonBuilder().build();
 
         Model expectedModel = new ModelManager(model.getGuestBook(), new UserPrefs());
@@ -37,7 +37,7 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
+    public void execute_duplicateGuest_throwsCommandException() {
         Guest guestInList = model.getGuestBook().getGuestList().get(0);
         assertCommandFailure(new AddCommand(guestInList), model, AddCommand.MESSAGE_DUPLICATE_GUEST);
     }

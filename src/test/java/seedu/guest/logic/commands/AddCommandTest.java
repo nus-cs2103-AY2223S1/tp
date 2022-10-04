@@ -26,26 +26,26 @@ import seedu.guest.testutil.PersonBuilder;
 public class AddCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullGuest_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+    public void execute_guestAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingGuestAdded modelStub = new ModelStubAcceptingGuestAdded();
         Guest validGuest = new PersonBuilder().build();
 
         CommandResult commandResult = new AddCommand(validGuest).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validGuest), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validGuest), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validGuest), modelStub.guestsAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
+    public void execute_duplicateGuest_throwsCommandException() {
         Guest validGuest = new PersonBuilder().build();
         AddCommand addCommand = new AddCommand(validGuest);
-        ModelStub modelStub = new ModelStubWithPerson(validGuest);
+        ModelStub modelStub = new ModelStubWithGuest(validGuest);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_GUEST, () -> addCommand.execute(modelStub));
     }
@@ -70,7 +70,7 @@ public class AddCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different person -> returns false
+        // different guest -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
@@ -150,12 +150,12 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single guest.
      */
-    private class ModelStubWithPerson extends ModelStub {
+    private class ModelStubWithGuest extends ModelStub {
         private final Guest guest;
 
-        ModelStubWithPerson(Guest guest) {
+        ModelStubWithGuest(Guest guest) {
             requireNonNull(guest);
             this.guest = guest;
         }
@@ -168,21 +168,21 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the guest being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Guest> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingGuestAdded extends ModelStub {
+        final ArrayList<Guest> guestsAdded = new ArrayList<>();
 
         @Override
         public boolean hasGuest(Guest guest) {
             requireNonNull(guest);
-            return personsAdded.stream().anyMatch(guest::isSameGuest);
+            return guestsAdded.stream().anyMatch(guest::isSameGuest);
         }
 
         @Override
         public void addGuest(Guest guest) {
             requireNonNull(guest);
-            personsAdded.add(guest);
+            guestsAdded.add(guest);
         }
 
         @Override
