@@ -29,15 +29,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: _To be determined_
 
-### Nguyen Minh Hoang
+### Johnny Doe
 
-<img src="images/hoang227.png.png" width="200px">
+<img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/hoang227)] 
-[[portfolio](team/hoang227.md)]
+[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: _To be determined_
+* Responsibilities: Data
 
 ### Amadeus Chi Song yi
 
@@ -49,7 +48,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: _To be determined_
 
-### James Doe
+### Gavin Cho
 
 <img src="images/johndoe.png" width="200px">
 
