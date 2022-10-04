@@ -1,0 +1,16 @@
+{
+  "persons" : [ {
+    "name" : "Alex",
+    "phone" : "9782192",
+    "email" : "alex@gmail.com",
+    "address" : "Westwood ave",
+    "tagged" : [ "dumb", "dumber", "smartest" ]
+  }, {
+    "name" : "Yeoh",
+    "phone" : "90909090",
+    "email" : "yeoh@gmail.com",
+    "address" : "EastWood ave",
+    "tagged" : [ "dumber", "smartest" ]
+  } ],
+  "tags" : [ "dumber", "dumb", "smartest" ]
+}
