@@ -5,11 +5,11 @@ import static hobbylist.logic.commands.CommandTestUtil.assertCommandSuccess;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import hobbylist.testutil.TypicalIndexes;
-import hobbylist.testutil.TypicalActivities;
 import hobbylist.model.Model;
 import hobbylist.model.ModelManager;
 import hobbylist.model.UserPrefs;
+import hobbylist.testutil.TypicalActivities;
+import hobbylist.testutil.TypicalIndexes;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.

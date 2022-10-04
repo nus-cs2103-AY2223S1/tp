@@ -122,7 +122,7 @@ public class UniqueActivityList implements Iterable<Activity> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique activities.
+     * Returns true if {@code activities} contains only unique activities.
      */
     private boolean activitiesAreUnique(List<Activity> activities) {
         for (int i = 0; i < activities.size() - 1; i++) {

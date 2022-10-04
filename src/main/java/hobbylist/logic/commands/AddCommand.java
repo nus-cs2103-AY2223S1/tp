@@ -31,7 +31,7 @@ public class AddCommand extends Command {
     private final Activity toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Activity}
      */
     public AddCommand(Activity activity) {
         requireNonNull(activity);

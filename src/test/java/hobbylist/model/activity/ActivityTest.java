@@ -1,10 +1,10 @@
 package hobbylist.model.activity;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static hobbylist.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOXING;
 import static hobbylist.logic.commands.CommandTestUtil.VALID_NAME_BOXING;
 import static hobbylist.logic.commands.CommandTestUtil.VALID_TAG_ENTERTAINMENT;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -38,7 +38,8 @@ public class ActivityTest {
         assertFalse(TypicalActivities.ACTIVITY_A.isSameActivity(editedA));
 
         // name differs in case, all other attributes same -> returns false
-        Activity editedB = new ActivityBuilder(TypicalActivities.BOXING).withName(VALID_NAME_BOXING.toLowerCase()).build();
+        Activity editedB = new ActivityBuilder(TypicalActivities.BOXING)
+                .withName(VALID_NAME_BOXING.toLowerCase()).build();
         assertFalse(TypicalActivities.BOXING.isSameActivity(editedB));
 
         // name has trailing spaces, all other attributes same -> returns false

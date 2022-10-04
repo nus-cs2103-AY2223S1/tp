@@ -101,7 +101,7 @@ public class ModelManager implements Model {
     @Override
     public void addActivity(Activity activity) {
         hobbyList.addActivity(activity);
-        updateFilteredActivityList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredActivityList(PREDICATE_SHOW_ALL_ACTIVITIES);
     }
 
     @Override

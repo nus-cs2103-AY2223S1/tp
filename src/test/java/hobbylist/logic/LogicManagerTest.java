@@ -1,9 +1,8 @@
 package hobbylist.logic;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static hobbylist.commons.core.Messages.MESSAGE_INVALID_ACTIVITY_DISPLAYED_INDEX;
 import static hobbylist.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static hobbylist.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -12,12 +11,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import hobbylist.logic.commands.CommandTestUtil;
-import hobbylist.testutil.ActivityBuilder;
-import hobbylist.testutil.Assert;
-import hobbylist.testutil.TypicalActivities;
 import hobbylist.logic.commands.AddCommand;
 import hobbylist.logic.commands.CommandResult;
+import hobbylist.logic.commands.CommandTestUtil;
 import hobbylist.logic.commands.ListCommand;
 import hobbylist.logic.commands.exceptions.CommandException;
 import hobbylist.logic.parser.exceptions.ParseException;
@@ -29,6 +25,9 @@ import hobbylist.model.activity.Activity;
 import hobbylist.storage.JsonHobbyListStorage;
 import hobbylist.storage.JsonUserPrefsStorage;
 import hobbylist.storage.StorageManager;
+import hobbylist.testutil.ActivityBuilder;
+import hobbylist.testutil.Assert;
+import hobbylist.testutil.TypicalActivities;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -41,10 +40,10 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonHobbyListStorage addressBookStorage =
-                new JsonHobbyListStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonHobbyListStorage hobbyListStorage =
+                new JsonHobbyListStorage(temporaryFolder.resolve("hobbyList.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(hobbyListStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -68,12 +67,12 @@ public class LogicManagerTest {
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonHobbyListStorage addressBookStorage =
-                new JsonHobbyListIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        // Setup LogicManager with JsonHobbyListIoExceptionThrowingStub
+        JsonHobbyListStorage hobbyListStorage =
+                new JsonHobbyListIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionHobbyList.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(hobbyListStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command

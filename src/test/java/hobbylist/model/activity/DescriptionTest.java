@@ -2,7 +2,6 @@ package hobbylist.model.activity;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static hobbylist.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -32,7 +31,9 @@ public class DescriptionTest {
 
         // valid descriptions
         assertTrue(Description.isValidDescription("Blk 456, Den Road, #01-355"));
-        assertTrue(Description.isValidDescription("-")); // one character
-        assertTrue(Description.isValidDescription("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
+        // one character
+        assertTrue(Description.isValidDescription("-"));
+        // long description
+        assertTrue(Description.isValidDescription("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA"));
     }
 }

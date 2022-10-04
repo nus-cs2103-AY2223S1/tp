@@ -1,9 +1,8 @@
 package hobbylist.commons.util;
 
+import static hobbylist.commons.util.CollectionUtil.requireAllNonNull;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static hobbylist.commons.util.CollectionUtil.requireAllNonNull;
-import static hobbylist.testutil.Assert.assertThrows;
 
 import java.util.Arrays;
 import java.util.Collection;

@@ -1,9 +1,9 @@
 {
   "activities": [ {
-    "name": "Valid Person",
+    "name": "Valid Activity",
     "description": "4th street"
   }, {
-    "name": "Person With Invalid Description Field",
+    "name": "Activity With Invalid Description Field",
     "description": ""
   } ]
 }

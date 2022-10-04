@@ -6,12 +6,12 @@ import static hobbylist.logic.commands.CommandTestUtil.assertCommandSuccess;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import hobbylist.testutil.ActivityBuilder;
-import hobbylist.testutil.TypicalActivities;
 import hobbylist.model.Model;
 import hobbylist.model.ModelManager;
 import hobbylist.model.UserPrefs;
 import hobbylist.model.activity.Activity;
+import hobbylist.testutil.ActivityBuilder;
+import hobbylist.testutil.TypicalActivities;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.

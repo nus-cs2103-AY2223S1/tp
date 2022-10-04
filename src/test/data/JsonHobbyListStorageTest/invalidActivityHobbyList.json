@@ -1,6 +1,6 @@
 {
   "activities": [ {
-    "name": "Person with invalid name field: Ha!ns Mu@ster",
+    "name": "Activity with invalid name field: Ha!ns Mu@ster",
     "description": "4th street"
   } ]
 }

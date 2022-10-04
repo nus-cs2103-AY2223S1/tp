@@ -2,7 +2,6 @@ package hobbylist.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static hobbylist.testutil.Assert.assertThrows;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -12,10 +11,10 @@ import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import hobbylist.testutil.Assert;
 import hobbylist.commons.core.GuiSettings;
 import hobbylist.commons.exceptions.DataConversionException;
 import hobbylist.model.UserPrefs;
+import hobbylist.testutil.Assert;
 
 public class JsonUserPrefsStorageTest {
 

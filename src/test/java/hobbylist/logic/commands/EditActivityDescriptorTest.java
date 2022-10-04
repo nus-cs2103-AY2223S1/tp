@@ -1,17 +1,17 @@
 package hobbylist.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static hobbylist.logic.commands.CommandTestUtil.DESC_ANIME;
 import static hobbylist.logic.commands.CommandTestUtil.DESC_BOXING;
 import static hobbylist.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOXING;
 import static hobbylist.logic.commands.CommandTestUtil.VALID_NAME_BOXING;
 import static hobbylist.logic.commands.CommandTestUtil.VALID_TAG_ENTERTAINMENT;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import hobbylist.testutil.EditActivityDescriptorBuilder;
 import hobbylist.logic.commands.EditCommand.EditActivityDescriptor;
+import hobbylist.testutil.EditActivityDescriptorBuilder;
 
 public class EditActivityDescriptorTest {
 
@@ -34,7 +34,8 @@ public class EditActivityDescriptorTest {
         assertFalse(DESC_ANIME.equals(DESC_BOXING));
 
         // different name -> returns false
-        EditActivityDescriptor editedAmy = new EditActivityDescriptorBuilder(DESC_ANIME).withName(VALID_NAME_BOXING).build();
+        EditActivityDescriptor editedAmy = new EditActivityDescriptorBuilder(DESC_ANIME).withName(VALID_NAME_BOXING)
+                .build();
         assertFalse(DESC_ANIME.equals(editedAmy));
 
         // different description -> returns false

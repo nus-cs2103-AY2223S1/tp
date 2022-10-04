@@ -6,9 +6,9 @@ import java.util.stream.Stream;
 
 import hobbylist.logic.commands.EditCommand;
 import hobbylist.logic.commands.EditCommand.EditActivityDescriptor;
+import hobbylist.model.activity.Activity;
 import hobbylist.model.activity.Description;
 import hobbylist.model.activity.Name;
-import hobbylist.model.activity.Activity;
 import hobbylist.model.tag.Tag;
 
 /**

@@ -56,7 +56,7 @@ public class HobbyList implements ReadOnlyHobbyList {
         setActivities(newData.getActivityList());
     }
 
-    //// person-level operations
+    //// activity-level operations
 
     /**
      * Returns true if an activity with the same identity as {@code activity} exists in the HobbyList.

@@ -9,11 +9,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import hobbylist.testutil.TypicalActivities;
 import hobbylist.commons.core.GuiSettings;
 import hobbylist.model.HobbyList;
 import hobbylist.model.ReadOnlyHobbyList;
 import hobbylist.model.UserPrefs;
+import hobbylist.testutil.TypicalActivities;
 
 public class StorageManagerTest {
 

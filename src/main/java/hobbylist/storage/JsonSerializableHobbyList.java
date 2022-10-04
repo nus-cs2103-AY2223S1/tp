@@ -24,7 +24,7 @@ class JsonSerializableHobbyList {
     private final List<JsonAdaptedActivity> activities = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableHobbyList} with the given persons.
+     * Constructs a {@code JsonSerializableHobbyList} with the given activities.
      */
     @JsonCreator
     public JsonSerializableHobbyList(@JsonProperty("activities") List<JsonAdaptedActivity> activities) {

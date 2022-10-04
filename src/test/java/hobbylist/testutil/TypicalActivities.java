@@ -64,6 +64,7 @@ public class TypicalActivities {
     }
 
     public static List<Activity> getTypicalActivities() {
-        return new ArrayList<>(Arrays.asList(ACTIVITY_A, ACTIVITY_B, ACTIVITY_C, ACTIVITY_D, ACTIVITY_E, ACTIVITY_F, ACTIVITY_G));
+        return new ArrayList<>(Arrays.asList(ACTIVITY_A, ACTIVITY_B, ACTIVITY_C, ACTIVITY_D, ACTIVITY_E, ACTIVITY_F,
+                ACTIVITY_G));
     }
 }

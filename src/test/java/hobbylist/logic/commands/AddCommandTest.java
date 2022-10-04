@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static hobbylist.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -13,16 +12,16 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
-import hobbylist.model.HobbyList;
-import hobbylist.model.activity.Activity;
-import hobbylist.testutil.Assert;
-import hobbylist.testutil.ActivityBuilder;
-import javafx.collections.ObservableList;
 import hobbylist.commons.core.GuiSettings;
 import hobbylist.logic.commands.exceptions.CommandException;
+import hobbylist.model.HobbyList;
 import hobbylist.model.Model;
 import hobbylist.model.ReadOnlyHobbyList;
 import hobbylist.model.ReadOnlyUserPrefs;
+import hobbylist.model.activity.Activity;
+import hobbylist.testutil.ActivityBuilder;
+import hobbylist.testutil.Assert;
+import javafx.collections.ObservableList;
 
 public class AddCommandTest {
 
@@ -48,7 +47,8 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(validActivity);
         ModelStub modelStub = new ModelStubWithActivity(validActivity);
 
-        Assert.assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_ACTIVITY, () -> addCommand.execute(modelStub));
+        Assert.assertThrows(CommandException.class,
+                AddCommand.MESSAGE_DUPLICATE_ACTIVITY, () -> addCommand.execute(modelStub));
     }
 
     @Test
@@ -71,7 +71,7 @@ public class AddCommandTest {
         // null -> returns false
         assertFalse(addAnimeCommand.equals(null));
 
-        // different person -> returns false
+        // different activity -> returns false
         assertFalse(addAnimeCommand.equals(addBoxingCommand));
     }
 

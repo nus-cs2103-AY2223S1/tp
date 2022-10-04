@@ -1,23 +1,23 @@
 package hobbylist.logic.commands;
 
+import static hobbylist.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static hobbylist.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 import org.junit.jupiter.api.Test;
 
-import hobbylist.model.HobbyList;
-import hobbylist.model.activity.Activity;
-import hobbylist.testutil.ActivityBuilder;
-import hobbylist.testutil.EditActivityDescriptorBuilder;
-import hobbylist.testutil.TypicalIndexes;
-import hobbylist.testutil.TypicalActivities;
 import hobbylist.commons.core.Messages;
 import hobbylist.commons.core.index.Index;
 import hobbylist.logic.commands.EditCommand.EditActivityDescriptor;
+import hobbylist.model.HobbyList;
 import hobbylist.model.Model;
 import hobbylist.model.ModelManager;
 import hobbylist.model.UserPrefs;
+import hobbylist.model.activity.Activity;
+import hobbylist.testutil.ActivityBuilder;
+import hobbylist.testutil.EditActivityDescriptorBuilder;
+import hobbylist.testutil.TypicalActivities;
+import hobbylist.testutil.TypicalIndexes;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
@@ -49,7 +49,8 @@ public class EditCommandTest {
         Activity editedActivity = activityInList.withName(CommandTestUtil.VALID_NAME_BOXING)
                 .withTags(CommandTestUtil.VALID_TAG_ENTERTAINMENT).build();
 
-        EditActivityDescriptor descriptor = new EditActivityDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOXING)
+        EditActivityDescriptor descriptor = new EditActivityDescriptorBuilder()
+                .withName(CommandTestUtil.VALID_NAME_BOXING)
                 .withTags(CommandTestUtil.VALID_TAG_ENTERTAINMENT).build();
         EditCommand editCommand = new EditCommand(indexLastActivity, descriptor);
 
@@ -63,8 +64,10 @@ public class EditCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditCommand editCommand = new EditCommand(TypicalIndexes.INDEX_FIRST_ACTIVITY, new EditCommand.EditActivityDescriptor());
-        Activity editedActivity = model.getFilteredActivityList().get(TypicalIndexes.INDEX_FIRST_ACTIVITY.getZeroBased());
+        EditCommand editCommand = new EditCommand(TypicalIndexes.INDEX_FIRST_ACTIVITY,
+                new EditCommand.EditActivityDescriptor());
+        Activity editedActivity = model.getFilteredActivityList()
+                .get(TypicalIndexes.INDEX_FIRST_ACTIVITY.getZeroBased());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ACTIVITY_SUCCESS, editedActivity);
 
@@ -77,8 +80,10 @@ public class EditCommandTest {
     public void execute_filteredList_success() {
         CommandTestUtil.showActivityAtIndex(model, TypicalIndexes.INDEX_FIRST_ACTIVITY);
 
-        Activity activityInFilteredList = model.getFilteredActivityList().get(TypicalIndexes.INDEX_FIRST_ACTIVITY.getZeroBased());
-        Activity editedActivity = new ActivityBuilder(activityInFilteredList).withName(CommandTestUtil.VALID_NAME_BOXING).build();
+        Activity activityInFilteredList = model.getFilteredActivityList()
+                .get(TypicalIndexes.INDEX_FIRST_ACTIVITY.getZeroBased());
+        Activity editedActivity = new ActivityBuilder(activityInFilteredList)
+                .withName(CommandTestUtil.VALID_NAME_BOXING).build();
         EditCommand editCommand = new EditCommand(TypicalIndexes.INDEX_FIRST_ACTIVITY,
                 new EditActivityDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOXING).build());
 
@@ -92,7 +97,8 @@ public class EditCommandTest {
 
     @Test
     public void execute_duplicateActivityUnfilteredList_failure() {
-        Activity firstActivity = model.getFilteredActivityList().get(TypicalIndexes.INDEX_FIRST_ACTIVITY.getZeroBased());
+        Activity firstActivity = model.getFilteredActivityList()
+                .get(TypicalIndexes.INDEX_FIRST_ACTIVITY.getZeroBased());
         EditCommand.EditActivityDescriptor descriptor = new EditActivityDescriptorBuilder(firstActivity).build();
         EditCommand editCommand = new EditCommand(TypicalIndexes.INDEX_SECOND_ACTIVITY, descriptor);
 
@@ -104,7 +110,8 @@ public class EditCommandTest {
         CommandTestUtil.showActivityAtIndex(model, TypicalIndexes.INDEX_FIRST_ACTIVITY);
 
         // edit activity in filtered list into a duplicate in HobbyList
-        Activity activityInList = model.getHobbyList().getActivityList().get(TypicalIndexes.INDEX_SECOND_ACTIVITY.getZeroBased());
+        Activity activityInList = model.getHobbyList().getActivityList()
+                .get(TypicalIndexes.INDEX_SECOND_ACTIVITY.getZeroBased());
         EditCommand editCommand = new EditCommand(TypicalIndexes.INDEX_FIRST_ACTIVITY,
                 new EditActivityDescriptorBuilder(activityInList).build());
 
@@ -114,7 +121,8 @@ public class EditCommandTest {
     @Test
     public void execute_invalidActivityIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredActivityList().size() + 1);
-        EditCommand.EditActivityDescriptor descriptor = new EditActivityDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOXING).build();
+        EditCommand.EditActivityDescriptor descriptor = new EditActivityDescriptorBuilder()
+                .withName(CommandTestUtil.VALID_NAME_BOXING).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         CommandTestUtil.assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_ACTIVITY_DISPLAYED_INDEX);
@@ -139,10 +147,12 @@ public class EditCommandTest {
 
     @Test
     public void equals() {
-        final EditCommand standardCommand = new EditCommand(TypicalIndexes.INDEX_FIRST_ACTIVITY, CommandTestUtil.DESC_ANIME);
+        final EditCommand standardCommand = new EditCommand(TypicalIndexes.INDEX_FIRST_ACTIVITY,
+                CommandTestUtil.DESC_ANIME);
 
         // same values -> returns true
-        EditCommand.EditActivityDescriptor copyDescriptor = new EditCommand.EditActivityDescriptor(CommandTestUtil.DESC_ANIME);
+        EditCommand.EditActivityDescriptor copyDescriptor = new EditCommand
+                .EditActivityDescriptor(CommandTestUtil.DESC_ANIME);
         EditCommand commandWithSameValues = new EditCommand(TypicalIndexes.INDEX_FIRST_ACTIVITY, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
@@ -156,10 +166,12 @@ public class EditCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(TypicalIndexes.INDEX_SECOND_ACTIVITY, CommandTestUtil.DESC_ANIME)));
+        assertFalse(standardCommand.equals(new EditCommand(TypicalIndexes.INDEX_SECOND_ACTIVITY,
+                CommandTestUtil.DESC_ANIME)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(TypicalIndexes.INDEX_FIRST_ACTIVITY, CommandTestUtil.DESC_BOXING)));
+        assertFalse(standardCommand.equals(new EditCommand(TypicalIndexes.INDEX_FIRST_ACTIVITY,
+                CommandTestUtil.DESC_BOXING)));
     }
 
 }

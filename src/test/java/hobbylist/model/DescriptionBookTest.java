@@ -1,11 +1,10 @@
 package hobbylist.model;
 
+import static hobbylist.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOXING;
+import static hobbylist.logic.commands.CommandTestUtil.VALID_TAG_ENTERTAINMENT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static hobbylist.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOXING;
-import static hobbylist.logic.commands.CommandTestUtil.VALID_TAG_ENTERTAINMENT;
-import static hobbylist.testutil.Assert.assertThrows;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -14,13 +13,13 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import hobbylist.testutil.Assert;
+import hobbylist.model.activity.Activity;
+import hobbylist.model.activity.exceptions.DuplicateActivityException;
 import hobbylist.testutil.ActivityBuilder;
+import hobbylist.testutil.Assert;
 import hobbylist.testutil.TypicalActivities;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import hobbylist.model.activity.Activity;
-import hobbylist.model.activity.exceptions.DuplicateActivityException;
 
 public class DescriptionBookTest {
 
@@ -46,7 +45,8 @@ public class DescriptionBookTest {
     @Test
     public void resetData_withDuplicateActivity_throwsDuplicateActivityException() {
         // Two activities with the same identity fields
-        Activity editedA = new ActivityBuilder(TypicalActivities.ACTIVITY_A).withDescription(VALID_DESCRIPTION_BOXING).withTags(VALID_TAG_ENTERTAINMENT)
+        Activity editedA = new ActivityBuilder(TypicalActivities.ACTIVITY_A).withDescription(VALID_DESCRIPTION_BOXING)
+                .withTags(VALID_TAG_ENTERTAINMENT)
                 .build();
         List<Activity> newActivities = Arrays.asList(TypicalActivities.ACTIVITY_A, editedA);
         HobbyListStub newData = new HobbyListStub(newActivities);
@@ -65,7 +65,7 @@ public class DescriptionBookTest {
     }
 
     @Test
-    public void hasActivity_personInHobbyList_returnsTrue() {
+    public void hasActivity_activityInHobbyList_returnsTrue() {
         hobbyList.addActivity(TypicalActivities.ACTIVITY_A);
         assertTrue(hobbyList.hasActivity(TypicalActivities.ACTIVITY_A));
     }
@@ -73,7 +73,8 @@ public class DescriptionBookTest {
     @Test
     public void hasActivity_activityWithSameIdentityFieldsInHobbyList_returnsTrue() {
         hobbyList.addActivity(TypicalActivities.ACTIVITY_A);
-        Activity editedA = new ActivityBuilder(TypicalActivities.ACTIVITY_A).withDescription(VALID_DESCRIPTION_BOXING).withTags(VALID_TAG_ENTERTAINMENT)
+        Activity editedA = new ActivityBuilder(TypicalActivities.ACTIVITY_A).withDescription(VALID_DESCRIPTION_BOXING)
+                .withTags(VALID_TAG_ENTERTAINMENT)
                 .build();
         assertTrue(hobbyList.hasActivity(editedA));
     }

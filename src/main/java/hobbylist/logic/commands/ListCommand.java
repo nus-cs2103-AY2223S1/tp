@@ -1,6 +1,6 @@
 package hobbylist.logic.commands;
 
-import static hobbylist.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static hobbylist.model.Model.PREDICATE_SHOW_ALL_ACTIVITIES;
 import static java.util.Objects.requireNonNull;
 
 import hobbylist.model.Model;
@@ -18,7 +18,7 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredActivityList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredActivityList(PREDICATE_SHOW_ALL_ACTIVITIES);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

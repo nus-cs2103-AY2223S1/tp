@@ -12,7 +12,7 @@ import javafx.collections.ObservableList;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Activity> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Activity> PREDICATE_SHOW_ALL_ACTIVITIES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -59,13 +59,13 @@ public interface Model {
 
     /**
      * Deletes the given activity.
-     * The person must exist in the HobbyList.
+     * The activity must exist in the HobbyList.
      */
     void deleteActivity(Activity target);
 
     /**
      * Adds the given activity.
-     * {@code person} must not already exist in the HobbyList.
+     * {@code activity} must not already exist in the HobbyList.
      */
     void addActivity(Activity activity);
 

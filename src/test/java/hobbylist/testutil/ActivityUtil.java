@@ -2,9 +2,9 @@ package hobbylist.testutil;
 
 import java.util.Set;
 
+import hobbylist.logic.commands.AddCommand;
 import hobbylist.logic.commands.EditCommand;
 import hobbylist.logic.parser.CliSyntax;
-import hobbylist.logic.commands.AddCommand;
 import hobbylist.model.activity.Activity;
 import hobbylist.model.tag.Tag;
 
@@ -39,7 +39,8 @@ public class ActivityUtil {
     public static String getEditActivityDescriptorDetails(EditCommand.EditActivityDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(CliSyntax.PREFIX_NAME).append(name.fullName).append(" "));
-        descriptor.getDescription().ifPresent(address -> sb.append(CliSyntax.PREFIX_DESCRIPTION).append(address.value).append(" "));
+        descriptor.getDescription().ifPresent(description -> sb.append(CliSyntax.PREFIX_DESCRIPTION)
+                .append(description.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

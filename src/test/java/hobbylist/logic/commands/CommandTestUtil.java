@@ -2,21 +2,20 @@ package hobbylist.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static hobbylist.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import hobbylist.logic.parser.CliSyntax;
-import hobbylist.model.HobbyList;
-import hobbylist.model.activity.Activity;
-import hobbylist.testutil.Assert;
-import hobbylist.testutil.EditActivityDescriptorBuilder;
 import hobbylist.commons.core.index.Index;
 import hobbylist.logic.commands.exceptions.CommandException;
+import hobbylist.logic.parser.CliSyntax;
+import hobbylist.model.HobbyList;
 import hobbylist.model.Model;
+import hobbylist.model.activity.Activity;
 import hobbylist.model.activity.NameContainsKeywordsPredicate;
+import hobbylist.testutil.Assert;
+import hobbylist.testutil.EditActivityDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -37,9 +36,12 @@ public class CommandTestUtil {
     public static final String TAG_DESC_ENTERTAINMENT = " " + CliSyntax.PREFIX_TAG + VALID_TAG_ENTERTAINMENT;
     public static final String TAG_DESC_EXERCISE = " " + CliSyntax.PREFIX_TAG + VALID_TAG_EXERCISE;
 
-    public static final String INVALID_NAME_DESC = " " + CliSyntax.PREFIX_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_DESCRIPTION_DESC = " " + CliSyntax.PREFIX_DESCRIPTION; // empty string not allowed for addresses
-    public static final String INVALID_TAG_DESC = " " + CliSyntax.PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    // '&' not allowed in names
+    public static final String INVALID_NAME_DESC = " " + CliSyntax.PREFIX_NAME + "James&";
+    // empty string not allowed for descriptions
+    public static final String INVALID_DESCRIPTION_DESC = " " + CliSyntax.PREFIX_DESCRIPTION;
+    // '*' not allowed in tags
+    public static final String INVALID_TAG_DESC = " " + CliSyntax.PREFIX_TAG + "hubby*";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

@@ -65,22 +65,22 @@ public class EditCommand extends Command {
         }
 
         Activity activityToEdit = lastShownList.get(index.getZeroBased());
-        Activity editedActivity = createEditedPerson(activityToEdit, editActivityDescriptor);
+        Activity editedActivity = createEditedActivity(activityToEdit, editActivityDescriptor);
 
         if (!activityToEdit.isSameActivity(editedActivity) && model.hasActivity(editedActivity)) {
             throw new CommandException(MESSAGE_DUPLICATE_ACTIVITY);
         }
 
         model.setActivity(activityToEdit, editedActivity);
-        model.updateFilteredActivityList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredActivityList(Model.PREDICATE_SHOW_ALL_ACTIVITIES);
         return new CommandResult(String.format(MESSAGE_EDIT_ACTIVITY_SUCCESS, editedActivity));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns an {@code Activity} with the details of {@code activityToEdit}
+     * edited with {@code editActivityDescriptor}.
      */
-    private static Activity createEditedPerson(Activity activityToEdit, EditActivityDescriptor editActivityDescriptor) {
+    private static Activity createEditedActivity(Activity activityToEdit, EditActivityDescriptor editActivityDescriptor) {
         assert activityToEdit != null;
 
         Name updatedName = editActivityDescriptor.getName().orElse(activityToEdit.getName());
@@ -110,8 +110,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the activity with. Each non-empty field value will replace the
+     * corresponding field value of the activity.
      */
     public static class EditActivityDescriptor {
         private Name name;

@@ -2,7 +2,6 @@ package hobbylist.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static hobbylist.testutil.Assert.assertThrows;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -11,11 +10,11 @@ import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import hobbylist.commons.exceptions.DataConversionException;
 import hobbylist.model.HobbyList;
+import hobbylist.model.ReadOnlyHobbyList;
 import hobbylist.testutil.Assert;
 import hobbylist.testutil.TypicalActivities;
-import hobbylist.commons.exceptions.DataConversionException;
-import hobbylist.model.ReadOnlyHobbyList;
 
 public class JsonDescriptionBookStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonHobbyListStorageTest");
@@ -55,7 +54,8 @@ public class JsonDescriptionBookStorageTest {
 
     @Test
     public void readHobbyList_invalidAndValidActivityHobbyList_throwDataConversionException() {
-        Assert.assertThrows(DataConversionException.class, () -> readHobbyList("invalidAndValidActivityHobbyList.json"));
+        Assert.assertThrows(DataConversionException.class, ()
+                -> readHobbyList("invalidAndValidActivityHobbyList.json"));
     }
 
     @Test

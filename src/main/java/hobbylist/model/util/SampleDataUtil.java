@@ -15,7 +15,7 @@ import hobbylist.model.tag.Tag;
  * Contains utility methods for populating {@code HobbyList} with sample data.
  */
 public class SampleDataUtil {
-    public static Activity[] getSamplePersons() {
+    public static Activity[] getSampleActivities() {
         return new Activity[] {
             new Activity(new Name("And Then There Were None"),
                 new Description("Mystery novel by Agatha Christie"),
@@ -40,7 +40,7 @@ public class SampleDataUtil {
 
     public static ReadOnlyHobbyList getSampleHobbyList() {
         HobbyList sampleAb = new HobbyList();
-        for (Activity sampleActivity : getSamplePersons()) {
+        for (Activity sampleActivity : getSampleActivities()) {
             sampleAb.addActivity(sampleActivity);
         }
         return sampleAb;

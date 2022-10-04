@@ -1,9 +1,8 @@
 package hobbylist.logic.parser;
 
+import static hobbylist.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static hobbylist.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
-import static hobbylist.testutil.Assert.assertThrows;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -12,12 +11,12 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import hobbylist.model.activity.Description;
-import hobbylist.testutil.Assert;
-import hobbylist.testutil.TypicalIndexes;
 import hobbylist.logic.parser.exceptions.ParseException;
+import hobbylist.model.activity.Description;
 import hobbylist.model.activity.Name;
 import hobbylist.model.tag.Tag;
+import hobbylist.testutil.Assert;
+import hobbylist.testutil.TypicalIndexes;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -85,16 +84,16 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseDescription_validValueWithoutWhitespace_returnsAddress() throws Exception {
+    public void parseDescription_validValueWithoutWhitespace_returnsDescription() throws Exception {
         Description expectedDescription = new Description(VALID_DESCRIPTION);
         assertEquals(expectedDescription, ParserUtil.parseDescription(VALID_DESCRIPTION));
     }
 
     @Test
-    public void parseDescription_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String addressWithWhitespace = WHITESPACE + VALID_DESCRIPTION + WHITESPACE;
+    public void parseDescription_validValueWithWhitespace_returnsTrimmedDescription() throws Exception {
+        String descriptionWithWhitespace = WHITESPACE + VALID_DESCRIPTION + WHITESPACE;
         Description expectedDescription = new Description(VALID_DESCRIPTION);
-        assertEquals(expectedDescription, ParserUtil.parseDescription(addressWithWhitespace));
+        assertEquals(expectedDescription, ParserUtil.parseDescription(descriptionWithWhitespace));
     }
 
     @Test

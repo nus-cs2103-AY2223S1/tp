@@ -1,10 +1,9 @@
 package hobbylist.model;
 
+import static hobbylist.model.Model.PREDICATE_SHOW_ALL_ACTIVITIES;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static hobbylist.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-import static hobbylist.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -12,11 +11,11 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import hobbylist.testutil.HobbyListBuilder;
-import hobbylist.testutil.Assert;
-import hobbylist.testutil.TypicalActivities;
 import hobbylist.commons.core.GuiSettings;
 import hobbylist.model.activity.NameContainsKeywordsPredicate;
+import hobbylist.testutil.Assert;
+import hobbylist.testutil.HobbyListBuilder;
+import hobbylist.testutil.TypicalActivities;
 
 public class ModelManagerTest {
 
@@ -37,14 +36,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setHobbyListFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setHobbyListFilePath(Paths.get("hobby/list/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setHobbyListFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setHobbyListFilePath(Paths.get("new/hobby/list/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -67,7 +66,7 @@ public class ModelManagerTest {
 
     @Test
     public void setHobbyListFilePath_validPath_setsHobbyListFilePath() {
-        Path path = Paths.get("address/book/file/path");
+        Path path = Paths.get("hobby/list/file/path");
         modelManager.setHobbyListFilePath(path);
         assertEquals(path, modelManager.getHobbyListFilePath());
     }
@@ -90,12 +89,14 @@ public class ModelManagerTest {
 
     @Test
     public void getFilteredActivityList_modifyList_throwsUnsupportedOperationException() {
-        Assert.assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredActivityList().remove(0));
+        Assert.assertThrows(UnsupportedOperationException.class, ()
+                -> modelManager.getFilteredActivityList().remove(0));
     }
 
     @Test
     public void equals() {
-        HobbyList hobbyList = new HobbyListBuilder().withActivity(TypicalActivities.ACTIVITY_A).withActivity(TypicalActivities.ACTIVITY_B).build();
+        HobbyList hobbyList = new HobbyListBuilder().withActivity(TypicalActivities.ACTIVITY_A)
+                .withActivity(TypicalActivities.ACTIVITY_B).build();
         HobbyList differentHobbyList = new HobbyList();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -113,7 +114,7 @@ public class ModelManagerTest {
         // different types -> returns false
         assertFalse(modelManager.equals(5));
 
-        // different addressBook -> returns false
+        // different HobbyList -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentHobbyList, userPrefs)));
 
         // different filteredList -> returns false
@@ -122,7 +123,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(hobbyList, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredActivityList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.updateFilteredActivityList(PREDICATE_SHOW_ALL_ACTIVITIES);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

@@ -1,21 +1,21 @@
 package hobbylist.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static hobbylist.logic.commands.CommandTestUtil.assertCommandFailure;
 import static hobbylist.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static hobbylist.logic.commands.CommandTestUtil.showActivityAtIndex;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import hobbylist.model.activity.Activity;
-import hobbylist.testutil.TypicalIndexes;
-import hobbylist.testutil.TypicalActivities;
 import hobbylist.commons.core.Messages;
 import hobbylist.commons.core.index.Index;
 import hobbylist.model.Model;
 import hobbylist.model.ModelManager;
 import hobbylist.model.UserPrefs;
+import hobbylist.model.activity.Activity;
+import hobbylist.testutil.TypicalActivities;
+import hobbylist.testutil.TypicalIndexes;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -27,7 +27,8 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Activity activityToDelete = model.getFilteredActivityList().get(TypicalIndexes.INDEX_FIRST_ACTIVITY.getZeroBased());
+        Activity activityToDelete = model.getFilteredActivityList().get(TypicalIndexes
+                .INDEX_FIRST_ACTIVITY.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(TypicalIndexes.INDEX_FIRST_ACTIVITY);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_ACTIVITY_SUCCESS, activityToDelete);
@@ -50,7 +51,8 @@ public class DeleteCommandTest {
     public void execute_validIndexFilteredList_success() {
         showActivityAtIndex(model, TypicalIndexes.INDEX_FIRST_ACTIVITY);
 
-        Activity activityToDelete = model.getFilteredActivityList().get(TypicalIndexes.INDEX_FIRST_ACTIVITY.getZeroBased());
+        Activity activityToDelete = model.getFilteredActivityList()
+                .get(TypicalIndexes.INDEX_FIRST_ACTIVITY.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(TypicalIndexes.INDEX_FIRST_ACTIVITY);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_ACTIVITY_SUCCESS, activityToDelete);
@@ -67,7 +69,7 @@ public class DeleteCommandTest {
         showActivityAtIndex(model, TypicalIndexes.INDEX_FIRST_ACTIVITY);
 
         Index outOfBoundIndex = TypicalIndexes.INDEX_SECOND_ACTIVITY;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of HobbyList list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getHobbyList().getActivityList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
@@ -93,7 +95,7 @@ public class DeleteCommandTest {
         // null -> returns false
         assertFalse(deleteFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different activity -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 

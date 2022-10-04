@@ -1,21 +1,21 @@
 package hobbylist.logic.commands;
 
+import static hobbylist.commons.core.Messages.MESSAGE_ACTIVITIES_LISTED_OVERVIEW;
+import static hobbylist.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static hobbylist.commons.core.Messages.MESSAGE_ACTIVITIES_LISTED_OVERVIEW;
-import static hobbylist.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 import java.util.Arrays;
 import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
-import hobbylist.testutil.TypicalActivities;
 import hobbylist.model.Model;
 import hobbylist.model.ModelManager;
 import hobbylist.model.UserPrefs;
 import hobbylist.model.activity.NameContainsKeywordsPredicate;
+import hobbylist.testutil.TypicalActivities;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -47,7 +47,7 @@ public class FindCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different activity -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
@@ -62,13 +62,14 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
+    public void execute_multipleKeywords_multipleActivitiesFound() {
         String expectedMessage = String.format(MESSAGE_ACTIVITIES_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Charlotte Exercise Chicken");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredActivityList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(TypicalActivities.ACTIVITY_C, TypicalActivities.ACTIVITY_E, TypicalActivities.ACTIVITY_F), model.getFilteredActivityList());
+        assertEquals(Arrays.asList(TypicalActivities.ACTIVITY_C, TypicalActivities.ACTIVITY_E,
+                TypicalActivities.ACTIVITY_F), model.getFilteredActivityList());
     }
 
     /**
