@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.MoneyOwed;
+import seedu.address.model.person.MoneyPaid;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -21,17 +23,23 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final Integer moneyOwed;
+    private final Integer moneyPaid;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                             @JsonProperty("email") String email, @JsonProperty("address") String address) {
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("money_owed") Integer moneyOwed,
+                             @JsonProperty("monet_paid") Integer moneyPaid) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.moneyOwed = moneyOwed;
+        this.moneyPaid = moneyPaid;
     }
 
     /**
@@ -42,6 +50,8 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        moneyOwed = source.getMoneyOwed().value;
+        moneyPaid = source.getMoneyPaid().value;
     }
 
     /**
@@ -83,7 +93,25 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress);
+        if (moneyOwed == null) {
+            throw new IllegalValueException(String.format(
+                    MISSING_FIELD_MESSAGE_FORMAT, MoneyOwed.class.getSimpleName()));
+        }
+        if (!MoneyOwed.isValidMoneyOwed(moneyOwed)) {
+            throw new IllegalValueException(MoneyOwed.MESSAGE_CONSTRAINS);
+        }
+        final MoneyOwed modelMoneyOwed = new MoneyOwed(moneyOwed);
+
+        if (moneyPaid == null) {
+            throw new IllegalValueException(String.format(
+                    MISSING_FIELD_MESSAGE_FORMAT, MoneyPaid.class.getSimpleName()));
+        }
+        if (!MoneyPaid.isValidMoneyPaid(moneyPaid)) {
+            throw new IllegalValueException(MoneyPaid.MESSAGE_CONSTRAINS);
+        }
+        final MoneyPaid modelMoneyPaid = new MoneyPaid(moneyPaid);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelMoneyOwed, modelMoneyPaid);
     }
 
 }
