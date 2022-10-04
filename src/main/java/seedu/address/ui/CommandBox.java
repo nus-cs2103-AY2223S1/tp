@@ -1,9 +1,20 @@
 package seedu.address.ui;
 
+import java.util.LinkedList;
+import java.util.List;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Side;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.CustomMenuItem;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
+import seedu.address.logic.autocomplete.Autocomplete;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -18,17 +29,26 @@ public class CommandBox extends UiPart<Region> {
 
     private final CommandExecutor commandExecutor;
 
+    private final Autocomplete autocomplete;
+
     @FXML
     private TextField commandTextField;
+
+    @FXML
+    private ContextMenu autocompletePopup;
 
     /**
      * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
      */
-    public CommandBox(CommandExecutor commandExecutor) {
+    public CommandBox(CommandExecutor commandExecutor, Autocomplete autocompleteManager) {
         super(FXML);
         this.commandExecutor = commandExecutor;
+        this.autocomplete = autocompleteManager;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+
+        // set up a listener for autocomplete feature.
+        setAutocompleteListener();
     }
 
     /**
@@ -47,6 +67,66 @@ public class CommandBox extends UiPart<Region> {
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
         }
+    }
+
+    /**
+     * Displays a list of autocomplete entries.
+     */
+    private void setAutocompleteListener() {
+        // Solution below adapted from https://stackoverflow.com/questions/36861056/javafx-textfield-auto-suggestions
+        commandTextField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                String searchValue = commandTextField.getText();
+
+                // Only show autocomplete field for find command.
+                if (!searchValue.startsWith(autocomplete.AUTOCOMPLETE_COMMAND_WORD)) {
+                    autocompletePopup.hide();
+                } else {
+                    String namePrefix = searchValue.substring(autocomplete.AUTOCOMPLETE_COMMAND_WORD.length());
+                    // Get the list of names that matches the namePrefix.
+                    List<String> searchResult = autocomplete.getAutocompleteEntries(namePrefix);
+                    if (searchResult.size() == 0) {
+                        autocompletePopup.hide();
+                    }
+                    // Build the autocomplete dropdown menu
+                    populatePopup(searchResult);
+                    if (!autocompletePopup.isShowing()) {
+                        autocompletePopup.show(commandTextField, Side.BOTTOM, 0, 0);
+
+                    }
+                }
+            }
+        });
+    }
+
+    /**
+     * Generates a list of autocomplete entries with the given search result.
+     *
+     * @param searchResult The list of matching strings
+     */
+    private void populatePopup(List<String> searchResult) {
+        // Solution below adapted from https://stackoverflow.com/questions/36861056/javafx-textfield-auto-suggestions
+        List<CustomMenuItem> menuItems = new LinkedList<>();
+        for (int i = 0; i < searchResult.size(); i++) {
+            final String result = autocomplete.AUTOCOMPLETE_COMMAND_WORD + searchResult.get(i);
+            Label entryLabel = new Label(result);
+            CustomMenuItem item = new CustomMenuItem(entryLabel, true);
+            // Whenever an item is selected, set text field to the selected text, execute the command and close pop up.
+            item.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    commandTextField.setText(result);
+                    handleCommandEntered();
+                    autocompletePopup.hide();
+                }
+            });
+            menuItems.add(item);
+        }
+
+        // Update the autocomplete pop up.
+        autocompletePopup.getItems().clear();
+        autocompletePopup.getItems().addAll(menuItems);
     }
 
     /**

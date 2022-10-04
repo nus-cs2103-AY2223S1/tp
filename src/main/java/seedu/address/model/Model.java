@@ -1,10 +1,12 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.TreeSet;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
 /**
@@ -100,6 +102,11 @@ public interface Model {
      * Sorts the address book in reverse order.
      */
     void reverseSort();
+
+    /**
+     * Returns a set of unique {@code Name} in the address book.
+     */
+    TreeSet<String> getUniqueNames();
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
