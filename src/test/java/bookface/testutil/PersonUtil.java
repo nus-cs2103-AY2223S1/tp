@@ -2,9 +2,9 @@ package bookface.testutil;
 
 import java.util.Set;
 
+import bookface.logic.commands.EditCommand;
 import bookface.logic.commands.add.AddCommand;
 import bookface.logic.commands.add.AddUserCommand;
-import bookface.logic.commands.EditCommand;
 import bookface.logic.parser.CliSyntax;
 import bookface.model.person.Person;
 import bookface.model.tag.Tag;

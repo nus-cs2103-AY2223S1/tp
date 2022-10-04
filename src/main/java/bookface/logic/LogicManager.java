@@ -8,6 +8,7 @@ import bookface.commons.core.GuiSettings;
 import bookface.commons.core.LogsCenter;
 import bookface.logic.commands.Command;
 import bookface.logic.commands.CommandResult;
+import bookface.logic.commands.HelpCommand;
 import bookface.logic.commands.exceptions.CommandException;
 import bookface.logic.parser.AddressBookParser;
 import bookface.logic.parser.exceptions.ParseException;
@@ -34,7 +35,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        addressBookParser = new AddressBookParser(HelpCommand.MESSAGE_USAGE);
     }
 
     @Override

@@ -15,6 +15,7 @@ public class DeleteCommandParser implements Parser<DeleteUserCommand> {
      * and returns a DeleteCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
+    @Override
     public DeleteUserCommand parse(String args) throws ParseException {
         try {
             String trimmedString = args.trim();

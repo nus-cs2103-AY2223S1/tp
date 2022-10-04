@@ -8,10 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import bookface.logic.commands.add.AddCommand;
-import bookface.logic.commands.add.AddUserCommand;
 import org.junit.jupiter.api.Test;
 
 import bookface.logic.commands.ClearCommand;
@@ -22,6 +19,8 @@ import bookface.logic.commands.ExitCommand;
 import bookface.logic.commands.FindCommand;
 import bookface.logic.commands.HelpCommand;
 import bookface.logic.commands.ListUsersCommand;
+import bookface.logic.commands.add.AddCommand;
+import bookface.logic.commands.add.AddUserCommand;
 import bookface.logic.parser.exceptions.ParseException;
 import bookface.model.person.NameContainsKeywordsPredicate;
 import bookface.model.person.Person;
@@ -32,7 +31,7 @@ import bookface.testutil.TypicalIndexes;
 
 public class AddressBookParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final AddressBookParser parser = new AddressBookParser(HelpCommand.MESSAGE_USAGE);
 
     @Test
     public void parseCommand_add() throws Exception {
