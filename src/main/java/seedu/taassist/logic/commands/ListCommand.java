@@ -8,7 +8,7 @@ import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.student.IsPartOfClassPredicate;
 
 /**
- * Lists all students in TA-Assist to the user.
+ * Lists all students in TA-Assist or in the focused class to the user.
  */
 public class ListCommand extends Command {
 
