@@ -13,15 +13,15 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import tracko.logic.commands.AddCommand;
+import tracko.logic.commands.order.AddOrderCommand;
 import tracko.logic.commands.ClearCommand;
-import tracko.logic.commands.DeleteCommand;
-import tracko.logic.commands.EditCommand;
-import tracko.logic.commands.EditCommand.EditPersonDescriptor;
+import tracko.logic.commands.order.DeleteOrderCommand;
+import tracko.logic.commands.order.EditOrderCommand;
+import tracko.logic.commands.order.EditOrderCommand.EditPersonDescriptor;
 import tracko.logic.commands.ExitCommand;
-import tracko.logic.commands.FindCommand;
+import tracko.logic.commands.order.FindOrderCommand;
 import tracko.logic.commands.HelpCommand;
-import tracko.logic.commands.ListCommand;
+import tracko.logic.commands.order.ListOrdersCommand;
 import tracko.logic.parser.exceptions.ParseException;
 import tracko.model.person.NameContainsKeywordsPredicate;
 import tracko.model.person.Person;
@@ -31,13 +31,13 @@ import tracko.testutil.PersonUtil;
 
 public class AddressBookParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final TrackOParser parser = new TrackOParser();
 
     @Test
     public void parseCommand_add() throws Exception {
         Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+        AddOrderCommand command = (AddOrderCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
+        assertEquals(new AddOrderCommand(person), command);
     }
 
     @Test
@@ -48,18 +48,18 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+        DeleteOrderCommand command = (DeleteOrderCommand) parser.parseCommand(
+                DeleteOrderCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new DeleteOrderCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test
     public void parseCommand_edit() throws Exception {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
+        EditOrderCommand command = (EditOrderCommand) parser.parseCommand(EditOrderCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+        assertEquals(new EditOrderCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 
     @Test
@@ -71,9 +71,9 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        FindOrderCommand command = (FindOrderCommand) parser.parseCommand(
+                FindOrderCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindOrderCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
@@ -84,8 +84,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListOrdersCommand.COMMAND_WORD) instanceof ListOrdersCommand);
+        assertTrue(parser.parseCommand(ListOrdersCommand.COMMAND_WORD + " 3") instanceof ListOrdersCommand);
     }
 
     @Test

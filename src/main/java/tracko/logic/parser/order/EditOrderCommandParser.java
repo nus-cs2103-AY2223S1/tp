@@ -1,4 +1,4 @@
-package tracko.logic.parser;
+package tracko.logic.parser.order;
 
 import static java.util.Objects.requireNonNull;
 import static tracko.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -11,13 +11,14 @@ import java.util.Set;
 import tracko.commons.core.index.Index;
 import tracko.logic.commands.order.EditOrderCommand;
 import tracko.logic.commands.order.EditOrderCommand.EditPersonDescriptor;
+import tracko.logic.parser.*;
 import tracko.logic.parser.exceptions.ParseException;
 import tracko.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new EditCommand object
  */
-public class EditCommandParser implements Parser<EditOrderCommand> {
+public class EditOrderCommandParser implements Parser<EditOrderCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand

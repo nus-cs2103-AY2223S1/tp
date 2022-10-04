@@ -1,17 +1,18 @@
-package tracko.logic.parser;
+package tracko.logic.parser.order;
 
 import static tracko.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Arrays;
 
 import tracko.logic.commands.order.FindOrderCommand;
+import tracko.logic.parser.Parser;
 import tracko.logic.parser.exceptions.ParseException;
 import tracko.model.person.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
  */
-public class FindCommandParser implements Parser<FindOrderCommand> {
+public class FindOrderCommandParser implements Parser<FindOrderCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand

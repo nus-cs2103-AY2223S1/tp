@@ -36,6 +36,7 @@ import org.junit.jupiter.api.Test;
 import tracko.commons.core.index.Index;
 import tracko.logic.commands.order.EditOrderCommand;
 import tracko.logic.commands.order.EditOrderCommand.EditPersonDescriptor;
+import tracko.logic.parser.order.EditOrderCommandParser;
 import tracko.model.person.Address;
 import tracko.model.person.Email;
 import tracko.model.person.Name;
@@ -43,14 +44,14 @@ import tracko.model.person.Phone;
 import tracko.model.tag.Tag;
 import tracko.testutil.EditPersonDescriptorBuilder;
 
-public class EditCommandParserTest {
+public class EditOrderCommandParserTest {
 
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditOrderCommand.MESSAGE_USAGE);
 
-    private EditCommandParser parser = new EditCommandParser();
+    private EditOrderCommandParser parser = new EditOrderCommandParser();
 
     @Test
     public void parse_missingParts_failure() {

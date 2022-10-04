@@ -10,12 +10,11 @@ import tracko.commons.core.LogsCenter;
 import tracko.logic.commands.Command;
 import tracko.logic.commands.CommandResult;
 import tracko.logic.commands.exceptions.CommandException;
-import tracko.logic.parser.AddressBookParser;
+import tracko.logic.parser.TrackOParser;
 import tracko.logic.parser.exceptions.ParseException;
 import tracko.model.Model;
-import tracko.model.ReadOnlyAddressBook;
 import tracko.model.ReadOnlyTrackO;
-import tracko.model.person.Person;
+import tracko.model.order.Order;
 import tracko.storage.Storage;
 
 /**
@@ -27,7 +26,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final TrackOParser addressBookParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -35,7 +34,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        addressBookParser = new TrackOParser();
     }
 
     @Override
@@ -47,7 +46,6 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
             storage.saveTrackO(model.getTrackO());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
@@ -57,24 +55,12 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
-    }
-
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
-    }
-
-    @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
-    }
-
-    @Override
     public ReadOnlyTrackO getTrackO() {
         return model.getTrackO();
     }
+
+    @Override
+    public ObservableList<Order> getOrderList() { return model.getOrderList();}
 
     @Override
     public Path getOrdersFilePath() {

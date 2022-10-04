@@ -1,15 +1,17 @@
-package tracko.logic.parser;
+package tracko.logic.parser.order;
 
 import static tracko.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import tracko.commons.core.index.Index;
 import tracko.logic.commands.order.DeleteOrderCommand;
+import tracko.logic.parser.Parser;
+import tracko.logic.parser.ParserUtil;
 import tracko.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new DeleteCommand object
  */
-public class DeleteCommandParser implements Parser<DeleteOrderCommand> {
+public class DeleteOrderCommandParser implements Parser<DeleteOrderCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteCommand

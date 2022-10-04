@@ -9,11 +9,12 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import tracko.logic.commands.order.FindOrderCommand;
+import tracko.logic.parser.order.FindOrderCommandParser;
 import tracko.model.person.NameContainsKeywordsPredicate;
 
-public class FindCommandParserTest {
+public class FindOrderCommandParserTest {
 
-    private FindCommandParser parser = new FindCommandParser();
+    private FindOrderCommandParser parser = new FindOrderCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {

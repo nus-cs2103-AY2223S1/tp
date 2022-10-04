@@ -17,17 +17,16 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import tracko.logic.commands.AddCommand;
+import tracko.logic.commands.order.AddOrderCommand;
 import tracko.logic.commands.CommandResult;
-import tracko.logic.commands.ListCommand;
+import tracko.logic.commands.order.ListOrdersCommand;
 import tracko.logic.commands.exceptions.CommandException;
 import tracko.logic.parser.exceptions.ParseException;
 import tracko.model.Model;
 import tracko.model.ModelManager;
-import tracko.model.ReadOnlyAddressBook;
+import tracko.model.ReadOnlyTrackO;
 import tracko.model.UserPrefs;
 import tracko.model.person.Person;
-import tracko.storage.JsonAddressBookStorage;
 import tracko.storage.JsonUserPrefsStorage;
 import tracko.storage.StorageManager;
 import tracko.testutil.PersonBuilder;
@@ -64,8 +63,8 @@ public class LogicManagerTest {
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        String listCommand = ListOrdersCommand.COMMAND_WORD;
+        assertCommandSuccess(listCommand, ListOrdersCommand.MESSAGE_SUCCESS, model);
     }
 
     @Test
@@ -79,7 +78,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+        String addCommand = AddOrderCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY;
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
@@ -155,7 +154,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+        public void saveAddressBook(ReadOnlyTrackO addressBook, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }
