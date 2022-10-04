@@ -1,7 +1,6 @@
 package seedu.guest.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_NAME;
@@ -25,6 +24,7 @@ public class AddCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
+            + PREFIX_NUMBER_OF_GUESTS + "NUMBER_OF_GUESTS "
             + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "

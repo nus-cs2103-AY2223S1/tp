@@ -117,7 +117,7 @@ public class Guest {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
-                .append("; Number of Guests: ")
+                .append("; No. of Guests: ")
                 .append(getNumberOfGuests())
                 .append("; Address: ")
                 .append(getAddress());

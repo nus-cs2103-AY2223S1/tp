@@ -1,7 +1,6 @@
 package seedu.guest.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_NAME;

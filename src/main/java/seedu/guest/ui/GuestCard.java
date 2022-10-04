@@ -54,7 +54,7 @@ public class GuestCard extends UiPart<Region> {
         phone.setText(guest.getPhone().value);
         address.setText(guest.getAddress().value);
         email.setText(guest.getEmail().value);
-        numberOfGuests.setText("Guests: " + guest.getNumberOfGuests().value);
+        numberOfGuests.setText("No. of Guests: " + guest.getNumberOfGuests().value);
         guest.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

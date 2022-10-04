@@ -1,19 +1,11 @@
 package seedu.guest.testutil;
 
-<<<<<<< HEAD:src/test/java/seedu/address/testutil/PersonUtil.java
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NUMBER_OF_GUESTS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-=======
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.guest.logic.parser.CliSyntax.PREFIX_NUMBER_OF_GUESTS;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_TAG;
->>>>>>> master:src/test/java/seedu/guest/testutil/PersonUtil.java
 
 import java.util.Set;
 
@@ -39,20 +31,12 @@ public class PersonUtil {
      */
     public static String getPersonDetails(Guest guest) {
         StringBuilder sb = new StringBuilder();
-<<<<<<< HEAD:src/test/java/seedu/address/testutil/PersonUtil.java
-        sb.append(PREFIX_NAME + person.getName().fullName + " ");
-        sb.append(PREFIX_PHONE + person.getPhone().value + " ");
-        sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
-        sb.append(PREFIX_NUMBER_OF_GUESTS + person.getNumberOfGuests().value + " ");
-        sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
-        person.getTags().stream().forEach(
-=======
         sb.append(PREFIX_NAME + guest.getName().fullName + " ");
         sb.append(PREFIX_PHONE + guest.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + guest.getEmail().value + " ");
+        sb.append(PREFIX_NUMBER_OF_GUESTS + guest.getNumberOfGuests().value + " ");
         sb.append(PREFIX_ADDRESS + guest.getAddress().value + " ");
         guest.getTags().stream().forEach(
->>>>>>> master:src/test/java/seedu/guest/testutil/PersonUtil.java
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         return sb.toString();

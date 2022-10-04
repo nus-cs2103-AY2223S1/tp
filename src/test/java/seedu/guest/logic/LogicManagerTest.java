@@ -1,7 +1,6 @@
 package seedu.guest.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import static seedu.guest.commons.core.Messages.MESSAGE_INVALID_GUEST_DISPLAYED_INDEX;
 import static seedu.guest.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.guest.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
