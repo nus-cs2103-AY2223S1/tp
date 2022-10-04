@@ -1,11 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -21,6 +17,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
+import seedu.address.model.person.Location;
 import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -44,8 +41,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_LOCATION + "LOCATION] "
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -113,8 +110,8 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-
-        return new Student(updatedName, updatedPhone, updatedEmail, updatedGender, updatedTags);
+        Location updatedLocation = editPersonDescriptor.getLocation().orElse(personToEdit.getLocation());
+        return new Student(updatedName, updatedPhone, updatedEmail, updatedGender, updatedTags, updatedLocation);
     }
 
     /**
@@ -130,8 +127,10 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Location updatedLocation = editPersonDescriptor.getLocation().orElse(personToEdit.getLocation());
 
-        return new Professor(updatedName, updatedModuleCode, updatedPhone, updatedEmail, updatedGender, updatedTags);
+        return new Professor(updatedName, updatedModuleCode, updatedPhone, updatedEmail, updatedGender, updatedTags,
+            updatedLocation);
     }
 
     /**
@@ -148,9 +147,10 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Location updatedLocation = editPersonDescriptor.getLocation().orElse(personToEdit.getLocation());
 
         return new TeachingAssistant(updatedName, updatedModuleCode, updatedPhone,
-                updatedEmail, updatedGender, updatedTags);
+                updatedEmail, updatedGender, updatedTags, updatedLocation);
     }
 
 
@@ -184,6 +184,7 @@ public class EditCommand extends Command {
         private Email email;
         private Gender gender;
         private Set<Tag> tags;
+        private Location location;
 
         public EditPersonDescriptor() {}
 
@@ -198,6 +199,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setGender(toCopy.gender);
             setTags(toCopy.tags);
+            setLocation(toCopy.location);
         }
 
         /**
@@ -247,6 +249,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(moduleCode);
         }
 
+        public Optional<Location> getLocation() {
+            return Optional.ofNullable(location);
+        }
+
+        public void setLocation(Location location) {
+            this.location = location;
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -283,7 +293,8 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getGender().equals(e.getGender())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getLocation().equals(e.getLocation());
         }
 
     }
