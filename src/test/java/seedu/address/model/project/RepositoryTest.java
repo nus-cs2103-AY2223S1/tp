@@ -1,7 +1,6 @@
 package seedu.address.model.project;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -36,5 +35,11 @@ class RepositoryTest {
         //valid repository
         assertTrue(Repository.isValidRepository("peterjack/tp")); // alphabets only
         assertTrue(Repository.isValidRepository("12345/cs2103tp")); // alphanumeric characters
+        assertTrue(Repository.isValidRepository("user-x/project_y-two.alpha")); // allow dashes, underscores, periods
+    }
+
+    @Test
+    public void toString_validRepoName_stringConversionToGitHubURLSuccess() {
+        assertEquals(new Repository("peterjack/tp").toString(), "https://github.com/peterjack/tp");
     }
 }

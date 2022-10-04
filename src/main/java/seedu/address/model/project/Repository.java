@@ -8,6 +8,17 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Repository {
 
+    /**
+     * Represents an empty Project repository.
+     */
+    private static class EmptyRepository extends Repository {
+        private static final Repository EMPTY_REPOSITORY = new EmptyRepository();
+
+        private EmptyRepository() {
+            super("");
+        }
+    }
+
     public static final String MESSAGE_CONSTRAINTS =
             "Repository should be entered in <Username/RepoName> format";
 
@@ -39,6 +50,6 @@ public class Repository {
 
     @Override
     public String toString() {
-        return projectRepository;
+        return "https://github.com/" + projectRepository;
     }
 }

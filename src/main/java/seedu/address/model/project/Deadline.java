@@ -11,6 +11,17 @@ import java.time.format.DateTimeFormatter;
  */
 public class Deadline {
 
+    /**
+     * Represents an empty Project deadline.
+     */
+    private static class EmptyDeadline extends Deadline {
+        private static final Deadline EMPTY_DEADLINE = new EmptyDeadline();
+
+        private EmptyDeadline() {
+            super("");
+        }
+    }
+
     public static final String MESSAGE_CONSTRAINTS =
             "Deadlines should be entered in yyyy-mm-dd date format";
 

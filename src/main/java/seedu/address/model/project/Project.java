@@ -1,6 +1,6 @@
 package seedu.address.model.project;
 
-import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents a Project.
@@ -18,7 +18,7 @@ public class Project {
      * Name field must be present and not null and other fields may be optional.
      */
     public Project(Name name, Repository repository, Deadline deadline, String client, String issue) {
-        requireNonNull(name);
+        requireAllNonNull(name, repository, deadline, client, issue);
         this.name = name;
         this.repository = repository;
         this.deadline = deadline;
