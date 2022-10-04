@@ -8,8 +8,11 @@ import java.util.logging.Logger;
 import jarvis.commons.core.LogsCenter;
 import jarvis.commons.exceptions.DataConversionException;
 import jarvis.model.ReadOnlyStudentBook;
+import jarvis.model.ReadOnlyTaskBook;
 import jarvis.model.ReadOnlyUserPrefs;
 import jarvis.model.UserPrefs;
+import jarvis.storage.student.StudentBookStorage;
+import jarvis.storage.task.TaskBookStorage;
 
 /**
  * Manages storage of AddressBook data in local storage.
@@ -17,14 +20,17 @@ import jarvis.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
+    private StudentBookStorage studentBookStorage;
+    private TaskBookStorage taskBookStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
-        this.addressBookStorage = addressBookStorage;
+    public StorageManager(StudentBookStorage studentBookStorage, TaskBookStorage taskBookStorage,
+                          UserPrefsStorage userPrefsStorage) {
+        this.studentBookStorage = studentBookStorage;
+        this.taskBookStorage = taskBookStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -46,33 +52,62 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ StudentBook methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getStudentBookFilePath() {
+        return studentBookStorage.getStudentBookFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyStudentBook> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyStudentBook> readStudentBook() throws DataConversionException, IOException {
+        return readStudentBook(studentBookStorage.getStudentBookFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyStudentBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyStudentBook> readStudentBook(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return studentBookStorage.readStudentBook(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyStudentBook addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void saveStudentBook(ReadOnlyStudentBook addressBook) throws IOException {
+        saveStudentBook(addressBook, studentBookStorage.getStudentBookFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyStudentBook addressBook, Path filePath) throws IOException {
+    public void saveStudentBook(ReadOnlyStudentBook addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        studentBookStorage.saveStudentBook(addressBook, filePath);
+    }
+
+    // ================ TaskBook methods ==============================
+
+    @Override
+    public Path getTaskBookFilePath() {
+        return taskBookStorage.getTaskBookFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyTaskBook> readTaskBook() throws DataConversionException, IOException {
+        return readTaskBook(taskBookStorage.getTaskBookFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyTaskBook> readTaskBook(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return taskBookStorage.readTaskBook(filePath);
+    }
+
+    @Override
+    public void saveTaskBook(ReadOnlyTaskBook taskBook) throws IOException {
+        saveTaskBook(taskBook, taskBookStorage.getTaskBookFilePath());
+    }
+
+    @Override
+    public void saveTaskBook(ReadOnlyTaskBook taskBook, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        taskBookStorage.saveTaskBook(taskBook, filePath);
     }
 
 }

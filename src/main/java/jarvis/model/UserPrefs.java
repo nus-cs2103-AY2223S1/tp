@@ -14,8 +14,8 @@ import jarvis.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path studentBookFilePath = Paths.get("data" , "addressbook.json");
-    private Path taskBookFilePath = Paths.get("data" , "addressbook.json");
+    private Path studentBookFilePath = Paths.get("data" , "studentbook.json");
+    private Path taskBookFilePath = Paths.get("data" , "taskbook.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.

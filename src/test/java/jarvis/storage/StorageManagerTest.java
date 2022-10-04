@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import java.nio.file.Path;
 
 import jarvis.model.StudentBook;
+import jarvis.storage.student.JsonStudentBookStorage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -24,7 +25,7 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        JsonStudentBookStorage addressBookStorage = new JsonStudentBookStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
     }
@@ -55,14 +56,14 @@ public class StorageManagerTest {
          * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
          */
         StudentBook original = getTypicalAddressBook();
-        storageManager.saveAddressBook(original);
-        ReadOnlyStudentBook retrieved = storageManager.readAddressBook().get();
+        storageManager.saveStudentBook(original);
+        ReadOnlyStudentBook retrieved = storageManager.readStudentBook().get();
         assertEquals(original, new StudentBook(retrieved));
     }
 
     @Test
     public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+        assertNotNull(storageManager.getStudentBookFilePath());
     }
 
 }

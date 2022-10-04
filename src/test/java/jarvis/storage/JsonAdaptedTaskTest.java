@@ -1,6 +1,6 @@
 package jarvis.storage;
 
-import static jarvis.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
+import static jarvis.storage.student.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
 import static jarvis.testutil.Assert.assertThrows;
 import static jarvis.testutil.TypicalPersons.BENSON;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import jarvis.storage.student.JsonAdaptedPerson;
 import org.junit.jupiter.api.Test;
 
 import jarvis.commons.exceptions.IllegalValueException;
@@ -17,7 +18,7 @@ import jarvis.model.student.Email;
 import jarvis.model.student.Name;
 import jarvis.model.student.Phone;
 
-public class JsonAdaptedStudentTest {
+public class JsonAdaptedTaskTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";

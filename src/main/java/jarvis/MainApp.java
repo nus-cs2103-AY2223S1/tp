@@ -13,20 +13,16 @@ import jarvis.commons.util.ConfigUtil;
 import jarvis.commons.util.StringUtil;
 import jarvis.logic.Logic;
 import jarvis.logic.LogicManager;
-import jarvis.model.StudentBook;
-import jarvis.model.TaskBook;
-import jarvis.model.Model;
-import jarvis.model.ModelManager;
-import jarvis.model.ReadOnlyStudentBook;
-import jarvis.model.ReadOnlyUserPrefs;
-import jarvis.model.UserPrefs;
+import jarvis.model.*;
 import jarvis.model.util.SampleDataUtil;
-import jarvis.storage.AddressBookStorage;
-import jarvis.storage.JsonAddressBookStorage;
+import jarvis.storage.student.StudentBookStorage;
+import jarvis.storage.student.JsonStudentBookStorage;
 import jarvis.storage.JsonUserPrefsStorage;
 import jarvis.storage.Storage;
 import jarvis.storage.StorageManager;
 import jarvis.storage.UserPrefsStorage;
+import jarvis.storage.task.JsonTaskBookStorage;
+import jarvis.storage.task.TaskBookStorage;
 import jarvis.ui.Ui;
 import jarvis.ui.UiManager;
 import javafx.application.Application;
@@ -57,8 +53,9 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getStudentBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StudentBookStorage studentBookStorage = new JsonStudentBookStorage(userPrefs.getStudentBookFilePath());
+        TaskBookStorage taskBookStorage = new JsonTaskBookStorage(userPrefs.getTaskBookFilePath());
+        storage = new StorageManager(studentBookStorage, taskBookStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -75,23 +72,28 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyStudentBook> addressBookOptional;
-        ReadOnlyStudentBook initialData;
+        Optional<ReadOnlyStudentBook> studentBookOptional;
+        Optional<ReadOnlyTaskBook> taskBookOptional;
+        ReadOnlyStudentBook initialStudentData;
+        ReadOnlyTaskBook initialTaskData;
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
+            studentBookOptional = storage.readStudentBook();
+            taskBookOptional = storage.readTaskBook();
+            if (!studentBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample JARVIS");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialStudentData = studentBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialTaskData = taskBookOptional.orElse(new TaskBook());
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty JARVIS");
-            initialData = new StudentBook();
+            initialStudentData = new StudentBook();
+            initialTaskData = new TaskBook();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty JARVIS");
-            initialData = new StudentBook();
+            initialStudentData = new StudentBook();
+            initialTaskData = new TaskBook();
         }
-
-        return new ModelManager(initialData, new TaskBook(), userPrefs);
+        return new ModelManager(initialStudentData, initialTaskData, userPrefs);
     }
 
     private void initLogging(Config config) {
