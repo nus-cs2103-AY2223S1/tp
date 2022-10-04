@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ClientBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyClientBook;
 import seedu.address.model.client.Client;
 
 /**
@@ -36,7 +36,7 @@ class JsonSerializableAddressBook {
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+    public JsonSerializableAddressBook(ReadOnlyClientBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
     }
 

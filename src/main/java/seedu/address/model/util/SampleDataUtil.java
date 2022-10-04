@@ -5,7 +5,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.ClientBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyClientBook;
 import seedu.address.model.client.Address;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
@@ -40,7 +40,7 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
+    public static ReadOnlyClientBook getSampleAddressBook() {
         ClientBook sampleAb = new ClientBook();
         for (Client samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);

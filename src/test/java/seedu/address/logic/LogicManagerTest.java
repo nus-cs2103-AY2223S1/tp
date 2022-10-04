@@ -24,7 +24,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyClientBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.client.Client;
 import seedu.address.storage.JsonAddressBookStorage;
@@ -155,7 +155,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+        public void saveAddressBook(ReadOnlyClientBook addressBook, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

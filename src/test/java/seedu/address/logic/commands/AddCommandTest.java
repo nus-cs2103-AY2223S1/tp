@@ -18,7 +18,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ClientBook;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyClientBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.client.Client;
 import seedu.address.testutil.ClientBuilder;
@@ -114,12 +114,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setAddressBook(ReadOnlyClientBook newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyClientBook getAddressBook() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -186,7 +186,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyClientBook getAddressBook() {
             return new ClientBook();
         }
     }

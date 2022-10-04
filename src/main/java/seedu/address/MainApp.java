@@ -18,7 +18,7 @@ import seedu.address.logic.LogicManager;
 import seedu.address.model.ClientBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyClientBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
@@ -74,8 +74,8 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyClientBook> addressBookOptional;
+        ReadOnlyClientBook initialData;
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {

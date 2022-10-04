@@ -61,7 +61,7 @@ public class ClientBook implements ReadOnlyClientBook {
     /**
      * Returns true if a client with the same identity as {@code client} exists in the client book.
      */
-    public boolean hasclient(Client client) {
+    public boolean hasClient(Client client) {
         requireNonNull(client);
         return clients.contains(client);
     }
@@ -70,7 +70,7 @@ public class ClientBook implements ReadOnlyClientBook {
      * Adds a client to the client book.
      * The client must not already exist in the client book.
      */
-    public void addclient(Client p) {
+    public void addClient(Client p) {
         clients.add(p);
     }
 
@@ -79,7 +79,7 @@ public class ClientBook implements ReadOnlyClientBook {
      * {@code target} must exist in the client book.
      * The client identity of {@code editedClient} must not be the same as another existing client in the client book.
      */
-    public void setclient(Client target, Client editedClient) {
+    public void setClient(Client target, Client editedClient) {
         requireNonNull(editedClient);
 
         clients.setClient(target, editedClient);
