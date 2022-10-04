@@ -91,7 +91,7 @@ public class Module {
             return true;
         }
 
-        if (!(other instanceof  Module)) {
+        if (!(other instanceof Module)) {
             return false;
         }
 
