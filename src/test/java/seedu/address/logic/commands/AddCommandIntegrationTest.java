@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalTasks.getTypicalTaskList;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,16 +21,17 @@ public class AddCommandIntegrationTest {
 
     private Model model;
 
+    //should use getTypicalTaskList() instead of null
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalAddressBook(), getTypicalTaskList(), new UserPrefs());
     }
 
     @Test
     public void execute_newPerson_success() {
         Person validPerson = new PersonBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getAddressBook(), model.getTaskList(), new UserPrefs());
         expectedModel.addPerson(validPerson);
 
         assertCommandSuccess(new AddCommand(validPerson), model,
