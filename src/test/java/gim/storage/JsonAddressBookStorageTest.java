@@ -1,12 +1,12 @@
 package gim.storage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static gim.testutil.Assert.assertThrows;
 import static gim.testutil.TypicalExercises.ALICE;
 import static gim.testutil.TypicalExercises.HOON;
 import static gim.testutil.TypicalExercises.IDA;
 import static gim.testutil.TypicalExercises.getTypicalAddressBook;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.io.IOException;
 import java.nio.file.Path;

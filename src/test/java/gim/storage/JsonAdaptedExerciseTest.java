@@ -1,9 +1,9 @@
 package gim.storage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static gim.storage.JsonAdaptedExercise.MISSING_FIELD_MESSAGE_FORMAT;
 import static gim.testutil.Assert.assertThrows;
 import static gim.testutil.TypicalExercises.BENSON;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +48,8 @@ public class JsonAdaptedExerciseTest {
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedExercise exercise = new JsonAdaptedExercise(null, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
+        JsonAdaptedExercise exercise = new JsonAdaptedExercise(null, VALID_PHONE, VALID_EMAIL,
+                VALID_ADDRESS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, exercise::toModelType);
     }
@@ -63,7 +64,8 @@ public class JsonAdaptedExerciseTest {
 
     @Test
     public void toModelType_nullPhone_throwsIllegalValueException() {
-        JsonAdaptedExercise exercise = new JsonAdaptedExercise(VALID_NAME, null, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
+        JsonAdaptedExercise exercise = new JsonAdaptedExercise(VALID_NAME, null,
+                VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, exercise::toModelType);
     }
@@ -78,7 +80,8 @@ public class JsonAdaptedExerciseTest {
 
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
-        JsonAdaptedExercise exercise = new JsonAdaptedExercise(VALID_NAME, VALID_PHONE, null, VALID_ADDRESS, VALID_TAGS);
+        JsonAdaptedExercise exercise = new JsonAdaptedExercise(VALID_NAME, VALID_PHONE, null,
+                VALID_ADDRESS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, exercise::toModelType);
     }

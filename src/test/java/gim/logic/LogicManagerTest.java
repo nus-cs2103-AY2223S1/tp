@@ -1,6 +1,5 @@
 package gim.logic;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static gim.commons.core.Messages.MESSAGE_INVALID_EXERCISE_DISPLAYED_INDEX;
 import static gim.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static gim.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
@@ -9,6 +8,7 @@ import static gim.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static gim.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static gim.testutil.Assert.assertThrows;
 import static gim.testutil.TypicalExercises.AMY;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 import java.nio.file.Path;

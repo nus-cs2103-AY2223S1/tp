@@ -1,7 +1,5 @@
 package gim.model.exercise;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static gim.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static gim.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static gim.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -10,6 +8,8 @@ import static gim.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static gim.testutil.Assert.assertThrows;
 import static gim.testutil.TypicalExercises.ALICE;
 import static gim.testutil.TypicalExercises.BOB;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 

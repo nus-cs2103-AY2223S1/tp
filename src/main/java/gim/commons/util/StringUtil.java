@@ -1,7 +1,7 @@
 package gim.commons.util;
 
-import static java.util.Objects.requireNonNull;
 import static gim.commons.util.AppUtil.checkArgument;
+import static java.util.Objects.requireNonNull;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;

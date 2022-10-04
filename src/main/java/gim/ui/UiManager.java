@@ -2,15 +2,15 @@ package gim.ui;
 
 import java.util.logging.Logger;
 
+import gim.MainApp;
+import gim.commons.core.LogsCenter;
+import gim.commons.util.StringUtil;
+import gim.logic.Logic;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import gim.MainApp;
-import gim.commons.core.LogsCenter;
-import gim.commons.util.StringUtil;
-import gim.logic.Logic;
 
 /**
  * The manager of the UI component.

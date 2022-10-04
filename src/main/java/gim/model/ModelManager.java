@@ -1,17 +1,17 @@
 package gim.model;
 
-import static java.util.Objects.requireNonNull;
 import static gim.commons.util.CollectionUtil.requireAllNonNull;
+import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import gim.commons.core.GuiSettings;
 import gim.commons.core.LogsCenter;
 import gim.model.exercise.Exercise;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 
 /**
  * Represents the in-memory model of the address book data.

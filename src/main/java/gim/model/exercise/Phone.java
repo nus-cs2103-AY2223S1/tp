@@ -1,7 +1,7 @@
 package gim.model.exercise;
 
-import static java.util.Objects.requireNonNull;
 import static gim.commons.util.AppUtil.checkArgument;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a Exercise's phone number in the address book.

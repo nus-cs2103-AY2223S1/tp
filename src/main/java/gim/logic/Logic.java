@@ -2,13 +2,13 @@ package gim.logic;
 
 import java.nio.file.Path;
 
-import javafx.collections.ObservableList;
 import gim.commons.core.GuiSettings;
 import gim.logic.commands.CommandResult;
 import gim.logic.commands.exceptions.CommandException;
 import gim.logic.parser.exceptions.ParseException;
 import gim.model.ReadOnlyAddressBook;
 import gim.model.exercise.Exercise;
+import javafx.collections.ObservableList;
 
 /**
  * API of the Logic component

@@ -1,7 +1,7 @@
 package gim.commons.util;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static gim.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 

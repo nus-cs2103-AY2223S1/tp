@@ -1,13 +1,13 @@
 package gim.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static gim.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static gim.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static gim.logic.parser.CliSyntax.PREFIX_NAME;
 import static gim.logic.parser.CliSyntax.PREFIX_PHONE;
 import static gim.logic.parser.CliSyntax.PREFIX_TAG;
 import static gim.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,8 +17,8 @@ import gim.commons.core.index.Index;
 import gim.logic.commands.exceptions.CommandException;
 import gim.model.AddressBook;
 import gim.model.Model;
-import gim.model.exercise.NameContainsKeywordsPredicate;
 import gim.model.exercise.Exercise;
+import gim.model.exercise.NameContainsKeywordsPredicate;
 import gim.testutil.EditExerciseDescriptorBuilder;
 
 /**

@@ -1,13 +1,13 @@
 package gim.model;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static gim.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static gim.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static gim.testutil.Assert.assertThrows;
 import static gim.testutil.TypicalExercises.ALICE;
 import static gim.testutil.TypicalExercises.getTypicalAddressBook;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -16,11 +16,11 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import gim.model.exercise.Exercise;
 import gim.model.exercise.exceptions.DuplicateExerciseException;
 import gim.testutil.ExerciseBuilder;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class AddressBookTest {
 

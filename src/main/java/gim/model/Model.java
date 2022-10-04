@@ -3,9 +3,9 @@ package gim.model;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
-import javafx.collections.ObservableList;
 import gim.commons.core.GuiSettings;
 import gim.model.exercise.Exercise;
+import javafx.collections.ObservableList;
 
 /**
  * The API of the Model component.
@@ -72,7 +72,8 @@ public interface Model {
     /**
      * Replaces the given exercise {@code target} with {@code editedExercise}.
      * {@code target} must exist in the address book.
-     * The exercise identity of {@code editedExercise} must not be the same as another existing exercise in the address book.
+     * The exercise identity of {@code editedExercise} must not be the same as another existing exercise
+     * in the address book.
      */
     void setExercise(Exercise target, Exercise editedExercise);
 

@@ -1,22 +1,22 @@
 package gim.model.exercise;
 
-import static java.util.Objects.requireNonNull;
 import static gim.commons.util.CollectionUtil.requireAllNonNull;
+import static java.util.Objects.requireNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import gim.model.exercise.exceptions.DuplicateExerciseException;
 import gim.model.exercise.exceptions.ExerciseNotFoundException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  * A list of exercises that enforces uniqueness between its elements and does not allow nulls.
- * A exercise is considered unique by comparing using {@code Exercise#isSameExercise(Exercise)}. As such, adding and updating of
- * exercises uses Exercise#isSameExercise(Exercise) for equality so as to ensure that the exercise being added or updated is
- * unique in terms of identity in the UniqueExerciseList. However, the removal of a exercise uses Exercise#equals(Object) so
- * as to ensure that the exercise with exactly the same fields will be removed.
+ * A exercise is considered unique by comparing using {@code Exercise#isSameExercise(Exercise)}. As such,
+ * adding and updating of exercises uses Exercise#isSameExercise(Exercise) for equality so as to ensure that the
+ * exercise being added or updated is unique in terms of identity in the UniqueExerciseList. However, the removal of an
+ * exercise uses Exercise#equals(Object) so as to ensure that the exercise with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *

@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
-import javafx.collections.ObservableList;
 import gim.commons.core.GuiSettings;
 import gim.commons.core.LogsCenter;
 import gim.logic.commands.Command;
@@ -16,6 +15,7 @@ import gim.model.Model;
 import gim.model.ReadOnlyAddressBook;
 import gim.model.exercise.Exercise;
 import gim.storage.Storage;
+import javafx.collections.ObservableList;
 
 /**
  * The main LogicManager of the app.

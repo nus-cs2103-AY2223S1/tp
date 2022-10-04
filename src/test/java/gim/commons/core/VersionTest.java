@@ -1,8 +1,8 @@
 package gim.commons.core;
 
+import static gim.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static gim.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 

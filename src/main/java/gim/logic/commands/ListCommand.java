@@ -1,7 +1,7 @@
 package gim.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static gim.model.Model.PREDICATE_SHOW_ALL_EXERCISES;
+import static java.util.Objects.requireNonNull;
 
 import gim.model.Model;
 

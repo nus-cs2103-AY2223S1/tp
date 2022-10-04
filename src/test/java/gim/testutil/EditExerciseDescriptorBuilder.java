@@ -7,8 +7,8 @@ import java.util.stream.Stream;
 import gim.logic.commands.EditCommand.EditExerciseDescriptor;
 import gim.model.exercise.Address;
 import gim.model.exercise.Email;
-import gim.model.exercise.Name;
 import gim.model.exercise.Exercise;
+import gim.model.exercise.Name;
 import gim.model.exercise.Phone;
 import gim.model.tag.Tag;
 

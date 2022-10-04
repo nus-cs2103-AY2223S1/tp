@@ -2,8 +2,8 @@ package gim.logic.commands;
 
 import static gim.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static gim.logic.commands.CommandTestUtil.showExerciseAtIndex;
-import static gim.testutil.TypicalIndexes.INDEX_FIRST_EXERCISE;
 import static gim.testutil.TypicalExercises.getTypicalAddressBook;
+import static gim.testutil.TypicalIndexes.INDEX_FIRST_EXERCISE;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

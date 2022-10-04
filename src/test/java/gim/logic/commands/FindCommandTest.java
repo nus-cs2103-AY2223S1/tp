@@ -1,14 +1,14 @@
 package gim.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static gim.commons.core.Messages.MESSAGE_EXERCISES_LISTED_OVERVIEW;
 import static gim.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static gim.testutil.TypicalExercises.CARL;
 import static gim.testutil.TypicalExercises.ELLE;
 import static gim.testutil.TypicalExercises.FIONA;
 import static gim.testutil.TypicalExercises.getTypicalAddressBook;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;

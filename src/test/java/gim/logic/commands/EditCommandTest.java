@@ -1,7 +1,5 @@
 package gim.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static gim.logic.commands.CommandTestUtil.DESC_AMY;
 import static gim.logic.commands.CommandTestUtil.DESC_BOB;
 import static gim.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -10,9 +8,11 @@ import static gim.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static gim.logic.commands.CommandTestUtil.assertCommandFailure;
 import static gim.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static gim.logic.commands.CommandTestUtil.showExerciseAtIndex;
+import static gim.testutil.TypicalExercises.getTypicalAddressBook;
 import static gim.testutil.TypicalIndexes.INDEX_FIRST_EXERCISE;
 import static gim.testutil.TypicalIndexes.INDEX_SECOND_EXERCISE;
-import static gim.testutil.TypicalExercises.getTypicalAddressBook;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 

@@ -8,8 +8,8 @@ import gim.model.AddressBook;
 import gim.model.ReadOnlyAddressBook;
 import gim.model.exercise.Address;
 import gim.model.exercise.Email;
-import gim.model.exercise.Name;
 import gim.model.exercise.Exercise;
+import gim.model.exercise.Name;
 import gim.model.exercise.Phone;
 import gim.model.tag.Tag;
 

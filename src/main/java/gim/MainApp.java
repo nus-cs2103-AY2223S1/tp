@@ -5,8 +5,6 @@ import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
 
-import javafx.application.Application;
-import javafx.stage.Stage;
 import gim.commons.core.Config;
 import gim.commons.core.LogsCenter;
 import gim.commons.core.Version;
@@ -30,6 +28,8 @@ import gim.storage.StorageManager;
 import gim.storage.UserPrefsStorage;
 import gim.ui.Ui;
 import gim.ui.UiManager;
+import javafx.application.Application;
+import javafx.stage.Stage;
 
 /**
  * Runs the application.

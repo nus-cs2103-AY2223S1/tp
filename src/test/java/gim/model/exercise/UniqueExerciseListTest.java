@@ -1,13 +1,13 @@
 package gim.model.exercise;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static gim.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static gim.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static gim.testutil.Assert.assertThrows;
 import static gim.testutil.TypicalExercises.ALICE;
 import static gim.testutil.TypicalExercises.BOB;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -159,7 +159,8 @@ public class UniqueExerciseListTest {
     @Test
     public void setExercises_listWithDuplicateExercises_throwsDuplicateExerciseException() {
         List<Exercise> listWithDuplicateExercises = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicateExerciseException.class, () -> uniqueExerciseList.setExercises(listWithDuplicateExercises));
+        assertThrows(DuplicateExerciseException.class, () -> uniqueExerciseList
+                .setExercises(listWithDuplicateExercises));
     }
 
     @Test

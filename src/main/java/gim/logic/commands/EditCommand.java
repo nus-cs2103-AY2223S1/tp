@@ -1,12 +1,12 @@
 package gim.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static gim.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static gim.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static gim.logic.parser.CliSyntax.PREFIX_NAME;
 import static gim.logic.parser.CliSyntax.PREFIX_PHONE;
 import static gim.logic.parser.CliSyntax.PREFIX_TAG;
 import static gim.model.Model.PREDICATE_SHOW_ALL_EXERCISES;
+import static java.util.Objects.requireNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -21,8 +21,8 @@ import gim.logic.commands.exceptions.CommandException;
 import gim.model.Model;
 import gim.model.exercise.Address;
 import gim.model.exercise.Email;
-import gim.model.exercise.Name;
 import gim.model.exercise.Exercise;
+import gim.model.exercise.Name;
 import gim.model.exercise.Phone;
 import gim.model.tag.Tag;
 
@@ -90,7 +90,8 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Exercise} with the details of {@code exerciseToEdit}
      * edited with {@code editExerciseDescriptor}.
      */
-    private static Exercise createEditedExercise(Exercise exerciseToEdit, EditExerciseDescriptor editExerciseDescriptor) {
+    private static Exercise createEditedExercise(Exercise exerciseToEdit, EditExerciseDescriptor
+            editExerciseDescriptor) {
         assert exerciseToEdit != null;
 
         Name updatedName = editExerciseDescriptor.getName().orElse(exerciseToEdit.getName());

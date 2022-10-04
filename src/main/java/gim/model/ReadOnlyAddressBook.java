@@ -1,7 +1,7 @@
 package gim.model;
 
-import javafx.collections.ObservableList;
 import gim.model.exercise.Exercise;
+import javafx.collections.ObservableList;
 
 /**
  * Unmodifiable view of an address book

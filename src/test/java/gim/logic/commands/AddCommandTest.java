@@ -1,10 +1,10 @@
 package gim.logic.commands;
 
+import static gim.testutil.Assert.assertThrows;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static gim.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -13,7 +13,6 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.ObservableList;
 import gim.commons.core.GuiSettings;
 import gim.logic.commands.exceptions.CommandException;
 import gim.model.AddressBook;
@@ -22,6 +21,7 @@ import gim.model.ReadOnlyAddressBook;
 import gim.model.ReadOnlyUserPrefs;
 import gim.model.exercise.Exercise;
 import gim.testutil.ExerciseBuilder;
+import javafx.collections.ObservableList;
 
 public class AddCommandTest {
 
@@ -47,7 +47,8 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(validExercise);
         ModelStub modelStub = new ModelStubWithExercise(validExercise);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_EXERCISE, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddCommand.MESSAGE_DUPLICATE_EXERCISE, () -> addCommand.execute(modelStub));
     }
 
     @Test

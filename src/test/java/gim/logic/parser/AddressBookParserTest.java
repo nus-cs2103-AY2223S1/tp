@@ -1,11 +1,11 @@
 package gim.logic.parser;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static gim.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static gim.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static gim.testutil.Assert.assertThrows;
 import static gim.testutil.TypicalIndexes.INDEX_FIRST_EXERCISE;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,8 +23,8 @@ import gim.logic.commands.FindCommand;
 import gim.logic.commands.HelpCommand;
 import gim.logic.commands.ListCommand;
 import gim.logic.parser.exceptions.ParseException;
-import gim.model.exercise.NameContainsKeywordsPredicate;
 import gim.model.exercise.Exercise;
+import gim.model.exercise.NameContainsKeywordsPredicate;
 import gim.testutil.EditExerciseDescriptorBuilder;
 import gim.testutil.ExerciseBuilder;
 import gim.testutil.ExerciseUtil;

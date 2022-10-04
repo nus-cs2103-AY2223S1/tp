@@ -1,11 +1,11 @@
 package gim.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static gim.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static gim.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static gim.logic.parser.CliSyntax.PREFIX_NAME;
 import static gim.logic.parser.CliSyntax.PREFIX_PHONE;
 import static gim.logic.parser.CliSyntax.PREFIX_TAG;
+import static java.util.Objects.requireNonNull;
 
 import gim.logic.commands.exceptions.CommandException;
 import gim.model.Model;
