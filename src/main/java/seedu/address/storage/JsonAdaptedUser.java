@@ -1,12 +1,18 @@
 package seedu.address.storage;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.module.CurrentModule;
+import seedu.address.model.module.PlannedModule;
+import seedu.address.model.module.PreviousModule;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -24,18 +30,32 @@ class JsonAdaptedUser {
     private final String phone;
     private final String email;
     private final String address;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedCurrentModule> currModules = new ArrayList<>();
+    private final List<JsonAdaptedPreviousModule> prevModules = new ArrayList<>();
+    private final List<JsonAdaptedPlannedModule> planModules = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedUser} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedUser(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                             @JsonProperty("email") String email, @JsonProperty("address") String address) {
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("currModules") List<JsonAdaptedCurrentModule> currModules,
+                             @JsonProperty("prevModules") List<JsonAdaptedPreviousModule> prevModules,
+                             @JsonProperty("planModules") List<JsonAdaptedPlannedModule> planModules) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        if (currModules != null) {
+            this.currModules.addAll(currModules);
+        }
+        if (prevModules != null) {
+            this.prevModules.addAll(prevModules);
+        }
+        if (planModules != null) {
+            this.planModules.addAll(planModules);
+        }
     }
 
     /**
@@ -46,6 +66,15 @@ class JsonAdaptedUser {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        currModules.addAll(source.getCurrModules().stream()
+                .map(JsonAdaptedCurrentModule::new)
+                .collect(Collectors.toList()));
+        prevModules.addAll(source.getPrevModules().stream()
+                .map(JsonAdaptedPreviousModule::new)
+                .collect(Collectors.toList()));
+        planModules.addAll(source.getPlanModules().stream()
+                .map(JsonAdaptedPlannedModule::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -54,6 +83,20 @@ class JsonAdaptedUser {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public User toModelType() throws IllegalValueException {
+        final List<CurrentModule> personCurrModules = new ArrayList<>();
+        for (JsonAdaptedCurrentModule currModule : currModules) {
+            personCurrModules.add(currModule.toModelType());
+        }
+
+        final List<PreviousModule> personPrevModules = new ArrayList<>();
+        for (JsonAdaptedPreviousModule prevModule : prevModules) {
+            personPrevModules.add(prevModule.toModelType());
+        }
+
+        final List<PlannedModule> personPlanModules = new ArrayList<>();
+        for (JsonAdaptedPlannedModule planModule : planModules) {
+            personPlanModules.add(planModule.toModelType());
+        }
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -87,7 +130,14 @@ class JsonAdaptedUser {
         }
         final Address modelAddress = new Address(address);
 
-        return new User(modelName, modelPhone, modelEmail, modelAddress);
+        final Set<CurrentModule> modelCurrModules = new HashSet<>(personCurrModules);
+
+        final Set<PreviousModule> modelPrevModules = new HashSet<>(personPrevModules);
+
+        final Set<PlannedModule> modelPlanModules = new HashSet<>(personPlanModules);
+
+        return new User(modelName, modelPhone, modelEmail, modelAddress,
+                modelCurrModules, modelPrevModules, modelPlanModules);
     }
 
 }
