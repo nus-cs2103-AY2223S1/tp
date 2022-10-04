@@ -1,5 +1,5 @@
 {
-  "_comment": "AddressBook save file which contains the same Company values as in TypicalCompanies#getTypicalAddressBook()",
+  "_comment": "JeeqTracker save file which contains the same Company values as in TypicalCompanies#getTypicalJeeqTracker()",
   "companies" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",
