@@ -9,7 +9,9 @@ import seedu.address.model.task.Module;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Task;
 
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class JsonAdaptedTask {
 
@@ -66,11 +68,13 @@ public class JsonAdaptedTask {
         if (deadline == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Deadline.class.getSimpleName()));
         }
-        if (!Deadline.isValidDeadline(deadline)) {
+        LocalDateTime parsedDeadline;
+        try {
+            parsedDeadline = LocalDateTime.parse(deadline, DEADLINE_FORMATTER);
+        } catch (DateTimeParseException e) {
             throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
         }
-        final Deadline modelDeadline = new Deadline(deadline);
-
+        Deadline modelDeadline = new Deadline(parsedDeadline);
         return new Task(modelTaskName, modelModule, modelDeadline);
     }
 }

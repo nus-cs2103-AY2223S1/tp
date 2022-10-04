@@ -14,7 +14,7 @@ import seedu.address.model.task.TaskName;
 class JsonAdaptedTaskTest {
     private static final String INVALID_TASKNAME = " ";
     private static final String INVALID_MODULE = " ";
-    private static final String INVALID_DEADLINE = "02-02-2022 23:59";
+    private static final String INVALID_DEADLINE = "123456";
 
     private static final String VALID_TASKNAME = "Lab 2";
     private static final String VALID_MODULE = "CS2030S";
