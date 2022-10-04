@@ -7,9 +7,10 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8"
+<?import javafx.scene.text.TextFlow?>
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/18"
       xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
@@ -17,23 +18,31 @@
         </columnConstraints>
         <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
             <padding>
-                <Insets top="5" right="5" bottom="5" left="15"/>
+                <Insets bottom="5" left="15" right="5" top="5"/>
             </padding>
-            <HBox spacing="5" alignment="CENTER_LEFT">
+            <HBox alignment="CENTER_LEFT" spacing="5">
                 <Label fx:id="code" styleClass="cell_small_label"
                        text="\$code"/>
                 <Label fx:id="credits" styleClass="cell_small_label"
                        text="\$credits"/>
             </HBox>
-            <HBox spacing="5" alignment="CENTER_LEFT">
-                <Label fx:id="name" text="\$first" styleClass="cell_big_label">
+            <TextFlow>
+                <Label fx:id="name" styleClass="cell_big_label"
+                       text="\$name" textOverrun="CLIP" wrapText="true">
                     <minWidth>
                         <!-- Ensures that the label text is never truncated -->
                         <Region fx:constant="USE_PREF_SIZE"/>
                     </minWidth>
                 </Label>
-            </HBox>
-            <FlowPane fx:id="badges"/>
+            </TextFlow>
+            <FlowPane fx:id="badges">
+                <padding>
+                    <Insets top="4.0"/>
+                </padding>
+            </FlowPane>
         </VBox>
+        <rowConstraints>
+            <RowConstraints/>
+        </rowConstraints>
     </GridPane>
 </HBox>
