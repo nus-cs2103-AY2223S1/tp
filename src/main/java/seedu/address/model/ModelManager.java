@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.ObservableObject;
 import seedu.address.model.customer.Customer;
 
 /**
@@ -23,6 +24,8 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Customer> filteredCustomers;
 
+    private ObservableObject<Customer> selectedCustomer = new ObservableObject<>();
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -34,6 +37,9 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredCustomers = new FilteredList<>(this.addressBook.getCustomerList());
+        if (filteredCustomers.size() > 0) {
+            selectCustomer(filteredCustomers.get(0));
+        }
     }
 
     public ModelManager() {
@@ -126,6 +132,20 @@ public class ModelManager implements Model {
     public void updateFilteredCustomerList(Predicate<Customer> predicate) {
         requireNonNull(predicate);
         filteredCustomers.setPredicate(predicate);
+        if (filteredCustomers.size() > 0) {
+            selectCustomer(filteredCustomers.get(0));
+        }
+    }
+
+
+    @Override
+    public void selectCustomer(Customer customer) {
+        this.selectedCustomer.setValue(customer);
+    }
+
+    @Override
+    public ObservableObject<Customer> getSelectedCustomer() {
+        return this.selectedCustomer;
     }
 
     @Override
