@@ -9,6 +9,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
+### Mai Ting Kai
+
+<img src="images/ferusel.png" width="200px">
+
+[[github](https://github.com/ferusel)]
+[[portfolio](team/ferusel.md)]
+
+- Role: Team Lead
+
 ### Bryan Lim Jing Xiang
 
 <img src="images/bryanljx.png" width="200px">
@@ -16,7 +25,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/bryanljx)]
 [[portfolio](team/bryanljx.md)]
 
-- Role: Project Member
+- Role: Tech Lead
 
 ### Richard Dominick
 
@@ -25,7 +34,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/RichDom2185)]
 [[portfolio](team/richdom2185.md)]
 
-- Role: Project Member
+- Role: Tech Lead
 
 ### Tan Wei Lie Eugene
 
@@ -34,43 +43,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/eugenetanwl3881)]
 [[portfolio](team/eugenetanwl3881.md)]
 
-- Role: Project Member
+- Role: Documentation
 
 ### Tan Yi Xian
 
 <img src="images/yixiann.png" width="200px">
 
 [[github](https://github.com/yixiann)]
-
 [[portfolio](team/yixiann.md)]
 
 - Role: Secretary
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-- Role: Developer
-- Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-- Role: Developer
-- Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-- Role: Developer
-- Responsibilities: UI

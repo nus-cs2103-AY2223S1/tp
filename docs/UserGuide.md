@@ -24,11 +24,11 @@ success story.
 
 1. Add, update and delete inventory items
 2. Search and sort food items by:
-    - Name
-    - Quantity
-    - Bought date
-    - Expiry date
-    - Tags
+   - Name
+   - Quantity
+   - Bought date
+   - Expiry date
+   - Tags
 3. Tag items to group them into categories
 
 ## Purpose, Scope and Audience
@@ -371,13 +371,16 @@ Command: `item new ITEM_NAME`
 
 ---
 
-Example: 
+Example:
 
 Input
+
 ```
 item new potato
 ```
+
 Output
+
 ```
 Item  “potato” successfully created
 ```
