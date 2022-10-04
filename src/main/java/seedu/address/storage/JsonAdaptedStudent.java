@@ -64,7 +64,8 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
         final Name modelName = new Name(getName());
 
         if (getPhone() == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                Phone.class.getSimpleName()));
         }
         if (!Phone.isValidPhone(getPhone())) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
@@ -72,7 +73,8 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
         final Phone modelPhone = new Phone(getPhone());
 
         if (getEmail() == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                Email.class.getSimpleName()));
         }
         if (!Email.isValidEmail(getEmail())) {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
@@ -80,7 +82,8 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
         final Email modelEmail = new Email(getEmail());
 
         if (getGender() == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Gender.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                Gender.class.getSimpleName()));
         }
         if (!Gender.isValidGender(getGender())) {
             throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
@@ -90,7 +93,8 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         if (getLocation() == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Location.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                Location.class.getSimpleName()));
         }
 
         if (!Location.isValidLocation(getLocation())) {

@@ -3,6 +3,10 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Person's location in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidLocation(String)}
+ */
 public class Location {
 
     public static final String MESSAGE_CONSTRAINTS = "Locations can take any values, and it should not be blank";
@@ -27,7 +31,7 @@ public class Location {
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid location.
      */
     public static boolean isValidLocation(String test) {
         return test.matches(VALIDATION_REGEX);

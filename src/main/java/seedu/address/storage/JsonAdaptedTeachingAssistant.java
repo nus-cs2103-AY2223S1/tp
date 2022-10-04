@@ -90,7 +90,7 @@ class JsonAdaptedTeachingAssistant extends JsonAdaptedPerson {
 
         if (getModuleCode() == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    ModuleCode.class.getSimpleName()));
+                ModuleCode.class.getSimpleName()));
         }
         if (!ModuleCode.isValidModuleCode(getModuleCode())) {
             throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
@@ -100,7 +100,8 @@ class JsonAdaptedTeachingAssistant extends JsonAdaptedPerson {
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         if (getLocation() == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Location.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                Location.class.getSimpleName()));
         }
 
         if (!Location.isValidLocation(getLocation())) {
@@ -109,7 +110,8 @@ class JsonAdaptedTeachingAssistant extends JsonAdaptedPerson {
 
         final Location modelLocation = new Location(getLocation());
 
-        return new TeachingAssistant(modelName, modelModuleCode, modelPhone, modelEmail, modelGender, modelTags, modelLocation);
+        return new TeachingAssistant(modelName, modelModuleCode, modelPhone, modelEmail, modelGender,
+            modelTags, modelLocation);
     }
 
 }

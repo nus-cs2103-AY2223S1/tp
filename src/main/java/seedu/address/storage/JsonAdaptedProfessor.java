@@ -88,7 +88,7 @@ class JsonAdaptedProfessor extends JsonAdaptedPerson {
 
         if (getModuleCode() == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    ModuleCode.class.getSimpleName()));
+                ModuleCode.class.getSimpleName()));
         }
         if (!ModuleCode.isValidModuleCode(getModuleCode())) {
             throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
@@ -98,7 +98,8 @@ class JsonAdaptedProfessor extends JsonAdaptedPerson {
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         if (getLocation() == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Location.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                Location.class.getSimpleName()));
         }
 
         if (!Location.isValidLocation(getLocation())) {
@@ -107,7 +108,8 @@ class JsonAdaptedProfessor extends JsonAdaptedPerson {
 
         final Location modelLocation = new Location(getLocation());
 
-        return new Professor(modelName, modelModuleCode, modelPhone, modelEmail, modelGender, modelTags, modelLocation);
+        return new Professor(modelName, modelModuleCode, modelPhone, modelEmail, modelGender, modelTags,
+            modelLocation);
     }
 
 }
