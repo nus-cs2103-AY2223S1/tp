@@ -64,7 +64,6 @@ public class TagAddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
-        List<Tag> tagList = model.getTagList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -90,7 +89,7 @@ public class TagAddCommand extends Command {
      */
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor,
                                              Tag tag) {
-        assert personToEdit != null;
+        requireNonNull(personToEdit);
 
         Name updatedName = personToEdit.getName();
         Phone updatedPhone = personToEdit.getPhone();
