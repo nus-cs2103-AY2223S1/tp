@@ -64,7 +64,7 @@ public class PocTest {
         // different type -> returns false
         assertFalse(ALICE.equals(5));
 
-        // different company -> returns false
+        // different Poc -> returns false
         assertFalse(ALICE.equals(BOB));
 
         // different name -> returns false
@@ -77,10 +77,6 @@ public class PocTest {
 
         // different email -> returns false
         editedAlice = new PocBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
-
-        // different address -> returns false
-        editedAlice = new PocBuilder(ALICE).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false
