@@ -42,12 +42,12 @@ public interface Model {
     /**
      * Sets the user prefs' address book file path.
      */
-    void setClientBookFilePath(Path ClientBookFilePath);
+    void setClientBookFilePath(Path clientBookFilePath);
 
     /**
      * Replaces address book data with the data in {@code ClientBook}.
      */
-    void setClientBook(ReadOnlyClientBook ClientBook);
+    void setClientBook(ReadOnlyClientBook clientBook);
 
     /** Returns the ClientBook */
     ReadOnlyClientBook getClientBook();

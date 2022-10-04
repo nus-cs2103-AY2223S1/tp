@@ -88,9 +88,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasClient(Client Client) {
-        requireNonNull(Client);
-        return clientBook.hasClient(Client);
+    public boolean hasClient(Client client) {
+        requireNonNull(client);
+        return clientBook.hasClient(client);
     }
 
     @Override
@@ -99,8 +99,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addClient(Client Client) {
-        clientBook.addClient(Client);
+    public void addClient(Client client) {
+        clientBook.addClient(client);
         updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
     }
 
