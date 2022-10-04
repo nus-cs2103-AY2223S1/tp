@@ -97,8 +97,10 @@ public class Food {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
+                .append("; Meal Type: ")
+                .append(getPhone())
                 .append("; Calories: ")
-                .append(getPhone());
+                .append(getCalorie());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
