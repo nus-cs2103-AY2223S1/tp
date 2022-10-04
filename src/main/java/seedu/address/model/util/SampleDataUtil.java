@@ -43,7 +43,7 @@ public class SampleDataUtil {
     public static ReadOnlyClientBook getSampleAddressBook() {
         ClientBook sampleAb = new ClientBook();
         for (Client samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
+            sampleAb.addClient(samplePerson);
         }
         return sampleAb;
     }

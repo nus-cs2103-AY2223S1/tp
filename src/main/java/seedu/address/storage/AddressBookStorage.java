@@ -16,7 +16,7 @@ public interface AddressBookStorage {
     /**
      * Returns the file path of the data file.
      */
-    Path getAddressBookFilePath();
+    Path getClientBookFilePath();
 
     /**
      * Returns AddressBook data as a {@link ReadOnlyClientBook}.
@@ -27,7 +27,7 @@ public interface AddressBookStorage {
     Optional<ReadOnlyClientBook> readAddressBook() throws DataConversionException, IOException;
 
     /**
-     * @see #getAddressBookFilePath()
+     * @see #getClientBookFilePath()
      */
     Optional<ReadOnlyClientBook> readAddressBook(Path filePath) throws DataConversionException, IOException;
 

@@ -26,9 +26,9 @@ public interface Logic {
     /**
      * Returns the AddressBook.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see seedu.address.model.Model#getClientBook()
      */
-    ReadOnlyClientBook getAddressBook();
+    ReadOnlyClientBook getClientBook();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Client> getFilteredPersonList();
@@ -36,7 +36,7 @@ public interface Logic {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getClientBookFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
