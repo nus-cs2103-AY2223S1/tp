@@ -7,7 +7,9 @@ import jarvis.logic.commands.CommandResult;
 import jarvis.logic.commands.exceptions.CommandException;
 import jarvis.logic.parser.exceptions.ParseException;
 import jarvis.model.ReadOnlyStudentBook;
+import jarvis.model.ReadOnlyTaskBook;
 import jarvis.model.student.Student;
+import jarvis.model.task.Task;
 import javafx.collections.ObservableList;
 
 /**
@@ -24,19 +26,34 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the StudentBook.
      *
      * @see jarvis.model.Model#getStudentBook()
      */
     ReadOnlyStudentBook getStudentBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
+    /** Returns an unmodifiable view of the filtered list of students */
     ObservableList<Student> getFilteredStudentList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' student book file path.
      */
     Path getStudentBookFilePath();
+
+    /**
+     * Returns the TaskBook.
+     *
+     * @see jarvis.model.Model#getTaskBook()
+     */
+    ReadOnlyTaskBook getTaskBook();
+
+    /** Returns an unmodifiable view of the filtered list of tasks */
+    ObservableList<Task> getFilteredTaskList();
+
+    /**
+     * Returns the user prefs' task book file path.
+     */
+    Path getTaskBookFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

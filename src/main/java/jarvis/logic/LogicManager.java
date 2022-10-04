@@ -13,7 +13,9 @@ import jarvis.logic.parser.JarvisParser;
 import jarvis.logic.parser.exceptions.ParseException;
 import jarvis.model.Model;
 import jarvis.model.ReadOnlyStudentBook;
+import jarvis.model.ReadOnlyTaskBook;
 import jarvis.model.student.Student;
+import jarvis.model.task.Task;
 import jarvis.storage.Storage;
 import javafx.collections.ObservableList;
 
@@ -68,6 +70,21 @@ public class LogicManager implements Logic {
     @Override
     public Path getStudentBookFilePath() {
         return model.getStudentBookFilePath();
+    }
+
+    @Override
+    public ReadOnlyTaskBook getTaskBook() {
+        return model.getTaskBook();
+    }
+
+    @Override
+    public ObservableList<Task> getFilteredTaskList() {
+        return model.getFilteredTaskList();
+    }
+
+    @Override
+    public Path getTaskBookFilePath() {
+        return model.getTaskBookFilePath();
     }
 
     @Override
