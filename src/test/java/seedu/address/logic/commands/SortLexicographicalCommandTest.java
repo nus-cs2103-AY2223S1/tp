@@ -1,6 +1,5 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getSortedAddressBook;
 import static seedu.address.testutil.TypicalPersons.getUnsortedAddressBook;
@@ -17,7 +16,7 @@ class SortLexicographicalCommandTest {
             getUnsortedAddressBook(), new UserPrefs());
 
     @Test
-    void execute_SortUnfilteredList_success() {
+    void execute_sortUnfilteredList_success() {
         SortLexicographicalCommand sort = new SortLexicographicalCommand();
         Model expectedModel = new ModelManager(
                 getSortedAddressBook(), new UserPrefs());

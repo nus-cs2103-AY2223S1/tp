@@ -117,6 +117,9 @@ public class UniquePersonList implements Iterable<Person> {
                         && internalList.equals(((UniquePersonList) other).internalList));
     }
 
+    /**
+     * Sorts the ObservableList in lexicographical order
+     */
     public void sortLexicographical() {
         Comparator<? super Person> nameComparator = (p1, p2) ->
                 p1.compareNameLexicographically(p2);

@@ -8,15 +8,15 @@ import seedu.address.model.Model;
  */
 public class SortLexicographicalCommand extends Command {
 
-    public static final String COMMAND_WORD = "sort-lexicographical";
+    public static final String COMMAND_WORD = "sort-lexi";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Sort the list of contact in a "
             + "lexicographical manner by name.\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String MESSAGE_SUCCESS = "Contacts sorted" +
-            " lexicographically by name";
+    public static final String MESSAGE_SUCCESS = "Contacts sorted"
+            + " lexicographically by name";
 
 
     @Override
