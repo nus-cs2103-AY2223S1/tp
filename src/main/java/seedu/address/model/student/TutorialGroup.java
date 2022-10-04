@@ -25,14 +25,14 @@ public class TutorialGroup {
      */
     public TutorialGroup(String group) {
         requireNonNull(group);
-        checkArgument(isValidName(group), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidTutorialGroup(group), MESSAGE_CONSTRAINTS);
         tutorialGroup = group;
     }
 
     /**
-     * Returns true if a given string is a valid name.
+     * Returns true if a given string is a valid tutorial group.
      */
-    public static boolean isValidName(String test) {
+    public static boolean isValidTutorialGroup(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
