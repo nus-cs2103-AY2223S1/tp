@@ -8,8 +8,8 @@ import static jarvis.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
-import jarvis.logic.commands.AddCommand;
-import jarvis.logic.commands.EditCommand.EditPersonDescriptor;
+import jarvis.logic.commands.student.AddCommand;
+import jarvis.logic.commands.student.EditCommand.EditPersonDescriptor;
 import jarvis.model.student.Student;
 import jarvis.model.tag.Tag;
 

@@ -3,6 +3,7 @@ package jarvis.logic.commands;
 import static jarvis.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static jarvis.testutil.TypicalPersons.getTypicalAddressBook;
 
+import jarvis.logic.commands.student.ClearCommand;
 import jarvis.model.StudentBook;
 import org.junit.jupiter.api.Test;
 

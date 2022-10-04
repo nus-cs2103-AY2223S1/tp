@@ -1,4 +1,4 @@
-package jarvis.logic.commands;
+package jarvis.logic.commands.student;
 
 import static java.util.Objects.requireNonNull;
 
@@ -6,6 +6,8 @@ import java.util.List;
 
 import jarvis.commons.core.Messages;
 import jarvis.commons.core.index.Index;
+import jarvis.logic.commands.Command;
+import jarvis.logic.commands.CommandResult;
 import jarvis.logic.commands.exceptions.CommandException;
 import jarvis.model.Model;
 import jarvis.model.student.Student;

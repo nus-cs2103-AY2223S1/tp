@@ -1,9 +1,11 @@
-package jarvis.logic.parser;
+package jarvis.logic.parser.student;
 
 import static jarvis.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import jarvis.commons.core.index.Index;
-import jarvis.logic.commands.DeleteCommand;
+import jarvis.logic.commands.student.DeleteCommand;
+import jarvis.logic.parser.Parser;
+import jarvis.logic.parser.ParserUtil;
 import jarvis.logic.parser.exceptions.ParseException;
 
 /**

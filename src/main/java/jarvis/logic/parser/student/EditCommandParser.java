@@ -1,12 +1,16 @@
-package jarvis.logic.parser;
+package jarvis.logic.parser.student;
 
 import static jarvis.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static jarvis.logic.parser.CliSyntax.PREFIX_NAME;
 import static java.util.Objects.requireNonNull;
 
 import jarvis.commons.core.index.Index;
-import jarvis.logic.commands.EditCommand;
-import jarvis.logic.commands.EditCommand.EditPersonDescriptor;
+import jarvis.logic.commands.student.EditCommand;
+import jarvis.logic.commands.student.EditCommand.EditPersonDescriptor;
+import jarvis.logic.parser.ArgumentMultimap;
+import jarvis.logic.parser.ArgumentTokenizer;
+import jarvis.logic.parser.Parser;
+import jarvis.logic.parser.ParserUtil;
 import jarvis.logic.parser.exceptions.ParseException;
 
 /**

@@ -4,7 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import jarvis.logic.commands.EditCommand.EditPersonDescriptor;
+import jarvis.logic.commands.student.EditCommand.EditPersonDescriptor;
 import jarvis.model.student.*;
 import jarvis.model.student.Student;
 import jarvis.model.tag.Tag;

@@ -15,6 +15,7 @@ import java.util.List;
 
 import jarvis.commons.core.index.Index;
 import jarvis.logic.commands.exceptions.CommandException;
+import jarvis.logic.commands.student.EditCommand;
 import jarvis.model.StudentBook;
 import jarvis.model.Model;
 import jarvis.model.student.NameContainsKeywordsPredicate;

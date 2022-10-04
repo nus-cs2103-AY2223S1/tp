@@ -14,15 +14,15 @@ import java.util.stream.Collectors;
 import jarvis.model.student.Student;
 import org.junit.jupiter.api.Test;
 
-import jarvis.logic.commands.AddCommand;
-import jarvis.logic.commands.ClearCommand;
-import jarvis.logic.commands.DeleteCommand;
-import jarvis.logic.commands.EditCommand;
-import jarvis.logic.commands.EditCommand.EditPersonDescriptor;
+import jarvis.logic.commands.student.AddCommand;
+import jarvis.logic.commands.student.ClearCommand;
+import jarvis.logic.commands.student.DeleteCommand;
+import jarvis.logic.commands.student.EditCommand;
+import jarvis.logic.commands.student.EditCommand.EditPersonDescriptor;
 import jarvis.logic.commands.ExitCommand;
-import jarvis.logic.commands.FindCommand;
+import jarvis.logic.commands.student.FindCommand;
 import jarvis.logic.commands.HelpCommand;
-import jarvis.logic.commands.ListCommand;
+import jarvis.logic.commands.student.ListCommand;
 import jarvis.logic.parser.exceptions.ParseException;
 import jarvis.model.student.NameContainsKeywordsPredicate;
 import jarvis.testutil.EditPersonDescriptorBuilder;
@@ -31,7 +31,7 @@ import jarvis.testutil.PersonUtil;
 
 public class StudentBookParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final JarvisParser parser = new JarvisParser();
 
     @Test
     public void parseCommand_add() throws Exception {

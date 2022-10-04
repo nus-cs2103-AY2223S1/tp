@@ -1,11 +1,12 @@
-package jarvis.logic.parser;
+package jarvis.logic.parser.student;
 
 import static jarvis.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static jarvis.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.stream.Stream;
 
-import jarvis.logic.commands.AddCommand;
+import jarvis.logic.commands.student.AddCommand;
+import jarvis.logic.parser.*;
 import jarvis.logic.parser.exceptions.ParseException;
 import jarvis.model.student.*;
 import jarvis.model.student.Student;

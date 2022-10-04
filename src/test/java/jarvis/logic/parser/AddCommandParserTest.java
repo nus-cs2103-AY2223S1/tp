@@ -29,10 +29,11 @@ import static jarvis.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static jarvis.testutil.TypicalPersons.AMY;
 import static jarvis.testutil.TypicalPersons.BOB;
 
+import jarvis.logic.parser.student.AddCommandParser;
 import jarvis.model.student.*;
 import org.junit.jupiter.api.Test;
 
-import jarvis.logic.commands.AddCommand;
+import jarvis.logic.commands.student.AddCommand;
 import jarvis.model.student.Student;
 import jarvis.model.tag.Tag;
 import jarvis.testutil.PersonBuilder;

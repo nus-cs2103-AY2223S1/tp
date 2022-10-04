@@ -6,9 +6,10 @@ import static jarvis.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import java.util.Arrays;
 
+import jarvis.logic.parser.student.FindCommandParser;
 import org.junit.jupiter.api.Test;
 
-import jarvis.logic.commands.FindCommand;
+import jarvis.logic.commands.student.FindCommand;
 import jarvis.model.student.NameContainsKeywordsPredicate;
 
 public class FindCommandParserTest {

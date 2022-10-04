@@ -1,10 +1,11 @@
-package jarvis.logic.parser;
+package jarvis.logic.parser.student;
 
 import static jarvis.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Arrays;
 
-import jarvis.logic.commands.FindCommand;
+import jarvis.logic.commands.student.FindCommand;
+import jarvis.logic.parser.Parser;
 import jarvis.logic.parser.exceptions.ParseException;
 import jarvis.model.student.NameContainsKeywordsPredicate;
 

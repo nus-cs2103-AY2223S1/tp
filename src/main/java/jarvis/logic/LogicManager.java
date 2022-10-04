@@ -9,7 +9,7 @@ import jarvis.commons.core.LogsCenter;
 import jarvis.logic.commands.Command;
 import jarvis.logic.commands.CommandResult;
 import jarvis.logic.commands.exceptions.CommandException;
-import jarvis.logic.parser.AddressBookParser;
+import jarvis.logic.parser.JarvisParser;
 import jarvis.logic.parser.exceptions.ParseException;
 import jarvis.model.Model;
 import jarvis.model.ReadOnlyStudentBook;
@@ -26,7 +26,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final JarvisParser jarvisParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,7 +34,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        jarvisParser = new JarvisParser();
     }
 
     @Override
@@ -42,7 +42,7 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = jarvisParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {

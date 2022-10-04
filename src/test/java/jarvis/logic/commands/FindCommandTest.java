@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.Arrays;
 import java.util.Collections;
 
+import jarvis.logic.commands.student.FindCommand;
 import org.junit.jupiter.api.Test;
 
 import jarvis.model.Model;

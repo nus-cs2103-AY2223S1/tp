@@ -1,8 +1,10 @@
-package jarvis.logic.commands;
+package jarvis.logic.commands.student;
 
 import static jarvis.logic.parser.CliSyntax.PREFIX_NAME;
 import static java.util.Objects.requireNonNull;
 
+import jarvis.logic.commands.Command;
+import jarvis.logic.commands.CommandResult;
 import jarvis.logic.commands.exceptions.CommandException;
 import jarvis.model.Model;
 import jarvis.model.student.Student;

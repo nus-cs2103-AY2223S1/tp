@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
+import jarvis.logic.commands.student.AddCommand;
 import jarvis.model.student.Student;
 import org.junit.jupiter.api.Test;
 

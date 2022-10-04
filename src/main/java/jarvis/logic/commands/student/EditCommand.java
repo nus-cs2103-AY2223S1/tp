@@ -1,4 +1,4 @@
-package jarvis.logic.commands;
+package jarvis.logic.commands.student;
 
 import static jarvis.logic.parser.CliSyntax.PREFIX_NAME;
 import static jarvis.model.Model.PREDICATE_SHOW_ALL_PERSONS;
@@ -10,6 +10,8 @@ import java.util.Optional;
 import jarvis.commons.core.Messages;
 import jarvis.commons.core.index.Index;
 import jarvis.commons.util.CollectionUtil;
+import jarvis.logic.commands.Command;
+import jarvis.logic.commands.CommandResult;
 import jarvis.logic.commands.exceptions.CommandException;
 import jarvis.model.Model;
 import jarvis.model.student.*;

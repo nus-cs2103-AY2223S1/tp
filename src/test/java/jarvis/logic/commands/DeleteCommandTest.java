@@ -9,6 +9,7 @@ import static jarvis.testutil.TypicalPersons.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import jarvis.logic.commands.student.DeleteCommand;
 import jarvis.model.student.Student;
 import org.junit.jupiter.api.Test;
 

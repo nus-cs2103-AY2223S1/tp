@@ -4,6 +4,7 @@ import static jarvis.logic.commands.CommandTestUtil.assertCommandFailure;
 import static jarvis.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static jarvis.testutil.TypicalPersons.getTypicalAddressBook;
 
+import jarvis.logic.commands.student.AddCommand;
 import jarvis.model.student.Student;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

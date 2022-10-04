@@ -18,9 +18,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import jarvis.logic.commands.AddCommand;
+import jarvis.logic.commands.student.AddCommand;
 import jarvis.logic.commands.CommandResult;
-import jarvis.logic.commands.ListCommand;
+import jarvis.logic.commands.student.ListCommand;
 import jarvis.logic.commands.exceptions.CommandException;
 import jarvis.logic.parser.exceptions.ParseException;
 import jarvis.model.Model;

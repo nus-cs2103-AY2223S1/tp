@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import jarvis.logic.commands.EditCommand.EditPersonDescriptor;
+import jarvis.logic.commands.student.EditCommand.EditPersonDescriptor;
 import jarvis.testutil.EditPersonDescriptorBuilder;
 
 public class EditStudentDescriptorTest {
