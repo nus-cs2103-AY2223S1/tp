@@ -1,6 +1,7 @@
 package seedu.address.model.project;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -30,7 +31,7 @@ class RepositoryTest {
         assertFalse(Repository.isValidRepository("hello/")); // no repo name
         assertFalse(Repository.isValidRepository("/tp")); // no username
         assertFalse(Repository.isValidRepository("peter jack/tp")); // space present
-        assertFalse(Repository.isValidRepository("thisIsAVeryLongStringToTestForCharacterLength/tp")); // username too long
+        assertFalse(Repository.isValidRepository("thisIsAVeryLongStringToTestForCharacterLength/tp")); // too long
 
         //valid repository
         assertTrue(Repository.isValidRepository("peterjack/tp")); // alphabets only
