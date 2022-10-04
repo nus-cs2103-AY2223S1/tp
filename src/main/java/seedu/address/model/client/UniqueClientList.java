@@ -68,6 +68,11 @@ public class UniqueClientList implements Iterable<Client> {
         internalList.set(index, editedPerson);
     }
 
+    public void setClient(UniqueClientList replacement) {
+        requireNonNull(replacement);
+        internalList.setAll(replacement.internalList);
+    }
+
     /**
      * Removes the equivalent person from the list.
      * The person must exist in the list.
@@ -79,10 +84,6 @@ public class UniqueClientList implements Iterable<Client> {
         }
     }
 
-    public void setClient(UniqueClientList replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
-    }
 
     /**
      * Replaces the contents of this list with {@code persons}.
