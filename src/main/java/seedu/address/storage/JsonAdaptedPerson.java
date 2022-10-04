@@ -49,7 +49,6 @@ class JsonAdaptedPerson {
             this.tagged.addAll(tagged);
         }
         this.assignments.putAll(assignments);
-        System.out.println(this.assignments);
     }
 
     /**
