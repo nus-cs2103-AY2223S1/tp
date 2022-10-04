@@ -9,12 +9,12 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.UniqueClientList;
 
 /**
- * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Wraps all data at the client-book level
+ * Duplicates are not allowed (by .isSameClient comparison)
  */
-public class ClientBook implements ReadOnlyAddressBook {
+public class ClientBook implements ReadOnlyClientBook {
 
-    private final UniqueClientList persons;
+    private final UniqueClientList clients;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,15 +24,15 @@ public class ClientBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        persons = new UniqueClientList();
+        clients = new UniqueClientList();
     }
 
     public ClientBook() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates a ClientBook using the Clients in the {@code toBeCopied}
      */
-    public ClientBook(ReadOnlyAddressBook toBeCopied) {
+    public ClientBook(ReadOnlyClient toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -40,81 +40,81 @@ public class ClientBook implements ReadOnlyAddressBook {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the client list with {@code clients}.
+     * {@code clients} must not contain duplicate clients.
      */
-    public void setClients(List<Client> persons) {
-        this.persons.setClients(persons);
+    public void setClients(List<Client> clients) {
+        this.clients.setClients(clients);
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code ClientBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyClientBook newData) {
         requireNonNull(newData);
 
-        setClients(newData.getPersonList());
+        setClients(newData.getClientList());
     }
 
-    //// person-level operations
+    //// client-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a client with the same identity as {@code client} exists in the client book.
      */
-    public boolean hasPerson(Client person) {
-        requireNonNull(person);
-        return persons.contains(person);
+    public boolean hasclient(Client client) {
+        requireNonNull(client);
+        return clients.contains(client);
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a client to the client book.
+     * The client must not already exist in the client book.
      */
-    public void addPerson(Client p) {
-        persons.add(p);
+    public void addclient(Client p) {
+        clients.add(p);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces the given client {@code target} in the list with {@code editedClient}.
+     * {@code target} must exist in the client book.
+     * The client identity of {@code editedClient} must not be the same as another existing client in the client book.
      */
-    public void setPerson(Client target, Client editedPerson) {
-        requireNonNull(editedPerson);
+    public void setclient(Client target, Client editedClient) {
+        requireNonNull(editedClient);
 
-        persons.setClient(target, editedPerson);
+        clients.setClient(target, editedClient);
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code ClientBook}.
      * {@code key} must exist in the address book.
      */
-    public void removePerson(Client key) {
-        persons.remove(key);
+    public void removeClient(Client key) {
+        clients.remove(key);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return clients.asUnmodifiableObservableList().size() + " clients";
         // TODO: refine later
     }
 
     @Override
-    public ObservableList<Client> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+    public ObservableList<Client> getClientList() {
+        return clients.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ClientBook // instanceof handles nulls
-                && persons.equals(((ClientBook) other).persons));
+                && clients.equals(((ClientBook) other).clients));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return clients.hashCode();
     }
 }
