@@ -1,8 +1,6 @@
 {
   "companies": [ {
-    "name": "Hans Muster",
-    "phone": "9482424",
-    "email": "invalid@email!3e",
+    "name": "Company with invalid name field: Ha!ns Mu@ster",
     "address": "4th street"
   } ]
 }
