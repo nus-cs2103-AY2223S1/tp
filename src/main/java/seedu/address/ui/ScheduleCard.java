@@ -7,11 +7,11 @@ import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code Schedule}.
  */
-public class PersonCard extends UiPart<Region> {
+public class ScheduleCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "ScheduleListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -22,9 +22,8 @@ public class PersonCard extends UiPart<Region> {
      */
 
     public final Person person;
-
     @FXML
-    private HBox cardPane;
+    private HBox scheduleCardPane;
     @FXML
     private Label name;
     @FXML
@@ -34,19 +33,19 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label address;
     @FXML
-    private Label email;
+    private Label classTime;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public ScheduleCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
+        classTime.setText("1-2pm"); // To be replaced with the actual class time from the person
     }
 
     @Override
@@ -57,12 +56,12 @@ public class PersonCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof ScheduleCard)) {
             return false;
         }
 
         // state check
-        PersonCard card = (PersonCard) other;
+        ScheduleCard card = (ScheduleCard) other;
         return id.getText().equals(card.id.getText())
                 && person.equals(card.person);
     }

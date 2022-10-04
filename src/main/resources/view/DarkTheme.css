@@ -107,7 +107,7 @@
     -fx-background-color: #515658;
 }
 
-.list-cell:filled:selected {
+.list-cell:filled:selected #cardPane {
     -fx-background-color: #424d5f;
 }
 
@@ -117,6 +117,12 @@
 }
 
 .list-cell .label {
+    -fx-text-fill: white;
+}
+
+.cell_title_label {
+    -fx-font-family: "Segoe UI Bold";
+    -fx-font-size: 20px;
     -fx-text-fill: white;
 }
 
@@ -305,6 +311,10 @@
 
 .scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
     -fx-padding: 8 1 8 1;
+}
+
+.schedule_box {
+    -fx-background-color: black;
 }
 
 #cardPane {
