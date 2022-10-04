@@ -141,6 +141,19 @@ Format: `mark PATIENT_INDEX APPOINTMENT_INDEX`
 Examples:
 * `mark 3 1`
 
+### Unmark an appointment as incomplete:  `unmark`
+
+Unmarks a specified appointment `APPOINTMENT_INDEX` for a specified patient at `PATIENT_INDEX` as incomplete.
+
+Format: `unmark PATIENT_INDEX APPOINTMENT_INDEX`
+
+* `PATIENT_INDEX` refers to the index number of the patient shown in the displayed patient list.
+* `APPOINTMENT_INDEX` refers to the index number of the appointment to be unmarked for the desired patient.
+* Values of `PATIENT_INDEX` and `APPOINTMENT_INDEX` **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `unmark 4 2`
+
 ### Clearing all entries : `clear`
 
 Clears all entries from idENTify.
