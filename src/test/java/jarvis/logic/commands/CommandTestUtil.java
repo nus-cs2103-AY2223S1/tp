@@ -15,7 +15,7 @@ import java.util.List;
 
 import jarvis.commons.core.index.Index;
 import jarvis.logic.commands.exceptions.CommandException;
-import jarvis.model.AddressBook;
+import jarvis.model.StudentBook;
 import jarvis.model.Model;
 import jarvis.model.student.NameContainsKeywordsPredicate;
 import jarvis.model.student.Student;
@@ -104,11 +104,11 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        StudentBook expectedStudentBook = new StudentBook(actualModel.getStudentBook());
         List<Student> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedStudentBook, actualModel.getStudentBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
     /**

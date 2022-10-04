@@ -12,7 +12,7 @@ import jarvis.logic.commands.exceptions.CommandException;
 import jarvis.logic.parser.AddressBookParser;
 import jarvis.logic.parser.exceptions.ParseException;
 import jarvis.model.Model;
-import jarvis.model.ReadOnlyAddressBook;
+import jarvis.model.ReadOnlyStudentBook;
 import jarvis.model.student.Student;
 import jarvis.storage.Storage;
 import javafx.collections.ObservableList;
@@ -46,7 +46,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveAddressBook(model.getStudentBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -55,18 +55,18 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyStudentBook getStudentBook() {
+        return model.getStudentBook();
     }
 
     @Override
-    public ObservableList<Student> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Student> getFilteredStudentList() {
+        return model.getFilteredStudentList();
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getStudentBookFilePath() {
+        return model.getStudentBookFilePath();
     }
 
     @Override

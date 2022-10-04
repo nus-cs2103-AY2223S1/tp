@@ -5,7 +5,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import jarvis.commons.exceptions.DataConversionException;
-import jarvis.model.ReadOnlyAddressBook;
+import jarvis.model.ReadOnlyStudentBook;
 import jarvis.model.ReadOnlyUserPrefs;
 import jarvis.model.UserPrefs;
 
@@ -24,9 +24,9 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     Path getAddressBookFilePath();
 
     @Override
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyStudentBook> readAddressBook() throws DataConversionException, IOException;
 
     @Override
-    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
+    void saveAddressBook(ReadOnlyStudentBook addressBook) throws IOException;
 
 }

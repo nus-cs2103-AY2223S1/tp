@@ -13,10 +13,10 @@ import jarvis.commons.util.ConfigUtil;
 import jarvis.commons.util.StringUtil;
 import jarvis.logic.Logic;
 import jarvis.logic.LogicManager;
-import jarvis.model.AddressBook;
+import jarvis.model.StudentBook;
 import jarvis.model.Model;
 import jarvis.model.ModelManager;
-import jarvis.model.ReadOnlyAddressBook;
+import jarvis.model.ReadOnlyStudentBook;
 import jarvis.model.ReadOnlyUserPrefs;
 import jarvis.model.UserPrefs;
 import jarvis.model.util.SampleDataUtil;
@@ -74,8 +74,8 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyStudentBook> addressBookOptional;
+        ReadOnlyStudentBook initialData;
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
@@ -84,10 +84,10 @@ public class MainApp extends Application {
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty JARVIS");
-            initialData = new AddressBook();
+            initialData = new StudentBook();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty JARVIS");
-            initialData = new AddressBook();
+            initialData = new StudentBook();
         }
 
         return new ModelManager(initialData, userPrefs);

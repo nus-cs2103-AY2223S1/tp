@@ -29,7 +29,7 @@ import jarvis.testutil.EditPersonDescriptorBuilder;
 import jarvis.testutil.PersonBuilder;
 import jarvis.testutil.PersonUtil;
 
-public class AddressBookParserTest {
+public class StudentBookParserTest {
 
     private final AddressBookParser parser = new AddressBookParser();
 

@@ -2,7 +2,7 @@ package jarvis.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import jarvis.model.AddressBook;
+import jarvis.model.StudentBook;
 import jarvis.model.Model;
 
 /**
@@ -17,7 +17,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setAddressBook(new AddressBook());
+        model.setStudentBook(new StudentBook());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

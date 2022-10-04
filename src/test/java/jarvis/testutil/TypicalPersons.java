@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import jarvis.model.AddressBook;
+import jarvis.model.StudentBook;
 import jarvis.model.student.Student;
 
 /**
@@ -62,10 +62,10 @@ public class TypicalPersons {
     /**
      * Returns an {@code AddressBook} with all the typical persons.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static StudentBook getTypicalAddressBook() {
+        StudentBook ab = new StudentBook();
         for (Student student : getTypicalPersons()) {
-            ab.addPerson(student);
+            ab.addStudent(student);
         }
         return ab;
     }

@@ -9,8 +9,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import jarvis.commons.exceptions.IllegalValueException;
-import jarvis.model.AddressBook;
-import jarvis.model.ReadOnlyAddressBook;
+import jarvis.model.StudentBook;
+import jarvis.model.ReadOnlyStudentBook;
 import jarvis.model.student.Student;
 
 /**
@@ -36,8 +36,8 @@ class JsonSerializableAddressBook {
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+    public JsonSerializableAddressBook(ReadOnlyStudentBook source) {
+        persons.addAll(source.getStudentList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
     }
 
     /**
@@ -45,16 +45,16 @@ class JsonSerializableAddressBook {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AddressBook toModelType() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
+    public StudentBook toModelType() throws IllegalValueException {
+        StudentBook studentBook = new StudentBook();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Student student = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(student)) {
+            if (studentBook.hasStudent(student)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            addressBook.addPerson(student);
+            studentBook.addStudent(student);
         }
-        return addressBook;
+        return studentBook;
     }
 
 }

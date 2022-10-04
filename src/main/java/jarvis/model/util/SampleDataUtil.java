@@ -1,10 +1,7 @@
 package jarvis.model.util;
 
-import java.util.Arrays;
-import java.util.stream.Collectors;
-
-import jarvis.model.AddressBook;
-import jarvis.model.ReadOnlyAddressBook;
+import jarvis.model.StudentBook;
+import jarvis.model.ReadOnlyStudentBook;
 import jarvis.model.student.*;
 import jarvis.model.student.Student;
 
@@ -23,10 +20,10 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyStudentBook getSampleAddressBook() {
+        StudentBook sampleAb = new StudentBook();
         for (Student sampleStudent : getSamplePersons()) {
-            sampleAb.addPerson(sampleStudent);
+            sampleAb.addStudent(sampleStudent);
         }
         return sampleAb;
     }
