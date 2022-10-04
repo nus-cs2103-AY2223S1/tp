@@ -31,7 +31,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Nguyen Minh Hoang
 
-<img src="images/hoang227.png" width="200px">
+<img src="images/hoang227.png.png" width="200px">
 
 [[github](http://github.com/hoang227)] 
 [[portfolio](team/hoang227.md)]
