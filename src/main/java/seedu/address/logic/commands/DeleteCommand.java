@@ -22,7 +22,7 @@ public class DeleteCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_CLIENT_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_DELETE_CLIENT_SUCCESS = "Deleted Client: %1$s";
 
     private final Index targetIndex;
 
@@ -39,9 +39,9 @@ public class DeleteCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
 
-        Client personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteClient(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_CLIENT_SUCCESS, personToDelete));
+        Client clientToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.deleteClient(clientToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_CLIENT_SUCCESS, clientToDelete));
     }
 
     @Override

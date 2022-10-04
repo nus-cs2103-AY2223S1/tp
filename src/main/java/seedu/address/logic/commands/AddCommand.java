@@ -33,17 +33,17 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_CLIENT = "This person already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New client added: %1$s";
+    public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the address book";
 
     private final Client toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Client}
      */
-    public AddCommand(Client person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddCommand(Client client) {
+        requireNonNull(client);
+        toAdd = client;
     }
 
     @Override

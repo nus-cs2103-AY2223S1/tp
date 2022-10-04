@@ -33,9 +33,9 @@ public class JsonAdaptedClientTest {
             .collect(Collectors.toList());
 
     @Test
-    public void toModelType_validClientDetails_returnsPerson() throws Exception {
-        JsonAdaptedClient person = new JsonAdaptedClient(BENSON);
-        assertEquals(BENSON, person.toModelType());
+    public void toModelType_validClientDetails_returnsClient() throws Exception {
+        JsonAdaptedClient client = new JsonAdaptedClient(BENSON);
+        assertEquals(BENSON, client.toModelType());
     }
 
     @Test

@@ -21,11 +21,11 @@ public class PersonListPanel extends UiPart<Region> {
     private ListView<Client> personListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code ClientListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Client> personList) {
+    public PersonListPanel(ObservableList<Client> clientList) {
         super(FXML);
-        personListView.setItems(personList);
+        personListView.setItems(clientList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
     }
 
@@ -34,14 +34,14 @@ public class PersonListPanel extends UiPart<Region> {
      */
     class PersonListViewCell extends ListCell<Client> {
         @Override
-        protected void updateItem(Client person, boolean empty) {
-            super.updateItem(person, empty);
+        protected void updateItem(Client client, boolean empty) {
+            super.updateItem(client, empty);
 
-            if (empty || person == null) {
+            if (empty || client == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                setGraphic(new PersonCard(client, getIndex() + 1).getRoot());
             }
         }
     }
