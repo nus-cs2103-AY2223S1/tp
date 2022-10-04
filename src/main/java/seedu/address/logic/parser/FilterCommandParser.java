@@ -25,14 +25,6 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
-        Index index;
-
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE), pe);
-        }
-
         FilterCommand.FilterPersonDescriptor filterPersonDescriptor = new FilterCommand.FilterPersonDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             filterPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));

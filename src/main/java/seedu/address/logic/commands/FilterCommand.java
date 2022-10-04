@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 
+import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -13,11 +14,13 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.commons.core.index.Index;
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.util.CollectionUtil;
+import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.AttributesMatchKeywordsPredicate;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -55,7 +58,13 @@ public class FilterCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        return new CommandResult("Command Still in progress");
+        //return new CommandResult("Command Still in progress");
+        requireNonNull(model);
+        AttributesMatchKeywordsPredicate predicate =
+                new AttributesMatchKeywordsPredicate(filterPersonDescriptor);
+        model.updateFilteredPersonList(predicate);
+        return new CommandResult(
+                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
 
     /**
@@ -94,32 +103,32 @@ public class FilterCommand extends Command {
             this.name = name;
         }
 
-        public Optional<Name> getName() {
-            return Optional.ofNullable(name);
+        public Name getName() {
+            return name;
         }
 
         public void setPhone(Phone phone) {
             this.phone = phone;
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+        public Phone getPhone() {
+            return phone;
         }
 
         public void setEmail(Email email) {
             this.email = email;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+        public Email getEmail() {
+            return email;
         }
 
         public void setAddress(Address address) {
             this.address = address;
         }
 
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Address getAddress() {
+            return address;
         }
 
         /**
@@ -135,8 +144,8 @@ public class FilterCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Set<Tag> getTags() {
+            return tags;
         }
 
         @Override
