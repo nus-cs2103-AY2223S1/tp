@@ -5,11 +5,10 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
-import javafx.scene.paint.Color;
 import seedu.address.commons.core.LogsCenter;
 
     /**
-     * Panel containing the list of persons.
+     * Panel containing the pie chart diagram.
      */
     public class PieChartPanel extends UiPart<Region> {
         private static final String FXML = "PieChartPanel.fxml";
@@ -20,10 +19,11 @@ import seedu.address.commons.core.LogsCenter;
 
         /**
          * TODO: Edit image to pie chart
-         * Creates a {@code PieChartPanel} with a default image
+         * Creates a {@code PieChartPanel} with a default pie chart image
          */
         public PieChartPanel() {
             super(FXML);
+            // TODO: Edit to title of time period of pie chart
             pieChartTitle.setText("PennyWise");
         }
 
