@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a Project.
- * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Project {
 
