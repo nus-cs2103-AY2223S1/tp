@@ -155,7 +155,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, position, address, tags);
         }
 
         public void setName(Name name) {
@@ -185,6 +185,7 @@ public class EditCommand extends Command {
         public void setPosition(Position position) {
             this.position = position;
         }
+
         public Optional<Position> getPosition() {
             return Optional.ofNullable(position);
         }
