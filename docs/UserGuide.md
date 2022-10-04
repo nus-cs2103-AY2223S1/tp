@@ -107,7 +107,7 @@ Format: `edit [n/ p/ lp/]NEW_FIELD`<br>
 
 Examples:
 * `view 1` returns person in first index <br>
-  `edit h/2 math not done` updates 2nd field of homework to `math not done`
+  `edit h/2 math not done` updates 2nd field of *person at first index's* HOMEWORK to `math not done`
 
 ### Locating persons by name: `find`
 
