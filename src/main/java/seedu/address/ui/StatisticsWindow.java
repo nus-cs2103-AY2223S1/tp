@@ -97,6 +97,7 @@ public class StatisticsWindow extends UiPart<Stage> {
      * Updates the message to show the latest statistical values.
      */
     public void updateStatisticsMessage() {
+
         int[] statistics = addressBook.getStatistics();
 
         int studentCount = statistics[INDEX_OF_STUDENT_COUNT];
@@ -110,6 +111,18 @@ public class StatisticsWindow extends UiPart<Stage> {
                         "________________________________________\n" +
                         "Status correct as of: %s",
                 studentCount, moneyCollected, moneyOwed, dateAndTime));
+    }
+
+    /**
+     * Refreshes the current window, if displayed.
+     */
+    public void refresh() {
+        if (!isShowing()) {
+            return;
+        }
+
+        updateStatisticsMessage();
+        focus();
     }
 
     /**
