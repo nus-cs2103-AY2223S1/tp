@@ -10,13 +10,23 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Names should only contain alphanumeric characters, spaces, and the punctuations within the " +
+                    "list of allowed punctuations. " +
+                    "Names must start with an alphanumeric character.";
 
     /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
+     * Regex to check for valid punctuation
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String AllOWED_PUNCTUATION = "[\\?\\.\\'\\\"\\[\\]\\{\\}\\+\\^\\$\\*\\(\\)\\-<>,:;~@!#%&_=`]";
+
+    /*
+     * Only alphanumeric characters, whitespaces and punctuation within the ALLOWED_PUNCTUATION list are allowed.
+     * The first character of the name must be alphanumeric.
+     */
+    public static final String VALIDATION_REGEX = String.format(
+            "[\\p{Alnum}][\\p{Alnum} | \\p{Space} | %s]*",
+            AllOWED_PUNCTUATION
+    );
 
     public final String fullName;
 
