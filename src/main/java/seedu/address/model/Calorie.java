@@ -8,7 +8,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Calorie {
     public static final String VALIDATION_REGEX = "\\d+";
     public static final String MESSAGE_CONSTRAINTS = "Calorie must take on a positive number that is not too large.";
-    private final String value;
+    public final String value;
 
 
     /**
