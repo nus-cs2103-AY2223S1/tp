@@ -10,6 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Assignment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -120,5 +121,20 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String assignment} into a {@code Assignment}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Assignment} is invalid.
+     */
+    public static Assignment parseAssignment(String assignment) throws ParseException {
+        requireNonNull(assignment);
+        String trimmedAssignment = assignment.trim();
+        if (!Tag.isValidTagName(trimmedAssignment)) {
+            throw new ParseException(Assignment.MESSAGE_CONSTRAINTS);
+        }
+        return new Assignment(trimmedAssignment);
     }
 }
