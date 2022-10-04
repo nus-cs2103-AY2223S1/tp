@@ -80,7 +80,8 @@ public class EditCommand extends Command {
      * Creates and returns an {@code Activity} with the details of {@code activityToEdit}
      * edited with {@code editActivityDescriptor}.
      */
-    private static Activity createEditedActivity(Activity activityToEdit, EditActivityDescriptor editActivityDescriptor) {
+    private static Activity createEditedActivity(Activity activityToEdit,
+                                                 EditActivityDescriptor editActivityDescriptor) {
         assert activityToEdit != null;
 
         Name updatedName = editActivityDescriptor.getName().orElse(activityToEdit.getName());
