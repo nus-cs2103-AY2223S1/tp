@@ -64,13 +64,13 @@ public class Client {
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Client otherPerson) {
-        if (otherPerson == this) {
+    public boolean isSameClient(Client otherClient) {
+        if (otherClient == this) {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
+        return otherClient != null
+                && otherClient.getName().equals(getName());
     }
 
     /**
