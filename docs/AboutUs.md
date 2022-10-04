@@ -24,7 +24,7 @@ GitHub: [@KIANSEONG](https://github.com/KIANSEONG)
 GitHub: [@wxy1203](https://github.com/wxy1203)
 
 * Role: Team Member
-* Responsibilities: Various
+* Responsibilities: Many
 
 
 ### Brandon Thio
