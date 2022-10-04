@@ -89,17 +89,19 @@ interactions recorded faster and simpler than traditional GUI applications.
 
 ### Adding a company: `add`
 
-Adds a point-of-contact to the company.
+Adds an empty company to the list without any POC (Point-Of-Contact) and transactions.
 
-Format: `add coy/COMPANY n/NAME hp/NUMBER e/EMAIL loc/ADDRESS`
+Format: `add n/NAME loc/ADDRESS`
+
+* Use `create` command to add POC to the company.
 
 Examples:
-* `add coy/MacDonalds n/James hp/98765432 e/jamesho@example.com loc/West Coast Park`
-* `add coy/KFC n/Tom hp/85948392 e/tom@example.com loc/Yishun Street 81`
+* `add n/MacDonalds loc/West Coast Park`
+* `add n/KFC loc/Yishun Street 81`
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from JeeqTracker.
 
 Format: `clear`
 
@@ -110,22 +112,18 @@ Example:
 
 * `clear` followed by `confirm`
 
-### Creating a Company: `create`
+### Creating a Person: `create`
 
-Creates a new company to store POC (Point-Of-Contact) and transactions
+Creates a new person (point-of-contact) for a specific company.
 
-Format: `create coy/COMPANY_NAME`
-
-* Creates an empty company with no POC and transactions.
-* Use `add` command to add POC to the company.<br>`add coy/MCDONALDS n/justin hp98492121 e/test@gmail.com loc/West Coast
-  Park` adds the POC justin to the company.
+Format: `create n/NAME coy/COMPANY_NAME hp/NUMBER e/EMAIL`
 
 Examples:
-* `create coy/MCDONALDS` creates a company called MCDONALDS.
+* `create n/James coy/MCDONALDS hp/82692192 e/JamesSho@example.com` adds James as a point-of-contact for MCDONALDS.
 
 ### Deleting a company : `delete`
 
-Deletes the specified company from the address book.
+Deletes the specified company from JeeqTracker.
 
 Format: `delete INDEX`
 
@@ -153,11 +151,11 @@ Coming Soon.
 
 ### Listing all companies : `list`
 
-Lists all the companies stored in the address book.
+Lists all the companies stored in JeeqTracker.
 
 Format: `list`
 
-* Displays all the companies and their details in the address book.
+* Displays all the companies and their details in JeeqTracker.
 * If address book is empty, the companies name section will be blank.
 
 Examples:
