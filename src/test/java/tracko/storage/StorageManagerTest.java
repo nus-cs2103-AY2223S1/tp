@@ -12,7 +12,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import tracko.commons.core.GuiSettings;
 import tracko.model.AddressBook;
-import tracko.model.ReadOnlyAddressBook;
+import tracko.model.ReadOnlyTrackO;
 import tracko.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -56,7 +56,7 @@ public class StorageManagerTest {
          */
         AddressBook original = getTypicalAddressBook();
         storageManager.saveAddressBook(original);
-        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
+        ReadOnlyTrackO retrieved = storageManager.readAddressBook().get();
         assertEquals(original, new AddressBook(retrieved));
     }
 
