@@ -13,8 +13,8 @@ import org.junit.jupiter.api.Test;
 
 import gim.commons.exceptions.IllegalValueException;
 import gim.model.exercise.Address;
-import gim.model.exercise.Email;
 import gim.model.exercise.Name;
+import gim.model.exercise.Sets;
 import gim.model.exercise.Weight;
 
 
@@ -23,12 +23,12 @@ public class JsonAdaptedExerciseTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_WEIGHT = "+651234";
     private static final String INVALID_ADDRESS = " ";
-    private static final String INVALID_EMAIL = "example.com";
+    private static final String INVALID_SETS = "example.com";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_WEIGHT = BENSON.getWeight().toString();
-    private static final String VALID_EMAIL = BENSON.getEmail().toString();
+    private static final String VALID_SETS = BENSON.getSets().toString();
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
@@ -43,14 +43,14 @@ public class JsonAdaptedExerciseTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedExercise exercise =
-                new JsonAdaptedExercise(INVALID_NAME, VALID_WEIGHT, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
+                new JsonAdaptedExercise(INVALID_NAME, VALID_WEIGHT, VALID_SETS, VALID_ADDRESS, VALID_TAGS);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, exercise::toModelType);
     }
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedExercise exercise = new JsonAdaptedExercise(null, VALID_WEIGHT, VALID_EMAIL,
+        JsonAdaptedExercise exercise = new JsonAdaptedExercise(null, VALID_WEIGHT, VALID_SETS,
                 VALID_ADDRESS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, exercise::toModelType);
@@ -59,7 +59,7 @@ public class JsonAdaptedExerciseTest {
     @Test
     public void toModelType_invalidWeight_throwsIllegalValueException() {
         JsonAdaptedExercise exercise =
-                new JsonAdaptedExercise(VALID_NAME, INVALID_WEIGHT, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
+                new JsonAdaptedExercise(VALID_NAME, INVALID_WEIGHT, VALID_SETS, VALID_ADDRESS, VALID_TAGS);
         String expectedMessage = Weight.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, exercise::toModelType);
     }
@@ -67,38 +67,38 @@ public class JsonAdaptedExerciseTest {
     @Test
     public void toModelType_nullWeight_throwsIllegalValueException() {
         JsonAdaptedExercise exercise = new JsonAdaptedExercise(VALID_NAME, null,
-                VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
+                VALID_SETS, VALID_ADDRESS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Weight.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, exercise::toModelType);
     }
 
     @Test
-    public void toModelType_invalidEmail_throwsIllegalValueException() {
+    public void toModelType_invalidSets_throwsIllegalValueException() {
         JsonAdaptedExercise exercise =
-                new JsonAdaptedExercise(VALID_NAME, VALID_WEIGHT, INVALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
-        String expectedMessage = Email.MESSAGE_CONSTRAINTS;
+                new JsonAdaptedExercise(VALID_NAME, VALID_WEIGHT, INVALID_SETS, VALID_ADDRESS, VALID_TAGS);
+        String expectedMessage = Sets.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, exercise::toModelType);
     }
 
     @Test
-    public void toModelType_nullEmail_throwsIllegalValueException() {
+    public void toModelType_nullSets_throwsIllegalValueException() {
         JsonAdaptedExercise exercise = new JsonAdaptedExercise(VALID_NAME, VALID_WEIGHT, null,
                 VALID_ADDRESS, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Sets.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, exercise::toModelType);
     }
 
     @Test
     public void toModelType_invalidAddress_throwsIllegalValueException() {
         JsonAdaptedExercise exercise =
-                new JsonAdaptedExercise(VALID_NAME, VALID_WEIGHT, VALID_EMAIL, INVALID_ADDRESS, VALID_TAGS);
+                new JsonAdaptedExercise(VALID_NAME, VALID_WEIGHT, VALID_SETS, INVALID_ADDRESS, VALID_TAGS);
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, exercise::toModelType);
     }
 
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
-        JsonAdaptedExercise exercise = new JsonAdaptedExercise(VALID_NAME, VALID_WEIGHT, VALID_EMAIL, null, VALID_TAGS);
+        JsonAdaptedExercise exercise = new JsonAdaptedExercise(VALID_NAME, VALID_WEIGHT, VALID_SETS, null, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, exercise::toModelType);
     }
@@ -108,7 +108,7 @@ public class JsonAdaptedExerciseTest {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedExercise exercise =
-                new JsonAdaptedExercise(VALID_NAME, VALID_WEIGHT, VALID_EMAIL, VALID_ADDRESS, invalidTags);
+                new JsonAdaptedExercise(VALID_NAME, VALID_WEIGHT, VALID_SETS, VALID_ADDRESS, invalidTags);
         assertThrows(IllegalValueException.class, exercise::toModelType);
     }
 

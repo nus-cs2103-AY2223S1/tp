@@ -37,7 +37,7 @@ public class ExerciseCard extends UiPart<Region> {
     @FXML
     private Label address;
     @FXML
-    private Label email;
+    private Label sets;
     @FXML
     private FlowPane tags;
 
@@ -51,7 +51,7 @@ public class ExerciseCard extends UiPart<Region> {
         name.setText(exercise.getName().fullName);
         weight.setText(exercise.getWeight().value);
         address.setText(exercise.getAddress().value);
-        email.setText(exercise.getEmail().value);
+        sets.setText(exercise.getSets().value);
         exercise.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

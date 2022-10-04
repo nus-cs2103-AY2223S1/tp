@@ -1,8 +1,8 @@
 package gim.model.exercise;
 
 import static gim.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static gim.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static gim.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static gim.logic.commands.CommandTestUtil.VALID_SETS_BOB;
 import static gim.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static gim.logic.commands.CommandTestUtil.VALID_WEIGHT_BOB;
 import static gim.testutil.Assert.assertThrows;
@@ -34,7 +34,7 @@ public class ExerciseTest {
         assertFalse(ALICE.isSameExercise(null));
 
         // same name, all other attributes different -> returns true
-        Exercise editedAlice = new ExerciseBuilder(ALICE).withWeight(VALID_WEIGHT_BOB).withEmail(VALID_EMAIL_BOB)
+        Exercise editedAlice = new ExerciseBuilder(ALICE).withWeight(VALID_WEIGHT_BOB).withSets(VALID_SETS_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameExercise(editedAlice));
 
@@ -78,8 +78,8 @@ public class ExerciseTest {
         editedAlice = new ExerciseBuilder(ALICE).withWeight(VALID_WEIGHT_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different email -> returns false
-        editedAlice = new ExerciseBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
+        // different sets -> returns false
+        editedAlice = new ExerciseBuilder(ALICE).withSets(VALID_SETS_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different address -> returns false

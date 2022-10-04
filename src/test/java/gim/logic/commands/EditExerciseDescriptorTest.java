@@ -3,8 +3,8 @@ package gim.logic.commands;
 import static gim.logic.commands.CommandTestUtil.DESC_AMY;
 import static gim.logic.commands.CommandTestUtil.DESC_BOB;
 import static gim.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static gim.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static gim.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static gim.logic.commands.CommandTestUtil.VALID_SETS_BOB;
 import static gim.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static gim.logic.commands.CommandTestUtil.VALID_WEIGHT_BOB;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -46,8 +46,8 @@ public class EditExerciseDescriptorTest {
         editedAmy = new EditExerciseDescriptorBuilder(DESC_AMY).withWeight(VALID_WEIGHT_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different email -> returns false
-        editedAmy = new EditExerciseDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
+        // different sets -> returns false
+        editedAmy = new EditExerciseDescriptorBuilder(DESC_AMY).withSets(VALID_SETS_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different address -> returns false

@@ -4,9 +4,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import gim.model.exercise.Address;
-import gim.model.exercise.Email;
 import gim.model.exercise.Exercise;
 import gim.model.exercise.Name;
+import gim.model.exercise.Sets;
 import gim.model.exercise.Weight;
 import gim.model.tag.Tag;
 import gim.model.util.SampleDataUtil;
@@ -19,12 +19,12 @@ public class ExerciseBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_WEIGHT = "85355255";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
+    public static final String DEFAULT_SETS = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
     private Weight weight;
-    private Email email;
+    private Sets sets;
     private Address address;
     private Set<Tag> tags;
 
@@ -34,7 +34,7 @@ public class ExerciseBuilder {
     public ExerciseBuilder() {
         name = new Name(DEFAULT_NAME);
         weight = new Weight(DEFAULT_WEIGHT);
-        email = new Email(DEFAULT_EMAIL);
+        sets = new Sets(DEFAULT_SETS);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
     }
@@ -45,7 +45,7 @@ public class ExerciseBuilder {
     public ExerciseBuilder(Exercise exerciseToCopy) {
         name = exerciseToCopy.getName();
         weight = exerciseToCopy.getWeight();
-        email = exerciseToCopy.getEmail();
+        sets = exerciseToCopy.getSets();
         address = exerciseToCopy.getAddress();
         tags = new HashSet<>(exerciseToCopy.getTags());
     }
@@ -83,15 +83,15 @@ public class ExerciseBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Exercise} that we are building.
+     * Sets the {@code Sets} of the {@code Exercise} that we are building.
      */
-    public ExerciseBuilder withEmail(String email) {
-        this.email = new Email(email);
+    public ExerciseBuilder withSets(String sets) {
+        this.sets = new Sets(sets);
         return this;
     }
 
     public Exercise build() {
-        return new Exercise(name, weight, email, address, tags);
+        return new Exercise(name, weight, sets, address, tags);
     }
 
 }

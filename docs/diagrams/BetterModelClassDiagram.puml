@@ -16,6 +16,6 @@ Exercise -up-> "*" Tag
 
 Exercise *--> Name
 Exercise *--> Weight
-Exercise *--> Email
+Exercise *--> Sets
 Exercise *--> Address
 @enduml

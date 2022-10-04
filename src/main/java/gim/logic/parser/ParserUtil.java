@@ -10,8 +10,8 @@ import gim.commons.core.index.Index;
 import gim.commons.util.StringUtil;
 import gim.logic.parser.exceptions.ParseException;
 import gim.model.exercise.Address;
-import gim.model.exercise.Email;
 import gim.model.exercise.Name;
+import gim.model.exercise.Sets;
 import gim.model.exercise.Weight;
 import gim.model.tag.Tag;
 
@@ -81,18 +81,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String email} into an {@code Email}.
+     * Parses a {@code String sets} into an {@code Sets}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @throws ParseException if the given {@code sets} is invalid.
      */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+    public static Sets parseSets(String sets) throws ParseException {
+        requireNonNull(sets);
+        String trimmedSets = sets.trim();
+        if (!Sets.isValidSets(trimmedSets)) {
+            throw new ParseException(Sets.MESSAGE_CONSTRAINTS);
         }
-        return new Email(trimmedEmail);
+        return new Sets(trimmedSets);
     }
 
     /**

@@ -18,7 +18,7 @@ public class Exercise {
     // Identity fields
     private final Name name;
     private final Weight weight;
-    private final Email email;
+    private final Sets sets;
 
     // Data fields
     private final Address address;
@@ -27,11 +27,11 @@ public class Exercise {
     /**
      * Every field must be present and not null.
      */
-    public Exercise(Name name, Weight weight, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, weight, email, address, tags);
+    public Exercise(Name name, Weight weight, Sets sets, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, weight, sets, address, tags);
         this.name = name;
         this.weight = weight;
-        this.email = email;
+        this.sets = sets;
         this.address = address;
         this.tags.addAll(tags);
     }
@@ -44,8 +44,8 @@ public class Exercise {
         return weight;
     }
 
-    public Email getEmail() {
-        return email;
+    public Sets getSets() {
+        return sets;
     }
 
     public Address getAddress() {
@@ -90,7 +90,7 @@ public class Exercise {
         Exercise otherExercise = (Exercise) other;
         return otherExercise.getName().equals(getName())
                 && otherExercise.getWeight().equals(getWeight())
-                && otherExercise.getEmail().equals(getEmail())
+                && otherExercise.getSets().equals(getSets())
                 && otherExercise.getAddress().equals(getAddress())
                 && otherExercise.getTags().equals(getTags());
     }
@@ -98,7 +98,7 @@ public class Exercise {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, weight, email, address, tags);
+        return Objects.hash(name, weight, sets, address, tags);
     }
 
     @Override
@@ -107,8 +107,8 @@ public class Exercise {
         builder.append(getName())
                 .append("; Weight: ")
                 .append(getWeight())
-                .append("; Email: ")
-                .append(getEmail())
+                .append("; Sets: ")
+                .append(getSets())
                 .append("; Address: ")
                 .append(getAddress());
 
