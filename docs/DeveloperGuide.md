@@ -291,14 +291,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `EZLead` and the **Actor** is the `Tech Lead`, unless specified otherwise)
 
-**Use case: First time initiation / No account records**
+**Use case: UC1 - Create a new team**
+
+**Actor: Team Lead**
 
 **MSS**
 
-1. LinkUp request user to create first user account
-2. LinkUp create the user account
-3. User can now login into that account
+1. Team Lead specifies the name of the team
+2. EZLead create a new team object with the specified team
 
+**Extensions**
+
+* 1a. Team with the same name already exists.
+
+    * 1a1. EZLead throws an error signifying duplicate name.
+
+      Use case resumes from step 1.
 
 **Use case: Login**
 
