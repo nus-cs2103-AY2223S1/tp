@@ -257,14 +257,17 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Tech-savvy university student leading teams in software engineering modules to build software projects
+* Having trouble keeping track of the team’s progress and delegating tasks effectively
+* Student who prefers CLI to GUI for productivity’s sake
+* Desperate for a single source of truth on who is doing what and by when
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
 
+* Users can collate different project-related information (e.g. Github project PRs, issues, links to Zoom meetings, and Google Docs)
+* Users can visualise teams’ progress easily
+* Users can delegate tasks to their teammates conveniently
+* CLI interface to manage project tasks much more quickly than GUI based products
 
 ### User stories
 
