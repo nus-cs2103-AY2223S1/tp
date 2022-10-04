@@ -32,6 +32,7 @@ import static seedu.rc4hdb.testutil.TypicalPersons.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.rc4hdb.logic.commands.AddCommand;
+import seedu.rc4hdb.logic.parser.commandparsers.AddCommandParser;
 import seedu.rc4hdb.model.person.Address;
 import seedu.rc4hdb.model.person.Email;
 import seedu.rc4hdb.model.person.Name;

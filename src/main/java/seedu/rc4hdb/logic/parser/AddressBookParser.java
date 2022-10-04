@@ -15,6 +15,10 @@ import seedu.rc4hdb.logic.commands.ExitCommand;
 import seedu.rc4hdb.logic.commands.FindCommand;
 import seedu.rc4hdb.logic.commands.HelpCommand;
 import seedu.rc4hdb.logic.commands.ListCommand;
+import seedu.rc4hdb.logic.parser.commandparsers.AddCommandParser;
+import seedu.rc4hdb.logic.parser.commandparsers.DeleteCommandParser;
+import seedu.rc4hdb.logic.parser.commandparsers.EditCommandParser;
+import seedu.rc4hdb.logic.parser.commandparsers.FindCommandParser;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 
 /**

@@ -36,6 +36,7 @@ import org.junit.jupiter.api.Test;
 import seedu.rc4hdb.commons.core.index.Index;
 import seedu.rc4hdb.logic.commands.EditCommand;
 import seedu.rc4hdb.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.rc4hdb.logic.parser.commandparsers.EditCommandParser;
 import seedu.rc4hdb.model.person.Address;
 import seedu.rc4hdb.model.person.Email;
 import seedu.rc4hdb.model.person.Name;
