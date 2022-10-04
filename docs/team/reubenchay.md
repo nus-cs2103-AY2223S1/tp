@@ -3,28 +3,28 @@ Long Time No See (LTNS) is a desktop task tracking app made for student financia
 
 ## Code contributions 
 
-to be added soon 
+to be added soon
 
 ## Enhancements implemented 
 
-to be added soon 
+to be added soon
 
 ## Contributions to UG 
 
-to be added soon 
+to be added soon
 
 ## Contributions to DG 
 
-to be added soon 
+to be added soon
 
 ## Contributions to team-based tasks 
 
-to be added soon 
+to be added soon
 
 ## Review/Mentoring Contributions 
 
-to be added soon 
+to be added soon
 
 ## Other contributions beyond the team 
 
-to be added soon 
+to be added soon
