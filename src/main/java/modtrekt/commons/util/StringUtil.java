@@ -65,4 +65,36 @@ public class StringUtil {
             return false;
         }
     }
+
+    /**
+     * Pluralizes a word by appending an `s` to the singular form of the word if the count is 0 or more than 1.
+     * This utility method does not account for irregular pluralization, e.g. `child` -> `children`.
+     * e.g. pluralize(0, "task") returns "0 tasks"
+     * e.g. pluralize(1, "task") returns "1 task"
+     *
+     * @param count    the count of the word
+     * @param singular the singular form of the word
+     * @return the pluralized word with its count
+     * @since v1.2
+     */
+    public static String pluralize(long count, String singular) {
+        requireNonNull(singular);
+        return String.format("%d %s", count, count == 1 ? singular : singular + "s");
+    }
+
+    /**
+     * Pluralizes a word by appending an `s` to the singular form of the word if the count is 0 or more than 1,
+     * with a custom plural form.
+     * e.g. pluralize(0, "child", "children") returns "0 children"
+     * e.g. pluralize(1, "child", "children") returns "1 child"
+     * @param count    the count of the word
+     * @param singular the singular form of the word
+     * @param plural   the plural form of the word
+     * @return the pluralized word with its count
+     */
+    public static String pluralize(long count, String singular, String plural) {
+        requireNonNull(singular);
+        requireNonNull(plural);
+        return String.format("%d %s", count, count == 1 ? singular : plural);
+    }
 }
