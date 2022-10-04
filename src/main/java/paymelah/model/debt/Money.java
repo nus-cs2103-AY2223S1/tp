@@ -3,6 +3,8 @@ package paymelah.model.debt;
 import static java.util.Objects.requireNonNull;
 import static paymelah.commons.util.AppUtil.checkArgument;
 
+import java.math.BigDecimal;
+
 /**
  * Represents a Debt's money amount in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidMoney(String)}
@@ -11,8 +13,8 @@ public class Money {
     public static final String MESSAGE_CONSTRAINTS =
             "Money amounts should only contain numbers to represent the amount in dollars";
 
-    public static final String VALIDATION_REGEX = "\\d{1,}(.\\d{1,2}|)";
-    public final Float value;
+    public static final String VALIDATION_REGEX = "([$]|)\\d+([.]\\d{1,2}|)";
+    public final BigDecimal value;
 
     /**
      * Constructs a {@code Money}.
@@ -22,7 +24,10 @@ public class Money {
     public Money(String money) {
         requireNonNull(money);
         checkArgument(isValidMoney(money), MESSAGE_CONSTRAINTS);
-        value = Float.parseFloat(money);
+        if (money.startsWith("$")) {
+            money.substring(1);
+        }
+        value = new BigDecimal(money);
     }
 
     /**

@@ -15,9 +15,9 @@ public class Description {
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "\\S.*";
 
-    public final String fullDescription;
+    public final String description;
 
     /**
      * Constructs a {@code Description}.
@@ -27,7 +27,7 @@ public class Description {
     public Description(String description) {
         requireNonNull(description);
         checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS);
-        fullDescription = description;
+        this.description = description;
     }
 
     /**
@@ -42,18 +42,18 @@ public class Description {
 
     @Override
     public String toString() {
-        return fullDescription;
+        return description;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Description // instanceof handles nulls
-                && fullDescription.equals(((Description) other).fullDescription)); // state check
+                && description.equals(((Description) other).description)); // state check
     }
 
     @Override
     public int hashCode() {
-        return fullDescription.hashCode();
+        return description.hashCode();
     }
 }

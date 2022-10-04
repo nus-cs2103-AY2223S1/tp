@@ -26,11 +26,12 @@ public class DescriptionTest {
         // invalid name
         assertFalse(Description.isValidDescription("")); // empty string
         assertFalse(Description.isValidDescription(" ")); // spaces only
-        assertFalse(Description.isValidDescription("^")); // only non-alphanumeric characters
-        assertFalse(Description.isValidDescription("McDonald's")); // contains non-alphanumeric characters
+        assertFalse(Money.isValidMoney("       ")); // many white spaces
 
         // valid name
         assertTrue(Description.isValidDescription("mcdonalds")); // alphabets only
+        assertTrue(Description.isValidDescription("^")); // only non-alphanumeric characters
+        assertTrue(Description.isValidDescription("mcdonald's")); // contains non-alphanumeric characters
         assertTrue(Description.isValidDescription("12345")); // numbers only
         assertTrue(Description.isValidDescription("mcd0na1d5")); // alphanumeric characters
         assertTrue(Description.isValidDescription("McDonalds")); // with capital letters

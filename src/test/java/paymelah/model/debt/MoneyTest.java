@@ -26,17 +26,22 @@ public class MoneyTest {
         // invalid phone numbers
         assertFalse(Money.isValidMoney("")); // empty string
         assertFalse(Money.isValidMoney(" ")); // spaces only
+        assertFalse(Money.isValidMoney("       ")); // many white spaces
+        assertFalse(Money.isValidMoney("$")); // dollar sign only
         assertFalse(Money.isValidMoney("-1.23")); // with negative sign in front
         assertFalse(Money.isValidMoney("0.")); // no numbers after decimal point
         assertFalse(Money.isValidMoney("0.12345")); // more than 2 numbers after decimal point
         assertFalse(Money.isValidMoney("phone")); // non-numeric
+        assertFalse(Money.isValidMoney("20,1")); // decimal point is wrong character
         assertFalse(Money.isValidMoney("1$20c")); // characters within digits
         assertFalse(Money.isValidMoney("1234 5678")); // spaces within digits
+        assertFalse(Money.isValidMoney("$$2.50")); // multiple leading dollar signs
 
         // valid phone numbers
         assertTrue(Money.isValidMoney("911")); // no decimal point
         assertTrue(Money.isValidMoney("0.1")); // 1 number after decimal point
         assertTrue(Money.isValidMoney("0.12")); // 2 numbers after decimal point
+        assertTrue(Money.isValidMoney("$2.50")); // with leading dollar sign
         assertTrue(Money.isValidMoney("124293842033123")); // long numbers
     }
 }
