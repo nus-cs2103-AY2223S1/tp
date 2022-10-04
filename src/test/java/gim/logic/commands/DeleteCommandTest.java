@@ -28,13 +28,13 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Exercise personToDelete = model.getFilteredExerciseList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Exercise exerciseToDelete = model.getFilteredExerciseList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, exerciseToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deleteExercise(personToDelete);
+        expectedModel.deleteExercise(exerciseToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
@@ -51,13 +51,13 @@ public class DeleteCommandTest {
     public void execute_validIndexFilteredList_success() {
         showExerciseAtIndex(model, INDEX_FIRST_PERSON);
 
-        Exercise personToDelete = model.getFilteredExerciseList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Exercise exerciseToDelete = model.getFilteredExerciseList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, exerciseToDelete);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deleteExercise(personToDelete);
+        expectedModel.deleteExercise(exerciseToDelete);
         showNoExercise(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -94,7 +94,7 @@ public class DeleteCommandTest {
         // null -> returns false
         assertFalse(deleteFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different exercise -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 

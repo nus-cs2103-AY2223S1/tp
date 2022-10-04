@@ -45,7 +45,7 @@ public class AddressBookTest {
 
     @Test
     public void resetData_withDuplicateExercises_throwsDuplicateExerciseException() {
-        // Two persons with the same identity fields
+        // Two exercises with the same identity fields
         Exercise editedAlice = new ExerciseBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Exercise> newExercises = Arrays.asList(ALICE, editedAlice);
@@ -60,18 +60,18 @@ public class AddressBookTest {
     }
 
     @Test
-    public void hasExercise_personNotInAddressBook_returnsFalse() {
+    public void hasExercise_exerciseNotInAddressBook_returnsFalse() {
         assertFalse(addressBook.hasExercise(ALICE));
     }
 
     @Test
-    public void hasExercise_personInAddressBook_returnsTrue() {
+    public void hasExercise_exerciseInAddressBook_returnsTrue() {
         addressBook.addExercise(ALICE);
         assertTrue(addressBook.hasExercise(ALICE));
     }
 
     @Test
-    public void hasExercise_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasExercise_exerciseWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addExercise(ALICE);
         Exercise editedAlice = new ExerciseBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
@@ -84,18 +84,18 @@ public class AddressBookTest {
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyAddressBook whose exercises list can violate interface constraints.
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
-        private final ObservableList<Exercise> persons = FXCollections.observableArrayList();
+        private final ObservableList<Exercise> exercises = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Exercise> persons) {
-            this.persons.setAll(persons);
+        AddressBookStub(Collection<Exercise> exercises) {
+            this.exercises.setAll(exercises);
         }
 
         @Override
         public ObservableList<Exercise> getExerciseList() {
-            return persons;
+            return exercises;
         }
     }
 

@@ -31,14 +31,14 @@ public class AddCommandTest {
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_exerciseAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingExerciseAdded modelStub = new ModelStubAcceptingExerciseAdded();
         Exercise validExercise = new ExerciseBuilder().build();
 
         CommandResult commandResult = new AddCommand(validExercise).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validExercise), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validExercise), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validExercise), modelStub.exercisesAdded);
     }
 
     @Test
@@ -70,7 +70,7 @@ public class AddCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different person -> returns false
+        // different exercise -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
@@ -109,7 +109,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addExercise(Exercise person) {
+        public void addExercise(Exercise exercise) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -124,7 +124,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasExercise(Exercise person) {
+        public boolean hasExercise(Exercise exercise) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -150,39 +150,39 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single exercise.
      */
     private class ModelStubWithExercise extends ModelStub {
-        private final Exercise person;
+        private final Exercise exercise;
 
-        ModelStubWithExercise(Exercise person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithExercise(Exercise exercise) {
+            requireNonNull(exercise);
+            this.exercise = exercise;
         }
 
         @Override
-        public boolean hasExercise(Exercise person) {
-            requireNonNull(person);
-            return this.person.isSameExercise(person);
+        public boolean hasExercise(Exercise exercise) {
+            requireNonNull(exercise);
+            return this.exercise.isSameExercise(exercise);
         }
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the exercise being added.
      */
     private class ModelStubAcceptingExerciseAdded extends ModelStub {
-        final ArrayList<Exercise> personsAdded = new ArrayList<>();
+        final ArrayList<Exercise> exercisesAdded = new ArrayList<>();
 
         @Override
-        public boolean hasExercise(Exercise person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSameExercise);
+        public boolean hasExercise(Exercise exercise) {
+            requireNonNull(exercise);
+            return exercisesAdded.stream().anyMatch(exercise::isSameExercise);
         }
 
         @Override
-        public void addExercise(Exercise person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addExercise(Exercise exercise) {
+            requireNonNull(exercise);
+            exercisesAdded.add(exercise);
         }
 
         @Override

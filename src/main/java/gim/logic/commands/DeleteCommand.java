@@ -11,14 +11,14 @@ import gim.model.Model;
 import gim.model.exercise.Exercise;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a exercise identified using it's displayed index from the address book.
  */
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the index number used in the displayed person list.\n"
+            + ": Deletes the exercise identified by the index number used in the displayed exercise list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
@@ -39,9 +39,9 @@ public class DeleteCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Exercise personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteExercise(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
+        Exercise exerciseToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.deleteExercise(exerciseToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, exerciseToDelete));
     }
 
     @Override

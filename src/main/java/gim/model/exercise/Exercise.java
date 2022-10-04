@@ -61,8 +61,8 @@ public class Exercise {
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both exercises have the same name.
+     * This defines a weaker notion of equality between two exercises.
      */
     public boolean isSameExercise(Exercise otherExercise) {
         if (otherExercise == this) {
@@ -74,8 +74,8 @@ public class Exercise {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both exercises have the same identity and data fields.
+     * This defines a stronger notion of equality between two exercises.
      */
     @Override
     public boolean equals(Object other) {

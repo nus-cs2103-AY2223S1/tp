@@ -11,22 +11,22 @@ import gim.commons.core.LogsCenter;
 import gim.model.exercise.Exercise;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of exercises.
  */
 public class ExerciseListPanel extends UiPart<Region> {
     private static final String FXML = "ExerciseListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(ExerciseListPanel.class);
 
     @FXML
-    private ListView<Exercise> personListView;
+    private ListView<Exercise> exerciseListView;
 
     /**
      * Creates a {@code ExerciseListPanel} with the given {@code ObservableList}.
      */
-    public ExerciseListPanel(ObservableList<Exercise> personList) {
+    public ExerciseListPanel(ObservableList<Exercise> exerciseList) {
         super(FXML);
-        personListView.setItems(personList);
-        personListView.setCellFactory(listView -> new ExerciseListViewCell());
+        exerciseListView.setItems(exerciseList);
+        exerciseListView.setCellFactory(listView -> new ExerciseListViewCell());
     }
 
     /**
@@ -34,14 +34,14 @@ public class ExerciseListPanel extends UiPart<Region> {
      */
     class ExerciseListViewCell extends ListCell<Exercise> {
         @Override
-        protected void updateItem(Exercise person, boolean empty) {
-            super.updateItem(person, empty);
+        protected void updateItem(Exercise exercise, boolean empty) {
+            super.updateItem(exercise, empty);
 
-            if (empty || person == null) {
+            if (empty || exercise == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new ExerciseCard(person, getIndex() + 1).getRoot());
+                setGraphic(new ExerciseCard(exercise, getIndex() + 1).getRoot());
             }
         }
     }

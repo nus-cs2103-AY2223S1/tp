@@ -31,7 +31,7 @@ class JsonAdaptedExercise {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedExercise} with the given person details.
+     * Constructs a {@code JsonAdaptedExercise} with the given exercise details.
      */
     @JsonCreator
     public JsonAdaptedExercise(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
@@ -60,14 +60,14 @@ class JsonAdaptedExercise {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Exercise} object.
+     * Converts this Jackson-friendly adapted exercise object into the model's {@code Exercise} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted exercise.
      */
     public Exercise toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        final List<Tag> exerciseTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+            exerciseTags.add(tag.toModelType());
         }
 
         if (name == null) {
@@ -102,7 +102,7 @@ class JsonAdaptedExercise {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Set<Tag> modelTags = new HashSet<>(exerciseTags);
         return new Exercise(modelName, modelPhone, modelEmail, modelAddress, modelTags);
     }
 

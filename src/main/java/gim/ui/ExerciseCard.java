@@ -24,7 +24,7 @@ public class ExerciseCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Exercise person;
+    public final Exercise exercise;
 
     @FXML
     private HBox cardPane;
@@ -44,15 +44,15 @@ public class ExerciseCard extends UiPart<Region> {
     /**
      * Creates a {@code ExerciseCode} with the given {@code Exercise} and index to display.
      */
-    public ExerciseCard(Exercise person, int displayedIndex) {
+    public ExerciseCard(Exercise exercise, int displayedIndex) {
         super(FXML);
-        this.person = person;
+        this.exercise = exercise;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        person.getTags().stream()
+        name.setText(exercise.getName().fullName);
+        phone.setText(exercise.getPhone().value);
+        address.setText(exercise.getAddress().value);
+        email.setText(exercise.getEmail().value);
+        exercise.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
@@ -72,6 +72,6 @@ public class ExerciseCard extends UiPart<Region> {
         // state check
         ExerciseCard card = (ExerciseCard) other;
         return id.getText().equals(card.id.getText())
-                && person.equals(card.person);
+                && exercise.equals(card.exercise);
     }
 }

@@ -12,11 +12,11 @@ import gim.model.exercise.exceptions.DuplicateExerciseException;
 import gim.model.exercise.exceptions.ExerciseNotFoundException;
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code Exercise#isSameExercise(Exercise)}. As such, adding and updating of
- * persons uses Exercise#isSameExercise(Exercise) for equality so as to ensure that the person being added or updated is
- * unique in terms of identity in the UniqueExerciseList. However, the removal of a person uses Exercise#equals(Object) so
- * as to ensure that the person with exactly the same fields will be removed.
+ * A list of exercises that enforces uniqueness between its elements and does not allow nulls.
+ * A exercise is considered unique by comparing using {@code Exercise#isSameExercise(Exercise)}. As such, adding and updating of
+ * exercises uses Exercise#isSameExercise(Exercise) for equality so as to ensure that the exercise being added or updated is
+ * unique in terms of identity in the UniqueExerciseList. However, the removal of a exercise uses Exercise#equals(Object) so
+ * as to ensure that the exercise with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
@@ -29,7 +29,7 @@ public class UniqueExerciseList implements Iterable<Exercise> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent exercise as the given argument.
      */
     public boolean contains(Exercise toCheck) {
         requireNonNull(toCheck);
@@ -37,8 +37,8 @@ public class UniqueExerciseList implements Iterable<Exercise> {
     }
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds a exercise to the list.
+     * The exercise must not already exist in the list.
      */
     public void add(Exercise toAdd) {
         requireNonNull(toAdd);
@@ -49,9 +49,9 @@ public class UniqueExerciseList implements Iterable<Exercise> {
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedExercise}.
+     * Replaces the exercise {@code target} in the list with {@code editedExercise}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedExercise} must not be the same as another existing person in the list.
+     * The exercise identity of {@code editedExercise} must not be the same as another existing exercise in the list.
      */
     public void setExercise(Exercise target, Exercise editedExercise) {
         requireAllNonNull(target, editedExercise);
@@ -69,8 +69,8 @@ public class UniqueExerciseList implements Iterable<Exercise> {
     }
 
     /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Removes the equivalent exercise from the list.
+     * The exercise must exist in the list.
      */
     public void remove(Exercise toRemove) {
         requireNonNull(toRemove);
@@ -85,16 +85,16 @@ public class UniqueExerciseList implements Iterable<Exercise> {
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code exercises}.
+     * {@code exercises} must not contain duplicate exercises.
      */
-    public void setExercises(List<Exercise> persons) {
-        requireAllNonNull(persons);
-        if (!personsAreUnique(persons)) {
+    public void setExercises(List<Exercise> exercises) {
+        requireAllNonNull(exercises);
+        if (!exercisesAreUnique(exercises)) {
             throw new DuplicateExerciseException();
         }
 
-        internalList.setAll(persons);
+        internalList.setAll(exercises);
     }
 
     /**
@@ -122,12 +122,12 @@ public class UniqueExerciseList implements Iterable<Exercise> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code exercises} contains only unique exercises.
      */
-    private boolean personsAreUnique(List<Exercise> persons) {
-        for (int i = 0; i < persons.size() - 1; i++) {
-            for (int j = i + 1; j < persons.size(); j++) {
-                if (persons.get(i).isSameExercise(persons.get(j))) {
+    private boolean exercisesAreUnique(List<Exercise> exercises) {
+        for (int i = 0; i < exercises.size() - 1; i++) {
+            for (int j = i + 1; j < exercises.size(); j++) {
+                if (exercises.get(i).isSameExercise(exercises.get(j))) {
                     return false;
                 }
             }

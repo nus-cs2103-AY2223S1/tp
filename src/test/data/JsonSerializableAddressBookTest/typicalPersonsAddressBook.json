@@ -1,6 +1,6 @@
 {
   "_comment": "AddressBook save file which contains the same Exercise values as in TypicalExercises#getTypicalAddressBook()",
-  "persons" : [ {
+  "exercises" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",
     "email" : "alice@example.com",

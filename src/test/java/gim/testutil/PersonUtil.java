@@ -19,22 +19,22 @@ import gim.model.tag.Tag;
 public class ExerciseUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add command string for adding the {@code exercise}.
      */
-    public static String getAddCommand(Exercise person) {
-        return AddCommand.COMMAND_WORD + " " + getExerciseDetails(person);
+    public static String getAddCommand(Exercise exercise) {
+        return AddCommand.COMMAND_WORD + " " + getExerciseDetails(exercise);
     }
 
     /**
-     * Returns the part of command string for the given {@code person}'s details.
+     * Returns the part of command string for the given {@code exercise}'s details.
      */
-    public static String getExerciseDetails(Exercise person) {
+    public static String getExerciseDetails(Exercise exercise) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + person.getName().fullName + " ");
-        sb.append(PREFIX_PHONE + person.getPhone().value + " ");
-        sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
-        person.getTags().stream().forEach(
+        sb.append(PREFIX_NAME + exercise.getName().fullName + " ");
+        sb.append(PREFIX_PHONE + exercise.getPhone().value + " ");
+        sb.append(PREFIX_EMAIL + exercise.getEmail().value + " ");
+        sb.append(PREFIX_ADDRESS + exercise.getAddress().value + " ");
+        exercise.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         return sb.toString();

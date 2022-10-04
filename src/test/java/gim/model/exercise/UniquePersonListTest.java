@@ -29,18 +29,18 @@ public class UniqueExerciseListTest {
     }
 
     @Test
-    public void contains_personNotInList_returnsFalse() {
+    public void contains_exerciseNotInList_returnsFalse() {
         assertFalse(uniqueExerciseList.contains(ALICE));
     }
 
     @Test
-    public void contains_personInList_returnsTrue() {
+    public void contains_exerciseInList_returnsTrue() {
         uniqueExerciseList.add(ALICE);
         assertTrue(uniqueExerciseList.contains(ALICE));
     }
 
     @Test
-    public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
+    public void contains_exerciseWithSameIdentityFieldsInList_returnsTrue() {
         uniqueExerciseList.add(ALICE);
         Exercise editedAlice = new ExerciseBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
@@ -115,7 +115,7 @@ public class UniqueExerciseListTest {
     }
 
     @Test
-    public void remove_personDoesNotExist_throwsExerciseNotFoundException() {
+    public void remove_exerciseDoesNotExist_throwsExerciseNotFoundException() {
         assertThrows(ExerciseNotFoundException.class, () -> uniqueExerciseList.remove(ALICE));
     }
 
@@ -149,8 +149,8 @@ public class UniqueExerciseListTest {
     @Test
     public void setExercises_list_replacesOwnListWithProvidedList() {
         uniqueExerciseList.add(ALICE);
-        List<Exercise> personList = Collections.singletonList(BOB);
-        uniqueExerciseList.setExercises(personList);
+        List<Exercise> exerciseList = Collections.singletonList(BOB);
+        uniqueExerciseList.setExercises(exerciseList);
         UniqueExerciseList expectedUniqueExerciseList = new UniqueExerciseList();
         expectedUniqueExerciseList.add(BOB);
         assertEquals(expectedUniqueExerciseList, uniqueExerciseList);

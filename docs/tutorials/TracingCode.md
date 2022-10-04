@@ -189,22 +189,22 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
    @Override
    public CommandResult execute(Model model) throws CommandException {
        ...
-       Exercise personToEdit = lastShownList.get(index.getZeroBased());
-       Exercise editedExercise = createEditedExercise(personToEdit, editExerciseDescriptor);
-       if (!personToEdit.isSameExercise(editedExercise) && model.hasExercise(editedExercise)) {
+       Exercise exerciseToEdit = lastShownList.get(index.getZeroBased());
+       Exercise editedExercise = createEditedExercise(exerciseToEdit, editExerciseDescriptor);
+       if (!exerciseToEdit.isSameExercise(editedExercise) && model.hasExercise(editedExercise)) {
            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
        }
-       model.setExercise(personToEdit, editedExercise);
+       model.setExercise(exerciseToEdit, editedExercise);
        model.updateFilteredExerciseList(PREDICATE_SHOW_ALL_PERSONS);
        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedExercise));
    }
    ```
 
 1. As suspected, `command#execute()` does indeed make changes to the `model` object. Specifically,
-   * it uses the `setExercise()` method (defined in the interface `Model` and implemented in `ModelManager` as per the usual pattern) to update the person data.
-   * it uses the `updateFilteredExerciseList` method to ask the `Model` to populate the 'filtered list' with _all_ persons.<br>
-     FYI, The 'filtered list' is the list of persons resulting from the most recent operation that will be shown to the user immediately after. For the `edit` command, we populate it with all the persons so that the user can see the edited person along with all other persons. If this was a `find` command, we would be setting that list to contain the search results instead.<br>
-     To provide some context, given below is the class diagram of the `Model` component. See if you can figure out where the 'filtered list' of persons is being tracked.
+   * it uses the `setExercise()` method (defined in the interface `Model` and implemented in `ModelManager` as per the usual pattern) to update the exercise data.
+   * it uses the `updateFilteredExerciseList` method to ask the `Model` to populate the 'filtered list' with _all_ exercises.<br>
+     FYI, The 'filtered list' is the list of exercises resulting from the most recent operation that will be shown to the user immediately after. For the `edit` command, we populate it with all the exercises so that the user can see the edited exercise along with all other exercises. If this was a `find` command, we would be setting that list to contain the search results instead.<br>
+     To provide some context, given below is the class diagram of the `Model` component. See if you can figure out where the 'filtered list' of exercises is being tracked.
      <img src="../images/ModelClassDiagram.png" width="450" /><br>
    * :bulb: This may be a good time to read through the [`Model` component section of the DG](../DeveloperGuide.html#model-component)
 
@@ -231,7 +231,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
      * {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        persons.addAll(
+        exercises.addAll(
             source.getExerciseList()
                   .stream()
                   .map(JsonAdaptedExercise::new)

@@ -28,15 +28,15 @@ public class EditExerciseDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditExerciseDescriptor} with fields containing {@code person}'s details
+     * Returns an {@code EditExerciseDescriptor} with fields containing {@code exercise}'s details
      */
-    public EditExerciseDescriptorBuilder(Exercise person) {
+    public EditExerciseDescriptorBuilder(Exercise exercise) {
         descriptor = new EditExerciseDescriptor();
-        descriptor.setName(person.getName());
-        descriptor.setPhone(person.getPhone());
-        descriptor.setEmail(person.getEmail());
-        descriptor.setAddress(person.getAddress());
-        descriptor.setTags(person.getTags());
+        descriptor.setName(exercise.getName());
+        descriptor.setPhone(exercise.getPhone());
+        descriptor.setEmail(exercise.getEmail());
+        descriptor.setAddress(exercise.getAddress());
+        descriptor.setTags(exercise.getTags());
     }
 
     /**

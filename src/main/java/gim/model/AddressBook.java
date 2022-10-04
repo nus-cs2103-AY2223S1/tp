@@ -14,7 +14,7 @@ import gim.model.exercise.UniqueExerciseList;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private final UniqueExerciseList persons;
+    private final UniqueExerciseList exercises;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,7 +24,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        persons = new UniqueExerciseList();
+        exercises = new UniqueExerciseList();
     }
 
     public AddressBook() {}
@@ -40,11 +40,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the exercise list with {@code exercises}.
+     * {@code exercises} must not contain duplicate exercises.
      */
-    public void setExercises(List<Exercise> persons) {
-        this.persons.setExercises(persons);
+    public void setExercises(List<Exercise> exercises) {
+        this.exercises.setExercises(exercises);
     }
 
     /**
@@ -56,33 +56,33 @@ public class AddressBook implements ReadOnlyAddressBook {
         setExercises(newData.getExerciseList());
     }
 
-    //// person-level operations
+    //// exercise-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a exercise with the same identity as {@code exercise} exists in the address book.
      */
-    public boolean hasExercise(Exercise person) {
-        requireNonNull(person);
-        return persons.contains(person);
+    public boolean hasExercise(Exercise exercise) {
+        requireNonNull(exercise);
+        return exercises.contains(exercise);
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a exercise to the address book.
+     * The exercise must not already exist in the address book.
      */
     public void addExercise(Exercise p) {
-        persons.add(p);
+        exercises.add(p);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedExercise}.
+     * Replaces the given exercise {@code target} in the list with {@code editedExercise}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedExercise} must not be the same as another existing person in the address book.
+     * The exercise identity of {@code editedExercise} must not be the same as another existing exercise in the address book.
      */
     public void setExercise(Exercise target, Exercise editedExercise) {
         requireNonNull(editedExercise);
 
-        persons.setExercise(target, editedExercise);
+        exercises.setExercise(target, editedExercise);
     }
 
     /**
@@ -90,31 +90,31 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code key} must exist in the address book.
      */
     public void removeExercise(Exercise key) {
-        persons.remove(key);
+        exercises.remove(key);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return exercises.asUnmodifiableObservableList().size() + " exercises";
         // TODO: refine later
     }
 
     @Override
     public ObservableList<Exercise> getExerciseList() {
-        return persons.asUnmodifiableObservableList();
+        return exercises.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                && exercises.equals(((AddressBook) other).exercises));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return exercises.hashCode();
     }
 }

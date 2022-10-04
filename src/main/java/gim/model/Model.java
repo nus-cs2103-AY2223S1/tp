@@ -53,34 +53,34 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a exercise with the same identity as {@code exercise} exists in the address book.
      */
-    boolean hasExercise(Exercise person);
+    boolean hasExercise(Exercise exercise);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given exercise.
+     * The exercise must exist in the address book.
      */
     void deleteExercise(Exercise target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given exercise.
+     * {@code exercise} must not already exist in the address book.
      */
-    void addExercise(Exercise person);
+    void addExercise(Exercise exercise);
 
     /**
-     * Replaces the given person {@code target} with {@code editedExercise}.
+     * Replaces the given exercise {@code target} with {@code editedExercise}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedExercise} must not be the same as another existing person in the address book.
+     * The exercise identity of {@code editedExercise} must not be the same as another existing exercise in the address book.
      */
     void setExercise(Exercise target, Exercise editedExercise);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /** Returns an unmodifiable view of the filtered exercise list */
     ObservableList<Exercise> getFilteredExerciseList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered exercise list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredExerciseList(Predicate<Exercise> predicate);

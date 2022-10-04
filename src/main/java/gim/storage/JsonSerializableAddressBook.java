@@ -19,16 +19,16 @@ import gim.model.exercise.Exercise;
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Exercises list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_PERSON = "Exercises list contains duplicate exercise(s).";
 
-    private final List<JsonAdaptedExercise> persons = new ArrayList<>();
+    private final List<JsonAdaptedExercise> exercises = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableAddressBook} with the given exercises.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedExercise> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableAddressBook(@JsonProperty("exercises") List<JsonAdaptedExercise> exercises) {
+        this.exercises.addAll(exercises);
     }
 
     /**
@@ -37,7 +37,7 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        persons.addAll(source.getExerciseList().stream().map(JsonAdaptedExercise::new).collect(Collectors.toList()));
+        exercises.addAll(source.getExerciseList().stream().map(JsonAdaptedExercise::new).collect(Collectors.toList()));
     }
 
     /**
@@ -47,12 +47,12 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
-        for (JsonAdaptedExercise jsonAdaptedExercise : persons) {
-            Exercise person = jsonAdaptedExercise.toModelType();
-            if (addressBook.hasExercise(person)) {
+        for (JsonAdaptedExercise jsonAdaptedExercise : exercises) {
+            Exercise exercise = jsonAdaptedExercise.toModelType();
+            if (addressBook.hasExercise(exercise)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            addressBook.addExercise(person);
+            addressBook.addExercise(exercise);
         }
         return addressBook;
     }

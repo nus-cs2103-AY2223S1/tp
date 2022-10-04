@@ -39,14 +39,14 @@ public class ExerciseBuilder {
     }
 
     /**
-     * Initializes the ExerciseBuilder with the data of {@code personToCopy}.
+     * Initializes the ExerciseBuilder with the data of {@code exerciseToCopy}.
      */
-    public ExerciseBuilder(Exercise personToCopy) {
-        name = personToCopy.getName();
-        phone = personToCopy.getPhone();
-        email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
-        tags = new HashSet<>(personToCopy.getTags());
+    public ExerciseBuilder(Exercise exerciseToCopy) {
+        name = exerciseToCopy.getName();
+        phone = exerciseToCopy.getPhone();
+        email = exerciseToCopy.getEmail();
+        address = exerciseToCopy.getAddress();
+        tags = new HashSet<>(exerciseToCopy.getTags());
     }
 
     /**

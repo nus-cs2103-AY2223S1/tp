@@ -28,7 +28,7 @@ package gim.logic.commands;
 import gim.model.Model;
 
 /**
- * Changes the remark of an existing person in the address book.
+ * Changes the remark of an existing exercise in the address book.
  */
 public class RemarkCommand extends Command {
 
@@ -65,8 +65,8 @@ Following the convention in other commands, we add relevant messages as constant
 
 ``` java
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Edits the remark of the person identified "
-            + "by the index number used in the last person listing. "
+            + ": Edits the remark of the exercise identified "
+            + "by the index number used in the last exercise listing. "
             + "Existing remark will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "r/ [REMARK]\n"
@@ -101,8 +101,8 @@ public class RemarkCommand extends Command {
     private final String remark;
 
     /**
-     * @param index of the person in the filtered person list to edit the remark
-     * @param remark of the person to be updated to
+     * @param index of the exercise in the filtered exercise list to edit the remark
+     * @param remark of the exercise to be updated to
      */
     public RemarkCommand(Index index, String remark) {
         requireAllNonNull(index, remark);
@@ -225,7 +225,7 @@ If you are stuck, check out the sample
 
 ## Add `Remark` to the model
 
-Now that we have all the information that we need, let’s lay the groundwork for propagating the remarks added into the in-memory storage of person data. We achieve that by working with the `Exercise` model. Each field in a Exercise is implemented as a separate class (e.g. a `Name` object represents the person’s name). That means we should add a `Remark` class so that we can use a `Remark` object to represent a remark given to a person.
+Now that we have all the information that we need, let’s lay the groundwork for propagating the remarks added into the in-memory storage of exercise data. We achieve that by working with the `Exercise` model. Each field in a Exercise is implemented as a separate class (e.g. a `Name` object represents the exercise’s name). That means we should add a `Remark` class so that we can use a `Remark` object to represent a remark given to a exercise.
 
 ### Add a new `Remark` class
 
@@ -240,7 +240,7 @@ Let’s change `RemarkCommand` and `RemarkCommandParser` to use the new `Remark`
 
 ## Add a placeholder element for remark to the UI
 
-Without getting too deep into `fxml`, let’s go on a 5 minute adventure to get some placeholder text to show up for each person.
+Without getting too deep into `fxml`, let’s go on a 5 minute adventure to get some placeholder text to show up for each exercise.
 
 Simply add the following to [`gim.ui.ExerciseCard`](https://github.com/se-edu/addressbook-level3/commit/850b78879582f38accb05dd20c245963c65ea599#diff-639834f1e05afe2276a86372adf0fe5f69314642c2d93cfa543d614ce5a76688).
 
@@ -311,9 +311,9 @@ Just add [this one line of code!](https://github.com/se-edu/addressbook-level3/c
 **`ExerciseCard.java`:**
 
 ``` java
-public ExerciseCard(Exercise person, int displayedIndex) {
+public ExerciseCard(Exercise exercise, int displayedIndex) {
     //...
-    remark.setText(person.getRemark().value);
+    remark.setText(exercise.getRemark().value);
 }
 ```
 
@@ -343,12 +343,12 @@ save it with `Model#setExercise()`.
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Exercise personToEdit = lastShownList.get(index.getZeroBased());
+        Exercise exerciseToEdit = lastShownList.get(index.getZeroBased());
         Exercise editedExercise = new Exercise(
-                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), remark, personToEdit.getTags());
+                exerciseToEdit.getName(), exerciseToEdit.getPhone(), exerciseToEdit.getEmail(),
+                exerciseToEdit.getAddress(), remark, exerciseToEdit.getTags());
 
-        model.setExercise(personToEdit, editedExercise);
+        model.setExercise(exerciseToEdit, editedExercise);
         model.updateFilteredExerciseList(PREDICATE_SHOW_ALL_PERSONS);
 
         return new CommandResult(generateSuccessMessage(editedExercise));
@@ -357,11 +357,11 @@ save it with `Model#setExercise()`.
     /**
      * Generates a command execution success message based on whether
      * the remark is added to or removed from
-     * {@code personToEdit}.
+     * {@code exerciseToEdit}.
      */
-    private String generateSuccessMessage(Exercise personToEdit) {
+    private String generateSuccessMessage(Exercise exerciseToEdit) {
         String message = !remark.value.isEmpty() ? MESSAGE_ADD_REMARK_SUCCESS : MESSAGE_DELETE_REMARK_SUCCESS;
-        return String.format(message, personToEdit);
+        return String.format(message, exerciseToEdit);
     }
 ```
 

@@ -88,9 +88,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasExercise(Exercise person) {
-        requireNonNull(person);
-        return addressBook.hasExercise(person);
+    public boolean hasExercise(Exercise exercise) {
+        requireNonNull(exercise);
+        return addressBook.hasExercise(exercise);
     }
 
     @Override
@@ -99,8 +99,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addExercise(Exercise person) {
-        addressBook.addExercise(person);
+    public void addExercise(Exercise exercise) {
+        addressBook.addExercise(exercise);
         updateFilteredExerciseList(PREDICATE_SHOW_ALL_PERSONS);
     }
 

@@ -53,8 +53,8 @@ public class EditCommandTest {
         Index indexLastExercise = Index.fromOneBased(model.getFilteredExerciseList().size());
         Exercise lastExercise = model.getFilteredExerciseList().get(indexLastExercise.getZeroBased());
 
-        ExerciseBuilder personInList = new ExerciseBuilder(lastExercise);
-        Exercise editedExercise = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+        ExerciseBuilder exerciseInList = new ExerciseBuilder(lastExercise);
+        Exercise editedExercise = exerciseInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
         EditExerciseDescriptor descriptor = new EditExerciseDescriptorBuilder().withName(VALID_NAME_BOB)
@@ -85,8 +85,8 @@ public class EditCommandTest {
     public void execute_filteredList_success() {
         showExerciseAtIndex(model, INDEX_FIRST_PERSON);
 
-        Exercise personInFilteredList = model.getFilteredExerciseList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Exercise editedExercise = new ExerciseBuilder(personInFilteredList).withName(VALID_NAME_BOB).build();
+        Exercise exerciseInFilteredList = model.getFilteredExerciseList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Exercise editedExercise = new ExerciseBuilder(exerciseInFilteredList).withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
                 new EditExerciseDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
@@ -111,10 +111,10 @@ public class EditCommandTest {
     public void execute_duplicateExerciseFilteredList_failure() {
         showExerciseAtIndex(model, INDEX_FIRST_PERSON);
 
-        // edit person in filtered list into a duplicate in address book
-        Exercise personInList = model.getAddressBook().getExerciseList().get(INDEX_SECOND_PERSON.getZeroBased());
+        // edit exercise in filtered list into a duplicate in address book
+        Exercise exerciseInList = model.getAddressBook().getExerciseList().get(INDEX_SECOND_PERSON.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
-                new EditExerciseDescriptorBuilder(personInList).build());
+                new EditExerciseDescriptorBuilder(exerciseInList).build());
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
     }

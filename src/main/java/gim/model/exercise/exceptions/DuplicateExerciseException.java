@@ -6,6 +6,6 @@ package gim.model.exercise.exceptions;
  */
 public class DuplicateExerciseException extends RuntimeException {
     public DuplicateExerciseException() {
-        super("Operation would result in duplicate persons");
+        super("Operation would result in duplicate exercises");
     }
 }

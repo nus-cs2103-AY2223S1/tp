@@ -27,14 +27,14 @@ import gim.model.exercise.Phone;
 import gim.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing exercise in the address book.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the exercise identified "
+            + "by the index number used in the displayed exercise list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
@@ -48,14 +48,14 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Exercise: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This exercise already exists in the address book.";
 
     private final Index index;
     private final EditExerciseDescriptor editExerciseDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editExerciseDescriptor details to edit the person with
+     * @param index of the exercise in the filtered exercise list to edit
+     * @param editExerciseDescriptor details to edit the exercise with
      */
     public EditCommand(Index index, EditExerciseDescriptor editExerciseDescriptor) {
         requireNonNull(index);
@@ -74,30 +74,30 @@ public class EditCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Exercise personToEdit = lastShownList.get(index.getZeroBased());
-        Exercise editedExercise = createEditedExercise(personToEdit, editExerciseDescriptor);
+        Exercise exerciseToEdit = lastShownList.get(index.getZeroBased());
+        Exercise editedExercise = createEditedExercise(exerciseToEdit, editExerciseDescriptor);
 
-        if (!personToEdit.isSameExercise(editedExercise) && model.hasExercise(editedExercise)) {
+        if (!exerciseToEdit.isSameExercise(editedExercise) && model.hasExercise(editedExercise)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.setExercise(personToEdit, editedExercise);
+        model.setExercise(exerciseToEdit, editedExercise);
         model.updateFilteredExerciseList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedExercise));
     }
 
     /**
-     * Creates and returns a {@code Exercise} with the details of {@code personToEdit}
+     * Creates and returns a {@code Exercise} with the details of {@code exerciseToEdit}
      * edited with {@code editExerciseDescriptor}.
      */
-    private static Exercise createEditedExercise(Exercise personToEdit, EditExerciseDescriptor editExerciseDescriptor) {
-        assert personToEdit != null;
+    private static Exercise createEditedExercise(Exercise exerciseToEdit, EditExerciseDescriptor editExerciseDescriptor) {
+        assert exerciseToEdit != null;
 
-        Name updatedName = editExerciseDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editExerciseDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editExerciseDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editExerciseDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editExerciseDescriptor.getTags().orElse(personToEdit.getTags());
+        Name updatedName = editExerciseDescriptor.getName().orElse(exerciseToEdit.getName());
+        Phone updatedPhone = editExerciseDescriptor.getPhone().orElse(exerciseToEdit.getPhone());
+        Email updatedEmail = editExerciseDescriptor.getEmail().orElse(exerciseToEdit.getEmail());
+        Address updatedAddress = editExerciseDescriptor.getAddress().orElse(exerciseToEdit.getAddress());
+        Set<Tag> updatedTags = editExerciseDescriptor.getTags().orElse(exerciseToEdit.getTags());
 
         return new Exercise(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
@@ -121,8 +121,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the exercise with. Each non-empty field value will replace the
+     * corresponding field value of the exercise.
      */
     public static class EditExerciseDescriptor {
         private Name name;

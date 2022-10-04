@@ -19,8 +19,8 @@ public class ExerciseTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Exercise person = new ExerciseBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> person.getTags().remove(0));
+        Exercise exercise = new ExerciseBuilder().build();
+        assertThrows(UnsupportedOperationException.class, () -> exercise.getTags().remove(0));
     }
 
     @Test
@@ -65,7 +65,7 @@ public class ExerciseTest {
         // different type -> returns false
         assertFalse(ALICE.equals(5));
 
-        // different person -> returns false
+        // different exercise -> returns false
         assertFalse(ALICE.equals(BOB));
 
         // different name -> returns false
