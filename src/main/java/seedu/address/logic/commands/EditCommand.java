@@ -148,7 +148,6 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
-            setAssignments(toCopy.assignments);
         }
 
         /**
@@ -207,23 +206,6 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setAssignments(HashMap<String, ArrayList<Assignment>> assignments) {
-            this.assignments = (assignments != null) ? new HashMap<>(assignments) : null;
-        }
-
-        /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
-         */
-        public Optional<HashMap<String, ArrayList<Assignment>>> getAssignments() {
-            return (assignments != null) ? Optional.of(assignments) : Optional.empty();
-        }
-
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -243,8 +225,7 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags())
-                    && getAssignments().equals(e.getAssignments());
+                    && getTags().equals(e.getTags());
         }
     }
 }
