@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import coydir.commons.exceptions.IllegalValueException;
 import coydir.commons.util.JsonUtil;
 import coydir.model.AddressBook;
-import coydir.testutil.PersonBuilder;
 import coydir.testutil.TypicalPersons;
 
 public class JsonSerializableAddressBookTest {

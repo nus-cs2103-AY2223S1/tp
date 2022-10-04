@@ -27,7 +27,6 @@ import coydir.model.Model;
 import coydir.model.ModelManager;
 import coydir.model.ReadOnlyAddressBook;
 import coydir.model.UserPrefs;
-import coydir.model.person.EmployeeId;
 import coydir.model.person.Person;
 import coydir.storage.JsonAddressBookStorage;
 import coydir.storage.JsonUserPrefsStorage;

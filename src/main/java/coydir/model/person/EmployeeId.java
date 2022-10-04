@@ -9,8 +9,6 @@ import static java.util.Objects.requireNonNull;
  */
 public class EmployeeId {
 
-    private static int count = 1;
-
     public static final String MESSAGE_CONSTRAINTS =
             "Employee ID is entirely managed by Coydir. It is never blank, and is a fixed number provided by Coydir.";
 
@@ -19,6 +17,8 @@ public class EmployeeId {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "^\\d+";
+
+    private static int count = 1;
 
     public final String value;
 
