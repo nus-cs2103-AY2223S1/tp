@@ -41,9 +41,6 @@ public class CustomerCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
-    @FXML
-    private Label commissions;
-
     /**
      * Creates a {@code CustomerCode} with the given {@code Customer} and index to display.
      */
@@ -58,8 +55,6 @@ public class CustomerCard extends UiPart<Region> {
         customer.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        customer.getCommissions().stream()
-                .forEach(commission -> commissions.setText(commissions.getText() + '\n' + commission.toString()));
     }
 
     @Override
