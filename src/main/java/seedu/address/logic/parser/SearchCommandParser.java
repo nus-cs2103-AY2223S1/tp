@@ -1,18 +1,22 @@
 package seedu.address.logic.parser;
 
+import com.sun.jdi.connect.Connector;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.SearchCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.ContactContainsAllKeywordsPredicate;
 import seedu.address.model.person.ContactContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.tag.Tag;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -43,6 +47,7 @@ public class SearchCommandParser implements Parser<SearchCommand> {
 
         switch (condition) {
         case SearchCommand.AND_CONDITION:
+            return parseSearchWithAndCondition(argMultimap);
         case SearchCommand.OR_CONDITION:
         case SearchCommand.EMPTY_CONDITION:
             return parseSearchWithEmptyCondition(argMultimap);
@@ -51,27 +56,48 @@ public class SearchCommandParser implements Parser<SearchCommand> {
         }
     }
 
+    private SearchCommand parseSearchWithAndCondition(ArgumentMultimap argMultimap) {
+        List<String> prefixes = new ArrayList<>();
+        List<List<String>> keywords = new ArrayList<>();
+        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            prefixes.add(PREFIX_NAME.getPrefix());
+            keywords.add(argMultimap.getAllValues(PREFIX_NAME));
+        }
+        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
+            prefixes.add(PREFIX_PHONE.getPrefix());
+            keywords.add(argMultimap.getAllValues(PREFIX_PHONE));
+        }
+        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
+            prefixes.add(PREFIX_EMAIL.getPrefix());
+            keywords.add(argMultimap.getAllValues(PREFIX_EMAIL));
+        }
+        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
+            prefixes.add(PREFIX_ADDRESS.getPrefix());
+            keywords.add(argMultimap.getAllValues(PREFIX_ADDRESS));
+        }
+        if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
+            prefixes.add(PREFIX_TAG.getPrefix());
+            keywords.add(argMultimap.getAllValues(PREFIX_TAG));
+        }
+        return new SearchCommand(new ContactContainsAllKeywordsPredicate(prefixes, keywords));
+    }
+
     private SearchCommand parseSearchWithEmptyCondition(ArgumentMultimap argMultimap) {
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            String[] nameKeywords = new String[]{argMultimap.getValue(PREFIX_NAME).get()};
             return new SearchCommand(new ContactContainsKeywordsPredicate(PREFIX_NAME.getPrefix(),
-                    Arrays.asList(nameKeywords)));
+                    argMultimap.getAllValues(PREFIX_NAME)));
         } else if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            String[] phoneKeywords = new String[]{argMultimap.getValue(PREFIX_PHONE).get()};
             return new SearchCommand(new ContactContainsKeywordsPredicate(PREFIX_PHONE.getPrefix(),
-                    Arrays.asList(phoneKeywords)));
+                    argMultimap.getAllValues(PREFIX_PHONE)));
         } else if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            String[] emailKeywords = new String[]{argMultimap.getValue(PREFIX_EMAIL).get()};
             return new SearchCommand(new ContactContainsKeywordsPredicate(PREFIX_EMAIL.getPrefix(),
-                    Arrays.asList(emailKeywords)));
+                    argMultimap.getAllValues(PREFIX_EMAIL)));
         } else if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            String[] addressKeywords = new String[]{argMultimap.getValue(PREFIX_ADDRESS).get()};
             return new SearchCommand(new ContactContainsKeywordsPredicate(PREFIX_ADDRESS.getPrefix(),
-                    Arrays.asList(addressKeywords)));
+                    argMultimap.getAllValues(PREFIX_ADDRESS)));
         } else {
-            String[] tagKeywords = new String[]{argMultimap.getValue(PREFIX_TAG).get()};
             return new SearchCommand(new ContactContainsKeywordsPredicate(PREFIX_TAG.getPrefix(),
-                    Arrays.asList(tagKeywords)));
+                    argMultimap.getAllValues(PREFIX_TAG)));
         }
     }
 
