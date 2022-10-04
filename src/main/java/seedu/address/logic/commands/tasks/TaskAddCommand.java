@@ -30,6 +30,9 @@ public class TaskAddCommand extends Command {
             + PREFIX_ASSIGN_FROM + "/" + PREFIX_ASSIGN_TO + "/" + "Assigned from/Assigned to "
             + PREFIX_DESCRIPTION + "DESCRIPTION";
 
+    public static final String MESSAGE_SUCCESS = "New task added: %1$s";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the task book";
+
     private final Name name;
     private final Description description;
     private final Assignment assignment;
@@ -54,14 +57,13 @@ public class TaskAddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        // Humphrey, you can use the model to query the AddressBook (to be renamed)
-        // for the Person using Name.
         Person personToAddTask = model.findPerson(name);
         if (personToAddTask == null) {
-            throw new CommandException("Person not found!");
+            throw new CommandException("Person not found in task book!");
         }
+
         Task newTask = new Task(personToAddTask, this.assignment, this.description, this.isDone);
-        // add this task to the tasklist
-        throw new CommandException("Task add command not implemented yet.");
+        model.addTask(newTask);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, newTask));
     }
 }
