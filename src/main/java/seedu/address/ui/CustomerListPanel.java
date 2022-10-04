@@ -6,8 +6,10 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.Logic;
 import seedu.address.model.customer.Customer;
 
 /**
@@ -16,6 +18,7 @@ import seedu.address.model.customer.Customer;
 public class CustomerListPanel extends UiPart<Region> {
     private static final String FXML = "CustomerListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(CustomerListPanel.class);
+    private Logic logic;
 
     @FXML
     private ListView<Customer> customerListView;
@@ -23,10 +26,11 @@ public class CustomerListPanel extends UiPart<Region> {
     /**
      * Creates a {@code CustomerListPanel} with the given {@code ObservableList}.
      */
-    public CustomerListPanel(ObservableList<Customer> customerList) {
+    public CustomerListPanel(ObservableList<Customer> customerList, Logic logic) {
         super(FXML);
         customerListView.setItems(customerList);
         customerListView.setCellFactory(listView -> new CustomerListViewCell());
+        this.logic = logic;
     }
 
     /**
@@ -43,6 +47,8 @@ public class CustomerListPanel extends UiPart<Region> {
             } else {
                 setGraphic(new CustomerCard(customer, getIndex() + 1).getRoot());
             }
+
+            addEventHandler(MouseEvent.MOUSE_CLICKED, e -> logic.selectCustomer(customer));
         }
     }
 

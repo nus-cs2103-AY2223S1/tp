@@ -200,6 +200,7 @@ public class ModelManager implements Model {
     @Override
     public void selectCustomer(Customer customer) {
         this.selectedCustomer.setValue(customer);
+        updateFilteredCommissionListToActiveCustomer();
     }
 
     @Override

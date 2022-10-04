@@ -90,7 +90,7 @@ public class Customer {
     }
 
     public Set<Commission> getCommissions() {
-        return commissions;
+        return Collections.unmodifiableSet(commissions);
     }
 
     /**

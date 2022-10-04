@@ -56,4 +56,6 @@ public interface Logic {
      * Returns the currently selected customer.
      */
     ObservableObject<Customer> getSelectedCustomer();
+
+    void selectCustomer(Customer customer);
 }
