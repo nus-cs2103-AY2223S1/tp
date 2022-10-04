@@ -84,7 +84,8 @@ public class EditCommand extends Command {
         assert activityToEdit != null;
 
         Name updatedName = editActivityDescriptor.getName().orElse(activityToEdit.getName());
-        Description updatedDescription = editActivityDescriptor.getDescription().orElse(activityToEdit.getDescription());
+        Description updatedDescription = editActivityDescriptor.getDescription()
+                .orElse(activityToEdit.getDescription());
         Set<Tag> updatedTags = editActivityDescriptor.getTags().orElse(activityToEdit.getTags());
 
         return new Activity(updatedName, updatedDescription, updatedTags);

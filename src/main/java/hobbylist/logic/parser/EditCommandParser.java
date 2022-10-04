@@ -43,7 +43,8 @@ public class EditCommandParser implements Parser<EditCommand> {
             editActivityDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(CliSyntax.PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(CliSyntax.PREFIX_DESCRIPTION).isPresent()) {
-            editActivityDescriptor.setDescription(ParserUtil.parseDescription(argMultimap.getValue(CliSyntax.PREFIX_DESCRIPTION)
+            editActivityDescriptor
+                    .setDescription(ParserUtil.parseDescription(argMultimap.getValue(CliSyntax.PREFIX_DESCRIPTION)
                     .get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(CliSyntax.PREFIX_TAG)).ifPresent(editActivityDescriptor::setTags);
