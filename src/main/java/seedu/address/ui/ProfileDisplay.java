@@ -16,6 +16,7 @@ public class ProfileDisplay extends UiPart<Region> {
 
     public ProfileDisplay() {
         super(FXML);
+        profileDisplay.setText(USER_PROFILE);
     }
 
     public void setUser() {
