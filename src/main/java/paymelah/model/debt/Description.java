@@ -17,7 +17,7 @@ public class Description {
      */
     public static final String VALIDATION_REGEX = "\\S.*";
 
-    public final String description;
+    private final String description;
 
     /**
      * Constructs a {@code Description}.

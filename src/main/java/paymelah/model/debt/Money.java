@@ -14,7 +14,7 @@ public class Money {
             "Money amounts should only contain numbers to represent the amount in dollars";
 
     public static final String VALIDATION_REGEX = "([$]|)\\d+([.]\\d{1,2}|)";
-    public final BigDecimal value;
+    private final BigDecimal value;
 
     /**
      * Constructs a {@code Money}.
@@ -25,7 +25,7 @@ public class Money {
         requireNonNull(money);
         checkArgument(isValidMoney(money), MESSAGE_CONSTRAINTS);
         if (money.startsWith("$")) {
-            money.substring(1);
+            money = money.substring(1);
         }
         value = new BigDecimal(money);
     }
@@ -38,6 +38,10 @@ public class Money {
      */
     public static boolean isValidMoney(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    protected BigDecimal getValue() {
+        return value;
     }
 
     @Override

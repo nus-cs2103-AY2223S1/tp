@@ -1,5 +1,6 @@
 package paymelah.model.debt;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static paymelah.testutil.Assert.assertThrows;
@@ -13,9 +14,17 @@ public class MoneyTest {
     }
 
     @Test
-    public void constructor_invalidPhone_throwsIllegalArgumentException() {
+    public void constructor_invalidMoney_throwsIllegalArgumentException() {
         String invalidMoney = "";
         assertThrows(IllegalArgumentException.class, () -> new Money(invalidMoney));
+    }
+
+    @Test
+    public void constructor_success() {
+        Money validMoneyWithDollarSign = new Money("$2.5");
+        Money validMoneyNoDollarSign = new Money("2.5");
+
+        assertEquals(validMoneyNoDollarSign.getValue(), validMoneyWithDollarSign.getValue());
     }
 
     @Test
