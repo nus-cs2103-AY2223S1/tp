@@ -13,13 +13,13 @@ import gim.model.exercise.Exercise;
 
 
 /**
- * Adds a exercise to the address book.
+ * Adds an exercise to Gim.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a exercise to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an exercise to Gim. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_WEIGHT + "WEIGHT "
