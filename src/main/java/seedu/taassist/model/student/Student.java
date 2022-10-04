@@ -104,15 +104,22 @@ public class Student {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+        builder.append(getName());
 
+        Phone phone = getPhone();
+        Email email = getEmail();
+        Address address = getAddress();
         Set<ModuleClass> moduleClasses = getModuleClasses();
+
+        if (phone.isPresent()) {
+            builder.append("; Phone: ").append(phone);
+        }
+        if (email.isPresent()) {
+            builder.append("; Email: ").append(email);
+        }
+        if (address.isPresent()) {
+            builder.append("; Address: ").append(address);
+        }
         if (!moduleClasses.isEmpty()) {
             builder.append("; Classes: ");
             moduleClasses.forEach(builder::append);

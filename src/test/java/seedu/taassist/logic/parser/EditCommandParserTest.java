@@ -5,7 +5,6 @@ import static seedu.taassist.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.taassist.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.taassist.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.taassist.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static seedu.taassist.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.taassist.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.taassist.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.taassist.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
@@ -37,7 +36,6 @@ import seedu.taassist.commons.core.index.Index;
 import seedu.taassist.logic.commands.EditCommand;
 import seedu.taassist.logic.commands.EditCommand.EditStudentDescriptor;
 import seedu.taassist.model.moduleclass.ModuleClass;
-import seedu.taassist.model.student.Address;
 import seedu.taassist.model.student.Email;
 import seedu.taassist.model.student.Name;
 import seedu.taassist.model.student.Phone;
@@ -84,7 +82,6 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
-        assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, ModuleClass.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid phone followed by valid email
