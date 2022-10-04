@@ -205,19 +205,6 @@ Format: `statistics`
 ![UiStatistics](images/UiStatistics.png)
 
 ---
-### Get ID: `getID`
-
-Obtains index of student in the list.
-
-Format: `getID n/NAME`
-
-Example:
-
-- `getID n/Ben Tan`
-
-![UiGetId](images/UiGetId.png)
-
----
 ### Exiting the program : `exit`
 
 Exits the program.

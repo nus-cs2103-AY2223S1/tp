@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
@@ -16,7 +15,7 @@
     </columnConstraints>
     <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
       <padding>
-        <Insets top="5" right="5" bottom="5" left="15" />
+        <Insets top="10" right="15" bottom="10" left="15" />
       </padding>
       <HBox spacing="5" alignment="CENTER_LEFT">
         <Label fx:id="id" styleClass="cell_big_label">
@@ -27,10 +26,38 @@
         </Label>
         <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
       </HBox>
-      <FlowPane fx:id="tags" />
-      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-      <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-      <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+      <HBox>
+        <Label styleClass="cell_small_label" text="Phone: " />
+        <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+      </HBox>
+      <HBox>
+        <Label styleClass="cell_small_label" text="NOK Phone: " />
+        <Label fx:id="nokPhone" styleClass="cell_small_label" text="\$nokPhone" />
+      </HBox>
+      <HBox>
+        <Label styleClass="cell_small_label" text="Address: " />
+        <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
+      </HBox>
+      <HBox>
+        <Label styleClass="cell_small_label" text="Email: " />
+        <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+      </HBox>
+      <HBox>
+        <Label styleClass="cell_small_label" text="Class Date: " />
+        <Label fx:id="classDetails" styleClass="cell_small_label" text="\$classDetails" />
+      </HBox>
+      <HBox>
+        <Label styleClass="cell_small_label" text="Amount paid: " />
+        <Label fx:id="amountPaid" styleClass="cell_small_label" text="\$amountPaid" />
+      </HBox>
+      <HBox>
+        <Label styleClass="cell_small_label" text="Amount owed: " />
+        <Label fx:id="amountOwed" styleClass="cell_small_label" text="\$amountOwed" />
+      </HBox>
+      <HBox>
+        <Label styleClass="cell_small_label" text="Additional Notes: " />
+        <Label fx:id="additionalNotes" styleClass="cell_small_label" text="\$additionalNotes" />
+      </HBox>
     </VBox>
   </GridPane>
 </HBox>
