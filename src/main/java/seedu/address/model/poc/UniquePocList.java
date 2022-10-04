@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.poc.exceptions.PocNotFoundException;
 import seedu.address.model.poc.exceptions.DuplicatePocException;
+import seedu.address.model.poc.exceptions.PocNotFoundException;
 
 /**
  * A list of companies that enforces uniqueness between its elements and does not allow nulls.
