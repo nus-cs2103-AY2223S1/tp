@@ -5,7 +5,8 @@
     "windowCoordinates" : {
       "x" : 300,
       "y" : 100
-    }
+    },
+    "attributeOrder" : "ADDRESS>TAGS>PHONE>EMAIL"
   },
   "addressBookFilePath" : "addressbook.json"
 }
