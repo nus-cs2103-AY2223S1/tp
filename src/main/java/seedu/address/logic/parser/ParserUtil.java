@@ -11,6 +11,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.HospitalWing;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -81,6 +82,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String hospitalWing} into an {@code hospitalWing}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code hospital wing} is invalid.
+     */
+    public static HospitalWing parseHospitalWing(String hospitalWing) throws ParseException {
+        requireNonNull(hospitalWing);
+        String trimmedHospitalWing = hospitalWing.trim();
+        if (!HospitalWing.isValidHospitalWing(trimmedHospitalWing)) {
+            throw new ParseException(HospitalWing.MESSAGE_CONSTRAINTS);
+        }
+        return new HospitalWing(trimmedHospitalWing);
+    }
+
+    /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -122,3 +138,4 @@ public class ParserUtil {
         return tagSet;
     }
 }
+
