@@ -90,7 +90,7 @@ public class UniqueClientList implements Iterable<Client> {
      */
     public void setClients(List<Client> persons) {
         requireAllNonNull(persons);
-        if (!personsAreUnique(persons)) {
+        if (!clientsAreUnique(persons)) {
             throw new DuplicatePersonException();
         }
 
