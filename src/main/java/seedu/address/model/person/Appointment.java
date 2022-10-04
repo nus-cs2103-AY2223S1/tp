@@ -22,6 +22,7 @@ public class Appointment {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     private final String reason;
     private final LocalDateTime dateTime;
 =======
@@ -29,6 +30,12 @@ public class Appointment {
     public final LocalDateTime dateTime;
     private boolean isMarked;
 >>>>>>> master
+=======
+
+    private final String reason;
+    private final LocalDateTime dateTime;
+    private boolean isMarked;
+>>>>>>> d246ca118eb5f1b77ede29b19045e1c7a60f3cc5
 
     private final DateTimeFormatter stringFormatter = DateTimeFormatter.ofPattern("MMM d yyyy HH:mm");
 
@@ -84,7 +91,6 @@ public class Appointment {
         }
         return true;
     }
-
 
     public LocalDateTime getDateTime() {
         return dateTime;
