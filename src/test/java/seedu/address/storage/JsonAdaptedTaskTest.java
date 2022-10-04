@@ -1,9 +1,9 @@
 package seedu.address.storage;
 
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
+
+import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.task.Deadline;
@@ -22,7 +22,8 @@ class JsonAdaptedTaskTest {
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
-        Task actualTask = new Task(new TaskName(VALID_TASKNAME), new Module(VALID_MODULE), new Deadline(VALID_DEADLINE));
+        Task actualTask = new Task(
+                new TaskName(VALID_TASKNAME), new Module(VALID_MODULE), new Deadline(VALID_DEADLINE));
         JsonAdaptedTask task = new JsonAdaptedTask(VALID_TASKNAME, VALID_MODULE, VALID_DEADLINE);
         assertEquals(actualTask, task.toModelType());
     }
