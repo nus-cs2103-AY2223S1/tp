@@ -45,41 +45,41 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Client expectedPerson = new ClientBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Client expectedClient = new ClientBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedClient));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedClient));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedClient));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedClient));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedClient));
 
         // multiple tags - all accepted
-        Client expectedPersonMultipleTags = new ClientBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        Client expectedClientMultipleTags = new ClientBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedPersonMultipleTags));
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedClientMultipleTags));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Client expectedPerson = new ClientBuilder(AMY).withTags().build();
+        Client expectedClient = new ClientBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedClient));
     }
 
     @Test
