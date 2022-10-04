@@ -22,10 +22,15 @@ public class Gender {
      *
      * @param gender  A valid gender, accepted formats include F, M, f, m, Female, Male, female, male.
      */
+
     public Gender(String gender) {
         requireNonNull(gender);
         checkArgument(isValidGender(gender), MESSAGE_CONSTRAINTS);
         this.gender = GenderType.getGenderType(gender);
+    }
+
+    public Gender(GenderType gender) {
+        this.gender = gender;
     }
 
     /**
