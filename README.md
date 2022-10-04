@@ -9,7 +9,7 @@ It is optimized for use via a Command Line Interface (CLI) while still having th
 Interface (GUI).
 
 * For the detailed documentation of this project, 
-see the **[REal-Time Website](https://ay2223s1-cs2103t-w15-3.github.io/tp/)**.
+see the **[REal-Time Website](https://ay2223s1-cs2103t-w15-2.github.io/tp/)**.
 
 **Acknowledgements**
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
