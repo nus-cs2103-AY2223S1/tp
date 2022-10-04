@@ -39,7 +39,7 @@ In our case, we would want to begin the tracing at the very point where the App 
 
 <img src="../images/ArchitectureSequenceDiagram.png" width="550" />
 
-According to the sequence diagram you saw earlier (and repeated above for reference), the `UI` component yields control to the `Logic` component through a method named `execute`. Searching through the code base for an `execute()` method that belongs to the `Logic` component yields a promising candidate in `seedu.address.logic.Logic`.
+According to the sequence diagram you saw earlier (and repeated above for reference), the `UI` component yields control to the `Logic` component through a method named `execute`. Searching through the code base for an `execute()` method that belongs to the `Logic` component yields a promising candidate in `gim.logic.Logic`.
 
 <img src="../images/tracing/searchResultsForExecuteMethod.png" />
 
@@ -48,7 +48,7 @@ According to the sequence diagram you saw earlier (and repeated above for refere
 :bulb: **Intellij Tip:** The ['**Search Everywhere**' feature](https://www.jetbrains.com/help/idea/searching-everywhere.html) can be used here. In particular, the '**Find Symbol**' ('Symbol' here refers to methods, variables, classes etc.) variant of that feature is quite useful here as we are looking for a _method_ named `execute`, not simply the text `execute`.
 </div>
 
-A quick look at the `seedu.address.logic.Logic` (an extract given below) confirms that this indeed might be what we’re looking for.
+A quick look at the `gim.logic.Logic` (an extract given below) confirms that this indeed might be what we’re looking for.
 
 ```java
 public interface Logic {
@@ -171,7 +171,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 
 1. Stepping through the method shows that it calls `ArgumentTokenizer#tokenize()` and `ParserUtil#parseIndex()` to obtain the arguments and index required.
 
-1. The rest of the method seems to exhaustively check for the existence of each possible parameter of the `edit` command and store any possible changes in an `EditPersonDescriptor`. Recall that we can verify the contents of `editPersonDesciptor` through the 'Variables' window.<br>
+1. The rest of the method seems to exhaustively check for the existence of each possible parameter of the `edit` command and store any possible changes in an `EditExerciseDescriptor`. Recall that we can verify the contents of `editExerciseDesciptor` through the 'Variables' window.<br>
    ![EditCommand](../images/tracing/EditCommand.png)
 
 1. As you just traced through some code involved in parsing a command, you can take a look at this class diagram to see where the various parsing-related classes you encountered fit into the design of the `Logic` component.
@@ -189,22 +189,22 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
    @Override
    public CommandResult execute(Model model) throws CommandException {
        ...
-       Person personToEdit = lastShownList.get(index.getZeroBased());
-       Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
-       if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-           throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+       Exercise exerciseToEdit = lastShownList.get(index.getZeroBased());
+       Exercise editedExercise = createEditedExercise(exerciseToEdit, editExerciseDescriptor);
+       if (!exerciseToEdit.isSameExercise(editedExercise) && model.hasExercise(editedExercise)) {
+           throw new CommandException(MESSAGE_DUPLICATE_EXERCISE);
        }
-       model.setPerson(personToEdit, editedPerson);
-       model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-       return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+       model.setExercise(exerciseToEdit, editedExercise);
+       model.updateFilteredExerciseList(PREDICATE_SHOW_ALL_EXERCISES);
+       return new CommandResult(String.format(MESSAGE_EDIT_EXERCISE_SUCCESS, editedExercise));
    }
    ```
 
 1. As suspected, `command#execute()` does indeed make changes to the `model` object. Specifically,
-   * it uses the `setPerson()` method (defined in the interface `Model` and implemented in `ModelManager` as per the usual pattern) to update the person data.
-   * it uses the `updateFilteredPersonList` method to ask the `Model` to populate the 'filtered list' with _all_ persons.<br>
-     FYI, The 'filtered list' is the list of persons resulting from the most recent operation that will be shown to the user immediately after. For the `edit` command, we populate it with all the persons so that the user can see the edited person along with all other persons. If this was a `find` command, we would be setting that list to contain the search results instead.<br>
-     To provide some context, given below is the class diagram of the `Model` component. See if you can figure out where the 'filtered list' of persons is being tracked.
+   * it uses the `setExercise()` method (defined in the interface `Model` and implemented in `ModelManager` as per the usual pattern) to update the exercise data.
+   * it uses the `updateFilteredExerciseList` method to ask the `Model` to populate the 'filtered list' with _all_ exercises.<br>
+     FYI, The 'filtered list' is the list of exercises resulting from the most recent operation that will be shown to the user immediately after. For the `edit` command, we populate it with all the exercises so that the user can see the edited exercise along with all other exercises. If this was a `find` command, we would be setting that list to contain the search results instead.<br>
+     To provide some context, given below is the class diagram of the `Model` component. See if you can figure out where the 'filtered list' of exercises is being tracked.
      <img src="../images/ModelClassDiagram.png" width="450" /><br>
    * :bulb: This may be a good time to read through the [`Model` component section of the DG](../DeveloperGuide.html#model-component)
 
@@ -231,15 +231,15 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
      * {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        persons.addAll(
-            source.getPersonList()
+        exercises.addAll(
+            source.getExerciseList()
                   .stream()
-                  .map(JsonAdaptedPerson::new)
+                  .map(JsonAdaptedExercise::new)
                   .collect(Collectors.toList()));
     }
     ```
 
-1. It appears that a `JsonAdaptedPerson` is created for each `Person` and then added to the `JsonSerializableAddressBook`.
+1. It appears that a `JsonAdaptedExercise` is created for each `Exercise` and then added to the `JsonSerializableAddressBook`.
    This is because regular Java objects need to go through an _adaptation_ for them to be suitable to be saved in JSON format.
 
 1. While you are stepping through the classes in the `Storage` component, here is the component's class diagram to help you understand how those classes fit into the structure of the component.<br>
@@ -296,6 +296,6 @@ Here are some quick questions you can try to answer based on your execution path
 
     4.  Add a new command
 
-    5.  Add a new field to `Person`
+    5.  Add a new field to `Exercise`
 
     6.  Add a new entity to the address book
