@@ -50,6 +50,10 @@ public class Team {
         teamMembers.add(person);
     }
 
+    public boolean hasPerson(Person person) {
+        return teamMembers.contains(person);
+    }
+
     public void setPerson(Person target, Person editedPerson) {
         teamMembers.setPerson(target, editedPerson);
     }
