@@ -24,24 +24,24 @@ public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
             new Student(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Gender("Male"),
+                new Gender("M"),
                 getTagSet("friends")),
             new Student(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Gender("Male"),
+                new Gender("M"),
                 getTagSet("colleagues", "friends")),
             new Student(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new Gender("Female"),
+                new Gender("M"),
                 getTagSet("neighbours")),
             new Professor(new Name("Wong Tin Lok"), new ModuleCode("CS1231S"),
                 new Phone("91031282"), new Email("wongtk@example.com"),
-                new Gender("Male"),
+                new Gender("F"),
                 getTagSet("family")),
             new TeachingAssistant(new Name("Irfan Ibrahim"), new ModuleCode("CS2100"), new Phone("92492021"),
                 new Email("irfan@example.com"),
-                new Gender("Male"),
+                new Gender("M"),
                 getTagSet("testing")),
             new Student(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Gender("Male"),
+                new Gender("M"),
                 getTagSet("colleagues"))
         };
     }

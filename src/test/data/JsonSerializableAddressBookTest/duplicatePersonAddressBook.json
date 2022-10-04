@@ -4,7 +4,7 @@
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
-    "gender": "Female",
+    "gender": "F",
     "tagged": [ "friends" ],
     "moduleCode": ""
   }, {
@@ -12,7 +12,7 @@
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
-    "gender": "Female",
+    "gender": "F",
     "moduleCode": ""
   } ]
 }
