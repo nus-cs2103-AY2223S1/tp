@@ -1,5 +1,5 @@
 .background {
-    -fx-background-color: derive(#fafafa, 20%);
+    -fx-background-color: derive(#fff, 20%);
     background-color: #383838; /* Used in the default.html file */
 }
 
@@ -39,9 +39,9 @@
 }
 
 .table-view {
-    -fx-base: #fafafa;
-    -fx-control-inner-background: #fafafa;
-    -fx-background-color: #fafafa;
+    -fx-base: #fff;
+    -fx-control-inner-background: #fff;
+    -fx-background-color: #fff;
     -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
     -fx-padding: 5;
@@ -76,20 +76,20 @@
 }
 
 .split-pane:horizontal .split-pane-divider {
-    -fx-background-color: derive(#fafafa, 20%);
+    -fx-background-color: derive(#fff, 20%);
     -fx-border-color: transparent transparent transparent #e0e0e0;
 }
 
 .split-pane {
     -fx-border-radius: 1;
     -fx-border-width: 1;
-    -fx-background-color: derive(#fafafa, 20%);
+    -fx-background-color: derive(#fff, 20%);
 }
 
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: derive(#fafafa, 20%);
+    -fx-background-color: derive(#fff, 20%);
 }
 
 .list-cell {
@@ -132,24 +132,26 @@
 }
 
 .stack-pane {
-     -fx-background-color: derive(#fafafa, 20%);
+     -fx-background-color: derive(#fff, 20%);
 }
 
 .pane-with-border {
-     -fx-background-color: derive(#fafafa, 20%);
-     -fx-border-color: derive(#fafafa, 10%);
+     -fx-background-color: derive(#fff, 20%);
+     -fx-border-color: derive(#fff, 10%);
      -fx-border-top-width: 1px;
 }
 
 .status-bar {
-    -fx-background-color: derive(#fafafa, 30%);
+    -fx-background-color: derive(#fff, 30%);
 }
 
 .result-display {
-    -fx-background-color: transparent;
-    -fx-font-family: "Roboto Light";
+    -fx-background-color: #fff;
+    -fx-font-family: "Roboto";
     -fx-font-size: 13pt;
-    -fx-text-fill: white;
+    -fx-text-fill: #333;
+    -fx-border-width: 1;
+    -fx-border-color: #d8d8d8;
 }
 
 .result-display .label {
@@ -164,8 +166,8 @@
 }
 
 .status-bar-with-border {
-    -fx-background-color: derive(#fafafa, 30%);
-    -fx-border-color: derive(#fafafa, 25%);
+    -fx-background-color: derive(#fff, 30%);
+    -fx-border-color: derive(#fff, 25%);
     -fx-border-width: 1px;
 }
 
@@ -174,17 +176,17 @@
 }
 
 .grid-pane {
-    -fx-background-color: derive(#fafafa, 30%);
-    -fx-border-color: derive(#fafafa, 30%);
+    -fx-background-color: derive(#fff, 30%);
+    -fx-border-color: derive(#fff, 30%);
     -fx-border-width: 1px;
 }
 
 .grid-pane .stack-pane {
-    -fx-background-color: derive(#fafafa, 30%);
+    -fx-background-color: derive(#fff, 30%);
 }
 
 .context-menu {
-    -fx-background-color: derive(#fafafa, 50%);
+    -fx-background-color: derive(#fff, 50%);
 }
 
 .context-menu .label {
@@ -268,7 +270,7 @@
     -fx-border-color: #e2e2e2;
     -fx-border-width: 2;
     -fx-background-radius: 0;
-    -fx-background-color: #fafafa; */
+    -fx-background-color: #fff; */
     /* -fx-font-family: "Roboto", Helvetica, Arial, sans-serif; */
     /* -fx-font-size: 11pt;
     -fx-text-fill: #333; */
@@ -294,7 +296,7 @@
 
 .button:disabled, .button:default:disabled {
     -fx-opacity: 0.4;
-    -fx-background-color: #fafafa;
+    -fx-background-color: #fff;
     -fx-text-fill: #454545;
 }
 
@@ -308,11 +310,11 @@
 } */
 
 .dialog-pane {
-    -fx-background-color: #fafafa;
+    -fx-background-color: #fff;
 }
 
 .dialog-pane > *.button-bar > *.container {
-    -fx-background-color: #fafafa;
+    -fx-background-color: #fff;
 }
 
 .dialog-pane > *.label.content {
@@ -322,7 +324,7 @@
 }
 
 .dialog-pane:header *.header-panel {
-    -fx-background-color: derive(#fafafa, 25%);
+    -fx-background-color: derive(#fff, 25%);
 }
 
 .dialog-pane:header *.header-panel *.label {
@@ -333,11 +335,11 @@
 }
 
 .scroll-bar {
-    -fx-background-color: derive(#fafafa, 20%);
+    -fx-background-color: derive(#fff, 20%);
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: derive(#fafafa, 50%);
+    -fx-background-color: derive(#fff, 50%);
     -fx-background-insets: 3;
 }
 
@@ -369,7 +371,7 @@
 }
 
 #commandTextField {
-    -fx-background-color: #fafafa;
+    -fx-background-color: #fff;
     -fx-background-insets: 0;
     -fx-border-style: hidden hidden solid hidden;
     -fx-border-color: #d8d8d8;
@@ -385,7 +387,7 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #383838, transparent, #383838;
+    -fx-background-color: #fff, transparent, #fff, transparent;
     -fx-background-radius: 0;
 }
 
