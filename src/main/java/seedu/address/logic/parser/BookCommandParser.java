@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REASON;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.BookCommand;
-import seedu.address.logic.commands.CancelCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Appointment;
 
@@ -25,7 +24,7 @@ public class BookCommandParser implements Parser<BookCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CancelCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, BookCommand.MESSAGE_USAGE), pe);
         }
 
         Appointment appointment = ParserUtil.parseAppointment(argMultimap.getValue(PREFIX_REASON).get(),
