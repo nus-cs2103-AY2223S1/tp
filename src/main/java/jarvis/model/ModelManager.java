@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import jarvis.commons.core.GuiSettings;
 import jarvis.commons.core.LogsCenter;
 import jarvis.model.student.Student;
+import jarvis.model.task.Task;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 
@@ -20,24 +21,29 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final StudentBook studentBook;
+    private final TaskBook taskBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
+    private final FilteredList<Task> filteredTasks;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given studentBook, taskBook and userPrefs.
      */
-    public ModelManager(ReadOnlyStudentBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyStudentBook studentBook, ReadOnlyTaskBook taskBook, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(studentBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + studentBook + "and task book:" + taskBook
+                + " and user prefs " + userPrefs);
 
-        this.studentBook = new StudentBook(addressBook);
+        this.studentBook = new StudentBook(studentBook);
+        this.taskBook = new TaskBook(taskBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.studentBook.getStudentList());
+        filteredTasks = new FilteredList<>(this.taskBook.getTaskList());
     }
 
     public ModelManager() {
-        this(new StudentBook(), new UserPrefs());
+        this(new StudentBook(), new TaskBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -66,13 +72,24 @@ public class ModelManager implements Model {
 
     @Override
     public Path getStudentBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+        return userPrefs.getStudentBookFilePath();
     }
 
     @Override
     public void setStudentBookFilePath(Path studentBookFilePath) {
         requireNonNull(studentBookFilePath);
-        userPrefs.setAddressBookFilePath(studentBookFilePath);
+        userPrefs.setStudentBookFilePath(studentBookFilePath);
+    }
+
+    @Override
+    public Path getTaskBookFilePath() {
+        return userPrefs.getTaskBookFilePath();
+    }
+
+    @Override
+    public void setTaskBookFilePath(Path taskBookFilePath) {
+        requireNonNull(taskBookFilePath);
+        userPrefs.setTaskBookFilePath(taskBookFilePath);
     }
 
     //=========== StudentBook ================================================================================
@@ -110,6 +127,41 @@ public class ModelManager implements Model {
 
         studentBook.setStudent(target, editedStudent);
     }
+//=========== TaskBook ================================================================================
+
+    @Override
+    public void setTaskBook(ReadOnlyTaskBook taskBook) {
+        this.taskBook.resetData(taskBook);
+    }
+
+    @Override
+    public ReadOnlyTaskBook getTaskBook() {
+        return taskBook;
+    }
+
+    @Override
+    public boolean hasTask(Task task) {
+        requireNonNull(task);
+        return taskBook.hasTask(task);
+    }
+
+    @Override
+    public void deleteTask(Task target) {
+        taskBook.removeTask(target);
+    }
+
+    @Override
+    public void addTask(Task task) {
+        taskBook.addTask(task);
+        updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+    }
+
+    @Override
+    public void setTask(Task target, Task editedTask) {
+        requireAllNonNull(target, editedTask);
+
+        taskBook.setTask(target, editedTask);
+    }
 
     //=========== Filtered Person List Accessors =============================================================
 
@@ -127,6 +179,18 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredStudents.setPredicate(predicate);
     }
+
+    @Override
+    public ObservableList<Task> getFilteredTaskList() {
+        return filteredTasks;
+    }
+
+    @Override
+    public void updateFilteredTaskList(Predicate<Task> predicate) {
+        requireNonNull(predicate);
+        filteredTasks.setPredicate(predicate);
+    }
+
 
     @Override
     public boolean equals(Object obj) {

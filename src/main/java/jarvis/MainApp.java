@@ -14,6 +14,7 @@ import jarvis.commons.util.StringUtil;
 import jarvis.logic.Logic;
 import jarvis.logic.LogicManager;
 import jarvis.model.StudentBook;
+import jarvis.model.TaskBook;
 import jarvis.model.Model;
 import jarvis.model.ModelManager;
 import jarvis.model.ReadOnlyStudentBook;
@@ -56,7 +57,7 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
+        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getStudentBookFilePath());
         storage = new StorageManager(addressBookStorage, userPrefsStorage);
 
         initLogging(config);
@@ -90,7 +91,7 @@ public class MainApp extends Application {
             initialData = new StudentBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        return new ModelManager(initialData, new TaskBook(), userPrefs);
     }
 
     private void initLogging(Config config) {
