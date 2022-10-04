@@ -1,4 +1,4 @@
-package bookface.logic.commands;
+package bookface.logic.commands.list;
 
 import static bookface.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static bookface.testutil.TypicalPersons.getTypicalAddressBook;
@@ -6,6 +6,7 @@ import static bookface.testutil.TypicalPersons.getTypicalAddressBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import bookface.logic.commands.CommandTestUtil;
 import bookface.model.Model;
 import bookface.model.ModelManager;
 import bookface.model.UserPrefs;

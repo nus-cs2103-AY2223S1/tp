@@ -9,19 +9,19 @@ import bookface.logic.parser.exceptions.ParseException;
  * Parses input arguments and creates a new AddCommand object
  */
 public class AddCommandParser extends CommandParser<AddCommand> {
-    public AddCommandParser(String messageUsage) {
-        super(messageUsage);
+    public AddCommandParser() {
+        super(AddCommand.MESSAGE_USAGE);
     }
 
     @Override
-    protected AddCommand handleParsedCommand(String commandWord, String arguments) throws ParseException {
-        AddCommands addType;
+    protected AddCommand handleParsedCommand(String commandWord, String args) throws ParseException {
+        AddSubcommand addType;
         try {
-            addType = AddCommands.valueOf(commandWord.toUpperCase());
+            addType = AddSubcommand.valueOf(commandWord.toUpperCase());
         } catch (IllegalArgumentException e) {
             //todo return Messages.UKNOWN COMMAND instead?
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
-        return addType.runParseFunction(arguments);
+        return addType.runParseFunction(args);
     }
 }

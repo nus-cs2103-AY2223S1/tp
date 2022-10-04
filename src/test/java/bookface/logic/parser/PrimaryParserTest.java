@@ -12,16 +12,19 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import bookface.logic.commands.ClearCommand;
-import bookface.logic.commands.DeleteUserCommand;
 import bookface.logic.commands.EditCommand;
 import bookface.logic.commands.EditCommand.EditPersonDescriptor;
 import bookface.logic.commands.ExitCommand;
 import bookface.logic.commands.FindCommand;
 import bookface.logic.commands.HelpCommand;
-import bookface.logic.commands.ListUsersCommand;
 import bookface.logic.commands.add.AddCommand;
 import bookface.logic.commands.add.AddUserCommand;
+import bookface.logic.commands.delete.DeleteCommand;
+import bookface.logic.commands.delete.DeleteUserCommand;
+import bookface.logic.commands.list.ListCommand;
+import bookface.logic.commands.list.ListUsersCommand;
 import bookface.logic.parser.exceptions.ParseException;
+import bookface.logic.parser.primary.PrimaryParser;
 import bookface.model.person.NameContainsKeywordsPredicate;
 import bookface.model.person.Person;
 import bookface.testutil.EditPersonDescriptorBuilder;
@@ -29,9 +32,9 @@ import bookface.testutil.PersonBuilder;
 import bookface.testutil.PersonUtil;
 import bookface.testutil.TypicalIndexes;
 
-public class AddressBookParserTest {
+public class PrimaryParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser(HelpCommand.MESSAGE_USAGE);
+    private final PrimaryParser parser = new PrimaryParser();
 
     @Test
     public void parseCommand_add() throws Exception {
@@ -49,7 +52,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteUserCommand command = (DeleteUserCommand) parser.parse(
-                DeleteUserCommand.COMMAND_WORD + DeleteUserCommand.COMMAND_WORD_USER + " "
+                DeleteCommand.COMMAND_WORD + " " + DeleteUserCommand.COMMAND_WORD + " "
                         + TypicalIndexes.INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new DeleteUserCommand(TypicalIndexes.INDEX_FIRST_PERSON), command);
     }
@@ -86,10 +89,10 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_list() throws Exception {
-        assertTrue(parser.parse(ListUsersCommand.COMMAND_WORD
-                + ListUsersCommand.COMMAND_WORD_USER) instanceof ListUsersCommand);
-        assertTrue(parser.parse(ListUsersCommand.COMMAND_WORD
-                + ListUsersCommand.COMMAND_WORD_USER + " 3") instanceof ListUsersCommand);
+        assertTrue(parser.parse(ListCommand.COMMAND_WORD + " "
+                + ListUsersCommand.COMMAND_WORD) instanceof ListUsersCommand);
+        assertTrue(parser.parse(ListCommand.COMMAND_WORD + " "
+                + ListUsersCommand.COMMAND_WORD + " 3") instanceof ListUsersCommand);
     }
 
     @Test

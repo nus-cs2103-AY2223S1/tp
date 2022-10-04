@@ -33,8 +33,8 @@ public abstract class CommandParser<T extends Command> implements Parser<T> {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, messageUsage));
         }
         final String commandWord = matcher.group("commandWord");
-        final String arguments = matcher.group("arguments");
-        return handleParsedCommand(commandWord, arguments);
+        final String args = matcher.group("arguments");
+        return handleParsedCommand(commandWord, args);
     }
 
     // Idea for forcing all subclasses to use the parse method implemented in the abstract class
@@ -42,5 +42,5 @@ public abstract class CommandParser<T extends Command> implements Parser<T> {
     /**
      * Handles the parsed command.
      */
-    protected abstract T handleParsedCommand(String commandWord, String arguments) throws ParseException;
+    protected abstract T handleParsedCommand(String commandWord, String args) throws ParseException;
 }

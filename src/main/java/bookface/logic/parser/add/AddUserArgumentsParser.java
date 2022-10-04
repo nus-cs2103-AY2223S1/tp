@@ -28,9 +28,9 @@ import bookface.model.tag.Tag;
 public class AddUserArgumentsParser implements ArgumentsParsable<AddUserCommand> {
 
     @Override
-    public AddUserCommand parse(String arguments) throws ParseException {
+    public AddUserCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG);
 
         //todo might be better to rewrite these checks using Optional.isPresent and Optional.orElseThrow
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL)

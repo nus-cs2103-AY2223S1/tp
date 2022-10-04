@@ -4,11 +4,10 @@ import static bookface.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import bookface.logic.commands.add.AddCommand;
 import bookface.logic.parser.exceptions.ParseException;
 
 public class AddCommandParserTest {
-    private final AddCommandParser parser = new AddCommandParser(AddCommand.MESSAGE_USAGE);
+    private final AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parseCommand_incompleteAdd_throwsParseException() {
