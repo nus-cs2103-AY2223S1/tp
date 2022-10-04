@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -15,6 +16,8 @@ import seedu.address.model.person.Person;
 public class PersonCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
+
+    private static final String DATE_FORMAT = "y-M-d";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -39,6 +42,16 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label gender;
+    @FXML
+    private Label birthdate;
+    @FXML
+    private Label race;
+    @FXML
+    private Label religion;
+    @FXML
+    private Label survey;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -52,6 +65,11 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
+        gender.setText(person.getGender().gender);
+        birthdate.setText(person.getBirthdate().birthdate.format(DateTimeFormatter.ofPattern(DATE_FORMAT)));
+        race.setText(person.getRace().race);
+        religion.setText(person.getReligion().religion);
+        survey.setText(person.getSurvey().survey);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

@@ -10,9 +10,14 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Birthdate;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Race;
+import seedu.address.model.person.Religion;
+import seedu.address.model.person.Survey;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -93,6 +98,81 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String gender} into an {@code Gender}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code gender} is invalid.
+     */
+    public static Gender parseGender(String gender) throws ParseException {
+        requireNonNull(gender);
+        String trimmedGender = gender.trim();
+        if (!Gender.isValidGender(trimmedGender)) {
+            throw new ParseException(Gender.MESSAGE_CONSTRAINTS);
+        }
+        return new Gender(trimmedGender);
+    }
+
+    /**
+     * Parses a {@code String birthdate} into an {@code Birthdate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code birthdate} is invalid.
+     */
+    public static Birthdate parseBirthdate(String birthdate) throws ParseException {
+        requireNonNull(birthdate);
+        String trimmedBirthdate = birthdate.trim();
+        if (!Birthdate.isValidBirthdate(trimmedBirthdate)) {
+            throw new ParseException(Birthdate.MESSAGE_CONSTRAINTS);
+        }
+        return new Birthdate(trimmedBirthdate);
+    }
+
+    /**
+     * Parses a {@code String race} into an {@code Race}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code race} is invalid.
+     */
+    public static Race parseRace(String race) throws ParseException {
+        requireNonNull(race);
+        String trimmedRace = race.trim();
+        if (!Race.isValidRace(trimmedRace)) {
+            throw new ParseException(Race.MESSAGE_CONSTRAINTS);
+        }
+        return new Race(trimmedRace);
+    }
+
+    /**
+     * Parses a {@code String religion} into an {@code Religion}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code religion} is invalid.
+     */
+    public static Religion parseReligion(String religion) throws ParseException {
+        requireNonNull(religion);
+        String trimmedReligion = religion.trim();
+        if (!Religion.isValidReligion(trimmedReligion)) {
+            throw new ParseException(Religion.MESSAGE_CONSTRAINTS);
+        }
+        return new Religion(trimmedReligion);
+    }
+
+    /**
+     * Parses a {@code String survey} into an {@code Survey}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code survey} is invalid.
+     */
+    public static Survey parseSurvey(String survey) throws ParseException {
+        requireNonNull(survey);
+        String trimmedSurvey = survey.trim();
+        if (!Survey.isValidSurvey(trimmedSurvey)) {
+            throw new ParseException(Survey.MESSAGE_CONSTRAINTS);
+        }
+        return new Survey(trimmedSurvey);
     }
 
     /**

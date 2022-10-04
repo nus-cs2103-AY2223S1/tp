@@ -31,6 +31,11 @@
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+      <Label fx:id="gender" styleClass="cell_small_label" text="\$gender" />
+      <Label fx:id="birthdate" styleClass="cell_small_label" text="\$birthdate" />
+      <Label fx:id="race" styleClass="cell_small_label" text="\$race" />
+      <Label fx:id="religion" styleClass="cell_small_label" text="\$religion" />
+      <Label fx:id="survey" styleClass="cell_small_label" text="\$survey" />
     </VBox>
   </GridPane>
 </HBox>

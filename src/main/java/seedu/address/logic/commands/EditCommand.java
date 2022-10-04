@@ -20,10 +20,15 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Birthdate;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Race;
+import seedu.address.model.person.Religion;
+import seedu.address.model.person.Survey;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -97,9 +102,16 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
+        Birthdate updatedBirthdate = editPersonDescriptor.getBirthdate().orElse(personToEdit.getBirthdate());
+        Race updatedRace = editPersonDescriptor.getRace().orElse(personToEdit.getRace());
+        Religion updatedReligion = editPersonDescriptor.getReligion().orElse(personToEdit.getReligion());
+        Survey updatedSurvey = editPersonDescriptor.getSurvey().orElse(personToEdit.getSurvey());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
+                updatedGender, updatedBirthdate, updatedRace,
+                updatedReligion, updatedSurvey, updatedTags);
     }
 
     @Override
@@ -129,6 +141,11 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private Gender gender;
+        private Birthdate birthdate;
+        private Race race;
+        private Religion religion;
+        private Survey survey;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -142,6 +159,11 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setGender(toCopy.gender);
+            setBirthdate(toCopy.birthdate);
+            setRace(toCopy.race);
+            setReligion(toCopy.religion);
+            setSurvey(toCopy.survey);
             setTags(toCopy.tags);
         }
 
@@ -182,6 +204,46 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setGender(Gender gender) {
+            this.gender = gender;
+        }
+
+        public Optional<Gender> getGender() {
+            return Optional.ofNullable(gender);
+        }
+
+        public void setBirthdate(Birthdate birthdate) {
+            this.birthdate = birthdate;
+        }
+
+        public Optional<Birthdate> getBirthdate() {
+            return Optional.ofNullable(birthdate);
+        }
+
+        public void setRace(Race race) {
+            this.race = race;
+        }
+
+        public Optional<Race> getRace() {
+            return Optional.ofNullable(race);
+        }
+
+        public void setReligion(Religion religion) {
+            this.religion = religion;
+        }
+
+        public Optional<Religion> getReligion() {
+            return Optional.ofNullable(religion);
+        }
+
+        public void setSurvey(Survey survey) {
+            this.survey = survey;
+        }
+
+        public Optional<Survey> getSurvey() {
+            return Optional.ofNullable(survey);
         }
 
         /**

@@ -19,20 +19,34 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final Gender gender;
+    private final Birthdate birthdate;
+    private final Race race;
+    private final Religion religion;
 
     // Data fields
     private final Address address;
+    private final Survey survey;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address,
+                  Gender gender, Birthdate birthdate, Race race,
+                  Religion religion, Survey survey, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address,
+                gender, birthdate, race,
+                religion, survey, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.gender = gender;
+        this.birthdate = birthdate;
+        this.race = race;
+        this.religion = religion;
+        this.survey = survey;
         this.tags.addAll(tags);
     }
 
@@ -50,6 +64,26 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public Birthdate getBirthdate() {
+        return birthdate;
+    }
+
+    public Race getRace() {
+        return race;
+    }
+
+    public Religion getReligion() {
+        return religion;
+    }
+
+    public Survey getSurvey() {
+        return survey;
     }
 
     /**
@@ -92,13 +126,19 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getGender().equals(getGender())
+                && otherPerson.getBirthdate().equals(getBirthdate())
+                && otherPerson.getRace().equals(getRace())
+                && otherPerson.getReligion().equals(getReligion())
+                && otherPerson.getSurvey().equals(getSurvey())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, gender,
+                birthdate, race, religion, survey, tags);
     }
 
     @Override
@@ -110,7 +150,18 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Gender: ")
+                .append(getGender())
+                .append("; Birthdate: ")
+                .append(getRace())
+                .append("; Race: ")
+                .append(getRace())
+                .append("; Religion: ")
+                .append(getReligion())
+                .append("; Survey: ")
+                .append(getSurvey());
+
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

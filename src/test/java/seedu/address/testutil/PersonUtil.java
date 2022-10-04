@@ -1,11 +1,17 @@
 package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RACE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RELIGION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SURVEY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
@@ -17,6 +23,7 @@ import seedu.address.model.tag.Tag;
  * A utility class for Person.
  */
 public class PersonUtil {
+    private static final String DATE_FORMAT = "y-M-d";
 
     /**
      * Returns an add command string for adding the {@code person}.
@@ -34,6 +41,12 @@ public class PersonUtil {
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
+        sb.append(PREFIX_GENDER + person.getGender().gender + " ");
+        sb.append(PREFIX_BIRTHDATE
+                + person.getBirthdate().birthdate.format(DateTimeFormatter.ofPattern(DATE_FORMAT)) + " ");
+        sb.append(PREFIX_RACE + person.getRace().race + " ");
+        sb.append(PREFIX_RELIGION + person.getReligion().religion + " ");
+        sb.append(PREFIX_SURVEY + person.getSurvey().survey + " ");
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );

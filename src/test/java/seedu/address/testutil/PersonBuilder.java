@@ -4,10 +4,15 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Birthdate;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Race;
+import seedu.address.model.person.Religion;
+import seedu.address.model.person.Survey;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -20,11 +25,21 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_GENDER = "female";
+    public static final String DEFAULT_BIRTHDATE = "1989-09-11";
+    public static final String DEFAULT_RACE = "Chinese";
+    public static final String DEFAULT_RELIGION = "Christian";
+    public static final String DEFAULT_SURVEY = "Environmental Survey";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
+    private Gender gender;
+    private Birthdate birthdate;
+    private Race race;
+    private Religion religion;
+    private Survey survey;
     private Set<Tag> tags;
 
     /**
@@ -35,6 +50,11 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        gender = new Gender(DEFAULT_GENDER);
+        birthdate = new Birthdate(DEFAULT_BIRTHDATE);
+        race = new Race(DEFAULT_RACE);
+        religion = new Religion(DEFAULT_RELIGION);
+        survey = new Survey(DEFAULT_SURVEY);
         tags = new HashSet<>();
     }
 
@@ -46,6 +66,11 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        gender = personToCopy.getGender();
+        birthdate = personToCopy.getBirthdate();
+        race = personToCopy.getRace();
+        religion = personToCopy.getReligion();
+        survey = personToCopy.getSurvey();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -89,8 +114,53 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Gender} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withGender(String gender) {
+        this.gender = new Gender(gender);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Birthdate} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withBirthdate(String birthdate) {
+        this.birthdate = new Birthdate(birthdate);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Race} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withRace(String race) {
+        this.race = new Race(race);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Religion} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withReligion(String religion) {
+        this.religion = new Religion(religion);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Survey} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withSurvey(String survey) {
+        this.survey = new Survey(survey);
+        return this;
+    }
+
+    /**
+     * Builds a new Person with default parameters or given parameters.
+     * @return a Person with stated parameters
+     */
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, phone, email, address, gender,
+                birthdate, race, religion, survey, tags);
     }
 
 }
