@@ -30,11 +30,6 @@ public class AddressBookParser {
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
     /**
-     * Used for tag commands.
-     */
-    private final TagCommandParser tagCommandParser = new TagCommandParser();
-
-    /**
      * Parses user input into command for execution.
      *
      * @param userInput full user input string
@@ -73,7 +68,7 @@ public class AddressBookParser {
             return new ListCommand();
 
         case TagCommand.COMMAND_WORD:
-            return tagCommandParser.parseCommand(arguments);
+            return new TagCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

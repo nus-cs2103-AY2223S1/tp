@@ -5,12 +5,22 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -18,7 +28,7 @@ public class TagAddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tag to the contact. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tag to the contact "
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
@@ -27,7 +37,7 @@ public class TagAddCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_ADD_TAG_SUCCESS = "Tag added";
-    public static final String MESSAGE_NO_SUCH_TAG = "this tag does not exist";
+    public static final String MESSAGE_NO_SUCH_TAG = "This tag does not exist";
     public static final String MESSAGE_TAG_ALREADY_ADDED = "The contact already has the tag.";
 
     private final Index index;
@@ -38,9 +48,7 @@ public class TagAddCommand extends Command {
      * Creates an AddCommand to add the specified {@code Person}
      */
     public TagAddCommand(Index index, Tag tag, EditPersonDescriptor editPersonDescriptor) {
-        requireNonNull(index);
-        requireNonNull(tag);
-        requireNonNull(editPersonDescriptor);
+        requireAllNonNull(index, tag, editPersonDescriptor);
 
         this.index = index;
         this.tag = tag;
