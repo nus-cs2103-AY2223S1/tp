@@ -107,7 +107,8 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
         if (hospitalWing == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, HospitalWing.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    HospitalWing.class.getSimpleName()));
         }
         if (!HospitalWing.isValidHospitalWing(hospitalWing)) {
             throw new IllegalValueException(HospitalWing.MESSAGE_CONSTRAINTS);
