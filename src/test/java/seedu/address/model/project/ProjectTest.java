@@ -1,6 +1,5 @@
 package seedu.address.model.project;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
