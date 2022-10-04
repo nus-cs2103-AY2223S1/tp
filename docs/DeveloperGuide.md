@@ -257,71 +257,221 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to contact and liaise with many clients to sell their products
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* split clients according to potential and secured
+* has many different types of clients (etc. high/low accident rate, injury-prone)
+* has difficulty remembering clients' information
+* faces trouble in scheduling client meet-ups for both time and location
+* wish to filter based on address
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
+* manage clients faster than a typical mouse/GUI driven app
+* categorise client according to status and risk for the user to plan their schedule
+* inbuilt calendar to track meetings
+* search system via location and client meetup suggestions
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                    | I want to …​                  | So that I can…​                                                       |
+|----------|--------------------------------------------|-------------------------------|-----------------------------------------------------------------------|
+| `* * *`  | new user                                   | see usage instructions        | refer to instructions when I forget how to use the App                |
+| `* * *`  | user                                       | add a new client              |                                                                       |
+| `* * *`  | user                                       | delete a client               | remove entries that I no longer need                                  |
+| `* * *`  | user                                       | find a client by name         | locate details of clients without having to go through the entire list|
+| `* * *`  | user                                       | save written information      | access previously saved information                                   |
+| `* *`    | user                                       | find a client by address      | locate details of clients in a designated area                        |
+| `* *`    | user                                       | have a schedule reminder      | keep track of when and which clients I am meeting                     |
+| `* *`    | tech-savvy user                            | input shortcut commands       | be more efficient using the app                                       |
+| `* *`    | user                                       | update a client's information | make changes whenever clients' information update                     |
+| `*`      | user with many persons in the client book  | sort clients by name          | locate a client easily                                                |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `FABook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - Requesting for help**
 
 **MSS**
+1. User requests for help
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+2. FABook shows an external link for help
+
+3. User refers to link for help
+
+    Use case ends.
+
+**Use case: UC02 - Creating a client**
+
+**MSS**
+1. User creates a client
+
+2. FABook adds the client to its contents
+
+3. FABook informs user that input client has been added
+
+4. AddressBook deletes the person
 
     Use case ends.
 
 **Extensions**
+* 1a. Format of creation is invalid.
 
+    * 1a1. FABook shows an error message with suggested format
+
+    Use case ends.
+
+**Use case: UC03 - List all clients**
+
+**MSS**
+1. User requests to list clients
+
+2. FABook shows a list of clients
+
+    Use case ends.
+
+**Extensions**
 * 2a. The list is empty.
 
-  Use case ends.
+    Use case ends.
 
-* 3a. The given index is invalid.
+**Use case: UC04 - Updating a client's information**
 
-    * 3a1. AddressBook shows an error message.
+**MSS**
+1. User requests to update a specific client's information
 
-      Use case resumes at step 2.
+2. FABook updates the given client's information
 
-*{More to be added}*
+3. FABook informs user of updated client's information
+
+    Use case ends.
+
+**Extensions**
+* 1a. The name is not found.
+
+  * 1a1. FABook shows an error message with suggested format.
+  
+    Use case ends.
+
+* 1b. No input optional field was given.
+
+  * 1b1. FABook shows an error message with suggested format
+
+    Use case ends.
+
+* 1c. Input optional field is in the wrong format.
+
+    * 1c. FABook shows an error message with suggested format
+
+      Use case ends.
+
+**Use case: UC05 - Finding a client by name**
+
+**MSS**
+1. User requests to find a specific client by name
+
+2. FABook shows a list of matching clients
+
+3. FABook informs the user of number of clients found
+
+    Use case ends.
+
+**Extensions**
+* 1a. No client name was provided.
+
+    * 1a1. FABook shows an error message with suggested format
+
+      Use case ends.
+
+* 1b. No such client name was found. 
+
+    * 1b1. FABook shows an error message with suggested format
+
+      Use case ends.
+
+**Use case: UC06 - Finding a client by phone number**
+
+**MSS**
+1. User requests to find a specific client by phone number
+
+2. FABook shows a list of matching clients
+
+3. FABook informs the user of number of clients found
+
+    Use case ends.
+
+**Extensions**
+* 1a. No client number was provided.
+
+    * 1a1. FABook shows an error message with suggested format
+  
+      Use case ends.
+
+* 1b. No such client number was found.
+
+    * 1b1. FABook shows an error message with suggested format
+  
+      Use case ends.
+
+* 1c. No full phone number provided.
+
+    * 1c1. FABook shows an error message with suggested format
+
+      Use case ends.
+
+**Use case: UC07 - Delete a person**
+
+**MSS**
+1. User requests to <u>find a client by name(UC05)</u>
+
+2. User requests to delete a specific client by name in the list
+
+3. FABook deletes the person
+
+    Use case ends.
+
+**Use case: UC08 - Clearing all entries**
+
+**MSS**
+1. User requests to clear all entries
+
+2. FABook removes all clients' information
+
+3. FABook informs the user that all information has been cleared
+
+    Use case ends.
+
+**Use case: UC08 - Exiting FABook**
+
+**MSS**
+1. User requests to exit
+
+2. FABook closes
+
+   Use case ends.
+
+{More to be added}*
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  The system should work on both 32-bit and 64-bit environments.
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 

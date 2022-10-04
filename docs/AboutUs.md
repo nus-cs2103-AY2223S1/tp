@@ -22,49 +22,55 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/eugenetayyj.png" width="200px">
 
-[[github](https://github.com/eugenetayyj)]
-[[portfolio](team/eugenetayyj.md)]
+[github](https://github.com/eugenetayyj) |
+[portfolio](team/eugenetayyj.md)
 
 * Role: Developer
 * Responsibilities:
   * Team pull request reviewer
 
 
-### Jane Doe
+### Shaune Ang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/shauneang.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[github](https://github.com/shauneang) |
+[portfolio](team/shauneang.md)
 
-* Role: Team Leade
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities:
+    * Implement data management
 
-### Johnny Doe
 
-<img src="images/johndoe.png" width="200px">
+### Liao Yu-Chuan
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+<img src="images/isanidiot.png" width="200px">
+
+[github](http://github.com/isanidiot) |
+[portfolio](team/isanidiot.md)
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Peter Fung
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/fungusta.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[github](http://github.com/fungusta) |
+[portfolio](team/fungusta.md)
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: 
+  * Ensuring that deadlines are met
+
+### Reagan Tan
+
+<img src="images/reagantan00.png" width="200px">
+
+[github](http://github.com/reagantan00) |
+[portfolio](team/reagantan00.md)
+
+* Role: Developer
+* Responsibilities:
+  * [TBC]
