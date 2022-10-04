@@ -7,15 +7,18 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.BOB;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
+import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
 import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -70,6 +73,22 @@ public class ModelManagerTest {
         Path path = Paths.get("address/book/file/path");
         modelManager.setAddressBookFilePath(path);
         assertEquals(path, modelManager.getAddressBookFilePath());
+    }
+
+    @Test
+    public void getPersonWithName_nameOfAlice_returnAlice() {
+        modelManager.addPerson(ALICE);
+        modelManager.addPerson(BOB);
+        Person alice = modelManager.getPersonWithName(ALICE.getName()).get(0);
+
+        assertEquals(ALICE, alice);
+    }
+
+    @Test
+    public void getPersonWithName_emptyName_returnEmptyList() {
+        ObservableList<Person> personList = modelManager.getPersonWithName(ALICE.getName());
+
+        assertThrows(IndexOutOfBoundsException.class, () -> personList.get(0));
     }
 
     @Test
