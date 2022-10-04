@@ -13,16 +13,6 @@ public class Module {
     public final List<String> tasks;
 
     /**
-     * Creates a Module with some default values for the code, name, credits and tasks.
-     */
-    public Module() {
-        this.code = "CS2103T";
-        this.name = "Software Engineering";
-        this.credits = 4;
-        this.tasks = List.of("Task 1", "Task 2", "Task 3");
-    }
-
-    /**
      * Creates a Module with the given code, name, credits and tasks.
      *
      * @param code    the module code
