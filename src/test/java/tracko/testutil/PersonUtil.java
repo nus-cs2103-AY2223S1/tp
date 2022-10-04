@@ -8,8 +8,8 @@ import static tracko.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
-import tracko.logic.commands.AddCommand;
-import tracko.logic.commands.EditCommand.EditPersonDescriptor;
+import tracko.logic.commands.order.AddOrderCommand;
+import tracko.logic.commands.order.EditOrderCommand.EditPersonDescriptor;
 import tracko.model.person.Person;
 import tracko.model.tag.Tag;
 
@@ -22,7 +22,7 @@ public class PersonUtil {
      * Returns an add command string for adding the {@code person}.
      */
     public static String getAddCommand(Person person) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(person);
+        return AddOrderCommand.COMMAND_WORD + " " + getPersonDetails(person);
     }
 
     /**

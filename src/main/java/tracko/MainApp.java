@@ -15,17 +15,8 @@ import tracko.commons.util.ConfigUtil;
 import tracko.commons.util.StringUtil;
 import tracko.logic.Logic;
 import tracko.logic.LogicManager;
-import tracko.model.AddressBook;
-import tracko.model.Model;
-import tracko.model.ModelManager;
-import tracko.model.ReadOnlyAddressBook;
-import tracko.model.ReadOnlyTrackO;
-import tracko.model.ReadOnlyUserPrefs;
-import tracko.model.TrackO;
-import tracko.model.UserPrefs;
+import tracko.model.*;
 import tracko.model.util.SampleDataUtil;
-import tracko.storage.AddressBookStorage;
-import tracko.storage.JsonAddressBookStorage;
 import tracko.storage.JsonTrackOStorage;
 import tracko.storage.JsonUserPrefsStorage;
 import tracko.storage.Storage;
@@ -61,9 +52,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         TrackOStorage trackOStorage = new JsonTrackOStorage(userPrefs.getOrdersFilePath());
-        storage = new StorageManager(addressBookStorage, trackOStorage, userPrefsStorage);
+        storage = new StorageManager(trackOStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -80,42 +70,24 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        // To be deleted
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
-
-        try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
-            }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
-        } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
-        } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
-        }
-
         Optional<ReadOnlyTrackO> trackOOptional;
-        ReadOnlyTrackO trackOData;
+        ReadOnlyTrackO initialData;
 
         try {
             trackOOptional = storage.readTrackO();
             if (!trackOOptional.isPresent()) {
                 logger.info("TrackO data file not found. Will be starting with sample data points");
             }
-            trackOData = trackOOptional.orElseGet(SampleDataUtil::getSampleTrackO);
+            initialData = trackOOptional.orElseGet(SampleDataUtil::getSampleTrackO);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty TrackO");
-            trackOData = new TrackO();
+            initialData = new TrackO();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting iwth an empty TrackO");
-            trackOData = new TrackO();
+            initialData = new TrackO();
         }
 
-        return new ModelManager(initialData, trackOData, userPrefs);
+        return new ModelManager(initialData, userPrefs);
     }
 
     private void initLogging(Config config) {
