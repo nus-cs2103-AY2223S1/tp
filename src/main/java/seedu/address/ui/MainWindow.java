@@ -29,11 +29,14 @@ public class MainWindow extends UiPart<Stage> {
 
     private Stage primaryStage;
     private Logic logic;
+    private Logic profileLogic;
 
     // Independent Ui parts residing in this Ui container
+    private PersonListPanel profilePanel;
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+//    private ProfileDisplay profileDisplay;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -45,7 +48,13 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane personListPanelPlaceholder;
 
     @FXML
+    private StackPane profilePanelPlaceholder;
+
+    @FXML
     private StackPane resultDisplayPlaceholder;
+
+//    @FXML
+//    private StackPane profileDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
@@ -59,6 +68,7 @@ public class MainWindow extends UiPart<Stage> {
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
+        this.profileLogic = logic;
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
@@ -110,8 +120,12 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        profilePanel = new PersonListPanel(logic.getFilteredPersonList());
+        profilePanelPlaceholder.getChildren().add(profilePanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -121,6 +135,8 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+
     }
 
     /**
@@ -177,6 +193,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+//            profileDisplay.setUser();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
