@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.ClientBuilder;
 
-public class PersonTest {
+public class ClientTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
