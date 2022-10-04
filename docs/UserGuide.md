@@ -115,10 +115,10 @@ Examples:
 Adds a new meeting to MyInsuRec. 
 DATE should be in DDMMYYYY format and TIME should be in 24-hour format.
 
-Format: `addMeeting i/INDEX d/DATE t/TIME`
+Format: `addMeeting i/INDEX d/DATE t/TIME dn/DESCRIPTION`
 
 * Adds a meeting.
-* A meeting contains INDEX, DATE and TIME.
+* A meeting contains INDEX, DATE, TIME and DESCRIPTION.
 * Adds the client at the specific `INDEX` to the meeting.
 * The index refers to the index number shown in the displayed clients' list.
 
