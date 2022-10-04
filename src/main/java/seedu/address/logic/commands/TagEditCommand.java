@@ -22,7 +22,8 @@ public class TagEditCommand extends Command {
             + "Parameters: "
             + PREFIX_TAG + "TAG"
             + PREFIX_TAG + "TAG...\n"
-            + "Example: " + COMMAND_WORD + " "
+            + "Example: " + TagCommand.COMMAND_WORD
+            + COMMAND_WORD + " "
             + PREFIX_TAG + "friend"
             + PREFIX_TAG + "bestFriend";
 
