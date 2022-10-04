@@ -9,7 +9,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Justin Peng
 
-<img src="images/justinpeng.png" width="200px">
+<img src="images/justinpeng13.png" width="200px">
 
 [[homepage](https://justinpeng.vercel.app)]
 [[github](https://github.com/JustinPeng13)]
@@ -30,7 +30,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Lan Jingbo
 
-<img src="images/Lan-Jingbo.png" width="200px">
+<img src="images/lan-jingbo.png" width="200px">
 
 [[github](http://github.com/Lan-Jingbo)] [[portfolio](team/lanjingbo.md)]
 
