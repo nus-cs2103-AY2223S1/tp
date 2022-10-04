@@ -3,8 +3,8 @@ package gim.logic.commands;
 import static gim.logic.commands.CommandTestUtil.DESC_AMY;
 import static gim.logic.commands.CommandTestUtil.DESC_BOB;
 import static gim.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static gim.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static gim.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static gim.logic.commands.CommandTestUtil.VALID_WEIGHT_BOB;
 import static gim.logic.commands.CommandTestUtil.assertCommandFailure;
 import static gim.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static gim.logic.commands.CommandTestUtil.showExerciseAtIndex;
@@ -26,6 +26,9 @@ import gim.model.UserPrefs;
 import gim.model.exercise.Exercise;
 import gim.testutil.EditExerciseDescriptorBuilder;
 import gim.testutil.ExerciseBuilder;
+
+
+
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
@@ -54,11 +57,11 @@ public class EditCommandTest {
         Exercise lastExercise = model.getFilteredExerciseList().get(indexLastExercise.getZeroBased());
 
         ExerciseBuilder exerciseInList = new ExerciseBuilder(lastExercise);
-        Exercise editedExercise = exerciseInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+        Exercise editedExercise = exerciseInList.withName(VALID_NAME_BOB).withWeight(VALID_WEIGHT_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
         EditExerciseDescriptor descriptor = new EditExerciseDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withWeight(VALID_WEIGHT_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastExercise, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EXERCISE_SUCCESS, editedExercise);

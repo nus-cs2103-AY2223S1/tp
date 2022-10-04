@@ -17,18 +17,20 @@ import gim.logic.parser.exceptions.ParseException;
 import gim.model.exercise.Address;
 import gim.model.exercise.Email;
 import gim.model.exercise.Name;
-import gim.model.exercise.Phone;
+import gim.model.exercise.Weight;
 import gim.model.tag.Tag;
+
+
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_PHONE = "+651234";
+    private static final String INVALID_WEIGHT = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
+    private static final String VALID_WEIGHT = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
@@ -80,26 +82,26 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parsePhone_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
+    public void parseWeight_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseWeight((String) null));
     }
 
     @Test
-    public void parsePhone_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parsePhone(INVALID_PHONE));
+    public void parseWeight_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseWeight(INVALID_WEIGHT));
     }
 
     @Test
-    public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(VALID_PHONE));
+    public void parseWeight_validValueWithoutWhitespace_returnsWeight() throws Exception {
+        Weight expectedWeight = new Weight(VALID_WEIGHT);
+        assertEquals(expectedWeight, ParserUtil.parseWeight(VALID_WEIGHT));
     }
 
     @Test
-    public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
-        String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
+    public void parseWeight_validValueWithWhitespace_returnsTrimmedWeight() throws Exception {
+        String weightWithWhitespace = WHITESPACE + VALID_WEIGHT + WHITESPACE;
+        Weight expectedWeight = new Weight(VALID_WEIGHT);
+        assertEquals(expectedWeight, ParserUtil.parseWeight(weightWithWhitespace));
     }
 
     @Test

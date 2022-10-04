@@ -345,7 +345,7 @@ save it with `Model#setExercise()`.
 
         Exercise exerciseToEdit = lastShownList.get(index.getZeroBased());
         Exercise editedExercise = new Exercise(
-                exerciseToEdit.getName(), exerciseToEdit.getPhone(), exerciseToEdit.getEmail(),
+                exerciseToEdit.getName(), exerciseToEdit.getWeight(), exerciseToEdit.getEmail(),
                 exerciseToEdit.getAddress(), remark, exerciseToEdit.getTags());
 
         model.setExercise(exerciseToEdit, editedExercise);

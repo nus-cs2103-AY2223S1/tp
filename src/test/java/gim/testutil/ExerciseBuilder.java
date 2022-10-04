@@ -7,9 +7,10 @@ import gim.model.exercise.Address;
 import gim.model.exercise.Email;
 import gim.model.exercise.Exercise;
 import gim.model.exercise.Name;
-import gim.model.exercise.Phone;
+import gim.model.exercise.Weight;
 import gim.model.tag.Tag;
 import gim.model.util.SampleDataUtil;
+
 
 /**
  * A utility class to help with building Exercise objects.
@@ -17,12 +18,12 @@ import gim.model.util.SampleDataUtil;
 public class ExerciseBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_PHONE = "85355255";
+    public static final String DEFAULT_WEIGHT = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
-    private Phone phone;
+    private Weight weight;
     private Email email;
     private Address address;
     private Set<Tag> tags;
@@ -32,7 +33,7 @@ public class ExerciseBuilder {
      */
     public ExerciseBuilder() {
         name = new Name(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
+        weight = new Weight(DEFAULT_WEIGHT);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
@@ -43,7 +44,7 @@ public class ExerciseBuilder {
      */
     public ExerciseBuilder(Exercise exerciseToCopy) {
         name = exerciseToCopy.getName();
-        phone = exerciseToCopy.getPhone();
+        weight = exerciseToCopy.getWeight();
         email = exerciseToCopy.getEmail();
         address = exerciseToCopy.getAddress();
         tags = new HashSet<>(exerciseToCopy.getTags());
@@ -74,10 +75,10 @@ public class ExerciseBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Exercise} that we are building.
+     * Sets the {@code Weight} of the {@code Exercise} that we are building.
      */
-    public ExerciseBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+    public ExerciseBuilder withWeight(String weight) {
+        this.weight = new Weight(weight);
         return this;
     }
 
@@ -90,7 +91,7 @@ public class ExerciseBuilder {
     }
 
     public Exercise build() {
-        return new Exercise(name, phone, email, address, tags);
+        return new Exercise(name, weight, email, address, tags);
     }
 
 }

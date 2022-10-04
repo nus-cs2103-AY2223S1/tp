@@ -82,7 +82,7 @@ private Label address;
 
 ``` xml
 ...
-<Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+<Label fx:id="weight" styleClass="cell_small_label" text="\$weight" />
 <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
 <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
 ...
@@ -102,7 +102,7 @@ In `src/test/data/`, data meant for testing purposes are stored. While keeping t
 {
   "exercises": [ {
     "name": "Exercise with invalid name field: Ha!ns Mu@ster",
-    "phone": "9482424",
+    "weight": "9482424",
     "email": "hans@example.com",
     "address": "4th street"
   } ]

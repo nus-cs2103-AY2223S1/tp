@@ -3,8 +3,8 @@ package gim.logic.commands;
 import static gim.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static gim.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static gim.logic.parser.CliSyntax.PREFIX_NAME;
-import static gim.logic.parser.CliSyntax.PREFIX_PHONE;
 import static gim.logic.parser.CliSyntax.PREFIX_TAG;
+import static gim.logic.parser.CliSyntax.PREFIX_WEIGHT;
 import static gim.model.Model.PREDICATE_SHOW_ALL_EXERCISES;
 import static java.util.Objects.requireNonNull;
 
@@ -23,8 +23,10 @@ import gim.model.exercise.Address;
 import gim.model.exercise.Email;
 import gim.model.exercise.Exercise;
 import gim.model.exercise.Name;
-import gim.model.exercise.Phone;
+import gim.model.exercise.Weight;
 import gim.model.tag.Tag;
+
+
 
 /**
  * Edits the details of an existing exercise in the address book.
@@ -38,12 +40,12 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_WEIGHT + "WEIGHT] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
+            + PREFIX_WEIGHT + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_EXERCISE_SUCCESS = "Edited Exercise: %1$s";
@@ -95,12 +97,12 @@ public class EditCommand extends Command {
         assert exerciseToEdit != null;
 
         Name updatedName = editExerciseDescriptor.getName().orElse(exerciseToEdit.getName());
-        Phone updatedPhone = editExerciseDescriptor.getPhone().orElse(exerciseToEdit.getPhone());
+        Weight updatedWeight = editExerciseDescriptor.getWeight().orElse(exerciseToEdit.getWeight());
         Email updatedEmail = editExerciseDescriptor.getEmail().orElse(exerciseToEdit.getEmail());
         Address updatedAddress = editExerciseDescriptor.getAddress().orElse(exerciseToEdit.getAddress());
         Set<Tag> updatedTags = editExerciseDescriptor.getTags().orElse(exerciseToEdit.getTags());
 
-        return new Exercise(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Exercise(updatedName, updatedWeight, updatedEmail, updatedAddress, updatedTags);
     }
 
     @Override
@@ -127,7 +129,7 @@ public class EditCommand extends Command {
      */
     public static class EditExerciseDescriptor {
         private Name name;
-        private Phone phone;
+        private Weight weight;
         private Email email;
         private Address address;
         private Set<Tag> tags;
@@ -140,7 +142,7 @@ public class EditCommand extends Command {
          */
         public EditExerciseDescriptor(EditExerciseDescriptor toCopy) {
             setName(toCopy.name);
-            setPhone(toCopy.phone);
+            setWeight(toCopy.weight);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
@@ -150,7 +152,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, weight, email, address, tags);
         }
 
         public void setName(Name name) {
@@ -161,12 +163,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        public void setWeight(Weight weight) {
+            this.weight = weight;
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+        public Optional<Weight> getWeight() {
+            return Optional.ofNullable(weight);
         }
 
         public void setEmail(Email email) {
@@ -218,7 +220,7 @@ public class EditCommand extends Command {
             EditExerciseDescriptor e = (EditExerciseDescriptor) other;
 
             return getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
+                    && getWeight().equals(e.getWeight())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());

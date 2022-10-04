@@ -33,7 +33,7 @@ public class ExerciseCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
+    private Label weight;
     @FXML
     private Label address;
     @FXML
@@ -49,7 +49,7 @@ public class ExerciseCard extends UiPart<Region> {
         this.exercise = exercise;
         id.setText(displayedIndex + ". ");
         name.setText(exercise.getName().fullName);
-        phone.setText(exercise.getPhone().value);
+        weight.setText(exercise.getWeight().value);
         address.setText(exercise.getAddress().value);
         email.setText(exercise.getEmail().value);
         exercise.getTags().stream()
