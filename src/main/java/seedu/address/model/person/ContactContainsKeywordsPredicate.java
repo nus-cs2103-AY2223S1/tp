@@ -5,20 +5,44 @@ import seedu.address.commons.util.StringUtil;
 import java.util.List;
 import java.util.function.Predicate;
 
+import static seedu.address.logic.parser.CliSyntax.INDICATOR_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.INDICATOR_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.INDICATOR_NAME;
+import static seedu.address.logic.parser.CliSyntax.INDICATOR_PHONE;
+import static seedu.address.logic.parser.CliSyntax.INDICATOR_TAG;
+
 /**
  * Tests that a {@code Person}'s information matches the keyword given.
  */
 public class ContactContainsKeywordsPredicate implements Predicate<Person> {
     private final List<String> keywords;
+    private final String prefix;
 
-    public ContactContainsKeywordsPredicate(List<String> keywords) {
+    public ContactContainsKeywordsPredicate(String prefix, List<String> keywords) {
         this.keywords = keywords;
+        this.prefix = prefix;
     }
 
     @Override
     public boolean test(Person person) {
-        return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword));
+        switch(prefix) {
+        case INDICATOR_NAME:
+            return keywords.stream()
+                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword));
+        case INDICATOR_ADDRESS:
+            return keywords.stream()
+                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getAddress().value, keyword));
+        case INDICATOR_EMAIL:
+            return keywords.stream()
+                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getEmail().value, keyword));
+        case INDICATOR_PHONE:
+            return keywords.stream()
+                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getPhone().value, keyword));
+        case INDICATOR_TAG:
+            return false; // Implementation postponed, waiting for tag feature
+        default:
+            return false;
+        }
     }
 
     @Override

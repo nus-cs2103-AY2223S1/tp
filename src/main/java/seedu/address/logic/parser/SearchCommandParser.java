@@ -2,10 +2,15 @@ package seedu.address.logic.parser;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.SearchCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.ContactContainsKeywordsPredicate;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.tag.Tag;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
@@ -22,46 +27,52 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 /**
  * Parses input arguments and creates a new SearchCommand object
  */
-public class SearchCommandParser implements Parser<EditCommand> {
+public class SearchCommandParser implements Parser<SearchCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the EditCommand
-     * and returns an EditCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the SearchCommand
+     * and returns an SearchCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public EditCommand parse(String args) throws ParseException {
+    public SearchCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
-        Index index;
+        String condition = argMultimap.getPreamble().toLowerCase();
 
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+        switch (condition) {
+        case SearchCommand.AND_CONDITION:
+        case SearchCommand.OR_CONDITION:
+        case SearchCommand.EMPTY_CONDITION:
+            return parseSearchWithEmptyCondition(argMultimap);
+        default:
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
+    }
 
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+    private SearchCommand parseSearchWithEmptyCondition(ArgumentMultimap argMultimap) {
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+            String[] nameKeywords = new String[]{argMultimap.getValue(PREFIX_NAME).get()};
+            return new SearchCommand(new ContactContainsKeywordsPredicate(PREFIX_NAME.getPrefix(),
+                    Arrays.asList(nameKeywords)));
+        } else if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
+            String[] phoneKeywords = new String[]{argMultimap.getValue(PREFIX_PHONE).get()};
+            return new SearchCommand(new ContactContainsKeywordsPredicate(PREFIX_PHONE.getPrefix(),
+                    Arrays.asList(phoneKeywords)));
+        } else if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
+            String[] emailKeywords = new String[]{argMultimap.getValue(PREFIX_EMAIL).get()};
+            return new SearchCommand(new ContactContainsKeywordsPredicate(PREFIX_EMAIL.getPrefix(),
+                    Arrays.asList(emailKeywords)));
+        } else if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
+            String[] addressKeywords = new String[]{argMultimap.getValue(PREFIX_ADDRESS).get()};
+            return new SearchCommand(new ContactContainsKeywordsPredicate(PREFIX_ADDRESS.getPrefix(),
+                    Arrays.asList(addressKeywords)));
+        } else {
+            String[] tagKeywords = new String[]{argMultimap.getValue(PREFIX_TAG).get()};
+            return new SearchCommand(new ContactContainsKeywordsPredicate(PREFIX_TAG.getPrefix(),
+                    Arrays.asList(tagKeywords)));
         }
-        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
-        }
-        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
-        }
-        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
-        }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
-
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
-        }
-
-        return new EditCommand(index, editPersonDescriptor);
     }
 
     /**
@@ -69,7 +80,7 @@ public class SearchCommandParser implements Parser<EditCommand> {
      * If {@code tags} contain only one element which is an empty string, it will be parsed into a
      * {@code Set<Tag>} containing zero tags.
      */
-    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
+    private Optional<Set<Tag>> parseTagsForSearch(Collection<String> tags) throws ParseException {
         assert tags != null;
 
         if (tags.isEmpty()) {
