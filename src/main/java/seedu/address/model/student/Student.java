@@ -19,7 +19,7 @@ public class Student {
     private final Name name;
     private final Phone phone;
     private final Email email;
-    private final TutorialGroup  tutorialGroup = new TutorialGroup("T00");
+    private final TutorialGroup tutorialGroup = new TutorialGroup("T00");
 
     // Data fields
     private final Address address;
