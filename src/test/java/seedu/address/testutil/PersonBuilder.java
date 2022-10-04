@@ -42,11 +42,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
-
         assignments = new HashMap<>();
-        ArrayList<Assignment> assignmentList = new ArrayList<>();
-        assignmentList.add(new Assignment(DEFAULT_ASSIGNMENT));
-        assignments.put(DEFAULT_GROUP, assignmentList);
     }
 
     /**
