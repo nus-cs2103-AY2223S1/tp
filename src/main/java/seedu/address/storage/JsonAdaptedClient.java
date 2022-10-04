@@ -8,7 +8,7 @@ import seedu.address.model.person.Client;
 import java.util.ArrayList;
 import java.util.List;
 
-@JsonIdentityInfo(generator= ObjectIdGenerators.UUIDGenerator.class, property="@UUID")
+@JsonIdentityInfo(generator = ObjectIdGenerators.UUIDGenerator.class, property = "@UUID")
 class JsonAdaptedClient {
 
     private final List<Meeting> meetings;
@@ -18,4 +18,9 @@ class JsonAdaptedClient {
         name = client.getName();
         meetings = new ArrayList<>();
     }
+
+    public Client toModelType() {
+        return new Client();
+    }
+
 }
