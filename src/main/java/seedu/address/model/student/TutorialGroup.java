@@ -7,6 +7,8 @@ package seedu.address.model.student;
  * Represents a Student's tutorial group in the address book.
  */
 public class TutorialGroup {
+    private static final String DEFAULT_TUTORIAL_GROUP = "T01";
+
     public static final String MESSAGE_CONSTRAINTS =
             "Tutorial group should follow the format Txx, where x is a numeric value, and it should not be blank";
 
@@ -26,7 +28,18 @@ public class TutorialGroup {
     public TutorialGroup(String group) {
         // requireNonNull(group);
         // checkArgument(isValidTutorialGroup(group), MESSAGE_CONSTRAINTS);
+        // implement later
         tutorialGroup = group;
+    }
+
+    /**
+     * Constructs a defualt {@code TutorialGroup}.
+     */
+    public TutorialGroup() {
+        // requireNonNull(group);
+        // checkArgument(isValidTutorialGroup(group), MESSAGE_CONSTRAINTS);
+        // implement later
+        tutorialGroup = DEFAULT_TUTORIAL_GROUP;
     }
 
     /**
