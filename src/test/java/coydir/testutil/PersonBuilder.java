@@ -5,6 +5,7 @@ import java.util.Set;
 
 import coydir.model.person.Address;
 import coydir.model.person.Email;
+import coydir.model.person.EmployeeId;
 import coydir.model.person.Name;
 import coydir.model.person.Person;
 import coydir.model.person.Phone;
@@ -24,6 +25,7 @@ public class PersonBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
+    private EmployeeId employeeId;
     private Phone phone;
     private Email email;
     private Position position;
@@ -35,6 +37,7 @@ public class PersonBuilder {
      */
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
+        employeeId = new EmployeeId();
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         position = new Position(DEFAULT_POSITION);
@@ -47,6 +50,7 @@ public class PersonBuilder {
      */
     public PersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
+        employeeId = personToCopy.getEmployeeId();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         position = personToCopy.getPosition();
@@ -54,11 +58,23 @@ public class PersonBuilder {
         tags = new HashSet<>(personToCopy.getTags());
     }
 
+    public static void setEmployeeId(String id) {
+        EmployeeId.setCount(Integer.parseInt(id));
+    }
+
     /**
      * Sets the {@code Name} of the {@code Person} that we are building.
      */
     public PersonBuilder withName(String name) {
         this.name = new Name(name);
+        return this;
+    }
+
+    /**
+     * Sets the {@code EmployeeId} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withEmployeeId(String employeeId) {
+        this.employeeId = new EmployeeId(employeeId);
         return this;
     }
 
@@ -103,7 +119,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, position, address, tags);
+        return new Person(name, employeeId, phone, email, position, address, tags);
     }
 
 }

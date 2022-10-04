@@ -27,6 +27,7 @@ import coydir.model.Model;
 import coydir.model.ModelManager;
 import coydir.model.ReadOnlyAddressBook;
 import coydir.model.UserPrefs;
+import coydir.model.person.EmployeeId;
 import coydir.model.person.Person;
 import coydir.storage.JsonAddressBookStorage;
 import coydir.storage.JsonUserPrefsStorage;
@@ -86,6 +87,7 @@ public class LogicManagerTest {
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
+        PersonBuilder.setEmployeeId(AMY.getEmployeeId().value);
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
