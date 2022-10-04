@@ -60,7 +60,7 @@ public class AddAppointmentCommandParserTest {
             assertEquals("Invalid command format! \naddappt: Schedules an appointment with "
                     + "a specific client by the index number used in the displayed person listParameters: "
                     + "Parameters: INDEX (must be a positive integer) [d/DATE AND TIME]...\n"
-            + "Example: addappt 1 d/21-Jan-2023 12:30 PM " , parseException.getMessage());
+                    + "Example: addappt 1 d/21-Jan-2023 12:30 PM " , parseException.getMessage());
         }
     }
 
@@ -83,7 +83,7 @@ public class AddAppointmentCommandParserTest {
     @Test
     public void parse_validAppointmentWithName_failure() {
         Index targetIndex = INDEX_SECOND_PERSON;
-        String userInput = targetIndex.getOneBased() + NAME_DESC_AMY + FIRST_APPOINTMENT_DESC ;
+        String userInput = targetIndex.getOneBased() + NAME_DESC_AMY + FIRST_APPOINTMENT_DESC;
 
         try {
             parser.parse(userInput);
