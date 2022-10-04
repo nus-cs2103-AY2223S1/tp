@@ -13,14 +13,18 @@ public class JsonAdaptedAppointment {
 
     private final String reason;
     private final String dateTime;
+    private final boolean isMarked;
 
     /**
      * Converts a given {@code Appointment} into this class for Jackson use.
      */
     @JsonCreator
-    public JsonAdaptedAppointment(@JsonProperty("reason") String reason, @JsonProperty("dateTime") String dateTime) {
+    public JsonAdaptedAppointment(@JsonProperty("reason") String reason,
+                                  @JsonProperty("dateTime") String dateTime,
+                                  @JsonProperty("isMarked") boolean isMarked) {
         this.reason = reason;
         this.dateTime = dateTime;
+        this.isMarked = isMarked;
     }
 
     /**
@@ -29,6 +33,7 @@ public class JsonAdaptedAppointment {
     public JsonAdaptedAppointment(Appointment source) {
         this.reason = source.getReason();
         this.dateTime = source.getDateTime().format(Appointment.STORAGE_FORMATTER);
+        this.isMarked = source.isMarked();
     }
 
 
@@ -44,6 +49,6 @@ public class JsonAdaptedAppointment {
         if (!Appointment.isValidDateTime(dateTime)) {
             throw new IllegalValueException(Appointment.DATE_MESSAGE_CONSTRAINTS);
         }
-        return new Appointment(reason, dateTime);
+        return new Appointment(reason, dateTime, isMarked);
     }
 }

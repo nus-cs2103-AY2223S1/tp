@@ -21,24 +21,28 @@ public class Appointment {
     public static final DateTimeFormatter STORAGE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
 
+
     private final String reason;
     private final LocalDateTime dateTime;
+    private boolean isMarked;
 
     private final DateTimeFormatter stringFormatter = DateTimeFormatter.ofPattern("MMM d yyyy HH:mm");
 
 
     /**
-     * Creates an appointment object with the given reason and time.
+     * Creates an appointment object with the given reason, time, and status.
      *
      * @param reason The given reason for appointment.
      * @param dateTime The given time to book the appointment.
+     * @param isMarked Status of the appointment.
      */
-    public Appointment(String reason, String dateTime) {
+    public Appointment(String reason, String dateTime, boolean isMarked) {
         checkArgument(isValidReason(reason), REASON_MESSAGE_CONSTRAINTS);
         checkArgument(isValidDateTime(dateTime), DATE_MESSAGE_CONSTRAINTS);
         this.reason = reason;
         String str = String.join(" ", dateTime.split("\\s+", 2));
         this.dateTime = LocalDateTime.parse(str, DATE_FORMATTER);
+        this.isMarked = isMarked;
     }
 
     /**
@@ -84,10 +88,29 @@ public class Appointment {
     public String getReason() {
         return reason;
     }
+  
+    public boolean isMarked() {
+        return isMarked;
+    }
+
+    public void mark() {
+        this.isMarked = true;
+    }
+
+    public void unmark() {
+        this.isMarked = false;
+    }
 
     @Override
     public String toString() {
-        return dateTime.format(stringFormatter) + " for " + reason;
+        String statusIcon = "[" + getStateIcon() + "]";
+        return statusIcon + " " + dateTime.format(stringFormatter) + " for " + reason;
+    }
+
+    private String getStateIcon() {
+        String markedIcon = "✅";
+        String unmarkedIcon = "❌";
+        return isMarked ? markedIcon : unmarkedIcon;
     }
 
     @Override
@@ -101,6 +124,8 @@ public class Appointment {
         }
 
         Appointment otherAppointment = (Appointment) other;
-        return otherAppointment.reason.equals(reason) && otherAppointment.dateTime.equals(dateTime);
+        return otherAppointment.reason.equals(reason)
+                && otherAppointment.dateTime.equals(dateTime)
+                && (otherAppointment.isMarked == isMarked);
     }
 }
