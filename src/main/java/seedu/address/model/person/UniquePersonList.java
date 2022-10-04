@@ -3,6 +3,7 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -114,6 +115,12 @@ public class UniquePersonList implements Iterable<Person> {
         return other == this // short circuit if same object
                 || (other instanceof UniquePersonList // instanceof handles nulls
                         && internalList.equals(((UniquePersonList) other).internalList));
+    }
+
+    public void sortLexicographical() {
+        Comparator<? super Person> nameComparator = (p1, p2) ->
+                p1.compareNameLexicographically(p2);
+        this.internalList.sort(nameComparator);
     }
 
     @Override

@@ -83,6 +83,38 @@ public class TypicalPersons {
         return ab;
     }
 
+    /**
+     * Returns an {@code AddressBook} with typical
+     * persons in unsorted order lexicographically.
+     */
+    public static AddressBook getUnsortedAddressBook() {
+        AddressBook ab = new AddressBook();
+        ab.addPerson(CABE);
+        ab.addPerson(HOON);
+        ab.addPerson(FIONA);
+        ab.addPerson(BOB);
+        ab.addPerson(ALICE);
+        ab.addPerson(GEORGE);
+        ab.addPerson(DANIEL);
+        return ab;
+    }
+
+    /**
+     * Returns an {@code AddressBook} with
+     * persons in sorted order lexicographically.
+     */
+    public static AddressBook getSortedAddressBook() {
+        AddressBook ab = new AddressBook();
+        ab.addPerson(ALICE);
+        ab.addPerson(BOB);
+        ab.addPerson(CABE);
+        ab.addPerson(DANIEL);
+        ab.addPerson(FIONA);
+        ab.addPerson(GEORGE);
+        ab.addPerson(HOON);
+        return ab;
+    }
+
     public static List<Person> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
