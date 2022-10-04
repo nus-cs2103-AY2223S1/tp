@@ -1,7 +1,9 @@
 package modtrekt.ui;
 
+import java.util.List;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -16,6 +18,8 @@ import modtrekt.logic.Logic;
 import modtrekt.logic.commands.CommandResult;
 import modtrekt.logic.commands.exceptions.CommandException;
 import modtrekt.logic.parser.exceptions.ParseException;
+import modtrekt.model.module.Module;
+import modtrekt.ui.modules.ModuleListPanel;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -31,7 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private ModuleListPanel moduleListPanel;
     private TaskListPanel taskListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -114,8 +118,13 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        // TODO: Replace the hardcoded modules with the module list from `logic`.
+        moduleListPanel = new ModuleListPanel(FXCollections.observableArrayList(
+                new Module("CS2103T", "Software Engineering", 4, List.of("1", "2", "3")),
+                new Module("CS2101", "Effective Communication for Computing Professionals", 4, List.of("1")),
+                new Module("CS2100", "Computer Organisation", 4, List.of())
+        ));
+        personListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
 
         taskListPanel = new TaskListPanel(logic.getFilteredPersonList());
         taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
@@ -170,8 +179,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public ModuleListPanel getModuleListPanel() {
+        return moduleListPanel;
     }
 
     /**

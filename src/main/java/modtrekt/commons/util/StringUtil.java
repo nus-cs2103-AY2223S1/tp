@@ -83,10 +83,10 @@ public class StringUtil {
     }
 
     /**
-     * Pluralizes a word by appending an `s` to the singular form of the word if the count is 0 or more than 1,
-     * with a custom plural form.
+     * Pluralizes a word if the count is 0 or more than 1, with a custom plural form.
      * e.g. pluralize(0, "child", "children") returns "0 children"
      * e.g. pluralize(1, "child", "children") returns "1 child"
+     *
      * @param count    the count of the word
      * @param singular the singular form of the word
      * @param plural   the plural form of the word
