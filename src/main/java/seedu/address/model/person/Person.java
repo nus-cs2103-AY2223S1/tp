@@ -29,7 +29,8 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Remark remark, NetWorth netWorth, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, Remark remark,
+                  NetWorth netWorth, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, netWorth, tags);
         this.name = name;
         this.phone = phone;
@@ -130,14 +131,11 @@ public class Person {
                 .append(" Net Worth: ")
                 .append(getNetWorth())
                 .append(" Tags: ");
-        getTags().forEach(builder::append);
+        Set<Tag> tags = getTags();
+        if (!tags.isEmpty()) {
+            builder.append("; Tags: ");
+            tags.forEach(builder::append);
+        }
         return builder.toString();
-//        Set<Tag> tags = getTags();
-//        if (!tags.isEmpty()) {
-//            builder.append("; Tags: ");
-//            tags.forEach(builder::append);
-//        }
-//        return builder.toString();
-//    }
     }
 }
