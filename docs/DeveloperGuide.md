@@ -582,7 +582,6 @@ otherwise)
 1. User requests to list questions.
 2. SETA shows a list of questions.
 
-<<<<<<< Updated upstream
 **Extensions**
 
 * 2a. The list is empty.
