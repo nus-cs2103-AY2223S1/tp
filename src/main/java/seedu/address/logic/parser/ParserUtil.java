@@ -117,14 +117,14 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code NetWorth} is invalid.
      */
-//    public static NetWorth parseNetWorth(String netWorth) throws ParseException {
-//        requireNonNull(netWorth);
-//        String trimmedNetWorth = netWorth.trim();
-//        if (!NetWorth.isValidNetWorth(trimmedNetWorth)) {
-//            throw new ParseException(NetWorth.MESSAGE_CONSTRAINTS);
-//        }
-//        return new NetWorth(trimmedNetWorth);
-//    }
+    public static NetWorth parseNetWorth(String netWorth) throws ParseException {
+        requireNonNull(netWorth);
+        String trimmedNetWorth = netWorth.trim();
+        if (!NetWorth.isValidNetWorth(trimmedNetWorth)) {
+            throw new ParseException(NetWorth.MESSAGE_CONSTRAINTS);
+        }
+        return new NetWorth(trimmedNetWorth);
+    }
 
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.

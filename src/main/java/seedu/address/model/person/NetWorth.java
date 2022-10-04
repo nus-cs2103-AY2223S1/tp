@@ -10,8 +10,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class NetWorth {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Net worth should only contain numbers";
-//    public static final String VALIDATION_REGEX = "\\d{4,}";
+            "Net worth should only contain numbers and net worth should be at least 4 digits";
+    public static final String VALIDATION_REGEX = "\\d{4,}";
     public final String value;
 
     /**
@@ -21,16 +21,16 @@ public class NetWorth {
      */
     public NetWorth(String netWorth) {
         requireNonNull(netWorth);
-//        checkArgument(isValidNetWorth(netWorth), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidNetWorth(netWorth), MESSAGE_CONSTRAINTS);
         value = netWorth;
     }
 
     /**
      * Returns true if a given string is a valid networth.
      */
-//    public static boolean isValidNetWorth(String test) {
-//        return test.matches(VALIDATION_REGEX);
-//    }
+    public static boolean isValidNetWorth(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
 
     @Override
     public String toString() {
