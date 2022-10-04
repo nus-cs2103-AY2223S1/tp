@@ -9,26 +9,26 @@ import static gim.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Set;
 
 import gim.logic.commands.AddCommand;
-import gim.logic.commands.EditCommand.EditPersonDescriptor;
-import gim.model.person.Person;
+import gim.logic.commands.EditCommand.EditExerciseDescriptor;
+import gim.model.person.Exercise;
 import gim.model.tag.Tag;
 
 /**
  * A utility class for Person.
  */
-public class PersonUtil {
+public class ExerciseUtil {
 
     /**
      * Returns an add command string for adding the {@code person}.
      */
-    public static String getAddCommand(Person person) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(person);
+    public static String getAddCommand(Exercise person) {
+        return AddCommand.COMMAND_WORD + " " + getExerciseDetails(person);
     }
 
     /**
      * Returns the part of command string for the given {@code person}'s details.
      */
-    public static String getPersonDetails(Person person) {
+    public static String getExerciseDetails(Exercise person) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + person.getName().fullName + " ");
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
@@ -43,7 +43,7 @@ public class PersonUtil {
     /**
      * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
      */
-    public static String getEditPersonDescriptorDetails(EditPersonDescriptor descriptor) {
+    public static String getEditExerciseDescriptorDetails(EditExerciseDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));

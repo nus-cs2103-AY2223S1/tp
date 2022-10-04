@@ -8,7 +8,7 @@ import static gim.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static gim.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static gim.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static gim.testutil.Assert.assertThrows;
-import static gim.testutil.TypicalPersons.AMY;
+import static gim.testutil.TypicalExercises.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -26,11 +26,11 @@ import gim.model.Model;
 import gim.model.ModelManager;
 import gim.model.ReadOnlyAddressBook;
 import gim.model.UserPrefs;
-import gim.model.person.Person;
+import gim.model.person.Exercise;
 import gim.storage.JsonAddressBookStorage;
 import gim.storage.JsonUserPrefsStorage;
 import gim.storage.StorageManager;
-import gim.testutil.PersonBuilder;
+import gim.testutil.ExerciseBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -81,16 +81,16 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        Exercise expectedExercise = new ExerciseBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedPerson);
+        expectedModel.addExercise(expectedExercise);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    public void getFilteredExerciseList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredExerciseList().remove(0));
     }
 
     /**

@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static gim.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static gim.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static gim.testutil.TypicalPersons.CARL;
-import static gim.testutil.TypicalPersons.ELLE;
-import static gim.testutil.TypicalPersons.FIONA;
-import static gim.testutil.TypicalPersons.getTypicalAddressBook;
+import static gim.testutil.TypicalExercises.CARL;
+import static gim.testutil.TypicalExercises.ELLE;
+import static gim.testutil.TypicalExercises.FIONA;
+import static gim.testutil.TypicalExercises.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -55,23 +55,23 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
+    public void execute_zeroKeywords_noExerciseFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredExerciseList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(Collections.emptyList(), model.getFilteredExerciseList());
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
+    public void execute_multipleKeywords_multipleExercisesFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredExerciseList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredExerciseList());
     }
 
     /**

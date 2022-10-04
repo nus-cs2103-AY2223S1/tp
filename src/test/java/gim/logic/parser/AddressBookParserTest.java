@@ -17,17 +17,17 @@ import gim.logic.commands.AddCommand;
 import gim.logic.commands.ClearCommand;
 import gim.logic.commands.DeleteCommand;
 import gim.logic.commands.EditCommand;
-import gim.logic.commands.EditCommand.EditPersonDescriptor;
+import gim.logic.commands.EditCommand.EditExerciseDescriptor;
 import gim.logic.commands.ExitCommand;
 import gim.logic.commands.FindCommand;
 import gim.logic.commands.HelpCommand;
 import gim.logic.commands.ListCommand;
 import gim.logic.parser.exceptions.ParseException;
 import gim.model.person.NameContainsKeywordsPredicate;
-import gim.model.person.Person;
-import gim.testutil.EditPersonDescriptorBuilder;
-import gim.testutil.PersonBuilder;
-import gim.testutil.PersonUtil;
+import gim.model.person.Exercise;
+import gim.testutil.EditExerciseDescriptorBuilder;
+import gim.testutil.ExerciseBuilder;
+import gim.testutil.ExerciseUtil;
 
 public class AddressBookParserTest {
 
@@ -35,8 +35,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
+        Exercise person = new ExerciseBuilder().build();
+        AddCommand command = (AddCommand) parser.parseCommand(ExerciseUtil.getAddCommand(person));
         assertEquals(new AddCommand(person), command);
     }
 
@@ -55,10 +55,10 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Person person = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
+        Exercise person = new ExerciseBuilder().build();
+        EditExerciseDescriptor descriptor = new EditExerciseDescriptorBuilder(person).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+                + INDEX_FIRST_PERSON.getOneBased() + " " + ExerciseUtil.getEditExerciseDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 

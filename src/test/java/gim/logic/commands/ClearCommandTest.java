@@ -1,7 +1,7 @@
 package gim.logic.commands;
 
 import static gim.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static gim.testutil.TypicalPersons.getTypicalAddressBook;
+import static gim.testutil.TypicalExercises.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 

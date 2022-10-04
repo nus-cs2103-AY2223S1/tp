@@ -2,7 +2,7 @@ package gim.logic.commands;
 
 import static gim.logic.commands.CommandTestUtil.assertCommandFailure;
 import static gim.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static gim.testutil.TypicalPersons.getTypicalAddressBook;
+import static gim.testutil.TypicalExercises.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test;
 import gim.model.Model;
 import gim.model.ModelManager;
 import gim.model.UserPrefs;
-import gim.model.person.Person;
-import gim.testutil.PersonBuilder;
+import gim.model.person.Exercise;
+import gim.testutil.ExerciseBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
@@ -26,19 +26,19 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newPerson_success() {
-        Person validPerson = new PersonBuilder().build();
+    public void execute_newExercise_success() {
+        Exercise validExercise = new ExerciseBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.addPerson(validPerson);
+        expectedModel.addExercise(validExercise);
 
-        assertCommandSuccess(new AddCommand(validPerson), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
+        assertCommandSuccess(new AddCommand(validExercise), model,
+                String.format(AddCommand.MESSAGE_SUCCESS, validExercise), expectedModel);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person personInList = model.getAddressBook().getPersonList().get(0);
+    public void execute_duplicateExercise_throwsCommandException() {
+        Exercise personInList = model.getAddressBook().getExerciseList().get(0);
         assertCommandFailure(new AddCommand(personInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
     }
 
