@@ -12,6 +12,8 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
 public class TargetPerson {
     private Optional<Person> targetPerson;
     private final ObservableList<Person> targetPersonList = FXCollections.observableArrayList();
+    private final ObservableList<Person> unmodifiableTargetPersonList =
+            FXCollections.unmodifiableObservableList(targetPersonList);
 
     public TargetPerson() {
         targetPerson = Optional.empty();
@@ -19,7 +21,7 @@ public class TargetPerson {
 
     /** Returns an unmodifiable view of the list of target person */
     public ObservableList<Person> getAsObservableList() {
-        return targetPersonList;
+        return unmodifiableTargetPersonList;
     }
 
     /**
