@@ -54,16 +54,9 @@ public class Person {
     public Address getAddress() {
         return address;
     }
+
     public List<Appointment> getAppointments() {
         return listOfAppointments;
-    }
-
-    public void addAppointment(Appointment appointment) {
-        listOfAppointments.add(appointment);
-    }
-
-    public boolean hasSameAppointment(Appointment appointment) {
-        return listOfAppointments.stream().anyMatch(x -> x.isSameTime(appointment));
     }
 
     /**
