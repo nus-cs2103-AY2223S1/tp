@@ -33,28 +33,28 @@ import seedu.address.model.person.TeachingAssistant;
 public class TypicalPersons {
 
     public static final Person ALICE = new StudentBuilder().withName("Alice Pauline")
-            .withEmail("alice@example.com").withGender("Female")
+            .withEmail("alice@example.com").withGender("F")
             .withPhone("94351253").withTags("friends").build();
     public static final Person BENSON = new StudentBuilder().withName("Benson Meier")
-            .withGender("Male")
+            .withGender("M")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withTags("owesMoney", "friends").build();
     public static final Person CARL = new StudentBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withGender("Male").build();
+            .withEmail("heinz@example.com").withGender("M").build();
     public static final Person DANIEL = new StudentBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withGender("Male").withTags("friends").build();
+            .withEmail("cornelia@example.com").withGender("M").withTags("friends").build();
     public static final Person ELLE = new ProfessorBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withGender("Female").build();
+            .withEmail("werner@example.com").withGender("F").build();
     public static final Person FIONA = new TeachingAssistantBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withGender("Female").build();
+            .withEmail("lydia@example.com").withGender("F").build();
     public static final Person GEORGE = new StudentBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withGender("Male").build();
+            .withEmail("anna@example.com").withGender("M").build();
 
     // Manually added
     public static final Person HOON = new StudentBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withEmail("stefan@example.com").withGender("Male").build();
+            .withEmail("stefan@example.com").withGender("M").build();
     public static final Person IDA = new StudentBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").withGender("Female").build();
+            .withEmail("hans@example.com").withGender("F").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Student AMY = (Student) new StudentBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
