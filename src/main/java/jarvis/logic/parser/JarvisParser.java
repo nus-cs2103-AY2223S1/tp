@@ -15,11 +15,13 @@ import jarvis.logic.commands.ExitCommand;
 import jarvis.logic.commands.student.FindCommand;
 import jarvis.logic.commands.HelpCommand;
 import jarvis.logic.commands.student.ListCommand;
+import jarvis.logic.commands.task.AddTaskCommand;
 import jarvis.logic.parser.exceptions.ParseException;
 import jarvis.logic.parser.student.AddCommandParser;
 import jarvis.logic.parser.student.DeleteCommandParser;
 import jarvis.logic.parser.student.EditCommandParser;
 import jarvis.logic.parser.student.FindCommandParser;
+import jarvis.logic.parser.task.AddTaskCommandParser;
 
 /**
  * Parses user input.
@@ -50,6 +52,9 @@ public class JarvisParser {
 
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
+
+        case AddTaskCommand.COMMAND_WORD:
+            return new AddTaskCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);

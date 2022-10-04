@@ -6,5 +6,7 @@ package jarvis.logic.parser;
 public class CliSyntax {
 
     /* Prefix definitions */
-    public static final Prefix PREFIX_NAME = new Prefix("n/");
+    public static final Prefix PREFIX_NAME = new Prefix("s/");
+    public static final Prefix PREFIX_TASK_DESC = new Prefix("t/");
+    public static final Prefix PREFIX_DEADLINE = new Prefix("d/");
 }

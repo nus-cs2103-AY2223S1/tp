@@ -10,25 +10,25 @@ import jarvis.model.Model;
 import jarvis.model.student.Student;
 
 /**
- * Adds a person to the address book.
+ * Adds a student to the student book.
  */
 public class AddCommand extends Command {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "addstudent";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to JARVIS. "
             + "Parameters: "
             + PREFIX_NAME + "NAME\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe ";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New student added: %1$s";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in JARVIS";
 
     private final Student toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Student}
      */
     public AddCommand(Student student) {
         requireNonNull(student);
