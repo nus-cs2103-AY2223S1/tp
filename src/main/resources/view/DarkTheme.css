@@ -328,6 +328,20 @@
     -fx-text-fill: white;
 }
 
+#detailsPane {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+}
+
+#detailsPane #detailsPaneName {
+    -fx-font-family: "Inter";
+    -fx-font-size: 22px;
+}
+
+#detailsPane .label {
+    -fx-text-fill: white;
+}
+
 #filterField, #customerListPanel, #customerWebpage {
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }

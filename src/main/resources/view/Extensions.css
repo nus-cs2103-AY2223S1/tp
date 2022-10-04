@@ -18,3 +18,17 @@
 .tooltip-text {
     -fx-text-fill: white;
 }
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-opacity: 0;
+}
+
+.tab-pane .tab-header-area .headers-region .tab {
+    -fx-background-color: #282828;
+    -fx-background-radius: 10 10 0 0;
+    -fx-padding: 5 30 5 30;
+}
+
+.tab-label {
+    -fx-text-fill: #ffffff;
+}

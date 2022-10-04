@@ -35,7 +35,7 @@ public class DeleteCommissionCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (!model.hasActiveCustomer()) {
+        if (!model.hasSelectedCustomer()) {
             throw new CommandException(Messages.MESSAGE_NO_ACTIVE_CUSTOMER);
         }
 
@@ -49,7 +49,7 @@ public class DeleteCommissionCommand extends Command {
         model.deleteCommission(commissionToDelete);
 
         // This clones the person (shallow copy) so the GUI updates properly.
-        model.updateActiveCustomer();
+        model.updateSelectedCustomer();
         model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
 
         return new CommandResult(String.format(MESSAGE_DELETE_COMMISSION_SUCCESS, commissionToDelete));

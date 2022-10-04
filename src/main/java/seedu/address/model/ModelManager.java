@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.commission.Commission;
+import seedu.address.commons.core.ObservableObject;
 import seedu.address.model.customer.Customer;
 
 /**
@@ -24,8 +25,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Customer> filteredCustomers;
     private final FilteredList<Commission> filteredCommissions;
-
-    private Customer activeCustomer;
+    private ObservableObject<Customer> selectedCustomer = new ObservableObject<>();
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -43,8 +43,8 @@ public class ModelManager implements Model {
 
         // Temporarily set active customer to the first customer.
         // TODO: Should be fixed by implementer of the opencus command.
-        if (this.addressBook.getCustomerList().size() > 0) {
-            setActiveCustomer(this.addressBook.getCustomerList().get(0));
+        if (filteredCustomers.size() > 0) {
+            selectCustomer(filteredCustomers.get(0));
             updateFilteredCommissionListToActiveCustomer();
         }
 
@@ -128,17 +128,17 @@ public class ModelManager implements Model {
     @Override
     public boolean hasCommission(Commission commission) {
         requireNonNull(commission);
-        return addressBook.hasCommission(activeCustomer, commission);
+        return addressBook.hasCommission(getSelectedCustomer().getValue(), commission);
     }
 
     @Override
     public void deleteCommission(Commission target) {
-        addressBook.removeCommission(activeCustomer, target);
+        addressBook.removeCommission(getSelectedCustomer().getValue(), target);
     }
 
     @Override
     public void addCommission(Commission commission) {
-        addressBook.addCommission(activeCustomer, commission);
+        addressBook.addCommission(getSelectedCustomer().getValue(), commission);
         updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
     }
 
@@ -146,7 +146,7 @@ public class ModelManager implements Model {
     public void setCommission(Commission target, Commission editedCommission) {
         requireAllNonNull(target, editedCommission);
 
-        addressBook.setCommission(activeCustomer, target, editedCommission);
+        addressBook.setCommission(getSelectedCustomer().getValue(), target, editedCommission);
     }
 
     //=========== Filtered Customer List Accessors =============================================================
@@ -164,6 +164,9 @@ public class ModelManager implements Model {
     public void updateFilteredCustomerList(Predicate<Customer> predicate) {
         requireNonNull(predicate);
         filteredCustomers.setPredicate(predicate);
+        if (filteredCustomers.size() > 0) {
+            selectCustomer(filteredCustomers.get(0));
+        }
     }
 
     //=========== Filtered Commission List Accessors =============================================================
@@ -184,40 +187,42 @@ public class ModelManager implements Model {
     }
 
     private Predicate<Commission> getActiveCustomerCommissionsPredicate() {
-        return commission -> commission.getCustomer().isSameCustomer(activeCustomer);
+        return commission -> commission.getCustomer().isSameCustomer(getSelectedCustomer().getValue());
     }
 
     public void updateFilteredCommissionListToActiveCustomer() {
         updateFilteredCommissionList(getActiveCustomerCommissionsPredicate());
     }
 
-    //=========== Active Customer =============================================================
+    //=========== Selected Customer =============================================================
 
-    public void setActiveCustomer(Customer customer) {
-        requireNonNull(customer);
-        activeCustomer = customer;
+
+    @Override
+    public void selectCustomer(Customer customer) {
+        this.selectedCustomer.setValue(customer);
     }
 
-    public Customer getActiveCustomer() {
-        return activeCustomer;
+    @Override
+    public ObservableObject<Customer> getSelectedCustomer() {
+        return this.selectedCustomer;
     }
 
     /**
      * Clones active person - useful to force GUI update.
      */
     @Override
-    public void updateActiveCustomer() {
-        Customer activeCustomerClone = activeCustomer.getClone();
-        setCustomer(activeCustomer, activeCustomerClone);
-        setActiveCustomer(activeCustomerClone);
+    public void updateSelectedCustomer() {
+        Customer activeCustomerClone = getSelectedCustomer().getValue().getClone();
+        setCustomer(getSelectedCustomer().getValue(), activeCustomerClone);
+        selectCustomer(activeCustomerClone);
     }
 
     /**
      * Return whether there is an active customer.
      */
     @Override
-    public boolean hasActiveCustomer() {
-        return activeCustomer != null;
+    public boolean hasSelectedCustomer() {
+        return getSelectedCustomer().getValue() != null;
     }
 
     public ObservableList<Commission> getCommissionList() {
