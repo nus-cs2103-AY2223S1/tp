@@ -14,19 +14,19 @@ import seedu.address.model.client.Client;
 import seedu.address.model.tag.Tag;
 
 /**
- * A utility class for Person.
+ * A utility class for Client.
  */
 public class ClientUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add command string for adding the {@code client}.
      */
-    public static String getAddCommand(Client person) {
-        return AddCommand.COMMAND_WORD + " " + getClientDetails(person);
+    public static String getAddCommand(Client client) {
+        return AddCommand.COMMAND_WORD + " " + getClientDetails(client);
     }
 
     /**
-     * Returns the part of command string for the given {@code person}'s details.
+     * Returns the part of command string for the given {@code client}'s details.
      */
     public static String getClientDetails(Client person) {
         StringBuilder sb = new StringBuilder();

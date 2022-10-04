@@ -4,9 +4,9 @@ import seedu.address.model.ClientBook;
 import seedu.address.model.client.Client;
 
 /**
- * A utility class to help with building Addressbook objects.
+ * A utility class to help with building ClienBook objects.
  * Example usage: <br>
- *     {@code AddressBook ab = new AddressBookBuilder().withPerson("John", "Doe").build();}
+ *     {@code ClientBook ab = new ClientBookBuilder().withClient("John", "Doe").build();}
  */
 public class ClientBookBuilder {
 

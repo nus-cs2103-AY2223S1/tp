@@ -128,12 +128,12 @@ public class UniqueClientListTest {
     }
 
     @Test
-    public void setClients_nulluniqueClientList_throwsNullPointerException() {
+    public void setClients_nullUniqueClientList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueClientList.setClients((List<Client>) null));
     }
 
     @Test
-    public void setClients_uniqueClientList_replacesOwnListWithProvideduniqueClientList() {
+    public void setClients_uniqueClientList_replacesOwnListWithProvidedUniqueClientList() {
         uniqueClientList.add(ALICE);
         UniqueClientList expectedUniqueClientList = new UniqueClientList();
         expectedUniqueClientList.add(BOB);
