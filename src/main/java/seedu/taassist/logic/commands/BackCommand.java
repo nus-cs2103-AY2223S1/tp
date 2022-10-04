@@ -12,14 +12,14 @@ public class BackCommand extends Command {
 
     public static final String COMMAND_WORD = "back";
 
-    public static final String MESSAGE_ALREADY_EXITED = "Already exited focus mode";
+    public static final String MESSAGE_NOT_IN_FOCUS_MODE = "Not in focus mode";
     public static final String MESSAGE_SUCCESS = "Exited focus mode for %s";
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         if (!model.isInFocusMode()) {
-            return new CommandResult(MESSAGE_ALREADY_EXITED);
+            return new CommandResult(MESSAGE_NOT_IN_FOCUS_MODE);
         }
         ModuleClass focusedClass = model.getFocusedClass();
         model.exitFocusMode();
