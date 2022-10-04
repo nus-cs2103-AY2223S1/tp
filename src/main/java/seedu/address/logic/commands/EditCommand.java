@@ -48,7 +48,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_CLIENT = "This person already exists in the address book.";
 
     private final Index index;
     private final EditClientDescriptor EditClientDescriptor;
@@ -78,7 +78,7 @@ public class EditCommand extends Command {
         Client editedClient = createEditedPerson(clientToEdit, EditClientDescriptor);
 
         if (!clientToEdit.isSameClient(editedClient) && model.hasClient(editedClient)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
         }
 
         model.setClient(clientToEdit, editedClient);

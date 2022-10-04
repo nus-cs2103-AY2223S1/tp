@@ -56,7 +56,7 @@ public class StorageManagerTest {
          */
         ClientBook original = getTypicalClientBook();
         storageManager.saveClientBook(original);
-        ReadOnlyClientBook retrieved = storageManager.readAddressBook().get();
+        ReadOnlyClientBook retrieved = storageManager.readClientBook().get();
         assertEquals(original, new ClientBook(retrieved));
     }
 

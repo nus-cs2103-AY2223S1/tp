@@ -26,18 +26,18 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newPerson_success() {
-        Client validPerson = new ClientBuilder().build();
+    public void execute_newClient_success() {
+        Client validClient = new ClientBuilder().build();
 
         Model expectedModel = new ModelManager(model.getClientBook(), new UserPrefs());
-        expectedModel.addClient(validPerson);
+        expectedModel.addClient(validClient);
 
-        assertCommandSuccess(new AddCommand(validPerson), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
+        assertCommandSuccess(new AddCommand(validClient), model,
+                String.format(AddCommand.MESSAGE_SUCCESS, validClient), expectedModel);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
+    public void execute_duplicateClient_throwsCommandException() {
         Client personInList = model.getClientBook().getClientList().get(0);
         assertCommandFailure(new AddCommand(personInList), model, AddCommand.MESSAGE_DUPLICATE_CLIENT);
     }
