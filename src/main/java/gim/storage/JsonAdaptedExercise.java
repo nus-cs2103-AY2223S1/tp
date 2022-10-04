@@ -10,11 +10,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import gim.commons.exceptions.IllegalValueException;
-import gim.model.person.Address;
-import gim.model.person.Email;
-import gim.model.person.Name;
-import gim.model.person.Exercise;
-import gim.model.person.Phone;
+import gim.model.exercise.Address;
+import gim.model.exercise.Email;
+import gim.model.exercise.Name;
+import gim.model.exercise.Exercise;
+import gim.model.exercise.Phone;
 import gim.model.tag.Tag;
 
 /**

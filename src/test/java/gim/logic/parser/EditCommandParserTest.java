@@ -36,10 +36,10 @@ import org.junit.jupiter.api.Test;
 import gim.commons.core.index.Index;
 import gim.logic.commands.EditCommand;
 import gim.logic.commands.EditCommand.EditExerciseDescriptor;
-import gim.model.person.Address;
-import gim.model.person.Email;
-import gim.model.person.Name;
-import gim.model.person.Phone;
+import gim.model.exercise.Address;
+import gim.model.exercise.Email;
+import gim.model.exercise.Name;
+import gim.model.exercise.Phone;
 import gim.model.tag.Tag;
 import gim.testutil.EditExerciseDescriptorBuilder;
 

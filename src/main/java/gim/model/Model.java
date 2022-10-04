@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import gim.commons.core.GuiSettings;
-import gim.model.person.Exercise;
+import gim.model.exercise.Exercise;
 
 /**
  * The API of the Model component.

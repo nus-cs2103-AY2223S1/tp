@@ -20,7 +20,7 @@ import gim.model.AddressBook;
 import gim.model.Model;
 import gim.model.ReadOnlyAddressBook;
 import gim.model.ReadOnlyUserPrefs;
-import gim.model.person.Exercise;
+import gim.model.exercise.Exercise;
 import gim.testutil.ExerciseBuilder;
 
 public class AddCommandTest {

@@ -1,4 +1,4 @@
-package gim.model.person;
+package gim.model.exercise;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -15,8 +15,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import gim.model.person.exceptions.DuplicateExerciseException;
-import gim.model.person.exceptions.ExerciseNotFoundException;
+import gim.model.exercise.exceptions.DuplicateExerciseException;
+import gim.model.exercise.exceptions.ExerciseNotFoundException;
 import gim.testutil.ExerciseBuilder;
 
 public class UniqueExerciseListTest {

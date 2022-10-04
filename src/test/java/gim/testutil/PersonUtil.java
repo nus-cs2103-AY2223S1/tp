@@ -10,7 +10,7 @@ import java.util.Set;
 
 import gim.logic.commands.AddCommand;
 import gim.logic.commands.EditCommand.EditExerciseDescriptor;
-import gim.model.person.Exercise;
+import gim.model.exercise.Exercise;
 import gim.model.tag.Tag;
 
 /**

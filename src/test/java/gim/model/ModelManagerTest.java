@@ -15,7 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import gim.commons.core.GuiSettings;
-import gim.model.person.NameContainsKeywordsPredicate;
+import gim.model.exercise.NameContainsKeywordsPredicate;
 import gim.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {

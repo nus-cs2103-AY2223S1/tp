@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 
 import gim.commons.core.index.Index;
 import gim.model.Model;
-import gim.model.person.Exercise;
+import gim.model.exercise.Exercise;
 
 /**
  * A utility class for test cases.

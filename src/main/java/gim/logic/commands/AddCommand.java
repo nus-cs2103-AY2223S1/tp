@@ -9,7 +9,7 @@ import static gim.logic.parser.CliSyntax.PREFIX_TAG;
 
 import gim.logic.commands.exceptions.CommandException;
 import gim.model.Model;
-import gim.model.person.Exercise;
+import gim.model.exercise.Exercise;
 
 /**
  * Adds a person to the address book.

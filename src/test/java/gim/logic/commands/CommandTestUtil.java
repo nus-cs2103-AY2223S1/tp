@@ -17,8 +17,8 @@ import gim.commons.core.index.Index;
 import gim.logic.commands.exceptions.CommandException;
 import gim.model.AddressBook;
 import gim.model.Model;
-import gim.model.person.NameContainsKeywordsPredicate;
-import gim.model.person.Exercise;
+import gim.model.exercise.NameContainsKeywordsPredicate;
+import gim.model.exercise.Exercise;
 import gim.testutil.EditExerciseDescriptorBuilder;
 
 /**

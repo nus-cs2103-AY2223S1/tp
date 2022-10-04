@@ -23,7 +23,7 @@ import gim.model.AddressBook;
 import gim.model.Model;
 import gim.model.ModelManager;
 import gim.model.UserPrefs;
-import gim.model.person.Exercise;
+import gim.model.exercise.Exercise;
 import gim.testutil.EditExerciseDescriptorBuilder;
 import gim.testutil.ExerciseBuilder;
 

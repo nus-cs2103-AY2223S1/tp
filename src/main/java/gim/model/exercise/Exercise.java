@@ -1,4 +1,4 @@
-package gim.model.person;
+package gim.model.exercise;
 
 import static gim.commons.util.CollectionUtil.requireAllNonNull;
 

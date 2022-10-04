@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import gim.commons.core.GuiSettings;
 import gim.commons.core.LogsCenter;
-import gim.model.person.Exercise;
+import gim.model.exercise.Exercise;
 
 /**
  * Represents the in-memory model of the address book data.

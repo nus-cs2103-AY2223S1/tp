@@ -18,8 +18,8 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import gim.model.person.Exercise;
-import gim.model.person.exceptions.DuplicateExerciseException;
+import gim.model.exercise.Exercise;
+import gim.model.exercise.exceptions.DuplicateExerciseException;
 import gim.testutil.ExerciseBuilder;
 
 public class AddressBookTest {

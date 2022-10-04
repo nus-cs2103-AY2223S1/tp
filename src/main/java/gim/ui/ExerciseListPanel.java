@@ -8,7 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import gim.commons.core.LogsCenter;
-import gim.model.person.Exercise;
+import gim.model.exercise.Exercise;
 
 /**
  * Panel containing the list of persons.

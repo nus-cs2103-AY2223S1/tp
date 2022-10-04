@@ -1,7 +1,7 @@
 package gim.testutil;
 
 import gim.model.AddressBook;
-import gim.model.person.Exercise;
+import gim.model.exercise.Exercise;
 
 /**
  * A utility class to help with building Addressbook objects.

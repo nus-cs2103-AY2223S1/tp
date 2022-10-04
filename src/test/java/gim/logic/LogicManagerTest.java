@@ -26,7 +26,7 @@ import gim.model.Model;
 import gim.model.ModelManager;
 import gim.model.ReadOnlyAddressBook;
 import gim.model.UserPrefs;
-import gim.model.person.Exercise;
+import gim.model.exercise.Exercise;
 import gim.storage.JsonAddressBookStorage;
 import gim.storage.JsonUserPrefsStorage;
 import gim.storage.StorageManager;

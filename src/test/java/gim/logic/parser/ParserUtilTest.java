@@ -14,10 +14,10 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import gim.logic.parser.exceptions.ParseException;
-import gim.model.person.Address;
-import gim.model.person.Email;
-import gim.model.person.Name;
-import gim.model.person.Phone;
+import gim.model.exercise.Address;
+import gim.model.exercise.Email;
+import gim.model.exercise.Name;
+import gim.model.exercise.Phone;
 import gim.model.tag.Tag;
 
 public class ParserUtilTest {

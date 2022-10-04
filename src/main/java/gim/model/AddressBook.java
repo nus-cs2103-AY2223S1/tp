@@ -5,8 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import gim.model.person.Exercise;
-import gim.model.person.UniqueExerciseList;
+import gim.model.exercise.Exercise;
+import gim.model.exercise.UniqueExerciseList;
 
 /**
  * Wraps all data at the address-book level

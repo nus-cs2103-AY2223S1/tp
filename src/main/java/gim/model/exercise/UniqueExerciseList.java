@@ -1,4 +1,4 @@
-package gim.model.person;
+package gim.model.exercise;
 
 import static java.util.Objects.requireNonNull;
 import static gim.commons.util.CollectionUtil.requireAllNonNull;
@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import gim.model.person.exceptions.DuplicateExerciseException;
-import gim.model.person.exceptions.ExerciseNotFoundException;
+import gim.model.exercise.exceptions.DuplicateExerciseException;
+import gim.model.exercise.exceptions.ExerciseNotFoundException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.

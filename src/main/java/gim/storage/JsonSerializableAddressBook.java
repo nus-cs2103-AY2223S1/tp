@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import gim.commons.exceptions.IllegalValueException;
 import gim.model.AddressBook;
 import gim.model.ReadOnlyAddressBook;
-import gim.model.person.Exercise;
+import gim.model.exercise.Exercise;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.

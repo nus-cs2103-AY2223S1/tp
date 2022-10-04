@@ -16,7 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import gim.model.AddressBook;
-import gim.model.person.Exercise;
+import gim.model.exercise.Exercise;
 
 /**
  * A utility class containing a list of {@code Exercise} objects to be used in tests.

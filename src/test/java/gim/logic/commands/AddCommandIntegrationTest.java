@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import gim.model.Model;
 import gim.model.ModelManager;
 import gim.model.UserPrefs;
-import gim.model.person.Exercise;
+import gim.model.exercise.Exercise;
 import gim.testutil.ExerciseBuilder;
 
 /**

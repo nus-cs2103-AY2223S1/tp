@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import gim.model.Model;
 import gim.model.ModelManager;
 import gim.model.UserPrefs;
-import gim.model.person.NameContainsKeywordsPredicate;
+import gim.model.exercise.NameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.

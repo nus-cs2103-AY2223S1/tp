@@ -1,4 +1,4 @@
-package gim.model.person;
+package gim.model.exercise;
 
 import java.util.List;
 import java.util.function.Predicate;

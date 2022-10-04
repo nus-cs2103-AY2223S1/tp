@@ -1,4 +1,4 @@
-package gim.model.person.exceptions;
+package gim.model.exercise.exceptions;
 
 /**
  * Signals that the operation will result in duplicate Exercises (Exercises are considered duplicates if they have the same

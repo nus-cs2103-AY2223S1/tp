@@ -1,4 +1,4 @@
-package gim.model.person;
+package gim.model.exercise;
 
 import static java.util.Objects.requireNonNull;
 import static gim.commons.util.AppUtil.checkArgument;

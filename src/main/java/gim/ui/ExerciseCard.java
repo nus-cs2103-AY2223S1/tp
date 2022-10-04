@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import gim.model.person.Exercise;
+import gim.model.exercise.Exercise;
 
 /**
  * An UI component that displays information of a {@code Exercise}.

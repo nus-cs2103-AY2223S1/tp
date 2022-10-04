@@ -14,7 +14,7 @@ import gim.logic.parser.AddressBookParser;
 import gim.logic.parser.exceptions.ParseException;
 import gim.model.Model;
 import gim.model.ReadOnlyAddressBook;
-import gim.model.person.Exercise;
+import gim.model.exercise.Exercise;
 import gim.storage.Storage;
 
 /**

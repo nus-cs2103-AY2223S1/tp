@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import gim.logic.commands.FindCommand;
 import gim.logic.parser.exceptions.ParseException;
-import gim.model.person.NameContainsKeywordsPredicate;
+import gim.model.exercise.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object

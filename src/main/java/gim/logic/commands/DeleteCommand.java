@@ -8,7 +8,7 @@ import gim.commons.core.Messages;
 import gim.commons.core.index.Index;
 import gim.logic.commands.exceptions.CommandException;
 import gim.model.Model;
-import gim.model.person.Exercise;
+import gim.model.exercise.Exercise;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.

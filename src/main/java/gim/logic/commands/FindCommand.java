@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import gim.commons.core.Messages;
 import gim.model.Model;
-import gim.model.person.NameContainsKeywordsPredicate;
+import gim.model.exercise.NameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.

@@ -8,7 +8,7 @@ import gim.logic.commands.CommandResult;
 import gim.logic.commands.exceptions.CommandException;
 import gim.logic.parser.exceptions.ParseException;
 import gim.model.ReadOnlyAddressBook;
-import gim.model.person.Exercise;
+import gim.model.exercise.Exercise;
 
 /**
  * API of the Logic component

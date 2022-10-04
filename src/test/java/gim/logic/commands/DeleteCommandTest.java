@@ -16,7 +16,7 @@ import gim.commons.core.index.Index;
 import gim.model.Model;
 import gim.model.ModelManager;
 import gim.model.UserPrefs;
-import gim.model.person.Exercise;
+import gim.model.exercise.Exercise;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
