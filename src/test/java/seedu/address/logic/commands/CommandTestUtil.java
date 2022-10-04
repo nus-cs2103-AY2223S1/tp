@@ -38,9 +38,9 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_EMAIL_CABE = "cabe@example.com";
-    public static final String VALID_GENDER_AMY = "Female";
-    public static final String VALID_GENDER_BOB = "Male";
-    public static final String VALID_GENDER_CABE = "Male";
+    public static final String VALID_GENDER_AMY = "F";
+    public static final String VALID_GENDER_BOB = "M";
+    public static final String VALID_GENDER_CABE = "M";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
