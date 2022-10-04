@@ -25,6 +25,7 @@ public class JsonAdaptedFoodTest {
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
+    private static final String VALID_CALORIE = "200";
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
@@ -35,14 +36,14 @@ public class JsonAdaptedFoodTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedFood person =
-                new JsonAdaptedFood(INVALID_NAME, VALID_PHONE, VALID_TAGS);
+                new JsonAdaptedFood(INVALID_NAME, VALID_PHONE, VALID_CALORIE, VALID_TAGS);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedFood person = new JsonAdaptedFood(null, VALID_PHONE, VALID_TAGS);
+        JsonAdaptedFood person = new JsonAdaptedFood(null, VALID_PHONE, VALID_CALORIE, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -50,14 +51,14 @@ public class JsonAdaptedFoodTest {
     @Test
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         JsonAdaptedFood person =
-                new JsonAdaptedFood(VALID_NAME, INVALID_PHONE, VALID_TAGS);
+                new JsonAdaptedFood(VALID_NAME, INVALID_PHONE, VALID_CALORIE, VALID_TAGS);
         String expectedMessage = MealType.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
     @Test
     public void toModelType_nullPhone_throwsIllegalValueException() {
-        JsonAdaptedFood person = new JsonAdaptedFood(VALID_NAME, null, VALID_TAGS);
+        JsonAdaptedFood person = new JsonAdaptedFood(VALID_NAME, null, VALID_CALORIE, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, MealType.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -67,7 +68,7 @@ public class JsonAdaptedFoodTest {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedFood person =
-                new JsonAdaptedFood(VALID_NAME, VALID_PHONE, invalidTags);
+                new JsonAdaptedFood(VALID_NAME, VALID_PHONE, VALID_CALORIE, invalidTags);
         assertThrows(IllegalValueException.class, person::toModelType);
     }
 

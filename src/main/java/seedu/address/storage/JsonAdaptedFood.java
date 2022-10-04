@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.Calorie;
 import seedu.address.model.person.Food;
 import seedu.address.model.person.MealType;
 import seedu.address.model.person.Name;
@@ -24,16 +25,19 @@ class JsonAdaptedFood {
 
     private final String name;
     private final String phone;
+    private final String calorie;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedFood(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+    public JsonAdaptedFood(@JsonProperty("foodName") String foodName, @JsonProperty("mealType") String mealType,
+                           @JsonProperty("calorie") String calorie,
                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
-        this.name = name;
-        this.phone = phone;
+        this.name = foodName;
+        this.phone = mealType;
+        this.calorie = calorie;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -45,6 +49,7 @@ class JsonAdaptedFood {
     public JsonAdaptedFood(Food source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
+        calorie = source.getCalorie().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -78,9 +83,13 @@ class JsonAdaptedFood {
         }
         final MealType modelMealType = new MealType(phone);
 
+        if (!Calorie.isValidCalorie(calorie)) {
+            throw new IllegalValueException(Calorie.MESSAGE_CONSTRAINTS);
+        }
+        final Calorie modelCalorie = new Calorie(calorie);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Food(modelName, modelMealType, modelTags);
+        return new Food(modelName, modelMealType, modelCalorie, modelTags);
     }
 
 }

@@ -18,6 +18,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Calorie;
 import seedu.address.model.Model;
 import seedu.address.model.person.Food;
 import seedu.address.model.person.MealType;
@@ -93,9 +94,10 @@ public class EditCommand extends Command {
 
         Name updatedName = editPersonDescriptor.getName().orElse(foodToEdit.getName());
         MealType updatedMealType = editPersonDescriptor.getPhone().orElse(foodToEdit.getPhone());
+        Calorie updatedCalorie = editPersonDescriptor.getCalorie().orElse(foodToEdit.getCalorie());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(foodToEdit.getTags());
 
-        return new Food(updatedName, updatedMealType, updatedTags);
+        return new Food(updatedName, updatedMealType, updatedCalorie, updatedTags);
     }
 
     @Override
@@ -123,6 +125,7 @@ public class EditCommand extends Command {
     public static class EditPersonDescriptor {
         private Name name;
         private MealType mealType;
+        private Calorie calorie;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -134,6 +137,7 @@ public class EditCommand extends Command {
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.mealType);
+            setCalorie(toCopy.calorie);
             setTags(toCopy.tags);
         }
 
@@ -141,7 +145,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, mealType, tags);
+            return CollectionUtil.isAnyNonNull(name, mealType, calorie, tags);
         }
 
         public void setName(Name name) {
@@ -158,6 +162,14 @@ public class EditCommand extends Command {
 
         public Optional<MealType> getPhone() {
             return Optional.ofNullable(mealType);
+        }
+
+        public void setCalorie(Calorie calorie) {
+            this.calorie = calorie;
+        }
+
+        public Optional<Calorie> getCalorie() {
+            return Optional.ofNullable(calorie);
         }
 
         /**

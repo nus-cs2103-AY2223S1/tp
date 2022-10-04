@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.Calorie;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -18,16 +19,18 @@ public class Food {
     // Identity fields
     private final Name name;
     private final MealType mealType;
+    private final Calorie calorie;
 
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Food(Name name, MealType mealType, Set<Tag> tags) {
+    public Food(Name name, MealType mealType, Calorie calorie, Set<Tag> tags) {
         requireAllNonNull(name, mealType, tags);
         this.name = name;
         this.mealType = mealType;
+        this.calorie = calorie;
         this.tags.addAll(tags);
     }
 
@@ -37,6 +40,10 @@ public class Food {
 
     public MealType getPhone() {
         return mealType;
+    }
+
+    public Calorie getCalorie() {
+        return calorie;
     }
 
     /**
@@ -83,7 +90,7 @@ public class Food {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, mealType, tags);
+        return Objects.hash(name, mealType, calorie, tags);
     }
 
     @Override
