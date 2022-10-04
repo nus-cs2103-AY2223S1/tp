@@ -162,6 +162,7 @@ public class ModelManager implements Model {
     @Override
     public void exitFocusMode() {
         focusedClass = null;
+        updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
     }
 
     @Override
