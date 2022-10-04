@@ -21,35 +21,41 @@ public class Person {
     private final Email email;
 
     // Data fields
+    private final Position position;
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Position position, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, position, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.position = position;
         this.address = address;
         this.tags.addAll(tags);
     }
 
     public Name getName() {
-        return name;
+        return this.name;
     }
 
     public Phone getPhone() {
-        return phone;
+        return this.phone;
     }
 
     public Email getEmail() {
-        return email;
+        return this.email;
+    }
+
+    public Position getPosition() {
+        return this.position;
     }
 
     public Address getAddress() {
-        return address;
+        return this.address;
     }
 
     /**
@@ -91,6 +97,7 @@ public class Person {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getPosition().equals(getPosition())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags());
     }
@@ -98,7 +105,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, position, address, tags);
     }
 
     @Override
@@ -109,6 +116,8 @@ public class Person {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
+                .append("; Position: ")
+                .append(getPosition())
                 .append("; Address: ")
                 .append(getAddress());
 
