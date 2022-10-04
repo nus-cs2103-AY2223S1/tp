@@ -273,36 +273,31 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                          | I want to …​                                                | So that I can…​                                               |
-|----------|----------------------------------|-------------------------------------------------------------|---------------------------------------------------------------|
-| `* * *`  | potential user exploring the app | see a list of features                                      | learn how to use the app                                      |
-| `* * *`  | potential user exploring the app | test out the features with the sample data provided         | familiarise with the app's features before deciding to use it |
-| `* * *`  | user ready to use the app        | reset the app's data                                        | tailor the data to my own needs and add my own data           |
-| `* * *`  | new user                         | view how to use the app at any time                         | be reminded of the commands if I forget them                  |
-| `* * *`  | user                             | add new profiles                                            |                                                               |
-| `* * *`  | user                             | remove profiles that I am no longer in contact with         | focus on the relevant profiles                                |
-| `* * *`  | user                             | view all the profiles I've added at one glance              | check the connections I have added                            |
-| `* * *`  | user                             | view individual profiles                                    | access their contact information                              |
-| `* * *`  | user                             | create an event with a title, timing, and relevant profiles |                                                               |
-| `* * *`  | user                             | remove past events                                          |                                                               |
-| `* * *`  | user                             | view individual events                                      | know its timing and who is involved                           |
-| `* *`    | user                             | view upcoming events                                        | plan my schedule for the near future                          |
-
-
-*{More to be added}*
+| Priority | As a …​                          | I want to …​                                               | So that I can…​                                               |
+|----------|----------------------------------|------------------------------------------------------------|---------------------------------------------------------------|
+| `* * *`  | potential user exploring the app | see a list of features                                     | learn how to use the app                                      |
+| `* * *`  | potential user exploring the app | test out the features with the sample data provided        | familiarise with the app's features before deciding to use it |
+| `* * *`  | user ready to use the app        | reset the app's data                                       | tailor the data to my own needs and add my own data           |
+| `* * *`  | new user                         | view how to use the app at any time                        | be reminded of the commands if I forget them                  |
+| `* * *`  | user                             | add new profiles                                           |                                                               |
+| `* * *`  | user                             | remove profiles that I am no longer in contact with        | focus on the relevant profiles                                |
+| `* * *`  | user                             | view all the profiles I've added at one glance             | check the connections I have added                            |
+| `* * *`  | user                             | find individual profiles                                   | access their contact information                              |
+| `* * *`  | user                             | create an event with a name, timing, and relevant profiles |                                                               |
+| `* * *`  | user                             | remove past events                                         |                                                               |
+| `* * *`  | user                             | view individual events                                     | know its timing and who is involved                           |
+| `* *`    | user                             | view upcoming events                                       | plan my schedule for the near future                          |
 
 ### Use cases
 
 (For all use cases below, the **System** is the `NUScheduler` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - View all profiles**
 
 **MSS**
 
-1.  User requests to view all profiles
-2.  NUScheduler shows a list of profiles
-3.  User requests to delete a specific profile in the list
-4.  NUScheduler deletes the person
+1.  User requests to view all profiles.
+2.  NUScheduler shows a list of profiles.
 
     Use case ends.
 
@@ -312,49 +307,65 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
-
-    * 3a1. NUScheduler shows an error message.
-
-      Use case resumes at step 2.
-
-**Use case: Add an event**
+**Use case: UC02 - Delete a profile**
 
 **MSS**
 
-1. User requests to add an event to the schedule
-2. NUScheduler adds the event and displays the updated schedule of events
+1. User requests to <u>view all profiles (UC01)</u>.
+2. User requests to delete a specific profile in the list.
+3. NUScheduler deletes the person.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The given index is invalid.
+
+    * 2a1. NUScheduler shows an error message.
+
+      Use case resumes from step 2.
+
+**Use case: UC03 - Add an event**
+
+**MSS**
+
+1. User requests to add an event to the schedule.
+2. NUScheduler adds the event and displays the updated schedule of events.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. The starting date or the ending date is not provided.
+* 1a. The Name, starting date or the ending date is not provided.
 
     * 1a1. NUScheduler reminds user of the correct format to add an event.
 
       Use case ends.
 
-**User case: View upcoming events**
-
-**MSS**
-
-1. User requests to view all upcoming events within the next specified days
-2. NUScheduler displays the filtered list of matching events
-
-**Extensions**
-
-* 1a. The schedule is empty.
-
-  Use case ends.
-
-* 1b. The given time period is invalid.
+* 1b. An invalid profile is provided.
 
     * 1b1. NUScheduler shows an error message.
 
       Use case ends.
 
-*{More to be added}*
+**Use case: UC04 - View upcoming events**
+
+**MSS**
+
+1. User requests to view all upcoming events within the next specified days.
+2. NUScheduler displays the filtered list of matching events.
+
+**Extensions**
+
+* 1a. The given time period is invalid.
+
+    * 1a1. NUScheduler shows an error message.
+
+      Use case ends.
+    
+* 2a. There are no events in the next specified days.
+
+  Use case ends.
 
 ### Non-Functional Requirements
 
@@ -373,10 +384,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **GUI**: Graphical User Interface, a visual display that users can interact with
 * **NUS**: National University of Singapore, tertiary education institute
 * **End user**: _NUS_ students who use NUScheduler to handle their schedules
-* **Contact details**: Contains information such as Phone number and Email, allowing the _end user_ to communicate with other users.
+* **Contact details**: Contains information such as Phone number and Email, allowing the _end user_ to communicate with other users
 * **Profile**: Contains user information such as their Name and _contact details_
 * **Connections**: _Profiles_ who the _end user_ is connected to and requires meeting with
-* **Event**: A planned meeting containing the Title, Start timing and End timing of the meeting. Also contains _profiles_ of users participating in the meeting.
+* **Event**: A planned meeting containing the Name, Start timing and End timing of the meeting. Also contains _profiles_ of users participating in the meeting
 
 --------------------------------------------------------------------------------------------------------------------
 
