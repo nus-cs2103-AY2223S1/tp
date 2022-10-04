@@ -11,7 +11,7 @@ import seedu.address.logic.commands.CustomiseCommand.Attribute;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new CustomiseCommand object
+ * Parses input arguments and creates a new CustomiseCommand object.
  */
 public class CustomiseCommandParser implements Parser<CustomiseCommand> {
     /**

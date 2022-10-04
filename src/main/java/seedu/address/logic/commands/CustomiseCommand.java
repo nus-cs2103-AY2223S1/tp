@@ -75,7 +75,7 @@ public class CustomiseCommand extends Command {
     /**
      * Converts a given Attribute array into a string.
      *
-     * @param attributes an array of Attribute objects.
+     * @param attributes an array of Attribute objects
      * @return the string representation of the attribute order
      * @throws CommandException if the execution of the command encountered an error
      */
