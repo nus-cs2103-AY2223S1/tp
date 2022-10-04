@@ -15,6 +15,7 @@ public class TagCreateCommand extends Command {
     public static final String COMMAND_WORD = "create";
 
     public static final String MESSAGE_USAGE = TagCommand.COMMAND_WORD
+            + " "
             + COMMAND_WORD + ": Creates a tag to the address book. "
             + "Parameters: "
             + PREFIX_TAG + "TAG...\n"

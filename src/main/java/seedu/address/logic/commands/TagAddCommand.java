@@ -6,15 +6,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
@@ -32,6 +29,7 @@ public class TagAddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = TagCommand.COMMAND_WORD
+            + " "
             + COMMAND_WORD + ": Adds a tag to the contact "
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
@@ -47,17 +45,15 @@ public class TagAddCommand extends Command {
 
     private final Index index;
     private final Tag tag;
-    private final EditPersonDescriptor editPersonDescriptor;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public TagAddCommand(Index index, Tag tag, EditPersonDescriptor editPersonDescriptor) {
-        requireAllNonNull(index, tag, editPersonDescriptor);
+    public TagAddCommand(Index index, Tag tag) {
+        requireAllNonNull(index, tag);
 
         this.index = index;
         this.tag = tag;
-        this.editPersonDescriptor = editPersonDescriptor;
     }
 
     @Override
@@ -76,7 +72,7 @@ public class TagAddCommand extends Command {
         } else if (personToEdit.getTags().contains(tag)) {
             throw new CommandException(MESSAGE_TAG_ALREADY_ADDED);
         } else {
-            Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor, tag);
+            Person editedPerson = createEditedPerson(personToEdit, tag);
             model.setPerson(personToEdit, editedPerson);
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
             return new CommandResult(String.format(MESSAGE_ADD_TAG_SUCCESS, editedPerson));
@@ -87,7 +83,7 @@ public class TagAddCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor,
+    private static Person createEditedPerson(Person personToEdit,
                                              Tag tag) {
         requireNonNull(personToEdit);
 
@@ -102,110 +98,6 @@ public class TagAddCommand extends Command {
         Set<Tag> updatedTags = new HashSet<>(tagList);
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
-    }
-
-    /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
-     */
-    public static class EditPersonDescriptor {
-        private Name name;
-        private Phone phone;
-        private Email email;
-        private Address address;
-        private Set<Tag> tags;
-
-        public EditPersonDescriptor() {}
-
-        /**
-         * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
-            setName(toCopy.name);
-            setPhone(toCopy.phone);
-            setEmail(toCopy.email);
-            setAddress(toCopy.address);
-            setTags(toCopy.tags);
-        }
-
-        /**
-         * Returns true if at least one field is edited.
-         */
-        public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
-        }
-
-        public void setName(Name name) {
-            this.name = name;
-        }
-
-        public Optional<Name> getName() {
-            return Optional.ofNullable(name);
-        }
-
-        public void setPhone(Phone phone) {
-            this.phone = phone;
-        }
-
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
-        }
-
-        public void setEmail(Email email) {
-            this.email = email;
-        }
-
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
-        }
-
-        public void setAddress(Address address) {
-            this.address = address;
-        }
-
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
-        }
-
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
-        }
-
-        /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
-         */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
-        }
-
-        @Override
-        public boolean equals(Object other) {
-            // short circuit if same object
-            if (other == this) {
-                return true;
-            }
-
-            // instanceof handles nulls
-            if (!(other instanceof EditCommand.EditPersonDescriptor)) {
-                return false;
-            }
-
-            // state check
-            EditCommand.EditPersonDescriptor e = (EditCommand.EditPersonDescriptor) other;
-
-            return getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
-        }
     }
 
 }

@@ -143,6 +143,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     public void editTag(Tag oldTag, Tag newTag) {
         tags.editTag(oldTag, newTag);
+        persons.changeRelevantPersonTag(oldTag, newTag);
     }
 
     //// util methods

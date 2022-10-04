@@ -23,10 +23,6 @@ public class UniqueTagList implements Iterable<Tag> {
         return tagArrayList.size();
     }
 
-    public Tag getTag(int number) {
-        return tagArrayList.get(number);
-    }
-
     public void addTagToList(Tag tag) {
         tagArrayList.add(tag);
     }

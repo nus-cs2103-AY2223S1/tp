@@ -3,14 +3,18 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.tag.Tag;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
@@ -96,6 +100,25 @@ public class UniquePersonList implements Iterable<Person> {
         }
 
         internalList.setAll(persons);
+    }
+
+    public void changeRelevantPersonTag(Tag oldTag, Tag newTag) {
+        List<Person> newPersons = new ArrayList<>();
+        for (int i = 0; i < internalList.size(); i++) {
+            Person oldPerson = internalList.get(i);
+            List<Tag> personTags = new ArrayList<>(oldPerson.getTags());
+            if (personTags.contains(oldTag)) {
+                int index = personTags.indexOf(oldTag);
+                personTags.set(index, newTag);
+                Set<Tag> newTags = new HashSet<>(personTags);
+                Person newPerson = new Person(oldPerson.getName(),
+                        oldPerson.getPhone(),
+                        oldPerson.getEmail(),
+                        oldPerson.getAddress(),
+                        newTags);
+                internalList.set(i, newPerson);
+            }
+        }
     }
 
     /**
