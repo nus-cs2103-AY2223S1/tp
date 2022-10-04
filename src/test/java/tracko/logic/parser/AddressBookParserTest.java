@@ -23,7 +23,7 @@ import tracko.logic.commands.order.FindOrderCommand;
 import tracko.logic.commands.HelpCommand;
 import tracko.logic.commands.order.ListOrdersCommand;
 import tracko.logic.parser.exceptions.ParseException;
-import tracko.model.person.NameContainsKeywordsPredicate;
+import tracko.model.order.NameContainsKeywordsPredicate;
 import tracko.model.person.Person;
 import tracko.testutil.EditPersonDescriptorBuilder;
 import tracko.testutil.PersonBuilder;

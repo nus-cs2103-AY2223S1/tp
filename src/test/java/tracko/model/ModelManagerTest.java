@@ -15,7 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import tracko.commons.core.GuiSettings;
-import tracko.model.person.NameContainsKeywordsPredicate;
+import tracko.model.order.NameContainsKeywordsPredicate;
 import tracko.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {

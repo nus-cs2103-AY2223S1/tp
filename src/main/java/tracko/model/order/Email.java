@@ -1,10 +1,10 @@
-package tracko.model.person;
+package tracko.model.order;
 
 import static java.util.Objects.requireNonNull;
 import static tracko.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's email in the address book.
+ * Represents a Order's customer email in the order list.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
  */
 public class Email {

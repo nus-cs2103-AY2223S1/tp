@@ -9,10 +9,10 @@ import java.util.Set;
 import tracko.commons.core.index.Index;
 import tracko.commons.util.StringUtil;
 import tracko.logic.parser.exceptions.ParseException;
-import tracko.model.person.Address;
-import tracko.model.person.Email;
-import tracko.model.person.Name;
-import tracko.model.person.Phone;
+import tracko.model.order.Address;
+import tracko.model.order.Email;
+import tracko.model.order.Name;
+import tracko.model.order.Phone;
 import tracko.model.tag.Tag;
 
 /**

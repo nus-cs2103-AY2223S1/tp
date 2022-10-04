@@ -1,15 +1,12 @@
 package tracko.logic.commands.order;
 
 import static java.util.Objects.requireNonNull;
-import static tracko.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import tracko.commons.core.Messages;
 import tracko.commons.core.index.Index;
 import tracko.commons.util.CollectionUtil;
 import tracko.logic.commands.Command;
@@ -17,11 +14,11 @@ import tracko.logic.commands.CommandResult;
 import tracko.logic.commands.exceptions.CommandException;
 import tracko.logic.parser.CliSyntax;
 import tracko.model.Model;
-import tracko.model.person.Address;
-import tracko.model.person.Email;
-import tracko.model.person.Name;
+import tracko.model.order.Address;
+import tracko.model.order.Email;
+import tracko.model.order.Name;
 import tracko.model.person.Person;
-import tracko.model.person.Phone;
+import tracko.model.order.Phone;
 import tracko.model.tag.Tag;
 
 /**

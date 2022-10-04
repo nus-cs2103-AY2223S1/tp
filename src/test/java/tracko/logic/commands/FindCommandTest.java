@@ -19,7 +19,7 @@ import tracko.logic.commands.order.FindOrderCommand;
 import tracko.model.Model;
 import tracko.model.ModelManager;
 import tracko.model.UserPrefs;
-import tracko.model.person.NameContainsKeywordsPredicate;
+import tracko.model.order.NameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.

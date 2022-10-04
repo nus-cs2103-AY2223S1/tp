@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import tracko.logic.commands.order.FindOrderCommand;
 import tracko.logic.parser.order.FindOrderCommandParser;
-import tracko.model.person.NameContainsKeywordsPredicate;
+import tracko.model.order.NameContainsKeywordsPredicate;
 
 public class FindOrderCommandParserTest {
 

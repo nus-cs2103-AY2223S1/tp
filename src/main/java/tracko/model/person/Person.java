@@ -7,6 +7,10 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import tracko.model.order.Address;
+import tracko.model.order.Email;
+import tracko.model.order.Name;
+import tracko.model.order.Phone;
 import tracko.model.tag.Tag;
 
 /**

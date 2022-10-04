@@ -1,9 +1,10 @@
-package tracko.model.person;
+package tracko.model.order;
 
 import java.util.List;
 import java.util.function.Predicate;
 
 import tracko.commons.util.StringUtil;
+import tracko.model.person.Person;
 
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.

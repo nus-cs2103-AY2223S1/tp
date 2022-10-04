@@ -18,7 +18,7 @@ import tracko.logic.commands.exceptions.CommandException;
 import tracko.logic.commands.order.EditOrderCommand;
 import tracko.model.AddressBook;
 import tracko.model.Model;
-import tracko.model.person.NameContainsKeywordsPredicate;
+import tracko.model.order.NameContainsKeywordsPredicate;
 import tracko.model.person.Person;
 import tracko.testutil.EditPersonDescriptorBuilder;
 

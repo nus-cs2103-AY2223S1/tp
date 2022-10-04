@@ -12,10 +12,10 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import tracko.commons.exceptions.IllegalValueException;
-import tracko.model.person.Address;
-import tracko.model.person.Email;
-import tracko.model.person.Name;
-import tracko.model.person.Phone;
+import tracko.model.order.Address;
+import tracko.model.order.Email;
+import tracko.model.order.Name;
+import tracko.model.order.Phone;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";

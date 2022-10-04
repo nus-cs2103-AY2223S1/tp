@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 import tracko.model.ReadOnlyTrackO;
 import tracko.model.TrackO;
-import tracko.model.order.Order;
+import tracko.model.order.*;
 import tracko.model.tag.Tag;
 
 /**
@@ -25,18 +25,18 @@ public class SampleDataUtil {
 
     public static Order[] getSampleOrders() {
         return new Order[] {
-                new Order("Alex Yeoh", "87438807", "alexyeoh@example.com",
-                        "Blk 30 Geylang Street 29, #06-40",
-                        "keychain", 3),
-                new Order("Bernice Yu", "99272758", "berniceyu@example.com",
-                        "Blk 30 Lorong 3 Serangoon Gardens, #07-18",
-                        "bolster", 1),
-                new Order("Charlotte Oliveiro", "93210283", "charlotte@example.com",
-                        "Blk 11 Ang Mo Kio Street 74, #11-04",
-                        "pillow", 1),
-                new Order("David Li", "91031282", "lidavid@example.com",
-                        "Blk 436 Serangoon Gardens Street 26, #16-43",
-                        "mattress", 2)
+            new Order(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
+                new Address("Blk 30 Geylang Street 29, #06-40"),
+                "keychain", 3),
+            new Order(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
+                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
+                "bolster", 1),
+            new Order(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
+                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
+                "pillow", 1),
+            new Order(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
+                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
+                "mattress", 2)
         };
     }
 

@@ -2,16 +2,10 @@ package tracko.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import tracko.commons.exceptions.IllegalValueException;
-import tracko.model.order.Order;
-import tracko.model.person.*;
-import tracko.model.tag.Tag;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import tracko.commons.exceptions.IllegalValueException;
+
+import tracko.model.order.*;
 
 public class JsonAdaptedOrder {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Orders's %s field is missing!";
@@ -43,10 +37,10 @@ public class JsonAdaptedOrder {
      */
     public JsonAdaptedOrder(Order source) {
         // To be updated after validation is added
-        name = source.getName();
-        phone = source.getPhone();
-        email = source.getEmail();
-        address = source.getAddress();
+        name = source.getName().fullName;
+        phone = source.getPhone().value;
+        email = source.getEmail().value;
+        address = source.getAddress().value;
         item = source.getItem();
         quantity = source.getQuantity().toString();
     }
@@ -61,19 +55,35 @@ public class JsonAdaptedOrder {
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
+        if (!Name.isValidName(name)) {
+            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        }
+        final Name modelName = new Name(name);
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
+        if (!Phone.isValidPhone(phone)) {
+            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        }
+        final Phone modelPhone = new Phone(phone);
 
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
         }
+        if (!Email.isValidEmail(email)) {
+            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+        }
+        final Email modelEmail = new Email(email);
 
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
         }
+        if (!Address.isValidAddress(address)) {
+            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        }
+        final Address modelAddress = new Address(address);
 
-        return new Order(name, phone, email, address, item, Integer.parseInt(quantity));
+        return new Order(modelName, modelPhone, modelEmail, modelAddress, item, Integer.parseInt(quantity));
     }
 }

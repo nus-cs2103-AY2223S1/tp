@@ -7,7 +7,7 @@ import java.util.Arrays;
 import tracko.logic.commands.order.FindOrderCommand;
 import tracko.logic.parser.Parser;
 import tracko.logic.parser.exceptions.ParseException;
-import tracko.model.person.NameContainsKeywordsPredicate;
+import tracko.model.order.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object

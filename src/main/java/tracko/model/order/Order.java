@@ -3,15 +3,15 @@ package tracko.model.order;
 import java.time.LocalDateTime;
 
 public class Order {
-    private final String name;
-    private final String phone;
-    private final String email;
-    private final String address;
+    private final Name name;
+    private final Phone phone;
+    private final Email email;
+    private final Address address;
     private final String item;
     private final Integer quantity;
     private final LocalDateTime timeCreated;
 
-    public Order(String name, String phone, String email, String address, String item, Integer quantity) {
+    public Order(Name name, Phone phone, Email email, Address address, String item, Integer quantity) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -21,19 +21,19 @@ public class Order {
         this.timeCreated = LocalDateTime.now();
     }
 
-    public String getName() {
+    public Name getName() {
         return name;
     }
 
-    public String getPhone() {
+    public Phone getPhone() {
         return phone;
     }
 
-    public String getEmail() {
+    public Email getEmail() {
         return email;
     }
 
-    public String getAddress() {
+    public Address getAddress() {
         return address;
     }
 

@@ -14,10 +14,14 @@ import tracko.logic.commands.order.AddOrderCommand;
 import tracko.logic.parser.ArgumentMultimap;
 import tracko.logic.parser.ArgumentTokenizer;
 import tracko.logic.parser.Parser;
+import tracko.logic.parser.ParserUtil;
 import tracko.logic.parser.Prefix;
 import tracko.logic.parser.exceptions.ParseException;
+import tracko.model.order.Address;
+import tracko.model.order.Email;
+import tracko.model.order.Name;
 import tracko.model.order.Order;
-
+import tracko.model.order.Phone;
 
 public class AddOrderCommandParser implements Parser<AddOrderCommand> {
 
@@ -37,10 +41,10 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddOrderCommand.MESSAGE_USAGE));
         }
 
-        String name = argMultimap.getValue(PREFIX_NAME).get();
-        String phone = argMultimap.getValue(PREFIX_PHONE).get();
-        String email = argMultimap.getValue(PREFIX_EMAIL).get();
-        String address = argMultimap.getValue(PREFIX_ADDRESS).get();
+        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
+        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         String item = argMultimap.getValue(PREFIX_ITEM).get();
         Integer quantity = Integer.parseInt(argMultimap.getValue(PREFIX_QUANTITY).get());
 
