@@ -28,7 +28,7 @@ public class PersonBuilder {
     private Phone phone;
     private Email email;
     private Address address;
-    private final List<Appointment> listOfAppointments;
+    private List<Appointment> listOfAppointments;
     private Set<Tag> tags;
 
     /**
@@ -100,6 +100,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withAppointment(Appointment appointment) {
         this.listOfAppointments.add(appointment);
+        return this;
+    }
+
+    /**
+     * Sets the List of {@code Appointment} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withAppointmentList(List<Appointment> listOfAppointments) {
+        this.listOfAppointments = listOfAppointments;
         return this;
     }
 

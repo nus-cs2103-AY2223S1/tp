@@ -54,10 +54,11 @@ public class Person {
     public Address getAddress() {
         return address;
     }
+
     public List<Appointment> getAppointments() {
         return listOfAppointments;
     }
-
+    
     public void addAppointment(Appointment appointment) {
         listOfAppointments.add(appointment);
     }

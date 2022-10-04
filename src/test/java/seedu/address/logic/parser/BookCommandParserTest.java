@@ -12,7 +12,7 @@ import seedu.address.model.person.Appointment;
 
 public class BookCommandParserTest {
     private final BookCommandParser parser = new BookCommandParser();
-    private final Appointment appointment = new Appointment("Sore Throat", "2022-12-10 16:30");
+    private final Appointment appointment = new Appointment("Sore Throat", "2022-12-10 16:30", false);
 
     @Test
     public void parse_validArgs_returnsBookCommand() {
