@@ -31,7 +31,7 @@ public interface Logic {
     ReadOnlyClientBook getClientBook();
 
     /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Client> getFilteredPersonList();
+    ObservableList<Client> getFilteredClientList();
 
     /**
      * Returns the user prefs' address book file path.

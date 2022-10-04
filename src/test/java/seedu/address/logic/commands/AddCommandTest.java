@@ -31,14 +31,14 @@ public class AddCommandTest {
     }
 
     @Test
-    public void execute_ClientAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_clientAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingClientAdded modelStub = new ModelStubAcceptingClientAdded();
         Client validClient = new ClientBuilder().build();
 
         CommandResult commandResult = new AddCommand(validClient).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validClient), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validClient), modelStub.ClientsAdded);
+        assertEquals(Arrays.asList(validClient), modelStub.clientsAdded);
     }
 
     @Test
@@ -47,7 +47,7 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(validClient);
         ModelStub modelStub = new ModelStubWithClient(validClient);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_Client, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_CLIENT, () -> addCommand.execute(modelStub));
     }
 
     @Test
@@ -109,7 +109,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addClient(Client Client) {
+        public void addClient(Client client) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -124,7 +124,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasClient(Client Client) {
+        public boolean hasClient(Client client) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -153,17 +153,17 @@ public class AddCommandTest {
      * A Model stub that contains a single Client.
      */
     private class ModelStubWithClient extends ModelStub {
-        private final Client Client;
+        private final Client client;
 
-        ModelStubWithClient(Client Client) {
-            requireNonNull(Client);
-            this.Client = Client;
+        ModelStubWithClient(Client client) {
+            requireNonNull(client);
+            this.client = client;
         }
 
         @Override
-        public boolean hasClient(Client Client) {
-            requireNonNull(Client);
-            return this.Client.isSameClient(Client);
+        public boolean hasClient(Client client) {
+            requireNonNull(client);
+            return this.client.isSameClient(client);
         }
     }
 
@@ -171,18 +171,18 @@ public class AddCommandTest {
      * A Model stub that always accept the Client being added.
      */
     private class ModelStubAcceptingClientAdded extends ModelStub {
-        final ArrayList<Client> ClientsAdded = new ArrayList<>();
+        final ArrayList<Client> clientsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasClient(Client Client) {
-            requireNonNull(Client);
-            return ClientsAdded.stream().anyMatch(Client::isSameClient);
+        public boolean hasClient(Client client) {
+            requireNonNull(client);
+            return clientsAdded.stream().anyMatch(client::isSameClient);
         }
 
         @Override
-        public void addClient(Client Client) {
-            requireNonNull(Client);
-            ClientsAdded.add(Client);
+        public void addClient(Client client) {
+            requireNonNull(client);
+            clientsAdded.add(client);
         }
 
         @Override

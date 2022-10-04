@@ -28,7 +28,7 @@ public class ClientBookTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), clientBook.getClientsList());
+        assertEquals(Collections.emptyList(), clientBook.getClientList());
     }
 
     @Test
@@ -39,7 +39,7 @@ public class ClientBookTest {
     @Test
     public void resetData_withValidReadOnlyClientBook_replacesData() {
         ClientBook newData = getTypicalClientBook();
-        ClientBook.resetData(newData);
+        newData.resetData(newData);
         assertEquals(newData, clientBook);
     }
 
@@ -49,7 +49,7 @@ public class ClientBookTest {
         Client editedAlice = new ClientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Client> newClients = Arrays.asList(ALICE, editedAlice);
-        clientBookStub newData = new clientBookStub(newClients);
+        ClientBookStub newData = new ClientBookStub(newClients);
 
         assertThrows(DuplicateClientException.class, () -> clientBook.resetData(newData));
     }
@@ -60,18 +60,18 @@ public class ClientBookTest {
     }
 
     @Test
-    public void hasClient_ClientNotInClientBook_returnsFalse() {
+    public void hasClient_clientNotInClientBook_returnsFalse() {
         assertFalse(clientBook.hasClient(ALICE));
     }
 
     @Test
-    public void hasClient_ClientInClientBook_returnsTrue() {
+    public void hasClient_clientInClientBook_returnsTrue() {
         clientBook.addClient(ALICE);
         assertTrue(clientBook.hasClient(ALICE));
     }
 
     @Test
-    public void hasClient_ClientWithSameIdentityFieldsInClientBook_returnsTrue() {
+    public void hasClient_clientWithSameIdentityFieldsInClientBook_returnsTrue() {
         clientBook.addClient(ALICE);
         Client editedAlice = new ClientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
@@ -86,16 +86,16 @@ public class ClientBookTest {
     /**
      * A stub ReadOnlyClientBook whose Clients list can violate interface constraints.
      */
-    private static class clientBookStub implements ReadOnlyClientBook {
-        private final ObservableList<Client> Clients = FXCollections.observableArrayList();
+    private static class ClientBookStub implements ReadOnlyClientBook {
+        private final ObservableList<Client> clients = FXCollections.observableArrayList();
 
-        clientBookStub(Collection<Client> Clients) {
-            this.Clients.setAll(Clients);
+        ClientBookStub(Collection<Client> clients) {
+            this.clients.setAll(clients);
         }
 
         @Override
         public ObservableList<Client> getClientList() {
-            return Clients;
+            return clients;
         }
     }
 

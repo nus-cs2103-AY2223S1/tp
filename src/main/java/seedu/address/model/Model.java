@@ -77,7 +77,7 @@ public interface Model {
     void setClient(Client target, Client editedPerson);
 
     /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Client> getFilteredPersonList();
+    ObservableList<Client> getFilteredClientList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
