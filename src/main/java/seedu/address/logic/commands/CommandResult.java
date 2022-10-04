@@ -17,24 +17,13 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
-    /** The list that should be displayed after this command is executed. */
-    private final EntryList displayedList;
-
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, EntryList displayedList) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
-        this.displayedList = displayedList;
-    }
-
-    /**
-     * Constructs a {@code CommandResult} with the specified fields and a default displayedList.
-     */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
-        this(feedbackToUser, showHelp, exit, EntryList.KEEP);
     }
 
     /**
@@ -55,10 +44,6 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
-    }
-
-    public EntryList getDisplayedList() {
-        return displayedList;
     }
 
     @Override
@@ -83,13 +68,4 @@ public class CommandResult {
         return Objects.hash(feedbackToUser, showHelp, exit);
     }
 
-    /**
-     * Specifies the view that the UI's list should switch to next.
-     */
-    public enum EntryList {
-        /** Keep displaying the list that is currently shown. */
-        KEEP,
-        TASK,
-        PERSON,
-    }
 }
