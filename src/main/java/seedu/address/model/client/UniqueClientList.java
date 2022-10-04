@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.client.exceptions.DuplicatePersonException;
-import seedu.address.model.client.exceptions.PersonNotFoundException;
+import seedu.address.model.client.exceptions.DuplicateClientException;
+import seedu.address.model.client.exceptions.ClientNotFoundException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
@@ -43,7 +43,7 @@ public class UniqueClientList implements Iterable<Client> {
     public void add(Client toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateClientException();
         }
         internalList.add(toAdd);
     }
@@ -58,11 +58,11 @@ public class UniqueClientList implements Iterable<Client> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new ClientNotFoundException();
         }
 
         if (!target.isSameClient(editedPerson) && contains(editedPerson)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateClientException();
         }
 
         internalList.set(index, editedPerson);
@@ -80,7 +80,7 @@ public class UniqueClientList implements Iterable<Client> {
     public void remove(Client toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new ClientNotFoundException();
         }
     }
 
@@ -92,7 +92,7 @@ public class UniqueClientList implements Iterable<Client> {
     public void setClients(List<Client> persons) {
         requireAllNonNull(persons);
         if (!clientsAreUnique(persons)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateClientException();
         }
 
         internalList.setAll(persons);
