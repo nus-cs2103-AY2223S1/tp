@@ -21,7 +21,7 @@ public class ExerciseListPanel extends UiPart<Region> {
     private ListView<Exercise> personListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code ExerciseListPanel} with the given {@code ObservableList}.
      */
     public ExerciseListPanel(ObservableList<Exercise> personList) {
         super(FXML);
@@ -30,7 +30,7 @@ public class ExerciseListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Exercise} using a {@code ExerciseCard}.
      */
     class ExerciseListViewCell extends ListCell<Exercise> {
         @Override

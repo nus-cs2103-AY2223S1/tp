@@ -19,7 +19,7 @@ import gim.model.AddressBook;
 import gim.model.person.Exercise;
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Exercise} objects to be used in tests.
  */
 public class TypicalExercises {
 
@@ -48,7 +48,7 @@ public class TypicalExercises {
     public static final Exercise IDA = new ExerciseBuilder().withName("Ida Mueller").withPhone("8482131")
             .withEmail("hans@example.com").withAddress("chicago ave").build();
 
-    // Manually added - Person's details found in {@code CommandTestUtil}
+    // Manually added - Exercise's details found in {@code CommandTestUtil}
     public static final Exercise AMY = new ExerciseBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
     public static final Exercise BOB = new ExerciseBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)

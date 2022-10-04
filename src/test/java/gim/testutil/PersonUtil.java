@@ -14,7 +14,7 @@ import gim.model.person.Exercise;
 import gim.model.tag.Tag;
 
 /**
- * A utility class for Person.
+ * A utility class for Exercise.
  */
 public class ExerciseUtil {
 
@@ -41,7 +41,7 @@ public class ExerciseUtil {
     }
 
     /**
-     * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
+     * Returns the part of command string for the given {@code EditExerciseDescriptor}'s details.
      */
     public static String getEditExerciseDescriptorDetails(EditExerciseDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();

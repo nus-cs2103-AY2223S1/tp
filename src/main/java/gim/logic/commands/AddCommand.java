@@ -39,7 +39,7 @@ public class AddCommand extends Command {
     private final Exercise toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Exercise}
      */
     public AddCommand(Exercise person) {
         requireNonNull(person);

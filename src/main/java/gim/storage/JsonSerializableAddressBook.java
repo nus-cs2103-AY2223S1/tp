@@ -19,7 +19,7 @@ import gim.model.person.Exercise;
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_PERSON = "Exercises list contains duplicate person(s).";
 
     private final List<JsonAdaptedExercise> persons = new ArrayList<>();
 

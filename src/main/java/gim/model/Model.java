@@ -70,9 +70,9 @@ public interface Model {
     void addExercise(Exercise person);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given person {@code target} with {@code editedExercise}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The person identity of {@code editedExercise} must not be the same as another existing person in the address book.
      */
     void setExercise(Exercise target, Exercise editedExercise);
 

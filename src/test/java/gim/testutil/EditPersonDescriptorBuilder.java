@@ -13,7 +13,7 @@ import gim.model.person.Phone;
 import gim.model.tag.Tag;
 
 /**
- * A utility class to help with building EditPersonDescriptor objects.
+ * A utility class to help with building EditExerciseDescriptor objects.
  */
 public class EditExerciseDescriptorBuilder {
 
@@ -28,7 +28,7 @@ public class EditExerciseDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
+     * Returns an {@code EditExerciseDescriptor} with fields containing {@code person}'s details
      */
     public EditExerciseDescriptorBuilder(Exercise person) {
         descriptor = new EditExerciseDescriptor();
@@ -40,7 +40,7 @@ public class EditExerciseDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Name} of the {@code EditExerciseDescriptor} that we are building.
      */
     public EditExerciseDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
@@ -48,7 +48,7 @@ public class EditExerciseDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Phone} of the {@code EditExerciseDescriptor} that we are building.
      */
     public EditExerciseDescriptorBuilder withPhone(String phone) {
         descriptor.setPhone(new Phone(phone));
@@ -56,7 +56,7 @@ public class EditExerciseDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Email} of the {@code EditExerciseDescriptor} that we are building.
      */
     public EditExerciseDescriptorBuilder withEmail(String email) {
         descriptor.setEmail(new Email(email));
@@ -64,7 +64,7 @@ public class EditExerciseDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Address} of the {@code EditExerciseDescriptor} that we are building.
      */
     public EditExerciseDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
@@ -72,7 +72,7 @@ public class EditExerciseDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditExerciseDescriptor}
      * that we are building.
      */
     public EditExerciseDescriptorBuilder withTags(String... tags) {

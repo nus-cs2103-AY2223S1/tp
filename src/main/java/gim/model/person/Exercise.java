@@ -10,7 +10,7 @@ import java.util.Set;
 import gim.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Exercise in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Exercise {

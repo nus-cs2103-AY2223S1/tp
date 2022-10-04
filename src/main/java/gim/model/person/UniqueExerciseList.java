@@ -13,14 +13,14 @@ import gim.model.person.exceptions.ExerciseNotFoundException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of
- * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Person#equals(Object) so
+ * A person is considered unique by comparing using {@code Exercise#isSameExercise(Exercise)}. As such, adding and updating of
+ * persons uses Exercise#isSameExercise(Exercise) for equality so as to ensure that the person being added or updated is
+ * unique in terms of identity in the UniqueExerciseList. However, the removal of a person uses Exercise#equals(Object) so
  * as to ensure that the person with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
- * @see Person#isSamePerson(Person)
+ * @see Exercise#isSameExercise(Exercise)
  */
 public class UniqueExerciseList implements Iterable<Exercise> {
 
@@ -49,9 +49,9 @@ public class UniqueExerciseList implements Iterable<Exercise> {
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     * Replaces the person {@code target} in the list with {@code editedExercise}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     * The person identity of {@code editedExercise} must not be the same as another existing person in the list.
      */
     public void setExercise(Exercise target, Exercise editedExercise) {
         requireAllNonNull(target, editedExercise);

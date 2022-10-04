@@ -46,7 +46,7 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Exercise: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
@@ -55,7 +55,7 @@ public class EditCommand extends Command {
 
     /**
      * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param editExerciseDescriptor details to edit the person with
      */
     public EditCommand(Index index, EditExerciseDescriptor editExerciseDescriptor) {
         requireNonNull(index);
@@ -87,8 +87,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Exercise} with the details of {@code personToEdit}
+     * edited with {@code editExerciseDescriptor}.
      */
     private static Exercise createEditedExercise(Exercise personToEdit, EditExerciseDescriptor editExerciseDescriptor) {
         assert personToEdit != null;

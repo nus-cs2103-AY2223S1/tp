@@ -10,7 +10,7 @@ import javafx.scene.layout.Region;
 import gim.model.person.Exercise;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code Exercise}.
  */
 public class ExerciseCard extends UiPart<Region> {
 
@@ -42,7 +42,7 @@ public class ExerciseCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code ExerciseCode} with the given {@code Exercise} and index to display.
      */
     public ExerciseCard(Exercise person, int displayedIndex) {
         super(FXML);

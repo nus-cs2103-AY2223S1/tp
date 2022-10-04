@@ -18,11 +18,11 @@ import gim.model.person.Phone;
 import gim.model.tag.Tag;
 
 /**
- * Jackson-friendly version of {@link Person}.
+ * Jackson-friendly version of {@link Exercise}.
  */
 class JsonAdaptedExercise {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Exercise's %s field is missing!";
 
     private final String name;
     private final String phone;
@@ -31,7 +31,7 @@ class JsonAdaptedExercise {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedExercise} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedExercise(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
@@ -47,7 +47,7 @@ class JsonAdaptedExercise {
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Exercise} into this class for Jackson use.
      */
     public JsonAdaptedExercise(Exercise source) {
         name = source.getName().fullName;
@@ -60,7 +60,7 @@ class JsonAdaptedExercise {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted person object into the model's {@code Exercise} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
