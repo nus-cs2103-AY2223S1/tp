@@ -13,11 +13,11 @@ import seedu.address.model.tag.Tag;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Food {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
+    private final MealType mealType;
     private final Email email;
 
     // Data fields
@@ -27,10 +27,10 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Food(Name name, MealType mealType, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, mealType, email, address, tags);
         this.name = name;
-        this.phone = phone;
+        this.mealType = mealType;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
@@ -40,8 +40,8 @@ public class Person {
         return name;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public MealType getPhone() {
+        return mealType;
     }
 
     public Email getEmail() {
@@ -64,13 +64,13 @@ public class Person {
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Person otherPerson) {
-        if (otherPerson == this) {
+    public boolean isSamePerson(Food otherFood) {
+        if (otherFood == this) {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
+        return otherFood != null
+                && otherFood.getName().equals(getName());
     }
 
     /**
@@ -83,22 +83,22 @@ public class Person {
             return true;
         }
 
-        if (!(other instanceof Person)) {
+        if (!(other instanceof Food)) {
             return false;
         }
 
-        Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+        Food otherFood = (Food) other;
+        return otherFood.getName().equals(getName())
+                && otherFood.getPhone().equals(getPhone())
+                && otherFood.getEmail().equals(getEmail())
+                && otherFood.getAddress().equals(getAddress())
+                && otherFood.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, mealType, email, address, tags);
     }
 
     @Override

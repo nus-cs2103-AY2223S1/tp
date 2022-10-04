@@ -12,8 +12,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Calorie;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.MealType;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -57,13 +57,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code phone} is invalid.
      */
-    public static Phone parsePhone(String phone) throws ParseException {
+    public static MealType parsePhone(String phone) throws ParseException {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+        if (!MealType.isValidPhone(trimmedPhone)) {
+            throw new ParseException(MealType.MESSAGE_CONSTRAINTS);
         }
-        return new Phone(trimmedPhone);
+        return new MealType(trimmedPhone);
     }
 
     /**

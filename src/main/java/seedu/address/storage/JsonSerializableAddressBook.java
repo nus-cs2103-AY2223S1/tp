@@ -12,7 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Calorie;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Food;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -22,14 +22,14 @@ class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedFood> persons = new ArrayList<>();
     private final Calorie calorieTarget;
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     // This constructor is for unit tests
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedFood> persons) {
         this.persons.addAll(persons);
         this.calorieTarget = new Calorie();
     }
@@ -40,7 +40,7 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        persons.addAll(source.getPersonList().stream().map(JsonAdaptedFood::new).collect(Collectors.toList()));
         calorieTarget = source.getCalorieTarget();
     }
 
@@ -51,12 +51,12 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(person)) {
+        for (JsonAdaptedFood jsonAdaptedFood : persons) {
+            Food food = jsonAdaptedFood.toModelType();
+            if (addressBook.hasPerson(food)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            addressBook.addPerson(person);
+            addressBook.addPerson(food);
         }
         addressBook.setCalorieTarget(this.calorieTarget);
         return addressBook;
