@@ -36,6 +36,14 @@ public class Email {
     /**
      * Constructs an {@code Email}.
      *
+     */
+    public Email() {
+        value = "";
+    }
+
+    /**
+     * Constructs an {@code Email}.
+     *
      * @param email A valid email address.
      */
     public Email(String email) {
