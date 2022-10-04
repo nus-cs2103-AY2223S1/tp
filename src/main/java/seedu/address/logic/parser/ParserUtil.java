@@ -13,6 +13,10 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.position.Position;
+import seedu.address.model.person.position.Professor;
+import seedu.address.model.person.position.Student;
+import seedu.address.model.person.position.TeachingAssistant;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -93,6 +97,15 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    public static Position parsePosition(String positionLine) throws ParseException {
+        Integer position = Integer.parseInt(positionLine);
+        requireNonNull(position);
+        if (!Position.isValidPosition(position)) {
+            throw new ParseException(Position.MESSAGE_CONSTRAINTS);
+        }
+        return Position.buildPosition(position);
     }
 
     /**
