@@ -16,9 +16,11 @@ public class TutorialGroup {
      */
     public static final String VALIDATION_REGEX = "[T[0-9][0-9]]";
 
+    public static final String DEFAULT_TUTORIAL_GROUP = "T01";
+
     public final String tutorialGroup;
 
-    private static final String DEFAULT_TUTORIAL_GROUP = "T01";
+
 
     /**
      * Constructs a {@code TutorialGroup}.
