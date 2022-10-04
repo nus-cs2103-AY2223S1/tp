@@ -8,15 +8,27 @@ import java.util.ArrayList;
  */
 
 public class HomeworkList {
-    public final ArrayList<String> homeworkList;
+    public final ArrayList<Homework> homeworkList;
 
+    /**
+     * Constructs a {@code HomeworkList}.
+     */
     public HomeworkList() {
         homeworkList = new ArrayList<>();
     }
 
+    /**
+     * Adds a homework to the homework list.
+     *
+     * @param homework The homework object to be added.
+     */
+    public void addHomework(Homework homework) {
+        homeworkList.add(homework);
+    }
+
     @Override
     public String toString() {
-        StringBuilder description = new StringBuilder();
+        StringBuilder description = new StringBuilder("Homework:\n");
         for (int i = 0; i < homeworkList.size(); i++) {
             description.append(i + 1).append(". ").append(homeworkList.get(i)).append("\n");
         }

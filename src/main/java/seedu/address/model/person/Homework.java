@@ -9,9 +9,14 @@ import static java.util.Objects.requireNonNull;
 public class Homework {
     public final String value;
 
-    public Homework(String remark) {
-        requireNonNull(remark);
-        value = remark;
+    /**
+     * Constructs an {@code Homework}.
+     *
+     * @param homework A description of the homework.
+     */
+    public Homework(String homework) {
+        requireNonNull(homework);
+        value = homework;
     }
 
     @Override
