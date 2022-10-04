@@ -17,13 +17,26 @@ public class TypicalTasks {
     public static final Task FINISH_TP = new Task(
             new TaskName("Finish TP"),
             new Module("CS2103T"),
-            new Deadline("2022-11-15")
+            new Deadline("2022-11-15 00:00")
+    );
+
+    /** Weakly but not strongly equivalent to FINISH_TP. */
+    public static final Task FINISH_TP_ISH = new Task(
+            new TaskName("Finish TP"),
+            new Module("CS2103T"),
+            new Deadline("2022-12-12 12:00")
+    );
+
+    public static final Task LAB_2 = new Task(
+            new TaskName("Lab 2"),
+            new Module("CS2030S"),
+            new Deadline("2022-02-02 23:59")
     );
 
     private TypicalTasks() {} // prevents instantiation
 
     public static List<Task> getTypicalTasks() {
-        return new ArrayList<>(Arrays.asList(FINISH_TP));
+        return new ArrayList<>(Arrays.asList(FINISH_TP, LAB_2));
     }
 
     /**
