@@ -8,15 +8,13 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalProfiles.ALICE;
 import static seedu.address.testutil.TypicalProfiles.getTypicalAddressBook;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.event.Event;
 import seedu.address.model.profile.Profile;
 import seedu.address.model.profile.exceptions.DuplicateProfileException;
 import seedu.address.testutil.ProfileBuilder;
@@ -48,8 +46,8 @@ public class AddressBookTest {
         Profile editedAlice = new ProfileBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Profile> newProfiles = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newProfiles);
-
+        List<Event> emptyEvents = new ArrayList<>();
+        AddressBookStub newData = new AddressBookStub(newProfiles, emptyEvents);
         assertThrows(DuplicateProfileException.class, () -> addressBook.resetData(newData));
     }
 
@@ -87,15 +85,23 @@ public class AddressBookTest {
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Profile> profiles = FXCollections.observableArrayList();
+        private final ObservableList<Event> events = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Profile> profiles) {
+        AddressBookStub(Collection<Profile> profiles, Collection<Event> events) {
             this.profiles.setAll(profiles);
+            this.events.setAll(events);
         }
 
         @Override
         public ObservableList<Profile> getProfileList() {
             return profiles;
         }
+
+        @Override
+        public ObservableList<Event> getEventList() {
+            return events;
+        }
+
     }
 
 }
