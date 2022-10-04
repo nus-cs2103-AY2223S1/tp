@@ -2,10 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -13,7 +11,6 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 
 /**
@@ -34,11 +31,16 @@ public class DeleteCommand extends Command {
 
     private final Name targetName;
 
+    /**
+     * @param targetIndex Index of the person in the filtered person list to delete
+     */
     public DeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
         this.targetName = null;
     }
-
+    /**
+     * @param targetName Name of the person in the person list to delete
+     */
     public DeleteCommand(Name targetName) {
         this.targetName = targetName;
         this.targetIndex = null;
