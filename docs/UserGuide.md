@@ -117,16 +117,19 @@ Examples:
 
 ### Add an appointment:  `book`
 
-Books an appointment for the specified patient at INDEX with a given REASON and DATE.
+Books an appointment for the specified patient at INDEX with a given REASON and DATE. 
+
+Appointments added are sorted according to their date.
 
 Format: `book INDEX r/REASON d/DATE`
 
-* The index refers to the index number shown in the displayed appointment list.
+* The index refers to the index number shown in the displayed patient list.
 * The index must be a positive integer 1, 2, 3, …​
-* Dates should be inputted in a YYYY-MM-DDTHH:MM format.
+* Dates should be inputted in a YYYY-MM-DD HH:MM format or HH:MM YYYY-MM-DD format.
 
 Examples:
-* `Book 2 r/Ear Infection d/2022-12-31T18:00`
+* `book 2 r/Ear Infection d/2022-12-31 18:00`
+* `book 2 r/Ear Infection d/16:30 2022-12-31`
 
 ### Mark an appointment as completed:  `mark`
 
@@ -194,7 +197,7 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**Book** | `book INDEX r/REASON d/DATE`<br> e.g., `book 2 r/EarInfection d/2022-12-31T18:00`
+**Book** | `book INDEX r/REASON d/DATE`<br> e.g., `book 2 r/Ear Infection d/2022-12-31 18:00`
 **Cancel** | `cancel PATIENT_INDEX APPOINTMENT_INDEX` <br> e.g., `cancel 3 2`
 **List** | `list patients` <br> `list appointments`
 **Help** | `help`
