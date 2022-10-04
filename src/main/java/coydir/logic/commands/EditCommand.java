@@ -22,6 +22,7 @@ import coydir.logic.commands.exceptions.CommandException;
 import coydir.model.Model;
 import coydir.model.person.Address;
 import coydir.model.person.Email;
+import coydir.model.person.EmployeeId;
 import coydir.model.person.Name;
 import coydir.model.person.Person;
 import coydir.model.person.Phone;
@@ -102,8 +103,9 @@ public class EditCommand extends Command {
         Position updatedPosition = editPersonDescriptor.getPosition().orElse(personToEdit.getPosition());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        EmployeeId employeeId = personToEdit.getEmployeeId();
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedPosition, updatedAddress, updatedTags);
+        return new Person(updatedName, employeeId, updatedPhone, updatedEmail, updatedPosition, updatedAddress, updatedTags);
     }
 
     @Override

@@ -17,6 +17,7 @@ public class Person {
 
     // Identity fields
     private final Name name;
+    private final EmployeeId employeeId;
     private final Phone phone;
     private final Email email;
 
@@ -28,9 +29,11 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Position position, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, position, address, tags);
+    public Person(Name name, EmployeeId employeeId, Phone phone, Email email, Position position,
+            Address address, Set<Tag> tags) {
+        requireAllNonNull(name, employeeId, phone, email, position, address, tags);
         this.name = name;
+        this.employeeId = employeeId;
         this.phone = phone;
         this.email = email;
         this.position = position;
@@ -40,6 +43,10 @@ public class Person {
 
     public Name getName() {
         return this.name;
+    }
+
+    public EmployeeId getEmployeeId() {
+        return this.employeeId;
     }
 
     public Phone getPhone() {
@@ -95,6 +102,7 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
+                && otherPerson.getEmployeeId().equals(getEmployeeId())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getPosition().equals(getPosition())
@@ -105,13 +113,15 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, position, address, tags);
+        return Objects.hash(name, employeeId, phone, email, position, address, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
+                .append("; Employee ID: ")
+                .append(getEmployeeId())
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Email: ")

@@ -15,6 +15,7 @@ import coydir.logic.commands.AddCommand;
 import coydir.logic.parser.exceptions.ParseException;
 import coydir.model.person.Address;
 import coydir.model.person.Email;
+import coydir.model.person.EmployeeId;
 import coydir.model.person.Name;
 import coydir.model.person.Person;
 import coydir.model.person.Phone;
@@ -47,8 +48,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Position position = ParserUtil.parsePosition(argMultimap.getValue(PREFIX_POSITION).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        EmployeeId employeeId = new EmployeeId();
 
-        Person person = new Person(name, phone, email, position, address, tagList);
+        Person person = new Person(name, employeeId, phone, email, position, address, tagList);
 
         return new AddCommand(person);
     }
