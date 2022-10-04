@@ -14,7 +14,7 @@ import gim.model.person.Exercise;
  * Panel containing the list of persons.
  */
 public class ExerciseListPanel extends UiPart<Region> {
-    private static final String FXML = "PersonListPanel.fxml";
+    private static final String FXML = "ExerciseListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(ExerciseListPanel.class);
 
     @FXML
