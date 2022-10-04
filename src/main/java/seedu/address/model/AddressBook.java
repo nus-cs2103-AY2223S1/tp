@@ -28,9 +28,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
-    }
-
-    {
         tags = new UniqueTagList();
     }
 

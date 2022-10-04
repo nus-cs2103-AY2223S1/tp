@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -41,7 +42,7 @@ public class TagAddCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_ADD_TAG_SUCCESS = "Tag added";
-    public static final String MESSAGE_NO_SUCH_TAG = "this tag does not exist";
+    public static final String MESSAGE_NO_SUCH_TAG = "This tag does not exist";
     public static final String MESSAGE_TAG_ALREADY_ADDED = "The contact already has the tag.";
 
     private final Index index;
@@ -52,9 +53,7 @@ public class TagAddCommand extends Command {
      * Creates an AddCommand to add the specified {@code Person}
      */
     public TagAddCommand(Index index, Tag tag, EditPersonDescriptor editPersonDescriptor) {
-        requireNonNull(index);
-        requireNonNull(tag);
-        requireNonNull(editPersonDescriptor);
+        requireAllNonNull(index, tag, editPersonDescriptor);
 
         this.index = index;
         this.tag = tag;
