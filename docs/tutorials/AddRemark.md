@@ -225,7 +225,7 @@ If you are stuck, check out the sample
 
 ## Add `Remark` to the model
 
-Now that we have all the information that we need, let’s lay the groundwork for propagating the remarks added into the in-memory storage of exercise data. We achieve that by working with the `Exercise` model. Each field in a Exercise is implemented as a separate class (e.g. a `Name` object represents the exercise’s name). That means we should add a `Remark` class so that we can use a `Remark` object to represent a remark given to a exercise.
+Now that we have all the information that we need, let’s lay the groundwork for propagating the remarks added into the in-memory storage of exercise data. We achieve that by working with the `Exercise` model. Each field in an Exercise is implemented as a separate class (e.g. a `Name` object represents the exercise’s name). That means we should add a `Remark` class so that we can use a `Remark` object to represent a remark given to an exercise.
 
 ### Add a new `Remark` class
 
