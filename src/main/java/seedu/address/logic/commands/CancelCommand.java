@@ -22,7 +22,7 @@ public class CancelCommand extends Command{
             + "Example: " + COMMAND_WORD + " 3"
             + " 2";
 
-    public static final String MESSAGE_CANCEL_APPOINTMENT_SUCCESS = "Cancelled appointment: ";
+    public static final String MESSAGE_CANCEL_APPOINTMENT_SUCCESS = "Cancelled appointment for: ";
     public static final String MESSAGE_CANCEL_APPOINTMENT_FAIL =  "Failed to cancel the appointment ";
     private final Index patientIndex;
     private final Index apptIndex;
@@ -58,6 +58,6 @@ public class CancelCommand extends Command{
         }
         Appointment cancelledAppt = patientToCancelAppt.cancelAppointment(apptIndex.getZeroBased());
 
-        return new CommandResult(MESSAGE_CANCEL_APPOINTMENT_SUCCESS + cancelledAppt);
+        return new CommandResult(MESSAGE_CANCEL_APPOINTMENT_SUCCESS + patientToCancelAppt.getName());
     }
 }
