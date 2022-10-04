@@ -5,15 +5,15 @@ import static java.util.Objects.requireNonNull;
 import hobbylist.commons.util.AppUtil;
 
 /**
- * Represents a Person's address in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
+ * Represents an Activity's description in HobbyList.
+ * Guarantees: immutable; is valid as declared in {@link #isValidDescription(String)}
  */
 public class Description {
 
-    public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Description can take any values, and it should not be blank";
 
     /*
-     * The first character of the address must not be a whitespace,
+     * The first character of the description must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
@@ -21,20 +21,20 @@ public class Description {
     public final String value;
 
     /**
-     * Constructs an {@code Address}.
+     * Constructs an {@code Description}.
      *
-     * @param address A valid address.
+     * @param description A valid description.
      */
-    public Description(String address) {
-        requireNonNull(address);
-        AppUtil.checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
-        value = address;
+    public Description(String description) {
+        requireNonNull(description);
+        AppUtil.checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS);
+        value = description;
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid description.
      */
-    public static boolean isValidAddress(String test) {
+    public static boolean isValidDescription(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

@@ -9,7 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import hobbylist.testutil.TypicalPersons;
+import hobbylist.testutil.TypicalActivities;
 import hobbylist.commons.core.GuiSettings;
 import hobbylist.model.HobbyList;
 import hobbylist.model.ReadOnlyHobbyList;
@@ -24,9 +24,9 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonHobbyListStorage addressBookStorage = new JsonHobbyListStorage(getTempFilePath("ab"));
+        JsonHobbyListStorage hobbyListStorage = new JsonHobbyListStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(hobbyListStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -48,21 +48,21 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void addressBookReadSave() throws Exception {
+    public void hobbyListReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAddressBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         * {@link JsonHobbyListStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonHobbyListStorageTest} class.
          */
-        HobbyList original = TypicalPersons.getTypicalAddressBook();
-        storageManager.saveAddressBook(original);
-        ReadOnlyHobbyList retrieved = storageManager.readAddressBook().get();
+        HobbyList original = TypicalActivities.getTypicalHobbyList();
+        storageManager.saveHobbyList(original);
+        ReadOnlyHobbyList retrieved = storageManager.readHobbyList().get();
         assertEquals(original, new HobbyList(retrieved));
     }
 
     @Test
-    public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+    public void getHobbyListFilePath() {
+        assertNotNull(storageManager.getHobbyListFilePath());
     }
 
 }

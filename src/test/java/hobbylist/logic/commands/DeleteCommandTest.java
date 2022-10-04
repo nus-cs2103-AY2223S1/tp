@@ -4,13 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static hobbylist.logic.commands.CommandTestUtil.assertCommandFailure;
 import static hobbylist.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static hobbylist.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static hobbylist.logic.commands.CommandTestUtil.showActivityAtIndex;
 
 import org.junit.jupiter.api.Test;
 
 import hobbylist.model.activity.Activity;
 import hobbylist.testutil.TypicalIndexes;
-import hobbylist.testutil.TypicalPersons;
+import hobbylist.testutil.TypicalActivities;
 import hobbylist.commons.core.Messages;
 import hobbylist.commons.core.index.Index;
 import hobbylist.model.Model;
@@ -23,68 +23,68 @@ import hobbylist.model.UserPrefs;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(TypicalActivities.getTypicalHobbyList(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Activity activityToDelete = model.getFilteredPersonList().get(TypicalIndexes.INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(TypicalIndexes.INDEX_FIRST_PERSON);
+        Activity activityToDelete = model.getFilteredActivityList().get(TypicalIndexes.INDEX_FIRST_ACTIVITY.getZeroBased());
+        DeleteCommand deleteCommand = new DeleteCommand(TypicalIndexes.INDEX_FIRST_ACTIVITY);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, activityToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_ACTIVITY_SUCCESS, activityToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deletePerson(activityToDelete);
+        ModelManager expectedModel = new ModelManager(model.getHobbyList(), new UserPrefs());
+        expectedModel.deleteActivity(activityToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredActivityList().size() + 1);
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_ACTIVITY_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showPersonAtIndex(model, TypicalIndexes.INDEX_FIRST_PERSON);
+        showActivityAtIndex(model, TypicalIndexes.INDEX_FIRST_ACTIVITY);
 
-        Activity activityToDelete = model.getFilteredPersonList().get(TypicalIndexes.INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(TypicalIndexes.INDEX_FIRST_PERSON);
+        Activity activityToDelete = model.getFilteredActivityList().get(TypicalIndexes.INDEX_FIRST_ACTIVITY.getZeroBased());
+        DeleteCommand deleteCommand = new DeleteCommand(TypicalIndexes.INDEX_FIRST_ACTIVITY);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, activityToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_ACTIVITY_SUCCESS, activityToDelete);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deletePerson(activityToDelete);
-        showNoPerson(expectedModel);
+        Model expectedModel = new ModelManager(model.getHobbyList(), new UserPrefs());
+        expectedModel.deleteActivity(activityToDelete);
+        showNoActivity(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showPersonAtIndex(model, TypicalIndexes.INDEX_FIRST_PERSON);
+        showActivityAtIndex(model, TypicalIndexes.INDEX_FIRST_ACTIVITY);
 
-        Index outOfBoundIndex = TypicalIndexes.INDEX_SECOND_PERSON;
+        Index outOfBoundIndex = TypicalIndexes.INDEX_SECOND_ACTIVITY;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getHobbyList().getActivityList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_ACTIVITY_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(TypicalIndexes.INDEX_FIRST_PERSON);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(TypicalIndexes.INDEX_SECOND_PERSON);
+        DeleteCommand deleteFirstCommand = new DeleteCommand(TypicalIndexes.INDEX_FIRST_ACTIVITY);
+        DeleteCommand deleteSecondCommand = new DeleteCommand(TypicalIndexes.INDEX_SECOND_ACTIVITY);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(TypicalIndexes.INDEX_FIRST_PERSON);
+        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(TypicalIndexes.INDEX_FIRST_ACTIVITY);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
@@ -98,11 +98,11 @@ public class DeleteCommandTest {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show no one.
+     * Updates {@code model}'s filtered list to show nothing.
      */
-    private void showNoPerson(Model model) {
-        model.updateFilteredPersonList(p -> false);
+    private void showNoActivity(Model model) {
+        model.updateFilteredActivityList(p -> false);
 
-        assertTrue(model.getFilteredPersonList().isEmpty());
+        assertTrue(model.getFilteredActivityList().isEmpty());
     }
 }

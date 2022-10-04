@@ -9,15 +9,13 @@ import hobbylist.commons.util.CollectionUtil;
 import hobbylist.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
+ * Represents an Activity in HobbyList.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Activity {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
-    private final Email email;
 
     // Data fields
     private final Description description;
@@ -26,11 +24,9 @@ public class Activity {
     /**
      * Every field must be present and not null.
      */
-    public Activity(Name name, Phone phone, Email email, Description description, Set<Tag> tags) {
-        CollectionUtil.requireAllNonNull(name, phone, email, description, tags);
+    public Activity(Name name, Description description, Set<Tag> tags) {
+        CollectionUtil.requireAllNonNull(name, description, tags);
         this.name = name;
-        this.phone = phone;
-        this.email = email;
         this.description = description;
         this.tags.addAll(tags);
     }
@@ -39,15 +35,7 @@ public class Activity {
         return name;
     }
 
-    public Phone getPhone() {
-        return phone;
-    }
-
-    public Email getEmail() {
-        return email;
-    }
-
-    public Description getAddress() {
+    public Description getDescription() {
         return description;
     }
 
@@ -60,10 +48,10 @@ public class Activity {
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both activities have the same name.
+     * This defines a weaker notion of equality between two activities.
      */
-    public boolean isSamePerson(Activity otherActivity) {
+    public boolean isSameActivity(Activity otherActivity) {
         if (otherActivity == this) {
             return true;
         }
@@ -73,7 +61,7 @@ public class Activity {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
+     * Returns true if both activities have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */
     @Override
@@ -88,28 +76,22 @@ public class Activity {
 
         Activity otherActivity = (Activity) other;
         return otherActivity.getName().equals(getName())
-                && otherActivity.getPhone().equals(getPhone())
-                && otherActivity.getEmail().equals(getEmail())
-                && otherActivity.getAddress().equals(getAddress())
+                && otherActivity.getDescription().equals(getDescription())
                 && otherActivity.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, description, tags);
+        return Objects.hash(name, description, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+                .append("; Description: ")
+                .append(getDescription());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

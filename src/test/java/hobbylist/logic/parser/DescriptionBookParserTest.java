@@ -13,16 +13,15 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import hobbylist.model.activity.Activity;
+import hobbylist.testutil.ActivityBuilder;
 import hobbylist.testutil.Assert;
-import hobbylist.testutil.EditPersonDescriptorBuilder;
-import hobbylist.testutil.PersonBuilder;
-import hobbylist.testutil.PersonUtil;
+import hobbylist.testutil.EditActivityDescriptorBuilder;
+import hobbylist.testutil.ActivityUtil;
 import hobbylist.testutil.TypicalIndexes;
 import hobbylist.logic.commands.AddCommand;
 import hobbylist.logic.commands.ClearCommand;
 import hobbylist.logic.commands.DeleteCommand;
 import hobbylist.logic.commands.EditCommand;
-import hobbylist.logic.commands.EditCommand.EditPersonDescriptor;
 import hobbylist.logic.commands.ExitCommand;
 import hobbylist.logic.commands.FindCommand;
 import hobbylist.logic.commands.HelpCommand;
@@ -36,8 +35,8 @@ public class DescriptionBookParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Activity activity = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(activity));
+        Activity activity = new ActivityBuilder().build();
+        AddCommand command = (AddCommand) parser.parseCommand(ActivityUtil.getAddCommand(activity));
         assertEquals(new AddCommand(activity), command);
     }
 
@@ -50,17 +49,17 @@ public class DescriptionBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + TypicalIndexes.INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(TypicalIndexes.INDEX_FIRST_PERSON), command);
+                DeleteCommand.COMMAND_WORD + " " + TypicalIndexes.INDEX_FIRST_ACTIVITY.getOneBased());
+        assertEquals(new DeleteCommand(TypicalIndexes.INDEX_FIRST_ACTIVITY), command);
     }
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Activity activity = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(activity).build();
+        Activity activity = new ActivityBuilder().build();
+        EditCommand.EditActivityDescriptor descriptor = new EditActivityDescriptorBuilder(activity).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + TypicalIndexes.INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(TypicalIndexes.INDEX_FIRST_PERSON, descriptor), command);
+                + TypicalIndexes.INDEX_FIRST_ACTIVITY.getOneBased() + " " + ActivityUtil.getEditActivityDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(TypicalIndexes.INDEX_FIRST_ACTIVITY, descriptor), command);
     }
 
     @Test

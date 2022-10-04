@@ -1,0 +1,53 @@
+package hobbylist.testutil;
+
+import java.util.Set;
+
+import hobbylist.logic.commands.EditCommand;
+import hobbylist.logic.parser.CliSyntax;
+import hobbylist.logic.commands.AddCommand;
+import hobbylist.model.activity.Activity;
+import hobbylist.model.tag.Tag;
+
+/**
+ * A utility class for Activity.
+ */
+public class ActivityUtil {
+
+    /**
+     * Returns an add command string for adding the {@code activity}.
+     */
+    public static String getAddCommand(Activity activity) {
+        return AddCommand.COMMAND_WORD + " " + getActivityDetails(activity);
+    }
+
+    /**
+     * Returns the part of command string for the given {@code activity}'s details.
+     */
+    public static String getActivityDetails(Activity activity) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(CliSyntax.PREFIX_NAME + activity.getName().fullName + " ");
+        sb.append(CliSyntax.PREFIX_DESCRIPTION + activity.getDescription().value + " ");
+        activity.getTags().stream().forEach(
+            s -> sb.append(CliSyntax.PREFIX_TAG + s.tagName + " ")
+        );
+        return sb.toString();
+    }
+
+    /**
+     * Returns the part of command string for the given {@code EditActivityDescriptor}'s details.
+     */
+    public static String getEditActivityDescriptorDetails(EditCommand.EditActivityDescriptor descriptor) {
+        StringBuilder sb = new StringBuilder();
+        descriptor.getName().ifPresent(name -> sb.append(CliSyntax.PREFIX_NAME).append(name.fullName).append(" "));
+        descriptor.getDescription().ifPresent(address -> sb.append(CliSyntax.PREFIX_DESCRIPTION).append(address.value).append(" "));
+        if (descriptor.getTags().isPresent()) {
+            Set<Tag> tags = descriptor.getTags().get();
+            if (tags.isEmpty()) {
+                sb.append(CliSyntax.PREFIX_TAG);
+            } else {
+                tags.forEach(s -> sb.append(CliSyntax.PREFIX_TAG).append(s.tagName).append(" "));
+            }
+        }
+        return sb.toString();
+    }
+}

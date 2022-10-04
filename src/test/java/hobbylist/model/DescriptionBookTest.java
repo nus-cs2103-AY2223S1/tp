@@ -3,8 +3,8 @@ package hobbylist.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static hobbylist.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static hobbylist.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static hobbylist.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOXING;
+import static hobbylist.logic.commands.CommandTestUtil.VALID_TAG_ENTERTAINMENT;
 import static hobbylist.testutil.Assert.assertThrows;
 
 import java.util.Arrays;
@@ -15,8 +15,8 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import hobbylist.testutil.Assert;
-import hobbylist.testutil.PersonBuilder;
-import hobbylist.testutil.TypicalPersons;
+import hobbylist.testutil.ActivityBuilder;
+import hobbylist.testutil.TypicalActivities;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import hobbylist.model.activity.Activity;
@@ -28,7 +28,7 @@ public class DescriptionBookTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), hobbyList.getPersonList());
+        assertEquals(Collections.emptyList(), hobbyList.getActivityList());
     }
 
     @Test
@@ -37,54 +37,54 @@ public class DescriptionBookTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        HobbyList newData = TypicalPersons.getTypicalAddressBook();
+    public void resetData_withValidReadOnlyHobbyList_replacesData() {
+        HobbyList newData = TypicalActivities.getTypicalHobbyList();
         hobbyList.resetData(newData);
         assertEquals(newData, hobbyList);
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
-        // Two persons with the same identity fields
-        Activity editedAlice = new PersonBuilder(TypicalPersons.ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+    public void resetData_withDuplicateActivity_throwsDuplicateActivityException() {
+        // Two activities with the same identity fields
+        Activity editedA = new ActivityBuilder(TypicalActivities.ACTIVITY_A).withDescription(VALID_DESCRIPTION_BOXING).withTags(VALID_TAG_ENTERTAINMENT)
                 .build();
-        List<Activity> newActivities = Arrays.asList(TypicalPersons.ALICE, editedAlice);
+        List<Activity> newActivities = Arrays.asList(TypicalActivities.ACTIVITY_A, editedA);
         HobbyListStub newData = new HobbyListStub(newActivities);
 
         Assert.assertThrows(DuplicateActivityException.class, () -> hobbyList.resetData(newData));
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> hobbyList.hasPerson(null));
+    public void hasActivity_nullActivity_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> hobbyList.hasActivity(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(hobbyList.hasPerson(TypicalPersons.ALICE));
+    public void hasActivity_activityNotInHobbyList_returnsFalse() {
+        assertFalse(hobbyList.hasActivity(TypicalActivities.ACTIVITY_A));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        hobbyList.addPerson(TypicalPersons.ALICE);
-        assertTrue(hobbyList.hasPerson(TypicalPersons.ALICE));
+    public void hasActivity_personInHobbyList_returnsTrue() {
+        hobbyList.addActivity(TypicalActivities.ACTIVITY_A);
+        assertTrue(hobbyList.hasActivity(TypicalActivities.ACTIVITY_A));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        hobbyList.addPerson(TypicalPersons.ALICE);
-        Activity editedAlice = new PersonBuilder(TypicalPersons.ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+    public void hasActivity_activityWithSameIdentityFieldsInHobbyList_returnsTrue() {
+        hobbyList.addActivity(TypicalActivities.ACTIVITY_A);
+        Activity editedA = new ActivityBuilder(TypicalActivities.ACTIVITY_A).withDescription(VALID_DESCRIPTION_BOXING).withTags(VALID_TAG_ENTERTAINMENT)
                 .build();
-        assertTrue(hobbyList.hasPerson(editedAlice));
+        assertTrue(hobbyList.hasActivity(editedA));
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        Assert.assertThrows(UnsupportedOperationException.class, () -> hobbyList.getPersonList().remove(0));
+    public void getActivityList_modifyList_throwsUnsupportedOperationException() {
+        Assert.assertThrows(UnsupportedOperationException.class, () -> hobbyList.getActivityList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyHobbyList whose activity list can violate interface constraints.
      */
     private static class HobbyListStub implements ReadOnlyHobbyList {
         private final ObservableList<Activity> activities = FXCollections.observableArrayList();
@@ -94,7 +94,7 @@ public class DescriptionBookTest {
         }
 
         @Override
-        public ObservableList<Activity> getPersonList() {
+        public ObservableList<Activity> getActivityList() {
             return activities;
         }
     }

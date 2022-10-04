@@ -12,9 +12,9 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import hobbylist.testutil.AddressBookBuilder;
+import hobbylist.testutil.HobbyListBuilder;
 import hobbylist.testutil.Assert;
-import hobbylist.testutil.TypicalPersons;
+import hobbylist.testutil.TypicalActivities;
 import hobbylist.commons.core.GuiSettings;
 import hobbylist.model.activity.NameContainsKeywordsPredicate;
 
@@ -26,7 +26,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new HobbyList(), new HobbyList(modelManager.getAddressBook()));
+        assertEquals(new HobbyList(), new HobbyList(modelManager.getHobbyList()));
     }
 
     @Test
@@ -37,14 +37,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setAddressBookFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setHobbyListFilePath(Paths.get("address/book/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setAddressBookFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setHobbyListFilePath(Paths.get("new/address/book/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -61,41 +61,41 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> modelManager.setAddressBookFilePath(null));
+    public void setHobbyListFilePath_nullPath_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> modelManager.setHobbyListFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setHobbyListFilePath_validPath_setsHobbyListFilePath() {
         Path path = Paths.get("address/book/file/path");
-        modelManager.setAddressBookFilePath(path);
-        assertEquals(path, modelManager.getAddressBookFilePath());
+        modelManager.setHobbyListFilePath(path);
+        assertEquals(path, modelManager.getHobbyListFilePath());
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
+    public void hasActivity_nullActivity_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> modelManager.hasActivity(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasPerson(TypicalPersons.ALICE));
+    public void hasActivity_activityNotInHobbyList_returnsFalse() {
+        assertFalse(modelManager.hasActivity(TypicalActivities.ACTIVITY_A));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        modelManager.addPerson(TypicalPersons.ALICE);
-        assertTrue(modelManager.hasPerson(TypicalPersons.ALICE));
+    public void hasActivity_activityInHobbyList_returnsTrue() {
+        modelManager.addActivity(TypicalActivities.ACTIVITY_A);
+        assertTrue(modelManager.hasActivity(TypicalActivities.ACTIVITY_A));
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        Assert.assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    public void getFilteredActivityList_modifyList_throwsUnsupportedOperationException() {
+        Assert.assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredActivityList().remove(0));
     }
 
     @Test
     public void equals() {
-        HobbyList hobbyList = new AddressBookBuilder().withPerson(TypicalPersons.ALICE).withPerson(TypicalPersons.BENSON).build();
+        HobbyList hobbyList = new HobbyListBuilder().withActivity(TypicalActivities.ACTIVITY_A).withActivity(TypicalActivities.ACTIVITY_B).build();
         HobbyList differentHobbyList = new HobbyList();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -117,16 +117,16 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentHobbyList, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = TypicalPersons.ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        String[] keywords = TypicalActivities.ACTIVITY_A.getName().fullName.split("\\s+");
+        modelManager.updateFilteredActivityList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(hobbyList, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.updateFilteredActivityList(PREDICATE_SHOW_ALL_PERSONS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
+        differentUserPrefs.setHobbyListFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(hobbyList, differentUserPrefs)));
     }
 }

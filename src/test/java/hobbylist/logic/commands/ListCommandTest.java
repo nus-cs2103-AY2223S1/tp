@@ -6,7 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import hobbylist.testutil.TypicalIndexes;
-import hobbylist.testutil.TypicalPersons;
+import hobbylist.testutil.TypicalActivities;
 import hobbylist.model.Model;
 import hobbylist.model.ModelManager;
 import hobbylist.model.UserPrefs;
@@ -21,8 +21,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        model = new ModelManager(TypicalActivities.getTypicalHobbyList(), new UserPrefs());
+        expectedModel = new ModelManager(model.getHobbyList(), new UserPrefs());
     }
 
     @Test
@@ -32,7 +32,7 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        CommandTestUtil.showPersonAtIndex(model, TypicalIndexes.INDEX_FIRST_PERSON);
+        CommandTestUtil.showActivityAtIndex(model, TypicalIndexes.INDEX_FIRST_ACTIVITY);
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

@@ -1,7 +1,7 @@
 package hobbylist.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static hobbylist.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static hobbylist.commons.core.Messages.MESSAGE_INVALID_ACTIVITY_DISPLAYED_INDEX;
 import static hobbylist.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static hobbylist.testutil.Assert.assertThrows;
 
@@ -13,9 +13,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import hobbylist.logic.commands.CommandTestUtil;
+import hobbylist.testutil.ActivityBuilder;
 import hobbylist.testutil.Assert;
-import hobbylist.testutil.PersonBuilder;
-import hobbylist.testutil.TypicalPersons;
+import hobbylist.testutil.TypicalActivities;
 import hobbylist.logic.commands.AddCommand;
 import hobbylist.logic.commands.CommandResult;
 import hobbylist.logic.commands.ListCommand;
@@ -57,7 +57,7 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandException(deleteCommand, MESSAGE_INVALID_ACTIVITY_DISPLAYED_INDEX);
     }
 
     @Test
@@ -77,18 +77,18 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + CommandTestUtil.NAME_DESC_AMY + CommandTestUtil.PHONE_DESC_AMY + CommandTestUtil.EMAIL_DESC_AMY
-                + CommandTestUtil.ADDRESS_DESC_AMY;
-        Activity expectedActivity = new PersonBuilder(TypicalPersons.AMY).withTags().build();
+        String addCommand = AddCommand.COMMAND_WORD + CommandTestUtil.NAME_DESC_ANIME
+                + CommandTestUtil.DESCRIPTION_DESC_ANIME;
+        Activity expectedActivity = new ActivityBuilder(TypicalActivities.ANIME).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedActivity);
+        expectedModel.addActivity(expectedActivity);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        Assert.assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    public void getFilteredActivityList_modifyList_throwsUnsupportedOperationException() {
+        Assert.assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredActivityList().remove(0));
     }
 
     /**
@@ -127,7 +127,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getHobbyList(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -153,7 +153,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyHobbyList addressBook, Path filePath) throws IOException {
+        public void saveHobbyList(ReadOnlyHobbyList hobbyList, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

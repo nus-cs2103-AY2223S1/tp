@@ -35,53 +35,54 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' HobbyList file path.
      */
-    Path getAddressBookFilePath();
+    Path getHobbyListFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' HobbyList file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setHobbyListFilePath(Path hobbyListFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces HobbyList data with the data in {@code hobbyList}.
      */
-    void setAddressBook(ReadOnlyHobbyList addressBook);
+    void setHobbyList(ReadOnlyHobbyList hobbyList);
 
-    /** Returns the AddressBook */
-    ReadOnlyHobbyList getAddressBook();
+    /** Returns the HobbyList */
+    ReadOnlyHobbyList getHobbyList();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if an activity with the same identity as {@code activity} exists in the HobbyList.
      */
-    boolean hasPerson(Activity activity);
+    boolean hasActivity(Activity activity);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given activity.
+     * The person must exist in the HobbyList.
      */
-    void deletePerson(Activity target);
+    void deleteActivity(Activity target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given activity.
+     * {@code person} must not already exist in the HobbyList.
      */
-    void addPerson(Activity activity);
+    void addActivity(Activity activity);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces the given activity {@code target} with {@code editedActivity}.
+     * {@code target} must exist in the HobbyList.
+     * The activity identity of {@code editedActivity} must not be the same as another existing activity in the
+     * HobbyList.
      */
-    void setPerson(Activity target, Activity editedActivity);
+    void setActivity(Activity target, Activity editedActivity);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Activity> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered activity list */
+    ObservableList<Activity> getFilteredActivityList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered activity list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Activity> predicate);
+    void updateFilteredActivityList(Predicate<Activity> predicate);
 }

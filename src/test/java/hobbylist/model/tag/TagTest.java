@@ -1,7 +1,5 @@
 package hobbylist.model.tag;
 
-import static hobbylist.testutil.Assert.assertThrows;
-
 import org.junit.jupiter.api.Test;
 
 import hobbylist.testutil.Assert;

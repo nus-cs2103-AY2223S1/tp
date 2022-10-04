@@ -6,8 +6,8 @@ import static hobbylist.logic.commands.CommandTestUtil.assertCommandSuccess;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import hobbylist.testutil.PersonBuilder;
-import hobbylist.testutil.TypicalPersons;
+import hobbylist.testutil.ActivityBuilder;
+import hobbylist.testutil.TypicalActivities;
 import hobbylist.model.Model;
 import hobbylist.model.ModelManager;
 import hobbylist.model.UserPrefs;
@@ -22,24 +22,24 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(TypicalActivities.getTypicalHobbyList(), new UserPrefs());
     }
 
     @Test
-    public void execute_newPerson_success() {
-        Activity validActivity = new PersonBuilder().build();
+    public void execute_newActivity_success() {
+        Activity validActivity = new ActivityBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.addPerson(validActivity);
+        Model expectedModel = new ModelManager(model.getHobbyList(), new UserPrefs());
+        expectedModel.addActivity(validActivity);
 
         assertCommandSuccess(new AddCommand(validActivity), model,
                 String.format(AddCommand.MESSAGE_SUCCESS, validActivity), expectedModel);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Activity activityInList = model.getAddressBook().getPersonList().get(0);
-        assertCommandFailure(new AddCommand(activityInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
+    public void execute_duplicateActivity_throwsCommandException() {
+        Activity activityInList = model.getHobbyList().getActivityList().get(0);
+        assertCommandFailure(new AddCommand(activityInList), model, AddCommand.MESSAGE_DUPLICATE_ACTIVITY);
     }
 
 }

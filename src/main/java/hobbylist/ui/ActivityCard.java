@@ -33,25 +33,19 @@ public class ActivityCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
-    @FXML
     private Label description;
-    @FXML
-    private Label email;
     @FXML
     private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code ActivityCard} with the given {@code Activity} and index to display.
      */
     public ActivityCard(Activity activity, int displayedIndex) {
         super(FXML);
         this.activity = activity;
         id.setText(displayedIndex + ". ");
         name.setText(activity.getName().fullName);
-        phone.setText(activity.getPhone().value);
-        description.setText(activity.getAddress().value);
-        email.setText(activity.getEmail().value);
+        description.setText(activity.getDescription().value);
         activity.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

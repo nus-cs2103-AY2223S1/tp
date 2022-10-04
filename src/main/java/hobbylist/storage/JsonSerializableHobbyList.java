@@ -14,45 +14,45 @@ import hobbylist.model.ReadOnlyHobbyList;
 import hobbylist.model.activity.Activity;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable HobbyList that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
+@JsonRootName(value = "hobbylist")
 class JsonSerializableHobbyList {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_ACTIVITY = "Activities list contains duplicate activities.";
 
-    private final List<JsonAdaptedActivity> persons = new ArrayList<>();
+    private final List<JsonAdaptedActivity> activities = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableHobbyList} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableHobbyList(@JsonProperty("persons") List<JsonAdaptedActivity> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableHobbyList(@JsonProperty("activities") List<JsonAdaptedActivity> activities) {
+        this.activities.addAll(activities);
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyHobbyList} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableHobbyList}.
      */
     public JsonSerializableHobbyList(ReadOnlyHobbyList source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedActivity::new).collect(Collectors.toList()));
+        activities.addAll(source.getActivityList().stream().map(JsonAdaptedActivity::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this HobbyList into the model's {@code HobbyList} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public HobbyList toModelType() throws IllegalValueException {
         HobbyList hobbyList = new HobbyList();
-        for (JsonAdaptedActivity jsonAdaptedActivity : persons) {
+        for (JsonAdaptedActivity jsonAdaptedActivity : activities) {
             Activity activity = jsonAdaptedActivity.toModelType();
-            if (hobbyList.hasPerson(activity)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+            if (hobbyList.hasActivity(activity)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_ACTIVITY);
             }
-            hobbyList.addPerson(activity);
+            hobbyList.addActivity(activity);
         }
         return hobbyList;
     }

@@ -21,7 +21,7 @@ public class ActivityListPanel extends UiPart<Region> {
     private ListView<Activity> activityListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code ActivityListPanel} with the given {@code ObservableList}.
      */
     public ActivityListPanel(ObservableList<Activity> activityList) {
         super(FXML);
@@ -30,7 +30,7 @@ public class ActivityListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of an {@code Activity} using an {@code ActivityCard}.
      */
     class ActivityListViewCell extends ListCell<Activity> {
         @Override

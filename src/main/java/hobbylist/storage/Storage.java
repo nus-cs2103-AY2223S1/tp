@@ -21,12 +21,12 @@ public interface Storage extends HobbyListStorage, UserPrefsStorage {
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getAddressBookFilePath();
+    Path getHobbyListFilePath();
 
     @Override
-    Optional<ReadOnlyHobbyList> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyHobbyList> readHobbyList() throws DataConversionException, IOException;
 
     @Override
-    void saveAddressBook(ReadOnlyHobbyList addressBook) throws IOException;
+    void saveHobbyList(ReadOnlyHobbyList hobbyList) throws IOException;
 
 }

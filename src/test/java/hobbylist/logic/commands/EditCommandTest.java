@@ -8,13 +8,13 @@ import org.junit.jupiter.api.Test;
 
 import hobbylist.model.HobbyList;
 import hobbylist.model.activity.Activity;
-import hobbylist.testutil.EditPersonDescriptorBuilder;
-import hobbylist.testutil.PersonBuilder;
+import hobbylist.testutil.ActivityBuilder;
+import hobbylist.testutil.EditActivityDescriptorBuilder;
 import hobbylist.testutil.TypicalIndexes;
-import hobbylist.testutil.TypicalPersons;
+import hobbylist.testutil.TypicalActivities;
 import hobbylist.commons.core.Messages;
 import hobbylist.commons.core.index.Index;
-import hobbylist.logic.commands.EditCommand.EditPersonDescriptor;
+import hobbylist.logic.commands.EditCommand.EditActivityDescriptor;
 import hobbylist.model.Model;
 import hobbylist.model.ModelManager;
 import hobbylist.model.UserPrefs;
@@ -24,126 +24,126 @@ import hobbylist.model.UserPrefs;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(TypicalActivities.getTypicalHobbyList(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Activity editedActivity = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedActivity).build();
-        EditCommand editCommand = new EditCommand(TypicalIndexes.INDEX_FIRST_PERSON, descriptor);
+        Activity editedActivity = new ActivityBuilder().build();
+        EditCommand.EditActivityDescriptor descriptor = new EditActivityDescriptorBuilder(editedActivity).build();
+        EditCommand editCommand = new EditCommand(TypicalIndexes.INDEX_FIRST_ACTIVITY, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedActivity);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ACTIVITY_SUCCESS, editedActivity);
 
-        Model expectedModel = new ModelManager(new HobbyList(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedActivity);
+        Model expectedModel = new ModelManager(new HobbyList(model.getHobbyList()), new UserPrefs());
+        expectedModel.setActivity(model.getFilteredActivityList().get(0), editedActivity);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
-        Activity lastActivity = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
+        Index indexLastActivity = Index.fromOneBased(model.getFilteredActivityList().size());
+        Activity lastActivity = model.getFilteredActivityList().get(indexLastActivity.getZeroBased());
 
-        PersonBuilder personInList = new PersonBuilder(lastActivity);
-        Activity editedActivity = personInList.withName(CommandTestUtil.VALID_NAME_BOB).withPhone(CommandTestUtil.VALID_PHONE_BOB)
-                .withTags(CommandTestUtil.VALID_TAG_HUSBAND).build();
+        ActivityBuilder activityInList = new ActivityBuilder(lastActivity);
+        Activity editedActivity = activityInList.withName(CommandTestUtil.VALID_NAME_BOXING)
+                .withTags(CommandTestUtil.VALID_TAG_ENTERTAINMENT).build();
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB)
-                .withPhone(CommandTestUtil.VALID_PHONE_BOB).withTags(CommandTestUtil.VALID_TAG_HUSBAND).build();
-        EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
+        EditActivityDescriptor descriptor = new EditActivityDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOXING)
+                .withTags(CommandTestUtil.VALID_TAG_ENTERTAINMENT).build();
+        EditCommand editCommand = new EditCommand(indexLastActivity, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedActivity);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ACTIVITY_SUCCESS, editedActivity);
 
-        Model expectedModel = new ModelManager(new HobbyList(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(lastActivity, editedActivity);
+        Model expectedModel = new ModelManager(new HobbyList(model.getHobbyList()), new UserPrefs());
+        expectedModel.setActivity(lastActivity, editedActivity);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditCommand editCommand = new EditCommand(TypicalIndexes.INDEX_FIRST_PERSON, new EditPersonDescriptor());
-        Activity editedActivity = model.getFilteredPersonList().get(TypicalIndexes.INDEX_FIRST_PERSON.getZeroBased());
+        EditCommand editCommand = new EditCommand(TypicalIndexes.INDEX_FIRST_ACTIVITY, new EditCommand.EditActivityDescriptor());
+        Activity editedActivity = model.getFilteredActivityList().get(TypicalIndexes.INDEX_FIRST_ACTIVITY.getZeroBased());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedActivity);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ACTIVITY_SUCCESS, editedActivity);
 
-        Model expectedModel = new ModelManager(new HobbyList(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new HobbyList(model.getHobbyList()), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_filteredList_success() {
-        CommandTestUtil.showPersonAtIndex(model, TypicalIndexes.INDEX_FIRST_PERSON);
+        CommandTestUtil.showActivityAtIndex(model, TypicalIndexes.INDEX_FIRST_ACTIVITY);
 
-        Activity activityInFilteredList = model.getFilteredPersonList().get(TypicalIndexes.INDEX_FIRST_PERSON.getZeroBased());
-        Activity editedActivity = new PersonBuilder(activityInFilteredList).withName(CommandTestUtil.VALID_NAME_BOB).build();
-        EditCommand editCommand = new EditCommand(TypicalIndexes.INDEX_FIRST_PERSON,
-                new EditPersonDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB).build());
+        Activity activityInFilteredList = model.getFilteredActivityList().get(TypicalIndexes.INDEX_FIRST_ACTIVITY.getZeroBased());
+        Activity editedActivity = new ActivityBuilder(activityInFilteredList).withName(CommandTestUtil.VALID_NAME_BOXING).build();
+        EditCommand editCommand = new EditCommand(TypicalIndexes.INDEX_FIRST_ACTIVITY,
+                new EditActivityDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOXING).build());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedActivity);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ACTIVITY_SUCCESS, editedActivity);
 
-        Model expectedModel = new ModelManager(new HobbyList(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedActivity);
+        Model expectedModel = new ModelManager(new HobbyList(model.getHobbyList()), new UserPrefs());
+        expectedModel.setActivity(model.getFilteredActivityList().get(0), editedActivity);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_duplicatePersonUnfilteredList_failure() {
-        Activity firstActivity = model.getFilteredPersonList().get(TypicalIndexes.INDEX_FIRST_PERSON.getZeroBased());
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstActivity).build();
-        EditCommand editCommand = new EditCommand(TypicalIndexes.INDEX_SECOND_PERSON, descriptor);
+    public void execute_duplicateActivityUnfilteredList_failure() {
+        Activity firstActivity = model.getFilteredActivityList().get(TypicalIndexes.INDEX_FIRST_ACTIVITY.getZeroBased());
+        EditCommand.EditActivityDescriptor descriptor = new EditActivityDescriptorBuilder(firstActivity).build();
+        EditCommand editCommand = new EditCommand(TypicalIndexes.INDEX_SECOND_ACTIVITY, descriptor);
 
-        CommandTestUtil.assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
+        CommandTestUtil.assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_ACTIVITY);
     }
 
     @Test
-    public void execute_duplicatePersonFilteredList_failure() {
-        CommandTestUtil.showPersonAtIndex(model, TypicalIndexes.INDEX_FIRST_PERSON);
+    public void execute_duplicateActivityFilteredList_failure() {
+        CommandTestUtil.showActivityAtIndex(model, TypicalIndexes.INDEX_FIRST_ACTIVITY);
 
-        // edit person in filtered list into a duplicate in address book
-        Activity activityInList = model.getAddressBook().getPersonList().get(TypicalIndexes.INDEX_SECOND_PERSON.getZeroBased());
-        EditCommand editCommand = new EditCommand(TypicalIndexes.INDEX_FIRST_PERSON,
-                new EditPersonDescriptorBuilder(activityInList).build());
+        // edit activity in filtered list into a duplicate in HobbyList
+        Activity activityInList = model.getHobbyList().getActivityList().get(TypicalIndexes.INDEX_SECOND_ACTIVITY.getZeroBased());
+        EditCommand editCommand = new EditCommand(TypicalIndexes.INDEX_FIRST_ACTIVITY,
+                new EditActivityDescriptorBuilder(activityInList).build());
 
-        CommandTestUtil.assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
+        CommandTestUtil.assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_ACTIVITY);
     }
 
     @Test
-    public void execute_invalidPersonIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB).build();
+    public void execute_invalidActivityIndexUnfilteredList_failure() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredActivityList().size() + 1);
+        EditCommand.EditActivityDescriptor descriptor = new EditActivityDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOXING).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
-        CommandTestUtil.assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_ACTIVITY_DISPLAYED_INDEX);
     }
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
+     * but smaller than size of HobbyList
      */
     @Test
-    public void execute_invalidPersonIndexFilteredList_failure() {
-        CommandTestUtil.showPersonAtIndex(model, TypicalIndexes.INDEX_FIRST_PERSON);
-        Index outOfBoundIndex = TypicalIndexes.INDEX_SECOND_PERSON;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+    public void execute_invalidActivityIndexFilteredList_failure() {
+        CommandTestUtil.showActivityAtIndex(model, TypicalIndexes.INDEX_FIRST_ACTIVITY);
+        Index outOfBoundIndex = TypicalIndexes.INDEX_SECOND_ACTIVITY;
+        // ensures that outOfBoundIndex is still in bounds of HobbyList list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getHobbyList().getActivityList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
-                new EditPersonDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB).build());
+                new EditActivityDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOXING).build());
 
-        CommandTestUtil.assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_ACTIVITY_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        final EditCommand standardCommand = new EditCommand(TypicalIndexes.INDEX_FIRST_PERSON, CommandTestUtil.DESC_AMY);
+        final EditCommand standardCommand = new EditCommand(TypicalIndexes.INDEX_FIRST_ACTIVITY, CommandTestUtil.DESC_ANIME);
 
         // same values -> returns true
-        EditPersonDescriptor copyDescriptor = new EditPersonDescriptor(CommandTestUtil.DESC_AMY);
-        EditCommand commandWithSameValues = new EditCommand(TypicalIndexes.INDEX_FIRST_PERSON, copyDescriptor);
+        EditCommand.EditActivityDescriptor copyDescriptor = new EditCommand.EditActivityDescriptor(CommandTestUtil.DESC_ANIME);
+        EditCommand commandWithSameValues = new EditCommand(TypicalIndexes.INDEX_FIRST_ACTIVITY, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -156,10 +156,10 @@ public class EditCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(TypicalIndexes.INDEX_SECOND_PERSON, CommandTestUtil.DESC_AMY)));
+        assertFalse(standardCommand.equals(new EditCommand(TypicalIndexes.INDEX_SECOND_ACTIVITY, CommandTestUtil.DESC_ANIME)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(TypicalIndexes.INDEX_FIRST_PERSON, CommandTestUtil.DESC_BOB)));
+        assertFalse(standardCommand.equals(new EditCommand(TypicalIndexes.INDEX_FIRST_ACTIVITY, CommandTestUtil.DESC_BOXING)));
     }
 
 }

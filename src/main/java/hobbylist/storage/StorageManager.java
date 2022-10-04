@@ -12,7 +12,7 @@ import hobbylist.model.ReadOnlyUserPrefs;
 import hobbylist.model.UserPrefs;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of HobbyList data in local storage.
  */
 public class StorageManager implements Storage {
 
@@ -21,7 +21,7 @@ public class StorageManager implements Storage {
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code HobbyListStorage} and {@code UserPrefStorage}.
      */
     public StorageManager(HobbyListStorage hobbyListStorage, UserPrefsStorage userPrefsStorage) {
         this.hobbyListStorage = hobbyListStorage;
@@ -46,33 +46,33 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ HobbyList methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return hobbyListStorage.getAddressBookFilePath();
+    public Path getHobbyListFilePath() {
+        return hobbyListStorage.getHobbyListFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyHobbyList> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(hobbyListStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyHobbyList> readHobbyList() throws DataConversionException, IOException {
+        return readHobbyList(hobbyListStorage.getHobbyListFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyHobbyList> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyHobbyList> readHobbyList(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return hobbyListStorage.readAddressBook(filePath);
+        return hobbyListStorage.readHobbyList(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyHobbyList addressBook) throws IOException {
-        saveAddressBook(addressBook, hobbyListStorage.getAddressBookFilePath());
+    public void saveHobbyList(ReadOnlyHobbyList hobbyList) throws IOException {
+        saveHobbyList(hobbyList, hobbyListStorage.getHobbyListFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyHobbyList addressBook, Path filePath) throws IOException {
+    public void saveHobbyList(ReadOnlyHobbyList hobbyList, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        hobbyListStorage.saveAddressBook(addressBook, filePath);
+        hobbyListStorage.saveHobbyList(hobbyList, filePath);
     }
 
 }

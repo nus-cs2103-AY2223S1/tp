@@ -1,5 +1,7 @@
 package hobbylist.logic.commands.exceptions;
 
+import hobbylist.logic.commands.Command;
+
 /**
  * Represents an error which occurs during execution of a {@link Command}.
  */
