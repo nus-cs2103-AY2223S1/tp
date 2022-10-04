@@ -58,13 +58,13 @@ public class TypicalPoc {
     /**
      * Returns an {@code AddressBook} with all the typical Pocs.
      */
-//    public static AddressBook getTypicalAddressBook() {
-//        AddressBook ab = new AddressBook();
-//        for (Poc company : getTypicalCompanies()) {
-//            ab.addPoc(company);
-//        }
-//        return ab;
-//    }
+    /* public static AddressBook getTypicalAddressBook() {
+        AddressBook ab = new AddressBook();
+        for (Poc company : getTypicalCompanies()) {
+            ab.addPoc(company);
+        }
+        return ab;
+    }*/
 
     public static List<Poc> getTypicalCompanies() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
