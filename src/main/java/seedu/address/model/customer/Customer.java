@@ -1,8 +1,5 @@
 package seedu.address.model.customer;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -24,53 +21,24 @@ public class Customer {
     private final Email email;
 
     // Data fields
-    private final Set<Tag> tags = new HashSet<>();
+    private final Set<Tag> tags;
 
-    private final Set<Commission> commissions = new HashSet<>();
+    private final Set<Commission> commissions;
 
     // Optional fields
     private final Address address;
 
     /**
-     * Every field must be present and not null.
+     * Constructs a Customer.
+     * @param builder Instance of CustomerBuilder.
      */
-    public Customer(Name name, Phone phone, Email email, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = null;
-        this.tags.addAll(tags);
-    }
-
-    /**
-     * Initialises Customer without address but with commissions.
-     */
-    public Customer(Name name, Phone phone, Email email, Set<Tag> tags, Set<Commission> commissions) {
-        this(name, phone, email, tags);
-        this.commissions.addAll(commissions);
-    }
-
-
-    /**
-     * Every field must be present and not null.
-     */
-    public Customer(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
-    }
-
-    /**
-     * Initialises Customer with a list of commissions.
-     */
-    public Customer(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
-                  Collection<Commission> commissions) {
-        this(name, phone, email, address, tags);
-        this.commissions.addAll(commissions);
+    public Customer(CustomerBuilder builder) {
+        this.name = builder.name;
+        this.phone = builder.phone;
+        this.email = builder.email;
+        this.tags = builder.tags;
+        this.commissions = builder.commissions;
+        this.address = builder.address;
     }
 
     public Name getName() {
@@ -115,8 +83,10 @@ public class Customer {
     }
 
     public Customer getClone() {
-        return getAddress().map(address -> new Customer(name, phone, email, address, tags, commissions))
-                .orElseGet(() -> new Customer(name, phone, email, tags, commissions));
+        Customer.CustomerBuilder customerBuilder = new Customer.CustomerBuilder(name, phone, email, tags)
+                .setCommissions(commissions);
+        getAddress().ifPresent(customerBuilder::setAddress);
+        return customerBuilder.build();
     }
 
     /**
@@ -170,4 +140,64 @@ public class Customer {
         return builder.toString();
     }
 
+    /**
+     * Copy of customer with new commissions.
+     * @param commissions New set of commissions for customer.
+     * @return New copied instance of customer.
+     */
+    public Customer copyWithCommissions(Set<Commission> commissions) {
+        CustomerBuilder customerBuilder = new CustomerBuilder(name, phone, email, tags)
+                .setCommissions(commissions);
+        getAddress().ifPresent(customerBuilder::setAddress);
+        return customerBuilder.build();
+
+    }
+
+    /**
+     * Builder class for Customer.
+     */
+    public static class CustomerBuilder {
+        // required parameters
+        private Name name;
+        private Phone phone;
+        private Email email;
+        private Set<Tag> tags = new HashSet<>();
+
+        // optional parameters
+        private Address address;
+        private Set<Commission> commissions = new HashSet<>();
+
+        /**
+         * Builds CustomerBuilder with all required fields.
+         */
+        public CustomerBuilder(Name name, Phone phone, Email email, Set<Tag> tags) {
+            this.name = name;
+            this.phone = phone;
+            this.email = email;
+            this.tags.addAll(tags);
+        }
+
+        /**
+         * Sets address and returns itself.
+         */
+        public CustomerBuilder setAddress(Address address) {
+            this.address = address;
+            return this;
+        }
+
+        /**
+         * Sets commissions and returns itself.
+         */
+        public CustomerBuilder setCommissions(Set<Commission> commissions) {
+            this.commissions.clear();
+            this.commissions.addAll(commissions);
+            return this;
+        }
+
+        public Customer build() {
+            return new Customer(this);
+        }
+
+
+    }
 }

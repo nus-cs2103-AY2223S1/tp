@@ -82,12 +82,10 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editCustomerDescriptor.getTags().orElse(customerToEdit.getTags());
         Set<Commission> oldCommissions = customerToEdit.getCommissions();
 
-        if (updatedAddress.isEmpty()) {
-            return new Customer(updatedName, updatedPhone, updatedEmail, updatedTags, oldCommissions);
-        } else {
-            return new Customer(updatedName, updatedPhone, updatedEmail, updatedAddress.get(), updatedTags,
-                    oldCommissions);
-        }
+        Customer.CustomerBuilder customerBuilder = new Customer.CustomerBuilder(updatedName, updatedPhone,
+                updatedEmail, updatedTags).setCommissions(oldCommissions);
+        updatedAddress.ifPresent(customerBuilder::setAddress);
+        return customerBuilder.build();
     }
 
     @Override

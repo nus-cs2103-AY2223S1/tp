@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.commission.Commission;
@@ -153,8 +154,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void removeCommission(Customer customer, Commission key) {
         requireAllNonNull(customer, key);
         assert hasCommission(customer, key);
-        getCustomerCommissions(customer).remove(key);
+        // make a copy of customer's commissions with key removed.
+        Set<Commission> filteredCommissions = getCustomerCommissions(customer).stream()
+                .filter(commission -> !commission.equals(key)).collect(Collectors.toSet());
         commissions.remove(key);
+        // make a copy of customer with the updated commissions.
+        Customer newCustomer = customer.copyWithCommissions(filteredCommissions);
+        // replace original customer with updated customer to trigger customer list UI updates
+        setCustomer(customer, newCustomer);
     }
 
     //// util methods

@@ -132,9 +132,10 @@ class JsonAdaptedCustomer {
 
 
         final Set<Tag> modelTags = new HashSet<>(customerTags);
-        Customer customer = modelAddress.map(value -> new Customer(modelName, modelPhone, modelEmail, value, modelTags,
-                        personCommissions)).orElseGet(() -> new Customer(modelName, modelPhone, modelEmail, modelTags,
-                personCommissions));
+        Customer.CustomerBuilder customerBuilder = new Customer.CustomerBuilder(modelName, modelPhone, modelEmail,
+                modelTags).setCommissions(personCommissions);
+        modelAddress.ifPresent(customerBuilder::setAddress);
+        Customer customer = customerBuilder.build();
         customer.getCommissions().forEach(commission -> commission.setCustomer(customer));
         return customer;
     }
