@@ -33,7 +33,7 @@ public class UniquePersonList implements Iterable<Client> {
      */
     public boolean contains(Client toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSamePerson);
+        return internalList.stream().anyMatch(toCheck::isSameClient);
     }
 
     /**
@@ -61,7 +61,7 @@ public class UniquePersonList implements Iterable<Client> {
             throw new PersonNotFoundException();
         }
 
-        if (!target.isSamePerson(editedPerson) && contains(editedPerson)) {
+        if (!target.isSameClient(editedPerson) && contains(editedPerson)) {
             throw new DuplicatePersonException();
         }
 
@@ -127,7 +127,7 @@ public class UniquePersonList implements Iterable<Client> {
     private boolean personsAreUnique(List<Client> persons) {
         for (int i = 0; i < persons.size() - 1; i++) {
             for (int j = i + 1; j < persons.size(); j++) {
-                if (persons.get(i).isSamePerson(persons.get(j))) {
+                if (persons.get(i).isSameClient(persons.get(j))) {
                     return false;
                 }
             }
