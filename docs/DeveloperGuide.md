@@ -265,8 +265,8 @@ _{Explain here how the data archiving feature will be implemented}_
 * tends to forget commands
 * easily overwhelmed by too many information
 
-**Value proposition**: 
-* manage contacts faster than a typical mouse/GUI driven app 
+**Value proposition**:
+* manage contacts faster than a typical mouse/GUI driven app
 * provides a clean and easy to use UI
 * does not require highly skilled workers to use
 * easy to track financial transactions
@@ -329,7 +329,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. There are no companies with that name.
-  
+
   Use case ends.
 
 **Use case: Add a Point-Of-Contact**
@@ -347,11 +347,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. Company Mcdonalds already exists.
     * 1a1. JeeqTracker shows an error message.
-    
+
         Use case resumes at 1.
 * 3a. User fails to provide all necessary details to create a POC.
     * 3a1. JeeqTracker shows an error message.
-        
+
         Use case resumes at 2.
 
 **Use case: Requesting help**
@@ -360,7 +360,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests for help to use the add function
 2. JeeqTracker displays a detailed explanation on how to use the add function
-3. User requests for all the functionalities 
+3. User requests for all the functionalities
 4. JeeqTracker displays a pop-up with the link to the user guide
 
     Use case ends.
@@ -371,14 +371,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to clear all data in JeeqTracker
 2. JeeqTracker returns a confirmation to clear all data
-3. User confirms 
+3. User confirms
 4. JeeqTracker clears all data in JeeqTracker
 
 **Extensions**
 
 * 3a. User inputs the wrong word for confirmation.
     * 3a1. JeeqTracker shows an error message.
-        
+ 
       Use case resumes at 2.
 
 

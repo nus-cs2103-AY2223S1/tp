@@ -5,7 +5,7 @@ title: User Guide
 
 JeeqTracker is a **desktop application built for small businesses lacking in resources to help them keep track of
 supplier contacts and previous transaction information with them, optimised for use via a Command Line Interface (CLI)**,
-while still having the benefits of a Graphical User Interface (GUI). If you can type fast, JeeqTracker can get business 
+while still having the benefits of a Graphical User Interface (GUI). If you can type fast, JeeqTracker can get business
 interactions recorded faster and simpler than traditional GUI applications.
 
 * [Quick Start](#quick-start)
@@ -185,7 +185,7 @@ Format: `user_guide`
 
 * Displays a pop-up that contains the link to our user guide.
 
-### Viewing help : `help` 
+### Viewing help : `help`
 
 `help` returns the list of all commands. `help [COMMAND]` returns the detailed description of that specified command.
 

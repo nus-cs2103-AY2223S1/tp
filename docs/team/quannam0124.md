@@ -6,16 +6,16 @@ title: Nam Minh Quan's Project Portfolio Page
 ### Project: JeeqTracQer
 
 JeeqTracQer is a desktop app that allows small business owners to keep track of their business partners as well
-as their transactions. 
+as their transactions.
 
 JeeqTracQer is designed to be used with CLI (Command Line Interface), and it has GUI created using JavaFX.
 It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
-* **New Feature**: 
+* **New Feature**:
   * To be added soon
-* **New Feature**: 
+* **New Feature**:
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=quannam0124&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other')
 
 * **Project management**:
