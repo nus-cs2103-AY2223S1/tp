@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.tutorial;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -22,57 +23,60 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.tutorial.Tutorial;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.TutorialBuilder;
 
-public class AddCommandTest {
+public class AddTutorialCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+    public void constructor_nullTutorial_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddTutorialCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+    public void execute_tutorialAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingTutorialAdded modelStub = new ModelStubAcceptingTutorialAdded();
+        Tutorial validTutorial = new TutorialBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddTutorialCommand(validTutorial).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(String.format(
+                AddTutorialCommand.MESSAGE_SUCCESS, validTutorial),
+                commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validTutorial), modelStub.tutorialsAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+    public void execute_duplicateTutorial_throwsCommandException() {
+        Tutorial validTutorial = new TutorialBuilder().build();
+        AddTutorialCommand addCommand = new AddTutorialCommand(validTutorial);
+        ModelStub modelStub = new ModelStubWithTutorial(validTutorial);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddTutorialCommand.MESSAGE_DUPLICATE_TUTORIAL, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Tutorial w17 = new TutorialBuilder().withName("CS2103T W17").build();
+        Tutorial f01 = new TutorialBuilder().withName("CS2103T F01").build();
+        AddTutorialCommand addW17Command = new AddTutorialCommand(w17);
+        AddTutorialCommand addF01Command = new AddTutorialCommand(f01);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addW17Command.equals(addW17Command));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddTutorialCommand addAliceCommandCopy = new AddTutorialCommand(w17);
+        assertTrue(addW17Command.equals(addAliceCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addW17Command.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addW17Command.equals(null));
 
-        // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        // different tutorial -> returns false
+        assertFalse(addW17Command.equals(addF01Command));
     }
 
     /**
@@ -110,11 +114,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addPerson(Person person) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
@@ -135,6 +134,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setPerson(Person target, Person editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
@@ -146,7 +150,7 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
-            throw new AssertionError("This method should not be called.");
+            return;
         }
 
         @Override
@@ -171,39 +175,39 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single tutorial.
      */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
+    private class ModelStubWithTutorial extends ModelStub {
+        private final Tutorial tutorial;
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithTutorial(Tutorial tutorial) {
+            requireNonNull(tutorial);
+            this.tutorial = tutorial;
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public boolean hasTutorial(Tutorial tutorial) {
+            requireNonNull(tutorial);
+            return this.tutorial.isSameTutorial(tutorial);
         }
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the tutorial being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingTutorialAdded extends ModelStub {
+        final ArrayList<Tutorial> tutorialsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public boolean hasTutorial(Tutorial tutorial) {
+            requireNonNull(tutorial);
+            return tutorialsAdded.stream().anyMatch(tutorial::isSameTutorial);
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addTutorial(Tutorial tutorial) {
+            requireNonNull(tutorial);
+            tutorialsAdded.add(tutorial);
         }
 
         @Override
