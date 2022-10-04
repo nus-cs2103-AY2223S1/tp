@@ -111,6 +111,13 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public void refreshPerson(Person target) {
+        requireNonNull(target);
+
+        addressBook.refreshPerson(target);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
