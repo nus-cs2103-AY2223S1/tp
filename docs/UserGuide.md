@@ -27,7 +27,7 @@ NUScheduler is a desktop app for **managing contacts, optimised for use via a Co
 
    * **`profile -d `**`2` : Deletes the 2nd profile shown in the current list.
 
-   * **`profile -v`** : Lists profiles or shows a single profile.
+   * **`profile -v`** : Lists all profiles or in NUScheduler.
 
 6. Refer to the [Features](#features) below for details of each command.
 
@@ -106,10 +106,9 @@ Examples:
 *  `profile -e 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st profile to be `91234567` and `johndoe@example.com` respectively.
 *  `profile -e 2 n/Betsy Crower t/` Edits the name of the 2nd profile to be `Betsy Crower` and clears all existing tags.
 
-
 ### Finding profiles by name: `profile -f KEYWORD [MORE_KEYWORDS]`
 
-Finds profiles whose names contain any of the given keywords.
+Find profiles whose names contain any of the given keywords.
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -121,7 +120,7 @@ Finds profiles whose names contain any of the given keywords.
 Examples:
 * `profile -f John` returns `john` and `John Doe`
 * `profile -f alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+  ![result for 'profile -f alex david'](images/findAlexDavidResult.png)
 
 
 ### Deleting a profile: `profile -d`
@@ -160,22 +159,22 @@ Format: `event -u DAYS`
 Example:
 * `event -u 5` displays all events taking place in the next 5 days ordered by date.
 
-### Viewing events: `event -v`
+### Viewing all events: `event -v`
 
-Displays either a list of events or a single event in NUScheduler.
+Shows a list of all events in the NUScheduler.
 
-Format: `event -v [INDEX]`
+Format: `event -v`
 
-* The index refers to the index number shown in the full displayed event list after using `event -v`.
-* The index **must be a positive integer** 1, 2, 3, ...
+### Finding events by name: `event -f KEYWORD [MORE_KEYWORDS]`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-`INDEX` is optional, specify to view a single event.
-</div>
+Find events whose names contain any of the given keywords.
 
-Example:
-* `event -v` displays all events in NUScheduler.
-* `event -v 2` displays the second event listed in `event -v`.
+* The search is case-insensitive. e.g `birthday` will match `Birthday`
+* The order of the keywords does not matter. e.g. `one two` will match `two one`
+* Only the name of the event is searched.
+* Only full words will be matched e.g. `Birth` will not match `Birthday`
+* Events matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `interview meeting` will return `Meeting Tom`, `Job Interview`
 
 ### Deleting an event: `event -d`
 
@@ -206,14 +205,15 @@ No FAQ Yet.
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add Profile** | `profile -a n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…`
-**Delete Profile** | `profile -d INDEX`
-**Edit Profile** | `profile -e INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]…`
-**View Profiles** | `profile -v`
-**Find Profile** | `profile -f KEYWORD [MORE_KEYWORDS]`
-**Add Event** | `event -a n/NAME s/START e/END [p/PROFILE]…`
-**Delete Event** | `event -d INDEX`
-**View Event(s)** | `event -v [INDEX]`
-**View Upcoming Event(s)** | `event -u DAYS`
+| Action                     | Format, Examples                                         |
+|----------------------------|----------------------------------------------------------|
+| **Add Profile**            | `profile -a n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…`      |
+| **Delete Profile**         | `profile -d INDEX`                                       |
+| **Edit Profile**           | `profile -e INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]…` |
+| **View Profiles**          | `profile -v`                                             |
+| **Find Profile**           | `profile -f KEYWORD [MORE_KEYWORDS]`                     |
+| **Add Event**              | `event -a n/NAME s/START e/END [p/PROFILE]…`             |
+| **Delete Event**           | `event -d INDEX`                                         |
+| **View Events**            | `event -v`                                               |
+| **View Upcoming Event(s)** | `event -u DAYS`                                          |
+| **Find Event**             | `event -f KEYWORD [MORE_KEYWORDS]`                       |
