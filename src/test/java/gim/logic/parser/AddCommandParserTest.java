@@ -33,9 +33,9 @@ import org.junit.jupiter.api.Test;
 
 import gim.logic.commands.AddCommand;
 import gim.model.exercise.Address;
-import gim.model.exercise.Sets;
 import gim.model.exercise.Exercise;
 import gim.model.exercise.Name;
+import gim.model.exercise.Sets;
 import gim.model.exercise.Weight;
 import gim.model.tag.Tag;
 import gim.testutil.ExerciseBuilder;

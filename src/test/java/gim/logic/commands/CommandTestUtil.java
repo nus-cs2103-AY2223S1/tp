@@ -1,8 +1,8 @@
 package gim.logic.commands;
 
 import static gim.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static gim.logic.parser.CliSyntax.PREFIX_SETS;
 import static gim.logic.parser.CliSyntax.PREFIX_NAME;
+import static gim.logic.parser.CliSyntax.PREFIX_SETS;
 import static gim.logic.parser.CliSyntax.PREFIX_TAG;
 import static gim.logic.parser.CliSyntax.PREFIX_WEIGHT;
 import static gim.testutil.Assert.assertThrows;
