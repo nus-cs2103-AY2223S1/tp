@@ -70,6 +70,14 @@ public class PersonBuilder {
     }
 
     /**
+     *
+     */
+    public PersonBuilder withRecordList(String records) {
+        this.recordList = new RecordList();
+        return this;
+    }
+
+    /**
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
     public PersonBuilder withAddress(String address) {

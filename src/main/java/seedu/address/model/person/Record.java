@@ -15,14 +15,14 @@ import java.time.format.DateTimeParseException;
 public class Record {
     public static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
     /* Data Fields */
-    private LocalDateTime recordDate;
-    private String record;
+    public final String record;
+    private final LocalDateTime recordDate;
 
     /**
      * Constructs a record.
      *
      * @param recordDate Date that the record was made.
-     * @param record Contents of the record.
+     * @param record     Contents of the record.
      */
     protected Record(String recordDate, String record) {
         requireNonNull(recordDate);
@@ -46,6 +46,15 @@ public class Record {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Record date getter.
+     *
+     * @return The record date.
+     */
+    public LocalDateTime getRecordDate() {
+        return this.recordDate;
     }
 
     @Override
