@@ -2,15 +2,23 @@
 layout: page
 title: User Guide
 ---
+
 # FoodRem User Guide
 
 ## About
 
-We want you to focus on what is important: serving your customers, improving menu recipes, and transforming your
-business into the next successful story. FoodRem is an application that enables you to efficiently keep track of
-perishable goods in your daily operations. It is a convenient and efficient administrative tool to ensure less food
-wastage and a constant supply of fresh food to increase revenue and improve the quality of food. With a few quick
-commands, you can have complete control of your perishable goods.
+We want you to spend less time keeping track of perishable goods in your daily operations. 
+FoodRem is a command line application that enables you to efficiently record, update and categorise food items.
+It is a convenient administrative tool that can answer the following questions in a flash:
+
+- What food items are about to expire?
+- How much of each condiment do I have? 
+- Which food items are newly purchases?
+- ...and many more!
+
+With a few quick commands, you can have complete control of your perishable goods, so you can focus on what 
+is important: serving your customers, improving menu recipes, and transforming your business into the next 
+success story.
 
 ## Key Features
 
@@ -20,21 +28,24 @@ commands, you can have complete control of your perishable goods.
     - Quantity
     - Bought date
     - Expiry date
+    - Tags
 3. Tag items to group them into categories
 
 ## Purpose, Scope and Audience
 
 Something goes here...
 
+<div style="page-break-after: always"></div> <! ---Testing line break-->
+
 # Tables of Contents
 
-1. [How to use the user-guide](#how-to-use-the-user-guide)
+1. [How to use the user guide](#how-to-use-the-user-guide)
 
 2. [Quick Start](#quick-start)
 
-3. [Ui Components](#ui-components)
+3. [Items and Tags](#items-and-tags)
 
-4. [Items and Tags](#items-and-tags)
+4. [Navigating around the application](#navigating-around-the-application)
 
 5. [Flags](#flags)
 
@@ -42,45 +53,45 @@ Something goes here...
 
 7. [Features](#features)
 
-   6.1. [Item Features](#item-features)
+   7.1. [Item Features](#item-features)
 
-   &emsp; 6.1.1. [Create a new item](#create-a-new-item)
+   &emsp; 7.1.1. [Create a new item](#create-a-new-item)
 
-   &emsp; 6.1.2. [List all items](#list-all-items)
+   &emsp; 7.1.2. [List all items](#list-all-items)
 
-   &emsp; 6.1.3. [Search for an item](#search-for-an-item)
+   &emsp; 7.1.3. [Search for an item](#search-for-an-item)
    
-   &emsp; 6.1.4. [Sort all items by an attribute](#sort-all-items-by-an-attribute)
+   &emsp; 7.1.4. [Sort all items by an attribute](#sort-all-items-by-an-attribute)
 
-   &emsp; 6.1.5. [View the information of an item](#view-the-information-of-an-item)
+   &emsp; 7.1.5. [View the information of an item](#view-the-information-of-an-item)
 
-   &emsp; 6.1.6. [Increase the quantity of an item](#increase-the-quantity-of-an-item)
+   &emsp; 7.1.6. [Increase the quantity of an item](#increase-the-quantity-of-an-item)
 
-   &emsp; 6.1.7. [Decrease the quantity of an item](#decrease-the-quantity-of-an-item)
+   &emsp; 7.1.7. [Decrease the quantity of an item](#decrease-the-quantity-of-an-item)
 
-   &emsp; 6.1.8. [Update the information of an item](#update-the-information-of-an-item)
+   &emsp; 7.1.8. [Update the information of an item](#update-the-information-of-an-item)
 
-   &emsp; 6.1.9. [Delete an item](#delete-an-item)
+   &emsp; 7.1.9. [Delete an item](#delete-an-item)
 
-   6.2. [Tag Features](#tag-features)
+   7.2. [Tag Features](#tag-features)
 
-   &emsp; 6.2.1. [Create a new tag](#create-a-new-tag)
+   &emsp; 7.2.1. [Create a new tag](#create-a-new-tag)
 
-   &emsp; 6.2.2. [List all tags](#list-all-tags)
+   &emsp; 7.2.2. [List all tags](#list-all-tags)
 
-   &emsp; 6.2.3. [Tag an item](#tag-an-item)
+   &emsp; 7.2.3. [Tag an item](#tag-an-item)
 
-   &emsp; 6.2.4. [Untag an item](#untag-an-item)
+   &emsp; 7.2.4. [Untag an item](#untag-an-item)
 
-   &emsp; 6.2.5. [Rename a tag](#rename-a-tag)
+   &emsp; 7.2.5. [Rename a tag](#rename-a-tag)
 
-   &emsp; 6.2.6. [Delete a tag](#delete-an-item)
+   &emsp; 7.2.6. [Delete a tag](#delete-an-item)
 
-   6.3. [Receive help during usage](#receive-help-during-usage)
+   7.3. [Receive help during usage](#receive-help-during-usage)
 
-   6.4. [Reset the application](#reset-the-application)
+   7.4. [Reset the application](#reset-the-application)
 
-   6.5. [Exit the application](#exit-the-application)
+   7.5. [Exit the application](#exit-the-application)
 
 8. [Command Summary](#command-summary)
 
@@ -94,19 +105,121 @@ Something goes here...
 
 13. [Glossary](#glossary)
 
-## How to use the user-guide
+## How to use the User Guide
 
-Something goes here...
+Thank you for choosing FoodRem! We are delighted to have you as a user and aim to serve you well!
+
+To gain the most out from this User Guide, start off with the [Quick Start](#quick-start) section.
+This will give you a brief overview about how to use this application. 
+
+It is **highly recommended** reading through the User Guide in a **sequential order** up until the section
+[Features](#features) where you can find all the information you need for each command. 
+
+[Items and Tags](#items-and-tags) : 
+- What FoodRem is capable of storing
+
+[Navigating around the application](#navigating-around-the-application): 
+- Terminologies of different parts of the application
+- What you are expected to see.
+
+[Flags](#flags) and [Placeholders](#placeholders):
+- Important syntax you will come across while reading the user
+guide such as `n/`, `bgt/` or `INDEX`, `ITEM_NAME`. 
+
+If you are confident, you can immediately refer to the [Command Summary](#command-summary)
+after completing the [Quick Start](#quick-start).
+
+Meaning of icons:
+- ℹ️ : additional info
+- ❗ : warning
+
+If you are stuck, refer to [Troubleshooting](#troubleshooting) or [FAQ](#faq).
+There is also a [Glossary](#glossary) that contains definitions of what common words 
+used in this application mean.
+
+It is time for you to unleash the potential of a command line application!
 
 ## Quick Start
 
-Something goes here...
+Hello! This is the command box where we key in our commands.
+
+{Image of a command box}
+
+([Navigating around the application](#navigating-around-the-application))
+
+The format for commands are not identical. One command in FoodRem is the command to create a new item.
+
+Format: `new n/ITEM_NAME [qty/QUANTITY] [type/TYPE] [bgt/BOUGHT_DATE] [exp/EXPIRY_DATE]`
+
+The first word of every command allows FoodRem to distinguish different commands.
+`new` tells FoodRem that this is the command to create a new item.
+[Flags](#flags) such as `n/` and `qty/` are delimiters that enable FoodRem to distinguish different parameters
+supplied by you without ambiguity. [Placeholders](#placeholders) such as `ITEM_NAME` and `QUANTITY` shows you
+what you should place in each portion of the command. 
+
+Suppose you just bought 30 kg of potatoes, today is 5th September 22, and you do not feel the need to record
+an expiry date for the potatoes.
+
+`ITEM_NAME`: Potatoes
+
+`QUANTITY`: 30
+
+`TYPE`: kg
+
+`BOUGHT_DATE`: 05-09-22
+
+Note: 
+- The [Placeholder](#placeholders) section covers the restrictions for respective placeholders.
+For example, the date format of BOUGHT_DATE, certain characters you cannot use and the limit and precision of numbers.
+
+The command you would like to enter into the command box would be:
+
+`new n/Potatoes qty/30 type/kg bgt/05-09-22`
+
+Alternatively these commands would do the same thing:
+- `new n/Potatoesqty/30type/kgbgt/05-09-22` (Omitting space between tags)
+- `new qty/30 n/Potatoes bgt/05-09-22 type/kg` (Reordering the flags)
+
+These commands are invalid:
+- `newn/Potatoesqty/30type/kgbgt/05-09-22` (Removing space between command identifier and flag)
+- `new qty/-48 n/PÖtátÖes bgt/05/09/22 type/|kg|` (Restrictions of placeholders not followed)
+
+Find out more about restrictions in the sections [Flags](#flags), [Placeholders](#placeholders) and 
+[Features](#features).
+
+You might also realise that there is a pair of square brackets `[]` surrounding some parameters like `qty/QUANTITY` 
+in the format. This indicates that the parameter is optional. Each of these placeholders have a default value
+based on the commands. These are documented in the [Features](#features) section for each command. 
+
+Let us try another command!
+
+After creating the potatoes item, you decided to buy 40 kg more of potatoes.
+
+Format: `inc id/INDEX_LIST [qty/QUANTITY]`
+
+`inc` tells FoodRem that this is the command to increment the quantity of an item.
+Suppose the `INDEX` for potatoes is `12` in the application, the command you
+would like to enter into the command box is `inc id/12 qty/30`.
+
+Note: `INDEX_LIST` can be an `INDEX` (More information in [Placeholders](#placeholders))
+
+Now you should have a general sensing of how commands are used and how to interpret formats. All commands are
+consolidated in [Command Summary](#command-summary). However, it is **highly recommended** to read through the 
+User Guide in a  **sequential order** up until the section [Features](#features) where you can find all the
+information you need for each command. This covers more details on syntax and common errors. Before using any 
+command, take note of the behaviour when certain tags are not included and restrictions.
+
+Checklist before using a command:
+- [ ] I know the restrictions of the command
+- [ ] I know what flags are supplied to the command
+- [ ] I know the restrictions of each placeholder
+- [ ] I know the effects of not specifying each optional flag.
 
 ## Items and Tags
 
 Something goes here...
 
-## Ui Components
+## Navigating around the application
 
 {Image of entire application}
 
@@ -231,6 +344,21 @@ Placeholders are words in UPPER_CASE to show you what parameters you can supply 
 
 ## Features
 
+This section covers how to use each command in detail. 
+Before continuing, ensure you have read the section on [Flags](#flags) and [Placeholders](#placeholders).
+
+What you should expect to find:
+
+- A description of the command
+- The expected behaviour for the command
+- A few valid and invalid examples of the command
+- Important points to note
+
+**IMPORTANT:**
+
+- Square brackets indicate an optional parameter.
+- For each command, "Format" indicates the syntax of the command.
+
 ### Item Features
 
 {Insert an image of items}
@@ -283,6 +411,8 @@ Details about chicken wings
 ```
 
 ### Search for an item
+
+<!--- Remember to implement find by tags-->
 
 Command: `find NAME`
 
