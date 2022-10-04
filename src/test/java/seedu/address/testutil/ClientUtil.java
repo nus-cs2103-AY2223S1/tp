@@ -16,19 +16,19 @@ import seedu.address.model.tag.Tag;
 /**
  * A utility class for Person.
  */
-public class PersonUtil {
+public class ClientUtil {
 
     /**
      * Returns an add command string for adding the {@code person}.
      */
     public static String getAddCommand(Client person) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(person);
+        return AddCommand.COMMAND_WORD + " " + getClientDetails(person);
     }
 
     /**
      * Returns the part of command string for the given {@code person}'s details.
      */
-    public static String getPersonDetails(Client person) {
+    public static String getClientDetails(Client person) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + person.getName().fullName + " ");
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
