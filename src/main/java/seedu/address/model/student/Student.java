@@ -19,6 +19,7 @@ public class Student {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final TutorialGroup  tutorialGroup = new TutorialGroup("T00");
 
     // Data fields
     private final Address address;
@@ -51,6 +52,8 @@ public class Student {
     public Address getAddress() {
         return address;
     }
+
+    public TutorialGroup getTutorialGroup() { return tutorialGroup; }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
