@@ -87,7 +87,7 @@ public class UniqueClientListTest {
         uniqueClientList.add(ALICE);
         Client editedAlice = new ClientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        uniqueClientList.setPerson(ALICE, editedAlice);
+        uniqueClientList.setClients(ALICE, editedAlice);
         uniqueClientList expecteduniqueClientList = new uniqueClientList();
         expecteduniqueClientList.add(editedAlice);
         assertEquals(expecteduniqueClientList, uniqueClientList);
@@ -129,7 +129,7 @@ public class UniqueClientListTest {
 
     @Test
     public void setPersons_nulluniqueClientList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueClientList.setPersons((uniqueClientList) null));
+        assertThrows(NullPointerException.class, () -> uniqueClientList.setClients((uniqueClientList) null));
     }
 
     @Test
@@ -137,20 +137,20 @@ public class UniqueClientListTest {
         uniqueClientList.add(ALICE);
         uniqueClientList expecteduniqueClientList = new uniqueClientList();
         expecteduniqueClientList.add(BOB);
-        uniqueClientList.setPersons(expecteduniqueClientList);
+        uniqueClientList.setClients(expecteduniqueClientList);
         assertEquals(expecteduniqueClientList, uniqueClientList);
     }
 
     @Test
     public void setPersons_nullList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueClientList.setPersons((List<Client>) null));
+        assertThrows(NullPointerException.class, () -> uniqueClientList.setClients((List<Client>) null));
     }
 
     @Test
     public void setPersons_list_replacesOwnListWithProvidedList() {
         uniqueClientList.add(ALICE);
         List<Client> personList = Collections.singletonList(BOB);
-        uniqueClientList.setPersons(personList);
+        uniqueClientList.setClients(personList);
         uniqueClientList expecteduniqueClientList = new uniqueClientList();
         expecteduniqueClientList.add(BOB);
         assertEquals(expecteduniqueClientList, uniqueClientList);
@@ -159,7 +159,7 @@ public class UniqueClientListTest {
     @Test
     public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
         List<Client> listWithDuplicatePersons = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniqueClientList.setPersons(listWithDuplicatePersons));
+        assertThrows(DuplicatePersonException.class, () -> uniqueClientList.setClients(listWithDuplicatePersons));
     }
 
     @Test

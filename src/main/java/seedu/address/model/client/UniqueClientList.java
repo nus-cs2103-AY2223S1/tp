@@ -20,9 +20,9 @@ import seedu.address.model.client.exceptions.PersonNotFoundException;
  *
  * Supports a minimal set of list operations.
  *
- * @see Client#isSamePerson(Client)
+ * @see Client#isSameClient(Client)
  */
-public class UniquePersonList implements Iterable<Client> {
+public class UniqueClientList implements Iterable<Client> {
 
     private final ObservableList<Client> internalList = FXCollections.observableArrayList();
     private final ObservableList<Client> internalUnmodifiableList =
@@ -53,7 +53,7 @@ public class UniquePersonList implements Iterable<Client> {
      * {@code target} must exist in the list.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
      */
-    public void setPerson(Client target, Client editedPerson) {
+    public void setClient(Client target, Client editedPerson) {
         requireAllNonNull(target, editedPerson);
 
         int index = internalList.indexOf(target);
@@ -79,7 +79,7 @@ public class UniquePersonList implements Iterable<Client> {
         }
     }
 
-    public void setPersons(UniquePersonList replacement) {
+    public void setClient(UniqueClientList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -88,7 +88,7 @@ public class UniquePersonList implements Iterable<Client> {
      * Replaces the contents of this list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void setPersons(List<Client> persons) {
+    public void setClients(List<Client> persons) {
         requireAllNonNull(persons);
         if (!personsAreUnique(persons)) {
             throw new DuplicatePersonException();
@@ -112,8 +112,8 @@ public class UniquePersonList implements Iterable<Client> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniquePersonList // instanceof handles nulls
-                        && internalList.equals(((UniquePersonList) other).internalList));
+                || (other instanceof UniqueClientList // instanceof handles nulls
+                        && internalList.equals(((UniqueClientList) other).internalList));
     }
 
     @Override
@@ -124,7 +124,7 @@ public class UniquePersonList implements Iterable<Client> {
     /**
      * Returns true if {@code persons} contains only unique persons.
      */
-    private boolean personsAreUnique(List<Client> persons) {
+    private boolean clientsAreUnique(List<Client> persons) {
         for (int i = 0; i < persons.size() - 1; i++) {
             for (int j = i + 1; j < persons.size(); j++) {
                 if (persons.get(i).isSameClient(persons.get(j))) {
