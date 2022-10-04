@@ -36,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
     private StatisticsWindow statisticsWindow;
     private ScheduleListPanel scheduleListPanel;
+    private StatisticsDisplay statisticsDisplay;
 
 
     @FXML
@@ -50,6 +51,8 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane resultDisplayPlaceholder;
     @FXML
     private StackPane statusbarPlaceholder;
+    @FXML
+    private StackPane statisticsPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -127,6 +130,9 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        statisticsDisplay = new StatisticsDisplay();
+        statisticsPlaceholder.getChildren().add(statisticsDisplay.getRoot());
     }
 
     /**
@@ -196,6 +202,7 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             statisticsWindow.refresh();
+            statisticsDisplay.setFeedbackToUser(statisticsWindow.updateStatisticsMessage());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

@@ -93,7 +93,7 @@ public class StatisticsWindow extends UiPart<Stage> {
     /**
      * Updates the message to show the latest statistical values.
      */
-    public void updateStatisticsMessage() {
+    public String updateStatisticsMessage() {
 
         int[] statistics = addressBook.getStatistics();
 
@@ -108,6 +108,7 @@ public class StatisticsWindow extends UiPart<Stage> {
                         "________________________________________\n" +
                         "Status correct as of: %s",
                 studentCount, moneyCollected, moneyOwed, dateAndTime));
+        return statisticsMessage.getText();
     }
 
     /**

@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 
-<StackPane fx:id="placeHolder" styleClass="pane-with-border" xmlns="http://javafx.com/javafx/8"
-    xmlns:fx="http://javafx.com/fxml/1">
-  <TextArea fx:id="statisticsDisplay" editable="false" styleClass="result-display"/>
+<StackPane fx:id="placeHolder" styleClass="pane-with-border" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <VBox prefHeight="200.0" prefWidth="100.0">
+      <children>
+         <Label text="Statistics" />
+        <TextArea fx:id="resultDisplay" editable="false" styleClass="result-display" />
+      </children>
+   </VBox>
 </StackPane>
