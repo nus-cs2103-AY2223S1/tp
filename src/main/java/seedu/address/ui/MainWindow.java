@@ -32,6 +32,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private CustomerListPanel customerListPanel;
+    private CommissionListPanel commissionListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -47,6 +48,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane customerListPanelPlaceholder;
+
+    @FXML
+    private StackPane commissionListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -128,6 +132,9 @@ public class MainWindow extends UiPart<Stage> {
 
         customerDetailsPane = new CustomerDetailsPane(logic.getSelectedCustomer());
         customerDetailsPanePlaceholder.getChildren().add(customerDetailsPane.getRoot());
+
+        commissionListPanel = new CommissionListPanel(logic.getFilteredCommissionList());
+        commissionListPanelPlaceholder.getChildren().add(commissionListPanel.getRoot());
     }
 
     /**

@@ -5,8 +5,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.commission.Commission;
 import seedu.address.commons.core.ObservableObject;
+import seedu.address.model.commission.Commission;
 import seedu.address.model.customer.Customer;
 
 /**

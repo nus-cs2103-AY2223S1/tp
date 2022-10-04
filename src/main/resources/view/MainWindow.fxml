@@ -105,9 +105,35 @@
                                     </AnchorPane>
                                 </content>
                             </Tab>
-                            <Tab disable="true" text="Commissions">
+                            <Tab disable="false" text="Commissions">
                                 <content>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0">
+                                        <children>
+                                            <SplitPane dividerPositions="0.2" AnchorPane.bottomAnchor="0.0"
+                                                       AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                                                       AnchorPane.topAnchor="0.0">
+                                                <items>
+                                                    <AnchorPane minHeight="0.0" minWidth="0.0">
+                                                        <children>
+                                                            <VBox fx:id="commissionList" minWidth="340" prefWidth="340"
+                                                                  styleClass="pane-with-border"
+                                                                  AnchorPane.bottomAnchor="0.0"
+                                                                  AnchorPane.leftAnchor="0.0"
+                                                                  AnchorPane.rightAnchor="0.0"
+                                                                  AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS">
+                                                                <padding>
+                                                                    <Insets bottom="10" left="10" right="10" top="10"/>
+                                                                </padding>
+                                                                <StackPane fx:id="commissionListPanelPlaceholder"
+                                                                           VBox.vgrow="ALWAYS"/>
+                                                            </VBox>
+                                                        </children>
+                                                    </AnchorPane>
+                                                    <AnchorPane minHeight="0.0" minWidth="0.0" />
+                                                </items>
+                                            </SplitPane>
+                                        </children>
+                                    </AnchorPane>
                                 </content>
                             </Tab>
                         </tabs>
