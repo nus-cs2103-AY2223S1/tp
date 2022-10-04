@@ -46,12 +46,10 @@ public class Meeting {
     }
 
     /**
-     * Returns true if both meeting have the same client, date and time.
-     * These 3 parameters uniquely identifies a meeting.
-     *
-     * @return Whether both meetings have the same client, date and time and are thus same.
+     * Returns true only if both {@code Meetings} refer to the same {@code Client}, have the same description, time and
+     * date. This defines a strong notion of equality between two {@code Meetings}.
      */
-    public boolean isSameMeeting(Meeting other) {
+    public boolean equals(Meeting other) {
         if (other == this) {
             return true;
         }
@@ -61,25 +59,22 @@ public class Meeting {
         }
 
         boolean isSameClient = this.getClient().equals(other.getClient());
+        boolean isSameDescription = this.getDescription().equals(other.getDescription());
         boolean isSameMeetingDate = this.getMeetingDate().equals(other.getMeetingDate());
         boolean isSameMeetingTime = this.getMeetingTime().equals(other.getMeetingTime());
 
-        return isSameClient && isSameMeetingDate && isSameMeetingTime;
+        return isSameClient && isSameDescription && isSameMeetingDate && isSameMeetingTime;
     }
 
     /**
      * Returns true if both meetings have the same date and time and conflicts.
-     * If both meetings refer to the same meeting, then there is no conflicts.
+     * Null inputs are considered to conflict with all meetings.
      *
      * @return Whether both meetings have the same date and time and conflicts
      */
     public boolean willConflict(Meeting other) {
-        if (other == this) {
-            return false;
-        }
-
         if (other == null) {
-            return false;
+            return true;
         }
 
         boolean isSameMeetingDate = this.getMeetingDate().equals(other.getMeetingDate());

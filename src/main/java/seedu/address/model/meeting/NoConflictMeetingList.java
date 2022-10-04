@@ -8,42 +8,44 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.meeting.exceptions.DuplicateMeetingException;
+import seedu.address.model.meeting.exceptions.ConflictingMeetingException;
 import seedu.address.model.meeting.exceptions.MeetingNotFoundException;
 
 /**
- * A list of meetings that enforces uniqueness between its elements and does not allow nulls.
- * A meeting is considered unique by comparing using {@code Meeting#isSameMeeting(Meeting)}. As such, adding and
- * updating of meetings uses Meeting#isSameMeeting(Meeting) for equality so as to ensure that the meeting being added
- * or updated is unique in terms of identity in the UniqueMeetingList. However, the removal of a meeting uses
- * Meeting#equals(Object) so as to ensure that the meeting with exactly the same fields will be removed.
- *
+ * A list of meetings that enforces no timing conflicts between its elements and does not allow nulls.
+ * A meeting is considered to have no timing conflict with another by comparing using {@code Meeting#willConflict}. As
+ * such, adding and updating of meetings uses Meeting#willConflict(Meeting) for equality to ensure that the meeting
+ * being added or updated does not conflict with other Meetings in the UniqueMeetingList. However, the removal of a
+ * meeting uses Meeting#equals(Object) to ensure that the meeting with exactly the same fields will be removed.
+ * <br>
  * Supports a minimal set of list operations.
  *
- * @see Meeting#isSameMeeting(Meeting)
+ * @see Meeting#willConflict(Meeting)
  */
-public class UniqueMeetingList implements Iterable<Meeting> {
+public class NoConflictMeetingList implements Iterable<Meeting> {
 
     private final ObservableList<Meeting> internalList = FXCollections.observableArrayList();
     private final ObservableList<Meeting> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent meeting as the given argument.
+     * Returns true if the list contains a conflicting meeting as the given argument.
+     * Any attempts to add a meeting that already exists in the list will be considered to be conflicting, even if they
+     * are referring to the exact same meeting.
      */
     public boolean contains(Meeting toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameMeeting);
+        return internalList.stream().anyMatch(toCheck::willConflict);
     }
 
     /**
      * Adds a meeting to the list.
-     * The meeting must not already exist in the list.
+     * The meeting must not conflict with any meetings in the list.
      */
     public void add(Meeting toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicateMeetingException();
+            throw new ConflictingMeetingException();
         }
         internalList.add(toAdd);
     }
@@ -51,7 +53,7 @@ public class UniqueMeetingList implements Iterable<Meeting> {
     /**
      * Replaces the meeting {@code target} in the list with {@code editedMeeting}.
      * {@code target} must exist in the list.
-     * The identity of {@code editedMeeting} must not be the same as another existing meeting in the list.
+     * The {@code editedMeeting} must not conflict with another existing meeting in the list.
      */
     public void setMeeting(Meeting target, Meeting editedMeeting) {
         requireAllNonNull(target, editedMeeting);
@@ -61,8 +63,8 @@ public class UniqueMeetingList implements Iterable<Meeting> {
             throw new MeetingNotFoundException();
         }
 
-        if (!target.isSameMeeting(editedMeeting) && contains(editedMeeting)) {
-            throw new DuplicateMeetingException();
+        if (contains(editedMeeting)) {
+            throw new ConflictingMeetingException();
         }
 
         internalList.set(index, editedMeeting);
@@ -74,24 +76,24 @@ public class UniqueMeetingList implements Iterable<Meeting> {
      */
     public void remove(Meeting toRemove) {
         requireNonNull(toRemove);
-        if (!internalList.remove(toRemove)) {
+        if (!internalList.remove(toRemove)) { // Checks equivalence through Meeting#equals
             throw new MeetingNotFoundException();
         }
     }
 
-    public void setMeetings(UniqueMeetingList replacement) {
+    public void setMeetings(NoConflictMeetingList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
 
     /**
      * Replaces the contents of this list with {@code meetings}.
-     * {@code meetings} must not contain duplicate meetings.
+     * {@code meetings} must not contain conflicting meetings.
      */
     public void setMeetings(List<Meeting> meetings) {
         requireAllNonNull(meetings);
-        if (!meetingsAreUnique(meetings)) {
-            throw new DuplicateMeetingException();
+        if (!meetingsDoNotConflict(meetings)) {
+            throw new ConflictingMeetingException();
         }
 
         internalList.setAll(meetings);
@@ -112,8 +114,8 @@ public class UniqueMeetingList implements Iterable<Meeting> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniqueMeetingList // instanceof handles nulls
-                && internalList.equals(((UniqueMeetingList) other).internalList));
+                || (other instanceof NoConflictMeetingList // instanceof handles nulls
+                && internalList.equals(((NoConflictMeetingList) other).internalList));
     }
 
     @Override
@@ -122,12 +124,12 @@ public class UniqueMeetingList implements Iterable<Meeting> {
     }
 
     /**
-     * Returns true if {@code meetings} contains only unique meetings.
+     * Returns true if {@code meetings} do not contain conflicting meetings.
      */
-    private boolean meetingsAreUnique(List<Meeting> meetings) {
+    private boolean meetingsDoNotConflict(List<Meeting> meetings) {
         for (int i = 0; i < meetings.size() - 1; i++) {
             for (int j = i + 1; j < meetings.size(); j++) {
-                if (meetings.get(i).isSameMeeting(meetings.get(j))) {
+                if (meetings.get(i).willConflict(meetings.get(j))) {
                     return false;
                 }
             }
