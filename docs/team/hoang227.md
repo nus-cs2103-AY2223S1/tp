@@ -1,5 +1,5 @@
-### Overview
-##### Summary of Contributions
+## Overview
+### Summary of Contributions
 
 **Code contributed:** [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=ama-chi&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
