@@ -31,6 +31,7 @@ public class AddAppointmentCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "You have already scheduled "
             + "an appointment at this timing for this client";
+    public static final String FIELD_NOT_INCLUDED = "At least one field must be provided.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -41,6 +42,11 @@ public class AddAppointmentCommand extends Command {
     public AddAppointmentCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(index);
         requireNonNull(editPersonDescriptor);
+        assert(editPersonDescriptor.getName().isEmpty());
+        assert(editPersonDescriptor.getAddress().isEmpty());
+        assert(editPersonDescriptor.getPhone().isEmpty());
+        assert(editPersonDescriptor.getEmail().isEmpty());
+        assert(editPersonDescriptor.getTags().isEmpty());
         this.index = index;
         this.editPersonDescriptor = editPersonDescriptor;
     }
