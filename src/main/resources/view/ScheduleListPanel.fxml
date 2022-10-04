@@ -12,7 +12,7 @@
         <padding>
             <Insets top="5" right="5" bottom="5" left="15" />
         </padding>
-        <Label fx:id="title" text="\$title" styleClass="cell_title_label" />
+        <Label text="Schedule for" styleClass="cell_title_label" />
         <Label fx:id="classDate" text="\$classDate" styleClass="cell_title_label" />
     </HBox>
     <ListView fx:id="scheduleListView" VBox.vgrow="ALWAYS" />

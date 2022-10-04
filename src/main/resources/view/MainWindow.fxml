@@ -63,8 +63,7 @@
             <StackPane fx:id="scheduleListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
         </SplitPane>
-
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+        <StackPane fx:id="statusbarPlaceholder" />
       </VBox>
     </Scene>
   </scene>

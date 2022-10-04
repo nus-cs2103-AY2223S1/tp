@@ -17,7 +17,7 @@
         </columnConstraints>
         <VBox alignment="CENTER_LEFT" minHeight="80" GridPane.columnIndex="0">
             <padding>
-                <Insets top="5" right="5" bottom="5" left="15" />
+                <Insets top="10" right="15" bottom="10" left="15" />
             </padding>
             <HBox spacing="5" alignment="CENTER_LEFT">
                 <Label fx:id="id" styleClass="cell_big_label">
@@ -30,8 +30,17 @@
                 <Pane HBox.hgrow="ALWAYS" />
                 <Label fx:id="classTime" text="\$classTime" styleClass="cell_big_label" />
             </HBox>
-            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-            <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
+            <HBox>
+                <Label styleClass="cell_small_label" text="Phone: " />
+                <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+            </HBox>
+            <HBox>
+                <Label styleClass="cell_small_label" text="Address: " />
+                <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
+            </HBox>
+
+
+
         </VBox>
     </GridPane>
 </HBox>

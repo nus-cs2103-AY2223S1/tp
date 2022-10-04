@@ -22,7 +22,6 @@ public class ScheduleCard extends UiPart<Region> {
      */
 
     public final Person person;
-
     @FXML
     private HBox scheduleCardPane;
     @FXML
@@ -33,7 +32,6 @@ public class ScheduleCard extends UiPart<Region> {
     private Label phone;
     @FXML
     private Label address;
-
     @FXML
     private Label classTime;
 
