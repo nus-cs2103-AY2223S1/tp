@@ -20,22 +20,9 @@ public class Appointment {
 
     public static final DateTimeFormatter STORAGE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-    private final String reason;
-    private final LocalDateTime dateTime;
-=======
-    public final String reason;
-    public final LocalDateTime dateTime;
-    private boolean isMarked;
->>>>>>> master
-=======
-
     private final String reason;
     private final LocalDateTime dateTime;
     private boolean isMarked;
->>>>>>> d246ca118eb5f1b77ede29b19045e1c7a60f3cc5
 
     private final DateTimeFormatter stringFormatter = DateTimeFormatter.ofPattern("MMM d yyyy HH:mm");
 
