@@ -3,7 +3,6 @@ package seedu.address.ui;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
@@ -23,8 +22,6 @@ public class StatisticsWindow extends UiPart<Stage> {
     private static final String FXML = "StatisticsWindow.fxml";
     private final ReadOnlyAddressBook addressBook;
 
-    @FXML
-    private Button refreshButton;
     @FXML
     private Label statisticsMessage;
 
@@ -132,13 +129,5 @@ public class StatisticsWindow extends UiPart<Stage> {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
         return dtf.format(now);
-    }
-
-    /**
-     * Refreshes the statistical values.
-     */
-    @FXML
-    private void refreshStatistics() {
-        updateStatisticsMessage();
     }
 }
