@@ -423,7 +423,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User gets the <ins>list of appointments(UC03)<ins>.
 2.  User requests to mark a specified appointment for a specified patient.
 3.  idENTify marks the selected appointment.
-
     Use case ends.
 
 **Extensions**
