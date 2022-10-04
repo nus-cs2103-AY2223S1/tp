@@ -23,18 +23,20 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private NetWorth netWorth;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Remark remark, NetWorth netWorth, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, netWorth, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.remark = remark;
+        this.netWorth = netWorth;
         this.tags.addAll(tags);
     }
 
@@ -56,6 +58,10 @@ public class Person {
 
     public Remark getRemark() {
         return remark;
+    }
+
+    public NetWorth getNetWorth() {
+        return netWorth;
     }
 
     /**
@@ -98,13 +104,15 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getRemark().equals(getRemark())
+                && otherPerson.getNetWorth().equals(getNetWorth());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags, remark, netWorth);
     }
 
     @Override
@@ -119,6 +127,8 @@ public class Person {
                 .append(getAddress())
                 .append(" Remark: ")
                 .append(getRemark())
+                .append(" Net Worth: ")
+                .append(getNetWorth())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();

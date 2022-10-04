@@ -17,12 +17,14 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_REMARK = "She likes aardvarks.";
+    public static final String DEFAULT_NETWORTH= "2000";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private Remark remark;
+    private NetWorth netWorth;
     private Set<Tag> tags;
 
     /**
@@ -34,6 +36,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         remark = new Remark(DEFAULT_REMARK);
+        netWorth = new NetWorth(DEFAULT_NETWORTH);
         tags = new HashSet<>();
     }
 
@@ -45,6 +48,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        netWorth = personToCopy.getNetWorth();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -96,8 +100,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code netWorth} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withNetWorth(String netWorth) {
+        this.netWorth = new NetWorth(netWorth);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, remark, tags);
+        return new Person(name, phone, email, address, remark, netWorth, tags);
     }
 
 }
