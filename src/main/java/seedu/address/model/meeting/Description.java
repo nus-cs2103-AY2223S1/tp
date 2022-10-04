@@ -19,5 +19,15 @@ public class Description {
         details = description;
     }
 
+    @Override
+    public String toString() {
+        return details;
+    }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || (other instanceof Description
+                && details.equals(((Description) other).details));
+    }
 }

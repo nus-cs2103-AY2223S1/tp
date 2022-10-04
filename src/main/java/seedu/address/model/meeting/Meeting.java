@@ -87,4 +87,19 @@ public class Meeting {
 
         return isSameMeetingDate && isSameMeetingTime;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("Client: ")
+                .append(getClient().getName())
+                .append("; Description: ")
+                .append(getDescription())
+                .append("; Date: ")
+                .append(getMeetingDate())
+                .append("; Time: ")
+                .append(getMeetingTime());
+
+        return builder.toString();
+    }
 }
