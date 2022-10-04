@@ -19,7 +19,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.Food;
 import seedu.address.model.person.MealType;
 import seedu.address.model.person.Name;
@@ -94,10 +93,9 @@ public class EditCommand extends Command {
 
         Name updatedName = editPersonDescriptor.getName().orElse(foodToEdit.getName());
         MealType updatedMealType = editPersonDescriptor.getPhone().orElse(foodToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(foodToEdit.getEmail());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(foodToEdit.getTags());
 
-        return new Food(updatedName, updatedMealType, updatedEmail, updatedTags);
+        return new Food(updatedName, updatedMealType, updatedTags);
     }
 
     @Override
@@ -125,7 +123,6 @@ public class EditCommand extends Command {
     public static class EditPersonDescriptor {
         private Name name;
         private MealType mealType;
-        private Email email;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -137,7 +134,6 @@ public class EditCommand extends Command {
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.mealType);
-            setEmail(toCopy.email);
             setTags(toCopy.tags);
         }
 
@@ -145,7 +141,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, mealType, email, tags);
+            return CollectionUtil.isAnyNonNull(name, mealType, tags);
         }
 
         public void setName(Name name) {
@@ -162,14 +158,6 @@ public class EditCommand extends Command {
 
         public Optional<MealType> getPhone() {
             return Optional.ofNullable(mealType);
-        }
-
-        public void setEmail(Email email) {
-            this.email = email;
-        }
-
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
         }
 
         /**
@@ -206,7 +194,6 @@ public class EditCommand extends Command {
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail())
                     && getTags().equals(e.getTags());
         }
     }
