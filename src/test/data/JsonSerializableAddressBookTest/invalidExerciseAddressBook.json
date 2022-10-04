@@ -2,7 +2,7 @@
   "exercises": [ {
     "name": "Hans Muster",
     "weight": "9482424",
-    "email": "invalid@email!3e",
+    "sets": "invalid@sets!3e",
     "address": "4th street"
   } ]
 }

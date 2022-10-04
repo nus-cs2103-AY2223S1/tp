@@ -1,8 +1,8 @@
 package gim.logic.commands;
 
 import static gim.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static gim.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static gim.logic.parser.CliSyntax.PREFIX_NAME;
+import static gim.logic.parser.CliSyntax.PREFIX_SETS;
 import static gim.logic.parser.CliSyntax.PREFIX_TAG;
 import static gim.logic.parser.CliSyntax.PREFIX_WEIGHT;
 import static java.util.Objects.requireNonNull;
@@ -23,13 +23,13 @@ public class AddCommand extends Command {
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_WEIGHT + "WEIGHT "
-            + PREFIX_EMAIL + "EMAIL "
+            + PREFIX_SETS + "SETS "
             + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_WEIGHT + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
+            + PREFIX_SETS + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";

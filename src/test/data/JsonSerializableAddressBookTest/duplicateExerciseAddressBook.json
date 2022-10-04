@@ -2,13 +2,13 @@
   "exercises": [ {
     "name": "Alice Pauline",
     "weight": "94351253",
-    "email": "alice@example.com",
+    "sets": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "weight": "94351253",
-    "email": "pauline@example.com",
+    "sets": "pauline@example.com",
     "address": "4th street"
   } ]
 }

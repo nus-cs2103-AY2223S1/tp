@@ -11,9 +11,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import gim.commons.exceptions.IllegalValueException;
 import gim.model.exercise.Address;
-import gim.model.exercise.Email;
 import gim.model.exercise.Exercise;
 import gim.model.exercise.Name;
+import gim.model.exercise.Sets;
 import gim.model.exercise.Weight;
 import gim.model.tag.Tag;
 
@@ -26,7 +26,7 @@ class JsonAdaptedExercise {
 
     private final String name;
     private final String weight;
-    private final String email;
+    private final String sets;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -35,11 +35,11 @@ class JsonAdaptedExercise {
      */
     @JsonCreator
     public JsonAdaptedExercise(@JsonProperty("name") String name, @JsonProperty("weight") String weight,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
+            @JsonProperty("sets") String sets, @JsonProperty("address") String address,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.weight = weight;
-        this.email = email;
+        this.sets = sets;
         this.address = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -52,7 +52,7 @@ class JsonAdaptedExercise {
     public JsonAdaptedExercise(Exercise source) {
         name = source.getName().fullName;
         weight = source.getWeight().value;
-        email = source.getEmail().value;
+        sets = source.getSets().value;
         address = source.getAddress().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -86,13 +86,13 @@ class JsonAdaptedExercise {
         }
         final Weight modelWeight = new Weight(weight);
 
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+        if (sets == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Sets.class.getSimpleName()));
         }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+        if (!Sets.isValidSets(sets)) {
+            throw new IllegalValueException(Sets.MESSAGE_CONSTRAINTS);
         }
-        final Email modelEmail = new Email(email);
+        final Sets modelSets = new Sets(sets);
 
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
@@ -103,7 +103,7 @@ class JsonAdaptedExercise {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(exerciseTags);
-        return new Exercise(modelName, modelWeight, modelEmail, modelAddress, modelTags);
+        return new Exercise(modelName, modelWeight, modelSets, modelAddress, modelTags);
     }
 
 }

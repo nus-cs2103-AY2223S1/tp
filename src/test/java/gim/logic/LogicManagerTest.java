@@ -3,7 +3,7 @@ package gim.logic;
 import static gim.commons.core.Messages.MESSAGE_INVALID_EXERCISE_DISPLAYED_INDEX;
 import static gim.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static gim.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static gim.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static gim.logic.commands.CommandTestUtil.SETS_DESC_AMY;
 import static gim.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static gim.logic.commands.CommandTestUtil.WEIGHT_DESC_AMY;
 import static gim.testutil.Assert.assertThrows;
@@ -81,7 +81,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + WEIGHT_DESC_AMY + EMAIL_DESC_AMY
+        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + WEIGHT_DESC_AMY + SETS_DESC_AMY
                 + ADDRESS_DESC_AMY;
         Exercise expectedExercise = new ExerciseBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();

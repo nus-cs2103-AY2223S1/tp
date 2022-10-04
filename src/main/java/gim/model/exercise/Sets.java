@@ -4,13 +4,13 @@ import static gim.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents an Exercise's email in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
+ * Represents an Exercise's sets in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidSets(String)}
  */
-public class Email {
+public class Sets {
 
     private static final String SPECIAL_CHARACTERS = "+_.-";
-    public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
+    public static final String MESSAGE_CONSTRAINTS = "Setss should be of the format local-part@domain "
             + "and adhere to the following constraints:\n"
             + "1. The local-part should only contain alphanumeric characters and these special characters, excluding "
             + "the parentheses, (" + SPECIAL_CHARACTERS + "). The local-part may not start or end with any special "
@@ -34,20 +34,20 @@ public class Email {
     public final String value;
 
     /**
-     * Constructs an {@code Email}.
+     * Constructs an {@code Sets}.
      *
-     * @param email A valid email address.
+     * @param sets A valid sets address.
      */
-    public Email(String email) {
-        requireNonNull(email);
-        checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
-        value = email;
+    public Sets(String sets) {
+        requireNonNull(sets);
+        checkArgument(isValidSets(sets), MESSAGE_CONSTRAINTS);
+        value = sets;
     }
 
     /**
-     * Returns if a given string is a valid email.
+     * Returns if a given string is a valid sets.
      */
-    public static boolean isValidEmail(String test) {
+    public static boolean isValidSets(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -59,8 +59,8 @@ public class Email {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Email // instanceof handles nulls
-                && value.equals(((Email) other).value)); // state check
+                || (other instanceof Sets // instanceof handles nulls
+                && value.equals(((Sets) other).value)); // state check
     }
 
     @Override

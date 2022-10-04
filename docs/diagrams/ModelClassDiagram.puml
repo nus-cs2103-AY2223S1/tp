@@ -15,7 +15,7 @@ Class UserPrefs
 Class UniqueExerciseList
 Class Exercise
 Class Address
-Class Email
+Class Sets
 Class Name
 Class Weight
 Class Tag
@@ -38,13 +38,13 @@ AddressBook *--> "1" UniqueExerciseList
 UniqueExerciseList --> "~* all" Exercise
 Exercise *--> Name
 Exercise *--> Weight
-Exercise *--> Email
+Exercise *--> Sets
 Exercise *--> Address
 Exercise *--> "*" Tag
 
 Name -[hidden]right-> Weight
 Weight -[hidden]right-> Address
-Address -[hidden]right-> Email
+Address -[hidden]right-> Sets
 
 ModelManager -->"~* filtered" Exercise
 @enduml
