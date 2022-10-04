@@ -6,10 +6,10 @@ package seedu.address.model.person.position;
  */
 public abstract class Position {
 
-    public final int value;
-
-    public final static String MESSAGE_CONSTRAINTS =
+    public static final String MESSAGE_CONSTRAINTS =
             "Positions should only contain integers from 0 to 2 inclusive";
+
+    public final int value;
 
     public Position(int value) {
         this.value = value;
