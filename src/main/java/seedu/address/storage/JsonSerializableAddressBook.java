@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.event.Event;
 import seedu.address.model.profile.Profile;
 
 /**
@@ -20,15 +21,19 @@ import seedu.address.model.profile.Profile;
 class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PROFILE = "Profiles list contains duplicate profile(s).";
+    public static final String MESSAGE_DUPLICATE_EVENT = "Events list contains duplicate event(s).";
 
     private final List<JsonAdaptedProfile> profiles = new ArrayList<>();
+    private final List<JsonAdaptedEvent> events = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given profiles.
+     * Constructs a {@code JsonSerializableAddressBook} with the given profiles and events.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("profiles") List<JsonAdaptedProfile> profiles) {
+    public JsonSerializableAddressBook(@JsonProperty("profiles") List<JsonAdaptedProfile> profiles,
+                                       @JsonProperty("events") List<JsonAdaptedEvent> events) {
         this.profiles.addAll(profiles);
+        this.events.addAll(events);
     }
 
     /**
@@ -38,6 +43,7 @@ class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         profiles.addAll(source.getProfileList().stream().map(JsonAdaptedProfile::new).collect(Collectors.toList()));
+        events.addAll(source.getEventList().stream().map(JsonAdaptedEvent::new).collect(Collectors.toList()));
     }
 
     /**
@@ -53,6 +59,13 @@ class JsonSerializableAddressBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PROFILE);
             }
             addressBook.addProfile(profile);
+        }
+        for (JsonAdaptedEvent jsonAdaptedEvent : events) {
+            Event event = jsonAdaptedEvent.toModelType();
+            if (addressBook.hasEvent(event)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_EVENT);
+            }
+            addressBook.addEvent(event);
         }
         return addressBook;
     }
