@@ -73,7 +73,7 @@ public class Task {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getDesc()).append(getDeadline());
+        builder.append(getDesc()).append("\nDeadline: ").append(getDeadline());
         return builder.toString();
     }
 
