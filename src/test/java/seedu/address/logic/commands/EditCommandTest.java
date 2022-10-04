@@ -27,7 +27,12 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Professor;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.TeachingAssistant;
-import seedu.address.testutil.*;
+import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.ProfessorBuilder;
+import seedu.address.testutil.StudentBuilder;
+import seedu.address.testutil.TeachingAssistantBuilder;
+
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
@@ -37,7 +42,7 @@ public class EditCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void execute_editStudent_allFieldsSpecifiedUnfilteredList_success() {
+    public void executeEditStudent_allFieldsSpecifiedUnfilteredList_success() {
         Student editedStudent = new StudentBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedStudent).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
@@ -100,13 +105,13 @@ public class EditCommandTest {
         Person editedPerson;
 
         if (personInFilteredList instanceof Student) {
-            editedPerson = new StudentBuilder((Student) personInFilteredList )
+            editedPerson = new StudentBuilder((Student) personInFilteredList)
                     .withName(VALID_NAME_BOB).build();
         } else if (personInFilteredList instanceof Professor) {
-            editedPerson = new ProfessorBuilder((Professor) personInFilteredList )
+            editedPerson = new ProfessorBuilder((Professor) personInFilteredList)
                     .withName(VALID_NAME_BOB).build();
         } else {
-            editedPerson = new TeachingAssistantBuilder((TeachingAssistant) personInFilteredList )
+            editedPerson = new TeachingAssistantBuilder((TeachingAssistant) personInFilteredList)
                     .withName(VALID_NAME_BOB).build();
         }
 
