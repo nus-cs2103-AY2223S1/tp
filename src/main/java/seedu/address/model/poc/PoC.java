@@ -1,10 +1,7 @@
 package seedu.address.model.poc;
 
-import seedu.address.model.company.Email;
-import seedu.address.model.company.Name;
-import seedu.address.model.company.Phone;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.company.Company;
+import seedu.address.model.tag.Tag;
 
 import java.util.Collections;
 import java.util.HashSet;
