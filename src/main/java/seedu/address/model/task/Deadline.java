@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
- * Represents a Task's name in the task list.
+ * Represents a Task's deadline.
  * Guarantees: immutable; is valid as declared in {@link #isValidDeadline(String)}
  *
  */
@@ -26,7 +26,7 @@ public class Deadline {
     public final LocalDateTime deadline;
 
     /**
-     * Constructs a {@code Name}.
+     * Constructs a {@code Deadline} from a handwritten description.
      *
      * @param deadlineString A valid deadline written as a string.
      */
@@ -45,6 +45,11 @@ public class Deadline {
         this.deadline = newDeadline;
     }
 
+    /**
+     * Constructs a {@code Deadline} from a LocalDateTime.
+     *
+     * @param deadline A valid deadline.
+     */
     public Deadline(LocalDateTime deadline) {
         requireNonNull(deadline);
         this.deadline = deadline;

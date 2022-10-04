@@ -13,6 +13,9 @@ public class Task {
     private final Module module;
     private final Deadline deadline;
 
+    /**
+     * Constructs a new Task. Every field must be present and not null.
+     */
     public Task(TaskName name, Module module, Deadline deadline) {
         requireAllNonNull(name, module, deadline);
         this.name = name;
@@ -32,6 +35,10 @@ public class Task {
         return deadline;
     }
 
+    /**
+     * Returns true if the tasks have the same name and module code.
+     * This defines a weaker notion of equality between two tasks.
+     */
     public boolean isSameTask(Task other) {
         if (other == this) {
             return true;
@@ -42,6 +49,10 @@ public class Task {
                 && other.getModule().equals(this.getModule());
     }
 
+    /**
+     * Returns true if both tasks have equal values in all fields.
+     * This defines a stronger notion of equality between two tasks.
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {
