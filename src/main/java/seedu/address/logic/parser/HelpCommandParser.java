@@ -29,6 +29,8 @@ public class HelpCommandParser implements Parser<HelpCommand> {
             return new HelpCommand(DeleteCommand.MESSAGE_USAGE);
         case "exit":
             return new HelpCommand(ExitCommand.MESSAGE_USAGE);
+        case "help":
+            return new HelpCommand(HelpCommand.MESSAGE_USAGE);
         case "list":
             return new HelpCommand(ListCommand.MESSAGE_USAGE);
         case "user_guide":

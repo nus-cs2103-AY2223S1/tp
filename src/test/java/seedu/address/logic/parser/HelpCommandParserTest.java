@@ -40,6 +40,13 @@ public class HelpCommandParserTest {
     }
 
     @Test
+    public void parse_helpArg_returnsHelpCommandWithHelpMessageUsage() {
+        HelpCommand expectedHelpCommand = new HelpCommand(HelpCommand.MESSAGE_USAGE);
+
+        assertParseSuccess(parser, HelpCommand.COMMAND_WORD, expectedHelpCommand);
+    }
+
+    @Test
     public void parse_listArg_returnsHelpCommandWithListMessageUsage() {
         HelpCommand expectedHelpCommand = new HelpCommand(ListCommand.MESSAGE_USAGE);
 

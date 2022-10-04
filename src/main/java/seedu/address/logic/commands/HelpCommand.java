@@ -22,6 +22,7 @@ public class HelpCommand extends Command {
             + "create n/NAME coy/COMPANY hp/NUMBER e/EMAIL\n"
             + "delete INDEX\n"
             + "exit\n"
+            + "help\n"
             + "list\n"
             + "user_guide\n"
             + "clear";
