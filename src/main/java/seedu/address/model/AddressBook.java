@@ -59,7 +59,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// person-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the financial book.
+     * Returns true if a person with the same identity as {@code person} exists in the FinBook.
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -67,8 +67,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a person to the financial book.
-     * The person must not already exist in the financial book.
+     * Adds a person to the FinBook.
+     * The person must not already exist in the FinBook.
      */
     public void addPerson(Person p) {
         persons.add(p);
@@ -76,9 +76,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the financial book.
+     * {@code target} must exist in the FinBook.
      * The person identity of {@code editedPerson} must not be the same as another
-     * existing person in the financial book.
+     * existing person in the FinBook.
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
@@ -88,7 +88,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the financial book.
+     * {@code key} must exist in the FinBook.
      */
     public void removePerson(Person key) {
         persons.remove(key);

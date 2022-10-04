@@ -6,7 +6,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 
 /**
- * Clears the financial book.
+ * Clears the FinBook.
  */
 public class ClearCommand extends Command {
 

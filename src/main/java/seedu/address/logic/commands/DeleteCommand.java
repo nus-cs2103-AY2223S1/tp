@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Deletes a person identified using it's displayed index from the financial book.
+ * Deletes a person identified using it's displayed index from the FinBook.
  */
 public class DeleteCommand extends Command {
 

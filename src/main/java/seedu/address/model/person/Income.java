@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's income in the financial book.
+ * Represents a Person's income in the FinBook.
  */
 public class Income {
 
