@@ -82,13 +82,6 @@ public class Customer {
             && otherCustomer.getName().equals(getName());
     }
 
-    public Customer getClone() {
-        Customer.CustomerBuilder customerBuilder = new Customer.CustomerBuilder(name, phone, email, tags)
-                .setCommissions(commissions);
-        getAddress().ifPresent(customerBuilder::setAddress);
-        return customerBuilder.build();
-    }
-
     /**
      * Returns true if both customers have the same identity and data fields.
      * This defines a stronger notion of equality between two customers.

@@ -48,8 +48,6 @@ public class DeleteCommissionCommand extends Command {
         Commission commissionToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteCommission(commissionToDelete);
 
-        // This clones the person (shallow copy) so the GUI updates properly.
-        model.updateSelectedCustomer();
         model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
 
         return new CommandResult(String.format(MESSAGE_DELETE_COMMISSION_SUCCESS, commissionToDelete));

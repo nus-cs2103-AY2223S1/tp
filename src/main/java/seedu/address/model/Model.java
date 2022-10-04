@@ -113,8 +113,6 @@ public interface Model {
 
     void updateFilteredCommissionList(Predicate<Commission> predicate);
 
-    void updateSelectedCustomer();
-
     boolean hasSelectedCustomer();
     /**
      * Returns ObservableObject containing the currently selected customer or null if no customer is currently selected.

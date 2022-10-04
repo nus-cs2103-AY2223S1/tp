@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -129,8 +130,11 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addCommission(Customer customer, Commission commission) {
         requireAllNonNull(customer, commission);
-        getCustomerCommissions(customer).add(commission);
+        HashSet<Commission> customerCommissions = new HashSet<>(getCustomerCommissions(customer));
+        customerCommissions.add(commission);
         commissions.add(commission);
+        Customer newCustomer = customer.copyWithCommissions(customerCommissions);
+        setCustomer(customer, newCustomer);
     }
 
     /**
@@ -142,9 +146,12 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setCommission(Customer customer, Commission target, Commission editedCommission) {
         requireAllNonNull(customer, editedCommission);
         assert hasCommission(customer, target);
-        getCustomerCommissions(customer).remove(target);
-        getCustomerCommissions(customer).add(editedCommission);
+        HashSet<Commission> customerCommissions = new HashSet<>(getCustomerCommissions(customer));
+        customerCommissions.remove(target);
+        customerCommissions.add(editedCommission);
         commissions.setCommission(target, editedCommission);
+        Customer newCustomer = customer.copyWithCommissions(customerCommissions);
+        setCustomer(customer, newCustomer);
     }
 
     /**

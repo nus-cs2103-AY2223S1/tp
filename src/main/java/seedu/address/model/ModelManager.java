@@ -209,16 +209,6 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Clones active person - useful to force GUI update.
-     */
-    @Override
-    public void updateSelectedCustomer() {
-        Customer activeCustomerClone = getSelectedCustomer().getValue().getClone();
-        setCustomer(getSelectedCustomer().getValue(), activeCustomerClone);
-        selectCustomer(activeCustomerClone);
-    }
-
-    /**
      * Return whether there is an active customer.
      */
     @Override

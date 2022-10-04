@@ -186,11 +186,6 @@ public class AddCustomerCommandTest {
         }
 
         @Override
-        public void updateSelectedCustomer() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public boolean hasSelectedCustomer() {
             throw new AssertionError("This method should not be called.");
         }
