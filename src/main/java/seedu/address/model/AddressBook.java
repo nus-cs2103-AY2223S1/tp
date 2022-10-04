@@ -72,7 +72,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns the person with the same name as {@code name} if they exist in the address book.
+     * Returns the person with the same name as {@code name} if they exist in the task book.
      */
     public Person findPerson(Name name) {
         requireNonNull(name);
