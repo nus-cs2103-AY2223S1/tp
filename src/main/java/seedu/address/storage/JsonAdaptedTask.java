@@ -8,7 +8,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Person;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Module;
 import seedu.address.model.task.Task;
@@ -72,7 +71,8 @@ public class JsonAdaptedTask {
         final Module modelModule = new Module(module);
 
         if (deadline == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Deadline.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Deadline.class.getSimpleName()));
         }
         LocalDateTime parsedDeadline;
         try {
