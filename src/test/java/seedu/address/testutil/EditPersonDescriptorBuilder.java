@@ -74,7 +74,7 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code hospitalWing} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code HospitalWing} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withHospitalWing(String hospitalWing) {
         descriptor.setHospitalWing(new HospitalWing(hospitalWing));
