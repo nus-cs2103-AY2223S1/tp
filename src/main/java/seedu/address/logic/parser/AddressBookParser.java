@@ -12,7 +12,9 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.event.EventCommand;
 import seedu.address.logic.commands.profile.ProfileCommand;
+import seedu.address.logic.parser.event.EventCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.profile.ProfileCommandParser;
 
@@ -44,6 +46,9 @@ public class AddressBookParser {
         switch (commandWord) {
         case ProfileCommand.COMMAND_WORD:
             return new ProfileCommandParser().parse(arguments);
+
+        case EventCommand.COMMAND_WORD:
+            return new EventCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
