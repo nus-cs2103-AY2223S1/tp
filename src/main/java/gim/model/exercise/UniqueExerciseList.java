@@ -37,7 +37,7 @@ public class UniqueExerciseList implements Iterable<Exercise> {
     }
 
     /**
-     * Adds a exercise to the list.
+     * Adds an exercise to the list.
      * The exercise must not already exist in the list.
      */
     public void add(Exercise toAdd) {

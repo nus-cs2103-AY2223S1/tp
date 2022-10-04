@@ -59,7 +59,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// exercise-level operations
 
     /**
-     * Returns true if a exercise with the same identity as {@code exercise} exists in the address book.
+     * Returns true if an exercise with the same identity as {@code exercise} exists in the address book.
      */
     public boolean hasExercise(Exercise exercise) {
         requireNonNull(exercise);
@@ -67,7 +67,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a exercise to the address book.
+     * Adds an exercise to the address book.
      * The exercise must not already exist in the address book.
      */
     public void addExercise(Exercise p) {

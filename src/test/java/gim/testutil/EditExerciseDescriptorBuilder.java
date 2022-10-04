@@ -9,7 +9,7 @@ import gim.model.exercise.Address;
 import gim.model.exercise.Email;
 import gim.model.exercise.Exercise;
 import gim.model.exercise.Name;
-import gim.model.exercise.Phone;
+import gim.model.exercise.Weight;
 import gim.model.tag.Tag;
 
 /**
@@ -33,7 +33,7 @@ public class EditExerciseDescriptorBuilder {
     public EditExerciseDescriptorBuilder(Exercise exercise) {
         descriptor = new EditExerciseDescriptor();
         descriptor.setName(exercise.getName());
-        descriptor.setPhone(exercise.getPhone());
+        descriptor.setWeight(exercise.getWeight());
         descriptor.setEmail(exercise.getEmail());
         descriptor.setAddress(exercise.getAddress());
         descriptor.setTags(exercise.getTags());
@@ -48,10 +48,10 @@ public class EditExerciseDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditExerciseDescriptor} that we are building.
+     * Sets the {@code Weight} of the {@code EditExerciseDescriptor} that we are building.
      */
-    public EditExerciseDescriptorBuilder withPhone(String phone) {
-        descriptor.setPhone(new Phone(phone));
+    public EditExerciseDescriptorBuilder withWeight(String weight) {
+        descriptor.setWeight(new Weight(weight));
         return this;
     }
 

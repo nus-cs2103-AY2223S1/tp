@@ -5,7 +5,7 @@ import static gim.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static gim.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static gim.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static gim.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static gim.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static gim.logic.commands.CommandTestUtil.WEIGHT_DESC_AMY;
 import static gim.testutil.Assert.assertThrows;
 import static gim.testutil.TypicalExercises.AMY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -31,6 +31,8 @@ import gim.storage.JsonAddressBookStorage;
 import gim.storage.JsonUserPrefsStorage;
 import gim.storage.StorageManager;
 import gim.testutil.ExerciseBuilder;
+
+
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -79,7 +81,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + WEIGHT_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY;
         Exercise expectedExercise = new ExerciseBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();

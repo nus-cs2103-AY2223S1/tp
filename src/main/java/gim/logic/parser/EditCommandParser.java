@@ -4,8 +4,8 @@ import static gim.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static gim.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static gim.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static gim.logic.parser.CliSyntax.PREFIX_NAME;
-import static gim.logic.parser.CliSyntax.PREFIX_PHONE;
 import static gim.logic.parser.CliSyntax.PREFIX_TAG;
+import static gim.logic.parser.CliSyntax.PREFIX_WEIGHT;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
@@ -18,6 +18,8 @@ import gim.logic.commands.EditCommand;
 import gim.logic.commands.EditCommand.EditExerciseDescriptor;
 import gim.logic.parser.exceptions.ParseException;
 import gim.model.tag.Tag;
+
+
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -32,7 +34,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_WEIGHT, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
         Index index;
 
@@ -46,8 +48,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editExerciseDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
-        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editExerciseDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+        if (argMultimap.getValue(PREFIX_WEIGHT).isPresent()) {
+            editExerciseDescriptor.setWeight(ParserUtil.parseWeight(argMultimap.getValue(PREFIX_WEIGHT).get()));
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             editExerciseDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));

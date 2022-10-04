@@ -17,7 +17,7 @@ Class Exercise
 Class Address
 Class Email
 Class Name
-Class Phone
+Class Weight
 Class Tag
 
 }
@@ -37,13 +37,13 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 AddressBook *--> "1" UniqueExerciseList
 UniqueExerciseList --> "~* all" Exercise
 Exercise *--> Name
-Exercise *--> Phone
+Exercise *--> Weight
 Exercise *--> Email
 Exercise *--> Address
 Exercise *--> "*" Tag
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
+Name -[hidden]right-> Weight
+Weight -[hidden]right-> Address
 Address -[hidden]right-> Email
 
 ModelManager -->"~* filtered" Exercise

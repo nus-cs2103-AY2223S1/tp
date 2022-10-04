@@ -15,7 +15,7 @@ UniqueExerciseList -right-> Exercise
 Exercise -up-> "*" Tag
 
 Exercise *--> Name
-Exercise *--> Phone
+Exercise *--> Weight
 Exercise *--> Email
 Exercise *--> Address
 @enduml

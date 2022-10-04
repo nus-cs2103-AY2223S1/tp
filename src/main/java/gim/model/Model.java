@@ -53,7 +53,7 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if a exercise with the same identity as {@code exercise} exists in the address book.
+     * Returns true if an exercise with the same identity as {@code exercise} exists in the address book.
      */
     boolean hasExercise(Exercise exercise);
 

@@ -10,14 +10,14 @@ import java.util.Set;
 import gim.model.tag.Tag;
 
 /**
- * Represents a Exercise in the address book.
+ * Represents an Exercise in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Exercise {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
+    private final Weight weight;
     private final Email email;
 
     // Data fields
@@ -27,10 +27,10 @@ public class Exercise {
     /**
      * Every field must be present and not null.
      */
-    public Exercise(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Exercise(Name name, Weight weight, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, weight, email, address, tags);
         this.name = name;
-        this.phone = phone;
+        this.weight = weight;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
@@ -40,8 +40,8 @@ public class Exercise {
         return name;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public Weight getWeight() {
+        return weight;
     }
 
     public Email getEmail() {
@@ -89,7 +89,7 @@ public class Exercise {
 
         Exercise otherExercise = (Exercise) other;
         return otherExercise.getName().equals(getName())
-                && otherExercise.getPhone().equals(getPhone())
+                && otherExercise.getWeight().equals(getWeight())
                 && otherExercise.getEmail().equals(getEmail())
                 && otherExercise.getAddress().equals(getAddress())
                 && otherExercise.getTags().equals(getTags());
@@ -98,15 +98,15 @@ public class Exercise {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, weight, email, address, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
+                .append("; Weight: ")
+                .append(getWeight())
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
