@@ -50,5 +50,4 @@ public abstract class Module {
     public String toString() {
         return '[' + moduleName + ']';
     }
-
 }
