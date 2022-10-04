@@ -112,7 +112,7 @@ Thank you for choosing FoodRem! We are delighted to have you as a user and aim t
 To gain the most out from this User Guide, start off with the [Quick Start](#quick-start) section.
 This will give you a brief overview about how to use this application. 
 
-It is **highly recommended** reading through the User Guide in a **sequential order** up until the section
+It is **highly recommended** that you read through the User Guide in a **sequential order** up until the section
 [Features](#features) where you can find all the information you need for each command. 
 
 [Items and Tags](#items-and-tags) : 
@@ -187,7 +187,7 @@ These commands are invalid:
 Find out more about restrictions in the sections [Flags](#flags), [Placeholders](#placeholders) and 
 [Features](#features).
 
-You might also realise that there is a pair of square brackets `[]` surrounding some parameters like `qty/QUANTITY` 
+Notice that there is a pair of square brackets [] surrounding some parameters like `qty/QUANTITY` 
 in the format. This indicates that the parameter is optional. Each of these placeholders have a default value
 based on the commands. These are documented in the [Features](#features) section for each command. 
 
@@ -204,8 +204,8 @@ would like to enter into the command box is `inc id/12 qty/30`.
 Note: `INDEX_LIST` can be an `INDEX` (More information in [Placeholders](#placeholders))
 
 Now you should have a general sensing of how commands are used and how to interpret formats. All commands are
-consolidated in [Command Summary](#command-summary). However, it is **highly recommended** to read through the 
-User Guide in a  **sequential order** up until the section [Features](#features) where you can find all the
+consolidated in [Command Summary](#command-summary). However, it is **highly recommended** that you read through 
+the User Guide in a  **sequential order** up until the section [Features](#features) where you can find all the
 information you need for each command. This covers more details on syntax and common errors. Before using any 
 command, take note of the behaviour when certain tags are not included and restrictions.
 
