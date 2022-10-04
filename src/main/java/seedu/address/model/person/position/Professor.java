@@ -1,5 +1,9 @@
 package seedu.address.model.person.position;
 
+/**
+ * Represents the Professor position in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidPosition(int)}
+ */
 public class Professor extends Position {
 
     public Professor() {
