@@ -9,7 +9,7 @@ import static paymelah.commons.util.AppUtil.checkArgument;
  */
 public class Description {
     public static final String MESSAGE_CONSTRAINTS =
-            "Descriptions should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Descriptions should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
