@@ -50,10 +50,6 @@ public class Deadline {
         this.deadline = deadline;
     }
 
-    public LocalDateTime getAsDateTime() {
-        return deadline;
-    }
-
     /**
      * Returns true if a given string is a valid deadline.
      */
