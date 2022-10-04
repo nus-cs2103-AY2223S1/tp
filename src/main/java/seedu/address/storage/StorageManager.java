@@ -12,19 +12,19 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of ClientBook data in local storage.
  */
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private ClientBookStorage addressBookStorage;
+    private ClientBookStorage clientBookStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code ClientBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(ClientBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
-        this.addressBookStorage = addressBookStorage;
+    public StorageManager(ClientBookStorage clientBookStorage, UserPrefsStorage userPrefsStorage) {
+        this.clientBookStorage = clientBookStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -65,14 +65,14 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyClientBook addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getClientBookFilePath());
+    public void saveClientBook(ReadOnlyClientBook addressBook) throws IOException {
+        saveClientBook(addressBook, addressBookStorage.getClientBookFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyClientBook addressBook, Path filePath) throws IOException {
+    public void saveClientBook(ReadOnlyClientBook addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        addressBookStorage.saveClientBook(addressBook, filePath);
     }
 
 }

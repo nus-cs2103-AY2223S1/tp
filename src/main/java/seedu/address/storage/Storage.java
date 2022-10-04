@@ -24,9 +24,9 @@ public interface Storage extends ClientBookStorage, UserPrefsStorage {
     Path getClientBookFilePath();
 
     @Override
-    Optional<ReadOnlyClientBook> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyClientBook> readClientBook() throws DataConversionException, IOException;
 
     @Override
-    void saveAddressBook(ReadOnlyClientBook addressBook) throws IOException;
+    void saveClientBook(ReadOnlyClientBook clientBook) throws IOException;
 
 }

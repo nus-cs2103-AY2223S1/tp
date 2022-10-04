@@ -55,7 +55,7 @@ public class StorageManagerTest {
          * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
          */
         ClientBook original = getTypicalClientBook();
-        storageManager.saveAddressBook(original);
+        storageManager.saveClientBook(original);
         ReadOnlyClientBook retrieved = storageManager.readAddressBook().get();
         assertEquals(original, new ClientBook(retrieved));
     }

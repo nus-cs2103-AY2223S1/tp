@@ -14,47 +14,47 @@ import seedu.address.model.ReadOnlyClientBook;
 import seedu.address.model.client.Client;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable ClientBook that is serializable to JSON format.
  */
 @JsonRootName(value = "addressbook")
 class JsonSerializableClientBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_CLIENT = "Persons list contains duplicate client(s).";
 
-    private final List<JsonAdaptedClient> persons = new ArrayList<>();
+    private final List<JsonAdaptedClient> clients = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableClientBook} with the given clients.
      */
     @JsonCreator
-    public JsonSerializableClientBook(@JsonProperty("persons") List<JsonAdaptedClient> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableClientBook(@JsonProperty("persons") List<JsonAdaptedClient> clients) {
+        this.clients.addAll(clients);
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyClientBook} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableClientBook}.
      */
     public JsonSerializableClientBook(ReadOnlyClientBook source) {
-        persons.addAll(source.getClientList().stream().map(JsonAdaptedClient::new).collect(Collectors.toList()));
+        clients.addAll(source.getClientList().stream().map(JsonAdaptedClient::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this client book into the model's {@code ClientBook} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public ClientBook toModelType() throws IllegalValueException {
-        ClientBook addressBook = new ClientBook();
-        for (JsonAdaptedClient jsonAdaptedPerson : persons) {
+        ClientBook clientBook = new ClientBook();
+        for (JsonAdaptedClient jsonAdaptedPerson : clients) {
             Client person = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasClient(person)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+            if (clientBook.hasClient(person)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_CLIENT);
             }
-            addressBook.addClient(person);
+            clientBook.addClient(person);
         }
-        return addressBook;
+        return clientBook;
     }
 
 }

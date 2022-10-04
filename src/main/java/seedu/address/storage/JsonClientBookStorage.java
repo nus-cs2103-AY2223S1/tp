@@ -15,7 +15,7 @@ import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyClientBook;
 
 /**
- * A class to access AddressBook data stored as a json file on the hard disk.
+ * A class to access ClientBook data stored as a json file on the hard disk.
  */
 public class JsonClientBookStorage implements ClientBookStorage {
 
@@ -32,17 +32,17 @@ public class JsonClientBookStorage implements ClientBookStorage {
     }
 
     @Override
-    public Optional<ReadOnlyClientBook> readAddressBook() throws DataConversionException {
-        return readAddressBook(filePath);
+    public Optional<ReadOnlyClientBook> readClientBook() throws DataConversionException {
+        return readClientBook(filePath);
     }
 
     /**
-     * Similar to {@link #readAddressBook()}.
+     * Similar to {@link #readClientBook()}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyClientBook> readAddressBook(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyClientBook> readClientBook(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableClientBook> jsonAddressBook = JsonUtil.readJsonFile(
@@ -60,16 +60,16 @@ public class JsonClientBookStorage implements ClientBookStorage {
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyClientBook addressBook) throws IOException {
-        saveAddressBook(addressBook, filePath);
+    public void saveClientBook(ReadOnlyClientBook clientBook) throws IOException {
+        saveClientBook(clientBook, filePath);
     }
 
     /**
-     * Similar to {@link #saveAddressBook(ReadOnlyClientBook)}.
+     * Similar to {@link #saveClientBook(ReadOnlyClientBook)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveAddressBook(ReadOnlyClientBook addressBook, Path filePath) throws IOException {
+    public void saveClientBook(ReadOnlyClientBook addressBook, Path filePath) throws IOException {
         requireNonNull(addressBook);
         requireNonNull(filePath);
 
