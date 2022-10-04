@@ -10,6 +10,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
 
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="PennyWise" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
@@ -22,7 +23,7 @@
         <URL value="@DarkTheme.css" />
         <URL value="@Extensions.css" />
       </stylesheets>
-
+      <HBox>
       <VBox>
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
@@ -55,6 +56,8 @@
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
+        <StackPane fx:id="pieChartPanelPlaceholder" styleClass="pane-with-border"/>
+      </HBox>
     </Scene>
   </scene>
 </fx:root>
