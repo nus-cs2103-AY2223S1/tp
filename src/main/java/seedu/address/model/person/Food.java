@@ -20,19 +20,16 @@ public class Food {
     private final MealType mealType;
     private final Email email;
 
-    // Data fields
-    private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Food(Name name, MealType mealType, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, mealType, email, address, tags);
+    public Food(Name name, MealType mealType, Email email, Set<Tag> tags) {
+        requireAllNonNull(name, mealType, email, tags);
         this.name = name;
         this.mealType = mealType;
         this.email = email;
-        this.address = address;
         this.tags.addAll(tags);
     }
 
@@ -46,10 +43,6 @@ public class Food {
 
     public Email getEmail() {
         return email;
-    }
-
-    public Address getAddress() {
-        return address;
     }
 
     /**
@@ -91,14 +84,13 @@ public class Food {
         return otherFood.getName().equals(getName())
                 && otherFood.getPhone().equals(getPhone())
                 && otherFood.getEmail().equals(getEmail())
-                && otherFood.getAddress().equals(getAddress())
                 && otherFood.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, mealType, email, address, tags);
+        return Objects.hash(name, mealType, email, tags);
     }
 
     @Override
@@ -108,9 +100,7 @@ public class Food {
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Email: ")
-                .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+                .append(getEmail());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

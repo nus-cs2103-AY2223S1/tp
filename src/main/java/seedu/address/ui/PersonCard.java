@@ -33,7 +33,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
+    private Label mealType;
     @FXML
     private Label address;
     @FXML
@@ -49,8 +49,7 @@ public class PersonCard extends UiPart<Region> {
         this.food = food;
         id.setText(displayedIndex + ". ");
         name.setText(food.getName().fullName);
-        phone.setText(food.getPhone().value);
-        address.setText(food.getAddress().value);
+        mealType.setText(food.getPhone().value);
         email.setText(food.getEmail().value);
         food.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
