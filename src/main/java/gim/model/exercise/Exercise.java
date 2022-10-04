@@ -21,18 +21,18 @@ public class Exercise {
     private final Email email;
 
     // Data fields
-    private final Address address;
+    private final Rep rep;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Exercise(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Exercise(Name name, Phone phone, Email email, Rep rep, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, rep, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.rep = rep;
         this.tags.addAll(tags);
     }
 
@@ -48,8 +48,8 @@ public class Exercise {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
+    public Rep getRep() {
+        return rep;
     }
 
     /**
@@ -91,14 +91,14 @@ public class Exercise {
         return otherExercise.getName().equals(getName())
                 && otherExercise.getPhone().equals(getPhone())
                 && otherExercise.getEmail().equals(getEmail())
-                && otherExercise.getAddress().equals(getAddress())
+                && otherExercise.getRep().equals(getRep())
                 && otherExercise.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, rep, tags);
     }
 
     @Override
@@ -109,8 +109,8 @@ public class Exercise {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+                .append("; Rep: ")
+                .append(getRep());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

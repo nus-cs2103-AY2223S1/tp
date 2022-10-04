@@ -3,11 +3,11 @@ package gim.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import gim.model.exercise.Address;
 import gim.model.exercise.Email;
 import gim.model.exercise.Exercise;
 import gim.model.exercise.Name;
 import gim.model.exercise.Phone;
+import gim.model.exercise.Rep;
 import gim.model.tag.Tag;
 import gim.model.util.SampleDataUtil;
 
@@ -19,12 +19,12 @@ public class ExerciseBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_REP = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
     private Phone phone;
     private Email email;
-    private Address address;
+    private Rep rep;
     private Set<Tag> tags;
 
     /**
@@ -34,7 +34,7 @@ public class ExerciseBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
+        rep = new Rep(DEFAULT_REP);
         tags = new HashSet<>();
     }
 
@@ -45,7 +45,7 @@ public class ExerciseBuilder {
         name = exerciseToCopy.getName();
         phone = exerciseToCopy.getPhone();
         email = exerciseToCopy.getEmail();
-        address = exerciseToCopy.getAddress();
+        rep = exerciseToCopy.getRep();
         tags = new HashSet<>(exerciseToCopy.getTags());
     }
 
@@ -66,10 +66,10 @@ public class ExerciseBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Exercise} that we are building.
+     * Sets the {@code Rep} of the {@code Exercise} that we are building.
      */
-    public ExerciseBuilder withAddress(String address) {
-        this.address = new Address(address);
+    public ExerciseBuilder withRep(String rep) {
+        this.rep = new Rep(rep);
         return this;
     }
 
@@ -90,7 +90,7 @@ public class ExerciseBuilder {
     }
 
     public Exercise build() {
-        return new Exercise(name, phone, email, address, tags);
+        return new Exercise(name, phone, email, rep, tags);
     }
 
 }

@@ -2,10 +2,10 @@ package gim.logic;
 
 import static gim.commons.core.Messages.MESSAGE_INVALID_EXERCISE_DISPLAYED_INDEX;
 import static gim.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static gim.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static gim.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static gim.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static gim.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static gim.logic.commands.CommandTestUtil.REP_DESC_AMY;
 import static gim.testutil.Assert.assertThrows;
 import static gim.testutil.TypicalExercises.AMY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -80,7 +80,7 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY;
+                + REP_DESC_AMY;
         Exercise expectedExercise = new ExerciseBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addExercise(expectedExercise);

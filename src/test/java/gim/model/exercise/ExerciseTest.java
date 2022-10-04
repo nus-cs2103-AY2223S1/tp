@@ -1,9 +1,9 @@
 package gim.model.exercise;
 
-import static gim.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static gim.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static gim.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static gim.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static gim.logic.commands.CommandTestUtil.VALID_REP_BOB;
 import static gim.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static gim.testutil.Assert.assertThrows;
 import static gim.testutil.TypicalExercises.ALICE;
@@ -33,7 +33,7 @@ public class ExerciseTest {
 
         // same name, all other attributes different -> returns true
         Exercise editedAlice = new ExerciseBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withRep(VALID_REP_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameExercise(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -81,7 +81,7 @@ public class ExerciseTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different address -> returns false
-        editedAlice = new ExerciseBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
+        editedAlice = new ExerciseBuilder(ALICE).withRep(VALID_REP_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false

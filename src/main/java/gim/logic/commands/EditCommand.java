@@ -1,9 +1,9 @@
 package gim.logic.commands;
 
-import static gim.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static gim.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static gim.logic.parser.CliSyntax.PREFIX_NAME;
 import static gim.logic.parser.CliSyntax.PREFIX_PHONE;
+import static gim.logic.parser.CliSyntax.PREFIX_REP;
 import static gim.logic.parser.CliSyntax.PREFIX_TAG;
 import static gim.model.Model.PREDICATE_SHOW_ALL_EXERCISES;
 import static java.util.Objects.requireNonNull;
@@ -19,11 +19,11 @@ import gim.commons.core.index.Index;
 import gim.commons.util.CollectionUtil;
 import gim.logic.commands.exceptions.CommandException;
 import gim.model.Model;
-import gim.model.exercise.Address;
 import gim.model.exercise.Email;
 import gim.model.exercise.Exercise;
 import gim.model.exercise.Name;
 import gim.model.exercise.Phone;
+import gim.model.exercise.Rep;
 import gim.model.tag.Tag;
 
 /**
@@ -40,7 +40,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_REP + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -97,10 +97,10 @@ public class EditCommand extends Command {
         Name updatedName = editExerciseDescriptor.getName().orElse(exerciseToEdit.getName());
         Phone updatedPhone = editExerciseDescriptor.getPhone().orElse(exerciseToEdit.getPhone());
         Email updatedEmail = editExerciseDescriptor.getEmail().orElse(exerciseToEdit.getEmail());
-        Address updatedAddress = editExerciseDescriptor.getAddress().orElse(exerciseToEdit.getAddress());
+        Rep updatedRep = editExerciseDescriptor.getRep().orElse(exerciseToEdit.getRep());
         Set<Tag> updatedTags = editExerciseDescriptor.getTags().orElse(exerciseToEdit.getTags());
 
-        return new Exercise(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Exercise(updatedName, updatedPhone, updatedEmail, updatedRep, updatedTags);
     }
 
     @Override
@@ -129,7 +129,7 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
-        private Address address;
+        private Rep rep;
         private Set<Tag> tags;
 
         public EditExerciseDescriptor() {}
@@ -142,7 +142,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setAddress(toCopy.address);
+            setRep(toCopy.rep);
             setTags(toCopy.tags);
         }
 
@@ -150,7 +150,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, rep, tags);
         }
 
         public void setName(Name name) {
@@ -177,12 +177,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        public void setRep(Rep rep) {
+            this.rep = rep;
         }
 
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<Rep> getRep() {
+            return Optional.ofNullable(rep);
         }
 
         /**
@@ -220,7 +220,7 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
+                    && getRep().equals(e.getRep())
                     && getTags().equals(e.getTags());
         }
     }

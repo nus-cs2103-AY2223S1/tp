@@ -35,7 +35,7 @@ public class ExerciseCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
-    private Label address;
+    private Label rep;
     @FXML
     private Label email;
     @FXML
@@ -50,7 +50,7 @@ public class ExerciseCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(exercise.getName().fullName);
         phone.setText(exercise.getPhone().value);
-        address.setText(exercise.getAddress().value);
+        rep.setText(exercise.getRep().value);
         email.setText(exercise.getEmail().value);
         exercise.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

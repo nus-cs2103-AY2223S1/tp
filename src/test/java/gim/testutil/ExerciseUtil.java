@@ -1,9 +1,9 @@
 package gim.testutil;
 
-import static gim.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static gim.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static gim.logic.parser.CliSyntax.PREFIX_NAME;
 import static gim.logic.parser.CliSyntax.PREFIX_PHONE;
+import static gim.logic.parser.CliSyntax.PREFIX_REP;
 import static gim.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -33,7 +33,7 @@ public class ExerciseUtil {
         sb.append(PREFIX_NAME + exercise.getName().fullName + " ");
         sb.append(PREFIX_PHONE + exercise.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + exercise.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + exercise.getAddress().value + " ");
+        sb.append(PREFIX_REP + exercise.getRep().value + " ");
         exercise.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -48,7 +48,7 @@ public class ExerciseUtil {
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
-        descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
+        descriptor.getRep().ifPresent(address -> sb.append(PREFIX_REP).append(address.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

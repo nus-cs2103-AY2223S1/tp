@@ -4,15 +4,15 @@ import static gim.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents a Exercise's address in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
+ * Represents a Exercise's Reps in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidRep(String)}
  */
-public class Address {
+public class Rep {
 
-    public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Reps can only take Non negative integer values";
 
     /*
-     * The first character of the address must not be a whitespace,
+     * The first character of the Rep must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
@@ -20,20 +20,20 @@ public class Address {
     public final String value;
 
     /**
-     * Constructs an {@code Address}.
+     * Constructs an {@code Rep}.
      *
-     * @param address A valid address.
+     * @param rep A valid Rep.
      */
-    public Address(String address) {
-        requireNonNull(address);
-        checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
-        value = address;
+    public Rep(String rep) {
+        requireNonNull(rep);
+        checkArgument(isValidRep(rep), MESSAGE_CONSTRAINTS);
+        value = rep;
     }
 
     /**
      * Returns true if a given string is a valid email.
      */
-    public static boolean isValidAddress(String test) {
+    public static boolean isValidRep(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -45,8 +45,8 @@ public class Address {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Address // instanceof handles nulls
-                && value.equals(((Address) other).value)); // state check
+                || (other instanceof Rep // instanceof handles nulls
+                && value.equals(((Rep) other).value)); // state check
     }
 
     @Override
