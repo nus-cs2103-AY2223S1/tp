@@ -29,6 +29,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: _To be determined_
 
+### Isaac Li Haoyang
+
+<img src="images/isaaclhy00.png" width="200px">
+
+[[github](http://github.com/isaaclhy00)]
+[[portfolio](team/isaaclhy00.md)]
+
+* Role: Developer
+* Responsibilities: _To be determined_
+
 ### Nguyen Minh Hoang
 
 <img src="images/hoang227.png.png" width="200px">
