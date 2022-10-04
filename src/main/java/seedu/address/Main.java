@@ -19,7 +19,17 @@ import javafx.application.Application;
  * to be the entry point of the application, we avoid this issue.
  */
 public class Main {
+    /**
+     * Launches the application.
+     *
+     * @param args
+     */
     public static void main(String[] args) {
+        if (System.getProperty("os.name").startsWith("Windows 8")
+                || System.getProperty("os.name").startsWith("Windows 1")) {
+            // Stop text from being blur for Windows 8 and above
+            System.setProperty("prism.allowhidpi", "false");
+        }
         Application.launch(MainApp.class, args);
     }
 }
