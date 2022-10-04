@@ -71,13 +71,14 @@ public class LogicManager implements Logic {
     private CommandResult execute(Command command) throws CommandException {
         if (command instanceof MiscCommand) {
             return ((MiscCommand) command).execute();
-        } else if (command instanceof ModelCommand) {
-            return ((ModelCommand) command).execute(model);
-        } else if (command instanceof StorageCommand) {
-            return ((StorageCommand) command).execute(storage);
-        } else {
-            throw new CommandException(MESSAGE_UNKNOWN_COMMAND);
         }
+        if (command instanceof ModelCommand) {
+            return ((ModelCommand) command).execute(model);
+        }
+        if (command instanceof StorageCommand) {
+            return ((StorageCommand) command).execute(storage);
+        }
+        throw new CommandException(MESSAGE_UNKNOWN_COMMAND);
     }
 
     @Override
