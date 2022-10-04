@@ -7,6 +7,9 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.module.CurrentModule;
+import seedu.address.model.module.PlannedModule;
+import seedu.address.model.module.PreviousModule;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,17 +26,24 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final Set<CurrentModule> currModules = new HashSet<>();
+    private final Set<PreviousModule> prevModules = new HashSet<>();
+    private final Set<PlannedModule> planModules = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                  Set<CurrentModule> currModules, Set<PreviousModule> prevModules, Set<PlannedModule> planModules) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.currModules.addAll(currModules);
+        this.prevModules.addAll(prevModules);
+        this.planModules.addAll(planModules);
     }
 
     public Name getName() {
@@ -58,6 +68,30 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns an immutable current module set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<CurrentModule> getCurrModules() {
+        return Collections.unmodifiableSet(currModules);
+    }
+
+    /**
+     * Returns an immutable previous module set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<PreviousModule> getPrevModules() {
+        return Collections.unmodifiableSet(prevModules);
+    }
+
+    /**
+     * Returns an immutable planned module set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<PlannedModule> getPlanModules() {
+        return Collections.unmodifiableSet(planModules);
     }
 
     /**
@@ -92,13 +126,16 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getCurrModules().equals(getCurrModules())
+                && otherPerson.getPrevModules().equals(getPrevModules())
+                && otherPerson.getPlanModules().equals(getPlanModules());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags, currModules, prevModules, planModules);
     }
 
     @Override
@@ -117,6 +154,25 @@ public class Person {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
+        Set<CurrentModule> currModules = getCurrModules();
+        if (!currModules.isEmpty()) {
+            builder.append("; Current Modules: ");
+            currModules.forEach(builder::append);
+        }
+
+        Set<PreviousModule> prevModules = getPrevModules();
+        if (!prevModules.isEmpty()) {
+            builder.append("; Previous Modules: ");
+            prevModules.forEach(builder::append);
+        }
+
+        Set<PlannedModule> planModules = getPlanModules();
+        if (!currModules.isEmpty()) {
+            builder.append("; Planned Modules: ");
+            planModules.forEach(builder::append);
+        }
+
         return builder.toString();
     }
 

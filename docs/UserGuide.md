@@ -281,9 +281,9 @@ Format: `exit`
   <tr>
    <td><strong>Adding Contact</strong>
    </td>
-   <td><code>add contact [contact name] /mods [current module list] /previous [previous module list] /planning [future module list]</code>
+   <td><code>add contact n/[contact name] p/[contact phone number] e/[contact email] a/[contact address] t/[contact tag] curr/[current module list] prev/[previous module list] plan/[future module list]</code>
 <p>
-<code>Eg. add contact Ruijie /mods CS2100, CS2101, CS2100, ST2334, GESS1037 /previous CS1101S, CS1231S, MA2001, MA1521, GEC1000 /planning CS2109, CS2106</code>
+<code>Eg. add contact n/Ruijie p/91234567 e/kohrj@gmail.com a/Kent Ridge Avenue t/Classmate 123 curr/CS2100, CS2101, CS2100, ST2334, GESS1037 prev/CS1101S, CS1231S, MA2001, MA1521, GEC1000 plan/CS2109, CS2106</code>
    </td>
   </tr>
   <tr>

@@ -1,9 +1,7 @@
 package seedu.address.model.module;
 
-public class CurrentModule implements Module {
-    private String code;
-
-    public CurrentModule(String code) {
-        this.code = code;
+public class CurrentModule extends Module {
+    public CurrentModule(String moduleName) {
+        super(moduleName);
     }
 }
