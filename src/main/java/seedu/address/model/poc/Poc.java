@@ -1,6 +1,5 @@
 package seedu.address.model.poc;
 
-import seedu.address.model.company.Company;
 import seedu.address.model.tag.Tag;
 
 import java.util.Collections;
@@ -10,13 +9,12 @@ import java.util.Set;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-public class PoC {
+public class Poc {
 
     // Identity fields
-    private final Name name;
+    private final PersonName name;
     private final Phone phone;
     private final Email email;
-    private final Company company;
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
@@ -24,17 +22,16 @@ public class PoC {
     /**
      * Every field must be present and not null.
      */
-    public PoC(Name name, Phone phone, Email email,  Company company, Set<Tag> tags) {
+    public Poc(PersonName name, Phone phone, Email email, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.company = company;
 
         this.tags.addAll(tags);
     }
 
-    public Name getName() {
+    public PersonName getName() {
         return name;
     }
 
@@ -44,10 +41,6 @@ public class PoC {
 
     public Email getEmail() {
         return email;
-    }
-
-    public Company getCompany() {
-        return company;
     }
 
     /**
@@ -62,7 +55,7 @@ public class PoC {
      * Returns true if both people have the same name.
      * This defines a weaker notion of equality between two persons of contact.
      */
-    public boolean isSamePerson(seedu.address.model.poc.PoC otherPerson) {
+    public boolean isSamePoc(Poc otherPerson) {
         if (otherPerson == this) {
             return true;
         }
@@ -81,22 +74,21 @@ public class PoC {
             return true;
         }
 
-        if (!(other instanceof seedu.address.model.poc.PoC)) {
+        if (!(other instanceof Poc)) {
             return false;
         }
 
-        seedu.address.model.poc.PoC otherPerson = (seedu.address.model.poc.PoC) other;
+        Poc otherPerson = (Poc) other;
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getCompany().equals(getCompany())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, company, tags);
+        return Objects.hash(name, phone, email, tags);
     }
 
     @Override
@@ -106,9 +98,7 @@ public class PoC {
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Email: ")
-                .append(getEmail())
-                .append("; Company: ")
-                .append(getCompany());
+                .append(getEmail());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.poc.exceptions.PoCNotFoundException;
-import seedu.address.model.poc.exceptions.DuplicatePoCException;
+import seedu.address.model.poc.exceptions.PocNotFoundException;
+import seedu.address.model.poc.exceptions.DuplicatePocException;
 
 /**
  * A list of companies that enforces uniqueness between its elements and does not allow nulls.
@@ -21,30 +21,30 @@ import seedu.address.model.poc.exceptions.DuplicatePoCException;
  *
  * Supports a minimal set of list operations.
  *
- * @see PoC#isSamePerson(PoC)
+ * @see Poc#isSamePoc(Poc)
  */
-public class UniquePoCList implements Iterable<PoC> {
+public class UniquePocList implements Iterable<Poc> {
 
-    private final ObservableList<PoC> internalList = FXCollections.observableArrayList();
-    private final ObservableList<PoC> internalUnmodifiableList =
+    private final ObservableList<Poc> internalList = FXCollections.observableArrayList();
+    private final ObservableList<Poc> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent company as the given argument.
      */
-    public boolean contains(PoC toCheck) {
+    public boolean contains(Poc toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSamePerson);
+        return internalList.stream().anyMatch(toCheck::isSamePoc);
     }
 
     /**
      * Adds a company to the list.
      * The company must not already exist in the list.
      */
-    public void add(PoC toAdd) {
+    public void add(Poc toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePoCException();
+            throw new DuplicatePocException();
         }
         internalList.add(toAdd);
     }
@@ -54,16 +54,16 @@ public class UniquePoCList implements Iterable<PoC> {
      * {@code target} must exist in the list.
      * The company identity of {@code editedCompany} must not be the same as another existing company in the list.
      */
-    public void setCompany(PoC target, PoC editedPoC) {
+    public void setPoc(Poc target, Poc editedPoC) {
         requireAllNonNull(target, editedPoC);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PoCNotFoundException();
+            throw new PocNotFoundException();
         }
 
-        if (!target.isSamePerson(editedPoC) && contains(editedPoC)) {
-            throw new DuplicatePoCException();
+        if (!target.isSamePoc(editedPoC) && contains(editedPoC)) {
+            throw new DuplicatePocException();
         }
 
         internalList.set(index, editedPoC);
@@ -73,14 +73,14 @@ public class UniquePoCList implements Iterable<PoC> {
      * Removes the equivalent company from the list.
      * The company must exist in the list.
      */
-    public void remove(PoC toRemove) {
+    public void remove(Poc toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PoCNotFoundException();
+            throw new PocNotFoundException();
         }
     }
 
-    public void setCompanies(UniquePoCList replacement) {
+    public void setPocs(UniquePocList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -89,32 +89,32 @@ public class UniquePoCList implements Iterable<PoC> {
      * Replaces the contents of this list with {@code companies}.
      * {@code companies} must not contain duplicate companies.
      */
-    public void setCompanies(List<PoC> companies) {
-        requireAllNonNull(companies);
-        if (!companiesAreUnique(companies)) {
-            throw new DuplicatePoCException();
+    public void setPocs(List<Poc> pocs) {
+        requireAllNonNull(pocs);
+        if (!pocsAreUnique(pocs)) {
+            throw new DuplicatePocException();
         }
 
-        internalList.setAll(companies);
+        internalList.setAll(pocs);
     }
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
-    public ObservableList<PoC> asUnmodifiableObservableList() {
+    public ObservableList<Poc> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
 
     @Override
-    public Iterator<PoC> iterator() {
+    public Iterator<Poc> iterator() {
         return internalList.iterator();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniquePoCList // instanceof handles nulls
-                && internalList.equals(((UniquePoCList) other).internalList));
+                || (other instanceof UniquePocList // instanceof handles nulls
+                && internalList.equals(((UniquePocList) other).internalList));
     }
 
     @Override
@@ -125,10 +125,10 @@ public class UniquePoCList implements Iterable<PoC> {
     /**
      * Returns true if {@code companies} contains only unique companies.
      */
-    private boolean companiesAreUnique(List<PoC> companies) {
-        for (int i = 0; i < companies.size() - 1; i++) {
-            for (int j = i + 1; j < companies.size(); j++) {
-                if (companies.get(i).isSamePerson(companies.get(j))) {
+    private boolean pocsAreUnique(List<Poc> pocs) {
+        for (int i = 0; i < pocs.size() - 1; i++) {
+            for (int j = i + 1; j < pocs.size(); j++) {
+                if (pocs.get(i).isSamePoc(pocs.get(j))) {
                     return false;
                 }
             }
