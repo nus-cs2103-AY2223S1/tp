@@ -26,14 +26,15 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Task> filteredTasks;
 
-
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyTaskList taskList, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(addressBook, taskList, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + addressBook
+                + " and task list: " + taskList
+                + " and user prefs: " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
         this.taskList = new TaskList(taskList);
@@ -45,7 +46,6 @@ public class ModelManager implements Model {
     public ModelManager() {
         this(new AddressBook(), new TaskList(), new UserPrefs());
     }
-
 
     //=========== UserPrefs ==================================================================================
 
@@ -82,6 +82,17 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
+    @Override
+    public Path getTaskListFilePath() {
+        return userPrefs.getTaskListFilePath();
+    }
+
+    @Override
+    public void setTaskListFilePath(Path addressBookFilePath) {
+        requireNonNull(addressBookFilePath);
+        userPrefs.setTaskListFilePath(addressBookFilePath);
+    }
+
     //=========== AddressBook ================================================================================
 
     @Override
@@ -92,11 +103,6 @@ public class ModelManager implements Model {
     @Override
     public ReadOnlyAddressBook getAddressBook() {
         return addressBook;
-    }
-
-    @Override
-    public ReadOnlyTaskList getTaskList() {
-        return taskList;
     }
 
     @Override
@@ -140,6 +146,48 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== TaskList ===================================================================================
+
+    @Override
+    public void setTaskList(ReadOnlyTaskList taskList) {
+        this.taskList.resetData(taskList);
+    }
+
+    @Override
+    public ReadOnlyTaskList getTaskList() {
+        return taskList;
+    }
+
+    @Override
+    public boolean hasTask(Task task) {
+        requireNonNull(task);
+        return taskList.hasTask(task);
+    }
+
+    @Override
+    public void deleteTask(Task target) {
+        taskList.removeTask(target);
+    }
+
+    @Override
+    public void addTask(Task task) {
+        taskList.addTask(task);
+        updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+    }
+
+    @Override
+    public void setTask(Task target, Task editedTask) {
+        requireAllNonNull(target, editedTask);
+
+        taskList.setTask(target, editedTask);
+    }
+
+    //=========== Filtered Task List Accessors ===============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
+     * {@code versionedTaskList}
+     */
     @Override
     public ObservableList<Task> getFilteredTaskList() {
         return filteredTasks;
@@ -150,6 +198,8 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredTasks.setPredicate(predicate);
     }
+
+    //=========== General operations =========================================================================
 
     @Override
     public boolean equals(Object obj) {
@@ -166,8 +216,10 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
+                && taskList.equals(other.taskList)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredTasks.equals(other.filteredTasks);
     }
 
 }
