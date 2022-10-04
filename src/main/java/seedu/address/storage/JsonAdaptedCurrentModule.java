@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.module.CurrentModule;
+import seedu.address.model.module.Module;
 
 /**
  * Jackson-friendly version of {@link CurrentModule}.
