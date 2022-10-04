@@ -1,8 +1,8 @@
 package jarvis.model.util;
 
-import jarvis.model.StudentBook;
 import jarvis.model.ReadOnlyStudentBook;
-import jarvis.model.student.*;
+import jarvis.model.StudentBook;
+import jarvis.model.student.Name;
 import jarvis.model.student.Student;
 
 /**

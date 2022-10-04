@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 
 import jarvis.model.student.Student;
+import jarvis.storage.task.JsonTaskBookStorage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -43,10 +44,12 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonStudentBookStorage addressBookStorage =
-                new JsonStudentBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonStudentBookStorage studentBookStorage =
+                new JsonStudentBookStorage(temporaryFolder.resolve("studentBook.json"));
+        JsonTaskBookStorage taskBookStorage =
+                new JsonTaskBookStorage(temporaryFolder.resolve("taskBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(studentBookStorage, taskBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 

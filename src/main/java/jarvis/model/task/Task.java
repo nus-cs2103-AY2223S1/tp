@@ -1,8 +1,8 @@
 package jarvis.model.task;
 
-import java.util.Objects;
-
 import static jarvis.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Objects;
 
 /**
  * Represents a Task in JARVIS.

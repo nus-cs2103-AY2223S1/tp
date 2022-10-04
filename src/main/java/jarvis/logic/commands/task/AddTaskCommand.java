@@ -1,7 +1,7 @@
 package jarvis.logic.commands.task;
 
-import static jarvis.logic.parser.CliSyntax.PREFIX_TASK_DESC;
 import static jarvis.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static jarvis.logic.parser.CliSyntax.PREFIX_TASK_DESC;
 import static java.util.Objects.requireNonNull;
 
 import jarvis.logic.commands.Command;
@@ -9,6 +9,7 @@ import jarvis.logic.commands.CommandResult;
 import jarvis.logic.commands.exceptions.CommandException;
 import jarvis.model.Model;
 import jarvis.model.task.Task;
+
 
 /**
  * Adds a task to the task book.

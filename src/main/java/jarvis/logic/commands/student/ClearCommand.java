@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import jarvis.logic.commands.Command;
 import jarvis.logic.commands.CommandResult;
-import jarvis.model.StudentBook;
 import jarvis.model.Model;
+import jarvis.model.StudentBook;
 
 /**
  * Clears the address book.

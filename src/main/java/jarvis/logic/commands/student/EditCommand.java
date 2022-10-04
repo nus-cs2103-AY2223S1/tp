@@ -14,7 +14,7 @@ import jarvis.logic.commands.Command;
 import jarvis.logic.commands.CommandResult;
 import jarvis.logic.commands.exceptions.CommandException;
 import jarvis.model.Model;
-import jarvis.model.student.*;
+import jarvis.model.student.Name;
 import jarvis.model.student.Student;
 
 /**

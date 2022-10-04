@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jarvis.commons.exceptions.IllegalValueException;
-import jarvis.model.student.*;
+import jarvis.model.student.Name;
 import jarvis.model.student.Student;
 
 /**

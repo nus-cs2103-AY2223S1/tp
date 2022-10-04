@@ -88,7 +88,7 @@ public interface Model {
     /**
      * Replaces the given student {@code target} with {@code editedStudent}.
      * {@code target} must exist in the student book.
-     * The student identity of {@code editedPerson} must not be the same as another existing student in the student book.
+     * The identity of {@code editedStudent} must not be the same as another existing student in the student book.
      */
     void setStudent(Student target, Student editedStudent);
 

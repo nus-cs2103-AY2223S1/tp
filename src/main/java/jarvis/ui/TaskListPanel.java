@@ -1,5 +1,7 @@
 package jarvis.ui;
 
+import java.util.logging.Logger;
+
 import jarvis.commons.core.LogsCenter;
 import jarvis.model.task.Task;
 import javafx.collections.ObservableList;
@@ -8,7 +10,6 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 
-import java.util.logging.Logger;
 
 /**
  * Panel containing the list of persons.

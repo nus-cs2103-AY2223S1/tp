@@ -6,9 +6,13 @@ import static jarvis.logic.parser.CliSyntax.PREFIX_NAME;
 import java.util.stream.Stream;
 
 import jarvis.logic.commands.student.AddCommand;
-import jarvis.logic.parser.*;
+import jarvis.logic.parser.ArgumentMultimap;
+import jarvis.logic.parser.ArgumentTokenizer;
+import jarvis.logic.parser.Parser;
+import jarvis.logic.parser.ParserUtil;
+import jarvis.logic.parser.Prefix;
 import jarvis.logic.parser.exceptions.ParseException;
-import jarvis.model.student.*;
+import jarvis.model.student.Name;
 import jarvis.model.student.Student;
 
 /**

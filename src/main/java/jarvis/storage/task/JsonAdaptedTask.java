@@ -2,6 +2,7 @@ package jarvis.storage.task;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jarvis.commons.exceptions.IllegalValueException;
 import jarvis.model.task.Deadline;
 import jarvis.model.task.Task;
@@ -42,10 +43,12 @@ class JsonAdaptedTask {
     public Task toModelType() throws IllegalValueException {
 
         if (taskDesc == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TaskDesc.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    TaskDesc.class.getSimpleName()));
         }
         if (deadline == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Deadline.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Deadline.class.getSimpleName()));
         }
         final TaskDesc modelTaskDesc = new TaskDesc(taskDesc);
         final Deadline modelDeadline = new Deadline(deadline);
