@@ -14,6 +14,7 @@ public class Money {
             "Money amounts should use numbers to represent the amount in dollars";
 
     public static final String VALIDATION_REGEX = "([$]|)\\d+([.]\\d{1,2}|)";
+    public static final int CENTS_PRECISION = 2;
     private final BigDecimal value;
 
     /**
@@ -27,7 +28,7 @@ public class Money {
         if (money.startsWith("$")) {
             money = money.substring(1);
         }
-        value = new BigDecimal(money);
+        value = new BigDecimal(money).setScale(CENTS_PRECISION);
     }
 
     /**

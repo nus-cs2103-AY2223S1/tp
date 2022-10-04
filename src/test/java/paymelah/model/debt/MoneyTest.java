@@ -2,6 +2,7 @@ package paymelah.model.debt;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static paymelah.testutil.Assert.assertThrows;
 
@@ -20,19 +21,11 @@ public class MoneyTest {
     }
 
     @Test
-    public void constructor_success() {
-        Money validMoneyWithDollarSign = new Money("$2.5");
-        Money validMoneyNoDollarSign = new Money("2.5");
-
-        assertEquals(validMoneyNoDollarSign.getValue(), validMoneyWithDollarSign.getValue());
-    }
-
-    @Test
     public void isValidMoney() {
-        // null phone number
+        // null money amount
         assertThrows(NullPointerException.class, () -> Money.isValidMoney(null));
 
-        // invalid phone numbers
+        // invalid money amounts
         assertFalse(Money.isValidMoney("")); // empty string
         assertFalse(Money.isValidMoney(" ")); // spaces only
         assertFalse(Money.isValidMoney("       ")); // many white spaces
@@ -46,11 +39,34 @@ public class MoneyTest {
         assertFalse(Money.isValidMoney("1234 5678")); // spaces within digits
         assertFalse(Money.isValidMoney("$$2.50")); // multiple leading dollar signs
 
-        // valid phone numbers
+        // valid money amounts
         assertTrue(Money.isValidMoney("911")); // no decimal point
         assertTrue(Money.isValidMoney("0.1")); // 1 number after decimal point
         assertTrue(Money.isValidMoney("0.12")); // 2 numbers after decimal point
         assertTrue(Money.isValidMoney("$2.50")); // with leading dollar sign
         assertTrue(Money.isValidMoney("124293842033123")); // long numbers
+    }
+
+    @Test
+    public void equals() {
+        Money noDecimal = new Money("2");
+        Money oneDecimal = new Money("2.0");
+        Money twoDecimal = new Money("2.00");
+        Money dollarSign = new Money("$2");
+        Money differentValue = new Money("3");
+
+        // same object -> returns true
+        assertEquals(twoDecimal, twoDecimal);
+
+        // same values -> returns true
+        assertEquals(noDecimal, oneDecimal);
+        assertEquals(oneDecimal, twoDecimal);
+        assertEquals(noDecimal, dollarSign);
+
+        // different values -> returns false
+        assertNotEquals(noDecimal, differentValue);
+
+        // null -> returns false
+        assertNotEquals(null, noDecimal);
     }
 }
