@@ -31,7 +31,7 @@ public class TaskAddCommand extends Command {
             + PREFIX_DESCRIPTION + "DESCRIPTION";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the task book";
+    public static final String MESSAGE_PERSON_NOT_FOUND = "Person not found in task book!";
 
     private final Name name;
     private final Description description;
@@ -59,7 +59,7 @@ public class TaskAddCommand extends Command {
 
         Person personToAddTask = model.findPerson(name);
         if (personToAddTask == null) {
-            throw new CommandException("Person not found in task book!");
+            throw new CommandException(MESSAGE_PERSON_NOT_FOUND);
         }
 
         Task newTask = new Task(personToAddTask, this.assignment, this.description, this.isDone);
