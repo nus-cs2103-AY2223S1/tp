@@ -20,9 +20,8 @@ public class Appointment {
 
     public static final DateTimeFormatter STORAGE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
-
-    public final String reason;
-    public final LocalDateTime dateTime;
+    private final String reason;
+    private final LocalDateTime dateTime;
     private boolean isMarked;
 
     private final DateTimeFormatter stringFormatter = DateTimeFormatter.ofPattern("MMM d yyyy HH:mm");
@@ -78,6 +77,14 @@ public class Appointment {
             return false;
         }
         return true;
+    }
+
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
+
+    public String getReason() {
+        return reason;
     }
 
     public boolean isMarked() {
