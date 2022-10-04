@@ -6,43 +6,38 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/18"
-      xmlns:fx="http://javafx.com/fxml/1">
+
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
         </columnConstraints>
-        <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+        <VBox alignment="CENTER_LEFT" minHeight="105" spacing="4.0" GridPane.columnIndex="0" GridPane.hgrow="ALWAYS">
             <padding>
-                <Insets bottom="5" left="15" right="5" top="5"/>
+                <Insets bottom="5" left="15" right="5" top="5" />
             </padding>
             <HBox alignment="CENTER_LEFT" spacing="5">
-                <Label fx:id="code" styleClass="cell_small_label"
-                       text="\$code"/>
-                <Label fx:id="credits" styleClass="cell_small_label"
-                       text="\$credits"/>
+                <Label fx:id="code" styleClass="cell_small_label" text="\$code" />
+                <Label fx:id="credits" styleClass="cell_small_label" text="\$credits" />
             </HBox>
-            <TextFlow>
-                <Label fx:id="name" styleClass="cell_big_label"
-                       text="\$name" textOverrun="CLIP" wrapText="true">
-                    <minWidth>
-                        <!-- Ensures that the label text is never truncated -->
-                        <Region fx:constant="USE_PREF_SIZE"/>
-                    </minWidth>
-                </Label>
+            <TextFlow maxWidth="1.7976931348623157E308">
+                <Text fx:id="name" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cell_big_label" text="\$name" />
             </TextFlow>
             <FlowPane fx:id="badges">
-                <padding>
-                    <Insets top="4.0"/>
-                </padding>
+            <padding>
+               <Insets top="4.0" />
+            </padding>
             </FlowPane>
         </VBox>
         <rowConstraints>
-            <RowConstraints/>
+            <RowConstraints />
         </rowConstraints>
     </GridPane>
+   <padding>
+      <Insets bottom="8.0" top="8.0" />
+   </padding>
 </HBox>

@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Text;
 import modtrekt.commons.util.StringUtil;
 import modtrekt.model.module.Module;
 import modtrekt.ui.UiPart;
@@ -16,7 +17,7 @@ public class ModuleCard extends UiPart<Region> {
     private final Module module;
 
     @FXML
-    private Label name;
+    private Text name;
     @FXML
     private Label code;
     @FXML
