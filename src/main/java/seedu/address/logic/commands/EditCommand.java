@@ -1,12 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_HOSPITAL_WING;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -20,45 +15,52 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.FloorNumber;
 import seedu.address.model.person.HospitalWing;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.NextOfKin;
+import seedu.address.model.person.PatientType;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.Medication;
+import seedu.address.model.person.WardNumber;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing patient in the database.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the patient identified "
+            + "by the index number used in the displayed patient list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_HOSPITAL_WING + "HOSPITAL_WING] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_NEXT_OF_KIN + "NEXT OF KIN] "
+            + "[" + PREFIX_PATIENT_TYPE + "PATIENT TYPE] "
+            + "[" + PREFIX_HOSPITAL_WING + "HOSPITAL WING] "
+            + "[" + PREFIX_FLOOR_NUMBER + "FLOOR NUMBER] "
+            + "[" + PREFIX_WARD_NUMBER + "WARD NUMBER] "
+            + "[" + PREFIX_MEDICATION + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_EMAIL + "johndoe@example.com"
+            + PREFIX_FLOOR_NUMBER + "12";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Patient: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This patient already exists in the address book.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param index of the patient in the filtered patient list to edit
+     * @param editPersonDescriptor details to edit the patient with
      */
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(index);
@@ -99,12 +101,12 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        NextOfKin updatedNextOfKin = editPersonDescriptor.getNextOfKin().orElse(personToEdit.getAddress());
         HospitalWing updatedHospitalWing = editPersonDescriptor.getHospitalWing()
                 .orElse(personToEdit.getHospitalWing());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedHospitalWing, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedNextOfKin, updatedHospitalWing, updatedTags);
     }
 
     @Override
@@ -133,9 +135,12 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
-        private Address address;
+        private NextOfKin nextOfKin;
+        private PatientType patientType;
         private HospitalWing hospitalWing;
-        private Set<Tag> tags;
+        private FloorNumber floorNumber;
+        private WardNumber wardNumber;
+        private Set<Medication> medications;
 
         public EditPersonDescriptor() {}
 
@@ -147,16 +152,17 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setAddress(toCopy.address);
+            setNextOfKin(toCopy.nextOfKin);
             setHospitalWing(toCopy.hospitalWing);
-            setTags(toCopy.tags);
+            setTags(toCopy.medications);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, hospitalWing, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, nextOfKin, patientType,
+                    hospitalWing, floorNumber, wardNumber, medications);
         }
 
         public void setName(Name name) {
@@ -183,13 +189,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        public void setNextOfKin(NextOfKin nextOfKin) {
+            this.nextOfKin = nextOfKin;
         }
 
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<NextOfKin> getNextOfKin() {
+            return Optional.ofNullable(nextOfKin);
         }
+
         public void setHospitalWing(HospitalWing hospitalWing) {
             this.hospitalWing = hospitalWing;
         }
@@ -203,7 +210,7 @@ public class EditCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+            this.medications = (tags != null) ? new HashSet<>(tags) : null;
         }
 
         /**
@@ -233,7 +240,7 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
+                    && getNextOfKin().equals(e.getNextOfKin())
                     && getHospitalWing().equals(e.getHospitalWing())
                     && getTags().equals(e.getTags());
         }

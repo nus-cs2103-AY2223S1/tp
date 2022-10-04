@@ -4,12 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's address in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
+ * Represents a Patient's Next of Kin in the Patient Database.
+ * Guarantees: immutable; is valid as declared in {@link #isValidNextOfKin(String)}
  */
-public class Address {
+public class NextOfKin {
 
-    public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Next of Kin should not be blank " +
+            "and should come in the format: Name, Relationship, Contact";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -22,18 +23,18 @@ public class Address {
     /**
      * Constructs an {@code Address}.
      *
-     * @param address A valid address.
+     * @param nextOfKin A valid address.
      */
-    public Address(String address) {
-        requireNonNull(address);
-        checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
-        value = address;
+    public NextOfKin(String nextOfKin) {
+        requireNonNull(nextOfKin);
+        checkArgument(isValidNextOfKin(nextOfKin), MESSAGE_CONSTRAINTS);
+        value = nextOfKin;
     }
 
     /**
      * Returns true if a given string is a valid email.
      */
-    public static boolean isValidAddress(String test) {
+    public static boolean isValidNextOfKin(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -45,8 +46,8 @@ public class Address {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Address // instanceof handles nulls
-                && value.equals(((Address) other).value)); // state check
+                || (other instanceof NextOfKin // instanceof handles nulls
+                && value.equals(((NextOfKin) other).value)); // state check
     }
 
     @Override

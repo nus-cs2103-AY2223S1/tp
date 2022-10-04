@@ -10,10 +10,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.HospitalWing;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.NextOfKin;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -28,7 +28,7 @@ class JsonAdaptedPerson {
     private final String name;
     private final String phone;
     private final String email;
-    private final String address;
+    private final String nextOfKin;
     private final String hospitalWing;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -37,13 +37,13 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("email") String email, @JsonProperty("nextOfKin") String nextOfKin,
                              @JsonProperty("hospitalWing") String hospitalWing,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.nextOfKin = nextOfKin;
         this.hospitalWing = hospitalWing;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -57,7 +57,7 @@ class JsonAdaptedPerson {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        address = source.getAddress().value;
+        nextOfKin = source.getNextOfKin().value;
         hospitalWing = source.getHospitalWing().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -99,13 +99,13 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+        if (nextOfKin == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, NextOfKin.class.getSimpleName()));
         }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        if (!NextOfKin.isValidNextOfKin(nextOfKin)) {
+            throw new IllegalValueException(NextOfKin.MESSAGE_CONSTRAINTS);
         }
-        final Address modelAddress = new Address(address);
+        final NextOfKin modelNextOfKin = new NextOfKin(nextOfKin);
         if (hospitalWing == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     HospitalWing.class.getSimpleName()));
@@ -117,7 +117,7 @@ class JsonAdaptedPerson {
 
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelHospitalWing, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelNextOfKin, modelHospitalWing, modelTags);
     }
 
 }

@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.tag.Medication;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -21,21 +22,29 @@ public class Person {
     private final Email email;
 
     // Data fields
-    private final Address address;
+    private final NextOfKin nextOfKin;
+    private final PatientType patientType;
     private final HospitalWing hospitalWing;
-    private final Set<Tag> tags = new HashSet<>();
+    private final FloorNumber floorNumber;
+    private final WardNumber wardNumber;
+    private final Set<Medication> medications = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, HospitalWing hospitalWing, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, NextOfKin nextOfKin, PatientType patientType,
+                  HospitalWing hospitalWing, FloorNumber floorNumber,
+                  WardNumber wardNumber, Set<Medication> medications) {
+        requireAllNonNull(name, phone, email, nextOfKin, patientType, medications);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.nextOfKin = nextOfKin;
+        this.patientType = patientType;
         this.hospitalWing = hospitalWing;
-        this.tags.addAll(tags);
+        this.floorNumber = floorNumber;
+        this.wardNumber = wardNumber;
+        this.medications.addAll(medications);
     }
 
     public Name getName() {
@@ -50,9 +59,18 @@ public class Person {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
+    public NextOfKin getNextOfKin() {
+        return nextOfKin;
     }
+
+    public PatientType getPatientType() {
+        return patientType;
+    }
+
+    public FloorNumber getFloorNumber() {
+        return floorNumber;
+    }
+
 
     public HospitalWing getHospitalWing() {
         return hospitalWing;
@@ -62,8 +80,8 @@ public class Person {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<Medication> getMedications() {
+        return Collections.unmodifiableSet(medications);
     }
 
     /**

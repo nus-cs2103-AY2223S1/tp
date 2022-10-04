@@ -1,25 +1,31 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FLOOR_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOSPITAL_WING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NEXT_OF_KIN;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WARD_NUMBER;
 
 import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.FloorNumber;
 import seedu.address.model.person.HospitalWing;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.NextOfKin;
+import seedu.address.model.person.PatientType;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.Medication;
+import seedu.address.model.person.WardNumber;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -33,11 +39,12 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_ADDRESS, PREFIX_HOSPITAL_WING, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_NEXT_OF_KIN,
+                        PREFIX_PATIENT_TYPE, PREFIX_HOSPITAL_WING, PREFIX_FLOOR_NUMBER,
+                        PREFIX_WARD_NUMBER,  PREFIX_MEDICATION);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE,
-                PREFIX_EMAIL, PREFIX_HOSPITAL_WING)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+                PREFIX_NEXT_OF_KIN, PREFIX_PATIENT_TYPE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -45,11 +52,21 @@ public class AddCommandParser implements Parser<AddCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        HospitalWing hospitalWing = ParserUtil.parseHospitalWing(argMultimap.getValue(PREFIX_HOSPITAL_WING).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        NextOfKin nextOfKin = ParserUtil.parseNextOfKin(argMultimap.getValue(PREFIX_NEXT_OF_KIN).get());
+        PatientType patientType = ParserUtil.parsePatientType(argMultimap.getValue(PREFIX_PATIENT_TYPE).get());
+        Set<Medication> medicationList = ParserUtil.parseMedications(argMultimap.getAllValues(PREFIX_MEDICATION));
 
-        Person person = new Person(name, phone, email, address, hospitalWing, tagList);
+        if (patientType.isInpatient() && !arePrefixesPresent(argMultimap, PREFIX_HOSPITAL_WING, PREFIX_FLOOR_NUMBER,
+                PREFIX_WARD_NUMBER)){
+            throw new ParseException(String.format(PatientType.DEPENDENCY_CONSTRAINTS, AddCommand.MESSAGE_USAGE));
+        }
+
+        HospitalWing hospitalWing = ParserUtil.parseHospitalWing(argMultimap.getValue(PREFIX_HOSPITAL_WING).orElse(null));
+        FloorNumber floorNumber = ParserUtil.parseFloorNumber(argMultimap.getValue(PREFIX_FLOOR_NUMBER).orElse(null));
+        WardNumber wardNumber = ParserUtil.parseWardNumber(argMultimap.getValue(PREFIX_WARD_NUMBER).orElse(null));
+
+        Person person = new Person(name, phone, email, nextOfKin, patientType, hospitalWing,
+                floorNumber, wardNumber, medicationList);
 
         return new AddCommand(person);
     }
