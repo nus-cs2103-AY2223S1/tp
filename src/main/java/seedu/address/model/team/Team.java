@@ -3,12 +3,11 @@ package seedu.address.model.team;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.util.Collections;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniquePersonList;
 
 /**
  * Represents a Team in the address book.
@@ -20,19 +19,19 @@ public class Team {
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String teamName;
-    public final Set<Person> teamMembers = new HashSet<>();
+    public final UniquePersonList teamMembers = new UniquePersonList();
 
     /**
      * Constructs a {@code Team}.
      *
      * @param teamName A valid team name.
-     * @param teamMembers A set of valid persons to be added as members.
+     * @param teamMembers A list of persons to be added as members.
      */
-    public Team(String teamName, Set<Person> teamMembers) {
+    public Team(String teamName, List<Person> teamMembers) {
         requireNonNull(teamName);
         checkArgument(isValidTeamName(teamName), MESSAGE_CONSTRAINTS);
         this.teamName = teamName;
-        this.teamMembers.addAll(teamMembers);
+        this.teamMembers.setPersons(teamMembers);
     }
 
     public String getTeamName() {
@@ -43,8 +42,20 @@ public class Team {
      * Returns an immutable team set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Person> getTeamMembers() {
-        return Collections.unmodifiableSet(teamMembers);
+    public List<Person> getTeamMembers() {
+        return teamMembers.asUnmodifiableObservableList();
+    }
+
+    public void addPerson(Person person) {
+        teamMembers.add(person);
+    }
+
+    public void setPerson(Person target, Person editedPerson) {
+        teamMembers.setPerson(target, editedPerson);
+    }
+
+    public void removePerson(Person person) {
+        teamMembers.remove(person);
     }
 
     /**
@@ -81,7 +92,7 @@ public class Team {
         final StringBuilder builder = new StringBuilder();
         builder.append(getTeamName());
 
-        Set<Person> members = getTeamMembers();
+        List<Person> members = getTeamMembers();
         if (!members.isEmpty()) {
             builder.append("; Members: ");
             members.forEach(builder::append);

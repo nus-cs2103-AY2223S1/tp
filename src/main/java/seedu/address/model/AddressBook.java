@@ -2,11 +2,13 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.team.Team;
 
 /**
  * Wraps all data at the address-book level
@@ -15,6 +17,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final Team team;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +28,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        team = new Team("default", new ArrayList<>());
     }
 
     public AddressBook() {}
@@ -91,6 +95,47 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+    }
+
+    //// team-level operations
+
+    public Team getTeam() {
+        return team;
+    }
+
+    /**
+     * Returns true if a person with the same identity as {@code person} exists in the team.
+     */
+    public boolean hasPersonInTeam(Person person) {
+        requireNonNull(person);
+        return team.getTeamMembers().contains(person);
+    }
+
+    /**
+     * Adds a person to the team.
+     * The person must not already exist in the team.
+     */
+    public void addPersonToTeam(Person p) {
+        team.addPerson(p);
+    }
+
+    /**
+     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * {@code target} must exist in the team.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the team.
+     */
+    public void setPersonInTeam(Person target, Person editedPerson) {
+        requireNonNull(editedPerson);
+
+        team.setPerson(target, editedPerson);
+    }
+
+    /**
+     * Removes {@code key} from this {@code Team}.
+     * {@code key} must exist in the address book.
+     */
+    public void removePersonInTeam(Person key) {
+        team.removePerson(key);
     }
 
     //// util methods
