@@ -299,14 +299,41 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new guest               |                                                                        |
-| `* * *`  | user                                       | delete a guest                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a guest by name          | locate details of guests without having to go through the entire list |
-| `* *`    | user                                       | hide private guest details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many guests in the guest book | sort guests by name           | locate a guest easily                                                 |
+| Priority | As a …​                  | I want to …​                                                     | So that I can…​                                                            |
+|----------|--------------------------|------------------------------------------------------------------|----------------------------------------------------------------------------|
+| `* * *`  | first time hotel manager | know the available commands                                      | use the application fully                                                  |
+| `* * *`  | hotel manager            | view a list of all the guests                                    | browse all my guests' data at once                                         |
+| `* * *`  | hotel manager            | view the contact number of the guest                             | contact them in an emergency                                               |
+| `* * *`  | hotel manager            | view the name of the guest                                       | verify the guest                                                           |
+| `* * *`  | hotel manager            | view the email address of the guest                              | contact the guest via email                                                |
+| `* * *`  | hotel manager            | be able to exit the program                                      | close it when I don't need to use it                                       |
+| `* * *`  | first time hotel manager | be able to delete data of all guests at one go                   | have a clean slate to work on should I need to                             |
+| `* * *`  | hotel manager            | view the checkin date and time of a guest                        | prepare the room for the incoming guests                                   |
+| `* * *`  | hotel manager            | view the checkout date and time of a guest                       | prepare when to clean the room                                             |
+| `* * *`  | hotel manager            | delete a guest after they check out of my hotel                  | do not keep unneeded data on my guests                                     |
+| `* * *`  | hotel manager            | be able to save the details of the guests                        | the data is not lost between sessions                                      |
+| `* * *`  | hotel manager            | search guests by keyword                                         | see details of specific guests                                             |
+| `* * *`  | hotel manager            | view the number of guests in each room                           | prepare proper bed suites                                                  |
+| `* * *`  | hotel manager            | add the details of a new guest when they are staying at my hotel | know who is staying at my hotel                                            |
+| `* *`    | hotel manager            | be able to edit the name of the guest                            | update it if there are any changes                                         |
+| `* *`    | hotel manager            | be able to edit the email address of the guest                   | update it if there are any changes                                         |
+| `* *`    | hotel manager            | be able to edit the number of guests                             | update it if there are any changes                                         |
+| `* *`    | hotel manager            | be able to edit when a guest is checking in                      | update it if there are any changes                                         |
+| `* *`    | hotel manager            | be able to edit when a guest is checking out                     | update it if there are any changes                                         |
+| `* *`    | hotel manager            | be able to edit the contact number of the guest                  | update it if there are any changes                                         |
+| `* `     | hotel manager            | get the details of what the IC number of guests is               | ensure our hotel safety                                                    |
+| `* `     | hotel manager            | get information about how many rooms are cleaned                 | decide to let new guests in                                                |
+| `* `     | hotel manager            | get the details of where the guests booked their hotel stay from | decide which booking platform I need to pay more attention to              |
+| `* `     | hotel manager            | get the details of the bill of the hotel guest                   | easily report the tax bill to the government with less chances of mistakes |
+| `* `     | hotel manager            | be able to add to the bill of the hotel guest                    | monitor the hotel incoming easily.                                         |
+| `* `     | hotel manager            | be able to deduct from the bill of the hotel guest               | monitor the hotel incoming easily as well                                  |
+| `* `     | breakfast manager        | get the details of how many guests are eating breakfast          | prepare the appropriate amount of food                                     |
+| `* `     | lunch manager            | get the details of how many guests are eating lunch              | prepare the appropriate amount of food                                     |
+| `* `     | dinner manager           | get the details of how many guests are eating dinner             | prepare the appropriate amount of food                                     |
+| `* `     | hotel cleaner            | get the details of if a room has been cleaned                    | do not waste time cleaning the room again                                  |
+| `* `     | hotel cleaner            | mark a room as clean                                             | other cleaners will not need to waste time cleaning the room again         |
+| `* `     | butler                   | get the details of any special requests from the guests          | serve every guest properly                                                 |
+
 
 *{More to be added}*
 
