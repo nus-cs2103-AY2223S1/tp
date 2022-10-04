@@ -5,7 +5,6 @@ import java.util.Set;
 
 import seedu.address.model.Calorie;
 import seedu.address.model.person.Food;
-import seedu.address.model.person.MealType;
 import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -19,7 +18,6 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
 
     private Name name;
-    private MealType mealType;
     private Calorie calorie;
     private Set<Tag> tags;
 
@@ -28,7 +26,6 @@ public class PersonBuilder {
      */
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
-        mealType = new MealType(DEFAULT_PHONE);
         calorie = new Calorie();
         tags = new HashSet<>();
     }
@@ -38,7 +35,6 @@ public class PersonBuilder {
      */
     public PersonBuilder(Food foodToCopy) {
         name = foodToCopy.getName();
-        mealType = foodToCopy.getPhone();
         calorie = foodToCopy.getCalorie();
         tags = new HashSet<>(foodToCopy.getTags());
     }
@@ -60,14 +56,6 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withPhone(String phone) {
-        this.mealType = new MealType(phone);
-        return this;
-    }
-
-    /**
      * Sets the {@code Calorie} of the {@code Person} that we are building.
      */
     public PersonBuilder withCalorie(String calorie) {
@@ -76,7 +64,7 @@ public class PersonBuilder {
     }
 
     public Food build() {
-        return new Food(name, mealType, calorie, tags);
+        return new Food(name, calorie, tags);
     }
 
 }

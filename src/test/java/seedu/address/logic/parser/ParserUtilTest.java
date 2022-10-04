@@ -14,7 +14,6 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.MealType;
 import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
 
@@ -77,28 +76,6 @@ public class ParserUtilTest {
         assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
     }
 
-    @Test
-    public void parsePhone_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseMealType((String) null));
-    }
-
-    @Test
-    public void parsePhone_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseMealType(INVALID_PHONE));
-    }
-
-    @Test
-    public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
-        MealType expectedMealType = new MealType(VALID_PHONE);
-        assertEquals(expectedMealType, ParserUtil.parseMealType(VALID_PHONE));
-    }
-
-    @Test
-    public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
-        String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
-        MealType expectedMealType = new MealType(VALID_PHONE);
-        assertEquals(expectedMealType, ParserUtil.parseMealType(phoneWithWhitespace));
-    }
 
     @Test
     public void parseTag_null_throwsNullPointerException() {

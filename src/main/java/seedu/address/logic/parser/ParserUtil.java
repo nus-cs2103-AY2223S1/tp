@@ -10,7 +10,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Calorie;
-import seedu.address.model.person.MealType;
 import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
 
@@ -47,21 +46,6 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
-    }
-
-    /**
-     * Parses a {@code String phone} into a {@code Phone}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code phone} is invalid.
-     */
-    public static MealType parseMealType(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!MealType.isValidMealType(trimmedPhone)) {
-            throw new ParseException(MealType.MESSAGE_CONSTRAINTS);
-        }
-        return new MealType(trimmedPhone);
     }
 
     /**

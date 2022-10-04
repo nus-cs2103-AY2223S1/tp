@@ -21,7 +21,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Calorie;
 import seedu.address.model.Model;
 import seedu.address.model.person.Food;
-import seedu.address.model.person.MealType;
 import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
 
@@ -93,11 +92,10 @@ public class EditCommand extends Command {
         assert foodToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(foodToEdit.getName());
-        MealType updatedMealType = editPersonDescriptor.getPhone().orElse(foodToEdit.getPhone());
         Calorie updatedCalorie = editPersonDescriptor.getCalorie().orElse(foodToEdit.getCalorie());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(foodToEdit.getTags());
 
-        return new Food(updatedName, updatedMealType, updatedCalorie, updatedTags);
+        return new Food(updatedName, updatedCalorie, updatedTags);
     }
 
     @Override
@@ -124,7 +122,6 @@ public class EditCommand extends Command {
      */
     public static class EditPersonDescriptor {
         private Name name;
-        private MealType mealType;
         private Calorie calorie;
         private Set<Tag> tags;
 
@@ -136,7 +133,6 @@ public class EditCommand extends Command {
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
-            setPhone(toCopy.mealType);
             setCalorie(toCopy.calorie);
             setTags(toCopy.tags);
         }
@@ -145,7 +141,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, mealType, calorie, tags);
+            return CollectionUtil.isAnyNonNull(name, calorie, tags);
         }
 
         public void setName(Name name) {
@@ -154,14 +150,6 @@ public class EditCommand extends Command {
 
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
-        }
-
-        public void setPhone(MealType mealType) {
-            this.mealType = mealType;
-        }
-
-        public Optional<MealType> getPhone() {
-            return Optional.ofNullable(mealType);
         }
 
         public void setCalorie(Calorie calorie) {
@@ -205,8 +193,8 @@ public class EditCommand extends Command {
             EditPersonDescriptor e = (EditPersonDescriptor) other;
 
             return getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getCalorie().equals(e.getCalorie());
         }
     }
 }

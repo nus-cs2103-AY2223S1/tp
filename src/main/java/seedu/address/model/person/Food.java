@@ -18,7 +18,6 @@ public class Food {
 
     // Identity fields
     private final Name name;
-    private final MealType mealType;
     private final Calorie calorie;
 
     private final Set<Tag> tags = new HashSet<>();
@@ -26,20 +25,15 @@ public class Food {
     /**
      * Every field must be present and not null.
      */
-    public Food(Name name, MealType mealType, Calorie calorie, Set<Tag> tags) {
-        requireAllNonNull(name, mealType, tags);
+    public Food(Name name, Calorie calorie, Set<Tag> tags) {
+        requireAllNonNull(name, calorie, tags);
         this.name = name;
-        this.mealType = mealType;
         this.calorie = calorie;
         this.tags.addAll(tags);
     }
 
     public Name getName() {
         return name;
-    }
-
-    public MealType getPhone() {
-        return mealType;
     }
 
     public Calorie getCalorie() {
@@ -83,22 +77,20 @@ public class Food {
 
         Food otherFood = (Food) other;
         return otherFood.getName().equals(getName())
-                && otherFood.getPhone().equals(getPhone())
-                && otherFood.getTags().equals(getTags());
+                && otherFood.getTags().equals(getTags())
+                && otherFood.getCalorie().equals(getCalorie());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, mealType, calorie, tags);
+        return Objects.hash(name, calorie, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Meal Type: ")
-                .append(getPhone())
                 .append("; Calories: ")
                 .append(getCalorie());
 

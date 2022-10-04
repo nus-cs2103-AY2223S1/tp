@@ -33,8 +33,6 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label mealType;
-    @FXML
     private Label calorie;
     @FXML
     private FlowPane tags;
@@ -47,7 +45,6 @@ public class PersonCard extends UiPart<Region> {
         this.food = food;
         id.setText(displayedIndex + ". ");
         name.setText(food.getName().fullName);
-        mealType.setText(food.getPhone().value);
         calorie.setText(food.getCalorie().value);
         food.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
