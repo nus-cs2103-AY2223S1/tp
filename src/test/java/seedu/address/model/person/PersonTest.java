@@ -53,6 +53,22 @@ public class PersonTest {
     }
 
     @Test
+    public void testHashCode() {
+        Person aliceCopy = new PersonBuilder(ALICE).build();
+        Person aliceCopy2 = new PersonBuilder(ALICE).build();
+
+        assertTrue(aliceCopy.hashCode() == aliceCopy2.hashCode());
+    }
+
+    @Test
+    public void testToString() {
+        Person aliceCopy = new PersonBuilder(ALICE).build();
+        Person aliceCopy2 = new PersonBuilder(ALICE).build();
+
+        assertTrue(aliceCopy.toString().equals(aliceCopy2.toString()));
+    }
+
+    @Test
     public void equals() {
         // same values -> returns true
         Person aliceCopy = new PersonBuilder(ALICE).build();
