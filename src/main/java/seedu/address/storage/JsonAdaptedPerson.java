@@ -10,6 +10,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.module.CurrentModule;
+import seedu.address.model.module.PlannedModule;
+import seedu.address.model.module.PreviousModule;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -29,6 +32,10 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedCurrentModule> currModules = new ArrayList<>();
+    private final List<JsonAdaptedPreviousModule> prevModules = new ArrayList<>();
+    private final List<JsonAdaptedPlannedModule> planModules = new ArrayList<>();
+
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -36,7 +43,35 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("currModules") List<JsonAdaptedCurrentModule> currModules,
+            @JsonProperty("prevModules") List<JsonAdaptedPreviousModule> prevModules,
+            @JsonProperty("planModules") List<JsonAdaptedPlannedModule> planModules) {
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        if (tagged != null) {
+            this.tagged.addAll(tagged);
+        }
+        if (currModules != null) {
+            this.currModules.addAll(currModules);
+        }
+        if (prevModules != null) {
+            this.prevModules.addAll(prevModules);
+        }
+        if (planModules != null) {
+            this.planModules.addAll(planModules);
+        }
+    }
+
+    /**
+     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     */
+    @JsonCreator
+    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -57,6 +92,15 @@ class JsonAdaptedPerson {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        currModules.addAll(source.getCurrModules().stream()
+                .map(JsonAdaptedCurrentModule::new)
+                .collect(Collectors.toList()));
+        prevModules.addAll(source.getPrevModules().stream()
+                .map(JsonAdaptedPreviousModule::new)
+                .collect(Collectors.toList()));
+        planModules.addAll(source.getPlanModules().stream()
+                .map(JsonAdaptedPlannedModule::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -68,6 +112,21 @@ class JsonAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
+        }
+
+        final List<CurrentModule> personCurrModules = new ArrayList<>();
+        for (JsonAdaptedCurrentModule currModule : currModules) {
+            personCurrModules.add(currModule.toModelType());
+        }
+
+        final List<PreviousModule> personPrevModules = new ArrayList<>();
+        for (JsonAdaptedPreviousModule prevModule : prevModules) {
+            personPrevModules.add(prevModule.toModelType());
+        }
+
+        final List<PlannedModule> personPlanModules = new ArrayList<>();
+        for (JsonAdaptedPlannedModule planModule : planModules) {
+            personPlanModules.add(planModule.toModelType());
         }
 
         if (name == null) {
@@ -103,7 +162,15 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+
+        final Set<CurrentModule> modelCurrModules = new HashSet<>(personCurrModules);
+
+        final Set<PreviousModule> modelPrevModules = new HashSet<>(personPrevModules);
+
+        final Set<PlannedModule> modelPlanModules = new HashSet<>(personPlanModules);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress,
+                modelTags, modelCurrModules, modelPrevModules, modelPlanModules);
     }
 
 }
