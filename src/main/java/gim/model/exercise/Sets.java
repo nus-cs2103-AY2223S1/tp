@@ -4,13 +4,13 @@ import static gim.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents an Exercise's sets in the address book.
+ * Represents an Exercise's sets in Gim.
  * Guarantees: immutable; is valid as declared in {@link #isValidSets(String)}
  */
 public class Sets {
 
     private static final String SPECIAL_CHARACTERS = "+_.-";
-    public static final String MESSAGE_CONSTRAINTS = "Setss should be of the format local-part@domain "
+    public static final String MESSAGE_CONSTRAINTS = "Sets should be of the format local-part@domain "
             + "and adhere to the following constraints:\n"
             + "1. The local-part should only contain alphanumeric characters and these special characters, excluding "
             + "the parentheses, (" + SPECIAL_CHARACTERS + "). The local-part may not start or end with any special "
@@ -36,7 +36,7 @@ public class Sets {
     /**
      * Constructs an {@code Sets}.
      *
-     * @param sets A valid sets address.
+     * @param sets A valid sets number.
      */
     public Sets(String sets) {
         requireNonNull(sets);
