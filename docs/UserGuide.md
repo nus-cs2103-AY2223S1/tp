@@ -112,6 +112,7 @@ Edits an existing guest in the guest book.
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [ci/CHECK_IN_DATE] [co/CHECK_OUT_DATE] [ng/NUMBER_OF_GUESTS]​`
 
 * Edits the guest at the specified `INDEX`. The index refers to the index number shown in the displayed guest list. The index **must be a positive integer** 1, 2, 3, …​
+
 * Existing values will be updated to the input values.
 
 Examples:
@@ -148,6 +149,7 @@ Format: `delete INDEX`
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd guest in the guest book.
+
 * `find Betsy` followed by `delete 1` deletes the 1st guest in the results of the `find` command.
 
 ### Clearing all entries : `clear`

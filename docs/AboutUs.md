@@ -9,7 +9,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Justin Peng
 
-<img src="images/justinpeng.png" width="200px">
+<img src="images/justinpeng13.png" width="200px">
 
 [[homepage](https://justinpeng.vercel.app)]
 [[github](https://github.com/JustinPeng13)]
@@ -30,22 +30,22 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Lan Jingbo
 
-<img src="images/Lan Jingbo.png" width="200px">
+<img src="images/lan-jingbo.png" width="200px">
 
 [[github](http://github.com/Lan-Jingbo)] [[portfolio](team/lanjingbo.md)]
 
 * Role: Developer
 * Responsibilities: Data, Testing, Project Management
 
-### Jean Doe
+### Kang Zong Xian
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kangzongxian.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/kangzongxian)]
+[[portfolio](team/kangzongxian.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Code Quality, Documentation
 
 ### Ho Cheng En Bryan
 
