@@ -8,21 +8,22 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.*;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
+    private static final Integer INVALID_MONEY_OWED = -1;
+    private static final Integer INVALID_MONEY_PAID = -1;
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
+    private static final Integer VALID_MONEY_OWED = 10;
+    private static final Integer VALID_MONEY_PAID = 100;
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -136,6 +137,38 @@ public class ParserUtilTest {
         String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
         Email expectedEmail = new Email(VALID_EMAIL);
         assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+    }
+
+    @Test
+    public void parseMoneyOwed_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseMoneyOwed((String) null));
+    }
+
+    @Test
+    public void parseMoneyOwed_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseMoneyOwed(INVALID_MONEY_OWED.toString()));
+    }
+
+    @Test
+    public void parseMoneyOwed_validValue_returnsMoneyOwed() throws Exception {
+        MoneyOwed expectedMoneyOwed = new MoneyOwed(VALID_MONEY_OWED);
+        assertEquals(expectedMoneyOwed, ParserUtil.parseMoneyOwed(VALID_MONEY_OWED.toString()));
+    }
+
+    @Test
+    public void parseMoneyPaid_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseMoneyPaid((String) null));
+    }
+
+    @Test
+    public void parseMoneyPaid_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseMoneyPaid(INVALID_MONEY_PAID.toString()));
+    }
+
+    @Test
+    public void parseMoneyPaid_validValue_returnsMoneyOwed() throws Exception {
+        MoneyPaid expectedMoneyPaid = new MoneyPaid(VALID_MONEY_PAID);
+        assertEquals(expectedMoneyPaid, ParserUtil.parseMoneyPaid(VALID_MONEY_PAID.toString()));
     }
 
 }

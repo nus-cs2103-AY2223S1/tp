@@ -93,11 +93,11 @@ public class ParserUtil {
         try {
             value = Integer.valueOf(moneyOwed);
         } catch (NumberFormatException ex) {
-            throw new ParseException(MoneyOwed.MESSAGE_CONSTRAINS);
+            throw new ParseException(MoneyOwed.MESSAGE_CONSTRAINTS);
         }
 
         if (!MoneyOwed.isValidMoneyOwed(value)) {
-            throw new ParseException(MoneyOwed.MESSAGE_CONSTRAINS);
+            throw new ParseException(MoneyOwed.MESSAGE_CONSTRAINTS);
         }
         return new MoneyOwed(value);
     }
@@ -108,11 +108,11 @@ public class ParserUtil {
         try {
             value = Integer.valueOf(moneyPaid);
         } catch (NumberFormatException ex) {
-            throw new ParseException(MoneyPaid.MESSAGE_CONSTRAINS);
+            throw new ParseException(MoneyPaid.MESSAGE_CONSTRAINTS);
         }
 
         if (!MoneyPaid.isValidMoneyPaid(value)) {
-            throw new ParseException(MoneyPaid.MESSAGE_CONSTRAINS);
+            throw new ParseException(MoneyPaid.MESSAGE_CONSTRAINTS);
         }
         return new MoneyPaid(value);
     }

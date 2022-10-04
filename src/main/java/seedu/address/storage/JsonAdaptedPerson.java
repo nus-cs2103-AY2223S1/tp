@@ -42,6 +42,21 @@ class JsonAdaptedPerson {
         this.moneyPaid = moneyPaid;
     }
 
+
+    /**
+     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     */
+    @JsonCreator
+    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+                             @JsonProperty("email") String email, @JsonProperty("address") String address) {
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.moneyOwed = 0;
+        this.moneyPaid = 0;
+    }
+
     /**
      * Converts a given {@code Person} into this class for Jackson use.
      */
@@ -98,7 +113,7 @@ class JsonAdaptedPerson {
                     MISSING_FIELD_MESSAGE_FORMAT, MoneyOwed.class.getSimpleName()));
         }
         if (!MoneyOwed.isValidMoneyOwed(moneyOwed)) {
-            throw new IllegalValueException(MoneyOwed.MESSAGE_CONSTRAINS);
+            throw new IllegalValueException(MoneyOwed.MESSAGE_CONSTRAINTS);
         }
         final MoneyOwed modelMoneyOwed = new MoneyOwed(moneyOwed);
 
@@ -107,7 +122,7 @@ class JsonAdaptedPerson {
                     MISSING_FIELD_MESSAGE_FORMAT, MoneyPaid.class.getSimpleName()));
         }
         if (!MoneyPaid.isValidMoneyPaid(moneyPaid)) {
-            throw new IllegalValueException(MoneyPaid.MESSAGE_CONSTRAINS);
+            throw new IllegalValueException(MoneyPaid.MESSAGE_CONSTRAINTS);
         }
         final MoneyPaid modelMoneyPaid = new MoneyPaid(moneyPaid);
 
