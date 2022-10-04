@@ -12,7 +12,7 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final Integer DEFAULT_MONEY_OWED = 0;
-    public static final Integer DEFAULT_MONEY_PAID = 10;
+    public static final Integer DEFAULT_MONEY_PAID = 0;
 
     private Name name;
     private Phone phone;

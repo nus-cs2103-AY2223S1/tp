@@ -105,26 +105,10 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
-    public void toModelType_nullMoneyOwed_throwsIllegalValueException() {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
-                VALID_ADDRESS, null, VALID_MONEY_PAID);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, MoneyOwed.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
-    }
-
-    @Test
     public void toModelType_invalidMoneyPaid_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS, VALID_MONEY_OWED, INVALID_MONEY_PAID);
         String expectedMessage = MoneyPaid.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
-    }
-
-    @Test
-    public void toModelType_nullMoneyPaid_throwsIllegalValueException() {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
-                VALID_ADDRESS, VALID_MONEY_OWED, null);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, MoneyPaid.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 }

@@ -27,8 +27,6 @@ public class PersonUtil {
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
-        sb.append(PREFIX_MONEY_OWED + person.getMoneyOwed().value.toString() + " ");
-        sb.append(PREFIX_MONEY_PAID + person.getMoneyPaid().value.toString() + " ");
         return sb.toString();
     }
 

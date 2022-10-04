@@ -42,21 +42,6 @@ class JsonAdaptedPerson {
         this.moneyPaid = moneyPaid;
     }
 
-
-    /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
-     */
-    @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                             @JsonProperty("email") String email, @JsonProperty("address") String address) {
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.moneyOwed = 0;
-        this.moneyPaid = 0;
-    }
-
     /**
      * Converts a given {@code Person} into this class for Jackson use.
      */
@@ -108,23 +93,25 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
-        if (moneyOwed == null) {
-            throw new IllegalValueException(String.format(
-                    MISSING_FIELD_MESSAGE_FORMAT, MoneyOwed.class.getSimpleName()));
+        final MoneyOwed modelMoneyOwed;
+        if (moneyOwed != null) {
+            if (!MoneyOwed.isValidMoneyOwed(moneyOwed)) {
+                throw new IllegalValueException(MoneyOwed.MESSAGE_CONSTRAINTS);
+            }
+            modelMoneyOwed = new MoneyOwed(moneyOwed);
+        } else {
+            modelMoneyOwed = new MoneyOwed(0);
         }
-        if (!MoneyOwed.isValidMoneyOwed(moneyOwed)) {
-            throw new IllegalValueException(MoneyOwed.MESSAGE_CONSTRAINTS);
-        }
-        final MoneyOwed modelMoneyOwed = new MoneyOwed(moneyOwed);
 
-        if (moneyPaid == null) {
-            throw new IllegalValueException(String.format(
-                    MISSING_FIELD_MESSAGE_FORMAT, MoneyPaid.class.getSimpleName()));
+        final MoneyPaid modelMoneyPaid;
+        if (moneyPaid != null) {
+            if (!MoneyPaid.isValidMoneyPaid(moneyPaid)) {
+                throw new IllegalValueException(MoneyPaid.MESSAGE_CONSTRAINTS);
+            }
+            modelMoneyPaid = new MoneyPaid(moneyPaid);
+        } else {
+            modelMoneyPaid = new MoneyPaid(0);
         }
-        if (!MoneyPaid.isValidMoneyPaid(moneyPaid)) {
-            throw new IllegalValueException(MoneyPaid.MESSAGE_CONSTRAINTS);
-        }
-        final MoneyPaid modelMoneyPaid = new MoneyPaid(moneyPaid);
 
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelMoneyOwed, modelMoneyPaid);
     }

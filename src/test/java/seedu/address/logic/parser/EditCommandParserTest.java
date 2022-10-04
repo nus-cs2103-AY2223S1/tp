@@ -130,7 +130,7 @@ public class EditCommandParserTest {
 
         // money paid
         userInput = targetIndex.getOneBased() + MONEY_PAID_DESC_AMY;
-        descriptor = new EditPersonDescriptorBuilder().withMoneyOwed(VALID_MONEY_PAID_AMY).build();
+        descriptor = new EditPersonDescriptorBuilder().withMoneyPaid(VALID_MONEY_PAID_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
