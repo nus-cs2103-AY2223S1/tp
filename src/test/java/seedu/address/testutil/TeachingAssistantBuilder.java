@@ -29,7 +29,7 @@ public class TeachingAssistantBuilder extends PersonBuilder {
     }
 
     public TeachingAssistant build() {
-        return new TeachingAssistant(getName(), moduleCode, getPhone(), getEmail(), getGender(), getTags());
+        return new TeachingAssistant(getName(), moduleCode, getPhone(), getEmail(), getGender(), getTags(), getLocation());
     }
 
 }
