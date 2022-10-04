@@ -338,8 +338,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | CS2103T TA | mark a question as unimportant                      | undo the action of accidentally marking such questions as important |
 | `* * *`  | CS2103T TA | delete a question in the list of questions          | remove the questions that I have addressed                          |
 | `* * *`  | CS2103T TA | list out all the question's details                 | have an overview of all the questions I have                        |
-| `* * *`  | CS2103T TA | add a new tutorial                                  | keep track of my tutorial's time and group number                   |
-| `* * *`  | CS2103T TA | delete a tutorial                                   | remove a tutorial I have already had                                |
+| `* * *`  | CS2103T TA | add a new tutorial                                  | keep track of the time and group number of a tutorial                   |
+| `* * *`  | CS2103T TA | delete a tutorial                                   | remove a tutorial I have already finished                              |
 
 *{More to be added}*
 
@@ -347,6 +347,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `SETA` and the **Actor** is the `CS2103T TA`, unless specified
 otherwise)
+
+****
+
 
 **Use case: Add a student**
 
@@ -362,6 +365,8 @@ otherwise)
     * 1a1. SETA shows an error message.
 
       Use case ends.
+
+****
 
 **Use case: Edit a student**
 
@@ -382,6 +387,8 @@ otherwise)
 
       Use case resumes at step 2.
 
+****
+
 **Use case: List students**
 
 **MSS**
@@ -394,6 +401,8 @@ otherwise)
 * 2a. The list is empty.
 
   Use case ends.
+
+****
 
 **Use case: Add attendance**
 
@@ -410,6 +419,9 @@ otherwise)
     * 1a1. SETA shows an error message.
 
       Use case ends.
+
+****
+
 
 **Use case: Add student's response count**
 
@@ -434,6 +446,9 @@ otherwise)
 
       Use case resumes at step 2.
 
+****
+
+
 **Use case: Add help tag**
 
 **MSS**
@@ -449,6 +464,9 @@ otherwise)
     * 1a1. SETA shows an error message.
 
       Use case ends.
+
+****
+
 
 **Use case: Delete a student**
 
@@ -469,6 +487,9 @@ otherwise)
 * 3a. The given index is invalid.
     * 3a1. SETA shows an error message. Use case resumes at step 2.
 
+****
+
+
 **Use case: Add a question**
 
 **MSS**
@@ -483,6 +504,9 @@ otherwise)
 * 1a. The question description is empty.
 
   Use case ends.
+
+****
+
 
 **Use case: Mark question**
 
@@ -505,6 +529,9 @@ otherwise)
 
       Use case resumes at step 2.
 
+****
+
+
 **Use case: Unmark question**
 
 1. User requests to list questions.
@@ -525,6 +552,9 @@ otherwise)
     * 3a1. SETA shows an error message.
 
       Use case resumes at step 2.
+
+****
+
 
 **Use case: Delete question**
 
@@ -547,6 +577,9 @@ otherwise)
 
       Use case resumes at step 2.
 
+****
+
+
 **Use case: List questions**
 
 **MSS**
@@ -559,6 +592,9 @@ otherwise)
 * 2a. The list is empty.
 
   Use case ends.
+
+****
+
 
 **Use case: Add a tutorial**
 
@@ -573,6 +609,9 @@ otherwise)
     * 1a1. SETA shows an error message.
 
       Use case ends.
+
+****
+
 
 **Use case: Delete a tutorial**
 
@@ -595,6 +634,9 @@ otherwise)
 
       Use case resumes at step 2.
 
+****
+
+
 **Use case: Mark tutorial**
 
 1. User requests to list students.
@@ -616,6 +658,9 @@ otherwise)
 
       Use case resumes at step 2.
 
+****
+
+
 **Use case: List out tutorials**
 
 **MSS**
@@ -630,6 +675,8 @@ otherwise)
 * 2a. The list is empty.
 
   Use case ends.
+
+****
 
 ### Non-Functional Requirements
 
