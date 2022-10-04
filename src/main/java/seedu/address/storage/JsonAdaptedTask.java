@@ -1,18 +1,22 @@
 package seedu.address.storage;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.task.TaskName;
-import seedu.address.model.task.Module;
-import seedu.address.model.task.Deadline;
-import seedu.address.model.task.Task;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.person.Person;
+import seedu.address.model.task.Deadline;
+import seedu.address.model.task.Module;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskName;
+
+/**
+ * Jackson-friendly version of {@link Task}.
+ */
 public class JsonAdaptedTask {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
@@ -48,9 +52,10 @@ public class JsonAdaptedTask {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted task.
      */
-    public Task toModelType() throws IllegalValueException{
+    public Task toModelType() throws IllegalValueException {
         if (taskName == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TaskName.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, TaskName.class.getSimpleName()));
         }
         if (!TaskName.isValidName(taskName)) {
             throw new IllegalValueException(TaskName.MESSAGE_CONSTRAINTS);
@@ -58,7 +63,8 @@ public class JsonAdaptedTask {
         final TaskName modelTaskName = new TaskName(taskName);
 
         if (module == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Module.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Module.class.getSimpleName()));
         }
         if (!Module.isValidModule(module)) {
             throw new IllegalValueException(Module.MESSAGE_CONSTRAINTS);
