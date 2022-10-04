@@ -19,7 +19,7 @@ import seedu.address.model.client.Client;
 @JsonRootName(value = "addressbook")
 class JsonSerializableClientBook {
 
-    public static final String MESSAGE_DUPLICATE_CLIENT = "Persons list contains duplicate client(s).";
+    public static final String MESSAGE_DUPLICATE_CLIENT = "Clients list contains duplicate client(s).";
 
     private final List<JsonAdaptedClient> clients = new ArrayList<>();
 
@@ -27,7 +27,7 @@ class JsonSerializableClientBook {
      * Constructs a {@code JsonSerializableClientBook} with the given clients.
      */
     @JsonCreator
-    public JsonSerializableClientBook(@JsonProperty("persons") List<JsonAdaptedClient> clients) {
+    public JsonSerializableClientBook(@JsonProperty("clients") List<JsonAdaptedClient> clients) {
         this.clients.addAll(clients);
     }
 

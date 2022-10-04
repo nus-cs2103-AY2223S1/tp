@@ -28,13 +28,13 @@ public class ClientUtil {
     /**
      * Returns the part of command string for the given {@code client}'s details.
      */
-    public static String getClientDetails(Client person) {
+    public static String getClientDetails(Client client) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + person.getName().fullName + " ");
-        sb.append(PREFIX_PHONE + person.getPhone().value + " ");
-        sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
-        person.getTags().stream().forEach(
+        sb.append(PREFIX_NAME + client.getName().fullName + " ");
+        sb.append(PREFIX_PHONE + client.getPhone().value + " ");
+        sb.append(PREFIX_EMAIL + client.getEmail().value + " ");
+        sb.append(PREFIX_ADDRESS + client.getAddress().value + " ");
+        client.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         return sb.toString();

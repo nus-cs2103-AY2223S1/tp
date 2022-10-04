@@ -51,18 +51,18 @@ public class EditCommand extends Command {
     public static final String MESSAGE_DUPLICATE_CLIENT = "This person already exists in the address book.";
 
     private final Index index;
-    private final EditClientDescriptor EditClientDescriptor;
+    private final EditClientDescriptor editClientDescriptor;
 
     /**
      * @param index of the person in the filtered person list to edit
-     * @param EditClientDescriptor details to edit the person with
+     * @param editClientDescriptor details to edit the person with
      */
-    public EditCommand(Index index, EditClientDescriptor EditClientDescriptor) {
+    public EditCommand(Index index, EditClientDescriptor editClientDescriptor) {
         requireNonNull(index);
-        requireNonNull(EditClientDescriptor);
+        requireNonNull(editClientDescriptor);
 
         this.index = index;
-        this.EditClientDescriptor = new EditClientDescriptor(EditClientDescriptor);
+        this.editClientDescriptor = new EditClientDescriptor(editClientDescriptor);
     }
 
     @Override
@@ -75,7 +75,7 @@ public class EditCommand extends Command {
         }
 
         Client clientToEdit = lastShownList.get(index.getZeroBased());
-        Client editedClient = createEditedPerson(clientToEdit, EditClientDescriptor);
+        Client editedClient = createEditedPerson(clientToEdit, editClientDescriptor);
 
         if (!clientToEdit.isSameClient(editedClient) && model.hasClient(editedClient)) {
             throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
@@ -90,14 +90,14 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code EditClientDescriptor}.
      */
-    private static Client createEditedPerson(Client personToEdit, EditClientDescriptor EditClientDescriptor) {
+    private static Client createEditedPerson(Client personToEdit, EditClientDescriptor editClientDescriptor) {
         assert personToEdit != null;
 
-        Name updatedName = EditClientDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = EditClientDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = EditClientDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = EditClientDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = EditClientDescriptor.getTags().orElse(personToEdit.getTags());
+        Name updatedName = editClientDescriptor.getName().orElse(personToEdit.getName());
+        Phone updatedPhone = editClientDescriptor.getPhone().orElse(personToEdit.getPhone());
+        Email updatedEmail = editClientDescriptor.getEmail().orElse(personToEdit.getEmail());
+        Address updatedAddress = editClientDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Set<Tag> updatedTags = editClientDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
@@ -117,7 +117,7 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && EditClientDescriptor.equals(e.EditClientDescriptor);
+                && editClientDescriptor.equals(e.editClientDescriptor);
     }
 
     /**
