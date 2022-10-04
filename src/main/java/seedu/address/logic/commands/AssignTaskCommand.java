@@ -1,5 +1,13 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -7,22 +15,15 @@ import seedu.address.model.person.Assignment;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-
 /**
  * Changes the remark of an existing person in the address book.
- */public class AssignTaskCommand extends Command {
+ */
+public class AssignTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "assigntask";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assign task to a user with the given name in a group"
-            + "Parameters: NAME " + PREFIX_GROUP + "GROUP "+ PREFIX_TASK + "TASK\n"
+            + "Parameters: NAME " + PREFIX_GROUP + "GROUP " + PREFIX_TASK + "TASK\n"
             + "Example: " + COMMAND_WORD + " alice g/Group Alpha t/Coursework 0";
 
     public static final String MESSAGE_ARGUMENTS = "Name: %1$s, Group: %2$s Task: %3$s";

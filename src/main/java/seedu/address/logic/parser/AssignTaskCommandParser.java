@@ -2,15 +2,13 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 
+import java.util.NoSuchElementException;
 
 import seedu.address.logic.commands.AssignTaskCommand;
-
 import seedu.address.logic.parser.exceptions.ParseException;
-import java.util.NoSuchElementException;
 
 /**
  * Parses input arguments and creates a new {@code RemarkCommand} object

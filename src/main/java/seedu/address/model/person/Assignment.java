@@ -17,7 +17,7 @@ public class Assignment {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public String value;
+    private String value;
 
     /**
      * Empty constructor to prevent error reading from jsonFile.
