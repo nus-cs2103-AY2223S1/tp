@@ -164,9 +164,6 @@ public class ModelManager implements Model {
     public void updateFilteredCustomerList(Predicate<Customer> predicate) {
         requireNonNull(predicate);
         filteredCustomers.setPredicate(predicate);
-        if (filteredCustomers.size() > 0) {
-            selectCustomer(filteredCustomers.get(0));
-        }
     }
 
     //=========== Filtered Commission List Accessors =============================================================
