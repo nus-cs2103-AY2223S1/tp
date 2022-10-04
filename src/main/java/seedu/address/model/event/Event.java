@@ -2,13 +2,17 @@ package seedu.address.model.event;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import seedu.address.model.tag.Tag;
-
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.tag.Tag;
+
+/**
+ * Represents an Event in the address book.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
 public class Event {
 
     // Identity fields
