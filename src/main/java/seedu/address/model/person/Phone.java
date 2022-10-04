@@ -38,6 +38,12 @@ public class Phone {
         return value;
     }
 
+    /**
+     * Compares this Phone to another Phone.
+     *
+     * @param other The other Phone object
+     * @return      negative integer if this object is lesser, 0 if they are equal, positive integer otherwise
+     */
     public int compareTo(Phone other) {
         return Integer.parseInt(value) - Integer.parseInt(other.value);
     }

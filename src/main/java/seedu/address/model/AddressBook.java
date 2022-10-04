@@ -68,24 +68,53 @@ public class AddressBook implements ReadOnlyAddressBook {
         setTags(newData.getTagList());
     }
 
-    public void sortByName() {
-        persons.sortByName();
+    /// sorting operations
+
+    /**
+     * Sorts the address book by name in alphabetical order.
+     *
+     * @param isReverse Whether the sorting should be in reverse order
+     */
+    public void sortByName(Boolean isReverse) {
+        persons.sortByName(isReverse);
     }
 
-    public void sortByPhone() {
-        persons.sortByPhone();
+    /**
+     * Sorts the address book by phone number in increasing order.
+     *
+     * @param isReverse Whether the sorting should be in reverse order
+     */
+    public void sortByPhone(Boolean isReverse) {
+        persons.sortByPhone(isReverse);
     }
 
-    public void sortByEmail() {
-        persons.sortByEmail();
+    /**
+     * Sorts the address book by email in alphabetical order.
+     *
+     * @param isReverse Whether the sorting should be in reverse order
+     */
+    public void sortByEmail(Boolean isReverse) {
+        persons.sortByEmail(isReverse);
     }
 
-    public void sortByAddress() {
-        persons.sortByAddress();
+    /**
+     * Sorts the address book by address in alphabetical order.
+     *
+     * @param isReverse Whether the sorting should be in reverse order
+     */
+    public void sortByAddress(Boolean isReverse) {
+        persons.sortByAddress(isReverse);
     }
 
-    public void reverseSort() {
-        persons.reverseSort();
+    /**
+     * Sorts the address book by a tag.
+     * Contacts with the tag appear before those without the tag.
+     *
+     * @param tag       The tag to sort with
+     * @param isReverse Whether the sorting should be in reverse order
+     */
+    public void sortByTag(Tag tag, Boolean isReverse) {
+        persons.sortByTag(tag, isReverse);
     }
 
     //// person-level operations

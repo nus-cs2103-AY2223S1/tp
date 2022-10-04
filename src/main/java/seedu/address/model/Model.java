@@ -16,14 +16,14 @@ public interface Model {
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     /**
-     * Replaces user prefs data with the data in {@code userPrefs}.
-     */
-    void setUserPrefs(ReadOnlyUserPrefs userPrefs);
-
-    /**
      * Returns the user prefs.
      */
     ReadOnlyUserPrefs getUserPrefs();
+
+    /**
+     * Replaces user prefs data with the data in {@code userPrefs}.
+     */
+    void setUserPrefs(ReadOnlyUserPrefs userPrefs);
 
     /**
      * Returns the user prefs' GUI settings.
@@ -45,13 +45,13 @@ public interface Model {
      */
     void setAddressBookFilePath(Path addressBookFilePath);
 
+    /** Returns the AddressBook */
+    ReadOnlyAddressBook getAddressBook();
+
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
-
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -79,28 +79,40 @@ public interface Model {
 
     /**
      * Sorts the address book by name in alphabetical order.
+     *
+     * @param isReverse Whether the sorting should be in reverse order
      */
-    void sortByName();
+    void sortByName(Boolean isReverse);
 
     /**
      * Sorts the address book by phone number in increasing order.
+     *
+     * @param isReverse Whether the sorting should be in reverse order
      */
-    void sortByPhone();
+    void sortByPhone(Boolean isReverse);
 
     /**
      * Sorts the address book by email in alphabetical order.
+     *
+     * @param isReverse Whether the sorting should be in reverse order
      */
-    void sortByEmail();
+    void sortByEmail(Boolean isReverse);
 
     /**
      * Sorts the address book by address in alphabetical order.
+     *
+     * @param isReverse Whether the sorting should be in reverse order
      */
-    void sortByAddress();
+    void sortByAddress(Boolean isReverse);
 
     /**
-     * Sorts the address book in reverse order.
+     * Sorts the address book by a tag.
+     * Contacts with the tag appear before those without the tag.
+     *
+     * @param tag       The tag to sort with
+     * @param isReverse Whether the sorting should be in reverse order
      */
-    void reverseSort();
+    void sortByTag(Tag tag, Boolean isReverse);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();

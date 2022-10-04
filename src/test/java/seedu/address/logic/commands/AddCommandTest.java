@@ -140,27 +140,27 @@ public class AddCommandTest {
         }
 
         @Override
-        public void sortByName() {
+        public void sortByName(Boolean isReverse) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void sortByPhone() {
+        public void sortByPhone(Boolean isReverse) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void sortByEmail() {
+        public void sortByEmail(Boolean isReverse) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void sortByAddress() {
+        public void sortByAddress(Boolean isReverse) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void reverseSort() {
+        public void sortByTag(Tag tag, Boolean isReverse) {
             throw new AssertionError("This method should not be called.");
         }
 

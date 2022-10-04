@@ -44,6 +44,12 @@ public class Name {
         return fullName;
     }
 
+    /**
+     * Compares this Name to another Name.
+     *
+     * @param other The other Name object
+     * @return      -1 if this object is lesser, 0 if they are equal, 1 otherwise
+     */
     public int compareTo(Name other) {
         return fullName.compareToIgnoreCase(other.fullName);
     }
