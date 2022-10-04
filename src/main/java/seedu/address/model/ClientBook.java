@@ -32,7 +32,7 @@ public class ClientBook implements ReadOnlyClientBook {
     /**
      * Creates a ClientBook using the Clients in the {@code toBeCopied}
      */
-    public ClientBook(ReadOnlyClient toBeCopied) {
+    public ClientBook(ReadOnlyClientBook toBeCopied) {
         this();
         resetData(toBeCopied);
     }
