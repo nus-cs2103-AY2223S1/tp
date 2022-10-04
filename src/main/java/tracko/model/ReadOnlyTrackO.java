@@ -1,16 +1,17 @@
 package tracko.model;
 
 import javafx.collections.ObservableList;
-import tracko.model.order.Order;
+import tracko.model.person.Person;
 
 /**
- * Unmodifiable view of the TrackO application.
+ * Unmodifiable view of an address book
  */
-public interface ReadOnlyTrackO {
+public interface ReadOnlyAddressBook {
 
     /**
-     * Returns an unmodifeable view of the orders list.
+     * Returns an unmodifiable view of the persons list.
+     * This list will not contain any duplicate persons.
      */
-    ObservableList<Order> getOrderList();
+    ObservableList<Person> getPersonList();
 
 }

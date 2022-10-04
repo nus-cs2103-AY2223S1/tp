@@ -15,6 +15,7 @@ import java.util.List;
 
 import tracko.commons.core.index.Index;
 import tracko.logic.commands.exceptions.CommandException;
+import tracko.logic.commands.order.EditOrderCommand;
 import tracko.model.AddressBook;
 import tracko.model.Model;
 import tracko.model.person.NameContainsKeywordsPredicate;
@@ -57,8 +58,8 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditOrderCommand.EditPersonDescriptor DESC_AMY;
+    public static final EditOrderCommand.EditPersonDescriptor DESC_BOB;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)

@@ -58,8 +58,8 @@ public class TrackO implements ReadOnlyTrackO {
     @Override
     public boolean equals(Object other) {
         return other == this
-            || (other instanceof TrackO)
-            && orders.equals(((TrackO) other).orders);
+                || (other instanceof TrackO)
+                && orders.equals(((TrackO) other).orders);
     }
 
     @Override

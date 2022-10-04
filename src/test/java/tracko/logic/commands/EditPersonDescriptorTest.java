@@ -12,7 +12,7 @@ import static tracko.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import org.junit.jupiter.api.Test;
 
-import tracko.logic.commands.EditCommand.EditPersonDescriptor;
+import tracko.logic.commands.order.EditOrderCommand.EditPersonDescriptor;
 import tracko.testutil.EditPersonDescriptorBuilder;
 
 public class EditPersonDescriptorTest {
