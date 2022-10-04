@@ -39,8 +39,8 @@
                <right>
                   <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" styleClass="menu-bar-nav-button" text="Help" />
-                        <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" styleClass="menu-bar-nav-button" text="Exit" />
+                        <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" styleClass="menu-bar-nav-button" onAction="#handleHelp" text="Help" />
+                        <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" styleClass="menu-bar-nav-button" onAction="#handleExit" text="Exit" />
                      </children>
                   </HBox>
                </right>
