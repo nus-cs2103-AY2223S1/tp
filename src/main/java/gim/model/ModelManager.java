@@ -101,7 +101,7 @@ public class ModelManager implements Model {
     @Override
     public void addExercise(Exercise exercise) {
         addressBook.addExercise(exercise);
-        updateFilteredExerciseList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredExerciseList(PREDICATE_SHOW_ALL_EXERCISES);
     }
 
     @Override

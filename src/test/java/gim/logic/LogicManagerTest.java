@@ -1,7 +1,7 @@
 package gim.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static gim.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static gim.commons.core.Messages.MESSAGE_INVALID_EXERCISE_DISPLAYED_INDEX;
 import static gim.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static gim.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static gim.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
@@ -59,7 +59,7 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandException(deleteCommand, MESSAGE_INVALID_EXERCISE_DISPLAYED_INDEX);
     }
 
     @Test

@@ -34,7 +34,7 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New exercise added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This exercise already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_EXERCISE = "This exercise already exists in the address book";
 
     private final Exercise toAdd;
 
@@ -51,7 +51,7 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         if (model.hasExercise(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_EXERCISE);
         }
 
         model.addExercise(toAdd);

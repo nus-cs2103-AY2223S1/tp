@@ -340,7 +340,7 @@ save it with `Model#setExercise()`.
         List<Exercise> lastShownList = model.getFilteredExerciseList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_EXERCISE_DISPLAYED_INDEX);
         }
 
         Exercise exerciseToEdit = lastShownList.get(index.getZeroBased());
@@ -349,7 +349,7 @@ save it with `Model#setExercise()`.
                 exerciseToEdit.getAddress(), remark, exerciseToEdit.getTags());
 
         model.setExercise(exerciseToEdit, editedExercise);
-        model.updateFilteredExerciseList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredExerciseList(PREDICATE_SHOW_ALL_EXERCISES);
 
         return new CommandResult(generateSuccessMessage(editedExercise));
     }

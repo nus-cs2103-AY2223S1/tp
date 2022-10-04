@@ -3,7 +3,7 @@ package gim.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static gim.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static gim.model.Model.PREDICATE_SHOW_ALL_EXERCISES;
 import static gim.testutil.Assert.assertThrows;
 import static gim.testutil.TypicalExercises.ALICE;
 import static gim.testutil.TypicalExercises.BENSON;
@@ -122,7 +122,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredExerciseList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.updateFilteredExerciseList(PREDICATE_SHOW_ALL_EXERCISES);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

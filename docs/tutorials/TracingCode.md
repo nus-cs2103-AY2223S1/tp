@@ -192,11 +192,11 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
        Exercise exerciseToEdit = lastShownList.get(index.getZeroBased());
        Exercise editedExercise = createEditedExercise(exerciseToEdit, editExerciseDescriptor);
        if (!exerciseToEdit.isSameExercise(editedExercise) && model.hasExercise(editedExercise)) {
-           throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+           throw new CommandException(MESSAGE_DUPLICATE_EXERCISE);
        }
        model.setExercise(exerciseToEdit, editedExercise);
-       model.updateFilteredExerciseList(PREDICATE_SHOW_ALL_PERSONS);
-       return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedExercise));
+       model.updateFilteredExerciseList(PREDICATE_SHOW_ALL_EXERCISES);
+       return new CommandResult(String.format(MESSAGE_EDIT_EXERCISE_SUCCESS, editedExercise));
    }
    ```
 

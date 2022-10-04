@@ -3,7 +3,7 @@ package gim.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static gim.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static gim.commons.core.Messages.MESSAGE_EXERCISES_LISTED_OVERVIEW;
 import static gim.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static gim.testutil.TypicalExercises.CARL;
 import static gim.testutil.TypicalExercises.ELLE;
@@ -56,7 +56,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_zeroKeywords_noExerciseFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        String expectedMessage = String.format(MESSAGE_EXERCISES_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredExerciseList(predicate);
@@ -66,7 +66,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_multipleKeywords_multipleExercisesFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+        String expectedMessage = String.format(MESSAGE_EXERCISES_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredExerciseList(predicate);

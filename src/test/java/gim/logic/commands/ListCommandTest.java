@@ -2,7 +2,7 @@ package gim.logic.commands;
 
 import static gim.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static gim.logic.commands.CommandTestUtil.showExerciseAtIndex;
-import static gim.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static gim.testutil.TypicalIndexes.INDEX_FIRST_EXERCISE;
 import static gim.testutil.TypicalExercises.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -33,7 +33,7 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showExerciseAtIndex(model, INDEX_FIRST_PERSON);
+        showExerciseAtIndex(model, INDEX_FIRST_EXERCISE);
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }
