@@ -14,6 +14,8 @@ src/test/data/sandbox/
 # MacOS custom attributes files created by Finder
 .DS_Store
 docs/_site/
+
+# Storage/log files
 addressbook.log.0
 addressbook.log.0.1
 addressbook.log.0.1.lck
