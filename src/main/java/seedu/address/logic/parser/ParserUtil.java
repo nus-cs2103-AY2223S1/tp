@@ -128,7 +128,7 @@ public class ParserUtil {
     public static DateTime parseDateTime(String dateAndTime) {
         requireNonNull(dateAndTime);
         String trimmedDateAndTime = dateAndTime.trim();
-        LocalDateTime localDateTime = DateTimeParser.getLocalDateTimeFromString(trimmedDateAndTime);
+        LocalDateTime localDateTime = DateTimeParser.parseLocalDateTimeFromString(trimmedDateAndTime);
         return new DateTime(localDateTime);
     }
 

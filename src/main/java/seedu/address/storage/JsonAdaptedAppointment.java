@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.parser.DateTimeParser;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.DateTime;
@@ -41,7 +40,7 @@ public class JsonAdaptedAppointment {
      */
     public Appointment toModelType() {
         String dateAndTime = appointmentName.substring(15);
-        LocalDateTime localDateTime = DateTimeParser.getLocalDateTimeFromString(dateAndTime.trim());
+        LocalDateTime localDateTime = DateTimeParser.parseLocalDateTimeFromString(dateAndTime.trim());
         DateTime dateTime = new DateTime(localDateTime);
         return new Appointment(dateTime);
     }

@@ -2,7 +2,11 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
+
+import seedu.address.logic.parser.DateTimeParser;
 
 /**
  * Represents one of the Person's appointments.
@@ -11,6 +15,7 @@ import java.util.Objects;
 public class Appointment {
     public static final String MESSAGE_CONSTRAINTS = "Appointments can only take in a date and time in the format,"
             + "d-MMM-yyyy hh:mm a, and it should not be blank";
+    public static final Set<Appointment> EMPTY_APPOINTMENTS = new HashSet<>();
 
     public final DateTime dateTime;
 
@@ -27,6 +32,18 @@ public class Appointment {
     @Override
     public String toString() {
         return "Appointment at " + dateTime;
+    }
+
+    /**
+     * Checks whether the input DateTime has the correct format
+     *
+     * @param dateTime the DateTime representing the DateTime to be
+     *        contained within this Appointment.
+     * @return boolean value describing whether the input DateTime has
+     *         the correct format.
+     */
+    public boolean isValidAppointment(DateTime dateTime) {
+        return DateTimeParser.isValidDateTime(dateTime.toString());
     }
 
     @Override

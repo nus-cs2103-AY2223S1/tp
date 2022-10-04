@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Parses string representation of a date and time and creates
@@ -19,7 +20,23 @@ public class DateTimeParser {
      * @param str String representing the LocalDateTime to be returned.
      * @return LocalDateTime parsed from the input String.
      */
-    public static LocalDateTime getLocalDateTimeFromString(String str) {
+    public static LocalDateTime parseLocalDateTimeFromString(String str) {
         return LocalDateTime.parse(str, DateTimeParser.dateTimeFormatter);
+    }
+
+    /**
+     * Checks whether the input String has the correct DateTime format
+     *
+     * @param str the String representing the LocalDateTime to be parsed.
+     * @return boolean value describing whether the input String has
+     *         the correct DateTime format.
+     */
+    public static boolean isValidDateTime(String str) {
+        try {
+            parseLocalDateTimeFromString(str);
+        } catch (DateTimeParseException exception) {
+            return false;
+        }
+        return true;
     }
 }

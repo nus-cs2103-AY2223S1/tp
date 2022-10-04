@@ -65,7 +65,7 @@ public class SampleDataUtil {
      */
     public static Set<Appointment> getAppointmentSet(String... strings) {
         return Arrays.stream(strings)
-                .map(DateTimeParser::getLocalDateTimeFromString)
+                .map(DateTimeParser::parseLocalDateTimeFromString)
                 .map(DateTime::new)
                 .map(Appointment::new)
                 .collect(Collectors.toSet());
