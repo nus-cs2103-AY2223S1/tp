@@ -124,7 +124,7 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidReason_throwsIllegalValueException() {
         List<JsonAdaptedAppointment> invalidAppointments = new ArrayList<>(VALID_APPOINTMENTS);
-        invalidAppointments.add(new JsonAdaptedAppointment(INVALID_REASON, "2019-12-16 16:30"));
+        invalidAppointments.add(new JsonAdaptedAppointment(INVALID_REASON, "2019-12-16 16:30", false));
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, invalidAppointments,
                         VALID_TAGS);
@@ -134,7 +134,7 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidDate_throwsIllegalValueException() {
         List<JsonAdaptedAppointment> invalidAppointments = new ArrayList<>(VALID_APPOINTMENTS);
-        invalidAppointments.add(new JsonAdaptedAppointment("Sore Throat", "2019-14-16 16:30"));
+        invalidAppointments.add(new JsonAdaptedAppointment("Sore Throat", INVALID_DATE, false));
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, invalidAppointments,
                         VALID_TAGS);
