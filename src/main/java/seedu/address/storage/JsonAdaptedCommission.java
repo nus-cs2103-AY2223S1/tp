@@ -120,7 +120,8 @@ public class JsonAdaptedCommission {
 
         final CompletionStatus modelCompletionStatus = new CompletionStatus(isCompleted);
 
-        return new Commission(modelTitle, modelDescription, modelFee, modelDeadline, modelTags, modelCompletionStatus);
+        return new Commission(modelTitle, modelDescription, modelFee, modelDeadline, modelTags, modelCompletionStatus,
+                null);
 
     }
 

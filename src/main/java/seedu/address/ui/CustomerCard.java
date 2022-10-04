@@ -58,7 +58,7 @@ public class CustomerCard extends UiPart<Region> {
         customer.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        customer.getCommissions().asUnmodifiableObservableList().stream()
+        customer.getCommissions().stream()
                 .forEach(commission -> commissions.setText(commissions.getText() + '\n' + commission.toString()));
     }
 

@@ -12,7 +12,6 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.commission.Commission;
-import seedu.address.model.commission.UniqueCommissionList;
 import seedu.address.model.customer.Customer;
 
 /**
@@ -40,16 +39,15 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
 
         filteredCustomers = new FilteredList<>(this.addressBook.getCustomerList());
+        filteredCommissions = new FilteredList<>(getCommissionList());
 
         // Temporarily set active customer to the first customer.
         // TODO: Should be fixed by implementer of the opencus command.
         if (this.addressBook.getCustomerList().size() > 0) {
             setActiveCustomer(this.addressBook.getCustomerList().get(0));
-            filteredCommissions = new FilteredList<>(getCommissionList());
-        } else {
-            // TODO: figure out how to fix filteredCommissions
-            filteredCommissions = new FilteredList<>(new UniqueCommissionList().asUnmodifiableObservableList());
+            updateFilteredCommissionListToActiveCustomer();
         }
+
     }
 
     public ModelManager() {
@@ -185,6 +183,14 @@ public class ModelManager implements Model {
         filteredCommissions.setPredicate(predicate);
     }
 
+    private Predicate<Commission> getActiveCustomerCommissionsPredicate() {
+        return commission -> commission.getCustomer().isSameCustomer(activeCustomer);
+    }
+
+    public void updateFilteredCommissionListToActiveCustomer() {
+        updateFilteredCommissionList(getActiveCustomerCommissionsPredicate());
+    }
+
     //=========== Active Customer =============================================================
 
     public void setActiveCustomer(Customer customer) {
@@ -215,7 +221,7 @@ public class ModelManager implements Model {
     }
 
     public ObservableList<Commission> getCommissionList() {
-        return addressBook.getUniqueCommissionList(activeCustomer).asUnmodifiableObservableList();
+        return addressBook.getCommissionList();
     }
 
     @Override

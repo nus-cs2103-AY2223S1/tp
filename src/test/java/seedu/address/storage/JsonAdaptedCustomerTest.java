@@ -33,7 +33,7 @@ public class JsonAdaptedCustomerTest {
         .collect(Collectors.toList());
 
     private static final List<JsonAdaptedCommission> VALID_COMMISSIONS = BENSON.getCommissions()
-            .asUnmodifiableObservableList().stream()
+            .stream()
             .map(JsonAdaptedCommission::new)
             .collect(Collectors.toList());
 

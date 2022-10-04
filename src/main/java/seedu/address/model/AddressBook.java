@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
+import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.commission.Commission;
@@ -118,7 +119,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public boolean hasCommission(Customer customer, Commission commission) {
         requireAllNonNull(customer, commission);
-        return getUniqueCommissionList(customer).contains(commission);
+        return getCustomerCommissions(customer).contains(commission);
     }
 
     /**
@@ -127,7 +128,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addCommission(Customer customer, Commission commission) {
         requireAllNonNull(customer, commission);
-        getUniqueCommissionList(customer).add(commission);
+        getCustomerCommissions(customer).add(commission);
         commissions.add(commission);
     }
 
@@ -139,7 +140,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setCommission(Customer customer, Commission target, Commission editedCommission) {
         requireAllNonNull(customer, editedCommission);
-        getUniqueCommissionList(customer).setCommission(target, editedCommission);
+        assert hasCommission(customer, target);
+        getCustomerCommissions(customer).remove(target);
+        getCustomerCommissions(customer).add(editedCommission);
         commissions.setCommission(target, editedCommission);
     }
 
@@ -149,7 +152,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeCommission(Customer customer, Commission key) {
         requireAllNonNull(customer, key);
-        getUniqueCommissionList(customer).remove(key);
+        assert hasCommission(customer, key);
+        getCustomerCommissions(customer).remove(key);
         commissions.remove(key);
     }
 
@@ -171,7 +175,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         return commissions.asUnmodifiableObservableList();
     }
 
-    public UniqueCommissionList getUniqueCommissionList(Customer customer) {
+    public Set<Commission> getCustomerCommissions(Customer customer) {
         return customer.getCommissions();
     }
 

@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.customer.Customer;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -22,12 +23,13 @@ public class Commission {
     private final Deadline deadline;
     private final CompletionStatus completionStatus;
     private final Set<Tag> tags = new HashSet<>();
+    private Customer customer;
 
     /**
      * Every field must be present and not null.
      */
     public Commission(Title title, Description description, Fee fee, Deadline deadline, Set<Tag> tags,
-                      CompletionStatus completionStatus) {
+                      CompletionStatus completionStatus, Customer customer) {
         requireAllNonNull(title, description, fee, deadline, tags, completionStatus);
         this.title = title;
         this.description = description;
@@ -35,6 +37,7 @@ public class Commission {
         this.deadline = deadline;
         this.tags.addAll(tags);
         this.completionStatus = completionStatus;
+        this.customer = customer;
     }
 
     public Title getTitle() {
@@ -63,6 +66,14 @@ public class Commission {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     /**

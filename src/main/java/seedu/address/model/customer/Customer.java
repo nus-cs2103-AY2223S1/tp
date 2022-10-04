@@ -2,15 +2,14 @@ package seedu.address.model.customer;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.commission.Commission;
-import seedu.address.model.commission.UniqueCommissionList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -27,7 +26,7 @@ public class Customer {
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
 
-    private final UniqueCommissionList commissions = new UniqueCommissionList();
+    private final Set<Commission> commissions = new HashSet<>();
 
     // Optional fields
     private final Address address;
@@ -47,17 +46,9 @@ public class Customer {
     /**
      * Initialises Customer without address but with commissions.
      */
-    public Customer(Name name, Phone phone, Email email, Set<Tag> tags, UniqueCommissionList commissions) {
+    public Customer(Name name, Phone phone, Email email, Set<Tag> tags, Set<Commission> commissions) {
         this(name, phone, email, tags);
-        this.commissions.setCommissions(commissions);
-    }
-
-    /**
-     * Initialises Customer without address but with commissions.
-     */
-    public Customer(Name name, Phone phone, Email email, Set<Tag> tags, List<Commission> commissions) {
-        this(name, phone, email, tags);
-        this.commissions.setCommissions(commissions);
+        this.commissions.addAll(commissions);
     }
 
 
@@ -77,17 +68,9 @@ public class Customer {
      * Initialises Customer with a list of commissions.
      */
     public Customer(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
-                  UniqueCommissionList commissions) {
+                  Collection<Commission> commissions) {
         this(name, phone, email, address, tags);
-        this.commissions.setCommissions(commissions);
-    }
-
-    /**
-     * Initialises Customer with a list of commissions.
-     */
-    public Customer(Name name, Phone phone, Email email, Address address, Set<Tag> tags, List<Commission> commissions) {
-        this(name, phone, email, address, tags);
-        this.commissions.setCommissions(commissions);
+        this.commissions.addAll(commissions);
     }
 
     public Name getName() {
@@ -106,7 +89,7 @@ public class Customer {
         return Optional.ofNullable(address);
     }
 
-    public UniqueCommissionList getCommissions() {
+    public Set<Commission> getCommissions() {
         return commissions;
     }
 
@@ -155,13 +138,14 @@ public class Customer {
             && otherCustomer.getPhone().equals(getPhone())
             && otherCustomer.getEmail().equals(getEmail())
             && otherCustomer.getAddress().equals(getAddress())
-            && otherCustomer.getTags().equals(getTags());
+            && otherCustomer.getTags().equals(getTags())
+            && otherCustomer.getCommissions().equals(getCommissions());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags, commissions);
     }
 
     @Override

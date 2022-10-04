@@ -70,7 +70,7 @@ class JsonAdaptedCustomer {
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList()));
 
-        commissions.addAll(source.getCommissions().asUnmodifiableObservableList().stream()
+        commissions.addAll(source.getCommissions().stream()
                 .map(JsonAdaptedCommission::new)
                 .collect(Collectors.toList()));
 
@@ -87,7 +87,7 @@ class JsonAdaptedCustomer {
             customerTags.add(tag.toModelType());
         }
 
-        final List<Commission> personCommissions = new ArrayList<>();
+        final Set<Commission> personCommissions = new HashSet<>();
         for (JsonAdaptedCommission commission : commissions) {
             personCommissions.add(commission.toModelType());
         }
@@ -132,9 +132,11 @@ class JsonAdaptedCustomer {
 
 
         final Set<Tag> modelTags = new HashSet<>(customerTags);
-        return modelAddress.map(value -> new Customer(modelName, modelPhone, modelEmail, value, modelTags,
+        Customer customer = modelAddress.map(value -> new Customer(modelName, modelPhone, modelEmail, value, modelTags,
                         personCommissions)).orElseGet(() -> new Customer(modelName, modelPhone, modelEmail, modelTags,
                 personCommissions));
+        customer.getCommissions().forEach(commission -> commission.setCustomer(customer));
+        return customer;
     }
 
 }
