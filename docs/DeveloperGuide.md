@@ -270,16 +270,35 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| s/n | Priority | User Story                                                                                                                                                                       |
+| --- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | ***      | As a user, I can add a task.                                                                                                                                                     |
+| 2   | ***      | As a user, I can add a contact.                                                                                                                                                  |
+| 3   | ***      | As a user, I can assign a task to a specific contact, so that I can keep track of which tasks he/she is responsible for.                                                         |
+| 4   | ***      | As a user, I can view all tasks.                                                                                                                                                 |
+| 5   | ***      | As a user, I can view the tasks associated with a specific contact, so that I can easily see which tasks he/she has yet to complete.                                             |
+| 6   | ***      | As a user, I can delete a task, so that I can remove unwanted tasks, or tasks that were entered incorrectly.                                                                     |
+| 7   | ***      | As a user, I can mark a task as complete or incomplete, so that I can monitor and upgrade his/her progress.                                                                      |
+| 8   | ***      | As a user, I can delete a contact, so that I can keep my contacts list up to date.                                                                                               |
+| 9   | **       | As a user, I can search for a contact name, so that I can easily find his details.                                                                                               |
+| 10  | **       | As a user, I can easily copy a contact's email, so that I can quickly paste it when I have to contact the team member.                                                           |
+| 11  | **       | As a user, I can modify a task’s associated contact, so that I can reassign certain tasks to other team members.                                                                 |
+| 12  | **       | As a user, I can edit a contact, so that I can keep my contact list updated with the latest changes.                                                                             |
+| 13  | **       | As a user, I can associate a task with a date, so that I can record down the deadline I have set for a task.                                                                     |
+| 14  | **       | As a user, I can view all tasks sorted by date, so that I can identify which tasks are the most urgent.                                                                          |
+| 15  | **       | As a user, I can filter tasks by whether or not they have been completed, so that I can identify incomplete tasks.                                                               |
+| 16  | **       | As a user, I can edit the details of a task, so that I can update the deadline or the deliverables.                                                                              |
+| 17  | **       | As a user, I can create a task without assigning it to any contact, so that I can always choose to assign it later when I have more details of the task or project.              |
+| 18  | **       | As a user, I can filter tasks by whether or not it has been assigned to a contact, so that I can identify the tasks I have to assign later on.                                   |
+| 19  | *        | As a user, I can associate a task with multiple contacts, so that I can assign a task with a higher workload to more than one person to work on it.                              |
+| 20  | *        | As a user, I can associate a task with a project (which are collections of tasks), so that I can group related tasks together and separate them by the many projects I may have. |
+| 21  | *        | As a user, I can tag tasks to milestones/versions, so that I can ensure each version is ready by the delivery date.                                                              |
+| 22  | *        | As a user, I can associate a contact with a project, so that I can assign a task to only contacts with the specific project.                                                     |
+| 23  | *        | As a user, I can tag my contact's roles and positions, so that I can easily plan what kind of work to assign to him.                                                             |
+| 24  | *        | As a user, I can choose to view only the tasks associated with a project, so that I can focus myself on that specific project.                                                   |
+| 25  | *        | As a user, I can check if each member has finished their certain amount of tasks, so that I can monitor the progress of the team project.                                        |
+| 26  | *        | As a user, I can check the date and time for projects or tasks, so that I can plan out the work needed to be done.                                                               |
+| 27  | *        | As a user, I can set priority for the tasks, so that I can find out which are the most important.
 
 ### Use cases
 
