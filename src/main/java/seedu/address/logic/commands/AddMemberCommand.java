@@ -41,6 +41,8 @@ public class AddMemberCommand extends Command {
         }
         Person toAdd = lastShownList.get(targetIndex.getZeroBased());
 
+        // TODO: If team is made to be immutable through address book, updating of members will need to be done
+        //  through the address book object in the future.
         Team team = model.getAddressBook().getTeam();
         if (team.hasMember(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
