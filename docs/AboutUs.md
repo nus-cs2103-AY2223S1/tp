@@ -11,28 +11,28 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Quah Kian Seong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kianseong.png" width="200px">
 
-[[github](https://github.com/KIANSEONG)]
+GitHub: [@KIANSEONG](https://github.com/KIANSEONG)
 
-* Role: Project Advisor
+* Role: Team Lead
 
 ### Wang Xinyi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/wxy1203.png" width="200px">
 
-[[github](https://github.com/wxy1203)]
-[[portfolio](team/johndoe.md)]
+GitHub: [@wxy1203](https://github.com/wxy1203)
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Team Member
+* Responsibilities: Various
+
 
 ### Brandon Thio
 
-<img src="images/brandon.png" width="200px">
+<img src="images/beetee17.png" width="200px">
 
 GitHub: [@beetee17](https://github.com/beetee17)
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/beetee17.md)]
 
 * Role: Team Member
 * Responsibilities: Various
@@ -40,21 +40,20 @@ GitHub: [@beetee17](https://github.com/beetee17)
 ### Zheng Yilin
 
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yilinzyl.png" width="200px">
 
-[[github](http://github.com/yilinzyl)] 
-[[portfolio](team/johndoe.md)]
+Github: [@yilinzyl](http://github.com/yilinzyl)
+[[portfolio](team/yilinzyl.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Team Member
+* Responsibilities: Various
 
 ### Amresh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/amresh2000.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+Github: [@amresh2000](http://github.com/amresh2000)
+[[portfolio](team/amresh.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
-

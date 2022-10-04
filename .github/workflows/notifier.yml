@@ -1,0 +1,20 @@
+name: GitHub Notifier
+
+on:
+  repository_dispatch:
+    types: [pr-opened]
+
+jobs:
+  build:
+    name: Telegram Notify
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify telegram group on pull request changes
+        uses: appleboy/telegram-action@v0.1.1
+        with:
+          to: ${{ secrets.TELEGRAM_TO }} # don't change
+          token: ${{ secrets.TELEGRAM_TOKEN }} # don't change
+          ref: ${{ github.event.client_payload.ref }}
+          message: |
+            **${{ github.event.client_payload.title }}**
+            @${{ github.event.client_payload.creator }} opened a pull request.
