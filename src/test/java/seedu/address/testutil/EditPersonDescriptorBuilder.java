@@ -8,7 +8,7 @@ import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.client.Address;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
-import seedu.address.model.client.Person;
+import seedu.address.model.client.Client;
 import seedu.address.model.client.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -30,7 +30,7 @@ public class EditPersonDescriptorBuilder {
     /**
      * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
      */
-    public EditPersonDescriptorBuilder(Person person) {
+    public EditPersonDescriptorBuilder(Client person) {
         descriptor = new EditPersonDescriptor();
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());

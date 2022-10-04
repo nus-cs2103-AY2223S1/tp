@@ -13,12 +13,12 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.client.Address;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
-import seedu.address.model.client.Person;
+import seedu.address.model.client.Client;
 import seedu.address.model.client.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Jackson-friendly version of {@link Person}.
+ * Jackson-friendly version of {@link Client}.
  */
 class JsonAdaptedPerson {
 
@@ -49,7 +49,7 @@ class JsonAdaptedPerson {
     /**
      * Converts a given {@code Person} into this class for Jackson use.
      */
-    public JsonAdaptedPerson(Person source) {
+    public JsonAdaptedPerson(Client source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
@@ -64,7 +64,7 @@ class JsonAdaptedPerson {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
-    public Person toModelType() throws IllegalValueException {
+    public Client toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
@@ -103,7 +103,7 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags);
     }
 
 }

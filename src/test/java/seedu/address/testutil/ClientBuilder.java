@@ -6,7 +6,7 @@ import java.util.Set;
 import seedu.address.model.client.Address;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
-import seedu.address.model.client.Person;
+import seedu.address.model.client.Client;
 import seedu.address.model.client.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -41,7 +41,7 @@ public class ClientBuilder {
     /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
-    public ClientBuilder(Person personToCopy) {
+    public ClientBuilder(Client personToCopy) {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
@@ -89,8 +89,8 @@ public class ClientBuilder {
         return this;
     }
 
-    public Person build() {
-        return new Person(name, phone, email, address, tags);
+    public Client build() {
+        return new Client(name, phone, email, address, tags);
     }
 
 }

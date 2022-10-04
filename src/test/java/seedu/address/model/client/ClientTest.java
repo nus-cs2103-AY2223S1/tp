@@ -19,7 +19,7 @@ public class ClientTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Person p = null;
+        Client p = null;
         Client client = new ClientBuilder().build();
         assertThrows(UnsupportedOperationException.class, () -> client.getTags().remove(0));
     }
@@ -33,7 +33,7 @@ public class ClientTest {
         assertFalse(ALICE.isSamePerson(null));
 
         // same name, all other attributes different -> returns true
-        Person editedAlice = new ClientBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
+        Client editedAlice = new ClientBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
@@ -42,7 +42,7 @@ public class ClientTest {
         assertFalse(ALICE.isSamePerson(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
-        Person editedBob = new ClientBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
+        Client editedBob = new ClientBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
         assertFalse(BOB.isSamePerson(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
@@ -54,7 +54,7 @@ public class ClientTest {
     @Test
     public void equals() {
         // same values -> returns true
-        Person aliceCopy = new ClientBuilder(ALICE).build();
+        Client aliceCopy = new ClientBuilder(ALICE).build();
         assertTrue(ALICE.equals(aliceCopy));
 
         // same object -> returns true
@@ -70,7 +70,7 @@ public class ClientTest {
         assertFalse(ALICE.equals(BOB));
 
         // different name -> returns false
-        Person editedAlice = new ClientBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        Client editedAlice = new ClientBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different phone -> returns false
