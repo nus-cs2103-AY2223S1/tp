@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* Adapted from AB3 https://github.com/nus-cs2103-AY2223S1/tp
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -258,63 +258,267 @@ _{Explain here how the data archiving feature will be implemented}_
 **Target user profile**:
 
 * has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* private clinic practitioners who do not have access to general health service management applications like Healthhub
+* private clinic practitioners of clinics who still utilise physical paper records to store patient information
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
+* provide doctors with a place to **store and centrally manage their patients’ information**
+* allows doctors to schedule appointments, send appointment reminders and other notifications (eg. medication, payment 
+  information) to patients using their stored contact information.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​   | I want to …​                            | So that I can…​                                                                           |
+| -------- |-----------|-----------------------------------------|-------------------------------------------------------------------------------------------|
+| `* * *`  | new user  | view the user guide easily              | learn more about the product usage                                                        |
+| `* * *`  | user      | add a new patient and their details     | save them for later viewing                                                               |
+| `* * *`  | user      | view an existing patient's full details | know more about the patient                                                               |
+| `* * *`  | user      | delete a patient's records              | clear a particular patient's medical records upon request. (E.g. due to privacy reasons)  |
+| `* * *`  | user      | clear the all of a patient's records    | save time by not deleting one by one                                                      |
+| `*`      | user      | view the entire list of patients        | see all my patients I have added.                                                         |
+| `* * *`  | user      | search for a specific patient’s records | view one patient's record                                                                 |
+| `* * *`  | user      | exit the program                        |                                                                                           |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `OmniHealth` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a patient**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to add a patient with given input fields.
+2. OmniHealth adds patients with given fields into the list of patients.
+    
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given input fields are invalid.
+
+    * 1a1. OmniHealth shows an error message.
+
+      Use case ends.
+
+**Use case: Add a record**
+
+**MSS**
+
+1.  User requests to list patients
+2.  OmniHealth shows a list of patients
+3.  User requests to add record with given fields into to a specific patient in the list
+4.  OmniHealth adds a record with given fields to the record list of the specified patient.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 3a. The given input fields are invalid.
 
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
+    * 3a1. OmniHealth shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: Delete a patient**
+
+**MSS**
+
+1.  User requests to list patients
+2.  OmniHealth shows a list of patients
+3.  User requests to delete a specific patient in the list
+4.  OmniHealth deletes the person
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. The list is empty.
+    * 3a1. OmniHealth shows an error message.
+
+        Use case ends.
+    
+* 3b. The given index is invalid.
+
+    * 3b1. OmniHealth shows an error message.
+
+      Use case ends.
+
+* 2a. The user searches for a specific patient before deleting.
+
+    * 2a1. User requests to find a patient
+    * 2a2. OmniHealth shows a list of patient with given keyword
+    * 2a3. User requests to delete a specific patient in the list
+    * 2a4. OmniHealth deletes the patient
+
+      Use case ends.
+
+**Use case: Delete a record**
+
+**MSS**
+
+1.  User requests to list records of a specific patient
+2.  OmniHealth shows a list of records
+3.  User requests to delete a specific record in the list
+4.  OmniHealth deletes the record
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. The list is empty.
+
+    * 3a1. OmniHealth shows an error message.
+
+        Use case ends.
+
+* 3b. The given index is invalid.
+
+    * 3b1. OmniHealth shows an error message.
+
+      Use case ends.
+
+* *a. Patient attempts to delete a record before listing records.
+
+    * *a1. OmniHealth shows an error message.
+
+      Use case ends.
+
+**Use case: List all patients**
+
+**MSS**
+
+1. User requests to list all patients.
+2. OmniHealth shows a list of all patients.
+    
+    Use case ends.
+
+**Extensions**
+
+* 1a. The patient list is empty.
+
+    * 1a1. OmniHealth shows an error message.
+      
+        Use case ends.
+
+**Use case: List all records for a specified patient**
+
+**MSS**
+
+1. User requests to list all records for the specified patient.
+2. OmniHealth shows a list of all records for the specified patient.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The record list is empty.
+
+    * 1a1. OmniHealth shows an error message.
+       
+        Use case ends.
+
+* 1b. The given index is invalid.
+
+    * 1b1. OmniHealth shows an error message.
+      
+        Use case ends.
+
+**Use case: Clear patient list**
+
+**MSS**
+
+1. User requests to clear all patients from list
+2. Omnihealth deletes patient list
+
+   Use case ends
+
+**Extensions**
+
+* 1a. Patient list is empty
+    
+    Use case ends
+
+**Use case: Clear patient records**
+
+**MSS**
+
+1. User requests to clear all records from a patient
+2. Omnihealth deletes all patient records
+
+   Use case ends
+
+**Extensions**
+* 1a. Patient record list is empty
+
+  Use case ends
+
+* 1b. Patient does not exist
+  * 1b1. Omnihealth displays error message
+
+  Use case ends
+
+**Use case: Get Help**
+
+**MSS**
+
+1. User requests to view help
+2. Omnihealth shows list of commands
+    
+    Use case ends
+
+**Use case: Find patient**
+
+**MSS**
+
+1. User requests to find a patient by name
+2. OmniHealth shows a list of all patients matching the input by the user.
+
+**Extensions**
+* 1a. Patient record list is empty
+
+  Use case ends
+
+* 1b. Patient does not exist
+    * 1b1. Omnihealth displays error message
+
+  Use case ends
+
+**Use case: Find patient records**
+
+**MSS**
+
+1. User requests to find a patient by name
+2. OmniHealth shows a list of all patients matching the input by the user.
+3. User inputs a keyword and a patient record index.
+4. OmniHealth shows all the relevant records of the specified patient.
+
+**Extensions**
+* 1a. Patient record list is empty
+
+  Use case ends
+
+* 1b. Patient does not exist
+    * 1b1. Omnihealth displays error message
+
+  Use case ends
+
+* 3a. No keywords matching can be found
+    * 3a1. Omnihealth displays error message
+  
+  Use case ends
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work as long as Java `11` or above is installed.
+2. Should be secure to use so that patient records are not easily leaked.
+3. Should be able to handle large amounts of data eg. Patient record list, Patient list
 
 *{More to be added}*
 

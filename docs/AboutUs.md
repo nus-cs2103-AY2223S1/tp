@@ -5,55 +5,56 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Anthony Ho
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/anthonyhoth.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+[[github](https://github.com/anthonyhoth)]
+[[portfolio](team/anthonyhoth.md)]
 
-### Jane Doe
+* Role: TBD
+* Responsiblities: In charge of `delete` and `deleteR` commands
 
-<img src="images/johndoe.png" width="200px">
+### Lai Han Wen
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+<img src="images/hanwenlai.png" width="200px">
 
-* Role: Team Lead
-* Responsibilities: UI
 
-### Johnny Doe
+[[github](https://github.com/hanwenlai)]
+[[portfolio](team/hanwenlai.md)]
 
-<img src="images/johndoe.png" width="200px">
+* Role: TBD
+* Responsiblities: In charge of `list` and `listR` commands
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+### Marcus Lee
 
-* Role: Developer
-* Responsibilities: Data
+<img src="images/marclzh.png" width="200px">
 
-### Jean Doe
+[[github](https://github.com/marclzh)]
+[[portfolio](team/marclzh.md)]
 
-<img src="images/johndoe.png" width="200px">
+* Role: TBD
+* Responsibilities: In charge of `find` and `findR` commands
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+### Eiffel Leo
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+<img src="images/eiffellkf.png" width="200px">
 
-### James Doe
+[[github](http://github.com/eiffellkf)]
+[[portfolio](team/eiffellkf.md)]
 
-<img src="images/johndoe.png" width="200px">
+* Role: TBD
+* Responsibilities: In charge of `add` and `addR` command
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+### Sean Lam
 
-* Role: Developer
-* Responsibilities: UI
+<img src="images/ljxsean.png" width="200px">
+
+[[github](https://github.com/ljxsean)]
+[[portfolio](team/ljxsean.md)]
+
+* Role: TBD
+* Responsiblities: In charge of `clear` and `clearR` commands
