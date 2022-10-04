@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
 /**
@@ -85,6 +86,14 @@ public class ModelManager implements Model {
     @Override
     public ReadOnlyAddressBook getAddressBook() {
         return addressBook;
+    }
+
+    @Override
+    public ObservableList<Person> getPersonWithName(Name name) {
+        ObservableList<Person> personList = getAddressBook().getPersonList();
+        Predicate<Person> namePredicate = curr -> (curr.getName().equals(name));
+
+        return personList.filtered(namePredicate);
     }
 
     @Override

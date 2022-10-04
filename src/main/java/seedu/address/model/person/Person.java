@@ -3,9 +3,11 @@ package seedu.address.model.person;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.ArrayList;
 
 import seedu.address.model.tag.Tag;
 
@@ -23,17 +25,20 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final HashMap<String, ArrayList<Assignment>> assignments = new HashMap<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                  HashMap<String, ArrayList<Assignment>> assignments) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.assignments.putAll(assignments);
     }
 
     public Name getName() {
@@ -58,6 +63,10 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public HashMap<String, ArrayList<Assignment>> getAssignments() {
+        return this.assignments;
     }
 
     /**
@@ -92,13 +101,14 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getAssignments().equals(getAssignments());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags, assignments);
     }
 
     @Override
@@ -117,6 +127,17 @@ public class Person {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
+        HashMap<String, ArrayList<Assignment>> assignments = getAssignments();
+        if (!assignments.isEmpty()) {
+            builder.append("; Assignment: ");
+            assignments.forEach((key, value) -> {
+                String assignment = key + " " + value;
+                builder.append(assignment);
+            });
+
+        }
+
         return builder.toString();
     }
 
