@@ -95,6 +95,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ReadOnlyTaskList getTaskList() {
+        return taskList;
+    }
+
+    @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return addressBook.hasPerson(person);
