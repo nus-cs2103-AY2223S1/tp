@@ -1,18 +1,20 @@
 package seedu.address.storage;
 
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.ReadOnlyTaskList;
-import seedu.address.model.TaskList;
+import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
 
-import static java.util.Objects.requireNonNull;
+import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.commons.util.JsonUtil;
+import seedu.address.model.ReadOnlyTaskList;
+import seedu.address.model.TaskList;
 
+/**
+ * A class to access Tasks stored in the hard disk as a json file
+ */
 public class JsonTaskStorage implements TaskStorage {
     private static final Logger logger = LogsCenter.getLogger(JsonTaskStorage.class);
 
