@@ -19,7 +19,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.client.Client;
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Client} objects to be used in tests.
  */
 public class TypicalClients {
 
@@ -62,12 +62,12 @@ public class TypicalClients {
     /**
      * Returns an {@code AddressBook} with all the typical persons.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static AddressBook getTypicalClientBook() {
+        ClientBook cb = new ClientBook();
         for (Client person : getTypicalClients()) {
-            ab.addPerson(person);
+            cb.addPerson(person);
         }
-        return ab;
+        return cb;
     }
 
     public static List<Client> getTypicalClients() {
