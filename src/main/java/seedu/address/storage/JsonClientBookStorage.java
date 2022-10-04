@@ -45,14 +45,14 @@ public class JsonClientBookStorage implements ClientBookStorage {
     public Optional<ReadOnlyClientBook> readClientBook(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableClientBook> jsonAddressBook = JsonUtil.readJsonFile(
+        Optional<JsonSerializableClientBook> jsonClientBook = JsonUtil.readJsonFile(
                 filePath, JsonSerializableClientBook.class);
-        if (!jsonAddressBook.isPresent()) {
+        if (!jsonClientBook.isPresent()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonAddressBook.get().toModelType());
+            return Optional.of(jsonClientBook.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
@@ -69,12 +69,12 @@ public class JsonClientBookStorage implements ClientBookStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveClientBook(ReadOnlyClientBook addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveClientBook(ReadOnlyClientBook clientBook, Path filePath) throws IOException {
+        requireNonNull(clientBook);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableClientBook(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableClientBook(clientBook), filePath);
     }
 
 }

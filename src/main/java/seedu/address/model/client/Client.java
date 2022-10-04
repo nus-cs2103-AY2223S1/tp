@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Client in the address book.
+ * Represents a Client in the client book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Client {
@@ -61,8 +61,8 @@ public class Client {
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both clients have the same name.
+     * This defines a weaker notion of equality between two clients.
      */
     public boolean isSameClient(Client otherClient) {
         if (otherClient == this) {
@@ -74,8 +74,8 @@ public class Client {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both clients have the same identity and data fields.
+     * This defines a stronger notion of equality between two clients.
      */
     @Override
     public boolean equals(Object other) {
@@ -87,12 +87,12 @@ public class Client {
             return false;
         }
 
-        Client otherPerson = (Client) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+        Client otherClient = (Client) other;
+        return otherClient.getName().equals(getName())
+                && otherClient.getPhone().equals(getPhone())
+                && otherClient.getEmail().equals(getEmail())
+                && otherClient.getAddress().equals(getAddress())
+                && otherClient.getTags().equals(getTags());
     }
 
     @Override

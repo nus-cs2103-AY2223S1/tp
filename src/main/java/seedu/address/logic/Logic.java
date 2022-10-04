@@ -24,17 +24,17 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the ClientBook.
      *
      * @see seedu.address.model.Model#getClientBook()
      */
     ReadOnlyClientBook getClientBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
+    /** Returns an unmodifiable view of the filtered list of clients */
     ObservableList<Client> getFilteredClientList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' client book file path.
      */
     Path getClientBookFilePath();
 

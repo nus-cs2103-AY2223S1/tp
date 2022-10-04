@@ -87,7 +87,7 @@ public class ClientBook implements ReadOnlyClientBook {
 
     /**
      * Removes {@code key} from this {@code ClientBook}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in the client book.
      */
     public void removeClient(Client key) {
         clients.remove(key);

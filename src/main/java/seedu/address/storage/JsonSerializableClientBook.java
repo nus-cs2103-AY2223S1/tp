@@ -47,8 +47,8 @@ class JsonSerializableClientBook {
      */
     public ClientBook toModelType() throws IllegalValueException {
         ClientBook clientBook = new ClientBook();
-        for (JsonAdaptedClient jsonAdaptedPerson : clients) {
-            Client person = jsonAdaptedPerson.toModelType();
+        for (JsonAdaptedClient jsonAdaptedClient : clients) {
+            Client person = jsonAdaptedClient.toModelType();
             if (clientBook.hasClient(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_CLIENT);
             }

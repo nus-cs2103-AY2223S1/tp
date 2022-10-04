@@ -65,9 +65,9 @@ class JsonAdaptedClient {
      * @throws IllegalValueException if there were any data constraints violated in the adapted client.
      */
     public Client toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        final List<Tag> clientTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+            clientTags.add(tag.toModelType());
         }
 
         if (name == null) {
@@ -102,7 +102,7 @@ class JsonAdaptedClient {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Set<Tag> modelTags = new HashSet<>(clientTags);
         return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags);
     }
 

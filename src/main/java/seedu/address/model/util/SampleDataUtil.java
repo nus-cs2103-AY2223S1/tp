@@ -14,10 +14,10 @@ import seedu.address.model.client.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code ClientBook} with sample data.
  */
 public class SampleDataUtil {
-    public static Client[] getSamplePersons() {
+    public static Client[] getSampleClients() {
         return new Client[] {
             new Client(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
@@ -40,10 +40,10 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyClientBook getSampleAddressBook() {
+    public static ReadOnlyClientBook getSampleClientBook() {
         ClientBook sampleAb = new ClientBook();
-        for (Client samplePerson : getSamplePersons()) {
-            sampleAb.addClient(samplePerson);
+        for (Client sampleClient : getSampleClients()) {
+            sampleAb.addClient(sampleClient);
         }
         return sampleAb;
     }

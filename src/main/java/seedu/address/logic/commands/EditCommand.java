@@ -27,14 +27,14 @@ import seedu.address.model.client.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing client in the client book.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the client identified "
+            + "by the index number used in the displayed client list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
@@ -48,14 +48,14 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_CLIENT_SUCCESS = "Edited Client: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the client book.";
 
     private final Index index;
     private final EditClientDescriptor editClientDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editClientDescriptor details to edit the person with
+     * @param index of the client in the filtered client list to edit
+     * @param editClientDescriptor details to edit the client with
      */
     public EditCommand(Index index, EditClientDescriptor editClientDescriptor) {
         requireNonNull(index);
@@ -75,7 +75,7 @@ public class EditCommand extends Command {
         }
 
         Client clientToEdit = lastShownList.get(index.getZeroBased());
-        Client editedClient = createEditedPerson(clientToEdit, editClientDescriptor);
+        Client editedClient = createEditedClient(clientToEdit, editClientDescriptor);
 
         if (!clientToEdit.isSameClient(editedClient) && model.hasClient(editedClient)) {
             throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
@@ -87,17 +87,17 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * Creates and returns a {@code Client} with the details of {@code clientToEdit}
      * edited with {@code EditClientDescriptor}.
      */
-    private static Client createEditedPerson(Client personToEdit, EditClientDescriptor editClientDescriptor) {
-        assert personToEdit != null;
+    private static Client createEditedClient(Client clientToEdit, EditClientDescriptor editClientDescriptor) {
+        assert clientToEdit != null;
 
-        Name updatedName = editClientDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editClientDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editClientDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editClientDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editClientDescriptor.getTags().orElse(personToEdit.getTags());
+        Name updatedName = editClientDescriptor.getName().orElse(clientToEdit.getName());
+        Phone updatedPhone = editClientDescriptor.getPhone().orElse(clientToEdit.getPhone());
+        Email updatedEmail = editClientDescriptor.getEmail().orElse(clientToEdit.getEmail());
+        Address updatedAddress = editClientDescriptor.getAddress().orElse(clientToEdit.getAddress());
+        Set<Tag> updatedTags = editClientDescriptor.getTags().orElse(clientToEdit.getTags());
 
         return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
@@ -121,8 +121,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the client with. Each non-empty field value will replace the
+     * corresponding field value of the client.
      */
     public static class EditClientDescriptor {
         private Name name;
