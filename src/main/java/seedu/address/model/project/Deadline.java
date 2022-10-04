@@ -28,8 +28,8 @@ public class Deadline {
      */
     public Deadline(String deadline) {
         requireNonNull(deadline);
-        checkArgument(isValidDeadline(deadline), VALIDATION_REGEX);
-        projectDeadline = LocalDate.parse(deadline);
+        checkArgument(isValidDeadline(deadline), MESSAGE_CONSTRAINTS);
+        this.projectDeadline = LocalDate.parse(deadline);
     }
 
     /**
