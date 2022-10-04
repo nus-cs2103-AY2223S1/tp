@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.ClientBook;
 import seedu.address.model.client.Client;
 
 /**
@@ -48,7 +48,7 @@ public class TypicalClients {
     public static final Client IDA = new ClientBuilder().withName("Ida Mueller").withPhone("8482131")
             .withEmail("hans@example.com").withAddress("chicago ave").build();
 
-    // Manually added - Person's details found in {@code CommandTestUtil}
+    // Manually added - Client's details found in {@code CommandTestUtil}
     public static final Client AMY = new ClientBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
     public static final Client BOB = new ClientBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
@@ -60,12 +60,12 @@ public class TypicalClients {
     private TypicalClients() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code ClientBook} with all the typical clients.
      */
-    public static AddressBook getTypicalClientBook() {
+    public static ClientBook getTypicalClientBook() {
         ClientBook cb = new ClientBook();
-        for (Client person : getTypicalClients()) {
-            cb.addPerson(person);
+        for (Client client : getTypicalClients()) {
+            cb.addClient(client);
         }
         return cb;
     }
