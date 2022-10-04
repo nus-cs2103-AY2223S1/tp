@@ -91,13 +91,13 @@ interactions recorded faster and simpler than traditional GUI applications.
 
 Adds an empty company to the list without any POC (Point-Of-Contact) and transactions.
 
-Format: `add n/NAME loc/ADDRESS`
+Format: `add n/NAME a/ADDRESS`
 
 * Use `create` command to add POC to the company.
 
 Examples:
-* `add n/MacDonalds loc/West Coast Park`
-* `add n/KFC loc/Yishun Street 81`
+* `add n/MacDonalds a/West Coast Park`
+* `add n/KFC a/Yishun Street 81`
 
 ### Clearing all entries : `clear`
 
