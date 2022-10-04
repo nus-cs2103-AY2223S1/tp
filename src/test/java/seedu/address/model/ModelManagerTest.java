@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.client.NameContainsKeywordsPredicate;
-import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.ClientBookBuilder;
 
 public class ModelManagerTest {
 
@@ -66,24 +66,24 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setClientBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setClientBookFilePath_validPath_setsClientBookFilePath() {
         Path path = Paths.get("address/book/file/path");
         modelManager.setClientBookFilePath(path);
         assertEquals(path, modelManager.getClientBookFilePath());
     }
 
     @Test
-    public void hasClient_nullPerson_throwsNullPointerException() {
+    public void hasClient_nullClient_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasClient(null));
     }
 
     @Test
-    public void hasClient_personNotInAddressBook_returnsFalse() {
+    public void hasClient_clientNotInClientBook_returnsFalse() {
         assertFalse(modelManager.hasClient(ALICE));
     }
 
     @Test
-    public void hasClient_personInAddressBook_returnsTrue() {
+    public void hasClient_clientInClientBook_returnsTrue() {
         modelManager.addClient(ALICE);
         assertTrue(modelManager.hasClient(ALICE));
     }
@@ -95,13 +95,13 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        ClientBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
-        ClientBook differentAddressBook = new ClientBook();
+        ClientBook clientBook = new ClientBookBuilder().withClient(ALICE).withClient(BENSON).build();
+        ClientBook differentClientBook = new ClientBook();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
+        modelManager = new ModelManager(clientBook, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(clientBook, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -113,13 +113,13 @@ public class ModelManagerTest {
         // different types -> returns false
         assertFalse(modelManager.equals(5));
 
-        // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
+        // different clientBook -> returns false
+        assertFalse(modelManager.equals(new ModelManager(differentClientBook, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredClientList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(clientBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
@@ -127,6 +127,6 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setClientBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(clientBook, differentUserPrefs)));
     }
 }
