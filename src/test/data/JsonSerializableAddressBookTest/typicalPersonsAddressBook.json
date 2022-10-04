@@ -5,7 +5,7 @@
       "name": "Alice Pauline",
       "phone": "94351253",
       "email": "alice@example.com",
-      "position": "Chief of Staff",
+      "position": "Software Engineer",
       "address": "123, Jurong West Ave 6, #08-111",
       "tagged": ["friends"]
     },
@@ -13,7 +13,7 @@
       "name": "Benson Meier",
       "phone": "98765432",
       "email": "johnd@example.com",
-      "position": "Intern",
+      "position": "Product Manager",
       "address": "311, Clementi Ave 2, #02-25",
       "tagged": ["owesMoney", "friends"]
     },
@@ -29,7 +29,7 @@
       "name": "Daniel Meier",
       "phone": "87652533",
       "email": "cornelia@example.com",
-      "position": "Secretary",
+      "position": "Junior Research Analyst",
       "address": "10th street",
       "tagged": ["friends"]
     },
@@ -45,7 +45,7 @@
       "name": "Fiona Kunz",
       "phone": "9482427",
       "email": "lydia@example.com",
-      "position": "Chief of Rice",
+      "position": "DevOps Lead",
       "address": "little tokyo",
       "tagged": []
     },

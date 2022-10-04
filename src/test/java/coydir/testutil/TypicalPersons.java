@@ -35,19 +35,19 @@ public class TypicalPersons {
             .withEmail("johnd@example.com").withPosition("Product Manager").withPhone("98765432")
             .withTags("owesMoney", "friends").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withPosition("Smart Contract Developer")
+            .withEmail("heinz@example.com").withPosition("Fire Support Officer")
             .withAddress("wall street").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withPosition("Junior Research Analyst")
             .withAddress("10th street").withTags("friends").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withPosition("Product Team Lead")
+            .withEmail("werner@example.com").withPosition("Coffee Maker")
             .withAddress("michegan ave").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withPosition("DevOps Lead")
             .withAddress("little tokyo").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withPosition("Quality Assurance Tester")
+            .withEmail("anna@example.com").withPosition("Senior Consultant Specialist")
             .withAddress("4th street").build();
 
     // Manually added
@@ -60,10 +60,10 @@ public class TypicalPersons {
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withPosition("Software Engineer")
+            .withEmail(VALID_EMAIL_AMY).withPosition(VALID_POSITION_AMY)
             .withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withPosition("Product Manager")
+            .withEmail(VALID_EMAIL_BOB).withPosition(VALID_POSITION_BOB)
             .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
