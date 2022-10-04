@@ -46,19 +46,19 @@ public class Team {
         return teamMembers.asUnmodifiableObservableList();
     }
 
-    public void addPerson(Person person) {
+    public void addMember(Person person) {
         teamMembers.add(person);
     }
 
-    public boolean hasPerson(Person person) {
+    public boolean hasMember(Person person) {
         return teamMembers.contains(person);
     }
 
-    public void setPerson(Person target, Person editedPerson) {
+    public void setMember(Person target, Person editedPerson) {
         teamMembers.setPerson(target, editedPerson);
     }
 
-    public void removePerson(Person person) {
+    public void removeMember(Person person) {
         teamMembers.remove(person);
     }
 

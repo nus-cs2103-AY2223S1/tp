@@ -46,16 +46,15 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 [Coming Soon]
 
 
-### Adding a new member to the team `add member`
+### Adding a new member to the team `add_member`
 
 Add a new team member to the user’s team. Will throw an error if the member already exists in the team.
 
 Format: 
-* `add member “MEMBER_NAME”`
+* `add_member “INDEX”`
 
 Examples:
-* `add member egg`
-* `add member “potato egg”`
+* `add_member 1`
 
 ### Delete a member from team `delete member`
 

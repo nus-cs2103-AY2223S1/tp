@@ -97,45 +97,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
-    //// team-level operations
-
     public Team getTeam() {
         return team;
-    }
-
-    /**
-     * Returns true if a person with the same identity as {@code person} exists in the team.
-     */
-    public boolean hasPersonInTeam(Person person) {
-        requireNonNull(person);
-        return team.getTeamMembers().contains(person);
-    }
-
-    /**
-     * Adds a person to the team.
-     * The person must not already exist in the team.
-     */
-    public void addPersonToTeam(Person p) {
-        team.addPerson(p);
-    }
-
-    /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the team.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the team.
-     */
-    public void setPersonInTeam(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
-
-        team.setPerson(target, editedPerson);
-    }
-
-    /**
-     * Removes {@code key} from this {@code Team}.
-     * {@code key} must exist in the address book.
-     */
-    public void removePersonInTeam(Person key) {
-        team.removePerson(key);
     }
 
     //// util methods

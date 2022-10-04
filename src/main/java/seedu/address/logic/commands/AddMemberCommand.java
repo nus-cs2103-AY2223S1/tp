@@ -42,11 +42,11 @@ public class AddMemberCommand extends Command {
         Person toAdd = lastShownList.get(targetIndex.getZeroBased());
 
         Team team = model.getAddressBook().getTeam();
-        if (team.hasPerson(toAdd)) {
+        if (team.hasMember(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        team.addPerson(toAdd);
+        team.addMember(toAdd);
         return new CommandResult(String.format(MESSAGE_ADD_MEMBER_SUCCESS, toAdd));
     }
 
