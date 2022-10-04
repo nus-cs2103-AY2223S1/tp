@@ -79,7 +79,7 @@ Adds a person to the address book.
 Format: `add n/NAME p/PHONE_NUMBER [h/HOMEWORK a/ATTENDANCE g/GRADE_PROGRESS lp/LESSON_PLAN]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person must minimally have 2 tags, with one being NAME and/or PHONE_NUMBER
+A person must minimally have 2 tags, NAME and PHONE_NUMBER.
 </div>
 
 Examples:
@@ -93,19 +93,21 @@ Format: `list`
 
 ### Editing a person : `edit`
 
-Edits an existing person in the address book.
+Edits an existing person in the address book, accessed by View method.<br>
+It requires one field:
+- n/: To be followed by updated name of student
+- p/: To be followed by updated phone number of student
+- h/: To be followed by INDEX of homework to be updated, then updated homework
+- a/: To be followed by INDEX of attendance to be updated, then updated attendance
+- g/: To be followed by INDEX of grade book to be updated, then updated grade book
+- lp/: To be followed by updated lesson plan of student
 
-Format: `edit INDEX [n/NAME p/PHONE h/HOMEWORK a/ATTENDANCE g/GRADE_PROGRESS lp/LESSON_PLAN]`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+Format: `edit [n/ p/ lp/]NEW_FIELD`<br>
+`edit [h/ a/ g/]INDEX NEW_FIELD`
 
 Examples:
-*  `edit 1 p/91234567 h/math not done` Edits the phone number and email address of the 1st person to be `91234567` and `math not done` respectively.
+* `view 1` returns person in first index <br>
+  `edit h/2 math not done` updates 2nd field of *person at first index's* HOMEWORK to `math not done`
 
 ### Locating persons by name: `find`
 
@@ -131,22 +133,21 @@ Examples:
 
 View details of a person.
 
-Format: `view n/NAME` `view p/PHONE_NUMBER`
+Format: `view INDEX` 
 
-* The command requires either the `NAME` **or** `PHONE_NUMBER` of the person to be viewed
+* The command requires the `INDEX` of a person.
 
 
 ### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
 
-Format: `delete n/NAME` `delete p/PHONE_NUMBER`
+Format: `delete INDEX` 
 
-* Deletes the person with the specified `NAME` or `PHONE_NUMBER`
+* Deletes the person with the specified `INDEX`.
 
 Examples:
-* `delete Betsy` removes Betsy from the address book.
-* `delete 82378904` removes person with number 82378904 from address book.
+* `delete 1` removes the first person in the address book.
 
 ### Clearing all entries : `clear`
 
