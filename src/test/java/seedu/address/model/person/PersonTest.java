@@ -11,6 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.ALILI;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
@@ -62,10 +63,14 @@ public class PersonTest {
 
     @Test
     public void testToString() {
-        Person aliceCopy = new PersonBuilder(ALICE).build();
-        Person aliceCopy2 = new PersonBuilder(ALICE).build();
-
-        assertTrue(aliceCopy.toString().equals(aliceCopy2.toString()));
+        Person aliliCopy = new PersonBuilder(ALILI).build();
+        String str = "Alili Pauline; "
+                + "Phone: 94351253; "
+                + "Email: alice@example.com; "
+                + "Address: 123, Jurong West Ave 6, #08-111; "
+                + "Tags: [friends]; "
+                + "Assignment: Group 1 [Midterms]";
+        assertTrue(aliliCopy.toString().equals(str));
     }
 
     @Test
