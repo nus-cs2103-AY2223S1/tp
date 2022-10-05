@@ -129,4 +129,12 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return persons.hashCode();
     }
+
+    public int findNum(Phone phone) {
+        return persons.findNum(phone);
+    }
+
+    public int findEmail(Email email) {
+        return persons.findEmail(email);
+    }
 }

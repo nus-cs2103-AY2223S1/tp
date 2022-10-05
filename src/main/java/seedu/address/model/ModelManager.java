@@ -125,6 +125,16 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public int findNum(Phone phone) {
+        return addressBook.findNum(phone);
+    }
+
+    @Override
+    public int findEmail(Email email) {
+        return addressBook.findEmail(email);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -160,5 +170,4 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }
-
 }

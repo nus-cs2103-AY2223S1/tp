@@ -90,4 +90,20 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Returns the index of the person with the same phone number.
+     *
+     * @param phone Phone number to search
+     * @return index of the person with the same phone number
+     */
+    int findNum(Phone phone);
+
+    /**
+     * Returns the index of the person with the same email.
+     *
+     * @param email Email to search
+     * @return index of the person with the same email
+     */
+    int findEmail(Email email);
 }
