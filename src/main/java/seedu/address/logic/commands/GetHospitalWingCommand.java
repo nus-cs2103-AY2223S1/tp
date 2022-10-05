@@ -12,7 +12,7 @@ import seedu.address.model.person.HospitalWingContainsKeywordsPredicate;
  */
 public class GetHospitalWingCommand extends Command {
 
-    public static final String COMMAND_WORD = "get/hw";
+    public static final String COMMAND_WORD = "get";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all patients within the same hospital wing "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
@@ -40,4 +40,3 @@ public class GetHospitalWingCommand extends Command {
                 && predicate.equals(((GetHospitalWingCommand) other).predicate)); // state check
     }
 }
-
