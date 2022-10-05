@@ -7,6 +7,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import seedu.address.logic.commands.profile.AddProfileCommand;
 import seedu.address.logic.commands.profile.EditProfileCommand;
 import seedu.address.logic.commands.profile.ProfileCommand;
@@ -19,6 +22,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Parses input arguments and creates a new ProfileCommand object
  */
 public class ProfileCommandParser implements Parser<ProfileCommand> {
+    private static final Pattern PROFILE_COMMAND_FORMAT = Pattern.compile(
+            "(?<profileOption>\\S+)(\\s\\S*)?"
+    );
 
     /**
      * Parses the given {@code String} of arguments in the context of the ProfileCommand
@@ -30,10 +36,17 @@ public class ProfileCommandParser implements Parser<ProfileCommand> {
                 ArgumentTokenizer.tokenize(args,
                         PREFIX_OPTION, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG);
 
-        String option = argMultimap.getValue(PREFIX_OPTION)
+        String options = argMultimap.getValue(PREFIX_OPTION)
                 .orElseThrow(() -> new ParseException(MESSAGE_FLAG_NOT_SPECIFIED));
 
-        switch (option) {
+        final Matcher profileCommandMatcher = PROFILE_COMMAND_FORMAT.matcher(options);
+
+        String profileOption = "";
+        if (profileCommandMatcher.matches()) {
+            profileOption = profileCommandMatcher.group("profileOption");
+        }
+
+        switch (profileOption) {
         case AddProfileCommand.COMMAND_OPTION:
             return new AddProfileCommandParser().parse(args);
         case EditProfileCommand.COMMAND_OPTION:

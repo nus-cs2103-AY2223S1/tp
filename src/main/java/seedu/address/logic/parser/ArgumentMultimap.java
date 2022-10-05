@@ -57,4 +57,13 @@ public class ArgumentMultimap {
     public String getPreamble() {
         return getValue(new Prefix("")).orElse("");
     }
+    /**
+     * Returns the arguments after the option prefix.
+     */
+    public String getOptionArgs() {
+        return getValue(new Prefix("-"))
+                .map(x -> x.substring(1))
+                .orElse("")
+                .trim();
+    }
 }

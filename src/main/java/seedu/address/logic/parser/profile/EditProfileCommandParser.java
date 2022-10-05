@@ -41,7 +41,7 @@ public class EditProfileCommandParser implements Parser<EditProfileCommand> {
         Index index;
 
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            index = ParserUtil.parseIndex(argMultimap.getOptionArgs());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditProfileCommand.MESSAGE_USAGE), pe);
