@@ -3,8 +3,7 @@ package coydir.logic.parser;
 import static coydir.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static coydir.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static coydir.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static coydir.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-
+import static coydir.testutil.TypicalIndexes.ID_FIRST_EMPLOYEE;
 import org.junit.jupiter.api.Test;
 
 import coydir.logic.commands.DeleteCommand;
@@ -22,7 +21,7 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new DeleteCommand(INDEX_FIRST_PERSON));
+        assertParseSuccess(parser, "1", new DeleteCommand(ID_FIRST_EMPLOYEE));
     }
 
     @Test

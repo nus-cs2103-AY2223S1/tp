@@ -3,6 +3,7 @@ package coydir.logic.parser;
 import static coydir.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static coydir.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static coydir.testutil.Assert.assertThrows;
+import static coydir.testutil.TypicalIndexes.ID_FIRST_EMPLOYEE;
 import static coydir.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -51,7 +52,7 @@ public class AddressBookParserTest {
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
                 DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+        assertEquals(new DeleteCommand(ID_FIRST_EMPLOYEE), command);
     }
 
     @Test
