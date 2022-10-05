@@ -17,7 +17,7 @@ public class FilterCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters all contacts whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: " + PREFIX_NAME + "NAME ...\n" + "Example: " + COMMAND_WORD + PREFIX_NAME + "alice";
+            + "Parameters: " + PREFIX_NAME + "NAME ...\n" + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "alice";
 
     protected final FilterCommandPredicate predicate;
 

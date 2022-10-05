@@ -14,9 +14,11 @@ public class FilterClearCommand extends FilterCommand {
 
     public static final String COMMAND_SPECIFIER = "clear";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Removes filter of the specified name"
-            + "the specified keywords (case-insensitive) and displays the contacts without the filter applied \n"
-            + "Parameters: " + PREFIX_NAME + "NAME ...\n" + "Example: " + COMMAND_WORD + COMMAND_SPECIFIER + PREFIX_NAME
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + COMMAND_SPECIFIER
+            + ": Removes filter of the specified name"
+            + " and tags (case-insensitive) and displays the contacts without the filter applied \n"
+            + "Parameters: " + PREFIX_NAME + "NAME ...\n" + "Example: " + COMMAND_WORD + " " + COMMAND_SPECIFIER
+            + PREFIX_NAME
             + "alice";
 
     public FilterClearCommand(FilterCommandPredicate predicate) {
