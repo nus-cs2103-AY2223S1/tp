@@ -14,7 +14,7 @@ import foodwhere.commons.core.Messages;
 import foodwhere.model.Model;
 import foodwhere.model.ModelManager;
 import foodwhere.model.UserPrefs;
-import foodwhere.model.person.NameContainsKeywordsPredicate;
+import foodwhere.model.stall.NameContainsKeywordsPredicate;
 import foodwhere.testutil.TypicalPersons;
 
 /**
@@ -47,7 +47,7 @@ public class FindCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different stall -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 

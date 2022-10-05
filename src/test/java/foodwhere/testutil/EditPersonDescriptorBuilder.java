@@ -6,10 +6,10 @@ import java.util.stream.Stream;
 
 import foodwhere.logic.commands.EditCommand;
 import foodwhere.model.detail.Detail;
-import foodwhere.model.person.Address;
-import foodwhere.model.person.Name;
-import foodwhere.model.person.Person;
-import foodwhere.model.person.Phone;
+import foodwhere.model.stall.Address;
+import foodwhere.model.stall.Name;
+import foodwhere.model.stall.Stall;
+import foodwhere.model.stall.Phone;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -27,14 +27,14 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
+     * Returns an {@code EditPersonDescriptor} with fields containing {@code stall}'s details
      */
-    public EditPersonDescriptorBuilder(Person person) {
+    public EditPersonDescriptorBuilder(Stall stall) {
         descriptor = new EditCommand.EditPersonDescriptor();
-        descriptor.setName(person.getName());
-        descriptor.setPhone(person.getPhone());
-        descriptor.setAddress(person.getAddress());
-        descriptor.setDetails(person.getDetails());
+        descriptor.setName(stall.getName());
+        descriptor.setPhone(stall.getPhone());
+        descriptor.setAddress(stall.getAddress());
+        descriptor.setDetails(stall.getDetails());
     }
 
     /**

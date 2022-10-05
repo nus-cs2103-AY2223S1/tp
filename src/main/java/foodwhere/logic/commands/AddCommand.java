@@ -5,16 +5,16 @@ import static java.util.Objects.requireNonNull;
 import foodwhere.logic.commands.exceptions.CommandException;
 import foodwhere.logic.parser.CliSyntax;
 import foodwhere.model.Model;
-import foodwhere.model.person.Person;
+import foodwhere.model.stall.Stall;
 
 /**
- * Adds a person to the address book.
+ * Adds a stall to the address book.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a stall to the address book. "
             + "Parameters: "
             + CliSyntax.PREFIX_NAME + "NAME "
             + CliSyntax.PREFIX_PHONE + "PHONE "
@@ -27,17 +27,17 @@ public class AddCommand extends Command {
             + CliSyntax.PREFIX_DETAIL + "friends "
             + CliSyntax.PREFIX_DETAIL + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New stall added: %1$s";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This stall already exists in the address book";
 
-    private final Person toAdd;
+    private final Stall toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Stall}
      */
-    public AddCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddCommand(Stall stall) {
+        requireNonNull(stall);
+        toAdd = stall;
     }
 
     @Override

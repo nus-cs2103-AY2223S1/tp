@@ -4,14 +4,14 @@ import java.util.HashSet;
 import java.util.Set;
 
 import foodwhere.model.detail.Detail;
-import foodwhere.model.person.Address;
-import foodwhere.model.person.Name;
-import foodwhere.model.person.Person;
-import foodwhere.model.person.Phone;
+import foodwhere.model.stall.Address;
+import foodwhere.model.stall.Name;
+import foodwhere.model.stall.Stall;
+import foodwhere.model.stall.Phone;
 import foodwhere.model.util.SampleDataUtil;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Stall objects.
  */
 public class PersonBuilder {
 
@@ -35,17 +35,17 @@ public class PersonBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
+     * Initializes the PersonBuilder with the data of {@code stallToCopy}.
      */
-    public PersonBuilder(Person personToCopy) {
-        name = personToCopy.getName();
-        phone = personToCopy.getPhone();
-        address = personToCopy.getAddress();
-        details = new HashSet<>(personToCopy.getDetails());
+    public PersonBuilder(Stall stallToCopy) {
+        name = stallToCopy.getName();
+        phone = stallToCopy.getPhone();
+        address = stallToCopy.getAddress();
+        details = new HashSet<>(stallToCopy.getDetails());
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code Name} of the {@code Stall} that we are building.
      */
     public PersonBuilder withName(String name) {
         this.name = new Name(name);
@@ -53,7 +53,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code details} into a {@code Set<Detail>} and set it to the {@code Person} that we are building.
+     * Parses the {@code details} into a {@code Set<Detail>} and set it to the {@code Stall} that we are building.
      */
     public PersonBuilder withDetails(String ... details) {
         this.details = SampleDataUtil.getDetailSet(details);
@@ -61,7 +61,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Sets the {@code Address} of the {@code Stall} that we are building.
      */
     public PersonBuilder withAddress(String address) {
         this.address = new Address(address);
@@ -69,15 +69,15 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
+     * Sets the {@code Phone} of the {@code Stall} that we are building.
      */
     public PersonBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
         return this;
     }
 
-    public Person build() {
-        return new Person(name, phone, address, details);
+    public Stall build() {
+        return new Stall(name, phone, address, details);
     }
 
 }

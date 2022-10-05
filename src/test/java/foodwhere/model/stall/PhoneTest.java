@@ -1,4 +1,4 @@
-package foodwhere.model.person;
+package foodwhere.model.stall;
 
 import static foodwhere.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertFalse;

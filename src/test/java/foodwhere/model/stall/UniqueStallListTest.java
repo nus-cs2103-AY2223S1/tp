@@ -1,4 +1,4 @@
-package foodwhere.model.person;
+package foodwhere.model.stall;
 
 import static foodwhere.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -12,12 +12,12 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import foodwhere.logic.commands.CommandTestUtil;
-import foodwhere.model.person.exceptions.DuplicatePersonException;
-import foodwhere.model.person.exceptions.PersonNotFoundException;
+import foodwhere.model.stall.exceptions.DuplicatePersonException;
+import foodwhere.model.stall.exceptions.PersonNotFoundException;
 import foodwhere.testutil.PersonBuilder;
 import foodwhere.testutil.TypicalPersons;
 
-public class UniquePersonListTest {
+public class UniqueStallListTest {
 
     private final UniquePersonList uniquePersonList = new UniquePersonList();
 
@@ -40,7 +40,7 @@ public class UniquePersonListTest {
     @Test
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniquePersonList.add(TypicalPersons.ALICE);
-        Person editedAlice =
+        Stall editedAlice =
                 new PersonBuilder(TypicalPersons.ALICE)
                         .withAddress(CommandTestUtil.VALID_ADDRESS_BOB)
                         .withDetails(CommandTestUtil.VALID_DETAIL_HUSBAND)
@@ -88,7 +88,7 @@ public class UniquePersonListTest {
     @Test
     public void setPerson_editedPersonHasSameIdentity_success() {
         uniquePersonList.add(TypicalPersons.ALICE);
-        Person editedAlice = new PersonBuilder(TypicalPersons.ALICE)
+        Stall editedAlice = new PersonBuilder(TypicalPersons.ALICE)
                 .withAddress(CommandTestUtil.VALID_ADDRESS_BOB)
                 .withDetails(CommandTestUtil.VALID_DETAIL_HUSBAND)
                 .build();
@@ -149,14 +149,14 @@ public class UniquePersonListTest {
 
     @Test
     public void setPersons_nullList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setPersons((List<Person>) null));
+        assertThrows(NullPointerException.class, () -> uniquePersonList.setPersons((List<Stall>) null));
     }
 
     @Test
     public void setPersons_list_replacesOwnListWithProvidedList() {
         uniquePersonList.add(TypicalPersons.ALICE);
-        List<Person> personList = Collections.singletonList(TypicalPersons.BOB);
-        uniquePersonList.setPersons(personList);
+        List<Stall> stallList = Collections.singletonList(TypicalPersons.BOB);
+        uniquePersonList.setPersons(stallList);
         UniquePersonList expectedUniquePersonList = new UniquePersonList();
         expectedUniquePersonList.add(TypicalPersons.BOB);
         assertEquals(expectedUniquePersonList, uniquePersonList);
@@ -164,8 +164,8 @@ public class UniquePersonListTest {
 
     @Test
     public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
-        List<Person> listWithDuplicatePersons = Arrays.asList(TypicalPersons.ALICE, TypicalPersons.ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPersons(listWithDuplicatePersons));
+        List<Stall> listWithDuplicateStalls = Arrays.asList(TypicalPersons.ALICE, TypicalPersons.ALICE);
+        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPersons(listWithDuplicateStalls));
     }
 
     @Test

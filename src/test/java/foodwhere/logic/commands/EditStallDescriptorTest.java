@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import foodwhere.testutil.EditPersonDescriptorBuilder;
 
-public class EditPersonDescriptorTest {
+public class EditStallDescriptorTest {
 
     @Test
     public void equals() {

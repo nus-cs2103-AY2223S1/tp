@@ -27,9 +27,9 @@ import foodwhere.commons.core.Messages;
 import foodwhere.commons.core.index.Index;
 import foodwhere.logic.commands.EditCommand;
 import foodwhere.model.detail.Detail;
-import foodwhere.model.person.Address;
-import foodwhere.model.person.Name;
-import foodwhere.model.person.Phone;
+import foodwhere.model.stall.Address;
+import foodwhere.model.stall.Name;
+import foodwhere.model.stall.Phone;
 import foodwhere.testutil.EditPersonDescriptorBuilder;
 import foodwhere.testutil.TypicalIndexes;
 
@@ -80,7 +80,7 @@ public class EditCommandParserTest {
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
         assertParseFailure(parser, "1" + PHONE_DESC_BOB + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS);
 
-        // while parsing {@code PREFIX_DETAIL} alone will reset the details of the {@code Person} being edited,
+        // while parsing {@code PREFIX_DETAIL} alone will reset the details of the {@code Stall} being edited,
         // parsing it together with a valid detail results in error
         assertParseFailure(parser, "1" + DETAIL_DESC_FRIEND + DETAIL_DESC_HUSBAND + DETAIL_EMPTY,
                 Detail.MESSAGE_CONSTRAINTS);

@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import foodwhere.commons.exceptions.IllegalValueException;
 import foodwhere.model.AddressBook;
 import foodwhere.model.ReadOnlyAddressBook;
-import foodwhere.model.person.Person;
+import foodwhere.model.stall.Stall;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -19,7 +19,7 @@ import foodwhere.model.person.Person;
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate stall(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
 
@@ -48,11 +48,11 @@ class JsonSerializableAddressBook {
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(person)) {
+            Stall stall = jsonAdaptedPerson.toModelType();
+            if (addressBook.hasPerson(stall)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            addressBook.addPerson(person);
+            addressBook.addPerson(stall);
         }
         return addressBook;
     }

@@ -3,7 +3,7 @@ package foodwhere.ui;
 import java.util.logging.Logger;
 
 import foodwhere.commons.core.LogsCenter;
-import foodwhere.model.person.Person;
+import foodwhere.model.stall.Stall;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -19,30 +19,30 @@ public class ReviewListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(ReviewListPanel.class);
 
     @FXML
-    private ListView<Person> reviewListView;
+    private ListView<Stall> reviewListView;
 
     /**
      * Creates a {@code ReviewListPanel} with the given {@code ObservableList}.
      */
-    public ReviewListPanel(ObservableList<Person> personList) {
+    public ReviewListPanel(ObservableList<Stall> stallList) {
         super(FXML);
-        reviewListView.setItems(personList);
+        reviewListView.setItems(stallList);
         reviewListView.setCellFactory(listView -> new ReviewListViewCell());
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Stall} using a {@code PersonCard}.
      */
-    class ReviewListViewCell extends ListCell<Person> {
+    class ReviewListViewCell extends ListCell<Stall> {
         @Override
-        protected void updateItem(Person person, boolean empty) {
-            super.updateItem(person, empty);
+        protected void updateItem(Stall stall, boolean empty) {
+            super.updateItem(stall, empty);
 
-            if (empty || person == null) {
+            if (empty || stall == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new ReviewCard(person, getIndex() + 1).getRoot());
+                setGraphic(new ReviewCard(stall, getIndex() + 1).getRoot());
             }
         }
     }

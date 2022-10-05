@@ -6,29 +6,29 @@ import foodwhere.logic.commands.AddCommand;
 import foodwhere.logic.commands.EditCommand;
 import foodwhere.logic.parser.CliSyntax;
 import foodwhere.model.detail.Detail;
-import foodwhere.model.person.Person;
+import foodwhere.model.stall.Stall;
 
 /**
- * A utility class for Person.
+ * A utility class for Stall.
  */
 public class PersonUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add command string for adding the {@code stall}.
      */
-    public static String getAddCommand(Person person) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(person);
+    public static String getAddCommand(Stall stall) {
+        return AddCommand.COMMAND_WORD + " " + getPersonDetails(stall);
     }
 
     /**
-     * Returns the part of command string for the given {@code person}'s details.
+     * Returns the part of command string for the given {@code stall}'s details.
      */
-    public static String getPersonDetails(Person person) {
+    public static String getPersonDetails(Stall stall) {
         StringBuilder sb = new StringBuilder();
-        sb.append(CliSyntax.PREFIX_NAME + person.getName().fullName + " ");
-        sb.append(CliSyntax.PREFIX_PHONE + person.getPhone().value + " ");
-        sb.append(CliSyntax.PREFIX_ADDRESS + person.getAddress().value + " ");
-        person.getDetails().stream().forEach(
+        sb.append(CliSyntax.PREFIX_NAME + stall.getName().fullName + " ");
+        sb.append(CliSyntax.PREFIX_PHONE + stall.getPhone().value + " ");
+        sb.append(CliSyntax.PREFIX_ADDRESS + stall.getAddress().value + " ");
+        stall.getDetails().stream().forEach(
             s -> sb.append(CliSyntax.PREFIX_DETAIL + s.detail + " ")
         );
         return sb.toString();

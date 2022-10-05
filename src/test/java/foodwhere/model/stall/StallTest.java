@@ -1,4 +1,4 @@
-package foodwhere.model.person;
+package foodwhere.model.stall;
 
 import static foodwhere.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -10,12 +10,12 @@ import foodwhere.logic.commands.CommandTestUtil;
 import foodwhere.testutil.PersonBuilder;
 import foodwhere.testutil.TypicalPersons;
 
-public class PersonTest {
+public class StallTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Person person = new PersonBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> person.getDetails().remove(0));
+        Stall stall = new PersonBuilder().build();
+        assertThrows(UnsupportedOperationException.class, () -> stall.getDetails().remove(0));
     }
 
     @Test
@@ -27,7 +27,7 @@ public class PersonTest {
         assertFalse(TypicalPersons.ALICE.isSamePerson(null));
 
         // same name, all other attributes different -> returns true
-        Person editedAlice =
+        Stall editedAlice =
                 new PersonBuilder(TypicalPersons.ALICE)
                         .withPhone(CommandTestUtil.VALID_PHONE_BOB)
                 .withAddress(CommandTestUtil.VALID_ADDRESS_BOB).withDetails(CommandTestUtil.VALID_DETAIL_HUSBAND)
@@ -39,7 +39,7 @@ public class PersonTest {
         assertFalse(TypicalPersons.ALICE.isSamePerson(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
-        Person editedBob = new PersonBuilder(TypicalPersons.BOB)
+        Stall editedBob = new PersonBuilder(TypicalPersons.BOB)
                 .withName(CommandTestUtil.VALID_NAME_BOB.toLowerCase()).build();
         assertFalse(TypicalPersons.BOB.isSamePerson(editedBob));
 
@@ -52,7 +52,7 @@ public class PersonTest {
     @Test
     public void equals() {
         // same values -> returns true
-        Person aliceCopy = new PersonBuilder(TypicalPersons.ALICE).build();
+        Stall aliceCopy = new PersonBuilder(TypicalPersons.ALICE).build();
         assertTrue(TypicalPersons.ALICE.equals(aliceCopy));
 
         // same object -> returns true
@@ -64,11 +64,11 @@ public class PersonTest {
         // different type -> returns false
         assertFalse(TypicalPersons.ALICE.equals(5));
 
-        // different person -> returns false
+        // different stall -> returns false
         assertFalse(TypicalPersons.ALICE.equals(TypicalPersons.BOB));
 
         // different name -> returns false
-        Person editedAlice = new PersonBuilder(TypicalPersons.ALICE).withName(CommandTestUtil.VALID_NAME_BOB).build();
+        Stall editedAlice = new PersonBuilder(TypicalPersons.ALICE).withName(CommandTestUtil.VALID_NAME_BOB).build();
         assertFalse(TypicalPersons.ALICE.equals(editedAlice));
 
         // different phone -> returns false

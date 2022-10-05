@@ -20,8 +20,8 @@ import foodwhere.logic.commands.FindCommand;
 import foodwhere.logic.commands.HelpCommand;
 import foodwhere.logic.commands.ListCommand;
 import foodwhere.logic.parser.exceptions.ParseException;
-import foodwhere.model.person.NameContainsKeywordsPredicate;
-import foodwhere.model.person.Person;
+import foodwhere.model.stall.NameContainsKeywordsPredicate;
+import foodwhere.model.stall.Stall;
 import foodwhere.testutil.EditPersonDescriptorBuilder;
 import foodwhere.testutil.PersonBuilder;
 import foodwhere.testutil.PersonUtil;
@@ -33,9 +33,9 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+        Stall stall = new PersonBuilder().build();
+        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(stall));
+        assertEquals(new AddCommand(stall), command);
     }
 
     @Test
@@ -53,8 +53,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Person person = new PersonBuilder().build();
-        EditCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
+        Stall stall = new PersonBuilder().build();
+        EditCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(stall).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + TypicalIndexes.INDEX_FIRST_PERSON.getOneBased() + " "
                 + PersonUtil.getEditPersonDescriptorDetails(descriptor));

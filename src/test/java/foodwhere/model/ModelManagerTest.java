@@ -15,7 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import foodwhere.commons.core.GuiSettings;
-import foodwhere.model.person.NameContainsKeywordsPredicate;
+import foodwhere.model.stall.NameContainsKeywordsPredicate;
 import foodwhere.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {

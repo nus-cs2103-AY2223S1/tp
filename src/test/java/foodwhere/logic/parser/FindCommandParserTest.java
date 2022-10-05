@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import foodwhere.commons.core.Messages;
 import foodwhere.logic.commands.FindCommand;
-import foodwhere.model.person.NameContainsKeywordsPredicate;
+import foodwhere.model.stall.NameContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
 

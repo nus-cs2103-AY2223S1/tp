@@ -4,7 +4,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import foodwhere.commons.core.GuiSettings;
-import foodwhere.model.person.Person;
+import foodwhere.model.stall.Stall;
 import javafx.collections.ObservableList;
 
 /**
@@ -12,7 +12,7 @@ import javafx.collections.ObservableList;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Stall> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -53,35 +53,35 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a stall with the same identity as {@code stall} exists in the address book.
      */
-    boolean hasPerson(Person person);
+    boolean hasPerson(Stall stall);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given stall.
+     * The stall must exist in the address book.
      */
-    void deletePerson(Person target);
+    void deletePerson(Stall target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given stall.
+     * {@code stall} must not already exist in the address book.
      */
-    void addPerson(Person person);
+    void addPerson(Stall stall);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given stall {@code target} with {@code editedStall}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The stall identity of {@code editedStall} must not be the same as another existing stall in the address book.
      */
-    void setPerson(Person target, Person editedPerson);
+    void setPerson(Stall target, Stall editedStall);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered stall list */
+    ObservableList<Stall> getFilteredPersonList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered stall list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredPersonList(Predicate<Stall> predicate);
 }

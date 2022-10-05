@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import foodwhere.logic.commands.FindCommand;
 import foodwhere.logic.parser.exceptions.ParseException;
-import foodwhere.model.person.NameContainsKeywordsPredicate;
+import foodwhere.model.stall.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object

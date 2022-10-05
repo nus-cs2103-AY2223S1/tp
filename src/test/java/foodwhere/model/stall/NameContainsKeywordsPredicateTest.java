@@ -1,4 +1,4 @@
-package foodwhere.model.person;
+package foodwhere.model.stall;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -34,7 +34,7 @@ public class NameContainsKeywordsPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different person -> returns false
+        // different stall -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 

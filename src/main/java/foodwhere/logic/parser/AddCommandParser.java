@@ -8,10 +8,10 @@ import java.util.stream.Stream;
 import foodwhere.logic.commands.AddCommand;
 import foodwhere.logic.parser.exceptions.ParseException;
 import foodwhere.model.detail.Detail;
-import foodwhere.model.person.Address;
-import foodwhere.model.person.Name;
-import foodwhere.model.person.Person;
-import foodwhere.model.person.Phone;
+import foodwhere.model.stall.Address;
+import foodwhere.model.stall.Name;
+import foodwhere.model.stall.Stall;
+import foodwhere.model.stall.Phone;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -44,9 +44,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(CliSyntax.PREFIX_ADDRESS).get());
         Set<Detail> detailList = ParserUtil.parseDetails(argMultimap.getAllValues(CliSyntax.PREFIX_DETAIL));
 
-        Person person = new Person(name, phone, address, detailList);
+        Stall stall = new Stall(name, phone, address, detailList);
 
-        return new AddCommand(person);
+        return new AddCommand(stall);
     }
 
     /**

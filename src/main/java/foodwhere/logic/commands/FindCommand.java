@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import foodwhere.commons.core.Messages;
 import foodwhere.model.Model;
-import foodwhere.model.person.NameContainsKeywordsPredicate;
+import foodwhere.model.stall.NameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
