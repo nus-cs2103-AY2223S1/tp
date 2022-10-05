@@ -1,13 +1,12 @@
 package seedu.address.model.team;
 
-import seedu.address.model.person.Person;
-import seedu.address.model.task.Task;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Objects;
+
+import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 
 
 /**
@@ -39,6 +38,10 @@ public class Team {
         members.add(p);
     }
 
+    /**
+     * Remove the person from the team if said person is in the team
+     * @param p person to be removed
+     */
     public void removeMember(Person p) {
         if (members.contains(p)) {
             members.remove(p);

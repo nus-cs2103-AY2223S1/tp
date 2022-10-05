@@ -21,29 +21,19 @@ public class JsonAddressBookStorage implements AddressBookStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
 
-    private Path personsFilePath;
-    private Path teamFilePath;
+    private Path filePath;
 
     public JsonAddressBookStorage(Path filePath) {
-        this.personsFilePath = filePath;
+        this.filePath = filePath;
     }
-
-//    public JsonAddressBookStorage(Path personsFilePath, Path teamFilePath) {
-//        this.personsFilePath = personsFilePath;
-//        this.teamFilePath = teamFilePath;
-//    }
 
     public Path getAddressBookFilePath() {
-        return personsFilePath;
-    }
-
-    public Path getTeamFilePath() {
-        return  teamFilePath;
+        return filePath;
     }
 
     @Override
     public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException {
-        return readAddressBook(personsFilePath);
+        return readAddressBook(filePath);
     }
 
     /**
@@ -71,7 +61,7 @@ public class JsonAddressBookStorage implements AddressBookStorage {
 
     @Override
     public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, personsFilePath);
+        saveAddressBook(addressBook, filePath);
     }
 
     /**
@@ -87,13 +77,5 @@ public class JsonAddressBookStorage implements AddressBookStorage {
         JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
     }
 
-//    @Override
-//    public void saveTeamList(ReadOnlyAddressBook addressBook, Path teamFilePath) throws IOException {
-//        requireNonNull(addressBook);
-//        requireNonNull(teamFilePath);
-//
-//        FileUtil.createIfMissing(teamFilePath);
-//        JsonUtil.saveJsonFile(new JsonSerializableTeamList(addressBook), teamFilePath);
-//    }
 
 }

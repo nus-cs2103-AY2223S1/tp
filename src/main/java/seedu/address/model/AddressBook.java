@@ -103,15 +103,26 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     //// team-level operations
 
+    /**
+     * Returns true if a team with the same name as {@code team} exists in the address book.
+     */
     public boolean hasTeam(Team team) {
         requireNonNull(team);
         return teams.contains(team);
     }
 
-    public void addTeam(Team t){
+    /**
+     * Adds a team to the address book.
+     * The team must not already exist in the address book.
+     */
+    public void addTeam(Team t) {
         teams.add(t);
     }
 
+    /**
+     * Removes {@code t} from this {@code AddressBook}.
+     * {@code t} must exist in the address book.
+     */
     public void removeTeam(Team t) {
         teams.remove(t);
     }

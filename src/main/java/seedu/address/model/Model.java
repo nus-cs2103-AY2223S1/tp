@@ -8,8 +8,6 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
 import seedu.address.model.team.Team;
 
-import static java.util.Objects.requireNonNull;
-
 /**
  * The API of the Model component.
  */

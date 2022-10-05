@@ -8,12 +8,20 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
-import seedu.address.model.team.Team;
 
 
+/**
+ * A list of teams that enforces uniqueness between its elements and does not allow nulls.
+ * A team is considered unique by comparing using {@code team#isSameTeam(Team)}. As such, adding and updating of
+ * teams uses Team#isSameTeam(Tea,) for equality so as to ensure that the team being added or updated is
+ * unique in terms of identity in the UniqueTea,List. However, the removal of a tea,
+ *
+ * Supports a minimal set of list operations.
+ *
+ * @see Team#isSameTeam(Team)
+ */
 public class UniqueTeamList implements Iterable<Team> {
 
     private final ObservableList<Team> internalList = FXCollections.observableArrayList();

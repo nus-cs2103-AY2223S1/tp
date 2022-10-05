@@ -54,11 +54,6 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Path getTeamFilePath() {
-        return addressBookStorage.getTeamFilePath();
-    }
-
-    @Override
     public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
         return readAddressBook(addressBookStorage.getAddressBookFilePath());
     }
@@ -79,11 +74,5 @@ public class StorageManager implements Storage {
         logger.fine("Attempting to write to data file: " + filePath);
         addressBookStorage.saveAddressBook(addressBook, filePath);
     }
-
-//    public void saveTeamList(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
-//        logger.fine("Attempting to write to data file: " + filePath);
-//        System.out.println("saved teamList");
-//        addressBookStorage.saveTeamList(addressBook, filePath);
-//    }
 
 }

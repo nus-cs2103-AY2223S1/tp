@@ -140,12 +140,32 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasTeam(Team team) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteTeam(Team team) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addTeam(Team team) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredTeamList(Predicate<Team> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
