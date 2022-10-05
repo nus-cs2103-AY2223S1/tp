@@ -11,28 +11,36 @@ import tracko.model.tag.Tag;
 import static tracko.logic.parser.CliSyntax.*;
 
 /**
- * A utility class for Person.
+ * A utility class for Order.
  */
 public class OrderUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add command string for adding the {@code order}.
      */
-    public static String getAddOrderCommand(Order order) {
-        return AddOrderCommand.COMMAND_WORD + " " + getOrderDetails(order);
+    public static String getBaseAddOrderCommand(Order order) {
+        return AddOrderCommand.COMMAND_WORD + " " + getBaseOrderDetails(order);
     }
 
     /**
-     * Returns the part of command string for the given {@code person}'s details.
+     * Returns the part of command string for initiating the given {@code order}'s details.
      */
-    public static String getOrderDetails(Order order) {
+    public static String getBaseOrderDetails(Order order) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + order.getName().fullName + " ");
         sb.append(PREFIX_PHONE + order.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + order.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + order.getAddress().value + " ");
+        return sb.toString();
+    }
+
+    /**
+     * Returns the part of the command string that adds items to the {@code order}'s details.
+     */
+    public static String getItemQuantityPairDetails(Order order) {
+        StringBuilder sb = new StringBuilder();
         for (ItemQuantityPair itemQuantityPair: order.getItemList()) {
-            sb.append(PREFIX_ITEM + itemQuantityPair.getItem());
+            sb.append(PREFIX_ITEM + itemQuantityPair.getItem() + " ");
             sb.append(PREFIX_QUANTITY + itemQuantityPair.getQuantity().toString());
         }
         return sb.toString();

@@ -82,14 +82,18 @@ public class OrderBuilder {
     /**
      * Adds an item and associated quantity to the list of items ordered
      */
-    public OrderBuilder withItemAndQuantity(String item, Integer quantity) {
-        itemList.add(new ItemQuantityPair(item, quantity));
+    public OrderBuilder withItemQuantityPair(ItemQuantityPair itemQuantityPair) {
+        itemList.add(itemQuantityPair);
         return this;
     }
 
     /**
-     * Sets the {@code Quantity} of the {@code Order} that we are building.
+     * Clears the item list.
      */
+    public OrderBuilder withEmptyItemList() {
+        itemList = new ArrayList<>();
+        return this;
+    }
 
     public Order build() {
         return new Order(name, phone, email, address, itemList);

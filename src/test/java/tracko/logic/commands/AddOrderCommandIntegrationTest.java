@@ -34,7 +34,9 @@ public class AddOrderCommandIntegrationTest {
         Model expectedModel = new ModelManager(model.getTrackO(), new UserPrefs());
         expectedModel.addOrder(validOrder);
 
-        assertCommandSuccess(new AddOrderCommand(validOrder), model,
+        AddOrderCommand command = new AddOrderCommand(validOrder);
+        command.setAwaitingInput(false);
+        assertCommandSuccess(command, model,
                 String.format(AddOrderCommand.MESSAGE_SUCCESS, validOrder), expectedModel);
     }
 

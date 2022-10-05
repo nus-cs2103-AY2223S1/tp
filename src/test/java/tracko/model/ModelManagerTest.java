@@ -95,13 +95,13 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        TrackO addressBook = new TrackOBuilder().withOrder(ORDER_1).withOrder(ORDER_2).build();
-        TrackO differentAddressBook = new TrackO();
+        TrackO trackO = new TrackOBuilder().withOrder(ORDER_1).withOrder(ORDER_2).build();
+        TrackO differentTrackO = new TrackO();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
+        modelManager = new ModelManager(trackO, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(trackO, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -113,20 +113,20 @@ public class ModelManagerTest {
         // different types -> returns false
         assertFalse(modelManager.equals(5));
 
-        // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
+        // different trackO -> returns false
+        assertFalse(modelManager.equals(new ModelManager(differentTrackO, userPrefs)));
 
-//        // different filteredList -> returns false
-//        String[] keywords = ORDER_1.getName().fullName.split("\\s+");
-//        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-//        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
-//
-//        // resets modelManager to initial state for upcoming tests
-//        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        // // different filteredList -> returns false
+        // String[] keywords = ORDER_1.getName().fullName.split("\\s+");
+        // modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        // assertFalse(modelManager.equals(new ModelManager(trackO, userPrefs)));
+        //
+        // // resets modelManager to initial state for upcoming tests
+        // modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(trackO, differentUserPrefs)));
     }
 }

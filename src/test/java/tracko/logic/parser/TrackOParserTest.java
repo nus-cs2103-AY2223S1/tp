@@ -5,28 +5,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static tracko.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static tracko.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static tracko.testutil.Assert.assertThrows;
-import static tracko.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
 import tracko.logic.commands.order.AddOrderCommand;
-import tracko.logic.commands.ClearCommand;
-import tracko.logic.commands.order.DeleteOrderCommand;
-import tracko.logic.commands.order.EditOrderCommand;
-import tracko.logic.commands.order.EditOrderCommand.EditPersonDescriptor;
 import tracko.logic.commands.ExitCommand;
-import tracko.logic.commands.order.FindOrderCommand;
 import tracko.logic.commands.HelpCommand;
-import tracko.logic.commands.order.ListOrdersCommand;
 import tracko.logic.parser.exceptions.ParseException;
-import tracko.model.order.NameContainsKeywordsPredicate;
 import tracko.model.order.Order;
-import tracko.model.person.Person;
-import tracko.testutil.EditPersonDescriptorBuilder;
 import tracko.testutil.OrderBuilder;
 import tracko.testutil.OrderUtil;
 
@@ -37,9 +23,14 @@ public class TrackOParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Order order = new OrderBuilder().build();
-        AddOrderCommand command = (AddOrderCommand) parser.parseCommand(OrderUtil.getAddOrderCommand(order));
-        assertEquals(new AddOrderCommand(order), command);
+        Order baseOrder = new OrderBuilder().withEmptyItemList().build();
+        AddOrderCommand command = (AddOrderCommand) parser.parseCommand(OrderUtil.getBaseAddOrderCommand(baseOrder));
+        assertEquals(new AddOrderCommand(baseOrder), command);
+
+        Order orderWithItems = new OrderBuilder().build();
+        AddOrderCommand commandWithUpdates =
+            (AddOrderCommand) parser.parseAndUpdateCommand(OrderUtil.getItemQuantityPairDetails(orderWithItems), command);
+        assertEquals(new AddOrderCommand(orderWithItems), commandWithUpdates);
     }
 
 //    @Test

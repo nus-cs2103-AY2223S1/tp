@@ -36,7 +36,10 @@ public class AddOrderCommandTest {
         ModelStubAcceptingOrderAdded modelStub = new ModelStubAcceptingOrderAdded();
         Order validOrder = new OrderBuilder().build();
 
-        CommandResult commandResult = new AddOrderCommand(validOrder).execute(modelStub);
+        AddOrderCommand command = new AddOrderCommand(validOrder);
+        command.setAwaitingInput(false);
+
+        CommandResult commandResult = command.execute(modelStub);
 
         assertEquals(String.format(AddOrderCommand.MESSAGE_SUCCESS, validOrder), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validOrder), modelStub.ordersAdded);
