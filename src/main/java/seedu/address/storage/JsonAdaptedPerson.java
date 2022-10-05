@@ -40,7 +40,7 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("address") String gender) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("gender") String gender) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -112,11 +112,11 @@ class JsonAdaptedPerson {
         Gender modelGender;
         if (gender == null) {
             modelGender = new Gender(NA);
-        }
-        if (!Gender.isValidGender(gender)) {
+        } else if (!Gender.isValidGender(gender)) {
             throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
+        } else {
+            modelGender = new Gender(gender);
         }
-        modelGender = new Gender(gender);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelGender);
