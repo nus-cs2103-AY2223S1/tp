@@ -3,7 +3,6 @@ package seedu.address.storage;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -21,31 +20,70 @@ import seedu.address.model.meeting.MeetingTime;
 @JsonIdentityInfo(generator = ObjectIdGenerators.UUIDGenerator.class, property = "@UUID")
 class JsonAdaptedMeeting {
 
-    private final Client client;
-    private final String description;
-    private final String meetingDate;
-    private final String meetingTime;
+    private JsonAdaptedClient client;
+    @JsonProperty
+    private String description;
+    private String meetingDate;
+    private String meetingTime;
 
     /**
      * Converts a given {@code Meeting} into this class for Jackson use.
      */
     JsonAdaptedMeeting(Meeting meeting) {
-        client = meeting.getClient();
+        client = new JsonAdaptedClient(meeting.getClient(), this);
         description = meeting.getDescription().toString();
         meetingDate = meeting.getMeetingDate().toString();
         meetingTime = meeting.getMeetingTime().toString();
     }
 
     /**
-     * Constructs a {@code JsonAdaptedMeeting} with the given meeting details.
+     * Converts a given {@code Meeting} and {@code JsonAdaptedClient} into this class for Jackson use.
+     * @param meeting
+     * @param adaptedClient
      */
-    @JsonCreator
-    public JsonAdaptedMeeting(@JsonProperty("client") Client client, @JsonProperty("phone") String description,
-                             @JsonProperty("email") String meetingDate, @JsonProperty("address") String meetingTime) {
+    JsonAdaptedMeeting(Meeting meeting, JsonAdaptedClient adaptedClient) {
+        client = adaptedClient;
+        description = meeting.getDescription().toString();
+        meetingDate = meeting.getMeetingDate().toString();
+        meetingTime = meeting.getMeetingTime().toString();
+    }
+
+    /**
+     * Default constructor for {@code JsonAdaptedMeeting}
+     */
+    public JsonAdaptedMeeting() {
+    }
+
+    public void setClient(JsonAdaptedClient client) {
         this.client = client;
+    }
+
+    public JsonAdaptedClient getClient() {
+        return client;
+    }
+
+    public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setMeetingDate(String meetingDate) {
         this.meetingDate = meetingDate;
+    }
+
+    public String getMeetingDate() {
+        return meetingDate;
+    }
+
+    public void setMeetingTime(String meetingTime) {
         this.meetingTime = meetingTime;
+    }
+
+    public String getMeetingTime() {
+        return meetingTime;
     }
 
     /**
@@ -53,7 +91,7 @@ class JsonAdaptedMeeting {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted meeting.
      */
-    public Meeting toModelType() throws IllegalValueException {
+    public Meeting toModelType(Client client) throws IllegalValueException {
         Description modelDescription = new Description(description);
         MeetingDate modelMeetingDate = new MeetingDate(LocalDate.of(2022, 10, 04));
         MeetingTime modelMeetingTime = new MeetingTime(LocalTime.of(10, 10));

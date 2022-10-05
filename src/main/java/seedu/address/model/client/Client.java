@@ -25,7 +25,6 @@ public class Client {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private Meeting meeting;
 
     /**
      * Every field must be present and not null.
@@ -49,14 +48,6 @@ public class Client {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        this.meeting = meeting;
-    }
-
-    public Meeting getMeeting() {
-        return meeting;
-    }
-
-    public void setMeeting(Meeting meeting) {
         this.meeting = meeting;
     }
 

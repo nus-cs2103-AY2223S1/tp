@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
@@ -25,7 +24,6 @@ import seedu.address.model.tag.Tag;
  * Jackson-friendly version of {@link Client}.
  */
 @JsonIdentityInfo(generator = ObjectIdGenerators.UUIDGenerator.class, property = "@UUID")
-@JsonInclude(JsonInclude.Include.NON_NULL)
 class JsonAdaptedClient {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Client's %s field is missing!";
@@ -62,8 +60,22 @@ class JsonAdaptedClient {
      */
     public JsonAdaptedClient(Client source) {
         if (source.getMeeting() != null) {
-            meetings.add(new JsonAdaptedMeeting(source.getMeeting()));
+            meetings.add(new JsonAdaptedMeeting(source.getMeeting(), this));
         }
+        name = source.getName().fullName;
+        phone = source.getPhone().value;
+        email = source.getEmail().value;
+        address = source.getAddress().value;
+        tagged.addAll(source.getTags().stream()
+                .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
+    }
+
+    /**
+     * Converts a given {@code Client} and {@Code JsonAdaptedMeeting} into this class for Jackson use.
+     */
+    public JsonAdaptedClient(Client source, JsonAdaptedMeeting adaptedMeeting) {
+        meetings.add(adaptedMeeting);
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
@@ -117,8 +129,10 @@ class JsonAdaptedClient {
         final Address modelAddress = new Address(address);
         final Set<Tag> modelTags = new HashSet<>(clientTags);
         if (!meetings.isEmpty()) {
-            final Meeting meeting = meetings.get(0).toModelType();
-            return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags, meeting);
+            Client client = new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+            final Meeting meeting = meetings.get(0).toModelType(client);
+            client.setMeeting(meeting);
+            return client;
         } else {
             return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags);
         }
