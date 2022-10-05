@@ -6,7 +6,7 @@ import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a Detail in the address book.
- * Guarantees: immutable; name is valid as declared in {@link #isValidDetailName(String)}
+ * Guarantees: immutable; name is valid as declared in {@link #isValidDetail(String)}
  */
 public class Detail {
 
