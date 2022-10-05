@@ -2,7 +2,6 @@ package seedu.address.model.tag;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
-import seedu.address.model.person.Name;
 
 /**
  * Represents a Tag in the address book.
@@ -23,6 +22,10 @@ public class Tag {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.tagName = new Name(tagName);
+    }
+
+    public String getName() {
+        return this.tagName.toString();
     }
 
     /**
