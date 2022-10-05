@@ -2,39 +2,51 @@ package seedu.address.model.person.position;
 
 /**
  * Represents a Person's position in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidPosition(int)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidPosition(String)}
  */
 public abstract class Position {
 
+    enum Positions {
+        STUDENT,
+        TA,
+        PROFESSOR
+    }
+
     public static final String MESSAGE_CONSTRAINTS =
-            "Positions should only contain integers from 0 to 2 inclusive";
+            "Positions can only be one of the following: Student, TA, Professor (non case-sensitive).";
 
-    public final int value;
+    public final String value;
 
-    public Position(int value) {
+    public Position(String value) {
         this.value = value;
     }
 
     /**
      * Returns true if a given string is a valid position.
      */
-    public static boolean isValidPosition(int test) {
-        return (test >= 0) && (test <= 2);
+    public static boolean isValidPosition(String test) {
+        for (Positions position : Positions.values()) {
+            if (position.name().equalsIgnoreCase(test)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
      * Class method that returns the type of position given by the value.
-     * @param position
+     * @param position A valid position.
      * @return The desired Position descendant
      */
-    public static Position buildPosition(Integer position) {
-        switch(position) {
-        case 0:
+    public static Position buildPosition(String position) {
+        if (Positions.STUDENT.name().equalsIgnoreCase(position)) {
             return new Student();
-        case 1:
+        } else if (Positions.TA.name().equalsIgnoreCase(position)) {
             return new TeachingAssistant();
-        default:
+        } else if (Positions.PROFESSOR.name().equalsIgnoreCase(position)) {
             return new Professor();
+        } else {
+            return null;
         }
     }
 

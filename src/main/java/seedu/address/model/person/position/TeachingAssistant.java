@@ -2,12 +2,12 @@ package seedu.address.model.person.position;
 
 /**
  * Represents the Teaching Assistant position in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidPosition(int)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidPosition(String)}
  */
 public class TeachingAssistant extends Position {
 
     public TeachingAssistant() {
-        super(1);
+        super("TA");
     }
 
     @Override
