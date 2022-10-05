@@ -5,8 +5,11 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.AdditionalNotes;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.MoneyOwed;
+import seedu.address.model.person.MoneyPaid;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 
@@ -88,6 +91,55 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String moneyOwed} into an {@code MoneyOwed}.
+     *
+     * @throws ParseException if the given {@code moneyOwed} is invalid.
+     */
+    public static MoneyOwed parseMoneyOwed(String moneyOwed) throws ParseException {
+        requireNonNull(moneyOwed);
+        Integer value;
+        try {
+            value = Integer.valueOf(moneyOwed);
+        } catch (NumberFormatException ex) {
+            throw new ParseException(MoneyOwed.MESSAGE_CONSTRAINTS);
+        }
+
+        if (!MoneyOwed.isValidMoneyOwed(value)) {
+            throw new ParseException(MoneyOwed.MESSAGE_CONSTRAINTS);
+        }
+        return new MoneyOwed(value);
+    }
+
+    /**
+     * Parses a {@code String moneyPaid} into an {@code MoneyPaid}.
+     *
+     * @throws ParseException if the given {@code moneyPaid} is invalid.
+     */
+    public static MoneyPaid parseMoneyPaid(String moneyPaid) throws ParseException {
+        requireNonNull(moneyPaid);
+        Integer value;
+        try {
+            value = Integer.valueOf(moneyPaid);
+        } catch (NumberFormatException ex) {
+            throw new ParseException(MoneyPaid.MESSAGE_CONSTRAINTS);
+        }
+
+        if (!MoneyPaid.isValidMoneyPaid(value)) {
+            throw new ParseException(MoneyPaid.MESSAGE_CONSTRAINTS);
+        }
+        return new MoneyPaid(value);
+    }
+
+    /**
+     * Parses an {@code String additionalNotes} into an {@code AdditionalNotes}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static AdditionalNotes parseAdditionalNotes(String additionalNotes) {
+        requireNonNull(additionalNotes);
+        return new AdditionalNotes(additionalNotes.trim());
     }
 
 }

@@ -40,9 +40,9 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label classDetails;
     @FXML
-    private Label amountPaid;
+    private Label moneyOwed;
     @FXML
-    private Label amountOwed;
+    private Label moneyPaid;
     @FXML
     private Label additionalNotes;
 
@@ -59,9 +59,9 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         classDetails.setText("TODO");
-        amountPaid.setText("TODO");
-        amountOwed.setText("TODO");
-        additionalNotes.setText("TODO");
+        moneyOwed.setText(person.getMoneyOwed().toString());
+        moneyPaid.setText(person.getMoneyPaid().toString());
+        additionalNotes.setText(person.getAdditionalNotes().notes);
     }
 
     @Override

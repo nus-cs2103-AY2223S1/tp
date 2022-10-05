@@ -1,8 +1,11 @@
 package seedu.address.testutil;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.person.AdditionalNotes;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.MoneyOwed;
+import seedu.address.model.person.MoneyPaid;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -31,6 +34,9 @@ public class EditPersonDescriptorBuilder {
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
+        descriptor.setMoneyOwed(person.getMoneyOwed());
+        descriptor.setMoneyPaid(person.getMoneyPaid());
+        descriptor.setAdditionalNotes(person.getAdditionalNotes());
     }
 
     /**
@@ -62,6 +68,30 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
+        return this;
+    }
+
+    /**
+     * Sets the {@code moneyOwed} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withMoneyOwed(Integer moneyOwed) {
+        descriptor.setMoneyOwed(new MoneyOwed(moneyOwed));
+        return this;
+    }
+
+    /**
+     * Sets the {@code moneyPaid} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withMoneyPaid(Integer moneyPaid) {
+        descriptor.setMoneyPaid(new MoneyPaid(moneyPaid));
+        return this;
+    }
+
+    /**
+     * Sets the {@code AdditionalNotes} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withAdditionalNotes(String additionalNotes) {
+        descriptor.setAdditionalNotes(new AdditionalNotes(additionalNotes));
         return this;
     }
 

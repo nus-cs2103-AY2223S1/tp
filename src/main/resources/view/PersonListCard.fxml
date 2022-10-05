@@ -47,12 +47,12 @@
         <Label fx:id="classDetails" styleClass="cell_small_label" text="\$classDetails" />
       </HBox>
       <HBox>
-        <Label styleClass="cell_small_label" text="Amount paid: " />
-        <Label fx:id="amountPaid" styleClass="cell_small_label" text="\$amountPaid" />
+        <Label styleClass="cell_small_label" text="Amount owed: " />
+        <Label fx:id="moneyOwed" styleClass="cell_small_label" text="\$moneyOwed" />
       </HBox>
       <HBox>
-        <Label styleClass="cell_small_label" text="Amount owed: " />
-        <Label fx:id="amountOwed" styleClass="cell_small_label" text="\$amountOwed" />
+        <Label styleClass="cell_small_label" text="Amount paid: " />
+        <Label fx:id="moneyPaid" styleClass="cell_small_label" text="\$moneyPaid" />
       </HBox>
       <HBox>
         <Label styleClass="cell_small_label" text="Additional Notes: " />

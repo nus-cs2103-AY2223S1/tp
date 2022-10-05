@@ -6,6 +6,8 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MONEY_OWED_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MONEY_PAID_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 
@@ -48,6 +50,14 @@ public class EditPersonDescriptorTest {
 
         // different address -> returns false
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different money owed -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withMoneyOwed(VALID_MONEY_OWED_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different money paid -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withMoneyPaid(VALID_MONEY_PAID_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
     }
