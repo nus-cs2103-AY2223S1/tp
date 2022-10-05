@@ -4,6 +4,7 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+
 /**
  * Represents a Person's address in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
@@ -17,8 +18,6 @@ public class Address {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
-
-    public static final String DEFAULT_ADDRESS = "UNSPECIFIED";
 
     public final String value;
 
@@ -34,11 +33,13 @@ public class Address {
     }
 
     /**
-     * Returns an address object containing the default String
-     * @return Address object with the default address field.
+     * Represents an Empty Address.
      */
-    public static Address makeDefaultAddress() {
-        return new Address(DEFAULT_ADDRESS);
+    private static class EmptyAddress extends Address {
+        private static final Address EMPTY_ADDRESS = new EmptyAddress();
+        private EmptyAddress() {
+            super("");
+        }
     }
 
     /**
