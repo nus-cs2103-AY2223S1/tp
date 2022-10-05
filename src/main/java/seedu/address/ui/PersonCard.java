@@ -7,7 +7,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.logic.Logic;
 import seedu.address.model.person.Person;
+
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -26,6 +28,8 @@ public class PersonCard extends UiPart<Region> {
 
     public final Person person;
 
+    private Logic logic;
+
     @FXML
     private HBox cardPane;
     @FXML
@@ -33,28 +37,24 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
+    private FlowPane attributeA;
     @FXML
-    private Label address;
+    private FlowPane attributeB;
     @FXML
-    private Label email;
+    private FlowPane attributeC;
     @FXML
-    private FlowPane tags;
+    private FlowPane attributeD;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public PersonCard(Person person, int displayedIndex, Logic logic) {
         super(FXML);
         this.person = person;
+        this.logic = logic;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        setAttributes();
     }
 
     @Override
@@ -73,5 +73,76 @@ public class PersonCard extends UiPart<Region> {
         PersonCard card = (PersonCard) other;
         return id.getText().equals(card.id.getText())
                 && person.equals(card.person);
+    }
+
+    /**
+     * Sets the attributes in the order required.
+     */
+    public void setAttributes() {
+        int[] order = orderAttributes();
+        FlowPane[] flowpanes = new FlowPane[4];
+        flowpanes[order[0]] = attributeA;
+        flowpanes[order[1]] = attributeB;
+        flowpanes[order[2]] = attributeC;
+        flowpanes[order[3]] = attributeD;
+
+        if (flowpanes[0] != null) {
+            flowpanes[0].getChildren().add(new Label(person.getAddress().value));
+        }
+        if (flowpanes[1] != null) {
+            flowpanes[1].getChildren().add(new Label(person.getEmail().value));
+        }
+        if (flowpanes[2] != null) {
+            flowpanes[2].getChildren().add(new Label(person.getPhone().value));
+        }
+        if (flowpanes[3] != null) {
+            person.getTags().stream()
+                    .sorted(Comparator.comparing(tag -> tag.tagName))
+                    .forEach(tag -> flowpanes[3].getChildren().add(new Label(tag.tagName)));
+        }
+    }
+
+    /**
+     * Generates the order of the attributes based on the order set by the user.
+     *
+     * @return the required order
+     */
+    private int[] orderAttributes() {
+        int[] order = new int[4];
+        String orderStr = logic.getGuiSettings().getAttributeOrder();
+        String[] orderArr = orderStr.trim().split(">");
+
+        if (orderArr.length != 4) {
+            //Returns default order when the orderStr is not in correct format.
+            order = new int[]{3, 2, 1, 0};
+            return order;
+        }
+
+        for (int i = 0; i < 4; i++) {
+            order[i] = convertToIndex(orderArr[i]);
+        }
+
+        return order;
+    }
+
+    /**
+     * Converts the given attribute into the index corresponding to the attribute.
+     *
+     * @param attribute the string representation of the attribute
+     * @return an index that corresponds to the attribute
+     */
+    private int convertToIndex(String attribute) {
+        switch(attribute) {
+        case "ADDRESS":
+            return 0;
+        case "EMAIL":
+            return 1;
+        case "PHONE":
+            return 2;
+        case "TAGS":
+            return 3;
+        default:
+            throw new IllegalArgumentException();
+        }
     }
 }

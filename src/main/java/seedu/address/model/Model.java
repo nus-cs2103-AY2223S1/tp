@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 
 /**
  * The API of the Model component.
@@ -116,4 +117,17 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     *  Returns true if tag exists.
+     * @param tag tag added.
+     * @return True if tag exists. False if otherwise.
+     */
+    boolean hasTag(Tag tag);
+
+    void addTag(Tag tag);
+
+    void editTag(Tag oldTag, Tag newTag);
+
+    ObservableList<Tag> getTagList();
 }
