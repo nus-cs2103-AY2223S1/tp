@@ -21,12 +21,14 @@ Teacher’s Pet can get your contact and class management tasks done faster than
 
 ![Partition](images/UiPartition.png)
 
-Our application is divided into 4 areas to maximise productivity, the specific uses are:
+Our application is divided into 5 areas to maximise productivity, the specific uses are:
 
 - Input Command - The dialog box where all user interaction are held
 - Application’s Reply - A short answer whether the application has executed the command, or an error message if the
   application did not understand the command
-- Active Display Window - A window that will display the request of the command
+- Student's Details - A window that will display the details of the student(s)
+- Statistics Window - A window that shows all the statistics of the tutor, such as the number of students and
+the money collected/owed
 - Day’s Schedule List - A scroll window which shows the schedule for the day, sorted by time
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open
@@ -57,11 +59,11 @@ Our application is divided into 4 areas to maximise productivity, the specific u
 - Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will
   be ignored. e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-### Viewing help : `help`
+### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
 
-Format: `help`
+Format: `help`
 
 Example: `help`
 
@@ -70,7 +72,7 @@ Example: `help`
 ---
 
 [](#adding-a-studentadd)
-### Adding a student: `add`
+### Adding a student: `add`
 
 Adds a student to the Teacher’s Pet.
 
@@ -120,7 +122,7 @@ Note: Email cannot be empty. It must contain at least 1 character.
 Note: Start time and End time must be in 24hour format.
 ```
 
-Format: `add n/NAME p/CONTACT_NUMBER np/NEXT_OF_KIN_CONTACT_NUMBER a/ADDRESS e/EMAIL dt/CLASS_DATE`
+Format: `add n/NAME p/CONTACT_NUMBER np/NEXT_OF_KIN_CONTACT_NUMBER a/ADDRESS e/EMAIL dt/CLASS_DATE`
 
 Example:
 
@@ -175,7 +177,7 @@ Example:
 ![UiEdit](images/UiEdit.png)
 
 ---
-### View all students: `list`
+### View all students: `list`
 
 Allows the user to view students and their information which includes:
 
@@ -188,28 +190,16 @@ Allows the user to view students and their information which includes:
 - Amount owed
 - Additional notes
 
-Format: `list`
+Format: `list`
 
 ![UiUList](images/UiList.png)
 
 ---
-### View all students: `statistics`
-
-Shows the overall statistics for the tutor, which includes:
-- Total number of students
-- Amount of money earned so far
-- Amount of money still being owed
-
-Format: `statistics`
-
-![UiStatistics](images/UiStatistics.png)
-
----
-### Exiting the program : `exit`
+### Exiting the program : `exit`
 
 Exits the program.
 
-Format: `exit`
+Format: `exit`
 
 ### Saving the data
 
@@ -217,7 +207,7 @@ Teacher’s Pet data are saved in the hard disk automatically after any command 
 
 ### Editing the data file
 
-Teacher’s Pet data is saved as a TXT file `[JAR file location]/data/teacher_pet.txt`. Advanced users are welcome to edit the data file.
+Teacher’s Pet data is saved as a TXT file `[JAR file location]/data/teacher_pet.txt`. Advanced users are welcome to edit the data file.
 
 ```yaml
 ❗ Caution: If your changes to the data file makes its format invalid, Teacher’s Pet will discard all data and start with an empty data file at the next run.
@@ -235,13 +225,14 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 
 ## Command summary
 
-| Action                                                                                               | Format, Examples |
-|------------------------------------------------------------------------------------------------------| --- |
-| Add                                                                                                  | add n/NAME p/CONTACT_NUMBER np/NEXT_OF_KIN_CONTACT_NUMBER a/ADDRESS e/EMAIL dt/CLASS_DATE
- e.g., add n/John Doe p/98765432 np/90123291 a/Street ABC e/johnd@example.com dt/2022-09-20 1800-2000 |
-| Edit                                                                                                 | edit INDEX [n/NAME] [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS] [paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES]
- e.g., edit p/98765431                                                                    |
-| View statistics                                                                                      | statistics |
-| Help                                                                                                 | help |
-| Exit                                                                                                 | exit |
+| Action               | Format, Examples                                                                                                                                                                                   |
+|----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Add a student        | add n/NAME p/CONTACT_NUMBER np/NEXT_OF_KIN_CONTACT_NUMBER a/ADDRESS e/EMAIL dt/CLASS_DATE `e.g., add n/John Doe p/98765432 np/90123291 a/Street ABC e/johnd@example.com dt/2022-09-20 1800-2000`   |
+| Edit a student       | edit INDEX [n/NAME] [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS] [paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES] `e.g., edit 2 p/98765431` |
+| Get help             | `help`                                                                                                                                                                                             |
+| List all students    | `list`                                                                                                                                                                                             |
+| Find a student       | find [NAME] `e.g., find John Doe`                                                                                                                                                                  |
+| Delete a student     | delete INDEX `e.g., delete 2`                                                                                                                                                                      |
+| Clear all students   | `clear`                                                                                                                                                                                            |
+| Exit the application | `exit`                                                                                                                                                                                             |
 
