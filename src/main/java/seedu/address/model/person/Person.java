@@ -23,6 +23,19 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
+    public Person(Name name, Phone phone, Email email, Address address) {
+        requireAllNonNull(name, phone, email, address);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.additionalNotes = new AdditionalNotes("");
+    }
+
+    /**
+     * Overloaded constructor.
+     * Every field must be present and not null.
+     */
     public Person(Name name, Phone phone, Email email, Address address, AdditionalNotes additionalNotes) {
         requireAllNonNull(name, phone, email, address, additionalNotes);
         this.name = name;

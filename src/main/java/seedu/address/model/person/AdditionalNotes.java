@@ -1,7 +1,5 @@
 package seedu.address.model.person;
 
-import static java.util.Objects.requireNonNull;
-
 /**
  * Represents a Person's additional Notes in the address book.
  * Guarantees: immutable.
@@ -16,7 +14,6 @@ public class AdditionalNotes {
      * @param additionalNotes It can be empty or non-empty.
      */
     public AdditionalNotes(String additionalNotes) {
-        requireNonNull(additionalNotes);
         value = additionalNotes;
     }
 
