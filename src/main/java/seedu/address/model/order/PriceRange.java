@@ -4,31 +4,31 @@ import java.util.Objects;
 
 public class PriceRange {
 
-    private double upperBound;
-    private double lowerBound;
+    private Price upperBound;
+    private Price lowerBound;
 
-    public PriceRange(double upperBound, double lowerBound) {
+    public PriceRange(Price upperBound, Price lowerBound) {
         this.upperBound = upperBound;
         this.lowerBound = lowerBound;
     }
 
-    public double getUpperBound() {
+    public Price getUpperBound() {
         return upperBound;
     }
 
-    public double getLowerBound() {
+    public Price getLowerBound() {
         return lowerBound;
     }
 
-    public void setUpperBound(double upperBound) {
+    public void setUpperBound(Price upperBound) {
         this.upperBound = upperBound;
     }
 
-    public void setLowerBound(double lowerBound) {
+    public void setLowerBound(Price lowerBound) {
         this.lowerBound = lowerBound;
     }
 
-    public void updatePriceRange(double upperBound, double lowerBound) {
+    public void updatePriceRange(Price upperBound, Price lowerBound) {
         this.upperBound = upperBound;
         this.lowerBound = lowerBound;
     }
@@ -45,9 +45,12 @@ public class PriceRange {
 
     @Override
     public boolean equals(Object other) {
-        if (other instanceof PriceRange) {
-            PriceRange priceRange = (PriceRange) other;
-            return (lowerBound == priceRange.lowerBound) && (upperBound == priceRange.upperBound);
+        if (other == this) {
+            return true;
+        } else if (other instanceof PriceRange) {
+            PriceRange otherRange = (PriceRange) other;
+            return lowerBound.equals(otherRange.getLowerBound())
+                    && upperBound.equals(otherRange.getUpperBound());
         } else {
             return false;
         }
