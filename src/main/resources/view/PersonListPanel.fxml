@@ -3,6 +3,7 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.TableView?>
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <ListView fx:id="personListView" VBox.vgrow="ALWAYS" />
+  <TableView fx:id="personTableView" VBox.vgrow="ALWAYS" />
 </VBox>
