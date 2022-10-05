@@ -1,8 +1,7 @@
-package seedu.address.ui;
+package seedu.address.model;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
 
 import java.util.logging.Logger;
