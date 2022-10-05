@@ -1,10 +1,10 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
+
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * A ui for the point-of-contact name display under the "Point Of Contacts" section.
