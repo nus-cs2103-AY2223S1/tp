@@ -18,16 +18,18 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final AdditionalNotes additionalNotes;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address) {
-        requireAllNonNull(name, phone, email, address);
+    public Person(Name name, Phone phone, Email email, Address address, AdditionalNotes additionalNotes) {
+        requireAllNonNull(name, phone, email, address, additionalNotes);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.additionalNotes = additionalNotes;
     }
 
     public Name getName() {
@@ -44,6 +46,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public AdditionalNotes getAdditionalNotes() {
+        return additionalNotes;
     }
 
     /**
@@ -77,7 +83,8 @@ public class Person {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress());
+                && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getAdditionalNotes().equals(getAdditionalNotes());
     }
 
     @Override
@@ -95,7 +102,9 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Additional notes: ")
+                .append(getAdditionalNotes());
 
         return builder.toString();
     }

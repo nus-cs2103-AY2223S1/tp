@@ -1,10 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
@@ -15,11 +12,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.*;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -36,6 +29,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_ADDITIONAL_NOTES + "NOTES] "
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -91,8 +85,9 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        AdditionalNotes updatedNotes = editPersonDescriptor.getAdditionalNotes().orElse(personToEdit.getAdditionalNotes());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedNotes);
     }
 
     @Override
@@ -122,6 +117,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private AdditionalNotes additionalNotes;
 
         public EditPersonDescriptor() {}
 
@@ -133,6 +129,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setAddress(toCopy.additionalNotes);
         }
 
         /**
@@ -174,6 +171,9 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
+        public Optional<AdditionalNotes> getAdditionalNotes() {
+            return Optional.ofNullable(additionalNotes);
+        }
 
         @Override
         public boolean equals(Object other) {
@@ -194,6 +194,7 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress());
+                    && getAdditionalNotes().equals(e.getAdditionalNotes());
         }
     }
 }
