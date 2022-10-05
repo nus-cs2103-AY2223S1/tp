@@ -3,7 +3,6 @@ package seedu.address.model.person;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeParseException;
 
 /**
  * Represents a Person's class date in the address book.
@@ -14,8 +13,8 @@ public class Class {
             + " in the format of 'yyyy-MM-dd 0000-2300'";
     public static final String INVALID_DATETIME_ERROR_MESSAGE = "Date should be a valid date";
     public static final String INVALID_TIME_ERROR_MESSAGE = "Time should be in the range of 0000 - 2359";
-    public static final String VALIDATION_DATETIME_REGEX = "[1-9][0-9]{3}[-][01][0-9][-][0123][0-9]";
-    public static final String VALIDATION_TIME_REGEX = "[012][0-9][0-5][0-9]";
+    public static final String VALIDATION_DATETIME_REGEX = "[0-9]{4}[-][0-9]{2}[-][0-9]{2}";
+    public static final String VALIDATION_TIME_REGEX = "[0-9]{4}";
     public static final String VALIDATION_CLASS_REGEX = VALIDATION_DATETIME_REGEX
             + "[ ]" + VALIDATION_TIME_REGEX + "[-]" + VALIDATION_TIME_REGEX;
     public final LocalDate date;
@@ -59,7 +58,7 @@ public class Class {
     private static boolean isValidDatetimeString(String date) {
         try {
             LocalDate.parse(date);
-        } catch (DateTimeParseException de) {
+        } catch (DateTimeException de) {
             // text cannot be parsed
             return false;
         }
