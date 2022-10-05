@@ -53,7 +53,7 @@ class JsonSerializableAddressBook {
             if (addressBook.hasTrip(trip)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_TRIP);
             }
-            addressBook.hasTrip(trip);
+            addressBook.addTrip(trip);
         }
         return addressBook;
     }
