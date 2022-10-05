@@ -15,7 +15,7 @@ public class Task {
      * The first character of a task must not be a whitespace
      * other " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\S].*";
+    public static final String VALIDATION_REGEX = "\\S.*";
 
     public final String value;
 

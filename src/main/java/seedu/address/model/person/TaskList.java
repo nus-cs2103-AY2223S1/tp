@@ -81,7 +81,7 @@ public class TaskList implements Iterable<Task> {
      * Replaces the contents of this list with {@code tasks}.
      * {@code tasks} must not contain duplicate tasks.
      */
-    public void setPersons(List<Task> tasks) {
+    public void setTasks(List<Task> tasks) {
         requireAllNonNull(tasks);
         if (!tasksAreUnique(tasks)) {
             throw new DuplicateTaskException();
