@@ -1,7 +1,5 @@
 package seedu.address.model.item;
 
-import seedu.address.model.tag.Tag;
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class ItemQuantity {
