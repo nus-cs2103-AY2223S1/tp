@@ -48,8 +48,11 @@ public class Repository {
         return repository.matches(VALIDATION_REGEX);
     }
 
+    public String getRepositoryUrl() {
+        return "https://github.com/" + projectRepository;
+    }
     @Override
     public String toString() {
-        return "https://github.com/" + projectRepository;
+        return projectRepository;
     }
 }

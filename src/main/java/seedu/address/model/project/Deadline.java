@@ -32,6 +32,8 @@ public class Deadline {
 
     private LocalDate projectDeadline;
 
+    private String deadlineString;
+
     /**
      * Constructs a project Deadline.
      *
@@ -41,6 +43,7 @@ public class Deadline {
         requireNonNull(deadline);
         checkArgument(isValidDeadline(deadline), MESSAGE_CONSTRAINTS);
         this.projectDeadline = LocalDate.parse(deadline);
+        this.deadlineString = deadline;
     }
 
     /**
@@ -50,8 +53,12 @@ public class Deadline {
         return deadline.matches(VALIDATION_REGEX);
     }
 
+    public String formattedDeadline() {
+        return projectDeadline.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+    }
+
     @Override
     public String toString() {
-        return projectDeadline.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+        return deadlineString;
     }
 }
