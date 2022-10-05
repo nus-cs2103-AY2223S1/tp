@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.JeeqTracker;
 import seedu.address.model.company.Company;
 
 /**
@@ -53,10 +53,10 @@ public class TypicalCompanies {
     private TypicalCompanies() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical companies.
+     * Returns an {@code JeeqTracker} with all the typical companies.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static JeeqTracker getTypicalJeeqTracker() {
+        JeeqTracker ab = new JeeqTracker();
         for (Company company : getTypicalCompanies()) {
             ab.addCompany(company);
         }

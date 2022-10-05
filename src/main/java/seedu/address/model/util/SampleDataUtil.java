@@ -4,15 +4,15 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.JeeqTracker;
+import seedu.address.model.ReadOnlyJeeqTracker;
 import seedu.address.model.company.Address;
 import seedu.address.model.company.Company;
 import seedu.address.model.company.Name;
 import seedu.address.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code JeeqTracker} with sample data.
  */
 public class SampleDataUtil {
 
@@ -39,8 +39,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyJeeqTracker getSampleJeeqTracker() {
+        JeeqTracker sampleAb = new JeeqTracker();
         for (Company sampleCompany : getSampleCompanies()) {
             sampleAb.addCompany(sampleCompany);
         }
