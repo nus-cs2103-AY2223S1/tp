@@ -58,4 +58,9 @@ public class DateTime {
     public String toString() {
         return dateTime.toString();
     }
+
+    @Override
+    public int hashCode() {
+        return dateTime.hashCode();
+    }
 }

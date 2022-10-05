@@ -16,6 +16,11 @@ import seedu.address.model.tag.Tag;
  */
 public class Food {
 
+    private static final String TAG_BREAKFAST = "B";
+    private static final String TAG_LUNCH = "L";
+    private static final String TAG_DINNER = "D";
+    private static final String TAG_NONE = "X";
+
     // Identity fields
     private final Name name;
     private final Calorie calorie;
@@ -87,13 +92,13 @@ public class Food {
      */
     public String getEarliestMealTag() {
         if (hasTag("breakfast")) {
-            return "B";
+            return TAG_BREAKFAST;
         } else if (hasTag("lunch")) {
-            return "L";
+            return TAG_LUNCH;
         } else if (hasTag("dinner")) {
-            return "D";
+            return TAG_DINNER;
         } else {
-            return "X";
+            return TAG_NONE;
         }
     }
 

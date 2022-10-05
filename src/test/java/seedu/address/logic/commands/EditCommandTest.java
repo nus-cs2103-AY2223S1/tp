@@ -23,8 +23,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Food;
-import seedu.address.testutil.FoodBuilder;
 import seedu.address.testutil.EditFoodDescriptorBuilder;
+import seedu.address.testutil.FoodBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
