@@ -35,8 +35,8 @@ public class DescriptionTest {
         assertTrue(Description.isValidDescription("redo 2 classes")); // alphanumeric characters only
         assertTrue(Description.isValidDescription("a^2 = b^2 + c^2")); // all characters
         assertTrue(Description.isValidDescription("Complete Final Class")); // with capital letters
-        assertTrue(Description.isValidDescription("Finish project class creation " +
-                "before doing 2 sub-classes")); //long description
+        assertTrue(Description.isValidDescription("Finish project class creation "
+                + "before doing 2 sub-classes")); //long description
     }
 }
 
