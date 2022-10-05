@@ -1,10 +1,7 @@
 package seedu.address.model.person;
 
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.parser.ArgumentMultimap;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
@@ -18,16 +15,16 @@ import static seedu.address.logic.parser.CliSyntax.INDICATOR_TAG;
 /**
  * Tests that a {@code Person}'s information matches the keyword given.
  */
-public class ContactContainsAllKeywordsPredicate implements Predicate<Person> {
+public class ContactContainsAnyKeywordsPredicate implements Predicate<Person> {
     private final List<List<String>> searchedKeywords;
     private final List<String> prefixes;
-    private boolean isNameContained = true;
-    private boolean isAddressContained = true;
-    private boolean isEmailContained = true;
-    private boolean isPhoneContained = true;
-    private boolean isTagContained = true;
+    private boolean isNameContained = false;
+    private boolean isAddressContained = false;
+    private boolean isEmailContained = false;
+    private boolean isPhoneContained = false;
+    private boolean isTagContained = false;
 
-    public ContactContainsAllKeywordsPredicate(List<String> prefixes, List<List<String>> searchedKeywords) {
+    public ContactContainsAnyKeywordsPredicate(List<String> prefixes, List<List<String>> searchedKeywords) {
         this.searchedKeywords = searchedKeywords;
         this.prefixes = prefixes;
     }
@@ -39,28 +36,28 @@ public class ContactContainsAllKeywordsPredicate implements Predicate<Person> {
             List<String> keywords = searchedKeywords.get(i);
             if (Objects.equals(prefix, INDICATOR_NAME)) {
                 isNameContained = keywords.stream()
-                        .allMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword));
+                        .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword));
             } else if (Objects.equals(prefix, INDICATOR_ADDRESS)) {
                 isAddressContained = keywords.stream()
-                        .allMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getAddress().value, keyword));
+                        .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getAddress().value, keyword));
             } else if (Objects.equals(prefix, INDICATOR_EMAIL)) {
                 isEmailContained = keywords.stream()
-                        .allMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getEmail().value, keyword));
+                        .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getEmail().value, keyword));
             } else if (Objects.equals(prefix, INDICATOR_PHONE)) {
                 isPhoneContained = keywords.stream()
-                        .allMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getPhone().value, keyword));
+                        .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getPhone().value, keyword));
             } else if (Objects.equals(prefix, INDICATOR_TAG)) {
                 isTagContained = true; // Implementation postponed, waiting for tag feature
             }
         }
-        return isNameContained && isAddressContained && isEmailContained && isPhoneContained && isTagContained;
+        return isNameContained || isAddressContained || isEmailContained || isPhoneContained || isTagContained;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ContactContainsAllKeywordsPredicate // instanceof handles nulls
-                && searchedKeywords.equals(((ContactContainsAllKeywordsPredicate) other).searchedKeywords)); // state check
+                || (other instanceof ContactContainsAnyKeywordsPredicate // instanceof handles nulls
+                && searchedKeywords.equals(((ContactContainsAnyKeywordsPredicate) other).searchedKeywords)); // state check
     }
 
 }

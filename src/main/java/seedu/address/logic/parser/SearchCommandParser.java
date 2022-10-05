@@ -1,19 +1,15 @@
 package seedu.address.logic.parser;
 
-import com.sun.jdi.connect.Connector;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.FindCommand;
+import javafx.util.Pair;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.SearchCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.ContactContainsAllKeywordsPredicate;
+import seedu.address.model.person.ContactContainsAnyKeywordsPredicate;
 import seedu.address.model.person.ContactContainsKeywordsPredicate;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.tag.Tag;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -49,6 +45,7 @@ public class SearchCommandParser implements Parser<SearchCommand> {
         case SearchCommand.AND_CONDITION:
             return parseSearchWithAndCondition(argMultimap);
         case SearchCommand.OR_CONDITION:
+            return parseSearchWithOrCondition(argMultimap);
         case SearchCommand.EMPTY_CONDITION:
             return parseSearchWithEmptyCondition(argMultimap);
         default:
@@ -57,6 +54,39 @@ public class SearchCommandParser implements Parser<SearchCommand> {
     }
 
     private SearchCommand parseSearchWithAndCondition(ArgumentMultimap argMultimap) {
+        Pair<List<String>, List<List<String>>> keywordsAndPrefixes = extractPrefixesAndKeywords(argMultimap);
+        List<String> prefixes = keywordsAndPrefixes.getKey();
+        List<List<String>> keywords = keywordsAndPrefixes.getValue();
+        return new SearchCommand(new ContactContainsAllKeywordsPredicate(prefixes, keywords));
+    }
+
+    private SearchCommand parseSearchWithOrCondition(ArgumentMultimap argMultimap) {
+        Pair<List<String>, List<List<String>>> keywordsAndPrefixes = extractPrefixesAndKeywords(argMultimap);
+        List<String> prefixes = keywordsAndPrefixes.getKey();
+        List<List<String>> keywords = keywordsAndPrefixes.getValue();
+        return new SearchCommand(new ContactContainsAnyKeywordsPredicate(prefixes, keywords));
+    }
+
+    private SearchCommand parseSearchWithEmptyCondition(ArgumentMultimap argMultimap) {
+        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            return new SearchCommand(new ContactContainsKeywordsPredicate(PREFIX_NAME.getPrefix(),
+                    argMultimap.getAllValues(PREFIX_NAME)));
+        } else if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
+            return new SearchCommand(new ContactContainsKeywordsPredicate(PREFIX_PHONE.getPrefix(),
+                    argMultimap.getAllValues(PREFIX_PHONE)));
+        } else if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
+            return new SearchCommand(new ContactContainsKeywordsPredicate(PREFIX_EMAIL.getPrefix(),
+                    argMultimap.getAllValues(PREFIX_EMAIL)));
+        } else if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
+            return new SearchCommand(new ContactContainsKeywordsPredicate(PREFIX_ADDRESS.getPrefix(),
+                    argMultimap.getAllValues(PREFIX_ADDRESS)));
+        } else {
+            return new SearchCommand(new ContactContainsKeywordsPredicate(PREFIX_TAG.getPrefix(),
+                    argMultimap.getAllValues(PREFIX_TAG)));
+        }
+    }
+
+    private Pair<List<String>, List<List<String>>> extractPrefixesAndKeywords(ArgumentMultimap argMultimap) {
         List<String> prefixes = new ArrayList<>();
         List<List<String>> keywords = new ArrayList<>();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
@@ -79,26 +109,7 @@ public class SearchCommandParser implements Parser<SearchCommand> {
             prefixes.add(PREFIX_TAG.getPrefix());
             keywords.add(argMultimap.getAllValues(PREFIX_TAG));
         }
-        return new SearchCommand(new ContactContainsAllKeywordsPredicate(prefixes, keywords));
-    }
-
-    private SearchCommand parseSearchWithEmptyCondition(ArgumentMultimap argMultimap) {
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            return new SearchCommand(new ContactContainsKeywordsPredicate(PREFIX_NAME.getPrefix(),
-                    argMultimap.getAllValues(PREFIX_NAME)));
-        } else if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            return new SearchCommand(new ContactContainsKeywordsPredicate(PREFIX_PHONE.getPrefix(),
-                    argMultimap.getAllValues(PREFIX_PHONE)));
-        } else if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            return new SearchCommand(new ContactContainsKeywordsPredicate(PREFIX_EMAIL.getPrefix(),
-                    argMultimap.getAllValues(PREFIX_EMAIL)));
-        } else if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            return new SearchCommand(new ContactContainsKeywordsPredicate(PREFIX_ADDRESS.getPrefix(),
-                    argMultimap.getAllValues(PREFIX_ADDRESS)));
-        } else {
-            return new SearchCommand(new ContactContainsKeywordsPredicate(PREFIX_TAG.getPrefix(),
-                    argMultimap.getAllValues(PREFIX_TAG)));
-        }
+        return new Pair<>(prefixes, keywords);
     }
 
     /**
