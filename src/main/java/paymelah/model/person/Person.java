@@ -4,9 +4,12 @@ import static paymelah.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import paymelah.model.debt.Debt;
+import paymelah.model.debt.DebtList;
 import paymelah.model.tag.Tag;
 
 /**
@@ -23,17 +26,19 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final DebtList debts;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, DebtList debts) {
+        requireAllNonNull(name, phone, email, address, tags, debts);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.debts = debts;
     }
 
     public Name getName() {
@@ -58,6 +63,10 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public DebtList getDebts() {
+        return debts;
     }
 
     /**
@@ -92,13 +101,14 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getDebts().equals(getDebts());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags, debts);
     }
 
     @Override
@@ -117,6 +127,13 @@ public class Person {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
+        List<Debt> debts = getDebts().asList();
+        if (!debts.isEmpty()) {
+            builder.append("; Debts: ");
+            debts.forEach(builder::append);
+        }
+
         return builder.toString();
     }
 

@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import paymelah.commons.exceptions.IllegalValueException;
+import paymelah.model.debt.DebtList;
 import paymelah.model.person.Address;
 import paymelah.model.person.Email;
 import paymelah.model.person.Name;
@@ -103,7 +104,10 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+
+        final DebtList modelDebts = new DebtList(); // TODO: Implement parsing and serialisation of debt list.
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelDebts);
     }
 
 }

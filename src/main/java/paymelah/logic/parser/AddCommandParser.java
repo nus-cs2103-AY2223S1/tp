@@ -12,6 +12,7 @@ import java.util.stream.Stream;
 
 import paymelah.logic.commands.AddCommand;
 import paymelah.logic.parser.exceptions.ParseException;
+import paymelah.model.debt.DebtList;
 import paymelah.model.person.Address;
 import paymelah.model.person.Email;
 import paymelah.model.person.Name;
@@ -43,8 +44,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        DebtList debts = new DebtList();
 
-        Person person = new Person(name, phone, email, address, tagList);
+        Person person = new Person(name, phone, email, address, tagList, debts);
 
         return new AddCommand(person);
     }
