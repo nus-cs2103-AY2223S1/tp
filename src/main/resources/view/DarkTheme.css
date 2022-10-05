@@ -317,6 +317,10 @@
     -fx-background-color: black;
 }
 
+.statistics_box {
+    -fx-background-color: black;
+}
+
 #cardPane {
     -fx-background-color: transparent;
     -fx-border-width: 0;

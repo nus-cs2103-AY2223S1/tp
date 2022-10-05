@@ -4,12 +4,17 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.geometry.Insets?>
 
 <StackPane fx:id="placeHolder" styleClass="pane-with-border" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
    <VBox prefHeight="200.0" prefWidth="100.0">
-      <children>
-         <Label text="Statistics" />
-        <TextArea fx:id="resultDisplay" editable="false" styleClass="result-display" />
-      </children>
+      <HBox spacing="5" alignment="CENTER_LEFT" styleClass="statistics_box">
+         <padding>
+            <Insets right="5" left="15" />
+         </padding>
+         <Label text="Statistics" styleClass="cell_title_label"/>
+      </HBox>
+      <TextArea fx:id="resultDisplay" editable="false" styleClass="result-display" />
    </VBox>
 </StackPane>
