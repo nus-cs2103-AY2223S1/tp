@@ -61,11 +61,12 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
         nextOfKin.setText(person.getNextOfKin().value);
         patientType.setText(person.getPatientType().value.name());
-        person.getHospitalWing().ifPresentOrElse(hw -> hospitalWing.setText(hw.value), () -> hospitalWing.setText(""));
+        person.getHospitalWing().ifPresentOrElse(hw -> hospitalWing.setText(hw.value),
+                () -> hospitalWing.setVisible(false));
         person.getFloorNumber().ifPresentOrElse(fn -> floorNumber.setText(fn.value.toString()),
-                () -> floorNumber.setText(""));
+                () -> floorNumber.setVisible(false));
         person.getWardNumber().ifPresentOrElse(wn -> wardNumber.setText(wn.value.toString()),
-                () -> wardNumber.setText(""));
+                () -> wardNumber.setVisible(false));
         person.getMedications().stream()
                 .sorted(Comparator.comparing(medication -> medication.medicationName))
                 .forEach(medication -> medications.getChildren().add(new Label(medication.medicationName)));

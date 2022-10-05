@@ -191,11 +191,11 @@ class JsonAdaptedPerson {
         Integer wN = null;
         if (wardNumber != null) {
             try {
-                fN = Integer.valueOf(wardNumber);
+                wN = Integer.valueOf(wardNumber);
             } catch (NumberFormatException nfe) {
                 throw new IllegalValueException(WardNumber.MESSAGE_CONSTRAINTS);
             }
-            if (!WardNumber.isValidWardNumber(fN)) {
+            if (!WardNumber.isValidWardNumber(wN)) {
                 throw new IllegalValueException(WardNumber.MESSAGE_CONSTRAINTS);
             }
         }
