@@ -9,41 +9,36 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Homework;
-import seedu.address.model.person.HomeworkList;
+import seedu.address.model.person.LessonPlan;
 import seedu.address.model.person.Person;
 
-/**
- * Adds homework to an existing person in the address book.
- */
-public class HomeworkCommand extends Command {
-
-    public static final String COMMAND_WORD = "homework";
+public class LessonPlanCommand extends Command {
+    public static final String COMMAND_WORD = "lessonplan";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds homework to the person identified "
+            + ": Adds a lesson plan to the person identified "
             + "by the index number used in the last person listing. "
-            + "Existing homework will not be modified.\n"
+            + "Existing lesson plan will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "h/ [HOMEWORK]\n"
+            + "lp/ [LESSON PLAN]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + "h/ Science worksheet.";
+            + "lp/ Data structures and algorithms.";
 
-    public static final String MESSAGE_ADD_HOMEWORK_SUCCESS = "Added homework to Person: %1$s";
-    public static final String MESSAGE_DELETE_HOMEWORK_SUCCESS = "Removed homework from Person: %1$s";
+    public static final String MESSAGE_ADD_LESSON_PLAN_SUCCESS = "Added lesson plan to Person: %1$s";
+    public static final String MESSAGE_DELETE_LESSON_PLAN_SUCCESS = "Removed lesson plan from Person: %1$s";
 
     private final Index index;
-    private final Homework homework;
+    private final LessonPlan lessonPlan;
 
     /**
-     * @param index of the person in the filtered person list to edit the homework
-     * @param homework of the person to add
+     * @param index of the person in the filtered person list to edit the lesson plan
+     * @param lessonPlan of the person to add
      */
-    public HomeworkCommand(Index index, Homework homework) {
-        requireAllNonNull(index, homework);
+    public LessonPlanCommand(Index index, LessonPlan lessonPlan) {
+        requireAllNonNull(index, lessonPlan);
 
         this.index = index;
-        this.homework = homework;
+        this.lessonPlan = lessonPlan;
     }
 
     @Override
@@ -56,12 +51,9 @@ public class HomeworkCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
 
-        HomeworkList homeworkList = personToEdit.getHomeworkList();
-        homeworkList.addHomework(homework);
-
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getLessonPlan(), homeworkList, personToEdit.getTags());
+                personToEdit.getAddress(), lessonPlan, personToEdit.getHomeworkList(), personToEdit.getTags());
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -75,7 +67,9 @@ public class HomeworkCommand extends Command {
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {
-        String message = !homework.value.isEmpty() ? MESSAGE_ADD_HOMEWORK_SUCCESS : MESSAGE_DELETE_HOMEWORK_SUCCESS;
+        String message = !lessonPlan.value.isEmpty()
+                ? MESSAGE_ADD_LESSON_PLAN_SUCCESS
+                : MESSAGE_DELETE_LESSON_PLAN_SUCCESS;
         return String.format(message, personToEdit);
     }
 
@@ -87,13 +81,13 @@ public class HomeworkCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof HomeworkCommand)) {
+        if (!(other instanceof LessonPlanCommand)) {
             return false;
         }
 
         // state check
-        HomeworkCommand e = (HomeworkCommand) other;
+        LessonPlanCommand e = (LessonPlanCommand) other;
         return index.equals(e.index)
-                && homework.equals(e.homework);
+                && lessonPlan.equals(e.lessonPlan);
     }
 }
