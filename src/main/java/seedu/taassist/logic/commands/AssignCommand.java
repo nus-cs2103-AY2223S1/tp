@@ -10,12 +10,14 @@ import java.util.Set;
 import seedu.taassist.commons.core.Messages;
 import seedu.taassist.commons.core.index.Index;
 import seedu.taassist.logic.commands.exceptions.CommandException;
+import seedu.taassist.logic.parser.ParserStudentIndexUtil;
+import seedu.taassist.logic.parser.exceptions.ParseException;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.student.Student;
 
 /**
- * Assign students to a class.
+ * Assigns students to a class.
  */
 public class AssignCommand extends Command {
 
@@ -53,22 +55,16 @@ public class AssignCommand extends Command {
         }
 
         List<Student> lastShownList = model.getFilteredStudentList();
-        for (Index index : indices) {
-            if (index.getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
-            }
-            Student student = lastShownList.get(index.getZeroBased());
-            if (student.getModuleClasses().contains(moduleClassToAssign)) {
-                throw new CommandException(MESSAGE_DUPLICATE_MODULE_CLASS);
-            }
+        List<Student> studentsToAssign;
+        try {
+            studentsToAssign = ParserStudentIndexUtil.parseStudentsFromIndices(indices, lastShownList);
+        } catch (ParseException pe) {
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
-        for (Index index : indices) {
-            Student student = lastShownList.get(index.getZeroBased());
-            Set<ModuleClass> moduleClasses = student.getModuleClasses();
-            Set<ModuleClass> newModuleClasses = new HashSet<>();
-            newModuleClasses.addAll(moduleClasses);
-            newModuleClasses.add(moduleClassToAssign);
 
+        for (Student student : studentsToAssign) {
+            Set<ModuleClass> newModuleClasses = new HashSet<>(student.getModuleClasses());
+            newModuleClasses.add(moduleClassToAssign);
             Student editedStudent = new Student(
                     student.getName(),
                     student.getPhone(),
@@ -78,13 +74,7 @@ public class AssignCommand extends Command {
             model.setStudent(student, editedStudent);
         }
 
-        String indexOrIndices;
-        if (indices.size() == 1) {
-            indexOrIndices = "index";
-        } else {
-            indexOrIndices = "indices";
-        }
-
+        String indexOrIndices = indices.size() == 1 ? "index" : "indices";
         return new CommandResult(String.format(MESSAGE_SUCCESS, indexOrIndices, indices, moduleClassToAssign));
     }
 

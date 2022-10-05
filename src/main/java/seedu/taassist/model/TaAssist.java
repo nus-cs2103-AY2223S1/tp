@@ -83,8 +83,9 @@ public class TaAssist implements ReadOnlyTaAssist {
      * Adds a student to TA-Assist.
      * The student must not already exist in TA-Assist.
      */
-    public void addStudent(Student p) {
-        students.add(p);
+    public void addStudent(Student student) {
+        requireNonNull(student);
+        students.add(student);
     }
 
     /**
@@ -95,16 +96,16 @@ public class TaAssist implements ReadOnlyTaAssist {
      */
     public void setStudent(Student target, Student editedStudent) {
         requireNonNull(editedStudent);
-
         students.setStudent(target, editedStudent);
     }
 
     /**
-     * Removes {@code key} from this {@code TaAssist}.
-     * {@code key} must exist in TA-Assist.
+     * Removes {@code student} from this {@code TaAssist}.
+     * {@code student} must exist in TA-Assist.
      */
-    public void removeStudent(Student key) {
-        students.remove(key);
+    public void removeStudent(Student student) {
+        requireNonNull(student);
+        students.remove(student);
     }
 
     //// class-level operations
@@ -121,16 +122,18 @@ public class TaAssist implements ReadOnlyTaAssist {
      * Adds a class to TA-Assist.
      * The class must not already exist in TA-Assist.
      */
-    public void addModuleClass(ModuleClass c) {
-        moduleClasses.add(c);
+    public void addModuleClass(ModuleClass moduleClass) {
+        requireNonNull(moduleClass);
+        moduleClasses.add(moduleClass);
     }
 
     /**
-     * Removes {@code key} from this {@code TaAssist}.
-     * {@code key} must exist in TA-Assist.
+     * Removes {@code moduleClass} from this {@code TaAssist}.
+     * {@code moduleClass} must exist in TA-Assist.
      */
-    public void removeModuleClass(ModuleClass key) {
-        moduleClasses.remove(key);
+    public void removeModuleClass(ModuleClass moduleClass) {
+        requireNonNull(moduleClass);
+        moduleClasses.remove(moduleClass);
     }
 
     //// util methods

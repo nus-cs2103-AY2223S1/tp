@@ -8,7 +8,7 @@ import seedu.taassist.model.Model;
 import seedu.taassist.model.moduleclass.ModuleClass;
 
 /**
- * Adds a class to TA-Assist
+ * Adds a class to TA-Assist.
  */
 public class AddcCommand extends Command {
 
@@ -26,7 +26,7 @@ public class AddcCommand extends Command {
     private final ModuleClass toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code ModuleClass}
+     * Creates an AddCommand to add the specified {@code ModuleClass}.
      */
     public AddcCommand(ModuleClass moduleClass) {
         requireNonNull(moduleClass);
@@ -36,11 +36,9 @@ public class AddcCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
         if (model.hasModuleClass(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_MODULE_CLASS);
         }
-
         model.addModuleClass(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }

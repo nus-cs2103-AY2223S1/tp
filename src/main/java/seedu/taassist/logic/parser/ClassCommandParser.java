@@ -15,8 +15,7 @@ public class ClassCommandParser implements Parser<ClassCommand> {
     public ClassCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ClassCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ClassCommand.MESSAGE_USAGE));
         }
         return new ClassCommand(new ModuleClass(trimmedArgs));
     }

@@ -9,7 +9,7 @@ import seedu.taassist.logic.parser.exceptions.ParseException;
 import seedu.taassist.model.moduleclass.ModuleClass;
 
 /**
- * Parses input arguments and creates a new DeletecCommand object
+ * Parses input arguments and creates a new DeletecCommand object.
  */
 public class DeletecCommandParser implements Parser<DeletecCommand> {
 
@@ -24,8 +24,7 @@ public class DeletecCommandParser implements Parser<DeletecCommand> {
             ModuleClass moduleClass = ParserUtil.parseModuleClass(argMultimap.getValue(PREFIX_MODULE_CLASS).get());
             return new DeletecCommand(moduleClass);
         } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
         }
     }
 }

@@ -15,9 +15,9 @@ public class ModuleClass {
     public final String className;
 
     /**
-     * Constructs a {@code Tag}.
+     * Constructs a {@code ModuleClass}.
      *
-     * @param className A valid tag name.
+     * @param className A valid class name.
      */
     public ModuleClass(String className) {
         requireNonNull(className);
@@ -26,7 +26,7 @@ public class ModuleClass {
     }
 
     /**
-     * Returns true if a given string is a valid tag name.
+     * Returns true if a given string is a valid class name.
      */
     public static boolean isValidModuleClassName(String test) { // TODO: Ensure that class exists
         return test.matches(VALIDATION_REGEX);
@@ -39,18 +39,13 @@ public class ModuleClass {
                 && className.equals(((ModuleClass) other).className)); // state check
     }
 
-    //TODO: fix
-    public boolean isSameModuleClass(ModuleClass otherModuleClass) {
-        return this.className.equals(otherModuleClass.className);
-    }
-
     @Override
     public int hashCode() {
         return className.hashCode();
     }
 
     /**
-     * Format state as text for viewing.
+     * Formats state as text for viewing.
      */
     public String toString() {
         return '[' + className + ']';

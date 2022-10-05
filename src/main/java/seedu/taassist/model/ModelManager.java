@@ -98,11 +98,13 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteStudent(Student target) {
+        requireNonNull(target);
         taAssist.removeStudent(target);
     }
 
     @Override
     public void addStudent(Student student) {
+        requireNonNull(student);
         taAssist.addStudent(student);
         updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
     }
@@ -110,7 +112,6 @@ public class ModelManager implements Model {
     @Override
     public void setStudent(Student target, Student editedStudent) {
         requireAllNonNull(target, editedStudent);
-
         taAssist.setStudent(target, editedStudent);
     }
 
@@ -122,11 +123,13 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteModuleClass(ModuleClass target) {
+        requireNonNull(target);
         taAssist.removeModuleClass(target);
     }
 
     @Override
     public void addModuleClass(ModuleClass moduleClass) {
+        requireNonNull(moduleClass);
         taAssist.addModuleClass(moduleClass);
     }
 

@@ -2,7 +2,6 @@ package seedu.taassist.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import javafx.collections.ObservableList;
 import seedu.taassist.commons.core.Messages;
 import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.model.Model;
@@ -31,8 +30,7 @@ public class DeletecCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        ObservableList<ModuleClass> moduleClassList = model.getModuleClassList();
-        if (!moduleClassList.contains(targetModuleClass)) {
+        if (!model.hasModuleClass(targetModuleClass)) {
             throw new CommandException(Messages.MESSAGE_MODULE_CLASS_DOES_NOT_EXIST);
         }
         model.deleteModuleClass(targetModuleClass);

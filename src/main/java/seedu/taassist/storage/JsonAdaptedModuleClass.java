@@ -14,7 +14,7 @@ class JsonAdaptedModuleClass {
     private final String className;
 
     /**
-     * Constructs a {@code JsonAdaptedClass} with the given {@code className}.
+     * Constructs a {@code JsonAdaptedModuleClass} with the given {@code className}.
      */
     @JsonCreator
     public JsonAdaptedModuleClass(String className) {

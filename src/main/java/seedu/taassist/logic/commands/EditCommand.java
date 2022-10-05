@@ -54,8 +54,8 @@ public class EditCommand extends Command {
     private final EditStudentDescriptor editStudentDescriptor;
 
     /**
-     * @param index of the student in the filtered student list to edit
-     * @param editStudentDescriptor details to edit the student with
+     * @param index of the student in the filtered student list to edit.
+     * @param editStudentDescriptor details to edit the student with.
      */
     public EditCommand(Index index, EditStudentDescriptor editStudentDescriptor) {
         requireNonNull(index);
