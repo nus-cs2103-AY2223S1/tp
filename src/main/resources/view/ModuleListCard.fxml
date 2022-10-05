@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
@@ -25,11 +26,13 @@
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="moduleCode" text="\$first" styleClass="cell_big_label" />
+        <Label fx:id="moduleCode" text="\$first">
+        <font> <Font name="System Bold" size="13.0"/></font>
+        </Label>
+        <FlowPane fx:id="semesterData"/>
+        <Label fx:id="workload" styleClass="cell_small_label" text="\$workload" />
       </HBox>
-      <FlowPane fx:id="semesterData" />
       <Label fx:id="title" styleClass="cell_small_label" text="\$title" />
-      <Label fx:id="workload" styleClass="cell_small_label" text="\$workload" />
       <Label fx:id="department" styleClass="cell_small_label" text="\$department" />
     </VBox>
   </GridPane>
