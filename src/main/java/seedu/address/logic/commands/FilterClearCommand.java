@@ -58,6 +58,6 @@ public class FilterClearCommand extends FilterCommand {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FilterClearCommand // instanceof handles nulls
-                        && predicate.equals(((FilterClearCommand) other).predicate)); // state check
+                && predicate.equals(((FilterClearCommand) other).predicate)); // state check
     }
 }
