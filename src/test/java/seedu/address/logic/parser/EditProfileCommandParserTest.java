@@ -39,10 +39,6 @@ import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditProfileDescriptorBuilder;
 
 public class EditProfileCommandParserTest {
-
-    // The option flag is required for user inputs as the parsing of indexes is based on
-    // the "-" prefix.
-    private static final String OPTION_FLAG = "-e";
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
 
     private static final String MESSAGE_INVALID_FORMAT =
