@@ -3,6 +3,7 @@ package bookface.model.book;
 import java.util.Objects;
 
 import bookface.commons.util.CollectionUtil;
+import bookface.model.person.Person;
 
 /**
  * Represents a Book in the BookFace application.
@@ -13,6 +14,8 @@ public class Book {
     // Identity fields
     private final Title title;
     private final Author author;
+    private boolean isLoaned = false;
+    private Person loanee = null;
 
     /**
      * Every field must be present and not null.
@@ -29,6 +32,27 @@ public class Book {
 
     public Author getAuthor() {
         return author;
+    }
+
+    public boolean isLoaned() { return this.isLoaned; }
+
+    /**
+     * Sets the book's isLoaned status to false and loanee to null.
+     * i.e. Collects a loaned book.
+     */
+    public void collect() {
+        this.isLoaned = false;
+        this.loanee = null;
+    }
+
+    /**
+     * Loans this book to a patron.
+     *
+     * @param loanee the person borrowing this book
+     */
+    public void loanTo(Person loanee) {
+        this.isLoaned = true;
+        this.loanee = loanee;
     }
 
     /**
