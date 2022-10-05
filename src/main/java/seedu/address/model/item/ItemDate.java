@@ -11,7 +11,6 @@ public class ItemDate {
     public static final String MESSAGE_CONSTRAINTS =
             "Dates must follow the format yyyy-mm-dd or dd-mm-yyyy.";
 
-    // TODO: Handle validation
     public static final String VALIDATION_REGEX = "yyyy-MM-dd";
     public static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(VALIDATION_REGEX);
 
@@ -22,7 +21,7 @@ public class ItemDate {
     public ItemDate(String unparsedDate) {
         requireNonNull(unparsedDate);
          checkArgument(isValidItemDatetime(unparsedDate), MESSAGE_CONSTRAINTS);
-        this.itemDate = getDatetimeFormat(unparsedDate); // TODO: Replace with parser
+        this.itemDate = getDatetimeFormat(unparsedDate);
     }
 
     public static boolean isValidItemDatetime(String unparsedDatetime) {
