@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
@@ -19,13 +20,16 @@ public class StorageManager implements Storage {
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private AddressBookStorage addressBookStorage;
     private UserPrefsStorage userPrefsStorage;
+    private TaskListStorage taskListStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(
+            AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage, TaskListStorage taskListStorage) {
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
+        this.taskListStorage = taskListStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -44,7 +48,6 @@ public class StorageManager implements Storage {
     public void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException {
         userPrefsStorage.saveUserPrefs(userPrefs);
     }
-
 
     // ================ AddressBook methods ==============================
 
@@ -73,6 +76,35 @@ public class StorageManager implements Storage {
     public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         addressBookStorage.saveAddressBook(addressBook, filePath);
+    }
+
+    // ================ TaskList methods ==============================
+
+    @Override
+    public Path getTaskListFilePath() {
+        return taskListStorage.getTaskListFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyTaskList> readTaskList() throws DataConversionException, IOException {
+        return readTaskList(taskListStorage.getTaskListFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyTaskList> readTaskList(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return taskListStorage.readTaskList(filePath);
+    }
+
+    @Override
+    public void saveTaskList(ReadOnlyTaskList taskList) throws IOException {
+        saveTaskList(taskList, taskListStorage.getTaskListFilePath());
+    }
+
+    @Override
+    public void saveTaskList(ReadOnlyTaskList taskList, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        taskListStorage.saveTaskList(taskList, filePath);
     }
 
 }

@@ -24,12 +24,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.TaskList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.AddressBookStorage;
-import seedu.address.storage.JsonAddressBookStorage;
-import seedu.address.storage.JsonUserPrefsStorage;
-import seedu.address.storage.Storage;
-import seedu.address.storage.StorageManager;
-import seedu.address.storage.UserPrefsStorage;
+import seedu.address.storage.*;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -60,7 +55,8 @@ public class MainApp extends Application {
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         // initialise storage for AB
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        TaskListStorage taskListStorage = new JsonTaskListStorage(userPrefs.getTaskListFilePath());
+        storage = new StorageManager(addressBookStorage, userPrefsStorage, taskListStorage);
 
         initLogging(config);
 
@@ -97,7 +93,6 @@ public class MainApp extends Application {
             initialAddressBook = new AddressBook();
         }
 
-        /*
         try {
             taskListOptional = storage.readTaskList();
             if (!taskListOptional.isPresent()) {
@@ -111,7 +106,6 @@ public class MainApp extends Application {
             logger.warning("Problem while reading from the file. Will be starting with an empty TaskList");
             initialTaskList = new TaskList();
         }
-        */
         initialTaskList = new TaskList();
 
         return new ModelManager(initialAddressBook, initialTaskList, userPrefs);
