@@ -96,6 +96,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Refreshes the given person {@code target}, forcing the app to visually show any updated changes back to the user.
+     */
+    public void refreshPerson(Person target) {
+        persons.setPerson(target, target);
+    }
+
+    /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */

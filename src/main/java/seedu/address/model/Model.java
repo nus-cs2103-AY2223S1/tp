@@ -83,6 +83,12 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Refreshes the given person {@code target}, forcing the app to visually show any updated changes back to the user.
+     * {@code target} must exist in the address book.
+     */
+    void refreshPerson(Person target);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 

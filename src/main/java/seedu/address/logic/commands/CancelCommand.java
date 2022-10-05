@@ -59,10 +59,12 @@ public class CancelCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
         }
         Appointment cancelledAppt = patientToCancelAppt.cancelAppointment(apptIndex.getZeroBased());
-        model.setPerson(patientToCancelAppt, patientToCancelAppt);
+
+        model.refreshPerson(patientToCancelAppt);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.deleteAppointment(cancelledAppt);
         model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+
         return new CommandResult(MESSAGE_CANCEL_APPOINTMENT_SUCCESS + patientToCancelAppt.getName());
     }
 }
