@@ -23,6 +23,7 @@ public class Appointment {
     private final String reason;
     private final LocalDateTime dateTime;
     private boolean isMarked;
+    private Person patient;
 
     private final DateTimeFormatter stringFormatter = DateTimeFormatter.ofPattern("MMM d yyyy HH:mm");
 
@@ -83,6 +84,10 @@ public class Appointment {
         return dateTime;
     }
 
+    public String getFormattedDateTime() {
+        return dateTime.format(stringFormatter);
+    }
+
     public String getReason() {
         return reason;
     }
@@ -99,10 +104,22 @@ public class Appointment {
         this.isMarked = false;
     }
 
+    public void setPatient(Person patient) {
+        this.patient = patient;
+    }
+
+    public String getPatientName() {
+        return this.patient.getName().fullName;
+    }
+
+    public String getStatus() {
+        return "[" + getStateIcon() + "]";
+    }
+
+
     @Override
     public String toString() {
-        String statusIcon = "[" + getStateIcon() + "]";
-        return statusIcon + " " + dateTime.format(stringFormatter) + " for " + reason;
+        return getStatus() + " " + getFormattedDateTime() + " for " + reason;
     }
 
     private String getStateIcon() {
@@ -122,7 +139,8 @@ public class Appointment {
         }
 
         Appointment otherAppointment = (Appointment) other;
-        return otherAppointment.reason.equals(reason)
+        return otherAppointment.patient.equals(patient)
+                && otherAppointment.reason.equals(reason)
                 && otherAppointment.dateTime.equals(dateTime)
                 && (otherAppointment.isMarked == isMarked);
     }

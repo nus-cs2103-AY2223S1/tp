@@ -5,7 +5,9 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniqueAppointmentList;
 import seedu.address.model.person.UniquePersonList;
 
 /**
@@ -15,6 +17,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniqueAppointmentList appointments;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +28,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        appointments = new UniqueAppointmentList();
     }
 
     public AddressBook() {}
@@ -47,6 +51,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.persons.setPersons(persons);
     }
 
+    public void setAppointments(List<Appointment> appointments) {
+        this.appointments.setAppointments(appointments);
+    }
+
+
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
@@ -54,6 +63,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setAppointments(newData.getAppointmentList());
     }
 
     //// person-level operations
@@ -93,6 +103,15 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+
+    public void addAppointment(Appointment a) {
+        appointments.add(a);
+    }
+
+    public void removeAppointment(Appointment key) {
+        appointments.remove(key);
+    }
+
     //// util methods
 
     @Override
@@ -104,6 +123,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Appointment> getAppointmentList() {
+        return appointments.asUnmodifiableObservableList();
     }
 
     @Override
