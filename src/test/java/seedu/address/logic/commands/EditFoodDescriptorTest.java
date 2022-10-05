@@ -2,42 +2,42 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_BREAKFAST;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_LUNCH;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.logic.commands.EditCommand.EditFoodDescriptor;
+import seedu.address.testutil.EditFoodDescriptorBuilder;
 
 public class EditFoodDescriptorTest {
 
     @Test
     public void equals() {
         // same values -> returns true
-        EditPersonDescriptor descriptorWithSameValues = new EditPersonDescriptor(DESC_AMY);
-        assertTrue(DESC_AMY.equals(descriptorWithSameValues));
+        EditFoodDescriptor descriptorWithSameValues = new EditFoodDescriptor("Bread", "150",
+                "breakfast", "oneSlice");
+        assertTrue(DESC_BREAKFAST.equals(descriptorWithSameValues));
 
         // same object -> returns true
-        assertTrue(DESC_AMY.equals(DESC_AMY));
+        assertTrue(DESC_BREAKFAST.equals(DESC_BREAKFAST));
 
         // null -> returns false
-        assertFalse(DESC_AMY.equals(null));
+        assertFalse(DESC_BREAKFAST.equals(null));
 
         // different types -> returns false
-        assertFalse(DESC_AMY.equals(5));
+        assertFalse(DESC_BREAKFAST.equals(5));
 
         // different values -> returns false
-        assertFalse(DESC_AMY.equals(DESC_BOB));
+        assertFalse(DESC_BREAKFAST.equals(DESC_LUNCH));
 
         // different name -> returns false
-        EditPersonDescriptor editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        EditFoodDescriptor editedBreakfast = new EditFoodDescriptorBuilder(DESC_BREAKFAST)
+                .withName("dumplings").build();
+        assertFalse(DESC_BREAKFAST.equals(editedBreakfast));
 
         // different tags -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        editedBreakfast = new EditFoodDescriptorBuilder(DESC_BREAKFAST).withTags("breakfast").build();
+        assertFalse(DESC_BREAKFAST.equals(editedBreakfast));
     }
 }
