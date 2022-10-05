@@ -2,10 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 import seedu.address.model.tag.Medication;
 
@@ -23,9 +20,9 @@ public class Person {
     // Data fields
     private final NextOfKin nextOfKin;
     private final PatientType patientType;
-    private final HospitalWing hospitalWing;
-    private final FloorNumber floorNumber;
-    private final WardNumber wardNumber;
+    private final Optional<HospitalWing> hospitalWing;
+    private final Optional<FloorNumber> floorNumber;
+    private final Optional<WardNumber> wardNumber;
     private final Set<Medication> medications = new HashSet<>();
 
     /**
@@ -40,9 +37,9 @@ public class Person {
         this.email = email;
         this.nextOfKin = nextOfKin;
         this.patientType = patientType;
-        this.hospitalWing = hospitalWing;
-        this.floorNumber = floorNumber;
-        this.wardNumber = wardNumber;
+        this.hospitalWing = Optional.ofNullable(hospitalWing);
+        this.floorNumber = Optional.ofNullable(floorNumber);
+        this.wardNumber = Optional.ofNullable(wardNumber);
         this.medications.addAll(medications);
     }
 
@@ -62,19 +59,19 @@ public class Person {
         return nextOfKin;
     }
 
-    public HospitalWing getHospitalWing() {
-        return hospitalWing;
-    }
-
     public PatientType getPatientType() {
         return patientType;
     }
 
-    public WardNumber getWardNumber() {
+    public Optional<HospitalWing> getHospitalWing() {
+        return hospitalWing;
+    }
+
+    public Optional<WardNumber> getWardNumber() {
         return wardNumber;
     }
 
-    public FloorNumber getFloorNumber() {
+    public Optional<FloorNumber> getFloorNumber() {
         return floorNumber;
     }
 

@@ -108,9 +108,9 @@ public class EditCommand extends Command {
         FloorNumber updatedFloorNumber = null;
         WardNumber updatedWardNumber = null;
         if (updatedPatientType.isInpatient()) {
-            updatedHospitalWing = editPersonDescriptor.getHospitalWing().orElse(personToEdit.getHospitalWing());
-            updatedFloorNumber = editPersonDescriptor.getFloorNumber().orElse(personToEdit.getFloorNumber());
-            updatedWardNumber = editPersonDescriptor.getWardNumber().orElse(personToEdit.getWardNumber());
+            updatedHospitalWing = editPersonDescriptor.getHospitalWing().orElse(personToEdit.getHospitalWing().get());
+            updatedFloorNumber = editPersonDescriptor.getFloorNumber().orElse(personToEdit.getFloorNumber().get());
+            updatedWardNumber = editPersonDescriptor.getWardNumber().orElse(personToEdit.getWardNumber().get());
         }
         Set<Medication> updatedMedications = editPersonDescriptor.getMedications().orElse(personToEdit.getMedications());
 

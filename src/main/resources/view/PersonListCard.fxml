@@ -32,9 +32,9 @@
       <Label fx:id="nextOfKin" styleClass="cell_small_label" text="\$nextOfKin" />
       <Label fx:id="patientType" styleClass="cell_small_label" text="\$patientType" />
       <FlowPane fx:id="medications" />
-      <FlowPane fx:id="hospitalWing" />
-      <FlowPane fx:id="floorNumber" />
-      <FlowPane fx:id="wardNumber" />
+      <Label fx:id="hospitalWing" styleClass="cell_small_label" text="\$hospitalWing" />
+      <Label fx:id="floorNumber" styleClass="cell_small_label" text="\$floorNumber" />
+      <Label fx:id="wardNumber" styleClass="cell_small_label" text="\$wardNumber" />
     </VBox>
   </GridPane>
 </HBox>

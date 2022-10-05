@@ -41,11 +41,11 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label patientType;
     @FXML
-    private FlowPane hospitalWing;
+    private Label hospitalWing;
     @FXML
-    private FlowPane floorNumber;
+    private Label floorNumber;
     @FXML
-    private FlowPane wardNumber;
+    private Label wardNumber;
     @FXML
     private FlowPane medications;
 
@@ -61,9 +61,11 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
         nextOfKin.setText(person.getNextOfKin().value);
         patientType.setText(person.getPatientType().value.name());
-        hospitalWing.getChildren().add(new Label(person.getHospitalWing().value));
-        floorNumber.getChildren().add(new Label(person.getFloorNumber().value.toString()));
-        wardNumber.getChildren().add(new Label(person.getWardNumber().value.toString()));
+        person.getHospitalWing().ifPresentOrElse(hw -> hospitalWing.setText(hw.value), () -> hospitalWing.setText(""));
+        person.getFloorNumber().ifPresentOrElse(fn -> floorNumber.setText(fn.value.toString()),
+                () -> floorNumber.setText(""));
+        person.getWardNumber().ifPresentOrElse(wn -> wardNumber.setText(wn.value.toString()),
+                () -> wardNumber.setText(""));
         person.getMedications().stream()
                 .sorted(Comparator.comparing(medication -> medication.medicationName))
                 .forEach(medication -> medications.getChildren().add(new Label(medication.medicationName)));

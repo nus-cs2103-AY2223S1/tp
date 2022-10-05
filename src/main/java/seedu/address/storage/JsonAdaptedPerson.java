@@ -72,9 +72,21 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         nextOfKin = source.getNextOfKin().value;
         patientType = source.getPatientType().value.name();
-        hospitalWing = source.getHospitalWing().value;
-        floorNumber = source.getFloorNumber().value.toString();
-        wardNumber = source.getWardNumber().value.toString();
+        if (source.getHospitalWing().isPresent()) {
+            hospitalWing = source.getHospitalWing().get().value;
+        } else {
+            hospitalWing = null;
+        }
+        if (source.getFloorNumber().isPresent()) {
+            floorNumber = source.getFloorNumber().get().value.toString();
+        } else {
+            floorNumber = null;
+        }
+        if (source.getWardNumber().isPresent()) {
+            wardNumber = source.getWardNumber().get().value.toString();
+        } else {
+            wardNumber = null;
+        }
         medications.addAll(source.getMedications().stream()
                 .map(JsonAdaptedMedication::new)
                 .collect(Collectors.toList()));
