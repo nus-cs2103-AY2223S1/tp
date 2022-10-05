@@ -5,6 +5,7 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
+    "lessonPlan" : "Algorithms",
     "homework": [ "Math workbook", "English worksheet" ],
     "tagged" : [ "friends" ]
   }, {
@@ -12,6 +13,7 @@
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
+    "lessonPlan" : "Trigonometry",
     "homework": [ "science worksheet" ],
     "tagged" : [ "owesMoney", "friends" ]
   }, {
@@ -19,6 +21,7 @@
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "address" : "wall street",
+    "lessonPlan" : "Cell structure",
     "homework": [ ],
     "tagged" : [ ]
   }, {
@@ -26,6 +29,7 @@
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
+    "lessonPlan" : "Chemistry",
     "homework": [ "Mother Tongue homework" ],
     "tagged" : [ "friends" ]
   }, {
@@ -33,6 +37,7 @@
     "phone" : "9482224",
     "email" : "werner@example.com",
     "address" : "michegan ave",
+    "lessonPlan" : "Sec 4 Physics",
     "homework": [ "science worksheet" ],
     "tagged" : [ ]
   }, {
@@ -47,6 +52,7 @@
     "phone" : "9482442",
     "email" : "anna@example.com",
     "address" : "4th street",
+    "lessonPlan" : "Higher chinese",
     "homework": [ ],
     "tagged" : [ ]
   } ]

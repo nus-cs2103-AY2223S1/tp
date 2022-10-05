@@ -4,13 +4,15 @@
     "phone": "94351253",
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
+    "lessonPlan" : "Algorithms",
     "homework": [ "science worksheet" ],
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
-    "homework": [ "science worksheet" ],
-    "address": "4th street"
+    "address": "4th street",
+    "lessonPlan" : "Algorithms",
+    "homework": [ "science worksheet" ]
   } ]
 }
