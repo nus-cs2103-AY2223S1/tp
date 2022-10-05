@@ -1,13 +1,11 @@
 package seedu.address.storage;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.client.Client;
 import seedu.address.model.meeting.Description;
 import seedu.address.model.meeting.Meeting;
@@ -93,8 +91,8 @@ class JsonAdaptedMeeting {
      */
     public Meeting toModelType(Client client) throws IllegalValueException {
         Description modelDescription = new Description(description);
-        MeetingDate modelMeetingDate = new MeetingDate(LocalDate.of(2022, 10, 04));
-        MeetingTime modelMeetingTime = new MeetingTime(LocalTime.of(10, 10));
+        MeetingDate modelMeetingDate = ParserUtil.parseDate(meetingDate);
+        MeetingTime modelMeetingTime = ParserUtil.parseTime(meetingTime);
         return new Meeting(client, modelDescription, modelMeetingDate, modelMeetingTime);
     }
 
