@@ -4,8 +4,6 @@ public class Weight {
 
     public static String UNIT = "kg";
 
-
-
     private final double value;
 
     Weight(double value) {
