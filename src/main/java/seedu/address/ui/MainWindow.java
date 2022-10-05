@@ -40,6 +40,8 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private HelpPanel helpPanel;
+    private DetailHelpPanel detailHelpPanel;
 
     private MainPanel currentMainPanel;
     private Stack<MainPanel> mainPanelHistory = new Stack<>();
@@ -75,6 +77,9 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        helpPanel = new HelpPanel();
+        detailHelpPanel = new DetailHelpPanel();
     }
 
     public Stage getPrimaryStage() {
@@ -190,7 +195,11 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleHelp() {
-        switchMainPanel(new HelpPanel(), true);
+        if (currentMainPanel.getPanelName() == MainPanelName.List) {
+            switchMainPanel(helpPanel, true);
+        } else if (currentMainPanel.getPanelName() == MainPanelName.Detail) {
+            switchMainPanel(detailHelpPanel, true);
+        }
     }
 
     void show() {

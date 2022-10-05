@@ -3,16 +3,16 @@ package seedu.address.ui;
 /**
  * A ui for the status bar that is displayed at the header of the application.
  */
-public class HelpPanel extends MainPanel {
+public class DetailHelpPanel extends MainPanel {
 
-    private static final String FXML = "HelpPanel.fxml";
+    private static final String FXML = "DetailHelpPanel.fxml";
 
-    public HelpPanel() {
+    public DetailHelpPanel() {
         super(FXML);
     }
 
     @Override
     public MainPanelName getPanelName() {
-        return MainPanelName.Help;
+        return MainPanelName.DetailHelp;
     }
 }
