@@ -79,6 +79,17 @@ public class DebtList {
     }
 
     /**
+     * Returns a debt list with the elements from {@code list}.
+     * @param list The list of {@code Debt}s to use.
+     * @return The new DebtList.
+     */
+    public static DebtList fromList(List<Debt> list) {
+        DebtList debtList = new DebtList();
+        debtList.debts.addAll(list);
+        return debtList;
+    }
+
+    /**
      * Returns true only if both debts have the same data fields.
      *
      * @param other The other {@code Debt} object to check.
