@@ -7,6 +7,8 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.UniqueClientList;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.NoConflictMeetingList;
 
 /**
  * Wraps all data at the client-book level
@@ -15,6 +17,7 @@ import seedu.address.model.client.UniqueClientList;
 public class ClientBook implements ReadOnlyClientBook {
 
     private final UniqueClientList clients;
+    private final NoConflictMeetingList meetings;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +28,7 @@ public class ClientBook implements ReadOnlyClientBook {
      */
     {
         clients = new UniqueClientList();
+        meetings = new NoConflictMeetingList();
     }
 
     public ClientBook() {}
@@ -91,6 +95,14 @@ public class ClientBook implements ReadOnlyClientBook {
      */
     public void removeClient(Client key) {
         clients.remove(key);
+    }
+
+    /**
+     * Adds a client to the client book.
+     * The client must not already exist in the client book.
+     */
+    public void addMeeting(Meeting meeting) {
+        meetings.add(meeting);
     }
 
     //// util methods
