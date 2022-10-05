@@ -9,8 +9,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
  */
 public class Email {
-
-    public static final String DEFAULT_EMAIL = "ANONYMOUS@gmail.com";
     private static final String SPECIAL_CHARACTERS = "+_.-";
 
     public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
@@ -48,11 +46,13 @@ public class Email {
     }
 
     /**
-     * Returns an Email object containing the default String
-     * @return Email object with the default value field.
+     * Represents an Empty Email.
      */
-    public static Email makeDefaultEmail() {
-        return new Email(DEFAULT_EMAIL);
+    private static class EmptyEmail extends Email {
+        private static final Email EMPTY_EMAIL = new EmptyEmail();
+        private EmptyEmail() {
+            super("");
+        }
     }
 
     /**
