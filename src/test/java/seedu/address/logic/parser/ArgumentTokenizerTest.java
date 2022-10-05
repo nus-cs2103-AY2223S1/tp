@@ -12,6 +12,7 @@ public class ArgumentTokenizerTest {
     private final Prefix unknownPrefix = new Prefix("--u");
     private final Prefix pSlash = new Prefix("p/");
     private final Prefix dashT = new Prefix("-t");
+    private final Prefix dash = new Prefix("-");
     private final Prefix hatQ = new Prefix("^Q");
 
     @Test
@@ -29,6 +30,14 @@ public class ArgumentTokenizerTest {
 
     private void assertPreambleEmpty(ArgumentMultimap argMultimap) {
         assertTrue(argMultimap.getPreamble().isEmpty());
+    }
+
+    private void assertOptionsArgsPresent(ArgumentMultimap argMultimap, String expectedOptionArgs) {
+        assertEquals(expectedOptionArgs, argMultimap.getOptionArgs());
+    }
+
+    private void assertOptionsArgsEmpty(ArgumentMultimap argMultimap) {
+        assertTrue(argMultimap.getOptionArgs().isEmpty());
     }
 
     /**
@@ -60,7 +69,6 @@ public class ArgumentTokenizerTest {
 
         // Same string expected as preamble, but leading/trailing spaces should be trimmed
         assertPreamblePresent(argMultimap, argsString.trim());
-
     }
 
     @Test
@@ -134,6 +142,38 @@ public class ArgumentTokenizerTest {
         assertArgumentAbsent(argMultimap, pSlash);
         assertArgumentPresent(argMultimap, dashT, "not joined^Qjoined");
         assertArgumentAbsent(argMultimap, hatQ);
+    }
+
+    @Test
+    public void tokenize_dashPrefix() {
+        // Dash prefix with value
+        String argsString = " -dash Value";
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(argsString, dash);
+        assertArgumentPresent(argMultimap, dash, "dash Value");
+        assertPreambleEmpty(argMultimap);
+        assertOptionsArgsPresent(argMultimap, "Value");
+
+        // Dash prefix without value
+        argsString = "Preamble -dash ";
+        argMultimap = ArgumentTokenizer.tokenize(argsString, dash);
+        assertArgumentPresent(argMultimap, dash, "dash");
+        assertPreamblePresent(argMultimap, "Preamble");
+        assertOptionsArgsEmpty(argMultimap);
+
+        // Dash prefix with value, white space ignored
+        argsString = " -dash            Value";
+        argMultimap = ArgumentTokenizer.tokenize(argsString, dash);
+        assertArgumentPresent(argMultimap, dash, "dash            Value");
+        assertPreambleEmpty(argMultimap);
+        assertOptionsArgsPresent(argMultimap, "Value");
+
+        // Repeated dash prefix
+        argsString = " -dashOne Value One -dashTwo Value Two";
+        argMultimap = ArgumentTokenizer.tokenize(argsString, dash);
+        assertArgumentPresent(argMultimap, dash, "dashOne Value One", "dashTwo Value Two");
+        assertPreambleEmpty(argMultimap);
+        assertOptionsArgsPresent(argMultimap, "Value Two");
+
     }
 
     @Test
