@@ -12,6 +12,7 @@ import seedu.address.model.person.Person;
 /**
  * An UI component that displays information of a {@code Person}.
  * TODO: Delete class once Client, Issue and Project have been hooked up to UI
+ * TODO: Refactor Card classes to incorporate polymorphism
  */
 public class PersonCard extends UiPart<Region> {
 
