@@ -134,7 +134,7 @@ public class Customer {
     }
 
     /**
-     * Copy of customer with new commissions.
+     * Copies customer with new commissions.
      * @param commissions New set of commissions for customer.
      * @return New copied instance of customer.
      */
@@ -143,7 +143,6 @@ public class Customer {
                 .setCommissions(commissions);
         getAddress().ifPresent(customerBuilder::setAddress);
         return customerBuilder.build();
-
     }
 
     /**
@@ -190,7 +189,5 @@ public class Customer {
         public Customer build() {
             return new Customer(this);
         }
-
-
     }
 }

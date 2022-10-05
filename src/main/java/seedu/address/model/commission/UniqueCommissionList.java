@@ -92,7 +92,7 @@ public class UniqueCommissionList implements Iterable<Commission> {
      */
     public void setCommissions(List<Commission> commissions) {
         requireAllNonNull(commissions);
-        if (!commissionsAreUnique(commissions)) {
+        if (!areCommissionsUnique(commissions)) {
             throw new DuplicateCommissionException();
         }
 
@@ -126,7 +126,7 @@ public class UniqueCommissionList implements Iterable<Commission> {
     /**
      * Returns true if {@code commissions} contains only unique commissions.
      */
-    private boolean commissionsAreUnique(List<Commission> commissions) {
+    private boolean areCommissionsUnique(List<Commission> commissions) {
         for (int i = 0; i < commissions.size() - 1; i++) {
             for (int j = i + 1; j < commissions.size(); j++) {
                 if (commissions.get(i).isSameCommission(commissions.get(j))) {

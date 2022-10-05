@@ -122,7 +122,6 @@ public class JsonAdaptedCommission {
 
         return new Commission(modelTitle, modelDescription, modelFee, modelDeadline, modelTags, modelCompletionStatus,
                 null);
-
     }
 
 }
