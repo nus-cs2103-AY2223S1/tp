@@ -40,6 +40,14 @@
           <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
         </VBox>
 
+<!--        \\\\\\\\\\\\ Commented out attempt at Policy list panel \\\\\\\\\\\-->
+<!--        <VBox fx:id="policyList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">-->
+<!--          <padding>-->
+<!--            <Insets top="10" right="10" bottom="10" left="10" />-->
+<!--          </padding>-->
+<!--          <StackPane fx:id="policyListPanelPlaceholder" VBox.vgrow="ALWAYS"/>-->
+<!--        </VBox>-->
+
         <StackPane fx:id="commandBoxPlaceholder" style="-fx-background-color: FFCFC0; -fx-min-width: 300" styleClass="command-box" VBox.vgrow="NEVER">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />

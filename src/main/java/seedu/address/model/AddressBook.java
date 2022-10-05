@@ -10,6 +10,8 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.UniqueClientList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.policy.Policy;
+import seedu.address.model.policy.UniquePolicyList;
 
 
 /**
@@ -20,6 +22,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final UniqueClientList clients; //TODO: implement Unique Client list
+    private final UniquePolicyList policies;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -31,6 +34,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
         clients = new UniqueClientList();
+        policies = new UniquePolicyList();
 
     }
 
@@ -54,8 +58,20 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.persons.setPersons(persons);
     }
 
+    /**
+     * Replaces the contents of the client list with {@code clients}.
+     * {@code clients} must not contain duplicate clients.
+     */
     public void setClients(List<Client> clients) {
         this.clients.setClients(clients);
+    }
+
+    /**
+     * Replaces the contents of the client list with {@code clients}.
+     * {@code clients} must not contain duplicate clients.
+     */
+    public void setPolicies(List<Policy> policies) {
+        this.policies.setPolicies(policies);
     }
 
     /**
@@ -66,6 +82,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setPersons(newData.getPersonList());
         setClients(newData.getClientList());
+        setPolicies(newData.getPolicyList());
     }
 
     //// person-level operations
@@ -126,6 +143,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
+    //client level operations
+
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
@@ -146,18 +165,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public ObservableList<Client> getClientList() {
         return clients.asUnmodifiableObservableList();
     }
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons)
-                && clients.equals(((AddressBook) other).clients));
-    }
-
-    @Override
-    public int hashCode() {
-        return persons.hashCode() + clients.hashCode();
-    }
 
     public void removeClient(Client client) {
         clients.remove(client);
@@ -171,4 +178,57 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setClient(Client target, Client editedClient) {
 
     }
+
+    //policy level operations
+
+    /**
+     * Returns true if a policy with the same identity as {@code policy} exists in the address book.
+     */
+    public boolean hasPolicy(Policy policy) {
+        requireNonNull(policy);
+        return policies.contains(policy);
+    }
+
+    /**
+     * Adds a policy to the address book.
+     * The policy must not already exist in the address book.
+     */
+    public void addPolicy(Policy policy) {
+        policies.add(policy);
+    }
+
+    @Override
+    public ObservableList<Policy> getPolicyList() {
+        return policies.asUnmodifiableObservableList();
+    }
+
+    public void removePolicy(Policy policy) {
+        policies.remove(policy);
+    }
+
+    /**
+     * Replaces the given policy {@code target} in the list with {@code editedPolicy}.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedPolicy} must not be the same as another existing policy in the address book.
+     */
+    public void setPolicy(Policy target, Policy editedPolicy) {
+        requireNonNull(editedPolicy);
+
+        policies.setPolicy(target, editedPolicy);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AddressBook // instanceof handles nulls
+                && persons.equals(((AddressBook) other).persons)
+                && clients.equals(((AddressBook) other).clients)
+                && policies.equals(((AddressBook) other).policies));
+    }
+
+    @Override
+    public int hashCode() {
+        return persons.hashCode() + clients.hashCode() + policies.hashCode();
+    }
+
 }

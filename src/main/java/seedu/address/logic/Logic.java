@@ -10,6 +10,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.client.Client;
 import seedu.address.model.person.Person;
+import seedu.address.model.policy.Policy;
 
 /**
  * API of the Logic component
@@ -34,7 +35,11 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
 
+    /** Returns an unmodifiable view of the filtered list of Clients */
+    ObservableList<Client> getFilteredClientList();
 
+    /** Returns an unmodifiable view of the filtered list of policies */
+    ObservableList<Policy> getFilteredPolicyList();
 
     /**
      * Returns the user prefs' address book file path.
@@ -51,6 +56,4 @@ public interface Logic {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
-    /** Returns an unmodifiable view of the filtered list of Clients */
-    ObservableList<Client> getFilteredClientList();
 }

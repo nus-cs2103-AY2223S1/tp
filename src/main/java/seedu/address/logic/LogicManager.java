@@ -16,6 +16,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.client.Client;
 import seedu.address.model.person.Person;
+import seedu.address.model.policy.Policy;
 import seedu.address.storage.Storage;
 
 /**
@@ -66,6 +67,16 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Client> getFilteredClientList() {
+        return model.getFilteredClientList();
+    }
+
+    @Override
+    public ObservableList<Policy> getFilteredPolicyList() {
+        return model.getFilteredPolicyList();
+    }
+
+    @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();
     }
@@ -80,8 +91,4 @@ public class LogicManager implements Logic {
         model.setGuiSettings(guiSettings);
     }
 
-    @Override
-    public ObservableList<Client> getFilteredClientList() {
-        return model.getFilteredClientList();
-    }
 }
