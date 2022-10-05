@@ -264,6 +264,8 @@ Inventory managers who are proficient with typing for small F&B businesses
 
 
 **Value proposition**:  
+This application will help small businesses to manage perishable goods within a single inventory
+(no support for multiple inventories).
 
 
 ### User stories
