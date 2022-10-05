@@ -5,6 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import static seedu.address.logic.parser.ArgumentTokenizer.PrefixArgument;
+
+import java.util.List;
+import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 public class ArgumentTokenizerTest {
@@ -23,12 +27,29 @@ public class ArgumentTokenizerTest {
         assertArgumentAbsent(argMultimap, pSlash);
     }
 
+    @Test
+    public void tokenizeToList_emptyArgsString_noValues() {
+        String argsString = "  ";
+        List<PrefixArgument> list = ArgumentTokenizer.tokenizeToList(argsString, pSlash);
+
+        assertPreambleEmpty(list);
+        assertArgumentAbsent(list, pSlash);
+    }
+
     private void assertPreamblePresent(ArgumentMultimap argMultimap, String expectedPreamble) {
         assertEquals(expectedPreamble, argMultimap.getPreamble());
     }
 
+    private void assertPreamblePresent(List<PrefixArgument> list, String expectedPreamble) {
+        assertEquals(expectedPreamble, list.get(0).getArgument());
+    }
+
     private void assertPreambleEmpty(ArgumentMultimap argMultimap) {
         assertTrue(argMultimap.getPreamble().isEmpty());
+    }
+
+    private void assertPreambleEmpty(List<PrefixArgument> list) {
+        assertTrue(list.get(0).getArgument().isEmpty());
     }
 
     /**
@@ -49,8 +70,28 @@ public class ArgumentTokenizerTest {
         }
     }
 
+    /**
+     * Asserts all the arguments in {@code List} with {@code prefix} match the {@code expectedValues}.
+     */
+    private void assertArgumentPresent(List<PrefixArgument> list, Prefix prefix, String... expectedValues) {
+        List<PrefixArgument> filtered = list.stream().filter((pa) -> pa.getPrefix().equals(prefix))
+            .collect(Collectors.toList());
+
+        // Verify the number of values returned is as expected
+        assertEquals(expectedValues.length, filtered.size());
+
+        // Verify all values returned are as expected and in order
+        for (int i = 0; i < expectedValues.length; i++) {
+            assertEquals(expectedValues[i], filtered.get(i).getArgument());
+        }
+    }
+
     private void assertArgumentAbsent(ArgumentMultimap argMultimap, Prefix prefix) {
         assertFalse(argMultimap.getValue(prefix).isPresent());
+    }
+
+    private void assertArgumentAbsent(List<PrefixArgument> list, Prefix prefix) {
+        assertFalse(list.stream().anyMatch((pa) -> pa.getPrefix().equals(prefix)));
     }
 
     @Test
@@ -60,6 +101,16 @@ public class ArgumentTokenizerTest {
 
         // Same string expected as preamble, but leading/trailing spaces should be trimmed
         assertPreamblePresent(argMultimap, argsString.trim());
+
+    }
+
+    @Test
+    public void tokenizeToList_noPrefixes_allTakenAsPreamble() {
+        String argsString = "  some random string /t tag with leading and trailing spaces ";
+        List<PrefixArgument> list = ArgumentTokenizer.tokenizeToList(argsString);
+
+        // Same string expected as preamble, but leading/trailing spaces should be trimmed
+        assertPreamblePresent(list, argsString.trim());
 
     }
 
@@ -76,6 +127,22 @@ public class ArgumentTokenizerTest {
         argMultimap = ArgumentTokenizer.tokenize(argsString, pSlash);
         assertPreambleEmpty(argMultimap);
         assertArgumentPresent(argMultimap, pSlash, "Argument value");
+
+    }
+
+    @Test
+    public void tokenizeToList_oneArgument() {
+        // Preamble present
+        String argsString = "  Some preamble string p/ Argument value ";
+        List<PrefixArgument> list = ArgumentTokenizer.tokenizeToList(argsString, pSlash);
+        assertPreamblePresent(list, "Some preamble string");
+        assertArgumentPresent(list, pSlash, "Argument value");
+
+        // No preamble
+        argsString = " p/   Argument value ";
+        list = ArgumentTokenizer.tokenizeToList(argsString, pSlash);
+        assertPreambleEmpty(list);
+        assertArgumentPresent(list, pSlash, "Argument value");
 
     }
 
@@ -116,6 +183,42 @@ public class ArgumentTokenizerTest {
     }
 
     @Test
+    public void tokenizeToList_multipleArguments() {
+        // Only two arguments are present
+        String argsString = "SomePreambleString -t dashT-Value p/pSlash value";
+        List<PrefixArgument> list = ArgumentTokenizer.tokenizeToList(argsString, pSlash, dashT, hatQ);
+        assertPreamblePresent(list, "SomePreambleString");
+        assertArgumentPresent(list, pSlash, "pSlash value");
+        assertArgumentPresent(list, dashT, "dashT-Value");
+        assertArgumentAbsent(list, hatQ);
+
+        // All three arguments are present
+        argsString = "Different Preamble String ^Q111 -t dashT-Value p/pSlash value";
+        list = ArgumentTokenizer.tokenizeToList(argsString, pSlash, dashT, hatQ);
+        assertPreamblePresent(list, "Different Preamble String");
+        assertArgumentPresent(list, pSlash, "pSlash value");
+        assertArgumentPresent(list, dashT, "dashT-Value");
+        assertArgumentPresent(list, hatQ, "111");
+
+        /* Also covers: Reusing of the tokenizer multiple times */
+
+        // Reuse tokenizer on an empty string to ensure ArgumentMultimap is correctly reset
+        // (i.e. no stale values from the previous tokenizing remain)
+        argsString = "";
+        list = ArgumentTokenizer.tokenizeToList(argsString, pSlash, dashT, hatQ);
+        assertPreambleEmpty(list);
+        assertArgumentAbsent(list, pSlash);
+
+        /* Also covers: testing for prefixes not specified as a prefix */
+
+        // Prefixes not previously given to the tokenizer should not return any values
+        argsString = unknownPrefix + "some value";
+        list = ArgumentTokenizer.tokenizeToList(argsString, pSlash, dashT, hatQ);
+        assertArgumentAbsent(list, unknownPrefix);
+        assertPreamblePresent(list, argsString); // Unknown prefix is taken as part of preamble
+    }
+
+    @Test
     public void tokenize_multipleArgumentsWithRepeats() {
         // Two arguments repeated, some have empty values
         String argsString = "SomePreambleString -t dashT-Value ^Q ^Q -t another dashT value p/ pSlash value -t";
@@ -127,6 +230,17 @@ public class ArgumentTokenizerTest {
     }
 
     @Test
+    public void tokenizeToList_multipleArgumentsWithRepeats() {
+        // Two arguments repeated, some have empty values
+        String argsString = "SomePreambleString -t dashT-Value ^Q ^Q -t another dashT value p/ pSlash value -t";
+        List<PrefixArgument> list = ArgumentTokenizer.tokenizeToList(argsString, pSlash, dashT, hatQ);
+        assertPreamblePresent(list, "SomePreambleString");
+        assertArgumentPresent(list, pSlash, "pSlash value");
+        assertArgumentPresent(list, dashT, "dashT-Value", "another dashT value", "");
+        assertArgumentPresent(list, hatQ, "", "");
+    }
+
+    @Test
     public void tokenize_multipleArgumentsJoined() {
         String argsString = "SomePreambleStringp/ pSlash joined-tjoined -t not joined^Qjoined";
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(argsString, pSlash, dashT, hatQ);
@@ -134,6 +248,16 @@ public class ArgumentTokenizerTest {
         assertArgumentAbsent(argMultimap, pSlash);
         assertArgumentPresent(argMultimap, dashT, "not joined^Qjoined");
         assertArgumentAbsent(argMultimap, hatQ);
+    }
+
+    @Test
+    public void tokenizeToList_multipleArgumentsJoined() {
+        String argsString = "SomePreambleStringp/ pSlash joined-tjoined -t not joined^Qjoined";
+        List<PrefixArgument> list = ArgumentTokenizer.tokenizeToList(argsString, pSlash, dashT, hatQ);
+        assertPreamblePresent(list, "SomePreambleStringp/ pSlash joined-tjoined");
+        assertArgumentAbsent(list, pSlash);
+        assertArgumentPresent(list, dashT, "not joined^Qjoined");
+        assertArgumentAbsent(list, hatQ);
     }
 
     @Test
