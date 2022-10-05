@@ -2,7 +2,7 @@ package seedu.address.model.meeting;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import seedu.address.model.person.Client;
+import seedu.address.model.client.Client;
 
 /**
  * Represents a Meeting in MyInsuRec.
