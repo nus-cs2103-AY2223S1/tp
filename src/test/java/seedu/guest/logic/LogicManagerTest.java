@@ -44,10 +44,10 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonGuestBookStorage addressBookStorage =
-                new JsonGuestBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonGuestBookStorage guestBookStorage =
+                new JsonGuestBookStorage(temporaryFolder.resolve("guestBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(guestBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -71,12 +71,12 @@ public class LogicManagerTest {
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonGuestBookStorage addressBookStorage =
-                new JsonGuestBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        // Setup LogicManager with JsonGuestBookIoExceptionThrowingStub
+        JsonGuestBookStorage guestBookStorage =
+                new JsonGuestBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionGuestBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(guestBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -157,7 +157,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveGuestBook(ReadOnlyGuestBook addressBook, Path filePath) throws IOException {
+        public void saveGuestBook(ReadOnlyGuestBook guestBook, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

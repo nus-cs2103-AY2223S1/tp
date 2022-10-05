@@ -9,7 +9,7 @@ import static seedu.guest.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.guest.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.guest.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.guest.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.guest.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.guest.logic.commands.CommandTestUtil.showGuestAtIndex;
 import static seedu.guest.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.guest.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.guest.testutil.TypicalPersons.getTypicalAddressBook;
@@ -50,16 +50,16 @@ public class EditCommandTest {
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastPerson = Index.fromOneBased(model.getFilteredGuestList().size());
-        Guest lastGuest = model.getFilteredGuestList().get(indexLastPerson.getZeroBased());
+        Index indexLastGuest = Index.fromOneBased(model.getFilteredGuestList().size());
+        Guest lastGuest = model.getFilteredGuestList().get(indexLastGuest.getZeroBased());
 
-        GuestBuilder personInList = new GuestBuilder(lastGuest);
-        Guest editedGuest = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+        PersonBuilder guestInList = new PersonBuilder(lastGuest);
+        Guest editedGuest = guestInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
         EditGuestDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
-        EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
+        EditCommand editCommand = new EditCommand(indexLastGuest, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_GUEST_SUCCESS, editedGuest);
 
@@ -83,7 +83,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_filteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showGuestAtIndex(model, INDEX_FIRST_PERSON);
 
         Guest guestInFilteredList = model.getFilteredGuestList().get(INDEX_FIRST_PERSON.getZeroBased());
         Guest editedGuest = new GuestBuilder(guestInFilteredList).withName(VALID_NAME_BOB).build();
@@ -99,7 +99,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_duplicatePersonUnfilteredList_failure() {
+    public void execute_duplicateGuestUnfilteredList_failure() {
         Guest firstGuest = model.getFilteredGuestList().get(INDEX_FIRST_PERSON.getZeroBased());
         EditCommand.EditGuestDescriptor descriptor = new EditPersonDescriptorBuilder(firstGuest).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_PERSON, descriptor);
@@ -108,10 +108,10 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_duplicatePersonFilteredList_failure() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+    public void execute_duplicateGuestFilteredList_failure() {
+        showGuestAtIndex(model, INDEX_FIRST_PERSON);
 
-        // edit person in filtered list into a duplicate in address book
+        // edit guest in filtered list into a duplicate in guest book
         Guest guestInList = model.getGuestBook().getGuestList().get(INDEX_SECOND_PERSON.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
                 new EditPersonDescriptorBuilder(guestInList).build());
@@ -120,7 +120,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_invalidPersonIndexUnfilteredList_failure() {
+    public void execute_invalidGuestIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredGuestList().size() + 1);
         EditGuestDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
@@ -130,13 +130,13 @@ public class EditCommandTest {
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
+     * but smaller than size of guest book
      */
     @Test
-    public void execute_invalidPersonIndexFilteredList_failure() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+    public void execute_invalidGuestIndexFilteredList_failure() {
+        showGuestAtIndex(model, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of guest book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getGuestBook().getGuestList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,

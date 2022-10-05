@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.guest.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.guest.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.guest.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.guest.logic.commands.CommandTestUtil.showGuestAtIndex;
 import static seedu.guest.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.guest.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.guest.testutil.TypicalPersons.getTypicalAddressBook;
@@ -49,7 +49,7 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showGuestAtIndex(model, INDEX_FIRST_PERSON);
 
         Guest guestToDelete = model.getFilteredGuestList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
@@ -58,17 +58,17 @@ public class DeleteCommandTest {
 
         Model expectedModel = new ModelManager(model.getGuestBook(), new UserPrefs());
         expectedModel.deleteGuest(guestToDelete);
-        showNoPerson(expectedModel);
+        showNoGuest(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showGuestAtIndex(model, INDEX_FIRST_PERSON);
 
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of guest book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getGuestBook().getGuestList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
@@ -94,14 +94,14 @@ public class DeleteCommandTest {
         // null -> returns false
         assertFalse(deleteFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different guest -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 
     /**
      * Updates {@code model}'s filtered list to show no one.
      */
-    private void showNoPerson(Model model) {
+    private void showNoGuest(Model model) {
         model.updateFilteredGuestList(p -> false);
 
         assertTrue(model.getFilteredGuestList().isEmpty());

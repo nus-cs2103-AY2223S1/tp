@@ -106,7 +106,7 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
+     * - the guest book, filtered guest list and selected guest in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
@@ -119,10 +119,10 @@ public class CommandTestUtil {
         assertEquals(expectedFilteredList, actualModel.getFilteredGuestList());
     }
     /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * Updates {@code model}'s filtered list to show only the guest at the given {@code targetIndex} in the
+     * {@code model}'s guest book.
      */
-    public static void showPersonAtIndex(Model model, Index targetIndex) {
+    public static void showGuestAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredGuestList().size());
 
         Guest guest = model.getFilteredGuestList().get(targetIndex.getZeroBased());
