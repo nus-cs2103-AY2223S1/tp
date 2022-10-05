@@ -96,6 +96,9 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Gender} of the {@code Person} that we are building.
+     */
     public PersonBuilder withGender(String gender) {
         this.gender = new Gender(gender);
         return this;
