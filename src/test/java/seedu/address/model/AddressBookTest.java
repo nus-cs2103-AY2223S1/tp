@@ -22,6 +22,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.client.Client;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.policy.Policy;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
@@ -52,7 +53,8 @@ public class AddressBookTest {
                 .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         List<Client> newClients = new ArrayList<>();
-        AddressBookStub newData = new AddressBookStub(newPersons, newClients);
+        List<Policy> newPolicies = new ArrayList<>();
+        AddressBookStub newData = new AddressBookStub(newPersons, newClients, newPolicies);
 
         assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
     }
@@ -93,10 +95,12 @@ public class AddressBookTest {
 
         private final ObservableList<Client> clients = FXCollections.observableArrayList();
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Policy> policies = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Person> persons, Collection<Client> clients) {
+        AddressBookStub(Collection<Person> persons, Collection<Client> clients, Collection<Policy> policies) {
             this.persons.setAll(persons);
             this.clients.setAll(clients);
+            this.policies.setAll(policies);
         }
 
         @Override
@@ -107,6 +111,11 @@ public class AddressBookTest {
         @Override
         public ObservableList<Client> getClientList() {
             return clients;
+        }
+
+        @Override
+        public ObservableList<Policy> getPolicyList() {
+            return policies;
         }
     }
 
