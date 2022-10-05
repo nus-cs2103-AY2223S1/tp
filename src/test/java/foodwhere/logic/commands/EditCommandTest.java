@@ -4,7 +4,6 @@ import static foodwhere.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import foodwhere.model.stall.Stall;
 import org.junit.jupiter.api.Test;
 
 import foodwhere.commons.core.Messages;
@@ -13,6 +12,7 @@ import foodwhere.model.AddressBook;
 import foodwhere.model.Model;
 import foodwhere.model.ModelManager;
 import foodwhere.model.UserPrefs;
+import foodwhere.model.stall.Stall;
 import foodwhere.testutil.EditStallDescriptorBuilder;
 import foodwhere.testutil.StallBuilder;
 import foodwhere.testutil.TypicalIndexes;

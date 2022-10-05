@@ -8,8 +8,8 @@ import foodwhere.logic.commands.EditCommand;
 import foodwhere.model.detail.Detail;
 import foodwhere.model.stall.Address;
 import foodwhere.model.stall.Name;
-import foodwhere.model.stall.Stall;
 import foodwhere.model.stall.Phone;
+import foodwhere.model.stall.Stall;
 
 /**
  * A utility class to help with building EditStallDescriptor objects.

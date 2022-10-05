@@ -22,7 +22,6 @@ import static foodwhere.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static foodwhere.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static foodwhere.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
-import foodwhere.model.stall.Stall;
 import org.junit.jupiter.api.Test;
 
 import foodwhere.commons.core.Messages;
@@ -31,6 +30,7 @@ import foodwhere.model.detail.Detail;
 import foodwhere.model.stall.Address;
 import foodwhere.model.stall.Name;
 import foodwhere.model.stall.Phone;
+import foodwhere.model.stall.Stall;
 import foodwhere.testutil.StallBuilder;
 import foodwhere.testutil.TypicalStalls;
 

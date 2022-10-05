@@ -9,8 +9,8 @@ import foodwhere.model.ReadOnlyAddressBook;
 import foodwhere.model.detail.Detail;
 import foodwhere.model.stall.Address;
 import foodwhere.model.stall.Name;
-import foodwhere.model.stall.Stall;
 import foodwhere.model.stall.Phone;
+import foodwhere.model.stall.Stall;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.

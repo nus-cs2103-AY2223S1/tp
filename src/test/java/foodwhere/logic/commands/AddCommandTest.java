@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
-import foodwhere.model.stall.Stall;
 import org.junit.jupiter.api.Test;
 
 import foodwhere.commons.core.GuiSettings;
@@ -20,6 +19,7 @@ import foodwhere.model.AddressBook;
 import foodwhere.model.Model;
 import foodwhere.model.ReadOnlyAddressBook;
 import foodwhere.model.ReadOnlyUserPrefs;
+import foodwhere.model.stall.Stall;
 import foodwhere.testutil.StallBuilder;
 import javafx.collections.ObservableList;
 

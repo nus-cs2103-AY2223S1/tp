@@ -13,8 +13,8 @@ import foodwhere.commons.exceptions.IllegalValueException;
 import foodwhere.model.detail.Detail;
 import foodwhere.model.stall.Address;
 import foodwhere.model.stall.Name;
-import foodwhere.model.stall.Stall;
 import foodwhere.model.stall.Phone;
+import foodwhere.model.stall.Stall;
 
 /**
  * Jackson-friendly version of {@link Stall}.

@@ -10,7 +10,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.io.IOException;
 import java.nio.file.Path;
 
-import foodwhere.model.stall.Stall;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -25,6 +24,7 @@ import foodwhere.model.Model;
 import foodwhere.model.ModelManager;
 import foodwhere.model.ReadOnlyAddressBook;
 import foodwhere.model.UserPrefs;
+import foodwhere.model.stall.Stall;
 import foodwhere.storage.JsonAddressBookStorage;
 import foodwhere.storage.JsonUserPrefsStorage;
 import foodwhere.storage.StorageManager;

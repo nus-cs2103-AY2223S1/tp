@@ -10,8 +10,8 @@ import foodwhere.logic.parser.exceptions.ParseException;
 import foodwhere.model.detail.Detail;
 import foodwhere.model.stall.Address;
 import foodwhere.model.stall.Name;
-import foodwhere.model.stall.Stall;
 import foodwhere.model.stall.Phone;
+import foodwhere.model.stall.Stall;
 
 /**
  * Parses input arguments and creates a new AddCommand object

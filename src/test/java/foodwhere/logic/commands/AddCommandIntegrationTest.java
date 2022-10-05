@@ -3,13 +3,13 @@ package foodwhere.logic.commands;
 import static foodwhere.logic.commands.CommandTestUtil.assertCommandFailure;
 import static foodwhere.logic.commands.CommandTestUtil.assertCommandSuccess;
 
-import foodwhere.model.stall.Stall;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import foodwhere.model.Model;
 import foodwhere.model.ModelManager;
 import foodwhere.model.UserPrefs;
+import foodwhere.model.stall.Stall;
 import foodwhere.testutil.StallBuilder;
 import foodwhere.testutil.TypicalStalls;
 
