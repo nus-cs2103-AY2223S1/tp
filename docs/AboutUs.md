@@ -50,8 +50,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Tan Shao Ning
 
-<img src="images/johndoe.png" width="200px">
-(no image yet i'll add later)
+<img src="images/ningtan11.png" width="200px">
+(placeholder image)
 [[github](http://github.com/ningtan11)]
 [[portfolio](team/ningtan11.md)]
 
