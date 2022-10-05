@@ -1,22 +1,19 @@
-package bookface.logic.commands;
+package bookface.logic.commands.list;
 
 import static java.util.Objects.requireNonNull;
 
+import bookface.logic.commands.CommandResult;
 import bookface.model.Model;
 
 /**
  * Lists all users in the user list to the user.
  */
-public class ListUsersCommand extends Command {
+public class ListUsersCommand extends ListCommand {
 
-    public static final String COMMAND_WORD = "list";
+    public static final String COMMAND_WORD = "users";
 
-    public static final String COMMAND_WORD_USER = " users";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + COMMAND_WORD_USER
-            + ": List all users.\n"
-            + "Example: " + COMMAND_WORD + COMMAND_WORD_USER;
+    public static final String MESSAGE_USAGE = ListCommand.COMMAND_WORD + " " + COMMAND_WORD
+                    + ": List all users.\n" + "Example: " + ListCommand.COMMAND_WORD + " " + COMMAND_WORD;
 
     public static final String MESSAGE_SUCCESS = "Listed all users";
 

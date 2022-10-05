@@ -15,8 +15,8 @@ import org.junit.jupiter.api.io.TempDir;
 
 import bookface.logic.commands.CommandResult;
 import bookface.logic.commands.CommandTestUtil;
-import bookface.logic.commands.ListUsersCommand;
 import bookface.logic.commands.exceptions.CommandException;
+import bookface.logic.commands.list.ListUsersCommand;
 import bookface.logic.parser.exceptions.ParseException;
 import bookface.model.Model;
 import bookface.model.ModelManager;
@@ -34,7 +34,7 @@ public class LogicManagerTest {
     @TempDir
     public Path temporaryFolder;
 
-    private Model model = new ModelManager();
+    private final Model model = new ModelManager();
     private Logic logic;
 
     @BeforeEach

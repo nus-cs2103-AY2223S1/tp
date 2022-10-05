@@ -1,4 +1,4 @@
-package bookface.logic.parser;
+package bookface.logic.parser.delete;
 
 import static bookface.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static bookface.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -6,23 +6,23 @@ import static bookface.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
 
-import bookface.logic.commands.DeleteUserCommand;
+import bookface.logic.commands.delete.DeleteUserCommand;
 import bookface.testutil.TypicalIndexes;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
- * outside of the DeleteCommand code. For example, inputs "1" and "1 abc" take the
+ * outside the DeleteCommand code. For example, inputs "1" and "1 abc" take the
  * same path through the DeleteCommand, and therefore we test only one of them.
  * The path variation for those two cases occur inside the ParserUtil, and
  * therefore should be covered by the ParserUtilTest.
  */
-public class DeleteUserCommandParserTest {
+public class DeleteUserArgumentsParserTest {
 
-    private DeleteCommandParser parser = new DeleteCommandParser();
+    private final DeleteUserArgumentsParser parser = new DeleteUserArgumentsParser();
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "user 1", new DeleteUserCommand(TypicalIndexes.INDEX_FIRST_PERSON));
+        assertParseSuccess(parser, "1", new DeleteUserCommand(TypicalIndexes.INDEX_FIRST_PERSON));
     }
 
     @Test

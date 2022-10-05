@@ -14,7 +14,7 @@ end box
 [-> LogicManager : execute(undo)
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(undo)
+LogicManager -> AddressBookParser : parse(undo)
 activate AddressBookParser
 
 create UndoCommand
