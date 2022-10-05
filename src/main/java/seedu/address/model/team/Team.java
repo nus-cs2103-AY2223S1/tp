@@ -1,6 +1,7 @@
 package seedu.address.model.team;
 
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -18,6 +19,7 @@ public class Team {
     // Identity fields
     private final Name name;
     private ArrayList<Person> members;
+    private ArrayList<Task> tasks;
 
 
 
@@ -41,6 +43,10 @@ public class Team {
         if (members.contains(p)) {
             members.remove(p);
         }
+    }
+
+    public void addTasK(Task t) {
+        tasks.add(t);
     }
 
     /**

@@ -25,7 +25,7 @@ public class CreateTeamCommand extends Command {
             + PREFIX_TEAM_NAME + "NAME ";
 
     public static final String MESSAGE_SUCCESS = "New team added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This team already exists";
+    public static final String MESSAGE_DUPLICATE_TEAM = "This team already exists";
 
     private final Team toAdd;
 
@@ -42,7 +42,7 @@ public class CreateTeamCommand extends Command {
         requireNonNull(model);
 
         if (model.hasTeam(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_TEAM);
         }
 
         model.addTeam(toAdd);
