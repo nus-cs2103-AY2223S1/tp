@@ -104,10 +104,6 @@ public class UniquePersonList implements Iterable<Person> {
      */
     public void sort(Comparator<Person> comparator) {
         FXCollections.sort(internalList, comparator);
-        for (Person p : internalList) {
-            System.out.println(p.toString());
-        }
-        // need to update the display list?
     }
 
     /**
