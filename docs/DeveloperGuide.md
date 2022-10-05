@@ -274,9 +274,9 @@ Delete Inventory Item:
 Update inventory items:
 1. As a purchasing manager, I can rename my inventory items, so that I can update items with an incorrect name.
 2. As a purchasing manager, I can set the inventory quantity of my items.
-3. As a purchasing manager, I can set the date I bought my inventory, so that I know how long I have been keeping certain items..
+3. As a purchasing manager, I can set the date I bought my inventory, so that I know how long I have been keeping certain items.
 4. As a purchasing manager, I can set the date my inventory will expire, so that I know when certain items need to be consumed or used. 
-5. As a purchasing manager, I can increase the inventory quantity of my items, so that I can keep my stock updated when I purchase new items.. 
+5. As a purchasing manager, I can increase the inventory quantity of my items, so that I can keep my stock updated when I purchase new items.
 6. As a purchasing manager, I can decrease the inventory quantity of my items.
 
 View Inventory Items:
@@ -409,8 +409,8 @@ MSS:
    Extensions:
 
 - 1a. Item does not exist
-  1a1. FoodRem displays an error.
-  1a2. FoodRem asks the user if they want to try again
+  - 1a1. FoodRem displays an error.
+  - 1a2. FoodRem asks the user if they want to try again
 
 #### UC10: Sorting List of Items by Criteria
 
