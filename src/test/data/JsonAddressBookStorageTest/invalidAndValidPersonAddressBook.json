@@ -9,12 +9,44 @@
       "address": "4th street"
     },
     {
+      "name": "Person With Invalid Employee ID Field",
+      "employeeId": "2a",
+      "phone": "9482424",
+      "email": "hans@example.com",
+      "position": "Worker",
+      "address": "4th street"
+    },
+    {
       "name": "Person With Invalid Phone Field",
-      "employeeId": "aaa",
+      "employeeId": "3",
       "phone": "948asdf2424",
       "email": "hans@example.com",
       "position": "Worker",
       "address": "4th street"
+    },
+    {
+      "name": "Person With Invalid Email Field",
+      "employeeId": "4",
+      "phone": "948asdf2424",
+      "email": "h#ns@ex@mple.com",
+      "position": "Worker",
+      "address": "4th street"
+    },
+    {
+      "name": "Person With Invalid Position Field",
+      "employeeId": "5",
+      "phone": "948asdf2424",
+      "email": "hans@example.com",
+      "position": "",
+      "address": "4th street"
+    },
+    {
+      "name": "Person With Invalid Address Field",
+      "employeeId": "6",
+      "phone": "948asdf2424",
+      "email": "hans@example.com",
+      "position": "Worker",
+      "address": ""
     }
   ]
 }
