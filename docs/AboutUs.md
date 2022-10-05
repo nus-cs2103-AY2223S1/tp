@@ -9,51 +9,51 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Ong Wee Marcus
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lfrostbytee.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/lfrostbytee)]
+[[portfolio](team/lfrostbytee.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Deliverables, Scheduling and Tracking
 
-### Johnny Doe
+### Meng Qiaoran
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/qiaoran-m.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/Qiaoran-M)]
+[[portfolio](team/qiaoran-m.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Testing
 
-### James Doe
+### Benjamin Sim
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/benjamin-sim.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/Benjamin-Sim)]
+[[portfolio](team/benjamin-sim.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Code Quality
+
+### Tan Hong Liang
+
+<img src="images/tanhl2000.png" width="200px">
+
+[[github](http://github.com/tanhl2000)] [[portfolio](team/tanhl2000.md)]
+
+* Role: Developer
+* Responsibilities: Integration
+
+### Vinod s/o Jaya Kumar
+
+<img src="images/vinodjayakumar124.png" width="200px">
+
+[[github](http://github.com/Vinodjayakumar124)]
+[[portfolio](team/vinodjayakumar124.md)]
+
+* Role: Developer
+* Responsibilities: Documentation
