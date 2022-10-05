@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.role.Buyer;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,6 +24,7 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private Buyer buyer;
 
     /**
      * Every field must be present and not null.
@@ -34,8 +36,12 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.buyer = null;
     }
 
+    public boolean isBuyer() {
+        return buyer != null;
+    }
     public Name getName() {
         return name;
     }
@@ -60,6 +66,17 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
+    public void setBuyer(Buyer buyer) {
+        this.buyer = buyer;
+    }
+    
+    public String getBuyerRange() {
+        return buyer.getRange();
+    }
+    
+    public String getBuyerCharacteristics() {
+        return buyer.getCharacteristics();
+    }
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.

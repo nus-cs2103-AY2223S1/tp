@@ -13,6 +13,8 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.role.Characteristics;
+import seedu.address.model.role.PriceRange;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -120,5 +122,43 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     */
+    public static PriceRange parsePriceRange(String range) throws ParseException {
+        if (range.isEmpty()) {
+            return null;
+        }
+        String[] rangeArr = range.split("-");
+        if (rangeArr.length != 2) {
+            throw new ParseException(PriceRange.MESSAGE_CONSTRAINTS);
+        }
+        float first;
+        float second;
+        try {
+            first = Float.parseFloat(rangeArr[0].trim());
+            second = Float.parseFloat(rangeArr[1].trim());
+        } catch (NumberFormatException e) {
+            throw new ParseException(PriceRange.MESSAGE_CONSTRAINTS);
+        }
+        float low = Math.min(first, second);
+        float high = Math.max(first, second);
+        return new PriceRange(low, high);
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     */
+    public static Characteristics parseCharacteristics(String characteristics) {
+        if (characteristics.isEmpty()) {
+            return new Characteristics(new String[0]);
+        }
+        String[] charArray = characteristics.split(";");
+        for (int i = 0; i < charArray.length; i++) {
+            charArray[i] = charArray[i].trim();
+        }
+        return new Characteristics(charArray);
     }
 }

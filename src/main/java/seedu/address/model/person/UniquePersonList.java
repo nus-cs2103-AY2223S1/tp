@@ -8,8 +8,10 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.role.Buyer;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
@@ -133,5 +135,10 @@ public class UniquePersonList implements Iterable<Person> {
             }
         }
         return true;
+    }
+
+    public void setContactRole(Name contactName, Buyer buyer) {
+        FilteredList<Person> matchingNamePersons = internalList.filtered(x -> x.getName().equals(contactName));
+        matchingNamePersons.get(0).setBuyer(buyer);
     }
 }
