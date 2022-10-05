@@ -4,8 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import javafx.collections.ObservableList;
@@ -106,7 +108,8 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
         int size = filteredPersons.size();
         String result = filteredPersons.toString();
-        IntStream.range(0, size).mapToObj(x -> filteredPersons.get(x)).forEach(x -> addressBook.removePerson(x));
+        List<Person> list = IntStream.range(0, size).mapToObj(x -> filteredPersons.get(x)).collect(Collectors.toList());
+        addressBook.removePersons(list);
         return result;
     }
 
