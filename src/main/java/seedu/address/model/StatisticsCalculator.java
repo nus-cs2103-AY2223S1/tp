@@ -1,11 +1,14 @@
 package seedu.address.model;
 
+import java.util.logging.Logger;
+
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 
-import java.util.logging.Logger;
-
+/**
+ * A calculator that calculates the statistics of a particular AddressBook.
+ */
 public class StatisticsCalculator {
     private static final Logger logger = LogsCenter.getLogger(StatisticsCalculator.class);
 
