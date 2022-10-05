@@ -1,7 +1,5 @@
 package seedu.address.model.tag;
 
-import seedu.address.model.person.Email;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -33,7 +31,7 @@ public class Tag {
      * Returns a Tag object containing the default String
      * @return Email object with the default tagName field.
      */
-    public static Tag makeDefaultTag(){
+    public static Tag makeDefaultTag() {
         return new Tag(DEFAULT_TAG);
     }
 

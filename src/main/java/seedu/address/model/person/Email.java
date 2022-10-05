@@ -9,7 +9,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Email {
 
+    public static final String DEFAULT_EMAIL = "ANONYMOUS@gmail.com";
     private static final String SPECIAL_CHARACTERS = "+_.-";
+
     public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
             + "and adhere to the following constraints:\n"
             + "1. The local-part should only contain alphanumeric characters and these special characters, excluding "
@@ -31,8 +33,6 @@ public class Email {
     private static final String DOMAIN_REGEX = "(" + DOMAIN_PART_REGEX + "\\.)*" + DOMAIN_LAST_PART_REGEX;
     public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@" + DOMAIN_REGEX;
 
-    public static final String DEFAULT_EMAIL = "ANONYMOUS@gmail.com";
-
     public final String value;
 
     /**
@@ -50,7 +50,7 @@ public class Email {
      * Returns an Email object containing the default String
      * @return Email object with the default value field.
      */
-    public static Email makeDefaultEmail(){
+    public static Email makeDefaultEmail() {
         return new Email(DEFAULT_EMAIL);
     }
 
