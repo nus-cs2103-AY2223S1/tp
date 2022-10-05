@@ -56,7 +56,7 @@ public class MainApp extends Application {
         // initialise storage for AB
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         TaskListStorage taskListStorage = new JsonTaskListStorage(userPrefs.getTaskListFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage, taskListStorage);
+        storage = new StorageManager(addressBookStorage, taskListStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -106,7 +106,6 @@ public class MainApp extends Application {
             logger.warning("Problem while reading from the file. Will be starting with an empty TaskList");
             initialTaskList = new TaskList();
         }
-        initialTaskList = new TaskList();
 
         return new ModelManager(initialAddressBook, initialTaskList, userPrefs);
     }

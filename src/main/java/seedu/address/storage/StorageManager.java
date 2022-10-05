@@ -19,17 +19,17 @@ public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private AddressBookStorage addressBookStorage;
-    private UserPrefsStorage userPrefsStorage;
     private TaskListStorage taskListStorage;
+    private UserPrefsStorage userPrefsStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
     public StorageManager(
-            AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage, TaskListStorage taskListStorage) {
+            AddressBookStorage addressBookStorage, TaskListStorage taskListStorage, UserPrefsStorage userPrefsStorage) {
         this.addressBookStorage = addressBookStorage;
-        this.userPrefsStorage = userPrefsStorage;
         this.taskListStorage = taskListStorage;
+        this.userPrefsStorage = userPrefsStorage;
     }
 
     // ================ UserPrefs methods ==============================

@@ -27,7 +27,7 @@ class JsonSerializableTaskList {
      * Constructs a {@code JsonSerializableTaskList} with the given tasks.
      */
     @JsonCreator
-    public JsonSerializableTaskList(@JsonProperty("persons") List<JsonAdaptedTask> tasks) {
+    public JsonSerializableTaskList(@JsonProperty("tasks") List<JsonAdaptedTask> tasks) {
         this.tasks.addAll(tasks);
     }
 

@@ -162,8 +162,44 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredTaskList(Predicate<Task> predicate) {
-
+            throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void setTask(Task task, Task editedTask) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addTask(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getTaskListFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setTaskListFilePath(Path taskListFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setTaskList(ReadOnlyTaskList newData) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasTask(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteTask(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
     }
 
     /**
