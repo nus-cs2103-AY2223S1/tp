@@ -35,20 +35,21 @@ title: User Guide
 
 </div>
 
-| Command   | Format                                   |
-| --------- | ---------------------------------------- |
-| `help`    | `help`                                   |
-| `add`     | `add n/NAME [p/PHONE_NUMBER][e/EMAIL] [a/ADDRESS][c/CLASS_NAME...]` |
-| `edit`    | `edit INDEX [n/NAME][p/PHONE_NUMBER] [e/EMAIL][a/ADDRESS] [c/CLASS_NAME...]` |
-| `delete`  | `delete INDEX`                           |
-| `find`    | `find KEYWORD [MORE_KEYWORDS...]`        |
-| `list`    | `list`                                   |
-| `addc`    | `addc c/CLASS_NAME`                      |
-| `deletec` | `deletec c/CLASS_NAME`                   |
-| `assign`  | `assign INDEX... c/CLASS_NAME`           |
-| `listc`   | `listc`                                  |
-| `exit`    | `exit`                                   |
-| `class`   | `class c/CLASS_NAME`                     |
+| Command    | Format                                   |
+| ---------- | ---------------------------------------- |
+| `help`     | `help`                                   |
+| `add`      | `add n/NAME [p/PHONE_NUMBER][e/EMAIL] [a/ADDRESS][c/CLASS_NAME...]` |
+| `edit`     | `edit INDEX [n/NAME][p/PHONE_NUMBER] [e/EMAIL][a/ADDRESS] [c/CLASS_NAME...]` |
+| `delete`   | `delete INDEX`                           |
+| `find`     | `find KEYWORD [MORE_KEYWORDS...]`        |
+| `list`     | `list`                                   |
+| `addc`     | `addc c/CLASS_NAME`                      |
+| `deletec`  | `deletec c/CLASS_NAME`                   |
+| `assign`   | `assign INDEX... c/CLASS_NAME`           |
+| `unassign` | `unassign INDEX... c/CLASS_NAME`         |
+| `listc`    | `listc`                                  |
+| `exit`     | `exit`                                   |
+| `class`    | `class c/CLASS_NAME`                     |
 
 ### Viewing help : `help`
 
@@ -166,6 +167,21 @@ Format: `assign INDEX... c/CLASS_NAME`
 Example:
 
 - `list` followed by `assign 1 3 5 6 c/CS1231S` assigns **1st**, **3rd**, **5th** and **6th** student in TA Assist to the **CS1231S** class.
+
+### Unassign students from class: `unassign`
+
+<aside>
+ℹ️ Unassigns students from a class.
+
+</aside>
+
+Format: `unassign INDEX... c/CLASS_NAME`
+
+- Unassigns students at the given indices from an existing `CLASS_NAME` class
+
+Example:
+
+- `list` followed by `unassign 1 3 5 6 c/CS1231S` unassigns **1st**, **3rd**, **5th** and **6th** student in TA Assist from the **CS1231S** class.
 
 ### List classes: `listc`
 
