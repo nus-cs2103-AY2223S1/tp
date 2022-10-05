@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import coydir.commons.core.Messages;
-import coydir.commons.core.index.Index;
 import coydir.logic.commands.exceptions.CommandException;
 import coydir.model.Model;
 import coydir.model.person.Person;
@@ -36,11 +35,8 @@ public class DeleteCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
         Person personToDelete;
 
-        if (Integer.parseInt(targetId) >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
-        
         for (Person person : lastShownList) {
+            System.out.println(person.getEmployeeId().value);
             if (Integer.parseInt(person.getEmployeeId().value) == Integer.parseInt(targetId)) {
                 model.deletePerson(person);
                 personToDelete = person;
