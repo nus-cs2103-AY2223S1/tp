@@ -107,7 +107,10 @@ public class Commission {
         return otherCommission.getTitle().equals(getTitle())
                 && otherCommission.getFee().equals(getFee())
                 && otherCommission.getDeadline().equals(getDeadline())
-                && otherCommission.getTags().equals(getTags());
+                && otherCommission.getTags().equals(getTags())
+                && otherCommission.getDescription().equals(getDescription())
+                && otherCommission.getCompletionStatus().equals(getCompletionStatus())
+                && otherCommission.getCustomer().equals(getCustomer());
     }
 
     @Override
