@@ -11,7 +11,7 @@ public class Characteristics {
     public String toString() {
         String result = "";
         for (int i = 0; i < characteristicsArr.length; i++) {
-            result += characteristicsArr[i];
+            result += characteristicsArr[i] + " ";
         }
         return result;
     }

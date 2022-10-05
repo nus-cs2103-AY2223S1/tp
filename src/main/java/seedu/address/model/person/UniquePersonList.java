@@ -99,6 +99,11 @@ public class UniquePersonList implements Iterable<Person> {
         internalList.setAll(persons);
     }
 
+    public void setContactRole(Name contactName, Buyer buyer) {
+        FilteredList<Person> matchingNamePersons = internalList.filtered(x -> x.getName().equals(contactName));
+        matchingNamePersons.get(0).setBuyer(buyer);
+    }
+
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
@@ -135,10 +140,5 @@ public class UniquePersonList implements Iterable<Person> {
             }
         }
         return true;
-    }
-
-    public void setContactRole(Name contactName, Buyer buyer) {
-        FilteredList<Person> matchingNamePersons = internalList.filtered(x -> x.getName().equals(contactName));
-        matchingNamePersons.get(0).setBuyer(buyer);
     }
 }

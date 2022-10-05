@@ -6,6 +6,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.role.Buyer;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.*;
 
 /**
@@ -31,10 +32,11 @@ public class BuyerCommand extends Command {
     private final Buyer buyer;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates a Buyer Command to add the specified {@code Buyer} 
+     * to the {@code Person} with specified {@code Name}
      */
     public BuyerCommand(Buyer buyer, Name contactName) {
-        requireNonNull(buyer);
+        requireAllNonNull(buyer, contactName);
         this.buyer = buyer;
         this.contactName = contactName;
     }

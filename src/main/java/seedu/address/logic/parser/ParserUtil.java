@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -125,11 +126,11 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses {@code String range} into a {@code PriceRange}.
      */
     public static PriceRange parsePriceRange(String range) throws ParseException {
         if (range.isEmpty()) {
-            return null;
+            return new PriceRange(Optional.empty(), Optional.empty());
         }
         String[] rangeArr = range.split("-");
         if (rangeArr.length != 2) {
@@ -143,22 +144,23 @@ public class ParserUtil {
         } catch (NumberFormatException e) {
             throw new ParseException(PriceRange.MESSAGE_CONSTRAINTS);
         }
-        float low = Math.min(first, second);
-        float high = Math.max(first, second);
+        Optional<Float> low = Optional.of(Math.min(first, second));
+        Optional<Float> high = Optional.of(Math.max(first, second));
         return new PriceRange(low, high);
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses {@code String characteristics} into a {@code Characteristics}.
      */
     public static Characteristics parseCharacteristics(String characteristics) {
         if (characteristics.isEmpty()) {
             return new Characteristics(new String[0]);
         }
         String[] charArray = characteristics.split(";");
-        for (int i = 0; i < charArray.length; i++) {
-            charArray[i] = charArray[i].trim();
+        for (String item : charArray) {
+            item = item.trim();
         }
+        
         return new Characteristics(charArray);
     }
 }

@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.AddPersonCommand;
 import seedu.address.logic.commands.BuyerCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Name;
@@ -19,7 +18,7 @@ public class BuyerCommandParser extends Parser<BuyerCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPersonCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, BuyerCommand.MESSAGE_USAGE));
         }
 
         Name contactName = new Name(argMultimap.getValue(PREFIX_NAME).get());

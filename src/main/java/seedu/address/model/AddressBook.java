@@ -96,6 +96,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    public void setContactRole(Name contactName, Buyer buyer) {
+        requireAllNonNull(contactName, buyer);
+        persons.setContactRole(contactName, buyer);
+    }
+
     //// util methods
 
     @Override
@@ -119,10 +124,5 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public int hashCode() {
         return persons.hashCode();
-    }
-
-    public void setContactRole(Name contactName, Buyer buyer) {
-        requireAllNonNull(contactName, buyer);
-        persons.setContactRole(contactName, buyer);
     }
 }
