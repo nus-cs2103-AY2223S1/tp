@@ -7,6 +7,7 @@ import java.util.List;
 import coydir.commons.core.Messages;
 import coydir.logic.commands.exceptions.CommandException;
 import coydir.model.Model;
+import coydir.model.person.EmployeeId;
 import coydir.model.person.Person;
 
 /**
@@ -23,9 +24,9 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
-    private final String targetId;
+    private final EmployeeId targetId;
 
-    public DeleteCommand(String targetid) {
+    public DeleteCommand(EmployeeId targetid) {
         this.targetId = targetid;
     }
 
@@ -36,8 +37,7 @@ public class DeleteCommand extends Command {
         Person personToDelete;
 
         for (Person person : lastShownList) {
-            System.out.println(person.getEmployeeId().value);
-            if (Integer.parseInt(person.getEmployeeId().value) == Integer.parseInt(targetId)) {
+            if (person.getEmployeeId().equals(targetId)) {
                 model.deletePerson(person);
                 personToDelete = person;
                 return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
