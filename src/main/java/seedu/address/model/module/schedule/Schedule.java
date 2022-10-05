@@ -2,14 +2,12 @@ package seedu.address.model.module.schedule;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.model.module.Module;
-import seedu.address.model.module.schedule.exceptions.ConflictSlotException;
-import seedu.address.model.module.schedule.exceptions.DuplicateSlotException;
-
 import java.util.ArrayList;
 import java.util.List;
 
-
+import seedu.address.model.module.Module;
+import seedu.address.model.module.schedule.exceptions.ConflictSlotException;
+import seedu.address.model.module.schedule.exceptions.DuplicateSlotException;
 /**
  * Represents a schedule of a module
  */
@@ -17,6 +15,10 @@ public class Schedule {
     private final List<Slot> slots;
     private final Module module;
 
+    /**
+     * Requires module not to e null
+     * @param module the module that has this schedule
+     */
     public Schedule(Module module) {
         requireNonNull(module);
         this.module = module;

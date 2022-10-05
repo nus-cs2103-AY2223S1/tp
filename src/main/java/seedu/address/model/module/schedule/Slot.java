@@ -45,8 +45,8 @@ public class Slot {
      * @return overlaps or not
      */
     public boolean isOverlap(Slot newSlot) {
-        if (newSlot.startTime.compareTo(this.endTime) > 0 ||
-        newSlot.endTime.compareTo(this.startTime) < 0) {
+        if (newSlot.startTime.compareTo(this.endTime) > 0
+                || newSlot.endTime.compareTo(this.startTime) < 0) {
             return false;
         }
         return true;
