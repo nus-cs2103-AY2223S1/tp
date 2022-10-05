@@ -50,9 +50,12 @@ public class Team {
         }
     }
 
+    /**
+     * Adds a task to this team.
+     * @param t
+     */
     public void addTask(Task t) {
         tasks.add(t);
-        System.out.println(tasks.getSize());
     }
 
     /**

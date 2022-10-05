@@ -2,6 +2,9 @@ package seedu.address.model.task;
 
 import java.util.ArrayList;
 
+/**
+ * Represents a list that stores {@code Task}s.
+ */
 public class TaskList {
 
     private ArrayList<Task> taskList;
