@@ -1,9 +1,12 @@
 package tracko.model.util;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javafx.util.Pair;
 import tracko.model.ReadOnlyTrackO;
 import tracko.model.TrackO;
 import tracko.model.order.*;
@@ -27,16 +30,16 @@ public class SampleDataUtil {
         return new Order[] {
             new Order(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
-                "keychain", 3),
+                List.of(new ItemQuantityPair("Keychain", 3))),
             new Order(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                "bolster", 1),
+                List.of(new ItemQuantityPair("Bolster", 2))),
             new Order(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                "pillow", 1),
+                List.of(new ItemQuantityPair("Pillow", 4))),
             new Order(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                "mattress", 2)
+                List.of(new ItemQuantityPair("Mattress", 1)))
         };
     }
 

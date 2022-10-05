@@ -1,23 +1,23 @@
 package tracko.model.order;
 
 import java.time.LocalDateTime;
+import java.util.List;
+
 
 public class Order {
     private final Name name;
     private final Phone phone;
     private final Email email;
     private final Address address;
-    private final String item;
-    private final Integer quantity;
     private final LocalDateTime timeCreated;
+    private final List<ItemQuantityPair> itemList;
 
-    public Order(Name name, Phone phone, Email email, Address address, String item, Integer quantity) {
+    public Order(Name name, Phone phone, Email email, Address address, List<ItemQuantityPair> itemList) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.item = item;
-        this.quantity = quantity;
+        this.itemList = itemList;
         this.timeCreated = LocalDateTime.now();
     }
 
@@ -37,12 +37,12 @@ public class Order {
         return address;
     }
 
-    public String getItem() {
-        return item;
+    public List<ItemQuantityPair> getItemList() {
+        return itemList;
     }
 
-    public Integer getQuantity() {
-        return quantity;
+    public void addToItemList(ItemQuantityPair itemQuantityPair) {
+        this.itemList.add(itemQuantityPair);
     }
 
     public LocalDateTime getTimeCreated() {

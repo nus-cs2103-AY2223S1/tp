@@ -3,7 +3,7 @@ package tracko.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static tracko.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
 import static tracko.testutil.Assert.assertThrows;
-import static tracko.testutil.TypicalPersons.BENSON;
+import static tracko.testutil.TypicalOrders.ORDER_2;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,18 +24,18 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
-    private static final String VALID_NAME = BENSON.getName().toString();
-    private static final String VALID_PHONE = BENSON.getPhone().toString();
-    private static final String VALID_EMAIL = BENSON.getEmail().toString();
-    private static final String VALID_ADDRESS = BENSON.getAddress().toString();
-    private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
+    private static final String VALID_NAME = ORDER_2.getName().toString();
+    private static final String VALID_PHONE = ORDER_2.getPhone().toString();
+    private static final String VALID_EMAIL = ORDER_2.getEmail().toString();
+    private static final String VALID_ADDRESS = ORDER_2.getAddress().toString();
+    private static final List<JsonAdaptedTag> VALID_TAGS = ORDER_2.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(BENSON);
-        assertEquals(BENSON, person.toModelType());
+        JsonAdaptedPerson person = new JsonAdaptedPerson(ORDER_2);
+        assertEquals(ORDER_2, person.toModelType());
     }
 
     @Test

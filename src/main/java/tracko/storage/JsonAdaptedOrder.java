@@ -4,8 +4,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import tracko.commons.exceptions.IllegalValueException;
-
 import tracko.model.order.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class JsonAdaptedOrder {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Orders's %s field is missing!";
@@ -14,35 +17,32 @@ public class JsonAdaptedOrder {
     private final String phone;
     private final String email;
     private final String address;
-    private final String item;
-    private final String quantity;
+    private final List<JsonAdaptedItemQuantityPair> itemList = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedOrder} with the given order details.
      */
     @JsonCreator
     public JsonAdaptedOrder(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                             @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("item") String item, @JsonProperty("quantity") String quantity) {
+                            @JsonProperty("email") String email, @JsonProperty("address") String address,
+                            @JsonProperty("itemList") List<JsonAdaptedItemQuantityPair> itemList) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.item = item;
-        this.quantity = quantity;
+        this.itemList.addAll(itemList);
     }
 
     /**
      * Converts a given {@code Order} into this class for Jackson use.
      */
     public JsonAdaptedOrder(Order source) {
-        // To be updated after validation is added
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        item = source.getItem();
-        quantity = source.getQuantity().toString();
+        source.getItemList().stream()
+            .forEach(item -> itemList.add(new JsonAdaptedItemQuantityPair(item)));
     }
 
     /**
@@ -51,6 +51,11 @@ public class JsonAdaptedOrder {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Order toModelType() throws IllegalValueException {
+
+        List<ItemQuantityPair> itemQuantityPairs = new ArrayList<>();
+        for (JsonAdaptedItemQuantityPair pair : itemList) {
+            itemQuantityPairs.add(pair.toModelType());
+        }
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -84,6 +89,6 @@ public class JsonAdaptedOrder {
         }
         final Address modelAddress = new Address(address);
 
-        return new Order(modelName, modelPhone, modelEmail, modelAddress, item, Integer.parseInt(quantity));
+        return new Order(modelName, modelPhone, modelEmail, modelAddress, itemQuantityPairs);
     }
 }

@@ -4,9 +4,7 @@ import tracko.model.AddressBook;
 import tracko.model.person.Person;
 
 /**
- * A utility class to help with building Addressbook objects.
- * Example usage: <br>
- *     {@code AddressBook ab = new AddressBookBuilder().withPerson("John", "Doe").build();}
+ * A utility class to help with building TrackO objects.
  */
 public class AddressBookBuilder {
 
