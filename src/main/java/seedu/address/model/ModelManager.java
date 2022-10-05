@@ -19,25 +19,25 @@ import seedu.address.model.company.Company;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final JeeqTracker jeeqTracker;
     private final UserPrefs userPrefs;
     private final FilteredList<Company> filteredCompanies;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given jeeqTracker and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyJeeqTracker jeeqTracker, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(jeeqTracker, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + jeeqTracker + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.jeeqTracker = new JeeqTracker(jeeqTracker);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredCompanies = new FilteredList<>(this.addressBook.getCompanyList());
+        filteredCompanies = new FilteredList<>(this.jeeqTracker.getCompanyList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new JeeqTracker(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -65,42 +65,42 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getJeeqTrackerFilePath() {
+        return userPrefs.getJeeqTrackerFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setJeeqTrackerFilePath(Path jeeqTrackerFilePath) {
+        requireNonNull(jeeqTrackerFilePath);
+        userPrefs.setJeeqTrackerFilePath(jeeqTrackerFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== JeeqTracker ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setJeeqTracker(ReadOnlyJeeqTracker jeeqTracker) {
+        this.jeeqTracker.resetData(jeeqTracker);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyJeeqTracker getJeeqTracker() {
+        return jeeqTracker;
     }
 
     @Override
     public boolean hasCompany(Company company) {
         requireNonNull(company);
-        return addressBook.hasCompany(company);
+        return jeeqTracker.hasCompany(company);
     }
 
     @Override
     public void deleteCompany(Company target) {
-        addressBook.removeCompany(target);
+        jeeqTracker.removeCompany(target);
     }
 
     @Override
     public void addCompany(Company company) {
-        addressBook.addCompany(company);
+        jeeqTracker.addCompany(company);
         updateFilteredCompanyList(PREDICATE_SHOW_ALL_COMPANIES);
     }
 
@@ -108,14 +108,14 @@ public class ModelManager implements Model {
     public void setCompany(Company target, Company editedCompany) {
         requireAllNonNull(target, editedCompany);
 
-        addressBook.setCompany(target, editedCompany);
+        jeeqTracker.setCompany(target, editedCompany);
     }
 
     //=========== Filtered Company List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Company} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedJeeqTracker}
      */
     @Override
     public ObservableList<Company> getFilteredCompanyList() {
@@ -142,7 +142,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return jeeqTracker.equals(other.jeeqTracker)
                 && userPrefs.equals(other.userPrefs)
                 && filteredCompanies.equals(other.filteredCompanies);
     }

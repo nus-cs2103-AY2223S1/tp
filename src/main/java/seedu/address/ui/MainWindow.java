@@ -137,7 +137,7 @@ public class MainWindow extends UiPart<Stage> {
         pocNameDisplay.setPocName("Tom");
         pocNumberDisplay.setPocNumber("93972398");
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getJeeqTrackerFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
