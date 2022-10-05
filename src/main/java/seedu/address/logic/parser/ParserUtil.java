@@ -5,7 +5,12 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.MoneyOwed;
+import seedu.address.model.person.MoneyPaid;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -87,6 +92,11 @@ public class ParserUtil {
         return new Email(trimmedEmail);
     }
 
+    /**
+     * Parses a {@code String moneyOwed} into an {@code MoneyOwed}.
+     *
+     * @throws ParseException if the given {@code moneyOwed} is invalid.
+     */
     public static MoneyOwed parseMoneyOwed(String moneyOwed) throws ParseException {
         requireNonNull(moneyOwed);
         Integer value;
@@ -102,6 +112,11 @@ public class ParserUtil {
         return new MoneyOwed(value);
     }
 
+    /**
+     * Parses a {@code String moneyPaid} into an {@code MoneyPaid}.
+     *
+     * @throws ParseException if the given {@code moneyPaid} is invalid.
+     */
     public static MoneyPaid parseMoneyPaid(String moneyPaid) throws ParseException {
         requireNonNull(moneyPaid);
         Integer value;
