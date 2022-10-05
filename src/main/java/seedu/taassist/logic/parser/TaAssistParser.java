@@ -7,16 +7,19 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.taassist.logic.commands.AddCommand;
+import seedu.taassist.logic.commands.AddcCommand;
 import seedu.taassist.logic.commands.BackCommand;
 import seedu.taassist.logic.commands.ClassCommand;
 import seedu.taassist.logic.commands.ClearCommand;
 import seedu.taassist.logic.commands.Command;
 import seedu.taassist.logic.commands.DeleteCommand;
+import seedu.taassist.logic.commands.DeletecCommand;
 import seedu.taassist.logic.commands.EditCommand;
 import seedu.taassist.logic.commands.ExitCommand;
 import seedu.taassist.logic.commands.FindCommand;
 import seedu.taassist.logic.commands.HelpCommand;
 import seedu.taassist.logic.commands.ListCommand;
+import seedu.taassist.logic.commands.ListcCommand;
 import seedu.taassist.logic.parser.exceptions.ParseException;
 
 /**
@@ -63,6 +66,15 @@ public class TaAssistParser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case AddcCommand.COMMAND_WORD:
+            return new AddcCommandParser().parse(arguments);
+
+        case DeletecCommand.COMMAND_WORD:
+            return new DeletecCommandParser().parse(arguments);
+
+        case ListcCommand.COMMAND_WORD:
+            return new ListcCommand();
 
         case ClassCommand.COMMAND_WORD:
             return new ClassCommandParser().parse(arguments);

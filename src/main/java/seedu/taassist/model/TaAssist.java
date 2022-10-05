@@ -52,12 +52,21 @@ public class TaAssist implements ReadOnlyTaAssist {
     }
 
     /**
+     * Replaces the contents of the module class list with {@code moduleClasses}.
+     * {@code moduleClasses} must not contain duplicate classes.
+     */
+    public void setModuleClasses(List<ModuleClass> moduleClasses) {
+        this.moduleClasses.setModuleClasses(moduleClasses);
+    }
+
+    /**
      * Resets the existing data of this {@code TaAssist} with {@code newData}.
      */
     public void resetData(ReadOnlyTaAssist newData) {
         requireNonNull(newData);
 
         setStudents(newData.getStudentList());
+        setModuleClasses(newData.getModuleClassList());
     }
 
     //// student-level operations
@@ -135,6 +144,11 @@ public class TaAssist implements ReadOnlyTaAssist {
     @Override
     public ObservableList<Student> getStudentList() {
         return students.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<ModuleClass> getModuleClassList() {
+        return moduleClasses.asUnmodifiableObservableList();
     }
 
     @Override

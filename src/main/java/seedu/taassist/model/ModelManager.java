@@ -130,6 +130,11 @@ public class ModelManager implements Model {
         taAssist.addModuleClass(moduleClass);
     }
 
+    @Override
+    public ObservableList<ModuleClass> getModuleClassList() {
+        return taAssist.getModuleClassList();
+    }
+
     //=========== Filtered Student List Accessors =============================================================
 
     /**

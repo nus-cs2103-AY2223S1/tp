@@ -104,6 +104,9 @@ public interface Model {
      */
     void addModuleClass(ModuleClass moduleClass);
 
+    /** Returns an unmodifiable view of the module class list */
+    ObservableList<ModuleClass> getModuleClassList();
+
     /** Enters focus mode. */
     void enterFocusMode(ModuleClass classToFocus);
 

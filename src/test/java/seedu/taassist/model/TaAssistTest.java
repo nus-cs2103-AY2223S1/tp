@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.student.Student;
 import seedu.taassist.model.student.exceptions.DuplicateStudentException;
 import seedu.taassist.testutil.StudentBuilder;
@@ -50,7 +51,8 @@ public class TaAssistTest {
                 .withModuleClasses(VALID_TAG_HUSBAND)
                 .build();
         List<Student> newStudents = Arrays.asList(ALICE, editedAlice);
-        TaAssistStub newData = new TaAssistStub(newStudents);
+        List<ModuleClass> newModuleClasses = Arrays.asList(); // TODO: Add test case for classes too
+        TaAssistStub newData = new TaAssistStub(newStudents, newModuleClasses);
 
         assertThrows(DuplicateStudentException.class, () -> taAssist.resetData(newData));
     }
@@ -90,14 +92,21 @@ public class TaAssistTest {
      */
     private static class TaAssistStub implements ReadOnlyTaAssist {
         private final ObservableList<Student> students = FXCollections.observableArrayList();
+        private final ObservableList<ModuleClass> moduleClasses = FXCollections.observableArrayList();
 
-        TaAssistStub(Collection<Student> students) {
+        TaAssistStub(Collection<Student> students, Collection<ModuleClass> moduleClasses) {
             this.students.setAll(students);
+            this.moduleClasses.setAll(moduleClasses);
         }
 
         @Override
         public ObservableList<Student> getStudentList() {
             return students;
+        }
+
+        @Override
+        public ObservableList<ModuleClass> getModuleClassList() {
+            return moduleClasses;
         }
     }
 

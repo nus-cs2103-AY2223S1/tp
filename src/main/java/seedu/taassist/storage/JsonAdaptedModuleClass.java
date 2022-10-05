@@ -9,7 +9,7 @@ import seedu.taassist.model.moduleclass.ModuleClass;
 /**
  * Json-friendly version of {@link ModuleClass}.
  */
-class JsonAdaptedClass {
+class JsonAdaptedModuleClass {
 
     private final String className;
 
@@ -17,14 +17,14 @@ class JsonAdaptedClass {
      * Constructs a {@code JsonAdaptedClass} with the given {@code className}.
      */
     @JsonCreator
-    public JsonAdaptedClass(String className) {
+    public JsonAdaptedModuleClass(String className) {
         this.className = className;
     }
 
     /**
      * Converts a given {@code ModuleClass} into this class for Jackson use.
      */
-    public JsonAdaptedClass(ModuleClass source) {
+    public JsonAdaptedModuleClass(ModuleClass source) {
         className = source.className;
     }
 
