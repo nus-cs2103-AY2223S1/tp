@@ -93,11 +93,11 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
+
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getAdditionalNotes().equals(getAdditionalNotes());
+                && otherPerson.getAddress().equals(getAddress());
     }
 
     @Override

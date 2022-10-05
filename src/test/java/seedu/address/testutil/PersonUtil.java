@@ -31,7 +31,6 @@ public class PersonUtil {
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
-        sb.append(PREFIX_ADDITIONAL_NOTES + person.getAdditionalNotes().value + " ");
         return sb.toString();
     }
 
