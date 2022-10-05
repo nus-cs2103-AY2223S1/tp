@@ -12,6 +12,7 @@ public class Name {
     public static final String MESSAGE_CONSTRAINTS =
             "Names should only contain alphanumeric characters and spaces, and it should not be blank";
 
+
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
@@ -30,6 +31,17 @@ public class Name {
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         fullName = name;
     }
+
+    /**
+     * Represents an Empty Name.
+     */
+    private static class EmptyName extends Name {
+        private static final Name EMPTY_NAME = new EmptyName();
+        private EmptyName() {
+            super("");
+        }
+    }
+
 
     /**
      * Returns true if a given string is a valid name.

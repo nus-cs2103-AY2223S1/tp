@@ -1,5 +1,6 @@
 package seedu.address.model.tag;
 
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -23,6 +24,16 @@ public class Tag {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.tagName = tagName;
+    }
+
+    /**
+     * Represents an Empty Tag.
+     */
+    private static class EmptyTag extends Tag {
+        private static final Tag EMPTY_TAG = new EmptyTag();
+        private EmptyTag() {
+            super("");
+        }
     }
 
     /**
