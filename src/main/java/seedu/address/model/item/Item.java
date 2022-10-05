@@ -62,10 +62,7 @@ public class Item {
         }
 
         Item otherItem = (Item) other;
-        return otherItem.getName().equals(getName())
-                && otherItem.getQuantity().equals(getQuantity())
-                && otherItem.getBoughtDate().equals(getBoughtDate())
-                && otherItem.getExpiryDate().equals(getExpiryDate());
+        return otherItem.getName().equals(getName());
     }
 
     /**
