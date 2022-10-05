@@ -115,15 +115,19 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
+        boolean isEqual = otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getNextOfKin().equals(getNextOfKin())
                 && otherPerson.getPatientType().equals(getPatientType())
-                && otherPerson.getHospitalWing().equals(getHospitalWing())
-                && otherPerson.getFloorNumber().equals(getFloorNumber())
-                && otherPerson.getWardNumber().equals(getWardNumber())
                 && otherPerson.getMedications().equals(getMedications());
+
+        if (otherPerson.getPatientType().isInpatient() && getPatientType().isInpatient()) {
+            isEqual = isEqual && otherPerson.getHospitalWing().equals(getHospitalWing())
+                    && otherPerson.getFloorNumber().equals(getFloorNumber())
+                    && otherPerson.getWardNumber().equals(getWardNumber());
+        }
+        return isEqual;
     }
 
     @Override
