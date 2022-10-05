@@ -9,7 +9,7 @@ import seedu.address.model.meeting.Description;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingDate;
 import seedu.address.model.meeting.MeetingTime;
-import seedu.address.model.person.Client;
+import seedu.address.model.client.Client;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
