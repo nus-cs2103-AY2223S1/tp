@@ -1,15 +1,13 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GROUP;
 
-import java.util.HashSet;
-import java.util.Timer;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.TutorialGroupAddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.student.*;
+import seedu.address.model.student.TutorialGroup;
 
 
 /**
@@ -28,7 +26,8 @@ public class TutorialGroupAddCommandParser implements Parser<TutorialGroupAddCom
 
         if (!arePrefixesPresent(argMultimap, PREFIX_TUTORIAL_GROUP)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TutorialGroupAddCommand  .MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    TutorialGroupAddCommand.MESSAGE_USAGE));
         }
 
         TutorialGroup tutorialGroup = ParserUtil.parseTutorialGroup(argMultimap.getValue(PREFIX_TUTORIAL_GROUP).get());

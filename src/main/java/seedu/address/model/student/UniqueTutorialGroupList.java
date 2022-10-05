@@ -8,7 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.logic.commands.TutorialGroupAddCommand;
 import seedu.address.model.student.exceptions.DuplicateTutorialGroupException;
 import seedu.address.model.student.exceptions.TutorialGroupNotFoundException;
 
@@ -43,25 +42,6 @@ public class UniqueTutorialGroupList implements Iterable<TutorialGroup> {
         internalList.add(toAdd);
     }
 
-//    /**
-//     * Replaces the person {@code target} in the list with {@code editedPerson}.
-//     * {@code target} must exist in the list.
-//     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
-//     */
-//    public void setTask(TutorialGroup target, Task editedTask) {
-//        requireAllNonNull(target, editedTask);
-//
-//        int index = internalList.indexOf(target);
-//        if (index == -1) {
-//            throw new StudentNotFoundException();
-//        }
-//
-//        if (!target.isSameTask(editedTask) && contains(editedTask)) {
-//            throw new DuplicateStudentException();
-//        }
-//
-//        internalList.set(index, editedTask);
-//    }
 
     /**
      * Removes the equivalent person from the list.
