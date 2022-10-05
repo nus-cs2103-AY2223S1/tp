@@ -1,8 +1,8 @@
 package seedu.address.model.student;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
-
+/**
+ * Represents a Student's Help Tag if present in the SETA application.
+ */
 public class HelpTag {
 
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
