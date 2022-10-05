@@ -465,7 +465,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **GUI**: A graphical user interface (GUI) is a form of user interface that allows users to interact with programs through graphical icons and audio indicator
 * **JavaFX**: A Java library used to develop client applications
 * **kLoC**: Stands for thousands of lines of code
-* **NUS**: National University of Singapore 
+* **NUS**: National University of Singapore
 * **SoC**: School of Computing, a computing school in NUS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Autocomplete**: A feature that shows a list of completed words or strings without the user needing to type them in full

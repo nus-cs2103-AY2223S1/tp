@@ -12,6 +12,7 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.TreeSet;
 
 import org.junit.jupiter.api.Test;
 
@@ -166,5 +167,21 @@ public class UniquePersonListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniquePersonList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void getUniqueNames_listWithUniqueNames_success() {
+        uniquePersonList.add(ALICE);
+        uniquePersonList.add(BOB);
+        TreeSet<String> listWithUniqueNames = uniquePersonList.getUniqueNames();
+        TreeSet<String> expectedListWithUniqueNames = new TreeSet<>();
+        expectedListWithUniqueNames.addAll(Arrays.asList(ALICE.getName().fullName, BOB.getName().fullName));
+        assertEquals(expectedListWithUniqueNames, listWithUniqueNames);
+    }
+
+    @Test
+    public void getUniqueNames_emptyList_success() {
+        TreeSet<String> expectedEmptyList = new TreeSet<>();
+        assertEquals(expectedEmptyList, uniquePersonList.getUniqueNames());
     }
 }

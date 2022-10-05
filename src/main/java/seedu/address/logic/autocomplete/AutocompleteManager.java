@@ -6,6 +6,7 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+
 import seedu.address.commons.core.LogsCenter;
 
 /**
@@ -27,8 +28,8 @@ public class AutocompleteManager implements Autocomplete {
 
     @Override
     public void updateUniqueNames(TreeSet<String> uniqueNames) {
-        logger.info("Updated unique list of names.");
         this.uniqueNames = uniqueNames;
+        logger.info("Updated unique list of names.");
     }
 
     @Override
@@ -41,5 +42,22 @@ public class AutocompleteManager implements Autocomplete {
         searchResult = uniqueNames.stream()
                 .filter(name -> name.toLowerCase().startsWith(lowerCaseSearchValue)).collect(Collectors.toList());
         return searchResult;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        // short circuit if same object
+        if (obj == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(obj instanceof AutocompleteManager)) {
+            return false;
+        }
+
+        // state check
+        AutocompleteManager other = (AutocompleteManager) obj;
+        return uniqueNames.equals(other.uniqueNames);
     }
 }
