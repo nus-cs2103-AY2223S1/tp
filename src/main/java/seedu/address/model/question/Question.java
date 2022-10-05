@@ -6,7 +6,7 @@ import java.util.Objects;
 
 
 /**
- * Represents a Question in the address book.
+ * Represents a Question in the question list.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Question {
@@ -44,7 +44,7 @@ public class Question {
 
     /**
      * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * This defines a stronger notion of equality between two questions.
      */
     @Override
     public boolean equals(Object other) {
