@@ -2,6 +2,7 @@ package seedu.taassist.ui;
 
 import static java.util.Objects.requireNonNull;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -29,4 +30,7 @@ public class ResultDisplay extends UiPart<Region> {
         resultDisplay.setText(feedbackToUser);
     }
 
+    public void bindFocusLabel(SimpleStringProperty focusLabelProperty) {
+        focusLabel.textProperty().bind(focusLabelProperty);
+    }
 }

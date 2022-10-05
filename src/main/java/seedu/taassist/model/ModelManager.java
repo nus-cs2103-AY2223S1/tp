@@ -28,8 +28,8 @@ public class ModelManager implements Model {
     private final TaAssist taAssist;
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
+    private final SimpleStringProperty focusLabelProperty;
     private ModuleClass focusedClass;
-    private SimpleStringProperty focusLabelProperty;
 
     /**
      * Initializes a ModelManager with the given taAssist and userPrefs.
@@ -181,5 +181,10 @@ public class ModelManager implements Model {
     @Override
     public ModuleClass getFocusedClass() {
         return focusedClass;
+    }
+
+    @Override
+    public SimpleStringProperty getFocusLabelProperty() {
+        return focusLabelProperty;
     }
 }

@@ -13,6 +13,7 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import seedu.taassist.commons.core.GuiSettings;
 import seedu.taassist.logic.commands.exceptions.CommandException;
@@ -166,6 +167,11 @@ public class AddCommandTest {
 
         @Override
         public ModuleClass getFocusedClass() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public SimpleStringProperty getFocusLabelProperty() {
             throw new AssertionError("This method should not be called.");
         }
     }
