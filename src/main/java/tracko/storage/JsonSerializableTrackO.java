@@ -1,16 +1,18 @@
 package tracko.storage;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
+
 import tracko.commons.exceptions.IllegalValueException;
 import tracko.model.ReadOnlyTrackO;
 import tracko.model.TrackO;
 import tracko.model.order.Order;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * An immutable TrackO that is serializable to JSON format.

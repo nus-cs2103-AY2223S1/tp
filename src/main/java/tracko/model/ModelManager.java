@@ -4,15 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static tracko.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import tracko.commons.core.GuiSettings;
 import tracko.commons.core.LogsCenter;
 import tracko.model.order.Order;
-import tracko.model.person.Person;
 
 /**
  * Represents the in-memory model of the application data.

@@ -9,10 +9,8 @@ import static tracko.logic.parser.CliSyntax.PREFIX_PHONE;
 import static tracko.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Stream;
 
-import javafx.util.Pair;
 import tracko.logic.commands.order.AddOrderCommand;
 import tracko.logic.parser.ArgumentMultimap;
 import tracko.logic.parser.ArgumentTokenizer;
@@ -20,7 +18,12 @@ import tracko.logic.parser.Parser;
 import tracko.logic.parser.ParserUtil;
 import tracko.logic.parser.Prefix;
 import tracko.logic.parser.exceptions.ParseException;
-import tracko.model.order.*;
+import tracko.model.order.Address;
+import tracko.model.order.Email;
+import tracko.model.order.ItemQuantityPair;
+import tracko.model.order.Name;
+import tracko.model.order.Order;
+import tracko.model.order.Phone;
 
 /**
  * Parses input arguments and creates a new/update AddOrderCommand object
@@ -52,13 +55,21 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
         return new AddOrderCommand(order);
     }
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the given AddOrderCommand that is awaiting
+     * further input of order items and quantities.
+     * @param args The user input
+     * @param command The given AddOrderCommand
+     * @return The updated command.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public AddOrderCommand parseStageTwo(String args, AddOrderCommand command) throws ParseException {
         if (args.equals("done")) {
             command.setAwaitingInput(false);
             return command;
         } else if (args.equals("cancel")) {
             command.setAwaitingInput(false);
-            command.setCancelled(true);
+            command.cancel();
             return command;
         }
 
@@ -67,7 +78,7 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_ITEM, PREFIX_QUANTITY)
             || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddOrderCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddOrderCommand.MESSAGE_USAGE_2));
         }
 
         String item = argMultimap.getValue(PREFIX_ITEM).get();

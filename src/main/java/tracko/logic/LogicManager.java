@@ -9,6 +9,7 @@ import tracko.commons.core.GuiSettings;
 import tracko.commons.core.LogsCenter;
 import tracko.logic.commands.Command;
 import tracko.logic.commands.CommandResult;
+import tracko.logic.commands.MultiLevelCommand;
 import tracko.logic.commands.exceptions.CommandException;
 import tracko.logic.parser.TrackOParser;
 import tracko.logic.parser.exceptions.ParseException;
@@ -17,7 +18,6 @@ import tracko.model.ReadOnlyTrackO;
 import tracko.model.order.Order;
 import tracko.storage.Storage;
 
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 
 /**
  * The main LogicManager of the app.
@@ -30,8 +30,7 @@ public class LogicManager implements Logic {
     private final Storage storage;
     private final TrackOParser trackOParser;
 
-    private Command inProgressCommand;
-    private boolean isAwaitingInput;
+    private MultiLevelCommand inProgressCommand;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -40,27 +39,24 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         inProgressCommand = null;
-        isAwaitingInput = false;
         trackOParser = new TrackOParser();
     }
 
     @Override
-    public CommandResult execute(String commandText) throws CommandException, ParseException {
-        logger.info("----------------[USER COMMAND][" + commandText + "]");
+    public CommandResult execute(String userInput) throws CommandException, ParseException {
+        logger.info("----------------[USER INPUT][" + userInput + "]");
 
         CommandResult commandResult;
         Command command;
 
-        if (inProgressCommand == null) {
-            command = trackOParser.parseCommand(commandText);
+        if (inProgressCommand != null) {
+            command = trackOParser.parseAndUpdateCommand(userInput, inProgressCommand);
         } else {
-            command = trackOParser.parseStageTwo(commandText, inProgressCommand);
+            command = trackOParser.parseCommand(userInput);
         }
 
         if (command.isAwaitingInput()) {
-            inProgressCommand = command;
-        } else {
-            inProgressCommand = null;
+            inProgressCommand = (MultiLevelCommand) command;
         }
 
         commandResult = command.execute(model);
@@ -80,7 +76,9 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Order> getOrderList() { return model.getOrderList();}
+    public ObservableList<Order> getOrderList() {
+        return model.getOrderList();
+    }
 
     @Override
     public Path getOrdersFilePath() {

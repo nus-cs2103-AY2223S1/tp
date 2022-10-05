@@ -14,6 +14,9 @@ import tracko.commons.util.FileUtil;
 import tracko.commons.util.JsonUtil;
 import tracko.model.ReadOnlyTrackO;
 
+/**
+ * A class to access TrackO data stored as json file(s) on the hard disk.
+ */
 public class JsonTrackOStorage implements TrackOStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonTrackOStorage.class);

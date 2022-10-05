@@ -2,9 +2,13 @@ package tracko.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import tracko.commons.exceptions.IllegalValueException;
 import tracko.model.order.ItemQuantityPair;
 
+/**
+ * Jackson-friendly version of {@link ItemQuantityPair}.
+ */
 public class JsonAdaptedItemQuantityPair {
 
     private final String item;

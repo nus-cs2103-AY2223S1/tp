@@ -2,14 +2,9 @@ package tracko.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-import tracko.model.order.ItemQuantityPair;
 import tracko.model.order.Order;
 
 /**
@@ -56,7 +51,8 @@ public class OrderCard extends UiPart<Region> {
         address.setText(order.getAddress().value);
         email.setText(order.getEmail().value);
         order.getItemList().stream()
-                .forEach(item -> items.getChildren().add(new Label("\u2022 " + item.getQuantity() + " * " + item.getItem())));
+                .forEach(item -> items.getChildren().add(
+                    new Label("\u2022 " + item.getQuantity() + " * " + item.getItem())));
     }
 
     @Override

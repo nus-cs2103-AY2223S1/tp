@@ -1,15 +1,24 @@
 package tracko.storage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import tracko.commons.exceptions.IllegalValueException;
-import tracko.model.order.*;
+import tracko.model.order.Address;
+import tracko.model.order.Email;
+import tracko.model.order.ItemQuantityPair;
+import tracko.model.order.Name;
+import tracko.model.order.Order;
+import tracko.model.order.Phone;
 
-import java.util.ArrayList;
-import java.util.List;
 
 
+/**
+ * Jackson-friendly version of {@link Order}.
+ */
 public class JsonAdaptedOrder {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Orders's %s field is missing!";
 

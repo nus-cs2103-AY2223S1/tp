@@ -1,30 +1,29 @@
 package tracko.model.util;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
-import javafx.util.Pair;
 import tracko.model.ReadOnlyTrackO;
 import tracko.model.TrackO;
-import tracko.model.order.*;
-import tracko.model.tag.Tag;
+import tracko.model.order.Address;
+import tracko.model.order.Email;
+import tracko.model.order.ItemQuantityPair;
+import tracko.model.order.Name;
+import tracko.model.order.Order;
+import tracko.model.order.Phone;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
 
-    /**
-     * Returns a tag set containing the list of strings given.
-     */
-    public static Set<Tag> getTagSet(String... strings) {
-        return Arrays.stream(strings)
-                .map(Tag::new)
-                .collect(Collectors.toSet());
-    }
+    // /**
+    //  * Returns a tag set containing the list of strings given.
+    //  */
+    // public static Set<Tag> getTagSet(String... strings) {
+    //     return Arrays.stream(strings)
+    //             .map(Tag::new)
+    //             .collect(Collectors.toSet());
+    // }
 
     public static Order[] getSampleOrders() {
         return new Order[] {

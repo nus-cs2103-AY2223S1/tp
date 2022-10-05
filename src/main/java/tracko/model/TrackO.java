@@ -1,12 +1,13 @@
 package tracko.model;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.List;
 
 import javafx.collections.ObservableList;
 import tracko.model.order.Order;
 import tracko.model.order.OrderList;
 
-import static java.util.Objects.requireNonNull;
 
 /**
  * Wraps all data at the root level

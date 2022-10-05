@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import tracko.logic.commands.Command;
 import tracko.logic.commands.ExitCommand;
 import tracko.logic.commands.HelpCommand;
+import tracko.logic.commands.MultiLevelCommand;
 import tracko.logic.commands.order.AddOrderCommand;
 import tracko.logic.parser.exceptions.ParseException;
 import tracko.logic.parser.order.AddOrderCommandParser;
@@ -23,7 +24,15 @@ public class TrackOParser {
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
-    public Command parseStageTwo(String userInput, Command command) throws ParseException {
+    /**
+     * Parses user input and update an in-progress command for execution.
+     *
+     * @param userInput full user input string
+     * @param command the in-progress command to be updated
+     * @return The updated command based on the user input
+     * @throws ParseException if the user input does not conform the expected format
+     */
+    public MultiLevelCommand parseAndUpdateCommand(String userInput, MultiLevelCommand command) throws ParseException {
         if (command instanceof AddOrderCommand) {
             return new AddOrderCommandParser().parseStageTwo(userInput, (AddOrderCommand) command);
         }
@@ -52,30 +61,30 @@ public class TrackOParser {
         case AddOrderCommand.COMMAND_WORD:
             return new AddOrderCommandParser().parse(arguments);
 
-//        (deprecated commands)
-//        case AddCommand.COMMAND_WORD:
-//            return new AddCommandParser().parse(arguments);
-//
-//        case EditCommand.COMMAND_WORD:
-//            return new EditCommandParser().parse(arguments);
-//
-//        case DeleteCommand.COMMAND_WORD:
-//            return new DeleteCommandParser().parse(arguments);
-//
-//        case ClearCommand.COMMAND_WORD:
-//            return new ClearCommand();
-//
-//        case FindCommand.COMMAND_WORD:
-//            return new FindCommandParser().parse(arguments);
-//
-//        case ListCommand.COMMAND_WORD:
-//            return new ListCommand();
-//
+        // (commands kept for reference)
+        // case AddCommand.COMMAND_WORD:
+        //     return new AddCommandParser().parse(arguments);
+        //
+        // case EditCommand.COMMAND_WORD:
+        //     return new EditCommandParser().parse(arguments);
+        //
+        // case DeleteCommand.COMMAND_WORD:
+        //     return new DeleteCommandParser().parse(arguments);
+        //
+        // case ClearCommand.COMMAND_WORD:
+        //     return new ClearCommand();
+        //
+        // case FindCommand.COMMAND_WORD:
+        //     return new FindCommandParser().parse(arguments);
+        //
+        // case ListCommand.COMMAND_WORD:
+        //     return new ListCommand();
+        //
+        // case HelpCommand.COMMAND_WORD:
+        //     return new HelpCommand();
+
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
-//
-//        case HelpCommand.COMMAND_WORD:
-//            return new HelpCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
