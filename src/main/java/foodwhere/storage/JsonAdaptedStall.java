@@ -19,7 +19,7 @@ import foodwhere.model.stall.Phone;
 /**
  * Jackson-friendly version of {@link Stall}.
  */
-class JsonAdaptedPerson {
+class JsonAdaptedStall {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Stall's %s field is missing!";
 
@@ -29,10 +29,10 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedDetail> details = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given stall details.
+     * Constructs a {@code JsonAdaptedStall} with the given stall details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+    public JsonAdaptedStall(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("address") String address,
             @JsonProperty("detailed") List<JsonAdaptedDetail> detailed) {
         this.name = name;
@@ -46,7 +46,7 @@ class JsonAdaptedPerson {
     /**
      * Converts a given {@code Stall} into this class for Jackson use.
      */
-    public JsonAdaptedPerson(Stall source) {
+    public JsonAdaptedStall(Stall source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         address = source.getAddress().value;
@@ -61,9 +61,9 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted stall.
      */
     public Stall toModelType() throws IllegalValueException {
-        final List<Detail> personDetails = new ArrayList<>();
+        final List<Detail> stallDetails = new ArrayList<>();
         for (JsonAdaptedDetail detail : details) {
-            personDetails.add(detail.toModelType());
+            stallDetails.add(detail.toModelType());
         }
 
         if (name == null) {
@@ -90,7 +90,7 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Detail> modelDetails = new HashSet<>(personDetails);
+        final Set<Detail> modelDetails = new HashSet<>(stallDetails);
         return new Stall(modelName, modelPhone, modelAddress, modelDetails);
     }
 

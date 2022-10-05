@@ -31,15 +31,15 @@ import foodwhere.model.detail.Detail;
 import foodwhere.model.stall.Address;
 import foodwhere.model.stall.Name;
 import foodwhere.model.stall.Phone;
-import foodwhere.testutil.PersonBuilder;
-import foodwhere.testutil.TypicalPersons;
+import foodwhere.testutil.StallBuilder;
+import foodwhere.testutil.TypicalStalls;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Stall expectedStall = new PersonBuilder(TypicalPersons.BOB).withDetails(VALID_DETAIL_FRIEND).build();
+        Stall expectedStall = new StallBuilder(TypicalStalls.BOB).withDetails(VALID_DETAIL_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB
@@ -59,7 +59,7 @@ public class AddCommandParserTest {
 
         // multiple details - all accepted
         Stall expectedStallMultipleDetails =
-                new PersonBuilder(TypicalPersons.BOB).withDetails(VALID_DETAIL_FRIEND, VALID_DETAIL_HUSBAND)
+                new StallBuilder(TypicalStalls.BOB).withDetails(VALID_DETAIL_FRIEND, VALID_DETAIL_HUSBAND)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB
                 + DETAIL_DESC_HUSBAND + DETAIL_DESC_FRIEND, new AddCommand(expectedStallMultipleDetails));
@@ -68,7 +68,7 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero details
-        Stall expectedStall = new PersonBuilder(TypicalPersons.AMY).withDetails().build();
+        Stall expectedStall = new StallBuilder(TypicalStalls.AMY).withDetails().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + ADDRESS_DESC_AMY,
                 new AddCommand(expectedStall));
     }

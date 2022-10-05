@@ -11,19 +11,19 @@ import foodwhere.model.stall.Stall;
 /**
  * A utility class for Stall.
  */
-public class PersonUtil {
+public class StallUtil {
 
     /**
      * Returns an add command string for adding the {@code stall}.
      */
     public static String getAddCommand(Stall stall) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(stall);
+        return AddCommand.COMMAND_WORD + " " + getStallDetails(stall);
     }
 
     /**
      * Returns the part of command string for the given {@code stall}'s details.
      */
-    public static String getPersonDetails(Stall stall) {
+    public static String getStallDetails(Stall stall) {
         StringBuilder sb = new StringBuilder();
         sb.append(CliSyntax.PREFIX_NAME + stall.getName().fullName + " ");
         sb.append(CliSyntax.PREFIX_PHONE + stall.getPhone().value + " ");
@@ -35,9 +35,9 @@ public class PersonUtil {
     }
 
     /**
-     * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
+     * Returns the part of command string for the given {@code EditStallDescriptor}'s details.
      */
-    public static String getEditPersonDescriptorDetails(EditCommand.EditPersonDescriptor descriptor) {
+    public static String getEditStallDescriptorDetails(EditCommand.EditStallDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(CliSyntax.PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(CliSyntax.PREFIX_PHONE).append(phone.value).append(" "));

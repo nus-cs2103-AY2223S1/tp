@@ -5,16 +5,16 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import foodwhere.model.stall.Stall;
-import foodwhere.model.stall.UniquePersonList;
+import foodwhere.model.stall.UniqueStallList;
 import javafx.collections.ObservableList;
 
 /**
  * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Duplicates are not allowed (by .isSameStall comparison)
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private final UniquePersonList persons;
+    private final UniqueStallList stalls;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,13 +24,13 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
+        stalls = new UniqueStallList();
     }
 
     public AddressBook() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an AddressBook using the Stalls in the {@code toBeCopied}
      */
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
@@ -43,8 +43,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the contents of the stall list with {@code stalls}.
      * {@code stalls} must not contain duplicate stalls.
      */
-    public void setPersons(List<Stall> stalls) {
-        this.persons.setPersons(stalls);
+    public void setStalls(List<Stall> stalls) {
+        this.stalls.setStalls(stalls);
     }
 
     /**
@@ -53,7 +53,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setStalls(newData.getStallList());
     }
 
     //// stall-level operations
@@ -61,17 +61,17 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Returns true if a stall with the same identity as {@code stall} exists in the address book.
      */
-    public boolean hasPerson(Stall stall) {
+    public boolean hasStall(Stall stall) {
         requireNonNull(stall);
-        return persons.contains(stall);
+        return stalls.contains(stall);
     }
 
     /**
      * Adds a stall to the address book.
      * The stall must not already exist in the address book.
      */
-    public void addPerson(Stall p) {
-        persons.add(p);
+    public void addStall(Stall p) {
+        stalls.add(p);
     }
 
     /**
@@ -79,42 +79,42 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code target} must exist in the address book.
      * The stall identity of {@code editedStall} must not be the same as another existing stall in the address book.
      */
-    public void setPerson(Stall target, Stall editedStall) {
+    public void setStall(Stall target, Stall editedStall) {
         requireNonNull(editedStall);
 
-        persons.setPerson(target, editedStall);
+        stalls.setStall(target, editedStall);
     }
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removePerson(Stall key) {
-        persons.remove(key);
+    public void removeStall(Stall key) {
+        stalls.remove(key);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return stalls.asUnmodifiableObservableList().size() + " stalls";
         // TODO: refine later
     }
 
     @Override
-    public ObservableList<Stall> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+    public ObservableList<Stall> getStallList() {
+        return stalls.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                && stalls.equals(((AddressBook) other).stalls));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return stalls.hashCode();
     }
 }

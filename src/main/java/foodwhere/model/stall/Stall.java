@@ -55,10 +55,10 @@ public class Stall {
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both stalls have the same name.
+     * This defines a weaker notion of equality between two stalls.
      */
-    public boolean isSamePerson(Stall otherStall) {
+    public boolean isSameStall(Stall otherStall) {
         if (otherStall == this) {
             return true;
         }
@@ -68,8 +68,8 @@ public class Stall {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both stalls have the same identity and data fields.
+     * This defines a stronger notion of equality between two stalls.
      */
     @Override
     public boolean equals(Object other) {

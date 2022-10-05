@@ -20,40 +20,40 @@ import foodwhere.model.AddressBook;
 import foodwhere.model.Model;
 import foodwhere.model.ReadOnlyAddressBook;
 import foodwhere.model.ReadOnlyUserPrefs;
-import foodwhere.testutil.PersonBuilder;
+import foodwhere.testutil.StallBuilder;
 import javafx.collections.ObservableList;
 
 public class AddCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullStall_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Stall validStall = new PersonBuilder().build();
+    public void execute_stallAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingStallAdded modelStub = new ModelStubAcceptingStallAdded();
+        Stall validStall = new StallBuilder().build();
 
         CommandResult commandResult = new AddCommand(validStall).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validStall), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validStall), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validStall), modelStub.stallsAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Stall validStall = new PersonBuilder().build();
+    public void execute_duplicateStall_throwsCommandException() {
+        Stall validStall = new StallBuilder().build();
         AddCommand addCommand = new AddCommand(validStall);
-        ModelStub modelStub = new ModelStubWithPerson(validStall);
+        ModelStub modelStub = new ModelStubWithStall(validStall);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_STALL, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Stall alice = new PersonBuilder().withName("Alice").build();
-        Stall bob = new PersonBuilder().withName("Bob").build();
+        Stall alice = new StallBuilder().withName("Alice").build();
+        Stall bob = new StallBuilder().withName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
@@ -109,7 +109,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addPerson(Stall stall) {
+        public void addStall(Stall stall) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -124,27 +124,27 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Stall stall) {
+        public boolean hasStall(Stall stall) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Stall target) {
+        public void deleteStall(Stall target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Stall target, Stall editedStall) {
+        public void setStall(Stall target, Stall editedStall) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Stall> getFilteredPersonList() {
+        public ObservableList<Stall> getFilteredStallList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Stall> predicate) {
+        public void updateFilteredStallList(Predicate<Stall> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -152,37 +152,37 @@ public class AddCommandTest {
     /**
      * A Model stub that contains a single stall.
      */
-    private class ModelStubWithPerson extends ModelStub {
+    private class ModelStubWithStall extends ModelStub {
         private final Stall stall;
 
-        ModelStubWithPerson(Stall stall) {
+        ModelStubWithStall(Stall stall) {
             requireNonNull(stall);
             this.stall = stall;
         }
 
         @Override
-        public boolean hasPerson(Stall stall) {
+        public boolean hasStall(Stall stall) {
             requireNonNull(stall);
-            return this.stall.isSamePerson(stall);
+            return this.stall.isSameStall(stall);
         }
     }
 
     /**
      * A Model stub that always accept the stall being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Stall> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingStallAdded extends ModelStub {
+        final ArrayList<Stall> stallsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Stall stall) {
+        public boolean hasStall(Stall stall) {
             requireNonNull(stall);
-            return personsAdded.stream().anyMatch(stall::isSamePerson);
+            return stallsAdded.stream().anyMatch(stall::isSameStall);
         }
 
         @Override
-        public void addPerson(Stall stall) {
+        public void addStall(Stall stall) {
             requireNonNull(stall);
-            personsAdded.add(stall);
+            stallsAdded.add(stall);
         }
 
         @Override

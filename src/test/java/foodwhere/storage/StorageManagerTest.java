@@ -1,6 +1,6 @@
 package foodwhere.storage;
 
-import static foodwhere.testutil.TypicalPersons.getTypicalAddressBook;
+import static foodwhere.testutil.TypicalStalls.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 

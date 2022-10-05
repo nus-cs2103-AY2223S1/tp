@@ -6,23 +6,23 @@ import static java.util.Objects.requireNonNull;
 import java.util.Iterator;
 import java.util.List;
 
-import foodwhere.model.stall.exceptions.DuplicatePersonException;
-import foodwhere.model.stall.exceptions.PersonNotFoundException;
+import foodwhere.model.stall.exceptions.DuplicateStallException;
+import foodwhere.model.stall.exceptions.StallNotFoundException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A stall is considered unique by comparing using {@code Stall#isSamePerson(Stall)}. As such, adding and updating of
- * persons uses Stall#isSamePerson(Stall) for equality so as to ensure that the stall being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a stall uses Stall#equals(Object) so
+ * A list of stalls that enforces uniqueness between its elements and does not allow nulls.
+ * A stall is considered unique by comparing using {@code Stall#isSameStall(Stall)}. As such, adding and updating of
+ * stalls uses Stall#isSameStalls(Stall) for equality so as to ensure that the stall being added or updated is
+ * unique in terms of identity in the UniqueStallList. However, the removal of a stall uses Stall#equals(Object) so
  * as to ensure that the stall with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
- * @see Stall#isSamePerson(Stall)
+ * @see Stall#isSameStall(Stall)
  */
-public class UniquePersonList implements Iterable<Stall> {
+public class UniqueStallList implements Iterable<Stall> {
 
     private final ObservableList<Stall> internalList = FXCollections.observableArrayList();
     private final ObservableList<Stall> internalUnmodifiableList =
@@ -33,7 +33,7 @@ public class UniquePersonList implements Iterable<Stall> {
      */
     public boolean contains(Stall toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSamePerson);
+        return internalList.stream().anyMatch(toCheck::isSameStall);
     }
 
     /**
@@ -43,7 +43,7 @@ public class UniquePersonList implements Iterable<Stall> {
     public void add(Stall toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateStallException();
         }
         internalList.add(toAdd);
     }
@@ -53,16 +53,16 @@ public class UniquePersonList implements Iterable<Stall> {
      * {@code target} must exist in the list.
      * The stall identity of {@code editedStall} must not be the same as another existing stall in the list.
      */
-    public void setPerson(Stall target, Stall editedStall) {
+    public void setStall(Stall target, Stall editedStall) {
         requireAllNonNull(target, editedStall);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new StallNotFoundException();
         }
 
-        if (!target.isSamePerson(editedStall) && contains(editedStall)) {
-            throw new DuplicatePersonException();
+        if (!target.isSameStall(editedStall) && contains(editedStall)) {
+            throw new DuplicateStallException();
         }
 
         internalList.set(index, editedStall);
@@ -75,11 +75,11 @@ public class UniquePersonList implements Iterable<Stall> {
     public void remove(Stall toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new StallNotFoundException();
         }
     }
 
-    public void setPersons(UniquePersonList replacement) {
+    public void setStalls(UniqueStallList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -88,10 +88,10 @@ public class UniquePersonList implements Iterable<Stall> {
      * Replaces the contents of this list with {@code stalls}.
      * {@code stalls} must not contain duplicate stalls.
      */
-    public void setPersons(List<Stall> stalls) {
+    public void setStalls(List<Stall> stalls) {
         requireAllNonNull(stalls);
-        if (!personsAreUnique(stalls)) {
-            throw new DuplicatePersonException();
+        if (!stallsAreUnique(stalls)) {
+            throw new DuplicateStallException();
         }
 
         internalList.setAll(stalls);
@@ -112,8 +112,8 @@ public class UniquePersonList implements Iterable<Stall> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniquePersonList // instanceof handles nulls
-                        && internalList.equals(((UniquePersonList) other).internalList));
+                || (other instanceof UniqueStallList // instanceof handles nulls
+                        && internalList.equals(((UniqueStallList) other).internalList));
     }
 
     @Override
@@ -124,10 +124,10 @@ public class UniquePersonList implements Iterable<Stall> {
     /**
      * Returns true if {@code stalls} contains only unique stalls.
      */
-    private boolean personsAreUnique(List<Stall> stalls) {
+    private boolean stallsAreUnique(List<Stall> stalls) {
         for (int i = 0; i < stalls.size() - 1; i++) {
             for (int j = i + 1; j < stalls.size(); j++) {
-                if (stalls.get(i).isSamePerson(stalls.get(j))) {
+                if (stalls.get(i).isSameStall(stalls.get(j))) {
                     return false;
                 }
             }

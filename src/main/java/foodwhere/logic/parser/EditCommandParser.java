@@ -10,7 +10,7 @@ import java.util.Set;
 
 import foodwhere.commons.core.index.Index;
 import foodwhere.logic.commands.EditCommand;
-import foodwhere.logic.commands.EditCommand.EditPersonDescriptor;
+import foodwhere.logic.commands.EditCommand.EditStallDescriptor;
 import foodwhere.logic.parser.exceptions.ParseException;
 import foodwhere.model.detail.Detail;
 
@@ -41,25 +41,25 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+        EditStallDescriptor editStallDescriptor = new EditStallDescriptor();
         if (argMultimap.getValue(CliSyntax.PREFIX_NAME).isPresent()) {
-            editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(CliSyntax.PREFIX_NAME).get()));
+            editStallDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(CliSyntax.PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(CliSyntax.PREFIX_PHONE).isPresent()) {
-            editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(CliSyntax.PREFIX_PHONE).get()));
+            editStallDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(CliSyntax.PREFIX_PHONE).get()));
         }
         if (argMultimap.getValue(CliSyntax.PREFIX_ADDRESS).isPresent()) {
-            editPersonDescriptor.setAddress(ParserUtil.parseAddress(
+            editStallDescriptor.setAddress(ParserUtil.parseAddress(
                     argMultimap.getValue(CliSyntax.PREFIX_ADDRESS).get()));
         }
         parseDetailsForEdit(argMultimap.getAllValues(CliSyntax.PREFIX_DETAIL))
-                .ifPresent(editPersonDescriptor::setDetails);
+                .ifPresent(editStallDescriptor::setDetails);
 
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
+        if (!editStallDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditCommand(index, editPersonDescriptor);
+        return new EditCommand(index, editStallDescriptor);
     }
 
     /**

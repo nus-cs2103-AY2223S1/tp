@@ -1,7 +1,7 @@
 package foodwhere.storage;
 
 import static foodwhere.testutil.Assert.assertThrows;
-import static foodwhere.testutil.TypicalPersons.BENSON;
+import static foodwhere.testutil.TypicalStalls.BENSON;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
@@ -29,69 +29,69 @@ public class JsonAdaptedStallTest {
             .collect(Collectors.toList());
 
     @Test
-    public void toModelType_validPersonDetails_returnsPerson() throws Exception {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(BENSON);
-        assertEquals(BENSON, person.toModelType());
+    public void toModelType_validStallDetails_returnsStall() throws Exception {
+        JsonAdaptedStall stall = new JsonAdaptedStall(BENSON);
+        assertEquals(BENSON, stall.toModelType());
     }
 
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
-        JsonAdaptedPerson person =
-                new JsonAdaptedPerson(INVALID_NAME, VALID_PHONE, VALID_ADDRESS, VALID_DETAILS);
+        JsonAdaptedStall stall =
+                new JsonAdaptedStall(INVALID_NAME, VALID_PHONE, VALID_ADDRESS, VALID_DETAILS);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, stall::toModelType);
     }
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedPerson person =
-                new JsonAdaptedPerson(null, VALID_PHONE, VALID_ADDRESS, VALID_DETAILS);
+        JsonAdaptedStall stall =
+                new JsonAdaptedStall(null, VALID_PHONE, VALID_ADDRESS, VALID_DETAILS);
         String expectedMessage =
-                String.format(JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+                String.format(JsonAdaptedStall.MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, stall::toModelType);
     }
 
     @Test
     public void toModelType_invalidPhone_throwsIllegalValueException() {
-        JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, INVALID_PHONE, VALID_ADDRESS, VALID_DETAILS);
+        JsonAdaptedStall stall =
+                new JsonAdaptedStall(VALID_NAME, INVALID_PHONE, VALID_ADDRESS, VALID_DETAILS);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, stall::toModelType);
     }
 
     @Test
     public void toModelType_nullPhone_throwsIllegalValueException() {
-        JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, null, VALID_ADDRESS, VALID_DETAILS);
+        JsonAdaptedStall stall =
+                new JsonAdaptedStall(VALID_NAME, null, VALID_ADDRESS, VALID_DETAILS);
         String expectedMessage =
-                String.format(JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+                String.format(JsonAdaptedStall.MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, stall::toModelType);
     }
 
     @Test
     public void toModelType_invalidAddress_throwsIllegalValueException() {
-        JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, INVALID_ADDRESS, VALID_DETAILS);
+        JsonAdaptedStall stall =
+                new JsonAdaptedStall(VALID_NAME, VALID_PHONE, INVALID_ADDRESS, VALID_DETAILS);
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, stall::toModelType);
     }
 
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
-        JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, null, VALID_DETAILS);
+        JsonAdaptedStall stall =
+                new JsonAdaptedStall(VALID_NAME, VALID_PHONE, null, VALID_DETAILS);
         String expectedMessage =
-                String.format(JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+                String.format(JsonAdaptedStall.MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, stall::toModelType);
     }
 
     @Test
     public void toModelType_invalidDetails_throwsIllegalValueException() {
         List<JsonAdaptedDetail> invalidDetails = new ArrayList<>(VALID_DETAILS);
         invalidDetails.add(new JsonAdaptedDetail(INVALID_DETAIL));
-        JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_ADDRESS, invalidDetails);
-        assertThrows(IllegalValueException.class, person::toModelType);
+        JsonAdaptedStall stall =
+                new JsonAdaptedStall(VALID_NAME, VALID_PHONE, VALID_ADDRESS, invalidDetails);
+        assertThrows(IllegalValueException.class, stall::toModelType);
     }
 
 }

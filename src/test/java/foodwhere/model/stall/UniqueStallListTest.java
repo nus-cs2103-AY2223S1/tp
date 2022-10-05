@@ -12,165 +12,165 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import foodwhere.logic.commands.CommandTestUtil;
-import foodwhere.model.stall.exceptions.DuplicatePersonException;
-import foodwhere.model.stall.exceptions.PersonNotFoundException;
-import foodwhere.testutil.PersonBuilder;
-import foodwhere.testutil.TypicalPersons;
+import foodwhere.model.stall.exceptions.DuplicateStallException;
+import foodwhere.model.stall.exceptions.StallNotFoundException;
+import foodwhere.testutil.StallBuilder;
+import foodwhere.testutil.TypicalStalls;
 
 public class UniqueStallListTest {
 
-    private final UniquePersonList uniquePersonList = new UniquePersonList();
+    private final UniqueStallList uniqueStallList = new UniqueStallList();
 
     @Test
-    public void contains_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.contains(null));
+    public void contains_nullStall_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueStallList.contains(null));
     }
 
     @Test
-    public void contains_personNotInList_returnsFalse() {
-        assertFalse(uniquePersonList.contains(TypicalPersons.ALICE));
+    public void contains_stallNotInList_returnsFalse() {
+        assertFalse(uniqueStallList.contains(TypicalStalls.ALICE));
     }
 
     @Test
-    public void contains_personInList_returnsTrue() {
-        uniquePersonList.add(TypicalPersons.ALICE);
-        assertTrue(uniquePersonList.contains(TypicalPersons.ALICE));
+    public void contains_stallInList_returnsTrue() {
+        uniqueStallList.add(TypicalStalls.ALICE);
+        assertTrue(uniqueStallList.contains(TypicalStalls.ALICE));
     }
 
     @Test
-    public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
-        uniquePersonList.add(TypicalPersons.ALICE);
+    public void contains_stallWithSameIdentityFieldsInList_returnsTrue() {
+        uniqueStallList.add(TypicalStalls.ALICE);
         Stall editedAlice =
-                new PersonBuilder(TypicalPersons.ALICE)
+                new StallBuilder(TypicalStalls.ALICE)
                         .withAddress(CommandTestUtil.VALID_ADDRESS_BOB)
                         .withDetails(CommandTestUtil.VALID_DETAIL_HUSBAND)
                 .build();
-        assertTrue(uniquePersonList.contains(editedAlice));
+        assertTrue(uniqueStallList.contains(editedAlice));
     }
 
     @Test
-    public void add_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.add(null));
+    public void add_nullStall_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueStallList.add(null));
     }
 
     @Test
-    public void add_duplicatePerson_throwsDuplicatePersonException() {
-        uniquePersonList.add(TypicalPersons.ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.add(TypicalPersons.ALICE));
+    public void add_duplicateStall_throwsDuplicateStallException() {
+        uniqueStallList.add(TypicalStalls.ALICE);
+        assertThrows(DuplicateStallException.class, () -> uniqueStallList.add(TypicalStalls.ALICE));
     }
 
     @Test
-    public void setPerson_nullTargetPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setPerson(null, TypicalPersons.ALICE));
+    public void setStall_nullTargetStall_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueStallList.setStall(null, TypicalStalls.ALICE));
     }
 
     @Test
-    public void setPerson_nullEditedPerson_throwsNullPointerException() {
+    public void setStall_nullEditedStall_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-                uniquePersonList.setPerson(TypicalPersons.ALICE, null));
+                uniqueStallList.setStall(TypicalStalls.ALICE, null));
     }
 
     @Test
-    public void setPerson_targetPersonNotInList_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () ->
-                uniquePersonList.setPerson(TypicalPersons.ALICE, TypicalPersons.ALICE));
+    public void setStall_targetStallNotInList_throwsStallNotFoundException() {
+        assertThrows(StallNotFoundException.class, () ->
+                uniqueStallList.setStall(TypicalStalls.ALICE, TypicalStalls.ALICE));
     }
 
     @Test
-    public void setPerson_editedPersonIsSamePerson_success() {
-        uniquePersonList.add(TypicalPersons.ALICE);
-        uniquePersonList.setPerson(TypicalPersons.ALICE, TypicalPersons.ALICE);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(TypicalPersons.ALICE);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+    public void setStall_editedStallIsSameStall_success() {
+        uniqueStallList.add(TypicalStalls.ALICE);
+        uniqueStallList.setStall(TypicalStalls.ALICE, TypicalStalls.ALICE);
+        UniqueStallList expectedUniqueStallList = new UniqueStallList();
+        expectedUniqueStallList.add(TypicalStalls.ALICE);
+        assertEquals(expectedUniqueStallList, uniqueStallList);
     }
 
     @Test
-    public void setPerson_editedPersonHasSameIdentity_success() {
-        uniquePersonList.add(TypicalPersons.ALICE);
-        Stall editedAlice = new PersonBuilder(TypicalPersons.ALICE)
+    public void setStall_editedStallHasSameIdentity_success() {
+        uniqueStallList.add(TypicalStalls.ALICE);
+        Stall editedAlice = new StallBuilder(TypicalStalls.ALICE)
                 .withAddress(CommandTestUtil.VALID_ADDRESS_BOB)
                 .withDetails(CommandTestUtil.VALID_DETAIL_HUSBAND)
                 .build();
-        uniquePersonList.setPerson(TypicalPersons.ALICE, editedAlice);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(editedAlice);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+        uniqueStallList.setStall(TypicalStalls.ALICE, editedAlice);
+        UniqueStallList expectedUniqueStallList = new UniqueStallList();
+        expectedUniqueStallList.add(editedAlice);
+        assertEquals(expectedUniqueStallList, uniqueStallList);
     }
 
     @Test
-    public void setPerson_editedPersonHasDifferentIdentity_success() {
-        uniquePersonList.add(TypicalPersons.ALICE);
-        uniquePersonList.setPerson(TypicalPersons.ALICE, TypicalPersons.BOB);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(TypicalPersons.BOB);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+    public void setStall_editedStallHasDifferentIdentity_success() {
+        uniqueStallList.add(TypicalStalls.ALICE);
+        uniqueStallList.setStall(TypicalStalls.ALICE, TypicalStalls.BOB);
+        UniqueStallList expectedUniqueStallList = new UniqueStallList();
+        expectedUniqueStallList.add(TypicalStalls.BOB);
+        assertEquals(expectedUniqueStallList, uniqueStallList);
     }
 
     @Test
-    public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
-        uniquePersonList.add(TypicalPersons.ALICE);
-        uniquePersonList.add(TypicalPersons.BOB);
-        assertThrows(DuplicatePersonException.class, () ->
-                uniquePersonList.setPerson(TypicalPersons.ALICE, TypicalPersons.BOB));
+    public void setStall_editedStallHasNonUniqueIdentity_throwsDuplicateStallException() {
+        uniqueStallList.add(TypicalStalls.ALICE);
+        uniqueStallList.add(TypicalStalls.BOB);
+        assertThrows(DuplicateStallException.class, () ->
+                uniqueStallList.setStall(TypicalStalls.ALICE, TypicalStalls.BOB));
     }
 
     @Test
-    public void remove_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.remove(null));
+    public void remove_nullStall_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueStallList.remove(null));
     }
 
     @Test
-    public void remove_personDoesNotExist_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.remove(TypicalPersons.ALICE));
+    public void remove_stallDoesNotExist_throwsStallNotFoundException() {
+        assertThrows(StallNotFoundException.class, () -> uniqueStallList.remove(TypicalStalls.ALICE));
     }
 
     @Test
-    public void remove_existingPerson_removesPerson() {
-        uniquePersonList.add(TypicalPersons.ALICE);
-        uniquePersonList.remove(TypicalPersons.ALICE);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+    public void remove_existingStall_removesStall() {
+        uniqueStallList.add(TypicalStalls.ALICE);
+        uniqueStallList.remove(TypicalStalls.ALICE);
+        UniqueStallList expectedUniqueStallList = new UniqueStallList();
+        assertEquals(expectedUniqueStallList, uniqueStallList);
     }
 
     @Test
-    public void setPersons_nullUniquePersonList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setPersons((UniquePersonList) null));
+    public void setStalls_nullUniqueStallList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueStallList.setStalls((UniqueStallList) null));
     }
 
     @Test
-    public void setPersons_uniquePersonList_replacesOwnListWithProvidedUniquePersonList() {
-        uniquePersonList.add(TypicalPersons.ALICE);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(TypicalPersons.BOB);
-        uniquePersonList.setPersons(expectedUniquePersonList);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+    public void setStalls_uniqueStallList_replacesOwnListWithProvidedUniqueStallList() {
+        uniqueStallList.add(TypicalStalls.ALICE);
+        UniqueStallList expectedUniqueStallList = new UniqueStallList();
+        expectedUniqueStallList.add(TypicalStalls.BOB);
+        uniqueStallList.setStalls(expectedUniqueStallList);
+        assertEquals(expectedUniqueStallList, uniqueStallList);
     }
 
     @Test
-    public void setPersons_nullList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setPersons((List<Stall>) null));
+    public void setStalls_nullList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueStallList.setStalls((List<Stall>) null));
     }
 
     @Test
-    public void setPersons_list_replacesOwnListWithProvidedList() {
-        uniquePersonList.add(TypicalPersons.ALICE);
-        List<Stall> stallList = Collections.singletonList(TypicalPersons.BOB);
-        uniquePersonList.setPersons(stallList);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(TypicalPersons.BOB);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+    public void setStalls_list_replacesOwnListWithProvidedList() {
+        uniqueStallList.add(TypicalStalls.ALICE);
+        List<Stall> stallList = Collections.singletonList(TypicalStalls.BOB);
+        uniqueStallList.setStalls(stallList);
+        UniqueStallList expectedUniqueStallList = new UniqueStallList();
+        expectedUniqueStallList.add(TypicalStalls.BOB);
+        assertEquals(expectedUniqueStallList, uniqueStallList);
     }
 
     @Test
-    public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
-        List<Stall> listWithDuplicateStalls = Arrays.asList(TypicalPersons.ALICE, TypicalPersons.ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPersons(listWithDuplicateStalls));
+    public void setStalls_listWithDuplicateStalls_throwsDuplicateStallException() {
+        List<Stall> listWithDuplicateStalls = Arrays.asList(TypicalStalls.ALICE, TypicalStalls.ALICE);
+        assertThrows(DuplicateStallException.class, () -> uniqueStallList.setStalls(listWithDuplicateStalls));
     }
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () ->
-                uniquePersonList.asUnmodifiableObservableList().remove(0));
+                uniqueStallList.asUnmodifiableObservableList().remove(0));
     }
 }

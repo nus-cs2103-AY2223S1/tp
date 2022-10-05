@@ -11,7 +11,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of stalls.
  * Will be updated to a Review for later iterations.
  */
 public class ReviewListPanel extends UiPart<Region> {
@@ -31,7 +31,7 @@ public class ReviewListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Stall} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Stall} using a {@code StallCard}.
      */
     class ReviewListViewCell extends ListCell<Stall> {
         @Override

@@ -36,20 +36,20 @@ public class TestUtil {
      * Returns the middle index of the stall in the {@code model}'s stall list.
      */
     public static Index getMidIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredPersonList().size() / 2);
+        return Index.fromOneBased(model.getFilteredStallList().size() / 2);
     }
 
     /**
      * Returns the last index of the stall in the {@code model}'s stall list.
      */
     public static Index getLastIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredPersonList().size());
+        return Index.fromOneBased(model.getFilteredStallList().size());
     }
 
     /**
      * Returns the stall in the {@code model}'s stall list at {@code index}.
      */
-    public static Stall getPerson(Model model, Index index) {
-        return model.getFilteredPersonList().get(index.getZeroBased());
+    public static Stall getStall(Model model, Index index) {
+        return model.getFilteredStallList().get(index.getZeroBased());
     }
 }

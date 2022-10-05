@@ -13,7 +13,7 @@ import foodwhere.model.util.SampleDataUtil;
 /**
  * A utility class to help with building Stall objects.
  */
-public class PersonBuilder {
+public class StallBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
@@ -25,9 +25,9 @@ public class PersonBuilder {
     private Set<Detail> details;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code StallBuilder} with the default details.
      */
-    public PersonBuilder() {
+    public StallBuilder() {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         address = new Address(DEFAULT_ADDRESS);
@@ -35,9 +35,9 @@ public class PersonBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code stallToCopy}.
+     * Initializes the StallBuilder with the data of {@code stallToCopy}.
      */
-    public PersonBuilder(Stall stallToCopy) {
+    public StallBuilder(Stall stallToCopy) {
         name = stallToCopy.getName();
         phone = stallToCopy.getPhone();
         address = stallToCopy.getAddress();
@@ -47,7 +47,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Name} of the {@code Stall} that we are building.
      */
-    public PersonBuilder withName(String name) {
+    public StallBuilder withName(String name) {
         this.name = new Name(name);
         return this;
     }
@@ -55,7 +55,7 @@ public class PersonBuilder {
     /**
      * Parses the {@code details} into a {@code Set<Detail>} and set it to the {@code Stall} that we are building.
      */
-    public PersonBuilder withDetails(String ... details) {
+    public StallBuilder withDetails(String ... details) {
         this.details = SampleDataUtil.getDetailSet(details);
         return this;
     }
@@ -63,7 +63,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Address} of the {@code Stall} that we are building.
      */
-    public PersonBuilder withAddress(String address) {
+    public StallBuilder withAddress(String address) {
         this.address = new Address(address);
         return this;
     }
@@ -71,7 +71,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Phone} of the {@code Stall} that we are building.
      */
-    public PersonBuilder withPhone(String phone) {
+    public StallBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
         return this;
     }
