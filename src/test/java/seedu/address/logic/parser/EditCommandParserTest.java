@@ -124,6 +124,12 @@ public class EditCommandParserTest {
         descriptor = new EditFoodDescriptorBuilder().withTags(VALID_TAG_BREAKFAST).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
+
+        // calorie
+        userInput = targetIndex.getOneBased() + VALID_CALORIE_DESC;
+        descriptor = new EditFoodDescriptorBuilder().withCalorie(VALID_CALORIE).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
