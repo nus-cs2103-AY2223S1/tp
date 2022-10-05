@@ -14,7 +14,7 @@ public class Gender {
 
     private static final List<String> VALID_GENDERS = new ArrayList<>(Arrays.asList("m", "male", "M", "Male"
             , "f", "female", "F", "Female"));
-    public final GenderType gender;
+    public final GenderType value;
 
 
     /**
@@ -26,11 +26,11 @@ public class Gender {
     public Gender(String gender) {
         requireNonNull(gender);
         checkArgument(isValidGender(gender), MESSAGE_CONSTRAINTS);
-        this.gender = GenderType.getGenderType(gender);
+        this.value = GenderType.getGenderType(gender);
     }
 
     public Gender(GenderType gender) {
-        this.gender = gender;
+        this.value = gender;
     }
 
     /**
@@ -42,18 +42,18 @@ public class Gender {
 
     @Override
     public String toString() {
-        return gender.toString();
+        return value.toString();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Gender // instanceof handles nulls
-                && gender.equals(((Gender) other).gender)); // state check
+                && value.equals(((Gender) other).value)); // state check
     }
 
     @Override
     public int hashCode() {
-        return gender.hashCode();
+        return value.hashCode();
     }
 }
