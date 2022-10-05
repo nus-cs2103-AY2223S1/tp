@@ -4,7 +4,7 @@
     "phone" : "90909090",
     "email" : "email@gmail.com",
     "address" : "address",
-    "tagged" : [ ]
+    "tagged" : [ "test1" ]
   } ],
-  "tags" : [ ]
+  "tags" : [ "test1" ]
 }
