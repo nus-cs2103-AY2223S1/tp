@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 
 import tracko.commons.core.index.Index;
 import tracko.model.Model;
-import tracko.model.person.Person;
+import tracko.model.order.Order;
 
 /**
  * A utility class for test cases.
@@ -33,23 +33,23 @@ public class TestUtil {
     }
 
     /**
-     * Returns the middle index of the person in the {@code model}'s person list.
+     * Returns the middle index of the person in the {@code model}'s order list.
      */
-    public static Index getMidIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredPersonList().size() / 2);
+    public static Index getMidIndexOfOrderList(Model model) {
+        return Index.fromOneBased(model.getOrderList().size() / 2);
     }
 
     /**
-     * Returns the last index of the person in the {@code model}'s person list.
+     * Returns the last index of the person in the {@code model}'s order list.
      */
-    public static Index getLastIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredPersonList().size());
+    public static Index getLastIndexOfOrderList(Model model) {
+        return Index.fromOneBased(model.getOrderList().size());
     }
 
     /**
      * Returns the person in the {@code model}'s person list at {@code index}.
      */
-    public static Person getPerson(Model model, Index index) {
-        return model.getFilteredPersonList().get(index.getZeroBased());
+    public static Order getOrder(Model model, Index index) {
+        return model.getOrderList().get(index.getZeroBased());
     }
 }

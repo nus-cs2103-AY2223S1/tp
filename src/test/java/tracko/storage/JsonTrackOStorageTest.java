@@ -3,7 +3,6 @@ package tracko.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static tracko.testutil.Assert.assertThrows;
-import static tracko.testutil.TypicalOrders.ORDER_1;
 import static tracko.testutil.TypicalOrders.ORDER_8;
 import static tracko.testutil.TypicalOrders.ORDER_9;
 import static tracko.testutil.TypicalOrders.getTrackOWithTypicalOrders;
@@ -17,8 +16,9 @@ import org.junit.jupiter.api.io.TempDir;
 
 import tracko.commons.exceptions.DataConversionException;
 import tracko.model.ReadOnlyTrackO;
+import tracko.model.TrackO;
 
-public class JsonAddressBookStorageTest {
+public class JsonTrackOStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonTrackOStorageTest");
 
     @TempDir
@@ -46,64 +46,67 @@ public class JsonAddressBookStorageTest {
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readTrackO("notJsonFormatAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readTrackO("notJsonFormatOrders.json"));
     }
 
     @Test
     public void readAddressBook_invalidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readTrackO("invalidPersonAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readTrackO("invalidOrderOrders.json"));
     }
 
     @Test
     public void readAddressBook_invalidAndValidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readTrackO("invalidAndValidPersonAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readTrackO("invalidAndValidOrderOrders.json"));
     }
 
     @Test
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
-        AddressBook original = getTrackOWithTypicalOrders();
-        JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(filePath);
+        TrackO original = getTrackOWithTypicalOrders();
+        JsonTrackOStorage jsonTrackOStorage = new JsonTrackOStorage(filePath);
 
         // Save in new file and read back
-        jsonAddressBookStorage.saveAddressBook(original, filePath);
-        ReadOnlyTrackO readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
-        assertEquals(original, new AddressBook(readBack));
+        jsonTrackOStorage.saveTrackO(original, filePath);
+        ReadOnlyTrackO readBack = jsonTrackOStorage.readTrackO(filePath).get();
+        assertEquals(original, new TrackO(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addPerson(ORDER_8);
-        original.removePerson(ORDER_1);
-        jsonAddressBookStorage.saveAddressBook(original, filePath);
-        readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
-        assertEquals(original, new AddressBook(readBack));
+        original.addOrder(ORDER_8);
+
+        // re-add after implementation of remove order
+        // original.removePerson(ORDER_1);
+        jsonTrackOStorage.saveTrackO(original, filePath);
+
+        readBack = jsonTrackOStorage.readTrackO(filePath).get();
+        assertEquals(original, new TrackO(readBack));
 
         // Save and read without specifying file path
-        original.addPerson(ORDER_9);
-        jsonAddressBookStorage.saveAddressBook(original); // file path not specified
-        readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified
-        assertEquals(original, new AddressBook(readBack));
+        original.addOrder(ORDER_9);
+        jsonTrackOStorage.saveTrackO(original); // file path not specified
+        readBack = jsonTrackOStorage.readTrackO().get(); // file path not specified
+        assertEquals(original, new TrackO(readBack));
 
     }
 
     @Test
     public void saveAddressBook_nullAddressBook_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(null, "SomeFile.json"));
+        assertThrows(NullPointerException.class, () -> saveTrackO(null, "SomeFile.json"));
     }
 
     /**
      * Saves {@code addressBook} at the specified {@code filePath}.
      */
-    private void saveAddressBook(ReadOnlyTrackO addressBook, String filePath) {
+    private void saveTrackO(ReadOnlyTrackO trackO, String filePath) {
         try {
-            new JsonAddressBookStorage(Paths.get(filePath))
-                    .saveAddressBook(addressBook, addToTestDataPathIfNotNull(filePath));
+            new JsonTrackOStorage(Paths.get(filePath))
+                    .saveTrackO(trackO, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
     }
 
     @Test
-    public void saveAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(new AddressBook(), null));
+    public void saveTrackO_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveTrackO(new TrackO(), null));
     }
 }

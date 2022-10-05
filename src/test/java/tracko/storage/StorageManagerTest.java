@@ -2,7 +2,7 @@ package tracko.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static tracko.testutil.TypicalPersons.getTypicalAddressBook;
+import static tracko.testutil.TypicalOrders.getTrackOWithTypicalOrders;
 
 import java.nio.file.Path;
 
@@ -54,7 +54,7 @@ public class StorageManagerTest {
          * {@link JsonAddressBookStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
          */
-        AddressBook original = getTypicalAddressBook();
+        AddressBook original = getTrackOWithTypicalOrders();
         storageManager.saveAddressBook(original);
         ReadOnlyTrackO retrieved = storageManager.readAddressBook().get();
         assertEquals(original, new AddressBook(retrieved));

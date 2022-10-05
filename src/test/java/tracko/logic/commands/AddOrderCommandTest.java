@@ -9,52 +9,52 @@ import static tracko.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.function.Predicate;
-
-import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+import org.junit.jupiter.api.Test;
+
 import tracko.commons.core.GuiSettings;
 import tracko.logic.commands.exceptions.CommandException;
 import tracko.logic.commands.order.AddOrderCommand;
-import tracko.model.AddressBook;
 import tracko.model.Model;
 import tracko.model.ReadOnlyTrackO;
 import tracko.model.ReadOnlyUserPrefs;
+import tracko.model.TrackO;
+import tracko.model.order.Order;
 import tracko.model.person.Person;
-import tracko.testutil.PersonBuilder;
+import tracko.testutil.OrderBuilder;
 
 public class AddOrderCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullOrder_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddOrderCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+    public void execute_orderAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingOrderAdded modelStub = new ModelStubAcceptingOrderAdded();
+        Order validOrder = new OrderBuilder().build();
 
-        CommandResult commandResult = new AddOrderCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddOrderCommand(validOrder).execute(modelStub);
 
-        assertEquals(String.format(AddOrderCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(String.format(AddOrderCommand.MESSAGE_SUCCESS, validOrder), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validOrder), modelStub.ordersAdded);
     }
 
-    @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddOrderCommand addOrderCommand = new AddOrderCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
-
-        assertThrows(CommandException.class, AddOrderCommand.MESSAGE_DUPLICATE_PERSON, () -> addOrderCommand.execute(modelStub));
-    }
+//    @Test
+//    public void execute_duplicatePerson_throwsCommandException() {
+//        Person validPerson = new OrderBuilder().build();
+//        AddOrderCommand addOrderCommand = new AddOrderCommand(validPerson);
+//        ModelStub modelStub = new ModeulStubWithOrder(validPerson);
+//
+//        assertThrows(CommandException.class, AddOrderCommand.MESSAGE_DUPLICATE_PERSON, () -> addOrderCommand.execute(modelStub));
+//    }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
+        Order alice = new OrderBuilder().withName("Alice").build();
+        Order bob = new OrderBuilder().withName("Bob").build();
         AddOrderCommand addAliceCommand = new AddOrderCommand(alice);
         AddOrderCommand addBobCommand = new AddOrderCommand(bob);
 
@@ -100,52 +100,32 @@ public class AddOrderCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getOrdersFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setOrdersFilePath(Path ordersFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addPerson(Person person) {
+        public void addOrder(Order order) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBook(ReadOnlyTrackO newData) {
+        public ObservableList<Order> getOrderList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyTrackO getAddressBook() {
+        public void setTrackO(ReadOnlyTrackO newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deletePerson(Person target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setPerson(Person target, Person editedPerson) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Person> getFilteredPersonList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public ReadOnlyTrackO getTrackO() {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -153,42 +133,42 @@ public class AddOrderCommandTest {
     /**
      * A Model stub that contains a single person.
      */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
+    private class ModeulStubWithOrder extends ModelStub {
+        private final Order order;
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        ModeulStubWithOrder(Order order) {
+            requireNonNull(order);
+            this.order = order;
         }
 
-        @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
-        }
+//        @Override
+//        public boolean hasPerson(Person person) {
+//            requireNonNull(person);
+//            return this.person.isSamePerson(person);
+//        }
     }
 
     /**
      * A Model stub that always accept the person being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingOrderAdded extends ModelStub {
+        final ArrayList<Order> ordersAdded = new ArrayList<>();
+
+//        @Override
+//        public boolean hasPerson(Person person) {
+//            requireNonNull(person);
+//            return personsAdded.stream().anyMatch(person::isSamePerson);
+//        }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public void addOrder(Order order) {
+            requireNonNull(order);
+            ordersAdded.add(order);
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
-        }
-
-        @Override
-        public ReadOnlyTrackO getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyTrackO getTrackO() {
+            return new TrackO();
         }
     }
 

@@ -9,6 +9,8 @@ import tracko.model.Model;
 import tracko.model.ModelManager;
 
 public class HelpCommandTest {
+    // TODO: Update test cases according to new implementations
+
     private Model model = new ModelManager();
     private Model expectedModel = new ModelManager();
 

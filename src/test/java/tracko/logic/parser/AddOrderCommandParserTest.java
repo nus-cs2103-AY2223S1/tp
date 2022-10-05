@@ -26,8 +26,8 @@ import static tracko.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static tracko.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static tracko.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static tracko.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static tracko.testutil.TypicalPersons.AMY;
-import static tracko.testutil.TypicalPersons.BOB;
+import static tracko.testutil.TypicalOrders.ORDER_10;
+import static tracko.testutil.TypicalOrders.ORDER_11;
 
 import org.junit.jupiter.api.Test;
 
@@ -39,14 +39,14 @@ import tracko.model.order.Name;
 import tracko.model.person.Person;
 import tracko.model.order.Phone;
 import tracko.model.tag.Tag;
-import tracko.testutil.PersonBuilder;
+import tracko.testutil.OrderBuilder;
 
 public class AddOrderCommandParserTest {
     private AddOrderCommandParser parser = new AddOrderCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Person expectedPerson = new OrderBuilder(ORDER_11).withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
@@ -69,7 +69,7 @@ public class AddOrderCommandParserTest {
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddOrderCommand(expectedPerson));
 
         // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        Person expectedPersonMultipleTags = new OrderBuilder(ORDER_11).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddOrderCommand(expectedPersonMultipleTags));
@@ -78,7 +78,7 @@ public class AddOrderCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        Person expectedPerson = new OrderBuilder(ORDER_10).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
                 new AddOrderCommand(expectedPerson));
     }

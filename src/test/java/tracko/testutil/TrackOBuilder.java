@@ -1,32 +1,32 @@
 package tracko.testutil;
 
-import tracko.model.AddressBook;
-import tracko.model.person.Person;
+import tracko.model.TrackO;
+import tracko.model.order.Order;
 
 /**
  * A utility class to help with building TrackO objects.
  */
-public class AddressBookBuilder {
+public class TrackOBuilder {
 
-    private AddressBook addressBook;
+    private TrackO trackO;
 
-    public AddressBookBuilder() {
-        addressBook = new AddressBook();
+    public TrackOBuilder() {
+        trackO = new TrackO();
     }
 
-    public AddressBookBuilder(AddressBook addressBook) {
-        this.addressBook = addressBook;
+    public TrackOBuilder(TrackO trackO) {
+        this.trackO = trackO;
     }
 
     /**
-     * Adds a new {@code Person} to the {@code AddressBook} that we are building.
+     * Adds a new {@code Person} to the {@code TrackO} that we are building.
      */
-    public AddressBookBuilder withPerson(Person person) {
-        addressBook.addPerson(person);
+    public TrackOBuilder withOrder(Order order) {
+        trackO.addOrder(order);
         return this;
     }
 
-    public AddressBook build() {
-        return addressBook;
+    public TrackO build() {
+        return trackO;
     }
 }
