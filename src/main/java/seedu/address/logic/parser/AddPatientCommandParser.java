@@ -51,6 +51,7 @@ public class AddPatientCommandParser implements Parser<AddPatientCommand> {
         TaskDescription taskDescription = ParserUtil.parseTaskDescription(
                 argMultimap.getValue(PREFIX_TASK_DESCRIPTION).get());
 
+        // TODO - update Person to patient when patient model is done
         Set<Tag> tagList = new HashSet<>();
 
         Person patient = new Person(name, phone, email, address, tagList);

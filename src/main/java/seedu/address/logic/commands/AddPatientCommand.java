@@ -29,6 +29,7 @@ public class AddPatientCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New patient added: %1$s";
     public static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists in the patient list";
 
+    // TODO - update person to patient once patient model is done
     private final Person toAdd;
 
     /**
