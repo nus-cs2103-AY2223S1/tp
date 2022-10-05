@@ -64,7 +64,7 @@ public class ArgumentMultimap {
      * Returns the arguments after the option prefix.
      */
     public String getOptionArgs() {
-        Pattern format = Pattern.compile("(\\S+)(?<arguments>\\s+\\S+)");
+        Pattern format = Pattern.compile("(\\S+)(?<arguments>\\s+\\S+(.*))");
         String options = getValue(new Prefix("-")).orElse("");
         final Matcher matcher = format.matcher(options);
         if (!matcher.matches()) {
