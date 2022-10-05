@@ -54,7 +54,7 @@ public class UniquePocList implements Iterable<Poc> {
      * {@code target} must exist in the list.
      * The Poc identity of {@code editedPoc} must not be the same as another existing Poc in the list.
      */
-    public void setPoc(Poc target, Poc editedPoC) {
+    public void replacePoc(Poc target, Poc editedPoC) {
         requireAllNonNull(target, editedPoC);
 
         int index = internalList.indexOf(target);

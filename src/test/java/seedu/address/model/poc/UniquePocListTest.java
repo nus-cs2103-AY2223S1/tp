@@ -59,23 +59,23 @@ public class UniquePocListTest {
 
     @Test
     public void setPoc_nullTargetPoc_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePocList.setPoc(null, ALICE));
+        assertThrows(NullPointerException.class, () -> uniquePocList.replacePoc(null, ALICE));
     }
 
     @Test
     public void setPoc_nullEditedPoc_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePocList.setPoc(ALICE, null));
+        assertThrows(NullPointerException.class, () -> uniquePocList.replacePoc(ALICE, null));
     }
 
     @Test
     public void setPoc_targetPocNotInList_throwsPocNotFoundException() {
-        assertThrows(PocNotFoundException.class, () -> uniquePocList.setPoc(ALICE, ALICE));
+        assertThrows(PocNotFoundException.class, () -> uniquePocList.replacePoc(ALICE, ALICE));
     }
 
     @Test
     public void setPoc_editedPocIsSamePoc_success() {
         uniquePocList.add(ALICE);
-        uniquePocList.setPoc(ALICE, ALICE);
+        uniquePocList.replacePoc(ALICE, ALICE);
         UniquePocList expectedUniquePocList = new UniquePocList();
         expectedUniquePocList.add(ALICE);
         assertEquals(expectedUniquePocList, uniquePocList);
@@ -86,7 +86,7 @@ public class UniquePocListTest {
         uniquePocList.add(ALICE);
         Poc editedAlice = new PocBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
-        uniquePocList.setPoc(ALICE, editedAlice);
+        uniquePocList.replacePoc(ALICE, editedAlice);
         UniquePocList expectedUniquePocList = new UniquePocList();
         expectedUniquePocList.add(editedAlice);
         assertEquals(expectedUniquePocList, uniquePocList);
@@ -95,7 +95,7 @@ public class UniquePocListTest {
     @Test
     public void setPoc_editedPocHasDifferentIdentity_success() {
         uniquePocList.add(ALICE);
-        uniquePocList.setPoc(ALICE, BOB);
+        uniquePocList.replacePoc(ALICE, BOB);
         UniquePocList expectedUniquePocList = new UniquePocList();
         expectedUniquePocList.add(BOB);
         assertEquals(expectedUniquePocList, uniquePocList);
@@ -105,7 +105,7 @@ public class UniquePocListTest {
     public void setPoc_editedPocHasNonUniqueIdentity_throwsDuplicatePocException() {
         uniquePocList.add(ALICE);
         uniquePocList.add(BOB);
-        assertThrows(DuplicatePocException.class, () -> uniquePocList.setPoc(ALICE, BOB));
+        assertThrows(DuplicatePocException.class, () -> uniquePocList.replacePoc(ALICE, BOB));
     }
 
     @Test
