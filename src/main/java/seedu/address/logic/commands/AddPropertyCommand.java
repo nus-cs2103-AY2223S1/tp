@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
 
 /**
  * Adds a person to the address book.
@@ -37,7 +36,7 @@ public class AddPropertyCommand extends Command {
     /**
      * Creates an AddPropertyCommand to add the specified {@code Property}
      */
-    public AddPropCommand(Property property) {
+    public AddPropertyCommand(Property property) {
         requireNonNull(property);
         toAdd = property;
     }
