@@ -31,6 +31,8 @@ public class Email {
     private static final String DOMAIN_REGEX = "(" + DOMAIN_PART_REGEX + "\\.)*" + DOMAIN_LAST_PART_REGEX;
     public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@" + DOMAIN_REGEX;
 
+    public static final String DEFAULT_EMAIL = "ANONYMOUS@gmail.com";
+
     public final String value;
 
     /**
@@ -42,6 +44,14 @@ public class Email {
         requireNonNull(email);
         checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
         value = email;
+    }
+
+    /**
+     * Returns an Email object containing the default String
+     * @return Email object with the default value field.
+     */
+    public Email makeDefaultEmail(){
+        return new Email(DEFAULT_EMAIL);
     }
 
     /**
