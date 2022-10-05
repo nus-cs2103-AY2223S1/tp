@@ -29,9 +29,9 @@ import seedu.address.testutil.CompanyBuilder;
 import seedu.address.testutil.CompanyUtil;
 import seedu.address.testutil.EditCompanyDescriptorBuilder;
 
-public class AddressBookParserTest {
+public class JeeqTrackerParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final JeeqTrackerParser parser = new JeeqTrackerParser();
 
     @Test
     public void parseCommand_add() throws Exception {

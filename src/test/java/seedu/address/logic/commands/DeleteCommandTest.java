@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showCompanyAtIndex;
-import static seedu.address.testutil.TypicalCompanies.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalCompanies.getTypicalJeeqTracker;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_COMPANY;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_COMPANY;
 
@@ -24,7 +24,7 @@ import seedu.address.model.company.Company;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalJeeqTracker(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -33,7 +33,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_COMPANY_SUCCESS, companyToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getJeeqTracker(), new UserPrefs());
         expectedModel.deleteCompany(companyToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -56,7 +56,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_COMPANY_SUCCESS, companyToDelete);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getJeeqTracker(), new UserPrefs());
         expectedModel.deleteCompany(companyToDelete);
         showNoCompany(expectedModel);
 
@@ -69,7 +69,7 @@ public class DeleteCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND_COMPANY;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getCompanyList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getJeeqTracker().getCompanyList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 

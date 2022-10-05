@@ -37,20 +37,20 @@ public interface Model {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getJeeqTrackerFilePath();
 
     /**
      * Sets the user prefs' address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setJeeqTrackerFilePath(Path jeeqTrackerFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces address book data with the data in {@code jeeqTracker}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setJeeqTracker(ReadOnlyJeeqTracker jeeqTracker);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the JeeqTracker */
+    ReadOnlyJeeqTracker getJeeqTracker();
 
     /**
      * Returns true if a company with the same identity as {@code company} exists in the address book.

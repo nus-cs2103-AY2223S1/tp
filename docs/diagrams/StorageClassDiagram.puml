@@ -14,10 +14,10 @@ Class JsonUserPrefsStorage
 Class "<<interface>>\nStorage" as Storage
 Class StorageManager
 
-package "AddressBook Storage" #F4F6F6{
-Class "<<interface>>\nAddressBookStorage" as AddressBookStorage
-Class JsonAddressBookStorage
-Class JsonSerializableAddressBook
+package "JeeqTracker Storage" #F4F6F6{
+Class "<<interface>>\nJeeqTrackerStorage" as JeeqTrackerStorage
+Class JsonJeeqTrackerStorage
+Class JsonSerializableJeeqTracker
 Class JsonAdaptedCompany
 Class JsonAdaptedTag
 }
@@ -29,15 +29,15 @@ HiddenOutside ..> Storage
 
 StorageManager .up.|> Storage
 StorageManager -up-> "1" UserPrefsStorage
-StorageManager -up-> "1" AddressBookStorage
+StorageManager -up-> "1" JeeqTrackerStorage
 
 Storage -left-|> UserPrefsStorage
-Storage -right-|> AddressBookStorage
+Storage -right-|> JeeqTrackerStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
-JsonAddressBookStorage .up.|> AddressBookStorage
-JsonAddressBookStorage ..> JsonSerializableAddressBook
-JsonSerializableAddressBook --> "*" JsonAdaptedCompany
+JsonJeeqTrackerStorage .up.|> JeeqTrackerStorage
+JsonJeeqTrackerStorage ..> JsonSerializableJeeqTracker
+JsonSerializableJeeqTracker --> "*" JsonAdaptedCompany
 JsonAdaptedCompany --> "*" JsonAdaptedTag
 
 @enduml

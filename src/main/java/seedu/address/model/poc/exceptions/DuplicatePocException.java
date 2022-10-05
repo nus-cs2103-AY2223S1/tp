@@ -6,6 +6,6 @@ package seedu.address.model.poc.exceptions;
  */
 public class DuplicatePocException extends RuntimeException {
     public DuplicatePocException() {
-        super("Operation would result in duplicate companies");
+        super("Operation would result in duplicate Poc");
     }
 }
