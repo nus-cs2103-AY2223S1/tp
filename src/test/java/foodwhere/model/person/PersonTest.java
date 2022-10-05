@@ -15,7 +15,7 @@ public class PersonTest {
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Person person = new PersonBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> person.getTags().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> person.getDetails().remove(0));
     }
 
     @Test
@@ -31,7 +31,8 @@ public class PersonTest {
                 new PersonBuilder(TypicalPersons.ALICE)
                         .withPhone(CommandTestUtil.VALID_PHONE_BOB)
                         .withEmail(CommandTestUtil.VALID_EMAIL_BOB)
-                .withAddress(CommandTestUtil.VALID_ADDRESS_BOB).withTags(CommandTestUtil.VALID_TAG_HUSBAND).build();
+                .withAddress(CommandTestUtil.VALID_ADDRESS_BOB).withDetails(CommandTestUtil.VALID_DETAIL_HUSBAND)
+                        .build();
         assertTrue(TypicalPersons.ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -83,8 +84,8 @@ public class PersonTest {
         editedAlice = new PersonBuilder(TypicalPersons.ALICE).withAddress(CommandTestUtil.VALID_ADDRESS_BOB).build();
         assertFalse(TypicalPersons.ALICE.equals(editedAlice));
 
-        // different tags -> returns false
-        editedAlice = new PersonBuilder(TypicalPersons.ALICE).withTags(CommandTestUtil.VALID_TAG_HUSBAND).build();
+        // different detailss -> returns false
+        editedAlice = new PersonBuilder(TypicalPersons.ALICE).withDetails(CommandTestUtil.VALID_DETAIL_HUSBAND).build();
         assertFalse(TypicalPersons.ALICE.equals(editedAlice));
     }
 }

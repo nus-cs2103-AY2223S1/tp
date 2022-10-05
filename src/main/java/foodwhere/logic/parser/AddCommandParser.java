@@ -7,12 +7,12 @@ import java.util.stream.Stream;
 
 import foodwhere.logic.commands.AddCommand;
 import foodwhere.logic.parser.exceptions.ParseException;
+import foodwhere.model.detail.Detail;
 import foodwhere.model.person.Address;
 import foodwhere.model.person.Email;
 import foodwhere.model.person.Name;
 import foodwhere.model.person.Person;
 import foodwhere.model.person.Phone;
-import foodwhere.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -31,7 +31,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                         CliSyntax.PREFIX_PHONE,
                         CliSyntax.PREFIX_EMAIL,
                         CliSyntax.PREFIX_ADDRESS,
-                        CliSyntax.PREFIX_TAG);
+                        CliSyntax.PREFIX_DETAIL);
 
         if (!arePrefixesPresent(argMultimap,
                 CliSyntax.PREFIX_NAME,
@@ -46,9 +46,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(CliSyntax.PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(CliSyntax.PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(CliSyntax.PREFIX_ADDRESS).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(CliSyntax.PREFIX_TAG));
+        Set<Detail> detailList = ParserUtil.parseDetails(argMultimap.getAllValues(CliSyntax.PREFIX_DETAIL));
 
-        Person person = new Person(name, phone, email, address, tagList);
+        Person person = new Person(name, phone, email, address, detailList);
 
         return new AddCommand(person);
     }
