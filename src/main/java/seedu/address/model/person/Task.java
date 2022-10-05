@@ -35,6 +35,13 @@ public class Task {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns true if a given task is the same as this task.
+     */
+    public boolean isSameTask(Task test) {
+        return this.equals(test);
+    }
+
     @Override
     public String toString() {
         return value;
