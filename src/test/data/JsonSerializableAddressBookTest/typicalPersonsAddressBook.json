@@ -6,6 +6,7 @@
     "email" : "alice@example.com",
     "position" : "0",
     "address" : "123, Jurong West Ave 6, #08-111",
+    "remark": "",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
@@ -13,6 +14,7 @@
     "email" : "johnd@example.com",
     "position" : "1",
     "address" : "311, Clementi Ave 2, #02-25",
+    "remark": "",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
@@ -20,6 +22,7 @@
     "email" : "heinz@example.com",
     "position" : "2",
     "address" : "wall street",
+    "remark": "",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
@@ -27,6 +30,7 @@
     "email" : "cornelia@example.com",
     "position" : "0",
     "address" : "10th street",
+    "remark": "",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -34,6 +38,7 @@
     "email" : "werner@example.com",
     "position" : "1",
     "address" : "michegan ave",
+    "remark": "",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -41,6 +46,7 @@
     "email" : "lydia@example.com",
     "position" : "2",
     "address" : "little tokyo",
+    "remark": "",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
@@ -48,6 +54,7 @@
     "email" : "anna@example.com",
     "position" : "0",
     "address" : "4th street",
+    "remark": "",
     "tagged" : [ ]
   } ]
 }
