@@ -1,15 +1,15 @@
 package seedu.address.model.person;
 
-import seedu.address.commons.util.StringUtil;
-
-import java.util.List;
-import java.util.function.Predicate;
-
 import static seedu.address.logic.parser.CliSyntax.INDICATOR_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.INDICATOR_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.INDICATOR_NAME;
 import static seedu.address.logic.parser.CliSyntax.INDICATOR_PHONE;
 import static seedu.address.logic.parser.CliSyntax.INDICATOR_TAG;
+
+import java.util.List;
+import java.util.function.Predicate;
+
+import seedu.address.commons.util.StringUtil;
 
 /**
  * Tests that a {@code Person}'s information matches the keyword given.
@@ -18,6 +18,9 @@ public class ContactContainsKeywordsPredicate implements Predicate<Person> {
     private final List<String> keywords;
     private final String prefix;
 
+    /**
+     * Constructs the ContactContainsKeywordsPredicate object.
+     */
     public ContactContainsKeywordsPredicate(String prefix, List<String> keywords) {
         this.keywords = keywords;
         this.prefix = prefix;

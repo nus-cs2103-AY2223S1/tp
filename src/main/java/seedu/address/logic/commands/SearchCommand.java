@@ -1,12 +1,12 @@
 package seedu.address.logic.commands;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import static java.util.Objects.requireNonNull;
 
 import java.util.function.Predicate;
 
-import static java.util.Objects.requireNonNull;
+import seedu.address.commons.core.Messages;
+import seedu.address.model.Model;
+import seedu.address.model.person.Person;
 
 /**
  * Search and lists all persons in address book whose information contains the argument keyword.
