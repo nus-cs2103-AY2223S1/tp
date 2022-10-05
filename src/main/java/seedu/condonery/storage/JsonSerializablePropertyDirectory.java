@@ -19,7 +19,7 @@ import seedu.condonery.model.property.Property;
 @JsonRootName(value = "addressbook")
 class JsonSerializablePropertyDirectory {
 
-    public static final String MESSAGE_DUPLICATE_property = "Properties list contains duplicate property(s).";
+    public static final String MESSAGE_DUPLICATE_PROPERTY = "Properties list contains duplicate property(s).";
 
     private final List<JsonAdaptedProperty> properties = new ArrayList<>();
 
@@ -50,7 +50,7 @@ class JsonSerializablePropertyDirectory {
         for (JsonAdaptedProperty jsonAdaptedProperty : properties) {
             Property property = jsonAdaptedProperty.toModelType();
             if (propertyDirectory.hasProperty(property)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_property);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_PROPERTY);
             }
             propertyDirectory.addProperty(property);
         }
