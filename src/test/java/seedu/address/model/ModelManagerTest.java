@@ -38,7 +38,8 @@ public class ModelManagerTest {
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
         userPrefs.setAddressBookFilePath(Paths.get("address/book/file/path"));
-        userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4, "ADDRESS>TAGS>PHONE>EMAIL"));
+        userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4,
+                "ADDRESS>TAGS>PHONE>EMAIL", "NONE"));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
@@ -55,7 +56,8 @@ public class ModelManagerTest {
 
     @Test
     public void setGuiSettings_validGuiSettings_setsGuiSettings() {
-        GuiSettings guiSettings = new GuiSettings(1, 2, 3, 4, "ADDRESS>TAGS>PHONE>EMAIL");
+        GuiSettings guiSettings = new GuiSettings(1, 2, 3, 4,
+                "ADDRESS>TAGS>PHONE>EMAIL", "NONE");
         modelManager.setGuiSettings(guiSettings);
         assertEquals(guiSettings, modelManager.getGuiSettings());
     }

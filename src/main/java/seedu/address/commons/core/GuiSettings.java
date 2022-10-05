@@ -12,11 +12,14 @@ public class GuiSettings implements Serializable {
 
     private static final double DEFAULT_HEIGHT = 600;
     private static final double DEFAULT_WIDTH = 740;
+    private static final String DEFAULT_ORDER = "ADDRESS>TAGS>PHONE>EMAIL";
+    private static final String DEFAULT_HIDDEN_ATTRIBUTES = "NONE";
 
     private final double windowWidth;
     private final double windowHeight;
     private final Point windowCoordinates;
     private final String attributeOrder;
+    private final String hiddenAttributes;
 
     /**
      * Constructs a {@code GuiSettings} with the default height, width and position.
@@ -25,7 +28,8 @@ public class GuiSettings implements Serializable {
         windowWidth = DEFAULT_WIDTH;
         windowHeight = DEFAULT_HEIGHT;
         windowCoordinates = null; // null represent no coordinates
-        attributeOrder = "ADDRESS>TAGS>PHONE>EMAIL";
+        attributeOrder = DEFAULT_ORDER;
+        hiddenAttributes = DEFAULT_HIDDEN_ATTRIBUTES;
     }
 
     /**
@@ -37,11 +41,13 @@ public class GuiSettings implements Serializable {
      * @param yPosition the y-coordinate of the window coordinates
      * @param attributeOrder the order of the attributes displayed in string format
      */
-    public GuiSettings(double windowWidth, double windowHeight, int xPosition, int yPosition, String attributeOrder) {
+    public GuiSettings(double windowWidth, double windowHeight, int xPosition, int yPosition,
+            String attributeOrder, String hiddenAttributes) {
         this.windowWidth = windowWidth;
         this.windowHeight = windowHeight;
         windowCoordinates = new Point(xPosition, yPosition);
         this.attributeOrder = attributeOrder;
+        this.hiddenAttributes = hiddenAttributes;
     }
 
     public double getWindowWidth() {
@@ -60,6 +66,10 @@ public class GuiSettings implements Serializable {
         return attributeOrder;
     }
 
+    public String getHiddenAttributes() {
+        return hiddenAttributes;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -74,12 +84,13 @@ public class GuiSettings implements Serializable {
         return windowWidth == o.windowWidth
                 && windowHeight == o.windowHeight
                 && Objects.equals(windowCoordinates, o.windowCoordinates)
-                && attributeOrder.equals(o.attributeOrder);
+                && attributeOrder.equals(o.attributeOrder)
+                && hiddenAttributes.equals(o.hiddenAttributes);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(windowWidth, windowHeight, windowCoordinates, attributeOrder);
+        return Objects.hash(windowWidth, windowHeight, windowCoordinates, attributeOrder, hiddenAttributes);
     }
 
     @Override
@@ -88,7 +99,8 @@ public class GuiSettings implements Serializable {
         sb.append("Width : " + windowWidth + "\n");
         sb.append("Height : " + windowHeight + "\n");
         sb.append("Position : " + windowCoordinates + "\n");
-        sb.append("Attribute Order : " + attributeOrder);
+        sb.append("Attribute Order : " + attributeOrder + "\n");
+        sb.append("Hidden Attributes : " + hiddenAttributes);
         return sb.toString();
     }
 }

@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Logic;
 import seedu.address.model.person.Person;
 
@@ -79,8 +80,8 @@ public class PersonCard extends UiPart<Region> {
      * Sets the attributes in the order required.
      */
     public void setAttributes() {
-        int[] order = orderAttributes();
-        FlowPane[] flowpanes = new FlowPane[4];
+        int[] order = filterAttributes(orderAttributes());
+        FlowPane[] flowpanes = new FlowPane[5];
         flowpanes[order[0]] = attributeA;
         flowpanes[order[1]] = attributeB;
         flowpanes[order[2]] = attributeC;
@@ -99,6 +100,46 @@ public class PersonCard extends UiPart<Region> {
             person.getTags().stream()
                     .sorted(Comparator.comparing(tag -> tag.tagName))
                     .forEach(tag -> flowpanes[3].getChildren().add(new Label(tag.tagName)));
+        }
+    }
+
+    /**
+     * Filters the attributes based on what attributes were chosen to be hidden.
+     *
+     * @param order the order that is unfiltered
+     * @return the order with attributes filtered where 4 represents a filtered attribute
+     */
+    private int[] filterAttributes(int[] order) {
+        boolean[] isHidden = new boolean[4];
+        GuiSettings currSettings = logic.getGuiSettings();
+        String currHiddenAttributes = currSettings.getHiddenAttributes().trim();
+
+        if (!currHiddenAttributes.equals("NONE")) {
+            String[] strArr = currHiddenAttributes.split(",");
+            try {
+                readHidden(strArr, isHidden);
+            } catch (IllegalArgumentException e) {
+                isHidden = new boolean[4];
+            }
+        }
+
+        for (int i = 0; i < 4; i++) {
+            order[i] = isHidden[order[i]] ? 4 : order[i];
+        }
+
+        return order;
+    }
+
+    /**
+     * Reads the string array and sets the array elements to true if attributes are hidden.
+     *
+     * @param strArr an array of string representations of the attributes
+     * @param isHidden a boolean array where index 0 represents address, index 1 represents email
+     *                 index 2 represents phone and index 3 represents tags
+     */
+    private void readHidden(String[] strArr, boolean[] isHidden) {
+        for (String s : strArr) {
+            isHidden[convertToIndex(s)] = true;
         }
     }
 

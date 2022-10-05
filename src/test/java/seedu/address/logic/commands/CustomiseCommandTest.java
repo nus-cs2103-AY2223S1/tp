@@ -5,6 +5,7 @@ import static seedu.address.logic.commands.CustomiseCommand.Attribute.ADDRESS;
 import static seedu.address.logic.commands.CustomiseCommand.Attribute.EMAIL;
 import static seedu.address.logic.commands.CustomiseCommand.Attribute.PHONE;
 import static seedu.address.logic.commands.CustomiseCommand.Attribute.TAGS;
+import static seedu.address.logic.commands.CustomiseCommand.CustomiseSubCommand.ORDER;
 import static seedu.address.logic.commands.CustomiseCommand.MESSAGE_ORDER_SUCCESS;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -23,11 +24,13 @@ class CustomiseCommandTest {
     @Test
     public void execute_order_success() {
         Attribute[] attributes = new Attribute[]{ADDRESS, TAGS, PHONE, EMAIL};
-        model.setGuiSettings(new GuiSettings(1000, 500, 300, 100, "ADDRESS>TAGS>PHONE>EMAIL"));
-        CustomiseCommand customiseCommand = new CustomiseCommand("order", attributes);
+        model.setGuiSettings(new GuiSettings(1000, 500, 300, 100,
+                "ADDRESS>TAGS>PHONE>EMAIL", "NONE"));
+        CustomiseCommand customiseCommand = new CustomiseCommand(ORDER, attributes);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.setGuiSettings(new GuiSettings(1000, 500, 300, 100, "ADDRESS>TAGS>PHONE>EMAIL"));
+        expectedModel.setGuiSettings(new GuiSettings(1000, 500, 300, 100,
+                "ADDRESS>TAGS>PHONE>EMAIL", "NONE"));
 
         assertCommandSuccess(customiseCommand, model, MESSAGE_ORDER_SUCCESS, expectedModel);
     }

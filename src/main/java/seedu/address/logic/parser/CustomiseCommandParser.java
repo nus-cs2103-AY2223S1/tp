@@ -1,10 +1,15 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CustomiseCommand.CustomiseSubCommand.HIDE;
+import static seedu.address.logic.commands.CustomiseCommand.CustomiseSubCommand.ORDER;
+import static seedu.address.logic.commands.CustomiseCommand.CustomiseSubCommand.SHOW;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+
+import java.util.ArrayList;
 
 import seedu.address.logic.commands.CustomiseCommand;
 import seedu.address.logic.commands.CustomiseCommand.Attribute;
@@ -33,7 +38,11 @@ public class CustomiseCommandParser implements Parser<CustomiseCommand> {
         }
 
         if (arguments[0].equals("order")) {
-            return new CustomiseCommand("order", toAttributeOrder(arguments));
+            return new CustomiseCommand(ORDER, toAttributeOrder(arguments));
+        } else if (arguments[0].equals("hide")) {
+            return new CustomiseCommand(HIDE, toAttributes(arguments));
+        } else if (arguments[0].equals("show")) {
+            return new CustomiseCommand(SHOW, toAttributes(arguments));
         } else {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, CustomiseCommand.MESSAGE_USAGE));
@@ -41,19 +50,18 @@ public class CustomiseCommandParser implements Parser<CustomiseCommand> {
     }
 
     /**
-     * Converts the argument inputs into an array of Attribute.
+     * Converts the input into an array of Attribute objects in the required order.
      *
      * @param args an array of argument inputs
      * @return an array of Attribute
      * @throws ParseException if the user input does not conform the expected format
      */
     private Attribute[] toAttributeOrder(String[] args) throws ParseException {
-        //0 for ADDRESS, 1 for EMAIL, 2 for PHONE, 3 for TAGS
-        boolean[] isAttributeUsed = new boolean[4];
+        boolean[] isAttributeUsed = new boolean[4]; //0: ADDRESS, 1: EMAIL, 2: PHONE, 3: TAGS
+        int noOfMissing = 4 - (args.length - 1); //first element of args is the subCommand
         Attribute[] attributeArr = new Attribute[4];
-        int noOfMissing = 4 - (args.length - 1);
 
-        //First element is ignored as it is the subCommand
+        //first element is ignored as it is the subCommand
         for (int i = 1; i < args.length; i++) {
             if (args[i].equals(PREFIX_ADDRESS.toString()) && !isAttributeUsed[0]) {
                 attributeArr[i - 1] = Attribute.ADDRESS;
@@ -85,23 +93,57 @@ public class CustomiseCommandParser implements Parser<CustomiseCommand> {
      * @return the Attribute array order
      */
     private Attribute[] fillMissingAttributes(Attribute[] attributeArr, boolean[] isAttributeUsed, int noOfMissing) {
-        for (int i = 1; i <= noOfMissing; i++) {
+        int indexOfLastAttribute = attributeArr.length - 1;
+        for (int i = 0; i < noOfMissing; i++) {
             if (!isAttributeUsed[0]) {
-                attributeArr[4 - i] = Attribute.ADDRESS;
+                attributeArr[indexOfLastAttribute - i] = Attribute.ADDRESS;
                 isAttributeUsed[0] = true;
             } else if (!isAttributeUsed[1]) {
-                attributeArr[4 - i] = Attribute.EMAIL;
+                attributeArr[indexOfLastAttribute - i] = Attribute.EMAIL;
                 isAttributeUsed[1] = true;
             } else if (!isAttributeUsed[2]) {
-                attributeArr[4 - i] = Attribute.PHONE;
+                attributeArr[indexOfLastAttribute - i] = Attribute.PHONE;
                 isAttributeUsed[2] = true;
             } else if (!isAttributeUsed[3]) {
-                attributeArr[4 - i] = Attribute.TAGS;
+                attributeArr[indexOfLastAttribute - i] = Attribute.TAGS;
                 isAttributeUsed[3] = true;
             } else {
                 assert false;
             }
         }
         return attributeArr;
+    }
+
+    /**
+     * Converts the input into an array of Attribute objects.
+     *
+     * @param args an array of argument inputs
+     * @return an array of Attribute
+     * @throws ParseException if the user input does not conform the expected format
+     */
+    private Attribute[] toAttributes(String[] args) throws ParseException {
+        boolean[] isAttributeUsed = new boolean[4]; //0: ADDRESS, 1: EMAIL, 2: PHONE, 3: TAGS
+        ArrayList<Attribute> attributeArrayList = new ArrayList<>();
+
+        for (int i = 1; i < args.length; i++) {
+            if (args[i].equals(PREFIX_ADDRESS.toString()) && !isAttributeUsed[0]) {
+                attributeArrayList.add(Attribute.ADDRESS);
+                isAttributeUsed[0] = true;
+            } else if (args[i].equals(PREFIX_EMAIL.toString()) && !isAttributeUsed[1]) {
+                attributeArrayList.add(Attribute.EMAIL);
+                isAttributeUsed[1] = true;
+            } else if (args[i].equals(PREFIX_PHONE.toString()) && !isAttributeUsed[2]) {
+                attributeArrayList.add(Attribute.PHONE);
+                isAttributeUsed[2] = true;
+            } else if (args[i].equals(PREFIX_TAG.toString()) && !isAttributeUsed[3]) {
+                attributeArrayList.add(Attribute.TAGS);
+                isAttributeUsed[3] = true;
+            } else {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, CustomiseCommand.MESSAGE_USAGE));
+            }
+        }
+        Attribute[] attributeArr = new Attribute[attributeArrayList.size()];
+        return attributeArrayList.toArray(attributeArr);
     }
 }

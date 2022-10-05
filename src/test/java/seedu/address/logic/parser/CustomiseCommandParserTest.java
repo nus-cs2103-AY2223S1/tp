@@ -5,6 +5,7 @@ import static seedu.address.logic.commands.CustomiseCommand.Attribute.ADDRESS;
 import static seedu.address.logic.commands.CustomiseCommand.Attribute.EMAIL;
 import static seedu.address.logic.commands.CustomiseCommand.Attribute.PHONE;
 import static seedu.address.logic.commands.CustomiseCommand.Attribute.TAGS;
+import static seedu.address.logic.commands.CustomiseCommand.CustomiseSubCommand.ORDER;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -25,18 +26,20 @@ class CustomiseCommandParserTest {
     public void parse_validArgs_returnsCustomiseCommand() {
         Attribute[] attributes = new Attribute[]{ADDRESS, TAGS, PHONE, EMAIL};
         ModelManager model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        model.setGuiSettings(new GuiSettings(1000, 500, 300, 100, "ADDRESS>TAGS>PHONE>EMAIL"));
+        model.setGuiSettings(new GuiSettings(1000, 500, 300, 100,
+                "ADDRESS>TAGS>PHONE>EMAIL", "NONE"));
 
-        assertParseSuccess(parser, "order a/ t/ p/ e/", new CustomiseCommand("order", attributes));
+        assertParseSuccess(parser, "order a/ t/ p/ e/", new CustomiseCommand(ORDER, attributes));
     }
 
     @Test
     public void parse_incompleteArgs_returnsSameCommand() {
         Attribute[] attributes = new Attribute[]{ADDRESS, TAGS, PHONE, EMAIL};
         ModelManager model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        model.setGuiSettings(new GuiSettings(1000, 500, 300, 100, "ADDRESS>TAGS>PHONE>EMAIL"));
+        model.setGuiSettings(new GuiSettings(1000, 500, 300, 100,
+                "ADDRESS>TAGS>PHONE>EMAIL", "NONE"));
 
-        assertParseSuccess(parser, "order a/ t/ p/", new CustomiseCommand("order", attributes));
+        assertParseSuccess(parser, "order a/ t/ p/", new CustomiseCommand(ORDER, attributes));
     }
 
     @Test
