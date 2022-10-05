@@ -14,7 +14,11 @@ import seedu.address.model.tag.Tag;
  */
 public class TagAddCommandParser implements Parser<TagAddCommand> {
 
-    @Override
+    /**
+     * Parses the given {@code String} of arguments in the context of the TagAddCommand
+     * and returns an TagAddCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public TagAddCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
@@ -25,7 +29,7 @@ public class TagAddCommandParser implements Parser<TagAddCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagAddCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagAddCommand.MESSAGE_USAGE));
         }
 
         Tag tag = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());

@@ -26,7 +26,7 @@ public class TagEditCommand extends Command {
             + PREFIX_TAG + "friend"
             + PREFIX_TAG + "bestFriend";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Tag has changed from ";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Tag has changed from %1$s to %2$s";
     public static final String MESSAGE_NOT_EDITED = "Both tags need to be provided";
     public static final String MESSAGE_DUPLICATE_TAG = "This new tag already exists.";
     public static final String MESSAGE_TAG_NOT_FOUND = "This old tag does not exist.";
@@ -54,7 +54,7 @@ public class TagEditCommand extends Command {
             throw new CommandException((MESSAGE_DUPLICATE_TAG));
         } else {
             model.editTag(oldTag, newTag);
-            return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, oldTag, " to ", newTag));
+            return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, oldTag, newTag));
         }
     }
 

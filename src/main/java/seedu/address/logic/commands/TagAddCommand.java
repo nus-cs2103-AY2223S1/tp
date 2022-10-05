@@ -39,7 +39,7 @@ public class TagAddCommand extends Command {
             + COMMAND_WORD + " 1 "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_ADD_TAG_SUCCESS = "Tag added";
+    public static final String MESSAGE_ADD_TAG_SUCCESS = "Tag added: %1$s";
     public static final String MESSAGE_NO_SUCH_TAG = "This tag does not exist";
     public static final String MESSAGE_TAG_ALREADY_ADDED = "The contact already has the tag.";
 
@@ -75,13 +75,12 @@ public class TagAddCommand extends Command {
             Person editedPerson = createEditedPerson(personToEdit, tag);
             model.setPerson(personToEdit, editedPerson);
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-            return new CommandResult(String.format(MESSAGE_ADD_TAG_SUCCESS, editedPerson));
+            return new CommandResult(String.format(MESSAGE_ADD_TAG_SUCCESS, tag));
         }
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Recreates the same person with updated tags.
      */
     private static Person createEditedPerson(Person personToEdit,
                                              Tag tag) {

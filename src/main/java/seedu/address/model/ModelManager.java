@@ -191,9 +191,4 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(other.filteredPersons);
     }
 
-    //========== Tag List Accessors ===========================================================================
-
-    public ObservableList<Tag> getTagList() {
-        return tags;
-    }
 }
