@@ -62,6 +62,10 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
+    public boolean isCompleted() {
+        return this.completed;
+    }
+
     /**
      * Marks the task as completed.
      */
