@@ -131,6 +131,8 @@ public class ParserUtil {
             throw new ParseException(MoneyPaid.MESSAGE_CONSTRAINTS);
         }
         return new MoneyPaid(value);
+    }
+
     /**
      * Parses an {@code String additionalNotes} into an {@code AdditionalNotes}.
      * Leading and trailing whitespaces will be trimmed.

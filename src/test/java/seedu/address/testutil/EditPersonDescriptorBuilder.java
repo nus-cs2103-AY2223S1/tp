@@ -86,7 +86,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setMoneyPaid(new MoneyPaid(moneyPaid));
         return this;
     }
-  
+
     /**
      * Sets the {@code AdditionalNotes} of the {@code EditPersonDescriptor} that we are building.
      */

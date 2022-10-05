@@ -101,12 +101,14 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
 
-        AdditionalNotes updatedNotes = editPersonDescriptor.getAdditionalNotes()
-                .orElse(personToEdit.getAdditionalNotes());
+
         MoneyOwed updatedMoneyOwed = editPersonDescriptor.getMoneyOwed().orElse(personToEdit.getMoneyOwed());
         MoneyPaid updatedMoneyPaid = editPersonDescriptor.getMoneyPaid().orElse(personToEdit.getMoneyPaid());
+        AdditionalNotes updatedNotes = editPersonDescriptor.getAdditionalNotes()
+                .orElse(personToEdit.getAdditionalNotes());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedMoneyOwed, updatedMoneyPaid, updatedNotes);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
+                updatedMoneyOwed, updatedMoneyPaid, updatedNotes);
     }
 
     @Override
@@ -208,6 +210,7 @@ public class EditCommand extends Command {
 
         public Optional<MoneyPaid> getMoneyPaid() {
             return Optional.ofNullable(moneyPaid);
+        }
 
         public void setAdditionalNotes(AdditionalNotes additionalNotes) {
             this.additionalNotes = additionalNotes;
@@ -237,7 +240,7 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getMoneyOwed().equals(e.getMoneyOwed())
-                    && getMoneyPaid().equals(e.getMoneyPaid());
+                    && getMoneyPaid().equals(e.getMoneyPaid())
                     && getAdditionalNotes().equals(e.getAdditionalNotes());
         }
 

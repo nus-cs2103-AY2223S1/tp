@@ -35,7 +35,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("money_owed") Integer moneyOwed,
-                             @JsonProperty("monet_paid") Integer moneyPaid),
+                             @JsonProperty("monet_paid") Integer moneyPaid,
                              @JsonProperty("additionalNotes") String additionalNotes) {
         this.name = name;
         this.phone = phone;
@@ -120,8 +120,8 @@ class JsonAdaptedPerson {
             modelMoneyPaid = new MoneyPaid(0);
         }
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, 
-                          modelMoneyOwed, modelMoneyPaid, modelAdditionalNotes);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress,
+                modelMoneyOwed, modelMoneyPaid, modelAdditionalNotes);
     }
 
 }

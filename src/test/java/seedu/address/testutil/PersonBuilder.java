@@ -103,7 +103,7 @@ public class PersonBuilder {
         this.moneyPaid = new MoneyPaid(moneyPaid);
         return this;
     }
-  
+
     /**
      * Sets the {@code AdditionalNotes} of the {@code Person} that we are building.
      */

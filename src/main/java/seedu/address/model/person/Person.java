@@ -41,7 +41,8 @@ public class Person {
      * Overloaded constructor.
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, AdditionalNotes additionalNotes) {
+    public Person(Name name, Phone phone, Email email, Address address,
+                  MoneyOwed moneyOwed, MoneyPaid moneyPaid, AdditionalNotes additionalNotes) {
         requireAllNonNull(name, phone, email, address, additionalNotes);
         this.name = name;
         this.phone = phone;
@@ -75,7 +76,7 @@ public class Person {
     public MoneyPaid getMoneyPaid() {
         return moneyPaid;
     }
-  
+
     public AdditionalNotes getAdditionalNotes() {
         return additionalNotes;
     }
@@ -114,7 +115,7 @@ public class Person {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getMoneyOwed().equals(getMoneyOwed())
-                && otherPerson.getMoneyPaid().equals(getMoneyPaid());
+                && otherPerson.getMoneyPaid().equals(getMoneyPaid())
                 && otherPerson.getAdditionalNotes().equals(getAdditionalNotes());
     }
 
