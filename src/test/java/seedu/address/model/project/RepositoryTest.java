@@ -41,7 +41,7 @@ class RepositoryTest {
     }
 
     @Test
-    public void toString_validRepoName_stringConversionToGitHubUrlSuccess() {
-        assertEquals(new Repository("peterjack/tp").toString(), "https://github.com/peterjack/tp");
+    public void getRepositoryUrl_validRepoName_stringConversionToGitHubUrlSuccess() {
+        assertEquals(new Repository("peterjack/tp").getRepositoryUrl(), "https://github.com/peterjack/tp");
     }
 }

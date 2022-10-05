@@ -32,7 +32,8 @@ class JsonSerializableAddressBook {
     public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
                                        @JsonProperty("projects") List<JsonAdaptedProject> projects) {
         this.persons.addAll(persons);
-        this.projects.addAll(projects);
+        // TODO: Implement project path
+        // this.projects.addAll(projects);
     }
 
     /**
