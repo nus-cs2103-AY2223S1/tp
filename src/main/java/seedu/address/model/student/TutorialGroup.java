@@ -16,7 +16,7 @@ public class TutorialGroup {
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[T[0-9][0-9]]";
+    public static final String VALIDATION_REGEX = "[T][0-9]{2}";
 
     public static final String DEFAULT_TUTORIAL_GROUP = "T01";
 
@@ -52,6 +52,7 @@ public class TutorialGroup {
      * Returns true if a given string is a valid tutorial group.
      */
     public static boolean isValidTutorialGroup(String test) {
+        System.out.println(test);
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -63,6 +64,9 @@ public class TutorialGroup {
         return students;
     }
 
+    public boolean isSameTutorialGroup(TutorialGroup group) {
+        return this.tutorialGroup.equals(group.tutorialGroup);
+    }
 
     @Override
     public String toString() {

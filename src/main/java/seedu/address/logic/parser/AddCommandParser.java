@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIALGROUP;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GROUP;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -47,9 +47,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Student student;
-        if (arePrefixesPresent(argMultimap, PREFIX_TUTORIALGROUP)) {
+        if (arePrefixesPresent(argMultimap, PREFIX_TUTORIAL_GROUP)) {
             TutorialGroup tutorialGroup =
-                    ParserUtil.parseTutorialGroup(argMultimap.getValue(PREFIX_TUTORIALGROUP).get());
+                    ParserUtil.parseTutorialGroup(argMultimap.getValue(PREFIX_TUTORIAL_GROUP).get());
             student = new Student(name, phone, email, address, tagList, tutorialGroup);
         } else {
             student = new Student(name, phone, email, address, tagList);

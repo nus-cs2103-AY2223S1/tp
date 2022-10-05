@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.TutorialGroup;
 
 /**
  * The API of the Model component.
@@ -84,4 +85,21 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
+
+    /**
+     * Returns true if a tutorial group with the same identity as {@code tutorialGroup} exists in the address book.
+     */
+    boolean hasTutorialGroup(TutorialGroup tutorialGroup);
+
+    /**
+     * Deletes the given tutorial group.
+     * The person must exist in the address book.
+     */
+    void deleteTutorialGroup(TutorialGroup target);
+
+    /**
+     * Adds the given person.
+     * {@code person} must not already exist in the address book.
+     */
+    void addTutorialGroup(TutorialGroup tutorialGroup);
 }

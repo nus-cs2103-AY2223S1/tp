@@ -21,6 +21,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.TutorialGroup;
 import seedu.address.testutil.StudentBuilder;
 
 public class AddCommandTest {
@@ -147,6 +148,22 @@ public class AddCommandTest {
         public void updateFilteredStudentList(Predicate<Student> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean hasTutorialGroup(TutorialGroup tutorialGroup) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteTutorialGroup(TutorialGroup target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addTutorialGroup(TutorialGroup tutorialGroup) {
+            throw new AssertionError("This method should not be called.");
+        }
+
     }
 
     /**

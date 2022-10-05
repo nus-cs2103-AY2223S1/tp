@@ -6,7 +6,9 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.TutorialGroup;
 import seedu.address.model.student.UniqueStudentList;
+import seedu.address.model.student.UniqueTutorialGroupList;
 
 /**
  * Wraps all data at the address-book level
@@ -15,6 +17,8 @@ import seedu.address.model.student.UniqueStudentList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniqueStudentList students;
+
+    private UniqueTutorialGroupList tutorialGroups;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +29,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         students = new UniqueStudentList();
+        tutorialGroups = new UniqueTutorialGroupList();
     }
 
     public AddressBook() {}
@@ -45,6 +50,14 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setStudents(List<Student> students) {
         this.students.setStudents(students);
+    }
+
+    /**
+     * Replaces the contents of the person list with {@code persons}.
+     * {@code persons} must not contain duplicate persons.
+     */
+    public void setTutorialGroups(List<TutorialGroup> groups) {
+        this.tutorialGroups.setTutorialGroups(groups);
     }
 
     /**
@@ -91,6 +104,32 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeStudent(Student key) {
         students.remove(key);
+    }
+
+    // tutorial group level
+    /**
+     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     */
+    public boolean hasTutorialGroup(TutorialGroup tutorialGroup) {
+        requireNonNull(tutorialGroup);
+        return tutorialGroups.contains(tutorialGroup);
+    }
+
+    /**
+     * Adds a person to the address book.
+     * The person must not already exist in the address book.
+     */
+    public void addTutorialGroup(TutorialGroup toAdd) {
+        tutorialGroups.add(toAdd);
+    }
+
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeTutorialGroup(TutorialGroup key) {
+        tutorialGroups.remove(key);
     }
 
     //// util methods

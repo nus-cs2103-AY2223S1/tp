@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.TutorialGroup;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -109,6 +110,23 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedStudent);
 
         addressBook.setStudent(target, editedStudent);
+    }
+
+    @Override
+    public boolean hasTutorialGroup(TutorialGroup tutorialGroup) {
+        requireNonNull(tutorialGroup);
+        return addressBook.hasTutorialGroup(tutorialGroup);
+    }
+
+    @Override
+    public void deleteTutorialGroup(TutorialGroup target) {
+        addressBook.removeTutorialGroup(target);
+    }
+
+    @Override
+    public void addTutorialGroup(TutorialGroup tutorialGroup) {
+        addressBook.addTutorialGroup(tutorialGroup);
+        //updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     //=========== Filtered Person List Accessors =============================================================
