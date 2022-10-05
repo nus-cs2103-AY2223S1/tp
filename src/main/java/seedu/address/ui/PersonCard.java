@@ -79,7 +79,7 @@ public class PersonCard extends UiPart<Region> {
     /**
      * Sets the attributes in the order required.
      */
-    public void setAttributes() {
+    private void setAttributes() {
         int[] order = filterAttributes(orderAttributes());
         FlowPane[] flowpanes = new FlowPane[5];
         flowpanes[order[0]] = attributeA;
