@@ -49,12 +49,6 @@ public class JsonUserPrefsStorageTest {
                 : null;
     }
 
-    @Test
-    public void readUserPrefs_fileInOrder_successfullyRead() throws DataConversionException {
-        UserPrefs expected = getTypicalUserPrefs();
-        UserPrefs actual = readUserPrefs("TypicalUserPref.json").get();
-        assertEquals(expected, actual);
-    }
 
     @Test
     public void readUserPrefs_valuesMissingFromFile_defaultValuesUsed() throws DataConversionException {
@@ -62,18 +56,10 @@ public class JsonUserPrefsStorageTest {
         assertEquals(new UserPrefs(), actual);
     }
 
-    @Test
-    public void readUserPrefs_extraValuesInFile_extraValuesIgnored() throws DataConversionException {
-        UserPrefs expected = getTypicalUserPrefs();
-        UserPrefs actual = readUserPrefs("ExtraValuesUserPref.json").get();
-
-        assertEquals(expected, actual);
-    }
-
     private UserPrefs getTypicalUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
         userPrefs.setGuiSettings(new GuiSettings(1000, 500, 300, 100));
-        userPrefs.setAddressBookFilePath(Paths.get("addressbook.json"));
+        userPrefs.setClientBookFilePath(Paths.get("clientbook.json"));
         return userPrefs;
     }
 
@@ -105,8 +91,8 @@ public class JsonUserPrefsStorageTest {
         UserPrefs original = new UserPrefs();
         original.setGuiSettings(new GuiSettings(1200, 200, 0, 2));
 
-        Path pefsFilePath = testFolder.resolve("TempPrefs.json");
-        JsonUserPrefsStorage jsonUserPrefsStorage = new JsonUserPrefsStorage(pefsFilePath);
+        Path perfsFilePath = testFolder.resolve("TempPrefs.json");
+        JsonUserPrefsStorage jsonUserPrefsStorage = new JsonUserPrefsStorage(perfsFilePath);
 
         //Try writing when the file doesn't exist
         jsonUserPrefsStorage.saveUserPrefs(original);
