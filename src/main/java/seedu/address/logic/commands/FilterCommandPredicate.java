@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.commons.util.CollectionUtil.isAnyNonNull;
+
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.TagMatchesQueryPredicate;
 
@@ -20,7 +22,7 @@ public class FilterCommandPredicate {
      */
     public FilterCommandPredicate(NameContainsKeywordsPredicate namePredicate,
             TagMatchesQueryPredicate tagsPredicate) {
-        assert namePredicate != null || tagsPredicate != null;
+        assert isAnyNonNull(namePredicate, tagsPredicate);
         this.namePredicate = namePredicate;
         this.tagsPredicate = tagsPredicate;
     }

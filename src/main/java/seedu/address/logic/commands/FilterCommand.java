@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.isAnyNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.address.commons.core.Messages;
@@ -20,8 +21,18 @@ public class FilterCommand extends Command {
 
     protected final FilterCommandPredicate predicate;
 
+    /**
+     * Creates a {@code FilterCommand} object for filtering.
+     *
+     * @param predicate {@code FilterCommandPredicate} to use for filtering.
+     */
     public FilterCommand(FilterCommandPredicate predicate) {
+        requireNonNull(predicate);
         this.predicate = predicate;
+    }
+
+    protected FilterCommand() {
+        this.predicate = null;
     }
 
     @Override
@@ -34,6 +45,7 @@ public class FilterCommand extends Command {
     }
 
     private void applySpecifiedFilters(Model model) {
+        assert isAnyNonNull(predicate.getNamePredicate(), predicate.getTagsPredicate());
         if (predicate.getNamePredicate() != null) {
             model.addNewFilterToFilteredPersonList(predicate.getNamePredicate());
         }
