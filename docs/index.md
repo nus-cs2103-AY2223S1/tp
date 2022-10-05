@@ -1,6 +1,6 @@
 ---
 layout: page
-title: checkUp 
+title: checkUp
 ---
 
 [![CI Status](https://github.com/AY2223S1-CS2103T-W16-3/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103T-W16-3/tp/actions)

@@ -89,7 +89,7 @@ Examples:
 * `get /n john` returns `john` and `John Doe`
 * `get /n alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
-  
+
 #### by next-of-kin data: `/nok`
 Finds next-of-kin data which contain any of the given keywords.
 
@@ -99,7 +99,7 @@ Format: `get /nok NEXT-OF-KIN_NAME`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * The patient's contact matching the keyword will be returned.
   e.g. `Hans Bo` will return `12345678`
-  
+
 #### by hospital wing: `/hw`
 
 Finds patients in that particular hospital wing.
@@ -151,7 +151,7 @@ Finds total number of patients.
 Format: `count`
 
 * A count of all existing patients in the hospital will be returned.
-* The count will be a non-negative integer (>= 0).  
+* The count will be a non-negative integer (>= 0).
   eg. `count` returns `452` when there are 452 patients noted within the hospital.
 
 ### Clearing all entries : `clear`
