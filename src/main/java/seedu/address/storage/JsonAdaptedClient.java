@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
@@ -24,6 +25,7 @@ import seedu.address.model.tag.Tag;
  * Jackson-friendly version of {@link Client}.
  */
 @JsonIdentityInfo(generator = ObjectIdGenerators.UUIDGenerator.class, property = "@UUID")
+@JsonInclude(JsonInclude.Include.NON_NULL)
 class JsonAdaptedClient {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Client's %s field is missing!";

@@ -38,6 +38,9 @@ public class Client {
         this.tags.addAll(tags);
     }
 
+    /**
+     * Construct a client with meetings
+     */
     public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Meeting meeting) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
