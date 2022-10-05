@@ -14,8 +14,8 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import gim.logic.parser.exceptions.ParseException;
-import gim.model.exercise.Address;
 import gim.model.exercise.Name;
+import gim.model.exercise.Rep;
 import gim.model.exercise.Sets;
 import gim.model.exercise.Weight;
 import gim.model.tag.Tag;
@@ -25,13 +25,13 @@ import gim.model.tag.Tag;
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_WEIGHT = "+651234";
-    private static final String INVALID_ADDRESS = " ";
+    private static final String INVALID_REP = " ";
     private static final String INVALID_SETS = "example.com";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_WEIGHT = "123456";
-    private static final String VALID_ADDRESS = "123 Main Street #0505";
+    private static final String VALID_REP = "123 Main Street #0505";
     private static final String VALID_SETS = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
@@ -105,26 +105,26 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
+    public void parseRep_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseRep((String) null));
     }
 
     @Test
-    public void parseAddress_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
+    public void parseRep_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseRep(INVALID_REP));
     }
 
     @Test
-    public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(VALID_ADDRESS));
+    public void parseRep_validValueWithoutWhitespace_returnsRep() throws Exception {
+        Rep expectedRep = new Rep(VALID_REP);
+        assertEquals(expectedRep, ParserUtil.parseRep(VALID_REP));
     }
 
     @Test
-    public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
+    public void parseRep_validValueWithWhitespace_returnsTrimmedRep() throws Exception {
+        String repWithWhitespace = WHITESPACE + VALID_REP + WHITESPACE;
+        Rep expectedRep = new Rep(VALID_REP);
+        assertEquals(expectedRep, ParserUtil.parseRep(repWithWhitespace));
     }
 
     @Test

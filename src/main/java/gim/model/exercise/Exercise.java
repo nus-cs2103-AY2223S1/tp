@@ -21,18 +21,18 @@ public class Exercise {
     private final Sets sets;
 
     // Data fields
-    private final Address address;
+    private final Rep rep;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Exercise(Name name, Weight weight, Sets sets, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, weight, sets, address, tags);
+    public Exercise(Name name, Weight weight, Sets sets, Rep rep, Set<Tag> tags) {
+        requireAllNonNull(name, weight, sets, rep, tags);
         this.name = name;
         this.weight = weight;
         this.sets = sets;
-        this.address = address;
+        this.rep = rep;
         this.tags.addAll(tags);
     }
 
@@ -48,8 +48,8 @@ public class Exercise {
         return sets;
     }
 
-    public Address getAddress() {
-        return address;
+    public Rep getRep() {
+        return rep;
     }
 
     /**
@@ -91,14 +91,14 @@ public class Exercise {
         return otherExercise.getName().equals(getName())
                 && otherExercise.getWeight().equals(getWeight())
                 && otherExercise.getSets().equals(getSets())
-                && otherExercise.getAddress().equals(getAddress())
+                && otherExercise.getRep().equals(getRep())
                 && otherExercise.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, weight, sets, address, tags);
+        return Objects.hash(name, weight, sets, rep, tags);
     }
 
     @Override
@@ -109,8 +109,8 @@ public class Exercise {
                 .append(getWeight())
                 .append("; Sets: ")
                 .append(getSets())
-                .append("; Address: ")
-                .append(getAddress());
+                .append("; Rep: ")
+                .append(getRep());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
