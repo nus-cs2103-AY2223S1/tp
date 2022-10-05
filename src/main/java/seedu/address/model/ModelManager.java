@@ -206,7 +206,7 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Return whether there is an active customer.
+     * Returns whether there is an active customer.
      */
     @Override
     public boolean hasSelectedCustomer() {
