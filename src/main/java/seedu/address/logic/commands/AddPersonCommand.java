@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -125,13 +126,20 @@ public class AddPersonCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddPersonCommand // instanceof handles nulls
-                && name.equals(((AddPersonCommand) other).name)
-                && phone.equals(((AddPersonCommand) other).phone)
-                && email.equals(((AddPersonCommand) other).email)
-                && address.equals(((AddPersonCommand) other).address)
-                && internshipId != null && internshipId.equals(((AddPersonCommand) other).internshipId)
-                && tags.equals(((AddPersonCommand) other).tags));
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof AddPersonCommand)) {
+            return false;
+        }
+
+        AddPersonCommand otherCommand = (AddPersonCommand) other;
+        return name.equals(otherCommand.name)
+                && phone.equals(otherCommand.phone)
+                && email.equals(otherCommand.email)
+                && address.equals(otherCommand.address)
+                && Objects.equals(internshipId, otherCommand.internshipId)
+                && tags.equals(otherCommand.tags);
     }
 }

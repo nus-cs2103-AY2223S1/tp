@@ -113,8 +113,7 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getInternshipId() != null
-                && otherPerson.getInternshipId().equals(getInternshipId())
+                && Objects.equals(otherPerson.getPersonId(), getPersonId())
                 && otherPerson.getTags().equals(getTags());
     }
 

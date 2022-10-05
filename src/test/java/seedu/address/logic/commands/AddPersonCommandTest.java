@@ -236,6 +236,7 @@ public class AddPersonCommandTest {
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
         final ArrayList<Person> personsAdded = new ArrayList<>();
+        private int nextPersonId = 0;
 
         @Override
         public boolean hasPerson(Person person) {
@@ -247,11 +248,25 @@ public class AddPersonCommandTest {
         public void addPerson(Person person) {
             requireNonNull(person);
             personsAdded.add(person);
+
+            if (person.getPersonId().id + 1 > nextPersonId) {
+                nextPersonId = person.getPersonId().id + 1;
+            }
         }
 
         @Override
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
+        }
+
+        @Override
+        public Internship findInternshipById(InternshipId internshipId) {
+            return null;
+        }
+
+        @Override
+        public int getNextPersonId() {
+            return nextPersonId;
         }
     }
 

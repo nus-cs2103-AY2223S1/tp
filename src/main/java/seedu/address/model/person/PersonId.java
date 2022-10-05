@@ -59,8 +59,8 @@ public class PersonId {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.person.PersonId // instanceof handles nulls
-                && id.equals(((seedu.address.model.person.PersonId) other).id)); // state check
+                || (other instanceof PersonId // instanceof handles nulls
+                && id.equals(((PersonId) other).id)); // state check
     }
 
     @Override
