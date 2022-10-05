@@ -88,4 +88,37 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Returns true if a tag with the same name as {@code tag} exists in the address book.
+     */
+    boolean hasTag(Tag tag);
+
+    /**
+     * Deletes the given tag.
+     * The tag must exist in the address book.
+     */
+    void deleteTag(Tag target);
+
+    /**
+     * Adds the given tag.
+     * {@code tag} must not already exist in the address book.
+     */
+    void addTag(Tag tag);
+
+    /**
+     * Replaces the given tag {@code target} with {@code editedTag}.
+     * {@code target} must exist in the address book.
+     * The tag name of {@code editedTag} must not be the same as another existing tag in the address book.
+     */
+    void setTag(Tag target, Tag editedTag);
+
+    /** Returns an unmodifiable view of the filtered tag list */
+    ObservableList<Tag> getFilteredTagList();
+
+    /**
+     * Updates the filter of the filtered tag list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredTagList(Predicate<Tag> predicate);
 }
