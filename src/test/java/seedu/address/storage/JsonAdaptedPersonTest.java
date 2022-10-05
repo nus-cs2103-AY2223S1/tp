@@ -99,12 +99,12 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
-    public void toModelType_invalidTags_throwsIllegalValueException() {
+    public void toModelType_invalidTags_throwsIllegalArgumentException() {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, invalidTags);
-        assertThrows(IllegalValueException.class, person::toModelType);
+        assertThrows(IllegalArgumentException.class, person::toModelType);
     }
 
 }

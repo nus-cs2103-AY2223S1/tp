@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import seedu.address.model.tag.Tag;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -145,6 +146,36 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasTag(Tag tag) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteTag(Tag target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addTag(Tag tag) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setTag(Tag target, Tag editedTag) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Tag> getFilteredTagList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredTagList(Predicate<Tag> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
