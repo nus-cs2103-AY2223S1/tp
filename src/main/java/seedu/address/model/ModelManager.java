@@ -25,7 +25,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private final FilteredList<Team> filteredLists;
+    private final FilteredList<Team> filteredTeams;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -44,7 +44,7 @@ public class ModelManager implements Model {
         // todo replace this code
         ObservableList<Team> team = FXCollections.observableArrayList();
         team.add(0, new Team(new Name("test")));
-        filteredLists = new FilteredList<>(team);
+        filteredTeams = new FilteredList<>(team);
         System.out.println("tet");
 
     }
@@ -124,6 +124,24 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public boolean hasTeam(Team team) {
+        requireNonNull(team);
+        return addressBook.hasTeam(team);
+    }
+
+    @Override
+    public void deleteTeam(Team team) {
+        addressBook.removeTeam(team);
+    }
+
+    @Override
+    public void addTeam(Team team) {
+        addressBook.addTeam(team);
+        updateFilteredTeamList(PREDICATE_SHOW_ALL_TEAMS);
+    }
+
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -141,6 +159,13 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    @Override
+    public void updateFilteredTeamList(Predicate<Team> predicate) {
+        requireNonNull(predicate);
+        filteredTeams.setPredicate(predicate);
+    }
+
+
 
     //=========== Filtered Team List Accessors =============================================================
 
@@ -150,7 +175,7 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Team> getFilteredTeamList() {
-        return filteredLists;
+        return filteredTeams;
     }
 
     // todo implementation of updateFilteredTeamList
@@ -171,7 +196,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredTeams.equals(other.filteredTeams);
     }
 
 }
