@@ -17,6 +17,7 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -32,14 +33,18 @@ class JsonAdaptedClient {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<Meeting> meetings = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedClient} with the given client details.
      */
     @JsonCreator
-    public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+    public JsonAdaptedClient(@JsonProperty("meetings") List<Meeting> meetings, @JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+        if (meetings != null) {
+            this.meetings.addAll(meetings);
+        }
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -53,6 +58,7 @@ class JsonAdaptedClient {
      * Converts a given {@code Client} into this class for Jackson use.
      */
     public JsonAdaptedClient(Client source) {
+        meetings.add(source.getMeeting());
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
@@ -104,9 +110,9 @@ class JsonAdaptedClient {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final Address modelAddress = new Address(address);
-
+        final Meeting meeting = meetings.get(0);
         final Set<Tag> modelTags = new HashSet<>(clientTags);
-        return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags, meeting);
     }
 
 }
