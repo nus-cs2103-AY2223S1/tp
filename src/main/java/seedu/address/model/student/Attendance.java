@@ -3,6 +3,9 @@ package seedu.address.model.student;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Student's attendance in the SETA application.
+ */
 public class Attendance {
 
     public static final String MESSAGE_CONSTRAINTS =

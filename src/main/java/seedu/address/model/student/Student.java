@@ -1,12 +1,12 @@
 package seedu.address.model.student;
 
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
+/**
+ * Represents a Student in the SETA application.
+ */
 public class Student {
 
     // Identity fields
@@ -22,7 +22,8 @@ public class Student {
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Telegram telegram, Email email, Response response, Attendance attendance, HelpTag helpTag) {
+    public Student(Name name, Telegram telegram, Email email, Response response, Attendance attendance,
+                   HelpTag helpTag) {
         requireAllNonNull(name, telegram, email);
         this.name = name;
         this.telegram = telegram;

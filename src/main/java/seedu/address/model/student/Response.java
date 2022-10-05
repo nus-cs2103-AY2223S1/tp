@@ -3,6 +3,9 @@ package seedu.address.model.student;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Student's response count in the SETA application.
+ */
 public class Response {
     public static final String MESSAGE_CONSTRAINTS =
             "Response should only contain numbers, and it should be at least 1 digit long";
