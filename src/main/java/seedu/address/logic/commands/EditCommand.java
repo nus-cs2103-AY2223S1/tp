@@ -85,7 +85,8 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        AdditionalNotes updatedNotes = editPersonDescriptor.getAdditionalNotes().orElse(personToEdit.getAdditionalNotes());
+        AdditionalNotes updatedNotes = editPersonDescriptor.getAdditionalNotes()
+                .orElse(personToEdit.getAdditionalNotes());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedNotes);
     }
@@ -129,14 +130,14 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
-            setAddress(toCopy.additionalNotes);
+            setAdditionalNotes(toCopy.additionalNotes);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, additionalNotes);
         }
 
         public void setName(Name name) {
@@ -171,6 +172,10 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
+        public void setAdditionalNotes(AdditionalNotes additionalNotes) {
+            this.additionalNotes = additionalNotes;
+        }
+
         public Optional<AdditionalNotes> getAdditionalNotes() {
             return Optional.ofNullable(additionalNotes);
         }
@@ -193,8 +198,9 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress());
+                    && getAddress().equals(e.getAddress())
                     && getAdditionalNotes().equals(e.getAdditionalNotes());
         }
+
     }
 }

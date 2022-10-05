@@ -2,6 +2,10 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents a Person's additional Notes in the address book.
+ * Guarantees: immutable.
+ */
 public class AdditionalNotes {
 
     public final String value;
