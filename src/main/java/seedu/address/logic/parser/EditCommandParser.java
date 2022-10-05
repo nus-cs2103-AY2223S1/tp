@@ -2,13 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDITIONAL_NOTES;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MONEY_OWED;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MONEY_PAID;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
@@ -62,6 +56,10 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setAdditionalNotes(ParserUtil.parseAdditionalNotes(argMultimap
                     .getValue(PREFIX_ADDITIONAL_NOTES).get()));
         }
+        if (argMultimap.getValue(PREFIX_CLASS_DATE_TIME).isPresent()) {
+          //TODO after parser is implemented
+        }
+
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
