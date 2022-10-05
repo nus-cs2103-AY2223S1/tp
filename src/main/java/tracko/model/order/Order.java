@@ -4,6 +4,7 @@ import static tracko.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Represents an Order in the address book.
@@ -58,5 +59,26 @@ public class Order {
         return timeCreated;
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, phone, email, address, timeCreated, itemList);
+    }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Order)) {
+            return false;
+        }
+
+        Order otherOrder = (Order) other;
+        return otherOrder.getName().equals(getName())
+            && otherOrder.getPhone().equals(getPhone())
+            && otherOrder.getEmail().equals(getEmail())
+            && otherOrder.getAddress().equals(getAddress())
+            && otherOrder.getItemList().equals(getItemList());
+    }
 }

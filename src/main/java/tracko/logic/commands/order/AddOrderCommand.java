@@ -3,7 +3,6 @@ package tracko.logic.commands.order;
 import static java.util.Objects.requireNonNull;
 
 import javafx.util.Pair;
-import tracko.logic.commands.Command;
 import tracko.logic.commands.CommandResult;
 import tracko.logic.commands.MultiLevelCommand;
 import tracko.logic.commands.exceptions.CommandException;
@@ -84,8 +83,8 @@ public class AddOrderCommand extends MultiLevelCommand {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof tracko.logic.commands.order.AddOrderCommand // instanceof handles nulls
-                && toAdd.equals(((tracko.logic.commands.order.AddOrderCommand) other).toAdd));
+                || (other instanceof AddOrderCommand // instanceof handles nulls
+                && toAdd.equals(((AddOrderCommand) other).toAdd));
     }
 
 }

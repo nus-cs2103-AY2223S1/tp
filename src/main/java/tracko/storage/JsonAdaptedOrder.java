@@ -39,7 +39,9 @@ public class JsonAdaptedOrder {
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.itemList.addAll(itemList);
+        if (itemList != null) {
+            this.itemList.addAll(itemList);
+        }
     }
 
     /**
@@ -97,6 +99,10 @@ public class JsonAdaptedOrder {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final Address modelAddress = new Address(address);
+
+        if (itemList == null || itemList.isEmpty()) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Item List"));
+        }
 
         return new Order(modelName, modelPhone, modelEmail, modelAddress, itemQuantityPairs);
     }

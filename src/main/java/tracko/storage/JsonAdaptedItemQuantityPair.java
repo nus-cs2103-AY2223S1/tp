@@ -10,6 +10,7 @@ import tracko.model.order.ItemQuantityPair;
  * Jackson-friendly version of {@link ItemQuantityPair}.
  */
 public class JsonAdaptedItemQuantityPair {
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Pair's %s field is missing!";
 
     private final String item;
     private final String quantity;
@@ -37,6 +38,15 @@ public class JsonAdaptedItemQuantityPair {
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
     public ItemQuantityPair toModelType() throws IllegalValueException {
+
+        if (item == null) {
+            throw new IllegalValueException(String.format((MISSING_FIELD_MESSAGE_FORMAT), "Item name"));
+        }
+
+        if (quantity == null) {
+            throw new IllegalValueException(String.format((MISSING_FIELD_MESSAGE_FORMAT), "Quantity"));
+        }
+
         return new ItemQuantityPair(item, Integer.parseInt(quantity));
     }
 }
