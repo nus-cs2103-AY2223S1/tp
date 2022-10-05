@@ -173,7 +173,7 @@ public class ParserUtil {
      * Parses {@code String keywords} separated by commas into a {@code List<String>}.
      *
      * @param keywords Comma separated strings.
-     * @return A list of keywords that were separated.
+     * @return A list of separated keywords without commas.
      */
     public static List<String> parseCommaSeparatedKeywords(String keywords) {
         return List.of(keywords.split(COMMA));
