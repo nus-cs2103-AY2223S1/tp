@@ -8,12 +8,11 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
 public class Tag {
-
     public static final String MESSAGE_CONSTRAINTS = "Tags names have a max length of 30 characters";
 
-    public final Name tagName;
-
     private static final int MAX_CHAR_LIMIT = 30;
+
+    public final Name tagName;
 
     /**
      * Constructs a {@code Tag}.

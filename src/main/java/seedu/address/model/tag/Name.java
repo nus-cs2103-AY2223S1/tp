@@ -10,14 +10,14 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters, spaces, and the punctuations within the " +
-                    "list of allowed punctuations. " +
-                    "Names must start with an alphanumeric character.";
+            "Names should only contain alphanumeric characters, spaces, and the punctuations within the "
+                    + "list of allowed punctuations. "
+                    + "Names must start with an alphanumeric character.";
 
     /*
      * Regex to check for valid punctuation
      */
-    public static final String AllOWED_PUNCTUATION_REGEX =
+    public static final String ALLOWED_PUNCTUATION_REGEX =
             "[\\?\\.\\'\\\"\\[\\]\\{\\}\\+\\^\\$\\*\\(\\)\\-<>,:;~@!#%&_=`]";
 
     /*
@@ -26,7 +26,7 @@ public class Name {
      */
     public static final String VALIDATION_REGEX = String.format(
             "[\\p{Alnum}][\\p{Alnum} | \\p{Space} | %s]*",
-            AllOWED_PUNCTUATION_REGEX
+            ALLOWED_PUNCTUATION_REGEX
     );
 
     public final String fullName;

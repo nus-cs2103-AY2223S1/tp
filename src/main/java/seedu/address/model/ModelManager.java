@@ -115,20 +115,24 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
     public boolean hasTag(Tag tag) {
         requireNonNull(tag);
         return addressBook.hasTag(tag);
     }
 
+    @Override
     public void deleteTag(Tag target) {
         addressBook.removeTag(target);
     }
 
+    @Override
     public void addTag(Tag tag) {
         addressBook.addTag(tag);
         updateFilteredTagList(PREDICATE_SHOW_ALL_TAGS);
     }
 
+    @Override
     public void setTag(Tag target, Tag editedTag) {
         requireAllNonNull(target, editedTag);
 
@@ -160,6 +164,7 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    @Override
     public void updateFilteredTagList(Predicate<Tag> predicate) {
         requireNonNull(predicate);
         filteredTags.setPredicate(predicate);

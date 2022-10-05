@@ -24,8 +24,10 @@ public class NameContainsKeywordsPredicate implements Predicate<Tag> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.tag.NameContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((seedu.address.model.tag.NameContainsKeywordsPredicate) other).keywords)); // state check
+                // instanceof handles nulls
+                || (other instanceof seedu.address.model.tag.NameContainsKeywordsPredicate
+                // state check
+                && keywords.equals(((seedu.address.model.tag.NameContainsKeywordsPredicate) other).keywords));
     }
 
 }
