@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -49,7 +50,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
-        homeworkList = new HomeworkList(personToCopy.getHomeworkList().homeworkList);
+        homeworkList = new HomeworkList(new ArrayList<>(personToCopy.getHomeworkList().homeworkList));
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -74,7 +75,7 @@ public class PersonBuilder {
      * that we are building.
      */
     public PersonBuilder withHomework(String ... homeworkList) {
-        this.homeworkList = new HomeworkList(SampleDataUtil.getHomeworkList(homeworkList));
+        this.homeworkList.homeworkList.addAll(SampleDataUtil.getHomeworkList(homeworkList));
         return this;
     }
 
