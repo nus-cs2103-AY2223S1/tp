@@ -269,14 +269,28 @@ This application will help small businesses to manage perishable goods within a 
 
 
 ### User stories
+Add Inventory Item:
 
-Updating inventory items
+Delete Inventory Item:
+
+Update inventory items:
 1. As a purchasing manager, I can rename my inventory items, so that I can update items with an incorrect name.
 2. As a purchasing manager, I can set the inventory quantity of my items.
-3. As a purchasing manager, I can set the date I bought my inventory, so that I know how long I have been keeping certain items..
+3. As a purchasing manager, I can set the date I bought my inventory, so that I know how long I have been keeping certain items.
 4. As a purchasing manager, I can set the date my inventory will expire, so that I know when certain items need to be consumed or used. 
-5. As a purchasing manager, I can increase the inventory quantity of my items, so that I can keep my stock updated when I purchase new items.. 
+5. As a purchasing manager, I can increase the inventory quantity of my items, so that I can keep my stock updated when I purchase new items.
 6. As a purchasing manager, I can decrease the inventory quantity of my items.
+
+View Inventory Items:
+1. As a purchasing manager, I can view all items in my inventory so that I can have an overview of all items and their details.
+2. As a purchasing manager, I can search for items by name, so that I can view a specific item and its associated details
+3. As a purchasing manager, I can search for items by tags, so that I can view all items that have the same tag.
+
+Tag Management System
+
+Miscellaneous
+
+Sorting
 
 ### Use cases
 
@@ -346,20 +360,20 @@ Use Case: UC7 - Rename a tag
 MSS:
 
 1. User chooses to view all tags.
-2. System shows all tags.
+2. FoodRem shows all tags.
 3. User enters the command to rename desired tag.
-4. System informs user that the tag has been updated successfully.
+4. FoodRem informs user that the tag has been updated successfully.
 
 Extensions:
-- 3a. System detects that the new name already exist.
-  - 3a1. System requests for a new tag name that does not exist.
+- 3a. FoodRem detects that the new tag name already exist.
+  - 3a1. FoodRem requests for a new tag name that does not exist.
   - 3a2. User re-enters the command to rename the desired tag.
   - Steps 3a1-3a2 are repeated until the data entered are correct.
     Use case resumes from step 4.
 
 
-- 3b. System detects that the name is in an incorrect format.
-  - 3b1. System requests for a new tag name that follows an acceptable format.
+- 3b. FoodRem detects that the name is in an incorrect format.
+  - 3b1. FoodRem requests for a new tag name that follows an acceptable format.
   - 3b2. User re-enters the command to rename the desired tag.
   - Steps 3b1-3b2 are repeated until the command entered is correct.
     Use case resumes from step 4.
@@ -371,19 +385,19 @@ Preconditions: User knows the name of the tag they are removing from an item.
 
 MSS:
 1. User enters the command to find the item of interest.
-2. System shows a list containing possible matching items.
+2. FoodRem shows a list containing possible matching items.
 3. User enters command to remove the tag from the desired items.
-4. System informs user that the tag has been updated successfully.
+4. FoodRem informs user that the tag has been updated successfully.
 
 Extensions:
-- 1a. System detects that there is an issue with the command entered.
-  - 1a1. System requests for the command to be entered again.
+- 1a. FoodRem detects that there is an issue with the command entered.
+  - 1a1. FoodRem requests for the command to be entered again.
   - 1a2. User re-enters the command.
   - Steps 1a1-1a2 are repeated until the command entered is correct. Use case resumes from step 2.
 
 
-- 3a. System detects that there is an issue with the command entered.
-  - 3a1. System requests for the command to be entered again.
+- 3a. FoodRem detects that there is an issue with the command entered.
+  - 3a1. FoodRem requests for the command to be entered again.
   - 3a2. User re-enters the command.
   - Steps 3a1-3a2 are repeated until the command entered is correct.
   Use case resumes from step 4.
@@ -397,8 +411,8 @@ MSS:
    Extensions:
 
 - 1a. Item does not exist
-  1a1. Foodrem displays an error.
-  1a2. Foodrem asks the user if they want to try again
+  - 1a1. FoodRem displays an error.
+  - 1a2. FoodRem asks the user if they want to try again
 
 #### UC10: Sorting List of Items by Criteria
 
