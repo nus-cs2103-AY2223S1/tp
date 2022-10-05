@@ -37,7 +37,7 @@ public class Name {
      * Returns a Name object containing the default String
      * @return Name object with the default fullName field.
      */
-    public Name makeDefaultName(){
+    public static Name makeDefaultName(){
         return new Name(DEFAULT_NAME);
     }
 

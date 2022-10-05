@@ -36,7 +36,7 @@ public class Address {
      * Returns an address object containing the default String
      * @return Address object with the default address field.
      */
-    public Address makeDefaultAddress(){
+    public static Address makeDefaultAddress(){
         return new Address(DEFAULT_ADDRESS);
     }
 

@@ -33,7 +33,7 @@ public class Phone {
      * Returns a Phone object containing the default String
      * @return Phone object with the default phone field.
      */
-    public Phone makeDefaultPhone(){
+    public static Phone makeDefaultPhone(){
         return new Phone(DEFAULT_PHONE);
     }
 

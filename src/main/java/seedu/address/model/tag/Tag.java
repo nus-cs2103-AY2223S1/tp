@@ -33,7 +33,7 @@ public class Tag {
      * Returns a Tag object containing the default String
      * @return Email object with the default tagName field.
      */
-    public Tag makeDefaultTag(){
+    public static Tag makeDefaultTag(){
         return new Tag(DEFAULT_TAG);
     }
 

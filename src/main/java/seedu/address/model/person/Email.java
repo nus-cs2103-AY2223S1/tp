@@ -50,7 +50,7 @@ public class Email {
      * Returns an Email object containing the default String
      * @return Email object with the default value field.
      */
-    public Email makeDefaultEmail(){
+    public static Email makeDefaultEmail(){
         return new Email(DEFAULT_EMAIL);
     }
 
