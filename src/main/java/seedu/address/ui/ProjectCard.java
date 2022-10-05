@@ -54,6 +54,7 @@ public class ProjectCard extends UiPart<Region> {
 
         // TODO: Update once list of issues is implemented in Project
         issueCount.setText(project.getIssue().toString());
+
     }
 
     @Override
