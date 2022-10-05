@@ -15,16 +15,16 @@ import seedu.address.model.person.Person;
 public class SearchCommand extends Command {
 
     public static final String COMMAND_WORD = "search";
+    public static final String AND_CONDITION = "and";
+    public static final String OR_CONDITION = "or";
+    public static final String EMPTY_CONDITION = "";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Searches all persons whose information contains "
             + "the specified keyword (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [KEYWORD]...\n"
-            + "Example: " + COMMAND_WORD + " t/friend";
-
-    public static final String AND_CONDITION = "and";
-    public static final String OR_CONDITION = "or";
-    public static final String EMPTY_CONDITION = "";
+            + "Parameters: KEYWORD [CONDITION] [KEYWORD]...\n"
+            + "Example: " + COMMAND_WORD + " t/friend, "
+            + COMMAND_WORD + " " + AND_CONDITION + " n/John a/NUS";
 
     private final Predicate<Person> predicate;
 

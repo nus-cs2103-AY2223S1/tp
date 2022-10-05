@@ -16,7 +16,6 @@ import java.util.Optional;
 import java.util.Set;
 
 import javafx.util.Pair;
-import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.SearchCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.ContactContainsAllKeywordsPredicate;
@@ -36,6 +35,12 @@ public class SearchCommandParser implements Parser<SearchCommand> {
      */
     public SearchCommand parse(String args) throws ParseException {
         requireNonNull(args);
+        String trimmedArgs = args.trim();
+        if (trimmedArgs.isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
+        }
+
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
@@ -49,18 +54,18 @@ public class SearchCommandParser implements Parser<SearchCommand> {
         case SearchCommand.EMPTY_CONDITION:
             return parseSearchWithEmptyCondition(argMultimap);
         default:
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
         }
     }
 
-    private SearchCommand parseSearchWithAndCondition(ArgumentMultimap argMultimap) {
+    private SearchCommand parseSearchWithAndCondition(ArgumentMultimap argMultimap) throws ParseException {
         Pair<List<String>, List<List<String>>> keywordsAndPrefixes = extractPrefixesAndKeywords(argMultimap);
         List<String> prefixes = keywordsAndPrefixes.getKey();
         List<List<String>> keywords = keywordsAndPrefixes.getValue();
         return new SearchCommand(new ContactContainsAllKeywordsPredicate(prefixes, keywords));
     }
 
-    private SearchCommand parseSearchWithOrCondition(ArgumentMultimap argMultimap) {
+    private SearchCommand parseSearchWithOrCondition(ArgumentMultimap argMultimap) throws ParseException {
         Pair<List<String>, List<List<String>>> keywordsAndPrefixes = extractPrefixesAndKeywords(argMultimap);
         List<String> prefixes = keywordsAndPrefixes.getKey();
         List<List<String>> keywords = keywordsAndPrefixes.getValue();
@@ -86,7 +91,8 @@ public class SearchCommandParser implements Parser<SearchCommand> {
         }
     }
 
-    private Pair<List<String>, List<List<String>>> extractPrefixesAndKeywords(ArgumentMultimap argMultimap) {
+    private Pair<List<String>, List<List<String>>> extractPrefixesAndKeywords(ArgumentMultimap argMultimap)
+            throws ParseException {
         List<String> prefixes = new ArrayList<>();
         List<List<String>> keywords = new ArrayList<>();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
@@ -108,6 +114,9 @@ public class SearchCommandParser implements Parser<SearchCommand> {
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
             prefixes.add(PREFIX_TAG.getPrefix());
             keywords.add(argMultimap.getAllValues(PREFIX_TAG));
+        }
+        if (prefixes.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
         }
         return new Pair<>(prefixes, keywords);
     }
