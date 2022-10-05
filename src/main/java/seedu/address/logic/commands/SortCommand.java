@@ -19,7 +19,6 @@ public class SortCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        //To perform sort operation in model class, the bookType specifies BuyerBook/SupplierBook/DeliverBook
         try {
             model.sort();
         } catch (Exception e) {
