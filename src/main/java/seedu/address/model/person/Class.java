@@ -70,7 +70,7 @@ public class Class {
      * Helper method to validate {@code time}
      */
     private static boolean isValidTimeString(String time) {
-        Integer hour = Integer.valueOf(time.substring(0,2));
+        Integer hour = Integer.valueOf(time.substring(0, 2));
         Integer minute = Integer.valueOf(time.substring(2));
         try {
             LocalTime.of(hour, minute);
