@@ -38,6 +38,11 @@ public class Occupation {
         this.o = checkOccupation(occupation);
     }
 
+    /**
+     * Returns true if input is a valid occupation
+     * @param test Input to be tested
+     * @return True for valid input.
+     */
     public static boolean isValidOccupation(String test) {
         for (Occupations o : Occupations.values()) {
             if (test.equalsIgnoreCase(o.name())) {
@@ -47,6 +52,11 @@ public class Occupation {
         return false;
     }
 
+    /**
+     * Returns Occupation of input string.
+     * @param test Input to be returned in the form of Occupation
+     * @return True for valid input.
+     */
     public static Occupations checkOccupation(String test) {
         for (Occupations o : Occupations.values()) {
             if (test.equalsIgnoreCase(o.toString())) {
