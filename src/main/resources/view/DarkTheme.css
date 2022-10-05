@@ -89,29 +89,31 @@
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #1E2128;
 }
 
 .list-cell {
     -fx-label-padding: 0 0 0 0;
-    -fx-graphic-text-gap : 0;
-    -fx-padding: 0 0 0 0;
+    -fx-graphic-text-gap : 2;
+    -fx-padding: 0 4 0 4;
+    -fx-border-color: #1E2128;
+    -fx-border-width: 2px;
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
+    -fx-background-color: #30343F;
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #515658;
+    -fx-background-color: #30343F;
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #424d5f;
+    -fx-background-color: #49505A;
 }
 
 .list-cell:filled:selected #cardPane {
-    -fx-border-color: #3e7b91;
+    -fx-border-color: #49505A;
     -fx-border-width: 1;
 }
 
@@ -359,10 +361,8 @@
 
 #resultDisplay .content {
     -fx-background-color: #15181F;
-    -fx-background-radius: 8px;
     -fx-font-size: 12pt;
     -fx-text-fill: #D3D3D3;
-    -fx-padding: 24px 24px 24px 24px;
 }
 
 #tags {
