@@ -5,7 +5,9 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import paymelah.commons.core.GuiSettings;
+import paymelah.model.person.Name;
 import paymelah.model.person.Person;
+import paymelah.model.tag.Tag;
 
 /**
  * The API of the Model component.
@@ -13,6 +15,7 @@ import paymelah.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Person> PREDICATE_SHOW_FRIENDS = p -> p.getTags().contains(new Tag("friends"));
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
