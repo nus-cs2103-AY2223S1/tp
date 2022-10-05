@@ -23,7 +23,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-T11-3/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -36,7 +36,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-T11-3/tp/tree/master/src/main/java/jarvis/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-T11-3/tp/tree/master/src/main/java/jarvis/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -69,13 +69,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T11-3/tp/tree/master/src/main/java/jarvis/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T11-3/tp/tree/master/src/main/java/jarvis/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T11-3/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -86,7 +86,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-T11-3/tp/tree/master/src/main/java/jarvis/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -114,7 +114,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T11-3/tp/tree/master/src/main/java/jarvis/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -135,7 +135,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T11-3/tp/tree/master/src/main/java/jarvis/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -146,7 +146,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `jarvis.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -313,33 +313,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. Avenger inputs command to add a student.
+1. Avenger requests to add a student.
 2. JARVIS successfully adds the student.
 
 Use case ends.
 
 **Extensions**
 
-* 1a. JARVIS detects an error in the format of the input command.
-  * 1a1. JARVIS requests user to re-input their command.
+* 1a. JARVIS fails to understand request.
+  * 1a1. JARVIS tells Avenger to make a request again.
 
     Use case resumes from step 1.
 
 **Use case: UC2 - Add a Task**
 
-Preconditions: There are existing students in JARVIS.
-
 **MSS**
 
-1. Avenger inputs command to add a task.
+1. Avenger requests to add a task.
 2. JARVIS successfully adds the task.
 
 Use case ends.
 
 **Extensions**
 
-* 1a. JARVIS detects an error in the format of the input command.
-  * 1a1. JARVIS requests user to re-input their command.
+* 1a. JARVIS fails to understand request.
+  * 1a1. JARVIS tells Avenger to make a request again.
 
     Use case resumes from step 1.
 
@@ -347,15 +345,15 @@ Use case ends.
 
 **MSS**
 
-1. Avenger inputs command to list students.
+1. Avenger requests to list students.
 2. JARVIS displays the list of students.
 
 Use case ends.
 
 **Extensions**
 
-* 1a. JARVIS detects an error in the format of the input command.
-  * 1a1. JARVIS requests user to re-input their command.
+* 1a. JARVIS fails to understand request.
+  * 1a1. JARVIS tells Avenger to make a request again.
 
     Use case resumes from step 1.
 
@@ -363,15 +361,15 @@ Use case ends.
 
 **MSS**
 
-1. Avenger inputs command to list tasks.
+1. Avenger requests to list tasks.
 2. JARVIS displays the list of tasks.
 
 Use case ends.
 
 **Extensions**
 
-* 1a. JARVIS detects an error in the format of the input command.
-  * 1a1. JARVIS requests user to re-input their command.
+* 1a. JARVIS fails to understand request.
+  * 1a1. JARVIS tells Avenger to make a request again.
 
     Use case resumes from step 1.
  
@@ -382,17 +380,18 @@ Preconditions:  There are existing students in JARVIS.
 **MSS**
 
 1. Avenger performs <ins>list students(UC3)</ins>.
-2. Avenger inputs command to delete a student.
-3. JARVIS displays the list of students after successfully deleting the student.  
+2. JARVIS displays list of students.
+3. Avenger requests to delete a student.
+4. JARVIS deletes the student.  
 
 Use case ends.
 
 **Extensions**
 
-* 2a. JARVIS detects an error in the format of the input command.
-  * 2a1. JARVIS requests user to re-input their command.
+* 3a. JARVIS fails to understand request.
+  * 3a1. JARVIS tells Avenger to make a request again.
 
-    Use case resumes from step 2.
+    Use case resumes from step 3.
 
 **Use case: UC6 - Delete a task**
 
@@ -401,14 +400,16 @@ Preconditions: There are existing tasks in JARVIS.
 **MSS:**
 
 1. Avenger performs <ins>list tasks (UC4)</ins>.
-2. Avenger inputs command to delete a task.
-3. JARVIS displays list of tasks after successfully deleting the task.  
+2. JARVIS displays list of tasks.
+3. Avenger requests to delete a task.
+4. JARVIS deletes the task.
+
 Use case ends.
 
 **Extensions:**
 
-* 2a. JARVIS detects an error in the format of the input command.
-  * 2a1. JARVIS requests user to re-input their command.
+* 3a. JARVIS fails to understand request.
+  * 3a1. JARVIS tells Avenger to make a request again.
 
     Use case resumes from step 2.
     
@@ -420,21 +421,21 @@ Guarantees: All students and tasks will be deleted.
 
 **MSS:**
 
-1. Avenger inputs command to clear all data.
+1. Avenger requests to clear all data.
 2. JARVIS requests for confirmation message.
 3. Avenger confirms.
-4. JARVIS display success message.
+4. JARVIS clears all data.
 
 Use case ends.
 
 **Extensions:**
 
-* 1a. JARVIS detects an error in the format of the input command.
-  * 1a1. JARVIS requests user to re-input their command.
+* 1a. JARVIS fails to understand request.
+  * 1a1. JARVIS tells Avenger to make a request again.
 
     Use case resumes from step 1.
 
-* 3a. Avenger fails to provide confirmation message.
+* 2a. Avenger fails to confirm.
 
   Use case ends.
 
@@ -446,22 +447,22 @@ Guarantees: Specified task is marked as done
 
 **MSS:**
 
-1. Avenger inputs command to mark a task as done.
+1. Avenger requests to mark a task as done.
 2. JARVIS displays the list of tasks with the aforementioned task marked as done.
 
 Use case ends.
 
 **Extensions:**
 
-* 1a. JARVIS detects an error in the format of the input command.
-  * 1a1. JARVIS requests user to re-input their command.
+* 1a. JARVIS fails to understand request.
+  * 1a1. JARVIS tells Avenger to make a request again.
 
     Use case resumes from step 1.
 
-* 1b. JARVIS detects no task at specified task index.
-  * 1b1. JARVIS informs user that the task at the specified index does not exist.
+* 1b. JARVIS detects invalid task.
+  * 1b1. JARVIS informs Avenger that the task does not exist.
   * 1b2. JARVIS displays the list of tasks.
-  * 1b3. JARVIS requests user to re-input their command.
+  * 1b3. JARVIS tells Avenger to make a request again.
 
     Use case resumes from step 1.
 
@@ -473,22 +474,22 @@ Guarantees: Specified task is marked as not done
 
 **MSS:**
 
-1. Avenger inputs command to mark a task as not done.
+1. Avenger requests to mark a task as not done.
 2. JARVIS displays the list of tasks with the aforementioned task marked as not done.
 
 Use case ends.
 
 **Extensions:**
 
-* 1a. JARVIS detects an error in the format of the input command.
-  * 1a1. JARVIS requests user to re-input their command.
+* 1a. JARVIS fails to understand request.
+  * 1a1. JARVIS tells Avenger to make a request again.
 
   Use case resumes from step 1.
 
-* 1b. JARVIS detects no task at specified task index.
-  * 1b1. JARVIS informs user that the task at the specified index does not exist.
+* 1b. JARVIS detects invalid task.
+  * 1b1. JARVIS informs Avenger that the task does not exist.
   * 1b2. JARVIS displays the list of tasks.
-  * 1b3. JARVIS requests user to re-input their command.
+  * 1b3. JARVIS tells Avenger to make a request again.
 
     Use case resumes from step 1.
 
@@ -500,15 +501,15 @@ Preconditions: There are existing students in JARVIS.
 
 1. Avenger performs <ins>list students (UC3)</ins>.
 2. JARVIS displays the list of students.
-3. Avenger inputs command to record a student’s mastery check result.
+3. Avenger requests to record a student’s mastery check result.
 4. JARVIS displays list of students and mastery check results, with the aforementioned student’s updated mastery check result.
 
 Use case ends.
 
 **Extensions:**
 
-* 3a. JARVIS detects an error in the format of the input command.
-  * 3a1. JARVIS requests user to re-input their command.
+* 3a. JARVIS fails to understand request.
+  * 3a1. JARVIS tells Avenger to make a request again.
 
     Use case resumes from step 3.
 
