@@ -12,6 +12,8 @@ public class Name {
     public static final String MESSAGE_CONSTRAINTS =
             "Names should only contain alphanumeric characters and spaces, and it should not be blank";
 
+    public static final String DEFAULT_NAME = "ANONYMOUS";
+
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
@@ -29,6 +31,14 @@ public class Name {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         fullName = name;
+    }
+
+    /**
+     * Returns a Name object containing the default String
+     * @return Name object with the default fullName field.
+     */
+    public Name makeDefaultName(){
+        return new Name(DEFAULT_NAME);
     }
 
     /**
