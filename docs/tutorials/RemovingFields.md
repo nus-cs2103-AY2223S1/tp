@@ -39,7 +39,11 @@ Choose to `View Usages` and you should be presented with a list of `Safe Delete 
 
 Remove usages of `Address` by performing `Safe Delete`s on each entry i.e., double-click on the entry (which takes you to the code in concern, right-click on that entity, and choose `Refactor` -> `Safe delete` as before). You will need to exercise discretion when removing usages of `Address`. Functions like `ParserUtil#parseAddress()` can be safely removed but its usages must be removed as well. Other usages like in `EditStudentDescriptor` may require more careful inspection.
 
+<<<<<<< HEAD
 Let’s try removing references to `Address` in `EditSTudentDescriptor`.
+=======
+Let’s try removing references to `Address` in `EditStudentDescriptor`.
+>>>>>>> b012f66537e903613234bb5d4f50a1013dc84649
 
 1. Safe delete the field `address` in `EditStudentDescriptor`.
 
