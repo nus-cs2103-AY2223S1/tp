@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import seedu.address.model.project.Project;
 import seedu.address.model.tag.Tag;
 
 import java.util.Set;
@@ -19,5 +20,9 @@ public class Client extends Person {
      */
     public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         super(name, phone, email, address, tags);
+    }
+
+    public Set<Project> getProjects() {
+        return null;
     }
 }

@@ -38,6 +38,8 @@ public class ClientCard extends UiPart<Region> {
     private Label address;
     @FXML
     private Label email;
+    @FXML
+    private FlowPane projects;
 
     // TODO: Remove tags once decided on Client implementation
     @FXML
@@ -54,6 +56,9 @@ public class ClientCard extends UiPart<Region> {
         phone.setText(client.getPhone().value);
         address.setText(client.getAddress().value);
         email.setText(client.getEmail().value);
+        client.getProjects().stream()
+                .sorted(Comparator.comparing(project -> project.getProjectName().toString()))
+                .forEach(project -> projects.getChildren().add(new Label(project.getProjectName().toString())));
 
         // TODO: Remove tags once decided on Client implementation
         client.getTags().stream()
