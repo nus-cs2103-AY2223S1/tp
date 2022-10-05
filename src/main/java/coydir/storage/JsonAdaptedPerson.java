@@ -12,9 +12,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import coydir.commons.exceptions.IllegalValueException;
 import coydir.model.person.Address;
 import coydir.model.person.Email;
+import coydir.model.person.EmployeeId;
 import coydir.model.person.Name;
 import coydir.model.person.Person;
 import coydir.model.person.Phone;
+import coydir.model.person.Position;
 import coydir.model.tag.Tag;
 
 /**
@@ -25,8 +27,10 @@ class JsonAdaptedPerson {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final String name;
+    private final String employeeId;
     private final String phone;
     private final String email;
+    private final String position;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -34,12 +38,15 @@ class JsonAdaptedPerson {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
+    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("employeeId") String employeeId,
+            @JsonProperty("phone") String phone, @JsonProperty("email") String email,
+            @JsonProperty("position") String position, @JsonProperty("address") String address,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
+        this.employeeId = employeeId;
         this.phone = phone;
         this.email = email;
+        this.position = position;
         this.address = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -51,8 +58,10 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
+        employeeId = source.getEmployeeId().value;
         phone = source.getPhone().value;
         email = source.getEmail().value;
+        position = source.getPosition().value;
         address = source.getAddress().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -78,6 +87,15 @@ class JsonAdaptedPerson {
         }
         final Name modelName = new Name(name);
 
+        if (employeeId == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, EmployeeId.class.getSimpleName()));
+        }
+        if (!EmployeeId.isValidEmployeeId(employeeId)) {
+            throw new IllegalValueException(EmployeeId.MESSAGE_CONSTRAINTS);
+        }
+        final EmployeeId modelEmployeeId = new EmployeeId(employeeId);
+
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
@@ -94,6 +112,15 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
+        if (position == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                        Position.class.getSimpleName()));
+        }
+        if (!Position.isValidPosition(position)) {
+            throw new IllegalValueException(Position.MESSAGE_CONSTRAINTS);
+        }
+        final Position modelPosition = new Position(position);
+
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
         }
@@ -103,7 +130,7 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Person(modelName, modelEmployeeId, modelPhone, modelEmail, modelPosition, modelAddress, modelTags);
     }
 
 }
