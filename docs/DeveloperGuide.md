@@ -479,16 +479,39 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. YellowBook shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: Add a label to an existing task**
+
+**MSS**
+
+1. User requests to list tasks
+2. YellowBook shows a list of tasks
+3. User requests to tag a specific task in the list with a label
+4. YellowBook tags the task with specified label
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. YellowBook shows an error message.
+
+      Use case resumes at step 2.
+
   
 *{More to be added}*
 
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 30,000 persons without a noticeable sluggishness in performance for typical usage.
-3. Should be able to hold up to 30,000 tasks without a noticeable sluggishness in performance for typical usage.
-4. A user with above average typing speed for regular English text 
-(i.e. not code, not system admin commands) should be able to accomplish 
+2. Should be able to hold up to 30,000 persons without a _noticeable sluggishness_ in performance for typical usage.
+3. Should be able to hold up to 30,000 tasks without a _noticeable sluggishness_ in performance for typical usage.
+4. A user with _above average typing speed_ for _regular text_ should be able to accomplish 
 most of the tasks faster using commands than using the mouse.
 5. Contact/task/tag names should contain alphanumeric characters and/or spaces and/or symbols.
 6. Contact/task/tag names should be case-insensitive.
@@ -498,7 +521,7 @@ most of the tasks faster using commands than using the mouse.
 10. Should work on both 32-bit and 64-bit environments.
 11. GUI should appear as-designed on screens with resolutions from 1024x576 to 3840x2160.
 12. Should display a visual prompt when YellowBook is processing an user input.
-13. The project is expected to deliver a new iteration every 2 weeks.
+13. The project is expected to deliver a _new iteration_ every 2 weeks.
 14. Should work without an active internet connection.
 15. Data files from YellowBook v1.1 onwards should be compatible with the future versions.
 
@@ -508,6 +531,10 @@ most of the tasks faster using commands than using the mouse.
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **New iteration**: A working MVP
+* **Noticeable sluggishness**: 50-150ms, which is the average latency range for most sites
+* **Above average typing speed**: 65 to 70 words per minute, well above the average of 40 words per minute
+* **Regular text**: English words, excluding code and system admin commands
 
 --------------------------------------------------------------------------------------------------------------------
 
