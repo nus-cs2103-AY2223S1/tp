@@ -13,9 +13,4 @@ public interface ReadOnlyAddressBook {
      * This list will not contain any duplicate persons.
      */
     ObservableList<Person> getPersonList();
-
-    /**
-     * Returns an array of values which represents the statistical values of the address book.
-     */
-    int[] getStatistics();
 }

@@ -93,16 +93,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
-    /**
-     * Returns statistics values of the address book.
-     */
-    public int[] getStatistics() {
-        int personCount = persons.size();
-        int moneyCollected = persons.getMoneyCollected();
-        int moneyOwed = persons.getMoneyOwed();
-        return new int[]{personCount, moneyCollected, moneyOwed};
-    }
-
     //// util methods
 
     @Override

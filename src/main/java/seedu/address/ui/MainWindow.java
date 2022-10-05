@@ -34,7 +34,6 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-    private StatisticsWindow statisticsWindow;
     private ScheduleListPanel scheduleListPanel;
     private StatisticsDisplay statisticsDisplay;
     private StatisticsCalculator statisticsCalculator;
@@ -71,7 +70,6 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-        statisticsWindow = new StatisticsWindow(logic.getAddressBook());
         statisticsCalculator = new StatisticsCalculator(logic.getAddressBook());
     }
 
@@ -163,18 +161,6 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    /**
-     * Opens the statistics window or focuses on it if it's already opened.
-     */
-    @FXML
-    public void handleStatistics() {
-        if (!statisticsWindow.isShowing()) {
-            statisticsWindow.show();
-        } else {
-            statisticsWindow.focus();
-        }
-    }
-
     void show() {
         primaryStage.show();
     }
@@ -205,7 +191,6 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            statisticsWindow.refresh();
             statisticsDisplay.showStatisticsToUser(statisticsCalculator.getSize(),
                     statisticsCalculator.getAmountOwed(), statisticsCalculator.getAmountPaid());
 
@@ -215,10 +200,6 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
-            }
-
-            if (commandResult.isShowStatistics()) {
-                handleStatistics();
             }
 
             return commandResult;
