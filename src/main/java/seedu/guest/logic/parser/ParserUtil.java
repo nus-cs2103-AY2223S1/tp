@@ -10,6 +10,7 @@ import seedu.guest.commons.core.index.Index;
 import seedu.guest.commons.util.StringUtil;
 import seedu.guest.logic.parser.exceptions.ParseException;
 import seedu.guest.model.guest.Address;
+import seedu.guest.model.guest.DateRange;
 import seedu.guest.model.guest.Email;
 import seedu.guest.model.guest.Name;
 import seedu.guest.model.guest.Phone;
@@ -93,6 +94,21 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String dateRange} into an {@code DateRange}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code dateRange} is invalid.
+     */
+    public static DateRange parseDateRange(String dateRange) throws ParseException {
+        requireNonNull(dateRange);
+        String trimmedDateRange = dateRange.trim();
+        if (!DateRange.isValidDateRange(trimmedDateRange)) {
+            throw new ParseException(DateRange.MESSAGE_CONSTRAINTS);
+        }
+        return new DateRange(trimmedDateRange);
     }
 
     /**

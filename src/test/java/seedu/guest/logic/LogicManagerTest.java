@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.guest.commons.core.Messages.MESSAGE_INVALID_GUEST_DISPLAYED_INDEX;
 import static seedu.guest.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.guest.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
+import static seedu.guest.logic.commands.CommandTestUtil.DATE_RANGE_DESC_AMY;
 import static seedu.guest.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.guest.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.guest.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
@@ -54,6 +55,7 @@ public class LogicManagerTest {
     public void execute_invalidCommandFormat_throwsParseException() {
         String invalidCommand = "uicfhmowqewca";
         assertParseException(invalidCommand, MESSAGE_UNKNOWN_COMMAND);
+        assertParseException(invalidCommand, MESSAGE_UNKNOWN_COMMAND);
     }
 
     @Test
@@ -80,7 +82,7 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY;
+                + DATE_RANGE_DESC_AMY + ADDRESS_DESC_AMY;
         Guest expectedGuest = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addGuest(expectedGuest);

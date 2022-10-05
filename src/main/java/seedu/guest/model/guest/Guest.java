@@ -21,17 +21,19 @@ public class Guest {
     private final Email email;
 
     // Data fields
+    private final DateRange dateRange;
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Guest(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Guest(Name name, Phone phone, Email email, DateRange dateRange, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.dateRange = dateRange;
         this.address = address;
         this.tags.addAll(tags);
     }
@@ -46,6 +48,10 @@ public class Guest {
 
     public Email getEmail() {
         return email;
+    }
+
+    public DateRange getDateRange() {
+        return dateRange;
     }
 
     public Address getAddress() {
@@ -91,6 +97,7 @@ public class Guest {
         return otherGuest.getName().equals(getName())
                 && otherGuest.getPhone().equals(getPhone())
                 && otherGuest.getEmail().equals(getEmail())
+                && otherGuest.getDateRange().equals(getDateRange())
                 && otherGuest.getAddress().equals(getAddress())
                 && otherGuest.getTags().equals(getTags());
     }
@@ -98,7 +105,7 @@ public class Guest {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, dateRange, address, tags);
     }
 
     @Override
@@ -109,6 +116,8 @@ public class Guest {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
+                .append("; Date Range: ")
+                .append(getDateRange())
                 .append("; Address: ")
                 .append(getAddress());
 

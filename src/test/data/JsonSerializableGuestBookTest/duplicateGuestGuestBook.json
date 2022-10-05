@@ -3,12 +3,14 @@
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
+    "dateRange": "13/09/22 - 15/09/22",
     "address": "123, Jurong West Ave 6, #08-111",
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
+    "dateRange": "13/09/22 - 15/09/22",
     "address": "4th street"
   } ]
 }

@@ -1,6 +1,7 @@
 package seedu.guest.testutil;
 
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.guest.logic.parser.CliSyntax.PREFIX_DATE_RANGE;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -33,6 +34,7 @@ public class PersonUtil {
         sb.append(PREFIX_NAME + guest.getName().fullName + " ");
         sb.append(PREFIX_PHONE + guest.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + guest.getEmail().value + " ");
+        sb.append(PREFIX_DATE_RANGE + guest.getDateRange().value + " ");
         sb.append(PREFIX_ADDRESS + guest.getAddress().value + " ");
         guest.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
@@ -48,6 +50,8 @@ public class PersonUtil {
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
+        descriptor.getDateRange().ifPresent(dateRange -> sb.append(PREFIX_DATE_RANGE).append(dateRange.value).
+                append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
