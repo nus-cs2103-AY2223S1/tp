@@ -13,7 +13,7 @@ public class Gender {
         + "format: m, f, M, F, male, female, Male, Female";
 
     private static final List<String> VALID_GENDERS = new ArrayList<>(Arrays.asList("m", "male", "M", "Male"
-            , "f", "female", "F", "Female"));
+            , "f", "female", "F", "Female", "N/A"));
     public final GenderType value;
 
 
