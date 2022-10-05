@@ -16,6 +16,8 @@ import seedu.address.model.util.SampleDataUtil;
 public class FoodBuilder {
 
     public static final String DEFAULT_NAME = "Almonds";
+    public static final String DEFAULT_EARLIER_TIME = "2022-09-05T10:30:15.0000000";
+    public static final String DEFAULT_LATER_TIME = "2022-09-05T10:50:15.0000000";
 
     private Name name;
     private Calorie calorie;

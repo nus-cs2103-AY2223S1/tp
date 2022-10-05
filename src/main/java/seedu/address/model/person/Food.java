@@ -85,7 +85,7 @@ public class Food {
      * Returns a String representing the earliest meal tag on this {@code Food}.
      * @return "B" for breakfast, "L" for lunch, "D" for dinner and "X" for no tag.
      */
-    public String earliestMealTag() {
+    public String getEarliestMealTag() {
         if (hasTag("breakfast")) {
             return "B";
         } else if (hasTag("lunch")) {

@@ -9,7 +9,7 @@ import java.util.Comparator;
 public class FoodComparator implements Comparator<Food> {
     @Override
     public int compare(Food food1, Food food2) {
-        switch (food1.earliestMealTag() + food2.earliestMealTag()) {
+        switch (food1.getEarliestMealTag() + food2.getEarliestMealTag()) {
         case "BB":
         case "LL":
         case "DD":

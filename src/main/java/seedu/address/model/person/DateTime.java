@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.LocalDateTime;
 
 /**
@@ -21,6 +23,7 @@ public class DateTime {
      * @param dateTime A string representing the date and time.
      */
     public DateTime(String dateTime) {
+        requireNonNull(dateTime);
         this.dateTime = LocalDateTime.parse(dateTime);
     }
 
