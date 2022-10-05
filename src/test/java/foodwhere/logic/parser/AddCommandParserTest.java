@@ -54,7 +54,7 @@ public class AddCommandParserTest {
                 + ADDRESS_DESC_BOB + DETAIL_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple addresses - last address accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB  + ADDRESS_DESC_AMY
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_AMY
                 + ADDRESS_DESC_BOB + DETAIL_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple details - all accepted
@@ -113,7 +113,7 @@ public class AddCommandParserTest {
                 + INVALID_DETAIL_DESC + VALID_DETAIL_FRIEND, Detail.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB+ INVALID_ADDRESS_DESC,
+        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + INVALID_ADDRESS_DESC,
                 Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
