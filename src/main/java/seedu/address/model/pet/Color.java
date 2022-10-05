@@ -27,4 +27,8 @@ public class Color {
     public String toString() {
         return color;
     }
+
+    public String getColor() {
+        return color;
+    }
 }

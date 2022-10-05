@@ -27,4 +27,8 @@ public class Species {
     public String toString() {
         return species;
     }
+
+    public String getSpecies() {
+        return species;
+    }
 }

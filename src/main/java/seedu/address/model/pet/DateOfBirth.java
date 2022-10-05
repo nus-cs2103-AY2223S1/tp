@@ -18,7 +18,7 @@ public class DateOfBirth {
         this.date = date;
     }
 
-    private static DateOfBirth parseString(String toParse) throws IllegalValueException {
+    public static DateOfBirth parseString(String toParse) throws IllegalValueException {
         LocalDate output;
         try {
             output = LocalDate.parse(toParse, FORMATTER);
@@ -43,5 +43,9 @@ public class DateOfBirth {
     @Override
     public int hashCode() {
         return date.hashCode();
+    }
+
+    public LocalDate getDate() {
+        return date;
     }
 }

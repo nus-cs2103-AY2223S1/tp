@@ -1,20 +1,20 @@
 package seedu.address.model.pet;
 
-public class Weight {
+public class Height {
 
-    public static String UNIT = "kg";
+    public static String UNIT = "cm";
 
     private final double value;
 
-    Weight(double value) {
+    Height(double value) {
         this.value = value;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Weight // instanceof handles nulls
-                && value == ((Weight) other).value); // state check
+                || (other instanceof Height // instanceof handles nulls
+                && value == ((Height) other).value); // state check
     }
 
     @Override
