@@ -54,5 +54,4 @@ public class Deadline {
     public String toString() {
         return issueDeadline.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
     }
-
 }

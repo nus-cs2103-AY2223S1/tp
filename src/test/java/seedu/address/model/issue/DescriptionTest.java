@@ -38,5 +38,5 @@ public class DescriptionTest {
         assertTrue(Description.isValidDescription("Finish project class creation " +
                 "before doing 2 sub-classes")); //long description
     }
-
 }
+
