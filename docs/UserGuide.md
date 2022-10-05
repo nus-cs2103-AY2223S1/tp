@@ -2,8 +2,13 @@
 layout: page
 title: User Guide
 ---
+#Waddle User Guide 🦆
+Waddle is a **simple, no-frills travel planning application catered to people who love doing everything on their keyboards**. Waddle allows users to plan their travels in **3 simple steps**.
+1. Create a trip
+2. Add activities 
+3. Schedule 
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+**That simple**.
 
 * Table of Contents
 {:toc}
@@ -14,9 +19,9 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `Waddle.jar` from [here](https://github.com/AY2223S1-CS2103T-W11-4/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for Waddle.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -24,13 +29,11 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`list`** : Lists all itineraries.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`new`**`new n/My Japan Trip` : Adds an itinerary named "My Japan Trip".
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
+   * **`delete`**`1` : Deletes the 1st itinerary shown in the current list.
 
    * **`exit`** : Exits the app.
 
@@ -45,19 +48,19 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `new n/NAME`, `NAME` is a parameter which can be used as `add n/My Japan Trip`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [c/COUNTRY]` can be used as `n/My Japan Trip c/Japan` or as `n/My Japan Trip`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[w/WADDLERS]…​` can be used as ` ` (i.e. 0 times), `w/me`, `w/friend 1 w/friend 2` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `c/CATEGORY d/DESCRIPTION`, `d/DESCRIPTION c/CATEGORY` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g. if you specify `d/Eat Ramen d/Aquarium`, only `p/Aquarium` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -73,27 +76,33 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Creating a new itinerary: `new`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Format: `new n/NAME [c/COUNTRY] d/DURATION [s/START DATE] [e/END DATE] [p/NUMBER OF WADDLERS]`
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `new n/My Japan Trip d/6`
+* `new n/Germanyyyy c/Germany d/14 s/05/10/22 e/19/10/22 p/4`
 
-### Listing all persons : `list`
+### Listing all itineraries : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all itineraries in Waddle.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Selecting an itinerary: `plan`
+
+Enters the planning page for the selected itinerary.
+
+Format: `plan n/NAME`
+
+Examples:
+* `plan n/My Japan Trip`
+* `plan n/Germanyyyy`
+
+### Editing the details of an itinerary: `edit`
 
 Edits an existing person in the address book.
 
