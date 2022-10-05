@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Rapportbook" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Rapportbook" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/rapportbook_32.png" />
   </icons>
@@ -24,29 +24,29 @@
       </stylesheets>
 
       <VBox>
-            <BorderPane prefHeight="51.0" prefWidth="340.0" styleClass="menu-bar">
-               <left>
-                  <Button fx:id="brandButton" mnemonicParsing="false" prefHeight="58.0" prefWidth="54.0" styleClass="logo-button" BorderPane.alignment="CENTER">
-                     <graphic>
-                        <ImageView fx:id="brandButtonImage" fitHeight="64.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" styleClass="logo-button">
-                           <image>
-                              <Image url="@../images/brand_circle_icon.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-               </left>
-               <right>
-                  <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                     <children>
-                        <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" styleClass="menu-bar-nav-button" onAction="#handleHelp" text="Help" />
-                        <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" styleClass="menu-bar-nav-button" onAction="#handleExit" text="Exit" />
-                     </children>
-                  </HBox>
-               </right>
-            </BorderPane>
+        <BorderPane prefHeight="51.0" prefWidth="340.0" styleClass="menu-bar">
+            <left>
+              <Button fx:id="brandButton" mnemonicParsing="false" prefHeight="58.0" prefWidth="54.0" styleClass="logo-button" BorderPane.alignment="CENTER">
+                  <graphic>
+                    <ImageView fx:id="brandButtonImage" fitHeight="64.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" styleClass="logo-button">
+                        <image>
+                          <Image url="@../images/brand_circle_icon.png" />
+                        </image>
+                    </ImageView>
+                  </graphic>
+              </Button>
+            </left>
+            <right>
+              <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <children>
+                    <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" styleClass="menu-bar-nav-button" onAction="#handleHelp" text="Help" />
+                    <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" styleClass="menu-bar-nav-button" onAction="#handleExit" text="Exit" />
+                  </children>
+              </HBox>
+            </right>
+        </BorderPane>
 
-              <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
+        <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
