@@ -8,6 +8,9 @@ import seedu.address.logic.commands.FindInternshipCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.internship.NameContainsKeywordsPredicate;
 
+/**
+ * Parses input arguments and creates a new FindInternshipCommand object
+ */
 public class FindInternshipCommandParser implements Parser<FindInternshipCommand> {
 
     /**
