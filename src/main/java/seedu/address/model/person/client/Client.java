@@ -9,6 +9,11 @@ import seedu.address.model.tag.Tag;
 
 import java.util.Set;
 
+import static seedu.address.model.person.Name.DEFAULT_NAME;
+
+/**
+ * Represents a Client associated with a project.
+ */
 public class Client extends Person {
 
     /**
@@ -16,8 +21,18 @@ public class Client extends Person {
      * @param name String representing name of the client
      */
     public Client(String name){
-        super(new Name(name), new Phone("000"), new Email("notSpecified@gmail.com"), new Address("notSpecified"),
-                Set.of(new Tag("notSpecified")));
+        super(new Name(name), Phone.makeDefaultPhone(), Email.makeDefaultEmail(), Address.makeDefaultAddress(),
+                Set.of(Tag.makeDefaultTag()));
+    }
+
+    /**
+     * Represents an Empty Client for the project.
+     */
+    private static class EmptyClient extends Client {
+        private static final Client EMPTY_CLIENT = new EmptyClient();
+        private EmptyClient(){
+            super(DEFAULT_NAME);
+        }
     }
 
     /**
@@ -26,8 +41,8 @@ public class Client extends Person {
      * @param phone String representing phone number of the client
      */
     public Client(String name, String phone){
-        super(new Name(name), new Phone(phone), new Email("notSpecified@gmail.com"), new Address("notSpecified"),
-                Set.of(new Tag("notSpecified")));
+        super(new Name(name), new Phone(phone), Email.makeDefaultEmail(), Address.makeDefaultAddress(),
+                Set.of(Tag.makeDefaultTag()));
     }
 
     /**
@@ -38,8 +53,8 @@ public class Client extends Person {
      * @param email String representing email address of the client
      */
     public Client(String name, String phone, String email){
-        super(new Name(name), new Phone(phone), new Email(email), new Address("notSpecified"),
-                Set.of(new Tag("notSpecified")));
+        super(new Name(name), new Phone(phone), new Email(email), Address.makeDefaultAddress(),
+                Set.of(Tag.makeDefaultTag()));
     }
 
     /**
@@ -52,7 +67,7 @@ public class Client extends Person {
      */
     public Client(String name, String phone, String email, String address){
         super(new Name(name), new Phone(phone), new Email(email), new Address(address),
-                Set.of(new Tag("notSpecified")));
+                Set.of(Tag.makeDefaultTag()));
     }
 
     /**
@@ -64,6 +79,7 @@ public class Client extends Person {
      * @param tag String representing the tag associated with the client
      */
     public Client(String name, String phone, String email, String address, String tag){
-        super(new Name(name), new Phone(phone), new Email(email), new Address(address), Set.of(new Tag(tag)));
+        super(new Name(name), new Phone(phone), new Email(email), new Address(address),
+                Set.of(new Tag(tag)));
     }
 }
