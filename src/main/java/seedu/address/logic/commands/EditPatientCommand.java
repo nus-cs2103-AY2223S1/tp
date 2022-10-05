@@ -75,22 +75,22 @@ public class EditPatientCommand extends Command {
         }
 
         Person patientToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(patientToEdit, editPatientDescriptor);
+        Person editedPatient = createEditedPerson(patientToEdit, editPatientDescriptor);
 
-        if (!patientToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+        if (!patientToEdit.isSamePerson(editedPatient) && model.hasPerson(editedPatient)) {
             throw new CommandException(MESSAGE_DUPLICATE_PATIENT);
         }
 
-        model.setPerson(patientToEdit, editedPerson);
+        model.setPerson(patientToEdit, editedPatient);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PATIENT_SUCCESS, editedPerson));
+        return new CommandResult(String.format(MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient));
     }
 
     /**
      * Creates and returns a {@code Person} with the details of {@code patientToEdit}
      * edited with {@code editPatientDescriptor}.
      */
-    private static Person createEditedPerson(Person patientToEdit, EditPatientDescriptor editPatientDescriptor) {
+    private static Person createEditedPatient(Person patientToEdit, EditPatientDescriptor editPatientDescriptor) {
         assert patientToEdit != null;
 
         Name updatedName = editPatientDescriptor.getName().orElse(patientToEdit.getName());
