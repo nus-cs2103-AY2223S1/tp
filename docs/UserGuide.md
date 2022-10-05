@@ -83,32 +83,32 @@ Examples:
 * `mark 2 accepted` - Marks the 2nd application status to be accepted
 
 
-### Listing all persons : `list`
+### Listing all internships : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all internships in the address book.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing a internship : `edit`
 
-Edits an existing person in the address book.
+Edits an existing internship in the address book.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the internship at the specified `INDEX`. The index refers to the index number shown in the displayed internship list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* When editing tags, the existing tags of the internship will be removed i.e adding of tags is not cumulative.
+* You can remove all the internship’s tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st internship to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd internship to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Locating internships by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds internships whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -124,19 +124,19 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a internship : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified internship from the address book.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the internship at the specified `INDEX`.
+* The index refers to the index number shown in the displayed internship list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd internship in the address book.
+* `find Betsy` followed by `delete 1` deletes the 1st internship in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
