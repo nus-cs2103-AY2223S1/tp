@@ -46,8 +46,8 @@ public class ProjectCard extends UiPart<Region> {
         this.project = project;
         id.setText(displayedIndex + ". ");
         name.setText(project.getProjectName().toString());
-        repository.setText(project.getRepository().toString());
-        deadline.setText(project.getDeadline().toString());
+        repository.setText(project.getRepository().getRepositoryUrl());
+        deadline.setText(project.getDeadline().getFormattedDeadline());
 
         // TODO: Update once client is implemented in Project
         client.setText(project.getClient().toString());

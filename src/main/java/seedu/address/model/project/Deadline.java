@@ -53,7 +53,7 @@ public class Deadline {
         return deadline.matches(VALIDATION_REGEX);
     }
 
-    public String formattedDeadline() {
+    public String getFormattedDeadline() {
         return projectDeadline.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
     }
 
