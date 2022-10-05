@@ -26,7 +26,7 @@ public class AddPropertyCommand extends Command {
             + PREFIX_NAME + "Clementi Ave 2 Second Floor Flat "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_PRICE + "500 000 "
-            + PREFIX_DESCRIPTION + "ready to be bought ";   // consider changing description to tags, as implemented in addcommand
+            + PREFIX_DESCRIPTION + "ready to be bought "; // consider changing description to tags
 
     public static final String MESSAGE_SUCCESS = "New property added: %1$s";
     public static final String MESSAGE_DUPLICATE_PROPERTY = "This property already exists in the address book";
