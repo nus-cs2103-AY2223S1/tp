@@ -2,10 +2,10 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
-import seedu.address.model.person.GenderType;
-import java.util.List;
-import java.util.Arrays;
+
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Represents a Person's gender in the address book.
@@ -16,8 +16,8 @@ public class Gender {
     public static final String MESSAGE_CONSTRAINTS = "Gender is an optional field, it should be one of the following"
         + " format: m, f, M, F, male, female, Male, Female";
 
-    private static final List<String> VALID_GENDERS = new ArrayList<>(Arrays.asList("m", "male", "M", "Male"
-            , "f", "female", "F", "Female", "N/A"));
+    private static final List<String> VALID_GENDERS = new ArrayList<>(Arrays.asList("m", "male", "M", "Male",
+            "f", "female", "F", "Female", "N/A"));
     public final GenderType value;
 
 

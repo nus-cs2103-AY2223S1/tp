@@ -1,6 +1,7 @@
 package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.person.GenderType.NA;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -8,7 +9,6 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
-import static seedu.address.model.person.GenderType.NA;
 
 /**
  * Represents a Person in the address book.

@@ -1,8 +1,8 @@
 package seedu.address.model.person;
 
-import java.util.List;
-import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Enum class of a Person's gender in the address book.
