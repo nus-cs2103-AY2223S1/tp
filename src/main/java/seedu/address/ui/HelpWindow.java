@@ -23,8 +23,8 @@ public class HelpWindow extends UiPart<Stage> {
             + "4. To edit a students details:\n" + "> edit [n/ p/ lp/]NEW_FIELD\n"
             + "> edit [h/ a/ g/]INDEX NEW_FIELD \n"
             + "5. To remove a student from your address book:\n" + "> delete INDEX\n";
-    public static final String HELP_MESSAGE = BUFFER_LINE  + BASIC_COMMANDS + BUFFER_LINE +
-            "For other queries, you can refer to the user guide: \n" + USERGUIDE_URL;
+    public static final String HELP_MESSAGE = BUFFER_LINE + BASIC_COMMANDS + BUFFER_LINE
+            + "For other queries, you can refer to the user guide: \n" + USERGUIDE_URL;
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
 
