@@ -3,10 +3,15 @@ package seedu.address.model.person;
 import java.util.List;
 import java.util.Arrays;
 import java.util.ArrayList;
+
+/**
+ * Enum class of a Person's gender in the address book.
+ * The 3 types of gender enum are: MALE, FEMALE, NA
+ */
 public enum GenderType {
     MALE("Male"),
     FEMALE("Female"),
-    NA("N/A"); //NA is default gender option
+    NA("N/A"); //NA is the default gender option
 
     private static final List<String> MALE_GENDERS = new ArrayList<>(Arrays.asList("m", "male", "M", "Male"));
     private static final List<String> FEMALE_GENDERS = new ArrayList<>(Arrays.asList("F", "Female", "f", "female"));

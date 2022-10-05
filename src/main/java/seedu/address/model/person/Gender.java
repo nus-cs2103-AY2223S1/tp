@@ -7,10 +7,14 @@ import java.util.List;
 import java.util.Arrays;
 import java.util.ArrayList;
 
+/**
+ * Represents a Person's gender in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidGender(String)}
+ */
 public class Gender {
 
     public static final String MESSAGE_CONSTRAINTS = "Gender is an optional field, it should be one of the following"
-        + "format: m, f, M, F, male, female, Male, Female";
+        + " format: m, f, M, F, male, female, Male, Female";
 
     private static final List<String> VALID_GENDERS = new ArrayList<>(Arrays.asList("m", "male", "M", "Male"
             , "f", "female", "F", "Female", "N/A"));
@@ -22,7 +26,6 @@ public class Gender {
      *
      * @param gender  A valid gender, accepted formats include F, M, f, m, Female, Male, female, male.
      */
-
     public Gender(String gender) {
         requireNonNull(gender);
         checkArgument(isValidGender(gender), MESSAGE_CONSTRAINTS);
@@ -34,7 +37,7 @@ public class Gender {
     }
 
     /**
-     * Returns if a given string is a valid email.
+     * Returns if a given string is a valid gender.
      */
     public static boolean isValidGender(String test) {
         return VALID_GENDERS.contains(test);
