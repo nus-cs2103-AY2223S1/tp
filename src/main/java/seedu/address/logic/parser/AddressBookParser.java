@@ -81,7 +81,6 @@ public class AddressBookParser {
 
         case DeleteClientCommand.COMMAND_WORD:
             return new DeleteClientCommandParser().parse(arguments);
-            
         case AddPolicyCommand.COMMAND_WORD:
             return new AddPolicyCommandParser().parse(arguments);
 
