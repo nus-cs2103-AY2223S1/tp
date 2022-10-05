@@ -13,7 +13,6 @@ public class Phone {
     public static final String MESSAGE_CONSTRAINTS =
             "Phone numbers should only contain numbers, and it should be at least 3 digits long";
     public static final String VALIDATION_REGEX = "\\d{3,}";
-    public static final String DEFAULT_PHONE = "000";
 
     public final String value;
 
@@ -29,11 +28,13 @@ public class Phone {
     }
 
     /**
-     * Returns a Phone object containing the default String
-     * @return Phone object with the default phone field.
+     * Represents an Empty Phone.
      */
-    public static Phone makeDefaultPhone() {
-        return new Phone(DEFAULT_PHONE);
+    private static class EmptyPhone extends Phone {
+        private static final Phone EMPTY_PHONE = new EmptyPhone();
+        private EmptyPhone() {
+            super("");
+        }
     }
 
     /**
