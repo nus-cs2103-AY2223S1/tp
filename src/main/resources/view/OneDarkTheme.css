@@ -1,3 +1,8 @@
+.root {
+-fx-text-fill: #FB9701;
+-fx-font-weight: bold;
+}
+
 .background {
     -fx-background-color: derive(#282C34, 20%);
     background-color: #383838; /* Used in the default.html file */
