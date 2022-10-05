@@ -40,7 +40,6 @@ public class CreateTeamCommand extends Command {
         }
 
         model.addTeam(toAdd);
-        System.out.println("team added");
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

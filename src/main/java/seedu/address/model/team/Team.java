@@ -48,7 +48,7 @@ public class Team {
         }
     }
 
-    public void addTasK(Task t) {
+    public void addTask(Task t) {
         tasks.add(t);
     }
 

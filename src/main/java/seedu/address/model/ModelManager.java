@@ -43,9 +43,7 @@ public class ModelManager implements Model {
         // Temp code
         // todo replace this code
         ObservableList<Team> team = FXCollections.observableArrayList();
-        team.add(0, new Team(new Name("test")));
-        filteredTeams = new FilteredList<>(team);
-        System.out.println("tet");
+        filteredTeams = new FilteredList<>(this.addressBook.getTeamList());
 
     }
 
