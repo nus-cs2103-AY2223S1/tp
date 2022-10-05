@@ -140,8 +140,11 @@ public class SortCommand extends Command {
                 return false;
             }
             SortArgument otherSort = (SortArgument) other;
-            if (tag == null) {
-                return otherSort.tag == null;
+            if (tag == null && otherSort.tag != null) {
+                return false;
+            }
+            if (tag == otherSort.tag) {
+                return isReverse == otherSort.isReverse && prefix.equals(otherSort.prefix);
             }
             return isReverse == otherSort.isReverse && prefix.equals(otherSort.prefix) && tag.equals(otherSort.tag);
         }

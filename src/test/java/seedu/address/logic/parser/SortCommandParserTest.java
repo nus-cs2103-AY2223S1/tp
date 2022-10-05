@@ -13,7 +13,7 @@ import seedu.address.logic.commands.SortCommand.SortArgument;
 import seedu.address.model.tag.Tag;
 
 class SortCommandParserTest {
-    private String failureMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE);
+    private final String failureMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE);
     private final SortCommandParser parser = new SortCommandParser();
 
     @Test
