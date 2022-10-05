@@ -2,11 +2,9 @@ package seedu.condonery.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.condonery.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.condonery.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.condonery.model.Model.PREDICATE_SHOW_ALL_PROPERTIES;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -19,87 +17,79 @@ import seedu.condonery.commons.core.index.Index;
 import seedu.condonery.commons.util.CollectionUtil;
 import seedu.condonery.logic.commands.exceptions.CommandException;
 import seedu.condonery.model.Model;
-import seedu.condonery.model.person.Address;
-import seedu.condonery.model.person.Email;
-import seedu.condonery.model.person.Name;
-import seedu.condonery.model.person.Person;
-import seedu.condonery.model.person.Phone;
+import seedu.condonery.model.property.Address;
+import seedu.condonery.model.property.Name;
+import seedu.condonery.model.property.Property;
 import seedu.condonery.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing property in the address book.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the property identified "
+            + "by the index number used in the displayed property list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + "Example: " + COMMAND_WORD + " 1 ";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_PROPERTY_SUCCESS = "Edited Property: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PROPERTY = "This property already exists in the address book.";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditPropertyDescriptor editPropertyDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param index of the property in the filtered property list to edit
+     * @param editPropertyDescriptor details to edit the property with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditPropertyDescriptor editPropertyDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editPropertyDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editPropertyDescriptor = new EditPropertyDescriptor(editPropertyDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Property> lastShownList = model.getFilteredPropertyList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Property propertyToEdit = lastShownList.get(index.getZeroBased());
+        Property editedProperty = createEditedProperty(propertyToEdit, editPropertyDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (!propertyToEdit.isSameProperty(editedProperty) && model.hasProperty(editedProperty)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PROPERTY);
         }
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        model.setProperty(propertyToEdit, editedProperty);
+        model.updateFilteredPropertyList(PREDICATE_SHOW_ALL_PROPERTIES);
+        return new CommandResult(String.format(MESSAGE_EDIT_PROPERTY_SUCCESS, editedProperty));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Property} with the details of {@code propertyToEdit}
+     * edited with {@code editPropertyDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    private static Property createEditedProperty(Property propertyToEdit, EditPropertyDescriptor editPropertyDescriptor) {
+        assert propertyToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Name updatedName = editPropertyDescriptor.getName().orElse(propertyToEdit.getName());
+        Address updatedAddress = editPropertyDescriptor.getAddress().orElse(propertyToEdit.getAddress());
+        Set<Tag> updatedTags = editPropertyDescriptor.getTags().orElse(propertyToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Property(updatedName, updatedAddress, updatedTags);
     }
 
     @Override
@@ -117,30 +107,26 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editPropertyDescriptor.equals(e.editPropertyDescriptor);
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the property with. Each non-empty field value will replace the
+     * corresponding field value of the property.
      */
-    public static class EditPersonDescriptor {
+    public static class EditPropertyDescriptor {
         private Name name;
-        private Phone phone;
-        private Email email;
         private Address address;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {}
+        public EditPropertyDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditPropertyDescriptor(EditPropertyDescriptor toCopy) {
             setName(toCopy.name);
-            setPhone(toCopy.phone);
-            setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
         }
@@ -149,7 +135,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, address, tags);
         }
 
         public void setName(Name name) {
@@ -158,22 +144,6 @@ public class EditCommand extends Command {
 
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
-        }
-
-        public void setPhone(Phone phone) {
-            this.phone = phone;
-        }
-
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
-        }
-
-        public void setEmail(Email email) {
-            this.email = email;
-        }
-
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
         }
 
         public void setAddress(Address address) {
@@ -209,16 +179,14 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditPropertyDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditPropertyDescriptor e = (EditPropertyDescriptor) other;
 
             return getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
         }

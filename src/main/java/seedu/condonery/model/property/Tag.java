@@ -10,12 +10,12 @@ import static seedu.condonery.commons.util.AppUtil.checkArgument;
 public class Tag {
 
     public static final String MESSAGE_CONSTRAINTS =
-        "Tags should not be blank";
+        "Tags can take any values, and it should not be blank";
 
     /*
      * Tag needs to contain at least one word.
      */
-    public static final String VALIDATION_REGEX = ".*\\w+";
+    public static final String VALIDATION_REGEX = "[^\\s].*";
 
     public final String value;
 

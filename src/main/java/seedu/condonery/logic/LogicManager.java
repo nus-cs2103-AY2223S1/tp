@@ -14,7 +14,7 @@ import seedu.condonery.logic.parser.CondoneryParser;
 import seedu.condonery.logic.parser.exceptions.ParseException;
 import seedu.condonery.model.Model;
 import seedu.condonery.model.ReadOnlyPropertyDirectory;
-import seedu.condonery.model.person.Person;
+import seedu.condonery.model.property.Property;
 import seedu.condonery.storage.Storage;
 
 /**
@@ -60,8 +60,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Property> getFilteredPropertyList() {
+        return model.getFilteredPropertyList();
     }
 
     @Override

@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.condonery.commons.exceptions.IllegalValueException;
 import seedu.condonery.model.PropertyDirectory;
 import seedu.condonery.model.ReadOnlyPropertyDirectory;
-import seedu.condonery.model.person.Person;
+import seedu.condonery.model.property.Property;
 
 /**
  * An Immutable PropertyDirectory that is serializable to JSON format.
@@ -19,16 +19,16 @@ import seedu.condonery.model.person.Person;
 @JsonRootName(value = "addressbook")
 class JsonSerializablePropertyDirectory {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_property = "Properties list contains duplicate property(s).";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedProperty> properties = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializablePropertyDirectory} with the given persons.
+     * Constructs a {@code JsonSerializablePropertyDirectory} with the given properties.
      */
     @JsonCreator
-    public JsonSerializablePropertyDirectory(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializablePropertyDirectory(@JsonProperty("properties") List<JsonAdaptedProperty> properties) {
+        this.properties.addAll(properties);
     }
 
     /**
@@ -37,7 +37,7 @@ class JsonSerializablePropertyDirectory {
      * @param source future changes to this will not affect the created {@code JsonSerializablePropertyDirectory}.
      */
     public JsonSerializablePropertyDirectory(ReadOnlyPropertyDirectory source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        properties.addAll(source.getPropertyList().stream().map(JsonAdaptedProperty::new).collect(Collectors.toList()));
     }
 
     /**
@@ -47,12 +47,12 @@ class JsonSerializablePropertyDirectory {
      */
     public PropertyDirectory toModelType() throws IllegalValueException {
         PropertyDirectory propertyDirectory = new PropertyDirectory();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
-            if (propertyDirectory.hasPerson(person)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+        for (JsonAdaptedProperty jsonAdaptedProperty : properties) {
+            Property property = jsonAdaptedProperty.toModelType();
+            if (propertyDirectory.hasProperty(property)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_property);
             }
-            propertyDirectory.addPerson(person);
+            propertyDirectory.addProperty(property);
         }
         return propertyDirectory;
     }

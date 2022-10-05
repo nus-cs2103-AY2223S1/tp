@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.condonery.commons.core.GuiSettings;
 import seedu.condonery.commons.core.LogsCenter;
-import seedu.condonery.model.person.Person;
+import seedu.condonery.model.property.Property;
 
 /**
  * Represents the in-memory model of the Condonery data.
@@ -21,7 +21,7 @@ public class ModelManager implements Model {
 
     private final PropertyDirectory propertyDirectory;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Property> filteredProperties;
 
     /**
      * Initializes a ModelManager with the given propertyDirectory and userPrefs.
@@ -33,7 +33,7 @@ public class ModelManager implements Model {
 
         this.propertyDirectory = new PropertyDirectory(propertyDirectory);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.propertyDirectory.getPersonList());
+        filteredProperties = new FilteredList<>(this.propertyDirectory.getPropertyList());
     }
 
     public ModelManager() {
@@ -90,44 +90,44 @@ public class ModelManager implements Model {
     //=========== ClientDirectory ================================================================================
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return propertyDirectory.hasPerson(person);
+    public boolean hasProperty(Property property) {
+        requireNonNull(property);
+        return propertyDirectory.hasProperty(property);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        propertyDirectory.removePerson(target);
+    public void deleteProperty(Property target) {
+        propertyDirectory.removeProperty(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        propertyDirectory.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addProperty(Property property) {
+        propertyDirectory.addProperty(property);
+        updateFilteredPropertyList(PREDICATE_SHOW_ALL_PROPERTIES);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setProperty(Property target, Property editedProperty) {
+        requireAllNonNull(target, editedProperty);
 
-        propertyDirectory.setPerson(target, editedPerson);
+        propertyDirectory.setProperty(target, editedProperty);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Property List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Property} backed by the internal list of
      * {@code versionedPropertyDirectory}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Property> getFilteredPropertyList() {
+        return filteredProperties;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredPropertyList(Predicate<Property> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredProperties.setPredicate(predicate);
     }
 
     @Override
@@ -146,7 +146,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return propertyDirectory.equals(other.propertyDirectory)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredProperties.equals(other.filteredProperties);
     }
 
 }
