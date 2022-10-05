@@ -368,7 +368,6 @@ Use case ends.
 
 * **Buyer/Client**: A customer of the pet sale coordinator interested in purchasing a pet.
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
- 
 
 --------------------------------------------------------------------------------------------------------------------
 

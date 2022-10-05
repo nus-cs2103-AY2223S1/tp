@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.commons.core.Version;
 import seedu.address.model.tag.Tag;
 
 /**
