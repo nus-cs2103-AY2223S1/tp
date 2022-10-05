@@ -5,11 +5,11 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+- This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -255,15 +255,17 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
+#### Target user profile:
 
-* has a need to manage a significant number of contacts
+**Steve** is a web developer who:
+* has a need to manage a significant projects and stakeholders related to said projects
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* needs to store projects and stakeholders securely
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage projects and project contacts faster than a typical mouse/GUI driven app, in a secure manner.
 
 
 ### User stories
@@ -272,12 +274,43 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+|  `* * *` | student developer  |  track multiple projects spread across different websites in one place. | |
+| `* * *`         | forgetful developer  |  see all the tasks for my projects on one page  |  I will remember what needs to be an experienced developer,  |
+|  `* * *`        | developer  |  see the projects automatically sorted in accordance with the deadline  |  I can manage and clear those with a higher priority first |
+|   `* * *`       | developer  |  have a quick overview of those collaborating on projects with me  |  I can contact collaborators or access information quickly |
+| `* * *`         | user  |  add projects to the application | |
+| `* * *`         | user  |  delete projects from the application  |  I can keep my data accurate if I make a mistake in entering data. |
+| `* * *`         | user  |  edit projects from the application  |  I can handle changes in my projects. |
+| `* * *`         | user  |  tag clients to each project  |  I can know which clients each project is under. |
+|  `* * *`        | new user  |  view a guide  |  I can learn about the functionalities of the application. |
+| `* * *`         | user  |  add deadlines to the projects  |  I can prioritize accordingly. |
+| `* * *`         | user  |  differentiate between the types of projects  |  I can organize my workspace. |
+| `* * *`         | user  |  add the contact numbers and email addresses of each client to the projects  |  I can contact them more efficiently. |
+|  `* * *`        | user  |  link my projects to their repositories  |  I can easily navigate to them. |
+|    `* *`       | forgetful developer | I can categorize projects into various categories |  better organize them |
+|   `* *`        | developer  |  choose to ‘pin’ certain projects  |  I can quickly access them  |
+|  `* *`         | developer  |  rate the importance of each client  |  I can prioritize certain clients. |
+|   `* *`        | developer  |  see all the issues/room for improvements of the website that my clients have in one place,  |  I know what features/bugs to work on for them |
+|  `* *`        | company developer  |  ensure my project and data are only accessible after user authentication | my data is kept secure |
+|   `* *`        | developer  |  also track other aspects (such as project cost) that are not in the default implementation. | |
+|   `* *`        | new user  |  view dummy data  |  I can learn how to use the application. |
+|   `* *`        | new user  |  tag ongoing bugs to a project  |  I can allocate my time to bug fixes in an efficient manner. |
+| `* *`         | developer  |  sort the projects  |  I can see which projects require more urgency when the number of projects becomes too long. |
+|    `* *`       | user  |  create an account,  |  I do not give access to my project data if I lose my laptop. |
+|     `* *`      | user  |  login to my account,  |  I can access my data. |
+|    `* *`       | forgetful user  |  reset my password,  |  I can access my account if I forget my password. |
+|  `* *`         | user  |  delete tags from the projects. | |
+|    `* *`       | user  |  differentiate between teammate contacts and client contacts and advanced user, I can categorize issues for each project  |  I can organize the types of bugs that need to be fixed. |
+|    `* *`       | user  |  change my password to prevent theft of my data. |
+|      `* *`     | user  |  view the current time and date  |  I can keep track of the due date of my projects. |
+|    `* *`       | developer  |  clear all data using a single command |  |
+|     `* *`      | user  |  split the project tiles into different categories  |  I can organize my workspace better. |
+|    `*`       | user  |  get a notification every time an issue surfaces,  |  I can respond in a timely manner. |
+|    `*`       | user  |  automatically check my projects for issues  |  I can efficiently check for outstanding bug fixes. |
+|    `*`       | user  |  see the bug history of each project  |  I can identify the more problematic projects. |
+|    `*`       | user  |  tag team members to the projects,  |  I can communicate with other developers on my team. |
+|   `*`        | user  |  customize the look of each project tile,  |  I can make my workspace more aesthetic. |
+|     `*`      | head developer  |  have multiple developers use the same application on the same system. |  |
 
 *{More to be added}*
 
@@ -548,7 +581,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Client**: A contact detail that is attached to a project.
+* **Project**: A project that has many clients, which typically has deliverables with deadlines.
 
 --------------------------------------------------------------------------------------------------------------------
 
