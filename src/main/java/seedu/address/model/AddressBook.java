@@ -108,7 +108,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     //// tag-level methods
     /**
-     * Returns true if a tag with the same identity as {@code tag} exists in the address book.
+     * Returns true if a tag with the same name as {@code tag} exists in the address book.
      */
     public boolean hasTag(Tag tag) {
         requireNonNull(tag);

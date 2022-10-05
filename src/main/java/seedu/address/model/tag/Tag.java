@@ -13,6 +13,8 @@ public class Tag {
 
     public final Name tagName;
 
+    private static final int MAX_CHAR_LIMIT = 30;
+
     /**
      * Constructs a {@code Tag}.
      *
@@ -32,7 +34,7 @@ public class Tag {
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidTagName(String test) {
-        return test.length() <= 30;
+        return test.length() <= MAX_CHAR_LIMIT;
     }
 
     @Override

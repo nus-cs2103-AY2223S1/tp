@@ -17,7 +17,8 @@ public class Name {
     /*
      * Regex to check for valid punctuation
      */
-    public static final String AllOWED_PUNCTUATION = "[\\?\\.\\'\\\"\\[\\]\\{\\}\\+\\^\\$\\*\\(\\)\\-<>,:;~@!#%&_=`]";
+    public static final String AllOWED_PUNCTUATION_REGEX =
+            "[\\?\\.\\'\\\"\\[\\]\\{\\}\\+\\^\\$\\*\\(\\)\\-<>,:;~@!#%&_=`]";
 
     /*
      * Only alphanumeric characters, whitespaces and punctuation within the ALLOWED_PUNCTUATION list are allowed.
@@ -25,7 +26,7 @@ public class Name {
      */
     public static final String VALIDATION_REGEX = String.format(
             "[\\p{Alnum}][\\p{Alnum} | \\p{Space} | %s]*",
-            AllOWED_PUNCTUATION
+            AllOWED_PUNCTUATION_REGEX
     );
 
     public final String fullName;
