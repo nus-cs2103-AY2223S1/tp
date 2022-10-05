@@ -1,7 +1,7 @@
 package gim.logic.commands;
 
-import static gim.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static gim.logic.parser.CliSyntax.PREFIX_NAME;
+import static gim.logic.parser.CliSyntax.PREFIX_REP;
 import static gim.logic.parser.CliSyntax.PREFIX_SETS;
 import static gim.logic.parser.CliSyntax.PREFIX_TAG;
 import static gim.logic.parser.CliSyntax.PREFIX_WEIGHT;
@@ -34,8 +34,8 @@ public class CommandTestUtil {
     public static final String VALID_WEIGHT_BOB = "22222222";
     public static final String VALID_SETS_AMY = "amy@example.com";
     public static final String VALID_SETS_BOB = "bob@example.com";
-    public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
-    public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
+    public static final String VALID_REP_AMY = "Block 312, Amy Street 1";
+    public static final String VALID_REP_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
@@ -45,15 +45,15 @@ public class CommandTestUtil {
     public static final String WEIGHT_DESC_BOB = " " + PREFIX_WEIGHT + VALID_WEIGHT_BOB;
     public static final String SETS_DESC_AMY = " " + PREFIX_SETS + VALID_SETS_AMY;
     public static final String SETS_DESC_BOB = " " + PREFIX_SETS + VALID_SETS_BOB;
-    public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
-    public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
+    public static final String REP_DESC_AMY = " " + PREFIX_REP + VALID_REP_AMY;
+    public static final String REP_DESC_BOB = " " + PREFIX_REP + VALID_REP_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_WEIGHT_DESC = " " + PREFIX_WEIGHT + "911a"; // 'a' not allowed in weights
     public static final String INVALID_SETS_DESC = " " + PREFIX_SETS + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
+    public static final String INVALID_REP_DESC = " " + PREFIX_REP; // empty string not allowed for reps
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -64,10 +64,10 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditExerciseDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withWeight(VALID_WEIGHT_AMY).withSets(VALID_SETS_AMY).withAddress(VALID_ADDRESS_AMY)
+                .withWeight(VALID_WEIGHT_AMY).withSets(VALID_SETS_AMY).withRep(VALID_REP_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditExerciseDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withWeight(VALID_WEIGHT_BOB).withSets(VALID_SETS_BOB).withAddress(VALID_ADDRESS_BOB)
+                .withWeight(VALID_WEIGHT_BOB).withSets(VALID_SETS_BOB).withRep(VALID_REP_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 

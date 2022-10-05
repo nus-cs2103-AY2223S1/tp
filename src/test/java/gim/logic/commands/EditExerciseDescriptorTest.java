@@ -2,8 +2,8 @@ package gim.logic.commands;
 
 import static gim.logic.commands.CommandTestUtil.DESC_AMY;
 import static gim.logic.commands.CommandTestUtil.DESC_BOB;
-import static gim.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static gim.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static gim.logic.commands.CommandTestUtil.VALID_REP_BOB;
 import static gim.logic.commands.CommandTestUtil.VALID_SETS_BOB;
 import static gim.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static gim.logic.commands.CommandTestUtil.VALID_WEIGHT_BOB;
@@ -51,7 +51,7 @@ public class EditExerciseDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different address -> returns false
-        editedAmy = new EditExerciseDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
+        editedAmy = new EditExerciseDescriptorBuilder(DESC_AMY).withRep(VALID_REP_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false

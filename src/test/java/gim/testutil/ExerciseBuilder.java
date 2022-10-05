@@ -3,9 +3,9 @@ package gim.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import gim.model.exercise.Address;
 import gim.model.exercise.Exercise;
 import gim.model.exercise.Name;
+import gim.model.exercise.Rep;
 import gim.model.exercise.Sets;
 import gim.model.exercise.Weight;
 import gim.model.tag.Tag;
@@ -20,12 +20,12 @@ public class ExerciseBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_WEIGHT = "85355255";
     public static final String DEFAULT_SETS = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_REP = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
     private Weight weight;
     private Sets sets;
-    private Address address;
+    private Rep rep;
     private Set<Tag> tags;
 
     /**
@@ -35,7 +35,7 @@ public class ExerciseBuilder {
         name = new Name(DEFAULT_NAME);
         weight = new Weight(DEFAULT_WEIGHT);
         sets = new Sets(DEFAULT_SETS);
-        address = new Address(DEFAULT_ADDRESS);
+        rep = new Rep(DEFAULT_REP);
         tags = new HashSet<>();
     }
 
@@ -46,7 +46,7 @@ public class ExerciseBuilder {
         name = exerciseToCopy.getName();
         weight = exerciseToCopy.getWeight();
         sets = exerciseToCopy.getSets();
-        address = exerciseToCopy.getAddress();
+        rep = exerciseToCopy.getRep();
         tags = new HashSet<>(exerciseToCopy.getTags());
     }
 
@@ -67,10 +67,10 @@ public class ExerciseBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Exercise} that we are building.
+     * Sets the {@code Rep} of the {@code Exercise} that we are building.
      */
-    public ExerciseBuilder withAddress(String address) {
-        this.address = new Address(address);
+    public ExerciseBuilder withRep(String rep) {
+        this.rep = new Rep(rep);
         return this;
     }
 
@@ -91,7 +91,7 @@ public class ExerciseBuilder {
     }
 
     public Exercise build() {
-        return new Exercise(name, weight, sets, address, tags);
+        return new Exercise(name, weight, sets, rep, tags);
     }
 
 }

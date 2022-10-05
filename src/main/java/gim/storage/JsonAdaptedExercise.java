@@ -10,12 +10,13 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import gim.commons.exceptions.IllegalValueException;
-import gim.model.exercise.Address;
 import gim.model.exercise.Exercise;
 import gim.model.exercise.Name;
+import gim.model.exercise.Rep;
 import gim.model.exercise.Sets;
 import gim.model.exercise.Weight;
 import gim.model.tag.Tag;
+
 
 /**
  * Jackson-friendly version of {@link Exercise}.
@@ -27,7 +28,7 @@ class JsonAdaptedExercise {
     private final String name;
     private final String weight;
     private final String sets;
-    private final String address;
+    private final String rep;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -35,12 +36,12 @@ class JsonAdaptedExercise {
      */
     @JsonCreator
     public JsonAdaptedExercise(@JsonProperty("name") String name, @JsonProperty("weight") String weight,
-            @JsonProperty("sets") String sets, @JsonProperty("address") String address,
+            @JsonProperty("sets") String sets, @JsonProperty("rep") String rep,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.weight = weight;
         this.sets = sets;
-        this.address = address;
+        this.rep = rep;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -53,7 +54,7 @@ class JsonAdaptedExercise {
         name = source.getName().fullName;
         weight = source.getWeight().value;
         sets = source.getSets().value;
-        address = source.getAddress().value;
+        rep = source.getRep().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -94,16 +95,16 @@ class JsonAdaptedExercise {
         }
         final Sets modelSets = new Sets(sets);
 
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+        if (rep == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Rep.class.getSimpleName()));
         }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        if (!Rep.isValidRep(rep)) {
+            throw new IllegalValueException(Rep.MESSAGE_CONSTRAINTS);
         }
-        final Address modelAddress = new Address(address);
+        final Rep modelRep = new Rep(rep);
 
         final Set<Tag> modelTags = new HashSet<>(exerciseTags);
-        return new Exercise(modelName, modelWeight, modelSets, modelAddress, modelTags);
+        return new Exercise(modelName, modelWeight, modelSets, modelRep, modelTags);
     }
 
 }

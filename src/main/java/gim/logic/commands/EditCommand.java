@@ -1,7 +1,7 @@
 package gim.logic.commands;
 
-import static gim.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static gim.logic.parser.CliSyntax.PREFIX_NAME;
+import static gim.logic.parser.CliSyntax.PREFIX_REP;
 import static gim.logic.parser.CliSyntax.PREFIX_SETS;
 import static gim.logic.parser.CliSyntax.PREFIX_TAG;
 import static gim.logic.parser.CliSyntax.PREFIX_WEIGHT;
@@ -19,9 +19,9 @@ import gim.commons.core.index.Index;
 import gim.commons.util.CollectionUtil;
 import gim.logic.commands.exceptions.CommandException;
 import gim.model.Model;
-import gim.model.exercise.Address;
 import gim.model.exercise.Exercise;
 import gim.model.exercise.Name;
+import gim.model.exercise.Rep;
 import gim.model.exercise.Sets;
 import gim.model.exercise.Weight;
 import gim.model.tag.Tag;
@@ -42,7 +42,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_WEIGHT + "WEIGHT] "
             + "[" + PREFIX_SETS + "SETS] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_REP + "REP] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_WEIGHT + "91234567 "
@@ -99,10 +99,10 @@ public class EditCommand extends Command {
         Name updatedName = editExerciseDescriptor.getName().orElse(exerciseToEdit.getName());
         Weight updatedWeight = editExerciseDescriptor.getWeight().orElse(exerciseToEdit.getWeight());
         Sets updatedSets = editExerciseDescriptor.getSets().orElse(exerciseToEdit.getSets());
-        Address updatedAddress = editExerciseDescriptor.getAddress().orElse(exerciseToEdit.getAddress());
+        Rep updatedRep = editExerciseDescriptor.getRep().orElse(exerciseToEdit.getRep());
         Set<Tag> updatedTags = editExerciseDescriptor.getTags().orElse(exerciseToEdit.getTags());
 
-        return new Exercise(updatedName, updatedWeight, updatedSets, updatedAddress, updatedTags);
+        return new Exercise(updatedName, updatedWeight, updatedSets, updatedRep, updatedTags);
     }
 
     @Override
@@ -131,7 +131,7 @@ public class EditCommand extends Command {
         private Name name;
         private Weight weight;
         private Sets sets;
-        private Address address;
+        private Rep rep;
         private Set<Tag> tags;
 
         public EditExerciseDescriptor() {}
@@ -144,7 +144,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setWeight(toCopy.weight);
             setSets(toCopy.sets);
-            setAddress(toCopy.address);
+            setRep(toCopy.rep);
             setTags(toCopy.tags);
         }
 
@@ -152,7 +152,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, weight, sets, address, tags);
+            return CollectionUtil.isAnyNonNull(name, weight, sets, rep, tags);
         }
 
         public void setName(Name name) {
@@ -179,12 +179,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(sets);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        public void setRep(Rep rep) {
+            this.rep = rep;
         }
 
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<Rep> getRep() {
+            return Optional.ofNullable(rep);
         }
 
         /**
@@ -222,7 +222,7 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getWeight().equals(e.getWeight())
                     && getSets().equals(e.getSets())
-                    && getAddress().equals(e.getAddress())
+                    && getRep().equals(e.getRep())
                     && getTags().equals(e.getTags());
         }
     }
