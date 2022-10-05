@@ -12,27 +12,28 @@ import javafx.scene.layout.Region;
 
 /**
  * Panel containing the list of persons.
+ * Will be updated to a Review for later iterations.
  */
-public class PersonListPanel extends UiPart<Region> {
-    private static final String FXML = "PersonListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+public class ReviewListPanel extends UiPart<Region> {
+    private static final String FXML = "ReviewListPanel.fxml";
+    private final Logger logger = LogsCenter.getLogger(ReviewListPanel.class);
 
     @FXML
-    private ListView<Person> personListView;
+    private ListView<Person> reviewListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code ReviewListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Person> personList) {
+    public ReviewListPanel(ObservableList<Person> personList) {
         super(FXML);
-        personListView.setItems(personList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        reviewListView.setItems(personList);
+        reviewListView.setCellFactory(listView -> new ReviewListViewCell());
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
-    class PersonListViewCell extends ListCell<Person> {
+    class ReviewListViewCell extends ListCell<Person> {
         @Override
         protected void updateItem(Person person, boolean empty) {
             super.updateItem(person, empty);
@@ -41,7 +42,7 @@ public class PersonListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                setGraphic(new ReviewCard(person, getIndex() + 1).getRoot());
             }
         }
     }

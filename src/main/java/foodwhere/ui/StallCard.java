@@ -10,11 +10,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code Stall}.
+ * Will be updated to a Stall for later iterations.
  */
-public class PersonCard extends UiPart<Region> {
+public class StallCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "StallListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -24,7 +25,7 @@ public class PersonCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Person person;
+    public final Person stall;
 
     @FXML
     private HBox cardPane;
@@ -39,22 +40,22 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private FlowPane details;
+    private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code StallCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public StallCard(Person person, int displayedIndex) {
         super(FXML);
-        this.person = person;
+        this.stall = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        person.getDetails().stream()
-                .sorted(Comparator.comparing(detail -> detail.detail))
-                .forEach(detail -> details.getChildren().add(new Label(detail.detail)));
+        person.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override
@@ -65,13 +66,13 @@ public class PersonCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof StallCard)) {
             return false;
         }
 
         // state check
-        PersonCard card = (PersonCard) other;
+        StallCard card = (StallCard) other;
         return id.getText().equals(card.id.getText())
-                && person.equals(card.person);
+                && stall.equals(card.stall);
     }
 }
