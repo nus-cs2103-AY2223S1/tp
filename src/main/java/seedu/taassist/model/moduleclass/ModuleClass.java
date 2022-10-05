@@ -29,7 +29,8 @@ public class ModuleClass {
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidModuleClassName(String test) { // TODO: Ensure that class exists
-        return test.matches(VALIDATION_REGEX);
+        return true;
+        // return test.matches(VALIDATION_REGEX);
     }
 
     @Override
