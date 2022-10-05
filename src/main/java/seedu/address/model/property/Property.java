@@ -92,8 +92,7 @@ public class Property {
         return otherProperty.getName().equals(getName())
                 && otherProperty.getPrice().equals(getPrice())
                 && otherProperty.getAddress().equals(getAddress())
-                && otherProperty.getDescription().equals(getDescription())
-                && otherProperty.getTags().equals(getTags());
+                && otherProperty.getDescription().equals(getDescription());
     }
 
     @Override
