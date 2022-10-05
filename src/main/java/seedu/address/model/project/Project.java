@@ -67,4 +67,17 @@ public class Project {
                 && otherProject.getClient().equals(getClient())
                 && otherProject.getIssue().equals(getIssue());
     }
+
+    /**
+     * Returns true if both projects have the same name.
+     * This defines a weaker notion of equality between two projects.
+     */
+    public boolean isSameProject(Project otherProject) {
+        if (otherProject == this) {
+            return true;
+        }
+
+        return otherProject != null
+                && otherProject.getProjectName().equals(getProjectName());
+    }
 }

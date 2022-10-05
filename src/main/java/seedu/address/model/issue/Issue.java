@@ -19,4 +19,8 @@ public class Issue {
     public Object getProject() {
         return null;
     }
+
+    public boolean isSameIssue(Issue issue) {
+        return true;
+    }
 }
