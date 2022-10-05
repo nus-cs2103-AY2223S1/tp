@@ -2,8 +2,8 @@ package seedu.address.model;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalPersons.AVA;
+import static seedu.address.testutil.TypicalPersons.BEN;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -38,7 +38,7 @@ public class StatisticsCalculatorTest {
 
     @Test
     public void calculates_filledAddressBook_size() {
-        List<Person> newPersons = Arrays.asList(ALICE, BOB);
+        List<Person> newPersons = Arrays.asList(AVA, BEN);
         StatisticsCalculatorTest.AddressBookStub newData = new StatisticsCalculatorTest.AddressBookStub(newPersons);
         StatisticsCalculator newCalculator = new StatisticsCalculator(newData);
 
@@ -47,22 +47,19 @@ public class StatisticsCalculatorTest {
 
     @Test
     public void calculates_filledAddressBook_moneyOwed() {
-        List<Person> newPersons = Arrays.asList(ALICE, BOB);
+        List<Person> newPersons = Arrays.asList(AVA, BEN);
         StatisticsCalculatorTest.AddressBookStub newData = new StatisticsCalculatorTest.AddressBookStub(newPersons);
         StatisticsCalculator newCalculator = new StatisticsCalculator(newData);
-
-        //TODO: Update the value of expected once the moneyOwed attributes are added in the person.
-        assertEquals(4, newCalculator.getAmountOwed());
+        assertEquals(80, newCalculator.getAmountOwed());
     }
 
     @Test
     public void calculates_filledAddressBook_moneyPaid() {
-        List<Person> newPersons = Arrays.asList(ALICE, BOB);
+        List<Person> newPersons = Arrays.asList(AVA, BEN);
         StatisticsCalculatorTest.AddressBookStub newData = new StatisticsCalculatorTest.AddressBookStub(newPersons);
         StatisticsCalculator newCalculator = new StatisticsCalculator(newData);
 
-        //TODO: Update the value of expected once the moneyPaid attributes are added in the person.
-        assertEquals(6, newCalculator.getAmountPaid());
+        assertEquals(700, newCalculator.getAmountPaid());
     }
 
     /**

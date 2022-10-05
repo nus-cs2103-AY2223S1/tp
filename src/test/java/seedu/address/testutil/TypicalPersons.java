@@ -45,6 +45,14 @@ public class TypicalPersons {
             .withEmail("anna@example.com").withAddress("4th street")
             .withAdditionalNotes("Remind student to submit homework").build();
 
+    public static final Person AVA = new PersonBuilder().withName("Ava Tan").withPhone("93217654")
+            .withEmail("ava@example.com").withAddress("computing drive")
+            .withMoneyPaid(100).withMoneyOwed(30).build();
+
+    public static final Person BEN = new PersonBuilder().withName("Ben Leong").withPhone("92226666")
+            .withEmail("ben@example.com").withAddress("computing street")
+            .withMoneyPaid(600).withMoneyOwed(50).build();
+
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
             .withEmail("stefan@example.com").withAddress("little india")
