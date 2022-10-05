@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.FLOOR_NUMBER_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.HOSPITAL_WING_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_FLOOR_NUMBER_DESC;
@@ -12,7 +13,6 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NEXT_OF_KIN_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_WARD_NUMBER_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.FLOOR_NUMBER_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.MEDICATION_DESC_PARACETAMOL;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
@@ -90,7 +90,7 @@ public class AddCommandParserTest {
                 VALID_MEDICATION_PARACETAMOL, VALID_MEDICATION_XANAX).build();
 
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + NEXT_OF_KIN_DESC_BOB+ PATIENT_TYPE_DESC_BOB
+                + NEXT_OF_KIN_DESC_BOB + PATIENT_TYPE_DESC_BOB
                 + VALID_MEDICATION_IBUPROFEN + VALID_MEDICATION_PARACETAMOL
                 + VALID_MEDICATION_XANAX, new AddCommand(expectedPersonMultipleMedications));
     }

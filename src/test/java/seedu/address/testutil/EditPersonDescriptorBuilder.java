@@ -14,8 +14,8 @@ import seedu.address.model.person.PatientType;
 import seedu.address.model.person.PatientType.PatientTypes;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Medication;
 import seedu.address.model.person.WardNumber;
+import seedu.address.model.tag.Medication;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.

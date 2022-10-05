@@ -31,6 +31,7 @@ public class NextOfKinTest {
         // valid NextOfKines
         assertTrue(NextOfKin.isValidNextOfKin("Charles, Husband, 81283745"));
         assertTrue(NextOfKin.isValidNextOfKin("-")); // one character
-        assertTrue(NextOfKin.isValidNextOfKin("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long NextOfKin
+        assertTrue(NextOfKin
+                .isValidNextOfKin("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long NextOfKin
     }
 }

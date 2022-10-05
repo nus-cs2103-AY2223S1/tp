@@ -7,7 +7,6 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICATION_XANAX;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NEXT_OF_KIN_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NEXT_OF_KIN_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PATIENT_TYPE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;

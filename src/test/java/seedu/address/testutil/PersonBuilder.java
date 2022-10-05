@@ -135,13 +135,17 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code medications} into a {@code Set<Medication>} and set it to the {@code Person} that we are building.
+     * Parses the {@code medications} into a {@code Set<Medication>}
+     * and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withMedication(String ... medications) {
         this.medications = SampleDataUtil.getMedicationSet(medications);
         return this;
     }
 
+    /**
+     * Builds the Person.
+     */
     public Person build() {
         return new Person(name, phone, email, nextOfKin, patientType, hospitalWing,
                 floorNumber, wardNumber, medications);

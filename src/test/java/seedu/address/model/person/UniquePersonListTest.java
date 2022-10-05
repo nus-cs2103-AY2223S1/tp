@@ -85,9 +85,8 @@ public class UniquePersonListTest {
     @Test
     public void setPerson_editedPersonHasSameIdentity_success() {
         uniquePersonList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).
-                withNextOfKin(VALID_NEXT_OF_KIN_BOB).withMedication(VALID_MEDICATION_XANAX)
-                .build();
+        Person editedAlice = new PersonBuilder(ALICE)
+                .withNextOfKin(VALID_NEXT_OF_KIN_BOB).withMedication(VALID_MEDICATION_XANAX).build();
         uniquePersonList.setPerson(ALICE, editedAlice);
         UniquePersonList expectedUniquePersonList = new UniquePersonList();
         expectedUniquePersonList.add(editedAlice);

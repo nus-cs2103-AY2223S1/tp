@@ -44,8 +44,8 @@ public class ParserUtilTest {
     private static final String VALID_HOSPITAL_WING = "South";
     private static final String VALID_FLOOR_NUMBER = "1";
     private static final String VALID_WARD_NUMBER = "5";
-    private static final String VALID_MEDICATION_1 = "Ibuprofen";;
-    private static final String VALID_MEDICATION_2 = "Xanax";;
+    private static final String VALID_MEDICATION_1 = "Ibuprofen";
+    private static final String VALID_MEDICATION_2 = "Xanax";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -283,8 +283,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseMedications_collectionWithInvalidMedications_throwsParseException() {
-        assertThrows(ParseException.class,
-                () -> ParserUtil.parseMedications(Arrays.asList(VALID_MEDICATION_1, INVALID_MEDICATION)));
+        assertThrows(ParseException.class, () ->
+                ParserUtil.parseMedications(Arrays.asList(VALID_MEDICATION_1, INVALID_MEDICATION)));
     }
 
     @Test
