@@ -78,9 +78,9 @@ Format: `help`
 
 ### Creating a new itinerary: `new`
 
-Adds a person to the address book.
+Adds an itinerary to Waddle.
 
-Format: `new n/NAME [c/COUNTRY] d/DURATION [s/START DATE] [e/END DATE] [p/NUMBER OF WADDLERS]`
+Format: `new n/NAME [c/COUNTRY] d/DURATION [s/START DATE] [p/NUMBER OF WADDLERS]`
 
 Examples:
 * `new n/My Japan Trip d/6`
@@ -104,56 +104,53 @@ Examples:
 
 ### Editing the details of an itinerary: `edit`
 
-Edits an existing person in the address book.
+Edits an existing itinerary in Waddle.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [c/COUNTRY] [d/DURATION] [s/START DATE] [p/NUMBER OF WADDLERS]`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the itinerary at the specified `INDEX`. The index refers to the index number shown in the displayed itinerary list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* `edit 1 d/15 s/04/10/22` Edits the duration and start date of the first itinerary to be `15` and `04/10/22` respectively.
+* `edit 2 c/India` Edits the country of the second itinerary to be `India`.
 
 ### Locating persons by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds itineraries with names containing any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* The search is case-insensitive. e.g `india` will match `india`
+* The order of the keywords does not matter. e.g. `Trip Japan My` will match `My Japan Trip`
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* Only full words will be matched e.g. `Jap` will not match `Japan`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+  e.g. `Trip` will return `My Japan Trip`, `My Germany Trip`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find India` returns `My India Trip` and `India Expedition`
+* `find India Trip` returns `My Japan Trip`, `My India Trip`, `India Expedition`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting an itinerary : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified itinerary from Waddle.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
+* Deletes the itinerary at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd itinerary in Waddle.
+* `find Japan` followed by `delete 1` deletes the 1st itinerary in the results of the `find` command.
 
-### Clearing all entries : `clear`
+### Clearing itineraries : `clear`
 
-Clears all entries from the address book.
+Deletes all itineraries in Waddle.
 
 Format: `clear`
 
@@ -165,14 +162,14 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Waddle data are saved in the hard disk automatically after any command that changes the data is used. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+Waddle data are saved as a JSON file `[JAR file location]/data/waddle.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, Waddle will discard all data and start with an empty data file at the next run. Please perform a backup before manually editing data.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -184,7 +181,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Waddle home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -192,10 +189,10 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**New** | `new n/NAME [c/COUNTRY] d/DURATION [s/START DATE] [p/NUMBER OF WADDLERS]`<br> e.g., `new n/Germanyyyy c/Germany d/14 s/05/10/22 e/19/10/22 p/4`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Edit** | `edit INDEX [n/NAME] [c/COUNTRY] [d/DURATION] [s/START DATE] [p/NUMBER OF WADDLERS]`<br> e.g.,`edit 1 d/15 s/04/10/22`
+**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find India Trip`
 **List** | `list`
 **Help** | `help`
