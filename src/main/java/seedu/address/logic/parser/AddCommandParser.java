@@ -24,8 +24,8 @@ import seedu.address.model.person.NextOfKin;
 import seedu.address.model.person.PatientType;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Medication;
 import seedu.address.model.person.WardNumber;
+import seedu.address.model.tag.Medication;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -41,7 +41,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_NEXT_OF_KIN,
                         PREFIX_PATIENT_TYPE, PREFIX_HOSPITAL_WING, PREFIX_FLOOR_NUMBER,
-                        PREFIX_WARD_NUMBER,  PREFIX_MEDICATION);
+                        PREFIX_WARD_NUMBER, PREFIX_MEDICATION);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                 PREFIX_NEXT_OF_KIN, PREFIX_PATIENT_TYPE)
@@ -57,7 +57,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Medication> medicationList = ParserUtil.parseMedications(argMultimap.getAllValues(PREFIX_MEDICATION));
 
         if (patientType.isInpatient() && !arePrefixesPresent(argMultimap, PREFIX_HOSPITAL_WING, PREFIX_FLOOR_NUMBER,
-                PREFIX_WARD_NUMBER)){
+                PREFIX_WARD_NUMBER)) {
             throw new ParseException(String.format(PatientType.DEPENDENCY_CONSTRAINTS, AddCommand.MESSAGE_USAGE));
         }
 

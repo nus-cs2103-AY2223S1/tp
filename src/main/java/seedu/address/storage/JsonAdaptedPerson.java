@@ -128,7 +128,8 @@ class JsonAdaptedPerson {
         final Email modelEmail = new Email(email);
 
         if (nextOfKin == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, NextOfKin.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, NextOfKin.class.getSimpleName()));
         }
         if (!NextOfKin.isValidNextOfKin(nextOfKin)) {
             throw new IllegalValueException(NextOfKin.MESSAGE_CONSTRAINTS);
@@ -136,7 +137,8 @@ class JsonAdaptedPerson {
         final NextOfKin modelNextOfKin = new NextOfKin(nextOfKin);
 
         if (patientType == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, PatientType.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, PatientType.class.getSimpleName()));
         }
         PatientTypes pt = PatientTypes.parsePatientType(patientType);
         if (pt == null) {

@@ -1,7 +1,15 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FLOOR_NUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_HOSPITAL_WING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NEXT_OF_KIN;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT_TYPE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WARD_NUMBER;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;

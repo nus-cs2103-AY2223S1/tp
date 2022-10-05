@@ -1,9 +1,13 @@
 package seedu.address.model.person;
 
-import java.util.Locale;
-
 import static java.util.Objects.requireNonNull;
 
+import java.util.Locale;
+
+/**
+ * Represents whether a patient is inpatient or outpatient in the Patient Database.
+ * Guarantees: immutable; is valid as declared in {@link #isValidPatientType(String)}
+ */
 public class PatientType {
 
     public static final String MESSAGE_CONSTRAINTS = "Patient type can only be i(inpatient) or o(outpatient),"
@@ -53,7 +57,7 @@ public class PatientType {
     }
 
     /**
-    Enum to Describe the type of patient
+     * Enum to Describe the type of patient
      */
     public enum PatientTypes {
         INPATIENT {
@@ -62,7 +66,7 @@ public class PatientType {
                 return "I";
             }
         },
-        OUTPATIENT{
+        OUTPATIENT {
             @Override
             public String toString() {
                 return "O";

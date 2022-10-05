@@ -1,7 +1,15 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FLOOR_NUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_HOSPITAL_WING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NEXT_OF_KIN;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT_TYPE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WARD_NUMBER;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -23,8 +31,8 @@ import seedu.address.model.person.NextOfKin;
 import seedu.address.model.person.PatientType;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Medication;
 import seedu.address.model.person.WardNumber;
+import seedu.address.model.tag.Medication;
 
 /**
  * Edits the details of an existing patient in the database.
@@ -119,7 +127,8 @@ public class EditCommand extends Command {
                 throw new CommandException(String.format(PatientType.DEPENDENCY_CONSTRAINTS, MESSAGE_USAGE));
             }
         }
-        Set<Medication> updatedMedications = editPersonDescriptor.getMedications().orElse(personToEdit.getMedications());
+        Set<Medication> updatedMedications = editPersonDescriptor.getMedications()
+                .orElse(personToEdit.getMedications());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedNextOfKin, updatedPatientType,
                 updatedHospitalWing, updatedFloorNumber, updatedWardNumber, updatedMedications);

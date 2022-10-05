@@ -9,8 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class NextOfKin {
 
-    public static final String MESSAGE_CONSTRAINTS = "Next of Kin should not be blank " +
-            "and should come in the format: Name, Relationship, Contact";
+    public static final String MESSAGE_CONSTRAINTS = "Next of Kin should not be blank "
+            + "and should come in the format: Name, Relationship, Contact";
 
     /*
      * The first character of the address must not be a whitespace,
