@@ -37,8 +37,7 @@ public class StatisticsCalculator {
         ObservableList<Person> personList = addressBook.getPersonList();
         int moneyOwed = 0;
         for (Person person : personList) {
-            // TODO: Replace this function with Person.getMoneyOwed()
-            moneyOwed += 2;
+            moneyOwed += person.getMoneyOwed().value;
         }
         return moneyOwed;
     }
@@ -50,8 +49,7 @@ public class StatisticsCalculator {
         ObservableList<Person> personList = addressBook.getPersonList();
         int moneyPaid = 0;
         for (Person person : personList) {
-            // TODO: Replace this function with Person.getMoneyPaid()
-            moneyPaid += 3;
+            moneyPaid += person.getMoneyPaid().value;
         }
         return moneyPaid;
     }
