@@ -27,50 +27,50 @@ import org.junit.jupiter.api.Test;
 import foodwhere.commons.core.Messages;
 import foodwhere.logic.commands.AddCommand;
 import foodwhere.model.detail.Detail;
-import foodwhere.model.person.Address;
-import foodwhere.model.person.Name;
-import foodwhere.model.person.Person;
-import foodwhere.model.person.Phone;
-import foodwhere.testutil.PersonBuilder;
-import foodwhere.testutil.TypicalPersons;
+import foodwhere.model.stall.Address;
+import foodwhere.model.stall.Name;
+import foodwhere.model.stall.Phone;
+import foodwhere.model.stall.Stall;
+import foodwhere.testutil.StallBuilder;
+import foodwhere.testutil.TypicalStalls;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(TypicalPersons.BOB).withDetails(VALID_DETAIL_FRIEND).build();
+        Stall expectedStall = new StallBuilder(TypicalStalls.BOB).withDetails(VALID_DETAIL_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB
-                + ADDRESS_DESC_BOB + DETAIL_DESC_FRIEND, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + DETAIL_DESC_FRIEND, new AddCommand(expectedStall));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB
-                + ADDRESS_DESC_BOB + DETAIL_DESC_FRIEND, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + DETAIL_DESC_FRIEND, new AddCommand(expectedStall));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB
-                + ADDRESS_DESC_BOB + DETAIL_DESC_FRIEND, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + DETAIL_DESC_FRIEND, new AddCommand(expectedStall));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + DETAIL_DESC_FRIEND, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + DETAIL_DESC_FRIEND, new AddCommand(expectedStall));
 
         // multiple details - all accepted
-        Person expectedPersonMultipleDetails =
-                new PersonBuilder(TypicalPersons.BOB).withDetails(VALID_DETAIL_FRIEND, VALID_DETAIL_HUSBAND)
+        Stall expectedStallMultipleDetails =
+                new StallBuilder(TypicalStalls.BOB).withDetails(VALID_DETAIL_FRIEND, VALID_DETAIL_HUSBAND)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB
-                + DETAIL_DESC_HUSBAND + DETAIL_DESC_FRIEND, new AddCommand(expectedPersonMultipleDetails));
+                + DETAIL_DESC_HUSBAND + DETAIL_DESC_FRIEND, new AddCommand(expectedStallMultipleDetails));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero details
-        Person expectedPerson = new PersonBuilder(TypicalPersons.AMY).withDetails().build();
+        Stall expectedStall = new StallBuilder(TypicalStalls.AMY).withDetails().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + ADDRESS_DESC_AMY,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedStall));
     }
 
     @Test

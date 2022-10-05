@@ -13,7 +13,7 @@ import foodwhere.logic.parser.AddressBookParser;
 import foodwhere.logic.parser.exceptions.ParseException;
 import foodwhere.model.Model;
 import foodwhere.model.ReadOnlyAddressBook;
-import foodwhere.model.person.Person;
+import foodwhere.model.stall.Stall;
 import foodwhere.storage.Storage;
 import javafx.collections.ObservableList;
 
@@ -60,8 +60,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Stall> getFilteredStallList() {
+        return model.getFilteredStallList();
     }
 
     @Override

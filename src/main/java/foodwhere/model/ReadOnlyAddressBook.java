@@ -1,6 +1,6 @@
 package foodwhere.model;
 
-import foodwhere.model.person.Person;
+import foodwhere.model.stall.Stall;
 import javafx.collections.ObservableList;
 
 /**
@@ -9,9 +9,9 @@ import javafx.collections.ObservableList;
 public interface ReadOnlyAddressBook {
 
     /**
-     * Returns an unmodifiable view of the persons list.
-     * This list will not contain any duplicate persons.
+     * Returns an unmodifiable view of the stalls list.
+     * This list will not contain any duplicate stalls.
      */
-    ObservableList<Person> getPersonList();
+    ObservableList<Stall> getStallList();
 
 }

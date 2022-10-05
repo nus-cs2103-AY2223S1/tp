@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 
 import foodwhere.commons.core.GuiSettings;
 import foodwhere.commons.core.LogsCenter;
-import foodwhere.model.person.Person;
+import foodwhere.model.stall.Stall;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 
@@ -21,7 +21,7 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Stall> filteredStalls;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -33,7 +33,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredStalls = new FilteredList<>(this.addressBook.getStallList());
     }
 
     public ModelManager() {
@@ -88,44 +88,44 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public boolean hasStall(Stall stall) {
+        requireNonNull(stall);
+        return addressBook.hasStall(stall);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public void deleteStall(Stall target) {
+        addressBook.removeStall(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addStall(Stall stall) {
+        addressBook.addStall(stall);
+        updateFilteredStallList(PREDICATE_SHOW_ALL_STALLS);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setStall(Stall target, Stall editedStall) {
+        requireAllNonNull(target, editedStall);
 
-        addressBook.setPerson(target, editedPerson);
+        addressBook.setStall(target, editedStall);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Stall List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Stall} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Stall> getFilteredStallList() {
+        return filteredStalls;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredStallList(Predicate<Stall> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredStalls.setPredicate(predicate);
     }
 
     @Override
@@ -144,7 +144,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredStalls.equals(other.filteredStalls);
     }
 
 }

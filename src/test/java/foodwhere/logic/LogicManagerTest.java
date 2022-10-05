@@ -4,7 +4,7 @@ import static foodwhere.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static foodwhere.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static foodwhere.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static foodwhere.testutil.Assert.assertThrows;
-import static foodwhere.testutil.TypicalPersons.AMY;
+import static foodwhere.testutil.TypicalStalls.AMY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
@@ -24,11 +24,11 @@ import foodwhere.model.Model;
 import foodwhere.model.ModelManager;
 import foodwhere.model.ReadOnlyAddressBook;
 import foodwhere.model.UserPrefs;
-import foodwhere.model.person.Person;
+import foodwhere.model.stall.Stall;
 import foodwhere.storage.JsonAddressBookStorage;
 import foodwhere.storage.JsonUserPrefsStorage;
 import foodwhere.storage.StorageManager;
-import foodwhere.testutil.PersonBuilder;
+import foodwhere.testutil.StallBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -57,7 +57,7 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandException(deleteCommand, Messages.MESSAGE_INVALID_STALL_DISPLAYED_INDEX);
     }
 
     @Test
@@ -78,16 +78,16 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + ADDRESS_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withDetails().build();
+        Stall expectedStall = new StallBuilder(AMY).withDetails().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedPerson);
+        expectedModel.addStall(expectedStall);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    public void getFilteredStallList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredStallList().remove(0));
     }
 
     /**

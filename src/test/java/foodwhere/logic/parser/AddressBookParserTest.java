@@ -20,11 +20,11 @@ import foodwhere.logic.commands.FindCommand;
 import foodwhere.logic.commands.HelpCommand;
 import foodwhere.logic.commands.ListCommand;
 import foodwhere.logic.parser.exceptions.ParseException;
-import foodwhere.model.person.NameContainsKeywordsPredicate;
-import foodwhere.model.person.Person;
-import foodwhere.testutil.EditPersonDescriptorBuilder;
-import foodwhere.testutil.PersonBuilder;
-import foodwhere.testutil.PersonUtil;
+import foodwhere.model.stall.NameContainsKeywordsPredicate;
+import foodwhere.model.stall.Stall;
+import foodwhere.testutil.EditStallDescriptorBuilder;
+import foodwhere.testutil.StallBuilder;
+import foodwhere.testutil.StallUtil;
 import foodwhere.testutil.TypicalIndexes;
 
 public class AddressBookParserTest {
@@ -33,9 +33,9 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+        Stall stall = new StallBuilder().build();
+        AddCommand command = (AddCommand) parser.parseCommand(StallUtil.getAddCommand(stall));
+        assertEquals(new AddCommand(stall), command);
     }
 
     @Test
@@ -47,18 +47,18 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + TypicalIndexes.INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(TypicalIndexes.INDEX_FIRST_PERSON), command);
+                DeleteCommand.COMMAND_WORD + " " + TypicalIndexes.INDEX_FIRST_STALL.getOneBased());
+        assertEquals(new DeleteCommand(TypicalIndexes.INDEX_FIRST_STALL), command);
     }
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Person person = new PersonBuilder().build();
-        EditCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
+        Stall stall = new StallBuilder().build();
+        EditCommand.EditStallDescriptor descriptor = new EditStallDescriptorBuilder(stall).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + TypicalIndexes.INDEX_FIRST_PERSON.getOneBased() + " "
-                + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(TypicalIndexes.INDEX_FIRST_PERSON, descriptor), command);
+                + TypicalIndexes.INDEX_FIRST_STALL.getOneBased() + " "
+                + StallUtil.getEditStallDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(TypicalIndexes.INDEX_FIRST_STALL, descriptor), command);
     }
 
     @Test

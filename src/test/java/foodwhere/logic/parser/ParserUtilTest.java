@@ -14,9 +14,9 @@ import org.junit.jupiter.api.Test;
 
 import foodwhere.logic.parser.exceptions.ParseException;
 import foodwhere.model.detail.Detail;
-import foodwhere.model.person.Address;
-import foodwhere.model.person.Name;
-import foodwhere.model.person.Phone;
+import foodwhere.model.stall.Address;
+import foodwhere.model.stall.Name;
+import foodwhere.model.stall.Phone;
 import foodwhere.testutil.TypicalIndexes;
 
 public class ParserUtilTest {
@@ -47,10 +47,10 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_validInput_success() throws Exception {
         // No whitespaces
-        Assertions.assertEquals(TypicalIndexes.INDEX_FIRST_PERSON, ParserUtil.parseIndex("1"));
+        Assertions.assertEquals(TypicalIndexes.INDEX_FIRST_STALL, ParserUtil.parseIndex("1"));
 
         // Leading and trailing whitespaces
-        Assertions.assertEquals(TypicalIndexes.INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+        Assertions.assertEquals(TypicalIndexes.INDEX_FIRST_STALL, ParserUtil.parseIndex("  1  "));
     }
 
     @Test

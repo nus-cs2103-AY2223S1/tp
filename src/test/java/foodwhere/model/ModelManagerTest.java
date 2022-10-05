@@ -1,9 +1,9 @@
 package foodwhere.model;
 
-import static foodwhere.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static foodwhere.model.Model.PREDICATE_SHOW_ALL_STALLS;
 import static foodwhere.testutil.Assert.assertThrows;
-import static foodwhere.testutil.TypicalPersons.ALICE;
-import static foodwhere.testutil.TypicalPersons.BENSON;
+import static foodwhere.testutil.TypicalStalls.ALICE;
+import static foodwhere.testutil.TypicalStalls.BENSON;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -15,7 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import foodwhere.commons.core.GuiSettings;
-import foodwhere.model.person.NameContainsKeywordsPredicate;
+import foodwhere.model.stall.NameContainsKeywordsPredicate;
 import foodwhere.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -73,29 +73,29 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
+    public void hasStall_nullStall_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasStall(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasPerson(ALICE));
+    public void hasStall_stallNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasStall(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        modelManager.addPerson(ALICE);
-        assertTrue(modelManager.hasPerson(ALICE));
+    public void hasStall_stallInAddressBook_returnsTrue() {
+        modelManager.addStall(ALICE);
+        assertTrue(modelManager.hasStall(ALICE));
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    public void getFilteredStallList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredStallList().remove(0));
     }
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        AddressBook addressBook = new AddressBookBuilder().withStall(ALICE).withStall(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -118,11 +118,11 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredStallList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.updateFilteredStallList(PREDICATE_SHOW_ALL_STALLS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

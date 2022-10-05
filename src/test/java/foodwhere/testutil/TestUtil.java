@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 
 import foodwhere.commons.core.index.Index;
 import foodwhere.model.Model;
-import foodwhere.model.person.Person;
+import foodwhere.model.stall.Stall;
 
 /**
  * A utility class for test cases.
@@ -33,23 +33,23 @@ public class TestUtil {
     }
 
     /**
-     * Returns the middle index of the person in the {@code model}'s person list.
+     * Returns the middle index of the stall in the {@code model}'s stall list.
      */
     public static Index getMidIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredPersonList().size() / 2);
+        return Index.fromOneBased(model.getFilteredStallList().size() / 2);
     }
 
     /**
-     * Returns the last index of the person in the {@code model}'s person list.
+     * Returns the last index of the stall in the {@code model}'s stall list.
      */
     public static Index getLastIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredPersonList().size());
+        return Index.fromOneBased(model.getFilteredStallList().size());
     }
 
     /**
-     * Returns the person in the {@code model}'s person list at {@code index}.
+     * Returns the stall in the {@code model}'s stall list at {@code index}.
      */
-    public static Person getPerson(Model model, Index index) {
-        return model.getFilteredPersonList().get(index.getZeroBased());
+    public static Stall getStall(Model model, Index index) {
+        return model.getFilteredStallList().get(index.getZeroBased());
     }
 }

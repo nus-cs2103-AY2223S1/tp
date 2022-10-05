@@ -8,7 +8,7 @@ import foodwhere.model.AddressBook;
 import foodwhere.model.Model;
 import foodwhere.model.ModelManager;
 import foodwhere.model.UserPrefs;
-import foodwhere.testutil.TypicalPersons;
+import foodwhere.testutil.TypicalStalls;
 
 public class ClearCommandTest {
 
@@ -22,8 +22,8 @@ public class ClearCommandTest {
 
     @Test
     public void execute_nonEmptyAddressBook_success() {
-        Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
+        Model model = new ModelManager(TypicalStalls.getTypicalAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(TypicalStalls.getTypicalAddressBook(), new UserPrefs());
         expectedModel.setAddressBook(new AddressBook());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);

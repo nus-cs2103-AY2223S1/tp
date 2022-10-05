@@ -2,7 +2,7 @@ package foodwhere.ui;
 
 import java.util.Comparator;
 
-import foodwhere.model.person.Person;
+import foodwhere.model.stall.Stall;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -25,7 +25,7 @@ public class ReviewCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Person review;
+    public final Stall review;
 
     @FXML
     private HBox cardPane;
@@ -41,16 +41,16 @@ public class ReviewCard extends UiPart<Region> {
     private FlowPane details;
 
     /**
-     * Creates a {@code ReviewCode} with the given {@code Person} and index to display.
+     * Creates a {@code ReviewCode} with the given {@code Stall} and index to display.
      */
-    public ReviewCard(Person person, int displayedIndex) {
+    public ReviewCard(Stall stall, int displayedIndex) {
         super(FXML);
-        this.review = person;
+        this.review = stall;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        person.getDetails().stream()
+        name.setText(stall.getName().fullName);
+        phone.setText(stall.getPhone().value);
+        address.setText(stall.getAddress().value);
+        stall.getDetails().stream()
                 .sorted(Comparator.comparing(detail -> detail.detail))
                 .forEach(detail -> details.getChildren().add(new Label(detail.detail)));
     }
