@@ -5,13 +5,17 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.FloorNumber;
 import seedu.address.model.person.HospitalWing;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.NextOfKin;
+import seedu.address.model.person.PatientType;
+import seedu.address.model.person.PatientType.PatientTypes;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.Medication;
+import seedu.address.model.person.WardNumber;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -36,9 +40,12 @@ public class EditPersonDescriptorBuilder {
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
-        descriptor.setAddress(person.getAddress());
-        descriptor.setHospitalWing(person.getHospitalWing());
-        descriptor.setTags(person.getTags());
+        descriptor.setNextOfKin(person.getNextOfKin());
+        descriptor.setPatientType(person.getPatientType());
+        descriptor.setHospitalWing(person.getHospitalWing().orElse(null));
+        descriptor.setFloorNumber(person.getFloorNumber().orElse(null));
+        descriptor.setWardNumber(person.getWardNumber().orElse(null));
+        descriptor.setMedications(person.getMedications());
     }
 
     /**
@@ -66,10 +73,18 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code NextOfKin} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
+    public EditPersonDescriptorBuilder withNextOfKin(String nextOfKin) {
+        descriptor.setNextOfKin(new NextOfKin(nextOfKin));
+        return this;
+    }
+
+    /**
+     * Sets the {@code PatientType} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withPatientType(PatientTypes patientType) {
+        descriptor.setPatientType(new PatientType(patientType));
         return this;
     }
 
@@ -82,12 +97,28 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
+     * Sets the {@code Floor Number} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withFloorNumber(Integer floorNumber) {
+        descriptor.setFloorNumber(new FloorNumber(floorNumber));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Ward Number} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withWardNumber(Integer wardNumber) {
+        descriptor.setWardNumber(new WardNumber(wardNumber));
+        return this;
+    }
+
+    /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
-    public EditPersonDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
+    public EditPersonDescriptorBuilder withMedication(String... tags) {
+        Set<Medication> tagSet = Stream.of(tags).map(Medication::new).collect(Collectors.toSet());
+        descriptor.setMedications(tagSet);
         return this;
     }
 

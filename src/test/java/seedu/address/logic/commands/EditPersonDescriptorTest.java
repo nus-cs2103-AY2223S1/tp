@@ -4,15 +4,18 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICATION_XANAX;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NEXT_OF_KIN_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NEXT_OF_KIN_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PATIENT_TYPE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.person.PatientType.PatientTypes;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 public class EditPersonDescriptorTest {
@@ -47,12 +50,17 @@ public class EditPersonDescriptorTest {
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different address -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
+        // different nok -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withNextOfKin(VALID_NEXT_OF_KIN_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different tags -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
+        // different patient type -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY)
+                .withPatientType(PatientTypes.parsePatientType(VALID_PATIENT_TYPE_BOB)).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different medications -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withMedication(VALID_MEDICATION_XANAX).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }

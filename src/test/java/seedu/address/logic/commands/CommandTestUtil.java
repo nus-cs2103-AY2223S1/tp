@@ -2,12 +2,15 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FLOOR_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOSPITAL_WING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NEXT_OF_KIN;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WARD_NUMBER;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -19,6 +22,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.PatientType.PatientTypes;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
@@ -33,12 +37,19 @@ public class CommandTestUtil {
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
-    public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
-    public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
+    public static final String VALID_NEXT_OF_KIN_AMY = "Joe Bee, Husband, 82354371";
+    public static final String VALID_NEXT_OF_KIN_BOB = "Cec Choo, Son, 92723675";
+    public static final String VALID_PATIENT_TYPE_AMY = "i";
+    public static final String VALID_PATIENT_TYPE_BOB = "outpatient";
     public static final String VALID_HOSPITAL_WING_AMY = "south";
-    public static final String VALID_HOSPITAL_WING_BOB = "south";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_HOSPITAL_WING_BOB = "hes an outpatient, so no hospital wing";
+    public static final String VALID_FLOOR_NUMBER_AMY = "1";
+    public static final String VALID_FLOOR_NUMBER_BOB = "hes an outpatient, so no floor number";
+    public static final String VALID_WARD_NUMBER_AMY = "26";
+    public static final String VALID_WARD_NUMBER_BOB = "hes an outpatient, so no ward number";
+    public static final String VALID_MEDICATION_IBUPROFEN = "Ibuprofen";
+    public static final String VALID_MEDICATION_PARACETAMOL = "Paracetamol";
+    public static final String VALID_MEDICATION_XANAX = "Xanax";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -46,21 +57,36 @@ public class CommandTestUtil {
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
-    public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
-    public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
+    public static final String NEXT_OF_KIN_DESC_AMY = " " + PREFIX_NEXT_OF_KIN + VALID_NEXT_OF_KIN_AMY;
+    public static final String NEXT_OF_KIN_DESC_BOB = " " + PREFIX_NEXT_OF_KIN + VALID_NEXT_OF_KIN_BOB;
+    public static final String PATIENT_TYPE_DESC_AMY = " " + PREFIX_PATIENT_TYPE + VALID_NEXT_OF_KIN_AMY;
+    public static final String PATIENT_TYPE_DESC_BOB = " " + PREFIX_PATIENT_TYPE + VALID_NEXT_OF_KIN_BOB;
     public static final String HOSPITAL_WING_DESC_AMY = " " + PREFIX_HOSPITAL_WING + VALID_HOSPITAL_WING_AMY;
     public static final String HOSPITAL_WING_DESC_BOB = " " + PREFIX_HOSPITAL_WING + VALID_HOSPITAL_WING_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String FLOOR_NUMBER_DESC_AMY = " " + PREFIX_FLOOR_NUMBER + VALID_HOSPITAL_WING_AMY;
+    public static final String FLOOR_NUMBER_DESC_BOB = " " + PREFIX_FLOOR_NUMBER + VALID_HOSPITAL_WING_BOB;
+    public static final String WARD_NUMBER_DESC_AMY = " " + PREFIX_WARD_NUMBER + VALID_HOSPITAL_WING_AMY;
+    public static final String WARD_NUMBER_DESC_BOB = " " + PREFIX_WARD_NUMBER + VALID_HOSPITAL_WING_BOB;
+    public static final String MEDICATION_DESC_IBUPROFEN = " " + PREFIX_MEDICATION + VALID_MEDICATION_IBUPROFEN;
+    public static final String MEDICATION_DESC_PARACETAMOL = " " + PREFIX_MEDICATION + VALID_MEDICATION_PARACETAMOL;
+    public static final String MEDICATION_DESC_XANAX = " " + PREFIX_MEDICATION + VALID_MEDICATION_XANAX;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
+    public static final String INVALID_NEXT_OF_KIN_DESC = " "
+            + PREFIX_NEXT_OF_KIN + " "; // empty string not allowed for nok
+    public static final String INVALID_PATIENT_TYPE_DESC = " "
+            + PREFIX_PATIENT_TYPE + "a"; // patient type can only be i(inpatient) or o(outpatient)
     public static final String INVALID_HOSPITAL_WING_DESC = " "
             + PREFIX_HOSPITAL_WING; // empty string not allowed for addresses
+    public static final String INVALID_FLOOR_NUMBER_DESC = "-1"
+            + PREFIX_FLOOR_NUMBER; // non-positive numbers not allowed for floor number & ward number
+    public static final String INVALID_WARD_NUMBER_DESC = "hello"
+            + PREFIX_WARD_NUMBER; // non-numbers not allowed for floor number & ward number
 
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_MEDICATION_DESC = " "
+            + PREFIX_MEDICATION + "hubby*"; // '*' not allowed in medications
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -70,11 +96,15 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withHospitalWing(VALID_HOSPITAL_WING_AMY).withTags(VALID_TAG_FRIEND).build();
+                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withNextOfKin(VALID_NEXT_OF_KIN_AMY)
+                .withPatientType(PatientTypes.parsePatientType(VALID_PATIENT_TYPE_AMY))
+                .withHospitalWing(VALID_HOSPITAL_WING_AMY).withFloorNumber(Integer.valueOf(VALID_FLOOR_NUMBER_AMY))
+                .withWardNumber(Integer.valueOf(VALID_WARD_NUMBER_AMY))
+                .withMedication(VALID_MEDICATION_IBUPROFEN).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withHospitalWing(VALID_HOSPITAL_WING_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withNextOfKin(VALID_NEXT_OF_KIN_BOB)
+                .withPatientType(PatientTypes.parsePatientType(VALID_PATIENT_TYPE_BOB))
+                .withMedication(VALID_MEDICATION_PARACETAMOL).build();
     }
 
     /**

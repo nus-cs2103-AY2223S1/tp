@@ -64,9 +64,9 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         nextOfKin = personToCopy.getNextOfKin();
         patientType = personToCopy.getPatientType();
-        hospitalWing = personToCopy.getHospitalWing();
-        floorNumber = personToCopy.getFloorNumber();
-        wardNumber = personToCopy.getWardNumber();
+        hospitalWing = personToCopy.getHospitalWing().orElse(null);
+        floorNumber = personToCopy.getFloorNumber().orElse(null);
+        wardNumber = personToCopy.getWardNumber().orElse(null);
         medications = new HashSet<>(personToCopy.getMedications());
     }
 
