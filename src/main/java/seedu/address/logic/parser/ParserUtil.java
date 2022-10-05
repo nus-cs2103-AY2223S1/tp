@@ -121,4 +121,28 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    public static String parseEventTitle(String eventTitle) {
+        requireNonNull(eventTitle);
+
+        return eventTitle;
+    }
+
+    public static String parseDate(String date) {
+        requireNonNull(date);
+
+        return date;
+    }
+
+    public static String parseTime(String time) {
+        requireNonNull(time);
+
+        return time;
+    }
+
+    public static String parsePurpose(String purpose) {
+        requireNonNull(purpose);
+
+        return purpose;
+    }
 }
