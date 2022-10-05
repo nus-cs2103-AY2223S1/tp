@@ -14,7 +14,7 @@ import seedu.condonery.commons.core.LogsCenter;
 import seedu.condonery.model.person.Person;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the Condonery data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -86,6 +86,8 @@ public class ModelManager implements Model {
     public ReadOnlyPropertyDirectory getPropertyDirectory() {
         return propertyDirectory;
     }
+
+    //=========== ClientDirectory ================================================================================
 
     @Override
     public boolean hasPerson(Person person) {

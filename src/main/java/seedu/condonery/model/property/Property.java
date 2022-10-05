@@ -1,0 +1,100 @@
+package seedu.condonery.model.property;
+
+import static seedu.condonery.commons.util.CollectionUtil.requireAllNonNull;
+
+improt java
+
+/**
+ * Represents a Property in Condonery.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
+public class Property {
+
+    // Identity fields
+    private final Name name;
+    private final Address address;
+
+    // Data fields
+    private final Tag[] tags;
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Property(Name name, Address address, Tag... tags) {
+        requireAllNonNull(name, address, tags);
+        this.name = name;
+        this.address = address;
+        this.tags = tags;
+    }
+
+    public Name getName() {
+        return name;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns true if both properties have the same name.
+     * This defines a weaker notion of equality between two properties.
+     */
+    public boolean isSameProperty(Property otherProperty) {
+        if (otherProperty == this) {
+            return true;
+        }
+
+        return otherProperty != null
+                && otherProperty.getName().equals(getName());
+    }
+
+    /**
+     * Returns true if both properties have the same identity and data fields.
+     * This defines a stronger notion of equality between two properties.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Property)) {
+            return false;
+        }
+
+        Property otherProperty = (Property) other;
+        return otherProperty.getName().equals(getName())
+            && otherProperty.getAddress().equals(getAddress())
+            && otherProperty.getTags().equals(getTags());
+    }
+
+    @Override
+    public int hashCode() {
+        // use this method for custom fields hashing instead of implementing your own
+        return Objects.hash(name, address, tags);
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getName())
+            .append("; Address: ")
+            .append(getAddress());
+
+        Set<Tag> tags = getTags();
+        if (!tags.isEmpty()) {
+            builder.append("; Tags: ");
+            tags.forEach(builder::append);
+        }
+        return builder.toString();
+    }
+}
+
