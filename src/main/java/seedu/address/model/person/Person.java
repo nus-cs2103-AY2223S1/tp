@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -22,17 +23,19 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final List<Appointment> listOfAppointments;
     private final Set<Tag> tags = new HashSet<>();
-
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, List<Appointment> listOfAppointments,
+                  Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.listOfAppointments = listOfAppointments;
         this.tags.addAll(tags);
     }
 
@@ -50,6 +53,15 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public List<Appointment> getAppointments() {
+        return listOfAppointments;
+    }
+
+
+    public Appointment cancelAppointment(int apptIndex) {
+        return listOfAppointments.remove(apptIndex);
     }
 
     /**
@@ -73,6 +85,14 @@ public class Person {
                 && otherPerson.getName().equals(getName());
     }
 
+    public String getAppointmentsString() {
+        StringBuilder str = new StringBuilder("Appointments:\n");
+        for (int i = 0; i < listOfAppointments.size(); i++) {
+            str.append(i + 1).append(": ").append(listOfAppointments.get(i)).append("\n");
+        }
+        return str.toString();
+    }
+
     /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
@@ -92,6 +112,7 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getAppointments().equals(getAppointments())
                 && otherPerson.getTags().equals(getTags());
     }
 
@@ -110,7 +131,9 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Appointments: ")
+                .append(getAppointments());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

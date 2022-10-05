@@ -2,14 +2,17 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -21,6 +24,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_UNEXPECTED_INDEX_COUNT = "The amount of indexes parsed is not as expected.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -33,6 +37,31 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses a string of {@code oneBasedIndex}es seperated by spaces into a list of {@code Index} of exactly size
+     * {@code parseCount} and returns it. Leading and trailing whitespaces will be trimmed.
+     *
+     * @param parseCount The exact amount of indexes to parse.
+     * @throws ParseException if the specified indexes is invalid (not non-zero unsigned integer), or if the amount of
+     *     indexes is not exactly {@code parseCount}
+     */
+    public static List<Index> parseIndexes(String oneBasedIndexes, int parseCount) throws ParseException {
+        String indexSeparator = "\\s+";
+        String trimmedIndexes = oneBasedIndexes.trim();
+        String[] indexes = trimmedIndexes.split(indexSeparator);
+
+        if (indexes.length != parseCount) {
+            throw new ParseException(MESSAGE_UNEXPECTED_INDEX_COUNT);
+        }
+
+        List<Index> indexList = new ArrayList<>();
+        for (String index : indexes) {
+            indexList.add(parseIndex(index));
+        }
+
+        return indexList;
     }
 
     /**
@@ -108,6 +137,28 @@ public class ParserUtil {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
         return new Tag(trimmedTag);
+    }
+
+    /**
+     * Parses a {@code String reason} and {@code String dateTime} into a {@code Appointment}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code reason} or {@code dateTime} is invalid.
+     */
+    public static Appointment parseAppointment(String reason, String dateTime) throws ParseException {
+        requireNonNull(dateTime);
+        requireNonNull(reason);
+        String trimmedReason = reason.trim();
+        String trimmedDateTime = dateTime.trim();
+
+        if (!Appointment.isValidReason(trimmedReason)) {
+            throw new ParseException(Appointment.REASON_MESSAGE_CONSTRAINTS);
+        }
+
+        if (!Appointment.isValidDateTime(dateTime)) {
+            throw new ParseException(Appointment.DATE_MESSAGE_CONSTRAINTS);
+        }
+        return new Appointment(trimmedReason, trimmedDateTime, false);
     }
 
     /**
