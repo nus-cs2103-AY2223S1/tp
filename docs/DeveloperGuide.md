@@ -346,6 +346,21 @@ Use case ends.
 * 4a. User decides against deleting the itinerary.
   Use case ends.
 
+**Use case: Add an item to an itinerary**
+
+**MSS**
+
+1. User selects a specific itinerary.
+2. User requests to add an item.
+3. User enters details of the item.
+5. Waddle adds the item and provides confirmation to the user.
+   Use case ends.
+
+**Extensions**
+* 3a. The item details are incomplete.
+  * Waddle shows an error message.<br>
+  Use case resumes at step 3.
+
 
 *{More to be added}*
 
