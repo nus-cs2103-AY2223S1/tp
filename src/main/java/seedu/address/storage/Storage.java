@@ -28,6 +28,9 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage, TaskStora
     Optional<ReadOnlyTaskList> readTaskList() throws DataConversionException, IOException;
 
     @Override
+    void saveTaskList(ReadOnlyTaskList taskList) throws IOException;
+
+    @Override
     Path getAddressBookFilePath();
 
     @Override
