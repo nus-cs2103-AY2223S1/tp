@@ -17,19 +17,19 @@ public class Property {
 
     // Identity fields
     private final Name name;
-    private final Address address;
 
     // Data fields
-    private final Tag[] tags;
+    private final Address address;
+    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Property(Name name, Address address, Tag... tags) {
+    public Property(Name name, Address address, Set<Tag> tags) {
         requireAllNonNull(name, address, tags);
         this.name = name;
         this.address = address;
-        this.tags = tags;
+        this.tags.addAll(tags);
     }
 
     public Name getName() {
