@@ -55,15 +55,16 @@ Format: `delete FOOD_ITEM MEAL_TYPE`
 
 Edits a food item from the list of consumed food for the day.
 
-Format: `edit MEAL_TYPE INDEX UPDATED_FOOD_ITEM CALORIES`
+Format: `edit INDEX n/UPDATED_FOOD c/CALORIES t/MEAL_TYPE`
 
 * Edits a food item in the specified list (given by `MEAL_TYPE`) and index.
 * The index refers to the index shown in the displayed food lists.
 * The index **must be a positive** number.
+* Either the `UPDATED_FOOD`, `CALORIES`, or `MEAL_TYPE` must be supplied.
 
 Example:
 
-* `edit dinner 2 rice 300` edits the 2nd food item for dinner to rice with 300 calories. 
+* `edit 2 n/rice c/300 t/dinner` edits the 2nd food item for dinner to rice with 300 calories. 
 
 ### Showing the daily calorie intake: `review`
 
