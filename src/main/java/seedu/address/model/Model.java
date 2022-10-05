@@ -101,4 +101,27 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /** Returns an unmodifiable view of the list of target person */
+    ObservableList<Person> getTargetPersonAsObservableList();
+
+    /**
+     * Set the given person as target.
+     * The person must exist in the address book.
+     */
+    void setTargetPerson(Person target);
+
+    /**
+     * Set target to none.
+     */
+    void clearTargetPerson();
+
+    /** Returns {@code true} if person is target person, {@code false} otherwise */
+    boolean isTargetPerson(Person person);
+
+    /** Returns {@code true} if target person is present, {@code false} otherwise */
+    boolean hasTargetPerson();
+
+    /** Returns the target {@code Person} */
+    Person getTargetPerson();
 }
