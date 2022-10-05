@@ -1,16 +1,19 @@
 package seedu.address.storage;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.TaskList;
 import seedu.address.model.task.Task;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
+/**
+ * An Immutable TaskList that is serializable to JSON format.
+ */
 public class JsonSerializableTaskList {
     private final List<JsonAdaptedTask> tasks = new ArrayList<>();
 
@@ -33,6 +36,11 @@ public class JsonSerializableTaskList {
                 .collect(Collectors.toList()));
     }
 
+    /**
+     * Converts this task list into the model's {@code TaskList} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated.
+     */
     public TaskList toModelType() throws IllegalValueException {
         TaskList taskList = new TaskList();
         for (JsonAdaptedTask jsonAdaptedTask : tasks) {

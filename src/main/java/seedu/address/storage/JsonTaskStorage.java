@@ -12,7 +12,6 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyTaskList;
-import seedu.address.model.TaskList;
 
 /**
  * A class to access Tasks stored in the hard disk as a json file

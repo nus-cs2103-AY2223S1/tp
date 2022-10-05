@@ -174,7 +174,9 @@ public class MainWindow extends UiPart<Stage> {
         return personListPanel;
     }
 
-    public TaskListPanel getTaskListPanel() { return taskListPanel; }
+    public TaskListPanel getTaskListPanel() {
+        return taskListPanel;
+    }
 
     /**
      * Executes the command and returns the result.

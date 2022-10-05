@@ -138,7 +138,9 @@ public class ModelManager implements Model {
 
     //=========== Filtered Task List Accessors =============================================================
     @Override
-    public ObservableList<Task> getFilteredTaskList() { return filteredTasks; }
+    public ObservableList<Task> getFilteredTaskList() {
+        return filteredTasks;
+    }
 
     @Override
     public boolean equals(Object obj) {

@@ -1,14 +1,13 @@
 package seedu.address.model;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
-import seedu.address.model.task.Task;
+import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.model.task.Task;
 
 /**
  * Wraps all data at the Task List level

@@ -21,7 +21,9 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.TaskBuilder;
 
 public class AddCommandTest {
 
@@ -44,8 +46,9 @@ public class AddCommandTest {
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Person validPerson = new PersonBuilder().build();
+        Task emptyTask = new TaskBuilder().build();
         AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+        ModelStub modelStub = new ModelStubWithPerson(validPerson, emptyTask);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
     }
@@ -144,6 +147,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Task> getFilteredTaskList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
@@ -154,10 +162,12 @@ public class AddCommandTest {
      */
     private class ModelStubWithPerson extends ModelStub {
         private final Person person;
+        private final Task task;
 
-        ModelStubWithPerson(Person person) {
+        ModelStubWithPerson(Person person, Task task) {
             requireNonNull(person);
             this.person = person;
+            this.task = task;
         }
 
         @Override

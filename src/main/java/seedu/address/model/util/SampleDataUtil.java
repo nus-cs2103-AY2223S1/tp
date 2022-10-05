@@ -1,7 +1,6 @@
 package seedu.address.model.util;
 
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -46,9 +45,9 @@ public class SampleDataUtil {
 
     public static Task[] getSampleTasks() {
         return new Task[] {
-                new Task("Stock up on Gas", "2022-10-05", getTagSet("Fuel")),
-                new Task("Stock up on Peanuts", "2022-10-05", getTagSet("Food")),
-                new Task("Stock up on Cooking Oil", "2022-10-05", getTagSet("Fuel")),
+            new Task("Stock up on Gas", "2022-10-05", getTagSet("Fuel")),
+            new Task("Stock up on Peanuts", "2022-10-05", getTagSet("Food")),
+            new Task("Stock up on Cooking Oil", "2022-10-05", getTagSet("Fuel")),
         };
     }
 
