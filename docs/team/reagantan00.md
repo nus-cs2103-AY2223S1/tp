@@ -3,9 +3,9 @@ layout: page
 title: Reagan Tan's Project Portfolio Page
 ---
 
-### Project: FABook
+### Project: IBook
 
-FABook is for mid-tier financial advisors who have to manage many current and potential clients. They often have trouble scheduling client meet-ups for both time and location as they have difficulty keeping track of clients’ information (name, address, portfolio).
+IBook is for mid-tier insurance agents who have to manage many current and potential clients. They often have trouble scheduling client meet-ups for both time and location as they have difficulty keeping track of clients’ information (name, address, portfolio).
 They want a product to store all this information in one place.
 
 Given below are my contributions to the project.
@@ -28,9 +28,10 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * [to be added soon]
+        * rebranded from FABook to IBook
     * Developer Guide:
         * made changes to user profile, value proposition, user stories and use cases
+        * rebranded from FABook to IBook
 
 * **Community**:
     * [to be added soon]

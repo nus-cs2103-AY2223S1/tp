@@ -296,14 +296,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `FABook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `IBook` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: UC01 - Requesting for help**
 
 **MSS**
 1. User requests for help
 
-2. FABook shows an external link for help
+2. IBook shows an external link for help
 
 3. User refers to link for help
 
@@ -314,18 +314,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. User creates a client
 
-2. FABook adds the client to its contents
+2. IBook adds the client to its contents
 
-3. FABook informs user that input client has been added
+3. IBook informs user that input client has been added
 
-4. AddressBook deletes the person
+4. IBook deletes the person
 
     Use case ends.
 
 **Extensions**
 * 1a. Format of creation is invalid.
 
-    * 1a1. FABook shows an error message with suggested format
+    * 1a1. IBook shows an error message with suggested format
 
     Use case ends.
 
@@ -334,7 +334,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. User requests to list clients
 
-2. FABook shows a list of clients
+2. IBook shows a list of clients
 
     Use case ends.
 
@@ -348,28 +348,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. User requests to update a specific client's information
 
-2. FABook updates the given client's information
+2. IBook updates the given client's information
 
-3. FABook informs user of updated client's information
+3. IBook informs user of updated client's information
 
     Use case ends.
 
 **Extensions**
 * 1a. The name is not found.
 
-  * 1a1. FABook shows an error message with suggested format.
+  * 1a1. IBook shows an error message with suggested format.
   
     Use case ends.
 
 * 1b. No input optional field was given.
 
-  * 1b1. FABook shows an error message with suggested format
+  * 1b1. IBook shows an error message with suggested format
 
     Use case ends.
 
 * 1c. Input optional field is in the wrong format.
 
-    * 1c. FABook shows an error message with suggested format
+    * 1c. IBook shows an error message with suggested format
 
       Use case ends.
 
@@ -378,22 +378,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. User requests to find a specific client by name
 
-2. FABook shows a list of matching clients
+2. IBook shows a list of matching clients
 
-3. FABook informs the user of number of clients found
+3. IBook informs the user of number of clients found
 
     Use case ends.
 
 **Extensions**
 * 1a. No client name was provided.
 
-    * 1a1. FABook shows an error message with suggested format
+    * 1a1. IBook shows an error message with suggested format
 
       Use case ends.
 
 * 1b. No such client name was found. 
 
-    * 1b1. FABook shows an error message with suggested format
+    * 1b1. IBook shows an error message with suggested format
 
       Use case ends.
 
@@ -402,28 +402,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. User requests to find a specific client by phone number
 
-2. FABook shows a list of matching clients
+2. IBook shows a list of matching clients
 
-3. FABook informs the user of number of clients found
+3. IBook informs the user of number of clients found
 
     Use case ends.
 
 **Extensions**
 * 1a. No client number was provided.
 
-    * 1a1. FABook shows an error message with suggested format
+    * 1a1. IBook shows an error message with suggested format
   
       Use case ends.
 
 * 1b. No such client number was found.
 
-    * 1b1. FABook shows an error message with suggested format
+    * 1b1. IBook shows an error message with suggested format
   
       Use case ends.
 
 * 1c. No full phone number provided.
 
-    * 1c1. FABook shows an error message with suggested format
+    * 1c1. IBook shows an error message with suggested format
 
       Use case ends.
 
@@ -434,7 +434,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 2. User requests to delete a specific client by name in the list
 
-3. FABook deletes the person
+3. IBook deletes the person
 
     Use case ends.
 
@@ -443,18 +443,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. User requests to clear all entries
 
-2. FABook removes all clients' information
+2. IBook removes all clients' information
 
-3. FABook informs the user that all information has been cleared
+3. IBook informs the user that all information has been cleared
 
     Use case ends.
 
-**Use case: UC08 - Exiting FABook**
+**Use case: UC08 - Exiting IBook**
 
 **MSS**
 1. User requests to exit
 
-2. FABook closes
+2. IBook closes
 
    Use case ends.
 
