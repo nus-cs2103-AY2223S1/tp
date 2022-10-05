@@ -1,6 +1,4 @@
-package seedu.address.model.person;
-
-import java.security.interfaces.RSAKey;
+package seedu.address.model.student;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;

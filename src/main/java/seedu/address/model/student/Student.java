@@ -1,4 +1,7 @@
-package seedu.address.model.person;
+package seedu.address.model.student;
+
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
 
 import java.util.Objects;
 
