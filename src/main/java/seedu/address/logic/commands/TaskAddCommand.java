@@ -22,7 +22,7 @@ import seedu.address.model.team.Team;
  */
 public class TaskAddCommand extends Command {
 
-    public static final String COMMAND_WORD = "task add";
+    public static final String COMMAND_WORD = "taskadd";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds the specified task to the team "
             + "by the index number used in the displayed team list.\n"
             + "Parameters: INDEX (must be a positive integer) "
@@ -57,9 +57,7 @@ public class TaskAddCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_TEAM_DISPLAYED_INDEX);
         }
 
-        Team teamToAddTaskTo = lastShownTeamList.get(index.getZeroBased());
-
-        model.addTask(teamToAddTaskTo, toAdd);
+        model.addTask(index, toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

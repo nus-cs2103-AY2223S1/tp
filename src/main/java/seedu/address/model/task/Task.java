@@ -39,4 +39,8 @@ public class Task {
                 && name.equals(((Task) other).getName())); // state check
     }
 
+    @Override
+    public String toString() {
+        return this.name.toString();
+    }
 }

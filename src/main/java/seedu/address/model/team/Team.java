@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskList;
 
 
 /**
@@ -18,7 +19,7 @@ public class Team {
     // Identity fields
     private final Name name;
     private ArrayList<Person> members;
-    private ArrayList<Task> tasks;
+    private TaskList tasks;
 
 
 
@@ -28,6 +29,7 @@ public class Team {
     public Team(Name name) {
         requireAllNonNull(name);
         this.name = name;
+        this.tasks = new TaskList();
     }
 
     public Name getName() {
@@ -48,8 +50,9 @@ public class Team {
         }
     }
 
-    public void addTasK(Task t) {
+    public void addTask(Task t) {
         tasks.add(t);
+        System.out.println(tasks.getSize());
     }
 
     /**
