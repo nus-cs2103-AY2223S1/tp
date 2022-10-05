@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.profile.AddProfileCommand;
+import seedu.address.logic.commands.profile.DeleteProfileCommand;
 import seedu.address.logic.commands.profile.ProfileCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -35,6 +36,8 @@ public class ProfileCommandParser implements Parser<ProfileCommand> {
         switch (option) {
         case AddProfileCommand.COMMAND_OPTION:
             return new AddProfileCommandParser().parse(args);
+        case DeleteProfileCommand.COMMAND_OPTION:
+            return new DeleteProfileCommandParser().parse(args);
         default:
             throw new ParseException(ProfileCommand.OPTION_UNKNOWN);
         }

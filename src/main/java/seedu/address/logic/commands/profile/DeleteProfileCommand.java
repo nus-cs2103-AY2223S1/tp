@@ -1,11 +1,13 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.profile;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
 
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.profile.Profile;
@@ -13,20 +15,20 @@ import seedu.address.model.profile.Profile;
 /**
  * Deletes a profile identified using it's displayed index from the address book.
  */
-public class DeleteCommand extends Command {
+public class DeleteProfileCommand extends ProfileCommand {
 
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_OPTION = "d";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION
             + ": Deletes the profile identified by the index number used in the displayed profile list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION + " 1";
 
     public static final String MESSAGE_DELETE_PROFILE_SUCCESS = "Deleted Profile: %1$s";
 
     private final Index targetIndex;
 
-    public DeleteCommand(Index targetIndex) {
+    public DeleteProfileCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -47,7 +49,7 @@ public class DeleteCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+                || (other instanceof DeleteProfileCommand // instanceof handles nulls
+                && targetIndex.equals(((DeleteProfileCommand) other).targetIndex)); // state check
     }
 }

@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.profile.DeleteProfileCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -29,9 +30,9 @@ public class DeleteCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Profile profileToDelete = model.getFilteredProfileList().get(INDEX_FIRST_PROFILE.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PROFILE);
+        DeleteProfileCommand deleteCommand = new DeleteProfileCommand(INDEX_FIRST_PROFILE);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PROFILE_SUCCESS, profileToDelete);
+        String expectedMessage = String.format(DeleteProfileCommand.MESSAGE_DELETE_PROFILE_SUCCESS, profileToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteProfile(profileToDelete);
@@ -42,7 +43,7 @@ public class DeleteCommandTest {
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredProfileList().size() + 1);
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        DeleteProfileCommand deleteCommand = new DeleteProfileCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PROFILE_DISPLAYED_INDEX);
     }
@@ -52,9 +53,9 @@ public class DeleteCommandTest {
         showProfileAtIndex(model, INDEX_FIRST_PROFILE);
 
         Profile profileToDelete = model.getFilteredProfileList().get(INDEX_FIRST_PROFILE.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PROFILE);
+        DeleteProfileCommand deleteCommand = new DeleteProfileCommand(INDEX_FIRST_PROFILE);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PROFILE_SUCCESS, profileToDelete);
+        String expectedMessage = String.format(DeleteProfileCommand.MESSAGE_DELETE_PROFILE_SUCCESS, profileToDelete);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteProfile(profileToDelete);
@@ -71,21 +72,21 @@ public class DeleteCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getProfileList().size());
 
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        DeleteProfileCommand deleteCommand = new DeleteProfileCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PROFILE_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_PROFILE);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_PROFILE);
+        DeleteProfileCommand deleteFirstCommand = new DeleteProfileCommand(INDEX_FIRST_PROFILE);
+        DeleteProfileCommand deleteSecondCommand = new DeleteProfileCommand(INDEX_SECOND_PROFILE);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_PROFILE);
+        DeleteProfileCommand deleteFirstCommandCopy = new DeleteProfileCommand(INDEX_FIRST_PROFILE);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
