@@ -23,12 +23,25 @@
     -fx-opacity: 0;
 }
 
-.tab-pane .tab-header-area .headers-region .tab {
-    -fx-background-color: #282828;
-    -fx-background-radius: 10 10 0 0;
-    -fx-padding: 5 30 5 30;
+.tab {
+    -fx-background-color: #191B22;
+    -fx-background-radius: 12 12 0 0;
+    /* Offsets the spacing between the tab so the label is centered */
+    -fx-padding: 0 10 0 5;
+    /* Gives illusion of spacing between the tabs */
+    -fx-background-insets: 0 5 0 0;
+}
+
+.tab:selected {
+    -fx-background-color: #1E2128;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+.tab:selected .tab-label {
+    -fx-text-fill: #D8D8D8;
 }
 
 .tab-label {
-    -fx-text-fill: #ffffff;
+    -fx-text-fill: #49505A;
 }
