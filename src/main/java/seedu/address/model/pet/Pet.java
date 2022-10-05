@@ -134,8 +134,10 @@ public class Pet {
     /**
      * Returns true if both sets have the same name.
      * This defines a weaker notion of equality between two pets.
+     *
+     * @return true iff they have the same name.
      */
-    public boolean isSamePerson(Pet otherPet) {
+    public boolean isSamePet(Pet otherPet) {
         if (otherPet == this) {
             return true;
         }
@@ -147,6 +149,8 @@ public class Pet {
     /**
      * Returns true if both pets have the same identity and data fields.
      * This defines a stronger notion of equality between two pets.
+     *
+     * @return true iff they have exactly the same fields.
      */
     @Override
     public boolean equals(Object other) {
