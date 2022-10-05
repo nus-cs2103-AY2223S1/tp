@@ -5,7 +5,11 @@ import java.time.LocalTime;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.client.*;
+import seedu.address.model.client.Address;
+import seedu.address.model.client.Client;
+import seedu.address.model.client.Email;
+import seedu.address.model.client.Name;
+import seedu.address.model.client.Phone;
 import seedu.address.model.meeting.Description;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingDate;
@@ -23,7 +27,7 @@ public class MeetingBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    private final Set<Tag> DEFAULT_TAGS = new HashSet<>();
+    private static final Set<Tag> DEFAULT_TAGS = new HashSet<>();
 
     private Description description;
     private Client client;

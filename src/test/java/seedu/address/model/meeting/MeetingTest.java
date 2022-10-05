@@ -1,11 +1,11 @@
 package seedu.address.model.meeting;
 
-import static seedu.address.testutil.TypicalClients.BENSON;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.*;
-import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_MEETING2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_DATE_MEETING2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_TIME_MEETING2;
+import static seedu.address.testutil.TypicalClients.BENSON;
 import static seedu.address.testutil.TypicalMeetings.MEETING1;
 import static seedu.address.testutil.TypicalMeetings.MEETING2;
 

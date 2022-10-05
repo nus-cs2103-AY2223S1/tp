@@ -3,15 +3,14 @@ package seedu.address.testutil;
 import static seedu.address.testutil.TypicalClients.ALICE;
 import static seedu.address.testutil.TypicalClients.BENSON;
 
-import seedu.address.model.ClientBook;
-import seedu.address.model.client.Client;
-import seedu.address.model.meeting.Meeting;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import seedu.address.model.ClientBook;
+import seedu.address.model.meeting.Meeting;
 
 /**
  * A utility class containing a list of {@code Meeting} objects to be used in tests.
