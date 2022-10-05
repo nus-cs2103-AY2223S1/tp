@@ -7,24 +7,24 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyClientBook;
+import seedu.address.model.ReadOnlyMyInsuRec;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
 /**
- * Manages storage of ClientBook data in local storage.
+ * Manages storage of MyInsuRec data in local storage.
  */
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private ClientBookStorage clientBookStorage;
+    private MyInsuRecStorage myInsuRecStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code ClientBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code MyInsuRecStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(ClientBookStorage clientBookStorage, UserPrefsStorage userPrefsStorage) {
-        this.clientBookStorage = clientBookStorage;
+    public StorageManager(MyInsuRecStorage myInsuRecStorage, UserPrefsStorage userPrefsStorage) {
+        this.myInsuRecStorage = myInsuRecStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -46,33 +46,33 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ ClientBook methods ==============================
+    // ================ MyInsuRec methods ==============================
 
     @Override
-    public Path getClientBookFilePath() {
-        return clientBookStorage.getClientBookFilePath();
+    public Path getMyInsuRecFilePath() {
+        return myInsuRecStorage.getMyInsuRecFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyClientBook> readClientBook() throws DataConversionException, IOException {
-        return readClientBook(clientBookStorage.getClientBookFilePath());
+    public Optional<ReadOnlyMyInsuRec> readMyInsuRec() throws DataConversionException, IOException {
+        return readMyInsuRec(myInsuRecStorage.getMyInsuRecFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyClientBook> readClientBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyMyInsuRec> readMyInsuRec(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return clientBookStorage.readClientBook(filePath);
+        return myInsuRecStorage.readMyInsuRec(filePath);
     }
 
     @Override
-    public void saveClientBook(ReadOnlyClientBook clientBook) throws IOException {
-        saveClientBook(clientBook, clientBookStorage.getClientBookFilePath());
+    public void saveMyInsuRec(ReadOnlyMyInsuRec myInsuRec) throws IOException {
+        saveMyInsuRec(myInsuRec, myInsuRecStorage.getMyInsuRecFilePath());
     }
 
     @Override
-    public void saveClientBook(ReadOnlyClientBook clientBook, Path filePath) throws IOException {
+    public void saveMyInsuRec(ReadOnlyMyInsuRec myInsuRec, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        clientBookStorage.saveClientBook(clientBook, filePath);
+        myInsuRecStorage.saveMyInsuRec(myInsuRec, filePath);
     }
 
 }

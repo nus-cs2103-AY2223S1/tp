@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.ClientBook;
+import seedu.address.model.MyInsuRec;
 import seedu.address.model.meeting.Meeting;
 
 /**
@@ -29,10 +29,10 @@ public class TypicalMeetings {
     private TypicalMeetings() {} // prevents instantiation
 
     /**
-     * Returns an {@code ClientBook} with all the typical clients.
+     * Returns an {@code MyInsuRec} with all the typical clients.
      */
-    public static ClientBook getTypicalClientBook() {
-        ClientBook cb = new ClientBook();
+    public static MyInsuRec getTypicalMyInsuRec() {
+        MyInsuRec cb = new MyInsuRec();
         for (Meeting meeting : getTypicalMeetings()) {
             cb.addMeeting(meeting);
         }

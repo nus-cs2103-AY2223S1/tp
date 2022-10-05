@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalClients.ALICE;
-import static seedu.address.testutil.TypicalClients.getTypicalClientBook;
+import static seedu.address.testutil.TypicalClients.getTypicalMyInsuRec;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -22,25 +22,25 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.exceptions.DuplicateClientException;
 import seedu.address.testutil.ClientBuilder;
 
-public class ClientBookTest {
+public class MyInsuRecTest {
 
-    private final ClientBook clientBook = new ClientBook();
+    private final MyInsuRec myInsuRec = new MyInsuRec();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), clientBook.getClientList());
+        assertEquals(Collections.emptyList(), myInsuRec.getClientList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> clientBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> myInsuRec.resetData(null));
     }
 
     @Test
-    public void resetData_withValidReadOnlyClientBook_replacesData() {
-        ClientBook newData = getTypicalClientBook();
+    public void resetData_withValidReadOnlyMyInsuRec_replacesData() {
+        MyInsuRec newData = getTypicalMyInsuRec();
         newData.resetData(newData);
-        assertEquals(newData, clientBook);
+        assertEquals(newData, myInsuRec);
     }
 
     @Test
@@ -49,47 +49,47 @@ public class ClientBookTest {
         Client editedAlice = new ClientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Client> newClients = Arrays.asList(ALICE, editedAlice);
-        ClientBookStub newData = new ClientBookStub(newClients);
+        MyInsuRecStub newData = new MyInsuRecStub(newClients);
 
-        assertThrows(DuplicateClientException.class, () -> clientBook.resetData(newData));
+        assertThrows(DuplicateClientException.class, () -> myInsuRec.resetData(newData));
     }
 
     @Test
     public void hasClient_nullClient_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> clientBook.hasClient(null));
+        assertThrows(NullPointerException.class, () -> myInsuRec.hasClient(null));
     }
 
     @Test
-    public void hasClient_clientNotInClientBook_returnsFalse() {
-        assertFalse(clientBook.hasClient(ALICE));
+    public void hasClient_clientNotInMyInsuRec_returnsFalse() {
+        assertFalse(myInsuRec.hasClient(ALICE));
     }
 
     @Test
-    public void hasClient_clientInClientBook_returnsTrue() {
-        clientBook.addClient(ALICE);
-        assertTrue(clientBook.hasClient(ALICE));
+    public void hasClient_clientInMyInsuRec_returnsTrue() {
+        myInsuRec.addClient(ALICE);
+        assertTrue(myInsuRec.hasClient(ALICE));
     }
 
     @Test
-    public void hasClient_clientWithSameIdentityFieldsInClientBook_returnsTrue() {
-        clientBook.addClient(ALICE);
+    public void hasClient_clientWithSameIdentityFieldsInMyInsuRec_returnsTrue() {
+        myInsuRec.addClient(ALICE);
         Client editedAlice = new ClientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(clientBook.hasClient(editedAlice));
+        assertTrue(myInsuRec.hasClient(editedAlice));
     }
 
     @Test
     public void getClientList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> clientBook.getClientList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> myInsuRec.getClientList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyClientBook whose Clients list can violate interface constraints.
+     * A stub ReadOnlyMyInsuRec whose Clients list can violate interface constraints.
      */
-    private static class ClientBookStub implements ReadOnlyClientBook {
+    private static class MyInsuRecStub implements ReadOnlyMyInsuRec {
         private final ObservableList<Client> clients = FXCollections.observableArrayList();
 
-        ClientBookStub(Collection<Client> clients) {
+        MyInsuRecStub(Collection<Client> clients) {
             this.clients.setAll(clients);
         }
 

@@ -15,16 +15,16 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.ClientBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyClientBook;
+import seedu.address.model.MyInsuRec;
+import seedu.address.model.ReadOnlyMyInsuRec;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.ClientBookStorage;
-import seedu.address.storage.JsonClientBookStorage;
+import seedu.address.storage.JsonMyInsuRecStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.MyInsuRecStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
@@ -56,8 +56,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        ClientBookStorage clientBookStorage = new JsonClientBookStorage(userPrefs.getClientBookFilePath());
-        storage = new StorageManager(clientBookStorage, userPrefsStorage);
+        MyInsuRecStorage myInsuRecStorage = new JsonMyInsuRecStorage(userPrefs.getMyInsuRecFilePath());
+        storage = new StorageManager(myInsuRecStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -69,25 +69,25 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s client book and {@code userPrefs}. <br>
-     * The data from the sample client book will be used instead if {@code storage}'s client book is not found,
-     * or an empty client book will be used instead if errors occur when reading {@code storage}'s client book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s MyInsuRec and {@code userPrefs}. <br>
+     * The data from the sample MyInsuRec will be used instead if {@code storage}'s MyInsuRec is not found,
+     * or an empty MyInsuRec will be used instead if errors occur when reading {@code storage}'s MyInsuRec.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyClientBook> clientBookOptional;
-        ReadOnlyClientBook initialData;
+        Optional<ReadOnlyMyInsuRec> myInsuRecOptional;
+        ReadOnlyMyInsuRec initialData;
         try {
-            clientBookOptional = storage.readClientBook();
-            if (!clientBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample ClientBook");
+            myInsuRecOptional = storage.readMyInsuRec();
+            if (!myInsuRecOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample MyInsuRec");
             }
-            initialData = clientBookOptional.orElseGet(SampleDataUtil::getSampleClientBook);
+            initialData = myInsuRecOptional.orElseGet(SampleDataUtil::getSampleMyInsuRec);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty ClientBook");
-            initialData = new ClientBook();
+            logger.warning("Data file not in the correct format. Will be starting with an empty MyInsuRec");
+            initialData = new MyInsuRec();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty ClientBook");
-            initialData = new ClientBook();
+            logger.warning("Problem while reading from the file. Will be starting with an empty MyInsuRec");
+            initialData = new MyInsuRec();
         }
 
         return new ModelManager(initialData, userPrefs);
@@ -151,7 +151,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty MyInsuRec");
             initializedPrefs = new UserPrefs();
         }
 

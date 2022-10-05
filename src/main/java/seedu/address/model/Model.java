@@ -35,44 +35,44 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' client book file path.
+     * Returns the user prefs' MyInsuRec file path.
      */
-    Path getClientBookFilePath();
+    Path getMyInsuRecFilePath();
 
     /**
-     * Sets the user prefs' client book file path.
+     * Sets the user prefs' MyInsuRec file path.
      */
-    void setClientBookFilePath(Path clientBookFilePath);
+    void setMyInsuRecFilePath(Path myInsuRecFilePath);
 
     /**
-     * Replaces client book data with the data in {@code ClientBook}.
+     * Replaces MyInsuRec data with the data in {@code MyInsuRec}.
      */
-    void setClientBook(ReadOnlyClientBook clientBook);
+    void setMyInsuRec(ReadOnlyMyInsuRec myInsuRec);
 
-    /** Returns the ClientBook */
-    ReadOnlyClientBook getClientBook();
+    /** Returns the MyInsuRec */
+    ReadOnlyMyInsuRec getMyInsuRec();
 
     /**
-     * Returns true if a client with the same identity as {@code client} exists in the client book.
+     * Returns true if a client with the same identity as {@code client} exists in the MyInsuRec.
      */
     boolean hasClient(Client client);
 
     /**
      * Deletes the given client.
-     * The client must exist in the client book.
+     * The client must exist in the MyInsuRec.
      */
     void deleteClient(Client target);
 
     /**
      * Adds the given client.
-     * {@code client} must not already exist in the client book.
+     * {@code client} must not already exist in the MyInsuRec.
      */
     void addClient(Client client);
 
     /**
      * Replaces the given client {@code target} with {@code editedClient}.
-     * {@code target} must exist in the client book.
-     * The client identity of {@code editedClient} must not be the same as another existing client in the client book.
+     * {@code target} must exist in the MyInsuRec.
+     * The client identity of {@code editedClient} must not be the same as another existing client in the MyInsuRec.
      */
     void setClient(Client target, Client editedClient);
 

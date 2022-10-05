@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.ClientBook;
-import seedu.address.model.ReadOnlyClientBook;
+import seedu.address.model.MyInsuRec;
+import seedu.address.model.ReadOnlyMyInsuRec;
 import seedu.address.model.client.Address;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
@@ -14,7 +14,7 @@ import seedu.address.model.client.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code ClientBook} with sample data.
+ * Contains utility methods for populating {@code MyInsuRec} with sample data.
  */
 public class SampleDataUtil {
     public static Client[] getSampleClients() {
@@ -40,8 +40,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyClientBook getSampleClientBook() {
-        ClientBook sampleAb = new ClientBook();
+    public static ReadOnlyMyInsuRec getSampleMyInsuRec() {
+        MyInsuRec sampleAb = new MyInsuRec();
         for (Client sampleClient : getSampleClients()) {
             sampleAb.addClient(sampleClient);
         }

@@ -29,9 +29,9 @@ import seedu.address.testutil.ClientBuilder;
 import seedu.address.testutil.ClientUtil;
 import seedu.address.testutil.EditClientDescriptorBuilder;
 
-public class ClientBookParserTest {
+public class MyInsuRecParserTest {
 
-    private final ClientBookParser parser = new ClientBookParser();
+    private final MyInsuRecParser parser = new MyInsuRecParser();
 
     @Test
     public void parseCommand_add() throws Exception {

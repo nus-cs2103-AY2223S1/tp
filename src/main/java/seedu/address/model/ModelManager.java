@@ -19,25 +19,25 @@ import seedu.address.model.client.Client;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final ClientBook clientBook;
+    private final MyInsuRec myInsuRec;
     private final UserPrefs userPrefs;
     private final FilteredList<Client> filteredClients;
 
     /**
-     * Initializes a ModelManager with the given clientBook and userPrefs.
+     * Initializes a ModelManager with the given myInsuRec and userPrefs.
      */
-    public ModelManager(ReadOnlyClientBook clientBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(clientBook, userPrefs);
+    public ModelManager(ReadOnlyMyInsuRec myInsuRec, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(myInsuRec, userPrefs);
 
-        logger.fine("Initializing with client book: " + clientBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with client book: " + myInsuRec + " and user prefs " + userPrefs);
 
-        this.clientBook = new ClientBook(clientBook);
+        this.myInsuRec = new MyInsuRec(myInsuRec);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredClients = new FilteredList<>(this.clientBook.getClientList());
+        filteredClients = new FilteredList<>(this.myInsuRec.getClientList());
     }
 
     public ModelManager() {
-        this(new ClientBook(), new UserPrefs());
+        this(new MyInsuRec(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -65,42 +65,42 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getClientBookFilePath() {
-        return userPrefs.getClientBookFilePath();
+    public Path getMyInsuRecFilePath() {
+        return userPrefs.getMyInsuRecFilePath();
     }
 
     @Override
-    public void setClientBookFilePath(Path clientBookFilePath) {
-        requireNonNull(clientBookFilePath);
-        userPrefs.setClientBookFilePath(clientBookFilePath);
+    public void setMyInsuRecFilePath(Path myInsuRecFilePath) {
+        requireNonNull(myInsuRecFilePath);
+        userPrefs.setMyInsuRecFilePath(myInsuRecFilePath);
     }
 
-    //=========== clientBook ================================================================================
+    //=========== myInsuRec ================================================================================
 
     @Override
-    public void setClientBook(ReadOnlyClientBook clientBook) {
-        this.clientBook.resetData(clientBook);
+    public void setMyInsuRec(ReadOnlyMyInsuRec myInsuRec) {
+        this.myInsuRec.resetData(myInsuRec);
     }
 
     @Override
-    public ReadOnlyClientBook getClientBook() {
-        return clientBook;
+    public ReadOnlyMyInsuRec getMyInsuRec() {
+        return myInsuRec;
     }
 
     @Override
     public boolean hasClient(Client client) {
         requireNonNull(client);
-        return clientBook.hasClient(client);
+        return myInsuRec.hasClient(client);
     }
 
     @Override
     public void deleteClient(Client target) {
-        clientBook.removeClient(target);
+        myInsuRec.removeClient(target);
     }
 
     @Override
     public void addClient(Client client) {
-        clientBook.addClient(client);
+        myInsuRec.addClient(client);
         updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
     }
 
@@ -108,7 +108,7 @@ public class ModelManager implements Model {
     public void setClient(Client target, Client editedClient) {
         requireAllNonNull(target, editedClient);
 
-        clientBook.setClient(target, editedClient);
+        myInsuRec.setClient(target, editedClient);
     }
 
     //=========== Filtered Client List Accessors =============================================================
@@ -142,7 +142,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return clientBook.equals(other.clientBook)
+        return myInsuRec.equals(other.myInsuRec)
                 && userPrefs.equals(other.userPrefs)
                 && filteredClients.equals(other.filteredClients);
     }

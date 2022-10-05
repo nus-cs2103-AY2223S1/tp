@@ -14,7 +14,7 @@ import seedu.address.model.meeting.NoConflictMeetingList;
  * Wraps all data at the client-book level
  * Duplicates are not allowed (by .isSameClient comparison)
  */
-public class ClientBook implements ReadOnlyClientBook {
+public class MyInsuRec implements ReadOnlyMyInsuRec {
 
     private final UniqueClientList clients;
     private final NoConflictMeetingList meetings;
@@ -31,12 +31,12 @@ public class ClientBook implements ReadOnlyClientBook {
         meetings = new NoConflictMeetingList();
     }
 
-    public ClientBook() {}
+    public MyInsuRec() {}
 
     /**
-     * Creates a ClientBook using the Clients in the {@code toBeCopied}
+     * Creates a MyInsuRec using the Clients in the {@code toBeCopied}
      */
-    public ClientBook(ReadOnlyClientBook toBeCopied) {
+    public MyInsuRec(ReadOnlyMyInsuRec toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -52,9 +52,9 @@ public class ClientBook implements ReadOnlyClientBook {
     }
 
     /**
-     * Resets the existing data of this {@code ClientBook} with {@code newData}.
+     * Resets the existing data of this {@code MyInsuRec} with {@code newData}.
      */
-    public void resetData(ReadOnlyClientBook newData) {
+    public void resetData(ReadOnlyMyInsuRec newData) {
         requireNonNull(newData);
 
         setClients(newData.getClientList());
@@ -90,7 +90,7 @@ public class ClientBook implements ReadOnlyClientBook {
     }
 
     /**
-     * Removes {@code key} from this {@code ClientBook}.
+     * Removes {@code key} from this {@code MyInsuRec}.
      * {@code key} must exist in the client book.
      */
     public void removeClient(Client key) {
@@ -121,8 +121,8 @@ public class ClientBook implements ReadOnlyClientBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ClientBook // instanceof handles nulls
-                && clients.equals(((ClientBook) other).clients));
+                || (other instanceof MyInsuRec // instanceof handles nulls
+                && clients.equals(((MyInsuRec) other).clients));
     }
 
     @Override

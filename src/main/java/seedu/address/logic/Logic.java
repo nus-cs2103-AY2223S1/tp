@@ -7,7 +7,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyClientBook;
+import seedu.address.model.ReadOnlyMyInsuRec;
 import seedu.address.model.client.Client;
 
 /**
@@ -24,19 +24,19 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the ClientBook.
+     * Returns the MyInsuRec.
      *
-     * @see seedu.address.model.Model#getClientBook()
+     * @see seedu.address.model.Model#getMyInsuRec()
      */
-    ReadOnlyClientBook getClientBook();
+    ReadOnlyMyInsuRec getMyInsuRec();
 
     /** Returns an unmodifiable view of the filtered list of clients */
     ObservableList<Client> getFilteredClientList();
 
     /**
-     * Returns the user prefs' client book file path.
+     * Returns the user prefs' MyInsuRec file path.
      */
-    Path getClientBookFilePath();
+    Path getMyInsuRecFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
