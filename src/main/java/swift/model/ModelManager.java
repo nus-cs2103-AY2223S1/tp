@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import swift.commons.core.GuiSettings;
 import swift.commons.core.LogsCenter;
 import swift.model.person.Person;
+import swift.model.task.Task;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -109,6 +110,29 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public boolean hasTask(Task task) {
+        requireNonNull(task);
+        return addressBook.hasTask(task);
+    }
+
+    @Override
+    public void deleteTask(Task target) {
+        addressBook.removeTask(target);
+    }
+
+    @Override
+    public void addTask(Task task) {
+        addressBook.addTask(task);
+    }
+
+    @Override
+    public void setTask(Task target, Task editedTask) {
+        requireAllNonNull(target, editedTask);
+
+        addressBook.setTask(target, editedTask);
     }
 
     //=========== Filtered Person List Accessors =============================================================
