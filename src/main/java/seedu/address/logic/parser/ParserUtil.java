@@ -11,6 +11,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.LessonPlan;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -78,6 +79,17 @@ public class ParserUtil {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
         return new Address(trimmedAddress);
+    }
+
+    /**
+     * Parses a {@code String lessonPlan} into an {@code LessonPlan}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     */
+    public static LessonPlan parseLessonPlan(String lessonPlan) {
+        requireNonNull(lessonPlan);
+        String trimmedLessonPlan = lessonPlan.trim();
+        return new LessonPlan(trimmedLessonPlan);
     }
 
     /**

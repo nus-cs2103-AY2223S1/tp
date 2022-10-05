@@ -12,6 +12,9 @@ import seedu.address.model.Model;
 import seedu.address.model.person.LessonPlan;
 import seedu.address.model.person.Person;
 
+/**
+ * Adds a lesson plan to an existing person in the address book.
+ */
 public class LessonPlanCommand extends Command {
     public static final String COMMAND_WORD = "lessonplan";
 
@@ -63,7 +66,7 @@ public class LessonPlanCommand extends Command {
 
     /**
      * Generates a command execution success message based on whether
-     * the homework is added to or removed from
+     * the lesson plan is added to or removed from
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {

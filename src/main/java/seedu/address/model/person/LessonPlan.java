@@ -9,6 +9,11 @@ import static java.util.Objects.requireNonNull;
 public class LessonPlan {
     public final String value;
 
+    /**
+     * Constructs an {@code LessonPlan}.
+     *
+     * @param lessonPlan A description of the lesson plan.
+     */
     public LessonPlan(String lessonPlan) {
         requireNonNull(lessonPlan);
         value = lessonPlan;
