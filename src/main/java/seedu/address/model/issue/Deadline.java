@@ -1,16 +1,26 @@
 package seedu.address.model.issue;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Represents an Issue's deadline.
  */
 public class Deadline {
+
+    /**
+     * Represents an empty Issue deadline.
+     */
+    private static class EmptyDeadline extends Deadline {
+        private static final Deadline EMPTY_DEADLINE = new EmptyDeadline();
+
+        private EmptyDeadline() {
+            super("");
+        }
+    }
 
     public static final String MESSAGE_CONSTRAINTS =
             "Deadlines should be entered in yyyy-mm-dd date format";
@@ -29,15 +39,15 @@ public class Deadline {
      */
     public Deadline(String deadline) {
         requireNonNull(deadline);
-        checkArgument(isValidDeadline(deadline), VALIDATION_REGEX);
+        checkArgument(isValidDeadline(deadline), MESSAGE_CONSTRAINTS);
         this.issueDeadline = LocalDate.parse(deadline);
     }
 
     /**
     * Returns true if a given string is a valid deadline.
     */
-    public static boolean isValidDeadline(String test) {
-        return test.matches(VALIDATION_REGEX);
+    public static boolean isValidDeadline(String deadline) {
+        return deadline.matches(VALIDATION_REGEX);
     }
 
     @Override

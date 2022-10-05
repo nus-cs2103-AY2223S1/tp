@@ -24,7 +24,7 @@ public class Description {
      *
      * @param description A valid issue description.
      */
-    public Description (String description) {
+    public Description(String description) {
         requireNonNull(description);
         checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS);
         this.description = description;
@@ -33,7 +33,12 @@ public class Description {
     /**
      * Returns true if a given string is a valid description.
      */
-    public boolean isValidDescription(String test) {
+    public static boolean isValidDescription(String description) {
         return description.matches(VALIDATION_REGEX);
+    }
+
+    @Override
+    public String toString() {
+        return this.description;
     }
 }
