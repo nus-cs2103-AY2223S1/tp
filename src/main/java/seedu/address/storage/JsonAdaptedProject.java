@@ -4,10 +4,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.project.Repository;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Name;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.Repository;
 
 /**
  * Jackson-friendly version of {@link Project}.
@@ -55,7 +55,8 @@ class JsonAdaptedProject {
         final Name modelName = new Name(name);
 
         if (repository == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Repository.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Repository.class.getSimpleName()));
         }
         if (!Repository.isValidRepository(repository)) {
             throw new IllegalValueException(Repository.MESSAGE_CONSTRAINTS);
@@ -63,7 +64,8 @@ class JsonAdaptedProject {
         final Repository modelRepository = new Repository(repository);
 
         if (deadline == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Deadline.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Deadline.class.getSimpleName()));
         }
         if (!Deadline.isValidDeadline(deadline)) {
             throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
