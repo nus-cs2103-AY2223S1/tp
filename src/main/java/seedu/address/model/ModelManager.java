@@ -11,7 +11,11 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.Buyer;
+import seedu.address.model.person.Deliverer;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Supplier;
+import seedu.address.model.person.UniquePersonList;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -145,6 +149,54 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
+    }
+
+    /**
+     * Returns an ObservableList of buyers in the filteredPersons list.
+     *
+     * @return ObservableList of buyers.
+     */
+    public ObservableList<Person> getFilteredBuyerList() {
+        UniquePersonList persons = new UniquePersonList();
+        ObservableList<Person> filteredBuyers = new FilteredList<>(persons.asUnmodifiableObservableList());
+        for (Person person : filteredPersons) {
+            if (person instanceof Buyer) {
+                filteredBuyers.add(person);
+            }
+        }
+        return filteredBuyers;
+    }
+
+    /**
+     * Returns an ObservableList of suppliers in the filteredPersons list.
+     *
+     * @return ObservableList of suppliers.
+     */
+    public ObservableList<Person> getFilteredSupplierList() {
+        UniquePersonList persons = new UniquePersonList();
+        ObservableList<Person> filteredSuppliers = new FilteredList<>(persons.asUnmodifiableObservableList());
+        for (Person person : filteredPersons) {
+            if (person instanceof Supplier) {
+                filteredSuppliers.add(person);
+            }
+        }
+        return filteredSuppliers;
+    }
+
+    /**
+     * Returns an ObservableList of deliverers in the filteredPersons list.
+     *
+     * @return ObservableList of deliverers.
+     */
+    public ObservableList<Person> getFilteredDelivererList() {
+        UniquePersonList persons = new UniquePersonList();
+        ObservableList<Person> filteredDeliverers = new FilteredList<>(persons.asUnmodifiableObservableList());
+        for (Person person : filteredPersons) {
+            if (person instanceof Deliverer) {
+                filteredDeliverers.add(person);
+            }
+        }
+        return filteredDeliverers;
     }
 
 }
