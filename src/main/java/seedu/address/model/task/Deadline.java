@@ -1,2 +1,4 @@
-package seedu.address.model.task;public class Deadline {
+package seedu.address.model.task;
+
+public class Deadline {
 }
