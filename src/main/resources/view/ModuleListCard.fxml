@@ -26,9 +26,7 @@
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="moduleCode" text="\$first">
-        <font> <Font name="System Bold" size="13.0"/></font>
-        </Label>
+        <Label fx:id="moduleCode" text="\$first" styleClass="cell_big_label"/>
         <FlowPane fx:id="semesterData"/>
         <Label fx:id="workload" styleClass="cell_small_label" text="\$workload" />
       </HBox>

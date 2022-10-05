@@ -121,15 +121,16 @@
 }
 
 .cell_big_label {
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Segoe UI";
     -fx-font-size: 16px;
-    -fx-text-fill: #FFFFFF;
+    -fx-text-fill: #ffffff;
+    -fx-text-font-weight: bold
 }
 
 .cell_small_label {
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
-    -fx-text-fill: #FFFFFF;
+    -fx-text-fill: #ffffff;
 }
 
 .stack-pane {
@@ -308,7 +309,7 @@
 }
 
 #cardPane {
-    -fx-background-color: transparent;
+    -fx-background-color: #282C34;
     -fx-border-width: 0;
 }
 
