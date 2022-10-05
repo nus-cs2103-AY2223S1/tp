@@ -26,7 +26,7 @@ HobbyList is a **desktop app for managing hobby activities, optimized for use vi
 
    * **`list`** : Lists all hobby activities in HobbyList.
 
-   * **`add`**`n/Badminton d/play badminton [t/sport]` : Adds an hobby activity named `Badminton` to the list.
+   * **`add`**`n/Badminton d/play badminton [t/sport]` : Adds a hobby activity named `Badminton` to the list.
 
    * **`delete`**`3` : Deletes the 3rd hobby activity shown in the current list.
    
@@ -46,7 +46,7 @@ HobbyList is a **desktop app for managing hobby activities, optimized for use vi
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
@@ -54,7 +54,7 @@ HobbyList is a **desktop app for managing hobby activities, optimized for use vi
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
@@ -120,10 +120,10 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 ## Command summary
 
-Action | Format
---------|------------------
-**Add acitivity** | `add n/NAME d/DESCRIPTION [t/TAG]`
-**Delete activity** | `delete INDEX`
-**List all activities** | `list`
-**Exit** | `exit`
+| Action                  | Format                             |
+|-------------------------|------------------------------------|
+| **Add activity**        | `add n/NAME d/DESCRIPTION [t/TAG]` |
+| **Delete activity**     | `delete INDEX`                     |
+| **List all activities** | `list`                             |
+| **Exit**                | `exit`                             |
 
