@@ -39,6 +39,7 @@ public class StudentBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        tutorialGroup = new TutorialGroup(DEFAULT_TUTORIAL_GROUP);
     }
 
     /**
@@ -102,7 +103,7 @@ public class StudentBuilder {
     }
 
     public Student build() {
-        return new Student(name, phone, email, address, tags);
+        return new Student(name, phone, email, address, tags, tutorialGroup);
     }
 
 }

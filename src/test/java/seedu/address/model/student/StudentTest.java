@@ -88,5 +88,9 @@ public class StudentTest {
         // different tags -> returns false
         editedAlice = new StudentBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
+
+        // different tutorial group -> return false
+        editedAlice = new StudentBuilder(ALICE).withTutorialGroup(VALID_TUTORIAL_GROUP_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
     }
 }
