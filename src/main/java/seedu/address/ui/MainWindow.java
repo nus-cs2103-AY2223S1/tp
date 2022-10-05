@@ -4,6 +4,8 @@ import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyCombination;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
@@ -20,6 +22,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static final String HELP_HOTKEY = "F1";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -62,12 +65,25 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
+        setHelpShortcut();
 
         helpWindow = new HelpWindow();
     }
 
     public Stage getPrimaryStage() {
         return primaryStage;
+    }
+
+    /**
+     * Sets F1 to open the help window.
+     */
+    private void setHelpShortcut() {
+        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (KeyCombination.valueOf(HELP_HOTKEY).match(event)) {
+                handleHelp();
+                event.consume(); // To stop event from propagating to other handlers
+            }
+        });
     }
 
     /**
