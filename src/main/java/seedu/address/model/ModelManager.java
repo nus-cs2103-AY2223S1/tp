@@ -12,11 +12,12 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.user.User;
 
 /**
  * Represents the in-memory model of the address book data.
  */
-public class ModelManager implements Model {
+public class  ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
@@ -85,6 +86,11 @@ public class ModelManager implements Model {
     @Override
     public ReadOnlyAddressBook getAddressBook() {
         return addressBook;
+    }
+
+    @Override
+    public void addUser(User user) {
+        addressBook.addUser(user);
     }
 
     @Override
