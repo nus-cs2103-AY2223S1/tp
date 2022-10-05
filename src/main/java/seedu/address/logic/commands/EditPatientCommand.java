@@ -46,7 +46,7 @@ public class EditPatientCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PATIENT_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_PATIENT_SUCCESS = "Edited Patient: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists in the address book.";
 
@@ -59,7 +59,7 @@ public class EditPatientCommand extends Command {
      */
     public EditPatientCommand(Index index, EditPatientDescriptor editPatientDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editPatientDescriptor);
 
         this.index = index;
         this.editPatientDescriptor = new EditPatientDescriptor(editPatientDescriptor);
@@ -93,11 +93,11 @@ public class EditPatientCommand extends Command {
     private static Person createEditedPerson(Person patientToEdit, EditPatientDescriptor editPatientDescriptor) {
         assert patientToEdit != null;
 
-        Name updatedName = editPatientDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPatientDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPatientDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPatientDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPatientDescriptor.getTags().orElse(personToEdit.getTags());
+        Name updatedName = editPatientDescriptor.getName().orElse(patientToEdit.getName());
+        Phone updatedPhone = editPatientDescriptor.getPhone().orElse(patientToEdit.getPhone());
+        Email updatedEmail = editPatientDescriptor.getEmail().orElse(patientToEdit.getEmail());
+        Address updatedAddress = editPatientDescriptor.getAddress().orElse(patientToEdit.getAddress());
+        Set<Tag> updatedTags = editPatientDescriptor.getTags().orElse(patientToEdit.getTags());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
