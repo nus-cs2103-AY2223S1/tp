@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.guest.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents the total number of guests a Guest has in the address book.
+ * Represents the total number of guests a Guest has in the guest book.
  * Guarantees: immutable; is valid as declared in {@link #isValidNumberOfGuests(String)}
  */
 public class NumberOfGuests {
