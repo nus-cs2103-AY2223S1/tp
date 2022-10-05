@@ -141,6 +141,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         tags.addTagToList(tag);
     }
 
+    /**
+     * Changes the old tag to a new tag.
+     * @param oldTag The original tag.
+     * @param newTag The new tag to replace the original tag.
+     */
     public void editTag(Tag oldTag, Tag newTag) {
         tags.editTag(oldTag, newTag);
         persons.changeRelevantPersonTag(oldTag, newTag);

@@ -102,8 +102,12 @@ public class UniquePersonList implements Iterable<Person> {
         internalList.setAll(persons);
     }
 
+    /**
+     * Updates the tag in every contact.
+     * @param oldTag The old tag to be changed.
+     * @param newTag The new tag that is changed into.
+     */
     public void changeRelevantPersonTag(Tag oldTag, Tag newTag) {
-        List<Person> newPersons = new ArrayList<>();
         for (int i = 0; i < internalList.size(); i++) {
             Person oldPerson = internalList.get(i);
             List<Tag> personTags = new ArrayList<>(oldPerson.getTags());
