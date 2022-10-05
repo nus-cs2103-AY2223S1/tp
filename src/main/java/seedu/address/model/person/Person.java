@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
+import static seedu.address.model.person.GenderType.NA;
 
 /**
  * Represents a Person in the address book.
@@ -27,17 +28,30 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
-     * Gender field is added at the end of each method.
+     * Overloaded constructor that takes in optional parameter gender
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Gender gender) {
-        requireAllNonNull(name, phone, email, address, tags);
+        requireAllNonNull(name, phone, email, address, tags, gender);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
         this.gender = gender;
+    }
+
+    /**
+     * Every field must be present and not null.
+     * Gender field is added at the end of each method.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.gender = new Gender(NA);
     }
 
     public Name getName() {
