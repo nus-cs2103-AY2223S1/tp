@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.util.logging.Logger;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -8,8 +10,6 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.tutorial.Tutorial;
 
-import java.util.logging.Logger;
-
 /**
  * Panel containing the list of tutorials.
  */
@@ -17,7 +17,7 @@ public class TutorialListPanel extends UiPart<Region> {
     private static final String FXML = "TutorialListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(TutorialListPanel.class);
 
-    @javafx.fxml.FXML
+    @FXML
     private ListView<Tutorial> tutorialListView;
 
     /**
