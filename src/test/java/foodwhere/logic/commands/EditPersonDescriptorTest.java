@@ -49,9 +49,9 @@ public class EditPersonDescriptorTest {
                 .withAddress(CommandTestUtil.VALID_ADDRESS_BOB).build();
         assertFalse(CommandTestUtil.DESC_AMY.equals(editedAmy));
 
-        // different tags -> returns false
+        // different details -> returns false
         editedAmy = new EditPersonDescriptorBuilder(CommandTestUtil.DESC_AMY)
-                .withTags(CommandTestUtil.VALID_TAG_HUSBAND).build();
+                .withDetails(CommandTestUtil.VALID_DETAIL_HUSBAND).build();
         assertFalse(CommandTestUtil.DESC_AMY.equals(editedAmy));
     }
 }

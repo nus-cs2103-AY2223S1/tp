@@ -3,12 +3,12 @@ package foodwhere.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import foodwhere.model.detail.Detail;
 import foodwhere.model.person.Address;
 import foodwhere.model.person.Email;
 import foodwhere.model.person.Name;
 import foodwhere.model.person.Person;
 import foodwhere.model.person.Phone;
-import foodwhere.model.tag.Tag;
 import foodwhere.model.util.SampleDataUtil;
 
 /**
@@ -25,7 +25,7 @@ public class PersonBuilder {
     private Phone phone;
     private Email email;
     private Address address;
-    private Set<Tag> tags;
+    private Set<Detail> details;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -35,7 +35,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        tags = new HashSet<>();
+        details = new HashSet<>();
     }
 
     /**
@@ -46,7 +46,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
-        tags = new HashSet<>(personToCopy.getTags());
+        details = new HashSet<>(personToCopy.getDetails());
     }
 
     /**
@@ -58,10 +58,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code details} into a {@code Set<Detail>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public PersonBuilder withDetails(String ... details) {
+        this.details = SampleDataUtil.getDetailSet(details);
         return this;
     }
 
@@ -90,7 +90,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, phone, email, address, details);
     }
 
 }
