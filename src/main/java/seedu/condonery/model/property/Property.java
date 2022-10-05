@@ -2,7 +2,12 @@ package seedu.condonery.model.property;
 
 import static seedu.condonery.commons.util.CollectionUtil.requireAllNonNull;
 
-improt java
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+
+import seedu.condonery.model.tag.Tag;
 
 /**
  * Represents a Property in Condonery.
