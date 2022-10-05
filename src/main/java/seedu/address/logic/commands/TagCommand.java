@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.HashSet;
 import java.util.List;
@@ -75,7 +74,7 @@ public class TagCommand extends TagCommandGroup {
                 personToTag.getEmail(), personToTag.getAddress(), personToTag.getRemark(), tags);
 
         model.setPerson(personToTag, taggedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.clearFiltersInFilteredPersonList();
 
         StringBuilder resultString = new StringBuilder();
 

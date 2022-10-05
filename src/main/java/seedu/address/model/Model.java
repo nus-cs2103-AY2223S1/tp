@@ -97,10 +97,20 @@ public interface Model {
     ObservableList<Person> getFilteredPersonList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Adds the filter given by {@code predicate} to the set of filters for the fitlered person list.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void addNewFilterToFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Clears the set of filters in the fitlered person list.
+     */
+    void clearFiltersInFilteredPersonList();
+
+    /**
+     * Removes the filter given by {@code predicate} from the set of filters for the fitlered person list.
+     */
+    void removeFilterFromFilteredPersonList(Predicate<Person> predicate);
 
     /** Returns an unmodifiable view of the list of target person */
     ObservableList<Person> getTargetPersonAsObservableList();

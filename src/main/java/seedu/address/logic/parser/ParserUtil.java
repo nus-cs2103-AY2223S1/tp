@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -12,8 +14,10 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
+import seedu.address.model.person.TagMatchesQueryPredicate;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -22,6 +26,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String COMMA = "\\s*,\\s*";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -136,5 +141,53 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code Collection<String> names} to into {@code NameContainsKeywordsPredicate}.
+     *
+     * @param names Collection of names to parse into {@code NameContainsKeywordsPredicate}.
+     * @return {@code NameContainsKeywordPredicate} that filters based on {@code names}.
+     * @throws ParseException If an error occurs during parsing.
+     */
+    public static NameContainsKeywordsPredicate parseNameQueryPredicate(Collection<String> names)
+            throws ParseException {
+        requireNonNull(names);
+        return new NameContainsKeywordsPredicate(names);
+    }
+
+    /**
+     * Parses {@code Collection<String> names} to into {@code TagMatchesQueryPredicate}.
+     *
+     * @param tags Collection of tags to parse into {@code TagMatchesKeywordsPredicate}.
+     * @return {@code TagMatchesQueryPredicate} that filters based on {@code tags}.
+     * @throws ParseException If an error occurs during parsing.
+     */
+    public static TagMatchesQueryPredicate parseTagsQueryPredicate(Collection<String> tags) throws ParseException {
+        requireNonNull(tags);
+        Set<Tag> tagSetQuery = parseTags(tags);
+        return new TagMatchesQueryPredicate(tagSetQuery);
+    }
+
+    /**
+     * Parses {@code String keywords} separated by commas into a {@code List<String>}.
+     *
+     * @param keywords Comma separated strings.
+     * @return A list of separated keywords without commas.
+     */
+    public static List<String> parseCommaSeparatedKeywords(String keywords) {
+        return List.of(keywords.split(COMMA));
+    }
+
+    /**
+     * Parses the collection {@code String keywords} in each entry into a {@code List<String>}.
+     *
+     * @param keywords List of comma separated keywords
+     * @return A list of separated keywords without commas.
+     */
+    public static List<String> parseCommaSeparatedKeywords(Collection<String> keywords) {
+        return keywords.stream()
+                .flatMap((keyword) -> parseCommaSeparatedKeywords(keyword).stream())
+                .collect(Collectors.toList());
     }
 }
