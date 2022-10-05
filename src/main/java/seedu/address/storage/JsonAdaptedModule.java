@@ -1,5 +1,11 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -11,11 +17,6 @@ import seedu.address.model.module.ModuleName;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * Jackson-friendly version of {@link Module}
@@ -81,7 +82,8 @@ public class JsonAdaptedModule {
         }
 
         if (moduleName == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ModuleName.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ModuleName.class.getSimpleName()));
         }
         if (!ModuleName.isValidName(moduleName)) {
             throw new IllegalValueException(ModuleName.MESSAGE_CONSTRAINTS);
@@ -89,7 +91,8 @@ public class JsonAdaptedModule {
         final ModuleName modelModuleName = new ModuleName(moduleName);
 
         if (moduleDescription == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ModuleDescription.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ModuleDescription.class.getSimpleName()));
         }
         if (!ModuleDescription.isValidDescription(moduleDescription)) {
             throw new IllegalValueException(ModuleDescription.MESSAGE_CONSTRAINTS);
@@ -97,7 +100,8 @@ public class JsonAdaptedModule {
         final ModuleDescription modelModuleDescription = new ModuleDescription(moduleDescription);
 
         if (moduleCode == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ModuleCode.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ModuleCode.class.getSimpleName()));
         }
         if (!ModuleCode.isValidCode(moduleCode)) {
             throw new IllegalValueException(ModuleCode.MESSAGE_CONSTRAINTS);
@@ -106,6 +110,7 @@ public class JsonAdaptedModule {
 
         final Set<Tag> modelModuleTags = new HashSet<>(moduleTags);
         final ArrayList<Person> modelModuleStudents = new ArrayList<>(moduleStudents);
-        return new Module(modelModuleName, modelModuleCode, modelModuleDescription, modelModuleTags, modelModuleStudents);
+        return new Module(modelModuleName, modelModuleCode, modelModuleDescription,
+                modelModuleTags, modelModuleStudents);
     }
 }
