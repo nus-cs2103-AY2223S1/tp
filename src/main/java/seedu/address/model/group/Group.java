@@ -37,6 +37,19 @@ public class Group {
     }
 
     /**
+     * Returns true if both groups have the same name.
+     * This defines a weaker notion of equality between two persons.
+     */
+    public boolean isSameGroup(Group otherGroup) {
+        if (otherGroup == this) {
+            return true;
+        }
+
+        return otherGroup != null
+                && otherGroup.getName().equals(getName());
+    }
+
+    /**
      * Returns true if both groups have same GroupName and every member exhibits equality.
      */
     @Override
