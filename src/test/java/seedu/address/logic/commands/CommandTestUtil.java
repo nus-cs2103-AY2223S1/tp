@@ -16,7 +16,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.Food;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditFoodDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -25,12 +25,17 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
-    public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
+    public static final String VALID_BREAKFAST_NAME = "Bread";
+    public static final String VALID_LUNCH_NAME = "Sushi";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_TAG_BREAKFAST = "breakfast";
+    public static final String VALID_TAG_BREAKFAST_QUANTITY = "oneSlice";
+    public static final String VALID_TAG_LUNCH = "lunch";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
+    public static final String NAME_DESC_BREAD = " " + PREFIX_NAME + VALID_BREAKFAST_NAME;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
@@ -40,13 +45,24 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditCommand.EditFoodDescriptor DESC_AMY;
+    public static final EditCommand.EditFoodDescriptor DESC_BOB;
+    public static final EditCommand.EditFoodDescriptor DESC_BREAKFAST = new EditFoodDescriptorBuilder()
+            .withName(VALID_BREAKFAST_NAME)
+            .withCalorie("150")
+            .withTags(VALID_TAG_BREAKFAST, VALID_TAG_BREAKFAST_QUANTITY)
+            .build();
+
+    public static final EditCommand.EditFoodDescriptor DESC_LUNCH = new EditFoodDescriptorBuilder()
+            .withName(VALID_LUNCH_NAME)
+            .withCalorie("300")
+            .withTags(VALID_TAG_LUNCH)
+            .build();
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
+        DESC_AMY = new EditFoodDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
+        DESC_BOB = new EditFoodDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 

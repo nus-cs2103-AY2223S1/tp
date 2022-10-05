@@ -1,10 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -18,6 +15,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Calorie;
 import seedu.address.model.Model;
 import seedu.address.model.person.DateTime;
@@ -32,36 +30,36 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final Prefix PREFIX_CALORIE = new Prefix("c/");
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the food identified "
+            + "by the index number used in the displayed food list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_CALORIE + "CALORIE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_NAME + "Bread "
+            + PREFIX_CALORIE + "150";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_DUPLICATE_FOOD = "This food already exists in the nutrition tracker.";
+    public static final String MESSAGE_EDIT_FOOD_SUCCESS = "Edited Food: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditFoodDescriptor editFoodDescriptor;
 
     /**
      * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param editFoodDescriptor details to edit the person with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditFoodDescriptor editFoodDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editFoodDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editFoodDescriptor = new EditFoodDescriptor(editFoodDescriptor);
     }
 
     @Override
@@ -74,27 +72,27 @@ public class EditCommand extends Command {
         }
 
         Food foodToEdit = lastShownList.get(index.getZeroBased());
-        Food editedFood = createEditedPerson(foodToEdit, editPersonDescriptor);
+        Food editedFood = createEditedFood(foodToEdit, editFoodDescriptor);
 
         if (!foodToEdit.isSamePerson(editedFood) && model.hasPerson(editedFood)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_FOOD);
         }
 
         model.setPerson(foodToEdit, editedFood);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedFood));
+        return new CommandResult(String.format(MESSAGE_EDIT_FOOD_SUCCESS, editedFood));
     }
 
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Food createEditedPerson(Food foodToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Food createEditedFood(Food foodToEdit, EditFoodDescriptor editFoodDescriptor) {
         assert foodToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(foodToEdit.getName());
-        Calorie updatedCalorie = editPersonDescriptor.getCalorie().orElse(foodToEdit.getCalorie());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(foodToEdit.getTags());
+        Name updatedName = editFoodDescriptor.getName().orElse(foodToEdit.getName());
+        Calorie updatedCalorie = editFoodDescriptor.getCalorie().orElse(foodToEdit.getCalorie());
+        Set<Tag> updatedTags = editFoodDescriptor.getTags().orElse(foodToEdit.getTags());
 
         return new Food(updatedName, updatedCalorie, updatedTags, foodToEdit.getDateTime());
     }
@@ -114,26 +112,42 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editFoodDescriptor.equals(e.editFoodDescriptor);
     }
 
     /**
      * Stores the details to edit the person with. Each non-empty field value will replace the
      * corresponding field value of the person.
      */
-    public static class EditPersonDescriptor {
+    public static class EditFoodDescriptor {
         private Name name;
         private Calorie calorie;
         private Set<Tag> tags;
         private DateTime dateTime;
 
-        public EditPersonDescriptor() {}
+        public EditFoodDescriptor() {}
+
+        /**
+         * Constructor for unit tests
+         * @param name Food name
+         * @param calorie Calorie content
+         * @param tags Food tags
+         */
+        public EditFoodDescriptor(String name, String calorie, String ...tags) {
+            this.name = new Name(name);
+            this.calorie = new Calorie(calorie);
+            HashSet<Tag> tagSet = new HashSet<>();
+            for (String tag : tags) {
+                tagSet.add(new Tag(tag));
+            }
+            this.tags = tagSet;
+        }
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditFoodDescriptor(EditFoodDescriptor toCopy) {
             setName(toCopy.name);
             setCalorie(toCopy.calorie);
             setTags(toCopy.tags);
@@ -193,12 +207,12 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditFoodDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditFoodDescriptor e = (EditFoodDescriptor) other;
 
             return getName().equals(e.getName())
                     && getTags().equals(e.getTags())
