@@ -11,7 +11,7 @@ public class DateValidator {
         this.dateFormatter = dateFormatter;
     }
 
-    public boolean isValid(String dateStr) {
+    public boolean validateDateString(String dateStr) {
         try {
             LocalDate.parse(dateStr, this.dateFormatter);
         } catch (DateTimeParseException e) {

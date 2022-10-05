@@ -25,7 +25,7 @@ public class ItemDate {
 
     public static boolean isValidItemDatetime(String unparsedDatetime) {
         DateValidator validator = new DateValidator(formatter);
-        return validator.isValid(unparsedDatetime);
+        return validator.validateDateString(unparsedDatetime);
     }
 
     public LocalDate getDatetimeFormat(String unparsedDatetime) {
