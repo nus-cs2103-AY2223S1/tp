@@ -100,8 +100,30 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasProject(Project project) {
+        requireNonNull(project);
+        return addressBook.hasProject(project);
+    }
+
+    @Override
+    public boolean hasIssue(Issue issue) {
+        requireNonNull(issue);
+        return addressBook.hasIssue(issue);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
+    }
+
+    @Override
+    public void deleteProject(Project target) {
+        addressBook.removeProject(target);
+    }
+
+    @Override
+    public void deleteIssue(Issue target) {
+        addressBook.removeIssue(target);
     }
 
     @Override
@@ -111,10 +133,36 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addProject(Project project) {
+        addressBook.addProject(project);
+        updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
+    }
+
+    @Override
+    public void addIssue(Issue issue) {
+        addressBook.addIssue(issue);
+        updateFilteredIssueList(PREDICATE_SHOW_ALL_ISSUES);
+    }
+
+    @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public void setProject(Project target, Project editedProject) {
+        requireAllNonNull(target, editedProject);
+
+        addressBook.setProject(target, editedProject);
+    }
+
+    @Override
+    public void setIssue(Issue target, Issue editedIssue) {
+        requireAllNonNull(target, editedIssue);
+
+        addressBook.setIssue(target, editedIssue);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -129,9 +177,31 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Project> getFilteredProjectList() {
+        return filteredProjects;
+    }
+
+    @Override
+    public ObservableList<Issue> getFilteredIssueList() {
+        return filteredIssues;
+    }
+
+    @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredProjectList(Predicate<Project> predicate) {
+        requireNonNull(predicate);
+        filteredProjects.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredIssueList(Predicate<Issue> predicate) {
+        requireNonNull(predicate);
+        filteredIssues.setPredicate(predicate);
     }
 
     @Override
@@ -150,7 +220,9 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredProjects.equals(other.filteredProjects)
+                && filteredIssues.equals(other.filteredIssues);
     }
 
 }

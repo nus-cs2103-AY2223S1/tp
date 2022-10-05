@@ -144,11 +144,51 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the given person {@code target} in the list with {@code editedProject}.
+     * {@code target} must exist in the address book.
+     * The project identity of {@code editedProject} must not be the same as another
+     * existing project in the address book.
+     */
+    public void setProject(Project target, Project editedProject) {
+        requireNonNull(editedProject);
+
+        projects.setProject(target, editedProject);
+    }
+
+    /**
+     * Replaces the given person {@code target} in the list with {@code editedIssue}.
+     * {@code target} must exist in the address book.
+     * The issue identity of {@code editedIssue} must not be the same as another
+     * existing issue in the address book.
+     */
+    public void setIssue(Issue target, Issue editedIssue) {
+        requireNonNull(editedIssue);
+
+        issues.setIssue(target, editedIssue);
+    }
+
+    /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
     public void removePerson(Person key) {
         persons.remove(key);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeProject(Project key) {
+        projects.remove(key);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeIssue(Issue key) {
+        issues.remove(key);
     }
 
     //// util methods
