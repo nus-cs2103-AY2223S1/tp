@@ -70,6 +70,6 @@ public class ArgumentMultimap {
         if (!matcher.matches()) {
             return "";
         }
-        return matcher.group("arguments");
+        return matcher.group("arguments").trim();
     }
 }
