@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import seedu.taassist.commons.core.GuiSettings;
 import seedu.taassist.commons.core.LogsCenter;
@@ -77,5 +78,10 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public SimpleStringProperty getFocusLabelProperty() {
+        return model.getFocusLabelProperty();
     }
 }
