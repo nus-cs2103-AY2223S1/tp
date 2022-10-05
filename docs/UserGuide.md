@@ -149,7 +149,7 @@ Hello! This is the command box where we key in our commands.
 
 The format for commands are not identical. One command in FoodRem is the command to create a new item.
 
-Format: `new n/ITEM_NAME [qty/QUANTITY] [type/TYPE] [bgt/BOUGHT_DATE] [exp/EXPIRY_DATE]`
+Format: `new n/ITEM_NAME [qty/QUANTITY] [unit/UNIT] [bgt/BOUGHT_DATE] [exp/EXPIRY_DATE]`
 
 The first word of every command allows FoodRem to distinguish different commands.
 `new` tells FoodRem that this is the command to create a new item.
@@ -164,7 +164,7 @@ an expiry date for the potatoes.
 
 `QUANTITY`: 30
 
-`TYPE`: kg
+`UNIT`: kg
 
 `BOUGHT_DATE`: 05-09-22
 
@@ -174,15 +174,15 @@ For example, the date format of BOUGHT_DATE, certain characters you cannot use a
 
 The command you would like to enter into the command box would be:
 
-`new n/Potatoes qty/30 type/kg bgt/05-09-22`
+`new n/Potatoes qty/30 unit/kg bgt/05-09-22`
 
 Alternatively these commands would do the same thing:
-- `new n/Potatoesqty/30type/kgbgt/05-09-22` (Omitting space between tags)
-- `new qty/30 n/Potatoes bgt/05-09-22 type/kg` (Reordering the flags)
+- `new n/Potatoesqty/30unit/kgbgt/05-09-22` (Omitting space between tags)
+- `new qty/30 n/Potatoes bgt/05-09-22 unit/kg` (Reordering the flags)
 
 These commands are invalid:
-- `newn/Potatoesqty/30type/kgbgt/05-09-22` (Removing space between command identifier and flag)
-- `new qty/-48 n/PÖtátÖes bgt/05/09/22 type/|kg|` (Restrictions of placeholders not followed)
+- `newn/Potatoesqty/30unit/kgbgt/05-09-22` (Removing space between command identifier and flag)
+- `new qty/-48 n/PÖtátÖes bgt/05/09/22 unit/|kg|` (Restrictions of placeholders not followed)
 
 Find out more about restrictions in the sections [Flags](#flags), [Placeholders](#placeholders) and 
 [Features](#features).
@@ -222,7 +222,7 @@ An item is a food item that you would like to include in FoodRem.
 The following are all the attributes store for each item:
 - Item name
 - Item quantity
-- Item type (Unit of measurement e.g. `kg`, `packets`)
+- Item unit (Unit of measurement e.g. `kg`, `packets`)
 - Item bought date
 - Item expiry date
 
@@ -298,8 +298,8 @@ Flags are delimiters that enable FoodRem to distinguish different parameters wit
     <td>QUANTITY</td>
   </tr>
   <tr>
-    <td>type/</td>
-    <td>TYPE</td>
+    <td>unit/</td>
+    <td>UNIT</td>
   </tr>
   <tr>
     <td>buy/</td>
@@ -349,9 +349,9 @@ Placeholders are words in UPPER_CASE to show you what parameters you can supply 
     <td>The QUANTITY is the number representing the amount of an item.<br>QUANTITY is a number larger than 0. It has an accuracy of up to 4 decimal places.<br/><br><strong>IMPORTANT</strong>:<br>There is a limit of 10000000 for the quantity.<br>Do not include thousands separators. <br>Do not include mathematical symbols<br><br/><strong>Valid Examples</strong>:<br>12<br>12.1234<br>1234567<br><br/><strong>Invalid Examples:</strong><br>12.12345<br>1,234,567<br>1 + 1<br>1/2<br>π</td>
   </tr>
   <tr>
-    <td>TYPE</td>
-    <td>type/</td>
-    <td>The TYPE is an optional text indicating the unit of an item.<br>TYPE is a short text.<br/><br><strong>IMPORTANT</strong>:<br>Only English characters, numbers, space, and the following symbols are accepted: <br>~`!@#$%^&amp;*()_-+={}[]:;”’&lt;&gt;,.?<br>There is a limit of 20 characters in a TYPE.<br>Leading and trailing spaces will be trimmed<br><br/><strong>Valid Examples</strong>:<br>kg<br>Packets<br><br/><strong>Invalid Examples:</strong><br>Containers (1000 grams)<br>Containers/grams<br>Containers|grams<br>Containers\grams</td>
+    <td>UNIT</td>
+    <td>unit/</td>
+    <td>The UNIT is an optional text indicating the unit of an item.<br>UNIT is a short text.<br/><br><strong>IMPORTANT</strong>:<br>Only English characters, numbers, space, and the following symbols are accepted: <br>~`!@#$%^&amp;*()_-+={}[]:;”’&lt;&gt;,.?<br>There is a limit of 20 characters in a UNIT.<br>Leading and trailing spaces will be trimmed<br><br/><strong>Valid Examples</strong>:<br>kg<br>Packets<br><br/><strong>Invalid Examples:</strong><br>Containers (1000 grams)<br>Containers/grams<br>Containers|grams<br>Containers\grams</td>
   </tr>
   <tr>
     <td>BOUGHT_DATE</td>
@@ -637,7 +637,7 @@ bye
 <tbody>
   <tr>
     <td>Create a new item</td>
-    <td>new n/ITEM_NAME [qty/QUANTITY] [type/TYPE] [bgt/BOUGHT_DATE] [exp/EXPIRY_DATE]<br>Valid Examples:<br>new n/Potato qty/70 type/kg bgt/22-02-11 exp/22-03/11</td>
+    <td>new n/ITEM_NAME [qty/QUANTITY] [unit/UNIT] [bgt/BOUGHT_DATE] [exp/EXPIRY_DATE]<br>Valid Examples:<br>new n/Potato qty/70 unit/kg bgt/22-02-11 exp/22-03/11</td>
   </tr>
   <tr>
     <td>List all items</td>
@@ -648,8 +648,8 @@ bye
     <td>find n/ITEM_NAME<br>Valid Examples:<br>find n/Potato</td>
   </tr>
   <tr>
-    <td>Sort an item by name, quantity, type, bought date or expiry date.</td>
-    <td>sort [n/] [qty/] [type/] [bgt/] [exp/]<br>Valid Examples:<br>sort n/<br>sort qty/<br>sort qty/ bgt/<br>Invalid Examples:<br>sort</td>
+    <td>Sort an item by name, quantity, unit, bought date or expiry date.</td>
+    <td>sort [n/] [qty/] [unit/] [bgt/] [exp/]<br>Valid Examples:<br>sort n/<br>sort qty/<br>sort qty/ bgt/<br>Invalid Examples:<br>sort</td>
   </tr>
   <tr>
     <td>View information about an item</td>
@@ -665,7 +665,7 @@ bye
   </tr>
   <tr>
     <td>Update the information of an item</td>
-    <td>set id/INDEX_LIST [n/ITEM_NAME] [qty/QUANTITY] [type/TYPE] [bgt/BOUGHT_DATE] [exp/EXPIRY_DATE]<br>IMPORTANT:<br>Do not update multiple items to have the same name<br>Valid Examples:<br>set id/1 n/Potatoes qty/60 type/kg<br>set id/1,2,3 qty/60</td>
+    <td>set id/INDEX_LIST [n/ITEM_NAME] [qty/QUANTITY] [unit/UNIT] [bgt/BOUGHT_DATE] [exp/EXPIRY_DATE]<br>IMPORTANT:<br>Do not update multiple items to have the same name<br>Valid Examples:<br>set id/1 n/Potatoes qty/60 unit/kg<br>set id/1,2,3 qty/60</td>
   </tr>
   <tr>
     <td>Delete an item</td>
@@ -686,7 +686,7 @@ bye
 <tbody>
   <tr>
     <td>Create a new item</td>
-    <td>new n/ITEM_NAME [qty/QUANTITY] [type/TYPE] [bgt/BOUGHT_DATE] [exp/EXPIRY_DATE]<br>Valid Examples:<br>new n/Potato qty/70 type/kg bgt/22-02-11 exp/22-03/11</td>
+    <td>new n/ITEM_NAME [qty/QUANTITY] [unit/UNIT] [bgt/BOUGHT_DATE] [exp/EXPIRY_DATE]<br>Valid Examples:<br>new n/Potato qty/70 unit/kg bgt/22-02-11 exp/22-03/11</td>
   </tr>
   <tr>
     <td>List all items</td>
@@ -697,8 +697,8 @@ bye
     <td>find n/ITEM_NAME<br>Valid Examples:<br>find n/Potato</td>
   </tr>
   <tr>
-    <td>Sort an item by name, quantity, type, bought date or expiry date.</td>
-    <td>sort [n/] [qty/] [type/] [bgt/] [exp/]<br>Valid Examples:<br>sort n/<br>sort qty/<br>sort qty/ bgt/<br>Invalid Examples:<br>sort</td>
+    <td>Sort an item by name, quantity, unit, bought date or expiry date.</td>
+    <td>sort [n/] [qty/] [unit/] [bgt/] [exp/]<br>Valid Examples:<br>sort n/<br>sort qty/<br>sort qty/ bgt/<br>Invalid Examples:<br>sort</td>
   </tr>
   <tr>
     <td>View information about an item</td>
@@ -714,7 +714,7 @@ bye
   </tr>
   <tr>
     <td>Update the information of an item</td>
-    <td>set id/INDEX_LIST [n/ITEM_NAME] [qty/QUANTITY] [type/TYPE] [bgt/BOUGHT_DATE] [exp/EXPIRY_DATE]<br>IMPORTANT:<br>Do not update multiple items to have the same name<br>Valid Examples:<br>set id/1 n/Potatoes qty/60 type/kg<br>set id/1,2,3 qty/60</td>
+    <td>set id/INDEX_LIST [n/ITEM_NAME] [qty/QUANTITY] [unit/UNIT] [bgt/BOUGHT_DATE] [exp/EXPIRY_DATE]<br>IMPORTANT:<br>Do not update multiple items to have the same name<br>Valid Examples:<br>set id/1 n/Potatoes qty/60 unit/kg<br>set id/1,2,3 qty/60</td>
   </tr>
   <tr>
     <td>Delete an item</td>
