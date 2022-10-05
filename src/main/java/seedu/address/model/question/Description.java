@@ -22,7 +22,7 @@ public class Description {
     /**
      * Constructs a {@code Description}.
      *
-     * @param Description A valid description.
+     * @param description A valid description.
      */
     public Description(String description) {
         requireNonNull(description);
