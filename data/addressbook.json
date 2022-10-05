@@ -1,0 +1,59 @@
+{
+  "customers" : [ {
+    "name" : "test",
+    "phone" : "123",
+    "email" : "test@gmail.com",
+    "address" : "",
+    "tagged" : [ ],
+    "commissions" : [ {
+      "title" : "test 1",
+      "description" : "desc",
+      "fee" : 0.5,
+      "deadline" : "2022-04-04",
+      "tagged" : [ "test2", "test" ],
+      "isCompleted" : true
+    }, {
+      "title" : "test 2",
+      "description" : "desc",
+      "fee" : 0.5,
+      "deadline" : "2022-04-04",
+      "tagged" : [ "test2", "test" ],
+      "isCompleted" : true
+    }, {
+      "title" : "test 3",
+      "description" : "desc",
+      "fee" : 0.5,
+      "deadline" : "2022-04-04",
+      "tagged" : [ "test2", "test" ],
+      "isCompleted" : true
+    } ]
+  }, {
+    "name" : "test2",
+    "phone" : "123",
+    "email" : "test@gmail.com",
+    "address" : "",
+    "tagged" : [ "test" ],
+    "commissions" : [ {
+      "title" : "test 4",
+      "description" : "desc",
+      "fee" : 0.5,
+      "deadline" : "2022-04-04",
+      "tagged" : [ "test2", "test" ],
+      "isCompleted" : true
+    }, {
+      "title" : "test 5",
+      "description" : "desc",
+      "fee" : 0.5,
+      "deadline" : "2022-04-04",
+      "tagged" : [ "test2", "test" ],
+      "isCompleted" : true
+    }, {
+      "title" : "test 6",
+      "description" : "desc",
+      "fee" : 0.5,
+      "deadline" : "2022-04-04",
+      "tagged" : [ "test2", "test" ],
+      "isCompleted" : true
+    } ]
+  } ]
+}
