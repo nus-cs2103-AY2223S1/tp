@@ -1,6 +1,8 @@
 package seedu.address.storage;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import seedu.address.model.meeting.Description;
 import seedu.address.model.meeting.Meeting;
@@ -10,6 +12,7 @@ import seedu.address.model.person.Client;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @JsonIdentityInfo(generator = ObjectIdGenerators.UUIDGenerator.class, property = "@UUID")
 class JsonAdaptedMeeting {
@@ -24,6 +27,15 @@ class JsonAdaptedMeeting {
         description = meeting.getDescription().toString();
         meetingDate = meeting.getMeetingDate().toString();
         meetingTime = meeting.getMeetingTime().toString();
+    }
+
+    @JsonCreator
+    public JsonAdaptedMeeting(@JsonProperty("client") Client client, @JsonProperty("phone") String description,
+                             @JsonProperty("email") String meetingDate, @JsonProperty("address") String meetingTime) {
+        this.client = client;
+        this.description = description;
+        this.meetingDate = meetingDate;
+        this.meetingTime = meetingTime;
     }
 
     public Meeting toModelType() {
