@@ -2,10 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import seedu.address.commons.core.index.Index;
+import seedu.address.commons.core.index.Indexes;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -23,11 +20,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         try {
             String trimmedArgs = args.trim();
             String[] selectedIndexes = trimmedArgs.split("\\s+");
-            Set<Index> indexes = new HashSet<>();
-
-            for (String arg : selectedIndexes) {
-                indexes.add(ParserUtil.parseIndex(arg));
-            }
+            Indexes indexes = new Indexes(selectedIndexes);
 
             return new DeleteCommand(indexes);
         } catch (ParseException pe) {

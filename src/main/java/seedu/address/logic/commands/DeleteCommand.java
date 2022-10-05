@@ -3,10 +3,10 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
-import java.util.Set;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
+import seedu.address.commons.core.index.Indexes;
+import seedu.address.commons.exceptions.IllegalIndexException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
@@ -26,9 +26,9 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Internship(s):\n%s";
 
-    private final Set<Index> targetIndexes;
+    private final Indexes targetIndexes;
 
-    public DeleteCommand(Set<Index> targetIndexes) {
+    public DeleteCommand(Indexes targetIndexes) {
         this.targetIndexes = targetIndexes;
     }
 
@@ -36,15 +36,12 @@ public class DeleteCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
-        UniquePersonList personsToRemove = new UniquePersonList();
+        UniquePersonList personsToRemove;
 
-        for (Index selectedIndex : targetIndexes) {
-            if (selectedIndex.getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-            }
-
-            Person personToDelete = lastShownList.get(selectedIndex.getZeroBased());
-            personsToRemove.add(personToDelete);
+        try {
+            personsToRemove = targetIndexes.getAllPersonsFromIndexes(lastShownList);
+        } catch (IllegalIndexException error) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         for (Person personToDelete : personsToRemove) {
