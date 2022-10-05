@@ -35,15 +35,16 @@ public class AddEventCommand extends Command {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "This Event already exists in the application";
 
-    public AddEventCommand() {
+    private final Event toAdd;
 
-    }
     public AddEventCommand(Event event) {
         requireNonNull(event);
+        toAdd = event;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        return new CommandResult(MESSAGE_USAGE);
+        model.addEvent(toAdd);
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 }
