@@ -9,6 +9,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -36,6 +38,13 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+
+    public static final String VALID_DESCRIPTION_MEETING1 = "meeting1";
+    public static final String VALID_DESCRIPTION_MEETING2 = "meeting2";
+    public static final LocalDate VALID_MEETING_DATE_MEETING1 = LocalDate.of(2020, 1, 8);
+    public static final LocalDate VALID_MEETING_DATE_MEETING2 = LocalDate.of(2020, 5, 5);
+    public static final LocalTime VALID_MEETING_TIME_MEETING1 = LocalTime.of(7, 20, 45, 342123342);
+    public static final LocalTime VALID_MEETING_TIME_MEETING2 = LocalTime.of(7, 20, 45, 342123321);
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -99,21 +108,21 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the client book, filtered client list and selected client in {@code actualModel} remain unchanged
+     * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        ClientBook expectedClientBook = new ClientBook(actualModel.getClientBook());
+        ClientBook expectedAddressBook = new ClientBook(actualModel.getClientBook());
         List<Client> expectedFilteredList = new ArrayList<>(actualModel.getFilteredClientList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedClientBook, actualModel.getClientBook());
+        assertEquals(expectedAddressBook, actualModel.getClientBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredClientList());
     }
     /**
-     * Updates {@code model}'s filtered list to show only the client at the given {@code targetIndex} in the
-     * {@code model}'s client book.
+     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
+     * {@code model}'s address book.
      */
     public static void showClientAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredClientList().size());
