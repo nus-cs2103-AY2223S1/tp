@@ -5,16 +5,16 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.condonery.model.person.Person;
-import seedu.condonery.model.person.UniquePersonList;
+import seedu.condonery.model.property.Property;
+import seedu.condonery.model.property.UniquePropertyList;
 
 /**
- * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Wraps all data at the Condonery level
+ * Duplicates are not allowed (by .isSameProperty comparison)
  */
 public class PropertyDirectory implements ReadOnlyPropertyDirectory {
 
-    private final UniquePersonList persons;
+    private final UniquePropertyList properties;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,13 +24,13 @@ public class PropertyDirectory implements ReadOnlyPropertyDirectory {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
+        properties = new UniquePropertyList();
     }
 
     public PropertyDirectory() {}
 
     /**
-     * Creates an PropertyDirectory using the Persons in the {@code toBeCopied}
+     * Creates an PropertyDirectory using the Properties in the {@code toBeCopied}
      */
     public PropertyDirectory(ReadOnlyPropertyDirectory toBeCopied) {
         this();
@@ -40,11 +40,11 @@ public class PropertyDirectory implements ReadOnlyPropertyDirectory {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the property list with {@code properties}.
+     * {@code properties} must not contain duplicate properties.
      */
-    public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
+    public void setProperties(List<Property> properties) {
+        this.properties.setProperties(properties);
     }
 
     /**
@@ -53,68 +53,68 @@ public class PropertyDirectory implements ReadOnlyPropertyDirectory {
     public void resetData(ReadOnlyPropertyDirectory newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setProperties(newData.getPropertyList());
     }
 
-    //// person-level operations
+    //// property-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a property with the same identity as {@code property} exists in the address book.
      */
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return persons.contains(person);
+    public boolean hasProperty(Property property) {
+        requireNonNull(property);
+        return properties.contains(property);
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a property to the address book.
+     * The property must not already exist in the address book.
      */
-    public void addPerson(Person p) {
-        persons.add(p);
+    public void addProperty(Property p) {
+        properties.add(p);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Replaces the given property {@code target} in the list with {@code editedProperty}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The property identity of {@code editedProperty} must not be the same as another existing property in the address book.
      */
-    public void setPerson(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
+    public void setProperty(Property target, Property editedProperty) {
+        requireNonNull(editedProperty);
 
-        persons.setPerson(target, editedPerson);
+        properties.setProperty(target, editedProperty);
     }
 
     /**
      * Removes {@code key} from this {@code PropertyDirectory}.
      * {@code key} must exist in the address book.
      */
-    public void removePerson(Person key) {
-        persons.remove(key);
+    public void removeProperty(Property key) {
+        properties.remove(key);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return properties.asUnmodifiableObservableList().size() + " properties";
         // TODO: refine later
     }
 
     @Override
-    public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+    public ObservableList<Property> getPropertyList() {
+        return properties.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof PropertyDirectory // instanceof handles nulls
-                && persons.equals(((PropertyDirectory) other).persons));
+                && properties.equals(((PropertyDirectory) other).properties));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return properties.hashCode();
     }
 }
