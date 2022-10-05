@@ -72,11 +72,11 @@ public class EditStudentDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditStudentDescriptor}
+     * Parses the {@code moduleClasses} into a {@code Set<ModuleClass>} and set it to the {@code EditStudentDescriptor}
      * that we are building.
      */
-    public EditStudentDescriptorBuilder withTags(String... tags) {
-        Set<ModuleClass> moduleClassSet = Stream.of(tags).map(ModuleClass::new).collect(Collectors.toSet());
+    public EditStudentDescriptorBuilder withModuleClasses(String... moduleClasses) {
+        Set<ModuleClass> moduleClassSet = Stream.of(moduleClasses).map(ModuleClass::new).collect(Collectors.toSet());
         descriptor.setModuleClasses(moduleClassSet);
         return this;
     }
