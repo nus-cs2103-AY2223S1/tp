@@ -2,62 +2,62 @@
 
 @font-face {
     font-family: 'SF Mono Bold';
-    src: url('/fonts/LigaSFMonoNerdFont-Bold.otf');
+    src: url('/fonts/SFMono/LigaSFMonoNerdFont-Bold.otf');
 }
 
 @font-face {
     font-family: 'SF Mono Bold Italic';
-    src: url('/fonts/LigaSFMonoNerdFont-BoldItalic.otf');
+    src: url('/fonts/SFMono/LigaSFMonoNerdFont-BoldItalic.otf');
 }
 
 @font-face {
     font-family: 'SF Mono Heavy';
-    src: url('/fonts/LigaSFMonoNerdFont-Heavy.otf');
+    src: url('/fonts/SFMono/LigaSFMonoNerdFont-Heavy.otf');
 }
 
 @font-face {
     font-family: 'SF Mono Heavy Italic';
-    src: url('/fonts/LigaSFMonoNerdFont-HeavyItalic.otf');
+    src: url('/fonts/SFMono/LigaSFMonoNerdFont-HeavyItalic.otf');
 }
 
 @font-face {
     font-family: 'SF Mono Light';
-    src: url('/fonts/LigaSFMonoNerdFont-Light.otf');
+    src: url('/fonts/SFMono/LigaSFMonoNerdFont-Light.otf');
 }
 
 @font-face {
     font-family: 'SF Mono Light Italic';
-    src: url('/fonts/LigaSFMonoNerdFont-LightItalic.otf');
+    src: url('/fonts/SFMono/LigaSFMonoNerdFont-LightItalic.otf');
 }
 
 @font-face {
     font-family: 'SF Mono Medium';
-    src: url('/fonts/LigaSFMonoNerdFont-Medium.otf');
+    src: url('/fonts/SFMono/LigaSFMonoNerdFont-Medium.otf');
 }
 
 @font-face {
     font-family: 'SF Mono Medium Italic';
-    src: url('/fonts/LigaSFMonoNerdFont-MediumItalic.otf');
+    src: url('/fonts/SFMono/LigaSFMonoNerdFont-MediumItalic.otf');
 }
 
 @font-face {
     font-family: 'SF Mono Regular';
-    src: url('/fonts/LigaSFMonoNerdFont-Regular.otf');
+    src: url('/fonts/SFMono/LigaSFMonoNerdFont-Regular.otf');
 }
 
 @font-face {
     font-family: 'SF Mono Regular Italic';
-    src: url('/fonts/LigaSFMonoNerdFont-RegularItalic.otf');
+    src: url('/fonts/SFMono/LigaSFMonoNerdFont-RegularItalic.otf');
 }
 
 @font-face {
     font-family: 'SF Mono Semibold';
-    src: url('/fonts/LigaSFMonoNerdFont-Semibold.otf');
+    src: url('/fonts/SFMono/LigaSFMonoNerdFont-Semibold.otf');
 }
 
 @font-face {
     font-family: 'SF Mono Semibold Italic';
-    src: url('/fonts/LigaSFMonoNerdFont-SemiboldItalic.otf');
+    src: url('/fonts/SFMono/LigaSFMonoNerdFont-SemiboldItalic.otf');
 }
 
 /* End of import fonts */
@@ -384,9 +384,10 @@
 #commandTextField {
     -fx-background-color: transparent #383838 transparent #383838;
     -fx-background-insets: 0;
-    -fx-border-color: #383838 #383838 #ffffff #383838;
+    -fx-border-color: #ffffff;
     -fx-border-insets: 0;
     -fx-border-width: 1;
+    -fx-border-radius: 10px;
     -fx-font-family: "SF Mono Light";
     -fx-font-size: 13pt;
     -fx-text-fill: white;
