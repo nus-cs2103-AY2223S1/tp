@@ -20,6 +20,7 @@ public class Client {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private Meeting meeting;
 
     // Data fields
     private final Address address;
@@ -73,6 +74,14 @@ public class Client {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Meeting getMeeting() {
+        return meeting;
+    }
+
+    public void setMeeting(Meeting meeting) {
+        this.meeting = meeting;
     }
 
     /**
