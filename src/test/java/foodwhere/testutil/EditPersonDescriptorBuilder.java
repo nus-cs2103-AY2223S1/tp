@@ -7,7 +7,6 @@ import java.util.stream.Stream;
 import foodwhere.logic.commands.EditCommand;
 import foodwhere.model.detail.Detail;
 import foodwhere.model.person.Address;
-import foodwhere.model.person.Email;
 import foodwhere.model.person.Name;
 import foodwhere.model.person.Person;
 import foodwhere.model.person.Phone;
@@ -34,7 +33,6 @@ public class EditPersonDescriptorBuilder {
         descriptor = new EditCommand.EditPersonDescriptor();
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
-        descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
         descriptor.setDetails(person.getDetails());
     }
@@ -52,14 +50,6 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withPhone(String phone) {
         descriptor.setPhone(new Phone(phone));
-        return this;
-    }
-
-    /**
-     * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are building.
-     */
-    public EditPersonDescriptorBuilder withEmail(String email) {
-        descriptor.setEmail(new Email(email));
         return this;
     }
 

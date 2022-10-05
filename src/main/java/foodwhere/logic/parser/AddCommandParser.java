@@ -9,7 +9,6 @@ import foodwhere.logic.commands.AddCommand;
 import foodwhere.logic.parser.exceptions.ParseException;
 import foodwhere.model.detail.Detail;
 import foodwhere.model.person.Address;
-import foodwhere.model.person.Email;
 import foodwhere.model.person.Name;
 import foodwhere.model.person.Person;
 import foodwhere.model.person.Phone;
@@ -29,26 +28,23 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ArgumentTokenizer.tokenize(args,
                         CliSyntax.PREFIX_NAME,
                         CliSyntax.PREFIX_PHONE,
-                        CliSyntax.PREFIX_EMAIL,
                         CliSyntax.PREFIX_ADDRESS,
                         CliSyntax.PREFIX_DETAIL);
 
         if (!arePrefixesPresent(argMultimap,
                 CliSyntax.PREFIX_NAME,
                 CliSyntax.PREFIX_ADDRESS,
-                CliSyntax.PREFIX_PHONE,
-                CliSyntax.PREFIX_EMAIL)
+                CliSyntax.PREFIX_PHONE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(CliSyntax.PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(CliSyntax.PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(CliSyntax.PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(CliSyntax.PREFIX_ADDRESS).get());
         Set<Detail> detailList = ParserUtil.parseDetails(argMultimap.getAllValues(CliSyntax.PREFIX_DETAIL));
 
-        Person person = new Person(name, phone, email, address, detailList);
+        Person person = new Person(name, phone, address, detailList);
 
         return new AddCommand(person);
     }

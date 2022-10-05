@@ -18,7 +18,6 @@ public class Person {
     // Identity fields
     private final Name name;
     private final Phone phone;
-    private final Email email;
 
     // Data fields
     private final Address address;
@@ -27,11 +26,10 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Detail> details) {
-        requireAllNonNull(name, phone, email, address, details);
+    public Person(Name name, Phone phone, Address address, Set<Detail> details) {
+        requireAllNonNull(name, phone, address, details);
         this.name = name;
         this.phone = phone;
-        this.email = email;
         this.address = address;
         this.details.addAll(details);
     }
@@ -42,10 +40,6 @@ public class Person {
 
     public Phone getPhone() {
         return phone;
-    }
-
-    public Email getEmail() {
-        return email;
     }
 
     public Address getAddress() {
@@ -90,7 +84,6 @@ public class Person {
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getDetails().equals(getDetails());
     }
@@ -98,7 +91,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, details);
+        return Objects.hash(name, phone, address, details);
     }
 
     @Override
@@ -107,8 +100,6 @@ public class Person {
         builder.append(getName())
                 .append("; Phone: ")
                 .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
                 .append("; Address: ")
                 .append(getAddress());
 

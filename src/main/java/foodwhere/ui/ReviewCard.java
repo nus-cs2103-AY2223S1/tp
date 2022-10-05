@@ -38,8 +38,6 @@ public class ReviewCard extends UiPart<Region> {
     @FXML
     private Label address;
     @FXML
-    private Label email;
-    @FXML
     private FlowPane details;
 
     /**
@@ -52,7 +50,6 @@ public class ReviewCard extends UiPart<Region> {
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
         person.getDetails().stream()
                 .sorted(Comparator.comparing(detail -> detail.detail))
                 .forEach(detail -> details.getChildren().add(new Label(detail.detail)));
