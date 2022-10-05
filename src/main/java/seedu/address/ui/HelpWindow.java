@@ -15,9 +15,16 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
-
+    public static final String USERGUIDE_URL = "https://ay2223s1-cs2103t-w09-4.github.io/tp/UserGuide.html";
+    public static final String BUFFER_LINE = "-------------------------------------------------------------------\n";
+    public static final String BASIC_COMMANDS = "1. To add a new student:\n" + "> add n/NAME p/PHONE_NUMBER \n"
+            + "2. To find a student in your address book:\n" + "> find NAME\n" + "> find PHONE_NUMBER\n"
+            + "3. To view all information of an existing student:\n" + "> view INDEX\n"
+            + "4. To edit a students details:\n" + "> edit [n/ p/ lp/]NEW_FIELD\n"
+            + "> edit [h/ a/ g/]INDEX NEW_FIELD \n"
+            + "5. To remove a student from your address book:\n" + "> delete INDEX\n";
+    public static final String HELP_MESSAGE = BUFFER_LINE + BASIC_COMMANDS + BUFFER_LINE
+            + "For other queries, you can refer to the user guide: \n" + USERGUIDE_URL;
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
 
