@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -19,6 +20,7 @@ public class Client {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private Meeting meeting;
 
     // Data fields
     private final Address address;
@@ -50,6 +52,14 @@ public class Client {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Meeting getMeeting() {
+        return meeting;
+    }
+
+    public void setMeeting(Meeting meeting) {
+        this.meeting = meeting;
     }
 
     /**
