@@ -23,14 +23,14 @@ public class Time {
      */
     public Time(String time) {
         requireNonNull(time);
-        checkArgument(isValidtime(time), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidTime(time), MESSAGE_CONSTRAINTS);
         this.time = time;
     }
 
     /**
      * Returns true if a given string is a valid time.
      */
-    public static boolean isValidtime(String test) {
+    public static boolean isValidTime(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
