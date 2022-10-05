@@ -76,6 +76,27 @@ public class SortCommand extends Command {
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof SortCommand)) {
+            return false;
+        }
+        if (argList.size() != ((SortCommand) other).argList.size()) {
+            return false;
+        }
+        boolean result = true;
+        for (int i = 0; i < argList.size(); i++) {
+            result = argList.get(i).equals(((SortCommand) other).argList.get(i));
+            if (result == false) {
+                break;
+            }
+        }
+        return result;
+    }
+
     /**
      * Represents an argument for a SortCommand.
      * Consists of a prefix, whether the sort is reversed, and a tag if the prefix is PREFIX_TAG.
@@ -108,6 +129,21 @@ public class SortCommand extends Command {
 
         public Tag getTag() {
             return tag;
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof SortArgument)) {
+                return false;
+            }
+            SortArgument otherSort = (SortArgument) other;
+            if (tag == null) {
+                return otherSort.tag == null;
+            }
+            return isReverse == otherSort.isReverse && prefix.equals(otherSort.prefix) && tag.equals(otherSort.tag);
         }
     }
 }
