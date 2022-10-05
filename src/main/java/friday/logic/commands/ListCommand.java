@@ -1,7 +1,7 @@
 package friday.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static friday.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static java.util.Objects.requireNonNull;
 
 import friday.model.Model;
 

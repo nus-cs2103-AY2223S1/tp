@@ -4,14 +4,14 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import friday.model.person.Address;
-import friday.model.person.Email;
-import friday.model.person.Phone;
-import friday.model.person.Remark;
 import friday.model.AddressBook;
 import friday.model.ReadOnlyAddressBook;
+import friday.model.person.Address;
+import friday.model.person.Email;
 import friday.model.person.Name;
 import friday.model.person.Person;
+import friday.model.person.Phone;
+import friday.model.person.Remark;
 import friday.model.tag.Tag;
 
 /**

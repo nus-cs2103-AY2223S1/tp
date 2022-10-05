@@ -1,15 +1,15 @@
 package friday.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static friday.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static friday.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static friday.logic.parser.CliSyntax.PREFIX_NAME;
 import static friday.logic.parser.CliSyntax.PREFIX_PHONE;
 import static friday.logic.parser.CliSyntax.PREFIX_TAG;
+import static java.util.Objects.requireNonNull;
 
 import friday.logic.commands.exceptions.CommandException;
-import friday.model.person.Person;
 import friday.model.Model;
+import friday.model.person.Person;
 
 /**
  * Adds a person to the address book.

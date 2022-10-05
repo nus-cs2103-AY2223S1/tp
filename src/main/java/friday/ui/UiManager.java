@@ -2,6 +2,7 @@ package friday.ui;
 
 import java.util.logging.Logger;
 
+import friday.MainApp;
 import friday.commons.core.LogsCenter;
 import friday.commons.util.StringUtil;
 import friday.logic.Logic;
@@ -10,7 +11,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import friday.MainApp;
 
 /**
  * The manager of the UI component.

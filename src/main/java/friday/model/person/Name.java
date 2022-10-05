@@ -1,9 +1,7 @@
 package friday.model.person;
 
-import static java.util.Objects.requireNonNull;
 import static friday.commons.util.AppUtil.checkArgument;
-
-import friday.commons.util.AppUtil;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a Person's name in the address book.
@@ -29,7 +27,7 @@ public class Name {
      */
     public Name(String name) {
         requireNonNull(name);
-        AppUtil.checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         fullName = name;
     }
 

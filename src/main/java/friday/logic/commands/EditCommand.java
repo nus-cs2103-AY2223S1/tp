@@ -1,12 +1,12 @@
 package friday.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static friday.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static friday.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static friday.logic.parser.CliSyntax.PREFIX_NAME;
 import static friday.logic.parser.CliSyntax.PREFIX_PHONE;
 import static friday.logic.parser.CliSyntax.PREFIX_TAG;
 import static friday.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static java.util.Objects.requireNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -18,6 +18,7 @@ import friday.commons.core.Messages;
 import friday.commons.core.index.Index;
 import friday.commons.util.CollectionUtil;
 import friday.logic.commands.exceptions.CommandException;
+import friday.model.Model;
 import friday.model.person.Address;
 import friday.model.person.Email;
 import friday.model.person.Name;
@@ -25,7 +26,6 @@ import friday.model.person.Person;
 import friday.model.person.Phone;
 import friday.model.person.Remark;
 import friday.model.tag.Tag;
-import friday.model.Model;
 
 /**
  * Edits the details of an existing person in the address book.

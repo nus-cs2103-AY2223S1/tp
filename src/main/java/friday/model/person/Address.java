@@ -1,9 +1,7 @@
 package friday.model.person;
 
-import static java.util.Objects.requireNonNull;
 import static friday.commons.util.AppUtil.checkArgument;
-
-import friday.commons.util.AppUtil;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a Person's address in the address book.
@@ -28,7 +26,7 @@ public class Address {
      */
     public Address(String address) {
         requireNonNull(address);
-        AppUtil.checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
         value = address;
     }
 

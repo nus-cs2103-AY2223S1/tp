@@ -9,9 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import friday.commons.exceptions.IllegalValueException;
-import friday.model.person.Person;
 import friday.model.AddressBook;
 import friday.model.ReadOnlyAddressBook;
+import friday.model.person.Person;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.

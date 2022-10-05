@@ -1,7 +1,7 @@
 package friday.logic.parser;
 
-import friday.logic.parser.exceptions.ParseException;
 import friday.logic.commands.Command;
+import friday.logic.parser.exceptions.ParseException;
 
 /**
  * Represents a Parser that is able to parse user input into a {@code Command} of type {@code T}.

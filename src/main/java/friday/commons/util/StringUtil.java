@@ -1,7 +1,7 @@
 package friday.commons.util;
 
-import static java.util.Objects.requireNonNull;
 import static friday.commons.util.AppUtil.checkArgument;
+import static java.util.Objects.requireNonNull;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -28,8 +28,8 @@ public class StringUtil {
         requireNonNull(word);
 
         String preppedWord = word.trim();
-        AppUtil.checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
-        AppUtil.checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
+        checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
+        checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
 
         String preppedSentence = sentence;
         String[] wordsInPreppedSentence = preppedSentence.split("\\s+");

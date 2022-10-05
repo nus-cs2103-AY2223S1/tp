@@ -1,7 +1,7 @@
 package friday.logic.parser;
 
-import static java.util.Objects.requireNonNull;
 import static friday.logic.parser.CliSyntax.PREFIX_REMARK;
+import static java.util.Objects.requireNonNull;
 
 import friday.commons.core.Messages;
 import friday.commons.core.index.Index;
@@ -27,7 +27,8 @@ public class RemarkCommandParser implements Parser<RemarkCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (IllegalValueException ive) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, RemarkCommand.MESSAGE_USAGE), ive);
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                    RemarkCommand.MESSAGE_USAGE), ive);
         }
 
         String remark = argMultimap.getValue(PREFIX_REMARK).orElse("");

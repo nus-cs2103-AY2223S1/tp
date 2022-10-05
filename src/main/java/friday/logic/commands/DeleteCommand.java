@@ -7,8 +7,8 @@ import java.util.List;
 import friday.commons.core.Messages;
 import friday.commons.core.index.Index;
 import friday.logic.commands.exceptions.CommandException;
-import friday.model.person.Person;
 import friday.model.Model;
+import friday.model.person.Person;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.

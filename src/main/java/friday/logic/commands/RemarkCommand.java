@@ -8,11 +8,10 @@ import java.util.List;
 
 import friday.commons.core.Messages;
 import friday.commons.core.index.Index;
-import friday.commons.util.CollectionUtil;
 import friday.logic.commands.exceptions.CommandException;
+import friday.model.Model;
 import friday.model.person.Person;
 import friday.model.person.Remark;
-import friday.model.Model;
 
 /**
  * Changes the remark of an existing person in the address book.
@@ -38,7 +37,7 @@ public class RemarkCommand extends Command {
      * @param remark of the person to be updated to
      */
     public RemarkCommand(Index index, Remark remark) {
-        CollectionUtil.requireAllNonNull(index, remark);
+        requireAllNonNull(index, remark);
 
         this.index = index;
         this.remark = remark;
