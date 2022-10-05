@@ -63,7 +63,8 @@ public class NoConflictMeetingList implements Iterable<Meeting> {
             throw new MeetingNotFoundException();
         }
 
-        if (contains(editedMeeting)) {
+        if (contains(editedMeeting) && !target.willConflict(editedMeeting)) {
+            // Any timing conflicts with the original timing is okay
             throw new ConflictingMeetingException();
         }
 
