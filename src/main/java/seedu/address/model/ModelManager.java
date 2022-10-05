@@ -166,8 +166,8 @@ public class ModelManager implements Model {
         filteredCustomers.setPredicate(predicate);
         if (filteredCustomers.size() == 0) {
             selectCustomer(null);
-        }
-        if (filteredCustomers.size() > 0 && !filteredCustomers.contains(selectedCustomer.getValue())) {
+        } else if (hasSelectedCustomer() && filteredCustomers.stream()
+                .noneMatch(selectedCustomer.getValue()::isSameCustomer)) {
             selectCustomer(filteredCustomers.get(0));
         }
     }
@@ -212,7 +212,7 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Returns whether there is an selected customer.
+     * Returns whether there is a selected customer.
      */
     @Override
     public boolean hasSelectedCustomer() {
