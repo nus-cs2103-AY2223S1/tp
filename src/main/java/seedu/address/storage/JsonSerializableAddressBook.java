@@ -12,6 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Student;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -33,11 +34,15 @@ class JsonSerializableAddressBook {
 
     /**
      * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Makes use of 2 methods to either add a student or person into the storage.
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        persons.addAll(source.getPersonList().stream().filter(x -> !(x instanceof Student))
+                .map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        persons.addAll(source.getPersonList().stream().filter(x -> x instanceof Student)
+                .map(JsonAdaptedStudent::new).collect(Collectors.toList()));
     }
 
     /**

@@ -121,4 +121,43 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Parses id.
+     *
+     * @param id
+     * @return id.
+     * @throws ParseException If null.
+     */
+    public static String parseID(String id) throws ParseException {
+        requireNonNull(id);
+        String trimmedID = id.trim();
+        return id;
+    }
+
+    /**
+     * Parses telegram Handle.
+     *
+     * @param handle
+     * @return handle.
+     * @throws ParseException If null.
+     */
+    public static String parseTelegramHandle(String handle) throws ParseException {
+        requireNonNull(handle);
+        String trimmedID = handle.trim();
+        return handle;
+    }
+
+    /**
+     * Parses student info.
+     *
+     * @param info
+     * @return String
+     * @throws ParseException If null.
+     */
+    public static String parseStudentInfo(String info) throws ParseException {
+        requireNonNull(info);
+        String trimmedID = info.trim();
+        return info;
+    }
 }
