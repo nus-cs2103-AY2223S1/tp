@@ -15,7 +15,7 @@ public class NumberOfGuestsTest {
 
     @Test
     public void constructor_invalidNumberOfGuests_throwsIllegalArgumentException() {
-        String invalidNumberOfGuests = "-1";
+        String invalidNumberOfGuests = "";
         assertThrows(IllegalArgumentException.class, () -> new NumberOfGuests(invalidNumberOfGuests));
     }
 

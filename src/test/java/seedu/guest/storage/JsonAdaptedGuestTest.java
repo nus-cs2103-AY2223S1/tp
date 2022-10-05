@@ -15,6 +15,7 @@ import seedu.guest.commons.exceptions.IllegalValueException;
 import seedu.guest.model.guest.Address;
 import seedu.guest.model.guest.Email;
 import seedu.guest.model.guest.Name;
+import seedu.guest.model.guest.NumberOfGuests;
 import seedu.guest.model.guest.Phone;
 
 public class JsonAdaptedGuestTest {
@@ -22,6 +23,7 @@ public class JsonAdaptedGuestTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
+    private static final String INVALID_NUMBER_OF_GUESTS = "-1";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = BENSON.getName().toString();
@@ -87,6 +89,23 @@ public class JsonAdaptedGuestTest {
         JsonAdaptedGuest person = new JsonAdaptedGuest(VALID_NAME, VALID_PHONE, null, VALID_NUMBER_OF_GUESTS,
                 VALID_ADDRESS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidNumberOfGuests_throwsIllegalValueException() {
+        JsonAdaptedGuest person =
+                new JsonAdaptedGuest(VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_NUMBER_OF_GUESTS,
+                        VALID_ADDRESS, VALID_TAGS);
+        String expectedMessage = NumberOfGuests.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullNumberOfGuests_throwsIllegalValueException() {
+        JsonAdaptedGuest person = new JsonAdaptedGuest(VALID_NAME, VALID_PHONE, VALID_EMAIL, null,
+                VALID_ADDRESS, VALID_TAGS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, NumberOfGuests.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 

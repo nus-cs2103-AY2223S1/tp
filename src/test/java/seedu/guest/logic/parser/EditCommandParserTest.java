@@ -183,8 +183,9 @@ public class EditCommandParserTest {
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
-                + NUMBER_OF_GUESTS_DESC_AMY + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND
-                + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + NUMBER_OF_GUESTS_DESC_BOB + TAG_DESC_HUSBAND;
+                + TAG_DESC_FRIEND + NUMBER_OF_GUESTS_DESC_AMY + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
+                + TAG_DESC_FRIEND + NUMBER_OF_GUESTS_DESC_AMY + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB
+                + NUMBER_OF_GUESTS_DESC_BOB + TAG_DESC_HUSBAND;
 
         EditGuestDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB).withNumberOfGuests(VALID_NUMBER_OF_GUESTS_BOB)
