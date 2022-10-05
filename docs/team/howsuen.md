@@ -7,9 +7,12 @@ title: Tan How Suen's Project Portfolio Page
 - ### Summary of Contributions
     - **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=howsuen&breakdown=true)
 
-    - **Enhancements implemented**: to be added soon
+    - **Enhancements implemented**: 
+      - Refactored code to improve maintainability and readability[\#80](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/80)
 
-    - **Contributions to the UG**: to be added soon
+    - **Contributions to the UG**:
+      - Added documentation for the feature `edit`
+      - Adjusted borders of table of Command Summary
 
     - **Contributions to the DG**: to be added soon
 
