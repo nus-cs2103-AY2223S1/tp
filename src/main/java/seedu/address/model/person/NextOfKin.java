@@ -40,7 +40,7 @@ public class NextOfKin {
 
     @Override
     public String toString() {
-        return value;
+        return "Next of Kin: " + value;
     }
 
     @Override

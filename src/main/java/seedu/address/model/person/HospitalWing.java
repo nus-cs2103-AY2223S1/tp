@@ -35,7 +35,7 @@ public class HospitalWing {
 
     @Override
     public String toString() {
-        return value;
+        return "Wing: " + value;
     }
 
     @Override

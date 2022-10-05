@@ -31,7 +31,7 @@ public class WardNumber {
 
     @Override
     public String toString() {
-        return value.toString();
+        return "Ward: " + value.toString();
     }
 
     @Override

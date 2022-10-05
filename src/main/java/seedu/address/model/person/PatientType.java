@@ -1,13 +1,15 @@
 package seedu.address.model.person;
 
+import java.util.Locale;
+
 import static java.util.Objects.requireNonNull;
 
 public class PatientType {
 
-    public static final String MESSAGE_CONSTRAINTS = "Patient Type can only be i(inpatient) or o(outpatient),"
+    public static final String MESSAGE_CONSTRAINTS = "Patient type can only be i(inpatient) or o(outpatient),"
             + " and should not be blank";
 
-    public static final String DEPENDENCY_CONSTRAINTS = "Only Inpatient patients can and must have a hospital wing, "
+    public static final String DEPENDENCY_CONSTRAINTS = "Only inpatient patients can and must have a hospital wing, "
             + "floor number and ward number. \n%1$s";
 
     public final PatientTypes value;
@@ -25,7 +27,7 @@ public class PatientType {
     /**
      * Returns true if a given string is a valid Patient Type.
      */
-    public static boolean isValidNextOfKin(String test) {
+    public static boolean isValidPatientType(String test) {
         return PatientTypes.parsePatientType(test) != null;
     }
 
@@ -35,7 +37,7 @@ public class PatientType {
 
     @Override
     public String toString() {
-        return value.toString();
+        return "Patient Type: " + value.name();
     }
 
     @Override
@@ -73,9 +75,10 @@ public class PatientType {
          * @param strPatientType the string patient type to be parsed.
          */
         public static PatientTypes parsePatientType(String strPatientType) {
+            String capsPatientType = strPatientType.toUpperCase(Locale.ROOT);
             PatientTypes[] patientTypes = PatientTypes.values();
             for (PatientTypes pt : patientTypes) {
-                if (strPatientType.equals(pt.name()) || strPatientType.equals(pt.toString())) {
+                if (capsPatientType.equals(pt.name()) || capsPatientType.equals(pt.toString())) {
                     return pt;
                 }
             }

@@ -31,7 +31,7 @@ public class FloorNumber {
 
     @Override
     public String toString() {
-        return value.toString();
+        return "Floor: " + value.toString();
     }
 
     @Override

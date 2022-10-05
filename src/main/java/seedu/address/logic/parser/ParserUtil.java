@@ -111,13 +111,12 @@ public class ParserUtil {
     public static PatientType parsePatientType(String patientType) throws ParseException {
         requireNonNull(patientType);
         String trimmedPatientType = patientType.trim();
-        if (!NextOfKin.isValidNextOfKin(trimmedPatientType)) {
-            throw new ParseException(NextOfKin.MESSAGE_CONSTRAINTS);
+        if (!PatientType.isValidPatientType(trimmedPatientType)) {
+            throw new ParseException(PatientType.MESSAGE_CONSTRAINTS);
         }
-        String capsPatientType = trimmedPatientType.toUpperCase(Locale.ROOT);
-        PatientTypes pt = PatientTypes.parsePatientType(capsPatientType);
+        PatientTypes pt = PatientTypes.parsePatientType(trimmedPatientType);
         if (pt == null) {
-            throw new ParseException(NextOfKin.MESSAGE_CONSTRAINTS);
+            throw new ParseException(PatientType.MESSAGE_CONSTRAINTS);
         }
         return new PatientType(pt);
     }
@@ -138,27 +137,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String wardNumber} into an {@code WardNumber}.
-     * String will be converted to an Integer.
-     *
-     * @throws ParseException if the given {@code wardNumber} is invalid.
-     */
-    public static WardNumber parseWardNumber(String wardNumber) throws ParseException {
-        requireNonNull(wardNumber);
-        String trimmedWardNumber = wardNumber.trim();
-        Integer parsedWardNumber;
-        try {
-            parsedWardNumber = Integer.valueOf(trimmedWardNumber);
-        } catch (NumberFormatException nfe) {
-            throw new ParseException(NextOfKin.MESSAGE_CONSTRAINTS);
-        }
-        if (!FloorNumber.isValidFloorNumber(parsedWardNumber)) {
-            throw new ParseException(NextOfKin.MESSAGE_CONSTRAINTS);
-        }
-        return new WardNumber(parsedWardNumber);
-    }
-
-    /**
      * Parses a {@code String floorNumber} into an {@code FloorNumber}.
      * String will be converted to an Integer.
      *
@@ -171,12 +149,33 @@ public class ParserUtil {
         try {
             parsedFloorNumber = Integer.valueOf(trimmedFloorNumber);
         } catch (NumberFormatException nfe) {
-            throw new ParseException(NextOfKin.MESSAGE_CONSTRAINTS);
+            throw new ParseException(FloorNumber.MESSAGE_CONSTRAINTS);
         }
         if (!FloorNumber.isValidFloorNumber(parsedFloorNumber)) {
-            throw new ParseException(NextOfKin.MESSAGE_CONSTRAINTS);
+            throw new ParseException(FloorNumber.MESSAGE_CONSTRAINTS);
         }
         return new FloorNumber(parsedFloorNumber);
+    }
+
+    /**
+     * Parses a {@code String wardNumber} into an {@code WardNumber}.
+     * String will be converted to an Integer.
+     *
+     * @throws ParseException if the given {@code wardNumber} is invalid.
+     */
+    public static WardNumber parseWardNumber(String wardNumber) throws ParseException {
+        requireNonNull(wardNumber);
+        String trimmedWardNumber = wardNumber.trim();
+        Integer parsedWardNumber;
+        try {
+            parsedWardNumber = Integer.valueOf(trimmedWardNumber);
+        } catch (NumberFormatException nfe) {
+            throw new ParseException(WardNumber.MESSAGE_CONSTRAINTS);
+        }
+        if (!FloorNumber.isValidFloorNumber(parsedWardNumber)) {
+            throw new ParseException(WardNumber.MESSAGE_CONSTRAINTS);
+        }
+        return new WardNumber(parsedWardNumber);
     }
 
     /**

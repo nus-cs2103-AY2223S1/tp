@@ -45,10 +45,10 @@ public class EditCommand extends Command {
             + "[" + PREFIX_HOSPITAL_WING + "HOSPITAL WING] "
             + "[" + PREFIX_FLOOR_NUMBER + "FLOOR NUMBER] "
             + "[" + PREFIX_WARD_NUMBER + "WARD NUMBER] "
-            + "[" + PREFIX_MEDICATION + "TAG]...\n"
+            + "[" + PREFIX_MEDICATION + "MEDICATION]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com"
+            + PREFIX_EMAIL + "johndoe@example.com "
             + PREFIX_FLOOR_NUMBER + "12";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Patient: %1$s";
@@ -95,7 +95,8 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor)
+            throws CommandException {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
@@ -108,9 +109,15 @@ public class EditCommand extends Command {
         FloorNumber updatedFloorNumber = null;
         WardNumber updatedWardNumber = null;
         if (updatedPatientType.isInpatient()) {
-            updatedHospitalWing = editPersonDescriptor.getHospitalWing().orElse(personToEdit.getHospitalWing().get());
-            updatedFloorNumber = editPersonDescriptor.getFloorNumber().orElse(personToEdit.getFloorNumber().get());
-            updatedWardNumber = editPersonDescriptor.getWardNumber().orElse(personToEdit.getWardNumber().get());
+            updatedHospitalWing = editPersonDescriptor.getHospitalWing()
+                    .orElse(personToEdit.getHospitalWing().orElse(null));
+            updatedFloorNumber = editPersonDescriptor.getFloorNumber()
+                    .orElse(personToEdit.getFloorNumber().orElse(null));
+            updatedWardNumber = editPersonDescriptor.getWardNumber()
+                    .orElse(personToEdit.getWardNumber().orElse(null));
+            if (updatedHospitalWing == null || updatedFloorNumber == null || updatedWardNumber == null) {
+                throw new CommandException(String.format(PatientType.DEPENDENCY_CONSTRAINTS, MESSAGE_USAGE));
+            }
         }
         Set<Medication> updatedMedications = editPersonDescriptor.getMedications().orElse(personToEdit.getMedications());
 
