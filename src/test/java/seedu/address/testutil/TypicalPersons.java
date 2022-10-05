@@ -48,18 +48,18 @@ public class TypicalPersons {
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
             .withEmail("stefan@example.com").withAddress("little india")
-            .withAdditionalNotes("Remind student to submit homework").build();
+            .withAdditionalNotes("").build();
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
             .withEmail("hans@example.com").withAddress("chicago ave")
-            .withAdditionalNotes("Remind student to submit homework").build();
+            .withAdditionalNotes("").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-            .withAdditionalNotes("Remind student to submit homework").build();
+            .withAdditionalNotes("").build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-            .withAdditionalNotes("Remind student to submit homework").build();
+            .withAdditionalNotes("").build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
