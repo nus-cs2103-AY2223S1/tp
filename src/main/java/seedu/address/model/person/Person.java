@@ -18,10 +18,13 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final MoneyOwed moneyOwed;
+    private final MoneyPaid moneyPaid;
     private final AdditionalNotes additionalNotes;
 
     /**
-     * Every field must be present and not null.
+     * Constructs a {@code Person} class when first initialized with add command.
+     * // Todo: Note that this is a temporary design and subject to update in future iteration
      */
     public Person(Name name, Phone phone, Email email, Address address) {
         requireAllNonNull(name, phone, email, address);
@@ -29,6 +32,8 @@ public class Person {
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.moneyOwed = new MoneyOwed();
+        this.moneyPaid = new MoneyPaid();
         this.additionalNotes = new AdditionalNotes("");
     }
 
@@ -36,12 +41,15 @@ public class Person {
      * Overloaded constructor.
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, AdditionalNotes additionalNotes) {
+    public Person(Name name, Phone phone, Email email, Address address,
+                  MoneyOwed moneyOwed, MoneyPaid moneyPaid, AdditionalNotes additionalNotes) {
         requireAllNonNull(name, phone, email, address, additionalNotes);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.moneyOwed = moneyOwed;
+        this.moneyPaid = moneyPaid;
         this.additionalNotes = additionalNotes;
     }
 
@@ -59,6 +67,14 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public MoneyOwed getMoneyOwed() {
+        return moneyOwed;
+    }
+
+    public MoneyPaid getMoneyPaid() {
+        return moneyPaid;
     }
 
     public AdditionalNotes getAdditionalNotes() {
@@ -98,13 +114,15 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getMoneyOwed().equals(getMoneyOwed())
+                && otherPerson.getMoneyPaid().equals(getMoneyPaid())
                 && otherPerson.getAdditionalNotes().equals(getAdditionalNotes());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, additionalNotes);
+        return Objects.hash(name, phone, email, address, moneyOwed, moneyPaid, additionalNotes);
     }
 
     @Override
@@ -117,6 +135,10 @@ public class Person {
                 .append(getEmail())
                 .append("; Address: ")
                 .append(getAddress())
+                .append("; Money Owed: ")
+                .append(getMoneyOwed())
+                .append("; Money Paid: ")
+                .append(getMoneyPaid())
                 .append("; Additional notes: ")
                 .append(getAdditionalNotes());
 

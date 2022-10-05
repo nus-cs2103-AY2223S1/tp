@@ -5,6 +5,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDITIONAL_NOTES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MONEY_OWED;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MONEY_PAID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
@@ -25,9 +27,8 @@ public class EditCommandParser implements Parser<EditCommand> {
      */
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_ADDRESS, PREFIX_ADDITIONAL_NOTES);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+                PREFIX_ADDRESS, PREFIX_MONEY_OWED, PREFIX_MONEY_PAID, PREFIX_ADDITIONAL_NOTES);
 
         Index index;
 
@@ -49,6 +50,13 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+        }
+
+        if (argMultimap.getValue(PREFIX_MONEY_OWED).isPresent()) {
+            editPersonDescriptor.setMoneyOwed(ParserUtil.parseMoneyOwed(argMultimap.getValue(PREFIX_MONEY_OWED).get()));
+        }
+        if (argMultimap.getValue(PREFIX_MONEY_PAID).isPresent()) {
+            editPersonDescriptor.setMoneyPaid(ParserUtil.parseMoneyPaid(argMultimap.getValue(PREFIX_MONEY_PAID).get()));
         }
         if (argMultimap.getValue(PREFIX_ADDITIONAL_NOTES).isPresent()) {
             editPersonDescriptor.setAdditionalNotes(ParserUtil.parseAdditionalNotes(argMultimap

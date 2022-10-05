@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDITIONAL_NOTES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MONEY_OWED;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MONEY_PAID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
@@ -19,6 +21,8 @@ import seedu.address.model.Model;
 import seedu.address.model.person.AdditionalNotes;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.MoneyOwed;
+import seedu.address.model.person.MoneyPaid;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -38,6 +42,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_MONEY_OWED + "MONEY_OWED] "
+            + "[" + PREFIX_MONEY_PAID + "MONEY_PAID] "
             + "[" + PREFIX_ADDITIONAL_NOTES + "NOTES] "
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -94,10 +100,15 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+
+
+        MoneyOwed updatedMoneyOwed = editPersonDescriptor.getMoneyOwed().orElse(personToEdit.getMoneyOwed());
+        MoneyPaid updatedMoneyPaid = editPersonDescriptor.getMoneyPaid().orElse(personToEdit.getMoneyPaid());
         AdditionalNotes updatedNotes = editPersonDescriptor.getAdditionalNotes()
                 .orElse(personToEdit.getAdditionalNotes());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedNotes);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
+                updatedMoneyOwed, updatedMoneyPaid, updatedNotes);
     }
 
     @Override
@@ -127,6 +138,8 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private MoneyOwed moneyOwed;
+        private MoneyPaid moneyPaid;
         private AdditionalNotes additionalNotes;
 
         public EditPersonDescriptor() {}
@@ -139,6 +152,8 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setMoneyOwed(toCopy.moneyOwed);
+            setMoneyPaid(toCopy.moneyPaid);
             setAdditionalNotes(toCopy.additionalNotes);
         }
 
@@ -146,7 +161,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, additionalNotes);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, moneyOwed, moneyPaid, additionalNotes);
         }
 
         public void setName(Name name) {
@@ -181,6 +196,22 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
+        public void setMoneyOwed(MoneyOwed moneyOwed) {
+            this.moneyOwed = moneyOwed;
+        }
+
+        public Optional<MoneyOwed> getMoneyOwed() {
+            return Optional.ofNullable(moneyOwed);
+        }
+
+        public void setMoneyPaid(MoneyPaid moneyPaid) {
+            this.moneyPaid = moneyPaid;
+        }
+
+        public Optional<MoneyPaid> getMoneyPaid() {
+            return Optional.ofNullable(moneyPaid);
+        }
+
         public void setAdditionalNotes(AdditionalNotes additionalNotes) {
             this.additionalNotes = additionalNotes;
         }
@@ -208,6 +239,8 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
+                    && getMoneyOwed().equals(e.getMoneyOwed())
+                    && getMoneyPaid().equals(e.getMoneyPaid())
                     && getAdditionalNotes().equals(e.getAdditionalNotes());
         }
 
