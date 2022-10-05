@@ -13,10 +13,10 @@ import seedu.address.model.poc.exceptions.PocNotFoundException;
 
 /**
  * A list of companies that enforces uniqueness between its elements and does not allow nulls.
- * A company is considered unique by comparing using {@code Company#isSameCompany(Company)}.
- * As such, adding and updating of companies uses Company#isSameCompany(Company) for equality to ensure that the
- * company being added or updated is unique in terms of identity in the UniqueCompanyList.
- * However, the removal of a company uses Company#equals(Object) to ensure that the company with exactly
+ * A Poc is considered unique by comparing using {@code Poc#isSamePoc(Poc)}.
+ * As such, adding and updating of companies uses Poc#isSamePoc(Poc) for equality to ensure that the
+ * Poc being added or updated is unique in terms of identity in the UniquePocList.
+ * However, the removal of a Poc uses Poc#equals(Object) to ensure that the Poc with exactly
  * the same fields will be removed.
  *
  * Supports a minimal set of list operations.
@@ -30,7 +30,7 @@ public class UniquePocList implements Iterable<Poc> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent company as the given argument.
+     * Returns true if the list contains an equivalent Poc as the given argument.
      */
     public boolean contains(Poc toCheck) {
         requireNonNull(toCheck);
@@ -38,8 +38,8 @@ public class UniquePocList implements Iterable<Poc> {
     }
 
     /**
-     * Adds a company to the list.
-     * The company must not already exist in the list.
+     * Adds a Poc to the list.
+     * The Poc must not already exist in the list.
      */
     public void add(Poc toAdd) {
         requireNonNull(toAdd);
@@ -50,9 +50,9 @@ public class UniquePocList implements Iterable<Poc> {
     }
 
     /**
-     * Replaces the company {@code target} in the list with {@code editedCompany}.
+     * Replaces the Poc {@code target} in the list with {@code editedPoc}.
      * {@code target} must exist in the list.
-     * The company identity of {@code editedCompany} must not be the same as another existing company in the list.
+     * The Poc identity of {@code editedPoc} must not be the same as another existing Poc in the list.
      */
     public void setPoc(Poc target, Poc editedPoC) {
         requireAllNonNull(target, editedPoC);
@@ -70,8 +70,8 @@ public class UniquePocList implements Iterable<Poc> {
     }
 
     /**
-     * Removes the equivalent company from the list.
-     * The company must exist in the list.
+     * Removes the equivalent Poc from the list.
+     * The Poc must exist in the list.
      */
     public void remove(Poc toRemove) {
         requireNonNull(toRemove);
@@ -86,8 +86,8 @@ public class UniquePocList implements Iterable<Poc> {
     }
 
     /**
-     * Replaces the contents of this list with {@code companies}.
-     * {@code companies} must not contain duplicate companies.
+     * Replaces the contents of this list with {@code Pocs}.
+     * {@code Pocs} must not contain duplicate Pocs.
      */
     public void setPocs(List<Poc> pocs) {
         requireAllNonNull(pocs);
@@ -123,7 +123,7 @@ public class UniquePocList implements Iterable<Poc> {
     }
 
     /**
-     * Returns true if {@code companies} contains only unique companies.
+     * Returns true if {@code Pocs} contains only unique Pocs.
      */
     private boolean pocsAreUnique(List<Poc> pocs) {
         for (int i = 0; i < pocs.size() - 1; i++) {

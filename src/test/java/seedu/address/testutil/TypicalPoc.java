@@ -16,7 +16,7 @@ import java.util.List;
 import seedu.address.model.poc.Poc;
 
 /**
- * A utility class containing a list of {@code Company} objects to be used in tests.
+ * A utility class containing a list of {@code Poc} objects to be used in tests.
  */
 public class TypicalPoc {
 

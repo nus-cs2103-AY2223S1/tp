@@ -11,7 +11,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
- * A utility class to help with building Company objects.
+ * A utility class to help with building Poc objects.
  */
 public class PocBuilder {
 
@@ -36,7 +36,7 @@ public class PocBuilder {
     }
 
     /**
-     * Initializes the CompanyBuilder with the data of {@code pocToCopy}.
+     * Initializes the PocBuilder with the data of {@code pocToCopy}.
      */
     public PocBuilder(Poc pocToCopy) {
         name = pocToCopy.getName();
@@ -46,7 +46,7 @@ public class PocBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Company} that we are building.
+     * Sets the {@code Name} of the {@code Poc} that we are building.
      */
     public PocBuilder withName(String name) {
         this.name = new PersonName(name);
@@ -54,7 +54,7 @@ public class PocBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Company} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Poc} that we are building.
      */
     public PocBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
