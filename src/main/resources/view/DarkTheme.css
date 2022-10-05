@@ -123,13 +123,13 @@
 .cell_big_label {
     -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 16px;
-    -fx-text-fill: #010504;
+    -fx-text-fill: #D8D8D8;
 }
 
 .cell_small_label {
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
-    -fx-text-fill: #010504;
+    -fx-text-fill: #D8D8D8;
 }
 
 .stack-pane {
@@ -144,6 +144,7 @@
 
 .card-pane {
      -fx-background-color: #1E2128;
+     -fx-background-radius: 0 12 12 12;
      -fx-border-color: #1E2128;
 }
 
@@ -349,6 +350,13 @@
 
 #detailsPane .label {
     -fx-text-fill: white;
+}
+
+#customerDetailsPane {
+    -fx-background-color: #15181F;
+    -fx-background-radius: 12px;
+    -fx-text-fill: #E8E8E8;
+    -fx-padding: 36 24 24 36;
 }
 
 #filterField, #customerListPanel, #customerWebpage {

@@ -22,7 +22,7 @@
                 <Insets bottom="5" left="15" right="5" top="5"/>
             </padding>
             <HBox alignment="CENTER_LEFT" spacing="5">
-                <Label fx:id="id" styleClass="cell_big_label" textFill="#767676">
+                <Label fx:id="id" styleClass="cell_big_label" textFill="#D8D8D8">
                     <minWidth>
                         <!-- Ensures that the label text is never truncated -->
                         <Region fx:constant="USE_PREF_SIZE"/>
@@ -30,7 +30,7 @@
                 </Label>
                 <Label id="detailsPaneName" fx:id="name" styleClass="cell_big_label" text="\$first">
                     <font>
-                        <Font size="20.0"/>
+                        <Font size="24.0"/>
                     </font>
                 </Label>
             </HBox>
