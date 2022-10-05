@@ -1,17 +1,14 @@
 {
   "persons": [ {
-    "name": "Alice Pauline",
-    "phone": "94351253",
-    "email": "alice@example.com",
-    "calorie": "2000",
-    "address": "123, Jurong West Ave 6, #08-111",
-    "tagged": [ "friends" ]
+    "calorie" : "2000",
+    "tagged" : [ "breakfast" ],
+    "dateTime" : "2022-10-04T13:05:29.586882100",
+    "name" : "Apple"
   }, {
-    "name": "Alice Pauline",
-    "phone": "94351253",
-    "email": "pauline@example.com",
-    "calorie": "2000",
-    "address": "4th street"
+    "calorie" : "2000",
+    "tagged" : [ "breakfast" ],
+    "dateTime" : "2022-10-04T13:05:29.586882100",
+    "name" : "Apple"
   } ],
   "calorieTarget" : {
     "value" : "2000"

@@ -31,6 +31,7 @@ public class EditPersonDescriptorBuilder {
         descriptor = new EditPersonDescriptor();
         descriptor.setName(food.getName());
         descriptor.setTags(food.getTags());
+        descriptor.setDateTime(food.getDateTime());
     }
 
     /**

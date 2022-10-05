@@ -20,6 +20,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Calorie;
 import seedu.address.model.Model;
+import seedu.address.model.person.DateTime;
 import seedu.address.model.person.Food;
 import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
@@ -95,7 +96,7 @@ public class EditCommand extends Command {
         Calorie updatedCalorie = editPersonDescriptor.getCalorie().orElse(foodToEdit.getCalorie());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(foodToEdit.getTags());
 
-        return new Food(updatedName, updatedCalorie, updatedTags);
+        return new Food(updatedName, updatedCalorie, updatedTags, foodToEdit.getDateTime());
     }
 
     @Override
@@ -124,6 +125,7 @@ public class EditCommand extends Command {
         private Name name;
         private Calorie calorie;
         private Set<Tag> tags;
+        private DateTime dateTime;
 
         public EditPersonDescriptor() {}
 
@@ -135,6 +137,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setCalorie(toCopy.calorie);
             setTags(toCopy.tags);
+            setDateTime(toCopy.dateTime);
         }
 
         /**
@@ -176,6 +179,11 @@ public class EditCommand extends Command {
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
+
+        public void setDateTime(DateTime dateTime) {
+            this.dateTime = dateTime;
+        }
+
 
         @Override
         public boolean equals(Object other) {

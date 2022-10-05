@@ -1,54 +1,40 @@
 {
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "persons" : [ {
-    "name" : "Alice Pauline",
-    "phone" : "94351253",
-    "email" : "alice@example.com",
-    "calorie": "2000",
-    "address" : "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "friends" ]
+    "calorie" : "2000",
+    "tagged" : [ "breakfast" ],
+    "dateTime" : "2022-10-04T13:05:29.586882100",
+    "name" : "Apple"
   }, {
-    "name" : "Benson Meier",
-    "phone" : "98765432",
-    "email" : "johnd@example.com",
-    "address" : "311, Clementi Ave 2, #02-25",
-    "calorie": "2000",
-    "tagged" : [ "owesMoney", "friends" ]
+    "calorie" : "2000",
+    "tagged" : [ "lunch" ],
+    "dateTime" : "2022-10-04T13:05:29.586882100",
+    "name" : "Bread"
   }, {
-    "name" : "Carl Kurz",
-    "phone" : "95352563",
-    "email" : "heinz@example.com",
-    "calorie": "2000",
-    "address" : "wall street",
-    "tagged" : [ ]
+    "calorie" : "2000",
+    "tagged" : [ "dinner" ],
+    "dateTime" : "2022-10-04T13:05:29.586882100",
+    "name" : "Carbonara"
   }, {
-    "name" : "Daniel Meier",
-    "phone" : "87652533",
-    "email" : "cornelia@example.com",
-    "calorie": "2000",
-    "address" : "10th street",
-    "tagged" : [ "friends" ]
+    "calorie" : "2000",
+    "tagged" : [ ],
+    "dateTime" : "2022-10-04T13:05:29.586882100",
+    "name" : "Dragon fruit"
   }, {
-    "name" : "Elle Meyer",
-    "phone" : "9482224",
-    "email" : "werner@example.com",
-    "calorie": "2000",
-    "address" : "michegan ave",
-    "tagged" : [ ]
+    "calorie" : "2000",
+    "tagged" : [ ],
+    "dateTime" : "2022-10-04T13:05:29.586882100",
+    "name" : "Egg soup"
   }, {
-    "name" : "Fiona Kunz",
-    "phone" : "9482427",
-    "email" : "lydia@example.com",
-    "calorie": "2000",
-    "address" : "little tokyo",
-    "tagged" : [ ]
+    "calorie" : "2000",
+    "tagged" : [ ],
+    "dateTime" : "2022-10-04T13:05:29.586882100",
+    "name" : "Fishcake"
   }, {
-    "name" : "George Best",
-    "phone" : "9482442",
-    "email" : "anna@example.com",
-    "calorie": "2000",
-    "address" : "4th street",
-    "tagged" : [ ]
+    "calorie" : "2000",
+    "tagged" : [ ],
+    "dateTime" : "2022-10-04T13:05:29.586882100",
+    "name" : "Grapes"
   } ],
   "calorieTarget" : {
     "value" : "2000"

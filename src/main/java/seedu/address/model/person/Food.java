@@ -19,8 +19,8 @@ public class Food {
     // Identity fields
     private final Name name;
     private final Calorie calorie;
-
     private final Set<Tag> tags = new HashSet<>();
+    private final DateTime dateTime;
 
     /**
      * Every field must be present and not null.
@@ -30,6 +30,18 @@ public class Food {
         this.name = name;
         this.calorie = calorie;
         this.tags.addAll(tags);
+        this.dateTime = new DateTime();
+    }
+
+    /**
+     * Constructor for an edited Food.
+     */
+    public Food(Name name, Calorie calorie, Set<Tag> tags, DateTime dateTime) {
+        requireAllNonNull(name, calorie, tags, dateTime);
+        this.name = name;
+        this.calorie = calorie;
+        this.tags.addAll(tags);
+        this.dateTime = dateTime;
     }
 
     public Name getName() {
@@ -48,6 +60,10 @@ public class Food {
         return Collections.unmodifiableSet(tags);
     }
 
+    public DateTime getDateTime() {
+        return dateTime;
+    }
+
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
@@ -59,6 +75,35 @@ public class Food {
 
         return otherFood != null
                 && otherFood.getName().equals(getName());
+    }
+
+    private boolean hasTag(String tagName) {
+        return tags.stream().anyMatch(tag -> tag.tagName.equals(tagName));
+    }
+
+    /**
+     * Returns a String representing the earliest meal tag on this {@code Food}.
+     * @return "B" for breakfast, "L" for lunch, "D" for dinner and "X" for no tag.
+     */
+    public String earliestMealTag() {
+        if (hasTag("breakfast")) {
+            return "B";
+        } else if (hasTag("lunch")) {
+            return "L";
+        } else if (hasTag("dinner")) {
+            return "D";
+        } else {
+            return "X";
+        }
+    }
+
+    /**
+     * Returns true if this {@code Food} was recorded after the given {@code Food}.
+     * @param otherFood The other {@code Food} to compare to.
+     * @return True if this {@code Food} was recorded after the given {@code Food}.
+     */
+    public boolean isAfter(Food otherFood) {
+        return dateTime.isAfter(otherFood.getDateTime());
     }
 
     /**
@@ -84,7 +129,7 @@ public class Food {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, calorie, tags);
+        return Objects.hash(name, calorie, tags, dateTime);
     }
 
     @Override

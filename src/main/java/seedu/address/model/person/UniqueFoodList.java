@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
@@ -22,11 +23,12 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
  *
  * @see Food#isSamePerson(Food)
  */
-public class UniquePersonList implements Iterable<Food> {
+public class UniqueFoodList implements Iterable<Food> {
 
     private final ObservableList<Food> internalList = FXCollections.observableArrayList();
+    private final SortedList<Food> sortedList = new SortedList<>(internalList, new FoodComparator());
     private final ObservableList<Food> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalList);
+            FXCollections.unmodifiableObservableList(sortedList);
 
     /**
      * Returns true if the list contains an equivalent person as the given argument.
@@ -79,7 +81,7 @@ public class UniquePersonList implements Iterable<Food> {
         }
     }
 
-    public void setPersons(UniquePersonList replacement) {
+    public void setPersons(UniqueFoodList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -112,8 +114,8 @@ public class UniquePersonList implements Iterable<Food> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniquePersonList // instanceof handles nulls
-                        && internalList.equals(((UniquePersonList) other).internalList));
+                || (other instanceof UniqueFoodList // instanceof handles nulls
+                        && internalList.equals(((UniqueFoodList) other).internalList));
     }
 
     @Override

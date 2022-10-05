@@ -22,7 +22,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Food;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.FoodBuilder;
 
 public class AddCommandTest {
 
@@ -34,7 +34,7 @@ public class AddCommandTest {
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Food validFood = new PersonBuilder().build();
+        Food validFood = new FoodBuilder().build();
 
         CommandResult commandResult = new AddCommand(validFood).execute(modelStub);
 
@@ -44,7 +44,7 @@ public class AddCommandTest {
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Food validFood = new PersonBuilder().build();
+        Food validFood = new FoodBuilder().build();
         AddCommand addCommand = new AddCommand(validFood);
         ModelStub modelStub = new ModelStubWithPerson(validFood);
 
@@ -53,8 +53,8 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Food alice = new PersonBuilder().withName("Alice").build();
-        Food bob = new PersonBuilder().withName("Bob").build();
+        Food alice = new FoodBuilder().withName("Alice").build();
+        Food bob = new FoodBuilder().withName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 

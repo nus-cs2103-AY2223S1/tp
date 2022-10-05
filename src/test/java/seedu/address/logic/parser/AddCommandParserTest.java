@@ -23,14 +23,14 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.person.Food;
 import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.FoodBuilder;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Food expectedFood = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Food expectedFood = new FoodBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB
@@ -41,7 +41,7 @@ public class AddCommandParserTest {
                 + TAG_DESC_FRIEND, new AddCommand(expectedFood));
 
         // multiple tags - all accepted
-        Food expectedFoodMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        Food expectedFoodMultipleTags = new FoodBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedFoodMultipleTags));
@@ -50,7 +50,7 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Food expectedFood = new PersonBuilder(AMY).withTags().build();
+        Food expectedFood = new FoodBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY,
                 new AddCommand(expectedFood));
     }
