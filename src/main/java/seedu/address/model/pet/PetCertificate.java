@@ -25,7 +25,7 @@ public class PetCertificate {
 
     @Override
     public String toString() {
-        return certificate;
+        return " [ " + certificate + " ] ";
     }
 
     public String getCertificate() {

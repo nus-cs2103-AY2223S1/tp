@@ -125,10 +125,51 @@ public class Pet {
 
         Set<PetCertificate> certificates = getCertificates();
         if (!certificates.isEmpty()) {
-            builder.append("; Tags: ");
+            builder.append("; Certificates: ");
             tags.forEach(builder::append);
         }
         return builder.toString();
+    }
+
+    /**
+     * Returns true if both sets have the same name.
+     * This defines a weaker notion of equality between two pets.
+     */
+    public boolean isSamePerson(Pet otherPet) {
+        if (otherPet == this) {
+            return true;
+        }
+
+        return otherPet != null
+                && otherPet.getName().equals(getName());
+    }
+
+    /**
+     * Returns true if both pets have the same identity and data fields.
+     * This defines a stronger notion of equality between two pets.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Pet)) {
+            return false;
+        }
+
+        Pet otherPet = (Pet) other;
+        return otherPet.getName().equals(getName())
+                && otherPet.getColor().equals(getColor())
+                && otherPet.getDateOfBirth().equals(getDateOfBirth())
+                && otherPet.getHeight().equals(getHeight())
+                && otherPet.getWeight().equals(getWeight())
+                && otherPet.getSpecies().equals(getSpecies())
+                && otherPet.getVaccinationStatus().equals(getVaccinationStatus())
+                && otherPet.getCertificates().equals(getCertificates())
+                && ((otherPet.getOwner() == null && getOwner() == null)
+                || (otherPet.getOwner() != null && otherPet.getHeight().equals(getHeight())))
+                && otherPet.getTags().equals(getTags());
     }
 
     /**
