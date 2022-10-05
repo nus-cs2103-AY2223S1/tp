@@ -33,15 +33,16 @@ class JsonAdaptedClient {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-    private final List<Meeting> meetings = new ArrayList<>();
+    private final List<JsonAdaptedMeeting> meetings = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedClient} with the given client details.
      */
     @JsonCreator
-    public JsonAdaptedClient(@JsonProperty("meetings") List<Meeting> meetings, @JsonProperty("name") String name, @JsonProperty("phone") String phone,
+    public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                             @JsonProperty("meetings") List<JsonAdaptedMeeting> meetings) {
         if (meetings != null) {
             this.meetings.addAll(meetings);
         }
@@ -58,7 +59,9 @@ class JsonAdaptedClient {
      * Converts a given {@code Client} into this class for Jackson use.
      */
     public JsonAdaptedClient(Client source) {
-        meetings.add(source.getMeeting());
+        if (source.getMeeting() != null) {
+            meetings.add(new JsonAdaptedMeeting(source.getMeeting()));
+        }
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
@@ -110,9 +113,13 @@ class JsonAdaptedClient {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final Address modelAddress = new Address(address);
-        final Meeting meeting = meetings.get(0);
         final Set<Tag> modelTags = new HashSet<>(clientTags);
-        return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags, meeting);
+        if (!meetings.isEmpty()) {
+            final Meeting meeting = meetings.get(0).toModelType();
+            return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags, meeting);
+        } else {
+            return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        }
     }
 
 }
