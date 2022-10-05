@@ -20,7 +20,9 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.issue.Issue;
 import seedu.address.model.person.Person;
+import seedu.address.model.project.Project;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -114,6 +116,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addProject(Project project) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addIssue(Issue issue) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
@@ -129,7 +141,27 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasProject(Project project) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasIssue(Issue issue) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deletePerson(Person target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteProject(Project target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteIssue(Issue target) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -139,12 +171,42 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setProject(Project target, Project editedProject) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setIssue(Issue target, Issue editedIssue) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
+        public ObservableList<Project> getFilteredProjectList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Issue> getFilteredIssueList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredProjectList(Predicate<Project> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredIssueList(Predicate<Issue> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
