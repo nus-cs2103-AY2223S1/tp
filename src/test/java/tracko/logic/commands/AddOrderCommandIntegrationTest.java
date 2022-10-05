@@ -1,6 +1,6 @@
 package tracko.logic.commands;
 
-import static tracko.logic.commands.CommandTestUtil.assertCommandFailure;
+// import static tracko.logic.commands.CommandTestUtil.assertCommandFailure;
 import static tracko.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static tracko.testutil.TypicalOrders.getTrackOWithTypicalOrders;
 
@@ -12,7 +12,6 @@ import tracko.model.Model;
 import tracko.model.ModelManager;
 import tracko.model.UserPrefs;
 import tracko.model.order.Order;
-import tracko.model.person.Person;
 import tracko.testutil.OrderBuilder;
 
 /**
@@ -40,10 +39,10 @@ public class AddOrderCommandIntegrationTest {
                 String.format(AddOrderCommand.MESSAGE_SUCCESS, validOrder), expectedModel);
     }
 
-//    @Test
-//    public void execute_duplicatePerson_throwsCommandException() {
-//        Person personInList = model.getAddressBook().getPersonList().get(0);
-//        assertCommandFailure(new AddOrderCommand(personInList), model, AddOrderCommand.MESSAGE_DUPLICATE_PERSON);
-//    }
+    // @Test
+    // public void execute_duplicatePerson_throwsCommandException() {
+    //    Person personInList = model.getAddressBook().getPersonList().get(0);
+    //    assertCommandFailure(new AddOrderCommand(personInList), model, AddOrderCommand.MESSAGE_DUPLICATE_PERSON);
+    // }
 
 }

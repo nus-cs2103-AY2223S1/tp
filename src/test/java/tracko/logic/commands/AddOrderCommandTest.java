@@ -10,19 +10,20 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.ObservableList;
 import tracko.commons.core.GuiSettings;
-import tracko.logic.commands.exceptions.CommandException;
+// import tracko.logic.commands.exceptions.CommandException;
 import tracko.logic.commands.order.AddOrderCommand;
 import tracko.model.Model;
 import tracko.model.ReadOnlyTrackO;
 import tracko.model.ReadOnlyUserPrefs;
 import tracko.model.TrackO;
 import tracko.model.order.Order;
-import tracko.model.person.Person;
+// import tracko.model.person.Person;
 import tracko.testutil.OrderBuilder;
+
 
 public class AddOrderCommandTest {
 
@@ -45,14 +46,14 @@ public class AddOrderCommandTest {
         assertEquals(Arrays.asList(validOrder), modelStub.ordersAdded);
     }
 
-//    @Test
-//    public void execute_duplicatePerson_throwsCommandException() {
-//        Person validPerson = new OrderBuilder().build();
-//        AddOrderCommand addOrderCommand = new AddOrderCommand(validPerson);
-//        ModelStub modelStub = new ModeulStubWithOrder(validPerson);
-//
-//        assertThrows(CommandException.class, AddOrderCommand.MESSAGE_DUPLICATE_PERSON, () -> addOrderCommand.execute(modelStub));
-//    }
+    // @Test
+    // public void execute_duplicatePerson_throwsCommandException() {
+    //     Person validPerson = new OrderBuilder().build();
+    //     AddOrderCommand addOrderCommand = new AddOrderCommand(validPerson);
+    //     ModelStub modelStub = new ModeulStubWithOrder(validPerson);
+    //     assertThrows(CommandException.class, AddOrderCommand.MESSAGE_DUPLICATE_PERSON,
+    //         () -> addOrderCommand.execute(modelStub));
+    // }
 
     @Test
     public void equals() {
@@ -133,23 +134,23 @@ public class AddOrderCommandTest {
         }
     }
 
-    /**
-     * A Model stub that contains a single person.
-     */
-    private class ModeulStubWithOrder extends ModelStub {
-        private final Order order;
-
-        ModeulStubWithOrder(Order order) {
-            requireNonNull(order);
-            this.order = order;
-        }
-
-//        @Override
-//        public boolean hasPerson(Person person) {
-//            requireNonNull(person);
-//            return this.person.isSamePerson(person);
-//        }
-    }
+    // /**
+    //  * A Model stub that contains a single person.
+    //  */
+    // private class ModeulStubWithOrder extends ModelStub {
+    //     private final Order order;
+    //
+    //     ModeulStubWithOrder(Order order) {
+    //         requireNonNull(order);
+    //         this.order = order;
+    //     }
+    //
+    //     @Override
+    //     public boolean hasPerson(Person person) {
+    //         requireNonNull(person);
+    //         return this.person.isSamePerson(person);
+    //     }
+    // }
 
     /**
      * A Model stub that always accept the person being added.
@@ -157,11 +158,11 @@ public class AddOrderCommandTest {
     private class ModelStubAcceptingOrderAdded extends ModelStub {
         final ArrayList<Order> ordersAdded = new ArrayList<>();
 
-//        @Override
-//        public boolean hasPerson(Person person) {
-//            requireNonNull(person);
-//            return personsAdded.stream().anyMatch(person::isSamePerson);
-//        }
+        // @Override
+        // public boolean hasPerson(Person person) {
+        //     requireNonNull(person);
+        //     return personsAdded.stream().anyMatch(person::isSamePerson);
+        // }
 
         @Override
         public void addOrder(Order order) {

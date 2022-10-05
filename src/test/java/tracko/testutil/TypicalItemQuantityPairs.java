@@ -1,9 +1,15 @@
 package tracko.testutil;
 
+import static tracko.logic.commands.CommandTestUtil.VALID_ITEM_NAME_AMY;
+import static tracko.logic.commands.CommandTestUtil.VALID_ITEM_NAME_BOB;
+import static tracko.logic.commands.CommandTestUtil.VALID_ITEM_QUANTITY_AMY;
+import static tracko.logic.commands.CommandTestUtil.VALID_ITEM_QUANTITY_BOB;
+
 import tracko.model.order.ItemQuantityPair;
 
-import static tracko.logic.commands.CommandTestUtil.*;
-
+/**
+ * A utility class containing a list of {@code ItemQuantityPair} objects to be used in tests.
+ */
 public class TypicalItemQuantityPairs {
 
     public static final ItemQuantityPair PAIR_1 = new ItemQuantityPairBuilder()

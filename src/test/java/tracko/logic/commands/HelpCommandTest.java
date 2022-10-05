@@ -1,12 +1,12 @@
 package tracko.logic.commands;
 
-import static tracko.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static tracko.logic.commands.HelpCommand.SHOWING_HELP_MESSAGE;
-
-import org.junit.jupiter.api.Test;
-
-import tracko.model.Model;
-import tracko.model.ModelManager;
+// import static tracko.logic.commands.CommandTestUtil.assertCommandSuccess;
+// import static tracko.logic.commands.HelpCommand.SHOWING_HELP_MESSAGE;
+//
+// import org.junit.jupiter.api.Test;
+//
+// import tracko.model.Model;
+// import tracko.model.ModelManager;
 
 public class HelpCommandTest {
     // // TODO: Update test cases according to new implementations

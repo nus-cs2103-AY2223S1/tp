@@ -3,19 +3,19 @@ package tracko.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static tracko.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+// import static tracko.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static tracko.testutil.Assert.assertThrows;
 import static tracko.testutil.TypicalOrders.ORDER_1;
 import static tracko.testutil.TypicalOrders.ORDER_2;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
+// import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import tracko.commons.core.GuiSettings;
-import tracko.model.order.NameContainsKeywordsPredicate;
+// import tracko.model.order.NameContainsKeywordsPredicate;
 import tracko.testutil.TrackOBuilder;
 
 public class ModelManagerTest {
@@ -72,26 +72,26 @@ public class ModelManagerTest {
         assertEquals(path, modelManager.getOrdersFilePath());
     }
 
-//    @Test
-//    public void hasPerson_nullPerson_throwsNullPointerException() {
-//        assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
-//    }
-//
-//    @Test
-//    public void hasPerson_personNotInAddressBook_returnsFalse() {
-//        assertFalse(modelManager.hasPerson(ORDER_1));
-//    }
-//
-//    @Test
-//    public void hasPerson_personInAddressBook_returnsTrue() {
-//        modelManager.addPerson(ORDER_1);
-//        assertTrue(modelManager.hasPerson(ORDER_1));
-//    }
-//
-//    @Test
-//    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-//        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
-//    }
+    // @Test
+    // public void hasPerson_nullPerson_throwsNullPointerException() {
+    //     assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
+    // }
+    //
+    // @Test
+    // public void hasPerson_personNotInAddressBook_returnsFalse() {
+    //     assertFalse(modelManager.hasPerson(ORDER_1));
+    // }
+    //
+    // @Test
+    // public void hasPerson_personInAddressBook_returnsTrue() {
+    //     modelManager.addPerson(ORDER_1);
+    //     assertTrue(modelManager.hasPerson(ORDER_1));
+    // }
+    //
+    // @Test
+    // public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
+    //     assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    // }
 
     @Test
     public void equals() {

@@ -2,6 +2,9 @@ package tracko.testutil;
 
 import tracko.model.order.ItemQuantityPair;
 
+/**
+ * A utility class to help with building ItemQuantityPair objects.
+ */
 public class ItemQuantityPairBuilder {
     public static final String DEFAULT_ITEM_NAME = "Mechanical Pencil";
     public static final Integer DEFAULT_QUANTITY = 3;
@@ -18,11 +21,11 @@ public class ItemQuantityPairBuilder {
     }
 
     /**
-     * Initializes the OrderBuilder with the data of {@code PairToCopy}.
+     * Initializes the OrderBuilder with the data of {@code pairToCopy}.
      */
-    public ItemQuantityPairBuilder(ItemQuantityPair PairToCopy) {
-        itemName = PairToCopy.getItem();
-        quantity = PairToCopy.getQuantity();
+    public ItemQuantityPairBuilder(ItemQuantityPair pairToCopy) {
+        itemName = pairToCopy.getItem();
+        quantity = pairToCopy.getQuantity();
     }
 
     /**

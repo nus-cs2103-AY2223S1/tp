@@ -1,14 +1,14 @@
 package tracko.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static tracko.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+// import static tracko.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static tracko.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static tracko.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static tracko.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static tracko.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static tracko.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+// import static tracko.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
+// import static tracko.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+// import static tracko.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+// import static tracko.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static tracko.testutil.Assert.assertThrows;
-import static tracko.testutil.TypicalOrders.ORDER_10;
+// import static tracko.testutil.TypicalOrders.ORDER_10;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -17,21 +17,21 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import tracko.logic.commands.order.AddOrderCommand;
+// import tracko.logic.commands.order.AddOrderCommand;
 import tracko.logic.commands.CommandResult;
-import tracko.logic.commands.order.ListOrdersCommand;
+// import tracko.logic.commands.order.ListOrdersCommand;
 import tracko.logic.commands.exceptions.CommandException;
 import tracko.logic.parser.exceptions.ParseException;
 import tracko.model.Model;
 import tracko.model.ModelManager;
 import tracko.model.ReadOnlyTrackO;
 import tracko.model.UserPrefs;
-import tracko.model.order.Order;
-import tracko.model.person.Person;
+// import tracko.model.order.Order;
+// import tracko.model.person.Person;
 import tracko.storage.JsonTrackOStorage;
 import tracko.storage.JsonUserPrefsStorage;
 import tracko.storage.StorageManager;
-import tracko.testutil.OrderBuilder;
+// import tracko.testutil.OrderBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");

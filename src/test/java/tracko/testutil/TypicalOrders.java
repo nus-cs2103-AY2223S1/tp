@@ -9,6 +9,8 @@ import static tracko.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static tracko.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static tracko.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static tracko.testutil.TypicalItemQuantityPairs.PAIR_1;
+import static tracko.testutil.TypicalItemQuantityPairs.PAIR_10;
+import static tracko.testutil.TypicalItemQuantityPairs.PAIR_11;
 import static tracko.testutil.TypicalItemQuantityPairs.PAIR_2;
 import static tracko.testutil.TypicalItemQuantityPairs.PAIR_3;
 import static tracko.testutil.TypicalItemQuantityPairs.PAIR_4;
@@ -17,8 +19,6 @@ import static tracko.testutil.TypicalItemQuantityPairs.PAIR_6;
 import static tracko.testutil.TypicalItemQuantityPairs.PAIR_7;
 import static tracko.testutil.TypicalItemQuantityPairs.PAIR_8;
 import static tracko.testutil.TypicalItemQuantityPairs.PAIR_9;
-import static tracko.testutil.TypicalItemQuantityPairs.PAIR_10;
-import static tracko.testutil.TypicalItemQuantityPairs.PAIR_11;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -73,12 +73,12 @@ public class TypicalOrders {
     private TypicalOrders() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical Orders.
+     * Returns an {@code TrackO} with all the typical {@code Order}.
      */
     public static TrackO getTrackOWithTypicalOrders() {
         TrackO trackO = new TrackO();
-        for (Order Order : getTypicalOrders()) {
-            trackO.addOrder(Order);
+        for (Order order : getTypicalOrders()) {
+            trackO.addOrder(order);
         }
         return trackO;
     }

@@ -8,8 +8,8 @@ import tracko.logic.commands.order.EditOrderCommand.EditPersonDescriptor;
 import tracko.model.order.Address;
 import tracko.model.order.Email;
 import tracko.model.order.Name;
-import tracko.model.person.Person;
 import tracko.model.order.Phone;
+import tracko.model.person.Person;
 import tracko.model.tag.Tag;
 
 /**

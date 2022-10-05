@@ -1,10 +1,14 @@
 package tracko.testutil;
 
-
-import tracko.model.order.*;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import tracko.model.order.Address;
+import tracko.model.order.Email;
+import tracko.model.order.ItemQuantityPair;
+import tracko.model.order.Name;
+import tracko.model.order.Order;
+import tracko.model.order.Phone;
 
 /**
  * A utility class to help with building Order objects.
@@ -37,14 +41,14 @@ public class OrderBuilder {
     }
 
     /**
-     * Initializes the OrderBuilder with the data of {@code OrderToCopy}.
+     * Initializes the OrderBuilder with the data of {@code orderToCopy}.
      */
-    public OrderBuilder(Order OrderToCopy) {
-        name = OrderToCopy.getName();
-        phone = OrderToCopy.getPhone();
-        email = OrderToCopy.getEmail();
-        address = OrderToCopy.getAddress();
-        itemList = OrderToCopy.getItemList();
+    public OrderBuilder(Order orderToCopy) {
+        name = orderToCopy.getName();
+        phone = orderToCopy.getPhone();
+        email = orderToCopy.getEmail();
+        address = orderToCopy.getAddress();
+        itemList = orderToCopy.getItemList();
     }
 
     /**

@@ -1,13 +1,13 @@
 package tracko.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import org.junit.jupiter.api.Test;
-import tracko.commons.exceptions.IllegalValueException;
-
 import static tracko.storage.JsonAdaptedItemQuantityPair.MISSING_FIELD_MESSAGE_FORMAT;
 import static tracko.testutil.Assert.assertThrows;
 import static tracko.testutil.TypicalItemQuantityPairs.PAIR_2;
+
+import org.junit.jupiter.api.Test;
+
+import tracko.commons.exceptions.IllegalValueException;
 
 public class JsonAdaptedItemQuantityPairTest {
     private static final String VALID_ITEM_NAME = PAIR_2.getItem();

@@ -5,6 +5,10 @@ import static tracko.storage.JsonAdaptedOrder.MISSING_FIELD_MESSAGE_FORMAT;
 import static tracko.testutil.Assert.assertThrows;
 import static tracko.testutil.TypicalOrders.ORDER_2;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.junit.jupiter.api.Test;
 
 import tracko.commons.exceptions.IllegalValueException;
@@ -12,10 +16,6 @@ import tracko.model.order.Address;
 import tracko.model.order.Email;
 import tracko.model.order.Name;
 import tracko.model.order.Phone;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class JsonAdaptedOrderTest {
     private static final String INVALID_NAME = "R@chel";
