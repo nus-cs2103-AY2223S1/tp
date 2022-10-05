@@ -1,9 +1,9 @@
 package seedu.address.model.person;
 
+import java.util.Set;
+
 import seedu.address.model.project.Project;
 import seedu.address.model.tag.Tag;
-
-import java.util.Set;
 
 /**
  * Stub class for Person.

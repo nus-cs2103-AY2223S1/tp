@@ -1,7 +1,5 @@
 package seedu.address.model.project;
 
-import seedu.address.model.person.Person;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**

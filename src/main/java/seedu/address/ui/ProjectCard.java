@@ -6,8 +6,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.project.Project;
 
-import java.util.Comparator;
-
 /**
  * An UI component that displays information of a {@code Project}.
  */
