@@ -1,6 +1,5 @@
 package coydir.ui;
 
-import java.util.Objects;
 import java.util.logging.Logger;
 
 import coydir.commons.core.GuiSettings;
@@ -155,7 +154,8 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     public void handleDarkTheme() {
         getPrimaryStage().getScene().getStylesheets().remove(0);
-        getPrimaryStage().getScene().getStylesheets().add(getClass().getClassLoader().getResource("view/DarkTheme.css").toExternalForm());
+        getPrimaryStage().getScene().getStylesheets().add(
+                getClass().getClassLoader().getResource("view/DarkTheme.css").toExternalForm());
     }
 
     /**
@@ -165,7 +165,8 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     public void handleLightTheme() {
         getPrimaryStage().getScene().getStylesheets().remove(0);
-        getPrimaryStage().getScene().getStylesheets().add(getClass().getClassLoader().getResource("view/LightTheme.css").toExternalForm());
+        getPrimaryStage().getScene().getStylesheets().add(
+                getClass().getClassLoader().getResource("view/LightTheme.css").toExternalForm());
     }
 
     void show() {
