@@ -1,10 +1,8 @@
 package seedu.travelr.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.travelr.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.travelr.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.travelr.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.travelr.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.travelr.logic.parser.CliSyntax.PREFIX_DESC;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.travelr.logic.commands.exceptions.CommandException;
@@ -20,16 +18,12 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a trip to Travelr. "
             + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_TITLE + "TITLE "
+            + PREFIX_DESC + "DESCRIPTION "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
-            + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_TITLE + "Honeymoon "
+            + PREFIX_DESC + "Going on a honeymoon with my prof."
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 

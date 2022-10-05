@@ -14,19 +14,22 @@ import seedu.travelr.model.trip.Trip;
  * Panel containing the list of persons.
  */
 public class TripListPanel extends UiPart<Region> {
-    private static final String FXML = "PersonListPanel.fxml";
+    private static final String FXML = "TripListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(TripListPanel.class);
 
     @FXML
-    private ListView<Trip> personListView;
+    private ListView<Trip> tripListView;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
     public TripListPanel(ObservableList<Trip> tripList) {
         super(FXML);
-        personListView.setItems(tripList);
-        personListView.setCellFactory(listView -> new TripListViewCell());
+        for (Trip trip: tripList) {
+            System.out.println(trip);
+        }
+        tripListView.setItems(tripList);
+        tripListView.setCellFactory(listView -> new TripListViewCell());
     }
 
     /**

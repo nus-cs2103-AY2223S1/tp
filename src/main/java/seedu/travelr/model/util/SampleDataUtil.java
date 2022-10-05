@@ -8,8 +8,9 @@ import seedu.travelr.model.AddressBook;
 import seedu.travelr.model.ReadOnlyAddressBook;
 import seedu.travelr.model.tag.Tag;
 import seedu.travelr.model.trip.Address;
+import seedu.travelr.model.trip.Description;
 import seedu.travelr.model.trip.Email;
-import seedu.travelr.model.trip.Name;
+import seedu.travelr.model.trip.Title;
 import seedu.travelr.model.trip.Phone;
 import seedu.travelr.model.trip.Trip;
 
@@ -19,23 +20,17 @@ import seedu.travelr.model.trip.Trip;
 public class SampleDataUtil {
     public static Trip[] getSampleTrips() {
         return new Trip[] {
-            new Trip(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"),
+            new Trip(new Title("Grad Trip"), new Description("Grad Trip with friends!"),
                 getTagSet("friends")),
-            new Trip(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
+            new Trip(new Title("Honeymoon"), new Description("Lorem ipsum dolor sit amet."),
                 getTagSet("colleagues", "friends")),
-            new Trip(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
+            new Trip(new Title("Business Trip"), new Description("Consectetur adipiscing elit."),
                 getTagSet("neighbours")),
-            new Trip(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
+            new Trip(new Title("Solo Trip"), new Description("Sed do eiusmod tempor."),
                 getTagSet("family")),
-            new Trip(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new Address("Blk 47 Tampines Street 20, #17-35"),
+            new Trip(new Title("Backpacking"), new Description("Incididunt ut labore et dolore magna aliqua."),
                 getTagSet("classmates")),
-            new Trip(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"),
+            new Trip(new Title("Conference"), new Description("Dolore eu fugiat nulla pariatur."),
                 getTagSet("colleagues"))
         };
     }

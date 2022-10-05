@@ -12,11 +12,11 @@ import seedu.travelr.model.trip.exceptions.DuplicateTripException;
 import seedu.travelr.model.trip.exceptions.TripNotFoundException;
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of
- * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Person#equals(Object) so
- * as to ensure that the person with exactly the same fields will be removed.
+ * A list of trips that enforces uniqueness between its elements and does not allow nulls.
+ * A trip is considered unique by comparing using {@code Trip#isSameTrip(Trip)}. As such, adding and updating of
+ * trips uses Trip#isSameTrip(Trip) for equality to ensure that the trip being added or updated is
+ * unique in terms of identity in the UniqueTripList. However, the removal of a person uses Trip#equals(Object)
+ * to ensure that the trip with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
@@ -85,12 +85,12 @@ public class UniqueTripList implements Iterable<Trip> {
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code tripss}.
+     * {@code trips} must not contain duplicate trips.
      */
     public void setTrips(List<Trip> trips) {
         requireAllNonNull(trips);
-        if (!personsAreUnique(trips)) {
+        if (!tripsAreUnique(trips)) {
             throw new DuplicateTripException();
         }
 
@@ -122,12 +122,12 @@ public class UniqueTripList implements Iterable<Trip> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code trips} contains only unique trips.
      */
-    private boolean personsAreUnique(List<Trip> persons) {
-        for (int i = 0; i < persons.size() - 1; i++) {
-            for (int j = i + 1; j < persons.size(); j++) {
-                if (persons.get(i).isSameTrip(persons.get(j))) {
+    private boolean tripsAreUnique(List<Trip> trips) {
+        for (int i = 0; i < trips.size() - 1; i++) {
+            for (int j = i + 1; j < trips.size(); j++) {
+                if (trips.get(i).isSameTrip(trips.get(j))) {
                     return false;
                 }
             }

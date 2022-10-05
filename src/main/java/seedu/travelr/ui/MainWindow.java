@@ -2,6 +2,7 @@ package seedu.travelr.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -16,6 +17,7 @@ import seedu.travelr.logic.Logic;
 import seedu.travelr.logic.commands.CommandResult;
 import seedu.travelr.logic.commands.exceptions.CommandException;
 import seedu.travelr.logic.parser.exceptions.ParseException;
+import seedu.travelr.model.trip.Trip;
 
 /**
  * The Main Window. Provides the basic application layout containing

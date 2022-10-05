@@ -1,10 +1,8 @@
 package seedu.travelr.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.travelr.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.travelr.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.travelr.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.travelr.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.travelr.logic.parser.CliSyntax.PREFIX_DESC;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.travelr.model.Model.PREDICATE_SHOW_ALL_TRIPS;
 
@@ -20,10 +18,8 @@ import seedu.travelr.commons.util.CollectionUtil;
 import seedu.travelr.logic.commands.exceptions.CommandException;
 import seedu.travelr.model.Model;
 import seedu.travelr.model.tag.Tag;
-import seedu.travelr.model.trip.Address;
-import seedu.travelr.model.trip.Email;
-import seedu.travelr.model.trip.Name;
-import seedu.travelr.model.trip.Phone;
+import seedu.travelr.model.trip.Description;
+import seedu.travelr.model.trip.Title;
 import seedu.travelr.model.trip.Trip;
 
 /**
@@ -37,14 +33,11 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed trip list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_TITLE + "TITLE] "
+            + "[" + PREFIX_DESC + "DESCRIPTION] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_DESC + "Consectetur adipiscing elit.";
 
     public static final String MESSAGE_EDIT_TRIP_SUCCESS = "Edited Trip: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -93,13 +86,11 @@ public class EditCommand extends Command {
     private static Trip createEditedTrip(Trip tripToEdit, EditTripDescriptor editTripDescriptor) {
         assert tripToEdit != null;
 
-        Name updatedName = editTripDescriptor.getName().orElse(tripToEdit.getName());
-        Phone updatedPhone = editTripDescriptor.getPhone().orElse(tripToEdit.getPhone());
-        Email updatedEmail = editTripDescriptor.getEmail().orElse(tripToEdit.getEmail());
-        Address updatedAddress = editTripDescriptor.getAddress().orElse(tripToEdit.getAddress());
+        Title updatedTitle = editTripDescriptor.getName().orElse(tripToEdit.getTitle());
+        Description updatedDescription = editTripDescriptor.getDescription().orElse(tripToEdit.getDescription());
         Set<Tag> updatedTags = editTripDescriptor.getTags().orElse(tripToEdit.getTags());
 
-        return new Trip(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Trip(updatedTitle, updatedDescription, updatedTags);
     }
 
     @Override
@@ -125,10 +116,8 @@ public class EditCommand extends Command {
      * corresponding field value of the person.
      */
     public static class EditTripDescriptor {
-        private Name name;
-        private Phone phone;
-        private Email email;
-        private Address address;
+        private Title title;
+        private Description description;
         private Set<Tag> tags;
 
         public EditTripDescriptor() {
@@ -139,10 +128,8 @@ public class EditCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditTripDescriptor(EditTripDescriptor toCopy) {
-            setName(toCopy.name);
-            setPhone(toCopy.phone);
-            setEmail(toCopy.email);
-            setAddress(toCopy.address);
+            setName(toCopy.title);
+            setDescription(toCopy.description);
             setTags(toCopy.tags);
         }
 
@@ -150,39 +137,23 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(title, description, tags);
         }
 
-        public void setName(Name name) {
-            this.name = name;
+        public void setName(Title title) {
+            this.title = title;
         }
 
-        public Optional<Name> getName() {
-            return Optional.ofNullable(name);
+        public Optional<Title> getName() {
+            return Optional.ofNullable(title);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        public void setDescription(Description description) {
+            this.description = description;
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
-        }
-
-        public void setEmail(Email email) {
-            this.email = email;
-        }
-
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
-        }
-
-        public void setAddress(Address address) {
-            this.address = address;
-        }
-
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<Description> getDescription() {
+            return Optional.ofNullable(description);
         }
 
         /**
@@ -218,9 +189,7 @@ public class EditCommand extends Command {
             EditTripDescriptor e = (EditTripDescriptor) other;
 
             return getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
+                    && getDescription().equals(e.getDescription())
                     && getTags().equals(e.getTags());
         }
     }
