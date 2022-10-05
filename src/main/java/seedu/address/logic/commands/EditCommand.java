@@ -60,7 +60,6 @@ public class EditCommand extends Command {
     private Index index;
 
     /**
-     *
      * @param phoneIdentifier current phone number of the person
      * @param editPersonDescriptor details to edit the person with
      */
@@ -73,7 +72,6 @@ public class EditCommand extends Command {
     }
 
     /**
-     *
      * @param emailIdentifier current email address of the person
      * @param editPersonDescriptor details to edit the person with
      */
