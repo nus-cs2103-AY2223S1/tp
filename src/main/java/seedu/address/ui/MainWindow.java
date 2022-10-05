@@ -172,9 +172,14 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void switchMainPanel(MainPanel panel, boolean recordHistory) {
+        if (currentMainPanel == panel) {
+            return;
+        }
+
         if (recordHistory) {
             mainPanelHistory.push(currentMainPanel);
         }
+
         currentMainPanel = panel;
         mainPanelPlaceholder.getChildren().clear();
         mainPanelPlaceholder.getChildren().add(panel.getRoot());
@@ -185,11 +190,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleHelp() {
-        if (!helpWindow.isShowing()) {
-            helpWindow.show();
-        } else {
-            helpWindow.focus();
-        }
+        switchMainPanel(new HelpPanel(), true);
     }
 
     void show() {
