@@ -7,7 +7,7 @@ public class PatientType {
     public static final String MESSAGE_CONSTRAINTS = "Patient Type can only be i(inpatient) or o(outpatient),"
             + " and should not be blank";
 
-    public static final String DEPENDENCY_CONSTRAINTS = "Inpatient patients must have a hospital wing, "
+    public static final String DEPENDENCY_CONSTRAINTS = "Only Inpatient patients can and must have a hospital wing, "
             + "floor number and ward number. \n%1$s";
 
     public final PatientTypes value;
@@ -15,11 +15,18 @@ public class PatientType {
     /**
      * Constructs an {@code Hospital Wing}.
      *
-     * @param patientType A valid hospital wing.
+     * @param patientType A valid patient type.
      */
     public PatientType(PatientTypes patientType) {
         requireNonNull(patientType);
         value = patientType;
+    }
+
+    /**
+     * Returns true if a given string is a valid Patient Type.
+     */
+    public static boolean isValidNextOfKin(String test) {
+        return PatientTypes.parsePatientType(test) != null;
     }
 
     public boolean isInpatient() {
@@ -58,6 +65,21 @@ public class PatientType {
             public String toString() {
                 return "O";
             }
+        };
+
+        /**
+         * Returns an {@code PatientTypes} enum.
+         *
+         * @param strPatientType the string patient type to be parsed.
+         */
+        public static PatientTypes parsePatientType(String strPatientType) {
+            PatientTypes[] patientTypes = PatientTypes.values();
+            for (PatientTypes pt : patientTypes) {
+                if (strPatientType.equals(pt.name()) || strPatientType.equals(pt.toString())) {
+                    return pt;
+                }
+            }
+            return null;
         }
     }
 }

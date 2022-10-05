@@ -101,12 +101,21 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        NextOfKin updatedNextOfKin = editPersonDescriptor.getNextOfKin().orElse(personToEdit.getAddress());
-        HospitalWing updatedHospitalWing = editPersonDescriptor.getHospitalWing()
-                .orElse(personToEdit.getHospitalWing());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        NextOfKin updatedNextOfKin = editPersonDescriptor.getNextOfKin().orElse(personToEdit.getNextOfKin());
+        PatientType updatedPatientType = editPersonDescriptor.getPatientType().orElse(personToEdit.getPatientType());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedNextOfKin, updatedHospitalWing, updatedTags);
+        HospitalWing updatedHospitalWing = null;
+        FloorNumber updatedFloorNumber = null;
+        WardNumber updatedWardNumber = null;
+        if (updatedPatientType.isInpatient()) {
+            updatedHospitalWing = editPersonDescriptor.getHospitalWing().orElse(personToEdit.getHospitalWing());
+            updatedFloorNumber = editPersonDescriptor.getFloorNumber().orElse(personToEdit.getFloorNumber());
+            updatedWardNumber = editPersonDescriptor.getWardNumber().orElse(personToEdit.getWardNumber());
+        }
+        Set<Medication> updatedMedications = editPersonDescriptor.getMedications().orElse(personToEdit.getMedications());
+
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedNextOfKin, updatedPatientType,
+                updatedHospitalWing, updatedFloorNumber, updatedWardNumber, updatedMedications);
     }
 
     @Override
@@ -153,8 +162,11 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setNextOfKin(toCopy.nextOfKin);
+            setPatientType(toCopy.patientType);
             setHospitalWing(toCopy.hospitalWing);
-            setTags(toCopy.medications);
+            setFloorNumber(toCopy.floorNumber);
+            setWardNumber(toCopy.wardNumber);
+            setMedications(toCopy.medications);
         }
 
         /**
@@ -197,6 +209,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(nextOfKin);
         }
 
+        public void setPatientType(PatientType patientType) {
+            this.patientType = patientType;
+        }
+
+        public Optional<PatientType> getPatientType() {
+            return Optional.ofNullable(patientType);
+        }
+
         public void setHospitalWing(HospitalWing hospitalWing) {
             this.hospitalWing = hospitalWing;
         }
@@ -205,12 +225,28 @@ public class EditCommand extends Command {
             return Optional.ofNullable(hospitalWing);
         }
 
+        public void setFloorNumber(FloorNumber floorNumber) {
+            this.floorNumber = floorNumber;
+        }
+
+        public Optional<FloorNumber> getFloorNumber() {
+            return Optional.ofNullable(floorNumber);
+        }
+
+        public void setWardNumber(WardNumber wardNumber) {
+            this.wardNumber = wardNumber;
+        }
+
+        public Optional<WardNumber> getWardNumber() {
+            return Optional.ofNullable(wardNumber);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
          */
-        public void setTags(Set<Tag> tags) {
-            this.medications = (tags != null) ? new HashSet<>(tags) : null;
+        public void setMedications(Set<Medication> medications) {
+            this.medications = (medications != null) ? new HashSet<>(medications) : null;
         }
 
         /**
@@ -218,8 +254,8 @@ public class EditCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<Set<Medication>> getMedications() {
+            return (medications != null) ? Optional.of(Collections.unmodifiableSet(medications)) : Optional.empty();
         }
 
         @Override
@@ -241,8 +277,11 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getNextOfKin().equals(e.getNextOfKin())
+                    && getPatientType().equals(e.getPatientType())
                     && getHospitalWing().equals(e.getHospitalWing())
-                    && getTags().equals(e.getTags());
+                    && getFloorNumber().equals(e.getFloorNumber())
+                    && getWardNumber().equals(e.getWardNumber())
+                    && getMedications().equals(e.getMedications());
         }
     }
 }

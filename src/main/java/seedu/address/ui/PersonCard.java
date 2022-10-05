@@ -35,13 +35,19 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
-    private Label address;
-    @FXML
     private Label email;
+    @FXML
+    private Label nextOfKin;
+    @FXML
+    private Label patientType;
     @FXML
     private FlowPane hospitalWing;
     @FXML
-    private FlowPane tags;
+    private FlowPane floorNumber;
+    @FXML
+    private FlowPane wardNumber;
+    @FXML
+    private FlowPane medications;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -52,12 +58,15 @@ public class PersonCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
+        nextOfKin.setText(person.getNextOfKin().value);
+        patientType.setText(person.getPatientType().value.name());
         hospitalWing.getChildren().add(new Label(person.getHospitalWing().value));
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        floorNumber.getChildren().add(new Label(person.getFloorNumber().value.toString()));
+        wardNumber.getChildren().add(new Label(person.getWardNumber().value.toString()));
+        person.getMedications().stream()
+                .sorted(Comparator.comparing(medication -> medication.medicationName))
+                .forEach(medication -> medications.getChildren().add(new Label(medication.medicationName)));
     }
 
     @Override

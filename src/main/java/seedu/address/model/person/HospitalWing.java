@@ -11,7 +11,7 @@ public class HospitalWing {
 
     public static final String MESSAGE_CONSTRAINTS = "Hospital Wing should be alphanumeric for inpatients "
             + "and blank for outpatients";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String VALIDATION_REGEX = "[^\\s].*";
 
     public final String value;
 

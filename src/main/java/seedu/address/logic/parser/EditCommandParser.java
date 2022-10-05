@@ -2,12 +2,15 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FLOOR_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOSPITAL_WING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NEXT_OF_KIN;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WARD_NUMBER;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -18,7 +21,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.PatientType;
+import seedu.address.model.tag.Medication;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -33,11 +37,11 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_HOSPITAL_WING, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_NEXT_OF_KIN,
+                        PREFIX_PATIENT_TYPE, PREFIX_HOSPITAL_WING, PREFIX_FLOOR_NUMBER,
+                        PREFIX_WARD_NUMBER,  PREFIX_MEDICATION);
 
         Index index;
-
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
@@ -54,14 +58,50 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
-        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+        if (argMultimap.getValue(PREFIX_NEXT_OF_KIN).isPresent()) {
+            editPersonDescriptor.setNextOfKin(ParserUtil.parseNextOfKin(
+                    argMultimap.getValue(PREFIX_NEXT_OF_KIN).get()));
+        }
+        if (argMultimap.getValue(PREFIX_PATIENT_TYPE).isPresent()) {
+            editPersonDescriptor.setPatientType(ParserUtil.parsePatientType(
+                    argMultimap.getValue(PREFIX_PATIENT_TYPE).get()));
         }
         if (argMultimap.getValue(PREFIX_HOSPITAL_WING).isPresent()) {
             editPersonDescriptor.setHospitalWing(ParserUtil.parseHospitalWing(
                     argMultimap.getValue(PREFIX_HOSPITAL_WING).get()));
         }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+        if (argMultimap.getValue(PREFIX_FLOOR_NUMBER).isPresent()) {
+            editPersonDescriptor.setFloorNumber(ParserUtil.parseFloorNumber(
+                    argMultimap.getValue(PREFIX_FLOOR_NUMBER).get()));
+        }
+        if (argMultimap.getValue(PREFIX_WARD_NUMBER).isPresent()) {
+            editPersonDescriptor.setWardNumber(ParserUtil.parseWardNumber(
+                    argMultimap.getValue(PREFIX_WARD_NUMBER).get()));
+        }
+
+        /*
+        If the changed person's patient type outpatient, it cannot have Hospital Wing, Floor Number or Ward Number.
+         */
+        if ((editPersonDescriptor.getPatientType().isPresent()
+                && !editPersonDescriptor.getPatientType().get().isInpatient())
+                && (editPersonDescriptor.getHospitalWing().isPresent()
+                || editPersonDescriptor.getFloorNumber().isPresent()
+                || editPersonDescriptor.getWardNumber().isPresent())) {
+            throw new ParseException(String.format(PatientType.DEPENDENCY_CONSTRAINTS, EditCommand.MESSAGE_USAGE));
+        }
+
+        /*
+        If the changed person's patient type inpatient, it must have Hospital Wing, Floor Number or Ward Number.
+         */
+        if ((editPersonDescriptor.getPatientType().isPresent()
+                && editPersonDescriptor.getPatientType().get().isInpatient())
+                && (editPersonDescriptor.getHospitalWing().isEmpty()
+                || editPersonDescriptor.getFloorNumber().isEmpty()
+                || editPersonDescriptor.getWardNumber().isEmpty())) {
+            throw new ParseException(String.format(PatientType.DEPENDENCY_CONSTRAINTS, EditCommand.MESSAGE_USAGE));
+        }
+
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_MEDICATION)).ifPresent(editPersonDescriptor::setMedications);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -75,14 +115,15 @@ public class EditCommandParser implements Parser<EditCommand> {
      * If {@code tags} contain only one element which is an empty string, it will be parsed into a
      * {@code Set<Tag>} containing zero tags.
      */
-    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
-        assert tags != null;
+    private Optional<Set<Medication>> parseTagsForEdit(Collection<String> medications) throws ParseException {
+        assert medications != null;
 
-        if (tags.isEmpty()) {
+        if (medications.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseTags(tagSet));
+        Collection<String> medicationSet = medications.size() == 1 && medications.contains("")
+                ? Collections.emptySet() : medications;
+        return Optional.of(ParserUtil.parseMedications(medicationSet));
     }
 
 }

@@ -8,7 +8,6 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.tag.Medication;
-import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.
@@ -63,17 +62,20 @@ public class Person {
         return nextOfKin;
     }
 
+    public HospitalWing getHospitalWing() {
+        return hospitalWing;
+    }
+
     public PatientType getPatientType() {
         return patientType;
     }
 
-    public FloorNumber getFloorNumber() {
-        return floorNumber;
+    public WardNumber getWardNumber() {
+        return wardNumber;
     }
 
-
-    public HospitalWing getHospitalWing() {
-        return hospitalWing;
+    public FloorNumber getFloorNumber() {
+        return floorNumber;
     }
 
     /**
@@ -115,15 +117,19 @@ public class Person {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getNextOfKin().equals(getNextOfKin())
+                && otherPerson.getPatientType().equals(getPatientType())
                 && otherPerson.getHospitalWing().equals(getHospitalWing())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getFloorNumber().equals(getFloorNumber())
+                && otherPerson.getWardNumber().equals(getWardNumber())
+                && otherPerson.getMedications().equals(getMedications());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, hospitalWing, tags);
+        return Objects.hash(name, phone, email, nextOfKin, patientType, hospitalWing,
+                floorNumber, wardNumber, medications);
     }
 
     @Override
@@ -134,14 +140,24 @@ public class Person {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress())
-                .append("; Hospital Wing: ")
-                .append(getHospitalWing());
+                .append("; Next of Kin: ")
+                .append(getNextOfKin())
+                .append("; Patient Type: ")
+                .append(getPatientType());
 
-        Set<Tag> tags = getTags();
+        if (getPatientType().isInpatient()) {
+            builder.append("; Hospital Wing: ")
+                    .append(getHospitalWing())
+                    .append("; Floor Number: ")
+                    .append(getFloorNumber())
+                    .append("; Ward Number: ")
+                    .append(getWardNumber());
+        }
+
+
+        Set<Medication> tags = getMedications();
         if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
+            builder.append("; Medications: ");
             tags.forEach(builder::append);
         }
         return builder.toString();

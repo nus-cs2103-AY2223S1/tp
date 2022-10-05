@@ -32,7 +32,7 @@ public class NextOfKin {
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid Next of Kin.
      */
     public static boolean isValidNextOfKin(String test) {
         return test.matches(VALIDATION_REGEX);

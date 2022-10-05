@@ -115,13 +115,11 @@ public class ParserUtil {
             throw new ParseException(NextOfKin.MESSAGE_CONSTRAINTS);
         }
         String capsPatientType = trimmedPatientType.toUpperCase(Locale.ROOT);
-        PatientTypes[] patientTypes = PatientTypes.values();
-        for (PatientTypes pt : patientTypes) {
-            if (capsPatientType.equals(pt.name()) || capsPatientType.equals(pt.toString())) {
-                return new PatientType(pt);
-            }
+        PatientTypes pt = PatientTypes.parsePatientType(capsPatientType);
+        if (pt == null) {
+            throw new ParseException(NextOfKin.MESSAGE_CONSTRAINTS);
         }
-        throw new ParseException(NextOfKin.MESSAGE_CONSTRAINTS);
+        return new PatientType(pt);
     }
 
     /**
