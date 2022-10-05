@@ -1,18 +1,21 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FLOOR_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOSPITAL_WING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NEXT_OF_KIN;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WARD_NUMBER;
 
 import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.Medication;
 
 /**
  * A utility class for Person.
@@ -34,10 +37,15 @@ public class PersonUtil {
         sb.append(PREFIX_NAME + person.getName().fullName + " ");
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
-        sb.append(PREFIX_HOSPITAL_WING + person.getHospitalWing().value + " ");
-        person.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
+        sb.append(PREFIX_NEXT_OF_KIN + person.getNextOfKin().value + " ");
+        sb.append(PREFIX_PATIENT_TYPE + person.getPatientType().value.name() + " ");
+        if (person.getPatientType().isInpatient()) {
+            sb.append(PREFIX_HOSPITAL_WING + person.getHospitalWing().get().value + " ");
+            sb.append(PREFIX_HOSPITAL_WING + person.getFloorNumber().get().value.toString() + " ");
+            sb.append(PREFIX_HOSPITAL_WING + person.getWardNumber().get().value.toString() + " ");
+        }
+        person.getMedications().stream().forEach(
+            s -> sb.append(PREFIX_MEDICATION + s.medicationName + " ")
         );
         return sb.toString();
     }
@@ -50,15 +58,22 @@ public class PersonUtil {
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
-        descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
+        descriptor.getNextOfKin()
+                .ifPresent(nextOfKin -> sb.append(PREFIX_NEXT_OF_KIN).append(nextOfKin.value).append(" "));
+        descriptor.getPatientType()
+                .ifPresent(patientType -> sb.append(PREFIX_PATIENT_TYPE).append(patientType.value.name()).append(" "));
         descriptor.getHospitalWing().ifPresent(hospitalWing -> sb.append(PREFIX_HOSPITAL_WING)
                 .append(hospitalWing.value).append(" "));
-        if (descriptor.getTags().isPresent()) {
-            Set<Tag> tags = descriptor.getTags().get();
+        descriptor.getFloorNumber().ifPresent(floorNumber -> sb.append(PREFIX_FLOOR_NUMBER)
+                .append(floorNumber.value).append(" "));
+        descriptor.getWardNumber().ifPresent(wardNumber -> sb.append(PREFIX_WARD_NUMBER)
+                .append(wardNumber.value).append(" "));
+        if (descriptor.getMedications().isPresent()) {
+            Set<Medication> tags = descriptor.getMedications().get();
             if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG);
+                sb.append(PREFIX_MEDICATION);
             } else {
-                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+                tags.forEach(s -> sb.append(PREFIX_MEDICATION).append(s.medicationName).append(" "));
             }
         }
         return sb.toString();
