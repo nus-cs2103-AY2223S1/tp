@@ -49,7 +49,8 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + CliSyntax.PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " "
             + CliSyntax.PREFIX_ADDRESS; // empty string not allowed for addresses
-    public static final String INVALID_DETAIL_DESC = " " + CliSyntax.PREFIX_DETAIL + "hubby*"; // '*' not allowed in details
+    public static final String INVALID_DETAIL_DESC = " "
+            + CliSyntax.PREFIX_DETAIL + "hubby*"; // '*' not allowed in details
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

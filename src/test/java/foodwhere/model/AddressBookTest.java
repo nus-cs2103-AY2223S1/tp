@@ -1,6 +1,7 @@
 package foodwhere.model;
 
-import static foodwhere.logic.commands.CommandTestUtil.*;
+import static foodwhere.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static foodwhere.logic.commands.CommandTestUtil.VALID_DETAIL_HUSBAND;
 import static foodwhere.testutil.Assert.assertThrows;
 import static foodwhere.testutil.TypicalPersons.ALICE;
 import static foodwhere.testutil.TypicalPersons.getTypicalAddressBook;

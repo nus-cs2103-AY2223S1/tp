@@ -12,8 +12,8 @@ import java.util.Set;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import foodwhere.model.detail.Detail;
 import foodwhere.logic.parser.exceptions.ParseException;
+import foodwhere.model.detail.Detail;
 import foodwhere.model.person.Address;
 import foodwhere.model.person.Email;
 import foodwhere.model.person.Name;
@@ -178,7 +178,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseDetails_collectionWithInvalidDetails_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseDetails(Arrays.asList(VALID_DETAIL_1, INVALID_DETAIL)));
+        assertThrows(ParseException.class, () ->
+                ParserUtil.parseDetails(Arrays.asList(VALID_DETAIL_1, INVALID_DETAIL)));
     }
 
     @Test
@@ -189,7 +190,8 @@ public class ParserUtilTest {
     @Test
     public void parseDetails_collectionWithValidDetails_returnsDetailSet() throws Exception {
         Set<Detail> actualDetailSet = ParserUtil.parseDetails(Arrays.asList(VALID_DETAIL_1, VALID_DETAIL_2));
-        Set<Detail> expectedDetailSet = new HashSet<Detail>(Arrays.asList(new Detail(VALID_DETAIL_1), new Detail(VALID_DETAIL_2)));
+        Set<Detail> expectedDetailSet = new HashSet<Detail>(Arrays.asList(new Detail(VALID_DETAIL_1),
+                new Detail(VALID_DETAIL_2)));
 
         assertEquals(expectedDetailSet, actualDetailSet);
     }

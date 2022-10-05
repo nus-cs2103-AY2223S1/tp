@@ -1,6 +1,28 @@
 package foodwhere.logic.parser;
 
-import static foodwhere.logic.commands.CommandTestUtil.*;
+import static foodwhere.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
+import static foodwhere.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+import static foodwhere.logic.commands.CommandTestUtil.DETAIL_DESC_FRIEND;
+import static foodwhere.logic.commands.CommandTestUtil.DETAIL_DESC_HUSBAND;
+import static foodwhere.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static foodwhere.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static foodwhere.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
+import static foodwhere.logic.commands.CommandTestUtil.INVALID_DETAIL_DESC;
+import static foodwhere.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static foodwhere.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static foodwhere.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
+import static foodwhere.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static foodwhere.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static foodwhere.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
+import static foodwhere.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
+import static foodwhere.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static foodwhere.logic.commands.CommandTestUtil.VALID_DETAIL_FRIEND;
+import static foodwhere.logic.commands.CommandTestUtil.VALID_DETAIL_HUSBAND;
+import static foodwhere.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static foodwhere.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static foodwhere.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static foodwhere.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
+import static foodwhere.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static foodwhere.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static foodwhere.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -70,13 +92,16 @@ public class EditCommandParserTest {
 
         // while parsing {@code PREFIX_DETAIL} alone will reset the details of the {@code Person} being edited,
         // parsing it together with a valid detail results in error
-        assertParseFailure(parser, "1" + DETAIL_DESC_FRIEND + DETAIL_DESC_HUSBAND + DETAIL_EMPTY, Detail.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + DETAIL_DESC_FRIEND + DETAIL_EMPTY + DETAIL_DESC_HUSBAND, Detail.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + DETAIL_EMPTY + DETAIL_DESC_FRIEND + DETAIL_DESC_HUSBAND, Detail.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + DETAIL_DESC_FRIEND + DETAIL_DESC_HUSBAND + DETAIL_EMPTY,
+                Detail.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + DETAIL_DESC_FRIEND + DETAIL_EMPTY + DETAIL_DESC_HUSBAND,
+                Detail.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + DETAIL_EMPTY + DETAIL_DESC_FRIEND + DETAIL_DESC_HUSBAND,
+                Detail.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY + VALID_PHONE_AMY,
-                Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY
+                        + VALID_PHONE_AMY, Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test

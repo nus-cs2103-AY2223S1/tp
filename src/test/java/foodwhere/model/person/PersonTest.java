@@ -31,7 +31,8 @@ public class PersonTest {
                 new PersonBuilder(TypicalPersons.ALICE)
                         .withPhone(CommandTestUtil.VALID_PHONE_BOB)
                         .withEmail(CommandTestUtil.VALID_EMAIL_BOB)
-                .withAddress(CommandTestUtil.VALID_ADDRESS_BOB).withDetails(CommandTestUtil.VALID_DETAIL_HUSBAND).build();
+                .withAddress(CommandTestUtil.VALID_ADDRESS_BOB).withDetails(CommandTestUtil.VALID_DETAIL_HUSBAND)
+                        .build();
         assertTrue(TypicalPersons.ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false
