@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import seedu.address.model.person.AdditionalNotes;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.MoneyOwed;
@@ -19,6 +20,7 @@ public class PersonBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final Integer DEFAULT_MONEY_OWED = 0;
     public static final Integer DEFAULT_MONEY_PAID = 0;
+    public static final String DEFAULT_ADDITIONALNOTES = "";
 
     private Name name;
     private Phone phone;
@@ -26,6 +28,7 @@ public class PersonBuilder {
     private Address address;
     private MoneyOwed moneyOwed;
     private MoneyPaid moneyPaid;
+    private AdditionalNotes additionalNotes;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -37,6 +40,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         moneyOwed = new MoneyOwed(DEFAULT_MONEY_OWED);
         moneyPaid = new MoneyPaid(DEFAULT_MONEY_PAID);
+        additionalNotes = new AdditionalNotes(DEFAULT_ADDITIONALNOTES);
     }
 
     /**
@@ -49,6 +53,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         moneyOwed = personToCopy.getMoneyOwed();
         moneyPaid = personToCopy.getMoneyPaid();
+        additionalNotes = personToCopy.getAdditionalNotes();
     }
 
     /**
@@ -98,9 +103,17 @@ public class PersonBuilder {
         this.moneyPaid = new MoneyPaid(moneyPaid);
         return this;
     }
+  
+    /**
+     * Sets the {@code AdditionalNotes} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withAdditionalNotes(String additionalNotes) {
+        this.additionalNotes = new AdditionalNotes(additionalNotes);
+        return this;
+    }
 
     public Person build() {
-        return new Person(name, phone, email, address, moneyOwed, moneyPaid);
+        return new Person(name, phone, email, address, moneyOwed, moneyPaid, additionalNotes);
     }
 
 }

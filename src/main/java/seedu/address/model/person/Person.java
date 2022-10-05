@@ -20,6 +20,7 @@ public class Person {
     private final Address address;
     private final MoneyOwed moneyOwed;
     private final MoneyPaid moneyPaid;
+    private final AdditionalNotes additionalNotes;
 
     /**
      * Constructs a {@code Person} class when first initialized with add command.
@@ -33,19 +34,22 @@ public class Person {
         this.address = address;
         this.moneyOwed = new MoneyOwed();
         this.moneyPaid = new MoneyPaid();
+        this.additionalNotes = new AdditionalNotes("");
     }
 
     /**
+     * Overloaded constructor.
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, MoneyOwed moneyOwed, MoneyPaid moneyPaid) {
-        requireAllNonNull(name, phone, email, address);
+    public Person(Name name, Phone phone, Email email, Address address, AdditionalNotes additionalNotes) {
+        requireAllNonNull(name, phone, email, address, additionalNotes);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.moneyOwed = moneyOwed;
         this.moneyPaid = moneyPaid;
+        this.additionalNotes = additionalNotes;
     }
 
     public Name getName() {
@@ -70,6 +74,10 @@ public class Person {
 
     public MoneyPaid getMoneyPaid() {
         return moneyPaid;
+    }
+  
+    public AdditionalNotes getAdditionalNotes() {
+        return additionalNotes;
     }
 
     /**
@@ -100,18 +108,20 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
+
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getMoneyOwed().equals(getMoneyOwed())
                 && otherPerson.getMoneyPaid().equals(getMoneyPaid());
+                && otherPerson.getAdditionalNotes().equals(getAdditionalNotes());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, moneyOwed, moneyPaid);
+        return Objects.hash(name, phone, email, address, moneyOwed, moneyPaid, additionalNotes);
     }
 
     @Override
@@ -127,7 +137,9 @@ public class Person {
                 .append("; Money Owed: ")
                 .append(getMoneyOwed())
                 .append("; Money Paid: ")
-                .append(getMoneyPaid());
+                .append(getMoneyPaid())
+                .append("; Additional notes: ")
+                .append(getAdditionalNotes());
 
         return builder.toString();
     }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.person.AdditionalNotes;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.MoneyOwed;
@@ -25,6 +26,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final Integer moneyOwed;
     private final Integer moneyPaid;
+    private final String additionalNotes;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -33,13 +35,15 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("money_owed") Integer moneyOwed,
-                             @JsonProperty("monet_paid") Integer moneyPaid) {
+                             @JsonProperty("monet_paid") Integer moneyPaid),
+                             @JsonProperty("additionalNotes") String additionalNotes) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.moneyOwed = moneyOwed;
         this.moneyPaid = moneyPaid;
+        this.additionalNotes = additionalNotes;
     }
 
     /**
@@ -52,6 +56,7 @@ class JsonAdaptedPerson {
         address = source.getAddress().value;
         moneyOwed = source.getMoneyOwed().value;
         moneyPaid = source.getMoneyPaid().value;
+        additionalNotes = source.getAdditionalNotes().notes;
     }
 
     /**
@@ -92,6 +97,8 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final Address modelAddress = new Address(address);
+        //There is no invalid additionalNotes since it can be empty or non-empty.
+        final AdditionalNotes modelAdditionalNotes = new AdditionalNotes(additionalNotes);
 
         final MoneyOwed modelMoneyOwed;
         if (moneyOwed != null) {
@@ -113,7 +120,8 @@ class JsonAdaptedPerson {
             modelMoneyPaid = new MoneyPaid(0);
         }
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelMoneyOwed, modelMoneyPaid);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, 
+                          modelMoneyOwed, modelMoneyPaid, modelAdditionalNotes);
     }
 
 }

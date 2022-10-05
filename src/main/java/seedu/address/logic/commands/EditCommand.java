@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDITIONAL_NOTES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MONEY_OWED;
@@ -17,6 +18,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.AdditionalNotes;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.MoneyOwed;
@@ -42,6 +44,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_MONEY_OWED + "MONEY_OWED] "
             + "[" + PREFIX_MONEY_PAID + "MONEY_PAID] "
+            + "[" + PREFIX_ADDITIONAL_NOTES + "NOTES] "
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -97,10 +100,13 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+
+        AdditionalNotes updatedNotes = editPersonDescriptor.getAdditionalNotes()
+                .orElse(personToEdit.getAdditionalNotes());
         MoneyOwed updatedMoneyOwed = editPersonDescriptor.getMoneyOwed().orElse(personToEdit.getMoneyOwed());
         MoneyPaid updatedMoneyPaid = editPersonDescriptor.getMoneyPaid().orElse(personToEdit.getMoneyPaid());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedMoneyOwed, updatedMoneyPaid);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedMoneyOwed, updatedMoneyPaid, updatedNotes);
     }
 
     @Override
@@ -132,6 +138,7 @@ public class EditCommand extends Command {
         private Address address;
         private MoneyOwed moneyOwed;
         private MoneyPaid moneyPaid;
+        private AdditionalNotes additionalNotes;
 
         public EditPersonDescriptor() {}
 
@@ -145,13 +152,14 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setMoneyOwed(toCopy.moneyOwed);
             setMoneyPaid(toCopy.moneyPaid);
+            setAdditionalNotes(toCopy.additionalNotes);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, moneyOwed, moneyPaid);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, moneyOwed, moneyPaid, additionalNotes);
         }
 
         public void setName(Name name) {
@@ -200,6 +208,13 @@ public class EditCommand extends Command {
 
         public Optional<MoneyPaid> getMoneyPaid() {
             return Optional.ofNullable(moneyPaid);
+
+        public void setAdditionalNotes(AdditionalNotes additionalNotes) {
+            this.additionalNotes = additionalNotes;
+        }
+
+        public Optional<AdditionalNotes> getAdditionalNotes() {
+            return Optional.ofNullable(additionalNotes);
         }
 
         @Override
@@ -223,6 +238,8 @@ public class EditCommand extends Command {
                     && getAddress().equals(e.getAddress())
                     && getMoneyOwed().equals(e.getMoneyOwed())
                     && getMoneyPaid().equals(e.getMoneyPaid());
+                    && getAdditionalNotes().equals(e.getAdditionalNotes());
         }
+
     }
 }

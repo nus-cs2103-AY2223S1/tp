@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDITIONAL_NOTES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MONEY_OWED;
@@ -48,6 +49,8 @@ public class PersonUtil {
                 moneyOwed -> sb.append(PREFIX_MONEY_OWED).append(moneyOwed.value.toString()).append(" "));
         descriptor.getMoneyPaid().ifPresent(
                 moneyPaid -> sb.append(PREFIX_MONEY_PAID).append(moneyPaid.value.toString()).append(" "));
+        descriptor.getAdditionalNotes().ifPresent(
+                additionalNotes -> sb.append(PREFIX_ADDITIONAL_NOTES).append(additionalNotes.notes).append(" "));
         return sb.toString();
     }
 }
