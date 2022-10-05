@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.internship.Internship;
@@ -32,7 +33,7 @@ public class InternshipCard extends UiPart<Region> {
     @FXML
     private Label role;
     @FXML
-    private Label status;
+    private FlowPane status;
     @FXML
     private Label contactPersonId;
 
@@ -45,7 +46,7 @@ public class InternshipCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         companyName.setText(internship.getCompanyName().fullName);
         role.setText(internship.getInternshipRole().roleName);
-        status.setText(internship.getInternshipStatus().toString());
+        status.getChildren().add(new Label(internship.getInternshipStatus().toString()));
         contactPersonId.setText(internship.getContactPersonId().id.toString());
     }
 
