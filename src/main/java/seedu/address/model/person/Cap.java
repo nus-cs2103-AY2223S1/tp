@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Cap {
     public static final String MESSAGE_CONSTRAINTS =
-            "CAPs should consist of a value less than or equal to the maximum value, e.g. 4.0/5.0";
+            "CAPs should consist of a positive numeric value less than or equal to a maximum value, e.g. 4.0/5.0";
     public static final double MINIMUM = 0.0;
     public static final String SEPARATOR = "/";
     public final double value;
