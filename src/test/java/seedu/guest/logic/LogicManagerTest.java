@@ -6,6 +6,7 @@ import static seedu.guest.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.guest.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.guest.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.guest.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.guest.logic.commands.CommandTestUtil.NUMBER_OF_GUESTS_DESC_AMY;
 import static seedu.guest.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.guest.testutil.Assert.assertThrows;
 import static seedu.guest.testutil.TypicalPersons.AMY;
@@ -30,7 +31,7 @@ import seedu.guest.model.guest.Guest;
 import seedu.guest.storage.JsonGuestBookStorage;
 import seedu.guest.storage.JsonUserPrefsStorage;
 import seedu.guest.storage.StorageManager;
-import seedu.guest.testutil.PersonBuilder;
+import seedu.guest.testutil.GuestBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -80,8 +81,9 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY;
-        Guest expectedGuest = new PersonBuilder(AMY).withTags().build();
+                + NUMBER_OF_GUESTS_DESC_AMY + ADDRESS_DESC_AMY;
+        Guest expectedGuest = new GuestBuilder(AMY).withTags().build();
+
         ModelManager expectedModel = new ModelManager();
         expectedModel.addGuest(expectedGuest);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

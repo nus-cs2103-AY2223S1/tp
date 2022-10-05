@@ -20,7 +20,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.guest.model.guest.Guest;
 import seedu.guest.model.guest.exceptions.DuplicateGuestException;
-import seedu.guest.testutil.PersonBuilder;
+import seedu.guest.testutil.GuestBuilder;
 
 public class GuestBookTest {
 
@@ -46,7 +46,7 @@ public class GuestBookTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Guest editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Guest editedAlice = new GuestBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Guest> newGuests = Arrays.asList(ALICE, editedAlice);
         GuestBookStub newData = new GuestBookStub(newGuests);
@@ -73,7 +73,7 @@ public class GuestBookTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         guestBook.addGuest(ALICE);
-        Guest editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Guest editedAlice = new GuestBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(guestBook.hasGuest(editedAlice));
     }

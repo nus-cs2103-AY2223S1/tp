@@ -11,7 +11,7 @@ import seedu.guest.model.Model;
 import seedu.guest.model.ModelManager;
 import seedu.guest.model.UserPrefs;
 import seedu.guest.model.guest.Guest;
-import seedu.guest.testutil.PersonBuilder;
+import seedu.guest.testutil.GuestBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
@@ -27,7 +27,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_newPerson_success() {
-        Guest validGuest = new PersonBuilder().build();
+        Guest validGuest = new GuestBuilder().build();
 
         Model expectedModel = new ModelManager(model.getGuestBook(), new UserPrefs());
         expectedModel.addGuest(validGuest);
