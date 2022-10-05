@@ -9,52 +9,52 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.JeeqTracker;
+import seedu.address.model.ReadOnlyJeeqTracker;
 import seedu.address.model.company.Company;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable JeeqTracker that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+@JsonRootName(value = "jeeqtracker")
+class JsonSerializableJeeqTracker {
 
     public static final String MESSAGE_DUPLICATE_COMPANY = "Companies list contains duplicate company(s).";
 
     private final List<JsonAdaptedCompany> companies = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given companies.
+     * Constructs a {@code JsonSerializableJeeqTracker} with the given companies.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("companies") List<JsonAdaptedCompany> companies) {
+    public JsonSerializableJeeqTracker(@JsonProperty("companies") List<JsonAdaptedCompany> companies) {
         this.companies.addAll(companies);
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyJeeqTracker} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableJeeqTracker}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+    public JsonSerializableJeeqTracker(ReadOnlyJeeqTracker source) {
         companies.addAll(source.getCompanyList().stream().map(JsonAdaptedCompany::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this address book into the model's {@code JeeqTracker} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AddressBook toModelType() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
+    public JeeqTracker toModelType() throws IllegalValueException {
+        JeeqTracker jeeqTracker = new JeeqTracker();
         for (JsonAdaptedCompany jsonAdaptedCompany : companies) {
             Company company = jsonAdaptedCompany.toModelType();
-            if (addressBook.hasCompany(company)) {
+            if (jeeqTracker.hasCompany(company)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_COMPANY);
             }
-            addressBook.addCompany(company);
+            jeeqTracker.addCompany(company);
         }
-        return addressBook;
+        return jeeqTracker;
     }
 
 }
