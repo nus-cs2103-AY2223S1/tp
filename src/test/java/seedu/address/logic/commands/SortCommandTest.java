@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -38,7 +40,7 @@ class SortCommandTest {
 
     @Test
     void execute_success() throws CommandException {
-        SortCommand sortCommand = new SortCommand(List.of(new SortArgument(new Prefix("n/"), false, null)));
+        SortCommand sortCommand = new SortCommand(List.of(new SortArgument(PREFIX_NAME, false, null)));
         Model modelStub = new ModelStubThatSorts();
 
         assertEquals(SortCommand.MESSAGE_SUCCESS, sortCommand.execute(modelStub).getFeedbackToUser());
@@ -46,12 +48,12 @@ class SortCommandTest {
 
     @Test
     void testEquals() {
-        SortCommand sampleA = new SortCommand(List.of(new SortArgument(new Prefix("n/"), false, null)));
-        SortCommand sampleB = new SortCommand(List.of(new SortArgument(new Prefix("a/"), false, null)));
+        SortCommand sampleA = new SortCommand(List.of(new SortArgument(PREFIX_NAME, false, null)));
+        SortCommand sampleB = new SortCommand(List.of(new SortArgument(PREFIX_ADDRESS, false, null)));
         SortCommand sampleC = new SortCommand(List.of(
-            new SortArgument(new Prefix("n/"), false, null),
-            new SortArgument(new Prefix("n/"), false, null)));
-        SortCommand sampleD = new SortCommand(List.of(new SortArgument(new Prefix("n/"), false, null)));
+            new SortArgument(PREFIX_NAME, false, null),
+            new SortArgument(PREFIX_ADDRESS, false, null)));
+        SortCommand sampleD = new SortCommand(List.of(new SortArgument(PREFIX_NAME, false, null)));
 
         assertEquals(sampleA, sampleA); // same object
         assertNotEquals(1, sampleA); // not SortCommand

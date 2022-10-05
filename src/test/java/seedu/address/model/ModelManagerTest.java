@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -12,10 +13,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -128,5 +131,79 @@ public class ModelManagerTest {
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+    }
+
+    @Test
+    void sortByName() {
+        ModelManager sampleA = new ModelManager();
+        ModelManager sampleB = new ModelManager();
+        sampleA.addPerson(ALICE);
+        sampleA.addPerson(BENSON);
+        sampleB.addPerson(BENSON);
+        sampleB.addPerson(ALICE);
+        sampleA.sortByName(true);
+        assertEquals(sampleA, sampleB);
+        sampleA.sortByName(false);
+        assertNotEquals(sampleA, sampleB);
+    }
+
+    @Test
+    void sortByPhone() {
+        ModelManager sampleA = new ModelManager();
+        ModelManager sampleB = new ModelManager();
+        sampleA.addPerson(ALICE);
+        sampleA.addPerson(BENSON);
+        sampleB.addPerson(BENSON);
+        sampleB.addPerson(ALICE);
+        sampleA.sortByPhone(true);
+        assertEquals(sampleA, sampleB);
+        sampleA.sortByPhone(false);
+        assertNotEquals(sampleA, sampleB);
+    }
+
+    @Test
+    void sortByEmail() {
+        ModelManager sampleA = new ModelManager();
+        ModelManager sampleB = new ModelManager();
+        sampleA.addPerson(ALICE);
+        sampleA.addPerson(BENSON);
+        sampleB.addPerson(BENSON);
+        sampleB.addPerson(ALICE);
+        sampleA.sortByEmail(true);
+        assertEquals(sampleA, sampleB);
+        sampleA.sortByEmail(false);
+        assertNotEquals(sampleA, sampleB);
+    }
+
+    @Test
+    void sortByAddress() {
+        ModelManager sampleA = new ModelManager();
+        ModelManager sampleB = new ModelManager();
+        sampleA.addPerson(ALICE);
+        sampleA.addPerson(BENSON);
+        sampleB.addPerson(BENSON);
+        sampleB.addPerson(ALICE);
+        sampleA.sortByAddress(true);
+        assertEquals(sampleA, sampleB);
+        sampleA.sortByAddress(false);
+        assertNotEquals(sampleA, sampleB);
+    }
+
+    /**
+     * Disabled until test methods has been updated for upgraded tags.
+     */
+    @Test
+    @Disabled
+    void sortByTag() {
+        ModelManager sampleA = new ModelManager();
+        ModelManager sampleB = new ModelManager();
+        sampleA.addPerson(ALICE);
+        sampleA.addPerson(BENSON);
+        sampleB.addPerson(BENSON);
+        sampleB.addPerson(ALICE);
+        sampleA.sortByTag(new Tag("owesMoney"), true);
+        assertEquals(sampleA, sampleB);
+        sampleA.sortByTag(new Tag("owesMoney"), false);
+        assertNotEquals(sampleA, sampleB);
     }
 }
