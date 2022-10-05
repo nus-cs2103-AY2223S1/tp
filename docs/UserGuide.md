@@ -27,7 +27,7 @@ NUScheduler is a desktop app for **managing contacts, optimised for use via a Co
 
    * **`profile -d `**`2` : Deletes the 2nd profile shown in the current list.
 
-   * **`profile -v`** : Lists all profiles or in NUScheduler.
+   * **`profile -v`** : Lists all profiles in NUScheduler.
 
 6. Refer to the [Features](#features) below for details of each command.
 
@@ -76,12 +76,12 @@ Adds a profile to NUScheduler.
 Format: `profile -a n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A profile can have any number of tags (including 0)
+A profile can have 0 or more tags
 </div>
 
 Examples:
 * `profile -a n/John Doe p/98765432 e/johnd@example.com t/friend`
-* `profile -a n/Betsy Crowe e/betsycrowe@example.com p/1234567 t/professor`
+* `profile -a n/Betsy Crowe e/betsycrowe@example.com p/1234567 t/professor t/lecturer`
 
 ### Viewing all profiles: `profile -v`
 
@@ -136,14 +136,14 @@ Format: `profile -d INDEX`
 Example:
 * `profile -d 1` deletes the first profile listed.
 
-### Adding a event: `event -a`
+### Adding an event: `event -a`
 
 Adds an event with a name and a start timing and end timing.
 
 Format: `event -a n/NAME s/START e/END [p/PROFILE]…`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-An event can have any number of profiles (including 0)
+An event can have 0 or more profiles
 </div>
 
 
