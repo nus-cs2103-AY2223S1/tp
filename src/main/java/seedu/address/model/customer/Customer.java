@@ -33,12 +33,12 @@ public class Customer {
      * @param builder Instance of CustomerBuilder.
      */
     public Customer(CustomerBuilder builder) {
-        this.name = builder.name;
-        this.phone = builder.phone;
-        this.email = builder.email;
-        this.tags = builder.tags;
-        this.commissions = builder.commissions;
-        this.address = builder.address;
+        name = builder.name;
+        phone = builder.phone;
+        email = builder.email;
+        tags = builder.tags;
+        commissions = builder.commissions;
+        address = builder.address;
     }
 
     public Name getName() {
