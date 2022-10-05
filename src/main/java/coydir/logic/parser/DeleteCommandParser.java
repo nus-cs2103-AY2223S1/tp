@@ -2,7 +2,6 @@ package coydir.logic.parser;
 
 import static coydir.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-//import coydir.commons.core.index.Index;
 import coydir.logic.commands.DeleteCommand;
 import coydir.logic.parser.exceptions.ParseException;
 import coydir.model.person.EmployeeId;
