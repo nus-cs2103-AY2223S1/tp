@@ -1,5 +1,7 @@
 package seedu.address.model.tag;
 
+import seedu.address.model.person.Email;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -12,6 +14,8 @@ public class Tag {
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
+    public static final String DEFAULT_TAG = "UNSPECIFIED";
+
     public final String tagName;
 
     /**
@@ -23,6 +27,14 @@ public class Tag {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.tagName = tagName;
+    }
+
+    /**
+     * Returns a Tag object containing the default String
+     * @return Email object with the default tagName field.
+     */
+    public Tag makeDefaultTag(){
+        return new Tag(DEFAULT_TAG);
     }
 
     /**
