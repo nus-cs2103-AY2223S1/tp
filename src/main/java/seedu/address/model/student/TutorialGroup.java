@@ -3,6 +3,8 @@ package seedu.address.model.student;
 //import static java.util.Objects.requireNonNull;
 //import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.ArrayList;
+
 /**
  * Represents a Student's tutorial group in the address book.
  */
@@ -19,6 +21,8 @@ public class TutorialGroup {
     public static final String DEFAULT_TUTORIAL_GROUP = "T01";
 
     public final String tutorialGroup;
+
+    private ArrayList<Student> students = new ArrayList<>();
 
 
 
@@ -49,6 +53,14 @@ public class TutorialGroup {
      */
     public static boolean isValidTutorialGroup(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    public void addStudentToTutorialGroup(Student student) {
+        students.add(student);
+    }
+
+    public ArrayList<Student> getStudents() {
+        return students;
     }
 
 
