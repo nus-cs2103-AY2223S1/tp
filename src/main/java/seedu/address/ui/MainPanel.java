@@ -15,5 +15,5 @@ public abstract class MainPanel extends UiPart<Region> {
     /**
      * Returns the panel's name of the MainPanel
      */
-    abstract public MainPanelName getPanelName();
+    public abstract MainPanelName getPanelName();
 }
