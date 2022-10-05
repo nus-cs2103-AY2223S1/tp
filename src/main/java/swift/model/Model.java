@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import swift.commons.core.GuiSettings;
 import swift.model.person.Person;
+import swift.model.task.Task;
 
 /**
  * The API of the Model component.
@@ -84,4 +85,28 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Returns true if a task with the same identity as {@code task} exists in the address book.
+     */
+    boolean hasTask(Task task);
+
+    /**
+     * Deletes the given person.
+     * The person must exist in the address book.
+     */
+    void deleteTask(Task target);
+
+    /**
+     * Adds the given task.
+     * {@code task} must not already exist in the address book.
+     */
+    void addTask(Task task);
+
+    /**
+     * Replaces the given task {@code target} with {@code editedTask}.
+     * {@code target} must exist in the address book.
+     * The task name and owner of {@code editedTask} must not be the same as another existing task in the address book.
+     */
+    void setTask(Task target, Task editedTask);
 }
