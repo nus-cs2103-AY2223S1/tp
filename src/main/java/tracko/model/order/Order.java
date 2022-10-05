@@ -81,4 +81,18 @@ public class Order {
             && otherOrder.getAddress().equals(getAddress())
             && otherOrder.getItemList().equals(getItemList());
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Name: " + getName().fullName + "\n");
+        sb.append("Phone: " + getPhone().value + "\n");
+        sb.append("Email: " + getEmail().value + "\n");
+        sb.append("Address: " + getAddress().value + "\n");
+        sb.append("Item List: \n");
+        for (ItemQuantityPair itemQuantityPair : getItemList()) {
+            sb.append("\u2022 " + itemQuantityPair.toString() + "\n");
+        }
+        return sb.toString();
+    }
 }
