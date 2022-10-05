@@ -25,7 +25,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Customer> filteredCustomers;
     private final FilteredList<Commission> filteredCommissions;
-    private ObservableObject<Customer> selectedCustomer = new ObservableObject<>();
+    private final ObservableObject<Customer> selectedCustomer = new ObservableObject<>();
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -41,11 +41,11 @@ public class ModelManager implements Model {
         filteredCustomers = new FilteredList<>(this.addressBook.getCustomerList());
         filteredCommissions = new FilteredList<>(getCommissionList());
 
-        // Temporarily set active customer to the first customer.
+        // Temporarily set selected customer to the first customer.
         // TODO: Should be fixed by implementer of the opencus command.
         if (filteredCustomers.size() > 0) {
             selectCustomer(filteredCustomers.get(0));
-            updateFilteredCommissionListToActiveCustomer();
+            updateFilteredCommissionListToSelectedCustomer();
         }
 
     }
@@ -164,6 +164,12 @@ public class ModelManager implements Model {
     public void updateFilteredCustomerList(Predicate<Customer> predicate) {
         requireNonNull(predicate);
         filteredCustomers.setPredicate(predicate);
+        if (filteredCustomers.size() == 0) {
+            selectCustomer(null);
+        }
+        if (filteredCustomers.size() > 0 && !filteredCustomers.contains(selectedCustomer.getValue())) {
+            selectCustomer(filteredCustomers.get(0));
+        }
     }
 
     //=========== Filtered Commission List Accessors =============================================================
@@ -183,12 +189,12 @@ public class ModelManager implements Model {
         filteredCommissions.setPredicate(predicate);
     }
 
-    private Predicate<Commission> getActiveCustomerCommissionsPredicate() {
+    private Predicate<Commission> getSelectedCustomerCommissionsPredicate() {
         return commission -> commission.getCustomer().isSameCustomer(getSelectedCustomer().getValue());
     }
 
-    public void updateFilteredCommissionListToActiveCustomer() {
-        updateFilteredCommissionList(getActiveCustomerCommissionsPredicate());
+    public void updateFilteredCommissionListToSelectedCustomer() {
+        updateFilteredCommissionList(getSelectedCustomerCommissionsPredicate());
     }
 
     //=========== Selected Customer =============================================================
@@ -197,7 +203,7 @@ public class ModelManager implements Model {
     @Override
     public void selectCustomer(Customer customer) {
         this.selectedCustomer.setValue(customer);
-        updateFilteredCommissionListToActiveCustomer();
+        updateFilteredCommissionListToSelectedCustomer();
     }
 
     @Override
@@ -206,7 +212,7 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Returns whether there is an active customer.
+     * Returns whether there is an selected customer.
      */
     @Override
     public boolean hasSelectedCustomer() {
