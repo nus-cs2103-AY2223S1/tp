@@ -20,8 +20,10 @@ public class ArgumentMultimap {
 
     /** Prefixes mapped to their respective arguments**/
     private final Map<Prefix, List<String>> argMultimap = new HashMap<>();
+
     private boolean phoneIdentifier = false;
     private boolean emailIdentifier = false;
+
     /**
      * Associates the specified argument value with {@code prefix} key in this map.
      * If the map previously contained a mapping for the key, the new value is appended to the list of existing values.
@@ -67,10 +69,20 @@ public class ArgumentMultimap {
         return getValue(new Prefix("")).orElse("");
     }
 
+    /**
+     * Returns if the phone number of a person exists as an identifier.
+     *
+     * @return whether phone number exists as an identifier.
+     */
     public boolean getPhoneIdentifier() {
         return phoneIdentifier;
     }
 
+    /**
+     * Returns if the email address of a person exists as an identifier.
+     *
+     * @return whether email address exists as an identifier.
+     */
     public boolean getEmailIdentifier() {
         return emailIdentifier;
     }

@@ -14,12 +14,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
@@ -37,21 +37,21 @@ public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+            + "by the phone number/ email address used to register for membership. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: p/PHONE_NUMBER or e/EMAIL \n"
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_REWARD + "REWARD] "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "Example: " + COMMAND_WORD + " p/98349032  or  " + COMMAND_WORD + " e/example@gmail.com"
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_CUSTOMER = "This customer already exists in bobaBot";
 
     private final EditPersonDescriptor editPersonDescriptor;
 
@@ -61,6 +61,7 @@ public class EditCommand extends Command {
 
     /**
      *
+     * @param phoneIdentifier current phone number of the person
      * @param editPersonDescriptor details to edit the person with
      */
     public EditCommand(Phone phoneIdentifier, EditPersonDescriptor editPersonDescriptor) {
@@ -71,6 +72,11 @@ public class EditCommand extends Command {
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
     }
 
+    /**
+     *
+     * @param emailIdentifier current email address of the person
+     * @param editPersonDescriptor details to edit the person with
+     */
     public EditCommand(Email emailIdentifier, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(emailIdentifier);
         requireNonNull(editPersonDescriptor);
@@ -83,8 +89,8 @@ public class EditCommand extends Command {
     public CommandResult execute(Model model) throws CommandException, ParseException {
         requireNonNull(model);
         this.index = !isNull(this.phoneIdentifier)
-                ? Index.fromZeroBased(model.hasPerson(phoneIdentifier))
-                : Index.fromZeroBased(model.hasPerson(emailIdentifier));
+                ? Index.fromZeroBased(model.findNum(phoneIdentifier))
+                : Index.fromZeroBased(model.findEmail(emailIdentifier));
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -93,9 +99,11 @@ public class EditCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Predicate<Person> filterPersonToEdit = p -> !p.equals(personToEdit);
+        model.updateFilteredPersonList(filterPersonToEdit);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (model.getFilteredPersonList().contains(editedPerson)) {
+            throw new CommandException(MESSAGE_DUPLICATE_CUSTOMER);
         }
 
         model.setPerson(personToEdit, editedPerson);

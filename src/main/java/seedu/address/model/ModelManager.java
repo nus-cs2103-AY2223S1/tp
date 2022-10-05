@@ -96,18 +96,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public int hasPerson(Phone phone) {
-        requireNonNull(phone);
-        return addressBook.hasPerson(phone);
-    }
-
-    @Override
-    public int hasPerson(Email email) {
-        requireNonNull(email);
-        return addressBook.hasPerson(email);
-    }
-
-    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }
@@ -127,11 +115,13 @@ public class ModelManager implements Model {
 
     @Override
     public int findNum(Phone phone) {
+        requireNonNull(phone);
         return addressBook.findNum(phone);
     }
 
     @Override
     public int findEmail(Email email) {
+        requireNonNull(email);
         return addressBook.findEmail(email);
     }
 

@@ -68,16 +68,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.contains(person);
     }
 
-    public int hasPerson(Phone phone) {
-        requireNonNull(phone);
-        return persons.contains(phone);
-    }
-
-    public int hasPerson(Email email) {
-        requireNonNull(email);
-        return persons.contains(email);
-    }
-
     /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
