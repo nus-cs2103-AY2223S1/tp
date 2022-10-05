@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.ObservableObject;
+import seedu.address.model.commission.Commission;
 import seedu.address.model.customer.Customer;
 
 /**
@@ -82,8 +83,17 @@ public interface Model {
      */
     void setCustomer(Customer target, Customer editedCustomer);
 
+    boolean hasCommission(Commission commission);
+
+    void deleteCommission(Commission target);
+
+    void addCommission(Commission commission);
+
+    void setCommission(Commission target, Commission editedCommission);
+
     /** Specifies the given customer as the selected customer. */
     void selectCustomer(Customer customer);
+
 
     /**
      * Returns an unmodifiable view of the filtered customer list
@@ -95,8 +105,15 @@ public interface Model {
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
+
     void updateFilteredCustomerList(Predicate<Customer> predicate);
 
+
+    ObservableList<Commission> getFilteredCommissionList();
+
+    void updateFilteredCommissionList(Predicate<Commission> predicate);
+
+    boolean hasSelectedCustomer();
     /**
      * Returns ObservableObject containing the currently selected customer or null if no customer is currently selected.
      */

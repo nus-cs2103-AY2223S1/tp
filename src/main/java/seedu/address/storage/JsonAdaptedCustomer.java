@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.commission.Commission;
 import seedu.address.model.customer.Address;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.Email;
@@ -31,19 +32,25 @@ class JsonAdaptedCustomer {
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
+    private final List<JsonAdaptedCommission> commissions = new ArrayList<>();
+
     /**
      * Constructs a {@code JsonAdaptedCustomer} with the given customer details.
      */
     @JsonCreator
     public JsonAdaptedCustomer(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                               @JsonProperty("email") String email, @JsonProperty("address") String address,
-                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("email") String email, @JsonProperty("address") String address,
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("commissions") List<JsonAdaptedCommission> commissions) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        if (commissions != null) {
+            this.commissions.addAll(commissions);
         }
     }
 
@@ -62,6 +69,11 @@ class JsonAdaptedCustomer {
         tagged.addAll(source.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList()));
+
+        commissions.addAll(source.getCommissions().stream()
+                .map(JsonAdaptedCommission::new)
+                .collect(Collectors.toList()));
+
     }
 
     /**
@@ -73,6 +85,11 @@ class JsonAdaptedCustomer {
         final List<Tag> customerTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             customerTags.add(tag.toModelType());
+        }
+
+        final Set<Commission> personCommissions = new HashSet<>();
+        for (JsonAdaptedCommission commission : commissions) {
+            personCommissions.add(commission.toModelType());
         }
 
         if (name == null) {
@@ -115,8 +132,12 @@ class JsonAdaptedCustomer {
 
 
         final Set<Tag> modelTags = new HashSet<>(customerTags);
-        return modelAddress.map(value -> new Customer(modelName, modelPhone, modelEmail, value, modelTags))
-            .orElseGet(() -> new Customer(modelName, modelPhone, modelEmail, modelTags));
+        Customer.CustomerBuilder customerBuilder = new Customer.CustomerBuilder(modelName, modelPhone, modelEmail,
+                modelTags).setCommissions(personCommissions);
+        modelAddress.ifPresent(customerBuilder::setAddress);
+        Customer customer = customerBuilder.build();
+        customer.getCommissions().forEach(commission -> commission.setCustomer(customer));
+        return customer;
     }
 
 }

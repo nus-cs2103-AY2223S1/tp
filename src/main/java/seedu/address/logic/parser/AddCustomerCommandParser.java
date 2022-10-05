@@ -57,12 +57,10 @@ public class AddCustomerCommandParser implements Parser<AddCustomerCommand> {
             : Optional.of(ParserUtil.parseAddress(rawAddress.get()));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Customer customer;
-        if (address.isEmpty()) {
-            customer = new Customer(name, phone, email, tagList);
-        } else {
-            customer = new Customer(name, phone, email, address.get(), tagList);
-        }
+
+        Customer.CustomerBuilder customerBuilder = new Customer.CustomerBuilder(name, phone, email, tagList);
+        address.ifPresent(customerBuilder::setAddress);
+        Customer customer = customerBuilder.build();
 
         return new AddCustomerCommand(customer);
     }

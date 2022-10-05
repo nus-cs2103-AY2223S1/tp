@@ -19,6 +19,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.commission.Commission;
 import seedu.address.model.customer.Address;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.Email;
@@ -79,11 +80,12 @@ public class EditCommand extends Command {
         Optional<Address> updatedAddress = Optional.ofNullable(
                 editCustomerDescriptor.getAddress().orElse(customerToEdit.getAddress().orElse(null)));
         Set<Tag> updatedTags = editCustomerDescriptor.getTags().orElse(customerToEdit.getTags());
-        if (updatedAddress.isEmpty()) {
-            return new Customer(updatedName, updatedPhone, updatedEmail, updatedTags);
-        } else {
-            return new Customer(updatedName, updatedPhone, updatedEmail, updatedAddress.get(), updatedTags);
-        }
+        Set<Commission> oldCommissions = customerToEdit.getCommissions();
+
+        Customer.CustomerBuilder customerBuilder = new Customer.CustomerBuilder(updatedName, updatedPhone,
+                updatedEmail, updatedTags).setCommissions(oldCommissions);
+        updatedAddress.ifPresent(customerBuilder::setAddress);
+        return customerBuilder.build();
     }
 
     @Override

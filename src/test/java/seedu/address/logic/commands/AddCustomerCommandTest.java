@@ -20,6 +20,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.commission.Commission;
 import seedu.address.model.customer.Customer;
 import seedu.address.testutil.CustomerBuilder;
 
@@ -141,6 +142,25 @@ public class AddCustomerCommandTest {
         }
 
         @Override
+        public boolean hasCommission(Commission commission) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteCommission(Commission target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addCommission(Commission commission) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setCommission(Commission target, Commission editedCommission) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         public void selectCustomer(Customer customer) {
             throw new AssertionError("This method should not be called.");
         }
@@ -156,6 +176,20 @@ public class AddCustomerCommandTest {
         }
 
         @Override
+        public ObservableList<Commission> getFilteredCommissionList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredCommissionList(Predicate<Commission> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasSelectedCustomer() {
+            throw new AssertionError("This method should not be called.");
+        }
+
         public ObservableObject<Customer> getSelectedCustomer() {
             throw new AssertionError("This method should not be called.");
         }

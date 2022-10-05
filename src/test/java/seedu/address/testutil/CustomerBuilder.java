@@ -103,11 +103,11 @@ public class CustomerBuilder {
      * @return a customer with the given details.
      */
     public Customer build() {
-        if (address == null) {
-            return new Customer(name, phone, email, tags);
-        } else {
-            return new Customer(name, phone, email, address, tags);
+        Customer.CustomerBuilder customerBuilder = new Customer.CustomerBuilder(name, phone, email, tags);
+        if (address != null) {
+            customerBuilder.setAddress(address);
         }
+        return customerBuilder.build();
     }
 
 }

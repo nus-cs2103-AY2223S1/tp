@@ -90,7 +90,7 @@ public class UniqueCustomerList implements Iterable<Customer> {
      */
     public void setCustomers(List<Customer> customers) {
         requireAllNonNull(customers);
-        if (!customersAreUnique(customers)) {
+        if (!areCustomersUnique(customers)) {
             throw new DuplicateCustomerException();
         }
 
@@ -124,7 +124,7 @@ public class UniqueCustomerList implements Iterable<Customer> {
     /**
      * Returns true if {@code customers} contains only unique customers.
      */
-    private boolean customersAreUnique(List<Customer> customers) {
+    private boolean areCustomersUnique(List<Customer> customers) {
         for (int i = 0; i < customers.size() - 1; i++) {
             for (int j = i + 1; j < customers.size(); j++) {
                 if (customers.get(i).isSameCustomer(customers.get(j))) {

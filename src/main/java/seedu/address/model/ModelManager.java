@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.ObservableObject;
+import seedu.address.model.commission.Commission;
 import seedu.address.model.customer.Customer;
 
 /**
@@ -23,8 +24,8 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Customer> filteredCustomers;
-
-    private ObservableObject<Customer> selectedCustomer = new ObservableObject<>();
+    private final FilteredList<Commission> filteredCommissions;
+    private final ObservableObject<Customer> selectedCustomer = new ObservableObject<>();
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -36,10 +37,17 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+
         filteredCustomers = new FilteredList<>(this.addressBook.getCustomerList());
+        filteredCommissions = new FilteredList<>(getCommissionList());
+
+        // Temporarily set selected customer to the first customer.
+        // TODO: Should be fixed by implementer of the opencus command.
         if (filteredCustomers.size() > 0) {
             selectCustomer(filteredCustomers.get(0));
+            updateFilteredCommissionListToSelectedCustomer();
         }
+
     }
 
     public ModelManager() {
@@ -117,6 +125,30 @@ public class ModelManager implements Model {
         addressBook.setCustomer(target, editedCustomer);
     }
 
+    @Override
+    public boolean hasCommission(Commission commission) {
+        requireNonNull(commission);
+        return addressBook.hasCommission(getSelectedCustomer().getValue(), commission);
+    }
+
+    @Override
+    public void deleteCommission(Commission target) {
+        addressBook.removeCommission(getSelectedCustomer().getValue(), target);
+    }
+
+    @Override
+    public void addCommission(Commission commission) {
+        addressBook.addCommission(getSelectedCustomer().getValue(), commission);
+        updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
+    }
+
+    @Override
+    public void setCommission(Commission target, Commission editedCommission) {
+        requireAllNonNull(target, editedCommission);
+
+        addressBook.setCommission(getSelectedCustomer().getValue(), target, editedCommission);
+    }
+
     //=========== Filtered Customer List Accessors =============================================================
 
     /**
@@ -132,20 +164,63 @@ public class ModelManager implements Model {
     public void updateFilteredCustomerList(Predicate<Customer> predicate) {
         requireNonNull(predicate);
         filteredCustomers.setPredicate(predicate);
-        if (filteredCustomers.size() > 0) {
+        if (filteredCustomers.size() == 0) {
+            selectCustomer(null);
+        } else if (hasSelectedCustomer() && filteredCustomers.stream()
+                .noneMatch(selectedCustomer.getValue()::isSameCustomer)) {
             selectCustomer(filteredCustomers.get(0));
         }
     }
+
+    //=========== Filtered Commission List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Commission} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Commission> getFilteredCommissionList() {
+        return filteredCommissions;
+    }
+
+    @Override
+    public void updateFilteredCommissionList(Predicate<Commission> predicate) {
+        requireNonNull(predicate);
+        filteredCommissions.setPredicate(predicate);
+    }
+
+    private Predicate<Commission> getSelectedCustomerCommissionsPredicate() {
+        return commission -> commission.getCustomer().isSameCustomer(getSelectedCustomer().getValue());
+    }
+
+    public void updateFilteredCommissionListToSelectedCustomer() {
+        updateFilteredCommissionList(getSelectedCustomerCommissionsPredicate());
+    }
+
+    //=========== Selected Customer =============================================================
 
 
     @Override
     public void selectCustomer(Customer customer) {
         this.selectedCustomer.setValue(customer);
+        updateFilteredCommissionListToSelectedCustomer();
     }
 
     @Override
     public ObservableObject<Customer> getSelectedCustomer() {
         return this.selectedCustomer;
+    }
+
+    /**
+     * Returns whether there is a selected customer.
+     */
+    @Override
+    public boolean hasSelectedCustomer() {
+        return getSelectedCustomer().getValue() != null;
+    }
+
+    public ObservableList<Commission> getCommissionList() {
+        return addressBook.getCommissionList();
     }
 
     @Override

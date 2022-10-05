@@ -95,12 +95,14 @@ public class ModelManagerTest {
     @Test
     public void getSelectedCustomer_addressBookNonEmpty_returnsFirstCustomer() {
         modelManager.addCustomer(ALICE);
+        modelManager.selectCustomer(ALICE);
         assertEquals(ALICE, modelManager.getSelectedCustomer().getValue());
     }
 
     @Test
     public void selectCustomer() {
         modelManager.addCustomer(ALICE);
+        modelManager.selectCustomer(ALICE);
         modelManager.addCustomer(BENSON);
         assertEquals(ALICE, modelManager.getSelectedCustomer().getValue());
         modelManager.selectCustomer(BENSON);
