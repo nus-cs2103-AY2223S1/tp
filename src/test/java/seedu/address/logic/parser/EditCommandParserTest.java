@@ -143,7 +143,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY
                 + TAG_DESC_FRIEND + PHONE_DESC_AMY + TAG_DESC_FRIEND
-                + PHONE_DESC_BOB+ TAG_DESC_HUSBAND;
+                + PHONE_DESC_BOB + TAG_DESC_HUSBAND;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
