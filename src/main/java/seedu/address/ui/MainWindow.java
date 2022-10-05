@@ -34,6 +34,8 @@ public class MainWindow extends UiPart<Stage> {
     private CompanyListPanel companyListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private PocNameDisplay pocNameDisplay;
+    private PocNumberDisplay pocNumberDisplay;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -49,6 +51,15 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private StackPane pocNamePlaceholder;
+
+    @FXML
+    private StackPane pocNumberPlaceholder;
+
+    @FXML
+    private StackPane companyTransactionPanelPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -115,6 +126,16 @@ public class MainWindow extends UiPart<Stage> {
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+
+        pocNameDisplay = new PocNameDisplay();
+        pocNamePlaceholder.getChildren().add(pocNameDisplay.getRoot());
+
+        pocNumberDisplay = new PocNumberDisplay();
+        pocNumberPlaceholder.getChildren().add(pocNumberDisplay.getRoot());
+
+        // To be removed after updating of POC number and placeholder is implemented!
+        pocNameDisplay.setPocName("Tom");
+        pocNumberDisplay.setPocNumber("93972398");
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
