@@ -29,7 +29,7 @@ done faster and more securely than traditional GUI apps.
 
 1. Download the latest `finbook.jar` from [here]().
 
-1. Copy the file to the folder you want to use as the home folder for your financial book.
+1. Copy the file to the folder you want to use as the home folder for your FinBook.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app
    contains some sample data.<br>
@@ -42,7 +42,7 @@ done faster and more securely than traditional GUI apps.
     * **`list`** : Lists all contacts.
 
     * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact
-      named `John Doe` to the financial book.
+      named `John Doe` to the FinBook.
 
     * **`delete`**` 3` : Deletes the 3rd contact shown in the current list.
 
@@ -86,7 +86,7 @@ done faster and more securely than traditional GUI apps.
 
 ### Adding a client: `add`
 
-Adds a client to the financial book.
+Adds a client to the FinBook.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/MONTHLY_INCOME m/UPCOMING_MEETING_DATES​`
 
@@ -99,7 +99,7 @@ Examples:
 
 ### Listing all client : `list`
 
-Shows a list of all clients in the financial book.
+Shows a list of all clients in the FinBook.
 
 Format: `list`
 
@@ -107,7 +107,7 @@ Format: `list`
 
 ### Editing a client : `edit`
 
-Edits an existing client in the financial book.
+Edits an existing client in the FinBook.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/MONTHLY_INCOME] [m/UPCOMING_MEETING_DATES]…​`
 
@@ -126,7 +126,7 @@ Examples:
 
 ### Deleting a person : `delete`
 
-Deletes the specified client from the financial book.
+Deletes the specified client from the FinBook.
 
 Format: `delete INDEX`
 
@@ -136,14 +136,14 @@ Format: `delete INDEX`
 
 Examples:
 
-* `list` followed by `delete 2` deletes the 2nd client in the financial book.
+* `list` followed by `delete 2` deletes the 2nd client in the FinBook.
 * `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
 ---
 
 ### Listing all clients: `list`
 
-Show a list of all clients in the financial book
+Show a list of all clients in the FinBook
 
 Format: `list`
 
@@ -170,7 +170,7 @@ Financial book data are saved as a JSON file `[JAR file location]/data/addressbo
 update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, financial book will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, FinBook will discard all data and start with an empty data file at the next run.
 </div>
 
 ---
@@ -183,7 +183,7 @@ If your changes to the data file makes its format invalid, financial book will d
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
-the data of your previous financial book home folder.
+the data of your previous FinBook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 

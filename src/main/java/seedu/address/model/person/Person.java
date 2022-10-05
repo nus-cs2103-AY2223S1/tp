@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Client in the FinBook.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
@@ -19,6 +19,7 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final Income income;
 
     // Data fields
     private final Address address;
@@ -27,12 +28,13 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Income income, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, income, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.income = income;
         this.tags.addAll(tags);
     }
 
@@ -50,6 +52,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Income getIncome() {
+        return income;
     }
 
     /**
@@ -92,13 +98,14 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getIncome().equals(getIncome())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, income, tags);
     }
 
     @Override
@@ -110,7 +117,9 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Income: ")
+                .append(getIncome());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
