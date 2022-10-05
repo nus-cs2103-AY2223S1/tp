@@ -9,11 +9,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import friday.testutil.TypicalPersons;
 import friday.commons.core.GuiSettings;
 import friday.model.AddressBook;
 import friday.model.ReadOnlyAddressBook;
 import friday.model.UserPrefs;
+import friday.testutil.TypicalPersons;
 
 public class StorageManagerTest {
 

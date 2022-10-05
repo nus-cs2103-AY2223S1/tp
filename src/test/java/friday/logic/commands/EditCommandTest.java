@@ -1,7 +1,5 @@
 package friday.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static friday.logic.commands.CommandTestUtil.DESC_AMY;
 import static friday.logic.commands.CommandTestUtil.DESC_BOB;
 import static friday.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -13,6 +11,8 @@ import static friday.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static friday.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static friday.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static friday.testutil.TypicalPersons.getTypicalAddressBook;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 

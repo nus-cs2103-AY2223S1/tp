@@ -1,10 +1,10 @@
 package friday.logic.parser;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static friday.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static friday.testutil.Assert.assertThrows;
 import static friday.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;

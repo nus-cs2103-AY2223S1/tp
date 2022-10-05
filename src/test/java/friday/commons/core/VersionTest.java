@@ -1,12 +1,10 @@
 package friday.commons.core;
 
+import static friday.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static friday.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
-
-import friday.testutil.Assert;
 
 public class VersionTest {
 
@@ -19,7 +17,7 @@ public class VersionTest {
 
     @Test
     public void versionParsing_wrongVersionString_throwIllegalArgumentException() {
-        Assert.assertThrows(IllegalArgumentException.class, () -> Version.fromString("This is not a version string"));
+        assertThrows(IllegalArgumentException.class, () -> Version.fromString("This is not a version string"));
     }
 
     @Test

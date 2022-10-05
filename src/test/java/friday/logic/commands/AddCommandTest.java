@@ -1,10 +1,10 @@
 package friday.logic.commands;
 
+import static friday.testutil.Assert.assertThrows;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static friday.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -13,7 +13,6 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.ObservableList;
 import friday.commons.core.GuiSettings;
 import friday.logic.commands.exceptions.CommandException;
 import friday.model.AddressBook;
@@ -22,6 +21,7 @@ import friday.model.ReadOnlyAddressBook;
 import friday.model.ReadOnlyUserPrefs;
 import friday.model.person.Person;
 import friday.testutil.PersonBuilder;
+import javafx.collections.ObservableList;
 
 public class AddCommandTest {
 
