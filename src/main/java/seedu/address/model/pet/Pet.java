@@ -1,8 +1,10 @@
 package seedu.address.model.pet;
 
-import java.security.cert.Certificate;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -21,7 +23,7 @@ public class Pet {
     private final Height height;
     private final VaccinationStatus vaccinationStatus;
     private final Set<Tag> tags = new HashSet<>();
-    private final Set<Certificate> certificates = new HashSet<>();
+    private final Set<PetCertificate> certificates = new HashSet<>();
 
     public Pet(Name name,
                Person owner,
@@ -32,7 +34,8 @@ public class Pet {
                Height height,
                VaccinationStatus vaccinationStatus,
                Set<Tag> tags,
-               Set<Certificate> certificates) {
+               Set<PetCertificate> certificates) {
+        requireAllNonNull(name, owner, color, dateOfBirth, species, weight, height, vaccinationStatus);
         this.name = name;
         this.owner = owner;
         this.color = color;
@@ -46,13 +49,13 @@ public class Pet {
     }
 
     public Pet(Name name,
-               Person owner,
                Color color,
                String dateOfBirthString,
                Species species,
                Weight weight,
                Height height,
-               Set<Tag> tags) throws IllegalValueException {
+               Set<Tag> tags,
+               Set<PetCertificate> certificates) throws IllegalValueException {
         this(name,
                 null,
                 color,
@@ -60,8 +63,9 @@ public class Pet {
                 species,
                 weight,
                 height,
-                VaccinationStatus.defaultStatus()
-                tags);
+                VaccinationStatus.defaultStatus(),
+                tags,
+                certificates);
     }
 
     public Pet(Name name,
@@ -69,8 +73,7 @@ public class Pet {
                DateOfBirth dateOfBirth,
                Species species,
                Weight weight,
-               Height height,
-               Set<Tag> tags) throws IllegalValueException {
+               Height height) {
         this(name,
                 null,
                 color,
@@ -78,44 +81,66 @@ public class Pet {
                 species,
                 weight,
                 height,
-                tags);
+                VaccinationStatus.defaultStatus(),
+                null,
+                null);
     }
-
 
     public Pet(Name name,
                Color color,
                String dateOfBirthString,
                Species species,
                Weight weight,
-               Height height,
-               Set<Tag> tags) throws IllegalValueException {
+               Height height) throws IllegalValueException {
         this(name,
-                null,
                 color,
-                dateOfBirthString,
+                DateOfBirth.parseString(dateOfBirthString),
                 species,
                 weight,
-                height,
-                tags);
+                height);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; DateOfBirth: ")
-                .append(getDateOfBirth())
-                .append("; Email: ")
-                .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+                .append("; Species: ")
+                .append(getSpecies())
+                .append("; Date Of Birth: ")
+                .append(getDateOfBirth().toString())
+                .append("; Weight: ")
+                .append(getWeight())
+                .append("; Height: ")
+                .append(getHeight())
+                .append("; Color: ")
+                .append(getColor())
+                .append("; ")
+                .append(getVaccinationStatus());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
+        Set<PetCertificate> certificates = getCertificates();
+        if (!certificates.isEmpty()) {
+            builder.append("; Tags: ");
+            tags.forEach(builder::append);
+        }
         return builder.toString();
+    }
+
+    /**
+     * Returns a combination of hash codes of all instance objects.
+     * Use this method for custom fields hashing instead of implementing your own
+     *
+     * @return a hash code representing this pet.
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, color, dateOfBirth, species, weight, height, vaccinationStatus, tags,
+                certificates, owner);
     }
 
     public Name getName() {
@@ -146,6 +171,22 @@ public class Pet {
         return weight;
     }
 
+    public VaccinationStatus getVaccinationStatus() {
+        return vaccinationStatus;
+    }
+
+    /**
+     * Returns an immutable pet certificate set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<PetCertificate> getCertificates() {
+        return Collections.unmodifiableSet(certificates);
+    }
+
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
