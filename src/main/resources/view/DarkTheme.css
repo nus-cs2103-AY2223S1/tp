@@ -142,6 +142,15 @@
      -fx-border-top-width: 1px;
 }
 
+.card-pane {
+     -fx-background-color: #1E2128;
+     -fx-border-color: #1E2128;
+}
+
+.split-pane {
+     -fx-padding: -1 0 0 0;
+}
+
 .status-bar {
     -fx-background-color: derive(#1d1d1d, 30%);
 }
