@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.guest.logic.parser.CliSyntax.PREFIX_NUMBER_OF_GUESTS;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.guest.model.Model.PREDICATE_SHOW_ALL_GUESTS;
@@ -23,6 +24,7 @@ import seedu.guest.model.guest.Address;
 import seedu.guest.model.guest.Email;
 import seedu.guest.model.guest.Guest;
 import seedu.guest.model.guest.Name;
+import seedu.guest.model.guest.NumberOfGuests;
 import seedu.guest.model.guest.Phone;
 import seedu.guest.model.tag.Tag;
 
@@ -40,6 +42,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_NUMBER_OF_GUESTS + "NUMBER_OF_GUESTS] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -96,10 +99,12 @@ public class EditCommand extends Command {
         Name updatedName = editGuestDescriptor.getName().orElse(guestToEdit.getName());
         Phone updatedPhone = editGuestDescriptor.getPhone().orElse(guestToEdit.getPhone());
         Email updatedEmail = editGuestDescriptor.getEmail().orElse(guestToEdit.getEmail());
+        NumberOfGuests updatedNumberOfGuests = editGuestDescriptor.getNumberOfGuests()
+                .orElse(guestToEdit.getNumberOfGuests());
         Address updatedAddress = editGuestDescriptor.getAddress().orElse(guestToEdit.getAddress());
         Set<Tag> updatedTags = editGuestDescriptor.getTags().orElse(guestToEdit.getTags());
 
-        return new Guest(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Guest(updatedName, updatedPhone, updatedEmail, updatedNumberOfGuests, updatedAddress, updatedTags);
     }
 
     @Override
@@ -128,6 +133,7 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
+        private NumberOfGuests numberOfGuests;
         private Address address;
         private Set<Tag> tags;
 
@@ -141,6 +147,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
+            setNumberOfGuests(toCopy.numberOfGuests);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
         }
@@ -149,7 +156,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, numberOfGuests, address, tags);
         }
 
         public void setName(Name name) {
@@ -174,6 +181,14 @@ public class EditCommand extends Command {
 
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
+        }
+
+        public void setNumberOfGuests(NumberOfGuests numberOfGuests) {
+            this.numberOfGuests = numberOfGuests;
+        }
+
+        public Optional<NumberOfGuests> getNumberOfGuests() {
+            return Optional.ofNullable(numberOfGuests);
         }
 
         public void setAddress(Address address) {
@@ -219,6 +234,7 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
+                    && getNumberOfGuests().equals(e.getNumberOfGuests())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
         }

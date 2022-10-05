@@ -21,7 +21,7 @@ import seedu.guest.model.Model;
 import seedu.guest.model.ReadOnlyGuestBook;
 import seedu.guest.model.ReadOnlyUserPrefs;
 import seedu.guest.model.guest.Guest;
-import seedu.guest.testutil.PersonBuilder;
+import seedu.guest.testutil.GuestBuilder;
 
 public class AddCommandTest {
 
@@ -31,9 +31,10 @@ public class AddCommandTest {
     }
 
     @Test
-    public void execute_guestAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingGuestAdded modelStub = new ModelStubAcceptingGuestAdded();
-        Guest validGuest = new PersonBuilder().build();
+    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+        Guest validGuest = new GuestBuilder().build();
+
 
         CommandResult commandResult = new AddCommand(validGuest).execute(modelStub);
 
@@ -42,8 +43,8 @@ public class AddCommandTest {
     }
 
     @Test
-    public void execute_duplicateGuest_throwsCommandException() {
-        Guest validGuest = new PersonBuilder().build();
+    public void execute_duplicatePerson_throwsCommandException() {
+        Guest validGuest = new GuestBuilder().build();
         AddCommand addCommand = new AddCommand(validGuest);
         ModelStub modelStub = new ModelStubWithGuest(validGuest);
 
@@ -52,8 +53,8 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Guest alice = new PersonBuilder().withName("Alice").build();
-        Guest bob = new PersonBuilder().withName("Bob").build();
+        Guest alice = new GuestBuilder().withName("Alice").build();
+        Guest bob = new GuestBuilder().withName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
