@@ -1,7 +1,11 @@
 package seedu.address.model.team;
 
+import seedu.address.model.person.Person;
+
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
 
 
@@ -13,6 +17,7 @@ public class Team {
 
     // Identity fields
     private final Name name;
+    private ArrayList<Person> members;
 
 
 
@@ -28,13 +33,21 @@ public class Team {
         return name;
     }
 
+    public void addMember(Person p) {
+        members.add(p);
+    }
 
+    public void removeMember(Person p) {
+        if (members.contains(p)) {
+            members.remove(p);
+        }
+    }
 
     /**
      * Returns true if both team have the same name.
      * This defines a weaker notion of equality between two team.
      */
-    public boolean isSamePerson(seedu.address.model.team.Team otherTeam) {
+    public boolean isSameTeam(seedu.address.model.team.Team otherTeam) {
         if (otherTeam == this) {
             return true;
         }
