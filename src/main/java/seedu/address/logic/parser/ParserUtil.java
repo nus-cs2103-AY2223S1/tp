@@ -121,4 +121,34 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Parses a {@code String price} into a {@code Price}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code price} is invalid.
+     */
+    public static Price parsePrice(String price) throws ParseException {
+        requireNonNull(price);
+        String trimmedPrice = price.trim();
+        if (!Price.isValidPrice(trimmedPrice)) {
+            throw new ParseException(Price.MESSAGE_CONSTRAINTS);
+        }
+        return new Price(trimmedPrice);
+    }
+
+    /**
+     * Parses a {@code String description} into a {@code Description}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
+     */
+    public static Description parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!Description.isValidDescription(trimmedDescription)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+        return new Description(trimmedDescription);
+    }
 }
