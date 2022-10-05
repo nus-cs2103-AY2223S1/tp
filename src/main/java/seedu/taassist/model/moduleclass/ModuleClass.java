@@ -4,25 +4,25 @@ import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Tag in TA-Assist.
+ * Represents a Class in TA-Assist.
  * Guarantees: immutable; name is valid as declared in {@link #isValidModuleClassName(String)}
  */
 public class ModuleClass {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
+    public static final String MESSAGE_CONSTRAINTS = "Class names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
-    public final String tagName;
+    public final String className;
 
     /**
      * Constructs a {@code Tag}.
      *
-     * @param tagName A valid tag name.
+     * @param className A valid tag name.
      */
-    public ModuleClass(String tagName) {
-        requireNonNull(tagName);
-        checkArgument(isValidModuleClassName(tagName), MESSAGE_CONSTRAINTS);
-        this.tagName = tagName;
+    public ModuleClass(String className) {
+        requireNonNull(className);
+        checkArgument(isValidModuleClassName(className), MESSAGE_CONSTRAINTS);
+        this.className = className;
     }
 
     /**
@@ -36,19 +36,24 @@ public class ModuleClass {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ModuleClass // instanceof handles nulls
-                && tagName.equals(((ModuleClass) other).tagName)); // state check
+                && className.equals(((ModuleClass) other).className)); // state check
+    }
+
+    //TODO: fix
+    public boolean isSameModuleClass(ModuleClass otherModuleClass) {
+        return this.className.equals(otherModuleClass.className);
     }
 
     @Override
     public int hashCode() {
-        return tagName.hashCode();
+        return className.hashCode();
     }
 
     /**
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + tagName + ']';
+        return '[' + className + ']';
     }
 
 }

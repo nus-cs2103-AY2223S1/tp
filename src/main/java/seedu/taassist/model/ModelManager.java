@@ -114,6 +114,22 @@ public class ModelManager implements Model {
         taAssist.setStudent(target, editedStudent);
     }
 
+    @Override
+    public boolean hasModuleClass(ModuleClass moduleClass) {
+        requireAllNonNull(moduleClass);
+        return taAssist.hasModuleClass(moduleClass);
+    }
+
+    @Override
+    public void deleteModuleClass(ModuleClass target) {
+        taAssist.removeModuleClass(target);
+    }
+
+    @Override
+    public void addModuleClass(ModuleClass moduleClass) {
+        taAssist.addModuleClass(moduleClass);
+    }
+
     //=========== Filtered Student List Accessors =============================================================
 
     /**

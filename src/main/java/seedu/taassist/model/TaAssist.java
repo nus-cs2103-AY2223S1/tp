@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.taassist.model.moduleclass.ModuleClass;
+import seedu.taassist.model.moduleclass.UniqueModuleClassList;
 import seedu.taassist.model.student.Student;
 import seedu.taassist.model.student.UniqueStudentList;
 
@@ -15,6 +17,7 @@ import seedu.taassist.model.student.UniqueStudentList;
 public class TaAssist implements ReadOnlyTaAssist {
 
     private final UniqueStudentList students;
+    private final UniqueModuleClassList moduleClasses;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +28,7 @@ public class TaAssist implements ReadOnlyTaAssist {
      */
     {
         students = new UniqueStudentList();
+        moduleClasses = new UniqueModuleClassList();
     }
 
     public TaAssist() {}
@@ -92,6 +96,32 @@ public class TaAssist implements ReadOnlyTaAssist {
      */
     public void removeStudent(Student key) {
         students.remove(key);
+    }
+
+    //// class-level operations
+
+    /**
+     * Returns true if a class with the same identity as {@code moduleClass} exists in TA-Assist.
+     */
+    public boolean hasModuleClass(ModuleClass moduleClass) {
+        requireNonNull(moduleClass);
+        return moduleClasses.contains(moduleClass);
+    }
+
+    /**
+     * Adds a class to TA-Assist.
+     * The class must not already exist in TA-Assist.
+     */
+    public void addModuleClass(ModuleClass c) {
+        moduleClasses.add(c);
+    }
+
+    /**
+     * Removes {@code key} from this {@code TaAssist}.
+     * {@code key} must exist in TA-Assist.
+     */
+    public void removeModuleClass(ModuleClass key) {
+        moduleClasses.remove(key);
     }
 
     //// util methods

@@ -150,6 +150,21 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasModuleClass(ModuleClass moduleClass) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteModuleClass(ModuleClass moduleClass) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addModuleClass(ModuleClass moduleClass) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void enterFocusMode(ModuleClass classToFocus) {
             throw new AssertionError("This method should not be called.");
         }

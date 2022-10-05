@@ -9,28 +9,28 @@ import seedu.taassist.model.moduleclass.ModuleClass;
 /**
  * Json-friendly version of {@link ModuleClass}.
  */
-class JsonAdaptedTag {
+class JsonAdaptedClass {
 
-    private final String tagName;
+    private final String className;
 
     /**
-     * Constructs a {@code JsonAdaptedTag} with the given {@code tagName}.
+     * Constructs a {@code JsonAdaptedClass} with the given {@code className}.
      */
     @JsonCreator
-    public JsonAdaptedTag(String tagName) {
-        this.tagName = tagName;
+    public JsonAdaptedClass(String className) {
+        this.className = className;
     }
 
     /**
      * Converts a given {@code Tag} into this class for Jackson use.
      */
-    public JsonAdaptedTag(ModuleClass source) {
-        tagName = source.tagName;
+    public JsonAdaptedClass(ModuleClass source) {
+        className = source.className;
     }
 
     @JsonValue
-    public String getTagName() {
-        return tagName;
+    public String getClassName() {
+        return className;
     }
 
     /**
@@ -39,10 +39,10 @@ class JsonAdaptedTag {
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
     public ModuleClass toModelType() throws IllegalValueException {
-        if (!ModuleClass.isValidModuleClassName(tagName)) {
+        if (!ModuleClass.isValidModuleClassName(className)) {
             throw new IllegalValueException(ModuleClass.MESSAGE_CONSTRAINTS);
         }
-        return new ModuleClass(tagName);
+        return new ModuleClass(className);
     }
 
 }

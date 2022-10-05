@@ -39,7 +39,7 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private FlowPane tags;
+    private FlowPane classes;
 
     /**
      * Creates a {@code StudentCode} with the given {@code Student} and index to display.
@@ -53,8 +53,8 @@ public class StudentCard extends UiPart<Region> {
         address.setText(student.getAddress().value);
         email.setText(student.getEmail().value);
         student.getModuleClasses().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .sorted(Comparator.comparing(tag -> tag.className))
+                .forEach(tag -> classes.getChildren().add(new Label(tag.className)));
     }
 
     @Override
