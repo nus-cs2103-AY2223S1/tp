@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 import bookface.commons.core.GuiSettings;
 import bookface.commons.core.LogsCenter;
 import bookface.commons.util.CollectionUtil;
+import bookface.model.book.Book;
 import bookface.model.person.Person;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -102,6 +103,11 @@ public class ModelManager implements Model {
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void addBook(Book book) {
+        addressBook.addBook(book);
     }
 
     @Override

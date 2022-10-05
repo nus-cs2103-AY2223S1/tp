@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import bookface.model.book.Book;
+import bookface.model.book.BookList;
 import bookface.model.person.Person;
 import bookface.model.person.UniquePersonList;
 import javafx.collections.ObservableList;
@@ -15,6 +17,7 @@ import javafx.collections.ObservableList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final BookList books;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +28,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        books = new BookList();
     }
 
     public AddressBook() {}
@@ -73,6 +77,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void addPerson(Person p) {
         persons.add(p);
     }
+
+    /**
+     * Adds a book to BookFace's book list.
+     *
+     * @param book the book to add.
+     */
+    public void addBook(Book book) { books.add(book); }
 
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
