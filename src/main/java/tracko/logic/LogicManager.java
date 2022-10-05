@@ -57,6 +57,8 @@ public class LogicManager implements Logic {
 
         if (command.isAwaitingInput()) {
             inProgressCommand = (MultiLevelCommand) command;
+        } else {
+            inProgressCommand = null;
         }
 
         commandResult = command.execute(model);
