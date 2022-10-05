@@ -1,14 +1,16 @@
 package tracko.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import tracko.model.order.ItemQuantityPair;
 import tracko.model.order.Order;
-import tracko.model.person.Person;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -40,9 +42,7 @@ public class OrderCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private Label item;
-    @FXML
-    private Label quantity;
+    private VBox items;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -55,8 +55,8 @@ public class OrderCard extends UiPart<Region> {
         phone.setText(order.getPhone().value);
         address.setText(order.getAddress().value);
         email.setText(order.getEmail().value);
-        item.setText(order.getItem());
-        quantity.setText(order.getQuantity().toString());
+        order.getItemList().stream()
+                .forEach(item -> items.getChildren().add(new Label("\u2022 " + item.getQuantity() + " * " + item.getItem())));
     }
 
     @Override

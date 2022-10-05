@@ -8,6 +8,34 @@ import tracko.model.Model;
  */
 public abstract class Command {
 
+    private boolean isAwaitingInput;
+    private boolean isCancelled;
+
+    protected Command() {
+        this(false, false);
+    }
+
+    protected Command(boolean isAwaitingInput, boolean isCancelled) {
+        this.isAwaitingInput = isAwaitingInput;
+        this.isCancelled = isCancelled;
+    }
+
+    public void setAwaitingInput(boolean isAwaitingInput) {
+        this.isAwaitingInput = isAwaitingInput;
+    }
+
+    public void setCancelled(boolean isCancelled) {
+        this.isCancelled = isCancelled;
+    }
+
+    public boolean isAwaitingInput() {
+        return isAwaitingInput;
+    }
+
+    public boolean isCancelled() {
+        return isCancelled;
+    }
+
     /**
      * Executes the command and returns the result message.
      *

@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import tracko.logic.commands.Command;
+import tracko.logic.commands.ExitCommand;
 import tracko.logic.commands.HelpCommand;
 import tracko.logic.commands.order.AddOrderCommand;
 import tracko.logic.parser.exceptions.ParseException;
@@ -21,6 +22,13 @@ public class TrackOParser {
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+
+    public Command parseStageTwo(String userInput, Command command) throws ParseException {
+        if (command instanceof AddOrderCommand) {
+            return new AddOrderCommandParser().parseStageTwo(userInput, (AddOrderCommand) command);
+        }
+        throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+    }
 
     /**
      * Parses user input into command for execution.
@@ -63,8 +71,8 @@ public class TrackOParser {
 //        case ListCommand.COMMAND_WORD:
 //            return new ListCommand();
 //
-//        case ExitCommand.COMMAND_WORD:
-//            return new ExitCommand();
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
 //
 //        case HelpCommand.COMMAND_WORD:
 //            return new HelpCommand();

@@ -8,8 +8,11 @@ import static tracko.logic.parser.CliSyntax.PREFIX_NAME;
 import static tracko.logic.parser.CliSyntax.PREFIX_PHONE;
 import static tracko.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
+import javafx.util.Pair;
 import tracko.logic.commands.order.AddOrderCommand;
 import tracko.logic.parser.ArgumentMultimap;
 import tracko.logic.parser.ArgumentTokenizer;
@@ -17,12 +20,11 @@ import tracko.logic.parser.Parser;
 import tracko.logic.parser.ParserUtil;
 import tracko.logic.parser.Prefix;
 import tracko.logic.parser.exceptions.ParseException;
-import tracko.model.order.Address;
-import tracko.model.order.Email;
-import tracko.model.order.Name;
-import tracko.model.order.Order;
-import tracko.model.order.Phone;
+import tracko.model.order.*;
 
+/**
+ * Parses input arguments and creates a new/update AddOrderCommand object
+ */
 public class AddOrderCommandParser implements Parser<AddOrderCommand> {
 
     /**
@@ -33,8 +35,7 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
     public AddOrderCommand parse(String args) throws ParseException {
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_ITEM, PREFIX_QUANTITY);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -45,12 +46,35 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        String item = argMultimap.getValue(PREFIX_ITEM).get();
-        Integer quantity = Integer.parseInt(argMultimap.getValue(PREFIX_QUANTITY).get());
 
-        Order order = new Order(name, phone, email, address, item, quantity);
+        Order order = new Order(name, phone, email, address, new ArrayList<>());
 
         return new AddOrderCommand(order);
+    }
+
+    public AddOrderCommand parseStageTwo(String args, AddOrderCommand command) throws ParseException {
+        if (args.equals("done")) {
+            command.setAwaitingInput(false);
+            return command;
+        } else if (args.equals("cancel")) {
+            command.setAwaitingInput(false);
+            command.setCancelled(true);
+            return command;
+        }
+
+        ArgumentMultimap argMultimap =
+            ArgumentTokenizer.tokenize(" " + args, PREFIX_ITEM, PREFIX_QUANTITY);
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_ITEM, PREFIX_QUANTITY)
+            || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddOrderCommand.MESSAGE_USAGE));
+        }
+
+        String item = argMultimap.getValue(PREFIX_ITEM).get();
+        Integer quantity = Integer.parseInt(argMultimap.getValue(PREFIX_QUANTITY).get());
+        command.addToItemList(new ItemQuantityPair(item, quantity));
+
+        return command;
     }
 
     /**
