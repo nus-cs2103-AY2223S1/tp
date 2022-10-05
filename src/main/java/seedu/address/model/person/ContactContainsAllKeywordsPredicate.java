@@ -1,10 +1,7 @@
 package seedu.address.model.person;
 
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.parser.ArgumentMultimap;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
