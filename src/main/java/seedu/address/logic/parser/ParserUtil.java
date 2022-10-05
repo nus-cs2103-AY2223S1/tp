@@ -13,6 +13,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.TaskDescription;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -93,6 +94,23 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String task description} into an {@code TaskDescription}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param description to be parsed.
+     * @return A TaskDescription.
+     * @throws ParseException if the given {@code task description} is invalid.
+     */
+    public static TaskDescription parseTaskDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!TaskDescription.isValidTaskDescription(trimmedDescription)) {
+            throw new ParseException(TaskDescription.MESSAGE_CONSTRAINTS);
+        }
+        return new TaskDescription(trimmedDescription);
     }
 
     /**

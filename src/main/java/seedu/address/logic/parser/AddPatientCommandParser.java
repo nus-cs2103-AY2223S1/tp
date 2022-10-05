@@ -5,20 +5,20 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddPatientCommand;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.TaskDescription;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -48,6 +48,8 @@ public class AddPatientCommandParser implements Parser<AddPatientCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        TaskDescription taskDescription = ParserUtil.parseTaskDescription(
+                argMultimap.getValue(PREFIX_TASK_DESCRIPTION).get());
 
         Set<Tag> tagList = new HashSet<>();
 
