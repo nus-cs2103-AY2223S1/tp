@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.event.Event;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
@@ -34,9 +35,12 @@ public class AddEventCommand extends Command {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "This Event already exists in the application";
 
-//    public AddEventCommand(Event event) {
-//        requireNonNull(event);
-//    }
+    public AddEventCommand() {
+
+    }
+    public AddEventCommand(Event event) {
+        requireNonNull(event);
+    }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
