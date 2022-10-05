@@ -15,6 +15,6 @@
          </padding>
          <Label text="Statistics" styleClass="cell_title_label"/>
       </HBox>
-      <TextArea fx:id="resultDisplay" editable="false" styleClass="result-display" />
+      <TextArea fx:id="statisticsDisplay" editable="false" styleClass="statistics-display" />
    </VBox>
 </StackPane>

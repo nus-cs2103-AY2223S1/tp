@@ -14,14 +14,14 @@ public class StatisticsDisplay extends UiPart<Region> {
     private static final String FXML = "StatisticsDisplay.fxml";
 
     @FXML
-    private TextArea resultDisplay;
+    private TextArea statisticsDisplay;
 
     public StatisticsDisplay() {
         super(FXML);
     }
 
     public void showStatisticsToUser(int numberOfStudents, int amountOwed, int amountCollected) {
-        resultDisplay.setText(String.format("Number of students: %d\n" +
+        statisticsDisplay.setText(String.format("Number of students: %d\n" +
                 "Total amount owed: $%d\n" +
                 "Total amount collected: $%d", numberOfStudents, amountOwed, amountCollected));
     }
