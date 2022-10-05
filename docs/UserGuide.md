@@ -62,7 +62,7 @@ title: User Guide
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a student: `add`
 
 <aside>
 ℹ️ Add a student to TA Assist.
@@ -128,7 +128,7 @@ Examples:
 Format: `find KEYWORD [MORE_KEYWORDS...]`
 
 - The search is case-insensitive, i.e. `John` will match with `john` and `JOHN`.
-- Only full words are matched, i.e. the search `Joh` will not match with a person named `John Doe`.
+- Only full words are matched, i.e. the search `Joh` will not match with a student named `John Doe`.
 
 Examples:
 
