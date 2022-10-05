@@ -27,7 +27,6 @@ public class PersonUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(CliSyntax.PREFIX_NAME + person.getName().fullName + " ");
         sb.append(CliSyntax.PREFIX_PHONE + person.getPhone().value + " ");
-        sb.append(CliSyntax.PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(CliSyntax.PREFIX_ADDRESS + person.getAddress().value + " ");
         person.getDetails().stream().forEach(
             s -> sb.append(CliSyntax.PREFIX_DETAIL + s.detail + " ")
@@ -42,7 +41,6 @@ public class PersonUtil {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(CliSyntax.PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(CliSyntax.PREFIX_PHONE).append(phone.value).append(" "));
-        descriptor.getEmail().ifPresent(email -> sb.append(CliSyntax.PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getAddress().ifPresent(address ->
                 sb.append(CliSyntax.PREFIX_ADDRESS).append(address.value).append(" "));
         if (descriptor.getDetails().isPresent()) {

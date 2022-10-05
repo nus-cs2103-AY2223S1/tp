@@ -11,7 +11,6 @@ import foodwhere.commons.util.StringUtil;
 import foodwhere.logic.parser.exceptions.ParseException;
 import foodwhere.model.detail.Detail;
 import foodwhere.model.person.Address;
-import foodwhere.model.person.Email;
 import foodwhere.model.person.Name;
 import foodwhere.model.person.Phone;
 
@@ -78,21 +77,6 @@ public class ParserUtil {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
         return new Address(trimmedAddress);
-    }
-
-    /**
-     * Parses a {@code String email} into an {@code Email}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code email} is invalid.
-     */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
-        }
-        return new Email(trimmedEmail);
     }
 
     /**

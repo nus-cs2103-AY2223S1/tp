@@ -39,11 +39,6 @@ public class EditPersonDescriptorTest {
                 .withPhone(CommandTestUtil.VALID_PHONE_BOB).build();
         assertFalse(CommandTestUtil.DESC_AMY.equals(editedAmy));
 
-        // different email -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(CommandTestUtil.DESC_AMY)
-                .withEmail(CommandTestUtil.VALID_EMAIL_BOB).build();
-        assertFalse(CommandTestUtil.DESC_AMY.equals(editedAmy));
-
         // different address -> returns false
         editedAmy = new EditPersonDescriptorBuilder(CommandTestUtil.DESC_AMY)
                 .withAddress(CommandTestUtil.VALID_ADDRESS_BOB).build();
