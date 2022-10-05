@@ -22,9 +22,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Parses input arguments and creates a new ProfileCommand object
  */
 public class ProfileCommandParser implements Parser<ProfileCommand> {
-    private static final Pattern PROFILE_COMMAND_FORMAT = Pattern.compile(
-            "(?<profileOption>\\S+)(\\s\\S*)?"
-    );
+    private static final Pattern PROFILE_COMMAND_FORMAT = Pattern.compile("(?<profileOption>\\S+)(\\s+\\S+)?");
 
     /**
      * Parses the given {@code String} of arguments in the context of the ProfileCommand

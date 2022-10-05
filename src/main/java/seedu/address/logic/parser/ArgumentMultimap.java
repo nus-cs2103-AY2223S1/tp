@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Stores mapping of prefixes to their respective arguments.
@@ -57,13 +59,17 @@ public class ArgumentMultimap {
     public String getPreamble() {
         return getValue(new Prefix("")).orElse("");
     }
+
     /**
      * Returns the arguments after the option prefix.
      */
     public String getOptionArgs() {
-        return getValue(new Prefix("-"))
-                .map(x -> x.substring(1))
-                .orElse("")
-                .trim();
+        Pattern format = Pattern.compile("(\\S+)(?<arguments>\\s+\\S+)");
+        String options = getValue(new Prefix("-")).orElse("");
+        final Matcher matcher = format.matcher(options);
+        if (!matcher.matches()) {
+            return "";
+        }
+        return matcher.group("arguments");
     }
 }
