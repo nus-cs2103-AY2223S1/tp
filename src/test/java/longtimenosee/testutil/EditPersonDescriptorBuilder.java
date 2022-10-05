@@ -4,7 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import longtimenosee.logic.commands.EditCommand;
+import longtimenosee.logic.commands.EditCommand.EditPersonDescriptor;
 import longtimenosee.model.person.Address;
 import longtimenosee.model.person.Email;
 import longtimenosee.model.person.Name;
@@ -17,21 +17,21 @@ import longtimenosee.model.tag.Tag;
  */
 public class EditPersonDescriptorBuilder {
 
-    private EditCommand.EditPersonDescriptor descriptor;
+    private EditPersonDescriptor descriptor;
 
     public EditPersonDescriptorBuilder() {
-        descriptor = new EditCommand.EditPersonDescriptor();
+        descriptor = new EditPersonDescriptor();
     }
 
-    public EditPersonDescriptorBuilder(EditCommand.EditPersonDescriptor descriptor) {
-        this.descriptor = new EditCommand.EditPersonDescriptor(descriptor);
+    public EditPersonDescriptorBuilder(EditPersonDescriptor descriptor) {
+        this.descriptor = new EditPersonDescriptor(descriptor);
     }
 
     /**
      * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
      */
     public EditPersonDescriptorBuilder(Person person) {
-        descriptor = new EditCommand.EditPersonDescriptor();
+        descriptor = new EditPersonDescriptor();
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
@@ -81,7 +81,7 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
-    public EditCommand.EditPersonDescriptor build() {
+    public EditPersonDescriptor build() {
         return descriptor;
     }
 }

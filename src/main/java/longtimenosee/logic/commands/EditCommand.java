@@ -6,6 +6,7 @@ import static longtimenosee.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_NAME;
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_PHONE;
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_TAG;
+import static longtimenosee.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -81,7 +82,7 @@ public class EditCommand extends Command {
         }
 
         model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 
