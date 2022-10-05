@@ -70,6 +70,42 @@ Format: `add n/NAME [t/TELEGRAM_HANDLE] [s/STUDENT_NUMBER]`
 The Telegram handle and student number are optional
 </div>
 
+### View induvidual student details: `view`
+
+View a particular students details.
+
+Format: `view s/STUDENT_NUMBER`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Use student number to view student due to name similarity.
+
+### Deleting a student: `delete`
+
+Deletes a student from FRIDAY.
+
+Format: `delete n/NAME [t/TELEGRAM_HANDLE] [s/STUDENT_NUMBER]`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The Telegram handle and student number are optional
+
+</div>
+
+### Editing a student: `edit`
+
+Edits a student's details in FRIDAY.
+
+Format: `edit i/INDEX [t/TELEGRAM_HANDLE] [s/STUDENT_NUMBER] [m/MASTERY_CHECK] [c/CONSULTATION] [g/GRADE] [r/REMARK]`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The Telegram handle, student number, mastery check, consultation, grade, and remark are optional
+</div>
+
+### Viewing all students: `list`
+
+Lists all students in FRIDAY
+
+Format: `list`
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -78,10 +114,10 @@ The Telegram handle and student number are optional
 
 ## Command Summary
 
-Action | Format
---------|------------------
-**Add a student** | `add n/NAME [t/TELEGRAM_HANDLE] [s/STUDENT_NUMBER]`
-**Delete a student** |
-**Edit a student's details** |
-**View all students** |
-**View a student's details** |
+| Action                       | Format                                                                                                        |
+|------------------------------|---------------------------------------------------------------------------------------------------------------|
+| **Add a student**            | `add n/NAME [t/TELEGRAM_HANDLE] [s/STUDENT_NUMBER]`                                                           |
+| **Delete a student**         | `delete n/NAME`                                                                                               |
+| **Edit a student's details** | `edit i/INDEX [t/TELEGRAM_HANDLE] [s/STUDENT_NUMBER] [m/MASTERY_CHECK] [c/CONSULTATION] [g/GRADE] [r/REMARK]` |
+| **View all students**        | `list`                                                                                                        |
+| **View a student's details** | `view s/STUDENT_NUMBER`                                                                                       |
