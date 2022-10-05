@@ -99,7 +99,6 @@ public class CustomiseCommand extends Command {
         GuiSettings currSettings = model.getGuiSettings();
         String currHiddenAttributes = currSettings.getHiddenAttributes().trim();
         boolean[] isHidden = new boolean[4]; //0: ADDRESS, 1: EMAIL, 2: PHONE, 3: TAGS
-
         if (!currHiddenAttributes.equals("NONE")) {
             String[] currHiddenAttributesArr = currHiddenAttributes.split(",");
             try {
@@ -117,11 +116,17 @@ public class CustomiseCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
         }
 
+        int xCoordinate = 0;
+        int yCoordinate = 0;
+        if (currSettings.getWindowCoordinates() != null) {
+            xCoordinate = (int) currSettings.getWindowCoordinates().getX();
+            yCoordinate = (int) currSettings.getWindowCoordinates().getY();
+        }
         GuiSettings newSettings = new GuiSettings(
                 currSettings.getWindowWidth(),
                 currSettings.getWindowHeight(),
-                (int) currSettings.getWindowCoordinates().getX(),
-                (int) currSettings.getWindowCoordinates().getY(),
+                xCoordinate,
+                yCoordinate,
                 currSettings.getAttributeOrder(),
                 convertHiddenToString(isHidden));
 
@@ -218,11 +223,17 @@ public class CustomiseCommand extends Command {
      */
     private void changeAttributeOrder(Model model) throws CommandException {
         GuiSettings currSettings = model.getGuiSettings();
+        int xCoordinate = 0;
+        int yCoordinate = 0;
+        if (currSettings.getWindowCoordinates() != null) {
+            xCoordinate = (int) currSettings.getWindowCoordinates().getX();
+            yCoordinate = (int) currSettings.getWindowCoordinates().getY();
+        }
         GuiSettings newSettings = new GuiSettings(
                 currSettings.getWindowWidth(),
                 currSettings.getWindowHeight(),
-                (int) currSettings.getWindowCoordinates().getX(),
-                (int) currSettings.getWindowCoordinates().getY(),
+                xCoordinate,
+                yCoordinate,
                 convertOrderToString(arguments),
                 currSettings.getHiddenAttributes());
 
