@@ -13,6 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 import seedu.address.model.team.Name;
 import seedu.address.model.team.Team;
 
@@ -124,6 +125,12 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public void addTask(Team team, Task task) {
+        requireAllNonNull(team, task);
+
+        addressBook.addTask(team, task);
+    }
     //=========== Filtered Person List Accessors =============================================================
 
     /**

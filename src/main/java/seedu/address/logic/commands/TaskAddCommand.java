@@ -1,0 +1,72 @@
+package seedu.address.logic.commands;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NAME;
+
+import java.util.List;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.task.Task;
+import seedu.address.model.team.Team;
+
+/**
+ * Adds a task to a team.
+ */
+public class TaskAddCommand extends Command {
+
+    public static final String COMMAND_WORD = "task add";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds the specified task to the team "
+            + "by the index number used in the displayed team list.\n"
+            + "Parameters: INDEX (must be a positive integer) "
+            + "[" + PREFIX_TASK_NAME + "TASK-NAME]\n"
+            + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_TASK_NAME + "Create GUI for AddressBook";
+    public static final String MESSAGE_SUCCESS = "New task added: %1$s";
+
+    private final Index index;
+    private final Task toAdd;
+
+    /**
+     * Creates a TaskAddCommand to add the specified {@code Task}
+     *
+     * @param index of the team in the filtered team list to edit.
+     * @param task task to be added.
+     */
+    public TaskAddCommand(Index index, Task task) {
+        requireNonNull(index);
+        requireNonNull(task);
+
+        this.index = index;
+        this.toAdd = task;
+    }
+
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+        List<Team> lastShownTeamList = model.getFilteredTeamList();
+
+        if (index.getZeroBased() >= lastShownTeamList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_TEAM_DISPLAYED_INDEX);
+        }
+
+        Team teamToAddTaskTo = lastShownTeamList.get(index.getZeroBased());
+
+        model.addTask(teamToAddTaskTo, toAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof TaskAddCommand // instanceof handles nulls
+                && toAdd.equals(((TaskAddCommand) other).toAdd));
+    }
+}
