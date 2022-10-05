@@ -12,7 +12,6 @@ public class Name {
     public static final String MESSAGE_CONSTRAINTS =
             "Names should only contain alphanumeric characters and spaces, and it should not be blank";
 
-    public static final String DEFAULT_NAME = "ANONYMOUS";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -34,12 +33,15 @@ public class Name {
     }
 
     /**
-     * Returns a Name object containing the default String
-     * @return Name object with the default fullName field.
+     * Represents an Empty Name.
      */
-    public static Name makeDefaultName() {
-        return new Name(DEFAULT_NAME);
+    private static class EmptyName extends Name {
+        private static final Name EMPTY_NAME = new EmptyName();
+        private EmptyName() {
+            super("");
+        }
     }
+
 
     /**
      * Returns true if a given string is a valid name.
