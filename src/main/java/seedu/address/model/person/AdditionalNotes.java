@@ -6,7 +6,7 @@ package seedu.address.model.person;
  */
 public class AdditionalNotes {
 
-    public final String value;
+    public final String notes;
 
     /**
      * Constructs an {@code AdditionalNotes}.
@@ -14,23 +14,23 @@ public class AdditionalNotes {
      * @param additionalNotes It can be empty or non-empty.
      */
     public AdditionalNotes(String additionalNotes) {
-        value = additionalNotes;
+        notes = additionalNotes;
     }
 
     @Override
     public String toString() {
-        return value;
+        return notes;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AdditionalNotes // instanceof handles nulls
-                && value.equals(((AdditionalNotes) other).value)); // state check
+                && notes.equals(((AdditionalNotes) other).notes)); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return notes.hashCode();
     }
 }

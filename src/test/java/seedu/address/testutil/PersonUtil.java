@@ -44,7 +44,7 @@ public class PersonUtil {
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         descriptor.getAdditionalNotes().ifPresent(additionalNotes -> sb
-                .append(PREFIX_ADDITIONAL_NOTES).append(additionalNotes.value).append(" "));
+                .append(PREFIX_ADDITIONAL_NOTES).append(additionalNotes.notes).append(" "));
         return sb.toString();
     }
 }

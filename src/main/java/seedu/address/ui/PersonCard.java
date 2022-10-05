@@ -61,7 +61,7 @@ public class PersonCard extends UiPart<Region> {
         classDetails.setText("TODO");
         amountPaid.setText("TODO");
         amountOwed.setText("TODO");
-        additionalNotes.setText(person.getAdditionalNotes().value);
+        additionalNotes.setText(person.getAdditionalNotes().notes);
     }
 
     @Override
