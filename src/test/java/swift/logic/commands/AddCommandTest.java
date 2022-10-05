@@ -21,6 +21,7 @@ import swift.model.Model;
 import swift.model.ReadOnlyAddressBook;
 import swift.model.ReadOnlyUserPrefs;
 import swift.model.person.Person;
+import swift.model.task.Task;
 import swift.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -115,6 +116,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addTask(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
@@ -146,6 +152,21 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasTask(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteTask(Task target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setTask(Task target, Task editedTask) {
             throw new AssertionError("This method should not be called.");
         }
     }
