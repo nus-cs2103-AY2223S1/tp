@@ -1,6 +1,6 @@
 .background {
-    -fx-background-color: derive(#1d1d1d, 20%);
-    background-color: #383838; /* Used in the default.html file */
+    -fx-background-color: #252A32;
+    background-color: #252A32; /* Used in the default.html file */
 }
 
 .label {
@@ -77,14 +77,13 @@
 }
 
 .split-pane:horizontal .split-pane-divider {
-    -fx-background-color: derive(#1d1d1d, 20%);
-    -fx-border-color: transparent transparent transparent #4d4d4d;
+    -fx-background-color: #252A32;
 }
 
 .split-pane {
     -fx-border-radius: 1;
     -fx-border-width: 1;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #252A32;
 }
 
 .list-view {
@@ -133,7 +132,7 @@
 }
 
 .stack-pane {
-     -fx-background-color: derive(#1d1d1d, 20%);
+     -fx-background-color: #252A32;
 }
 
 .pane-with-border {
@@ -157,10 +156,10 @@
 }
 
 .result-display {
-    -fx-background-color: transparent;
-    -fx-font-family: "Segoe UI Light";
-    -fx-font-size: 13pt;
-    -fx-text-fill: white;
+    -fx-background-color: #15181F;
+    -fx-background-radius: 8px;
+    -fx-font-size: 12pt;
+    -fx-text-fill: #D8D8D8;
 }
 
 .result-display .label {
@@ -203,14 +202,12 @@
 }
 
 .menu-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #1E2128;
 }
 
 .menu-bar .label {
-    -fx-font-size: 14pt;
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
-    -fx-opacity: 0.9;
+    -fx-font-size: 12pt;
+    -fx-text-fill: #D8D8D8;
 }
 
 .menu .left-container {
@@ -328,14 +325,11 @@
 }
 
 #commandTextField {
-    -fx-background-color: transparent #383838 transparent #383838;
-    -fx-background-insets: 0;
-    -fx-border-color: #383838 #383838 #ffffff #383838;
-    -fx-border-insets: 0;
-    -fx-border-width: 1;
-    -fx-font-family: "Segoe UI Light";
-    -fx-font-size: 13pt;
-    -fx-text-fill: white;
+    -fx-background-color: #15181F;
+    -fx-background-radius: 8px;
+    -fx-font-size: 12pt;
+    -fx-text-fill: #D3D3D3;
+    -fx-padding: 12px 24px 12px 24px;
 }
 
 #detailsPane {
@@ -364,8 +358,11 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #383838, transparent, #383838;
-    -fx-background-radius: 0;
+    -fx-background-color: #15181F;
+    -fx-background-radius: 8px;
+    -fx-font-size: 12pt;
+    -fx-text-fill: #D3D3D3;
+    -fx-padding: 24px 24px 24px 24px;
 }
 
 #tags {

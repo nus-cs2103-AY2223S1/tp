@@ -38,19 +38,19 @@
                     </Menu>
                 </MenuBar>
 
-                <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
+                <StackPane fx:id="commandBoxPlaceholder" styleClass="background" VBox.vgrow="NEVER">
                     <padding>
                         <Insets bottom="5" left="10" right="10" top="5"/>
                     </padding>
                 </StackPane>
 
                 <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100"
-                           styleClass="pane-with-border" VBox.vgrow="NEVER">
+                           styleClass="background" VBox.vgrow="NEVER">
                     <padding>
                         <Insets bottom="5" left="10" right="10" top="5"/>
                     </padding>
                 </StackPane>
-                <VBox fx:id="tabs" minWidth="340" prefWidth="340" styleClass="pane-with-border"
+                <VBox fx:id="tabs" minWidth="340" prefWidth="340" styleClass="background"
                       AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
                       AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS">
                     <TabPane
