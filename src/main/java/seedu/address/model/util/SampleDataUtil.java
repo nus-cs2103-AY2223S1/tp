@@ -1,6 +1,7 @@
 package seedu.address.model.util;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -8,6 +9,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Homework;
 import seedu.address.model.person.HomeworkList;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -56,6 +58,15 @@ public class SampleDataUtil {
         return Arrays.stream(strings)
                 .map(Tag::new)
                 .collect(Collectors.toSet());
+    }
+
+    /**
+     * Returns a tag set containing the list of strings given.
+     */
+    public static List<Homework> getHomeworkList(String... strings) {
+        return Arrays.stream(strings)
+                .map(Homework::new)
+                .collect(Collectors.toList());
     }
 
 }

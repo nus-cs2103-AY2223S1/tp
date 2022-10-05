@@ -1,6 +1,7 @@
 package seedu.address.model.person;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Represents a Person's homework list in the address book.
@@ -8,13 +9,17 @@ import java.util.ArrayList;
  */
 
 public class HomeworkList {
-    public final ArrayList<Homework> homeworkList;
+    public final List<Homework> homeworkList;
 
     /**
      * Constructs a {@code HomeworkList}.
      */
     public HomeworkList() {
         homeworkList = new ArrayList<>();
+    }
+
+    public HomeworkList(List<Homework> homeworkList) {
+        this.homeworkList = homeworkList;
     }
 
     /**
