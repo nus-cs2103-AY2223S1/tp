@@ -35,9 +35,9 @@ public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+            + "by the index number used in the displayed person list or the target person if index is not provided. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: INDEX (must be a positive integer) or no INDEX if there is a target person "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
@@ -52,7 +52,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
-    private final Index index;
+    private final Optional<Index> index;
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
@@ -63,7 +63,17 @@ public class EditCommand extends Command {
         requireNonNull(index);
         requireNonNull(editPersonDescriptor);
 
-        this.index = index;
+        this.index = Optional.ofNullable(index);
+        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+    }
+
+    /**
+     * @param editPersonDescriptor details to edit the person with
+     */
+    public EditCommand(EditPersonDescriptor editPersonDescriptor) {
+        requireNonNull(editPersonDescriptor);
+
+        this.index = Optional.empty();
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
     }
 
@@ -72,11 +82,14 @@ public class EditCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        if (index.isPresent() && index.get().getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        } else if (!index.isPresent() && !model.hasTargetPerson()) {
+            throw new CommandException(Messages.MESSAGE_NO_TARGET_PERSON);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
+        Person personToEdit = index.isPresent() ? lastShownList.get(index.get().getZeroBased())
+                : model.getTargetPerson();
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {

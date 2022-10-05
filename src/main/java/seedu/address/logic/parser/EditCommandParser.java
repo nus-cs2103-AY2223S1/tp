@@ -36,10 +36,10 @@ public class EditCommandParser implements Parser<EditCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                         PREFIX_REMARK, PREFIX_TAG);
 
-        Index index;
+        Optional<Index> index;
 
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            index = parseIndex(argMultimap);
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
@@ -66,7 +66,8 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditCommand(index, editPersonDescriptor);
+        return index.isPresent() ? new EditCommand(index.get(), editPersonDescriptor)
+                : new EditCommand(editPersonDescriptor);
     }
 
     /**
@@ -84,4 +85,10 @@ public class EditCommandParser implements Parser<EditCommand> {
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
 
+    private Optional<Index> parseIndex(ArgumentMultimap argMultimap) throws ParseException {
+        if (argMultimap.getPreamble().isEmpty()) {
+            return Optional.empty();
+        }
+        return Optional.of(ParserUtil.parseIndex(argMultimap.getPreamble()));
+    }
 }

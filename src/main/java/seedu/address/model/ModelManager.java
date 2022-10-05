@@ -15,6 +15,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.TargetPerson;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,8 +26,9 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
     private final Set<Predicate<Person>> personPredicates;
+    private final FilteredList<Person> filteredPersons;
+    private final TargetPerson targetPerson;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -40,6 +42,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.personPredicates = new HashSet<>();
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        targetPerson = new TargetPerson();
     }
 
     public ModelManager() {
@@ -86,6 +89,7 @@ public class ModelManager implements Model {
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         this.addressBook.resetData(addressBook);
+        clearTargetPerson();
     }
 
     @Override
@@ -102,6 +106,10 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
+
+        if (isTargetPerson(target)) {
+            clearTargetPerson();
+        }
     }
 
     @Override
@@ -114,6 +122,10 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
         addressBook.setPerson(target, editedPerson);
+
+        if (isTargetPerson(target)) {
+            setTargetPerson(editedPerson);
+        }
     }
 
     // =========== Filtered Person List ===========================================================
@@ -188,4 +200,34 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(other.filteredPersons);
     }
 
+    // =========== Target Person Accessors =============================================================
+    @Override
+    public ObservableList<Person> getTargetPersonAsObservableList() {
+        return targetPerson.getAsObservableList();
+    }
+
+    @Override
+    public void setTargetPerson(Person person) {
+        targetPerson.set(person);
+    }
+
+    @Override
+    public void clearTargetPerson() {
+        targetPerson.clear();
+    }
+
+    @Override
+    public boolean isTargetPerson(Person person) {
+        return targetPerson.isSamePerson(person);
+    }
+
+    @Override
+    public boolean hasTargetPerson() {
+        return targetPerson.isPresent();
+    }
+
+    @Override
+    public Person getTargetPerson() {
+        return targetPerson.get();
+    }
 }
