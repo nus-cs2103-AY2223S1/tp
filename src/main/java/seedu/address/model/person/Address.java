@@ -17,6 +17,8 @@ public class Address {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
+    public static final String DEFAULT_ADDRESS = "UNSPECIFIED";
+
     public final String value;
 
     /**
@@ -28,6 +30,14 @@ public class Address {
         requireNonNull(address);
         checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
         value = address;
+    }
+
+    /**
+     * Returns an address object containing the default String
+     * @return Address object with the default address field.
+     */
+    public Address makeDefaultAddress(){
+        return new Address(DEFAULT_ADDRESS);
     }
 
     /**
