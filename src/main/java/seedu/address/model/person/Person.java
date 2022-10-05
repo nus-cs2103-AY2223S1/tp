@@ -23,7 +23,6 @@ public class Person {
 
     // Data fields
     private final Address address;
-
     private final Gender gender; // add gender attribute for person
     private final Set<Tag> tags = new HashSet<>();
 
