@@ -69,7 +69,7 @@ public class AddressBookParser {
             return new HelpCommand();
 
         default:
-            throw new ParseException('"'+ commandWord + '"' + MESSAGE_UNKNOWN_COMMAND);
+            throw new ParseException('"' + commandWord + '"' + MESSAGE_UNKNOWN_COMMAND);
         }
     }
 
