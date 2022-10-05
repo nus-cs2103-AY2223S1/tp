@@ -16,6 +16,7 @@ public interface AddressBookStorage {
      * Returns the file path of the data file.
      */
     Path getAddressBookFilePath();
+    Path getTeamFilePath();
 
     /**
      * Returns AddressBook data as a {@link ReadOnlyAddressBook}.

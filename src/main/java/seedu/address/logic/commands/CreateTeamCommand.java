@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMNAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAM_NAME;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -22,7 +22,7 @@ public class CreateTeamCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Created a team. "
             + "Parameters: "
-            + PREFIX_TEAMNAME + "NAME ";
+            + PREFIX_TEAM_NAME + "NAME ";
 
     public static final String MESSAGE_SUCCESS = "New team added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This team already exists";
@@ -46,6 +46,7 @@ public class CreateTeamCommand extends Command {
         }
 
         model.addTeam(toAdd);
+        System.out.println("team added");
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
