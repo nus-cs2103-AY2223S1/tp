@@ -41,38 +41,6 @@ public class Client extends Person {
     }
 
     /**
-     * Adds a project to the set of projects under this client.
-     * @param project
-     */
-    public void addProject(Project project) {
-        this.projects.add(project);
-    }
-
-    /**
-     * Deletes a project from the set of projects under this client.
-     * @param project
-     */
-    public void removeProject(Project project) {
-        this.projects.remove(project);
-    }
-
-    /**
-     * Returns a list of all the projects under this client.
-     * @return String representing all projects under this client
-     */
-    public String listAllProjects() {
-        return this.projects.toArray().toString();
-    }
-
-    /**
-     * Returns the number of projects under this client.
-     * @return int representing number of projects under this client.
-     */
-    public int getProjectCount() {
-        return this.projects.size();
-    }
-
-    /**
      * Constructs a client with name, phone number given by user and the rest of the fields set to default values.
      * @param name String representing name of the client
      * @param phone String representing phone number of the client
@@ -119,4 +87,38 @@ public class Client extends Person {
         super(new Name(name), new Phone(phone), new Email(email), new Address(address),
                 Set.of(new Tag(tag)));
     }
+
+
+    /**
+     * Adds a project to the set of projects under this client.
+     * @param project
+     */
+    public void addProject(Project project) {
+        this.projects.add(project);
+    }
+
+    /**
+     * Deletes a project from the set of projects under this client.
+     * @param project
+     */
+    public void removeProject(Project project) {
+        this.projects.remove(project);
+    }
+
+    /**
+     * Returns a list of all the projects under this client.
+     * @return String representing all projects under this client
+     */
+    public String listAllProjects() {
+        return this.projects.toArray().toString();
+    }
+
+    /**
+     * Returns the number of projects under this client.
+     * @return int representing number of projects under this client.
+     */
+    public int getProjectCount() {
+        return this.projects.size();
+    }
+
 }
