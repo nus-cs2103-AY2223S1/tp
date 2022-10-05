@@ -47,7 +47,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/isanidiot.png" width="200px">
 
 [github](http://github.com/isanidiot) |
-[portfolio](team/yuchuan.md)
+[portfolio](team/isanidiot.md)
 
 * Role: Developer
 * Responsibilities: Data
@@ -57,7 +57,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/fungusta.png" width="200px">
 
 [github](http://github.com/fungusta) |
-[portfolio](team/peterfung.md)
+[portfolio](team/fungusta.md)
 
 
 * Role: Developer
@@ -69,7 +69,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/reagantan00.png" width="200px">
 
 [github](http://github.com/reagantan00) |
-[portfolio](team/reagantan.md)
+[portfolio](team/reagantan00.md)
 
 * Role: Developer
 * Responsibilities:

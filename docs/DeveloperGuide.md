@@ -298,36 +298,174 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `FABook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - Requesting for help**
 
 **MSS**
+1. User requests for help
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+2. FABook shows an external link for help
+
+3. User refers to link for help
+
+    Use case ends.
+
+**Use case: UC02 - Creating a client**
+
+**MSS**
+1. User creates a client
+
+2. FABook adds the client to its contents
+
+3. FABook informs user that input client has been added
+
+4. AddressBook deletes the person
 
     Use case ends.
 
 **Extensions**
+* 1a. Format of creation is invalid.
 
+    * 1a1. FABook shows an error message with suggested format
+
+    Use case ends.
+
+**Use case: UC03 - List all clients**
+
+**MSS**
+1. User requests to list clients
+
+2. FABook shows a list of clients
+
+    Use case ends.
+
+**Extensions**
 * 2a. The list is empty.
 
-  Use case ends.
+    Use case ends.
 
-* 3a. The given index is invalid.
+**Use case: UC04 - Updating a client's information**
 
-    * 3a1. AddressBook shows an error message.
+**MSS**
+1. User requests to update a specific client's information
 
-      Use case resumes at step 2.
+2. FABook updates the given client's information
 
-*{More to be added}*
+3. FABook informs user of updated client's information
+
+    Use case ends.
+
+**Extensions**
+* 1a. The name is not found.
+
+  * 1a1. FABook shows an error message with suggested format.
+  
+    Use case ends.
+
+* 1b. No input optional field was given.
+
+  * 1b1. FABook shows an error message with suggested format
+
+    Use case ends.
+
+* 1c. Input optional field is in the wrong format.
+
+    * 1c. FABook shows an error message with suggested format
+
+      Use case ends.
+
+**Use case: UC05 - Finding a client by name**
+
+**MSS**
+1. User requests to find a specific client by name
+
+2. FABook shows a list of matching clients
+
+3. FABook informs the user of number of clients found
+
+    Use case ends.
+
+**Extensions**
+* 1a. No client name was provided.
+
+    * 1a1. FABook shows an error message with suggested format
+
+      Use case ends.
+
+* 1b. No such client name was found. 
+
+    * 1b1. FABook shows an error message with suggested format
+
+      Use case ends.
+
+**Use case: UC06 - Finding a client by phone number**
+
+**MSS**
+1. User requests to find a specific client by phone number
+
+2. FABook shows a list of matching clients
+
+3. FABook informs the user of number of clients found
+
+    Use case ends.
+
+**Extensions**
+* 1a. No client number was provided.
+
+    * 1a1. FABook shows an error message with suggested format
+  
+      Use case ends.
+
+* 1b. No such client number was found.
+
+    * 1b1. FABook shows an error message with suggested format
+  
+      Use case ends.
+
+* 1c. No full phone number provided.
+
+    * 1c1. FABook shows an error message with suggested format
+
+      Use case ends.
+
+**Use case: UC07 - Delete a person**
+
+**MSS**
+1. User requests to <u>find a client by name(UC05)</u>
+
+2. User requests to delete a specific client by name in the list
+
+3. FABook deletes the person
+
+    Use case ends.
+
+**Use case: UC08 - Clearing all entries**
+
+**MSS**
+1. User requests to clear all entries
+
+2. FABook removes all clients' information
+
+3. FABook informs the user that all information has been cleared
+
+    Use case ends.
+
+**Use case: UC08 - Exiting FABook**
+
+**MSS**
+1. User requests to exit
+
+2. FABook closes
+
+   Use case ends.
+
+{More to be added}*
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  The system should work on both 32-bit and 64-bit environments.
 
 *{More to be added}*
 
