@@ -1,5 +1,6 @@
 package coydir.ui;
 
+import java.util.Objects;
 import java.util.logging.Logger;
 
 import coydir.commons.core.GuiSettings;
@@ -145,6 +146,26 @@ public class MainWindow extends UiPart<Stage> {
         } else {
             helpWindow.focus();
         }
+    }
+
+    /**
+     * Switches to Dark Theme if the window is currently on Light Theme.
+     * Remains on Dark Theme otherwise.
+     */
+    @FXML
+    public void handleDarkTheme() {
+        getPrimaryStage().getScene().getStylesheets().remove(0);
+        getPrimaryStage().getScene().getStylesheets().add(getClass().getClassLoader().getResource("view/DarkTheme.css").toExternalForm());
+    }
+
+    /**
+     * Switches to Light Theme if the window is currently on Dark Theme.
+     * Remains on Light Theme otherwise.
+     */
+    @FXML
+    public void handleLightTheme() {
+        getPrimaryStage().getScene().getStylesheets().remove(0);
+        getPrimaryStage().getScene().getStylesheets().add(getClass().getClassLoader().getResource("view/LightTheme.css").toExternalForm());
     }
 
     void show() {

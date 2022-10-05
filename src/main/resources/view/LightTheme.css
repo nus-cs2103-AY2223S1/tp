@@ -121,10 +121,10 @@
     -fx-border-width: 0 0 1 0;
     -fx-background-color: transparent;
     -fx-border-color:
-        transparent
-        transparent
-        derive(-fx-base, 80%)
-        transparent;
+            transparent
+            transparent
+            derive(-fx-base, 80%)
+            transparent;
     -fx-border-insets: 0 10 1 0;
 }
 
@@ -154,7 +154,7 @@
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#ffffff, 20%);
 }
 
 .list-cell {
@@ -197,13 +197,13 @@
 }
 
 .stack-pane {
-     -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#ffffff, 20%);
 }
 
 .pane-with-border {
-     -fx-background-color: derive(#1d1d1d, 20%);
-     -fx-border-color: derive(#1d1d1d, 10%);
-     -fx-border-top-width: 1px;
+    -fx-background-color: derive(#ffffff, 20%);
+    -fx-border-color: derive(#1d1d1d, 10%);
+    -fx-border-top-width: 1px;
 }
 
 .status-bar {
@@ -293,8 +293,8 @@
 }
 
 .button:pressed, .button:default:hover:pressed {
-  -fx-background-color: white;
-  -fx-text-fill: #1d1d1d;
+    -fx-background-color: white;
+    -fx-text-fill: #1d1d1d;
 }
 
 .button:focused {
