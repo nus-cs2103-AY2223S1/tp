@@ -3,6 +3,7 @@ package seedu.travelr.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import seedu.travelr.model.trip.Trip;
@@ -52,6 +53,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
+        assert !newData.getTripList().isEmpty();
 
         setTrips(newData.getTripList());
     }

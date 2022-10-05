@@ -79,6 +79,7 @@ class JsonAdaptedTrip {
         final Description modelDescription = new Description(description);
 
         final Set<Tag> modelTags = new HashSet<>(tripTags);
+
         return new Trip(modelTitle, modelDescription, modelTags);
     }
 

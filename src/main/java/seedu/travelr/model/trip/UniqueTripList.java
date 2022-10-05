@@ -85,7 +85,7 @@ public class UniqueTripList implements Iterable<Trip> {
     }
 
     /**
-     * Replaces the contents of this list with {@code tripss}.
+     * Replaces the contents of this list with {@code trips}.
      * {@code trips} must not contain duplicate trips.
      */
     public void setTrips(List<Trip> trips) {

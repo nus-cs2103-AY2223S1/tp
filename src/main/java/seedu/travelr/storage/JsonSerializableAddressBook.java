@@ -24,7 +24,7 @@ class JsonSerializableAddressBook {
     private final List<JsonAdaptedTrip> trips = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableAddressBook} with the given trips.
      * TODO: Rename JsonProperty in local data file from persons to trips
      */
     @JsonCreator

@@ -25,9 +25,6 @@ public class TripListPanel extends UiPart<Region> {
      */
     public TripListPanel(ObservableList<Trip> tripList) {
         super(FXML);
-        for (Trip trip: tripList) {
-            System.out.println(trip);
-        }
         tripListView.setItems(tripList);
         tripListView.setCellFactory(listView -> new TripListViewCell());
     }
