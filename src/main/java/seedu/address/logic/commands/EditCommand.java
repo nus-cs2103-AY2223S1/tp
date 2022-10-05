@@ -71,7 +71,7 @@ public class EditCommand extends Command {
         }
 
         Food foodToEdit = lastShownList.get(index.getZeroBased());
-        Food editedFood = createEditedPerson(foodToEdit, editFoodDescriptor);
+        Food editedFood = createEditedFood(foodToEdit, editFoodDescriptor);
 
         if (!foodToEdit.isSamePerson(editedFood) && model.hasPerson(editedFood)) {
             throw new CommandException(MESSAGE_DUPLICATE_FOOD);
@@ -86,7 +86,7 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Food createEditedPerson(Food foodToEdit, EditFoodDescriptor editFoodDescriptor) {
+    private static Food createEditedFood(Food foodToEdit, EditFoodDescriptor editFoodDescriptor) {
         assert foodToEdit != null;
 
         Name updatedName = editFoodDescriptor.getName().orElse(foodToEdit.getName());
@@ -124,6 +124,22 @@ public class EditCommand extends Command {
         private Set<Tag> tags;
 
         public EditFoodDescriptor() {}
+
+        /**
+         * Constructor for unit tests
+         * @param name Food name
+         * @param calorie Calorie content
+         * @param tags Food tags
+         */
+        public EditFoodDescriptor(String name, String calorie, String ...tags) {
+            this.name = new Name(name);
+            this.calorie = new Calorie(calorie);
+            HashSet<Tag> tagSet = new HashSet<>();
+            for (String tag : tags) {
+                tagSet.add(new Tag(tag));
+            }
+            this.tags = tagSet;
+        }
 
         /**
          * Copy constructor.
