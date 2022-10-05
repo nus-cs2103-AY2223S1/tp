@@ -137,6 +137,7 @@ public class MainWindow extends UiPart<Stage> {
         // TODO Change this back to moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
         List<Module> lst = new ArrayList<Module>();
         lst.add(new Module());
+        lst.add(new Module());
         moduleListPanel = new ModuleListPanel(FXCollections.observableList(lst));
         personListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
 

@@ -1,6 +1,7 @@
 package seedu.address.ui.module;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -33,9 +34,10 @@ public class ModuleCard extends UiPart<Region> {
     @FXML
     private Label department;
     @FXML
-    private Label workload;
+    private Button workload;
     @FXML
     private FlowPane semesterData;
+    private String buttonStyle = "-fx-border-width:0;-fx-background-radius: 10px;-fx-padding: 5;-fx-font-size: 12;-fx-font-weight:bold;";
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -46,9 +48,14 @@ public class ModuleCard extends UiPart<Region> {
         moduleCode.setText(module.getModuleCode());
         title.setText(module.getTitle());
         department.setText(module.getDepartment());
-        workload.setText(module.getWorkload());
+        // TODO: find a more elegant way to add workload behind semeseter tag
+        workload = new Button(module.getWorkload());
+        workload.setStyle("-fx-background-color:#61AFEF;-fx-text-fill: #ffffff;" + buttonStyle);
         module.getSemesterData().stream()
-                .forEach(tag -> semesterData.getChildren().add(new Label(tag)));
+                .forEach(tag -> semesterData.getChildren().add(new Button(tag)));
+        semesterData.getChildren().forEach(child -> child.setStyle("-fx-background-color: #C678DD;-fx-text-fill: #000000;" + buttonStyle));
+        semesterData.getChildren().add(workload);
+
     }
 
     @Override

@@ -10,10 +10,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.Button?>
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="100" />
     </columnConstraints>
     <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
       <padding>
@@ -27,8 +28,7 @@
           </minWidth>
         </Label>
         <Label fx:id="moduleCode" text="\$first" styleClass="cell_big_label"/>
-        <FlowPane fx:id="semesterData"/>
-        <Label fx:id="workload" styleClass="cell_small_label" text="\$workload" />
+        <FlowPane fx:id="semesterData" hgap="5"/>
       </HBox>
       <Label fx:id="title" styleClass="cell_small_label" text="\$title" />
       <Label fx:id="department" styleClass="cell_small_label" text="\$department" />

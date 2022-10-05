@@ -114,6 +114,7 @@
 .list-cell:filled:selected #cardPane {
     -fx-border-color: #3e7b91;
     -fx-border-width: 1;
+    -fx-font-weight:bold;
 }
 
 .list-cell .label {
@@ -124,7 +125,7 @@
     -fx-font-family: "Segoe UI";
     -fx-font-size: 16px;
     -fx-text-fill: #ffffff;
-    -fx-text-font-weight: bold
+    -fx-font-weight: bold;
 }
 
 .cell_small_label {
@@ -310,7 +311,7 @@
 
 #cardPane {
     -fx-background-color: #282C34;
-    -fx-border-width: 0;
+    -fx-border-width: 1;
 }
 
 #commandTypeLabel {
