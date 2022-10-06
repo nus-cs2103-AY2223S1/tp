@@ -4,13 +4,19 @@
     "phone" : "90909090",
     "email" : "email@gmail.com",
     "address" : "address",
-    "tagged" : [ "test2", "fish" ]
+    "tagged" : [ "test2", "fishes" ]
   }, {
     "name" : "Nami",
     "phone" : "87654321",
     "email" : "nami@gmail.com",
     "address" : "Alantis",
-    "tagged" : [ "fish" ]
+    "tagged" : [ "fishes" ]
+  }, {
+    "name" : "Alex",
+    "phone" : "98765432",
+    "email" : "Alex@gmail.com",
+    "address" : "NorthWood",
+    "tagged" : [ "fishes" ]
   } ],
-  "tags" : [ "test2", "fish" ]
+  "tags" : [ "test2", "fishes" ]
 }

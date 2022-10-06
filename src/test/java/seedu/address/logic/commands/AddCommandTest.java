@@ -140,6 +140,21 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasTag(Tag tag) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addTag(Tag tag) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void editTag(Tag oldTag, Tag newTag) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void sortByName() {
             throw new AssertionError("This method should not be called.");
         }
@@ -174,25 +189,6 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Override
-        public boolean hasTag(Tag tag) {
-            return false;
-        }
-
-        @Override
-        public void addTag(Tag tag) {
-
-        }
-
-        @Override
-        public void editTag(Tag oldTag, Tag newTag) {
-
-        }
-
-        @Override
-        public ObservableList<Tag> getTagList() {
-            return null;
-        }
     }
 
     /**

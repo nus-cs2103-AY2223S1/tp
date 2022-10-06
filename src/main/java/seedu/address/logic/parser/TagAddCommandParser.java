@@ -25,14 +25,15 @@ public class TagAddCommandParser implements Parser<TagAddCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_TAG);
 
         Index index;
+        Tag tag;
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            tag = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagAddCommand.MESSAGE_USAGE));
         }
 
-        Tag tag = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
         return new TagAddCommand(index, tag);
     }
 }

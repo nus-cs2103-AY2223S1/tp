@@ -17,6 +17,7 @@ import java.util.List;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
@@ -56,6 +57,8 @@ public class TypicalPersons {
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
+    public static final Tag OWESMONEY = new Tag("owesMoney");
+    public static final Tag FRIENDS = new Tag("friends");
 
     private TypicalPersons() {} // prevents instantiation
 
@@ -67,6 +70,8 @@ public class TypicalPersons {
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);
         }
+        ab.addTag(OWESMONEY);
+        ab.addTag(FRIENDS);
         return ab;
     }
 

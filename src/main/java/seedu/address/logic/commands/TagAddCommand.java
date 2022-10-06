@@ -36,6 +36,7 @@ public class TagAddCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_TAG + "TAG...\n"
             + "Example: " + TagCommand.COMMAND_WORD
+            + " "
             + COMMAND_WORD + " 1 "
             + PREFIX_TAG + "owesMoney";
 

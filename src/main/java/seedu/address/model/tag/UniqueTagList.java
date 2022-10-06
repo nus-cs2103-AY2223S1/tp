@@ -33,6 +33,7 @@ public class UniqueTagList implements Iterable<Tag> {
      * @param newTag The tag to be changed into.
      */
     public void editTag(Tag oldTag, Tag newTag) {
+        requireAllNonNull(oldTag, newTag);
         int index = tagArrayList.indexOf(oldTag);
         tagArrayList.set(index, newTag);
     }
@@ -43,6 +44,7 @@ public class UniqueTagList implements Iterable<Tag> {
      * @return True if the tag exists. False if otherwise.
      */
     public boolean hasTag(Tag tag) {
+        requireNonNull(tag);
         for (int i = 0; i < tagArrayList.size(); i++) {
             if (tagArrayList.get(i).equals(tag)) {
                 return true;
