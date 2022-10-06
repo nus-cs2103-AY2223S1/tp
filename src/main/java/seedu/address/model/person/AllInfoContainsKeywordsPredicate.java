@@ -11,6 +11,7 @@ import seedu.address.commons.util.StringUtil;
 public class AllInfoContainsKeywordsPredicate implements Predicate<Person> {
     private final List<String> keywords;
 
+
     public AllInfoContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
