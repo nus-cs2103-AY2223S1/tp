@@ -36,7 +36,7 @@ public class UnassignCommand extends Command {
     private final ModuleClass moduleClassToUnassign;
 
     /**
-     * Creates an AssignCommand to unassign the given {@Code ModuleClass} from students at the given {@Code Indices}.
+     * Creates an UnassignCommand to unassign the given {@Code ModuleClass} from students at the given {@Code Indices}.
      */
     public UnassignCommand(List<Index> indices, ModuleClass moduleClassToUnassign) {
         requireNonNull(indices);
@@ -54,14 +54,14 @@ public class UnassignCommand extends Command {
         }
 
         List<Student> lastShownList = model.getFilteredStudentList();
-        List<Student> studentsToAssign;
+        List<Student> studentsToUnassign;
         try {
-            studentsToAssign = ParserStudentIndexUtil.parseStudentsFromIndices(indices, lastShownList);
+            studentsToUnassign = ParserStudentIndexUtil.parseStudentsFromIndices(indices, lastShownList);
         } catch (ParseException pe) {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
-        for (Student student : studentsToAssign) {
+        for (Student student : studentsToUnassign) {
             Set<ModuleClass> newModuleClasses = new HashSet<>(student.getModuleClasses());
             newModuleClasses.remove(moduleClassToUnassign);
             Student editedStudent = new Student(

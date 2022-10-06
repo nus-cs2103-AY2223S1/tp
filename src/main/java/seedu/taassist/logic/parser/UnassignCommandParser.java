@@ -6,7 +6,6 @@ import static seedu.taassist.logic.parser.CliSyntax.PREFIX_MODULE_CLASS;
 import java.util.List;
 
 import seedu.taassist.commons.core.index.Index;
-import seedu.taassist.logic.commands.AssignCommand;
 import seedu.taassist.logic.commands.UnassignCommand;
 import seedu.taassist.logic.parser.exceptions.ParseException;
 import seedu.taassist.model.moduleclass.ModuleClass;
@@ -24,7 +23,7 @@ public class UnassignCommandParser implements Parser<UnassignCommand> {
     public UnassignCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MODULE_CLASS);
         if (!isPrefixPresent(argMultimap) || argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnassignCommand.MESSAGE_USAGE));
         }
 
         ModuleClass moduleClass = ParserUtil.parseModuleClass(argMultimap.getValue(PREFIX_MODULE_CLASS).get());
@@ -32,7 +31,7 @@ public class UnassignCommandParser implements Parser<UnassignCommand> {
         try {
             indices = ParserUtil.parseIndices(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnassignCommand.MESSAGE_USAGE));
         }
 
         return new UnassignCommand(indices, moduleClass);
