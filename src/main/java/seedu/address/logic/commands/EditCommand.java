@@ -256,10 +256,10 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
+                    && getAClass().toString().equals(e.getAClass().toString())
                     && getMoneyOwed().equals(e.getMoneyOwed())
                     && getMoneyPaid().equals(e.getMoneyPaid())
-                    && getAdditionalNotes().equals(e.getAdditionalNotes())
-                    && getAClass().toString().equals(e.getAClass().toString());
+                    && getAdditionalNotes().equals(e.getAdditionalNotes());
         }
     }
 }

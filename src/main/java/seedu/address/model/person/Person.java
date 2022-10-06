@@ -33,10 +33,10 @@ public class Person {
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.aClass = new Class();
         this.moneyOwed = new MoneyOwed();
         this.moneyPaid = new MoneyPaid();
         this.additionalNotes = new AdditionalNotes("");
-        this.aClass = new Class();
     }
 
     /**
