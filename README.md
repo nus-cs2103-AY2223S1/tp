@@ -4,8 +4,8 @@
 
 ## checkUp
 
-`checkUp` is an application that enables hospital staff to efficiently keep track of all the patient details within a hospital.  
-We offer an **AMAZING** Command Line Interface (CLI) for you to manage your patients *efficiently* and *effectively*.  
+`checkUp` is an application that enables hospital staff to efficiently keep track of all the patient details within a hospital.
+We offer an **AMAZING** Command Line Interface (CLI) for you to manage your patients *efficiently* and *effectively*.
 
 As for those who are not as tech-savvy, fret not.
 We also offer a comprehensive [user guide](docs/UserGuide.md) for you to learn how to use our application!
