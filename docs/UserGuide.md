@@ -66,13 +66,19 @@ Example:
 
 * `edit 2 n/rice c/300 t/dinner` edits the 2nd food item for dinner to rice with 300 calories. 
 
-### Showing the daily calorie intake: `review`
+### Viewing a summary of the daily calorie intake: `review`
 
-Shows the total calories consumed and the list of food items recorded for the day.
+Shows the total calories consumed, the calorie target and the deficient or excess amount of calories for the day.
 
 Format: `review`
 
-### Exiting the program : `exit`
+### Listing all foods for the day: `list`
+
+Shows a list of all food items and their respective calories for the day.
+
+Format: `list`
+
+### Exiting the program: `exit`
 
 Exits the program.
 
