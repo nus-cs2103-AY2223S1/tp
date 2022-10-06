@@ -35,8 +35,9 @@ ModelManager -right-> "1" UserPrefs
 ModelManager ---> "0..1 \nfocused" ModuleClass
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-TaAssist *-left-> "1" UniqueStudentList
-TaAssist *-down-> "1" UniqueModuleClassList
+TaAssist *---> "1" UniqueStudentList
+TaAssist *--> "1" UniqueModuleClassList
+
 UniqueStudentList -right-> "~* all" Student
 UniqueModuleClassList -left-> "all*" ModuleClass
 Student *--> "1" Name
