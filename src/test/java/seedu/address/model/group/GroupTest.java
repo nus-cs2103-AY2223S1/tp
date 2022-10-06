@@ -2,9 +2,9 @@ package seedu.address.model.group;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUPNAME_IP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUPNAME_TP;
+import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 import static seedu.address.testutil.TypicalPersons.CARL;
@@ -13,6 +13,7 @@ import static seedu.address.testutil.TypicalPersons.ELLE;
 import static seedu.address.testutil.TypicalPersons.FIONA;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.testutil.GroupBuilder;
 
 public class GroupTest {
@@ -66,7 +67,7 @@ public class GroupTest {
 
         // different type -> returns false
         assertFalse(defaultGroup.equals(5));
-        
+
         // different group -> returns false
         otherGroup = new GroupBuilder().withName(VALID_GROUPNAME_IP).withMembers(DANIEL).build();
         assertFalse(defaultGroup.equals(otherGroup));
