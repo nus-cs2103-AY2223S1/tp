@@ -7,6 +7,9 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.job.Id;
+import seedu.address.model.job.Job;
+import seedu.address.model.job.Title;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -22,17 +25,19 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final Job job;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Id id, Title title, Set<Tag> tags) {
+        requireAllNonNull(name, id, title, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.job = new Job(id, title);
         this.tags.addAll(tags);
     }
 
@@ -50,6 +55,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Job getJob() {
+        return job;
     }
 
     /**
@@ -92,13 +101,14 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getJob().equals(getJob())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, job, tags);
     }
 
     @Override
@@ -110,7 +120,9 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Job: ")
+                .append(getJob());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
