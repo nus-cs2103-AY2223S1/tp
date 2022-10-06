@@ -298,19 +298,21 @@ They have been extensively documented [here](https://github.com/AY2223S1-CS2103T
 2. Moderate `* *` - nice to have
 3. Low `*` - unlikely to have
 
-| Priority | As a ...      | I want to ...                                                                      | So that ...                                      |
-|----------|---------------|------------------------------------------------------------------------------------|--------------------------------------------------|
-| `***`    | user          | view relevant information about [**RC4**](#glossary) residents                     |                                                  |
-| `**`     | user          | specify which fields I want to see when listing data                               | my screen is less cluttered                      |
-| `**`     | user          | import my old data into the application                                            |                                                  |
-| `**`     | user          | view a smaller list of [**RC4**](#glossary) residents that pass certain conditions |                                                  |
-| `**`     | user          | search for residents using a portion of their names                                | I do not have to remember their exact names      | 
-| `*`      | user          | export residents' data in a familiar format                                        |                                                  |
-| `*`      | new user      | see sample data                                                                    | I can see how the app will look like when in use |
-| `*`      | user          | delete multiple residents' data from the app quickly                               | I can save time                                  |
-| `*`      | advanced user | give residents roles                                                               | I can further categorize them                    |
-| `*`      | user          | use the system without referring to the user guide                                 |                                                  |
-| `*`      | user          | switch between different data files                                                |                                                  |
+| Priority | As a ...      | I want to ...                                                                      | So that ...                                      | Story Type |
+|----------|---------------|------------------------------------------------------------------------------------|--------------------------------------------------|------------|
+| `***`    | user          | view relevant information about [**RC4**](#glossary) residents                     |                                                  | Story      |
+| `***`    | user          | specify which fields I want to see when listing data                               | my screen is less cluttered                      | Story      |
+| `***`    | user          | import my old data into the application                                            |                                                  | Story      |
+| `***`    | user          | view a smaller list of [**RC4**](#glossary) residents that pass certain conditions |                                                  | Story      |
+| `**`     | advanced user | give residents roles                                                               | I can further categorize them                    | Epic       |
+| `**`     | user          | search for residents using a portion of their names                                | I do not have to remember their exact names      | Story      |
+| `**`     | user          | export residents' data in a familiar format                                        |                                                  | Story      |
+| `**`     | new user      | see sample data                                                                    | I can see how the app will look like when in use | Story      |
+| `**`     | user          | delete multiple residents' data from the app quickly                               | I can save time                                  | Story      |
+| `**`     | user          | use the system without referring to the user guide                                 |                                                  | Story      |
+| `**`     | user          | switch between different data files                                                |                                                  | Story      |
+| `*`      | advanced user | toggle input commands without repeating the command word                           | I can increase the efficiency of operations      | Epic       |
+| `*`      | user          | update settings                                                                    | I can customize the app for my use               | Epic       |
 
 *{More to be added}*
 
