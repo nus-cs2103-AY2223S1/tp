@@ -1,4 +1,4 @@
-package seedu.travelr.model.person;
+package seedu.travelr.model.trip;
 
 import static seedu.travelr.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -13,43 +13,31 @@ import seedu.travelr.model.tag.Tag;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Trip {
 
     // Identity fields
-    private final Name name;
-    private final Phone phone;
-    private final Email email;
+    private final Title title;
+    private final Description description;
 
     // Data fields
-    private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
+    public Trip(Title title, Description description, Set<Tag> tags) {
+        requireAllNonNull(title, description, tags);
+        this.title = title;
+        this.description = description;
         this.tags.addAll(tags);
     }
 
-    public Name getName() {
-        return name;
+    public Title getTitle() {
+        return title;
     }
 
-    public Phone getPhone() {
-        return phone;
-    }
-
-    public Email getEmail() {
-        return email;
-    }
-
-    public Address getAddress() {
-        return address;
+    public Description getDescription() {
+        return description;
     }
 
     /**
@@ -64,13 +52,13 @@ public class Person {
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Person otherPerson) {
-        if (otherPerson == this) {
+    public boolean isSameTrip(Trip otherTrip) {
+        if (otherTrip == this) {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
+        return otherTrip != null
+                && otherTrip.getTitle().equals(getTitle());
     }
 
     /**
@@ -83,34 +71,28 @@ public class Person {
             return true;
         }
 
-        if (!(other instanceof Person)) {
+        if (!(other instanceof Trip)) {
             return false;
         }
 
-        Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+        Trip otherTrip = (Trip) other;
+        return otherTrip.getTitle().equals(getTitle())
+                && otherTrip.getDescription().equals(getDescription())
+                && otherTrip.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(title, description, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+        builder.append(getTitle())
+                .append("; Description: ")
+                .append(getDescription());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

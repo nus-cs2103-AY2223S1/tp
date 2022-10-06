@@ -9,7 +9,7 @@ import seedu.travelr.logic.commands.exceptions.CommandException;
 import seedu.travelr.logic.parser.exceptions.ParseException;
 import seedu.travelr.model.Model;
 import seedu.travelr.model.ReadOnlyAddressBook;
-import seedu.travelr.model.person.Person;
+import seedu.travelr.model.trip.Trip;
 
 /**
  * API of the Logic component
@@ -32,7 +32,7 @@ public interface Logic {
     ReadOnlyAddressBook getAddressBook();
 
     /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Trip> getFilteredTripList();
 
     /**
      * Returns the user prefs' address book file path.

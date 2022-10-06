@@ -1,23 +1,19 @@
 package seedu.travelr.logic.parser;
 
 import static seedu.travelr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.travelr.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.travelr.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.travelr.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.travelr.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.travelr.logic.parser.CliSyntax.PREFIX_DESC;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.travelr.logic.commands.AddCommand;
 import seedu.travelr.logic.parser.exceptions.ParseException;
-import seedu.travelr.model.person.Address;
-import seedu.travelr.model.person.Email;
-import seedu.travelr.model.person.Name;
-import seedu.travelr.model.person.Person;
-import seedu.travelr.model.person.Phone;
 import seedu.travelr.model.tag.Tag;
+import seedu.travelr.model.trip.Description;
+import seedu.travelr.model.trip.Title;
+import seedu.travelr.model.trip.Trip;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -27,26 +23,25 @@ public class AddCommandParser implements Parser<AddCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DESC, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
+        if (!arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_DESC)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        Title title = ParserUtil.parseName(argMultimap.getValue(PREFIX_TITLE).get());
+        Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESC).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, address, tagList);
+        Trip trip = new Trip(title, description, tagList);
 
-        return new AddCommand(person);
+        return new AddCommand(trip);
     }
 
     /**

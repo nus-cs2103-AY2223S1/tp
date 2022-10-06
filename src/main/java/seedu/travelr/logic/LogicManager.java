@@ -14,7 +14,7 @@ import seedu.travelr.logic.parser.AddressBookParser;
 import seedu.travelr.logic.parser.exceptions.ParseException;
 import seedu.travelr.model.Model;
 import seedu.travelr.model.ReadOnlyAddressBook;
-import seedu.travelr.model.person.Person;
+import seedu.travelr.model.trip.Trip;
 import seedu.travelr.storage.Storage;
 
 /**
@@ -60,8 +60,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Trip> getFilteredTripList() {
+        return model.getFilteredTripList();
     }
 
     @Override

@@ -1,60 +1,54 @@
 package seedu.travelr.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.travelr.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.travelr.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.travelr.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.travelr.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.travelr.logic.parser.CliSyntax.PREFIX_DESC;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import seedu.travelr.logic.commands.exceptions.CommandException;
 import seedu.travelr.model.Model;
-import seedu.travelr.model.person.Person;
+import seedu.travelr.model.trip.Trip;
 
 /**
- * Adds a person to the address book.
+ * Adds a Trip to Travelr.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a trip to Travelr. "
             + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_TITLE + "TITLE "
+            + PREFIX_DESC + "DESCRIPTION "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
-            + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_TITLE + "Honeymoon "
+            + PREFIX_DESC + "Going on a honeymoon with my prof."
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New trip added: %1$s";
+    public static final String MESSAGE_DUPLICATE_TRIP = "This trip already exists in Travelr";
 
-    private final Person toAdd;
+    private final Trip toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Trip}
      */
-    public AddCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddCommand(Trip trip) {
+        requireNonNull(trip);
+        toAdd = trip;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (model.hasTrip(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_TRIP);
         }
 
-        model.addPerson(toAdd);
+        model.addTrip(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

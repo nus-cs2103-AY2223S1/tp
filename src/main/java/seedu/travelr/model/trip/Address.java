@@ -1,4 +1,4 @@
-package seedu.travelr.model.person;
+package seedu.travelr.model.trip;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.travelr.commons.util.AppUtil.checkArgument;
