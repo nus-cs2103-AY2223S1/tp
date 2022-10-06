@@ -45,6 +45,7 @@ public class EditAppointmentCommand extends Command {
     public static final String MESSAGE_EDIT_APPOINTMENT_SUCCESS = "Edited Appointment: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in the address book.";
+    public static final String MESSAGE_PERSON_NOT_EXIST = "This person does not exist in the address book";
 
     private final Index index;
     private final EditAppointmentDescriptor editAppointmentDescriptor;
@@ -72,6 +73,10 @@ public class EditAppointmentCommand extends Command {
 
         Appointment appointmentToEdit = lastShownList.get(index.getZeroBased());
         Appointment editedAppointment = createEditedAppointment(appointmentToEdit, editAppointmentDescriptor);
+
+        if (!model.hasPerson(editedAppointment.getName())) {
+            throw new CommandException(MESSAGE_PERSON_NOT_EXIST);
+        }
 
         if (!appointmentToEdit.equals(editedAppointment) && model.hasAppointment(editedAppointment)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
