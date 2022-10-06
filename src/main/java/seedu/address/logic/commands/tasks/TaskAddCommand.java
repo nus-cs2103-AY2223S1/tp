@@ -1,5 +1,6 @@
 package seedu.address.logic.commands.tasks;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGN_FROM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGN_TO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
@@ -10,7 +11,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.tasks.TaskCategoryParser;
 import seedu.address.model.Model;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
 import seedu.address.model.task.Description;
+import seedu.address.model.task.Task;
 import seedu.address.model.task.enums.Assignment;
 
 /**
@@ -26,6 +29,9 @@ public class TaskAddCommand extends Command {
             + "Parameters: "
             + PREFIX_ASSIGN_FROM + "/" + PREFIX_ASSIGN_TO + "/" + "Assigned from/Assigned to "
             + PREFIX_DESCRIPTION + "DESCRIPTION";
+
+    public static final String MESSAGE_SUCCESS = "New task added: %1$s";
+    public static final String MESSAGE_PERSON_NOT_FOUND = "Person not found in task book!";
 
     private final Name name;
     private final Description description;
@@ -49,8 +55,15 @@ public class TaskAddCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        // Humphrey, you can use the model to query the AddressBook (to be renamed)
-        // for the Person using Name.
-        throw new CommandException("Task add command not implemented yet.");
+        requireNonNull(model);
+
+        Person personToAddTask = model.findPerson(name);
+        if (personToAddTask == null) {
+            throw new CommandException(MESSAGE_PERSON_NOT_FOUND);
+        }
+
+        Task newTask = new Task(personToAddTask, this.assignment, this.description, this.isDone);
+        model.addTask(newTask);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, newTask));
     }
 }
