@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.role.Buyer;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,6 +24,7 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private Buyer buyer;
 
     /**
      * Every field must be present and not null.
@@ -34,6 +36,14 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.buyer = null;
+    }
+
+    /**
+     * Temporarily for UI Testing of Add Buyer Command
+     */
+    public boolean isBuyer() {
+        return buyer != null;
     }
 
     public Name getName() {
@@ -58,6 +68,24 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public void setBuyer(Buyer buyer) {
+        this.buyer = buyer;
+    }
+
+    /**
+     * Temporarily for UI Testing of Add Buyer Command
+     */
+    public String getBuyerRange() {
+        return buyer.getRange();
+    }
+
+    /**
+     * Temporarily for UI Testing of Add Buyer Command
+     */
+    public String getBuyerCharacteristics() {
+        return buyer.getCharacteristics();
     }
 
     /**

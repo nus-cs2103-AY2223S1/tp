@@ -12,6 +12,7 @@ import seedu.address.logic.commands.AddPropertyCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
+import seedu.address.model.property.Description;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -40,14 +41,6 @@ public class AddPropertyParser implements Parser<AddPropertyCommand> {
         Property property = new Property(name, address, price, description);
 
         return new AddPropertyCommand(property);
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
 }
