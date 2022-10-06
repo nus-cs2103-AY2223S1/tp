@@ -38,7 +38,7 @@ public class AddTagCommand extends Command {
             + PREFIX_TAG + "CS2103T";
 
     public static final String MESSAGE_ADD_TAG_SUCCESS = "Added tag: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_TAG_NOT_ADDED = "At least 1 tag to add must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
     private final Index index;
@@ -74,7 +74,7 @@ public class AddTagCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_ADD_TAG_SUCCESS, editedPerson.getTags()));
+        return new CommandResult(String.format(MESSAGE_ADD_TAG_SUCCESS, editPersonDescriptor.getTags().orElse(new HashSet<>())));
     }
 
     /**
