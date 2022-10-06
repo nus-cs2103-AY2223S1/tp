@@ -9,7 +9,6 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-
 import taskbook.commons.core.GuiSettings;
 import taskbook.commons.core.LogsCenter;
 import taskbook.model.person.Name;

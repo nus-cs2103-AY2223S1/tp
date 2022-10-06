@@ -7,7 +7,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import taskbook.commons.util.CollectionUtil;
 import taskbook.model.task.exceptions.DuplicateTaskException;
 import taskbook.model.task.exceptions.TaskNotFoundException;
