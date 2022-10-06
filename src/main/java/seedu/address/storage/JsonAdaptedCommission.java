@@ -54,7 +54,7 @@ public class JsonAdaptedCommission {
      */
     public JsonAdaptedCommission(Commission source) {
         title = source.getTitle().title;
-        description = source.getDescription().description;
+        description = source.getDescription().orElseGet(() -> Description.NO_DESCRIPTION).description;
         fee = source.getFee().fee;
         deadline = source.getDeadline().deadline;
         tagged.addAll(source.getTags().stream()

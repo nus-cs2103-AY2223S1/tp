@@ -6,7 +6,6 @@ import seedu.address.model.commission.Commission;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CUSTOMERS;
 
 
 public class AddCommissionCommand extends Command {
@@ -28,7 +27,7 @@ public class AddCommissionCommand extends Command {
             + PREFIX_TAG + "neon palette";
 
     public static final String MESSAGE_SUCCESS = "New commission added: %1$s";
-    public static final String MESSAGE_DUPLICATE_commission = "This commission already exists in art buddy";
+    public static final String MESSAGE_DUPLICATE_COMMISSION = "This commission already exists in art buddy";
 
     private final Commission toAdd;
 
@@ -45,11 +44,10 @@ public class AddCommissionCommand extends Command {
         requireNonNull(model);
 
         if (model.hasCommission(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_commission);
+            throw new CommandException(MESSAGE_DUPLICATE_COMMISSION);
         }
 
         model.addCommission(toAdd);
-//        model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

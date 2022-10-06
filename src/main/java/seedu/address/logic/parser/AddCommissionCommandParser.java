@@ -32,7 +32,7 @@ public class AddCommissionCommandParser implements Parser<AddCommissionCommand> 
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_FEE, PREFIX_DEADLINE, PREFIX_STATUS, PREFIX_DESCRIPTION, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_FEE, PREFIX_DEADLINE)
+        if (!arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_FEE, PREFIX_DEADLINE, PREFIX_STATUS)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommissionCommand.MESSAGE_USAGE));
         }

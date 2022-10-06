@@ -9,6 +9,7 @@ import static java.util.Objects.requireNonNull;
 public class Description {
 
     public final String description;
+    public static final Description NO_DESCRIPTION = new Description("");
 
     /**
      * Constructs a {@code Description}.

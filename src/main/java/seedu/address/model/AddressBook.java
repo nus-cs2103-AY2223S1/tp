@@ -128,18 +128,24 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds a commission to the address book.
      * The commission must not already exist in the customer's commission list.
      */
-    public void addCommission(Customer customer, Commission commission) {
-        // Can I ask why we must replace the customer with a new customer and copy over the commissions?
-        // Can't we just add the new commission to the Hashset? Question from @James
+    public Customer addCommission(Customer customer, Commission commission) {
         requireAllNonNull(customer, commission);
         // Hashset would cause the commissions to be out of order
         HashSet<Commission> customerCommissions = new HashSet<>(getCustomerCommissions(customer));
         customerCommissions.add(commission);
+        commission.setCustomer(customer);
         commissions.add(commission);
 
         Customer newCustomer = customer.copyWithCommissions(customerCommissions);
+        // Not efficient but ensures all commissions have reference to the new customer who replaced the old one
+        // More ideal to keep same customer reference and update the object instead @Amar suggestion to add counter
+        // to observable list
+        // Also means I must update the selected customer in ModelManager though from user sense the selected customer is
+        // the same. Else subsequent adding during indexOf command of setCustomer due to the equals criteria
+        // customerNotFoundException will be thrown as the selectedCustomer is still referencing old customer version
         customerCommissions.forEach(comm -> comm.setCustomer(newCustomer));
         setCustomer(customer, newCustomer);
+        return newCustomer;
     }
 
     /**

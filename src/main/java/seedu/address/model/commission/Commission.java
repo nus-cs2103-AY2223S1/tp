@@ -1,9 +1,6 @@
 package seedu.address.model.commission;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 import seedu.address.model.commission.*;
 import seedu.address.model.customer.Customer;
@@ -45,8 +42,8 @@ public class Commission {
         return title;
     }
 
-    public Description getDescription() {
-        return description;
+    public Optional<Description> getDescription() {
+        return Optional.ofNullable(description);
     }
 
     public Fee getFee() {
