@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.contacts.ContactAddCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.tasks.TaskCategoryParser;
 import seedu.address.model.Model;
@@ -47,6 +48,9 @@ public class TaskAddCommand extends Command {
      * @param assignment Represents task assigned to user or others.
      */
     public TaskAddCommand(Name name, Description description, Assignment assignment) {
+        requireNonNull(name);
+        requireNonNull(description);
+        requireNonNull(assignment);
         this.name = name;
         this.description = description;
         this.assignment = assignment;
@@ -65,5 +69,22 @@ public class TaskAddCommand extends Command {
         Task newTask = new Task(personToAddTask, this.assignment, this.description, this.isDone);
         model.addTask(newTask);
         return new CommandResult(String.format(MESSAGE_SUCCESS, newTask));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (other instanceof TaskAddCommand) {
+            TaskAddCommand otherCommand = (TaskAddCommand) other;
+            return otherCommand.name.equals(name)
+                    && otherCommand.description.equals(description)
+                    && otherCommand.assignment.equals(assignment)
+                    && otherCommand.isDone == isDone;
+        }
+
+        return false;
     }
 }
