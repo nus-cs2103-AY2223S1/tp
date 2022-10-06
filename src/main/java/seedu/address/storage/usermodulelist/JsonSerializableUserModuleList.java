@@ -1,0 +1,61 @@
+package seedu.address.storage.usermodulelist;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.AddressBook;
+import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.person.Person;
+
+/**
+ * An Immutable userModuleList that is serializable to JSON format.
+ */
+@JsonRootName(value = "usermodulelist")
+class JsonSerializableUserModuleList {
+
+    // TODO: Change AddressBook model to UserModuleList after model has been created.
+    public static final String MESSAGE_DUPLICATE_MODULE = "Modules list contains duplicate person(s).";
+
+    private final List<JsonAdaptedModule> modules = new ArrayList<>();
+
+    /**
+     * Constructs a {@code JsonSerializableUserModuleList} with the given modules.
+     */
+    @JsonCreator
+    public JsonSerializableUserModuleList(@JsonProperty("persons") List<JsonAdaptedModule> modules) {
+        this.modules.addAll(modules);
+    }
+
+    /**
+     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     *
+     * @param source future changes to this will not affect the created {@code JsonSerializableUserModuleList}.
+     */
+    public JsonSerializableUserModuleList(ReadOnlyAddressBook source) {
+        modules.addAll(source.getPersonList().stream().map(JsonAdaptedModule::new).collect(Collectors.toList()));
+    }
+
+    /**
+     * Converts this address book into the model's {@code AddressBook} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated.
+     */
+    public AddressBook toModelType() throws IllegalValueException {
+        AddressBook addressBook = new AddressBook();
+        for (JsonAdaptedModule jsonAdaptedModule : modules) {
+            Person person = jsonAdaptedModule.toModelType();
+            if (addressBook.hasPerson(person)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_MODULE);
+            }
+            addressBook.addPerson(person);
+        }
+        return addressBook;
+    }
+
+}
