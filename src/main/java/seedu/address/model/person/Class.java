@@ -65,15 +65,44 @@ public class Class {
         int endHour = endTime.getHour();
         int endMin = endTime.getMinute();
         if (startHour > 12) {
-            time += startHour + "." + startMin + "PM";
+            startHour -= 12;
+            if (startMin == 0) {
+                time += startHour + "PM";
+            } else if (startMin  < 10) {
+                //Pad with zero
+                time += startHour + ".0" + startMin + "PM";
+            } else {
+                time += startHour + "." + startMin + "PM";
+            }
         } else {
-            time += startHour + "." + startMin + "AM";
+            if (startMin == 0) {
+                time += startHour + "AM";
+            } else if (startMin  < 10) {
+                //Pad with zero
+                time += startHour + ".0" + startMin + "AM";
+            } else {
+                time += startHour + "." + startMin + "AM";
+            }
         }
         time += "-";
         if (endHour > 12) {
-            time += endHour + "." + endMin + "PM";
+            System.out.println(endHour);
+            endHour -= 12;
+            if (endMin == 0) {
+                time += endHour + "PM";
+            } else if (endMin  < 10) {
+                //Pad with zero
+                time += endHour + ".0" + endMin + "PM";
+            } else {
+                time += endHour + "." + endMin + "PM";
+            }
         } else {
-            time += endHour + "." + endMin + "AM";
+            if (endMin  < 10) {
+                //Pad with zero
+                time += endHour + ".0" + endMin + "AM";
+            } else {
+                time += endHour + "." + endMin + "AM";
+            }
         }
         return time;
     }
