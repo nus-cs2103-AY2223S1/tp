@@ -165,7 +165,7 @@ public class AddCommandParserTest {
 
         //invalid job title
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TITLE_DESC_BOB + INVALID_TITLE_DESC + TAG_DESC_KIV + TAG_DESC_REJECTED, Title.MESSAGE_CONSTRAINTS);
+                + ID_DESC_BOB + INVALID_TITLE_DESC + TAG_DESC_KIV + TAG_DESC_REJECTED, Title.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB

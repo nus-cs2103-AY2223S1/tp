@@ -172,9 +172,9 @@ public class ParserUtilTest {
 
     @Test
     public void parseId_validValueWithWhitespace_returnsTrimmedId() throws Exception {
-        String addressWithWhitespace = WHITESPACE + VALID_ID + WHITESPACE;
-        Address expectedId = new Address(VALID_ID);
-        assertEquals(expectedId, ParserUtil.parseId(addressWithWhitespace));
+        String idWithWhitespace = WHITESPACE + VALID_ID + WHITESPACE;
+        Id expectedId = new Id(VALID_ID);
+        assertEquals(expectedId, ParserUtil.parseId(idWithWhitespace));
     }
 
     @Test
