@@ -3,6 +3,9 @@ package seedu.address.model.appointment;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.address.model.person.Email;
+import seedu.address.model.tag.Tag;
+
+import java.util.Set;
 
 /**
  * Represents an Appointment of a patient in the HealthConnect
@@ -56,5 +59,20 @@ public class Appointment {
                     && email.equals(other.getEmail());
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("Appointment Email: ")
+                .append(getEmail())
+                .append("; Medical Test: ")
+                .append(getMedicalTest())
+                .append(" Slot: ")
+                .append(getSlot())
+                .append(" Doctor: ")
+                .append(getDoctor());
+
+        return builder.toString();
     }
 }
