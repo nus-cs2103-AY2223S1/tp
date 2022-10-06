@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
-import bookface.model.book.Book;
 import org.junit.jupiter.api.Test;
 
 import bookface.commons.core.GuiSettings;
@@ -20,6 +19,7 @@ import bookface.model.AddressBook;
 import bookface.model.Model;
 import bookface.model.ReadOnlyAddressBook;
 import bookface.model.ReadOnlyUserPrefs;
+import bookface.model.book.Book;
 import bookface.model.person.Person;
 import bookface.testutil.PersonBuilder;
 import javafx.collections.ObservableList;
