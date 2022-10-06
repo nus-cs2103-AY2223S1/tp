@@ -11,9 +11,9 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.internship.Address;
 import seedu.address.model.internship.Email;
-import seedu.address.model.internship.Status;
 import seedu.address.model.internship.Name;
 import seedu.address.model.internship.Phone;
+import seedu.address.model.internship.Status;
 import seedu.address.model.tag.Tag;
 
 /**
