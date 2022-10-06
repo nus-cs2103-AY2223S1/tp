@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REASON;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
@@ -82,7 +81,7 @@ public class BookCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof BookCommand // instanceof handles nulls
                 && targetIndex.equals(((BookCommand) other).targetIndex)
-                && appointment.equals(((BookCommand) other).appointment)); // state check
+                && appointment.isSameAppointment(((BookCommand) other).appointment)); // state check
     }
 
     private static class PersonBookDescriptor {

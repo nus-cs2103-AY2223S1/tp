@@ -139,9 +139,20 @@ public class Appointment {
         }
 
         Appointment otherAppointment = (Appointment) other;
-        return otherAppointment.patient.equals(patient)
+
+        return otherAppointment.patient.getName().equals(patient.getName())
                 && otherAppointment.reason.equals(reason)
                 && otherAppointment.dateTime.equals(dateTime)
                 && (otherAppointment.isMarked == isMarked);
+    }
+
+    /**
+     * Returns true if both appointments have the same reason, date, time and status.
+     * This defines a weaker notion of equality between two appointments.
+     */
+    public boolean isSameAppointment(Appointment appointment) {
+        return appointment.reason.equals(reason)
+                && appointment.dateTime.equals(dateTime)
+                && (appointment.isMarked == isMarked);
     }
 }

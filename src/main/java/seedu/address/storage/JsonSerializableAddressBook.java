@@ -58,7 +58,6 @@ class JsonSerializableAddressBook {
             for (Appointment appointment : appointments) {
                 appointment.setPatient(person);
                 addressBook.addAppointment(appointment);
-                System.out.println("added to master");
             }
         }
         return addressBook;

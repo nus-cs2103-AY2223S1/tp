@@ -1,17 +1,25 @@
 package seedu.address.model.person;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
-
-import java.util.Iterator;
-import java.util.List;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-public class UniqueAppointmentList implements Iterable<Appointment>{
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.model.person.exceptions.AppointmentNotFoundException;
+import seedu.address.model.person.exceptions.DuplicateAppointmentException;
+
+/**
+ * A list of appointments that enforces uniqueness between its elements and does not allow nulls.
+ * An appointment is considered unique by comparing using {@code Appointment#equals(Object)}.
+ *
+ * Supports a minimal set of list operations.
+ *
+ */
+public class UniqueAppointmentList implements Iterable<Appointment> {
     private final ObservableList<Appointment> internalList = FXCollections.observableArrayList();
     private final ObservableList<Appointment> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
@@ -25,15 +33,16 @@ public class UniqueAppointmentList implements Iterable<Appointment>{
     }
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds an appointment to the list.
+     * The appointment must not already exist in the list.
      */
     public void add(Appointment toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException(); // TODO
+            throw new DuplicateAppointmentException();
         }
         internalList.add(toAdd);
+        internalList.sort(Comparator.comparing(Appointment::getDateTime));
     }
 
 
@@ -45,7 +54,7 @@ public class UniqueAppointmentList implements Iterable<Appointment>{
     public void remove(Appointment toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new AppointmentNotFoundException();
         }
     }
 
@@ -61,7 +70,7 @@ public class UniqueAppointmentList implements Iterable<Appointment>{
     public void setAppointments(List<Appointment> appointments) {
         requireAllNonNull(appointments);
         if (!appointmentsAreUnique(appointments)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateAppointmentException();
         }
 
         internalList.setAll(appointments);
