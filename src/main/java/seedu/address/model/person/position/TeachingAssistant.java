@@ -9,7 +9,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class TeachingAssistant extends Position {
 
-    enum Availability {
+    /**
+     * Availability of the teaching assistant.
+     */
+    public enum Availability {
         AVAILABLE,
         UNAVAILABLE
     }
@@ -19,6 +22,9 @@ public class TeachingAssistant extends Position {
 
     private String availability;
 
+    /**
+     * Creates a teaching assistant and initialises their availability to unavailable.
+     */
     public TeachingAssistant() {
         super("TA");
         availability = "unavailable";
@@ -30,9 +36,6 @@ public class TeachingAssistant extends Position {
         this.availability = availability;
     }
 
-    public String getAvailability() {
-        return availability;
-    }
 
     /**
      * Returns true if a given string is a valid availability.
@@ -48,18 +51,16 @@ public class TeachingAssistant extends Position {
 
     @Override
     public String toString() {
-        return "Teaching Assistant";
+        return "Teaching Assistant: " + availability;
     }
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof TeachingAssistant // instanceof handles nulls
-                && availability.equals(((TeachingAssistant) other).availability)); // state check
+        return true;
     }
 
     @Override
     public int hashcode() {
-        return availability.hashCode();
+        return 0;
     }
 }
