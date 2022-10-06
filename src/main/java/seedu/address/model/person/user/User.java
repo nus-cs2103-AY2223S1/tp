@@ -48,10 +48,10 @@ public class User {
     }
 
     public User() {
-        this.name = new Name("blank");
+        this.name = new Name("emptyUser");
         this.phone = new Phone("000");
-        this.email = new Email("x@y.co");
-        this.address = new Address("blank");
+        this.email = new Email("empty@user.com");
+        this.address = new Address("emptyUser");
     }
 
     public Name getName() {

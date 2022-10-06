@@ -99,6 +99,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public User getUser() {
+        return addressBook.getUser();
+    }
+
+    @Override
+    public void deleteUser() {
+        addressBook.deleteUser();
+    }
+
+    @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return addressBook.hasPerson(person);

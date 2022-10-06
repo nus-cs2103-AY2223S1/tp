@@ -59,9 +59,19 @@ public interface Model {
     boolean hasUser();
 
     /**
-     * Adds the user
+     * Adds the user to the address book.
      */
     void addUser(User user);
+
+    /**
+     * Returns the current user of the address book or EmptyUser is there is no user.
+     */
+    User getUser();
+
+    /**
+     * Deletes the current user from the address book and replaces it with an EmptyUser.
+     */
+    void deleteUser();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.

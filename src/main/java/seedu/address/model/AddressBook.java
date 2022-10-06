@@ -75,6 +75,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         user = u;
     }
 
+    /**
+     * Deletes the current user from the address book and replaces it with an EmptyUser.
+     */
+    public void deleteUser() {
+        user = new EmptyUser();
+    }
+
     //// person-level operations
 
     /**

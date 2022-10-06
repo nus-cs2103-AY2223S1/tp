@@ -16,26 +16,11 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
  */
 public class EmptyUser extends User {
 
-    // Identity fields
-    private final Name name = new Name("blank");
-    private final Phone phone = new Phone("000");
-    private final Email email = new Email("x@y.co");
-
-    // Data fields
-    private final Address address = new Address("blank");
-
     /**
      * Every field must be present and not null.
      */
     public EmptyUser() {
         super();
-        requireAllNonNull(name, phone, email, address);
-    }
-
-    @Override
-    public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address);
     }
 
     @Override
