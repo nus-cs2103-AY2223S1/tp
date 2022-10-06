@@ -1,8 +1,6 @@
 package friday.logic.parser;
 
 import static friday.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static friday.logic.parser.CliSyntax.PREFIX_CONSULTATION;
-import static friday.logic.parser.CliSyntax.PREFIX_MASTERYCHECK;
 import static friday.logic.parser.CliSyntax.PREFIX_NAME;
 import static friday.logic.parser.CliSyntax.PREFIX_TAG;
 import static friday.logic.parser.CliSyntax.PREFIX_TELEGRAMHANDLE;
@@ -44,8 +42,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         TelegramHandle telegramHandle = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_TELEGRAMHANDLE).get());
 
         // add command does not allow adding consultations, Mastery Checks, and remarks straight away
-        Consultation consultation = new Consultation(LocalDate.parse("0001-01-01"));
-        MasteryCheck masteryCheck = new MasteryCheck(LocalDate.parse("0001-01-01"));
+        Consultation consultation = new Consultation(LocalDate.of(0001, 01, 01));
+        MasteryCheck masteryCheck = new MasteryCheck(LocalDate.of(0001, 01, 01));
         Remark remark = new Remark("");
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 

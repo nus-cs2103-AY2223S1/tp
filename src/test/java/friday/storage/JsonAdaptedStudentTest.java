@@ -14,28 +14,28 @@ import org.junit.jupiter.api.Test;
 import friday.commons.exceptions.IllegalValueException;
 import friday.model.student.Name;
 import friday.model.student.TelegramHandle;
-import friday.testutil.TypicalPersons;
+import friday.testutil.TypicalStudents;
 
 public class JsonAdaptedStudentTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_TELEGRAMHANDLE = "+john--";
     private static final String INVALID_TAG = "#friend";
 
-    private static final String VALID_NAME = TypicalPersons.BENSON.getName().toString();
-    private static final String VALID_TELEGRAMHANDLE = TypicalPersons.BENSON.getTelegramHandle().toString();
+    private static final String VALID_NAME = TypicalStudents.BENSON.getName().toString();
+    private static final String VALID_TELEGRAMHANDLE = TypicalStudents.BENSON.getTelegramHandle().toString();
     private static final LocalDate VALID_CONSULTATION =
-            LocalDate.parse(TypicalPersons.BENSON.getConsultation().getValue().toString());
+            LocalDate.parse(TypicalStudents.BENSON.getConsultation().getValue().toString());
     private static final LocalDate VALID_MASTERYCHECK =
-            LocalDate.parse(TypicalPersons.BENSON.getMasteryCheck().getValue().toString());
-    private static final String VALID_REMARK = TypicalPersons.BENSON.getRemark().toString();
-    private static final List<JsonAdaptedTag> VALID_TAGS = TypicalPersons.BENSON.getTags().stream()
+            LocalDate.parse(TypicalStudents.BENSON.getMasteryCheck().getValue().toString());
+    private static final String VALID_REMARK = TypicalStudents.BENSON.getRemark().toString();
+    private static final List<JsonAdaptedTag> VALID_TAGS = TypicalStudents.BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(TypicalPersons.BENSON);
-        assertEquals(TypicalPersons.BENSON, person.toModelType());
+        JsonAdaptedPerson person = new JsonAdaptedPerson(TypicalStudents.BENSON);
+        assertEquals(TypicalStudents.BENSON, person.toModelType());
     }
 
     @Test

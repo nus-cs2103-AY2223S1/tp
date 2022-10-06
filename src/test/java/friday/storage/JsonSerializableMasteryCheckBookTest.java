@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 import friday.commons.exceptions.IllegalValueException;
 import friday.commons.util.JsonUtil;
 import friday.model.AddressBook;
-import friday.testutil.TypicalPersons;
+import friday.testutil.TypicalStudents;
  */
 public class JsonSerializableMasteryCheckBookTest {
 
@@ -30,7 +30,7 @@ public class JsonSerializableMasteryCheckBookTest {
         JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
                 JsonSerializableAddressBook.class).get();
         AddressBook addressBookFromFile = dataFromFile.toModelType();
-        AddressBook typicalPersonsAddressBook = TypicalPersons.getTypicalAddressBook();
+        AddressBook typicalPersonsAddressBook = TypicalStudents.getTypicalAddressBook();
         assertEquals(addressBookFromFile, typicalPersonsAddressBook);
     }
 

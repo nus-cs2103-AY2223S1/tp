@@ -6,8 +6,8 @@ import static friday.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static friday.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static friday.logic.commands.CommandTestUtil.VALID_TELEGRAMHANDLE_BOB;
 import static friday.testutil.Assert.assertThrows;
-import static friday.testutil.TypicalPersons.ALICE;
-import static friday.testutil.TypicalPersons.BOB;
+import static friday.testutil.TypicalStudents.ALICE;
+import static friday.testutil.TypicalStudents.BOB;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

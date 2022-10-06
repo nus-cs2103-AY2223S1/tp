@@ -39,7 +39,7 @@ public class Consultation {
      * Returns true if the given consultation is a dummy value.
      */
     public boolean isDummyConsultation() {
-        return value.equals(LocalDate.parse("0001-01-01"));
+        return value.equals(LocalDate.of(0001, 01, 01));
     }
 
     /**

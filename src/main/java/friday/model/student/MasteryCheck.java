@@ -37,7 +37,7 @@ public class MasteryCheck {
      * Returns true if the given Mastery Check is a dummy value.
      */
     public boolean isDummyMasteryCheck() {
-        return value.equals(LocalDate.parse("0001-01-01"));
+        return value.equals(LocalDate.of(0001, 01, 01));
     }
 
     /**

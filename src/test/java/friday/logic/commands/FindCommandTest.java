@@ -2,10 +2,10 @@ package friday.logic.commands;
 
 import static friday.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static friday.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static friday.testutil.TypicalPersons.CARL;
-import static friday.testutil.TypicalPersons.ELLE;
-import static friday.testutil.TypicalPersons.FIONA;
-import static friday.testutil.TypicalPersons.getTypicalAddressBook;
+import static friday.testutil.TypicalStudents.CARL;
+import static friday.testutil.TypicalStudents.ELLE;
+import static friday.testutil.TypicalStudents.FIONA;
+import static friday.testutil.TypicalStudents.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;

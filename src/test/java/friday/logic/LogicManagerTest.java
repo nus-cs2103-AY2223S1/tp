@@ -9,7 +9,7 @@ import static friday.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static friday.logic.commands.CommandTestUtil.TELEGRAMHANDLE_DESC_AMY;
  */
 import static friday.testutil.Assert.assertThrows;
-// import static friday.testutil.TypicalPersons.AMY;
+// import static friday.testutil.TypicalStudents.AMY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;

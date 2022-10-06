@@ -25,8 +25,8 @@ import static friday.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static friday.logic.commands.CommandTestUtil.VALID_TELEGRAMHANDLE_BOB;
 import static friday.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static friday.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static friday.testutil.TypicalPersons.AMY;
-import static friday.testutil.TypicalPersons.BOB;
+import static friday.testutil.TypicalStudents.AMY;
+import static friday.testutil.TypicalStudents.BOB;
 
 import org.junit.jupiter.api.Test;
 

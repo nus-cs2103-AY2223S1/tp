@@ -11,8 +11,8 @@ public class TelegramHandle {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "TelegramHandle should only contain letters a-z, numbers 0-9, and underscores, and it should be at least " +
-                    "5 characters long";
+            "TelegramHandle should only contain letters a-z, numbers 0-9, and underscores, and it should be at least "
+                    + "5 characters long";
     public static final String VALIDATION_REGEX = "[a-z0-9_]{5,}";
     public final String value;
 
