@@ -47,7 +47,7 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(validStudent);
         ModelStub modelStub = new ModelStubWithPerson(validStudent);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_STUDENT, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
     }
 
     @Test
@@ -109,7 +109,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addStudent(Student student) {
+        public void addPerson(Student student) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -124,27 +124,27 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasStudent(Student student) {
+        public boolean hasPerson(Student student) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deleteStudent(Student target) {
+        public void deletePerson(Student target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setStudent(Student target, Student editedStudent) {
+        public void setPerson(Student target, Student editedStudent) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Student> getFilteredStudentList() {
+        public ObservableList<Student> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredStudentList(Predicate<Student> predicate) {
+        public void updateFilteredPersonList(Predicate<Student> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -161,9 +161,9 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasStudent(Student student) {
+        public boolean hasPerson(Student student) {
             requireNonNull(student);
-            return this.student.isSameStudent(student);
+            return this.student.isSamePerson(student);
         }
     }
 
@@ -174,13 +174,13 @@ public class AddCommandTest {
         final ArrayList<Student> personsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasStudent(Student student) {
+        public boolean hasPerson(Student student) {
             requireNonNull(student);
-            return personsAdded.stream().anyMatch(student::isSameStudent);
+            return personsAdded.stream().anyMatch(student::isSamePerson);
         }
 
         @Override
-        public void addStudent(Student student) {
+        public void addPerson(Student student) {
             requireNonNull(student);
             personsAdded.add(student);
         }

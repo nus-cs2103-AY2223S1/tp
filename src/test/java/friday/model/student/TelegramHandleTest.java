@@ -21,14 +21,14 @@ public class TelegramHandleTest {
 
     @Test
     public void isValidTelegramHandle() {
-        // null Telegram handle
+        // null phone number
         assertThrows(NullPointerException.class, () -> TelegramHandle.isValidTelegramHandle(null));
 
-        // invalid Telegram handles
+        // invalid phone numbers
         assertFalse(TelegramHandle.isValidTelegramHandle("john+doe")); // symbols are not allowed
-        assertFalse(TelegramHandle.isValidTelegramHandle("JohnDoe")); // capital letters are not allowed
 
-        // valid Telegram handles
+        // valid phone numbers
+        assertTrue(TelegramHandle.isValidTelegramHandle("911"));
         assertTrue(TelegramHandle.isValidTelegramHandle("john123")); // letters and numbers
         assertTrue(TelegramHandle.isValidTelegramHandle("john_doe")); // with an underscore
     }

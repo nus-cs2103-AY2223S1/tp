@@ -44,7 +44,7 @@ public class RemarkCommand extends Command {
     }
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        List<Student> lastShownList = model.getFilteredStudentList();
+        List<Student> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -54,8 +54,8 @@ public class RemarkCommand extends Command {
         Student editedStudent = new Student(studentToEdit.getName(), studentToEdit.getTelegramHandle(),
                 studentToEdit.getConsultation(), studentToEdit.getMasteryCheck(), remark, studentToEdit.getTags());
 
-        model.setStudent(studentToEdit, editedStudent);
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setPerson(studentToEdit, editedStudent);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         return new CommandResult(generateSuccessMessage(editedStudent));
     }

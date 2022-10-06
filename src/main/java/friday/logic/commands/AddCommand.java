@@ -1,6 +1,9 @@
 package friday.logic.commands;
 
+import static friday.logic.parser.CliSyntax.PREFIX_CONSULTATION;
+import static friday.logic.parser.CliSyntax.PREFIX_MASTERYCHECK;
 import static friday.logic.parser.CliSyntax.PREFIX_NAME;
+import static friday.logic.parser.CliSyntax.PREFIX_TAG;
 import static friday.logic.parser.CliSyntax.PREFIX_TELEGRAMHANDLE;
 import static java.util.Objects.requireNonNull;
 
@@ -18,13 +21,20 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to FRIDAY. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_TELEGRAMHANDLE + "TELEGRAM HANDLE "
+            + PREFIX_TELEGRAMHANDLE + "PHONE "
+            + PREFIX_CONSULTATION + "EMAIL "
+            + PREFIX_MASTERYCHECK + "ADDRESS "
+            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
-            + PREFIX_TELEGRAMHANDLE + "johndoe ";
+            + PREFIX_TELEGRAMHANDLE + "98765432 "
+            + PREFIX_CONSULTATION + "johnd@example.com "
+            + PREFIX_MASTERYCHECK + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_TAG + "friends "
+            + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New student added: %1$s";
-    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in FRIDAY";
+    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
 
     private final Student toAdd;
 
@@ -40,11 +50,11 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasStudent(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
+        if (model.hasPerson(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.addStudent(toAdd);
+        model.addPerson(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
