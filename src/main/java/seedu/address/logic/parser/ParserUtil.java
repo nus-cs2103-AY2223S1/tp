@@ -5,9 +5,11 @@ import static java.util.Objects.requireNonNull;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.parser.exceptions.MissingPrefixesException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -33,6 +35,22 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    public static void assertPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes)
+            throws MissingPrefixesException {
+        Prefix[] missingPrefixes = Stream.of(prefixes)
+                .filter(prefix -> argumentMultimap.getValue(prefix).isEmpty())
+                .map(prefix -> new Prefix(prefix.getPrefix()))
+                .toArray(Prefix[]::new);
+
+        if (missingPrefixes.length != 0) {
+            throw new MissingPrefixesException(missingPrefixes);
+        }
     }
 
     /**
