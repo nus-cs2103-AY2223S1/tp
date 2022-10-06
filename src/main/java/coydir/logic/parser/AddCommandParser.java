@@ -8,12 +8,12 @@ import static coydir.logic.parser.CliSyntax.PREFIX_PHONE;
 import static coydir.logic.parser.CliSyntax.PREFIX_POSITION;
 import static coydir.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
-import java.util.HashSet;
-
 
 import coydir.logic.commands.AddCommand;
+
 import coydir.logic.parser.exceptions.ParseException;
 import coydir.model.person.Address;
 import coydir.model.person.Email;
