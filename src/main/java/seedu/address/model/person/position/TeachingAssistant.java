@@ -1,7 +1,6 @@
 package seedu.address.model.person.position;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents the Teaching Assistant position in the address book.
@@ -32,7 +31,6 @@ public class TeachingAssistant extends Position {
 
     public void setAvailability(String availability) {
         requireNonNull(availability);
-        checkArgument(isValidAvailability(availability), MESSAGE_CONSTRAINTS);
         this.availability = availability;
     }
 
