@@ -33,22 +33,20 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TELEGRAMHANDLE, PREFIX_CONSULTATION,
-                        PREFIX_MASTERYCHECK, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TELEGRAMHANDLE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MASTERYCHECK, PREFIX_TELEGRAMHANDLE,
-                PREFIX_CONSULTATION)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_TELEGRAMHANDLE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         TelegramHandle telegramHandle = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_TELEGRAMHANDLE).get());
-        Consultation consultation = ParserUtil.parseConsultation(LocalDate.parse(argMultimap
-                .getValue(PREFIX_CONSULTATION).get()));
-        MasteryCheck masteryCheck = ParserUtil.parseMasteryCheck(LocalDate.parse(argMultimap
-                .getValue(PREFIX_MASTERYCHECK).get()));
-        Remark remark = new Remark(""); // add command does not allow adding remarks straight away
+
+        // add command does not allow adding consultations, Mastery Checks, and remarks straight away
+        Consultation consultation = new Consultation(LocalDate.parse("0001-01-01"));
+        MasteryCheck masteryCheck = new MasteryCheck(LocalDate.parse("0001-01-01"));
+        Remark remark = new Remark("");
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Student student = new Student(name, telegramHandle, consultation, masteryCheck, remark, tagList);

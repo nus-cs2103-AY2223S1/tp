@@ -62,12 +62,12 @@ fast, FRIDAY can get your contact management tasks done faster than traditional 
 
 ### Adding a student: `add`
 
-Adds a student to FRIDAY.
+Adds a student to FRIDAY, with the given name and Telegram handle. 
 
-Format: `add n/NAME [t/TELEGRAM_HANDLE] [s/STUDENT_NUMBER]`
+Format: `add n/NAME t/TELEGRAM_HANDLE`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The Telegram handle and student number are optional
+The Telegram handle should exclude the '@'.
 </div>
 
 ### View individual student details: `view`
@@ -81,12 +81,12 @@ Use student number to view student due to name similarity.
 
 ### Deleting a student: `delete`
 
-Deletes a student from FRIDAY.
+Deletes the student at the given index from FRIDAY.
 
-Format: `delete n/NAME [t/TELEGRAM_HANDLE] [s/STUDENT_NUMBER]`
+Format: `delete i/INDEX`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The Telegram handle and student number are optional
+The index of the student can be seen from the student list. 
 
 </div>
 
@@ -116,8 +116,8 @@ Format: `list`
 
 | Action                       | Format                                                                                                        |
 |------------------------------|---------------------------------------------------------------------------------------------------------------|
-| **Add a student**            | `add n/NAME [t/TELEGRAM_HANDLE] [s/STUDENT_NUMBER]`                                                           |
-| **Delete a student**         | `delete n/NAME`                                                                                               |
+| **Add a student**            | `add n/NAME t/TELEGRAM_HANDLE`                                                           |
+| **Delete a student**         | `delete i/INDEX`                                                                                               |
 | **Edit a student's details** | `edit i/INDEX [t/TELEGRAM_HANDLE] [s/STUDENT_NUMBER] [m/MASTERY_CHECK] [c/CONSULTATION] [g/GRADE] [r/REMARK]` |
 | **View all students**        | `list`                                                                                                        |
 | **View a student's details** | `view s/STUDENT_NUMBER`                                                                                       |
