@@ -1,18 +1,15 @@
 package seedu.address.model.group;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Objects;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.group.exceptions.DuplicateGroupException;
 import seedu.address.model.group.exceptions.GroupNotFoundException;
-import seedu.address.model.person.Person;
 
 /**
  * A list of groups that enforces uniqueness between its elements and does not allow nulls.
@@ -49,8 +46,13 @@ public class UniqueGroupList implements Iterable<Group> {
      */
     public void remove(Group toRemove) {
         requireNonNull(toRemove);
-        if (!internalList.remove(toRemove)) {
+        if (!contains(toRemove)) {
             throw new GroupNotFoundException();
+        }
+        for (int i = 0; i < internalList.size(); i++) {
+            if (internalList.get(i).getName().equals(toRemove.getName())) {
+                internalList.remove(i);
+            }
         }
     }
 
@@ -58,9 +60,8 @@ public class UniqueGroupList implements Iterable<Group> {
      * Removes the group with this {@code groupname} from the list.
      * The {@code groupname} must exist in the list.
      */
-    public void removeFromStringName(String groupNameString) {
-        requireNonNull(groupNameString);
-        GroupName groupName = new GroupName(groupNameString);
+    public void removeFromGroupName(GroupName groupName) {
+        requireNonNull(groupName);
         Group toRemove = new Group(groupName, new HashSet<>());
         if (!contains(toRemove)) {
             throw new GroupNotFoundException();
@@ -96,7 +97,7 @@ public class UniqueGroupList implements Iterable<Group> {
     /**
      * Returns the backing list as an unmodifiable {@Code ObservableList}.
      */
-    public ObservableList<Group> asUnmodifiableObservableList(){
+    public ObservableList<Group> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
 
@@ -131,3 +132,4 @@ public class UniqueGroupList implements Iterable<Group> {
         return true;
     }
 }
+

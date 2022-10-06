@@ -2,12 +2,12 @@ package seedu.address.model.group;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import seedu.address.model.person.Person;
-
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+
+import seedu.address.model.person.Person;
 
 /**
  * Represents a Group in the address book
@@ -64,7 +64,7 @@ public class Group {
 
         Group otherGroup = (Group) other;
         return otherGroup.getName().equals(getName())
-                &&otherGroup.getMembers().equals(getMembers());
+                && otherGroup.getMembers().equals(getMembers());
     }
 
     @Override
@@ -79,7 +79,7 @@ public class Group {
         builder.append(" | Members: ");
 
         if (!getMembers().isEmpty()) {
-            for(Person p : getMembers()) {
+            for (Person p : getMembers()) {
                 builder.append(p.getName());
                 builder.append(" | ");
             }

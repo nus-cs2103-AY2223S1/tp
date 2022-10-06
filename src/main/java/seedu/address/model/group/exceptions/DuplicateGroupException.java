@@ -5,7 +5,7 @@ package seedu.address.model.group.exceptions;
  * Groups are considered the same if their name and set of
  * members are the same).
  */
-public class DuplicateGroupException extends RuntimeException{
+public class DuplicateGroupException extends RuntimeException {
     public DuplicateGroupException() {
         super("Operation would result in duplicate groups");
     }

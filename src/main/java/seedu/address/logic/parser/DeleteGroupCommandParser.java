@@ -6,32 +6,32 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import java.util.HashSet;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddGroupCommand;
+import seedu.address.logic.commands.DeleteGroupCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.group.Group;
 import seedu.address.model.group.GroupName;
 
-/** Parses the user input in context of AddGroupCommand */
-public class AddGroupCommandParser implements Parser<AddGroupCommand> {
+/** Parses user input in context of DeleteGroupCommand */
+public class DeleteGroupCommandParser implements Parser<DeleteGroupCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddGroupCommand
-     * and returns an AddGroupCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the DeleteGroupCommand
+     * and returns a DeleteGroupCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddGroupCommand parse(String args) throws ParseException {
+    public DeleteGroupCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_GROUP);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_GROUP) || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddGroupCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteGroupCommand.MESSAGE_USAGE));
         }
 
         GroupName name = ParserUtil.parseGroupName(argMultimap.getValue(PREFIX_GROUP).get());
 
         Group group = new Group(name, new HashSet<>());
 
-        return new AddGroupCommand(group);
+        return new DeleteGroupCommand(group);
     }
 
     /**
