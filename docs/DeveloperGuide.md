@@ -310,9 +310,9 @@ Use case ends.
 
 **Extensions**
 
-2a. The itinerary name is not entered.<br>
-    2a1. Waddle shows an error message.<br>
-    Use case resumes at step 2.
+* 2a. The itinerary name is not entered.
+  * Waddle shows an error message.<br>
+  Use case resumes at step 2.
 
 
 **Use case: Edit a specific itinerary’s details**
@@ -326,9 +326,9 @@ Use case ends.
 
 **Extensions**
 
-2a. The itinerary name is incomplete.<br>
-    2a1. Waddle shows an error message.<br>
-    Use case resumes from step 2.
+* 2a. The itinerary name is incomplete.
+  * Waddle shows an error message.<br>
+  Use case resumes at step 2.
 
 
 **Use case: Delete an itinerary**
@@ -339,44 +339,28 @@ Use case ends.
 2. User requests to delete the itinerary.
 3. Waddle requests for user confirmation.
 4. User confirms intention to delete itinerary.
-5. Waddle deletes the itinerary.<br>
+5. Waddle deletes the itinerary.
 Use case ends.
 
 **Extensions**
-
-4a. User decides against deleting the itinerary.<br>
-    Use case ends.
-
+* 4a. User decides against deleting the itinerary.
+  Use case ends.
 
 **Use case: Add an item to an itinerary**
 
 **MSS**
 
 1. User selects a specific itinerary.
-2. User requests to add new item to itinerary with accompanying description.
-3. Waddle creates new item and adds it to the list of items to be scheduled.<br>
-Use case ends.
+2. User requests to add an item.
+3. User enters details of the item.
+5. Waddle adds the item and provides confirmation to the user.
+   Use case ends.
 
 **Extensions**
+* 3a. The item details are incomplete.
+  * Waddle shows an error message.<br>
+  Use case resumes at step 3.
 
-2a. User does not provide name of item.<br>
-    2a1. Waddle shows an error message.<br>
-    Use case resumes from step 2.
-
-**Use case: View all items on an    itinerary**
-
-**MSS**
-
-1. User selects a specific itinerary.
-2. User requests to view all items in the itinerary.
-3. Waddle shows a list of all items previously added to the itinerary.<br>
-Use case ends.
-
-**Extensions**
-
-3a. User requests to sort the items in specific order.<br>
-    3a1. Waddle shows a list of all items in the itinerary arranged in specified order.<br>
-    Use case ends.
 
 *{More to be added}*
 
