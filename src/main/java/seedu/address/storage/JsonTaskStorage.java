@@ -2,15 +2,16 @@ package seedu.address.storage;
 
 import static java.util.Objects.requireNonNull;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyTaskList;
-import seedu.address.model.TaskList;
 
 /**
  * A class to access Tasks stored in the hard disk as a json file
@@ -39,21 +40,40 @@ public class JsonTaskStorage implements TaskStorage {
      * @param tasksFilePath location of the data. Cannot be null.
      * @throws DataConversionException if the file format is not as expected.
      */
+    @Override
     public Optional<ReadOnlyTaskList> readTaskList(Path tasksFilePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
-                filePath, JsonSerializableAddressBook.class);
-        if (!jsonAddressBook.isPresent()) {
+        Optional<JsonSerializableTaskList> jsonTaskList = JsonUtil.readJsonFile(
+                filePath, JsonSerializableTaskList.class);
+        if (!jsonTaskList.isPresent()) {
             return Optional.empty();
         }
 
         try {
             // TODO: JsonSerializableTaskList
-            return Optional.of(new TaskList());
+            return Optional.of(jsonTaskList.get().toModelType());
         } catch (Exception e) {
             logger.info("Illegal values found in " + filePath + ": " + e.getMessage());
             throw new DataConversionException(e);
         }
+    }
+
+    @Override
+    public void saveTaskList(ReadOnlyTaskList taskList) throws IOException {
+        saveTaskList(taskList);
+    }
+
+    /**
+     * Similar to {@link #saveTaskList(ReadOnlyTaskList)}
+     *
+     * @param filePath location of the data. Cannot be null.
+     */
+    public void saveTaskList(ReadOnlyTaskList taskList, Path filePath) throws IOException {
+        requireNonNull(taskList);
+        requireNonNull(filePath);
+
+        FileUtil.createIfMissing(filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableTaskList(taskList), filePath);
     }
 }

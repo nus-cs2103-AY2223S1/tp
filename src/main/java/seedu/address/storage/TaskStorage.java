@@ -23,4 +23,21 @@ public interface TaskStorage {
      * @throws IOException if there was any problem when reading from the storage.
      */
     Optional<ReadOnlyTaskList> readTaskList() throws DataConversionException, IOException;
+
+    /**
+     * @see #getTaskListFilePath()
+     */
+    Optional<ReadOnlyTaskList> readTaskList(Path filePath) throws DataConversionException, IOException;
+
+    /**
+     * Saves the given {@link ReadOnlyTaskList} to the storage.
+     * @param taskList cannot be null.
+     * @throws IOException if there was any problem writing to the file.
+     */
+    void saveTaskList(ReadOnlyTaskList taskList) throws IOException;
+
+    /**
+     * @see #saveTaskList(ReadOnlyTaskList)
+     */
+    void saveTaskList(ReadOnlyTaskList taskList, Path filePath) throws IOException;
 }

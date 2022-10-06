@@ -58,7 +58,24 @@ public class StorageManager implements Storage {
     @Override
     public Optional<ReadOnlyTaskList> readTaskList() throws DataConversionException, IOException {
         // TODO: readTaskList(Path filePath)
-        return Optional.empty();
+        return readTaskList(taskStorage.getTaskListFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyTaskList> readTaskList(Path filePath) throws IOException, DataConversionException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return taskStorage.readTaskList(filePath);
+    }
+
+    @Override
+    public void saveTaskList(ReadOnlyTaskList taskList) throws IOException {
+        saveTaskList(taskList, taskStorage.getTaskListFilePath());
+    }
+
+    @Override
+    public void saveTaskList(ReadOnlyTaskList taskList, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        taskStorage.saveTaskList(taskList, filePath);
     }
 
     // ================ AddressBook methods ==============================

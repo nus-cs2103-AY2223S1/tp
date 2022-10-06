@@ -12,6 +12,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Version;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.util.ConfigUtil;
+import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
@@ -92,10 +93,11 @@ public class MainApp extends Application {
 
             taskListOptional = storage.readTaskList();
             if (!taskListOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+                logger.info("Data file not found. Will be starting with a sample TaskList");
+                FileUtil.createIfMissing(Path.of("data\\tasklist.json"));
             }
             // TODO: SampleDataUtil::getSampleTaskList
-            initialTasks = taskListOptional.orElseGet(() -> new TaskList());
+            initialTasks = taskListOptional.orElseGet(SampleDataUtil::getSampleTaskList);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
