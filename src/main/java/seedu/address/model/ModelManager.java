@@ -115,6 +115,23 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    //=========== Filtered Person List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Person> getFilteredPersonList() {
+        return filteredPersons;
+    }
+
+    @Override
+    public void updateFilteredPersonList(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        filteredPersons.setPredicate(predicate);
+    }
+
     //=========== Tutorial================================================================================
     @Override
     public boolean hasTutorial(Tutorial tutorial) {
@@ -140,21 +157,20 @@ public class ModelManager implements Model {
         addressBook.setTutorial(target, editedTutorial);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
-
+    //=========== Filtered Tutorial List Accessors =============================================================
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Tutorial} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Tutorial> getFilteredTutorialList() {
+        return filteredTutorials;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredTutorialList(Predicate<Tutorial> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredTutorials.setPredicate(predicate);
     }
 
     @Override
