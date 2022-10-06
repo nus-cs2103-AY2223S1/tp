@@ -42,6 +42,14 @@ public class Issue {
         return this.priority;
     }
 
+    public Object getProject() {
+        return null;
+    }
+
+    public boolean isSameIssue(Issue issue) {
+        return true;
+    }
+
     public Status getStatus() {
         return this.status;
     }
