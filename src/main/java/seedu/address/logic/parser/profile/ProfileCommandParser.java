@@ -1,11 +1,6 @@
 package seedu.address.logic.parser.profile;
 
 import static seedu.address.commons.core.Messages.MESSAGE_FLAG_NOT_SPECIFIED;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -13,8 +8,6 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.profile.AddProfileCommand;
 import seedu.address.logic.commands.profile.EditProfileCommand;
 import seedu.address.logic.commands.profile.ProfileCommand;
-import seedu.address.logic.parser.ArgumentMultimap;
-import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -23,7 +16,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class ProfileCommandParser implements Parser<ProfileCommand> {
     private static final Pattern PROFILE_COMMAND_FORMAT = Pattern.compile(
-            "(?<profileOption>\\S+)(\\s+\\S+(.*))?");
+            "\\s+(-(?<profileOption>\\S*)(\\s+(?!-)\\S+)?)(\\s+(?!-)\\S*.)*");
 
     /**
      * Parses the given {@code String} of arguments in the context of the ProfileCommand
@@ -31,25 +24,17 @@ public class ProfileCommandParser implements Parser<ProfileCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public ProfileCommand parse(String args) throws ParseException {
-        if (!args.matches("\\h+-.*")) {
+        if (!args.matches("\\s+-.*")) {
             throw new ParseException(String.format(MESSAGE_FLAG_NOT_SPECIFIED, ProfileCommand.PROFILE_FORMAT));
         }
 
-        if (!args.matches("\\h+(-(\\S*)(\\h+(?!-)\\S+)?)(\\h+(?!-)\\S*.)*")) {
-            throw new ParseException(ProfileCommand.OPTION_NO_MULTIPLE);
-        }
-
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args,
-                        PREFIX_OPTION, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG);
-
-        String options = argMultimap.getValue(PREFIX_OPTION).orElse("");
-
-        final Matcher profileCommandMatcher = PROFILE_COMMAND_FORMAT.matcher(options);
+        final Matcher profileCommandMatcher = PROFILE_COMMAND_FORMAT.matcher(args);
 
         String profileOption = "";
         if (profileCommandMatcher.matches()) {
             profileOption = profileCommandMatcher.group("profileOption");
+        } else {
+            throw new ParseException(ProfileCommand.OPTION_NO_MULTIPLE);
         }
 
         switch (profileOption) {
