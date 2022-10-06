@@ -28,18 +28,18 @@ public class UniquePocListTest {
     }
 
     @Test
-    public void contains_companyNotInList_returnsFalse() {
+    public void contains_pocNotInList_returnsFalse() {
         assertFalse(uniquePocList.contains(ALICE));
     }
 
     @Test
-    public void contains_companyInList_returnsTrue() {
+    public void contains_pocInList_returnsTrue() {
         uniquePocList.add(ALICE);
         assertTrue(uniquePocList.contains(ALICE));
     }
 
     @Test
-    public void contains_companyWithSameIdentityFieldsInList_returnsTrue() {
+    public void contains_pocWithSameIdentityFieldsInList_returnsTrue() {
         uniquePocList.add(ALICE);
         Poc editedAlice = new PocBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
@@ -114,7 +114,7 @@ public class UniquePocListTest {
     }
 
     @Test
-    public void remove_companyDoesNotExist_throwsPocNotFoundException() {
+    public void remove_pocDoesNotExist_throwsPocNotFoundException() {
         assertThrows(PocNotFoundException.class, () -> uniquePocList.remove(ALICE));
     }
 
@@ -127,12 +127,12 @@ public class UniquePocListTest {
     }
 
     @Test
-    public void setCompanies_nullUniquePocList_throwsNullPointerException() {
+    public void setPocs_nullUniquePocList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniquePocList.setPocs((UniquePocList) null));
     }
 
     @Test
-    public void setCompanies_uniquePocList_replacesOwnListWithProvidedUniquePocList() {
+    public void setPocs_uniquePocList_replacesOwnListWithProvidedUniquePocList() {
         uniquePocList.add(ALICE);
         UniquePocList expectedUniquePocList = new UniquePocList();
         expectedUniquePocList.add(BOB);
@@ -141,24 +141,24 @@ public class UniquePocListTest {
     }
 
     @Test
-    public void setCompanies_nullList_throwsNullPointerException() {
+    public void setPocs_nullList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniquePocList.setPocs((List<Poc>) null));
     }
 
     @Test
-    public void setCompanies_list_replacesOwnListWithProvidedList() {
+    public void setPocs_list_replacesOwnListWithProvidedList() {
         uniquePocList.add(ALICE);
-        List<Poc> companyList = Collections.singletonList(BOB);
-        uniquePocList.setPocs(companyList);
+        List<Poc> pocList = Collections.singletonList(BOB);
+        uniquePocList.setPocs(pocList);
         UniquePocList expectedUniquePocList = new UniquePocList();
         expectedUniquePocList.add(BOB);
         assertEquals(expectedUniquePocList, uniquePocList);
     }
 
     @Test
-    public void setCompanies_listWithDuplicateCompanies_throwsDuplicatePocException() {
-        List<Poc> listWithDuplicateCompanies = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicatePocException.class, () -> uniquePocList.setPocs(listWithDuplicateCompanies));
+    public void setPocs_listWithDuplicatePocs_throwsDuplicatePocException() {
+        List<Poc> listWithDuplicatePocs = Arrays.asList(ALICE, ALICE);
+        assertThrows(DuplicatePocException.class, () -> uniquePocList.setPocs(listWithDuplicatePocs));
     }
 
     @Test
