@@ -39,6 +39,19 @@ public class Tutorial {
     }
 
     /**
+     * Returns true if both tutorials have the same time.
+     * This defines a weaker notion of equality between two tutorials.
+     */
+    public boolean isSameTutorial(Tutorial otherTutorial) {
+        if (otherTutorial == this) {
+            return true;
+        }
+
+        return otherTutorial != null
+                && otherTutorial.getTime().equals(getTime());
+    }
+
+    /**
      * Returns true if both tutorials have the same fields.
      * This defines a stronger notion of equality between two persons.
      */
@@ -68,8 +81,8 @@ public class Tutorial {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("Tutorial")
-                .append("; Group: ")
+        builder.append("Tutorial Information")
+                .append(": Group: ")
                 .append(getGroup())
                 .append("; Content: ")
                 .append(getContent())

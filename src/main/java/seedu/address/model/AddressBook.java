@@ -7,6 +7,8 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.tutorial.Tutorial;
+import seedu.address.model.tutorial.UniqueTutorialList;
 
 /**
  * Wraps all data at the address-book level
@@ -15,6 +17,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniqueTutorialList tutorials;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,9 +28,11 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        tutorials = new UniqueTutorialList();
     }
 
-    public AddressBook() {}
+    public AddressBook() {
+    }
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
@@ -93,6 +98,44 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    //// tutorial-level operations
+
+    /**
+     * Returns true if a tutorial with the same identity as {@code tutorial} exists in the address book.
+     */
+    public boolean hasTutorial(Tutorial tutorial) {
+        requireNonNull(tutorial);
+        return tutorials.contains(tutorial);
+    }
+
+    /**
+     * Adds a tutorial to the address book.
+     * The tutorial must not already exist in the address book.
+     */
+    public void addTutorial(Tutorial p) {
+        tutorials.add(p);
+    }
+
+    /**
+     * Replaces the given tutorial {@code target} in the list with {@code editedTutorial}.
+     * {@code target} must exist in the address book.
+     * The tutorial identity of {@code editedTutorial} must not be the same as another existing tutorial
+     * in the address book.
+     */
+    public void setTutorial(Tutorial target, Tutorial editedTutorial) {
+        requireNonNull(editedTutorial);
+
+        tutorials.setTutorial(target, editedTutorial);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeTutorial(Tutorial key) {
+        tutorials.remove(key);
+    }
+
     //// util methods
 
     @Override
@@ -104,6 +147,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Tutorial> getTutorialList() {
+        return tutorials.asUnmodifiableObservableList();
     }
 
     @Override

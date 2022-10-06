@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
@@ -32,6 +33,9 @@ public class AddTutorialCommand extends Command {
     public static final String MESSAGE_ARGUMENTS = "Group: %1$s, Content: %2$s, Time: %3$s";
     // I may need to change this later. The time format might need to be specified clearer.
 
+    public static final String MESSAGE_SUCCESS = "New tutorial added: %1$s";
+    public static final String MESSAGE_DUPLICATE_TUTORIAL = "This tutorial already exists in the address book";
+
     private final Tutorial tutorial;
 
     /**
@@ -45,8 +49,14 @@ public class AddTutorialCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        throw new CommandException(String.format(MESSAGE_ARGUMENTS, tutorial.getGroup(),
-                tutorial.getContent(), tutorial.getTime()));
+        requireNonNull(model);
+
+        if (model.hasTutorial(tutorial)) {
+            throw new CommandException(MESSAGE_DUPLICATE_TUTORIAL);
+        }
+
+        model.addTutorial(tutorial);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, tutorial));
     }
 
     @Override
