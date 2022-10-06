@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import swift.logic.commands.AddContactCommand;
+import swift.logic.commands.AddTaskCommand;
 import swift.logic.commands.ClearCommand;
 import swift.logic.commands.DeleteCommand;
 import swift.logic.commands.EditCommand;
@@ -25,9 +26,12 @@ import swift.logic.commands.ListCommand;
 import swift.logic.parser.exceptions.ParseException;
 import swift.model.person.NameContainsKeywordsPredicate;
 import swift.model.person.Person;
+import swift.model.task.Task;
 import swift.testutil.EditPersonDescriptorBuilder;
 import swift.testutil.PersonBuilder;
 import swift.testutil.PersonUtil;
+import swift.testutil.TaskBuilder;
+import swift.testutil.TaskUtil;
 
 public class AddressBookParserTest {
 
@@ -86,6 +90,13 @@ public class AddressBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_add_task() throws Exception {
+        Task task = new TaskBuilder().build();
+        AddTaskCommand command = (AddTaskCommand) parser.parseCommand(TaskUtil.getAddTaskCommand(task));
+        assertEquals(new AddTaskCommand(task), command);
     }
 
     @Test
