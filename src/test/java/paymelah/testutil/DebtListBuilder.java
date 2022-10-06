@@ -9,7 +9,7 @@ import paymelah.model.debt.Debt;
 import paymelah.model.debt.DebtList;
 
 /**
- * A utility class to help with building Debt objects.
+ * A utility class to help with building DebtList objects.
  */
 public class DebtListBuilder {
     public static final Debt DEFAULT_DEBT = CHICKEN_RICE;
@@ -31,7 +31,7 @@ public class DebtListBuilder {
     }
 
     /**
-     * Sets the {@code Description} of the {@code Debt} that we are building.
+     * Adds a {@link Debt} to the {@code DebtList} that we are building.
      */
     public DebtListBuilder withDebt(Debt debt) {
         debtList.add(debt);
