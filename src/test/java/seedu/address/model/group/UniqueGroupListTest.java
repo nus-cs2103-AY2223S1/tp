@@ -78,6 +78,24 @@ public class UniqueGroupListTest {
     }
 
     @Test
+    public void removeFromStringName_nullGroup_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueGroupList.removeFromStringName(null));
+    }
+
+    @Test
+    public void removeFromStringName_groupDoesNotExist_throwsGroupNotFoundException() {
+        assertThrows(GroupNotFoundException.class, () -> uniqueGroupList.removeFromStringName(VALID_GROUPNAME_IP));
+    }
+
+    @Test
+    public void removeFromStringName_existingGroup_removesGroup() {
+        uniqueGroupList.add(group);
+        uniqueGroupList.removeFromStringName(VALID_GROUPNAME_TP);
+        UniqueGroupList expectedUniqueGroupList = new UniqueGroupList();
+        assertEquals(expectedUniqueGroupList, uniqueGroupList);
+    }
+
+    @Test
     public void setGroups_nullUniqueGroupList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueGroupList.setGroups((UniqueGroupList) null));
     }
