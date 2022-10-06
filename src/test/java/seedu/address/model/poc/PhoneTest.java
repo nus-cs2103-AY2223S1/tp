@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import seedu.address.model.poc.Phone;
+
 import org.junit.jupiter.api.Test;
 
 public class PhoneTest {
@@ -40,8 +42,8 @@ public class PhoneTest {
     }
     @Test
     public void toString_phone_returnsValueInPhone() {
-        String value = "9312 1534";
-        seedu.address.model.company.Phone phone = new seedu.address.model.company.Phone(value);
+        String value = "93121534";
+        Phone phone = new Phone(value);
         assertEquals(phone.toString(), value);
     }
 }

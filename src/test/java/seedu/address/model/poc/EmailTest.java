@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import seedu.address.model.poc.Email;
+
 import org.junit.jupiter.api.Test;
 
 public class EmailTest {
@@ -70,7 +72,7 @@ public class EmailTest {
     @Test
     public void toString_email_returnsValueInEmail() {
         String value = "test@test.com";
-        seedu.address.model.company.Email email = new seedu.address.model.company.Email(value);
+        Email email = new Email(value);
         assertEquals(email.toString(), value);
     }
 }
