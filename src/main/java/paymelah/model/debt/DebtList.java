@@ -128,4 +128,14 @@ public class DebtList {
     public int hashCode() {
         return Objects.hash(debts);
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        for (Debt debt : debts) {
+            builder.append(debt.toString())
+                    .append("\n");
+        }
+        return builder.toString();
+    }
 }

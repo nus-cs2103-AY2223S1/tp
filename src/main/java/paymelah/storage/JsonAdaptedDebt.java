@@ -35,13 +35,8 @@ class JsonAdaptedDebt {
     }
 
     @JsonValue
-    public String getDebtDescription() {
-        return description;
-    }
-
-    @JsonValue
-    public String getDebtMoney() {
-        return money;
+    public String getDebt() {
+        return description + ", " + money;
     }
 
     /**

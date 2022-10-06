@@ -2,8 +2,6 @@ package paymelah.logic.commands;
 
 import static paymelah.testutil.TypicalPersons.getTypicalAddressBook;
 
-import org.junit.jupiter.api.BeforeEach;
-
 import paymelah.model.Model;
 import paymelah.model.ModelManager;
 import paymelah.model.UserPrefs;
@@ -13,14 +11,8 @@ import paymelah.model.UserPrefs;
  */
 class ListDebtorsCommandTest {
 
-    private Model model;
-    private Model expectedModel;
-
-    @BeforeEach
-    public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-    }
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     //TODO add test cases
 
