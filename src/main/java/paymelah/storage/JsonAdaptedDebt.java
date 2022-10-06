@@ -34,11 +34,6 @@ class JsonAdaptedDebt {
         money = source.getMoney().toString();
     }
 
-    @JsonValue
-    public String getDebt() {
-        return description + ", " + money;
-    }
-
     /**
      * Converts this Jackson-friendly adapted debt object into the model's {@code Debt} object.
      *
