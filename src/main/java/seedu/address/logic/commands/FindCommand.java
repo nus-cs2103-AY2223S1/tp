@@ -28,10 +28,10 @@ public class FindCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setConciseInfo(false);
-        model.updateFilteredPersonList(predicate);
+        model.setStudentListInfoConcise(false);
+        model.updateFilteredStudentList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredStudentList().size()));
     }
 
     @Override

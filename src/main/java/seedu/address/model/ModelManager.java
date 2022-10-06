@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
+import java.util.logging.Filter;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -22,8 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-
-    private boolean conciseInfo;
+    private FilteredStudents filteredStudents;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -37,7 +37,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
 
-        this.conciseInfo = true;
+        this.filteredStudents = new FilteredStudents(new FilteredList<>(this.addressBook.getPersonList()));
     }
 
     public ModelManager() {
@@ -105,7 +105,7 @@ public class ModelManager implements Model {
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
@@ -122,14 +122,29 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Person> getFilteredStudentList() {
+        return this.filteredStudents.getFilteredStudentList();
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredStudentList(Predicate<Person> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        this.filteredStudents.updateFilteredStudentList(predicate);
+    }
+
+    @Override
+    public void setStudentListInfoConcise(boolean b) {
+        this.filteredStudents.setConciseInfo(b);
+    }
+
+    @Override
+    public boolean isStudentListInfoConcise() {
+        return this.filteredStudents.hasConciseInfo();
+    }
+
+    @Override
+    public FilteredStudents getFilteredStudents() {
+        return this.filteredStudents;
     }
 
     @Override
@@ -151,13 +166,4 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(other.filteredPersons);
     }
 
-    @Override
-    public void setConciseInfo(boolean b) {
-        this.conciseInfo = b;
-    }
-
-    @Override
-    public boolean isStudentInfoConcise() {
-        return this.conciseInfo;
-    }
 }
