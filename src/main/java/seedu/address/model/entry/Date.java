@@ -1,4 +1,4 @@
-package seedu.address.model.expenditure;
+package seedu.address.model.entry;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -45,3 +45,4 @@ public class Date {
         return date.hashCode();
     }
 }
+
