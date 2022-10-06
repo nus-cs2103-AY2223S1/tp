@@ -159,7 +159,6 @@
 
 .result-display {
     -fx-background-color: #15181F;
-    -fx-background-radius: 8px;
     -fx-font-size: 12pt;
     -fx-text-fill: #D8D8D8;
 }
@@ -316,6 +315,10 @@
     -fx-padding: 8 1 8 1;
 }
 
+.corner {
+    -fx-background-color: transparent;
+}
+
 #cardPane {
     -fx-background-color: transparent;
     -fx-border-width: 0;
@@ -361,6 +364,8 @@
 
 #resultDisplay .content {
     -fx-background-color: #15181F;
+    -fx-background-radius: 0px;
+    -fx-padding: 8px 16px 8px 16px;
     -fx-font-size: 12pt;
     -fx-text-fill: #D3D3D3;
 }
