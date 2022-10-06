@@ -120,7 +120,7 @@ Shows a list of all persons in PayMeLah.
 
 Format: `list`
 
-### Listing all debtees : `listdebtors`
+### Listing all debtors : `listdebtors`
 
 Shows a list of all persons that owe you money in PayMeLah.
 
@@ -238,6 +238,6 @@ Action | Format, Examples
 **Find** | `find <keyword> [<more keywords>]`<br> e.g., `find James Jake`
 **Find debts** | `finddebt <keyword> [<more keywords>]`<br> e.g., `finddebt burger`
 **List** | `list`
-**List debtees** | `listdebtors`
+**List debtors** | `listdebtors`
 **Get statement** | `statement`
 **Help** | `help`
