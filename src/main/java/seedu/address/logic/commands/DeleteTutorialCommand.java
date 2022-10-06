@@ -5,6 +5,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.model.tutorial.Tutorial;
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class DeleteTutorialCommand extends Command{
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Tutorial: %1$s";
+    public static final String MESSAGE_DELETE_TUTORIAL_SUCCESS = "Deleted Tutorial: %1$s";
 
     private final Index targetIndex;
 
@@ -28,17 +29,16 @@ public class DeleteTutorialCommand extends Command{
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-//        requireNonNull(model);
-//        List<Person> lastShownList = model.getFilteredPersonList();
-//
-//        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-//            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-//        }
-//
-//        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-//        model.deletePerson(personToDelete);
-//        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
-        return new CommandResult("hello");
+        requireNonNull(model);
+        List<Tutorial> lastShownList = model.getFilteredTutorialList();
+
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_TUTORIAL_DISPLAYED_INDEX);
+        }
+
+        Tutorial tutorialToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.deleteTutorial(tutorialToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_TUTORIAL_SUCCESS, tutorialToDelete));
     }
 
     @Override
