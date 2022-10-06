@@ -18,6 +18,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.University;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -26,11 +27,13 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_UNIVERSITY = "n()S";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
+    private static final String VALID_UNIVERSITY = "ite";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
@@ -146,6 +149,29 @@ public class ParserUtilTest {
         String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
         Email expectedEmail = new Email(VALID_EMAIL);
         assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+    }
+
+    @Test
+    public void parseUniversity_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseUniversity((String) null));
+    }
+
+    @Test
+    public void parseUniversity_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseUniversity(INVALID_UNIVERSITY));
+    }
+
+    @Test
+    public void parseUniversity_validValueWithoutWhitespace_returnsUniversity() throws Exception {
+        University expectedUniversity = new University(VALID_UNIVERSITY);
+        assertEquals(expectedUniversity, ParserUtil.parseUniversity(VALID_UNIVERSITY));
+    }
+
+    @Test
+    public void parseUniversity_validValueWithWhitespace_returnsTrimmedUniversity() throws Exception {
+        String universityWithWhitespace = WHITESPACE + VALID_UNIVERSITY + WHITESPACE;
+        University expectedUniversity = new University(VALID_UNIVERSITY);
+        assertEquals(expectedUniversity, ParserUtil.parseUniversity(universityWithWhitespace));
     }
 
     @Test
