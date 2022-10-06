@@ -60,25 +60,28 @@ public class CustomiseCommandParser implements Parser<CustomiseCommand> {
         boolean[] isAttributeUsed = new boolean[4]; //0: ADDRESS, 1: EMAIL, 2: PHONE, 3: TAGS
         int noOfMissing = 4 - (args.length - 1); //first element of args is the subCommand
         Attribute[] attributeArr = new Attribute[4];
+        int indexOfAttributeArr = 0;
 
-        //first element is ignored as it is the subCommand
+        //the element in index 0 of args is not used here as it is the subCommand
         for (int i = 1; i < args.length; i++) {
             if (args[i].equals(PREFIX_ADDRESS.toString()) && !isAttributeUsed[0]) {
-                attributeArr[i - 1] = Attribute.ADDRESS;
-                isAttributeUsed[0] = true;
+                attributeArr[indexOfAttributeArr] = Attribute.ADDRESS;
+                isAttributeUsed[0] = true; //to prevent duplicate ADDRESS in array
             } else if (args[i].equals(PREFIX_EMAIL.toString()) && !isAttributeUsed[1]) {
-                attributeArr[i - 1] = Attribute.EMAIL;
-                isAttributeUsed[1] = true;
+                attributeArr[indexOfAttributeArr] = Attribute.EMAIL;
+                isAttributeUsed[1] = true; //to prevent duplicate EMAIL in array
             } else if (args[i].equals(PREFIX_PHONE.toString()) && !isAttributeUsed[2]) {
-                attributeArr[i - 1] = Attribute.PHONE;
-                isAttributeUsed[2] = true;
+                attributeArr[indexOfAttributeArr] = Attribute.PHONE;
+                isAttributeUsed[2] = true; //to prevent duplicate PHONE in array
             } else if (args[i].equals(PREFIX_TAG.toString()) && !isAttributeUsed[3]) {
-                attributeArr[i - 1] = Attribute.TAGS;
-                isAttributeUsed[3] = true;
+                attributeArr[indexOfAttributeArr] = Attribute.TAGS;
+                isAttributeUsed[3] = true; //to prevent duplicate TAGS in array
             } else {
+                //if there are invalid arguments or duplicate arguments
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, CustomiseCommand.MESSAGE_USAGE));
             }
+            indexOfAttributeArr++;
         }
         return fillMissingAttributes(attributeArr, isAttributeUsed, noOfMissing);
     }
@@ -125,19 +128,20 @@ public class CustomiseCommandParser implements Parser<CustomiseCommand> {
         boolean[] isAttributeUsed = new boolean[4]; //0: ADDRESS, 1: EMAIL, 2: PHONE, 3: TAGS
         ArrayList<Attribute> attributeArrayList = new ArrayList<>();
 
+        //the element in index 0 of args is not used here as it is the subCommand
         for (int i = 1; i < args.length; i++) {
             if (args[i].equals(PREFIX_ADDRESS.toString()) && !isAttributeUsed[0]) {
                 attributeArrayList.add(Attribute.ADDRESS);
-                isAttributeUsed[0] = true;
+                isAttributeUsed[0] = true; //to prevent duplicate ADDRESS in arraylist
             } else if (args[i].equals(PREFIX_EMAIL.toString()) && !isAttributeUsed[1]) {
                 attributeArrayList.add(Attribute.EMAIL);
-                isAttributeUsed[1] = true;
+                isAttributeUsed[1] = true; //to prevent duplicate EMAIL in arraylist
             } else if (args[i].equals(PREFIX_PHONE.toString()) && !isAttributeUsed[2]) {
                 attributeArrayList.add(Attribute.PHONE);
-                isAttributeUsed[2] = true;
+                isAttributeUsed[2] = true; //to prevent duplicate PHONE in arraylist
             } else if (args[i].equals(PREFIX_TAG.toString()) && !isAttributeUsed[3]) {
                 attributeArrayList.add(Attribute.TAGS);
-                isAttributeUsed[3] = true;
+                isAttributeUsed[3] = true; //to prevent duplicate TAGS in arraylist
             } else {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, CustomiseCommand.MESSAGE_USAGE));

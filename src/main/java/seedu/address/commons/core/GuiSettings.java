@@ -12,7 +12,7 @@ public class GuiSettings implements Serializable {
 
     private static final double DEFAULT_HEIGHT = 600;
     private static final double DEFAULT_WIDTH = 740;
-    private static final String DEFAULT_ORDER = "ADDRESS>TAGS>PHONE>EMAIL";
+    private static final String DEFAULT_ORDER = "TAGS>PHONE>EMAIL>ADDRESS";
     private static final String DEFAULT_HIDDEN_ATTRIBUTES = "NONE";
 
     private final double windowWidth;
@@ -40,6 +40,7 @@ public class GuiSettings implements Serializable {
      * @param xPosition the x-coordinate of the window coordinates
      * @param yPosition the y-coordinate of the window coordinates
      * @param attributeOrder the order of the attributes displayed in string format
+     * @param hiddenAttributes the attributes that are hidden in string format
      */
     public GuiSettings(double windowWidth, double windowHeight, int xPosition, int yPosition,
             String attributeOrder, String hiddenAttributes) {

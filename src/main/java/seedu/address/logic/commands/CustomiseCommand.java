@@ -5,7 +5,6 @@ import static seedu.address.logic.commands.CustomiseCommand.Attribute.EMAIL;
 import static seedu.address.logic.commands.CustomiseCommand.Attribute.PHONE;
 import static seedu.address.logic.commands.CustomiseCommand.Attribute.TAGS;
 import static seedu.address.logic.commands.CustomiseCommand.CustomiseSubCommand.HIDE;
-import static seedu.address.logic.commands.CustomiseCommand.CustomiseSubCommand.SHOW;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -24,13 +23,20 @@ import seedu.address.model.Model;
 public class CustomiseCommand extends Command {
     public static final String COMMAND_WORD = "customise";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " order: Changes the order of the details.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " order: Changes the order of the details\n"
             + "Parameters: "
             + "[" + PREFIX_PHONE + "] "
             + "[" + PREFIX_EMAIL + "] "
             + "[" + PREFIX_ADDRESS + "] "
             + "[" + PREFIX_TAG + "]\n"
-            + "Example: " + COMMAND_WORD + " order p/ a/";
+            + "Example: " + COMMAND_WORD + " order p/ a/\n\n"
+            + COMMAND_WORD + " hide / " + COMMAND_WORD + " show: Changes the visibility of the details\n"
+            + "Parameters: "
+            + "[" + PREFIX_PHONE + "] "
+            + "[" + PREFIX_EMAIL + "] "
+            + "[" + PREFIX_ADDRESS + "] "
+            + "[" + PREFIX_TAG + "]\n"
+            + "Examples: " + COMMAND_WORD + " hide p/ a/, " + COMMAND_WORD + " show a/ e/ p/ t/";
 
     public static final String MESSAGE_ORDER_SUCCESS = "Preferred order of details changed.";
 
@@ -123,19 +129,13 @@ public class CustomiseCommand extends Command {
         if (!currHiddenAttributes.equals("NONE")) {
             String[] currHiddenAttributesArr = currHiddenAttributes.split(",");
             try {
-                readHidden(currHiddenAttributesArr, isHidden);
+                setCurrentHiddenState(currHiddenAttributesArr, isHidden);
             } catch (IllegalArgumentException e) {
                 isHidden = new boolean[4];
             }
         }
 
-        if (subCommand.equals(HIDE)) {
-            setNewHiddenState(isHidden, true);
-        } else if (subCommand.equals(SHOW)) {
-            setNewHiddenState(isHidden, false);
-        } else {
-            throw new CommandException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
-        }
+        setNewHiddenState(isHidden, subCommand.equals(HIDE));
 
         int xCoordinate = 0;
         int yCoordinate = 0;
@@ -151,13 +151,13 @@ public class CustomiseCommand extends Command {
     }
 
     /**
-     * Reads the string array and sets the array elements to true if attributes are hidden.
+     * Sets the array elements to true if attributes are hidden based on the input String array.
      *
      * @param strArr an array of string representations of the attributes
      * @param isHidden a boolean array where index 0 represents address, index 1 represents email
      *                 index 2 represents phone and index 3 represents tags
      */
-    private void readHidden(String[] strArr, boolean[] isHidden) {
+    private void setCurrentHiddenState(String[] strArr, boolean[] isHidden) {
         for (String s : strArr) {
             isHidden[convertAttributeToIndex(s)] = true;
         }
@@ -166,7 +166,7 @@ public class CustomiseCommand extends Command {
     /**
      * Sets the new attributes to be hidden based on the arguments.
      *
-     * @param isHidden a boolean array where index 0 represents address, index 1 represents email
+     * @param isHidden a boolean array where index 0 represents address, index 1 represents email,
      *                 index 2 represents phone and index 3 represents tags
      * @param isSetToHide is set to true to hide and false to show
      */
@@ -179,7 +179,7 @@ public class CustomiseCommand extends Command {
     /**
      * Converts the boolean array to a string representing what attributes are hidden.
      *
-     * @param isHidden a boolean array where index 0 represents address, index 1 represents email
+     * @param isHidden a boolean array where index 0 represents address, index 1 represents email,
      *                 index 2 represents phone and index 3 represents tags
      * @return a string representation of what attributes are hidden
      */
