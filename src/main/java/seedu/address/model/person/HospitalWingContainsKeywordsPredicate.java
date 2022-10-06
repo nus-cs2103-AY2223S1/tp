@@ -17,7 +17,7 @@ public class HospitalWingContainsKeywordsPredicate implements Predicate<Person> 
     @Override
     public boolean test(Person person) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getHospitalWing().value, keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getHospitalWing().get().value, keyword));
     }
 
     @Override
