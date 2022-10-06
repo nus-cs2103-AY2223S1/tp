@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import java.util.logging.Filter;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -10,7 +9,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.FilteredStudents;
-import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
@@ -37,8 +35,7 @@ public class PersonListPanel extends UiPart<Region> {
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
     class PersonListViewCell extends ListCell<Person> {
-        // I want to have my FilteredStudents here
-        FilteredStudents filteredStudents;
+        private FilteredStudents filteredStudents;
 
         public PersonListViewCell(FilteredStudents filteredStudents) {
             this.filteredStudents = filteredStudents;

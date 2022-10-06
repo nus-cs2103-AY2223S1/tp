@@ -62,6 +62,9 @@ public class PersonCard extends UiPart<Region> {
         }
     }
 
+    /**
+     * Updates PersonCard to show all info
+     */
     public void showAllInfo() {
         phone.setManaged(true);
         phone.setVisible(true);
@@ -71,6 +74,9 @@ public class PersonCard extends UiPart<Region> {
         email.setVisible(true);
     }
 
+    /**
+     * Updates PersonCard to only show student's name and ID
+     */
     public void showConciseInfo() {
         phone.setManaged(false);
         phone.setVisible(false);
