@@ -1,14 +1,21 @@
 package seedu.address.testutil;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_ANDERSON;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BEN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_CABE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_COLIN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_CABE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_MALE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_ANDERSON;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BEN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CABE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_COLIN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_CABE;
@@ -31,6 +38,8 @@ import seedu.address.model.person.TeachingAssistant;
  * A utility class containing a list of {@code Person} objects to be used in tests.
  */
 public class TypicalPersons {
+
+    /* -------------------------------STUDENT------------------------------- */
 
     public static final Person AARON = new StudentBuilder().withName("Aaron Tan")
             .withEmail("aaron@example.com").withGender("M")
@@ -76,6 +85,26 @@ public class TypicalPersons {
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
+
+    /* -------------------------------PROFESSOR------------------------------- */
+    public static final Professor ANDERSON = (Professor) new ProfessorBuilder().withName(VALID_NAME_ANDERSON)
+            .withPhone(VALID_PHONE_BOB)
+            .withEmail(VALID_EMAIL_ANDERSON)
+            .withGender(VALID_GENDER_MALE)
+            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+            .build();
+    public static final Professor BEN = (Professor) new ProfessorBuilder().withName(VALID_NAME_BEN)
+            .withPhone(VALID_PHONE_BOB)
+            .withEmail(VALID_EMAIL_BEN)
+            .withGender(VALID_GENDER_MALE)
+            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+            .build();
+    public static final Professor COLIN = (Professor) new ProfessorBuilder().withName(VALID_NAME_COLIN)
+            .withPhone(VALID_PHONE_BOB)
+            .withEmail(VALID_EMAIL_COLIN)
+            .withGender(VALID_GENDER_MALE)
+            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+            .build();
 
     private TypicalPersons() {} // prevents instantiation
 
@@ -127,7 +156,60 @@ public class TypicalPersons {
         ab.addPerson(HOON);
         return ab;
     }
+    /**
+     * Returns an {@code AddressBook} with
+     * Professors in sorted order lexicographically.
+     */
+    public static AddressBook getSortedProfessors() {
+        AddressBook ab = new AddressBook();
+        ab.addPerson(ANDERSON);
+        ab.addPerson(BEN);
+        ab.addPerson(BOB);
+        ab.addPerson(COLIN);
+        return ab;
+    }
 
+    /**
+     * Returns an {@code AddressBook} with
+     * Professors in unsorted order.
+     */
+    public static AddressBook getUnsortedProfessors() {
+        AddressBook ab = new AddressBook();
+        ab.addPerson(COLIN);
+        ab.addPerson(BOB);
+        ab.addPerson(BEN);
+        ab.addPerson(ANDERSON);
+        return ab;
+    }
+    /**
+     * Returns an {@code AddressBook} with
+     * Students in sorted order lexicographically.
+     */
+    public static AddressBook getSortedStudents() {
+        AddressBook ab = new AddressBook();
+        ab.addPerson(AARON);
+        ab.addPerson(ALEX);
+        ab.addPerson(ALICE);
+        ab.addPerson(BENSON);
+        ab.addPerson(CARL);
+        ab.addPerson(GEORGE);
+        return ab;
+    }
+
+    /**
+     * Returns an {@code AddressBook} with
+     * Students in unsorted order.
+     */
+    public static AddressBook getUnsortedStudents() {
+        AddressBook ab = new AddressBook();
+        ab.addPerson(GEORGE);
+        ab.addPerson(ALEX);
+        ab.addPerson(CARL);
+        ab.addPerson(AARON);
+        ab.addPerson(BENSON);
+        ab.addPerson(ALICE);
+        return ab;
+    }
     public static List<Person> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
