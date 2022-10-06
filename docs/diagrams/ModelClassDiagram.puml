@@ -5,46 +5,49 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyTaAssist" as ReadOnlyTaAssist
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class AddressBook
+Class TaAssist
 Class ModelManager
 Class UserPrefs
 
 Class UniqueStudentList
+Class UniqueModuleClassList
 Class Student
 Class Address
 Class Email
 Class Name
 Class Phone
-Class Tag
-
+Class ModuleClass
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+TaAssist .up.|> ReadOnlyTaAssist
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+Model .left.> ReadOnlyTaAssist
+ModelManager -left-> "1" TaAssist
 ModelManager -right-> "1" UserPrefs
+ModelManager ---> "0..1 \nfocused" ModuleClass
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniqueStudentList
-UniqueStudentList --> "~* all" Student
-Student *--> Name
-Student *--> Phone
-Student *--> Email
-Student *--> Address
-Student *--> "*" Tag
+TaAssist *-left-> "1" UniqueStudentList
+TaAssist *-down-> "1" UniqueModuleClassList
+UniqueStudentList -right-> "~* all" Student
+UniqueModuleClassList -left-> "all*" ModuleClass
+Student *--> "1" Name
+Student *--> "0..1" Phone
+Student *--> "0..1" Email
+Student *--> "0..1" Address
+Student -up-> "~*" ModuleClass
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
-ModelManager -->"~* filtered" Student
+ModelManager -left->"~* filtered" Student
 @enduml
