@@ -16,8 +16,9 @@ public class TeachingAssistant extends Person {
     /**
      * Every field must be present and not null.
      */
-    public TeachingAssistant(Name name, ModuleCode moduleCode, Phone phone, Email email, Gender gender, Set<Tag> tags) {
-        super(name, phone, email, gender, tags);
+    public TeachingAssistant(Name name, ModuleCode moduleCode, Phone phone, Email email, Gender gender, Set<Tag> tags,
+                             Location location) {
+        super(name, phone, email, gender, tags, location);
         this.moduleCode = moduleCode;
     }
 
@@ -49,16 +50,18 @@ public class TeachingAssistant extends Person {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Name: ")
-                .append(getName())
-                .append("; Module Code: ")
-                .append(getModuleCode())
-                .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
-                .append("; Gender: ")
-                .append(getGender());
+            .append("; Name: ")
+            .append(getName())
+            .append("; Module Code: ")
+            .append(getModuleCode())
+            .append("; Phone: ")
+            .append(getPhone())
+            .append("; Email: ")
+            .append(getEmail())
+            .append("; Gender: ")
+            .append(getGender())
+            .append("; Location: ")
+            .append(getLocation());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

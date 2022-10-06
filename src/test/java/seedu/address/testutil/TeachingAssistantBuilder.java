@@ -28,8 +28,12 @@ public class TeachingAssistantBuilder extends PersonBuilder {
         moduleCode = personToCopy.getModuleCode();
     }
 
+    /**
+     * Builds a TeachingAssistant
+     */
     public TeachingAssistant build() {
-        return new TeachingAssistant(getName(), moduleCode, getPhone(), getEmail(), getGender(), getTags());
+        return new TeachingAssistant(getName(), moduleCode, getPhone(), getEmail(), getGender(), getTags(),
+            getLocation());
     }
 
 }

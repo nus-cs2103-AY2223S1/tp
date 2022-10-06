@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
+import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -31,8 +32,9 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
                               @JsonProperty("module code") String moduleCode,
                               @JsonProperty("phone") String phone, @JsonProperty("email") String email,
                               @JsonProperty("gender") String gender,
-                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
-        super(type, name, moduleCode, phone, email, gender, tagged);
+                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                              @JsonProperty("location") String location) {
+        super(type, name, moduleCode, phone, email, gender, tagged, location);
     }
 
     /**
@@ -62,7 +64,8 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
         final Name modelName = new Name(getName());
 
         if (getPhone() == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                Phone.class.getSimpleName()));
         }
         if (!Phone.isValidPhone(getPhone())) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
@@ -70,7 +73,8 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
         final Phone modelPhone = new Phone(getPhone());
 
         if (getEmail() == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                Email.class.getSimpleName()));
         }
         if (!Email.isValidEmail(getEmail())) {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
@@ -78,7 +82,8 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
         final Email modelEmail = new Email(getEmail());
 
         if (getGender() == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Gender.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                Gender.class.getSimpleName()));
         }
         if (!Gender.isValidGender(getGender())) {
             throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
@@ -86,7 +91,19 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
         final Gender modelGender = new Gender(getGender());
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Student(modelName, modelPhone, modelEmail, modelGender, modelTags);
+
+        if (getLocation() == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                Location.class.getSimpleName()));
+        }
+
+        if (!Location.isValidLocation(getLocation())) {
+            throw new IllegalValueException(Location.MESSAGE_CONSTRAINTS);
+        }
+
+        final Location modelLocation = new Location(getLocation());
+
+        return new Student(modelName, modelPhone, modelEmail, modelGender, modelTags, modelLocation);
     }
 
 }

@@ -13,8 +13,8 @@ public class Student extends Person {
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Phone phone, Email email, Gender gender, Set<Tag> tags) {
-        super(name, phone, email, gender, tags);
+    public Student(Name name, Phone phone, Email email, Gender gender, Set<Tag> tags, Location location) {
+        super(name, phone, email, gender, tags, location);
     }
 
     @Override
@@ -28,7 +28,9 @@ public class Student extends Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Gender: ")
-                .append(getGender());
+                .append(getGender())
+                .append("; Location: ")
+                .append(getLocation());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
