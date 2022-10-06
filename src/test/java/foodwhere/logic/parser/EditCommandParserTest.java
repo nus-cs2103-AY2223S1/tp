@@ -1,6 +1,20 @@
 package foodwhere.logic.parser;
 
-import static foodwhere.logic.commands.CommandTestUtil.*;
+import static foodwhere.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
+import static foodwhere.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+import static foodwhere.logic.commands.CommandTestUtil.DETAIL_DESC_FRIEND;
+import static foodwhere.logic.commands.CommandTestUtil.DETAIL_DESC_HUSBAND;
+import static foodwhere.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
+import static foodwhere.logic.commands.CommandTestUtil.INVALID_DETAIL_DESC;
+import static foodwhere.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static foodwhere.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static foodwhere.logic.commands.CommandTestUtil.NAME_DESC_BOB;
+import static foodwhere.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
+import static foodwhere.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static foodwhere.logic.commands.CommandTestUtil.VALID_DETAIL_FRIEND;
+import static foodwhere.logic.commands.CommandTestUtil.VALID_DETAIL_HUSBAND;
+import static foodwhere.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static foodwhere.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static foodwhere.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static foodwhere.logic.parser.CommandParserTestUtil.assertParseSuccess;
 

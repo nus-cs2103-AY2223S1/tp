@@ -21,7 +21,7 @@ public class SampleDataUtil {
                     getDetailSet("friends")),
             new Stall(new Name("Bernice Yu"), new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                     getDetailSet("colleagues", "friends")),
-            new Stall(new Name("Charlotte Oliveiro"),new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
+            new Stall(new Name("Charlotte Oliveiro"), new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
                     getDetailSet("neighbours")),
             new Stall(new Name("David Li"), new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
                     getDetailSet("family")),
