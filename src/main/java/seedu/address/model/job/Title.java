@@ -11,9 +11,9 @@ public class Title {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Job title should be alphanumeric or spaces or some allowed punctuations:"
-            + "- , : & ( ) \" ' / \\[ \\]";
-    public static final String VALIDATION_REGEX = "[A-Za-z0-9 -,:&()\"'/\\[\\]]+";
+            "Job title should be alphanumeric or spaces or some allowed punctuations "
+            + "- # , : & ( ) \" ' / [ ]";
+    public static final String VALIDATION_REGEX = "[A-Za-z0-9 \\-#,:&()\"'/\\[\\]]+";
     public final String value;
 
     /**

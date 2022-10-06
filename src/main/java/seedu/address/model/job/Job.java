@@ -13,6 +13,7 @@ public class Job {
     // Identity fields
     private final Id id;
     private final Title title;
+    public final String value;
 
     /**
      * Every field must be present and not null.
@@ -21,6 +22,7 @@ public class Job {
         requireAllNonNull(id, title);
         this.id = id;
         this.title = title;
+        value = String.format("%s - %s", id.value, title.value);
     }
 
     public Id getId() {
@@ -71,7 +73,7 @@ public class Job {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getId())
-                .append("; Title: ")
+                .append("; Job Title: ")
                 .append(getTitle());
 
         return builder.toString();

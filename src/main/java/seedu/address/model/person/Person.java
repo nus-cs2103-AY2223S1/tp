@@ -121,7 +121,7 @@ public class Person {
                 .append(getEmail())
                 .append("; Address: ")
                 .append(getAddress())
-                .append("; Job: ")
+                .append("; Job ID: ")
                 .append(getJob());
 
         Set<Tag> tags = getTags();
