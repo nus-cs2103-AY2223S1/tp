@@ -10,6 +10,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import paymelah.commons.exceptions.IllegalValueException;
+import paymelah.model.debt.Debt;
+import paymelah.model.debt.DebtList;
 import paymelah.model.person.Address;
 import paymelah.model.person.Email;
 import paymelah.model.person.Name;
@@ -29,6 +31,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedDebt> debts = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -36,13 +39,17 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("debts") List<JsonAdaptedDebt> debts) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        if (debts != null) {
+            this.debts.addAll(debts);
         }
     }
 
@@ -57,6 +64,9 @@ class JsonAdaptedPerson {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        debts.addAll(source.getDebts().asList().stream()
+                .map(JsonAdaptedDebt::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -68,6 +78,11 @@ class JsonAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
+        }
+
+        final List<Debt> personDebts = new ArrayList<>();
+        for (JsonAdaptedDebt debt : debts) {
+            personDebts.add(debt.toModelType());
         }
 
         if (name == null) {
@@ -103,7 +118,10 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+
+        final DebtList modelDebts = DebtList.fromList(personDebts);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelDebts);
     }
 
 }
