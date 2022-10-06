@@ -2,8 +2,10 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -51,6 +53,26 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a string of {@code String names} into a list of {@code String names}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if any {@code name} is invalid.
+     */
+    public static List<Name> parseNames(String names) throws ParseException {
+        requireNonNull(names);
+        String trimmedNames = names.trim();
+        String[] nameArr = trimmedNames.split(" ");
+        ArrayList<Name> nameList = new ArrayList<>();
+        for (String name : nameArr) {
+            if (!Name.isValidName(name)) {
+                throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            }
+            nameList.add(new Name(name));
+        }
+        return nameList;
+    }
+
+    /**
      * Parses a {@code String phone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -63,6 +85,26 @@ public class ParserUtil {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
         return new Phone(trimmedPhone);
+    }
+
+    /**
+     * Parses a string of {@code String phones} into a list of {@code String phones}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if any {@code phone} is invalid.
+     */
+    public static List<Phone> parsePhones(String phones) throws ParseException {
+        requireNonNull(phones);
+        String trimmedNames = phones.trim();
+        String[] phoneArr = trimmedNames.split(" ");
+        ArrayList<Phone> phoneList = new ArrayList<>();
+        for (String phone : phoneArr) {
+            if (!Phone.isValidPhone(phone)) {
+                throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+            }
+            phoneList.add(new Phone(phone));
+        }
+        return phoneList;
     }
 
     /**
@@ -81,6 +123,26 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a string of {@code String addresses} into a list of {@code String addresses}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if any {@code address} is invalid.
+     */
+    public static List<Address> parseAddresses(String addresses) throws ParseException {
+        requireNonNull(addresses);
+        String trimmedNames = addresses.trim();
+        String[] addressArr = trimmedNames.split(" ");
+        ArrayList<Address> addressList = new ArrayList<>();
+        for (String address : addressArr) {
+            if (!Address.isValidAddress(address)) {
+                throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+            }
+            addressList.add(new Address(address));
+        }
+        return addressList;
+    }
+
+    /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -93,6 +155,26 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a string of {@code String emails} into a list of {@code String emails}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if any {@code email} is invalid.
+     */
+    public static List<Email> parseEmails(String emails) throws ParseException {
+        requireNonNull(emails);
+        String trimmedNames = emails.trim();
+        String[] emailArr = trimmedNames.split(" ");
+        ArrayList<Email> emailList = new ArrayList<>();
+        for (String email : emailArr) {
+            if (!Email.isValidEmail(email)) {
+                throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+            }
+            emailList.add(new Email(email));
+        }
+        return emailList;
     }
 
     /**
