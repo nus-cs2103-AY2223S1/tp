@@ -45,7 +45,7 @@ public class Person {
     public boolean isBuyer() {
         return buyer != null;
     }
-    
+
     public Name getName() {
         return name;
     }
@@ -69,7 +69,7 @@ public class Person {
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
-    
+
     public void setBuyer(Buyer buyer) {
         this.buyer = buyer;
     }
@@ -87,7 +87,7 @@ public class Person {
     public String getBuyerCharacteristics() {
         return buyer.getCharacteristics();
     }
-    
+
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.

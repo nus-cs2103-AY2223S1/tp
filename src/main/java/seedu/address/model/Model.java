@@ -5,7 +5,6 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.role.Buyer;
 
@@ -88,8 +87,8 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
-     * Sets the given person with {@code name} in the list as a {@code buyer}.
-     * {@code name} exists uniquely in the address book.
+     * Sets the given {@code person} in the list as a {@code buyer}.
+     * {@code person} exists uniquely in the address book.
      */
-    void setContactRole(Name name, Buyer buyer);
+    void setBuyerRole(Person person, Buyer buyer);
 }

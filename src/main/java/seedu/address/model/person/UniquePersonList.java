@@ -8,7 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.role.Buyer;
@@ -100,12 +99,15 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
-     * Sets the given person with {@code name} in the list as a {@code buyer}.
-     * {@code name} exists uniquely in the address book.
+     * Sets the given {@code person} in the list as a {@code buyer}.
+     * {@code person} exists uniquely in the address book.
      */
-    public void setContactRole(Name name, Buyer buyer) {
-        FilteredList<Person> matchingNamePersons = internalList.filtered(x -> x.getName().equals(name));
-        matchingNamePersons.get(0).setBuyer(buyer);
+    public void setBuyerRole(Person person, Buyer buyer) throws PersonNotFoundException {
+        int position = internalList.indexOf(person);
+        if (position == -1) {
+            throw new PersonNotFoundException();
+        }
+        internalList.get(position).setBuyer(buyer);
     }
 
     /**

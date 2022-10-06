@@ -11,7 +11,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.role.Buyer;
 
@@ -113,9 +112,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setContactRole(Name name, Buyer buyer) {
-        requireAllNonNull(name, buyer);
-        addressBook.setContactRole(name, buyer);
+    public void setBuyerRole(Person person, Buyer buyer) {
+        requireAllNonNull(person, buyer);
+        addressBook.setBuyerRole(person, buyer);
     }
 
     //=========== Filtered Person List Accessors =============================================================

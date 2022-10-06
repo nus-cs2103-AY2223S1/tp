@@ -25,10 +25,10 @@ import seedu.address.model.person.Person;
 import seedu.address.model.role.Buyer;
 import seedu.address.testutil.PersonBuilder;
 
-public class AddPersonCommandTest {
+public class AddBuyerCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void execute_nullPerson_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddPersonCommand(null));
     }
 
@@ -149,7 +149,7 @@ public class AddPersonCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
-        
+
         @Override
         public void setBuyerRole(Person person, Buyer buyer) {
             throw new AssertionError("This method should not be called.");

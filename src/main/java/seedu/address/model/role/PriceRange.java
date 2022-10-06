@@ -9,13 +9,13 @@ public class PriceRange {
     public static final String MESSAGE_CONSTRAINTS =
             "Price range should contain exactly 2 numbers.";
 
-    private Optional<Float> low;
-    private Optional<Float> high;
+    private Optional<? extends Float> low;
+    private Optional<? extends Float> high;
 
     /**
      * Placeholder
      */
-    public PriceRange(Optional<Float> low, Optional<Float> high) {
+    public PriceRange(Optional<? extends Float> low, Optional<? extends Float> high) {
         this.low = low;
         this.high = high;
     }
