@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a person of contact in the company.
+ * Represents a Point of contact in the company.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Poc {
@@ -56,8 +56,8 @@ public class Poc {
     }
 
     /**
-     * Returns true if both point of contacts have the same name.
-     * This defines a weaker notion of equality between two persons of contact.
+     * Returns true if both points of contacts have the same name.
+     * This defines a weaker notion of equality between two points of contact.
      */
     public boolean isSamePoc(Poc otherPoc) {
         if (otherPoc == this) {
@@ -69,8 +69,8 @@ public class Poc {
     }
 
     /**
-     * Returns true if both persons of contact have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons of contact.
+     * Returns true if both points of contact have the same identity and data fields.
+     * This defines a stronger notion of equality between two points of contact.
      */
     @Override
     public boolean equals(Object other) {
