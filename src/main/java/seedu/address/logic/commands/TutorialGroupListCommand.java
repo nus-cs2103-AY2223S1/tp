@@ -1,12 +1,11 @@
 package seedu.address.logic.commands;
 
+import java.util.List;
+
 import seedu.address.model.Model;
 import seedu.address.model.student.TutorialGroup;
 
-import java.util.List;
-
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TUTORIAL_GROUPS;
 
 /**
