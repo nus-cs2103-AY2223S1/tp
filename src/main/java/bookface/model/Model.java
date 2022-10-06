@@ -59,6 +59,14 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * Gets whether the book exists in BookFace's book list.
+     *
+     * @param book a book to search in the booklist
+     * @return true if the book exists, false otherwise.
+     */
+    boolean hasBook(Book book);
+
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */

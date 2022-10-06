@@ -18,15 +18,15 @@ public class AddBookCommand extends AddCommand {
             + " " + COMMAND_WORD
             + ": Adds a book to the book list."
             + "Parameters: "
-            + PREFIX_AUTHOR + "AUTHOR "
-            + PREFIX_TITLE + "TITLE \n"
+            + PREFIX_TITLE + "TITLE "
+            + PREFIX_AUTHOR + "AUTHOR\n"
             + "Example: " + AddCommand.COMMAND_WORD
             + " " + COMMAND_WORD + " "
             + PREFIX_TITLE + "The Hobbit "
             + PREFIX_AUTHOR + "J.R.R. Tolkien";
     public static final String MESSAGE_SUCCESS = "New book added: %1$s";
     public static final String MESSAGE_DUPLICATE_BOOK = "This book is already in our records.";
-    private final Book book;
+    private final Book bookToAdd;
 
     /**
      * Constructs a AddBookCommand for adding of a book.
@@ -34,13 +34,18 @@ public class AddBookCommand extends AddCommand {
      */
     public AddBookCommand(Book book) {
         requireNonNull(book);
-        this.book = book;
+        this.bookToAdd = book;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.addBook(this.book);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, this.book));
+
+        if (model.hasBook(this.bookToAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_BOOK);
+        }
+
+        model.addBook(this.bookToAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, this.bookToAdd));
     }
 }

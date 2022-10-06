@@ -71,6 +71,17 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if book is already in the book list.
+     *
+     * @param book the book to search
+     * @return true if in book list, false otherwise
+     */
+    public boolean hasBook(Book book) {
+        requireNonNull(book);
+        return books.contains(book);
+    }
+
+    /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
