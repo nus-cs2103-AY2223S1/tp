@@ -12,9 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import hobbylist.commons.exceptions.IllegalValueException;
 import hobbylist.model.activity.Activity;
 import hobbylist.model.activity.Description;
-import hobbylist.model.activity.Email;
 import hobbylist.model.activity.Name;
-import hobbylist.model.activity.Phone;
 import hobbylist.model.tag.Tag;
 
 /**
@@ -22,52 +20,45 @@ import hobbylist.model.tag.Tag;
  */
 class JsonAdaptedActivity {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Activity's %s field is missing!";
 
     private final String name;
-    private final String phone;
-    private final String email;
-    private final String address;
+    private final String description;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedActivity} with the given activity details.
      */
     @JsonCreator
-    public JsonAdaptedActivity(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                               @JsonProperty("email") String email, @JsonProperty("address") String address,
+    public JsonAdaptedActivity(@JsonProperty("name") String name, @JsonProperty("description") String description,
                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
+        this.description = description;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Activity} into this class for Jackson use.
      */
     public JsonAdaptedActivity(Activity source) {
         name = source.getName().fullName;
-        phone = source.getPhone().value;
-        email = source.getEmail().value;
-        address = source.getAddress().value;
+        description = source.getDescription().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted activity object into the model's {@code Activity} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted activity.
      */
     public Activity toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        final List<Tag> activityTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+            activityTags.add(tag.toModelType());
         }
 
         if (name == null) {
@@ -78,33 +69,17 @@ class JsonAdaptedActivity {
         }
         final Name modelName = new Name(name);
 
-        if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
-        }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
-        }
-        final Phone modelPhone = new Phone(phone);
-
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
-        }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
-        }
-        final Email modelEmail = new Email(email);
-
-        if (address == null) {
+        if (description == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class
                     .getSimpleName()));
         }
-        if (!Description.isValidAddress(address)) {
+        if (!Description.isValidDescription(description)) {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
         }
-        final Description modelDescription = new Description(address);
+        final Description modelDescription = new Description(description);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Activity(modelName, modelPhone, modelEmail, modelDescription, modelTags);
+        final Set<Tag> modelTags = new HashSet<>(activityTags);
+        return new Activity(modelName, modelDescription, modelTags);
     }
 
 }

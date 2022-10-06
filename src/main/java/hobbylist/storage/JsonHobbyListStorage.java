@@ -15,7 +15,7 @@ import hobbylist.commons.util.JsonUtil;
 import hobbylist.model.ReadOnlyHobbyList;
 
 /**
- * A class to access AddressBook data stored as a json file on the hard disk.
+ * A class to access HobbyList data stored as a json file on the hard disk.
  */
 public class JsonHobbyListStorage implements HobbyListStorage {
 
@@ -27,32 +27,32 @@ public class JsonHobbyListStorage implements HobbyListStorage {
         this.filePath = filePath;
     }
 
-    public Path getAddressBookFilePath() {
+    public Path getHobbyListFilePath() {
         return filePath;
     }
 
     @Override
-    public Optional<ReadOnlyHobbyList> readAddressBook() throws DataConversionException {
-        return readAddressBook(filePath);
+    public Optional<ReadOnlyHobbyList> readHobbyList() throws DataConversionException {
+        return readHobbyList(filePath);
     }
 
     /**
-     * Similar to {@link #readAddressBook()}.
+     * Similar to {@link #readHobbyList()}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyHobbyList> readAddressBook(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyHobbyList> readHobbyList(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableHobbyList> jsonAddressBook = JsonUtil.readJsonFile(
+        Optional<JsonSerializableHobbyList> jsonHobbyList = JsonUtil.readJsonFile(
                 filePath, JsonSerializableHobbyList.class);
-        if (!jsonAddressBook.isPresent()) {
+        if (!jsonHobbyList.isPresent()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonAddressBook.get().toModelType());
+            return Optional.of(jsonHobbyList.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
@@ -60,21 +60,21 @@ public class JsonHobbyListStorage implements HobbyListStorage {
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyHobbyList addressBook) throws IOException {
-        saveAddressBook(addressBook, filePath);
+    public void saveHobbyList(ReadOnlyHobbyList hobbyList) throws IOException {
+        saveHobbyList(hobbyList, filePath);
     }
 
     /**
-     * Similar to {@link #saveAddressBook(ReadOnlyHobbyList)}.
+     * Similar to {@link #saveHobbyList(ReadOnlyHobbyList)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveAddressBook(ReadOnlyHobbyList addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveHobbyList(ReadOnlyHobbyList hobbyList, Path filePath) throws IOException {
+        requireNonNull(hobbyList);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableHobbyList(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableHobbyList(hobbyList), filePath);
     }
 
 }

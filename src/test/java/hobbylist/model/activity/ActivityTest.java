@@ -1,91 +1,81 @@
 package hobbylist.model.activity;
 
+import static hobbylist.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOXING;
+import static hobbylist.logic.commands.CommandTestUtil.VALID_NAME_BOXING;
+import static hobbylist.logic.commands.CommandTestUtil.VALID_TAG_ENTERTAINMENT;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static hobbylist.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static hobbylist.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static hobbylist.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static hobbylist.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static hobbylist.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static hobbylist.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import hobbylist.testutil.ActivityBuilder;
 import hobbylist.testutil.Assert;
-import hobbylist.testutil.PersonBuilder;
-import hobbylist.testutil.TypicalPersons;
+import hobbylist.testutil.TypicalActivities;
 
 public class ActivityTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Activity activity = new PersonBuilder().build();
+        Activity activity = new ActivityBuilder().build();
         Assert.assertThrows(UnsupportedOperationException.class, () -> activity.getTags().remove(0));
     }
 
     @Test
-    public void isSamePerson() {
+    public void isSameActivity() {
         // same object -> returns true
-        assertTrue(TypicalPersons.ALICE.isSamePerson(TypicalPersons.ALICE));
+        assertTrue(TypicalActivities.ACTIVITY_A.isSameActivity(TypicalActivities.ACTIVITY_A));
 
         // null -> returns false
-        assertFalse(TypicalPersons.ALICE.isSamePerson(null));
+        assertFalse(TypicalActivities.ACTIVITY_A.isSameActivity(null));
 
         // same name, all other attributes different -> returns true
-        Activity editedAlice = new PersonBuilder(TypicalPersons.ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(TypicalPersons.ALICE.isSamePerson(editedAlice));
+        Activity editedA = new ActivityBuilder(TypicalActivities.ACTIVITY_A)
+                .withDescription(VALID_DESCRIPTION_BOXING).withTags(VALID_TAG_ENTERTAINMENT).build();
+        assertTrue(TypicalActivities.ACTIVITY_A.isSameActivity(editedA));
 
         // different name, all other attributes same -> returns false
-        editedAlice = new PersonBuilder(TypicalPersons.ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(TypicalPersons.ALICE.isSamePerson(editedAlice));
+        editedA = new ActivityBuilder(TypicalActivities.ACTIVITY_A).withName(VALID_NAME_BOXING).build();
+        assertFalse(TypicalActivities.ACTIVITY_A.isSameActivity(editedA));
 
         // name differs in case, all other attributes same -> returns false
-        Activity editedBob = new PersonBuilder(TypicalPersons.BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(TypicalPersons.BOB.isSamePerson(editedBob));
+        Activity editedB = new ActivityBuilder(TypicalActivities.BOXING)
+                .withName(VALID_NAME_BOXING.toLowerCase()).build();
+        assertFalse(TypicalActivities.BOXING.isSameActivity(editedB));
 
         // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedBob = new PersonBuilder(TypicalPersons.BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(TypicalPersons.BOB.isSamePerson(editedBob));
+        String nameWithTrailingSpaces = VALID_NAME_BOXING + " ";
+        editedB = new ActivityBuilder(TypicalActivities.BOXING).withName(nameWithTrailingSpaces).build();
+        assertFalse(TypicalActivities.BOXING.isSameActivity(editedB));
     }
 
     @Test
     public void equals() {
         // same values -> returns true
-        Activity aliceCopy = new PersonBuilder(TypicalPersons.ALICE).build();
-        assertTrue(TypicalPersons.ALICE.equals(aliceCopy));
+        Activity aliceCopy = new ActivityBuilder(TypicalActivities.ACTIVITY_A).build();
+        assertTrue(TypicalActivities.ACTIVITY_A.equals(aliceCopy));
 
         // same object -> returns true
-        assertTrue(TypicalPersons.ALICE.equals(TypicalPersons.ALICE));
+        assertTrue(TypicalActivities.ACTIVITY_A.equals(TypicalActivities.ACTIVITY_A));
 
         // null -> returns false
-        assertFalse(TypicalPersons.ALICE.equals(null));
+        assertFalse(TypicalActivities.ACTIVITY_A.equals(null));
 
         // different type -> returns false
-        assertFalse(TypicalPersons.ALICE.equals(5));
+        assertFalse(TypicalActivities.ACTIVITY_A.equals(5));
 
-        // different person -> returns false
-        assertFalse(TypicalPersons.ALICE.equals(TypicalPersons.BOB));
+        // different activity -> returns false
+        assertFalse(TypicalActivities.ACTIVITY_A.equals(TypicalActivities.BOXING));
 
         // different name -> returns false
-        Activity editedAlice = new PersonBuilder(TypicalPersons.ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(TypicalPersons.ALICE.equals(editedAlice));
+        Activity editedA = new ActivityBuilder(TypicalActivities.ACTIVITY_A).withName(VALID_NAME_BOXING).build();
+        assertFalse(TypicalActivities.ACTIVITY_A.equals(editedA));
 
-        // different phone -> returns false
-        editedAlice = new PersonBuilder(TypicalPersons.ALICE).withPhone(VALID_PHONE_BOB).build();
-        assertFalse(TypicalPersons.ALICE.equals(editedAlice));
-
-        // different email -> returns false
-        editedAlice = new PersonBuilder(TypicalPersons.ALICE).withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(TypicalPersons.ALICE.equals(editedAlice));
-
-        // different address -> returns false
-        editedAlice = new PersonBuilder(TypicalPersons.ALICE).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(TypicalPersons.ALICE.equals(editedAlice));
+        // different description -> returns false
+        editedA = new ActivityBuilder(TypicalActivities.ACTIVITY_A).withDescription(VALID_DESCRIPTION_BOXING).build();
+        assertFalse(TypicalActivities.ACTIVITY_A.equals(editedA));
 
         // different tags -> returns false
-        editedAlice = new PersonBuilder(TypicalPersons.ALICE).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(TypicalPersons.ALICE.equals(editedAlice));
+        editedA = new ActivityBuilder(TypicalActivities.ACTIVITY_A).withTags(VALID_TAG_ENTERTAINMENT).build();
+        assertFalse(TypicalActivities.ACTIVITY_A.equals(editedA));
     }
 }

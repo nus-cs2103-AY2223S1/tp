@@ -14,7 +14,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the HobbyList data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -24,16 +24,16 @@ public class ModelManager implements Model {
     private final FilteredList<Activity> filteredActivities;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given hobbyList and userPrefs.
      */
-    public ModelManager(ReadOnlyHobbyList addressBook, ReadOnlyUserPrefs userPrefs) {
-        CollectionUtil.requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyHobbyList hobbyList, ReadOnlyUserPrefs userPrefs) {
+        CollectionUtil.requireAllNonNull(hobbyList, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with HobbyList: " + hobbyList + " and user prefs " + userPrefs);
 
-        this.hobbyList = new HobbyList(addressBook);
+        this.hobbyList = new HobbyList(hobbyList);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredActivities = new FilteredList<>(this.hobbyList.getPersonList());
+        filteredActivities = new FilteredList<>(this.hobbyList.getActivityList());
     }
 
     public ModelManager() {
@@ -65,65 +65,65 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getHobbyListFilePath() {
+        return userPrefs.getHobbyListFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setHobbyListFilePath(Path hobbyListFilePath) {
+        requireNonNull(hobbyListFilePath);
+        userPrefs.setHobbyListFilePath(hobbyListFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== HobbyList ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyHobbyList addressBook) {
-        this.hobbyList.resetData(addressBook);
+    public void setHobbyList(ReadOnlyHobbyList hobbyList) {
+        this.hobbyList.resetData(hobbyList);
     }
 
     @Override
-    public ReadOnlyHobbyList getAddressBook() {
+    public ReadOnlyHobbyList getHobbyList() {
         return hobbyList;
     }
 
     @Override
-    public boolean hasPerson(Activity activity) {
+    public boolean hasActivity(Activity activity) {
         requireNonNull(activity);
-        return hobbyList.hasPerson(activity);
+        return hobbyList.hasActivity(activity);
     }
 
     @Override
-    public void deletePerson(Activity target) {
-        hobbyList.removePerson(target);
+    public void deleteActivity(Activity target) {
+        hobbyList.removeActivity(target);
     }
 
     @Override
-    public void addPerson(Activity activity) {
-        hobbyList.addPerson(activity);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addActivity(Activity activity) {
+        hobbyList.addActivity(activity);
+        updateFilteredActivityList(PREDICATE_SHOW_ALL_ACTIVITIES);
     }
 
     @Override
-    public void setPerson(Activity target, Activity editedActivity) {
+    public void setActivity(Activity target, Activity editedActivity) {
         CollectionUtil.requireAllNonNull(target, editedActivity);
 
-        hobbyList.setPerson(target, editedActivity);
+        hobbyList.setActivity(target, editedActivity);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Activity List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code Activity} backed by the internal list of
+     * {@code versionedHobbyList}
      */
     @Override
-    public ObservableList<Activity> getFilteredPersonList() {
+    public ObservableList<Activity> getFilteredActivityList() {
         return filteredActivities;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Activity> predicate) {
+    public void updateFilteredActivityList(Predicate<Activity> predicate) {
         requireNonNull(predicate);
         filteredActivities.setPredicate(predicate);
     }

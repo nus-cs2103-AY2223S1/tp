@@ -1,10 +1,9 @@
 package hobbylist.logic.parser;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static hobbylist.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static hobbylist.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static hobbylist.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,23 +11,22 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import hobbylist.model.activity.Activity;
-import hobbylist.testutil.Assert;
-import hobbylist.testutil.EditPersonDescriptorBuilder;
-import hobbylist.testutil.PersonBuilder;
-import hobbylist.testutil.PersonUtil;
-import hobbylist.testutil.TypicalIndexes;
 import hobbylist.logic.commands.AddCommand;
 import hobbylist.logic.commands.ClearCommand;
 import hobbylist.logic.commands.DeleteCommand;
 import hobbylist.logic.commands.EditCommand;
-import hobbylist.logic.commands.EditCommand.EditPersonDescriptor;
 import hobbylist.logic.commands.ExitCommand;
 import hobbylist.logic.commands.FindCommand;
 import hobbylist.logic.commands.HelpCommand;
 import hobbylist.logic.commands.ListCommand;
 import hobbylist.logic.parser.exceptions.ParseException;
+import hobbylist.model.activity.Activity;
 import hobbylist.model.activity.NameContainsKeywordsPredicate;
+import hobbylist.testutil.ActivityBuilder;
+import hobbylist.testutil.ActivityUtil;
+import hobbylist.testutil.Assert;
+import hobbylist.testutil.EditActivityDescriptorBuilder;
+import hobbylist.testutil.TypicalIndexes;
 
 public class DescriptionBookParserTest {
 
@@ -36,8 +34,8 @@ public class DescriptionBookParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Activity activity = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(activity));
+        Activity activity = new ActivityBuilder().build();
+        AddCommand command = (AddCommand) parser.parseCommand(ActivityUtil.getAddCommand(activity));
         assertEquals(new AddCommand(activity), command);
     }
 
@@ -50,17 +48,18 @@ public class DescriptionBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + TypicalIndexes.INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(TypicalIndexes.INDEX_FIRST_PERSON), command);
+                DeleteCommand.COMMAND_WORD + " " + TypicalIndexes.INDEX_FIRST_ACTIVITY.getOneBased());
+        assertEquals(new DeleteCommand(TypicalIndexes.INDEX_FIRST_ACTIVITY), command);
     }
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Activity activity = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(activity).build();
+        Activity activity = new ActivityBuilder().build();
+        EditCommand.EditActivityDescriptor descriptor = new EditActivityDescriptorBuilder(activity).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + TypicalIndexes.INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(TypicalIndexes.INDEX_FIRST_PERSON, descriptor), command);
+                + TypicalIndexes.INDEX_FIRST_ACTIVITY.getOneBased() + " "
+                + ActivityUtil.getEditActivityDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(TypicalIndexes.INDEX_FIRST_ACTIVITY, descriptor), command);
     }
 
     @Test
@@ -91,12 +90,13 @@ public class DescriptionBookParserTest {
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
-        Assert.assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand(""));
+        Assert.assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                HelpCommand.MESSAGE_USAGE), () -> parser.parseCommand(""));
     }
 
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
-        Assert.assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+        Assert.assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, ()
+                -> parser.parseCommand("unknownCommand"));
     }
 }

@@ -25,19 +25,19 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the HobbyList.
      *
-     * @see Model#getAddressBook()
+     * @see Model#getHobbyList()
      */
-    ReadOnlyHobbyList getAddressBook();
+    ReadOnlyHobbyList getHobbyList();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Activity> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of activities */
+    ObservableList<Activity> getFilteredActivityList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' HobbyList file path.
      */
-    Path getAddressBookFilePath();
+    Path getHobbyListFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

@@ -46,7 +46,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveHobbyList(model.getHobbyList());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -55,18 +55,18 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyHobbyList getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyHobbyList getHobbyList() {
+        return model.getHobbyList();
     }
 
     @Override
-    public ObservableList<Activity> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Activity> getFilteredActivityList() {
+        return model.getFilteredActivityList();
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getHobbyListFilePath() {
+        return model.getHobbyListFilePath();
     }
 
     @Override

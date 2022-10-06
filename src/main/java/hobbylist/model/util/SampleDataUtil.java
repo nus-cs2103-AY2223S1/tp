@@ -8,42 +8,40 @@ import hobbylist.model.HobbyList;
 import hobbylist.model.ReadOnlyHobbyList;
 import hobbylist.model.activity.Activity;
 import hobbylist.model.activity.Description;
-import hobbylist.model.activity.Email;
 import hobbylist.model.activity.Name;
-import hobbylist.model.activity.Phone;
 import hobbylist.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code HobbyList} with sample data.
  */
 public class SampleDataUtil {
-    public static Activity[] getSamplePersons() {
+    public static Activity[] getSampleActivities() {
         return new Activity[] {
-            new Activity(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Description("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends")),
-            new Activity(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Description("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends")),
-            new Activity(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new Description("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours")),
-            new Activity(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                new Description("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family")),
-            new Activity(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new Description("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates")),
-            new Activity(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Description("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"))
+            new Activity(new Name("And Then There Were None"),
+                new Description("Mystery novel by Agatha Christie"),
+                getTagSet("book")),
+            new Activity(new Name("Battlefield 4"),
+                new Description("First person shooter by EA"),
+                getTagSet("video_game")),
+            new Activity(new Name("Charlotte"),
+                new Description("Comedy drama anime"),
+                getTagSet("anime", "tv_series")),
+            new Activity(new Name("Despicable Me 3"),
+                new Description("Comedy film directed by Pierre Coffin and Kyle Balda"),
+                getTagSet("movie")),
+            new Activity(new Name("42km run"),
+                new Description("Exercise on 1 Jan 1970"),
+                getTagSet("exercise")),
+            new Activity(new Name("Sleep for 48 hours"),
+                new Description("Sleep from 1 Oct 2022 to 3 Oct 2022"),
+                getTagSet("sleep"))
         };
     }
 
-    public static ReadOnlyHobbyList getSampleAddressBook() {
+    public static ReadOnlyHobbyList getSampleHobbyList() {
         HobbyList sampleAb = new HobbyList();
-        for (Activity sampleActivity : getSamplePersons()) {
-            sampleAb.addPerson(sampleActivity);
+        for (Activity sampleActivity : getSampleActivities()) {
+            sampleAb.addActivity(sampleActivity);
         }
         return sampleAb;
     }

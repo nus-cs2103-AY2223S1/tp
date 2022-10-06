@@ -1,58 +1,49 @@
 package hobbylist.logic.commands;
 
+import static hobbylist.logic.commands.CommandTestUtil.DESC_ANIME;
+import static hobbylist.logic.commands.CommandTestUtil.DESC_BOXING;
+import static hobbylist.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOXING;
+import static hobbylist.logic.commands.CommandTestUtil.VALID_NAME_BOXING;
+import static hobbylist.logic.commands.CommandTestUtil.VALID_TAG_ENTERTAINMENT;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static hobbylist.logic.commands.CommandTestUtil.DESC_AMY;
-import static hobbylist.logic.commands.CommandTestUtil.DESC_BOB;
-import static hobbylist.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static hobbylist.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static hobbylist.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static hobbylist.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static hobbylist.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import org.junit.jupiter.api.Test;
 
-import hobbylist.testutil.EditPersonDescriptorBuilder;
-import hobbylist.logic.commands.EditCommand.EditPersonDescriptor;
+import hobbylist.logic.commands.EditCommand.EditActivityDescriptor;
+import hobbylist.testutil.EditActivityDescriptorBuilder;
 
 public class EditActivityDescriptorTest {
 
     @Test
     public void equals() {
         // same values -> returns true
-        EditPersonDescriptor descriptorWithSameValues = new EditPersonDescriptor(DESC_AMY);
-        assertTrue(DESC_AMY.equals(descriptorWithSameValues));
+        EditActivityDescriptor descriptorWithSameValues = new EditActivityDescriptor(DESC_ANIME);
+        assertTrue(DESC_ANIME.equals(descriptorWithSameValues));
 
         // same object -> returns true
-        assertTrue(DESC_AMY.equals(DESC_AMY));
+        assertTrue(DESC_ANIME.equals(DESC_ANIME));
 
         // null -> returns false
-        assertFalse(DESC_AMY.equals(null));
+        assertFalse(DESC_ANIME.equals(null));
 
         // different types -> returns false
-        assertFalse(DESC_AMY.equals(5));
+        assertFalse(DESC_ANIME.equals(5));
 
         // different values -> returns false
-        assertFalse(DESC_AMY.equals(DESC_BOB));
+        assertFalse(DESC_ANIME.equals(DESC_BOXING));
 
         // different name -> returns false
-        EditPersonDescriptor editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        EditActivityDescriptor editedAmy = new EditActivityDescriptorBuilder(DESC_ANIME).withName(VALID_NAME_BOXING)
+                .build();
+        assertFalse(DESC_ANIME.equals(editedAmy));
 
-        // different phone -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withPhone(VALID_PHONE_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
-
-        // different email -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
-
-        // different address -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        // different description -> returns false
+        editedAmy = new EditActivityDescriptorBuilder(DESC_ANIME).withDescription(VALID_DESCRIPTION_BOXING).build();
+        assertFalse(DESC_ANIME.equals(editedAmy));
 
         // different tags -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        editedAmy = new EditActivityDescriptorBuilder(DESC_ANIME).withTags(VALID_TAG_ENTERTAINMENT).build();
+        assertFalse(DESC_ANIME.equals(editedAmy));
     }
 }

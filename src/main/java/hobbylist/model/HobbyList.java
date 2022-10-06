@@ -9,12 +9,12 @@ import hobbylist.model.activity.UniqueActivityList;
 import javafx.collections.ObservableList;
 
 /**
- * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Wraps all data at HobbyList level
+ * Duplicates are not allowed (by .isSameActivity comparison)
  */
 public class HobbyList implements ReadOnlyHobbyList {
 
-    private final UniqueActivityList persons;
+    private final UniqueActivityList activities;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,13 +24,13 @@ public class HobbyList implements ReadOnlyHobbyList {
      *   among constructors.
      */
     {
-        persons = new UniqueActivityList();
+        activities = new UniqueActivityList();
     }
 
     public HobbyList() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates a HobbyList using the Activities in the {@code toBeCopied}
      */
     public HobbyList(ReadOnlyHobbyList toBeCopied) {
         this();
@@ -40,81 +40,82 @@ public class HobbyList implements ReadOnlyHobbyList {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the activities list with {@code activities}.
+     * {@code activities} must not contain duplicate activities.
      */
-    public void setPersons(List<Activity> activities) {
-        this.persons.setPersons(activities);
+    public void setActivities(List<Activity> activities) {
+        this.activities.setActivities(activities);
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code HobbyList} with {@code newData}.
      */
     public void resetData(ReadOnlyHobbyList newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setActivities(newData.getActivityList());
     }
 
-    //// person-level operations
+    //// activity-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if an activity with the same identity as {@code activity} exists in the HobbyList.
      */
-    public boolean hasPerson(Activity activity) {
+    public boolean hasActivity(Activity activity) {
         requireNonNull(activity);
-        return persons.contains(activity);
+        return activities.contains(activity);
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds an activity to the HobbyList.
+     * The activity must not already exist in the HobbyList.
      */
-    public void addPerson(Activity p) {
-        persons.add(p);
+    public void addActivity(Activity p) {
+        activities.add(p);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces the given activity {@code target} in the list with {@code editedActivity}.
+     * {@code target} must exist in the HobbyList.
+     * The activity identity of {@code editedActivity} must not be the same as another existing activity in the
+     * HobbyList
      */
-    public void setPerson(Activity target, Activity editedActivity) {
+    public void setActivity(Activity target, Activity editedActivity) {
         requireNonNull(editedActivity);
 
-        persons.setPerson(target, editedActivity);
+        activities.setActivity(target, editedActivity);
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code HobbyList}.
+     * {@code key} must exist in the HobbyList.
      */
-    public void removePerson(Activity key) {
-        persons.remove(key);
+    public void removeActivity(Activity key) {
+        activities.remove(key);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return activities.asUnmodifiableObservableList().size() + " activities";
         // TODO: refine later
     }
 
     @Override
-    public ObservableList<Activity> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+    public ObservableList<Activity> getActivityList() {
+        return activities.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof HobbyList // instanceof handles nulls
-                && persons.equals(((HobbyList) other).persons));
+                && activities.equals(((HobbyList) other).activities));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return activities.hashCode();
     }
 }

@@ -12,15 +12,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of
- * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Person#equals(Object) so
- * as to ensure that the person with exactly the same fields will be removed.
+ * A list of activities that enforces uniqueness between its elements and does not allow nulls.
+ * An activity is considered unique by comparing using {@code Activity#isSameActivity(Activity)}. As such, adding and
+ * updating of activities uses Activity#isSameActivity(Activity) for equality so as to ensure that the activity being
+ * added or updated is unique in terms of identity in the UniqueActivityList. However, the removal of an activity uses
+ * Activity#equals(Object) so as to ensure that the activity with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
- * @see Activity#isSamePerson(Activity)
+ * @see Activity#isSameActivity(Activity)
  */
 public class UniqueActivityList implements Iterable<Activity> {
 
@@ -29,16 +29,16 @@ public class UniqueActivityList implements Iterable<Activity> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent activity as the given argument.
      */
     public boolean contains(Activity toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSamePerson);
+        return internalList.stream().anyMatch(toCheck::isSameActivity);
     }
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds an activity to the list.
+     * The activity must not already exist in the list.
      */
     public void add(Activity toAdd) {
         requireNonNull(toAdd);
@@ -49,11 +49,11 @@ public class UniqueActivityList implements Iterable<Activity> {
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     * Replaces the activity {@code target} in the list with {@code editedActivity}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     * The activity identity of {@code editedActivity} must not be the same as another existing activity in the list.
      */
-    public void setPerson(Activity target, Activity editedActivity) {
+    public void setActivity(Activity target, Activity editedActivity) {
         CollectionUtil.requireAllNonNull(target, editedActivity);
 
         int index = internalList.indexOf(target);
@@ -61,7 +61,7 @@ public class UniqueActivityList implements Iterable<Activity> {
             throw new ActivityNotFoundException();
         }
 
-        if (!target.isSamePerson(editedActivity) && contains(editedActivity)) {
+        if (!target.isSameActivity(editedActivity) && contains(editedActivity)) {
             throw new DuplicateActivityException();
         }
 
@@ -69,8 +69,8 @@ public class UniqueActivityList implements Iterable<Activity> {
     }
 
     /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Removes the equivalent activity from the list.
+     * The activity must exist in the list.
      */
     public void remove(Activity toRemove) {
         requireNonNull(toRemove);
@@ -79,18 +79,18 @@ public class UniqueActivityList implements Iterable<Activity> {
         }
     }
 
-    public void setPersons(UniqueActivityList replacement) {
+    public void setActivities(UniqueActivityList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code activities}.
+     * {@code activities} must not contain duplicate activities.
      */
-    public void setPersons(List<Activity> activities) {
+    public void setActivities(List<Activity> activities) {
         CollectionUtil.requireAllNonNull(activities);
-        if (!personsAreUnique(activities)) {
+        if (!activitiesAreUnique(activities)) {
             throw new DuplicateActivityException();
         }
 
@@ -122,12 +122,12 @@ public class UniqueActivityList implements Iterable<Activity> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code activities} contains only unique activities.
      */
-    private boolean personsAreUnique(List<Activity> activities) {
+    private boolean activitiesAreUnique(List<Activity> activities) {
         for (int i = 0; i < activities.size() - 1; i++) {
             for (int j = i + 1; j < activities.size(); j++) {
-                if (activities.get(i).isSamePerson(activities.get(j))) {
+                if (activities.get(i).isSameActivity(activities.get(j))) {
                     return false;
                 }
             }

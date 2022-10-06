@@ -110,13 +110,13 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        activityListPanel = new ActivityListPanel(logic.getFilteredPersonList());
+        activityListPanel = new ActivityListPanel(logic.getFilteredActivityList());
         activityListPanelPlaceholder.getChildren().add(activityListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getHobbyListFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -163,7 +163,7 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public ActivityListPanel getPersonListPanel() {
+    public ActivityListPanel getActivityListPanel() {
         return activityListPanel;
     }
 

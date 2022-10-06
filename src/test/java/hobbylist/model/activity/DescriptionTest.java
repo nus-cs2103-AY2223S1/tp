@@ -2,7 +2,6 @@ package hobbylist.model.activity;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static hobbylist.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -16,23 +15,25 @@ public class DescriptionTest {
     }
 
     @Test
-    public void constructor_invalidAddress_throwsIllegalArgumentException() {
-        String invalidAddress = "";
-        Assert.assertThrows(IllegalArgumentException.class, () -> new Description(invalidAddress));
+    public void constructor_invalidDescription_throwsIllegalArgumentException() {
+        String invalidDescription = "";
+        Assert.assertThrows(IllegalArgumentException.class, () -> new Description(invalidDescription));
     }
 
     @Test
-    public void isValidAddress() {
-        // null address
-        Assert.assertThrows(NullPointerException.class, () -> Description.isValidAddress(null));
+    public void isValidDescription() {
+        // null description
+        Assert.assertThrows(NullPointerException.class, () -> Description.isValidDescription(null));
 
-        // invalid addresses
-        assertFalse(Description.isValidAddress("")); // empty string
-        assertFalse(Description.isValidAddress(" ")); // spaces only
+        // invalid descriptions
+        assertFalse(Description.isValidDescription("")); // empty string
+        assertFalse(Description.isValidDescription(" ")); // spaces only
 
-        // valid addresses
-        assertTrue(Description.isValidAddress("Blk 456, Den Road, #01-355"));
-        assertTrue(Description.isValidAddress("-")); // one character
-        assertTrue(Description.isValidAddress("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
+        // valid descriptions
+        assertTrue(Description.isValidDescription("Blk 456, Den Road, #01-355"));
+        // one character
+        assertTrue(Description.isValidDescription("-"));
+        // long description
+        assertTrue(Description.isValidDescription("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA"));
     }
 }
