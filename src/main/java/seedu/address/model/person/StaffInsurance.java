@@ -1,10 +1,12 @@
 package seedu.address.model.person;
 
-import java.util.Locale;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a staff insurance in HR Pro Max++.
+ * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ */
 public class StaffInsurance {
     public static final String MESSAGE_CONSTRAINTS =
             "Staff insurance should only contain alphanumeric characters and spaces, and it should not be blank";

@@ -3,6 +3,10 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a staff name in HR Pro Max++.
+ * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ */
 public class StaffName {
     public static final String MESSAGE_CONSTRAINTS =
             "Staff name should only contain alphanumeric characters and spaces, and it should not be blank";

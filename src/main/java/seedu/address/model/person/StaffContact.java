@@ -3,6 +3,10 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a staff contact in HR Pro Max++.
+ * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ */
 public class StaffContact {
     public static final String MESSAGE_CONSTRAINTS =
             "Staff contact should only contain numbers and spaces, and it should not be blank";
