@@ -4,10 +4,14 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.role.Buyer;
+import seedu.address.model.role.Seller;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,6 +29,8 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private Buyer buyer;
+
+    private Optional<Seller> seller = Optional.empty();
 
     /**
      * Every field must be present and not null.
@@ -44,6 +50,13 @@ public class Person {
      */
     public boolean isBuyer() {
         return buyer != null;
+    }
+
+    /**
+     * Temporarily for UI Testing of Add Seller Command
+     */
+    public boolean isSeller() {
+        return seller.isPresent();
     }
 
     public Name getName() {
@@ -72,6 +85,19 @@ public class Person {
 
     public void setBuyer(Buyer buyer) {
         this.buyer = buyer;
+    }
+
+    public void setSeller(Seller seller) {
+        if (this.seller.isPresent()) {
+            // seller will be overridden
+        } else {
+            this.seller = Optional.of(seller);
+        }
+    }
+
+    public List<Integer> getSellerProperties() {
+        Seller s = seller.orElseThrow();
+        return s.getProperties();
     }
 
     /**

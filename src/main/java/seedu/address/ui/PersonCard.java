@@ -47,6 +47,12 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label buyerCharacteristics;
 
+    @FXML
+    private Label sellerRole;
+
+    @FXML
+    private FlowPane sellerProperties;
+
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
@@ -64,6 +70,11 @@ public class PersonCard extends UiPart<Region> {
         buyerRole.setText(person.isBuyer() ? "Buyer" : "");
         buyerRange.setText(person.isBuyer() ? person.getBuyerRange() : "");
         buyerCharacteristics.setText(person.isBuyer() ? person.getBuyerCharacteristics() : "");
+
+        sellerRole.setText(person.isSeller() ? "Seller" : "");
+        person.getSellerProperties()
+                .forEach(pr -> sellerProperties.getChildren()
+                        .add(new Label(String.valueOf(pr))));
     }
 
     @Override

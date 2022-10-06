@@ -2,10 +2,13 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -14,6 +17,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.property.Property;
 import seedu.address.model.role.Characteristics;
 import seedu.address.model.role.PriceRange;
 import seedu.address.model.tag.Tag;
@@ -161,5 +165,19 @@ public class ParserUtil {
             item = item.trim();
         }
         return new Characteristics(charArray);
+    }
+
+    public static List<Integer> parseProperties(String properties) throws ParseException {
+        if (properties.isEmpty()) {
+            return List.of();
+        }
+        String trimmedProperties = properties.trim();
+        List<Integer> propertyArray = Arrays.stream(trimmedProperties.split(";"))
+                .map(item -> Integer.parseInt(item.trim()))
+                .collect(Collectors.toList());
+
+        // TODO: should add a check that all values that are ; separated are integers
+
+        return propertyArray;
     }
 }
