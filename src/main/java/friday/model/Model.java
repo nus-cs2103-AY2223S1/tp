@@ -35,44 +35,44 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' FRIDAY file path.
      */
-    Path getAddressBookFilePath();
+    Path getFridayFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' FRIDAY file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setFridayFilePath(Path fridayFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces FRIDAY's data with the data in {@code friday}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setFriday(ReadOnlyFriday friday);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns FRIDAY */
+    ReadOnlyFriday getFriday();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in FRIDAY.
      */
     boolean hasPerson(Student student);
 
     /**
      * Deletes the given person.
-     * The person must exist in the address book.
+     * The person must exist in FRIDAY.
      */
     void deletePerson(Student target);
 
     /**
      * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * {@code person} must not already exist in FRIDAY.
      */
     void addPerson(Student student);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in FRIDAY.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in FRIDAY.
      */
     void setPerson(Student target, Student editedStudent);
 
