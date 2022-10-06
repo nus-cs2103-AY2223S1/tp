@@ -13,9 +13,9 @@ import seedu.address.ui.UiPart;
 /**
  * Panel containing the list of modules.
  */
-public class ModuleListPanel extends UiPart<Region> {
+public class SavedModuleListPanel extends UiPart<Region> {
     private static final String FXML = "ModuleListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(ModuleListPanel.class);
+    private final Logger logger = LogsCenter.getLogger(SavedModuleListPanel.class);
 
     @FXML
     private ListView<Module> moduleListView;
@@ -23,7 +23,7 @@ public class ModuleListPanel extends UiPart<Region> {
     /**
      * Creates a {@code ModuleListPanel} with the given {@code ObservableList}.
      */
-    public ModuleListPanel(ObservableList<Module> moduleList) {
+    public SavedModuleListPanel(ObservableList<Module> moduleList) {
         super(FXML);
         moduleListView.setItems(moduleList);
         moduleListView.setCellFactory(listView -> new ModuleListViewCell());
@@ -41,7 +41,7 @@ public class ModuleListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new ModuleCard(module).getRoot());
+                setGraphic(new SavedModuleCard(module).getRoot());
             }
         }
     }

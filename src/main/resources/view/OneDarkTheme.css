@@ -139,6 +139,20 @@
     -fx-text-fill: #ffffff;
 }
 
+.cell_tiny_label {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 10px;
+    -fx-text-fill: #ffffff;
+}
+
+.button_module {
+-fx-border-width:0;
+-fx-background-radius: 10px;
+-fx-padding: 5;
+-fx-font-size: 10;
+-fx-font-weight:bold;
+}
+
 .stack-pane {
      -fx-background-color: derive(#282C34, 20%);
 }

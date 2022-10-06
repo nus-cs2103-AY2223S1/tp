@@ -11,9 +11,9 @@ import seedu.address.ui.UiPart;
 /**
  * An UI component that displays information of a {@code Module}.
  */
-public class ModuleCard extends UiPart<Region> {
+public class SavedModuleCard extends UiPart<Region> {
 
-    private static final String FXML = "ModuleListCard.fxml";
+    private static final String FXML = "SavedModuleListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -28,36 +28,30 @@ public class ModuleCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label title;
-    @FXML
     private Label moduleCode;
     @FXML
-    private Label department;
+    private Label tutorial;
     @FXML
-    private Button workload;
+    private Label lecture;
     @FXML
-    private FlowPane semesterData;
-    private String buttonStyle = "-fx-border-width:0;-fx-background-radius: 10px;"
-            + "-fx-padding: 5;-fx-font-size: 12;-fx-font-weight:bold;";
+    private FlowPane ayData;
+
+    private String buttonStyle = "-fx-border-width:0;-fx-background-radius: 10px;-fx-padding: 3;"
+           + "-fx-font-size: 8;-fx-font-weight:bold;";
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public ModuleCard(Module module) {
+    public SavedModuleCard(Module module) {
         super(FXML);
         this.module = module;
         moduleCode.setText(module.getModuleCode());
-        title.setText(module.getTitle());
-        department.setText(module.getDepartment());
-        // TODO: find a more elegant way to add workload behind semeseter tag
-        workload = new Button(module.getWorkload());
-        workload.setStyle("-fx-background-color:#61AFEF;-fx-text-fill: #ffffff;" + buttonStyle);
-        module.getSemesterData().stream()
-                .forEach(tag -> semesterData.getChildren()
-                        .add(new Button(tag)));
-        semesterData.getChildren().forEach(child ->
-                child.setStyle("-fx-background-color: #C678DD;-fx-text-fill: #000000;" + buttonStyle));
-        semesterData.getChildren().add(workload);
+        tutorial.setText(module.getTutorial());
+        lecture.setText(module.getLecture());
+        // TODO: Find a better display for the buttons
+        ayData.getChildren().add(new Button(module.getaydata()));
+        ayData.getChildren().forEach(child -> child.setStyle("-fx-background-color:#E5C07B;-fx-text-fill: #2E333D;"
+                + buttonStyle));
 
     }
 
@@ -69,12 +63,12 @@ public class ModuleCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof ModuleCard)) {
+        if (!(other instanceof SavedModuleCard)) {
             return false;
         }
 
         // state check
-        ModuleCard card = (ModuleCard) other;
+        SavedModuleCard card = (SavedModuleCard) other;
         return moduleCode.getText().equals(card.moduleCode.getText())
                 && module.equals(card.module);
     }

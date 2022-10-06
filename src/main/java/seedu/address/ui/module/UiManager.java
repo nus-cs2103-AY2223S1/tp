@@ -1,5 +1,7 @@
 package seedu.address.ui.module;
 
+import java.util.logging.Logger;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
@@ -9,13 +11,7 @@ import javafx.stage.Stage;
 import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.Logic;
-import seedu.address.model.ModelManager;
-import seedu.address.storage.StorageManager;
-import seedu.address.ui.module.MainWindow;
 import seedu.address.ui.Ui;
-
-import java.util.logging.Logger;
 
 /**
  * The manager of the UI component.
@@ -44,9 +40,9 @@ public class UiManager extends Application implements Ui {
         primaryStage.getIcons().add(getImage(ICON_APPLICATION));
 
         // TODO: Remove this for integration
-//        Logic logic = new LogicManager();
+        // Logic logic = new LogicManager();
         try {
-//            mainWindow = new MainWindow(primaryStage, logic);
+            // mainWindow = new MainWindow(primaryStage, logic);
             mainWindow = new MainWindow(primaryStage);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();

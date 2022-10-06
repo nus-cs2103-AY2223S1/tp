@@ -1,28 +1,30 @@
 package seedu.address.ui.module;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
+
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.ui.*;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.logging.Logger;
+import seedu.address.ui.CommandBox;
+import seedu.address.ui.HelpWindow;
+import seedu.address.ui.ResultDisplay;
+import seedu.address.ui.StatusBarFooter;
+import seedu.address.ui.UiPart;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -41,6 +43,10 @@ public class MainWindow extends UiPart<Stage> {
     private ModuleListPanel moduleListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private SavedModuleListPanel currentModuleListPanel;
+
+    @FXML
+    private SplitPane currentModuleList;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -49,7 +55,10 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane moduleListPanelPlaceholder;
+
+    @FXML
+    private StackPane currentModuleListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -86,7 +95,7 @@ public class MainWindow extends UiPart<Stage> {
         this.primaryStage = primaryStage;
 
         // Decorate primary stage
-//        primaryStage.initStyle(StageStyle.UNDECORATED);
+        // primaryStage.initStyle(StageStyle.UNDECORATED);
 
         // Configure the UI
         setWindowDefaultSize(new GuiSettings());
@@ -139,17 +148,34 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        currentModuleList = new SplitPane();
+
         // TODO Change this back to moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
         List<Module> lst = new ArrayList<Module>();
         lst.add(new Module());
         lst.add(new Module());
         moduleListPanel = new ModuleListPanel(FXCollections.observableList(lst));
-        personListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
+        moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-//        TODO: Resolve logic issue
+        currentModuleList = new SplitPane();
+
+        // TODO: use logic manager to get saved mods
+        List<Module> lst2 = new ArrayList<Module>();
+        lst2.add(new Module());
+        lst2.add(new Module());
+        lst2.add(new Module());
+        lst2.add(new Module());
+        lst2.add(new Module());
+
+        currentModuleListPanel = new SavedModuleListPanel(FXCollections.observableList(lst2));
+        currentModuleListPanelPlaceholder.getChildren().add(currentModuleListPanel.getRoot());
+
+        currentModuleList.getItems().addAll(moduleListPanelPlaceholder, currentModuleListPanelPlaceholder);
+
+        // TODO: Resolve logic issue - null pointer exception
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
@@ -190,9 +216,10 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleExit() {
-//        GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-//                (int) primaryStage.getX(), (int) primaryStage.getY());
-//        logic.setGuiSettings(guiSettings);
+        // TODO: Uncomment this after logic manager is done
+        // GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
+        // (int) primaryStage.getX(), (int) primaryStage.getY());
+        // logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
     }
@@ -207,25 +234,25 @@ public class MainWindow extends UiPart<Stage> {
      * @see Logic#execute(String)
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
-//        try {
-//            CommandResult commandResult = logic.execute(commandText);
-//            logger.info("Result: " + commandResult.getFeedbackToUser());
-//            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-//
-//            if (commandResult.isShowHelp()) {
-//                handleHelp();
-//            }
-//
-//            if (commandResult.isExit()) {
-//                handleExit();
-//            }
-//
-//            return commandResult;
-//        } catch (CommandException | ParseException e) {
-//            logger.info("Invalid command: " + commandText);
-//            resultDisplay.setFeedbackToUser(e.getMessage());
-//            throw e;
-//        }
+        //        try {
+        //            CommandResult commandResult = logic.execute(commandText);
+        //            logger.info("Result: " + commandResult.getFeedbackToUser());
+        //            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+        //
+        //            if (commandResult.isShowHelp()) {
+        //                handleHelp();
+        //            }
+        //
+        //            if (commandResult.isExit()) {
+        //                handleExit();
+        //            }
+        //
+        //            return commandResult;
+        //        } catch (CommandException | ParseException e) {
+        //            logger.info("Invalid command: " + commandText);
+        //            resultDisplay.setFeedbackToUser(e.getMessage());
+        //            throw e;
+        //        }
         return new CommandResult("TESTING UI...", false, false);
     }
 }
