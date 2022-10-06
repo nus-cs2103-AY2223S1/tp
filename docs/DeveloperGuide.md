@@ -310,7 +310,7 @@ Use case ends.
 
 **Extensions**
 
-2a. The itinerary name is not entered.
+2a. The itinerary name is not entered.<br>
     2a1. Waddle shows an error message.<br>
     Use case resumes at step 2.
 
@@ -326,7 +326,7 @@ Use case ends.
 
 **Extensions**
 
-2a. The itinerary name is incomplete.
+2a. The itinerary name is incomplete.<br>
     2a1. Waddle shows an error message.<br>
     Use case resumes from step 2.
 
@@ -343,6 +343,7 @@ Use case ends.
 Use case ends.
 
 **Extensions**
+
 4a. User decides against deleting the itinerary.<br>
     Use case ends.
 
@@ -357,11 +358,12 @@ Use case ends.
 Use case ends.
 
 **Extensions**
-2a. User does not provide name of item.
+
+2a. User does not provide name of item.<br>
     2a1. Waddle shows an error message.<br>
     Use case resumes from step 2.
 
-**Use case: View all items on an itinerary**
+**Use case: View all items on an    itinerary**
 
 **MSS**
 
@@ -371,7 +373,8 @@ Use case ends.
 Use case ends.
 
 **Extensions**
-3a. User requests to sort the items in specific order.
+
+3a. User requests to sort the items in specific order.<br>
     3a1. Waddle shows a list of all items in the itinerary arranged in specified order.<br>
     Use case ends.
 
