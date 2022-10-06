@@ -1,9 +1,9 @@
 package seedu.address.model.role;
 
-import seedu.address.model.person.Address;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import seedu.address.model.person.Address;
 
 /**
  * Represents a Price Range for a property that a buyer can accept.
@@ -11,14 +11,14 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class PriceRange {
 
-    public static final String MESSAGE_CONSTRAINTS = "Price ranges must be specified in the form: " +
-            "<low> - <high>, where <low> and <high> are numbers (can be floating point decimals).";
+    public static final String MESSAGE_CONSTRAINTS = "Price ranges must be specified in the form: "
+            + "<low> - <high>, where <low> and <high> are numbers (can be floating point decimals).";
     /*
      * The first part of the range must be digits, followed by a hyphen (whitespaces optional),
      * and then followed by more digits. A decimal / floating point value is also valid.
      * This helps prevent "123a-123b" from being considered a valid input.
      */
-    public static String VALIDATION_REGEX = "   [0-9]*\\.?[0-9]+\\s?-\\s?[0-9]*\\.?[0-9]+";
+    public static final String VALIDATION_REGEX = "[0-9]*\\.?[0-9]+\\s?-\\s?[0-9]*\\.?[0-9]+";
 
     public final double low;
     public final double high;

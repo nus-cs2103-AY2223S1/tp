@@ -1,17 +1,17 @@
 package seedu.address.model.role;
 
-import java.util.Arrays;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.util.Arrays;
 
 /**
  * Represents the desired characteristics of a property that will interest a particular buyer.
  * Individual characteristics are separated by semicolons.
  */
 public class DesiredCharacteristics {
-    public static final String MESSAGE_CONSTRAINTS = "Desired characteristics can take any value, " +
-            "and can also be left blank.";
+    public static final String MESSAGE_CONSTRAINTS = "Desired characteristics can take any value, "
+            + "and can also be left blank.";
 
     /*
      * The first character of the desired characteristics must not be a whitespace,

@@ -1,22 +1,22 @@
 package seedu.address.model.role;
 
-import seedu.address.model.person.Address;
-import seedu.address.model.property.Property;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
+import seedu.address.model.person.Address;
+import seedu.address.model.property.Property;
 
 /**
  * Represents a list of properties that a seller is selling / managing.
  */
 public class Properties {
 
-    public static final String MESSAGE_CONSTRAINTS = "A list of properties must be represented by the" +
-            "relative indices of the properties in the list, separated by spaces. A property list can be empty.";
+    public static final String MESSAGE_CONSTRAINTS = "A list of properties must be represented by the"
+            + "relative indices of the properties in the list, separated by spaces. A property list can be empty.";
 
     /*
      * Digits that represent relative indices must be separated by spaces.

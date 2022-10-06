@@ -1,8 +1,8 @@
 package seedu.address.model.role;
 
-import java.util.Objects;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Objects;
 
 /**
  * Encapsulates all Seller attributes for a particular Buyer.
