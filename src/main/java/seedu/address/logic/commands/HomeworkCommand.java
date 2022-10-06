@@ -27,7 +27,7 @@ public class HomeworkCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "h/ [HOMEWORK]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + "h/ Science worksheet.";
+            + "h/Science worksheet.";
 
     public static final String MESSAGE_ADD_HOMEWORK_SUCCESS = "Added homework to Person: %1$s";
     public static final String MESSAGE_DELETE_HOMEWORK_SUCCESS = "Removed homework from Person: %1$s";
