@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SLOT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICAL_TEST;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SLOT;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
 
 import java.util.List;
@@ -40,7 +40,7 @@ public class EditAppointmentCommand extends Command {
             + PREFIX_EMAIL + "johndoe@example.com"
             + PREFIX_MEDICAL_TEST + "Computer Tomography"
             + PREFIX_SLOT + "2020-10-09 13:30"
-            + PREFIX_DOCTOR +"Muhammad Wong";
+            + PREFIX_DOCTOR + "Muhammad Wong";
 
     public static final String MESSAGE_EDIT_APPOINTMENT_SUCCESS = "Edited Appointment: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

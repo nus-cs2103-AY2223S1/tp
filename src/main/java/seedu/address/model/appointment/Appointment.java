@@ -1,8 +1,8 @@
 package seedu.address.model.appointment;
 
-import seedu.address.model.person.Email;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import seedu.address.model.person.Email;
 
 /**
  * Represents an Appointment of a patient in the HealthConnect
@@ -16,6 +16,9 @@ public class Appointment {
     private final Slot slot;
     private final Doctor doctor;
 
+    /**
+     * Every field must be present and not null.
+     */
     public Appointment(Email email, MedicalTest medicalTest, Slot slot, Doctor doctor) {
         requireAllNonNull(email, medicalTest, slot, doctor);
         this.email = email;

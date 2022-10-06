@@ -1,17 +1,27 @@
 package seedu.address.model.appointment;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Iterator;
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
 import seedu.address.model.appointment.exceptions.DuplicateAppointmentException;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 
-import java.util.Iterator;
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
+/**
+ * A list of appointments that enforces uniqueness between its elements and does not allow nulls.
+ * A appointment is considered unique by comparing using {@code Appointment#equals(Object)}. As such,
+ * adding and updating of appointments uses Appointment#equals(Object) for equality so as to ensure that
+ * the appointment being added or updated is unique in terms of identity in the UniqueAppointmentList.
+ *
+ * Supports a minimal set of list operations.
+ *
+ * @see seedu.address.model.appointment.Appointment#equals(Object)
+ */
 public class UniqueAppointmentList implements Iterable<Appointment> {
 
     private final ObservableList<Appointment> internalList = FXCollections.observableArrayList();
