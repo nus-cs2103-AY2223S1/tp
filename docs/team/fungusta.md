@@ -21,7 +21,8 @@ Given below are my contributions to the project.
     * [to be added soon]
 
 * **Enhancements to existing features**:
-    * [to be added soon]
+    * Contact Finding by Address
+      * Finds and lists out all people in IBook that address contains any of the keywords input by user
 
 * **Documentation**:
     * Issue Tracker

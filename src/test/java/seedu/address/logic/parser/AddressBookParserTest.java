@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -20,7 +22,7 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindAddressCommand;
-import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindNameCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -71,18 +73,20 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_find() throws Exception {
+    public void parseCommand_findByName() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        FindNameCommand command = (FindNameCommand) parser.parseCommand(
+                FindNameCommand.COMMAND_WORD + " "
+                        + PREFIX_NAME + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindNameCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
     public void parseCommand_findByAddress() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindAddressCommand command = (FindAddressCommand) parser.parseCommand(
-                FindAddressCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+                FindAddressCommand.COMMAND_WORD + " "
+                        + PREFIX_ADDRESS + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindAddressCommand(new AddressContainsKeywordsPredicate(keywords)), command);
     }
 

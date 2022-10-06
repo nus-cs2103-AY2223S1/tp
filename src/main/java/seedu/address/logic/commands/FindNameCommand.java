@@ -4,16 +4,16 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.AddressContainsKeywordsPredicate;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 /**
- * Finds and lists all persons in address book whose address contains any of the argument keywords.
+ * Finds and lists all persons in address book whose name contains any of the argument keywords.
  * Keyword matching is case-insensitive.
  */
-public class FindAddressCommand extends FindCommand {
-    private final AddressContainsKeywordsPredicate predicate;
+public class FindNameCommand extends FindCommand {
+    private final NameContainsKeywordsPredicate predicate;
 
-    public FindAddressCommand(AddressContainsKeywordsPredicate predicate) {
+    public FindNameCommand(NameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -28,7 +28,7 @@ public class FindAddressCommand extends FindCommand {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindAddressCommand // instanceof handles nulls
-                && predicate.equals(((FindAddressCommand) other).predicate)); // state check
+                || (other instanceof FindNameCommand // instanceof handles nulls
+                && predicate.equals(((FindNameCommand) other).predicate)); // state check
     }
 }
