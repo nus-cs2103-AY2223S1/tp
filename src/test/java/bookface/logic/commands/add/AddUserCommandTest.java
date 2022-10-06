@@ -19,6 +19,7 @@ import bookface.model.AddressBook;
 import bookface.model.Model;
 import bookface.model.ReadOnlyAddressBook;
 import bookface.model.ReadOnlyUserPrefs;
+import bookface.model.book.Book;
 import bookface.model.person.Person;
 import bookface.testutil.PersonBuilder;
 import javafx.collections.ObservableList;
@@ -130,6 +131,11 @@ public class AddUserCommandTest {
         }
 
         @Override
+        public boolean hasBook(Book book) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deletePerson(Person target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -146,6 +152,11 @@ public class AddUserCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addBook(Book book) {
             throw new AssertionError("This method should not be called.");
         }
     }
