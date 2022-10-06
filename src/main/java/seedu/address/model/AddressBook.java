@@ -59,7 +59,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// internship-level operations
 
     /**
-     * Returns true if a internship with the same identity as {@code internship} exists in the address book.
+     * Returns true if an internship with the same identity as {@code internship} exists in the address book.
      */
     public boolean hasPerson(Internship internship) {
         requireNonNull(internship);
@@ -77,7 +77,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Replaces the given internship {@code target} in the list with {@code editedInternship}.
      * {@code target} must exist in the address book.
-     * The internship identity of {@code editedInternship} must not be the same as another existing internship in the address book.
+     * The internship identity of {@code editedInternship} must not be the same as
+     * another existing internship in the address book.
      */
     public void setPerson(Internship target, Internship editedInternship) {
         requireNonNull(editedInternship);

@@ -13,10 +13,11 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A internship is considered unique by comparing using {@code Internship#isSamePerson(Internship)}. As such, adding and updating of
- * persons uses Internship#isSamePerson(Internship) for equality so as to ensure that the internship being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a internship uses Internship#equals(Object) so
- * as to ensure that the internship with exactly the same fields will be removed.
+ * A internship is considered unique by comparing using {@code Internship#isSamePerson(Internship)}.
+ * As such, adding and updating of persons uses Internship#isSamePerson(Internship) for equality to ensure
+ * that the internship being added or updated is unique in terms of identity in the UniquePersonList.
+ * However, the removal of an internship uses Internship#equals(Object) to ensure that the internship with
+ * exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
@@ -51,7 +52,8 @@ public class UniquePersonList implements Iterable<Internship> {
     /**
      * Replaces the internship {@code target} in the list with {@code editedInternship}.
      * {@code target} must exist in the list.
-     * The internship identity of {@code editedInternship} must not be the same as another existing internship in the list.
+     * The internship identity of {@code editedInternship} must not be the same as another
+     * existing internship in the list.
      */
     public void setPerson(Internship target, Internship editedInternship) {
         requireAllNonNull(target, editedInternship);
