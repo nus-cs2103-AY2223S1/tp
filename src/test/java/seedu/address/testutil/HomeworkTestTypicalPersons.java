@@ -18,14 +18,15 @@ import seedu.address.model.person.Person;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
+ * Same as TypicalPersons, but specifically for HomeworkCommandTest.
  */
-public class TypicalPersons {
+public class HomeworkTestTypicalPersons {
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withPhone("94351253").withLessonPlan("Algorithms")
             .withTags("friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
-            .withHomework("Science worksheet").withPhone("98765432").withLessonPlan("Trigonometry")
+            .withPhone("98765432").withLessonPlan("Trigonometry")
             .withTags("owesMoney", "friends").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withLessonPlan("Cell structure").build();
@@ -54,7 +55,7 @@ public class TypicalPersons {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalPersons() {} // prevents instantiation
+    private HomeworkTestTypicalPersons() {} // prevents instantiation
 
     /**
      * Returns an {@code AddressBook} with all the typical persons.
