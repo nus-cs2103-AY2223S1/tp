@@ -1,15 +1,15 @@
-package seedu.rc4hdb.logic.commands;
+package seedu.rc4hdb.logic.commands.modelcommands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.rc4hdb.logic.commands.CommandTestUtil.DESC_AMY;
-import static seedu.rc4hdb.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.rc4hdb.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.rc4hdb.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.rc4hdb.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.rc4hdb.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.rc4hdb.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.rc4hdb.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.DESC_AMY;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.DESC_BOB;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_NAME_BOB;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_PHONE_BOB;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.assertCommandFailure;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.assertCommandSuccess;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.showPersonAtIndex;
 import static seedu.rc4hdb.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.rc4hdb.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.rc4hdb.testutil.TypicalPersons.getTypicalAddressBook;
@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.rc4hdb.commons.core.Messages;
 import seedu.rc4hdb.commons.core.index.Index;
-import seedu.rc4hdb.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.rc4hdb.logic.commands.modelcommands.EditCommand.EditPersonDescriptor;
 import seedu.rc4hdb.model.AddressBook;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.ModelManager;

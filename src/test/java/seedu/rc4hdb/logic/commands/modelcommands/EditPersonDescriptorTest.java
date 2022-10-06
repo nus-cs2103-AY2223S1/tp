@@ -1,18 +1,18 @@
-package seedu.rc4hdb.logic.commands;
+package seedu.rc4hdb.logic.commands.modelcommands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.rc4hdb.logic.commands.CommandTestUtil.DESC_AMY;
-import static seedu.rc4hdb.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.rc4hdb.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.rc4hdb.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.rc4hdb.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.rc4hdb.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.rc4hdb.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.DESC_AMY;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.DESC_BOB;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_NAME_BOB;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_PHONE_BOB;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_TAG_HUSBAND;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.rc4hdb.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.rc4hdb.logic.commands.modelcommands.EditCommand.EditPersonDescriptor;
 import seedu.rc4hdb.testutil.EditPersonDescriptorBuilder;
 
 public class EditPersonDescriptorTest {

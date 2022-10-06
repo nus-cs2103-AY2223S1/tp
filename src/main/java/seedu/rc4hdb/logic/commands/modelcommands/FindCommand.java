@@ -1,16 +1,17 @@
-package seedu.rc4hdb.logic.commands;
+package seedu.rc4hdb.logic.commands.modelcommands;
 
 import static java.util.Objects.requireNonNull;
 
 import seedu.rc4hdb.commons.core.Messages;
+import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.person.NameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Keyword matching is case-insensitive.
  */
-public class FindCommand extends Command {
+public class FindCommand extends ModelCommand {
 
     public static final String COMMAND_WORD = "find";
 
