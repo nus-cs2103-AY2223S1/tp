@@ -375,7 +375,7 @@
     -fx-border-radius: 15;
 }
 
-#address, #email, #income {
+#address, #email, #income, #meetingDate {
      -fx-font-family: "Segoe UI Semibold";
      -fx-text-fill: #0B2545;
      -fx-font-size: 16px;
