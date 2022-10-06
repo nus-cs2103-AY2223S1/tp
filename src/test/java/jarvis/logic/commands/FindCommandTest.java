@@ -1,11 +1,11 @@
 package jarvis.logic.commands;
 
-import static jarvis.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static jarvis.commons.core.Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW;
 import static jarvis.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static jarvis.testutil.TypicalPersons.CARL;
-import static jarvis.testutil.TypicalPersons.ELLE;
-import static jarvis.testutil.TypicalPersons.FIONA;
-import static jarvis.testutil.TypicalPersons.getTypicalAddressBook;
+import static jarvis.testutil.TypicalStudents.CARL;
+import static jarvis.testutil.TypicalStudents.ELLE;
+import static jarvis.testutil.TypicalStudents.FIONA;
+import static jarvis.testutil.TypicalStudents.getTypicalStudentBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -25,8 +25,8 @@ import jarvis.model.student.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalStudentBook(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalStudentBook(), new UserPrefs());
 
     @Test
     public void equals() {
@@ -57,7 +57,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_zeroKeywords_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredStudentList(predicate);
@@ -67,7 +67,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+        String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredStudentList(predicate);

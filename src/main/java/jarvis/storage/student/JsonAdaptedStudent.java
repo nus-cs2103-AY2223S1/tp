@@ -10,7 +10,7 @@ import jarvis.model.student.Student;
 /**
  * Jackson-friendly version of {@link Student}.
  */
-class JsonAdaptedStudent {
+public class JsonAdaptedStudent {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Student's %s field is missing!";
 

@@ -1,10 +1,10 @@
 package jarvis.storage;
 
 import static jarvis.testutil.Assert.assertThrows;
-import static jarvis.testutil.TypicalPersons.ALICE;
-import static jarvis.testutil.TypicalPersons.HOON;
-import static jarvis.testutil.TypicalPersons.IDA;
-import static jarvis.testutil.TypicalPersons.getTypicalAddressBook;
+import static jarvis.testutil.TypicalStudents.ALICE;
+import static jarvis.testutil.TypicalStudents.HOON;
+import static jarvis.testutil.TypicalStudents.IDA;
+import static jarvis.testutil.TypicalStudents.getTypicalStudentBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
@@ -64,7 +64,7 @@ public class JsonTaskBookStorageTest {
     @Test
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
-        StudentBook original = getTypicalAddressBook();
+        StudentBook original = getTypicalStudentBook();
         JsonStudentBookStorage jsonAddressBookStorage = new JsonStudentBookStorage(filePath);
 
         // Save in new file and read back

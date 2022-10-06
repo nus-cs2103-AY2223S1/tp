@@ -18,6 +18,7 @@ import jarvis.model.student.Student;
  * An Immutable AddressBook that is serializable to JSON format.
  */
 @JsonRootName(value = "studentbook")
+public
 class JsonSerializableStudentBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Students list contains duplicate student(s).";

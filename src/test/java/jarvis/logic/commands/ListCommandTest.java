@@ -3,7 +3,7 @@ package jarvis.logic.commands;
 import static jarvis.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static jarvis.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static jarvis.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static jarvis.testutil.TypicalPersons.getTypicalAddressBook;
+import static jarvis.testutil.TypicalStudents.getTypicalStudentBook;
 
 import jarvis.logic.commands.student.ListCommand;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,7 +23,7 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalStudentBook(), new UserPrefs());
         expectedModel = new ModelManager(model.getStudentBook(), new UserPrefs());
     }
 
