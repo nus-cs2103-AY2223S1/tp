@@ -161,11 +161,6 @@ public class UniquePersonListTest {
         List<Person> listWithDuplicatePersons = Arrays.asList(ALICE, ALICE);
         assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPersons(listWithDuplicatePersons));
     }
-    
-//    @Test
-//    public void setContactRole_personDoesNotExist_throwsPersonNotFoundException() {
-//        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.setContactRole(ALICE, BUYER_ROLE));
-//    }
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {

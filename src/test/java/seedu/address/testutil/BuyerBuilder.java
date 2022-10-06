@@ -30,7 +30,7 @@
 //     */
 //    public BuyerBuilder() {
 //        priceRange = DEFAULT_PRICE_RANGE;
-//        
+//
 //    }
 //
 //    /**
