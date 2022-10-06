@@ -8,7 +8,7 @@ import javafx.collections.ObservableList;
 /**
  * Represents the tasklist.
  */
-public class TaskList implements Iterable<Task>{
+public class TaskList implements Iterable<Task> {
     private final ObservableList<Task> internalList = FXCollections.observableArrayList();
     private final ObservableList<Task> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);

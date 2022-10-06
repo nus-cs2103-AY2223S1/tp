@@ -7,6 +7,10 @@ public class Task {
     private Description description;
     private boolean isDone;
 
+    /**
+     * Creates an instance of a Task.
+     * @param description The description of the task.
+     */
     public Task(Description description) {
         this.isDone = false;
         this.description = description;
