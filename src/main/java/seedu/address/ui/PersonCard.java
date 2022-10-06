@@ -44,7 +44,7 @@ public class PersonCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public PersonCard(Person person, int displayedIndex, boolean conciseInfo) {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
@@ -55,6 +55,29 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        if (conciseInfo) {
+            showConciseInfo();
+        } else {
+            showAllInfo();
+        }
+    }
+
+    public void showAllInfo() {
+        phone.setManaged(true);
+        phone.setVisible(true);
+        address.setManaged(true);
+        address.setVisible(true);
+        email.setManaged(true);
+        email.setVisible(true);
+    }
+
+    public void showConciseInfo() {
+        phone.setManaged(false);
+        phone.setVisible(false);
+        address.setManaged(false);
+        address.setVisible(false);
+        email.setManaged(false);
+        email.setVisible(false);
     }
 
     @Override
