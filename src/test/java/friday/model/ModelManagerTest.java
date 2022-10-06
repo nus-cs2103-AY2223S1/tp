@@ -13,7 +13,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import friday.commons.core.GuiSettings;
-import friday.model.person.NameContainsKeywordsPredicate;
+import friday.model.student.NameContainsKeywordsPredicate;
 import friday.testutil.AddressBookBuilder;
 import friday.testutil.TypicalPersons;
 

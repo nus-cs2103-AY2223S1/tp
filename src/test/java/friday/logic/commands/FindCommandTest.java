@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import friday.model.Model;
 import friday.model.ModelManager;
 import friday.model.UserPrefs;
-import friday.model.person.NameContainsKeywordsPredicate;
+import friday.model.student.NameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.

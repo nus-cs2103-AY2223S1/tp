@@ -8,7 +8,7 @@ import friday.commons.core.index.Index;
 import friday.commons.exceptions.IllegalValueException;
 import friday.logic.commands.RemarkCommand;
 import friday.logic.parser.exceptions.ParseException;
-import friday.model.person.Remark;
+import friday.model.student.Remark;
 
 /**
  * Parses input arguments and creates a new {@code RemarkCommand} object

@@ -10,8 +10,8 @@ import friday.commons.core.Messages;
 import friday.commons.core.index.Index;
 import friday.logic.commands.exceptions.CommandException;
 import friday.model.Model;
-import friday.model.person.Person;
-import friday.model.person.Remark;
+import friday.model.student.Remark;
+import friday.model.student.Student;
 
 /**
  * Changes the remark of an existing person in the address book.
@@ -44,29 +44,29 @@ public class RemarkCommand extends Command {
     }
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Student> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), remark, personToEdit.getTags());
+        Student studentToEdit = lastShownList.get(index.getZeroBased());
+        Student editedStudent = new Student(studentToEdit.getName(), studentToEdit.getTelegramHandle(),
+                studentToEdit.getConsultation(), studentToEdit.getMasteryCheck(), remark, studentToEdit.getTags());
 
-        model.setPerson(personToEdit, editedPerson);
+        model.setPerson(studentToEdit, editedStudent);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(generateSuccessMessage(editedPerson));
+        return new CommandResult(generateSuccessMessage(editedStudent));
     }
 
     /**
      * Generates a command execution success message based on whether the remark is added to or removed from
      * {@code personToEdit}.
      */
-    private String generateSuccessMessage(Person personToEdit) {
+    private String generateSuccessMessage(Student studentToEdit) {
         String message = !remark.value.isEmpty() ? MESSAGE_ADD_REMARK_SUCCESS : MESSAGE_DELETE_REMARK_SUCCESS;
-        return String.format(message, personToEdit);
+        return String.format(message, studentToEdit);
     }
 
     @Override

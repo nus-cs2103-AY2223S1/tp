@@ -5,7 +5,7 @@ import java.util.Arrays;
 import friday.commons.core.Messages;
 import friday.logic.commands.FindCommand;
 import friday.logic.parser.exceptions.ParseException;
-import friday.model.person.NameContainsKeywordsPredicate;
+import friday.model.student.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object

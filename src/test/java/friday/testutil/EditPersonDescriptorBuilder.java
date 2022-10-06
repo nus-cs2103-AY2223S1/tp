@@ -1,15 +1,16 @@
 package friday.testutil;
 
+import java.time.LocalDate;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import friday.logic.commands.EditCommand.EditPersonDescriptor;
-import friday.model.person.Address;
-import friday.model.person.Email;
-import friday.model.person.Name;
-import friday.model.person.Person;
-import friday.model.person.Phone;
+import friday.model.student.Consultation;
+import friday.model.student.MasteryCheck;
+import friday.model.student.Name;
+import friday.model.student.Student;
+import friday.model.student.TelegramHandle;
 import friday.model.tag.Tag;
 
 /**
@@ -30,13 +31,13 @@ public class EditPersonDescriptorBuilder {
     /**
      * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
      */
-    public EditPersonDescriptorBuilder(Person person) {
+    public EditPersonDescriptorBuilder(Student student) {
         descriptor = new EditPersonDescriptor();
-        descriptor.setName(person.getName());
-        descriptor.setPhone(person.getPhone());
-        descriptor.setEmail(person.getEmail());
-        descriptor.setAddress(person.getAddress());
-        descriptor.setTags(person.getTags());
+        descriptor.setName(student.getName());
+        descriptor.setTelegramHandle(student.getTelegramHandle());
+        descriptor.setConsultation(student.getConsultation());
+        descriptor.setMasteryCheck(student.getMasteryCheck());
+        descriptor.setTags(student.getTags());
     }
 
     /**
@@ -48,26 +49,26 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code TelegramHandle} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withPhone(String phone) {
-        descriptor.setPhone(new Phone(phone));
+        descriptor.setTelegramHandle(new TelegramHandle(phone));
         return this;
     }
 
     /**
-     * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Consultation} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withEmail(String email) {
-        descriptor.setEmail(new Email(email));
+    public EditPersonDescriptorBuilder withConsultation(LocalDate desiredDate) {
+        descriptor.setConsultation(new Consultation(desiredDate));
         return this;
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code MasteryCheck} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
+    public EditPersonDescriptorBuilder withMasteryCheck(LocalDate desiredDate) {
+        descriptor.setMasteryCheck(new MasteryCheck(desiredDate));
         return this;
     }
 

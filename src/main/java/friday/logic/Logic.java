@@ -8,7 +8,7 @@ import friday.logic.commands.exceptions.CommandException;
 import friday.logic.parser.exceptions.ParseException;
 import friday.model.Model;
 import friday.model.ReadOnlyAddressBook;
-import friday.model.person.Person;
+import friday.model.student.Student;
 import javafx.collections.ObservableList;
 
 /**
@@ -32,7 +32,7 @@ public interface Logic {
     ReadOnlyAddressBook getAddressBook();
 
     /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Student> getFilteredPersonList();
 
     /**
      * Returns the user prefs' address book file path.

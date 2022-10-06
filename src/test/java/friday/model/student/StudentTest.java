@@ -1,10 +1,10 @@
-package friday.model.person;
+package friday.model.student;
 
-import static friday.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static friday.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static friday.logic.commands.CommandTestUtil.VALID_CONSULTATION_BOB;
+import static friday.logic.commands.CommandTestUtil.VALID_MASTERYCHECK_BOB;
 import static friday.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static friday.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static friday.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static friday.logic.commands.CommandTestUtil.VALID_TELEGRAMHANDLE_BOB;
 import static friday.testutil.Assert.assertThrows;
 import static friday.testutil.TypicalPersons.ALICE;
 import static friday.testutil.TypicalPersons.BOB;
@@ -15,12 +15,12 @@ import org.junit.jupiter.api.Test;
 
 import friday.testutil.PersonBuilder;
 
-public class PersonTest {
+public class StudentTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Person person = new PersonBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> person.getTags().remove(0));
+        Student student = new PersonBuilder().build();
+        assertThrows(UnsupportedOperationException.class, () -> student.getTags().remove(0));
     }
 
     @Test
@@ -32,8 +32,9 @@ public class PersonTest {
         assertFalse(ALICE.isSamePerson(null));
 
         // same name, all other attributes different -> returns true
-        Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
+        Student editedAlice = new PersonBuilder(ALICE).withTelegramHandle(VALID_TELEGRAMHANDLE_BOB)
+                .withConsultation(VALID_CONSULTATION_BOB)
+                .withMasteryCheck(VALID_MASTERYCHECK_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -41,7 +42,7 @@ public class PersonTest {
         assertFalse(ALICE.isSamePerson(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
-        Person editedBob = new PersonBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
+        Student editedBob = new PersonBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
         assertFalse(BOB.isSamePerson(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
@@ -53,7 +54,7 @@ public class PersonTest {
     @Test
     public void equals() {
         // same values -> returns true
-        Person aliceCopy = new PersonBuilder(ALICE).build();
+        Student aliceCopy = new PersonBuilder(ALICE).build();
         assertTrue(ALICE.equals(aliceCopy));
 
         // same object -> returns true
@@ -69,19 +70,19 @@ public class PersonTest {
         assertFalse(ALICE.equals(BOB));
 
         // different name -> returns false
-        Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        Student editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different phone -> returns false
-        editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
+        editedAlice = new PersonBuilder(ALICE).withTelegramHandle(VALID_TELEGRAMHANDLE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different email -> returns false
-        editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
+        editedAlice = new PersonBuilder(ALICE).withConsultation(VALID_CONSULTATION_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different address -> returns false
-        editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
+        editedAlice = new PersonBuilder(ALICE).withMasteryCheck(VALID_MASTERYCHECK_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false

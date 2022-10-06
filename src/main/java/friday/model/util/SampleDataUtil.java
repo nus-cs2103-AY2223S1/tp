@@ -1,17 +1,18 @@
 package friday.model.util;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import friday.model.AddressBook;
 import friday.model.ReadOnlyAddressBook;
-import friday.model.person.Address;
-import friday.model.person.Email;
-import friday.model.person.Name;
-import friday.model.person.Person;
-import friday.model.person.Phone;
-import friday.model.person.Remark;
+import friday.model.student.Consultation;
+import friday.model.student.MasteryCheck;
+import friday.model.student.Name;
+import friday.model.student.Remark;
+import friday.model.student.Student;
+import friday.model.student.TelegramHandle;
 import friday.model.tag.Tag;
 
 /**
@@ -21,33 +22,38 @@ public class SampleDataUtil {
 
     public static final Remark EMPTY_REMARK = new Remark("");
 
-    public static Person[] getSamplePersons() {
-        return new Person[] {
-            new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"), EMPTY_REMARK,
+    public static Student[] getSamplePersons() {
+        return new Student[] {
+            new Student(new Name("Alex Yeoh"), new TelegramHandle("al3x"), new Consultation(LocalDate.now()),
+                new MasteryCheck(LocalDate.of(2022, 8, 16)), EMPTY_REMARK,
                 getTagSet("friends")),
-            new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), EMPTY_REMARK,
-                getTagSet("colleagues", "friends")),
-            new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), EMPTY_REMARK,
-                getTagSet("neighbours")),
-            new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), EMPTY_REMARK,
-                getTagSet("family")),
-            new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new Address("Blk 47 Tampines Street 20, #17-35"), EMPTY_REMARK,
-                getTagSet("classmates")),
-            new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"), EMPTY_REMARK,
-                getTagSet("colleagues"))
+            new Student(new Name("Bernice Yu"), new TelegramHandle("bernice123"),
+                    new Consultation(LocalDate.of(2022, 9, 1)),
+                    new MasteryCheck(LocalDate.of(2022, 7, 30)), new Remark("Weak at recursion"),
+                    getTagSet("colleagues", "friends")),
+            new Student(new Name("Charlotte Oliveiro"), new TelegramHandle("Char_Oli"),
+                    new Consultation(LocalDate.of(2021, 10, 21)),
+                    new MasteryCheck(LocalDate.of(2022, 12, 27)), new Remark("Smart"),
+                    getTagSet("neighbours")),
+            new Student(new Name("David Li"), new TelegramHandle("d4viD"),
+                    new Consultation(LocalDate.of(2022, 6, 17)),
+                    new MasteryCheck(LocalDate.of(2022, 11, 11)), EMPTY_REMARK,
+                    getTagSet("family")),
+            new Student(new Name("Irfan Ibrahim"), new TelegramHandle("irfan72345"),
+                    new Consultation(LocalDate.of(2025, 2, 20)),
+                    new MasteryCheck(LocalDate.of(2020, 9, 1)), EMPTY_REMARK,
+                    getTagSet("classmates")),
+            new Student(new Name("Roy Balakrishnan"), new TelegramHandle("iAmRoy"),
+                    new Consultation(LocalDate.of(2022, 7, 12)),
+                    new MasteryCheck(LocalDate.of(2029, 9, 26)), EMPTY_REMARK,
+                    getTagSet("colleagues"))
         };
     }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
-        for (Person samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
+        for (Student sampleStudent : getSamplePersons()) {
+            sampleAb.addPerson(sampleStudent);
         }
         return sampleAb;
     }

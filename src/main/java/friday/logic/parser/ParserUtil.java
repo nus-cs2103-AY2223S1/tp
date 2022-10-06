@@ -2,6 +2,7 @@ package friday.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,10 +10,10 @@ import java.util.Set;
 import friday.commons.core.index.Index;
 import friday.commons.util.StringUtil;
 import friday.logic.parser.exceptions.ParseException;
-import friday.model.person.Address;
-import friday.model.person.Email;
-import friday.model.person.Name;
-import friday.model.person.Phone;
+import friday.model.student.Consultation;
+import friday.model.student.MasteryCheck;
+import friday.model.student.Name;
+import friday.model.student.TelegramHandle;
 import friday.model.tag.Tag;
 
 /**
@@ -51,48 +52,50 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone}.
+     * Parses a {@code String phone} into a {@code TelegramHandle}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code phone} is invalid.
      */
-    public static Phone parsePhone(String phone) throws ParseException {
+    public static TelegramHandle parsePhone(String phone) throws ParseException {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+        if (!TelegramHandle.isValidTelegramHandle(trimmedPhone)) {
+            throw new ParseException(TelegramHandle.MESSAGE_CONSTRAINTS);
         }
-        return new Phone(trimmedPhone);
+        return new TelegramHandle(trimmedPhone);
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String address} into an {@code MasteryCheck}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code address} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+    public static MasteryCheck parseMasteryCheck(LocalDate desiredDate) throws ParseException {
+        requireNonNull(desiredDate);
+        String trimmedDate = desiredDate.toString().trim();
+        if (!MasteryCheck.isValidMasteryCheck(trimmedDate)) {
+            throw new ParseException(MasteryCheck.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        LocalDate date = LocalDate.parse(trimmedDate);
+        return new MasteryCheck(date);
     }
 
     /**
-     * Parses a {@code String email} into an {@code Email}.
+     * Parses a {@code String email} into an {@code Consultation}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code email} is invalid.
      */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+    public static Consultation parseConsultation(LocalDate desiredDate) throws ParseException {
+        requireNonNull(desiredDate);
+        String trimmedDate = desiredDate.toString().trim();
+        if (!Consultation.isValidConsultation(trimmedDate)) {
+            throw new ParseException(Consultation.MESSAGE_CONSTRAINTS);
         }
-        return new Email(trimmedEmail);
+        LocalDate date = LocalDate.parse(trimmedDate);
+        return new Consultation(date);
     }
 
     /**

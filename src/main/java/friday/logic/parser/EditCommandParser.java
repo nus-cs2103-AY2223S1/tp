@@ -2,6 +2,7 @@ package friday.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
@@ -26,8 +27,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_PHONE, CliSyntax.PREFIX_EMAIL,
-                        CliSyntax.PREFIX_ADDRESS, CliSyntax.PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_TELEGRAMHANDLE,
+                        CliSyntax.PREFIX_CONSULTATION, CliSyntax.PREFIX_MASTERYCHECK, CliSyntax.PREFIX_TAG);
 
         Index index;
 
@@ -42,15 +43,17 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(CliSyntax.PREFIX_NAME).isPresent()) {
             editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(CliSyntax.PREFIX_NAME).get()));
         }
-        if (argMultimap.getValue(CliSyntax.PREFIX_PHONE).isPresent()) {
-            editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(CliSyntax.PREFIX_PHONE).get()));
+        if (argMultimap.getValue(CliSyntax.PREFIX_TELEGRAMHANDLE).isPresent()) {
+            editPersonDescriptor.setTelegramHandle(ParserUtil.parsePhone(argMultimap.getValue(CliSyntax
+                    .PREFIX_TELEGRAMHANDLE).get()));
         }
-        if (argMultimap.getValue(CliSyntax.PREFIX_EMAIL).isPresent()) {
-            editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(CliSyntax.PREFIX_EMAIL).get()));
+        if (argMultimap.getValue(CliSyntax.PREFIX_CONSULTATION).isPresent()) {
+            editPersonDescriptor.setConsultation(ParserUtil.parseConsultation(LocalDate.parse(argMultimap
+                    .getValue(CliSyntax.PREFIX_CONSULTATION).get())));
         }
-        if (argMultimap.getValue(CliSyntax.PREFIX_ADDRESS).isPresent()) {
-            editPersonDescriptor.setAddress(ParserUtil.parseAddress(
-                    argMultimap.getValue(CliSyntax.PREFIX_ADDRESS).get()));
+        if (argMultimap.getValue(CliSyntax.PREFIX_MASTERYCHECK).isPresent()) {
+            editPersonDescriptor.setMasteryCheck(ParserUtil.parseMasteryCheck(
+                    LocalDate.parse(argMultimap.getValue(CliSyntax.PREFIX_MASTERYCHECK).get())));
         }
         parseTagsForEdit(argMultimap.getAllValues(CliSyntax.PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 

@@ -1,4 +1,4 @@
-package friday.model.person;
+package friday.model.student;
 
 import static java.util.Objects.requireNonNull;
 
