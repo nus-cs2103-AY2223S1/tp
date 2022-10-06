@@ -99,8 +99,12 @@ public class UniquePersonList implements Iterable<Person> {
         internalList.setAll(persons);
     }
 
-    public void setContactRole(Name contactName, Buyer buyer) {
-        FilteredList<Person> matchingNamePersons = internalList.filtered(x -> x.getName().equals(contactName));
+    /**
+     * Sets the given person with {@code name} in the list as a {@code buyer}.
+     * {@code name} exists uniquely in the address book.
+     */
+    public void setContactRole(Name name, Buyer buyer) {
+        FilteredList<Person> matchingNamePersons = internalList.filtered(x -> x.getName().equals(name));
         matchingNamePersons.get(0).setBuyer(buyer);
     }
 

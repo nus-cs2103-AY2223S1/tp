@@ -87,5 +87,9 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    void setContactRole(Name contactName, Buyer toAdd);
+    /**
+     * Sets the given person with {@code name} in the list as a {@code buyer}.
+     * {@code name} exists uniquely in the address book.
+     */
+    void setContactRole(Name name, Buyer buyer);
 }

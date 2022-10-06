@@ -39,9 +39,13 @@ public class Person {
         this.buyer = null;
     }
 
+    /**
+     * Temporarily for UI Testing of Add Buyer Command
+     */
     public boolean isBuyer() {
         return buyer != null;
     }
+    
     public Name getName() {
         return name;
     }
@@ -65,18 +69,25 @@ public class Person {
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
-
+    
     public void setBuyer(Buyer buyer) {
         this.buyer = buyer;
     }
 
+    /**
+     * Temporarily for UI Testing of Add Buyer Command
+     */
     public String getBuyerRange() {
         return buyer.getRange();
     }
 
+    /**
+     * Temporarily for UI Testing of Add Buyer Command
+     */
     public String getBuyerCharacteristics() {
         return buyer.getCharacteristics();
     }
+    
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.

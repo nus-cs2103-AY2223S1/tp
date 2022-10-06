@@ -96,6 +96,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Sets the given person with {@code name} in the list as a {@code buyer}.
+     * {@code name} exists uniquely in the address book.
+     */
     public void setContactRole(Name contactName, Buyer buyer) {
         requireAllNonNull(contactName, buyer);
         persons.setContactRole(contactName, buyer);

@@ -113,9 +113,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setContactRole(Name contactName, Buyer buyer) {
-        requireAllNonNull(contactName, buyer);
-        addressBook.setContactRole(contactName, buyer);
+    public void setContactRole(Name name, Buyer buyer) {
+        requireAllNonNull(name, buyer);
+        addressBook.setContactRole(name, buyer);
     }
 
     //=========== Filtered Person List Accessors =============================================================
