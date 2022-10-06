@@ -4,13 +4,13 @@ import static friday.logic.commands.CommandTestUtil.assertCommandFailure;
 import static friday.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static friday.testutil.TypicalPersons.getTypicalAddressBook;
 
-import friday.model.student.Student;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import friday.model.Model;
 import friday.model.ModelManager;
 import friday.model.UserPrefs;
+import friday.model.student.Student;
 import friday.testutil.PersonBuilder;
 
 /**

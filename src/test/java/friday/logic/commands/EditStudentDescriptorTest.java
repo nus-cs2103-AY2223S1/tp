@@ -2,11 +2,11 @@ package friday.logic.commands;
 
 import static friday.logic.commands.CommandTestUtil.DESC_AMY;
 import static friday.logic.commands.CommandTestUtil.DESC_BOB;
-import static friday.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static friday.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static friday.logic.commands.CommandTestUtil.VALID_CONSULTATION_BOB;
+import static friday.logic.commands.CommandTestUtil.VALID_MASTERYCHECK_BOB;
 import static friday.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static friday.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static friday.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static friday.logic.commands.CommandTestUtil.VALID_TELEGRAMHANDLE_BOB;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -40,15 +40,15 @@ public class EditStudentDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different phone -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withPhone(VALID_PHONE_BOB).build();
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withPhone(VALID_TELEGRAMHANDLE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different email -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withConsultation(VALID_CONSULTATION_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different address -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withMasteryCheck(VALID_MASTERYCHECK_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false

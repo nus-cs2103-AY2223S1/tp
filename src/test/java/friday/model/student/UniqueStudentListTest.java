@@ -1,6 +1,6 @@
 package friday.model.student;
 
-import static friday.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static friday.logic.commands.CommandTestUtil.VALID_MASTERYCHECK_BOB;
 import static friday.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static friday.testutil.Assert.assertThrows;
 import static friday.testutil.TypicalPersons.ALICE;
@@ -42,7 +42,8 @@ public class UniqueStudentListTest {
     @Test
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniquePersonList.add(ALICE);
-        Student editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Student editedAlice = new PersonBuilder(ALICE).withMasteryCheck(VALID_MASTERYCHECK_BOB)
+                .withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(uniquePersonList.contains(editedAlice));
     }
@@ -85,8 +86,8 @@ public class UniqueStudentListTest {
     @Test
     public void setPerson_editedPersonHasSameIdentity_success() {
         uniquePersonList.add(ALICE);
-        Student editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
+        Student editedAlice = new PersonBuilder(ALICE).withMasteryCheck(VALID_MASTERYCHECK_BOB)
+                .withTags(VALID_TAG_HUSBAND).build();
         uniquePersonList.setPerson(ALICE, editedAlice);
         UniquePersonList expectedUniquePersonList = new UniquePersonList();
         expectedUniquePersonList.add(editedAlice);

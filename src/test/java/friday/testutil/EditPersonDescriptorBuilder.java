@@ -1,11 +1,15 @@
 package friday.testutil;
 
+import java.time.LocalDate;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import friday.logic.commands.EditCommand.EditPersonDescriptor;
-import friday.model.student.*;
+import friday.model.student.Consultation;
+import friday.model.student.MasteryCheck;
+import friday.model.student.Name;
+import friday.model.student.Student;
 import friday.model.student.TelegramHandle;
 import friday.model.tag.Tag;
 
@@ -30,9 +34,9 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder(Student student) {
         descriptor = new EditPersonDescriptor();
         descriptor.setName(student.getName());
-        descriptor.setPhone(student.getTelegramHandle());
-        descriptor.setEmail(student.getConsultation());
-        descriptor.setAddress(student.getMasteryCheck());
+        descriptor.setTelegramHandle(student.getTelegramHandle());
+        descriptor.setConsultation(student.getConsultation());
+        descriptor.setMasteryCheck(student.getMasteryCheck());
         descriptor.setTags(student.getTags());
     }
 
@@ -48,23 +52,23 @@ public class EditPersonDescriptorBuilder {
      * Sets the {@code TelegramHandle} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withPhone(String phone) {
-        descriptor.setPhone(new TelegramHandle(phone));
+        descriptor.setTelegramHandle(new TelegramHandle(phone));
         return this;
     }
 
     /**
      * Sets the {@code Consultation} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withEmail(String email) {
-        descriptor.setEmail(new Consultation(email));
+    public EditPersonDescriptorBuilder withConsultation(LocalDate desiredDate) {
+        descriptor.setConsultation(new Consultation(desiredDate));
         return this;
     }
 
     /**
      * Sets the {@code MasteryCheck} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new MasteryCheck(address));
+    public EditPersonDescriptorBuilder withMasteryCheck(LocalDate desiredDate) {
+        descriptor.setMasteryCheck(new MasteryCheck(desiredDate));
         return this;
     }
 

@@ -11,7 +11,6 @@ import static friday.testutil.TypicalPersons.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import friday.model.student.Student;
 import org.junit.jupiter.api.Test;
 
 import friday.commons.core.Messages;
@@ -21,6 +20,7 @@ import friday.model.Model;
 import friday.model.ModelManager;
 import friday.model.UserPrefs;
 import friday.model.student.Remark;
+import friday.model.student.Student;
 import friday.testutil.PersonBuilder;
 
 /**
@@ -37,7 +37,8 @@ public class RemarkCommandTest {
         Student firstStudent = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Student editedStudent = new PersonBuilder(firstStudent).withRemark(REMARK_STUB).build();
 
-        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON, new Remark(editedStudent.getRemark().value));
+        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON,
+                new Remark(editedStudent.getRemark().value));
 
         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedStudent);
 
@@ -71,7 +72,8 @@ public class RemarkCommandTest {
         Student editedStudent = new PersonBuilder(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()))
                 .withRemark(REMARK_STUB).build();
 
-        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON, new Remark(editedStudent.getRemark().value));
+        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON,
+                new Remark(editedStudent.getRemark().value));
 
         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedStudent);
 

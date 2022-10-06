@@ -10,10 +10,10 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import friday.model.student.Student;
 import org.junit.jupiter.api.Test;
 
 import friday.logic.commands.CommandTestUtil;
+import friday.model.student.Student;
 import friday.model.student.exceptions.DuplicatePersonException;
 import friday.testutil.PersonBuilder;
 import friday.testutil.TypicalPersons;
@@ -44,7 +44,8 @@ public class MasteryCheckBookTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Student editedAlice = new PersonBuilder(TypicalPersons.ALICE).withAddress(CommandTestUtil.VALID_ADDRESS_BOB)
+        Student editedAlice = new PersonBuilder(TypicalPersons.ALICE)
+                .withMasteryCheck(CommandTestUtil.VALID_MASTERYCHECK_BOB)
                 .withTags(CommandTestUtil.VALID_TAG_HUSBAND)
                 .build();
         List<Student> newStudents = Arrays.asList(TypicalPersons.ALICE, editedAlice);
@@ -72,7 +73,8 @@ public class MasteryCheckBookTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addPerson(TypicalPersons.ALICE);
-        Student editedAlice = new PersonBuilder(TypicalPersons.ALICE).withAddress(CommandTestUtil.VALID_ADDRESS_BOB)
+        Student editedAlice = new PersonBuilder(TypicalPersons.ALICE)
+                .withMasteryCheck(CommandTestUtil.VALID_MASTERYCHECK_BOB)
                 .withTags(CommandTestUtil.VALID_TAG_HUSBAND)
                 .build();
         assertTrue(addressBook.hasPerson(editedAlice));

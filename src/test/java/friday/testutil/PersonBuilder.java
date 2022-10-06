@@ -1,10 +1,15 @@
 package friday.testutil;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
-import friday.model.student.*;
+import friday.model.student.Consultation;
+import friday.model.student.MasteryCheck;
+import friday.model.student.Name;
+import friday.model.student.Remark;
 import friday.model.student.Student;
+import friday.model.student.TelegramHandle;
 import friday.model.tag.Tag;
 import friday.model.util.SampleDataUtil;
 
@@ -14,10 +19,10 @@ import friday.model.util.SampleDataUtil;
 public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_REMARK = "She likes aardvarks.";
+    public static final String DEFAULT_TELEGRAMHANDLE = "amy123";
+    public static final LocalDate DEFAULT_CONSULTATION = LocalDate.of(2022, 9, 1);
+    public static final LocalDate DEFAULT_MASTERYCHECK = LocalDate.of(2022, 11, 22);
+    public static final String DEFAULT_REMARK = "She loves CS1101S";
 
     private Name name;
     private TelegramHandle telegramHandle;
@@ -31,9 +36,9 @@ public class PersonBuilder {
      */
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
-        telegramHandle = new TelegramHandle(DEFAULT_PHONE);
-        consultation = new Consultation(DEFAULT_EMAIL);
-        masteryCheck = new MasteryCheck(DEFAULT_ADDRESS);
+        telegramHandle = new TelegramHandle(DEFAULT_TELEGRAMHANDLE);
+        consultation = new Consultation(DEFAULT_CONSULTATION);
+        masteryCheck = new MasteryCheck(DEFAULT_MASTERYCHECK);
         remark = new Remark(DEFAULT_REMARK);
         tags = new HashSet<>();
     }
@@ -69,24 +74,24 @@ public class PersonBuilder {
     /**
      * Sets the {@code MasteryCheck} of the {@code Person} that we are building.
      */
-    public PersonBuilder withAddress(String address) {
-        this.masteryCheck = new MasteryCheck(address);
+    public PersonBuilder withMasteryCheck(LocalDate desiredDate) {
+        this.masteryCheck = new MasteryCheck(desiredDate);
         return this;
     }
 
     /**
      * Sets the {@code TelegramHandle} of the {@code Person} that we are building.
      */
-    public PersonBuilder withPhone(String phone) {
-        this.telegramHandle = new TelegramHandle(phone);
+    public PersonBuilder withTelegramHandle(String handle) {
+        this.telegramHandle = new TelegramHandle(handle);
         return this;
     }
 
     /**
      * Sets the {@code Consultation} of the {@code Person} that we are building.
      */
-    public PersonBuilder withEmail(String email) {
-        this.consultation = new Consultation(email);
+    public PersonBuilder withConsultation(LocalDate desiredDate) {
+        this.consultation = new Consultation(desiredDate);
         return this;
     }
 

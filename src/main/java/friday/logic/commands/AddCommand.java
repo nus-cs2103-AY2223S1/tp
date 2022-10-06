@@ -1,10 +1,10 @@
 package friday.logic.commands;
 
-import static friday.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static friday.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static friday.logic.parser.CliSyntax.PREFIX_CONSULTATION;
+import static friday.logic.parser.CliSyntax.PREFIX_MASTERYCHECK;
 import static friday.logic.parser.CliSyntax.PREFIX_NAME;
-import static friday.logic.parser.CliSyntax.PREFIX_PHONE;
 import static friday.logic.parser.CliSyntax.PREFIX_TAG;
+import static friday.logic.parser.CliSyntax.PREFIX_TELEGRAMHANDLE;
 import static java.util.Objects.requireNonNull;
 
 import friday.logic.commands.exceptions.CommandException;
@@ -21,15 +21,15 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_TELEGRAMHANDLE + "PHONE "
+            + PREFIX_CONSULTATION + "EMAIL "
+            + PREFIX_MASTERYCHECK + "ADDRESS "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
-            + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_TELEGRAMHANDLE + "98765432 "
+            + PREFIX_CONSULTATION + "johnd@example.com "
+            + PREFIX_MASTERYCHECK + "311, Clementi Ave 2, #02-25 "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 

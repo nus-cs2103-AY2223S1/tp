@@ -12,7 +12,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import friday.model.student.Student;
 import org.junit.jupiter.api.Test;
 
 import friday.logic.commands.AddCommand;
@@ -28,6 +27,7 @@ import friday.logic.commands.RemarkCommand;
 import friday.logic.parser.exceptions.ParseException;
 import friday.model.student.NameContainsKeywordsPredicate;
 import friday.model.student.Remark;
+import friday.model.student.Student;
 import friday.testutil.EditPersonDescriptorBuilder;
 import friday.testutil.PersonBuilder;
 import friday.testutil.PersonUtil;

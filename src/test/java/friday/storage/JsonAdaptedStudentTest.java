@@ -9,13 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import friday.model.student.Consultation;
-import friday.model.student.TelegramHandle;
 import org.junit.jupiter.api.Test;
 
 import friday.commons.exceptions.IllegalValueException;
+import friday.model.student.Consultation;
 import friday.model.student.MasteryCheck;
 import friday.model.student.Name;
+import friday.model.student.TelegramHandle;
 import friday.testutil.TypicalPersons;
 
 public class JsonAdaptedStudentTest {
@@ -45,7 +45,8 @@ public class JsonAdaptedStudentTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedPerson person =
-                new JsonAdaptedPerson(INVALID_NAME, VALID_TELEGRAMHANDLE, VALID_CONSULTATION, VALID_MASTERYCHECK, VALID_REMARK, VALID_TAGS);
+                new JsonAdaptedPerson(INVALID_NAME, VALID_TELEGRAMHANDLE, VALID_CONSULTATION, VALID_MASTERYCHECK,
+                        VALID_REMARK, VALID_TAGS);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -53,7 +54,8 @@ public class JsonAdaptedStudentTest {
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedPerson person =
-                new JsonAdaptedPerson(null, VALID_TELEGRAMHANDLE, VALID_CONSULTATION, VALID_MASTERYCHECK, VALID_REMARK, VALID_TAGS);
+                new JsonAdaptedPerson(null, VALID_TELEGRAMHANDLE, VALID_CONSULTATION, VALID_MASTERYCHECK,
+                        VALID_REMARK, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -61,7 +63,8 @@ public class JsonAdaptedStudentTest {
     @Test
     public void toModelType_invalidTelegramHandle_throwsIllegalValueException() {
         JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, INVALID_TELEGRAMHANDLE, VALID_CONSULTATION, VALID_MASTERYCHECK, VALID_REMARK, VALID_TAGS);
+                new JsonAdaptedPerson(VALID_NAME, INVALID_TELEGRAMHANDLE, VALID_CONSULTATION, VALID_MASTERYCHECK,
+                        VALID_REMARK, VALID_TAGS);
         String expectedMessage = TelegramHandle.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -109,7 +112,8 @@ public class JsonAdaptedStudentTest {
     @Test
     public void toModelType_nullConsultation_throwsIllegalValueException() {
         JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_TELEGRAMHANDLE, null, VALID_MASTERYCHECK, VALID_REMARK, VALID_TAGS);
+                new JsonAdaptedPerson(VALID_NAME, VALID_TELEGRAMHANDLE, null, VALID_MASTERYCHECK, VALID_REMARK,
+                VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Consultation.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }

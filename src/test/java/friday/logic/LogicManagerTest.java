@@ -2,10 +2,10 @@ package friday.logic;
 
 import static friday.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static friday.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static friday.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static friday.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static friday.logic.commands.CommandTestUtil.CONSULTATION_DESC_AMY;
+import static friday.logic.commands.CommandTestUtil.MASTERYCHECK_DESC_AMY;
 import static friday.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static friday.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static friday.logic.commands.CommandTestUtil.TELEGRAMHANDLE_DESC_AMY;
 import static friday.testutil.Assert.assertThrows;
 import static friday.testutil.TypicalPersons.AMY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -79,8 +79,8 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY;
+        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + TELEGRAMHANDLE_DESC_AMY + CONSULTATION_DESC_AMY
+                + MASTERYCHECK_DESC_AMY;
         Student expectedStudent = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedStudent);

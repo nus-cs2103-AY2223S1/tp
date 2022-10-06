@@ -1,10 +1,10 @@
 package friday.logic.commands;
 
-import static friday.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static friday.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static friday.logic.parser.CliSyntax.PREFIX_CONSULTATION;
+import static friday.logic.parser.CliSyntax.PREFIX_MASTERYCHECK;
 import static friday.logic.parser.CliSyntax.PREFIX_NAME;
-import static friday.logic.parser.CliSyntax.PREFIX_PHONE;
 import static friday.logic.parser.CliSyntax.PREFIX_TAG;
+import static friday.logic.parser.CliSyntax.PREFIX_TELEGRAMHANDLE;
 import static friday.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static java.util.Objects.requireNonNull;
 
@@ -39,13 +39,13 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_TELEGRAMHANDLE + "PHONE] "
+            + "[" + PREFIX_CONSULTATION + "EMAIL] "
+            + "[" + PREFIX_MASTERYCHECK + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_TELEGRAMHANDLE + "91234567 "
+            + PREFIX_CONSULTATION + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -95,10 +95,12 @@ public class EditCommand extends Command {
         assert studentToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(studentToEdit.getName());
-        TelegramHandle updatedTelegramHandle = editPersonDescriptor.getPhone().orElse(studentToEdit
+        TelegramHandle updatedTelegramHandle = editPersonDescriptor.getTelegramHandle().orElse(studentToEdit
                 .getTelegramHandle());
-        Consultation updatedConsultation = editPersonDescriptor.getEmail().orElse(studentToEdit.getConsultation());
-        MasteryCheck updatedMasteryCheck = editPersonDescriptor.getAddress().orElse(studentToEdit.getMasteryCheck());
+        Consultation updatedConsultation = editPersonDescriptor.getConsultation()
+                .orElse(studentToEdit.getConsultation());
+        MasteryCheck updatedMasteryCheck = editPersonDescriptor.getMasteryCheck()
+                .orElse(studentToEdit.getMasteryCheck());
         Remark updatedRemark = studentToEdit.getRemark(); // edit command does not allow editing remarks
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(studentToEdit.getTags());
 
@@ -143,9 +145,9 @@ public class EditCommand extends Command {
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
-            setPhone(toCopy.telegramHandle);
-            setEmail(toCopy.consultation);
-            setAddress(toCopy.masteryCheck);
+            setTelegramHandle(toCopy.telegramHandle);
+            setConsultation(toCopy.consultation);
+            setMasteryCheck(toCopy.masteryCheck);
             setTags(toCopy.tags);
         }
 
@@ -164,27 +166,27 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setPhone(TelegramHandle telegramHandle) {
+        public void setTelegramHandle(TelegramHandle telegramHandle) {
             this.telegramHandle = telegramHandle;
         }
 
-        public Optional<TelegramHandle> getPhone() {
+        public Optional<TelegramHandle> getTelegramHandle() {
             return Optional.ofNullable(telegramHandle);
         }
 
-        public void setEmail(Consultation consultation) {
+        public void setConsultation(Consultation consultation) {
             this.consultation = consultation;
         }
 
-        public Optional<Consultation> getEmail() {
+        public Optional<Consultation> getConsultation() {
             return Optional.ofNullable(consultation);
         }
 
-        public void setAddress(MasteryCheck masteryCheck) {
+        public void setMasteryCheck(MasteryCheck masteryCheck) {
             this.masteryCheck = masteryCheck;
         }
 
-        public Optional<MasteryCheck> getAddress() {
+        public Optional<MasteryCheck> getMasteryCheck() {
             return Optional.ofNullable(masteryCheck);
         }
 
@@ -221,9 +223,9 @@ public class EditCommand extends Command {
             EditPersonDescriptor e = (EditPersonDescriptor) other;
 
             return getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
+                    && getTelegramHandle().equals(e.getTelegramHandle())
+                    && getConsultation().equals(e.getConsultation())
+                    && getMasteryCheck().equals(e.getMasteryCheck())
                     && getTags().equals(e.getTags());
         }
     }

@@ -1,12 +1,13 @@
 package friday.logic.parser;
 
 import static friday.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static friday.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static friday.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static friday.logic.parser.CliSyntax.PREFIX_CONSULTATION;
+import static friday.logic.parser.CliSyntax.PREFIX_MASTERYCHECK;
 import static friday.logic.parser.CliSyntax.PREFIX_NAME;
-import static friday.logic.parser.CliSyntax.PREFIX_PHONE;
 import static friday.logic.parser.CliSyntax.PREFIX_TAG;
+import static friday.logic.parser.CliSyntax.PREFIX_TELEGRAMHANDLE;
 
+import java.time.LocalDate;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -32,17 +33,21 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TELEGRAMHANDLE, PREFIX_CONSULTATION,
+                        PREFIX_MASTERYCHECK, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MASTERYCHECK, PREFIX_TELEGRAMHANDLE,
+                PREFIX_CONSULTATION)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        TelegramHandle telegramHandle = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Consultation consultation = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        MasteryCheck masteryCheck = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        TelegramHandle telegramHandle = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_TELEGRAMHANDLE).get());
+        Consultation consultation = ParserUtil.parseConsultation(LocalDate.parse(argMultimap
+                .getValue(PREFIX_CONSULTATION).get()));
+        MasteryCheck masteryCheck = ParserUtil.parseMasteryCheck(LocalDate.parse(argMultimap
+                .getValue(PREFIX_MASTERYCHECK).get()));
         Remark remark = new Remark(""); // add command does not allow adding remarks straight away
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 

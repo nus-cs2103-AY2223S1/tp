@@ -6,31 +6,32 @@ import static friday.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import friday.model.student.MasteryCheck;
 import org.junit.jupiter.api.Test;
 
 import friday.logic.parser.exceptions.ParseException;
 import friday.model.student.Consultation;
+import friday.model.student.MasteryCheck;
 import friday.model.student.Name;
 import friday.model.student.TelegramHandle;
 import friday.model.tag.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_PHONE = "+651234";
-    private static final String INVALID_ADDRESS = " ";
-    private static final String INVALID_EMAIL = "example.com";
+    private static final String INVALID_TELEGRAMHANDLE = "+rachel";
+    private static final LocalDate INVALID_MASTERYCHECK = LocalDate.parse("2022/08/01");
+    private static final LocalDate INVALID_CONSULTATION = LocalDate.parse("2022-50-50");
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
-    private static final String VALID_ADDRESS = "123 Main Street #0505";
-    private static final String VALID_EMAIL = "rachel@example.com";
+    private static final String VALID_TELEGRAMHANDLE = "r4chel_";
+    private static final LocalDate VALID_MASTERYCHECK = LocalDate.of(2022, 9, 1);
+    private static final LocalDate VALID_CONSULTATION = LocalDate.parse("2022-08-17");
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
@@ -86,66 +87,42 @@ public class ParserUtilTest {
 
     @Test
     public void parsePhone_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parsePhone(INVALID_PHONE));
+        assertThrows(ParseException.class, () -> ParserUtil.parsePhone(INVALID_TELEGRAMHANDLE));
     }
 
     @Test
     public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
-        TelegramHandle expectedTelegramHandle = new TelegramHandle(VALID_PHONE);
-        assertEquals(expectedTelegramHandle, ParserUtil.parsePhone(VALID_PHONE));
+        TelegramHandle expectedTelegramHandle = new TelegramHandle(VALID_TELEGRAMHANDLE);
+        assertEquals(expectedTelegramHandle, ParserUtil.parsePhone(VALID_TELEGRAMHANDLE));
     }
 
     @Test
     public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
-        String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
-        TelegramHandle expectedTelegramHandle = new TelegramHandle(VALID_PHONE);
+        String phoneWithWhitespace = WHITESPACE + VALID_TELEGRAMHANDLE + WHITESPACE;
+        TelegramHandle expectedTelegramHandle = new TelegramHandle(VALID_TELEGRAMHANDLE);
         assertEquals(expectedTelegramHandle, ParserUtil.parsePhone(phoneWithWhitespace));
     }
 
     @Test
-    public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
-    }
-
-    @Test
     public void parseAddress_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
+        assertThrows(ParseException.class, () -> ParserUtil.parseMasteryCheck(INVALID_MASTERYCHECK));
     }
 
     @Test
     public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        MasteryCheck expectedMasteryCheck = new MasteryCheck(VALID_ADDRESS);
-        assertEquals(expectedMasteryCheck, ParserUtil.parseAddress(VALID_ADDRESS));
-    }
-
-    @Test
-    public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        MasteryCheck expectedMasteryCheck = new MasteryCheck(VALID_ADDRESS);
-        assertEquals(expectedMasteryCheck, ParserUtil.parseAddress(addressWithWhitespace));
-    }
-
-    @Test
-    public void parseEmail_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
+        MasteryCheck expectedMasteryCheck = new MasteryCheck(VALID_MASTERYCHECK);
+        assertEquals(expectedMasteryCheck, ParserUtil.parseMasteryCheck(VALID_MASTERYCHECK));
     }
 
     @Test
     public void parseEmail_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseEmail(INVALID_EMAIL));
+        assertThrows(ParseException.class, () -> ParserUtil.parseConsultation(INVALID_CONSULTATION));
     }
 
     @Test
     public void parseEmail_validValueWithoutWhitespace_returnsEmail() throws Exception {
-        Consultation expectedConsultation = new Consultation(VALID_EMAIL);
-        assertEquals(expectedConsultation, ParserUtil.parseEmail(VALID_EMAIL));
-    }
-
-    @Test
-    public void parseEmail_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
-        String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
-        Consultation expectedConsultation = new Consultation(VALID_EMAIL);
-        assertEquals(expectedConsultation, ParserUtil.parseEmail(emailWithWhitespace));
+        Consultation expectedConsultation = new Consultation(VALID_CONSULTATION);
+        assertEquals(expectedConsultation, ParserUtil.parseConsultation(VALID_CONSULTATION));
     }
 
     @Test
