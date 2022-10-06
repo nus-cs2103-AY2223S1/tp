@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.LessonPlan;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -61,6 +62,17 @@ public class ParserUtil {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
         return new Phone(trimmedPhone);
+    }
+
+    /**
+     * Parses a {@code String lessonPlan} into an {@code LessonPlan}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     */
+    public static LessonPlan parseLessonPlan(String lessonPlan) {
+        requireNonNull(lessonPlan);
+        String trimmedLessonPlan = lessonPlan.trim();
+        return new LessonPlan(trimmedLessonPlan);
     }
 
     /**

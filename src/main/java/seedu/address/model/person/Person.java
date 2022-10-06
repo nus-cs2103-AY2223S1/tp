@@ -20,16 +20,19 @@ public class Person {
     private final Phone phone;
 
     // Data fields
+    private final LessonPlan lessonPlan;
     private final HomeworkList homeworkList;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, HomeworkList homeworkList, Set<Tag> tags) {
+    public Person(Name name, Phone phone, LessonPlan lessonPlan,
+                  HomeworkList homeworkList, Set<Tag> tags) {
         requireAllNonNull(name, phone, tags);
         this.name = name;
         this.phone = phone;
+        this.lessonPlan = lessonPlan;
         this.homeworkList = homeworkList;
         this.tags.addAll(tags);
     }
@@ -40,6 +43,10 @@ public class Person {
 
     public Phone getPhone() {
         return phone;
+    }
+
+    public LessonPlan getLessonPlan() {
+        return lessonPlan;
     }
 
     public HomeworkList getHomeworkList() {
@@ -84,13 +91,14 @@ public class Person {
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
+                && otherPerson.getLessonPlan().equals(getLessonPlan())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, tags);
+        return Objects.hash(name, phone, lessonPlan, tags);
     }
 
     @Override
@@ -99,6 +107,8 @@ public class Person {
         builder.append(getName())
                 .append("; Phone: ")
                 .append(getPhone())
+                .append("; Lesson Plan: ")
+                .append(getLessonPlan())
                 .append("; Homework: ")
                 .append(getHomeworkList());
 

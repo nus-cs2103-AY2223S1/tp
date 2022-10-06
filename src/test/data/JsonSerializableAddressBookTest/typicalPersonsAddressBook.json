@@ -3,36 +3,43 @@
   "persons" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",
+    "lessonPlan" : "Algorithms",
     "homework": [ "Math workbook", "English worksheet" ],
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
+    "lessonPlan" : "Trigonometry",
     "homework": [ "science worksheet" ],
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
+    "lessonPlan" : "Cell structure",
     "homework": [ ],
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
+    "lessonPlan" : "Chemistry",
     "homework": [ "Mother Tongue homework" ],
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
+    "lessonPlan" : "Sec 4 Physics",
     "homework": [ "science worksheet" ],
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
+    "lessonPlan" : "Higher chinese",
     "homework": [ ],
     "tagged" : [ ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
+    "lessonPlan" : "Javascript",
     "homework": [ ],
     "tagged" : [ ]
   } ]
