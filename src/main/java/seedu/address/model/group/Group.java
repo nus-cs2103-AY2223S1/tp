@@ -76,7 +76,7 @@ public class Group {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName());
-        builder.append("; Members: ");
+        builder.append(" | Members: ");
 
         if (!getMembers().isEmpty()) {
             for(Person p : getMembers()) {
@@ -84,7 +84,7 @@ public class Group {
                 builder.append(" | ");
             }
         } else {
-            builder.append("None");
+            builder.append("None | ");
         }
         return builder.toString();
     }
