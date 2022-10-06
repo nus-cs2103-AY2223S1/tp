@@ -55,7 +55,7 @@ Some example commands you can try:
 Add a new team member to the user’s team. Will throw an error if the member already exists in the team.
 
 Format: 
-* `add_member “INDEX”`
+* `add_member INDEX`
 
 Examples:
 * `add_member 1`
