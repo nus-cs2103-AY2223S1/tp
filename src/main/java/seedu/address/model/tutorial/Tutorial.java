@@ -1,12 +1,9 @@
 package seedu.address.model.tutorial;
 
-import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
-import java.util.Set;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents a Tutorial in the address book.

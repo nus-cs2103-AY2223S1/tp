@@ -1,21 +1,22 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
+
+import java.util.stream.Stream;
+
 import seedu.address.logic.commands.AddTutorialCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.*;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.tutorial.Content;
 import seedu.address.model.tutorial.Group;
 import seedu.address.model.tutorial.Time;
 import seedu.address.model.tutorial.Tutorial;
 
-import java.util.Set;
-import java.util.stream.Stream;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-
+/**
+ * Parses input arguments and creates a new AddTutorialCommand object
+ */
 public class AddTutorialCommandParser {
     /**
      * Parses the given {@code String} of arguments in the context of the AddTutorialCommand
@@ -36,7 +37,8 @@ public class AddTutorialCommandParser {
         Content content = ParserUtil.parseContent(argMultimap.getValue(PREFIX_CONTENT).get());
         Time time = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME).get());
 
-        return new AddTutorialCommand(group, content, time);
+        Tutorial newTutorial = new Tutorial(group, content, time);
+        return new AddTutorialCommand(newTutorial);
     }
 
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {

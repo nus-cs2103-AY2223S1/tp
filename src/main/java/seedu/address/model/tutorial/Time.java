@@ -3,8 +3,10 @@ package seedu.address.model.tutorial;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents the group number of a tutorial in SETA
+ */
 public class Time {
-    public final String time;
 
     public static final String MESSAGE_CONSTRAINTS =
             "time should only take certain format, and it should not be blank";
@@ -16,6 +18,8 @@ public class Time {
     //public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
     public static final String VALIDATION_REGEX = "[^\\s].*";
     // I still don't understand what it means right now, and I will find out and change it later.
+
+    public final String time;
 
     /**
      * Constructs a {@code time}.

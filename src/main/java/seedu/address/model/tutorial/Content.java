@@ -1,12 +1,12 @@
 package seedu.address.model.tutorial;
 
-import seedu.address.model.person.Name;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents the content of a tutorial in SETA
+ */
 public class Content {
-    public final String content;
 
     public static final String MESSAGE_CONSTRAINTS =
             "Content should only contain alphanumeric characters and spaces, and it should not be blank";
@@ -17,6 +17,8 @@ public class Content {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
     // I still don't understand what it means right now, and I will find out later.
+
+    public final String content;
 
     /**
      * Constructs a {@code Content}.

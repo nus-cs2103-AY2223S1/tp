@@ -3,8 +3,10 @@ package seedu.address.model.tutorial;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents the group number of a tutorial in SETA
+ */
 public class Group {
-    public final String group;
 
     public static final String MESSAGE_CONSTRAINTS =
             "group should only contain alphanumeric characters and spaces, and it should not be blank";
@@ -15,6 +17,8 @@ public class Group {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
     // I still don't understand what it means right now, and I will find out and change it later.
+
+    public final String group;
 
     /**
      * Constructs a {@code group}.
