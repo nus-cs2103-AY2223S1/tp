@@ -7,9 +7,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.EditCommand.EditCompanyDescriptor;
 import seedu.address.model.company.Address;
 import seedu.address.model.company.Company;
-import seedu.address.model.company.Email;
 import seedu.address.model.company.Name;
-import seedu.address.model.company.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -33,8 +31,6 @@ public class EditCompanyDescriptorBuilder {
     public EditCompanyDescriptorBuilder(Company company) {
         descriptor = new EditCompanyDescriptor();
         descriptor.setName(company.getName());
-        descriptor.setPhone(company.getPhone());
-        descriptor.setEmail(company.getEmail());
         descriptor.setAddress(company.getAddress());
         descriptor.setTags(company.getTags());
     }
@@ -44,22 +40,6 @@ public class EditCompanyDescriptorBuilder {
      */
     public EditCompanyDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
-        return this;
-    }
-
-    /**
-     * Sets the {@code Phone} of the {@code EditCompanyDescriptor} that we are building.
-     */
-    public EditCompanyDescriptorBuilder withPhone(String phone) {
-        descriptor.setPhone(new Phone(phone));
-        return this;
-    }
-
-    /**
-     * Sets the {@code Email} of the {@code EditCompanyDescriptor} that we are building.
-     */
-    public EditCompanyDescriptorBuilder withEmail(String email) {
-        descriptor.setEmail(new Email(email));
         return this;
     }
 
