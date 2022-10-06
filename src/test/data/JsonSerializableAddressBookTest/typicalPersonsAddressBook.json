@@ -5,41 +5,55 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
+    "id": "178426",
+    "title": "Software Engineer Intern",
     "tagged" : [ "interview", "rejected" ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
+    "id" : "183698",
+    "title" : "Data Scientist Intern",
     "tagged" : [ "KIV" ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "address" : "wall street",
+    "id" : "169277",
+    "title" : "IT Software Engineer (6 months internship)",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
+    "id" : "169277",
+    "title" : "IT Software Engineer (6 months internship)",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
     "address" : "michegan ave",
+    "id": "178426",
+    "title": "Software Engineer Intern",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
+    "id": "178426",
+    "title": "Software Engineer Intern",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
+    "id" : "169277",
+    "title" : "IT Software Engineer (6 months internship)",
     "address" : "4th street",
     "tagged" : [ ]
   } ]
