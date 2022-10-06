@@ -2,11 +2,11 @@ package friday.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import friday.model.AddressBook;
+import friday.model.Friday;
 import friday.model.Model;
 
 /**
- * Clears the address book.
+ * Clears FRIDAY.
  */
 public class ClearCommand extends Command {
 
@@ -17,7 +17,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setAddressBook(new AddressBook());
+        model.setFriday(new Friday());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
