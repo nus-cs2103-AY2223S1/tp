@@ -36,32 +36,32 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in TA-Assist";
 
-    private final Student toAdd;
+    private final Student student;
 
     /**
-     * Creates an AddCommand to add the specified {@code Student}
+     * Creates an AddCommand to add the specified {@code Student}.
      */
     public AddCommand(Student student) {
         requireNonNull(student);
-        toAdd = student;
+        this.student = student;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasStudent(toAdd)) {
+        if (model.hasStudent(student)) {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
-        model.addStudent(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        model.addStudent(student);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, student));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
+                && student.equals(((AddCommand) other).student));
     }
 }

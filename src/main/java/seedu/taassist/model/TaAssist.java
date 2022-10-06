@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.taassist.model.moduleclass.ModuleClass;
+import seedu.taassist.model.moduleclass.UniqueModuleClassList;
 import seedu.taassist.model.student.Student;
 import seedu.taassist.model.student.UniqueStudentList;
 
@@ -15,6 +17,7 @@ import seedu.taassist.model.student.UniqueStudentList;
 public class TaAssist implements ReadOnlyTaAssist {
 
     private final UniqueStudentList students;
+    private final UniqueModuleClassList moduleClasses;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +28,7 @@ public class TaAssist implements ReadOnlyTaAssist {
      */
     {
         students = new UniqueStudentList();
+        moduleClasses = new UniqueModuleClassList();
     }
 
     public TaAssist() {}
@@ -48,12 +52,21 @@ public class TaAssist implements ReadOnlyTaAssist {
     }
 
     /**
+     * Replaces the contents of the module class list with {@code moduleClasses}.
+     * {@code moduleClasses} must not contain duplicate classes.
+     */
+    public void setModuleClasses(List<ModuleClass> moduleClasses) {
+        this.moduleClasses.setModuleClasses(moduleClasses);
+    }
+
+    /**
      * Resets the existing data of this {@code TaAssist} with {@code newData}.
      */
     public void resetData(ReadOnlyTaAssist newData) {
         requireNonNull(newData);
 
         setStudents(newData.getStudentList());
+        setModuleClasses(newData.getModuleClassList());
     }
 
     //// student-level operations
@@ -70,8 +83,9 @@ public class TaAssist implements ReadOnlyTaAssist {
      * Adds a student to TA-Assist.
      * The student must not already exist in TA-Assist.
      */
-    public void addStudent(Student p) {
-        students.add(p);
+    public void addStudent(Student student) {
+        requireNonNull(student);
+        students.add(student);
     }
 
     /**
@@ -82,16 +96,44 @@ public class TaAssist implements ReadOnlyTaAssist {
      */
     public void setStudent(Student target, Student editedStudent) {
         requireNonNull(editedStudent);
-
         students.setStudent(target, editedStudent);
     }
 
     /**
-     * Removes {@code key} from this {@code TaAssist}.
-     * {@code key} must exist in TA-Assist.
+     * Removes {@code student} from this {@code TaAssist}.
+     * {@code student} must exist in TA-Assist.
      */
-    public void removeStudent(Student key) {
-        students.remove(key);
+    public void removeStudent(Student student) {
+        requireNonNull(student);
+        students.remove(student);
+    }
+
+    //// class-level operations
+
+    /**
+     * Returns true if a class with the same identity as {@code moduleClass} exists in TA-Assist.
+     */
+    public boolean hasModuleClass(ModuleClass moduleClass) {
+        requireNonNull(moduleClass);
+        return moduleClasses.contains(moduleClass);
+    }
+
+    /**
+     * Adds a class to TA-Assist.
+     * The class must not already exist in TA-Assist.
+     */
+    public void addModuleClass(ModuleClass moduleClass) {
+        requireNonNull(moduleClass);
+        moduleClasses.add(moduleClass);
+    }
+
+    /**
+     * Removes {@code moduleClass} from this {@code TaAssist}.
+     * {@code moduleClass} must exist in TA-Assist.
+     */
+    public void removeModuleClass(ModuleClass moduleClass) {
+        requireNonNull(moduleClass);
+        moduleClasses.remove(moduleClass);
     }
 
     //// util methods
@@ -105,6 +147,11 @@ public class TaAssist implements ReadOnlyTaAssist {
     @Override
     public ObservableList<Student> getStudentList() {
         return students.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<ModuleClass> getModuleClassList() {
+        return moduleClasses.asUnmodifiableObservableList();
     }
 
     @Override

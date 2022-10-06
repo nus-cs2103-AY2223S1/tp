@@ -35,7 +35,7 @@ public class StudentUtil {
         sb.append(PREFIX_EMAIL + student.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + student.getAddress().value + " ");
         student.getModuleClasses().stream().forEach(
-            s -> sb.append(PREFIX_MODULE_CLASS + s.tagName + " ")
+            s -> sb.append(PREFIX_MODULE_CLASS + s.className + " ")
         );
         return sb.toString();
     }
@@ -54,7 +54,7 @@ public class StudentUtil {
             if (moduleClasses.isEmpty()) {
                 sb.append(PREFIX_MODULE_CLASS);
             } else {
-                moduleClasses.forEach(s -> sb.append(PREFIX_MODULE_CLASS).append(s.tagName).append(" "));
+                moduleClasses.forEach(s -> sb.append(PREFIX_MODULE_CLASS).append(s.className).append(" "));
             }
         }
         return sb.toString();
