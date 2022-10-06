@@ -1,19 +1,20 @@
 package taskbook.model;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
-
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
 import taskbook.commons.core.GuiSettings;
 import taskbook.model.person.NameContainsKeywordsPredicate;
 import taskbook.testutil.AddressBookBuilder;
 import taskbook.testutil.Assert;
 import taskbook.testutil.TypicalPersons;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 public class ModelManagerTest {
 
@@ -22,7 +23,7 @@ public class ModelManagerTest {
     @Test
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
-        Assertions.assertEquals(new GuiSettings(), modelManager.getGuiSettings());
+        assertEquals(new GuiSettings(), modelManager.getGuiSettings());
         assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
     }
 
@@ -54,7 +55,7 @@ public class ModelManagerTest {
     public void setGuiSettings_validGuiSettings_setsGuiSettings() {
         GuiSettings guiSettings = new GuiSettings(1, 2, 3, 4);
         modelManager.setGuiSettings(guiSettings);
-        Assertions.assertEquals(guiSettings, modelManager.getGuiSettings());
+        assertEquals(guiSettings, modelManager.getGuiSettings());
     }
 
     @Test
