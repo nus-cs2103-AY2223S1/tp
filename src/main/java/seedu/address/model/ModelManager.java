@@ -88,9 +88,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setTaskListFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setTaskListFilePath(addressBookFilePath);
+    public void setTaskListFilePath(Path taskListFilePath) {
+        requireNonNull(taskListFilePath);
+        userPrefs.setTaskListFilePath(taskListFilePath);
     }
 
     //=========== AddressBook ================================================================================
