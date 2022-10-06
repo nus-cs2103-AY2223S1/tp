@@ -136,6 +136,6 @@ public class DebtList {
             builder.append(debt.toString())
                     .append("\n");
         }
-        return builder.toString();
+        return builder.toString().equals("") ? "No debts" : builder.toString();
     }
 }
