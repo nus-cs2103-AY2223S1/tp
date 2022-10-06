@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -13,6 +14,8 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.role.Characteristics;
+import seedu.address.model.role.PriceRange;
 import seedu.address.model.tag.Tag;
 
 
@@ -121,5 +124,42 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code String range} into a {@code PriceRange}.
+     */
+    public static PriceRange parsePriceRange(String range) throws ParseException {
+        if (range.isEmpty()) {
+            return new PriceRange(Optional.empty(), Optional.empty());
+        }
+        String trimmedPriceRange = range.trim();
+        if (!PriceRange.isValidPriceRange(trimmedPriceRange)) {
+            throw new ParseException(PriceRange.MESSAGE_CONSTRAINTS);
+        }
+        String[] rangeArr = range.split("-");
+        float first = Float.parseFloat(rangeArr[0].trim());
+        float second = Float.parseFloat(rangeArr[1].trim());
+        Optional<Float> low = Optional.of(Math.min(first, second));
+        Optional<Float> high = Optional.of(Math.max(first, second));
+        return new PriceRange(low, high);
+    }
+
+    /**
+     * Parses {@code String characteristics} into a {@code Characteristics}.
+     */
+    public static Characteristics parseCharacteristics(String characteristics) throws ParseException {
+        if (characteristics.isEmpty()) {
+            return new Characteristics(new String[0]);
+        }
+        String trimmedCharacteristics = characteristics.trim();
+        if (!Characteristics.isValidCharacteristics(trimmedCharacteristics)) {
+            throw new ParseException(Characteristics.MESSAGE_CONSTRAINTS);
+        }
+        String[] charArray = characteristics.split(";");
+        for (String item : charArray) {
+            item = item.trim();
+        }
+        return new Characteristics(charArray);
     }
 }

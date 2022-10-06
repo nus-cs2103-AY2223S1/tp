@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.role.Buyer;
 
 /**
  * The API of the Model component.
@@ -84,4 +85,10 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Sets the given {@code person} in the list as a {@code buyer}.
+     * {@code person} exists uniquely in the address book.
+     */
+    void setBuyerRole(Person person, Buyer buyer);
 }
