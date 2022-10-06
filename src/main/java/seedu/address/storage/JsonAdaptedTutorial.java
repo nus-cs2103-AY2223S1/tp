@@ -5,7 +5,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tutorial.Tutorial;
+import seedu.address.model.tutorial.TutorialModule;
 import seedu.address.model.tutorial.TutorialName;
+import seedu.address.model.tutorial.TutorialTimeslot;
+import seedu.address.model.tutorial.TutorialVenue;
 
 /**
  * Jackson-friendly version of {@link Tutorial}.
@@ -15,13 +18,20 @@ class JsonAdaptedTutorial {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Tutorial's %s field is missing!";
 
     private final String name;
+    private final String module;
+    private final String venue;
+    private final String timeslot;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given tutorial details.
      */
     @JsonCreator
-    public JsonAdaptedTutorial(@JsonProperty("name") String name) {
+    public JsonAdaptedTutorial(@JsonProperty("name") String name, @JsonProperty("module") String module,
+                               @JsonProperty("venue") String venue, @JsonProperty("timeslot") String timeslot) {
         this.name = name;
+        this.module = module;
+        this.venue = venue;
+        this.timeslot = timeslot;
     }
 
     /**
@@ -29,6 +39,9 @@ class JsonAdaptedTutorial {
      */
     public JsonAdaptedTutorial(Tutorial source) {
         name = source.getName().fullName;
+        module = source.getModule().moduleName;
+        venue = source.getVenue().venue;
+        timeslot = source.getTimeslot().timeslot;
     }
 
     /**
@@ -46,7 +59,34 @@ class JsonAdaptedTutorial {
         }
         final TutorialName modelName = new TutorialName(name);
 
-        return new Tutorial(modelName);
+        if (module == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    TutorialModule.class.getSimpleName()));
+        }
+        if (!TutorialModule.isValidModule(module)) {
+            throw new IllegalValueException(TutorialModule.MESSAGE_CONSTRAINTS);
+        }
+        final TutorialModule modelModule = new TutorialModule(module);
+
+        if (venue == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    TutorialVenue.class.getSimpleName()));
+        }
+        if (!TutorialVenue.isValidVenue(venue)) {
+            throw new IllegalValueException(TutorialVenue.MESSAGE_CONSTRAINTS);
+        }
+        final TutorialVenue modelVenue = new TutorialVenue(venue);
+
+        if (timeslot == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    TutorialTimeslot.class.getSimpleName()));
+        }
+        if (!TutorialTimeslot.isValidTimeslot(timeslot)) {
+            throw new IllegalValueException(TutorialTimeslot.MESSAGE_CONSTRAINTS);
+        }
+        final TutorialTimeslot modelTimeslot = new TutorialTimeslot(timeslot);
+
+        return new Tutorial(modelName, modelModule, modelVenue, modelTimeslot);
     }
 
 }

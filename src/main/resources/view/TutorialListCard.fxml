@@ -26,6 +26,11 @@
                 </Label>
                 <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
             </HBox>
+            <HBox spacing="30" alignment="CENTER_LEFT">
+                <Label fx:id="timeslot" styleClass="cell_small_label" text="\$timeslot" />
+                <Label fx:id="venue" styleClass="cell_small_label" text="\$venue" />
+            </HBox>
+            <Label fx:id="module" styleClass="cell_small_label" text="\$module" />
         </VBox>
     </GridPane>
 </HBox>

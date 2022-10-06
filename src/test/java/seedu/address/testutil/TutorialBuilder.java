@@ -1,25 +1,34 @@
 package seedu.address.testutil;
 
 import seedu.address.model.tutorial.Tutorial;
+import seedu.address.model.tutorial.TutorialModule;
 import seedu.address.model.tutorial.TutorialName;
+import seedu.address.model.tutorial.TutorialTimeslot;
+import seedu.address.model.tutorial.TutorialVenue;
 
 /**
  * A utility class to help with building Tutorial objects.
  */
 public class TutorialBuilder {
 
-    public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_NAME = "W01";
+    public static final String DEFAULT_MODULE = "CS2103T";
+    public static final String DEFAULT_VENUE = "COM1-0203";
+    public static final String DEFAULT_TIMESLOT = "1500-1700";
 
     private TutorialName tutorialName;
+    private TutorialModule tutorialModule;
+    private TutorialVenue tutorialVenue;
+    private TutorialTimeslot tutorialTimeslot;
 
     /**
      * Creates a {@code TutorialBuilder} with the default details.
      */
     public TutorialBuilder() {
         tutorialName = new TutorialName(DEFAULT_NAME);
+        tutorialModule = new TutorialModule(DEFAULT_MODULE);
+        tutorialVenue = new TutorialVenue(DEFAULT_VENUE);
+        tutorialTimeslot = new TutorialTimeslot(DEFAULT_TIMESLOT);
     }
 
     /**
@@ -27,18 +36,45 @@ public class TutorialBuilder {
      */
     public TutorialBuilder(Tutorial tutorialToCopy) {
         tutorialName = tutorialToCopy.getName();
+        tutorialModule = tutorialToCopy.getModule();
+        tutorialVenue = tutorialToCopy.getVenue();
+        tutorialTimeslot = tutorialToCopy.getTimeslot();
     }
 
     /**
-     * Sets the {@code Name} of the {@code Tutorial} that we are building.
+     * Sets the {@code TutorialName} of the {@code Tutorial} that we are building.
      */
     public TutorialBuilder withName(String name) {
         this.tutorialName = new TutorialName(name);
         return this;
     }
 
+    /**
+     * Sets the {@code TutorialModule} of the {@code Tutorial} that we are building.
+     */
+    public TutorialBuilder withModule(String module) {
+        this.tutorialModule = new TutorialModule(module);
+        return this;
+    }
+
+    /**
+     * Sets the {@code TutorialVenue} of the {@code Tutorial} that we are building.
+     */
+    public TutorialBuilder withVenue(String venue) {
+        this.tutorialVenue = new TutorialVenue(venue);
+        return this;
+    }
+
+    /**
+     * Sets the {@code TutorialTimeslot} of the {@code Tutorial} that we are building.
+     */
+    public TutorialBuilder withTimeslot(String timeslot) {
+        this.tutorialTimeslot = new TutorialTimeslot(timeslot);
+        return this;
+    }
+
     public Tutorial build() {
-        return new Tutorial(tutorialName);
+        return new Tutorial(tutorialName, tutorialModule, tutorialVenue, tutorialTimeslot);
     }
 
 }

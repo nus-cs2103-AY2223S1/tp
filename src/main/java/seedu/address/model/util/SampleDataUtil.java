@@ -13,7 +13,10 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tutorial.Tutorial;
+import seedu.address.model.tutorial.TutorialModule;
 import seedu.address.model.tutorial.TutorialName;
+import seedu.address.model.tutorial.TutorialTimeslot;
+import seedu.address.model.tutorial.TutorialVenue;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -44,9 +47,12 @@ public class SampleDataUtil {
 
     public static Tutorial[] getSampleTutorials() {
         return new Tutorial[] {
-            new Tutorial(new TutorialName("CS2103T W17")),
-            new Tutorial(new TutorialName("CS2103T F01")),
-            new Tutorial(new TutorialName("CS2103T F02"))
+            new Tutorial(new TutorialName("W17"), new TutorialModule("CS2103T"),
+                    new TutorialVenue("COM1-0203"), new TutorialTimeslot("1600-1800")),
+            new Tutorial(new TutorialName("F01"), new TutorialModule("CS2103T"),
+                    new TutorialVenue("COM1-0201"), new TutorialTimeslot("1500-1700")),
+            new Tutorial(new TutorialName("F02"), new TutorialModule("CS2103T"),
+                    new TutorialVenue("COM1-0202"), new TutorialTimeslot("1000-1100")),
         };
     }
 

@@ -78,8 +78,8 @@ public class UniqueTutorialList implements Iterable<Tutorial> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.tutorial.UniqueTutorialList // instanceof handles nulls
-                && internalList.equals(((seedu.address.model.tutorial.UniqueTutorialList) other).internalList));
+                || (other instanceof UniqueTutorialList // instanceof handles nulls
+                && internalList.equals(((UniqueTutorialList) other).internalList));
     }
 
     @Override

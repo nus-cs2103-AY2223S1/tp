@@ -1,7 +1,10 @@
 package seedu.address.logic.commands.tutorial;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -14,13 +17,19 @@ import seedu.address.model.tutorial.Tutorial;
  */
 public class AddTutorialCommand extends Command {
 
-    public static final String COMMAND_WORD = "addt";
+    public static final String COMMAND_WORD = "add tutorial";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tutorial to the ModQuik. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
+            + PREFIX_MODULE + "MODULE "
+            + PREFIX_VENUE + "VENUE "
+            + PREFIX_TIMESLOT + "TIMESLOT "
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "CS2103T W17 ";
+            + PREFIX_NAME + "CS2103T W17 "
+            + PREFIX_MODULE + "CS2103T "
+            + PREFIX_VENUE + "COM1-0203 "
+            + PREFIX_TIMESLOT + "1500-1800 ";
 
     public static final String MESSAGE_SUCCESS = "New tutorial added: %1$s";
     public static final String MESSAGE_DUPLICATE_TUTORIAL = "This tutorial already exists in the ModQuik";

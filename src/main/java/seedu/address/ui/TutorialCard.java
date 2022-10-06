@@ -29,6 +29,12 @@ public class TutorialCard extends UiPart<Region> {
     private Label name;
     @FXML
     private Label id;
+    @FXML
+    private Label module;
+    @FXML
+    private Label venue;
+    @FXML
+    private Label timeslot;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Tutorial} and index to display.
@@ -38,6 +44,9 @@ public class TutorialCard extends UiPart<Region> {
         this.tutorial = tutorial;
         id.setText(displayedIndex + ". ");
         name.setText(tutorial.getName().fullName);
+        module.setText(tutorial.getModule().moduleName);
+        venue.setText(tutorial.getVenue().venue);
+        timeslot.setText(tutorial.getTimeslot().timeslot);
     }
 
     @Override

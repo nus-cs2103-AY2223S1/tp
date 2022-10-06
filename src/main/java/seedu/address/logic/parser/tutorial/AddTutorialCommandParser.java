@@ -1,19 +1,22 @@
 package seedu.address.logic.parser.tutorial;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-
-import java.util.stream.Stream;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 
 import seedu.address.logic.commands.tutorial.AddTutorialCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
-import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tutorial.Tutorial;
+import seedu.address.model.tutorial.TutorialModule;
 import seedu.address.model.tutorial.TutorialName;
+import seedu.address.model.tutorial.TutorialTimeslot;
+import seedu.address.model.tutorial.TutorialVenue;
 
 
 /**
@@ -28,26 +31,20 @@ public class AddTutorialCommandParser implements Parser<AddTutorialCommand> {
      */
     public AddTutorialCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MODULE, PREFIX_VENUE, PREFIX_TIMESLOT);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
-                || !argMultimap.getPreamble().isEmpty()) {
+        ParserUtil.assertPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MODULE, PREFIX_VENUE, PREFIX_TIMESLOT);
+        if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTutorialCommand.MESSAGE_USAGE));
         }
 
-        TutorialName tutorialName = ParserUtil.parseTutorialName(argMultimap.getValue(PREFIX_NAME).get());
+        TutorialName name = ParserUtil.parseTutorialName(argMultimap.getValue(PREFIX_NAME).get());
+        TutorialModule module = ParserUtil.parseTutorialModule(argMultimap.getValue(PREFIX_MODULE).get());
+        TutorialVenue venue = ParserUtil.parseTutorialVenue(argMultimap.getValue(PREFIX_VENUE).get());
+        TutorialTimeslot timeslot = ParserUtil.parseTutorialTimeslot(argMultimap.getValue(PREFIX_TIMESLOT).get());
 
-        Tutorial person = new Tutorial(tutorialName);
+        Tutorial tutorial = new Tutorial(name, module, venue, timeslot);
 
-        return new AddTutorialCommand(person);
+        return new AddTutorialCommand(tutorial);
     }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
-
 }

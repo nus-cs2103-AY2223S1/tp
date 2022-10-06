@@ -11,25 +11,45 @@ import java.util.Objects;
 public class Tutorial {
 
     // Identity fields
-    private final seedu.address.model.tutorial.TutorialName tutorialName;
+    private final TutorialName name;
+    private final TutorialModule module;
+    private final TutorialVenue venue;
+
+    //Data fields
+    private final TutorialTimeslot timeslot;
 
     /**
      * Every field must be present and not null.
      */
-    public Tutorial(seedu.address.model.tutorial.TutorialName tutorialName) {
-        requireAllNonNull(tutorialName);
-        this.tutorialName = tutorialName;
+    public Tutorial(TutorialName name, TutorialModule module, TutorialVenue venue, TutorialTimeslot timeslot) {
+        requireAllNonNull(name, module, venue, timeslot);
+        this.name = name;
+        this.module = module;
+        this.venue = venue;
+        this.timeslot = timeslot;
     }
 
     public TutorialName getName() {
-        return tutorialName;
+        return name;
+    }
+
+    public TutorialModule getModule() {
+        return module;
+    }
+
+    public TutorialVenue getVenue() {
+        return venue;
+    }
+
+    public TutorialTimeslot getTimeslot() {
+        return timeslot;
     }
 
     /**
      * Returns true if both tutorials have the same name.
      * This defines a weaker notion of equality between two tutorials.
      */
-    public boolean isSameTutorial(seedu.address.model.tutorial.Tutorial otherTutorial) {
+    public boolean isSameTutorial(Tutorial otherTutorial) {
         if (otherTutorial == this) {
             return true;
         }
@@ -48,24 +68,33 @@ public class Tutorial {
             return true;
         }
 
-        if (!(other instanceof seedu.address.model.tutorial.Tutorial)) {
+        if (!(other instanceof Tutorial)) {
             return false;
         }
 
-        seedu.address.model.tutorial.Tutorial otherPerson = (seedu.address.model.tutorial.Tutorial) other;
-        return otherPerson.getName().equals(getName());
+        Tutorial otherTutorial = (Tutorial) other;
+        return otherTutorial.getName().equals(getName())
+                && otherTutorial.getModule().equals(getModule())
+                && otherTutorial.getVenue().equals(getVenue())
+                && otherTutorial.getTimeslot().equals(getTimeslot());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(tutorialName);
+        return Objects.hash(name, module, venue, timeslot);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName());
+        builder.append(getName())
+                .append("; Module: ")
+                .append(getModule())
+                .append("; Venue: ")
+                .append(getVenue())
+                .append("; Timeslot: ")
+                .append(getTimeslot());
 
         return builder.toString();
     }
