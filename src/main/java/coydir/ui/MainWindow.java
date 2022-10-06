@@ -147,6 +147,30 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Switches to Dark Theme if the window is currently on Light Theme.
+     * Remains on Dark Theme otherwise.
+     */
+    @FXML
+    public void handleDarkTheme() {
+        getPrimaryStage().getScene().getStylesheets().remove(0, 2);
+        getPrimaryStage().getScene().getStylesheets().addAll(
+                getClass().getClassLoader().getResource("view/DarkTheme.css").toExternalForm(),
+                getClass().getClassLoader().getResource("view/Extensions.css").toExternalForm());
+    }
+
+    /**
+     * Switches to Light Theme if the window is currently on Dark Theme.
+     * Remains on Light Theme otherwise.
+     */
+    @FXML
+    public void handleLightTheme() {
+        getPrimaryStage().getScene().getStylesheets().remove(0, 2);
+        getPrimaryStage().getScene().getStylesheets().addAll(
+                getClass().getClassLoader().getResource("view/LightTheme.css").toExternalForm(),
+                getClass().getClassLoader().getResource("view/Extensions.css").toExternalForm());
+    }
+
     void show() {
         primaryStage.show();
     }
