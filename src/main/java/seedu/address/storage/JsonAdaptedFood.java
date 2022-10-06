@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.Calorie;
+import seedu.address.model.person.DateTime;
 import seedu.address.model.person.Food;
 import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
@@ -25,18 +26,21 @@ class JsonAdaptedFood {
     private final String name;
     private final String calorie;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final String dateTime;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedFood(@JsonProperty("foodName") String foodName, @JsonProperty("calorie") String calorie,
-                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                           @JsonProperty("dateTime") String dateTime) {
         this.name = foodName;
         this.calorie = calorie;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        this.dateTime = dateTime;
     }
 
     /**
@@ -48,6 +52,7 @@ class JsonAdaptedFood {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        dateTime = source.getDateTime().toString();
     }
 
     /**
@@ -75,7 +80,8 @@ class JsonAdaptedFood {
         final Calorie modelCalorie = new Calorie(calorie);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Food(modelName, modelCalorie, modelTags);
+        final DateTime modelDateTime = new DateTime(dateTime);
+        return new Food(modelName, modelCalorie, modelTags, modelDateTime);
     }
 
 }

@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Food;
+import seedu.address.model.person.IsFoodAddedTodayPredicate;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -32,7 +33,7 @@ public class ModelManager implements Model {
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredFoods = new FilteredList<>(this.addressBook.getPersonList());
+        filteredFoods = new FilteredList<>(this.addressBook.getPersonList().filtered(new IsFoodAddedTodayPredicate()));
     }
 
     public ModelManager() {
@@ -117,7 +118,7 @@ public class ModelManager implements Model {
     @Override
     public void addPerson(Food food) {
         addressBook.addPerson(food);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredPersonList(new IsFoodAddedTodayPredicate());
     }
 
     @Override

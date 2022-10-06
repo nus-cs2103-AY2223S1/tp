@@ -33,6 +33,7 @@ public class EditFoodDescriptorBuilder {
         descriptor.setName(food.getName());
         descriptor.setTags(food.getTags());
         descriptor.setCalorie(food.getCalorie());
+        descriptor.setDateTime(food.getDateTime());
     }
 
     /**

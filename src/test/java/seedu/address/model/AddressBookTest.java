@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.APPLE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -19,7 +19,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Food;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.FoodBuilder;
 
 public class AddressBookTest {
 
@@ -45,8 +45,8 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Food editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
-        List<Food> newFoods = Arrays.asList(ALICE, editedAlice);
+        Food editedAlice = new FoodBuilder(APPLE).withTags(VALID_TAG_HUSBAND).build();
+        List<Food> newFoods = Arrays.asList(APPLE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newFoods);
 
         assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
@@ -59,19 +59,19 @@ public class AddressBookTest {
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(ALICE));
+        assertFalse(addressBook.hasPerson(APPLE));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        assertTrue(addressBook.hasPerson(ALICE));
+        addressBook.addPerson(APPLE);
+        assertTrue(addressBook.hasPerson(APPLE));
     }
 
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        Food editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        addressBook.addPerson(APPLE);
+        Food editedAlice = new FoodBuilder(APPLE).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(addressBook.hasPerson(editedAlice));
     }
 

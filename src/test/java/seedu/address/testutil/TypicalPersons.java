@@ -17,24 +17,24 @@ import seedu.address.model.person.Food;
  */
 public class TypicalPersons {
 
-    public static final Food ALICE = new PersonBuilder().withName("Alice Pauline")
-            .withTags("friends").build();
-    public static final Food BENSON = new PersonBuilder().withName("Benson Meier")
-            .withTags("owesMoney", "friends").build();
-    public static final Food CARL = new PersonBuilder().withName("Carl Kurz").build();
-    public static final Food DANIEL = new PersonBuilder().withName("Daniel Meier")
-            .withTags("friends").build();
-    public static final Food ELLE = new PersonBuilder().withName("Elle Meyer").build();
-    public static final Food FIONA = new PersonBuilder().withName("Fiona Kunz").build();
-    public static final Food GEORGE = new PersonBuilder().withName("George Best").build();
+    public static final Food APPLE = new FoodBuilder().withName("Apple")
+            .withTags("breakfast").build();
+    public static final Food BREAD = new FoodBuilder().withName("Bread")
+            .withTags("lunch").build();
+    public static final Food CARBONARA = new FoodBuilder().withName("Carbonara")
+            .withTags("dinner").build();
+    public static final Food DRAGON_FRUIT = new FoodBuilder().withName("Dragon fruit").build();
+    public static final Food EGG_SOUP = new FoodBuilder().withName("Egg soup").build();
+    public static final Food FISHCAKE = new FoodBuilder().withName("Fishcake").build();
+    public static final Food GRAPES = new FoodBuilder().withName("Grapes").build();
 
     // Manually added
-    public static final Food HOON = new PersonBuilder().withName("Hoon Meier").build();
-    public static final Food IDA = new PersonBuilder().withName("Ida Mueller").build();
+    public static final Food HOON = new FoodBuilder().withName("Hoon Meier").build();
+    public static final Food IDA = new FoodBuilder().withName("Ida Mueller").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
-    public static final Food AMY = new PersonBuilder().withName(VALID_NAME_AMY).withTags(VALID_TAG_FRIEND).build();
-    public static final Food BOB = new PersonBuilder().withName(VALID_NAME_BOB)
+    public static final Food AMY = new FoodBuilder().withName(VALID_NAME_AMY).withTags(VALID_TAG_FRIEND).build();
+    public static final Food BOB = new FoodBuilder().withName(VALID_NAME_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 
@@ -54,6 +54,6 @@ public class TypicalPersons {
     }
 
     public static List<Food> getTypicalPersons() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(APPLE, BREAD, CARBONARA, DRAGON_FRUIT, EGG_SOUP, FISHCAKE, GRAPES));
     }
 }
