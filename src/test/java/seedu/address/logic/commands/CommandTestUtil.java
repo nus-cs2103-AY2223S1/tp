@@ -38,8 +38,8 @@ public class CommandTestUtil {
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
-    public static final String PHONE_LESSON_PLAN_AMY = " " + PREFIX_LESSON_PLAN + VALID_LESSON_PLAN_AMY;
-    public static final String PHONE_LESSON_PLAN_BOB = " " + PREFIX_LESSON_PLAN + VALID_LESSON_PLAN_BOB;
+    public static final String LESSON_PLAN_DESC_AMY = " " + PREFIX_LESSON_PLAN + VALID_LESSON_PLAN_AMY;
+    public static final String LESSON_PLAN_DESC_BOB = " " + PREFIX_LESSON_PLAN + VALID_LESSON_PLAN_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
