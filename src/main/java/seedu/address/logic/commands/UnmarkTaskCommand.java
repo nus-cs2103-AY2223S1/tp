@@ -13,7 +13,7 @@ import seedu.address.model.task.Task;
 /**
  * Marks a task in the tasklist as incomplete.
  */
-public class UnmarkTCommand extends Command {
+public class UnmarkTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "unmarkT";
 
@@ -26,7 +26,7 @@ public class UnmarkTCommand extends Command {
 
     private final Index targetIndex;
 
-    public UnmarkTCommand(Index targetIndex) {
+    public UnmarkTaskCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -47,7 +47,7 @@ public class UnmarkTCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this
-                || (other instanceof UnmarkTCommand
-                && targetIndex.equals(((UnmarkTCommand) other).targetIndex));
+                || (other instanceof UnmarkTaskCommand
+                && targetIndex.equals(((UnmarkTaskCommand) other).targetIndex));
     }
 }

@@ -13,7 +13,7 @@ import seedu.address.model.task.Task;
 /**
  * Marks a task in the tasklist as completed.
  */
-public class MarkTCommand extends Command {
+public class MarkTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "markT";
 
@@ -26,7 +26,7 @@ public class MarkTCommand extends Command {
 
     private final Index targetIndex;
 
-    public MarkTCommand(Index targetIndex) {
+    public MarkTaskCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -47,7 +47,7 @@ public class MarkTCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this
-                || (other instanceof MarkTCommand
-                && targetIndex.equals(((MarkTCommand) other).targetIndex));
+                || (other instanceof MarkTaskCommand
+                && targetIndex.equals(((MarkTaskCommand) other).targetIndex));
     }
 }
