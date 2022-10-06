@@ -29,7 +29,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                PREFIX_ADDRESS, PREFIX_MONEY_OWED, PREFIX_MONEY_PAID, PREFIX_ADDITIONAL_NOTES, PREFIX_CLASS_DATE_TIME);
+                PREFIX_ADDRESS, PREFIX_CLASS_DATE_TIME, PREFIX_MONEY_OWED, PREFIX_MONEY_PAID, PREFIX_ADDITIONAL_NOTES);
 
         Index index;
 
@@ -52,7 +52,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
-
+        if (argMultimap.getValue(PREFIX_CLASS_DATE_TIME).isPresent()) {
+            editPersonDescriptor.setClass(ParserUtil.parseClass(argMultimap.getValue(PREFIX_CLASS_DATE_TIME).get()));
+        }
         if (argMultimap.getValue(PREFIX_MONEY_OWED).isPresent()) {
             editPersonDescriptor.setMoneyOwed(ParserUtil.parseMoneyOwed(argMultimap.getValue(PREFIX_MONEY_OWED).get()));
         }
@@ -62,9 +64,6 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_ADDITIONAL_NOTES).isPresent()) {
             editPersonDescriptor.setAdditionalNotes(ParserUtil.parseAdditionalNotes(argMultimap
                     .getValue(PREFIX_ADDITIONAL_NOTES).get()));
-        }
-        if (argMultimap.getValue(PREFIX_CLASS_DATE_TIME).isPresent()) {
-            editPersonDescriptor.setClass(ParserUtil.parseClass(argMultimap.getValue(PREFIX_CLASS_DATE_TIME).get()));
         }
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {

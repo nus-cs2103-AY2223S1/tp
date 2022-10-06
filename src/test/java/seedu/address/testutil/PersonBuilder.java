@@ -120,14 +120,6 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Class} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withClass(String classDateTime) throws ParseException {
-        this.aClass = ParserUtil.parseClass(classDateTime);
-        return this;
-    }
-
-    /**
      * Returns Person object with the fields initialised.
      * @return Person object.
      */

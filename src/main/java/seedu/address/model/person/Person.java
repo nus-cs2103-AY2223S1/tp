@@ -144,7 +144,7 @@ public class Person {
                 .append("; Address: ")
                 .append(getAddress())
                 .append("; Class Date: ")
-                .append(getAClass().classToString)
+                .append(getAClass().toString())
                 .append("; Money Owed: ")
                 .append(getMoneyOwed())
                 .append("; Money Paid: ")

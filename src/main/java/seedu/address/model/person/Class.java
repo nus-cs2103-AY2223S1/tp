@@ -27,7 +27,6 @@ public class Class {
     public final LocalTime endTime;
 
     public final String classDateTime; //User input eg. 2022-05-05 1200-1500
-    public final String classToString; //formatted date eg. 5 May 2022 12PM-3PM
 
     /**
      * Constructs a {@code Class}.
@@ -39,7 +38,6 @@ public class Class {
         this.startTime = null;
         this.endTime = null;
         this.classDateTime = "";
-        this.classToString = "";
     }
 
     /**
@@ -53,19 +51,19 @@ public class Class {
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.classToString = convertToString(date, startTime, endTime);
         this.classDateTime = classDateTime;
     }
 
     /**
      * Returns a formatted date and time.
      *
-     * @param date LocalDate object.
-     * @param startTime LocalTime object.
-     * @param endTime LocalTime object.
      * @return String.
      */
-    public static String convertToString(LocalDate date, LocalTime startTime, LocalTime endTime) {
+    public String toString() {
+        if (date.equals(null)) {
+            //Tutor yet to edit in a class date.
+            return "";
+        }
         return convertToDateString(date) + " " + convertToTimeString(startTime, endTime);
     }
 
@@ -75,7 +73,7 @@ public class Class {
      * @param date LocalDate object.
      * @return String.
      */
-    public static String convertToDateString(LocalDate date) {
+    private static String convertToDateString(LocalDate date) {
         return date.format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
     }
 
@@ -86,55 +84,35 @@ public class Class {
      * @param endTime LocalTime object.
      * @return String.
      */
-    public static String convertToTimeString(LocalTime startTime, LocalTime endTime) {
+    private static String convertToTimeString(LocalTime startTime, LocalTime endTime) {
         String time = "";
         int startHour = startTime.getHour();
         int startMin = startTime.getMinute();
         int endHour = endTime.getHour();
         int endMin = endTime.getMinute();
-        if (startHour >= 12) {
-            if (startHour != 12) {
-                startHour -= 12;
+        return convertTime(startHour, startMin) + "-" + convertTime(endHour, endMin);
+    }
+
+    private static String convertTime(int hour, int min) {
+        String time = "";
+        if (hour >= 12) {
+            if (hour !=12) {
+                hour -= 12;
             }
-            if (startMin == 0) {
-                time += startHour + "PM";
-            } else if (startMin < 10) {
-                //Pad with zero
-                time += startHour + ".0" + startMin + "PM";
+            if (min == 0) {
+                time += hour + "PM";
+            } else if (min < 10) {
+                time += hour + ".0" + min + "PM";
             } else {
-                time += startHour + "." + startMin + "PM";
+                time += hour + "." + min + "PM";
             }
         } else {
-            if (startMin == 0) {
-                time += startHour + "AM";
-            } else if (startMin < 10) {
-                //Pad with zero
-                time += startHour + ".0" + startMin + "AM";
+            if (min == 0) {
+                time += hour + "AM";
+            } else if (min < 10) {
+                time += hour + ".0" + min + "AM";
             } else {
-                time += startHour + "." + startMin + "AM";
-            }
-        }
-        time += "-";
-        if (endHour >= 12) {
-            if (endHour != 12) {
-                endHour -= 12;
-            }
-            if (endMin == 0) {
-                time += endHour + "PM";
-            } else if (endMin < 10) {
-                //Pad with zero
-                time += endHour + ".0" + endMin + "PM";
-            } else {
-                time += endHour + "." + endMin + "PM";
-            }
-        } else {
-            if (endMin == 0) {
-                time += endHour + "AM";
-            } else if (endMin < 10) {
-                //Pad with zero
-                time += endHour + ".0" + endMin + "AM";
-            } else {
-                time += endHour + "." + endMin + "AM";
+                time += hour + "." + min + "AM";
             }
         }
         return time;
@@ -157,9 +135,6 @@ public class Class {
 
         return isValidDatetimeString(datetimeStr) && isValidTimeString(startTimeStr) && isValidTimeString(endTimeStr);
     }
-
-
-
 
     /**
      * Validates {@code date}.

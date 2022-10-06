@@ -1,6 +1,8 @@
 package seedu.address.testutil;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.AdditionalNotes;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -34,6 +36,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
+        descriptor.setClass(person.getAClass());
         descriptor.setMoneyOwed(person.getMoneyOwed());
         descriptor.setMoneyPaid(person.getMoneyPaid());
         descriptor.setAdditionalNotes(person.getAdditionalNotes());
@@ -79,6 +82,11 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
+    public EditPersonDescriptorBuilder withClass(String classDateTime) throws ParseException {
+        descriptor.setClass(ParserUtil.parseClass(classDateTime));
+        return this;
+    }
+
     /**
      * Sets the {@code moneyPaid} of the {@code EditPersonDescriptor} that we are building.
      */
@@ -98,4 +106,5 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptor build() {
         return descriptor;
     }
+
 }

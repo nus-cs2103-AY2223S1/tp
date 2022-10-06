@@ -58,7 +58,7 @@ public class PersonCard extends UiPart<Region> {
         nokPhone.setText("TODO");
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        classDetails.setText(person.getAClass().classToString);
+        classDetails.setText(person.getAClass().toString());
         moneyOwed.setText(person.getMoneyOwed().toString());
         moneyPaid.setText(person.getMoneyPaid().toString());
         additionalNotes.setText(person.getAdditionalNotes().notes);

@@ -104,11 +104,14 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
-        final AdditionalNotes modelAdditionalNotes;
-        if (additionalNotes != null) {
-            modelAdditionalNotes = new AdditionalNotes(additionalNotes);
+        final Class modelClassDateTime;
+        if (!classDateTime.equals(null) && !classDateTime.equals("")) {
+            if (!Class.isValidClassString(classDateTime)) {
+                throw new IllegalValueException(Class.MESSAGE_CONSTRAINTS);
+            }
+            modelClassDateTime = ParserUtil.parseClass(classDateTime);
         } else {
-            modelAdditionalNotes = new AdditionalNotes("");
+            modelClassDateTime = new Class("");
         }
 
         final MoneyOwed modelMoneyOwed;
@@ -131,14 +134,11 @@ class JsonAdaptedPerson {
             modelMoneyPaid = new MoneyPaid(0);
         }
 
-        final Class modelClassDateTime;
-        if (!classDateTime.equals(null) && !classDateTime.equals("")) {
-            if (!Class.isValidClassString(classDateTime)) {
-                throw new IllegalValueException(Class.MESSAGE_CONSTRAINTS);
-            }
-            modelClassDateTime = ParserUtil.parseClass(classDateTime);
+        final AdditionalNotes modelAdditionalNotes;
+        if (additionalNotes != null) {
+            modelAdditionalNotes = new AdditionalNotes(additionalNotes);
         } else {
-            modelClassDateTime = new Class("");
+            modelAdditionalNotes = new AdditionalNotes("");
         }
 
         return new Person(modelName, modelPhone, modelEmail, modelAddress,

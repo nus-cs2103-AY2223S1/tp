@@ -155,18 +155,18 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setClass(toCopy.classDateTime);
             setMoneyOwed(toCopy.moneyOwed);
             setMoneyPaid(toCopy.moneyPaid);
             setAdditionalNotes(toCopy.additionalNotes);
-            setClass(toCopy.classDateTime);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, moneyOwed, moneyPaid, additionalNotes,
-                    classDateTime);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, classDateTime, moneyOwed, moneyPaid,
+                    additionalNotes);
         }
 
         public void setName(Name name) {

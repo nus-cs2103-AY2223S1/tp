@@ -43,8 +43,6 @@ public class TypicalPersons {
             .withEmail("lydia@example.com").withAddress("little tokyo")
             .withAdditionalNotes("Remind student to submit homework").build();
 
-    public static final Person GEORGE = constructGeorge();
-
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
             .withEmail("stefan@example.com").withAddress("little india")
@@ -60,27 +58,14 @@ public class TypicalPersons {
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
             .withAdditionalNotes("").build();
+    public static final Person GEORGE =  new PersonBuilder().withName("George Best").withPhone("9482442")
+            .withEmail("anna@example.com").withAddress("4th street")
+            .withAdditionalNotes("Remind student to submit homework").build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalPersons() {} // prevents instantiation
 
-    /**
-     * Returns a Person object with fields initialised.
-     *
-     * @return Person object.
-     */
-    public static Person constructGeorge() {
-        try {
-            return new PersonBuilder().withName("George Best").withPhone("9482442")
-                    .withEmail("anna@example.com").withAddress("4th street")
-                    .withAdditionalNotes("Remind student to submit homework")
-                    .withClass("2022-05-29 1000-1200").build();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
     /**
      * Returns an {@code AddressBook} with all the typical persons.
      */
