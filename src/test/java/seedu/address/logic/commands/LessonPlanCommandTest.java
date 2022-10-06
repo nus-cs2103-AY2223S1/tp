@@ -67,7 +67,8 @@ class LessonPlanCommandTest {
         Person editedPerson = new PersonBuilder(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()))
                 .withLessonPlan(LESSON_PLAN_STUB).build();
 
-        LessonPlanCommand lessonPlanCommand = new LessonPlanCommand(INDEX_FIRST_PERSON, new LessonPlan(editedPerson.getLessonPlan().value));
+        LessonPlanCommand lessonPlanCommand = new LessonPlanCommand(
+                INDEX_FIRST_PERSON, new LessonPlan(editedPerson.getLessonPlan().value));
 
         String expectedMessage = String.format(LessonPlanCommand.MESSAGE_ADD_LESSON_PLAN_SUCCESS, editedPerson);
 
@@ -80,7 +81,8 @@ class LessonPlanCommandTest {
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        LessonPlanCommand lessonPlanCommand = new LessonPlanCommand(outOfBoundIndex, new LessonPlan(VALID_LESSON_PLAN_BOB));
+        LessonPlanCommand lessonPlanCommand = new LessonPlanCommand(
+                outOfBoundIndex, new LessonPlan(VALID_LESSON_PLAN_BOB));
 
         assertCommandFailure(lessonPlanCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
@@ -96,7 +98,8 @@ class LessonPlanCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
-        LessonPlanCommand lessonPlanCommand = new LessonPlanCommand(outOfBoundIndex, new LessonPlan(VALID_LESSON_PLAN_BOB));
+        LessonPlanCommand lessonPlanCommand = new LessonPlanCommand(
+                outOfBoundIndex, new LessonPlan(VALID_LESSON_PLAN_BOB));
         assertCommandFailure(lessonPlanCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 

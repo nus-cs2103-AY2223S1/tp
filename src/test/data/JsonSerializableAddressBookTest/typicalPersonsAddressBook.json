@@ -33,12 +33,13 @@
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
+    "lessonPlan" : "Higher chinese",
     "homework": [ ],
     "tagged" : [ ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
-    "lessonPlan" : "Higher chinese",
+    "lessonPlan" : "Javascript",
     "homework": [ ],
     "tagged" : [ ]
   } ]
