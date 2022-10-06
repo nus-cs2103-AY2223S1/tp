@@ -15,7 +15,6 @@ import foodwhere.model.stall.Address;
 import foodwhere.model.stall.Name;
 import foodwhere.model.stall.Phone;
 import foodwhere.model.stall.Stall;
-import foodwhere.storage.JsonAdaptedDetail;
 
 /**
  * Jackson-friendly version of {@link Stall}.

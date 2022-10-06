@@ -8,13 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
 
 import foodwhere.commons.exceptions.IllegalValueException;
 import foodwhere.model.stall.Address;
 import foodwhere.model.stall.Name;
-import foodwhere.model.stall.Phone;
 
 public class JsonAdaptedStallTest {
     private static final String INVALID_NAME = "R@chel";
@@ -64,7 +62,8 @@ public class JsonAdaptedStallTest {
     public void toModelType_nullAddress_throwsIllegalValueException() {
         JsonAdaptedStall stall = new JsonAdaptedStall(VALID_NAME, VALID_PHONE,
                 null, VALID_TAGS, new ArrayList<JsonAdaptedStall>());
-        String expectedMessage = String.format(JsonAdaptedStall.MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
+        String expectedMessage = String.format(JsonAdaptedStall.MISSING_FIELD_MESSAGE_FORMAT,
+                Address.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, stall::toModelType);
     }
 
