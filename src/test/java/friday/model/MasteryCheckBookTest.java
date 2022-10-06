@@ -22,7 +22,7 @@ import javafx.collections.ObservableList;
 
 public class MasteryCheckBookTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final Friday addressBook = new Friday();
 
     @Test
     public void constructor() {
@@ -36,7 +36,7 @@ public class MasteryCheckBookTest {
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = TypicalStudents.getTypicalAddressBook();
+        Friday newData = TypicalStudents.getTypicalAddressBook();
         addressBook.resetData(newData);
         assertEquals(newData, addressBook);
     }
@@ -88,7 +88,7 @@ public class MasteryCheckBookTest {
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class AddressBookStub implements ReadOnlyFriday {
         private final ObservableList<Student> students = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Student> students) {

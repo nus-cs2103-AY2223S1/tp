@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import friday.model.AddressBook;
+import friday.model.Friday;
 import friday.model.student.Student;
 
 /**
@@ -72,8 +72,8 @@ public class TypicalStudents {
     /**
      * Returns an {@code AddressBook} with all the typical persons.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static Friday getTypicalAddressBook() {
+        Friday ab = new Friday();
         for (Student student : getTypicalPersons()) {
             ab.addPerson(student);
         }

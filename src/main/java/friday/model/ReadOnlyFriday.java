@@ -4,9 +4,9 @@ import friday.model.student.Student;
 import javafx.collections.ObservableList;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of FRIDAY.
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyFriday {
 
     /**
      * Returns an unmodifiable view of the persons list.

@@ -16,7 +16,7 @@ import java.util.List;
 
 import friday.commons.core.index.Index;
 import friday.logic.commands.exceptions.CommandException;
-import friday.model.AddressBook;
+import friday.model.Friday;
 import friday.model.Model;
 import friday.model.student.NameContainsKeywordsPredicate;
 import friday.model.student.Student;
@@ -107,11 +107,11 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        Friday expectedAddressBook = new Friday(actualModel.getFriday());
         List<Student> expectedFilteredList = new ArrayList<>(actualModel.getFilteredStudentList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedAddressBook, actualModel.getFriday());
         assertEquals(expectedFilteredList, actualModel.getFilteredStudentList());
     }
     /**

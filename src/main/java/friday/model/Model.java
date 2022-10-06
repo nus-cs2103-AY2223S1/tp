@@ -35,25 +35,25 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' FRIDAY file path.
      */
-    Path getAddressBookFilePath();
+    Path getFridayFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' FRIDAY file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setFridayFilePath(Path fridayFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces FRIDAY's data with the data in {@code friday}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setFriday(ReadOnlyFriday friday);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns FRIDAY */
+    ReadOnlyFriday getFriday();
 
     /**
-     * Returns true if a person with the same identity as {@code student} exists in FRIDAY.
+     * Returns true if a student with the same identity as {@code student} exists in FRIDAY.
      */
     boolean hasStudent(Student student);
 
