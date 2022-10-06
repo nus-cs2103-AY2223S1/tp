@@ -19,6 +19,7 @@ import paymelah.commons.core.index.Index;
 import paymelah.commons.util.CollectionUtil;
 import paymelah.logic.commands.exceptions.CommandException;
 import paymelah.model.Model;
+import paymelah.model.debt.DebtList;
 import paymelah.model.person.Address;
 import paymelah.model.person.Email;
 import paymelah.model.person.Name;
@@ -98,8 +99,9 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        DebtList updatedDebts = personToEdit.getDebts(); // edit command does not allow editing debts
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedDebts);
     }
 
     @Override
