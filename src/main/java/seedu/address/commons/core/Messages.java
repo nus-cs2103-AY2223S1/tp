@@ -10,7 +10,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_NAME = "The person name provided has no match";
     public static final String MESSAGE_MULTIPLE_PERSON_DISPLAYED_NAME = "The person name provided matches multiple"
-            + " entries! Please delete by index instead.";
+            + " entries! Please delete by index instead or enter their full name.";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
 
 }
