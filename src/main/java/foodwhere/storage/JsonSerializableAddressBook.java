@@ -26,7 +26,8 @@ class JsonSerializableAddressBook {
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given stalls.
      */
-    @JsonCreator public JsonSerializableAddressBook(@JsonProperty("stalls") List<JsonAdaptedStall> stalls) {
+    @JsonCreator
+    public JsonSerializableAddressBook(@JsonProperty("stalls") List<JsonAdaptedStall> stalls) {
         this.stalls.addAll(stalls);
     }
 
