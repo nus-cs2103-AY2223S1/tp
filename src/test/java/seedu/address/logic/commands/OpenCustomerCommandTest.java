@@ -75,24 +75,24 @@ public class OpenCustomerCommandTest {
 
     @Test
     public void equals() {
-        OpenCustomerCommand OpenFirstCommand = new OpenCustomerCommand(INDEX_FIRST_CUSTOMER);
-        OpenCustomerCommand OpenSecondCommand = new OpenCustomerCommand(INDEX_SECOND_CUSTOMER);
+        OpenCustomerCommand openFirstCommand = new OpenCustomerCommand(INDEX_FIRST_CUSTOMER);
+        OpenCustomerCommand openSecondCommand = new OpenCustomerCommand(INDEX_SECOND_CUSTOMER);
 
         // same object -> returns true
-        assertTrue(OpenFirstCommand.equals(OpenFirstCommand));
+        assertTrue(openFirstCommand.equals(openFirstCommand));
 
         // same values -> returns true
         OpenCustomerCommand deleteFirstCommandCopy = new OpenCustomerCommand(INDEX_FIRST_CUSTOMER);
-        assertTrue(OpenFirstCommand.equals(deleteFirstCommandCopy));
+        assertTrue(openFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
-        assertFalse(OpenFirstCommand.equals(1));
+        assertFalse(openFirstCommand.equals(1));
 
         // null -> returns false
-        assertFalse(OpenFirstCommand.equals(null));
+        assertFalse(openFirstCommand.equals(null));
 
         // different customer -> returns false
-        assertFalse(OpenFirstCommand.equals(OpenSecondCommand));
+        assertFalse(openFirstCommand.equals(openSecondCommand));
     }
 
     /**
