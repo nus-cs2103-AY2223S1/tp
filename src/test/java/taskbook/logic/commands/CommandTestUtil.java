@@ -33,7 +33,7 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_DESCRIPTION_WORK = "work";
-    public static final String VALID_DESCRIPTION_EAT = "eat";
+    public static final String VALID_DESCRIPTION_STUDY = "study";
 
     public static final String NAME_DESC_AMY = " " + CliSyntax.PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + CliSyntax.PREFIX_NAME + VALID_NAME_BOB;
@@ -46,7 +46,7 @@ public class CommandTestUtil {
     public static final String TAG_DESC_FRIEND = " " + CliSyntax.PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + CliSyntax.PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String DESCRIPTION_DESC_WORK = " " + CliSyntax.PREFIX_DESCRIPTION + VALID_DESCRIPTION_WORK;
-    public static final String DESCRIPTION_DESC_EAT = " " + CliSyntax.PREFIX_DESCRIPTION + VALID_DESCRIPTION_EAT;
+    public static final String DESCRIPTION_DESC_STUDY = " " + CliSyntax.PREFIX_DESCRIPTION + VALID_DESCRIPTION_STUDY;
     public static final String ASSIGN_FROM_DESC_AMY = " " + CliSyntax.PREFIX_ASSIGN_FROM + VALID_NAME_AMY;
     public static final String ASSIGN_FROM_DESC_BOB = " " + CliSyntax.PREFIX_ASSIGN_FROM + VALID_NAME_BOB;
     public static final String ASSIGN_TO_DESC_AMY = " " + CliSyntax.PREFIX_ASSIGN_TO + VALID_NAME_AMY;

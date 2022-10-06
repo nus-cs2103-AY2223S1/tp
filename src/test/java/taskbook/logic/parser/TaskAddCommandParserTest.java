@@ -4,12 +4,12 @@ import static taskbook.logic.commands.CommandTestUtil.ASSIGN_FROM_DESC_AMY;
 import static taskbook.logic.commands.CommandTestUtil.ASSIGN_FROM_DESC_BOB;
 import static taskbook.logic.commands.CommandTestUtil.ASSIGN_TO_DESC_AMY;
 import static taskbook.logic.commands.CommandTestUtil.ASSIGN_TO_DESC_BOB;
-import static taskbook.logic.commands.CommandTestUtil.DESCRIPTION_DESC_EAT;
+import static taskbook.logic.commands.CommandTestUtil.DESCRIPTION_DESC_STUDY;
 import static taskbook.logic.commands.CommandTestUtil.DESCRIPTION_DESC_WORK;
 import static taskbook.logic.commands.CommandTestUtil.INVALID_ASSIGN_FROM_DESC;
 import static taskbook.logic.commands.CommandTestUtil.INVALID_ASSIGN_TO_DESC;
 import static taskbook.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static taskbook.logic.commands.CommandTestUtil.VALID_DESCRIPTION_EAT;
+import static taskbook.logic.commands.CommandTestUtil.VALID_DESCRIPTION_STUDY;
 import static taskbook.logic.commands.CommandTestUtil.VALID_DESCRIPTION_WORK;
 import static taskbook.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static taskbook.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -33,7 +33,7 @@ public class TaskAddCommandParserTest {
         Name expectedNameAmy = new Name(VALID_NAME_AMY);
         Name expectedNameBob = new Name(VALID_NAME_BOB);
         Description expectedDescriptionWork = new Description(VALID_DESCRIPTION_WORK);
-        Description expectedDescriptionEat = new Description(VALID_DESCRIPTION_EAT);
+        Description expectedDescriptionEat = new Description(VALID_DESCRIPTION_STUDY);
         Assignment expectedAssignmentFrom = Assignment.FROM;
         Assignment expectedAssignmentTo = Assignment.TO;
 
@@ -53,10 +53,10 @@ public class TaskAddCommandParserTest {
                 new TaskAddCommand(expectedNameBob, expectedDescriptionWork, expectedAssignmentTo));
 
         // multiple descriptions - last description accepted
-        assertParseSuccess(parser, ASSIGN_FROM_DESC_AMY + DESCRIPTION_DESC_WORK + DESCRIPTION_DESC_EAT,
+        assertParseSuccess(parser, ASSIGN_FROM_DESC_AMY + DESCRIPTION_DESC_WORK + DESCRIPTION_DESC_STUDY,
                 new TaskAddCommand(expectedNameAmy, expectedDescriptionEat, expectedAssignmentFrom));
 
-        assertParseSuccess(parser, ASSIGN_TO_DESC_AMY + DESCRIPTION_DESC_WORK + DESCRIPTION_DESC_EAT,
+        assertParseSuccess(parser, ASSIGN_TO_DESC_AMY + DESCRIPTION_DESC_WORK + DESCRIPTION_DESC_STUDY,
                 new TaskAddCommand(expectedNameAmy, expectedDescriptionEat, expectedAssignmentTo));
     }
 

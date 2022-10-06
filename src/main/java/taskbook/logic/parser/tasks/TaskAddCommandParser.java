@@ -1,5 +1,6 @@
 package taskbook.logic.parser.tasks;
 
+import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 import taskbook.commons.core.Messages;
@@ -20,6 +21,16 @@ import taskbook.model.task.enums.Assignment;
  */
 public class TaskAddCommandParser implements Parser<TaskAddCommand> {
 
+    // Note: the space at the start of the arguments is necessary due to ArgumentTokenizer behavior.
+    private static final Pattern ASSIGN_TO_COMMAND_FORMAT =
+            Pattern.compile(String.format("\\s+%s.*",CliSyntax.PREFIX_ASSIGN_TO.getPrefix()));
+
+    // Note: the space at the start of the arguments is necessary due to ArgumentTokenizer behavior.
+    private static final Pattern ASSIGN_FROM_COMMAND_FORMAT =
+            Pattern.compile(String.format("\\s+%s.*",CliSyntax.PREFIX_ASSIGN_FROM.getPrefix()));
+
+
+
     /**
      * Parses the given {@code String} of arguments in the context of the TaskAddCommand
      * and returns an TaskAddCommand object for execution.
@@ -27,13 +38,12 @@ public class TaskAddCommandParser implements Parser<TaskAddCommand> {
      */
     @Override
     public TaskAddCommand parse(String args) throws ParseException {
-        // Note: the space at the start of the arguments is necessary due to ArgumentTokenizer behavior.
-        if (args.trim().startsWith(CliSyntax.PREFIX_ASSIGN_TO.getPrefix())) {
+
+        if (ASSIGN_TO_COMMAND_FORMAT.matcher(args).matches()) {
             return parseWithPrefix(args, CliSyntax.PREFIX_ASSIGN_TO);
         }
 
-        // Note: the space at the start of the arguments is necessary due to ArgumentTokenizer behavior.
-        if (args.trim().startsWith(CliSyntax.PREFIX_ASSIGN_FROM.getPrefix())) {
+        if (ASSIGN_FROM_COMMAND_FORMAT.matcher(args).matches()) {
             return parseWithPrefix(args, CliSyntax.PREFIX_ASSIGN_FROM);
         }
 
