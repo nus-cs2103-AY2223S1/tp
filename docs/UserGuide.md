@@ -120,11 +120,11 @@ Shows a list of all persons in PayMeLah.
 
 Format: `list`
 
-### Listing all debtees : `debtlist`
+### Listing all debtees : `listdebtors`
 
 Shows a list of all persons that owe you money in PayMeLah.
 
-Format: `debtlist`
+Format: `listdebtors`
 
 ### Editing a person : `edit`
 
@@ -138,6 +138,7 @@ Format: `edit <index> [n/<name>] [p/<phone number>] [e/<email>] [a/<address>] [t
 * When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
     specifying any tags after it.
+* Cannot be used to modify a person's debts
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -237,6 +238,6 @@ Action | Format, Examples
 **Find** | `find <keyword> [<more keywords>]`<br> e.g., `find James Jake`
 **Find debts** | `finddebt <keyword> [<more keywords>]`<br> e.g., `finddebt burger`
 **List** | `list`
-**List debtees** | `debtlist`
+**List debtees** | `listdebtors`
 **Get statement** | `statement`
 **Help** | `help`

@@ -2,10 +2,10 @@ package paymelah.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.function.Predicate;
+
 import paymelah.model.Model;
 import paymelah.model.person.Person;
-
-import java.util.function.Predicate;
 
 /**
  * Lists all persons with debts in the address book to the user.
