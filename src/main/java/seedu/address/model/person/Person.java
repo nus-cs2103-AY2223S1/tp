@@ -105,5 +105,16 @@ public abstract class Person {
         return Objects.hash(name, phone, email, gender, tags, location);
     }
 
-
+    /**
+     * Return 1 if this Person's name has higher precedence
+     * lexicographically over the target's name.
+     * 0 if their precedence is the same.
+     * -1 if this Person's name has lower precedence
+     * over the target's name.
+     * @param person target Person of comparison.
+     * @return int.
+     */
+    public int compareNameLexicographically(Person person) {
+        return this.name.toString().compareTo(person.name.toString());
+    }
 }

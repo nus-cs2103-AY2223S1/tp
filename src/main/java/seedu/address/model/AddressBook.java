@@ -95,6 +95,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     //// util methods
 
+    public void sortLexicographical() {
+        persons.sortLexicographical();
+    }
     @Override
     public String toString() {
         return persons.asUnmodifiableObservableList().size() + " persons";
@@ -105,6 +108,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
     }
+
+
 
     @Override
     public boolean equals(Object other) {
