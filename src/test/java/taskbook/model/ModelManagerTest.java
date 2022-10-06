@@ -1,9 +1,5 @@
 package taskbook.model;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
@@ -16,6 +12,8 @@ import taskbook.model.person.NameContainsKeywordsPredicate;
 import taskbook.testutil.AddressBookBuilder;
 import taskbook.testutil.Assert;
 import taskbook.testutil.TypicalPersons;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ModelManagerTest {
 
@@ -88,8 +86,23 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void findPerson_nullName_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> modelManager.findPerson(null));
+    }
+
+    @Test
+    public void findPerson_personNotInAddressBook_returnsNull() {
+        assertNull(modelManager.findPerson(TypicalPersons.ALICE.getName()));
+    }
+
+    @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         Assert.assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void getFilteredTaskList_modifyList_throwsUnsupportedOperationException() {
+        Assert.assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredTaskList().remove(0));
     }
 
     @Test
