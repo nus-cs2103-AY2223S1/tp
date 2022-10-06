@@ -2,7 +2,6 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -18,14 +17,14 @@ public class Person {
 
     private final Name name;
     private final Name module;
-    private final LocalDate deadline;
+    private final Deadline deadline;
     private final Set<Tag> tags = new HashSet<>();
     private final boolean isDone = false;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Name module, LocalDate deadline, Set<Tag> tags) {
+    public Person(Name name, Name module, Deadline deadline, Set<Tag> tags) {
         requireAllNonNull(name, module, deadline, tags);
         this.name = name;
         this.module = module;
@@ -41,7 +40,7 @@ public class Person {
         return module;
     }
 
-    public LocalDate getDeadline() {
+    public Deadline getDeadline() {
         return deadline;
     }
 
@@ -97,5 +96,13 @@ public class Person {
 
         builder.append("; Done: ").append(isDone);
         return builder.toString();
+    }
+
+    /**
+     * Temporary method while morphing Person into Task.
+     * TODO: Delete
+     */
+    public boolean isSamePerson(Person person) {
+        return false;
     }
 }
