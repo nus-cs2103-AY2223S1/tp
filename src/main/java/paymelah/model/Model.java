@@ -5,7 +5,6 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import paymelah.commons.core.GuiSettings;
-import paymelah.model.person.Name;
 import paymelah.model.person.Person;
 import paymelah.model.tag.Tag;
 
