@@ -158,13 +158,19 @@ public class Class {
         return isValidDatetimeString(datetimeStr) && isValidTimeString(startTimeStr) && isValidTimeString(endTimeStr);
     }
 
+
+
+
     /**
-     * Helper method to validate {@code date}.
+     * Validates {@code date}.
+     *
+     * @param date String object.
+     * @return True if is valid.
      */
     private static boolean isValidDatetimeString(String date) {
         try {
             LocalDate.parse(date);
-        } catch (DateTimeException de) {
+        } catch (DateTimeException dateTimeException) {
             // text cannot be parsed
             return false;
         }
@@ -172,14 +178,17 @@ public class Class {
     }
 
     /**
-     * Helper method to validate {@code time}.
+     * Validates {@code time}.
+     *
+     * @param time String object.
+     * @return True if is valid.
      */
     private static boolean isValidTimeString(String time) {
         Integer hour = Integer.valueOf(time.substring(0, 2));
         Integer minute = Integer.valueOf(time.substring(2));
         try {
             LocalTime.of(hour, minute);
-        } catch (DateTimeException de) {
+        } catch (DateTimeException dateTimeException) {
             return false;
         }
         return true;
