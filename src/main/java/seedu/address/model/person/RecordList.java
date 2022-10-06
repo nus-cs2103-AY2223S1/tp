@@ -12,6 +12,8 @@ public class RecordList {
     // count of the record list should be accessed through the ArrayList#size() method.
     private final List<Record> recordList;
 
+    public static final String MESSAGE_EMPTY_RECORD_LIST = "Record list is empty!";
+
     /**
      * Constructs a {@code Record List}.
      */
@@ -26,6 +28,31 @@ public class RecordList {
      */
     public List<Record> getRecordList() {
         return this.recordList;
+    }
+
+    /**
+     * Returns a String of the current Record List.
+     *
+     * @return The current list of records, as a String.
+     */
+    public String getAllRecords() {
+        StringBuilder builder = new StringBuilder("");
+
+        if (this.getRecordListCount() == 0) {
+            builder.append(MESSAGE_EMPTY_RECORD_LIST);
+            return builder.toString();
+        }
+
+        int index = 1;
+        for (Record r : this.recordList) {
+            builder.append(index)
+                    .append(". ")
+                    .append(r)
+                    .append("\n");
+            index++;
+        }
+
+        return builder.toString();
     }
 
     /**

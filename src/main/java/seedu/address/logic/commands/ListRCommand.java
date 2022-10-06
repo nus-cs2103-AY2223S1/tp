@@ -19,9 +19,7 @@ public class ListRCommand extends Command{
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_SUCCESS = "Listed all records for: %1$s";
-
-    public static final String MESSAGE_ARGUMENTS = "Index: %1$d";
+    public static final String MESSAGE_SUCCESS = "Here is the list of records:\n";
 
     private final Index targetIndex;
 
@@ -31,8 +29,6 @@ public class ListRCommand extends Command{
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        throw new CommandException(String.format(MESSAGE_ARGUMENTS, targetIndex.getOneBased()));
-        /* To be implemented
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
@@ -41,9 +37,11 @@ public class ListRCommand extends Command{
         }
 
         Person personToListRecords = lastShownList.get(targetIndex.getZeroBased());
-        return new CommandResult(String.format(MESSAGE_SUCCESS, personToListRecords));
+        String recordList = personToListRecords.getRecordList().getAllRecords();
 
-         */
+        System.out.println(MESSAGE_SUCCESS + recordList); // print on CLI
+
+        return new CommandResult(MESSAGE_SUCCESS + recordList); // show list on ResultDisplay
     }
 
     @Override
