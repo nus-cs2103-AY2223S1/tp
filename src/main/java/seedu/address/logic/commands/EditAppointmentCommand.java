@@ -34,7 +34,7 @@ public class EditAppointmentCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_MEDICAL_TEST + "ADDRESS] "
-            + "[" + PREFIX_SLOT + "DATETIME<yyyy-MM-dd hh:mm>] "
+            + "[" + PREFIX_SLOT + "SLOT<yyyy-MM-dd HH:mm>] "
             + "[" + PREFIX_DOCTOR + "DOCTOR] "
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_EMAIL + "johndoe@example.com"
