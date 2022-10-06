@@ -25,7 +25,7 @@ class CustomiseCommandParserTest {
     private CustomiseCommandParser parser = new CustomiseCommandParser();
 
     @Test
-    public void parse_order_validArgs_success() {
+    public void parse_orderValidArgs_success() {
         Attribute[] attributes = new Attribute[]{ADDRESS, TAGS, PHONE, EMAIL};
         ModelManager model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         model.setGuiSettings(new GuiSettings(1000, 500, 300, 100,
@@ -35,7 +35,7 @@ class CustomiseCommandParserTest {
     }
 
     @Test
-    public void parse_order_incompleteArgs_success() {
+    public void parse_orderIncompleteArgs_success() {
         Attribute[] attributes = new Attribute[]{ADDRESS, TAGS, PHONE, EMAIL};
         ModelManager model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         model.setGuiSettings(new GuiSettings(1000, 500, 300, 100,
@@ -85,7 +85,7 @@ class CustomiseCommandParserTest {
     }
 
     @Test
-    public void parse_hide_invalidArgs_throwsParseException() {
+    public void parse_hideInvalidArgs_throwsParseException() {
         ModelManager model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         model.setGuiSettings(new GuiSettings(1000, 500, 300, 100,
                 "ADDRESS>TAGS>PHONE>EMAIL", "ADDRESS,TAGS,PHONE,EMAIL"));
@@ -95,7 +95,7 @@ class CustomiseCommandParserTest {
     }
 
     @Test
-    public void parse_hide_repeatArgs_throwsParseException() {
+    public void parse_hideRepeatArgs_throwsParseException() {
         ModelManager model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         model.setGuiSettings(new GuiSettings(1000, 500, 300, 100,
                 "ADDRESS>TAGS>PHONE>EMAIL", "ADDRESS,TAGS,PHONE,EMAIL"));
@@ -105,7 +105,7 @@ class CustomiseCommandParserTest {
     }
 
     @Test
-    public void parse_show_invalidArgs_throwsParseException() {
+    public void parse_showInvalidArgs_throwsParseException() {
         ModelManager model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         model.setGuiSettings(new GuiSettings(1000, 500, 300, 100,
                 "ADDRESS>TAGS>PHONE>EMAIL", "ADDRESS,TAGS,PHONE,EMAIL"));
@@ -115,7 +115,7 @@ class CustomiseCommandParserTest {
     }
 
     @Test
-    public void parse_show_repeatArgs_throwsParseException() {
+    public void parse_showRepeatArgs_throwsParseException() {
         ModelManager model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         model.setGuiSettings(new GuiSettings(1000, 500, 300, 100,
                 "ADDRESS>TAGS>PHONE>EMAIL", "ADDRESS,TAGS,PHONE,EMAIL"));
@@ -125,19 +125,19 @@ class CustomiseCommandParserTest {
     }
 
     @Test
-    public void parse_order_withoutArgs_throwsParseException() {
+    public void parse_orderWithoutArgs_throwsParseException() {
         assertParseFailure(parser, "order",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, CustomiseCommand.MESSAGE_USAGE));
     }
 
     @Test
-    public void parse_show_withoutArgs_throwsParseException() {
+    public void parse_showWithoutArgs_throwsParseException() {
         assertParseFailure(parser, "show",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, CustomiseCommand.MESSAGE_USAGE));
     }
 
     @Test
-    public void parse_hide_withoutArgs_throwsParseException() {
+    public void parse_hideWithoutArgs_throwsParseException() {
         assertParseFailure(parser, "hide",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, CustomiseCommand.MESSAGE_USAGE));
     }
