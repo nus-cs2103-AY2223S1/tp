@@ -1,18 +1,18 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_COMPANIES;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.company.Address;
-import seedu.address.model.company.Email;
-import seedu.address.model.company.Name;
-import seedu.address.model.company.Phone;
+import seedu.address.model.company.*;
+import seedu.address.model.company.exceptions.CompanyNotFoundException;
 import seedu.address.model.tag.Tag;
 
 /**

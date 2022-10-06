@@ -34,6 +34,8 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
+    public static final String VALID_CREATE_AMY = "AMY MCDONALDS 92313631 test@test.com";
+    public static final String VALID_CREATE_BOB = "BOB KFC 98881231 test2@test.com";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
