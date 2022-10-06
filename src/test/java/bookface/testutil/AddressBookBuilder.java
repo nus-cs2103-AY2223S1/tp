@@ -1,6 +1,6 @@
 package bookface.testutil;
 
-import bookface.model.AddressBook;
+import bookface.model.BookFace;
 import bookface.model.person.Person;
 
 /**
@@ -10,25 +10,25 @@ import bookface.model.person.Person;
  */
 public class AddressBookBuilder {
 
-    private AddressBook addressBook;
+    private BookFace bookFace;
 
     public AddressBookBuilder() {
-        addressBook = new AddressBook();
+        bookFace = new BookFace();
     }
 
-    public AddressBookBuilder(AddressBook addressBook) {
-        this.addressBook = addressBook;
+    public AddressBookBuilder(BookFace bookFace) {
+        this.bookFace = bookFace;
     }
 
     /**
      * Adds a new {@code Person} to the {@code AddressBook} that we are building.
      */
     public AddressBookBuilder withPerson(Person person) {
-        addressBook.addPerson(person);
+        bookFace.addPerson(person);
         return this;
     }
 
-    public AddressBook build() {
-        return addressBook;
+    public BookFace build() {
+        return bookFace;
     }
 }

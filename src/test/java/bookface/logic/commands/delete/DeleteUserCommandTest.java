@@ -1,7 +1,7 @@
 package bookface.logic.commands.delete;
 
 import static bookface.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static bookface.testutil.TypicalPersons.getTypicalAddressBook;
+import static bookface.testutil.TypicalPersons.getTypicalBookFaceData;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -23,7 +23,7 @@ import bookface.testutil.TypicalIndexes;
  */
 public class DeleteUserCommandTest {
 
-    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalBookFaceData(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -32,7 +32,7 @@ public class DeleteUserCommandTest {
 
         String expectedMessage = String.format(DeleteUserCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getBookFace(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
 
         assertCommandSuccess(deleteUserCommand, model, expectedMessage, expectedModel);
@@ -55,7 +55,7 @@ public class DeleteUserCommandTest {
 
         String expectedMessage = String.format(DeleteUserCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getBookFace(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
         showNoPerson(expectedModel);
 
@@ -68,7 +68,7 @@ public class DeleteUserCommandTest {
 
         Index outOfBoundIndex = TypicalIndexes.INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getBookFace().getPersonList().size());
 
         DeleteUserCommand deleteUserCommand = new DeleteUserCommand(outOfBoundIndex);
 
