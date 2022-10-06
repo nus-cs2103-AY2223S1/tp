@@ -19,19 +19,16 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Task;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
 
     private final AddressBook addressBook = new AddressBook();
-    private final Task taskOne = new Task("Task 1");
 
     @Test
     public void constructor() {
         assertEquals(Collections.emptyList(), addressBook.getPersonList());
-        assertEquals(Collections.emptyList(), addressBook.getTaskList());
     }
 
     @Test
@@ -41,7 +38,6 @@ public class AddressBookTest {
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        // TODO: Update test for tasks
         AddressBook newData = getTypicalAddressBook();
         addressBook.resetData(newData);
         assertEquals(newData, addressBook);
@@ -49,13 +45,11 @@ public class AddressBookTest {
 
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
-        // TODO: Update test for tasks
         // Two persons with the same identity fields
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        List<Task> newTasks = Arrays.asList(new Task("Task 1"), new Task("Task 2"));
-        AddressBookStub newData = new AddressBookStub(newPersons, newTasks);
+        AddressBookStub newData = new AddressBookStub(newPersons);
 
         assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
     }
@@ -66,31 +60,22 @@ public class AddressBookTest {
     }
 
     @Test
-    public void hasTask_nullTask_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasTask(null));
-    }
-
-    @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
         assertFalse(addressBook.hasPerson(ALICE));
     }
 
     @Test
-    public void hasTask_taskNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasTask(taskOne));
+    public void hasPerson_personInAddressBook_returnsTrue() {
+        addressBook.addPerson(ALICE);
+        assertTrue(addressBook.hasPerson(ALICE));
     }
 
     @Test
-    public void hasTask_taskInAddressBook_returnsTrue() {
-        addressBook.addTask(taskOne);
-        assertTrue(addressBook.hasTask(taskOne));
-    }
-
-    @Test
-    public void hasTask_taskWithSameDescriptionInAddressBook_returnsTrue() {
-        addressBook.addTask(taskOne);
-        Task duplicateTask = new Task("Task 1");
-        assertTrue(addressBook.hasTask(duplicateTask));
+    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
+        addressBook.addPerson(ALICE);
+        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+                .build();
+        assertTrue(addressBook.hasPerson(editedAlice));
     }
 
     @Test
@@ -103,21 +88,14 @@ public class AddressBookTest {
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
-        private final ObservableList<Task> tasks = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Person> persons, Collection<Task> tasks) {
+        AddressBookStub(Collection<Person> persons) {
             this.persons.setAll(persons);
-            this.tasks.setAll(tasks);
         }
 
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
-        }
-
-        @Override
-        public ObservableList<Task> getTaskList() {
-            return tasks;
         }
     }
 

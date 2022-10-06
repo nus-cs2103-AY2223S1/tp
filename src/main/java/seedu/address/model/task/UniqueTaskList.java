@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.task;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -12,10 +12,10 @@ import seedu.address.model.person.exceptions.DuplicateTaskException;
 import seedu.address.model.person.exceptions.TaskNotFoundException;
 
 /**
- * A list of tasks to be completed by a Person.
+ * A list of tasks to be completed.
  * Supports a minimal set of list operations.
  */
-public class TaskList implements Iterable<Task> {
+public class UniqueTaskList implements Iterable<Task> {
 
     private final ObservableList<Task> internalList = FXCollections.observableArrayList();
     private final ObservableList<Task> internalUnmodifiableList =
@@ -72,7 +72,7 @@ public class TaskList implements Iterable<Task> {
         }
     }
 
-    public void setTasks(TaskList replacement) {
+    public void setTasks(UniqueTaskList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -105,8 +105,8 @@ public class TaskList implements Iterable<Task> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof TaskList // instanceof handles nulls
-                && internalList.equals(((TaskList) other).internalList));
+                || (other instanceof UniqueTaskList // instanceof handles nulls
+                && internalList.equals(((UniqueTaskList) other).internalList));
     }
 
     @Override
