@@ -92,6 +92,7 @@ public class Person {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getLessonPlan().equals(getLessonPlan())
+                && otherPerson.getHomeworkList().equals(getHomeworkList())
                 && otherPerson.getTags().equals(getTags());
     }
 
