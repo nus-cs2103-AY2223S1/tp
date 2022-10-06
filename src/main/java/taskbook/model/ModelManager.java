@@ -1,6 +1,7 @@
-package taskbook.model;
+package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
@@ -8,10 +9,11 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import taskbook.commons.core.GuiSettings;
-import taskbook.commons.core.LogsCenter;
-import taskbook.commons.util.CollectionUtil;
-import taskbook.model.person.Person;
+import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -27,7 +29,7 @@ public class ModelManager implements Model {
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        CollectionUtil.requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
@@ -94,6 +96,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Person findPerson(Name name) {
+        requireNonNull(name);
+        return addressBook.findPerson(name);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }
@@ -106,9 +114,14 @@ public class ModelManager implements Model {
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
-        CollectionUtil.requireAllNonNull(target, editedPerson);
+        requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public void addTask(Task task) {
+        addressBook.addTask(task);
     }
 
     //=========== Filtered Person List Accessors =============================================================
