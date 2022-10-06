@@ -23,11 +23,11 @@ public class TaskAddCommandParser implements Parser<TaskAddCommand> {
 
     // Note: the space at the start of the arguments is necessary due to ArgumentTokenizer behavior.
     private static final Pattern ASSIGN_TO_COMMAND_FORMAT =
-            Pattern.compile(String.format("\\s+%s.*",CliSyntax.PREFIX_ASSIGN_TO.getPrefix()));
+            Pattern.compile(String.format("\\s+%s.*", CliSyntax.PREFIX_ASSIGN_TO.getPrefix()));
 
     // Note: the space at the start of the arguments is necessary due to ArgumentTokenizer behavior.
     private static final Pattern ASSIGN_FROM_COMMAND_FORMAT =
-            Pattern.compile(String.format("\\s+%s.*",CliSyntax.PREFIX_ASSIGN_FROM.getPrefix()));
+            Pattern.compile(String.format("\\s+%s.*", CliSyntax.PREFIX_ASSIGN_FROM.getPrefix()));
 
 
 
