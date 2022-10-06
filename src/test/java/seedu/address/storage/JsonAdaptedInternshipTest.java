@@ -20,7 +20,7 @@ import seedu.address.model.internship.Position;
 
 public class JsonAdaptedInternshipTest {
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_POSITION = "S0ftw@re Engineer";
+    private static final String INVALID_POSITION = " ";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
