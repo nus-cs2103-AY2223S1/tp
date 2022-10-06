@@ -6,15 +6,7 @@ import static paymelah.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import paymelah.logic.commands.AddCommand;
-import paymelah.logic.commands.ClearCommand;
-import paymelah.logic.commands.Command;
-import paymelah.logic.commands.DeleteCommand;
-import paymelah.logic.commands.EditCommand;
-import paymelah.logic.commands.ExitCommand;
-import paymelah.logic.commands.FindCommand;
-import paymelah.logic.commands.HelpCommand;
-import paymelah.logic.commands.ListCommand;
+import paymelah.logic.commands.*;
 import paymelah.logic.parser.exceptions.ParseException;
 
 /**
@@ -61,6 +53,9 @@ public class AddressBookParser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case ClearDebtsCommand.COMMAND_WORD:
+            return new ClearDebtsCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
