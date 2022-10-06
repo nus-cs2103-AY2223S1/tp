@@ -18,6 +18,7 @@ import seedu.address.model.role.Characteristics;
 import seedu.address.model.role.PriceRange;
 import seedu.address.model.tag.Tag;
 
+
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
