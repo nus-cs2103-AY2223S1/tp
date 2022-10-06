@@ -14,7 +14,7 @@ import java.util.List;
 
 import bookface.commons.core.index.Index;
 import bookface.logic.commands.exceptions.CommandException;
-import bookface.model.AddressBook;
+import bookface.model.BookFace;
 import bookface.model.Model;
 import bookface.model.person.NameContainsKeywordsPredicate;
 import bookface.model.person.Person;
@@ -99,11 +99,11 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        BookFace expectedBookFace = new BookFace(actualModel.getBookFace());
         List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedBookFace, actualModel.getBookFace());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
     /**

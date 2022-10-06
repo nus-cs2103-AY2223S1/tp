@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import bookface.logic.commands.CommandTestUtil;
-import bookface.model.AddressBook;
+import bookface.model.BookFace;
 import bookface.model.person.Person;
 
 /**
@@ -53,8 +53,8 @@ public class TypicalPersons {
     /**
      * Returns an {@code AddressBook} with all the typical persons.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static BookFace getTypicalBookFaceData() {
+        BookFace ab = new BookFace();
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);
         }

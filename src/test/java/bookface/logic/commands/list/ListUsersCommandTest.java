@@ -1,7 +1,7 @@
 package bookface.logic.commands.list;
 
 import static bookface.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static bookface.testutil.TypicalPersons.getTypicalAddressBook;
+import static bookface.testutil.TypicalPersons.getTypicalBookFaceData;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,8 +22,8 @@ public class ListUsersCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalBookFaceData(), new UserPrefs());
+        expectedModel = new ModelManager(model.getBookFace(), new UserPrefs());
     }
 
     @Test
