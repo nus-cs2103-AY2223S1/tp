@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import coydir.commons.exceptions.IllegalValueException;
 import coydir.model.AddressBook;
 import coydir.model.ReadOnlyAddressBook;
+import coydir.model.person.EmployeeId;
 import coydir.model.person.Person;
 
 /**
@@ -21,14 +22,17 @@ class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
 
+    private final int maxID;
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
+                                       @JsonProperty("maxID") int maxID) {
         this.persons.addAll(persons);
+        this.maxID = maxID;
     }
 
     /**
@@ -36,8 +40,9 @@ class JsonSerializableAddressBook {
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+    public JsonSerializableAddressBook(ReadOnlyAddressBook source, int maxID) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        this.maxID = maxID;
     }
 
     /**
@@ -46,6 +51,7 @@ class JsonSerializableAddressBook {
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public AddressBook toModelType() throws IllegalValueException {
+        EmployeeId.setCount(maxID);
         AddressBook addressBook = new AddressBook();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
