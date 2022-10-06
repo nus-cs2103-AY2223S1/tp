@@ -150,6 +150,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<TutorialGroup> getFilteredTutorialGroupList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredTutorialGroupList(Predicate<TutorialGroup> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasTutorialGroup(TutorialGroup tutorialGroup) {
             throw new AssertionError("This method should not be called.");
         }

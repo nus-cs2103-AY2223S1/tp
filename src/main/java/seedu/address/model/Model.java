@@ -15,6 +15,8 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Student> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
+    Predicate<TutorialGroup> PREDICATE_SHOW_ALL_TUTORIAL_GROUPS = unused -> true;
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -102,4 +104,15 @@ public interface Model {
      * {@code person} must not already exist in the address book.
      */
     void addTutorialGroup(TutorialGroup tutorialGroup);
+
+    /** Returns an unmodifiable view of the filtered person list */
+    ObservableList<TutorialGroup> getFilteredTutorialGroupList();
+
+
+    /**
+     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredTutorialGroupList(Predicate<TutorialGroup> predicate);
+
 }

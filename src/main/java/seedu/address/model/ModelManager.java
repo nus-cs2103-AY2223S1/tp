@@ -23,6 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
+    private final FilteredList<TutorialGroup> filteredTutorialGroups;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -35,6 +36,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.addressBook.getStudentList());
+        filteredTutorialGroups = new FilteredList<>(this.addressBook.getTutorialGroupList());
     }
 
     public ModelManager() {
@@ -126,7 +128,7 @@ public class ModelManager implements Model {
     @Override
     public void addTutorialGroup(TutorialGroup tutorialGroup) {
         addressBook.addTutorialGroup(tutorialGroup);
-        //updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredTutorialGroupList(PREDICATE_SHOW_ALL_TUTORIAL_GROUPS);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -141,10 +143,23 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<TutorialGroup> getFilteredTutorialGroupList() {
+        return filteredTutorialGroups;
+    }
+
+    @Override
     public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
         filteredStudents.setPredicate(predicate);
     }
+
+    @Override
+    public void updateFilteredTutorialGroupList(Predicate<TutorialGroup> predicate) {
+        requireNonNull(predicate);
+        filteredTutorialGroups.setPredicate(predicate);
+    }
+
+
 
     @Override
     public boolean equals(Object obj) {
