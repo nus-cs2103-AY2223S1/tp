@@ -1,0 +1,39 @@
+{
+  "_comment": "AddressBook save file which contains the same Project values as in TypicalProjects#getTypicalAddressBook()",
+  "projects" : [ {
+    "projectName" : "Alice Pauline",
+    "budget" : "94351253",
+    "deadline" : "2022-01-01",
+    "tagged" : [ "friends" ]
+  }, {
+    "projectName" : "Benson Meier",
+    "budget" : "98765432",
+    "deadline" : "2022-12-28",
+    "tagged" : [ "owesMoney", "friends" ]
+  }, {
+    "projectName" : "Coconut",
+    "budget" : "95352563",
+    "deadline" : "2022-01-10",
+    "tagged" : [ ]
+  }, {
+    "projectName" : "Daniel Meier",
+    "budget" : "87652533",
+    "deadline" : "2022-08-02",
+    "tagged" : [ "friends" ]
+  }, {
+    "projectName" : "Elle Meyer",
+    "budget" : "9482224",
+    "deadline" : "2022-10-05",
+    "tagged" : [ ]
+  }, {
+    "projectName" : "Fiona Kunz",
+    "budget" : "9482427",
+    "deadline" : "2023-09-09",
+    "tagged" : [ ]
+  }, {
+    "projectName" : "George Best",
+    "budget" : "9482442",
+    "deadline" : "2021-10-05",
+    "tagged" : [ ]
+  } ]
+}
