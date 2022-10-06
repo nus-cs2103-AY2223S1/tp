@@ -11,7 +11,7 @@ public class Cap {
     public static final String MESSAGE_CONSTRAINTS =
             "CAPs should consist of a positive numeric value less than or equal to a maximum value, e.g. 4.0/5.0";
     public static final double MINIMUM = 0.0;
-    public static final String SEPARATOR = "/";
+    public static final String CAP_SEPARATOR = "/";
     public final double value;
     public final double maximum;
 
@@ -34,7 +34,7 @@ public class Cap {
      * @param max A maximum value for the CAP.
      */
     public static boolean isValidCap(double cap, double max) {
-        return cap <= max && cap <= MINIMUM;
+        return cap <= max && cap >= MINIMUM;
     }
 
     public double getValue() {
@@ -49,7 +49,7 @@ public class Cap {
     public String toString() {
         String capValue = String.format("%.2f", value);
         String maximumValue = String.format("%.2f", maximum);
-        return capValue + SEPARATOR + maximumValue;
+        return capValue + CAP_SEPARATOR + maximumValue;
     }
 
     @Override
@@ -58,5 +58,10 @@ public class Cap {
                 || (other instanceof Cap
                 && value == ((Cap) other).value
                 && maximum == ((Cap) other).maximum);
+    }
+
+    @Override
+    public int hashCode() {
+        return ((Double) value).hashCode();
     }
 }
