@@ -111,21 +111,24 @@ public class Student {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; TelegramHandle: ")
-                .append(getTelegramHandle());
+        builder.append(getName());
 
+        if (!telegramHandle.isDummyTelegramHandle()) {
+            builder.append("; Telegram handle: ")
+                    .append(getTelegramHandle());
+        }
         if (!consultation.isDummyConsultation()) {
-            builder.append("; Consultation: ")
+            builder.append("; ")
                     .append(getConsultation());
         }
         if (!masteryCheck.isDummyMasteryCheck()) {
-            builder.append("; MasteryCheck: ")
+            builder.append("; ")
                     .append(getMasteryCheck());
         }
-
-        builder.append(" Remark: ")
-                .append(getRemark());
+        if (!remark.isEmpty()) {
+            builder.append(" Remark: ")
+                    .append(getRemark());
+        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

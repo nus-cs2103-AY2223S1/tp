@@ -36,19 +36,18 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TELEGRAMHANDLE, PREFIX_CONSULTATION,
                         PREFIX_MASTERYCHECK);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_TELEGRAMHANDLE, PREFIX_CONSULTATION,
-                PREFIX_MASTERYCHECK)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         TelegramHandle telegramHandle = ParserUtil.parseTelegramHandle(argMultimap
-                .getValue(PREFIX_TELEGRAMHANDLE).get());
+                .getValue(PREFIX_TELEGRAMHANDLE).orElse(""));
         Consultation consultation = ParserUtil.parseConsultation(LocalDate.parse(argMultimap
-                .getValue(PREFIX_CONSULTATION).get()));
+                .getValue(PREFIX_CONSULTATION).orElse("2001-01-01")));
         MasteryCheck masteryCheck = ParserUtil.parseMasteryCheck(LocalDate.parse(argMultimap
-                .getValue(PREFIX_MASTERYCHECK).get()));
+                .getValue(PREFIX_MASTERYCHECK).orElse("2001-01-01")));
         Remark remark = new Remark(""); // add command does not allow adding remarks straight away
 
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));

@@ -64,10 +64,10 @@ fast, FRIDAY can get your contact management tasks done faster than traditional 
 
 Adds a student to FRIDAY, with the given name and Telegram handle. 
 
-Format: `add n/NAME t/TELEGRAM_HANDLE`
+Format: `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The Telegram handle should exclude the '@'.
+The Telegram handle, consultation, and Mastery Check are optional.
 </div>
 
 ### View individual student details: `view`
@@ -116,7 +116,7 @@ Format: `list`
 
 | Action                       | Format                                                                                                        |
 |------------------------------|---------------------------------------------------------------------------------------------------------------|
-| **Add a student**            | `add n/NAME t/TELEGRAM_HANDLE`                                                           |
+| **Add a student**            | `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK]`                                                           |
 | **Delete a student**         | `delete i/INDEX`                                                                                               |
 | **Edit a student's details** | `edit i/INDEX [t/TELEGRAM_HANDLE] [s/STUDENT_NUMBER] [m/MASTERY_CHECK] [c/CONSULTATION] [g/GRADE] [r/REMARK]` |
 | **View all students**        | `list`                                                                                                        |

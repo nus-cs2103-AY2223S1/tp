@@ -58,10 +58,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code telegramHandle} is invalid.
      */
     public static TelegramHandle parseTelegramHandle(String telegramHandle) throws ParseException {
-        if (telegramHandle == null) {
-            return new TelegramHandle("");
-        }
-
+        requireNonNull(telegramHandle);
         String trimmedHandle = telegramHandle.trim();
         if (!TelegramHandle.isValidTelegramHandle(trimmedHandle)) {
             throw new ParseException(TelegramHandle.MESSAGE_CONSTRAINTS);
@@ -76,10 +73,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code address} is invalid.
      */
     public static MasteryCheck parseMasteryCheck(LocalDate desiredDate) throws ParseException {
-        if (desiredDate == null) {
-            return new MasteryCheck(LocalDate.of(0001, 01, 01));
-        }
-
+        requireNonNull(desiredDate);
         String trimmedDate = desiredDate.toString().trim();
         if (!MasteryCheck.isValidMasteryCheck(trimmedDate)) {
             throw new ParseException(MasteryCheck.MESSAGE_CONSTRAINTS);
@@ -95,10 +89,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code email} is invalid.
      */
     public static Consultation parseConsultation(LocalDate desiredDate) throws ParseException {
-        if (desiredDate == null) {
-            return new Consultation(LocalDate.of(0001, 01, 01));
-        }
-
+        requireNonNull(desiredDate);
         String trimmedDate = desiredDate.toString().trim();
         if (!Consultation.isValidConsultation(trimmedDate)) {
             throw new ParseException(Consultation.MESSAGE_CONSTRAINTS);

@@ -15,7 +15,7 @@ public class TelegramHandleTest {
 
     @Test
     public void constructor_invalidPhone_throwsIllegalArgumentException() {
-        String invalidPhone = "";
+        String invalidPhone = ".";
         assertThrows(IllegalArgumentException.class, () -> new TelegramHandle(invalidPhone));
     }
 

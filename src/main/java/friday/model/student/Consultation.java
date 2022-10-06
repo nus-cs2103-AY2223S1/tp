@@ -39,7 +39,7 @@ public class Consultation {
      * Returns true if the given consultation is a dummy value.
      */
     public boolean isDummyConsultation() {
-        return value.equals(LocalDate.of(0001, 01, 01));
+        return value.equals(LocalDate.of(2001, 01, 01));
     }
 
     /**
@@ -53,7 +53,8 @@ public class Consultation {
 
     @Override
     public String toString() {
-        return String.format("Consultation: %s", value.toString());
+        String str = isDummyConsultation() ? "" : value.toString();
+        return String.format("Consultation: %s", str);
     }
 
     @Override

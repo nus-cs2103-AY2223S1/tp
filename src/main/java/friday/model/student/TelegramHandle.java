@@ -31,7 +31,14 @@ public class TelegramHandle {
      * Returns true if a given string is a valid phone number.
      */
     public static boolean isValidTelegramHandle(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.equals("") || test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if the given Telegram handle is a dummy value.
+     */
+    public boolean isDummyTelegramHandle() {
+        return value.equals("");
     }
 
     @Override
