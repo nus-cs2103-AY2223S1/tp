@@ -39,12 +39,12 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("telegramHandle") String telegramHandle,
                              @JsonProperty("consultation") LocalDate consultation,
-                             @JsonProperty("masteryCheck") LocalDate MasteryCheck,
+                             @JsonProperty("masteryCheck") LocalDate masteryCheck,
                              @JsonProperty("remark") String remark,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.telegramHandle = telegramHandle;
-        this.masteryCheck = MasteryCheck;
+        this.masteryCheck = masteryCheck;
         this.consultation = consultation;
         this.remark = remark;
         if (tagged != null) {

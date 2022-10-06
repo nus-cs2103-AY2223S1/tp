@@ -95,8 +95,8 @@ public class EditCommand extends Command {
         assert studentToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(studentToEdit.getName());
-        TelegramHandle updatedTelegramHandle = editPersonDescriptor.getPhone().orElse(studentToEdit.
-                getTelegramHandle());
+        TelegramHandle updatedTelegramHandle = editPersonDescriptor.getPhone().orElse(studentToEdit
+                .getTelegramHandle());
         Consultation updatedConsultation = editPersonDescriptor.getEmail().orElse(studentToEdit.getConsultation());
         MasteryCheck updatedMasteryCheck = editPersonDescriptor.getAddress().orElse(studentToEdit.getMasteryCheck());
         Remark updatedRemark = studentToEdit.getRemark(); // edit command does not allow editing remarks
