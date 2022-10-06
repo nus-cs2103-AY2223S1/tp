@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.profile.AddProfileCommandParser;
 import seedu.address.logic.parser.profile.EditProfileCommandParser;
 
 /**
@@ -16,9 +17,12 @@ public class CommandParserTestUtil {
      * equals to {@code expectedCommand}.
      */
     public static void assertParseSuccess(Parser<? extends Command> parser, String userInput, Command expectedCommand) {
-        if (parser instanceof EditProfileCommandParser) {
+        if (parser instanceof AddProfileCommandParser) {
+            userInput = " -a " + userInput;
+        } else if (parser instanceof EditProfileCommandParser) {
             userInput = " -e " + userInput;
         }
+
         try {
             Command command = parser.parse(userInput);
             assertEquals(expectedCommand, command);
@@ -32,7 +36,9 @@ public class CommandParserTestUtil {
      * equals to {@code expectedMessage}.
      */
     public static void assertParseFailure(Parser<? extends Command> parser, String userInput, String expectedMessage) {
-        if (parser instanceof EditProfileCommandParser) {
+        if (parser instanceof AddProfileCommandParser) {
+            userInput = " -a " + userInput;
+        } else if (parser instanceof EditProfileCommandParser) {
             userInput = " -e " + userInput;
         }
 
