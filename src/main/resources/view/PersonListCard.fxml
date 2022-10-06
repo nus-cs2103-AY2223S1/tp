@@ -34,6 +34,8 @@
       <Label fx:id="buyerRole" styleClass="cell_small_label" text="\$buyerRole" />
       <Label fx:id="buyerRange" styleClass="cell_small_label" text="\$buyerRange" />
       <Label fx:id="buyerCharacteristics" styleClass="cell_small_label" text="\$buyerCharacteristics" />
+      <Label fx:id="sellerRole" styleClass="cell_small_label" text="\$sellerRole" />
+      <FlowPane fx:id="sellerProperties"/>
     </VBox>
   </GridPane>
 </HBox>

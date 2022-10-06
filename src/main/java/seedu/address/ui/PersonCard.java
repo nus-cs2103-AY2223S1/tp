@@ -72,9 +72,11 @@ public class PersonCard extends UiPart<Region> {
         buyerCharacteristics.setText(person.isBuyer() ? person.getBuyerCharacteristics() : "");
 
         sellerRole.setText(person.isSeller() ? "Seller" : "");
-        person.getSellerProperties()
-                .forEach(pr -> sellerProperties.getChildren()
-                        .add(new Label(String.valueOf(pr))));
+        if (person.isSeller()) {
+            person.getSellerProperties()
+                    .forEach(pr -> sellerProperties.getChildren()
+                            .add(new Label(String.valueOf(pr))));
+        }
     }
 
     @Override
