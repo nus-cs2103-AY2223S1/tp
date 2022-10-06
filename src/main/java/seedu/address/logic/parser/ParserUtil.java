@@ -13,6 +13,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.question.Description;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -120,5 +121,14 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    public static Description parseDescription(String description) throws ParseException{
+        String trimmedDescription = description.trim();
+        if (!StringUtil.isEmptyDescription(trimmedDescription)) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        String descriptionString = trimmedDescription.substring(5);
+        return new Description(descriptionString);
     }
 }

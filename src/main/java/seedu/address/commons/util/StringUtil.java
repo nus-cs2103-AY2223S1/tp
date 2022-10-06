@@ -65,4 +65,13 @@ public class StringUtil {
             return false;
         }
     }
+
+    public static boolean isEmptyDescription(String s) {
+        requireNonNull(s);
+        if (s.equals("addq")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

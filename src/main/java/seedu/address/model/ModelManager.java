@@ -35,8 +35,8 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredQuestions = new FilteredList<>(this.addressBook.getQuestionList());
+        filteredPersons = new FilteredList<Person>(this.addressBook.getPersonList());
+        filteredQuestions = new FilteredList<Question>(this.addressBook.getQuestionList());
     }
 
     public ModelManager() {
@@ -122,9 +122,21 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteQuestion(Question target) {
+        addressBook.removeQuestion(target);
+    }
+
+    @Override
     public void addQuestion(Question question) {
         addressBook.addQuestion(question);
-        updateFilteredQuestionList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredQuestionList(PREDICATE_SHOW_ALL_QUESTIONS);
+    }
+
+    @Override
+    public void setQuestion(Question target, Question editedQuestion) {
+        requireAllNonNull(target, editedQuestion);
+
+        addressBook.setQuestion(target, editedQuestion);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -142,6 +154,15 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Question} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Question> getFilteredQuestionList() {
+        return filteredQuestions;
     }
 
     @Override

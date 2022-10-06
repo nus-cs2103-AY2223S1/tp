@@ -7,6 +7,8 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.question.Question;
+import seedu.address.model.question.UniqueQuestionList;
 
 /**
  * Wraps all data at the address-book level
@@ -15,6 +17,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniqueQuestionList questions;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +28,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        questions = new UniqueQuestionList();
     }
 
     public AddressBook() {}
@@ -47,6 +51,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.persons.setPersons(persons);
     }
 
+    public void setQuestions(List<Question> questions) {
+        this.questions.setQuestions(questions);
+    }
+
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
@@ -54,6 +62,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setQuestions(newData.getQuestionList());
     }
 
     //// person-level operations
@@ -110,11 +119,71 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                && persons.equals(((AddressBook) other).persons)
+                && questions.equals(((AddressBook) other).questions));
     }
 
     @Override
     public int hashCode() {
         return persons.hashCode();
+    }
+
+    //////////////////////////////////////////////////
+
+
+    //// question-level operations
+
+    /**
+     * Returns true if a question with the same identity as {@code question} exists in the address book.
+     */
+    public boolean hasQuestion(Question question) {
+        requireNonNull(question);
+        return questions.contains(question);
+    }
+
+    /**
+     * Adds a question to the address book.
+     * The question must not already exist in the address book.
+     */
+    public void addQuestion(Question p) {
+        questions.add(p);
+    }
+
+    /**
+     * Replaces the given question {@code target} in the list with {@code editedQuestion}.
+     * {@code target} must exist in the address book.
+     * The question identity of {@code editedQuestion} must not be the same as another existing question in the address
+     * book.
+     */
+    public void setQuestion(Question target, Question editedQuestion) {
+        requireNonNull(editedQuestion);
+
+        questions.setQuestion(target, editedQuestion);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeQuestion(Question key) {
+        questions.remove(key);
+    }
+
+    //// util methods
+
+
+    public String questionToString() {
+        return questions.asUnmodifiableObservableList().size() + " questions";
+        // TODO: refine later
+    }
+
+    @Override
+    public ObservableList<Question> getQuestionList() {
+        return questions.asUnmodifiableObservableList();
+    }
+
+
+    public int questionHashCode() {
+        return questions.hashCode();
     }
 }
