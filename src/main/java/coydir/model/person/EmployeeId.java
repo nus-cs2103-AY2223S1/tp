@@ -52,6 +52,10 @@ public class EmployeeId {
         EmployeeId.count = count;
     }
 
+    public static int getCount() {
+        return count;
+    }
+
     @Override
     public String toString() {
         return this.value;

@@ -13,6 +13,7 @@ import coydir.commons.exceptions.IllegalValueException;
 import coydir.commons.util.FileUtil;
 import coydir.commons.util.JsonUtil;
 import coydir.model.ReadOnlyAddressBook;
+import coydir.model.person.EmployeeId;
 
 /**
  * A class to access AddressBook data stored as a json file on the hard disk.
@@ -74,7 +75,7 @@ public class JsonAddressBookStorage implements AddressBookStorage {
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook, EmployeeId.getCount()), filePath);
     }
 
 }
