@@ -3,11 +3,14 @@ package seedu.address.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.FLOOR_NUMBER_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.HOSPITAL_WING_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.NEXT_OF_KIN_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.PATIENT_TYPE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.WARD_NUMBER_DESC_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.AMY;
 
@@ -81,8 +84,9 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY + HOSPITAL_WING_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+                + NEXT_OF_KIN_DESC_AMY + PATIENT_TYPE_DESC_AMY + HOSPITAL_WING_DESC_AMY
+                + FLOOR_NUMBER_DESC_AMY + WARD_NUMBER_DESC_AMY;
+        Person expectedPerson = new PersonBuilder(AMY).withMedication().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

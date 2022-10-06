@@ -35,13 +35,19 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
-    private Label address;
-    @FXML
     private Label email;
     @FXML
-    private FlowPane hospitalWing;
+    private Label nextOfKin;
     @FXML
-    private FlowPane tags;
+    private Label patientType;
+    @FXML
+    private Label hospitalWing;
+    @FXML
+    private Label floorNumber;
+    @FXML
+    private Label wardNumber;
+    @FXML
+    private FlowPane medications;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -51,13 +57,19 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        hospitalWing.getChildren().add(new Label(person.getHospitalWing().value));
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        phone.setText(person.getPhone().toString());
+        email.setText(person.getEmail().toString());
+        nextOfKin.setText(person.getNextOfKin().toString());
+        patientType.setText(person.getPatientType().toString());
+        person.getHospitalWing().ifPresentOrElse(hw -> hospitalWing.setText(hw.toString()), () ->
+                hospitalWing.setVisible(false));
+        person.getFloorNumber().ifPresentOrElse(fn -> floorNumber.setText(fn.toString()), () ->
+                floorNumber.setVisible(false));
+        person.getWardNumber().ifPresentOrElse(wn -> wardNumber.setText(wn.toString()), () ->
+                wardNumber.setVisible(false));
+        person.getMedications().stream()
+                .sorted(Comparator.comparing(medication -> medication.medicationName))
+                .forEach(medication -> medications.getChildren().add(new Label(medication.medicationName)));
     }
 
     @Override

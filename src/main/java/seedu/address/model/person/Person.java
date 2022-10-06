@@ -5,9 +5,10 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.Medication;
 
 /**
  * Represents a Person in the address book.
@@ -21,21 +22,29 @@ public class Person {
     private final Email email;
 
     // Data fields
-    private final Address address;
-    private final HospitalWing hospitalWing;
-    private final Set<Tag> tags = new HashSet<>();
+    private final NextOfKin nextOfKin;
+    private final PatientType patientType;
+    private final Optional<HospitalWing> hospitalWing;
+    private final Optional<FloorNumber> floorNumber;
+    private final Optional<WardNumber> wardNumber;
+    private final Set<Medication> medications = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, HospitalWing hospitalWing, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, NextOfKin nextOfKin, PatientType patientType,
+                  HospitalWing hospitalWing, FloorNumber floorNumber,
+                  WardNumber wardNumber, Set<Medication> medications) {
+        requireAllNonNull(name, phone, email, nextOfKin, patientType, medications);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
-        this.hospitalWing = hospitalWing;
-        this.tags.addAll(tags);
+        this.nextOfKin = nextOfKin;
+        this.patientType = patientType;
+        this.hospitalWing = Optional.ofNullable(hospitalWing);
+        this.floorNumber = Optional.ofNullable(floorNumber);
+        this.wardNumber = Optional.ofNullable(wardNumber);
+        this.medications.addAll(medications);
     }
 
     public Name getName() {
@@ -50,20 +59,32 @@ public class Person {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
+    public NextOfKin getNextOfKin() {
+        return nextOfKin;
     }
 
-    public HospitalWing getHospitalWing() {
+    public PatientType getPatientType() {
+        return patientType;
+    }
+
+    public Optional<HospitalWing> getHospitalWing() {
         return hospitalWing;
+    }
+
+    public Optional<WardNumber> getWardNumber() {
+        return wardNumber;
+    }
+
+    public Optional<FloorNumber> getFloorNumber() {
+        return floorNumber;
     }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<Medication> getMedications() {
+        return Collections.unmodifiableSet(medications);
     }
 
     /**
@@ -94,18 +115,26 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
+        boolean isEqual = otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getHospitalWing().equals(getHospitalWing())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getNextOfKin().equals(getNextOfKin())
+                && otherPerson.getPatientType().equals(getPatientType())
+                && otherPerson.getMedications().equals(getMedications());
+
+        if (otherPerson.getPatientType().isInpatient() && getPatientType().isInpatient()) {
+            isEqual = isEqual && otherPerson.getHospitalWing().equals(getHospitalWing())
+                    && otherPerson.getFloorNumber().equals(getFloorNumber())
+                    && otherPerson.getWardNumber().equals(getWardNumber());
+        }
+        return isEqual;
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, hospitalWing, tags);
+        return Objects.hash(name, phone, email, nextOfKin, patientType, hospitalWing,
+                floorNumber, wardNumber, medications);
     }
 
     @Override
@@ -116,14 +145,24 @@ public class Person {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress())
-                .append("; Hospital Wing: ")
-                .append(getHospitalWing());
+                .append("; Next of Kin: ")
+                .append(getNextOfKin())
+                .append("; Patient Type: ")
+                .append(getPatientType());
 
-        Set<Tag> tags = getTags();
+        if (getPatientType().isInpatient()) {
+            builder.append("; Hospital Wing: ")
+                    .append(getHospitalWing())
+                    .append("; Floor Number: ")
+                    .append(getFloorNumber())
+                    .append("; Ward Number: ")
+                    .append(getWardNumber());
+        }
+
+
+        Set<Medication> tags = getMedications();
         if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
+            builder.append("; Medications: ");
             tags.forEach(builder::append);
         }
         return builder.toString();

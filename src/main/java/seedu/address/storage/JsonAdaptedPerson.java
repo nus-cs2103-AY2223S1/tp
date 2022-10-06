@@ -10,13 +10,17 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.FloorNumber;
 import seedu.address.model.person.HospitalWing;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.NextOfKin;
+import seedu.address.model.person.PatientType;
+import seedu.address.model.person.PatientType.PatientTypes;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.WardNumber;
+import seedu.address.model.tag.Medication;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -28,25 +32,34 @@ class JsonAdaptedPerson {
     private final String name;
     private final String phone;
     private final String email;
-    private final String address;
+    private final String nextOfKin;
+    private final String patientType;
     private final String hospitalWing;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final String floorNumber;
+    private final String wardNumber;
+    private final List<JsonAdaptedMedication> medications = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("email") String email, @JsonProperty("nextOfKin") String nextOfKin,
+                             @JsonProperty("patientType") String patientType,
                              @JsonProperty("hospitalWing") String hospitalWing,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("floorNumber") String floorNumber,
+                             @JsonProperty("wardNumber") String wardNumber,
+                             @JsonProperty("medications") List<JsonAdaptedMedication> medications) {
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.nextOfKin = nextOfKin;
+        this.patientType = patientType;
         this.hospitalWing = hospitalWing;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
+        this.floorNumber = floorNumber;
+        this.wardNumber = wardNumber;
+        if (medications != null) {
+            this.medications.addAll(medications);
         }
     }
 
@@ -57,10 +70,25 @@ class JsonAdaptedPerson {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        address = source.getAddress().value;
-        hospitalWing = source.getHospitalWing().value;
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
+        nextOfKin = source.getNextOfKin().value;
+        patientType = source.getPatientType().value.name();
+        if (source.getHospitalWing().isPresent()) {
+            hospitalWing = source.getHospitalWing().get().value;
+        } else {
+            hospitalWing = null;
+        }
+        if (source.getFloorNumber().isPresent()) {
+            floorNumber = source.getFloorNumber().get().value.toString();
+        } else {
+            floorNumber = null;
+        }
+        if (source.getWardNumber().isPresent()) {
+            wardNumber = source.getWardNumber().get().value.toString();
+        } else {
+            wardNumber = null;
+        }
+        medications.addAll(source.getMedications().stream()
+                .map(JsonAdaptedMedication::new)
                 .collect(Collectors.toList()));
     }
 
@@ -70,9 +98,9 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+        final List<Medication> personMedications = new ArrayList<>();
+        for (JsonAdaptedMedication medication : medications) {
+            personMedications.add(medication.toModelType());
         }
 
         if (name == null) {
@@ -92,6 +120,7 @@ class JsonAdaptedPerson {
         final Phone modelPhone = new Phone(phone);
 
         if (email == null) {
+            System.out.println(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
         }
         if (!Email.isValidEmail(email)) {
@@ -99,25 +128,83 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+        if (nextOfKin == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, NextOfKin.class.getSimpleName()));
         }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        if (!NextOfKin.isValidNextOfKin(nextOfKin)) {
+            throw new IllegalValueException(NextOfKin.MESSAGE_CONSTRAINTS);
         }
-        final Address modelAddress = new Address(address);
-        if (hospitalWing == null) {
+        final NextOfKin modelNextOfKin = new NextOfKin(nextOfKin);
+
+        if (patientType == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, PatientType.class.getSimpleName()));
+        }
+        PatientTypes pt = PatientTypes.parsePatientType(patientType);
+        if (pt == null) {
+            throw new IllegalValueException(NextOfKin.MESSAGE_CONSTRAINTS);
+        }
+        final PatientType modelPatientType = new PatientType(pt);
+
+        if (modelPatientType.isInpatient() && hospitalWing == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     HospitalWing.class.getSimpleName()));
         }
-        if (!HospitalWing.isValidHospitalWing(hospitalWing)) {
+        if (!modelPatientType.isInpatient() && hospitalWing != null) {
             throw new IllegalValueException(HospitalWing.MESSAGE_CONSTRAINTS);
         }
-        final HospitalWing modelHospitalWing = new HospitalWing(hospitalWing);
+        if (hospitalWing != null && !HospitalWing.isValidHospitalWing(hospitalWing)) {
+            throw new IllegalValueException(HospitalWing.MESSAGE_CONSTRAINTS);
+        }
+        final HospitalWing modelHospitalWing = hospitalWing == null ? null : new HospitalWing(hospitalWing);
 
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelHospitalWing, modelTags);
+        if (modelPatientType.isInpatient() && floorNumber == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    FloorNumber.class.getSimpleName()));
+        }
+        if (!modelPatientType.isInpatient() && floorNumber != null) {
+            throw new IllegalValueException(FloorNumber.MESSAGE_CONSTRAINTS);
+        }
+        Integer fN = null;
+        if (floorNumber != null) {
+            try {
+                fN = Integer.valueOf(floorNumber);
+            } catch (NumberFormatException nfe) {
+                throw new IllegalValueException(FloorNumber.MESSAGE_CONSTRAINTS);
+            }
+            if (!FloorNumber.isValidFloorNumber(fN)) {
+                throw new IllegalValueException(FloorNumber.MESSAGE_CONSTRAINTS);
+            }
+        }
+        final FloorNumber modelFloorNumber = floorNumber == null ? null : new FloorNumber(fN);
+
+
+        if (modelPatientType.isInpatient() && wardNumber == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    WardNumber.class.getSimpleName()));
+        }
+        if (!modelPatientType.isInpatient() && wardNumber != null) {
+            throw new IllegalValueException(WardNumber.MESSAGE_CONSTRAINTS);
+        }
+        Integer wN = null;
+        if (wardNumber != null) {
+            try {
+                wN = Integer.valueOf(wardNumber);
+            } catch (NumberFormatException nfe) {
+                throw new IllegalValueException(WardNumber.MESSAGE_CONSTRAINTS);
+            }
+            if (!WardNumber.isValidWardNumber(wN)) {
+                throw new IllegalValueException(WardNumber.MESSAGE_CONSTRAINTS);
+            }
+        }
+        final WardNumber modelWardNumber = wardNumber == null ? null : new WardNumber(wN);
+
+        final Set<Medication> modelMedication = new HashSet<>(personMedications);
+
+        return new Person(modelName, modelPhone, modelEmail, modelNextOfKin, modelPatientType,
+                modelHospitalWing, modelFloorNumber, modelWardNumber, modelMedication);
     }
 
 }
