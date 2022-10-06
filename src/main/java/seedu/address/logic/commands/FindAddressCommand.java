@@ -10,7 +10,7 @@ import seedu.address.model.person.AddressContainsKeywordsPredicate;
  * Finds and lists all persons in address book whose address contains any of the argument keywords.
  * Keyword matching is case-insensitive.
  */
-public class FindByAddressCommand extends Command {
+public class FindAddressCommand extends Command {
 
     public static final String COMMAND_WORD = "findAdd"; //Change command word later
 
@@ -21,7 +21,7 @@ public class FindByAddressCommand extends Command {
 
     private final AddressContainsKeywordsPredicate predicate;
 
-    public FindByAddressCommand(AddressContainsKeywordsPredicate predicate) {
+    public FindAddressCommand(AddressContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -36,7 +36,7 @@ public class FindByAddressCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindByAddressCommand // instanceof handles nulls
-                && predicate.equals(((FindByAddressCommand) other).predicate)); // state check
+                || (other instanceof FindAddressCommand // instanceof handles nulls
+                && predicate.equals(((FindAddressCommand) other).predicate)); // state check
     }
 }
