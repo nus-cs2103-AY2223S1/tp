@@ -10,6 +10,7 @@ import seedu.address.model.internship.Email;
 import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.Name;
 import seedu.address.model.internship.Phone;
+import seedu.address.model.internship.Status;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -35,6 +36,7 @@ public class EditInternshipDescriptorBuilder {
         descriptor.setName(internship.getName());
         descriptor.setPhone(internship.getPhone());
         descriptor.setEmail(internship.getEmail());
+        descriptor.setStatus(internship.getStatus());
         descriptor.setAddress(internship.getAddress());
         descriptor.setTags(internship.getTags());
     }
@@ -68,6 +70,14 @@ public class EditInternshipDescriptorBuilder {
      */
     public EditInternshipDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Status} of the {@code EditInternshipDescriptor} that we are building.
+     */
+    public EditInternshipDescriptorBuilder withStatus(String status) {
+        descriptor.setStatus(new Status(status));
         return this;
     }
 

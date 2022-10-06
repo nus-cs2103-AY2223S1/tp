@@ -105,7 +105,7 @@ public class ParserUtil {
     public static Status parseStatus(String status) throws ParseException {
         requireNonNull(status);
         String trimmedStatus = status.trim();
-        if (!Email.isValidEmail(trimmedStatus)) {
+        if (!Status.isValidStatus(trimmedStatus)) {
             throw new ParseException(Status.MESSAGE_CONSTRAINTS);
         }
         return new Status(trimmedStatus);

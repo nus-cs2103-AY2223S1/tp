@@ -3,11 +3,13 @@
     "name": "Valid Internship",
     "phone": "9482424",
     "email": "hans@example.com",
+    "status": "Offered",
     "address": "4th street"
   }, {
     "name": "Internship With Invalid Phone Field",
     "phone": "948asdf2424",
     "email": "hans@example.com",
+    "status": "Offered",
     "address": "4th street"
   } ]
 }

@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Status {
     enum StatusType {
-        PROGRESS, OFFERED, REJECTED, NONE
+        PROGRESS, OFFERED, REJECTED
     }
     public static final String MESSAGE_CONSTRAINTS = "Status can be of 3 types: Progress, Offered, Rejected";
 
