@@ -15,6 +15,7 @@ import foodwhere.model.stall.Address;
 import foodwhere.model.stall.Name;
 import foodwhere.model.stall.Phone;
 import foodwhere.model.stall.Stall;
+import foodwhere.storage.JsonAdaptedDetail;
 
 /**
  * Jackson-friendly version of {@link Stall}.
@@ -27,21 +28,38 @@ class JsonAdaptedStall {
     private final String phone;
     private final String address;
     private final List<JsonAdaptedDetail> details = new ArrayList<>();
+    private final List<JsonAdaptedStall> reviews = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedStall} with the given stall details.
      */
     @JsonCreator
     public JsonAdaptedStall(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("address") String address,
-            @JsonProperty("detailed") List<JsonAdaptedDetail> detailed) {
+                            @JsonProperty("address") String address,
+                            @JsonProperty("details") List<JsonAdaptedDetail> details,
+                            @JsonProperty("reviews") List<JsonAdaptedStall> reviews) {
         this.name = name;
         this.phone = phone;
         this.address = address;
-        if (detailed != null) {
-            this.details.addAll(detailed);
+        if (details != null) {
+            this.details.addAll(details);
+        }
+        if (reviews != null) {
+            this.reviews.addAll(reviews);
         }
     }
+
+    /*@JsonCreator
+    public JsonAdaptedStall(@JsonProperty("name") String name, @JsonProperty("address") String address,
+                            @JsonProperty("details") String details,
+                            @JsonProperty("reviews") List<JsonAdaptedStall> reviews) {
+        this.name = name;
+        this.address = address;
+        this.details = details;
+        if (reviews != null) {
+            this.reviews.addAll(reviews);
+        }
+    }*/
 
     /**
      * Converts a given {@code Stall} into this class for Jackson use.
@@ -74,13 +92,13 @@ class JsonAdaptedStall {
         }
         final Name modelName = new Name(name);
 
-        if (phone == null) {
+        /*if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
         if (!Phone.isValidPhone(phone)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
-        final Phone modelPhone = new Phone(phone);
+        final Phone modelPhone = new Phone(phone);*/
 
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
@@ -91,7 +109,6 @@ class JsonAdaptedStall {
         final Address modelAddress = new Address(address);
 
         final Set<Detail> modelDetails = new HashSet<>(stallDetails);
-        return new Stall(modelName, modelPhone, modelAddress, modelDetails);
+        return new Stall(modelName, new Phone("000"), modelAddress, modelDetails);
     }
-
 }

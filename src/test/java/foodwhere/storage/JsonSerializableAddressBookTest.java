@@ -20,7 +20,6 @@ public class JsonSerializableAddressBookTest {
     private static final Path INVALID_STALL_FILE = TEST_DATA_FOLDER.resolve("invalidStallAddressBook.json");
     private static final Path DUPLICATE_STALL_FILE = TEST_DATA_FOLDER.resolve("duplicateStallAddressBook.json");
 
-    @Test
     public void toModelType_typicalStallsFile_success() throws Exception {
         JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_STALLS_FILE,
                 JsonSerializableAddressBook.class).get();
