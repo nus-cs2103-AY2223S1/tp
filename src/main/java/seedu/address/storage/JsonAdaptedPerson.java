@@ -62,7 +62,7 @@ class JsonAdaptedPerson {
         moneyOwed = source.getMoneyOwed().value;
         moneyPaid = source.getMoneyPaid().value;
         additionalNotes = source.getAdditionalNotes().notes;
-        classDateTime = source.getAClass().classToString;
+        classDateTime = source.getAClass().classDateTime;
     }
 
     /**

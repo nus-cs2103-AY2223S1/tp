@@ -64,8 +64,10 @@ public class Class {
         int startMin = startTime.getMinute();
         int endHour = endTime.getHour();
         int endMin = endTime.getMinute();
-        if (startHour > 12) {
-            startHour -= 12;
+        if (startHour >= 12) {
+            if (startHour != 12)  {
+                startHour -= 12;
+            }
             if (startMin == 0) {
                 time += startHour + "PM";
             } else if (startMin  < 10) {
@@ -85,9 +87,10 @@ public class Class {
             }
         }
         time += "-";
-        if (endHour > 12) {
-            System.out.println(endHour);
-            endHour -= 12;
+        if (endHour >= 12) {
+            if (endHour != 12) {
+                endHour -= 12;
+            }
             if (endMin == 0) {
                 time += endHour + "PM";
             } else if (endMin  < 10) {
