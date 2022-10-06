@@ -59,7 +59,7 @@ public class Class {
      */
     public String toString() {
         if (date == null) {
-            //Tutor yet to edit in a class date.
+            // Tutor yet to edit in a class date.
             return "";
         }
         return convertToDateString(date) + " " + convertToTimeString(startTime, endTime);

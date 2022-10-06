@@ -46,8 +46,7 @@ public class PersonUtil {
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
-        descriptor.getAClass().ifPresent(
-                aClass -> sb.append(PREFIX_CLASS_DATE_TIME).append(aClass.toString()).append(" "));
+        // todo: testcase on getAClass() to be added
         descriptor.getMoneyOwed().ifPresent(
                 moneyOwed -> sb.append(PREFIX_MONEY_OWED).append(moneyOwed.value.toString()).append(" "));
         descriptor.getMoneyPaid().ifPresent(

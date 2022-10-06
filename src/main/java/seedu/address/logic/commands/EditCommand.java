@@ -103,11 +103,11 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Class updatedClassDateTime = editPersonDescriptor.getAClass().orElse(personToEdit.getAClass());
         MoneyOwed updatedMoneyOwed = editPersonDescriptor.getMoneyOwed().orElse(personToEdit.getMoneyOwed());
         MoneyPaid updatedMoneyPaid = editPersonDescriptor.getMoneyPaid().orElse(personToEdit.getMoneyPaid());
         AdditionalNotes updatedNotes = editPersonDescriptor.getAdditionalNotes()
                 .orElse(personToEdit.getAdditionalNotes());
-        Class updatedClassDateTime = editPersonDescriptor.getAClass().orElse(personToEdit.getAClass());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedClassDateTime,
                 updatedMoneyOwed, updatedMoneyPaid, updatedNotes);
@@ -140,10 +140,10 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private Class aClass;
         private MoneyOwed moneyOwed;
         private MoneyPaid moneyPaid;
         private AdditionalNotes additionalNotes;
-        private Class aClass;
 
         public EditPersonDescriptor() {}
 
