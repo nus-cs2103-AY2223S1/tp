@@ -155,6 +155,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasTutorialClashingWith(Tutorial tutorial) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addTutorial(Tutorial tutorial) {
             throw new AssertionError("This method should not be called.");
         }

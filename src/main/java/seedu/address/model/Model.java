@@ -93,6 +93,11 @@ public interface Model {
     boolean hasTutorial(Tutorial tutorial);
 
     /**
+     * Returns true if a tutorial with the same venue and timeslot as {@code tutorial} exists in the ModQuik.
+     */
+    boolean hasTutorialClashingWith(Tutorial tutorial);
+
+    /**
      * Adds the given tutorial.
      * {@code tutorial} must not already exist in the ModQuik.
      */

@@ -59,6 +59,19 @@ public class Tutorial {
     }
 
     /**
+     * Returns true if both tutorials have the same venue and timeslot.
+     */
+    public boolean isClashTutorial(Tutorial otherTutorial) {
+        if (otherTutorial == this) {
+            return true;
+        }
+
+        return otherTutorial != null
+                && otherTutorial.getVenue().equals(getVenue())
+                && otherTutorial.getTimeslot().equals(getTimeslot());
+    }
+
+    /**
      * Returns true if both tutorials have the same identity and data fields.
      * This defines a stronger notion of equality between two tutorials.
      */

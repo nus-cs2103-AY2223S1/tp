@@ -14,7 +14,7 @@ public class TutorialBuilder {
     public static final String DEFAULT_NAME = "W01";
     public static final String DEFAULT_MODULE = "CS2103T";
     public static final String DEFAULT_VENUE = "COM1-0203";
-    public static final String DEFAULT_TIMESLOT = "1500-1700";
+    public static final String DEFAULT_TIMESLOT = "15:00-17:00";
 
     private TutorialName tutorialName;
     private TutorialModule tutorialModule;

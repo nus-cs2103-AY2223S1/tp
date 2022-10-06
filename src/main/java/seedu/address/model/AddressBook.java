@@ -118,6 +118,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if a tutorial with the same venue and timeslot as {@code tutorial} exists in the ModQuik.
+     */
+    public boolean hasTutorialClashingWith(Tutorial tutorial) {
+        requireNonNull(tutorial);
+        return tutorials.containsClashingWith(tutorial);
+    }
+
+    /**
      * Adds a tutorial to the ModQuik.
      * The tutorial must not already exist in the ModQuik.
      */

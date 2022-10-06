@@ -159,6 +159,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasTutorialClashingWith(Tutorial tutorial) {
+        requireNonNull(tutorial);
+        return addressBook.hasTutorialClashingWith(tutorial);
+    }
+
+    @Override
     public void addTutorial(Tutorial tutorial) {
         addressBook.addTutorial(tutorial);
         updateFilteredTutorialList(PREDICATE_SHOW_ALL_TUTORIALS);

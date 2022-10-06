@@ -48,11 +48,11 @@ public class SampleDataUtil {
     public static Tutorial[] getSampleTutorials() {
         return new Tutorial[] {
             new Tutorial(new TutorialName("W17"), new TutorialModule("CS2103T"),
-                    new TutorialVenue("COM1-0203"), new TutorialTimeslot("1600-1800")),
+                    new TutorialVenue("COM1-0203"), new TutorialTimeslot("16:00-18:00")),
             new Tutorial(new TutorialName("F01"), new TutorialModule("CS2103T"),
-                    new TutorialVenue("COM1-0201"), new TutorialTimeslot("1500-1700")),
+                    new TutorialVenue("COM1-0201"), new TutorialTimeslot("15:00-17:00")),
             new Tutorial(new TutorialName("F02"), new TutorialModule("CS2103T"),
-                    new TutorialVenue("COM1-0202"), new TutorialTimeslot("1000-1100")),
+                    new TutorialVenue("COM1-0202"), new TutorialTimeslot("10:00-11:00")),
         };
     }
 

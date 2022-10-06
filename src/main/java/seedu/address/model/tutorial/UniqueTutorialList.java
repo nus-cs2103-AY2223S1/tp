@@ -39,6 +39,14 @@ public class UniqueTutorialList implements Iterable<Tutorial> {
     }
 
     /**
+     * Returns true if the list contains a clashing tutorial as the given argument.
+     */
+    public boolean containsClashingWith(Tutorial toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::isClashTutorial);
+    }
+
+    /**
      * Adds a tutorial to the list.
      * The tutorial must not already exist in the list.
      */

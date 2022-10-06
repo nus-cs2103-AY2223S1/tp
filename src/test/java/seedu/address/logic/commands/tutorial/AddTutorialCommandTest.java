@@ -159,6 +159,11 @@ public class AddTutorialCommandTest {
         }
 
         @Override
+        public boolean hasTutorialClashingWith(Tutorial tutorial) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addTutorial(Tutorial tutorial) {
             throw new AssertionError("This method should not be called.");
         }
@@ -202,6 +207,12 @@ public class AddTutorialCommandTest {
         public boolean hasTutorial(Tutorial tutorial) {
             requireNonNull(tutorial);
             return tutorialsAdded.stream().anyMatch(tutorial::isSameTutorial);
+        }
+
+        @Override
+        public boolean hasTutorialClashingWith(Tutorial tutorial) {
+            requireNonNull(tutorial);
+            return tutorialsAdded.stream().anyMatch(tutorial::isClashTutorial);
         }
 
         @Override

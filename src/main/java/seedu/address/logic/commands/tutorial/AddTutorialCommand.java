@@ -33,6 +33,8 @@ public class AddTutorialCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New tutorial added: %1$s";
     public static final String MESSAGE_DUPLICATE_TUTORIAL = "This tutorial already exists in the ModQuik";
+    public static final String MESSAGE_CLASH_TUTORIAL =
+            "There exists a tutorial having same venue and timeslot in the ModQuik";
 
     private final Tutorial toAdd;
 
@@ -51,7 +53,9 @@ public class AddTutorialCommand extends Command {
         if (model.hasTutorial(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_TUTORIAL);
         }
-
+        if (model.hasTutorialClashingWith(toAdd)) {
+            throw new CommandException(MESSAGE_CLASH_TUTORIAL);
+        }
         model.addTutorial(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }

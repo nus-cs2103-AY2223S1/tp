@@ -201,6 +201,9 @@ public class ParserUtil {
         if (!TutorialTimeslot.isValidTimeslot(trimmedName)) {
             throw new ParseException(TutorialTimeslot.MESSAGE_CONSTRAINTS);
         }
+        if (!TutorialTimeslot.isValidDuration(trimmedName)) {
+            throw new ParseException(TutorialTimeslot.MESSAGE_INVALID_DURATION);
+        }
         return new TutorialTimeslot(trimmedName);
     }
 }
