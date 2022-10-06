@@ -20,21 +20,16 @@ public class TelegramHandleTest {
     }
 
     @Test
-    public void isValidPhone() {
+    public void isValidTelegramHandle() {
         // null phone number
         assertThrows(NullPointerException.class, () -> TelegramHandle.isValidTelegramHandle(null));
 
         // invalid phone numbers
-        assertFalse(TelegramHandle.isValidTelegramHandle("")); // empty string
-        assertFalse(TelegramHandle.isValidTelegramHandle(" ")); // spaces only
-        assertFalse(TelegramHandle.isValidTelegramHandle("91")); // less than 3 numbers
-        assertFalse(TelegramHandle.isValidTelegramHandle("phone")); // non-numeric
-        assertFalse(TelegramHandle.isValidTelegramHandle("9011p041")); // alphabets within digits
-        assertFalse(TelegramHandle.isValidTelegramHandle("9312 1534")); // spaces within digits
+        assertFalse(TelegramHandle.isValidTelegramHandle("john+doe")); // symbols are not allowed
 
         // valid phone numbers
-        assertTrue(TelegramHandle.isValidTelegramHandle("911")); // exactly 3 numbers
-        assertTrue(TelegramHandle.isValidTelegramHandle("93121534"));
-        assertTrue(TelegramHandle.isValidTelegramHandle("124293842033123")); // long phone numbers
+        assertTrue(TelegramHandle.isValidTelegramHandle("911"));
+        assertTrue(TelegramHandle.isValidTelegramHandle("john123")); // letters and numbers
+        assertTrue(TelegramHandle.isValidTelegramHandle("john_doe")); // with an underscore
     }
 }

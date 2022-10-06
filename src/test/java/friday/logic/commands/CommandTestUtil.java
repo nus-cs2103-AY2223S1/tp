@@ -54,11 +54,7 @@ public class CommandTestUtil {
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_TELEGRAMHANDLE_DESC = " " + PREFIX_TELEGRAMHANDLE
             + "lucy+2"; // '+' not allowed in Telegram handles
-    public static final LocalDate INVALID_CONSULTATION_DESC = LocalDate
-            .parse("2022/12/03"); // correct format is YYYY-MM-DD
 
-    public static final LocalDate INVALID_ADDRESS_DESC = LocalDate
-            .parse("2022-50-12"); // "50" is not a valid month
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";

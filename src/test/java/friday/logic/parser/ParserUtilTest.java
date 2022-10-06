@@ -24,8 +24,6 @@ import friday.model.tag.Tag;
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_TELEGRAMHANDLE = "+rachel";
-    private static final LocalDate INVALID_MASTERYCHECK = LocalDate.parse("2022/08/01");
-    private static final LocalDate INVALID_CONSULTATION = LocalDate.parse("2022-50-50");
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
@@ -104,19 +102,9 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseAddress_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseMasteryCheck(INVALID_MASTERYCHECK));
-    }
-
-    @Test
     public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
         MasteryCheck expectedMasteryCheck = new MasteryCheck(VALID_MASTERYCHECK);
         assertEquals(expectedMasteryCheck, ParserUtil.parseMasteryCheck(VALID_MASTERYCHECK));
-    }
-
-    @Test
-    public void parseEmail_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseConsultation(INVALID_CONSULTATION));
     }
 
     @Test
