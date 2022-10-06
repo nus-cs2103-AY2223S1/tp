@@ -43,6 +43,7 @@ public class AppointmentCard extends UiPart<Region> {
         this.appointment = appointment;
         id.setText(displayedIndex + ". ");
         name.setText(appointment.getName().fullName);
+        medicalTest.setText(appointment.getMedicalTest().medicalTestName);
         slot.setText(appointment.getSlot().toString());
         doctor.setText(appointment.getDoctor().toString());
     }
