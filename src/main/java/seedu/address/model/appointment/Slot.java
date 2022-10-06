@@ -1,57 +1,61 @@
 package seedu.address.model.appointment;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents an Appointment's timeSlot in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidMedicalTest (String)}
+ * Represents an Appointment's slot in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidDateTime (String)}
  */
-public class MedicalTest {
+public class Slot {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Medical Test Names should only contain alphanumeric characters and spaces, and it should not be blank";
-    /*
-     * The first character of the medical test name must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+            "Slot should be like 'yyyy-MM-dd HH:mm'";
 
-    public final String medicalTestName;
+    public final LocalDateTime localDateTime;
 
     /**
-     * Constructs a {@code MedicalTest}.
+     * Constructs a {@code Slot}.
      *
-     * @param medicalTestName A valid name of a medical test.
+     * @param dateTime A valid dateTime of a slot.
      */
-    public MedicalTest(String medicalTestName) {
-        requireNonNull(medicalTestName);
-        checkArgument(isValidMedicalTest(medicalTestName), MESSAGE_CONSTRAINTS);
-        this.medicalTestName = medicalTestName;
+    public Slot(String dateTime) {
+        requireNonNull(dateTime);
+        checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
+        this.localDateTime = LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));;
     }
 
     /**
-     * Returns true if a given string is a valid medical test name.
+     * Returns true if a given string is a valid date time.
      */
-    public static boolean isValidMedicalTest(String test) {
-        return test.matches(VALIDATION_REGEX);
+    public static boolean isValidDateTime(String test) {
+        try {
+            LocalDateTime.parse(test, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
     }
 
     @Override
     public String toString() {
-        return medicalTestName;
+        return localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof MedicalTest // instanceof handles nulls
-                && medicalTestName.equals(((MedicalTest) other).medicalTestName)); // state check
+                || (other instanceof Slot // instanceof handles nulls
+                && localDateTime.equals(((Slot) other).localDateTime)); // state check
     }
 
     @Override
     public int hashCode() {
-        return medicalTestName.hashCode();
+        return localDateTime.hashCode();
     }
 }
