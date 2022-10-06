@@ -321,7 +321,7 @@ Software System: Travelr
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 2000 events without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  The UI should be resizable as users will likely be referencing other tabs while using this product. 
+4.  The UI should be resizable as users will likely be referencing other tabs while using this product.
 5.  Should respond immediately to user input, as user will likely be using multiple commands.
 6.  Should be usable by novice travelers that have never planned a trip.
 7.  Should be able to work offline
