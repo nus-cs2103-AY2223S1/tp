@@ -108,17 +108,14 @@ public class EditPersonCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        // short circuit if same object
         if (other == this) {
             return true;
         }
 
-        // instanceof handles nulls
         if (!(other instanceof EditPersonCommand)) {
             return false;
         }
 
-        // state check
         EditPersonCommand e = (EditPersonCommand) other;
         return index.equals(e.index)
                 && editPersonDescriptor.equals(e.editPersonDescriptor);
@@ -217,17 +214,14 @@ public class EditPersonCommand extends Command {
 
         @Override
         public boolean equals(Object other) {
-            // short circuit if same object
             if (other == this) {
                 return true;
             }
 
-            // instanceof handles nulls
             if (!(other instanceof EditPersonDescriptor)) {
                 return false;
             }
 
-            // state check
             EditPersonDescriptor e = (EditPersonDescriptor) other;
 
             return getName().equals(e.getName())
