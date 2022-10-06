@@ -110,16 +110,15 @@ Format: `list`
 
 ### Locating persons by name: `find`
 
-Finds Customers whose names contain any of the given keywords.
+Finds Customers whose information (including name, phone, email, address) contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Customers matching at least one keyword will be returned (i.e. `OR` search).
+* Customers matching at least one keyword will be returned (i.e. `OR` search)
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* No need to type in the whole word. e.g `9927` will match `27859927`
 
 Examples:
 * `find John` returns `john` and `John Doe`
