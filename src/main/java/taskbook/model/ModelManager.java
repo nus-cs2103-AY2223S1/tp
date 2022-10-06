@@ -147,6 +147,10 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
     @Override
     public ObservableList<Task> getFilteredTaskList() {
         return filteredTasks;
