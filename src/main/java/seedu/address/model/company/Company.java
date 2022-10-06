@@ -2,11 +2,14 @@ package seedu.address.model.company;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.poc.Poc;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -21,6 +24,7 @@ public class Company {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final List<Poc> pocs = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
@@ -46,6 +50,21 @@ public class Company {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns an immutable pocs list, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public List<Poc> getPocs() {
+        return Collections.unmodifiableList(pocs);
+    }
+
+    /**
+     * Adds a poc to the company
+     */
+    public void addPoc(Poc poc) {
+        this.pocs.add(poc);
     }
 
     /**
