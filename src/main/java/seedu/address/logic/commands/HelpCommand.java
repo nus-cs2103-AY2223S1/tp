@@ -12,7 +12,8 @@ public class HelpCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows program usage instructions.\n"
             + "Example: " + COMMAND_WORD;
 
-    private static final String USER_GUIDE_URL = "https://ay2223s1-cs2103t-f11-4.github.io/tp/UserGuide.html#quick-start";
+    private static final String USER_GUIDE_URL =
+            "https://ay2223s1-cs2103t-f11-4.github.io/tp/UserGuide.html#quick-start";
 
     public static final String SHOWING_HELP_MESSAGE = "Sample usage:\n\t"
             + AddCommand.MESSAGE_USAGE + "\n\t"
