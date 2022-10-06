@@ -2,7 +2,6 @@ package paymelah.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 import paymelah.commons.exceptions.IllegalValueException;
 import paymelah.model.debt.Debt;
