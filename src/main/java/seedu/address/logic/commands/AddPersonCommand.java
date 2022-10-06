@@ -76,7 +76,7 @@ public class AddPersonCommand extends Command {
             Email email,
             InternshipId internshipId,
             Set<Tag> tags) {
-        requireAllNonNull(name, phone, email,tags);
+        requireAllNonNull(name, phone, email, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
