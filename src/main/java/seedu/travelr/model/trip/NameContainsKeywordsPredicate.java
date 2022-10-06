@@ -18,7 +18,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Trip> {
     @Override
     public boolean test(Trip trip) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(trip.getName().fullName, keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(trip.getTitle().fullTitle, keyword));
     }
 
     @Override

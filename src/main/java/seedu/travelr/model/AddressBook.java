@@ -52,6 +52,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
+        assert !newData.getTripList().isEmpty();
 
         setTrips(newData.getTripList());
     }

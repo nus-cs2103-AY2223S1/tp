@@ -14,7 +14,7 @@ import seedu.travelr.model.trip.Trip;
  */
 public class TripCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "TripListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -29,15 +29,11 @@ public class TripCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label name;
+    private Label title;
     @FXML
     private Label id;
     @FXML
-    private Label phone;
-    @FXML
-    private Label address;
-    @FXML
-    private Label email;
+    private Label description;
     @FXML
     private FlowPane tags;
 
@@ -48,10 +44,8 @@ public class TripCard extends UiPart<Region> {
         super(FXML);
         this.trip = trip;
         id.setText(displayedIndex + ". ");
-        name.setText(trip.getName().fullName);
-        phone.setText(trip.getPhone().value);
-        address.setText(trip.getAddress().value);
-        email.setText(trip.getEmail().value);
+        title.setText(trip.getTitle().fullTitle);
+        description.setText(trip.getDescription().value);
         trip.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

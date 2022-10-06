@@ -16,40 +16,28 @@ import seedu.travelr.model.tag.Tag;
 public class Trip {
 
     // Identity fields
-    private final Name name;
-    private final Phone phone;
-    private final Email email;
+    private final Title title;
+    private final Description description;
 
     // Data fields
-    private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Trip(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
+    public Trip(Title title, Description description, Set<Tag> tags) {
+        requireAllNonNull(title, description, tags);
+        this.title = title;
+        this.description = description;
         this.tags.addAll(tags);
     }
 
-    public Name getName() {
-        return name;
+    public Title getTitle() {
+        return title;
     }
 
-    public Phone getPhone() {
-        return phone;
-    }
-
-    public Email getEmail() {
-        return email;
-    }
-
-    public Address getAddress() {
-        return address;
+    public Description getDescription() {
+        return description;
     }
 
     /**
@@ -70,7 +58,7 @@ public class Trip {
         }
 
         return otherTrip != null
-                && otherTrip.getName().equals(getName());
+                && otherTrip.getTitle().equals(getTitle());
     }
 
     /**
@@ -88,29 +76,23 @@ public class Trip {
         }
 
         Trip otherTrip = (Trip) other;
-        return otherTrip.getName().equals(getName())
-                && otherTrip.getPhone().equals(getPhone())
-                && otherTrip.getEmail().equals(getEmail())
-                && otherTrip.getAddress().equals(getAddress())
+        return otherTrip.getTitle().equals(getTitle())
+                && otherTrip.getDescription().equals(getDescription())
                 && otherTrip.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(title, description, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+        builder.append(getTitle())
+                .append("; Description: ")
+                .append(getDescription());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
