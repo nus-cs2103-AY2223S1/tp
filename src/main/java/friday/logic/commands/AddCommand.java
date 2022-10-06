@@ -1,5 +1,7 @@
 package friday.logic.commands;
 
+import static friday.logic.parser.CliSyntax.PREFIX_CONSULTATION;
+import static friday.logic.parser.CliSyntax.PREFIX_MASTERYCHECK;
 import static friday.logic.parser.CliSyntax.PREFIX_NAME;
 import static friday.logic.parser.CliSyntax.PREFIX_TELEGRAMHANDLE;
 import static java.util.Objects.requireNonNull;
@@ -18,10 +20,14 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to FRIDAY. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_TELEGRAMHANDLE + "TELEGRAM HANDLE "
+            + "[" + PREFIX_TELEGRAMHANDLE + "TELEGRAM HANDLE] "
+            + "[" + PREFIX_CONSULTATION + "CONSULTATION] "
+            + "[" + PREFIX_MASTERYCHECK + "MASTERY CHECK]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
-            + PREFIX_TELEGRAMHANDLE + "johndoe ";
+            + PREFIX_TELEGRAMHANDLE + "johndoe "
+            + PREFIX_CONSULTATION + "2022-09-01 "
+            + PREFIX_MASTERYCHECK + "2022-08-24 ";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in FRIDAY";
