@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.task.Task;
 
 
 /**
@@ -49,6 +50,15 @@ public class UniqueTeamList implements Iterable<Team> {
     }
 
     /**
+     * Returns the {@code Team} at the specified index.
+     *
+     * @return {@code Team} at the specified index.
+     */
+    public Team get(int index) {
+        return internalList.get(index);
+    }
+
+    /**
      * Removes the equivalent person from the list.
      * The person must exist in the list.
      */
@@ -76,6 +86,15 @@ public class UniqueTeamList implements Iterable<Team> {
 
         internalList.setAll(teams);
     }
+
+    /**
+     * Adds the {@code Task} into the {@code Team} at the specified index.
+     *
+     */
+    public void addTask(int index, Task task) {
+        internalList.get(index).addTask(task);
+    }
+
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.

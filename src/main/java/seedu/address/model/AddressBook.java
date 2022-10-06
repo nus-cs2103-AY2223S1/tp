@@ -5,8 +5,10 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.task.Task;
 import seedu.address.model.team.Team;
 import seedu.address.model.team.UniqueTeamList;
 
@@ -125,6 +127,12 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeTeam(Team t) {
         teams.remove(t);
+    }
+
+    //// task-level operations
+
+    public void addTask(Index index, Task task) {
+        teams.addTask(index.getZeroBased(), task);
     }
 
     //// util methods

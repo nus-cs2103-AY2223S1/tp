@@ -123,6 +123,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String name} into a task {@code Name}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given task {@code name} is invalid.
+     */
+    public static seedu.address.model.task.Name parseTaskName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!Name.isValidName(trimmedName)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        return new seedu.address.model.task.Name(trimmedName);
+    }
+
+    /**
      * Parses a {@code String name} into a team {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -131,8 +146,8 @@ public class ParserUtil {
     public static seedu.address.model.team.Name parseTeamName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        if (!seedu.address.model.team.Name.isValidName(trimmedName)) {
+            throw new ParseException(seedu.address.model.team.Name.MESSAGE_CONSTRAINTS);
         }
         return new seedu.address.model.team.Name(trimmedName);
     }
