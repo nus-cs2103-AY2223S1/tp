@@ -52,7 +52,6 @@ public class AddPersonCommand extends Command {
     private final Phone phone;
     private final Email email;
     private final InternshipId internshipId;
-    private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -63,7 +62,6 @@ public class AddPersonCommand extends Command {
         this.name = person.getName();
         this.phone = person.getPhone();
         this.email = person.getEmail();
-        this.address = person.getAddress();
         this.internshipId = person.getInternshipId();
         this.tags.addAll(person.getTags());
     }
@@ -77,14 +75,12 @@ public class AddPersonCommand extends Command {
             Name name,
             Phone phone,
             Email email,
-            Address address,
             InternshipId internshipId,
             Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+        requireAllNonNull(name, phone, email,tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
         this.internshipId = internshipId;
         this.tags.addAll(tags);
     }
@@ -100,7 +96,6 @@ public class AddPersonCommand extends Command {
                     name,
                     phone,
                     email,
-                    address,
                     null,
                     tags
             );
@@ -110,7 +105,6 @@ public class AddPersonCommand extends Command {
                     name,
                     phone,
                     email,
-                    address,
                     internshipId,
                     tags
             );
@@ -138,7 +132,6 @@ public class AddPersonCommand extends Command {
         return name.equals(otherCommand.name)
                 && phone.equals(otherCommand.phone)
                 && email.equals(otherCommand.email)
-                && address.equals(otherCommand.address)
                 && Objects.equals(internshipId, otherCommand.internshipId)
                 && tags.equals(otherCommand.tags);
     }

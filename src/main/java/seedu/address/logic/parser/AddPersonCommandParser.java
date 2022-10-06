@@ -42,13 +42,12 @@ public class AddPersonCommandParser implements Parser<AddPersonCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         InternshipId internshipId =
                 ParserUtil.parseInternshipId(argMultimap.getValue(PREFIX_INTERNSHIP_ID).orElse(null));
 
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        return new AddPersonCommand(name, phone, email, address, internshipId, tagList);
+        return new AddPersonCommand(name, phone, email, internshipId, tagList);
     }
 
     /**

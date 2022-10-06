@@ -24,7 +24,6 @@ public class Person {
     private final InternshipId internshipId;
 
     // Data fields
-    private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -35,15 +34,13 @@ public class Person {
             Name name,
             Phone phone,
             Email email,
-            Address address,
             InternshipId internshipId,
             Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+        requireAllNonNull(name, phone, email, tags);
         this.personId = personId;
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
         this.internshipId = internshipId;
         this.tags.addAll(tags);
     }
@@ -62,10 +59,6 @@ public class Person {
 
     public Email getEmail() {
         return email;
-    }
-
-    public Address getAddress() {
-        return address;
     }
 
     public InternshipId getInternshipId() {
@@ -112,7 +105,6 @@ public class Person {
                 && otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
                 && Objects.equals(otherPerson.getPersonId(), getPersonId())
                 && otherPerson.getTags().equals(getTags());
     }
@@ -120,7 +112,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, tags);
     }
 
     @Override
@@ -130,9 +122,7 @@ public class Person {
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Email: ")
-                .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+                .append(getEmail());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
