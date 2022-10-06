@@ -50,7 +50,8 @@ public class DeleteTaskCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof jarvis.logic.commands.task.DeleteTaskCommand // instanceof handles nulls
-                && targetIndex.equals(((jarvis.logic.commands.task.DeleteTaskCommand) other).targetIndex)); // state check
+                && targetIndex.equals(((jarvis.logic.commands.task.DeleteTaskCommand) other).targetIndex));
+                // state check
     }
 }
 

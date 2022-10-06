@@ -6,11 +6,11 @@ import static jarvis.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import jarvis.logic.commands.ClearCommand;
 import jarvis.logic.commands.Command;
 import jarvis.logic.commands.ExitCommand;
 import jarvis.logic.commands.HelpCommand;
 import jarvis.logic.commands.student.AddCommand;
-import jarvis.logic.commands.ClearCommand;
 import jarvis.logic.commands.student.DeleteCommand;
 import jarvis.logic.commands.student.EditCommand;
 import jarvis.logic.commands.student.FindCommand;
