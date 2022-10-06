@@ -12,7 +12,7 @@ import java.time.LocalTime;
 public class TutorialTimeslot {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Timeslot should be in HHMM-HHMM format, e.g 1600-1800";
+            "Timeslot should be in HH:MM-HH:MM format, e.g 16:00-18:00";
 
     public static final String MESSAGE_INVALID_DURATION = "The start time should be before end time.";
 
