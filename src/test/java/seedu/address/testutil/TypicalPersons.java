@@ -32,6 +32,13 @@ import seedu.address.model.person.TeachingAssistant;
  */
 public class TypicalPersons {
 
+    public static final Person AARON = new StudentBuilder().withName("Aaron Tan")
+            .withEmail("aaron@example.com").withGender("M")
+            .withPhone("85877235").withTags("friends").build();
+
+    public static final Person ALEX = new StudentBuilder().withName("Alex Jones")
+            .withEmail("alex@example.com").withGender("M")
+            .withPhone("85237238").withTags("friends").build();
     public static final Person ALICE = new StudentBuilder().withName("Alice Pauline")
             .withEmail("alice@example.com").withGender("F")
             .withPhone("94351253").withTags("friends").build();
@@ -92,10 +99,13 @@ public class TypicalPersons {
         ab.addPerson(CABE);
         ab.addPerson(HOON);
         ab.addPerson(FIONA);
+        ab.addPerson(ALEX);
         ab.addPerson(BOB);
+        ab.addPerson(AARON);
         ab.addPerson(ALICE);
         ab.addPerson(GEORGE);
         ab.addPerson(DANIEL);
+        ab.addPerson(AMY);
         return ab;
     }
 
@@ -105,7 +115,10 @@ public class TypicalPersons {
      */
     public static AddressBook getSortedAddressBook() {
         AddressBook ab = new AddressBook();
+        ab.addPerson(AARON);
+        ab.addPerson(ALEX);
         ab.addPerson(ALICE);
+        ab.addPerson(AMY);
         ab.addPerson(BOB);
         ab.addPerson(CABE);
         ab.addPerson(DANIEL);
