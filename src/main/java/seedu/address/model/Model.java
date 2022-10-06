@@ -5,7 +5,9 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 
 /**
  * The API of the Model component.
@@ -56,6 +58,17 @@ public interface Model {
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     boolean hasPerson(Person person);
+
+    /**
+     * Returns the person with the same name as {@code name} if they exist in the address book.
+     */
+    Person findPerson(Name name);
+
+    /**
+     * Adds the given task.
+     * {@code task} must not already exist in the task book.
+     */
+    void addTask(Task task);
 
     /**
      * Deletes the given person.

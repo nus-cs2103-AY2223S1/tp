@@ -37,6 +37,14 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Finds a person from the list given their name.
+     */
+    public Person find(Name name) {
+        requireNonNull(name);
+        return internalList.stream().filter(person -> person.getName().equals(name)).findAny().orElse(null);
+    }
+
+    /**
      * Adds a person to the list.
      * The person must not already exist in the list.
      */

@@ -1,7 +1,10 @@
 package seedu.address.ui;
 
+import java.util.HashSet;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -16,6 +19,14 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.task.Description;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.enums.Assignment;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -32,6 +43,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private TaskListPanel taskListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -43,6 +55,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane taskListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -112,6 +127,33 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        ObservableList<Task> temp = FXCollections.observableArrayList();
+        temp.add(new Task(new Person(new Name("Hoshimachi Suisei"),
+                                    new Phone("12345678"),
+                                    new Email("suichan@holo.net"),
+                                    new Address("HoloOffice"),
+                                    new HashSet<>()),
+                        Assignment.FROM,
+                    new Description("Datte boku wa hoshi dakara"), true));
+        temp.add(new Task(new Person(new Name("Hoshimachi Suisei"),
+                new Phone("12345678"),
+                new Email("suichan@holo.net"),
+                new Address("HoloOffice"),
+                new HashSet<>()),
+                Assignment.FROM,
+                new Description("Stellar Stellar"), true));
+        temp.add(new Task(new Person(new Name("Hoshimachi Suisei"),
+                new Phone("12345678"),
+                new Email("suichan@holo.net"),
+                new Address("HoloOffice"),
+                new HashSet<>()),
+                Assignment.TO,
+                new Description("Bukorosu"), true));
+
+
+        taskListPanel = new TaskListPanel(/*logic.getTaskList()*/ temp); //to be replaced later
+        taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
