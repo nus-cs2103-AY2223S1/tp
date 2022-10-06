@@ -20,7 +20,11 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.PersonContainsKeywordsPredicate;
+import seedu.address.model.person.Phone;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -95,7 +99,8 @@ public class FindCommandTest {
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
         PersonContainsKeywordsPredicate predicate =
-                new PersonContainsKeywordsPredicate(nameKeywords, emptyPhoneKeywords, emptyEmailKeywords, emptyAddressKeywords);
+                new PersonContainsKeywordsPredicate(nameKeywords, emptyPhoneKeywords,
+                        emptyEmailKeywords, emptyAddressKeywords);
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
