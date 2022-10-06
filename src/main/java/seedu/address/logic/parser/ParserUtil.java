@@ -121,6 +121,9 @@ public class ParserUtil {
         LocalDate date = parseDate(datetimeStr);
         LocalTime startTime = parseTime(startTimeStr);
         LocalTime endTime = parseTime(endTimeStr);
+        if (endTime.isBefore(startTime) || endTime.equals(startTime)) {
+            throw new ParseException(Class.INVALID_DURATION_ERROR_MESSAGE);
+        }
 
         return new Class(date, startTime, endTime, classDatetime);
     }

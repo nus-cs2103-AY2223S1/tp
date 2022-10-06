@@ -12,9 +12,10 @@ import java.time.LocalTime;
 public class Class {
 
     public static final String MESSAGE_CONSTRAINTS = "Class can take any string"
-            + " in the format of 'yyyy-MM-dd 0000-2300'";
+            + " in the format of 'yyyy-MM-dd 0000-2359'";
     public static final String INVALID_DATETIME_ERROR_MESSAGE = "Date should be a valid date";
     public static final String INVALID_TIME_ERROR_MESSAGE = "Time should be in the range of 0000 - 2359";
+    public static final String INVALID_DURATION_ERROR_MESSAGE = "EndTime must be after StartTime";
     public static final String VALIDATION_DATETIME_REGEX = "[0-9]{4}[-][0-9]{2}[-][0-9]{2}";
     public static final String VALIDATION_TIME_REGEX = "[0-9]{4}";
     public static final String VALIDATION_CLASS_REGEX = VALIDATION_DATETIME_REGEX
@@ -24,8 +25,8 @@ public class Class {
     public final LocalTime startTime;
     public final LocalTime endTime;
 
-    public final String classDateTime; //User input
-    public final String classToString; //formatted date
+    public final String classDateTime; //User input eg. 2022-05-05 1200-1500
+    public final String classToString; //formatted date eg. 5 May 2022 12PM-3PM
 
     public Class(String classDateTime) {
         this.date = null;
