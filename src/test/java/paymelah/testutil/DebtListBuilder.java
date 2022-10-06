@@ -17,7 +17,7 @@ public class DebtListBuilder {
     private List<Debt> debtList = new ArrayList<>();
 
     /**
-     * Creates a {@code DebtListBuilder} with the default details.
+     * Creates a {@code DebtListBuilder} with a default debt.
      */
     public DebtListBuilder() {
         debtList.add(DEFAULT_DEBT);
