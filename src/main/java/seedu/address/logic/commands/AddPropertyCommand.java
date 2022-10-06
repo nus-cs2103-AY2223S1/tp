@@ -18,7 +18,7 @@ public class AddPropertyCommand extends Command {
 
     public static final String COMMAND_WORD = "addprop";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a property to Cobb. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a property to the address book. "
             + "Parameters: "
             + PREFIX_NAME + " NAME "
             + PREFIX_PRICE + " PRICE "
@@ -50,11 +50,11 @@ public class AddPropertyCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasProperty(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PROPERTY);
-        }
+        // if (model.hasProperty(toAdd)) {
+        //     throw new CommandException(MESSAGE_DUPLICATE_PROPERTY);
+        // }
 
-        model.addProperty(toAdd);
+        // model.addProperty(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
