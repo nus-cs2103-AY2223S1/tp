@@ -3,6 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalTasks.getTypicalTaskPanel;
 
 import java.nio.file.Path;
 
@@ -13,6 +14,8 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyTaskPanel;
+import seedu.address.model.TaskPanel;
 import seedu.address.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -25,8 +28,9 @@ public class StorageManagerTest {
     @BeforeEach
     public void setUp() {
         JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        JsonTaskPanelStorage taskPanelStorage = new JsonTaskPanelStorage(getTempFilePath("tp"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(addressBookStorage, taskPanelStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -63,6 +67,24 @@ public class StorageManagerTest {
     @Test
     public void getAddressBookFilePath() {
         assertNotNull(storageManager.getAddressBookFilePath());
+    }
+
+    @Test
+    public void taskPanelReadSave() throws Exception {
+        /*
+         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * {@link JsonTaskPanelStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonTaskPanelStorageTest} class.
+         */
+        TaskPanel original = getTypicalTaskPanel();
+        storageManager.saveTaskPanel(original);
+        ReadOnlyTaskPanel retrieved = storageManager.readTaskPanel().get();
+        assertEquals(original, new TaskPanel(retrieved));
+    }
+
+    @Test
+    public void getTaskPanelFilePath() {
+        assertNotNull(storageManager.getTaskPanelFilePath());
     }
 
 }

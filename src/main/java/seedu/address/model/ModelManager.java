@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -20,24 +21,28 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
+    private final TaskPanel taskPanel;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given addressBook, taskPanel and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyTaskPanel taskPanel, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(addressBook, taskPanel, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + addressBook
+                + ", task panel: " + taskPanel
+                + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
+        this.taskPanel = new TaskPanel(taskPanel);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new TaskPanel(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -143,8 +148,27 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
+                && taskPanel.equals(other.taskPanel)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }
 
+    //=========== TaskPanel ================================================================================
+
+    @Override
+    public ReadOnlyTaskPanel getTaskPanel() {
+        return taskPanel;
+    }
+
+    @Override
+    public boolean hasTask(Task task) {
+        requireNonNull(task);
+        return taskPanel.hasTask(task);
+    }
+
+    @Override
+    public void addTask(Task task) {
+        taskPanel.addTask(task);
+        // TODO: updateFilteredTaskList
+    }
 }

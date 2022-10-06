@@ -15,6 +15,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
+    private Path taskPanelFilePath = Paths.get("data", "taskpanel.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -51,9 +52,18 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return addressBookFilePath;
     }
 
+    public Path getTaskPanelFilePath() {
+        return taskPanelFilePath;
+    }
+
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         this.addressBookFilePath = addressBookFilePath;
+    }
+
+    public void setTaskPanelFilePath(Path taskPanelFilePath) {
+        requireNonNull(taskPanelFilePath);
+        this.taskPanelFilePath = taskPanelFilePath;
     }
 
     @Override
@@ -68,19 +78,21 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && addressBookFilePath.equals(o.addressBookFilePath);
+                && addressBookFilePath.equals(o.addressBookFilePath)
+                && taskPanelFilePath.equals(o.taskPanelFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath);
+        return Objects.hash(guiSettings, addressBookFilePath, taskPanelFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + addressBookFilePath);
+        sb.append("Gui Settings : ").append(guiSettings)
+                .append("\nLocal address book file location : ").append(addressBookFilePath)
+                .append("\nLocal task panel file location : ").append(taskPanelFilePath);
         return sb.toString();
     }
 
