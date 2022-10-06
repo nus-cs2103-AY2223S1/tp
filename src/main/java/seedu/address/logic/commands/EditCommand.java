@@ -21,6 +21,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.AdditionalNotes;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Class;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.MoneyOwed;
 import seedu.address.model.person.MoneyPaid;
@@ -43,7 +44,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_CLASS_DATE_TIME + "CLASS_DATE] "
+            + "[" + PREFIX_CLASS_DATE_TIME + "CLASS_DATE_TIME] "
             + "[" + PREFIX_MONEY_OWED + "MONEY_OWED] "
             + "[" + PREFIX_MONEY_PAID + "MONEY_PAID] "
             + "[" + PREFIX_ADDITIONAL_NOTES + "NOTES] "
@@ -102,15 +103,14 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-
-
         MoneyOwed updatedMoneyOwed = editPersonDescriptor.getMoneyOwed().orElse(personToEdit.getMoneyOwed());
         MoneyPaid updatedMoneyPaid = editPersonDescriptor.getMoneyPaid().orElse(personToEdit.getMoneyPaid());
         AdditionalNotes updatedNotes = editPersonDescriptor.getAdditionalNotes()
                 .orElse(personToEdit.getAdditionalNotes());
+        Class updatedClassDateTime = editPersonDescriptor.getAClass().orElse(personToEdit.getAClass());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedMoneyOwed, updatedMoneyPaid, updatedNotes);
+                updatedMoneyOwed, updatedMoneyPaid, updatedNotes, updatedClassDateTime);
     }
 
     @Override
@@ -143,6 +143,7 @@ public class EditCommand extends Command {
         private MoneyOwed moneyOwed;
         private MoneyPaid moneyPaid;
         private AdditionalNotes additionalNotes;
+        private Class classDateTime;
 
         public EditPersonDescriptor() {}
 
@@ -157,13 +158,15 @@ public class EditCommand extends Command {
             setMoneyOwed(toCopy.moneyOwed);
             setMoneyPaid(toCopy.moneyPaid);
             setAdditionalNotes(toCopy.additionalNotes);
+            setClass(toCopy.classDateTime);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, moneyOwed, moneyPaid, additionalNotes);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, moneyOwed, moneyPaid, additionalNotes
+                    , classDateTime);
         }
 
         public void setName(Name name) {
@@ -222,6 +225,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(additionalNotes);
         }
 
+        public void setClass(Class classDateTime) {
+            this.classDateTime = classDateTime;
+        }
+
+        public Optional<Class> getAClass() {
+            return Optional.ofNullable(classDateTime);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -243,8 +254,8 @@ public class EditCommand extends Command {
                     && getAddress().equals(e.getAddress())
                     && getMoneyOwed().equals(e.getMoneyOwed())
                     && getMoneyPaid().equals(e.getMoneyPaid())
-                    && getAdditionalNotes().equals(e.getAdditionalNotes());
+                    && getAdditionalNotes().equals(e.getAdditionalNotes())
+                    && getAClass().equals(e.getAClass());
         }
-
     }
 }

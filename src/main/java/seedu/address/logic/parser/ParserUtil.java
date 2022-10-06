@@ -100,10 +100,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String classDatetime} into a {@code Class}
+     * Parses a {@code String classDatetime} into a {@code Class}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code dateTime}
+     * @throws ParseException if the given {@code dateTime} is invalid.
      */
     public static Class parseClass(String classDatetime) throws ParseException {
         requireNonNull(classDatetime);
@@ -122,7 +122,7 @@ public class ParserUtil {
         LocalTime startTime = parseTime(startTimeStr);
         LocalTime endTime = parseTime(endTimeStr);
 
-        return new Class(date, startTime, endTime);
+        return new Class(date, startTime, endTime, classDatetime);
     }
 
     /**

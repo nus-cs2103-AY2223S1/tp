@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Class;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.MoneyOwed;
 import seedu.address.model.person.MoneyPaid;
@@ -22,6 +23,7 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final Integer INVALID_MONEY_OWED = -123;
     private static final Integer INVALID_MONEY_PAID = -145;
+    private static final String INVALID_CLASS_DATE_TIME = "2022,04,19 1530-1630";
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
@@ -30,6 +32,8 @@ public class JsonAdaptedPersonTest {
     private static final Integer VALID_MONEY_OWED = BENSON.getMoneyOwed().value;
     private static final Integer VALID_MONEY_PAID = BENSON.getMoneyPaid().value;
     private static final String VALID_ADDITIONALNOTES = BENSON.getAdditionalNotes().toString();
+    private static final String VALID_CLASS_DATE_TIME = "2022-03-03 1300-1500";
+
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
@@ -40,7 +44,8 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(INVALID_NAME, VALID_PHONE,
-                VALID_EMAIL, VALID_ADDRESS, VALID_MONEY_OWED, VALID_MONEY_PAID, VALID_ADDITIONALNOTES);
+                VALID_EMAIL, VALID_ADDRESS, VALID_MONEY_OWED, VALID_MONEY_PAID, VALID_ADDITIONALNOTES,
+                VALID_CLASS_DATE_TIME);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -48,7 +53,7 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(null, VALID_PHONE, VALID_EMAIL,
-                VALID_ADDRESS, VALID_MONEY_OWED, VALID_MONEY_PAID, VALID_ADDITIONALNOTES);
+                VALID_ADDRESS, VALID_MONEY_OWED, VALID_MONEY_PAID, VALID_ADDITIONALNOTES, VALID_CLASS_DATE_TIME);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -56,7 +61,7 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, INVALID_PHONE, VALID_EMAIL,
-                VALID_ADDRESS, VALID_MONEY_OWED, VALID_MONEY_PAID, VALID_ADDITIONALNOTES);
+                VALID_ADDRESS, VALID_MONEY_OWED, VALID_MONEY_PAID, VALID_ADDITIONALNOTES, VALID_CLASS_DATE_TIME);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -64,7 +69,7 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_nullPhone_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, null, VALID_EMAIL,
-                VALID_ADDRESS, VALID_MONEY_OWED, VALID_MONEY_PAID, VALID_ADDITIONALNOTES);
+                VALID_ADDRESS, VALID_MONEY_OWED, VALID_MONEY_PAID, VALID_ADDITIONALNOTES, VALID_CLASS_DATE_TIME);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -72,7 +77,7 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidEmail_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, INVALID_EMAIL,
-                VALID_ADDRESS, VALID_MONEY_OWED, VALID_MONEY_PAID, VALID_ADDITIONALNOTES);
+                VALID_ADDRESS, VALID_MONEY_OWED, VALID_MONEY_PAID, VALID_ADDITIONALNOTES, VALID_CLASS_DATE_TIME);
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -80,7 +85,7 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, null,
-                VALID_ADDRESS, VALID_MONEY_OWED, VALID_MONEY_PAID, VALID_ADDITIONALNOTES);
+                VALID_ADDRESS, VALID_MONEY_OWED, VALID_MONEY_PAID, VALID_ADDITIONALNOTES, VALID_CLASS_DATE_TIME);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -88,7 +93,7 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidAddress_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
-                INVALID_ADDRESS, VALID_MONEY_OWED, VALID_MONEY_PAID, VALID_ADDITIONALNOTES);
+                INVALID_ADDRESS, VALID_MONEY_OWED, VALID_MONEY_PAID, VALID_ADDITIONALNOTES, VALID_CLASS_DATE_TIME);
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -96,7 +101,7 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
-                null, VALID_MONEY_OWED, VALID_MONEY_PAID, VALID_ADDITIONALNOTES);
+                null, VALID_MONEY_OWED, VALID_MONEY_PAID, VALID_ADDITIONALNOTES, VALID_CLASS_DATE_TIME);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -104,7 +109,7 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidMoneyOwed_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
-                VALID_ADDRESS, INVALID_MONEY_OWED, VALID_MONEY_PAID, VALID_ADDITIONALNOTES);
+                VALID_ADDRESS, INVALID_MONEY_OWED, VALID_MONEY_PAID, VALID_ADDITIONALNOTES, VALID_CLASS_DATE_TIME);
         String expectedMessage = MoneyOwed.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -112,8 +117,16 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidMoneyPaid_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
-                VALID_ADDRESS, VALID_MONEY_OWED, INVALID_MONEY_PAID, VALID_ADDITIONALNOTES);
+                VALID_ADDRESS, VALID_MONEY_OWED, INVALID_MONEY_PAID, VALID_ADDITIONALNOTES, VALID_CLASS_DATE_TIME);
         String expectedMessage = MoneyPaid.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidClassDateTime_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
+                VALID_ADDRESS, VALID_MONEY_OWED, VALID_MONEY_PAID, VALID_ADDITIONALNOTES, INVALID_CLASS_DATE_TIME);
+        String expectedMessage = Class.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 }

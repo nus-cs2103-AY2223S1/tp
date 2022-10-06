@@ -1,7 +1,10 @@
 package seedu.address.testutil;
 
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.AdditionalNotes;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Class;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.MoneyOwed;
 import seedu.address.model.person.MoneyPaid;
@@ -21,6 +24,7 @@ public class PersonBuilder {
     public static final Integer DEFAULT_MONEY_OWED = 0;
     public static final Integer DEFAULT_MONEY_PAID = 0;
     public static final String DEFAULT_ADDITIONALNOTES = "";
+    public static final String DEFAULT_CLASS_DATE_TIME = "";
 
     private Name name;
     private Phone phone;
@@ -29,6 +33,7 @@ public class PersonBuilder {
     private MoneyOwed moneyOwed;
     private MoneyPaid moneyPaid;
     private AdditionalNotes additionalNotes;
+    private Class aClass;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -41,6 +46,7 @@ public class PersonBuilder {
         moneyOwed = new MoneyOwed(DEFAULT_MONEY_OWED);
         moneyPaid = new MoneyPaid(DEFAULT_MONEY_PAID);
         additionalNotes = new AdditionalNotes(DEFAULT_ADDITIONALNOTES);
+        aClass = new Class(DEFAULT_CLASS_DATE_TIME);
     }
 
     /**
@@ -54,6 +60,7 @@ public class PersonBuilder {
         moneyOwed = personToCopy.getMoneyOwed();
         moneyPaid = personToCopy.getMoneyPaid();
         additionalNotes = personToCopy.getAdditionalNotes();
+        aClass = personToCopy.getAClass();
     }
 
     /**
@@ -112,8 +119,23 @@ public class PersonBuilder {
         return this;
     }
 
-    public Person build() {
-        return new Person(name, phone, email, address, moneyOwed, moneyPaid, additionalNotes);
+    /**
+     * Sets the {@code Class} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withClass(String classDateTime) throws ParseException {
+        if (classDateTime.equals("")) {
+            this.aClass = new Class("");
+        }
+        this.aClass = ParserUtil.parseClass(classDateTime);
+        return this;
     }
 
+    /**
+     * Returns Person object with the fields initialised.
+     * @return Person object.
+     */
+    public Person build() {
+        return new Person(name, phone, email, address, moneyOwed, moneyPaid, additionalNotes,
+                aClass);
+    }
 }

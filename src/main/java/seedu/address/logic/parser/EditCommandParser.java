@@ -29,7 +29,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                PREFIX_ADDRESS, PREFIX_MONEY_OWED, PREFIX_MONEY_PAID, PREFIX_ADDITIONAL_NOTES);
+                PREFIX_ADDRESS, PREFIX_MONEY_OWED, PREFIX_MONEY_PAID, PREFIX_ADDITIONAL_NOTES, PREFIX_CLASS_DATE_TIME);
 
         Index index;
 
@@ -64,9 +64,8 @@ public class EditCommandParser implements Parser<EditCommand> {
                     .getValue(PREFIX_ADDITIONAL_NOTES).get()));
         }
         if (argMultimap.getValue(PREFIX_CLASS_DATE_TIME).isPresent()) {
-          //TODO after parser is implemented
+            editPersonDescriptor.setClass(ParserUtil.parseClass(argMultimap.getValue(PREFIX_CLASS_DATE_TIME).get()));
         }
-
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
