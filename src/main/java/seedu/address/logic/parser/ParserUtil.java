@@ -62,7 +62,7 @@ public class ParserUtil {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
         return new Phone(trimmedPhone);
-    }    
+    }
 
     /**
      * Parses a {@code String lessonPlan} into an {@code LessonPlan}.

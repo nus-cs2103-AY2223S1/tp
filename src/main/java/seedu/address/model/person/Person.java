@@ -29,7 +29,7 @@ public class Person {
      */
     public Person(Name name, Phone phone, LessonPlan lessonPlan,
                   HomeworkList homeworkList, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+        requireAllNonNull(name, phone, tags);
         this.name = name;
         this.phone = phone;
         this.lessonPlan = lessonPlan;
@@ -48,7 +48,7 @@ public class Person {
     public LessonPlan getLessonPlan() {
         return lessonPlan;
     }
-    
+
     public HomeworkList getHomeworkList() {
         return homeworkList;
     }

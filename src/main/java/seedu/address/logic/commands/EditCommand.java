@@ -170,7 +170,7 @@ public class EditCommand extends Command {
         public Optional<LessonPlan> getLessonPlan() {
             return Optional.ofNullable(lessonPlan);
         }
-        
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.

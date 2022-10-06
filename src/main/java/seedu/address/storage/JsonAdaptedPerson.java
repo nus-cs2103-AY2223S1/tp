@@ -90,13 +90,13 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
         final Phone modelPhone = new Phone(phone);
-        
+
         if (lessonPlan == null) {
             throw new IllegalValueException(String.format(
                     MISSING_FIELD_MESSAGE_FORMAT, LessonPlan.class.getSimpleName()));
         }
         final LessonPlan modelLessonPlan = new LessonPlan(lessonPlan);
-        
+
         final HomeworkList modelHomeworkList = new HomeworkList();
         for (JsonAdaptedHomework homework : homeworkList) {
             modelHomeworkList.addHomework(homework.toModelType());
