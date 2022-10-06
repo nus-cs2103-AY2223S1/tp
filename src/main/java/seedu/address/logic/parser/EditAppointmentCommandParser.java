@@ -50,7 +50,7 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
                     ParserUtil.parseMedicalTest(argMultimap.getValue(PREFIX_MEDICAL_TEST).get()));
         }
         if (argMultimap.getValue(PREFIX_DOCTOR).isPresent()) {
-            editAppointmentDescriptor.setDoctor(ParserUtil.parseDoctor(argMultimap.getValue(PREFIX_ADDRESS).get()));
+            editAppointmentDescriptor.setDoctor(ParserUtil.parseDoctor(argMultimap.getValue(PREFIX_DOCTOR).get()));
         }
         if (!editAppointmentDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditAppointmentCommand.MESSAGE_NOT_EDITED);
