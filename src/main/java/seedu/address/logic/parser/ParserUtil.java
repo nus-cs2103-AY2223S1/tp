@@ -15,6 +15,9 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.property.Description;
+import seedu.address.model.property.Price;
+import seedu.address.model.property.PropertyAddress;
+import seedu.address.model.property.PropertyName;
 import seedu.address.model.role.Characteristics;
 import seedu.address.model.role.PriceRange;
 import seedu.address.model.tag.Tag;
@@ -177,5 +180,50 @@ public class ParserUtil {
             item = item.trim();
         }
         return new Characteristics(charArray);
+    }
+
+    /**
+     * Parses a {@code String price} into a {@code Price}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code price} is invalid.
+     */
+    public static Price parsePrice(String price) throws ParseException {
+        requireNonNull(price);
+        String trimmedPrice = price.trim();
+        if (!Price.isValidPrice(trimmedPrice)) {
+            throw new ParseException(Price.MESSAGE_CONSTRAINTS);
+        }
+        return new Price(trimmedPrice);
+    }
+
+    /**
+     * Parses a {@code String propertyName} into a {@code PropertyName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code propertyName} is invalid.
+     */
+    public static PropertyName parsePropertyName(String propertyName) throws ParseException {
+        requireNonNull(propertyName);
+        String trimmedPropertyName = propertyName.trim();
+        if (!PropertyName.isValidPropertyName(trimmedPropertyName)) {
+            throw new ParseException(PropertyName.MESSAGE_CONSTRAINTS);
+        }
+        return new PropertyName(trimmedPropertyName);
+    }
+
+    /**
+     * Parses a {@code String propertyAddress} into an {@code PropertyAddress}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code propertyAddress} is invalid.
+     */
+    public static PropertyAddress parsePropertyAddress(String propertyAddress) throws ParseException {
+        requireNonNull(propertyAddress);
+        String trimmedPropertyAddress = propertyAddress.trim();
+        if (!PropertyAddress.isValidPropertyAddress(trimmedPropertyAddress)) {
+            throw new ParseException(PropertyAddress.MESSAGE_CONSTRAINTS);
+        }
+        return new PropertyAddress(trimmedPropertyAddress);
     }
 }

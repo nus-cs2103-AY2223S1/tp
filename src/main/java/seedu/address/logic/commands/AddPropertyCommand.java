@@ -5,9 +5,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.property.Property;
 
 /**
  * Adds a person to the address book.
@@ -18,15 +20,18 @@ public class AddPropertyCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a property to Cobb. "
             + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_ADDRESS + "ADDRESS "
-            + PREFIX_PRICE + "PRICE "
-            + PREFIX_DESCRIPTION + "DESCRIPTION "
+            + PREFIX_NAME + " NAME "
+            + PREFIX_PRICE + " PRICE "
+            + PREFIX_ADDRESS + " ADDRESS "
+            + PREFIX_DESCRIPTION + " DESCRIPTION "
+            + "[" + PREFIX_TAG + " TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "Clementi Ave 2 Second Floor Flat "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_PRICE + "500 000 "
-            + PREFIX_DESCRIPTION + "ready to be bought "; // consider changing description to tags
+            + PREFIX_NAME + " Clementi Ave 2 Second Floor Flat "
+            + PREFIX_PRICE + " 500000 "
+            + PREFIX_ADDRESS + " 311, Clementi Ave 2, #02-25 "
+            + PREFIX_DESCRIPTION + " ready to be bought "
+            + PREFIX_TAG + " condo "
+            + PREFIX_TAG + " low floor ";
 
     public static final String MESSAGE_SUCCESS = "New property added: %1$s";
     public static final String MESSAGE_DUPLICATE_PROPERTY = "This property already exists in the address book";
