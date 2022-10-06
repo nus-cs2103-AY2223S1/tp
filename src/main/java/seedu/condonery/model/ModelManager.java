@@ -118,7 +118,7 @@ public class ModelManager implements Model {
      * {@code versionedPropertyDirectory}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
+    public ObservableList<Person> getFilteredPropertyList() {
         return filteredPersons;
     }
 
