@@ -2,7 +2,9 @@ package taskbook.model;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
+
 import javafx.collections.ObservableList;
+
 import taskbook.commons.core.GuiSettings;
 import taskbook.model.person.Name;
 import taskbook.model.person.Person;

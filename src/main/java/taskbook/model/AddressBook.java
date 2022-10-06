@@ -3,7 +3,9 @@ package taskbook.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+
 import javafx.collections.ObservableList;
+
 import taskbook.model.person.Name;
 import taskbook.model.person.Person;
 import taskbook.model.person.UniquePersonList;

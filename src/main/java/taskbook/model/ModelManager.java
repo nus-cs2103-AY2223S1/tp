@@ -6,8 +6,10 @@ import static taskbook.commons.util.CollectionUtil.requireAllNonNull;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+
 import taskbook.commons.core.GuiSettings;
 import taskbook.commons.core.LogsCenter;
 import taskbook.model.person.Name;
