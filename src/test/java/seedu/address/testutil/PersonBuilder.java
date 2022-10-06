@@ -107,6 +107,24 @@ public class PersonBuilder {
      */
     public PersonBuilder withPatientType(PatientTypes patientType) {
         this.patientType = new PatientType(patientType);
+
+        // If inpatient, set default hospital number, floor number and ward number if not present
+        if (this.patientType.isInpatient()) {
+            if (this.hospitalWing == null) {
+                this.hospitalWing = new HospitalWing(DEFAULT_HOSPITAL_WING);
+            }
+            if (this.floorNumber == null) {
+                this.floorNumber = new FloorNumber(DEFAULT_FLOOR_NUMBER);
+            }
+            if (this.wardNumber == null) {
+                this.wardNumber = new WardNumber(DEFAULT_WARD_NUMBER);
+            }
+        // If outpatient, remove hospital number, floor number and ward number if present
+        } else {
+            this.hospitalWing = null;
+            this.floorNumber = null;
+            this.wardNumber = null;
+        }
         return this;
     }
 

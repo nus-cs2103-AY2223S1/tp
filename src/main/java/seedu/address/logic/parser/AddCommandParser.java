@@ -60,15 +60,14 @@ public class AddCommandParser implements Parser<AddCommand> {
                 PREFIX_WARD_NUMBER)) {
             throw new ParseException(String.format(PatientType.DEPENDENCY_CONSTRAINTS, AddCommand.MESSAGE_USAGE));
         }
-
         HospitalWing hospitalWing = null;
         FloorNumber floorNumber = null;
         WardNumber wardNumber = null;
 
         if (patientType.isInpatient()) {
-            hospitalWing = ParserUtil.parseHospitalWing(argMultimap.getValue(PREFIX_HOSPITAL_WING).orElse(null));
-            floorNumber = ParserUtil.parseFloorNumber(argMultimap.getValue(PREFIX_FLOOR_NUMBER).orElse(null));
-            wardNumber = ParserUtil.parseWardNumber(argMultimap.getValue(PREFIX_WARD_NUMBER).orElse(null));
+            hospitalWing = ParserUtil.parseHospitalWing(argMultimap.getValue(PREFIX_HOSPITAL_WING).get());
+            floorNumber = ParserUtil.parseFloorNumber(argMultimap.getValue(PREFIX_FLOOR_NUMBER).get());
+            wardNumber = ParserUtil.parseWardNumber(argMultimap.getValue(PREFIX_WARD_NUMBER).get());
         }
 
         Person person = new Person(name, phone, email, nextOfKin, patientType, hospitalWing,

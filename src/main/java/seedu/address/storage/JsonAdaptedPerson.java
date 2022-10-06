@@ -120,6 +120,7 @@ class JsonAdaptedPerson {
         final Phone modelPhone = new Phone(phone);
 
         if (email == null) {
+            System.out.println(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
         }
         if (!Email.isValidEmail(email)) {
@@ -151,8 +152,7 @@ class JsonAdaptedPerson {
                     HospitalWing.class.getSimpleName()));
         }
         if (!modelPatientType.isInpatient() && hospitalWing != null) {
-            throw new IllegalValueException(String.format(PatientType.DEPENDENCY_CONSTRAINTS,
-                    HospitalWing.class.getSimpleName()));
+            throw new IllegalValueException(HospitalWing.MESSAGE_CONSTRAINTS);
         }
         if (hospitalWing != null && !HospitalWing.isValidHospitalWing(hospitalWing)) {
             throw new IllegalValueException(HospitalWing.MESSAGE_CONSTRAINTS);
@@ -162,11 +162,10 @@ class JsonAdaptedPerson {
 
         if (modelPatientType.isInpatient() && floorNumber == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    HospitalWing.class.getSimpleName()));
+                    FloorNumber.class.getSimpleName()));
         }
         if (!modelPatientType.isInpatient() && floorNumber != null) {
-            throw new IllegalValueException(String.format(PatientType.DEPENDENCY_CONSTRAINTS,
-                    FloorNumber.class.getSimpleName()));
+            throw new IllegalValueException(FloorNumber.MESSAGE_CONSTRAINTS);
         }
         Integer fN = null;
         if (floorNumber != null) {
@@ -187,8 +186,7 @@ class JsonAdaptedPerson {
                     WardNumber.class.getSimpleName()));
         }
         if (!modelPatientType.isInpatient() && wardNumber != null) {
-            throw new IllegalValueException(String.format(PatientType.DEPENDENCY_CONSTRAINTS,
-                    WardNumber.class.getSimpleName()));
+            throw new IllegalValueException(WardNumber.MESSAGE_CONSTRAINTS);
         }
         Integer wN = null;
         if (wardNumber != null) {

@@ -28,14 +28,14 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_WARD_NUMBER = "bense";
     private static final String INVALID_MEDICATION = " ";
 
-    private static final String VALID_NAME = BENSON.getName().toString();
-    private static final String VALID_PHONE = BENSON.getPhone().toString();
-    private static final String VALID_EMAIL = BENSON.getEmail().toString();
-    private static final String VALID_NEXT_OF_KIN = BENSON.getNextOfKin().toString();
-    private static final String VALID_PATIENT_TYPE = BENSON.getPatientType().toString();
-    private static final String VALID_HOSPITAL_WING = BENSON.getHospitalWing().toString();
-    private static final String VALID_FLOOR_NUMBER = BENSON.getFloorNumber().toString();
-    private static final String VALID_WARD_NUMBER = BENSON.getWardNumber().toString();
+    private static final String VALID_NAME = BENSON.getName().fullName;
+    private static final String VALID_PHONE = BENSON.getPhone().value;
+    private static final String VALID_EMAIL = BENSON.getEmail().value;
+    private static final String VALID_NEXT_OF_KIN = BENSON.getNextOfKin().value;
+    private static final String VALID_PATIENT_TYPE = BENSON.getPatientType().value.name();
+    private static final String VALID_HOSPITAL_WING = BENSON.getHospitalWing().get().value;
+    private static final String VALID_FLOOR_NUMBER = BENSON.getFloorNumber().get().value.toString();
+    private static final String VALID_WARD_NUMBER = BENSON.getWardNumber().get().value.toString();
     private static final List<JsonAdaptedMedication> VALID_MEDICATIONS = BENSON.getMedications().stream()
             .map(JsonAdaptedMedication::new)
             .collect(Collectors.toList());

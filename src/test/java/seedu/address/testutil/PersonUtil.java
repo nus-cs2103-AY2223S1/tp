@@ -41,8 +41,8 @@ public class PersonUtil {
         sb.append(PREFIX_PATIENT_TYPE + person.getPatientType().value.name() + " ");
         if (person.getPatientType().isInpatient()) {
             sb.append(PREFIX_HOSPITAL_WING + person.getHospitalWing().get().value + " ");
-            sb.append(PREFIX_HOSPITAL_WING + person.getFloorNumber().get().value.toString() + " ");
-            sb.append(PREFIX_HOSPITAL_WING + person.getWardNumber().get().value.toString() + " ");
+            sb.append(PREFIX_FLOOR_NUMBER + person.getFloorNumber().get().value.toString() + " ");
+            sb.append(PREFIX_WARD_NUMBER + person.getWardNumber().get().value.toString() + " ");
         }
         person.getMedications().stream().forEach(
             s -> sb.append(PREFIX_MEDICATION + s.medicationName + " ")

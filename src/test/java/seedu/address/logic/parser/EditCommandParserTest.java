@@ -44,6 +44,7 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.FloorNumber;
+import seedu.address.model.person.HospitalWing;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NextOfKin;
 import seedu.address.model.person.PatientType;
@@ -91,15 +92,24 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
-        assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
-        assertParseFailure(parser, "1" + INVALID_NEXT_OF_KIN_DESC, NextOfKin.MESSAGE_CONSTRAINTS); // invalid nok
-        assertParseFailure(parser, "1" + INVALID_PATIENT_TYPE_DESC, PatientType.MESSAGE_CONSTRAINTS); // invalid type
-        assertParseFailure(parser, "1" + INVALID_HOSPITAL_WING_DESC, NextOfKin.MESSAGE_CONSTRAINTS); // invalid wing
-        assertParseFailure(parser, "1" + INVALID_FLOOR_NUMBER_DESC, FloorNumber.MESSAGE_CONSTRAINTS); // invalid floor
-        assertParseFailure(parser, "1" + INVALID_WARD_NUMBER_DESC, WardNumber.MESSAGE_CONSTRAINTS); // invalid ward
-        assertParseFailure(parser, "1" + INVALID_MEDICATION_DESC, Medication.MESSAGE_CONSTRAINTS); // invalid med
+        assertParseFailure(parser, "1"
+                + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
+        assertParseFailure(parser, "1"
+                + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
+        assertParseFailure(parser, "1"
+                + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
+        assertParseFailure(parser, "1"
+                + INVALID_NEXT_OF_KIN_DESC, NextOfKin.MESSAGE_CONSTRAINTS); // invalid nok
+        assertParseFailure(parser, "1"
+                + INVALID_PATIENT_TYPE_DESC, PatientType.MESSAGE_CONSTRAINTS); // invalid type
+        assertParseFailure(parser, "1"
+                + INVALID_HOSPITAL_WING_DESC, HospitalWing.MESSAGE_CONSTRAINTS); // invalid wing
+        assertParseFailure(parser, "1"
+                + INVALID_FLOOR_NUMBER_DESC, FloorNumber.MESSAGE_CONSTRAINTS); // invalid floor
+        assertParseFailure(parser, "1"
+                + INVALID_WARD_NUMBER_DESC, WardNumber.MESSAGE_CONSTRAINTS); // invalid ward
+        assertParseFailure(parser, "1"
+                + INVALID_MEDICATION_DESC, Medication.MESSAGE_CONSTRAINTS); // invalid med
 
         // invalid phone followed by valid email
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
@@ -110,12 +120,12 @@ public class EditCommandParserTest {
 
         // while parsing {@code PREFIX_MEDICATION} alone will reset the tags of the {@code Person} being edited,
         // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + VALID_MEDICATION_IBUPROFEN + VALID_MEDICATION_PARACETAMOL
+        assertParseFailure(parser, "1" + MEDICATION_DESC_IBUPROFEN + MEDICATION_DESC_PARACETAMOL
                 + MEDICATION_EMPTY, Medication.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + VALID_MEDICATION_IBUPROFEN + MEDICATION_EMPTY
-                + VALID_MEDICATION_PARACETAMOL, Medication.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + MEDICATION_EMPTY + VALID_MEDICATION_IBUPROFEN
-                + VALID_MEDICATION_PARACETAMOL, Medication.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + MEDICATION_DESC_IBUPROFEN + MEDICATION_EMPTY
+                + MEDICATION_DESC_PARACETAMOL, Medication.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + MEDICATION_EMPTY + MEDICATION_DESC_IBUPROFEN
+                + MEDICATION_DESC_PARACETAMOL, Medication.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC

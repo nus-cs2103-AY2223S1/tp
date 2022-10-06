@@ -11,9 +11,12 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_HOSPITAL_WING
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MEDICATION_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NEXT_OF_KIN_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PATIENT_TYPE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_WARD_NUMBER_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.MEDICATION_DESC_IBUPROFEN;
 import static seedu.address.logic.commands.CommandTestUtil.MEDICATION_DESC_PARACETAMOL;
+import static seedu.address.logic.commands.CommandTestUtil.MEDICATION_DESC_XANAX;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.NEXT_OF_KIN_DESC_AMY;
@@ -45,11 +48,14 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.FloorNumber;
 import seedu.address.model.person.HospitalWing;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NextOfKin;
+import seedu.address.model.person.PatientType;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.WardNumber;
 import seedu.address.model.tag.Medication;
 import seedu.address.testutil.PersonBuilder;
 
@@ -91,19 +97,24 @@ public class AddCommandParserTest {
 
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + NEXT_OF_KIN_DESC_BOB + PATIENT_TYPE_DESC_BOB
-                + VALID_MEDICATION_IBUPROFEN + VALID_MEDICATION_PARACETAMOL
-                + VALID_MEDICATION_XANAX, new AddCommand(expectedPersonMultipleMedications));
+                + MEDICATION_DESC_IBUPROFEN + MEDICATION_DESC_PARACETAMOL
+                + MEDICATION_DESC_XANAX, new AddCommand(expectedPersonMultipleMedications));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero medications
         Person expectedPerson = new PersonBuilder(AMY).withMedication().build();
+
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + NEXT_OF_KIN_DESC_AMY
                 + PATIENT_TYPE_DESC_AMY + HOSPITAL_WING_DESC_AMY + FLOOR_NUMBER_DESC_AMY
                 + WARD_NUMBER_DESC_AMY, new AddCommand(expectedPerson));
     }
 
+    /**
+     * Note: For all missing prefixes, they need to be placed at the front if not it will just be counted as part of
+     * the previous prefix.
+     */
     @Test
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
@@ -114,39 +125,39 @@ public class AddCommandParserTest {
                 + FLOOR_NUMBER_DESC_AMY + WARD_NUMBER_DESC_AMY , expectedMessage);
 
         // missing phone prefix
-        assertParseFailure(parser, NAME_DESC_AMY + VALID_PHONE_AMY + EMAIL_DESC_AMY
+        assertParseFailure(parser, VALID_PHONE_AMY + NAME_DESC_AMY + EMAIL_DESC_AMY
                 + NEXT_OF_KIN_DESC_AMY + PATIENT_TYPE_DESC_AMY + HOSPITAL_WING_DESC_AMY
                 + FLOOR_NUMBER_DESC_AMY + WARD_NUMBER_DESC_AMY , expectedMessage);
 
         // missing email prefix
-        assertParseFailure(parser, NAME_DESC_AMY + PHONE_DESC_AMY + VALID_EMAIL_AMY
+        assertParseFailure(parser, VALID_EMAIL_AMY + NAME_DESC_AMY + PHONE_DESC_AMY
                 + NEXT_OF_KIN_DESC_AMY + PATIENT_TYPE_DESC_AMY + HOSPITAL_WING_DESC_AMY
                 + FLOOR_NUMBER_DESC_AMY + WARD_NUMBER_DESC_AMY , expectedMessage);
 
         // missing next of kin prefix
-        assertParseFailure(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + VALID_NEXT_OF_KIN_AMY + PATIENT_TYPE_DESC_AMY + HOSPITAL_WING_DESC_AMY
+        assertParseFailure(parser, VALID_NEXT_OF_KIN_AMY + NAME_DESC_AMY + PHONE_DESC_AMY
+                + EMAIL_DESC_AMY + PATIENT_TYPE_DESC_AMY + HOSPITAL_WING_DESC_AMY
                 + FLOOR_NUMBER_DESC_AMY + WARD_NUMBER_DESC_AMY , expectedMessage);
 
         // missing patient type prefix
-        assertParseFailure(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + NEXT_OF_KIN_DESC_AMY + VALID_PATIENT_TYPE_AMY + HOSPITAL_WING_DESC_AMY
+        assertParseFailure(parser, VALID_PATIENT_TYPE_AMY + NAME_DESC_AMY + PHONE_DESC_AMY
+                + EMAIL_DESC_AMY + NEXT_OF_KIN_DESC_AMY + HOSPITAL_WING_DESC_AMY
                 + FLOOR_NUMBER_DESC_AMY + WARD_NUMBER_DESC_AMY , expectedMessage);
 
         // missing hospital wing prefix
-        assertParseFailure(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + NEXT_OF_KIN_DESC_AMY + PATIENT_TYPE_DESC_AMY + VALID_HOSPITAL_WING_AMY
+        assertParseFailure(parser, VALID_HOSPITAL_WING_AMY + NAME_DESC_AMY + PHONE_DESC_AMY
+                + EMAIL_DESC_AMY + NEXT_OF_KIN_DESC_AMY + PATIENT_TYPE_DESC_AMY
                 + FLOOR_NUMBER_DESC_AMY + WARD_NUMBER_DESC_AMY , expectedMessage);
 
         // missing floor number prefix
-        assertParseFailure(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + NEXT_OF_KIN_DESC_AMY + PATIENT_TYPE_DESC_AMY + VALID_HOSPITAL_WING_AMY
-                + VALID_FLOOR_NUMBER_AMY + WARD_NUMBER_DESC_AMY , expectedMessage);
+        assertParseFailure(parser, VALID_FLOOR_NUMBER_AMY + NAME_DESC_AMY + PHONE_DESC_AMY
+                + EMAIL_DESC_AMY + NEXT_OF_KIN_DESC_AMY + PATIENT_TYPE_DESC_AMY
+                + HOSPITAL_WING_DESC_AMY + WARD_NUMBER_DESC_AMY , expectedMessage);
 
         // missing ward number prefix
-        assertParseFailure(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + NEXT_OF_KIN_DESC_AMY + PATIENT_TYPE_DESC_AMY + VALID_HOSPITAL_WING_AMY
-                + FLOOR_NUMBER_DESC_AMY + VALID_WARD_NUMBER_AMY , expectedMessage);
+        assertParseFailure(parser, VALID_WARD_NUMBER_AMY + NAME_DESC_AMY + PHONE_DESC_AMY
+                + EMAIL_DESC_AMY + NEXT_OF_KIN_DESC_AMY + PATIENT_TYPE_DESC_AMY
+                + HOSPITAL_WING_DESC_AMY + FLOOR_NUMBER_DESC_AMY, expectedMessage);
 
         // all prefixes missing
         assertParseFailure(parser, VALID_NAME_AMY + VALID_PHONE_AMY + VALID_EMAIL_AMY
@@ -160,43 +171,54 @@ public class AddCommandParserTest {
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + NEXT_OF_KIN_DESC_AMY + PATIENT_TYPE_DESC_AMY + HOSPITAL_WING_DESC_AMY
                 + FLOOR_NUMBER_DESC_AMY + WARD_NUMBER_DESC_AMY
-                + VALID_MEDICATION_IBUPROFEN + VALID_MEDICATION_PARACETAMOL, Name.MESSAGE_CONSTRAINTS);
+                + MEDICATION_DESC_IBUPROFEN + MEDICATION_DESC_PARACETAMOL, Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_AMY + INVALID_PHONE_DESC + EMAIL_DESC_AMY
                 + NEXT_OF_KIN_DESC_AMY + PATIENT_TYPE_DESC_AMY + HOSPITAL_WING_DESC_AMY
                 + FLOOR_NUMBER_DESC_AMY + WARD_NUMBER_DESC_AMY
-                + VALID_MEDICATION_IBUPROFEN + VALID_MEDICATION_PARACETAMOL, Phone.MESSAGE_CONSTRAINTS);
+                + MEDICATION_DESC_IBUPROFEN + MEDICATION_DESC_PARACETAMOL, Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
         assertParseFailure(parser, NAME_DESC_AMY + PHONE_DESC_AMY + INVALID_EMAIL_DESC
                 + NEXT_OF_KIN_DESC_AMY + PATIENT_TYPE_DESC_AMY + HOSPITAL_WING_DESC_AMY
                 + FLOOR_NUMBER_DESC_AMY + WARD_NUMBER_DESC_AMY
-                + VALID_MEDICATION_IBUPROFEN + VALID_MEDICATION_PARACETAMOL, Email.MESSAGE_CONSTRAINTS);
+                + MEDICATION_DESC_IBUPROFEN + MEDICATION_DESC_PARACETAMOL, Email.MESSAGE_CONSTRAINTS);
 
-        // invalid address
+        // invalid nok
         assertParseFailure(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + INVALID_NEXT_OF_KIN_DESC + PATIENT_TYPE_DESC_AMY + HOSPITAL_WING_DESC_AMY
                 + FLOOR_NUMBER_DESC_AMY + WARD_NUMBER_DESC_AMY
-                + VALID_MEDICATION_IBUPROFEN + VALID_MEDICATION_PARACETAMOL, NextOfKin.MESSAGE_CONSTRAINTS);
+                + MEDICATION_DESC_IBUPROFEN + MEDICATION_DESC_PARACETAMOL, NextOfKin.MESSAGE_CONSTRAINTS);
+
+        // invalid patient type
+        assertParseFailure(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+                + NEXT_OF_KIN_DESC_AMY + INVALID_PATIENT_TYPE_DESC + HOSPITAL_WING_DESC_AMY
+                + FLOOR_NUMBER_DESC_AMY + WARD_NUMBER_DESC_AMY
+                + MEDICATION_DESC_IBUPROFEN + MEDICATION_DESC_PARACETAMOL, PatientType.MESSAGE_CONSTRAINTS);
 
         // invalid hospital wing
         assertParseFailure(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + NEXT_OF_KIN_DESC_AMY + PATIENT_TYPE_DESC_AMY + INVALID_HOSPITAL_WING_DESC
                 + FLOOR_NUMBER_DESC_AMY + WARD_NUMBER_DESC_AMY
-                + VALID_MEDICATION_IBUPROFEN + VALID_MEDICATION_PARACETAMOL, HospitalWing.MESSAGE_CONSTRAINTS);
+                + MEDICATION_DESC_IBUPROFEN + MEDICATION_DESC_PARACETAMOL, HospitalWing.MESSAGE_CONSTRAINTS);
 
         // invalid floor number
         assertParseFailure(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + NEXT_OF_KIN_DESC_AMY + PATIENT_TYPE_DESC_AMY + INVALID_HOSPITAL_WING_DESC
+                + NEXT_OF_KIN_DESC_AMY + PATIENT_TYPE_DESC_AMY + HOSPITAL_WING_DESC_AMY
                 + INVALID_FLOOR_NUMBER_DESC + WARD_NUMBER_DESC_AMY
-                + VALID_MEDICATION_IBUPROFEN + VALID_MEDICATION_PARACETAMOL, HospitalWing.MESSAGE_CONSTRAINTS);
+                + MEDICATION_DESC_IBUPROFEN + MEDICATION_DESC_PARACETAMOL, FloorNumber.MESSAGE_CONSTRAINTS);
 
         // invalid ward number
         assertParseFailure(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + NEXT_OF_KIN_DESC_AMY + PATIENT_TYPE_DESC_AMY + INVALID_HOSPITAL_WING_DESC
+                + NEXT_OF_KIN_DESC_AMY + PATIENT_TYPE_DESC_AMY + HOSPITAL_WING_DESC_AMY
                 + FLOOR_NUMBER_DESC_AMY + INVALID_WARD_NUMBER_DESC
-                + VALID_MEDICATION_IBUPROFEN + VALID_MEDICATION_PARACETAMOL, HospitalWing.MESSAGE_CONSTRAINTS);
+                + MEDICATION_DESC_IBUPROFEN + MEDICATION_DESC_PARACETAMOL, WardNumber.MESSAGE_CONSTRAINTS);
+
+        System.out.println(NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+                + NEXT_OF_KIN_DESC_AMY + PATIENT_TYPE_DESC_AMY + HOSPITAL_WING_DESC_AMY
+                + FLOOR_NUMBER_DESC_AMY + WARD_NUMBER_DESC_AMY
+                + INVALID_MEDICATION_DESC);
 
         // invalid medication
         assertParseFailure(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
@@ -208,13 +230,13 @@ public class AddCommandParserTest {
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + INVALID_NEXT_OF_KIN_DESC + PATIENT_TYPE_DESC_AMY + HOSPITAL_WING_DESC_AMY
                 + FLOOR_NUMBER_DESC_AMY + WARD_NUMBER_DESC_AMY
-                + VALID_MEDICATION_IBUPROFEN + VALID_MEDICATION_PARACETAMOL, Name.MESSAGE_CONSTRAINTS);
+                + MEDICATION_DESC_IBUPROFEN + MEDICATION_DESC_PARACETAMOL, Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + NEXT_OF_KIN_DESC_AMY + PATIENT_TYPE_DESC_AMY + HOSPITAL_WING_DESC_AMY
                 + FLOOR_NUMBER_DESC_AMY + WARD_NUMBER_DESC_AMY
-                + VALID_MEDICATION_IBUPROFEN + VALID_MEDICATION_PARACETAMOL,
+                + MEDICATION_DESC_IBUPROFEN + MEDICATION_DESC_PARACETAMOL,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }

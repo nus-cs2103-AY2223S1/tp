@@ -74,16 +74,16 @@ public class CommandTestUtil {
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_NEXT_OF_KIN_DESC = " "
-            + PREFIX_NEXT_OF_KIN + " "; // empty string not allowed for nok
+    public static final String INVALID_NEXT_OF_KIN_DESC = " " + PREFIX_NEXT_OF_KIN
+            + "Charlie is his mother with number 85854754"; // must be in the format of name, relationship, contact
     public static final String INVALID_PATIENT_TYPE_DESC = " "
             + PREFIX_PATIENT_TYPE + "a"; // patient type can only be i(inpatient) or o(outpatient)
     public static final String INVALID_HOSPITAL_WING_DESC = " "
-            + PREFIX_HOSPITAL_WING; // empty string not allowed for addresses
-    public static final String INVALID_FLOOR_NUMBER_DESC = "-1"
-            + PREFIX_FLOOR_NUMBER; // non-positive numbers not allowed for floor number & ward number
-    public static final String INVALID_WARD_NUMBER_DESC = "hello"
-            + PREFIX_WARD_NUMBER; // non-numbers not allowed for floor number & ward number
+            + PREFIX_HOSPITAL_WING + "room@1north"; // only alphanumeric chars and space allowed in hospital wing
+    public static final String INVALID_FLOOR_NUMBER_DESC = " "
+            + PREFIX_FLOOR_NUMBER + "-1"; // non-positive numbers not allowed for floor number & ward number
+    public static final String INVALID_WARD_NUMBER_DESC = " "
+            + PREFIX_WARD_NUMBER + "hello"; // non-numbers not allowed for floor number & ward number
 
     public static final String INVALID_MEDICATION_DESC = " "
             + PREFIX_MEDICATION + "hubby*"; // '*' not allowed in medications

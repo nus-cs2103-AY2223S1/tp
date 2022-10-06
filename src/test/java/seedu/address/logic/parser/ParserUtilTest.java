@@ -179,7 +179,7 @@ public class ParserUtilTest {
 
     @Test
     public void parsePatientType_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String patientTypeWithWhitespace = WHITESPACE + VALID_NEXT_OF_KIN + WHITESPACE;
+        String patientTypeWithWhitespace = WHITESPACE + VALID_PATIENT_TYPE + WHITESPACE;
         PatientType expectedPatientType = new PatientType(PatientTypes.parsePatientType(VALID_PATIENT_TYPE));
         assertEquals(expectedPatientType, ParserUtil.parsePatientType(patientTypeWithWhitespace));
     }

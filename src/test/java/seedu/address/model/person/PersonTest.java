@@ -3,12 +3,16 @@ package seedu.address.model.person;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_FLOOR_NUMBER_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_HOSPITAL_WING_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICATION_PARACETAMOL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICATION_XANAX;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NEXT_OF_KIN_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PATIENT_TYPE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PATIENT_TYPE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_WARD_NUMBER_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
@@ -90,7 +94,9 @@ public class PersonTest {
 
         // different type -> returns false
         editedAlice = new PersonBuilder(ALICE)
-                .withPatientType(PatientType.PatientTypes.parsePatientType(VALID_PATIENT_TYPE_BOB)).build();
+                .withPatientType(PatientType.PatientTypes.parsePatientType(VALID_PATIENT_TYPE_AMY))
+                .withHospitalWing(VALID_HOSPITAL_WING_AMY).withFloorNumber(Integer.valueOf(VALID_FLOOR_NUMBER_AMY))
+                .withWardNumber(Integer.valueOf(VALID_WARD_NUMBER_AMY)).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false

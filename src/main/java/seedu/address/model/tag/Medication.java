@@ -9,8 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Medication {
 
-    public static final String MESSAGE_CONSTRAINTS = "Medication names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String MESSAGE_CONSTRAINTS = "Medication names should be alphanumeric and spaces only";
+    public static final String VALIDATION_REGEX = "[A-Za-z0-9\\s]+";
 
     public final String medicationName;
 

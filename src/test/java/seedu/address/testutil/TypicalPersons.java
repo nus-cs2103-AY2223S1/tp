@@ -45,22 +45,22 @@ public class TypicalPersons {
             .withEmail("cornelia@example.com").withNextOfKin("Benson Meier, Husband, 81236848")
             .withPatientType(PatientTypes.INPATIENT).withHospitalWing("south")
             .withFloorNumber(1).withWardNumber(25).build();
-    public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
+    public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("94822245")
             .withEmail("werner@example.com").withNextOfKin("Charles Meyer, Husband, 83646756")
             .withPatientType(PatientTypes.OUTPATIENT).build();
-    public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
+    public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("94824275")
             .withEmail("lydia@example.com").withNextOfKin("Violet Kunz, Daugther, 92725635")
             .withPatientType(PatientTypes.INPATIENT).withHospitalWing("north")
             .withFloorNumber(2).withWardNumber(53).build();
-    public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
+    public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("94824424")
             .withEmail("anna@example.com").withNextOfKin("Charlie Worst, Son, 92347462")
             .withPatientType(PatientTypes.OUTPATIENT).build();
 
     // Manually added
-    public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
+    public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("84824245")
             .withEmail("stefan@example.com").withNextOfKin("Nooh Meier, Sister, 92346127")
             .withPatientType(PatientTypes.OUTPATIENT).build();
-    public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
+    public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("84821631")
             .withEmail("hans@example.com").withNextOfKin("Nooh Meier, Sister, 92346127")
             .withPatientType(PatientTypes.INPATIENT).withHospitalWing("east")
             .withFloorNumber(1).withWardNumber(24).build();
@@ -74,7 +74,7 @@ public class TypicalPersons {
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withNextOfKin(VALID_NEXT_OF_KIN_BOB)
             .withPatientType(PatientTypes.parsePatientType(VALID_PATIENT_TYPE_BOB))
-            .withMedication(VALID_MEDICATION_IBUPROFEN, VALID_MEDICATION_PARACETAMOL).build();
+            .withMedication().build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

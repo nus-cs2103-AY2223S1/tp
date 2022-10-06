@@ -9,9 +9,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class HospitalWing {
 
-    public static final String MESSAGE_CONSTRAINTS = "Hospital Wing should be alphanumeric for inpatients "
+    public static final String MESSAGE_CONSTRAINTS = "Hospital Wing should be alphanumeric and spaces for inpatients "
             + "and blank for outpatients";
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String VALIDATION_REGEX = "[A-Za-z0-9\\s]+";
 
     public final String value;
 
