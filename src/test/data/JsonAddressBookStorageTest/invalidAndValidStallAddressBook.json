@@ -1,11 +1,9 @@
 {
   "stalls": [ {
     "name": "Valid Stall",
-    "phone": "9482424",
     "address": "4th street"
   }, {
-    "name": "Stall With Invalid Phone Field",
-    "phone": "948asdf2424",
+    "name": "Stall with invalid name field: Ha!ns Mu@ster",
     "address": "4th street"
   } ]
 }
