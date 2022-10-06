@@ -96,6 +96,15 @@ public class DebtList {
     }
 
     /**
+     * Returns whether this DebtList is empty.
+     *
+     * @return true only if the DebtList is empty.
+     */
+    public boolean isEmpty() {
+        return debts.isEmpty();
+    }
+
+    /**
      * Returns true only if both debts have the same data fields.
      *
      * @param other The other {@code Debt} object to check.
