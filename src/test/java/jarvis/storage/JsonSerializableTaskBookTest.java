@@ -17,9 +17,9 @@ import jarvis.testutil.TypicalStudents;
 public class JsonSerializableTaskBookTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableStudentBookTest");
-    private static final Path TYPICAL_STUDENTS_FILE = TEST_DATA_FOLDER.resolve("typicalPersonsStudentBook.json");
-    private static final Path INVALID_STUDENT_FILE = TEST_DATA_FOLDER.resolve("invalidPersonStudentBook.json");
-    private static final Path DUPLICATE_STUDENT_FILE = TEST_DATA_FOLDER.resolve("duplicatePersonStudentBook.json");
+    private static final Path TYPICAL_STUDENTS_FILE = TEST_DATA_FOLDER.resolve("typicalStudentsStudentBook.json");
+    private static final Path INVALID_STUDENT_FILE = TEST_DATA_FOLDER.resolve("invalidStudentStudentBook.json");
+    private static final Path DUPLICATE_STUDENT_FILE = TEST_DATA_FOLDER.resolve("duplicateStudentStudentBook.json");
 
     @Test
     public void toModelType_typicalStudentsFile_success() throws Exception {
