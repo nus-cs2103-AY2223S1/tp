@@ -12,9 +12,9 @@ import seedu.address.model.poc.exceptions.DuplicatePocException;
 import seedu.address.model.poc.exceptions.PocNotFoundException;
 
 /**
- * A list of companies that enforces uniqueness between its elements and does not allow nulls.
+ * A list of Pocs that enforces uniqueness between its elements and does not allow nulls.
  * A Poc is considered unique by comparing using {@code Poc#isSamePoc(Poc)}.
- * As such, adding and updating of companies uses Poc#isSamePoc(Poc) for equality to ensure that the
+ * As such, adding and updating of Pocs uses Poc#isSamePoc(Poc) for equality to ensure that the
  * Poc being added or updated is unique in terms of identity in the UniquePocList.
  * However, the removal of a Poc uses Poc#equals(Object) to ensure that the Poc with exactly
  * the same fields will be removed.

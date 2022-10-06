@@ -1,5 +1,6 @@
 package seedu.address.model.poc;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
@@ -82,5 +83,14 @@ public class PocTest {
         // different tags -> returns false
         editedAlice = new PocBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
+    }
+
+    @Test
+    public void toString_poc_returnsValueInPoc() {
+        Poc person = new PocBuilder().withName("Alice Pauline")
+                .withEmail("alice@example.com")
+                .withPhone("94351253")
+                .withTags("friends").build();
+        assertEquals(person.toString(), "Alice Pauline; Phone: 94351253; Email: alice@example.com; Tags: [friends]");
     }
 }

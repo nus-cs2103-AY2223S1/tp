@@ -66,7 +66,7 @@ public class TypicalPoc {
         return ab;
     }*/
 
-    public static List<Poc> getTypicalCompanies() {
+    public static List<Poc> getTypicalPocs() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }
