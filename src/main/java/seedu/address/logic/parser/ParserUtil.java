@@ -12,7 +12,11 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.commission.*;
+import seedu.address.model.commission.CompletionStatus;
+import seedu.address.model.commission.Deadline;
+import seedu.address.model.commission.Description;
+import seedu.address.model.commission.Fee;
+import seedu.address.model.commission.Title;
 import seedu.address.model.customer.Address;
 import seedu.address.model.customer.Email;
 import seedu.address.model.customer.Name;
@@ -157,11 +161,11 @@ public class ParserUtil {
     public static CompletionStatus parseStatus(String status) throws ParseException {
         requireNonNull(status);
         String trimmedStatus = status.trim();
-        if (trimmedStatus.equalsIgnoreCase("True") || trimmedStatus.equalsIgnoreCase("T") ||
-                trimmedStatus.equalsIgnoreCase("Yes") || trimmedStatus.equalsIgnoreCase("Y")) {
+        if (trimmedStatus.equalsIgnoreCase("True") || trimmedStatus.equalsIgnoreCase("T")
+                || trimmedStatus.equalsIgnoreCase("Yes") || trimmedStatus.equalsIgnoreCase("Y")) {
             return new CompletionStatus(true);
-        } else if (trimmedStatus.equalsIgnoreCase("False") || trimmedStatus.equalsIgnoreCase("F") ||
-                trimmedStatus.equalsIgnoreCase("No") || trimmedStatus.equalsIgnoreCase("N")) {
+        } else if (trimmedStatus.equalsIgnoreCase("False") || trimmedStatus.equalsIgnoreCase("F")
+                || trimmedStatus.equalsIgnoreCase("No") || trimmedStatus.equalsIgnoreCase("N")) {
             return new CompletionStatus(false);
         } else {
             throw new ParseException(Messages.MESSAGE_INVALID_COMMISSION_STATUS);

@@ -1,18 +1,30 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.AddCommissionCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.commission.*;
-import seedu.address.model.customer.Address;
-import seedu.address.model.tag.Tag;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FEE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import seedu.address.logic.commands.AddCommissionCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.commission.Commission;
+import seedu.address.model.commission.CompletionStatus;
+import seedu.address.model.commission.Deadline;
+import seedu.address.model.commission.Description;
+import seedu.address.model.commission.Fee;
+import seedu.address.model.commission.Title;
+import seedu.address.model.tag.Tag;
 
+/**
+ * Parses input arguments and creates a new AddCommissionCommand object
+ */
 public class AddCommissionCommandParser implements Parser<AddCommissionCommand> {
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
@@ -30,7 +42,8 @@ public class AddCommissionCommandParser implements Parser<AddCommissionCommand> 
      */
     public AddCommissionCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_FEE, PREFIX_DEADLINE, PREFIX_STATUS, PREFIX_DESCRIPTION, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_FEE, PREFIX_DEADLINE, PREFIX_STATUS,
+                        PREFIX_DESCRIPTION, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_FEE, PREFIX_DEADLINE, PREFIX_STATUS)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -48,7 +61,8 @@ public class AddCommissionCommandParser implements Parser<AddCommissionCommand> 
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
 
-        Commission.CommissionBuilder commissionBuilder = new Commission.CommissionBuilder(title, fee, deadline, status, tagList);
+        Commission.CommissionBuilder commissionBuilder = new Commission.CommissionBuilder(
+                title, fee, deadline, status, tagList);
         desc.ifPresent(commissionBuilder::setDescription);
         Commission commission = commissionBuilder.build();
 

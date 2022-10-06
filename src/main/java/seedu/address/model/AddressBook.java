@@ -140,8 +140,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         // Not efficient but ensures all commissions have reference to the new customer who replaced the old one
         // More ideal to keep same customer reference and update the object instead @Amar suggestion to add counter
         // to observable list
-        // Also means I must update the selected customer in ModelManager though from user sense the selected customer is
-        // the same. Else subsequent adding during indexOf command of setCustomer due to the equals criteria
+        // Also means I must update the selected customer in ModelManager though from user sense the selected customer
+        // is the same. Else subsequent adding during indexOf command of setCustomer due to the equals criteria
         // customerNotFoundException will be thrown as the selectedCustomer is still referencing old customer version
         customerCommissions.forEach(comm -> comm.setCustomer(newCustomer));
         setCustomer(customer, newCustomer);

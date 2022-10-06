@@ -140,7 +140,7 @@ public class ModelManager implements Model {
     public void addCommission(Commission commission) {
         Customer updatedCustomer = addressBook.addCommission(getSelectedCustomer().getValue(), commission);
         selectCustomer(updatedCustomer);
-//        filteredCommissions = new FilteredList<>(getCommissionList());
+        // filteredCommissions = new FilteredList<>(getCommissionList());
     }
 
     @Override

@@ -1,7 +1,11 @@
 package seedu.address.storage;
 
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -122,8 +126,8 @@ public class JsonAdaptedCommission {
 
         final Set<Tag> modelTags = new HashSet<>(commissionTags);
 
-        Commission.CommissionBuilder commissionBuilder = new Commission.CommissionBuilder(modelTitle, modelFee, modelDeadline,
-                modelCompletionStatus, modelTags);
+        Commission.CommissionBuilder commissionBuilder = new Commission.CommissionBuilder(modelTitle, modelFee,
+                modelDeadline, modelCompletionStatus, modelTags);
         modelDescription.ifPresent(commissionBuilder::setDescription);
         return commissionBuilder.build();
     }

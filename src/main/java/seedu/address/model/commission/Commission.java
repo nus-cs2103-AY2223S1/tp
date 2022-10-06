@@ -1,8 +1,11 @@
 package seedu.address.model.commission;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
 
-import seedu.address.model.commission.*;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.tag.Tag;
 
