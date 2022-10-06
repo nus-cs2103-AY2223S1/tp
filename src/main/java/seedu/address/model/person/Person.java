@@ -59,6 +59,11 @@ public class Person {
         return listOfAppointments;
     }
 
+
+    public Appointment cancelAppointment(int apptIndex) {
+        return listOfAppointments.remove(apptIndex);
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
