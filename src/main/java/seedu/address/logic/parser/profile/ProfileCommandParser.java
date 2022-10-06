@@ -38,12 +38,11 @@ public class ProfileCommandParser implements Parser<ProfileCommand> {
 
         final Matcher profileCommandMatcher = PROFILE_COMMAND_FORMAT.matcher(args);
 
-        String profileOption = "";
-        if (profileCommandMatcher.matches()) {
-            profileOption = profileCommandMatcher.group("profileOption");
-        } else {
+        if (!profileCommandMatcher.matches()) {
             throw new ParseException(ProfileCommand.OPTION_NO_MULTIPLE);
         }
+
+        String profileOption = profileCommandMatcher.group("profileOption");
 
         switch (profileOption) {
         case AddProfileCommand.COMMAND_OPTION:
