@@ -13,8 +13,8 @@ import seedu.travelr.model.tag.Tag;
 import seedu.travelr.model.trip.Address;
 import seedu.travelr.model.trip.Description;
 import seedu.travelr.model.trip.Email;
-import seedu.travelr.model.trip.Title;
 import seedu.travelr.model.trip.Phone;
+import seedu.travelr.model.trip.Title;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.

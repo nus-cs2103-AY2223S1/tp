@@ -2,8 +2,8 @@ package seedu.travelr.logic.parser;
 
 import static seedu.travelr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_DESC;
-import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import java.util.Set;
 import java.util.stream.Stream;

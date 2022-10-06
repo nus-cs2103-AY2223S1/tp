@@ -1,9 +1,9 @@
 package seedu.travelr.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_DESC;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.travelr.model.Model.PREDICATE_SHOW_ALL_TRIPS;
 
 import java.util.Collections;
