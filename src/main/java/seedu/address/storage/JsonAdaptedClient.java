@@ -7,7 +7,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.client.Address;
@@ -15,11 +17,13 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Client}.
  */
+@JsonIdentityInfo(generator = ObjectIdGenerators.UUIDGenerator.class, property = "@UUID")
 class JsonAdaptedClient {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Client's %s field is missing!";
@@ -29,6 +33,7 @@ class JsonAdaptedClient {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedMeeting> meetings = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedClient} with the given client details.
@@ -36,7 +41,11 @@ class JsonAdaptedClient {
     @JsonCreator
     public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                             @JsonProperty("meetings") List<JsonAdaptedMeeting> meetings) {
+        if (meetings != null) {
+            this.meetings.addAll(meetings);
+        }
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -50,6 +59,23 @@ class JsonAdaptedClient {
      * Converts a given {@code Client} into this class for Jackson use.
      */
     public JsonAdaptedClient(Client source) {
+        if (source.getMeeting() != null) {
+            meetings.add(new JsonAdaptedMeeting(source.getMeeting(), this));
+        }
+        name = source.getName().fullName;
+        phone = source.getPhone().value;
+        email = source.getEmail().value;
+        address = source.getAddress().value;
+        tagged.addAll(source.getTags().stream()
+                .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
+    }
+
+    /**
+     * Converts a given {@code Client} and {@Code JsonAdaptedMeeting} into this class for Jackson use.
+     */
+    public JsonAdaptedClient(Client source, JsonAdaptedMeeting adaptedMeeting) {
+        meetings.add(adaptedMeeting);
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
@@ -101,9 +127,15 @@ class JsonAdaptedClient {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final Address modelAddress = new Address(address);
-
         final Set<Tag> modelTags = new HashSet<>(clientTags);
-        return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        if (!meetings.isEmpty()) {
+            Client client = new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+            final Meeting meeting = meetings.get(0).toModelType(client);
+            client.setMeeting(meeting);
+            return client;
+        } else {
+            return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        }
     }
 
 }

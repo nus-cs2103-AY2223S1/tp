@@ -16,7 +16,7 @@ import seedu.address.model.client.Client;
 /**
  * An Immutable ClientBook that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
+@JsonRootName(value = "clientbook")
 class JsonSerializableClientBook {
 
     public static final String MESSAGE_DUPLICATE_CLIENT = "Clients list contains duplicate client(s).";
