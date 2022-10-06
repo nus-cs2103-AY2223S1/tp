@@ -18,6 +18,10 @@ public abstract class ProfileCommand extends Command {
             + PREFIX_OPTION + AddProfileCommand.COMMAND_OPTION + ", "
             + PREFIX_OPTION + EditProfileCommand.COMMAND_OPTION + ".";
 
-    public static final String OPTION_NO_MULTIPLE = "Multiple option flags are not allowed.\n"
-            + "Format: " + COMMAND_WORD + " -option";
+    public static final String OPTION_NO_MULTIPLE = "Multiple option flags are not allowed.\n" + PROFILE_FORMAT;
+
+    public static final String OPTION_WRONG_ORDER = "Option flag should be in front.\n" + PROFILE_FORMAT;
+
+    public static final String OPTION_WRONG_ORDER_NO_MULTIPLE =
+            "Only one option flag should be specified in front.\n" + PROFILE_FORMAT;
 }

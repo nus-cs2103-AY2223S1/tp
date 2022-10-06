@@ -24,6 +24,15 @@ public class ProfileCommandParser implements Parser<ProfileCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public ProfileCommand parse(String args) throws ParseException {
+        if (!args.matches("\\s+-.*") && args.matches("(.*)(\\s+-\\S*)(.*)")) {
+            Matcher matcher = Pattern.compile("(\\s+-\\S+)").matcher(args);
+            long numFlags = matcher.results().count();
+            if (numFlags > 1) {
+                throw new ParseException(ProfileCommand.OPTION_WRONG_ORDER_NO_MULTIPLE);
+            }
+            throw new ParseException(ProfileCommand.OPTION_WRONG_ORDER);
+        }
+
         if (!args.matches("\\s+-.*")) {
             throw new ParseException(String.format(MESSAGE_FLAG_NOT_SPECIFIED, ProfileCommand.PROFILE_FORMAT));
         }
