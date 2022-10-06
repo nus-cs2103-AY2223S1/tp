@@ -1,7 +1,6 @@
 package seedu.address.model.poc;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -36,5 +35,11 @@ public class PhoneTest {
         assertTrue(Phone.isValidPhone("911")); // exactly 3 numbers
         assertTrue(Phone.isValidPhone("93121534"));
         assertTrue(Phone.isValidPhone("124293842033123")); // long phone numbers
+    }
+    @Test
+    public void toString_phone_returnsValueInPhone() {
+        String value = "9312 1534";
+        seedu.address.model.company.Phone phone = new seedu.address.model.company.Phone(value);
+        assertEquals(phone.toString(), value);
     }
 }

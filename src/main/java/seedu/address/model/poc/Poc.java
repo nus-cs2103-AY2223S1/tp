@@ -56,16 +56,16 @@ public class Poc {
     }
 
     /**
-     * Returns true if both people have the same name.
+     * Returns true if both point of contacts have the same name.
      * This defines a weaker notion of equality between two persons of contact.
      */
-    public boolean isSamePoc(Poc otherPerson) {
-        if (otherPerson == this) {
+    public boolean isSamePoc(Poc otherPoc) {
+        if (otherPoc == this) {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
+        return otherPoc != null
+                && otherPoc.getName().equals(getName());
     }
 
     /**
