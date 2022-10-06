@@ -161,4 +161,9 @@ public class ModelManager implements Model {
         return filteredTasks;
     }
 
+    @Override
+    public void updateFilteredTaskList(Predicate<Task> predicate) {
+        requireNonNull(predicate);
+        filteredTasks.setPredicate(predicate);
+    }
 }
