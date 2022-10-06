@@ -60,6 +60,13 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
+    public Set<Mod> getMods() {
+        Set<Mod> mods = new HashSet<Mod>();
+        mods.add(new Mod("CS1101S"));
+        mods.add(new Mod("GEA1000"));
+        return mods;
+    }
+
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
