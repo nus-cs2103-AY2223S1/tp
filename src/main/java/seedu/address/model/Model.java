@@ -72,7 +72,8 @@ public interface Model {
     /**
      * Replaces the given internship {@code target} with {@code editedInternship}.
      * {@code target} must exist in the address book.
-     * The internship identity of {@code editedInternship} must not be the same as another existing internship in the address book.
+     * The internship identity of {@code editedInternship} must not be the same as
+     * another existing internship in the address book.
      */
     void setPerson(Internship target, Internship editedInternship);
 

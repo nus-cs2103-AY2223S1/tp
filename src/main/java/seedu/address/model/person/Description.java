@@ -1,11 +1,18 @@
 package seedu.address.model.person;
 
+/**
+ * Represents an Internship's description in the address book.
+ */
 public class Description {
 
-    public String description;
+    private String description;
 
     public Description(String description) {
         this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     @Override

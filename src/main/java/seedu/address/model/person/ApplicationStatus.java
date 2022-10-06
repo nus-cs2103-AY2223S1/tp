@@ -1,5 +1,8 @@
 package seedu.address.model.person;
 
+/**
+ * Represents an Internship's application status in the address book.
+ */
 public enum ApplicationStatus {
 
     Accepted("accepted"),
@@ -18,6 +21,12 @@ public enum ApplicationStatus {
         this.status = status;
     }
 
+    /**
+     * Returns an ApplicationStatus based on the given input status.
+     *
+     * @param status String representation of the input status.
+     * @return ApplicationStatus based on the input status.
+     */
     public static ApplicationStatus parse(String status) {
         for (ApplicationStatus applicationStatus : ApplicationStatus.values()) {
             if (applicationStatus.status.equals(status)) {
