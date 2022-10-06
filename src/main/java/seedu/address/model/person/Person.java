@@ -74,6 +74,20 @@ public class Person {
                 || otherPerson.getEmail().equals(getEmail()));
     }
 
+    public String getAllInfo() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getName())
+                .append(getPhone())
+                .append(getEmail())
+                .append(getAddress());
+
+        Set<Tag> tags = getTags();
+        if (!tags.isEmpty()) {
+            tags.forEach(builder::append);
+        }
+        return builder.toString();
+    }
+
     /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
