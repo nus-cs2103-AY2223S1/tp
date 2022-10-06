@@ -3,7 +3,6 @@ package taskbook.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
-
 import javafx.collections.ObservableList;
 import taskbook.model.person.Name;
 import taskbook.model.person.Person;
@@ -115,6 +114,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         tasks.add(t);
     }
 
+    /**
+     * Deletes the given task.
+     * Task must exist in the task book.
+     */
+    public void deleteTask(Task t) {
+        tasks.remove(t);
+    }
+
     //// util methods
 
     @Override
@@ -126,6 +133,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Task> getTaskList() {
+        return tasks.asUnmodifiableObservableList();
     }
 
     @Override
