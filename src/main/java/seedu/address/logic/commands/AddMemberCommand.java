@@ -9,7 +9,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
-import seedu.address.model.team.Team;
 
 /**
  * Adds a person identified using it's displayed index to the current team.
@@ -41,14 +40,11 @@ public class AddMemberCommand extends Command {
         }
         Person toAdd = lastShownList.get(targetIndex.getZeroBased());
 
-        // TODO: If team is made to be immutable through address book, updating of members will need to be done
-        //  through the address book object in the future.
-        Team team = model.getAddressBook().getTeam();
-        if (team.hasMember(toAdd)) {
+        if (model.getTeam().hasMember(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        team.addMember(toAdd);
+        model.getTeam().addMember(toAdd);
         return new CommandResult(String.format(MESSAGE_ADD_MEMBER_SUCCESS, toAdd));
     }
 

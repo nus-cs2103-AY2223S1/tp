@@ -16,7 +16,6 @@ public interface ReadOnlyAddressBook {
     ObservableList<Person> getPersonList();
 
     /**
-     * TODO: Should this object be unmodifiable?
      * Returns the team.
      * The team will not contain any duplicate members.
      */
