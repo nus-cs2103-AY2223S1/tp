@@ -1,7 +1,6 @@
 package seedu.address.model.poc;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -37,4 +36,12 @@ public class PersonNameTest {
         assertTrue(PersonName.isValidName("Capital Tan")); // with capital letters
         assertTrue(PersonName.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
     }
+
+    @Test
+    public void toString_email_returnsValueInName() {
+        String value = "peter jack";
+        PersonName name = new PersonName(value);
+        assertEquals(name.toString(), value);
+    }
+
 }
