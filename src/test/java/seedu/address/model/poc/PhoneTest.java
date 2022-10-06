@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
-import seedu.address.model.poc.Phone;
-
 import org.junit.jupiter.api.Test;
 
 public class PhoneTest {
