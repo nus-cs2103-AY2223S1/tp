@@ -89,7 +89,8 @@ public class EditCommandParserTest {
         Index targetIndex = TypicalIndexes.INDEX_FIRST_STALL;
         String userInput = targetIndex.getOneBased() + ADDRESS_DESC_BOB;
 
-        EditCommand.EditStallDescriptor descriptor = new EditStallDescriptorBuilder().build();
+        EditCommand.EditStallDescriptor descriptor = new EditStallDescriptorBuilder()
+                .withAddress(VALID_ADDRESS_BOB).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);

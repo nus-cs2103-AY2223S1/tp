@@ -1,12 +1,10 @@
 {
   "stalls": [ {
     "name": "Alice Pauline",
-    "phone": "94351253",
     "address": "123, Jurong West Ave 6, #08-111",
     "details": [ "friends" ]
   }, {
     "name": "Alice Pauline",
-    "phone": "94351253",
     "address": "4th street"
   } ]
 }
