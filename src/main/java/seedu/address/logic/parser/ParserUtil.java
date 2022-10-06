@@ -2,6 +2,9 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -23,9 +26,12 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
+    public static final String MESSAGE_INVALID_PATH = "Path is invalid.";
+
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -136,5 +142,21 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code filePath} into an {@code Path} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     *
+     * @throws ParseException if the specified path is invalid.
+     */
+    public static Path parsePath(String filePath) throws ParseException {
+        String trimmedPath = filePath.trim();
+        File file = new File(trimmedPath);
+        if (!(file.getName().toLowerCase().endsWith(".json") || file.getName().toLowerCase().endsWith(".csv"))
+                || !Files.isReadable(file.toPath())) {
+            throw new ParseException(MESSAGE_INVALID_PATH);
+        }
+        return file.toPath();
     }
 }
