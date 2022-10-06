@@ -16,6 +16,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.StatisticsCalculator;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -34,8 +35,10 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-    private StatisticsWindow statisticsWindow;
     private ScheduleListPanel scheduleListPanel;
+    private StatisticsDisplay statisticsDisplay;
+    private StatisticsCalculator statisticsCalculator;
+
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -49,6 +52,8 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane resultDisplayPlaceholder;
     @FXML
     private StackPane statusbarPlaceholder;
+    @FXML
+    private StackPane statisticsPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -66,7 +71,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-        statisticsWindow = new StatisticsWindow();
+        statisticsCalculator = new StatisticsCalculator(logic.getAddressBook());
     }
 
     public Stage getPrimaryStage() {
@@ -126,6 +131,11 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        statisticsDisplay = new StatisticsDisplay();
+        statisticsDisplay.showStatisticsToUser(statisticsCalculator.getSize(),
+                statisticsCalculator.getAmountOwed(), statisticsCalculator.getAmountPaid());
+        statisticsPlaceholder.getChildren().add(statisticsDisplay.getRoot());
     }
 
     /**
@@ -149,18 +159,6 @@ public class MainWindow extends UiPart<Stage> {
             helpWindow.show();
         } else {
             helpWindow.focus();
-        }
-    }
-
-    /**
-     * Opens the statistics window or focuses on it if it's already opened.
-     */
-    @FXML
-    public void handleStatistics() {
-        if (!statisticsWindow.isShowing()) {
-            statisticsWindow.show();
-        } else {
-            statisticsWindow.focus();
         }
     }
 
@@ -194,6 +192,8 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            statisticsDisplay.showStatisticsToUser(statisticsCalculator.getSize(),
+                    statisticsCalculator.getAmountOwed(), statisticsCalculator.getAmountPaid());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -201,10 +201,6 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
-            }
-
-            if (commandResult.isShowStatistics()) {
-                handleStatistics();
             }
 
             return commandResult;
