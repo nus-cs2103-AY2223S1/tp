@@ -43,4 +43,22 @@ public class FilteredStudents {
     public void setConciseInfo(boolean b) {
         this.conciseInfo = b;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        // short circuit if same object
+        if (obj == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(obj instanceof FilteredStudents)) {
+            return false;
+        }
+
+        // state check
+        FilteredStudents other = (FilteredStudents) obj;
+        return this.filteredStudents.equals(other.filteredStudents)
+                && this.conciseInfo == other.conciseInfo;
+    }
 }
