@@ -15,7 +15,6 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
-import seedu.address.model.team.Name;
 import seedu.address.model.team.Team;
 
 /**
@@ -45,9 +44,7 @@ public class ModelManager implements Model {
         // Temp code
         // todo replace this code
         ObservableList<Team> team = FXCollections.observableArrayList();
-        team.add(0, new Team(new Name("test")));
-        filteredTeams = new FilteredList<>(team);
-        System.out.println("tet");
+        filteredTeams = new FilteredList<>(this.addressBook.getTeamList());
 
     }
 

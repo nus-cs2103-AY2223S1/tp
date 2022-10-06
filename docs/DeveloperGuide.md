@@ -308,7 +308,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes from step 1.
 
-**Use case: Login**
+**Use case: UC2 - Assigning members into a team**
+
+**Actor: Team Lead**
+
+**Prerequisites: A team exist**
+
+**MSS**
+
+1. Team Lead specified the name of the member to add into the team and name of team
+2. EZLead add that member to the team.
+
+Step 1 and 2 is repeated until all members have been added
+
+**Extensions:**
+
+* 1a. Member with the same name already exists 
+
+    * 1a1. EZLead throws an error signifying duplicate name
+  
+      Use case continues at step 1.
+  
+* 1b. Member with specified name does not exist
+
+    * 1b1. EZLead throws an error signifying name does not exist
+  
+      Use case continues at step 1
+
 
 **MSS**
 
