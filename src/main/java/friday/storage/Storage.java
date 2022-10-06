@@ -5,7 +5,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import friday.commons.exceptions.DataConversionException;
-import friday.model.ReadOnlyAddressBook;
+import friday.model.ReadOnlyFriday;
 import friday.model.ReadOnlyUserPrefs;
 import friday.model.UserPrefs;
 
@@ -24,9 +24,9 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     Path getAddressBookFilePath();
 
     @Override
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyFriday> readAddressBook() throws DataConversionException, IOException;
 
     @Override
-    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
+    void saveAddressBook(ReadOnlyFriday addressBook) throws IOException;
 
 }

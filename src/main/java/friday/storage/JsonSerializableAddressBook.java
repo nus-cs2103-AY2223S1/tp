@@ -9,8 +9,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import friday.commons.exceptions.IllegalValueException;
-import friday.model.AddressBook;
-import friday.model.ReadOnlyAddressBook;
+import friday.model.Friday;
+import friday.model.ReadOnlyFriday;
 import friday.model.student.Student;
 
 /**
@@ -36,7 +36,7 @@ class JsonSerializableAddressBook {
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+    public JsonSerializableAddressBook(ReadOnlyFriday source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
     }
 
@@ -45,8 +45,8 @@ class JsonSerializableAddressBook {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AddressBook toModelType() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
+    public Friday toModelType() throws IllegalValueException {
+        Friday addressBook = new Friday();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Student student = jsonAdaptedPerson.toModelType();
             if (addressBook.hasPerson(student)) {

@@ -5,8 +5,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import friday.model.AddressBook;
-import friday.model.ReadOnlyAddressBook;
+import friday.model.Friday;
+import friday.model.ReadOnlyFriday;
 import friday.model.student.Consultation;
 import friday.model.student.MasteryCheck;
 import friday.model.student.Name;
@@ -50,8 +50,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyFriday getSampleAddressBook() {
+        Friday sampleAb = new Friday();
         for (Student sampleStudent : getSamplePersons()) {
             sampleAb.addPerson(sampleStudent);
         }
