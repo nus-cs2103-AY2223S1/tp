@@ -1,6 +1,7 @@
 package friday.logic.parser;
 
-import friday.commons.core.Messages;
+import static friday.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import friday.commons.core.index.Index;
 import friday.logic.commands.DeleteCommand;
 import friday.logic.parser.exceptions.ParseException;
@@ -21,7 +22,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             return new DeleteCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
         }
     }
 
