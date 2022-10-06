@@ -9,7 +9,6 @@ import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.role.Buyer;
-import seedu.address.model.role.Seller;
 
 /**
  * Wraps all data at the address-book level
@@ -104,11 +103,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireAllNonNull(person, buyer);
         persons.setBuyerRole(person, buyer);
     }
-
-//    public void setSellerRole(Person person, Seller seller) {
-//        requireAllNonNull(person, seller);
-//        persons.setSellerRole(person, seller);
-//    }
 
     //// util methods
 

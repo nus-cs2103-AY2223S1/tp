@@ -6,16 +6,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE_RANGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTIES;
 
 import java.util.List;
-import java.util.Properties;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddBuyerCommand;
 import seedu.address.logic.commands.AddSellerCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.property.Property;
-import seedu.address.model.role.Buyer;
-import seedu.address.model.role.Characteristics;
-import seedu.address.model.role.PriceRange;
 import seedu.address.model.role.Seller;
 
 /**

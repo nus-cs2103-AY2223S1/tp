@@ -17,7 +17,6 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.property.Property;
 import seedu.address.model.role.Characteristics;
 import seedu.address.model.role.PriceRange;
 import seedu.address.model.tag.Tag;
@@ -167,6 +166,9 @@ public class ParserUtil {
         return new Characteristics(charArray);
     }
 
+    /**
+     * Parses {@code String properties} into a {@code List<Integer>}.
+     */
     public static List<Integer> parseProperties(String properties) throws ParseException {
         if (properties.isEmpty()) {
             return List.of();

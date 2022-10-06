@@ -9,7 +9,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.role.Buyer;
 import seedu.address.model.role.Seller;
 import seedu.address.model.tag.Tag;
