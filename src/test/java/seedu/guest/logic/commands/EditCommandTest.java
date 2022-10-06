@@ -53,7 +53,7 @@ public class EditCommandTest {
         Index indexLastGuest = Index.fromOneBased(model.getFilteredGuestList().size());
         Guest lastGuest = model.getFilteredGuestList().get(indexLastGuest.getZeroBased());
 
-        PersonBuilder guestInList = new PersonBuilder(lastGuest);
+        GuestBuilder guestInList = new GuestBuilder(lastGuest);
         Guest editedGuest = guestInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
