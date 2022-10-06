@@ -10,6 +10,9 @@ import java.util.List;
 
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Lists all records for a specific patient to the user.
+ */
 public class ListRCommand extends Command{
 
     public static final String COMMAND_WORD = "listR";
@@ -37,7 +40,7 @@ public class ListRCommand extends Command{
         }
 
         Person personToListRecords = lastShownList.get(targetIndex.getZeroBased());
-        String recordList = personToListRecords.getRecordList().getAllRecords();
+        String recordList = personToListRecords.getRecordList().stringifyRecordList();
 
         System.out.println(MESSAGE_SUCCESS + recordList); // print on CLI
 

@@ -31,23 +31,23 @@ public class RecordList {
     }
 
     /**
-     * Returns a String of the current Record List.
+     * Returns the String representation of a RecordList.
      *
-     * @return The current list of records, as a String.
+     * @return RecordList String representation.
      */
-    public String getAllRecords() {
-        StringBuilder builder = new StringBuilder("");
+    public String stringifyRecordList() {
+        StringBuilder builder = new StringBuilder();
 
-        if (this.getRecordListCount() == 0) {
+        if (this.recordList.isEmpty()) {
             builder.append(MESSAGE_EMPTY_RECORD_LIST);
             return builder.toString();
         }
 
         int index = 1;
-        for (Record r : this.recordList) {
+        for (Record record : this.recordList) {
             builder.append(index)
                     .append(". ")
-                    .append(r)
+                    .append(record)
                     .append("\n");
             index++;
         }
