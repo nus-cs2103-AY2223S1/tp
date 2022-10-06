@@ -18,8 +18,8 @@ public class AllInfoContainsKeywordsPredicate implements Predicate<Person> {
     @Override
     public boolean test(Person person) {
         String allInfo = person.getAllInfo();
-        for (String s: keywords){
-            if (allInfo.contains(s)){
+        for (String s : keywords) {
+            if (allInfo.contains(s)) {
                 return true;
             }
         }
