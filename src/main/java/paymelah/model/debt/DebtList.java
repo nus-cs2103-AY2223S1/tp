@@ -12,7 +12,7 @@ import paymelah.model.debt.exceptions.DebtNotFoundException;
 
 /**
  * Represents a list of a person's {@link Debt} in the address book.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Guarantees: debts are null, field values are validated, immutable.
  */
 public class DebtList {
     private final List<Debt> debts = new ArrayList<>();
@@ -21,11 +21,11 @@ public class DebtList {
      * Constructs a {@code DebtList}.
      * {@code debts} must be present and all debts must be not null.
      *
-     * @param debts The list of debts owed.
+     * @param debtList The list of debts owed.
      */
-    public DebtList(DebtList debts) {
-        requireAllNonNull(debts);
-        this.debts.addAll(debts.debts);
+    public DebtList(DebtList debtList) {
+        requireAllNonNull(debtList);
+        debts.addAll(debtList.debts);
     }
 
     /**
@@ -34,7 +34,10 @@ public class DebtList {
     public DebtList() {}
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent debt as the given argument.
+     *
+     * @param toCheck The debt to check for in the list.
+     * @return true if the list contains an equivalent debt as the given argument.
      */
     public boolean contains(Debt toCheck) {
         requireNonNull(toCheck);
@@ -73,6 +76,8 @@ public class DebtList {
     /**
      * Returns an immutable debt list, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
+     *
+     * @return An immutable debt list.
      */
     public List<Debt> asList() {
         return Collections.unmodifiableList(debts);
@@ -80,6 +85,7 @@ public class DebtList {
 
     /**
      * Returns a debt list with the elements from {@code list}.
+     *
      * @param list The list of {@code Debt}s to use.
      * @return The new DebtList.
      */

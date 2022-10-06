@@ -1,5 +1,6 @@
 package paymelah.storage;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static paymelah.testutil.Assert.assertThrows;
 import static paymelah.testutil.TypicalDebts.CHICKEN_RICE;
 
@@ -15,6 +16,12 @@ public class JsonAdaptedDebtTest {
 
     private static final String VALID_DESCRIPTION = CHICKEN_RICE.getDescription().toString();
     private static final String VALID_MONEY = CHICKEN_RICE.getMoney().toString();
+
+    @Test
+    public void toModelType_validDetails_returnsDebt() throws IllegalValueException {
+        JsonAdaptedDebt debt = new JsonAdaptedDebt(VALID_DESCRIPTION, VALID_MONEY);
+        assertEquals(CHICKEN_RICE, debt.toModelType());
+    }
 
     @Test
     public void toModelType_invalidDescription_throwsIllegalValueException() {
