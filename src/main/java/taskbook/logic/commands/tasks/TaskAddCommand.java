@@ -1,6 +1,7 @@
 package taskbook.logic.commands.tasks;
 
 import static java.util.Objects.requireNonNull;
+import static taskbook.commons.util.CollectionUtil.requireAllNonNull;
 import static taskbook.logic.parser.CliSyntax.PREFIX_ASSIGN_FROM;
 import static taskbook.logic.parser.CliSyntax.PREFIX_ASSIGN_TO;
 import static taskbook.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
@@ -47,9 +48,8 @@ public class TaskAddCommand extends Command {
      * @param assignment Represents task assigned to user or others.
      */
     public TaskAddCommand(Name name, Description description, Assignment assignment) {
-        requireNonNull(name);
-        requireNonNull(description);
-        requireNonNull(assignment);
+        requireAllNonNull(name, description, assignment);
+
         this.name = name;
         this.description = description;
         this.assignment = assignment;
