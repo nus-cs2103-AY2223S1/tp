@@ -1,10 +1,10 @@
-package taskbook.logic.commands;
+package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static taskbook.testutil.Assert.assertThrows;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -14,15 +14,17 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
-import taskbook.commons.core.GuiSettings;
-import taskbook.logic.commands.contacts.ContactAddCommand;
-import taskbook.logic.commands.exceptions.CommandException;
-import taskbook.model.AddressBook;
-import taskbook.model.Model;
-import taskbook.model.ReadOnlyAddressBook;
-import taskbook.model.ReadOnlyUserPrefs;
-import taskbook.model.person.Person;
-import taskbook.testutil.PersonBuilder;
+import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.contacts.ContactAddCommand;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.AddressBook;
+import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
+import seedu.address.testutil.PersonBuilder;
 
 public class ContactAddCommandTest {
 
@@ -127,6 +129,16 @@ public class ContactAddCommandTest {
 
         @Override
         public boolean hasPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Person findPerson(Name name) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addTask(Task task) {
             throw new AssertionError("This method should not be called.");
         }
 
