@@ -69,11 +69,11 @@ public class Person {
     public void setBuyer(Buyer buyer) {
         this.buyer = buyer;
     }
-    
+
     public String getBuyerRange() {
         return buyer.getRange();
     }
-    
+
     public String getBuyerCharacteristics() {
         return buyer.getCharacteristics();
     }

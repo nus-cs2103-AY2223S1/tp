@@ -132,18 +132,13 @@ public class ParserUtil {
         if (range.isEmpty()) {
             return new PriceRange(Optional.empty(), Optional.empty());
         }
+        String trimmedPriceRange = range.trim();
+        if (!PriceRange.isValidPriceRange(trimmedPriceRange)) {
+            throw new ParseException(PriceRange.MESSAGE_CONSTRAINTS);
+        }
         String[] rangeArr = range.split("-");
-        if (rangeArr.length != 2) {
-            throw new ParseException(PriceRange.MESSAGE_CONSTRAINTS);
-        }
-        float first;
-        float second;
-        try {
-            first = Float.parseFloat(rangeArr[0].trim());
-            second = Float.parseFloat(rangeArr[1].trim());
-        } catch (NumberFormatException e) {
-            throw new ParseException(PriceRange.MESSAGE_CONSTRAINTS);
-        }
+        float first = Float.parseFloat(rangeArr[0].trim());
+        float second = Float.parseFloat(rangeArr[1].trim());
         Optional<Float> low = Optional.of(Math.min(first, second));
         Optional<Float> high = Optional.of(Math.max(first, second));
         return new PriceRange(low, high);
@@ -152,15 +147,18 @@ public class ParserUtil {
     /**
      * Parses {@code String characteristics} into a {@code Characteristics}.
      */
-    public static Characteristics parseCharacteristics(String characteristics) {
+    public static Characteristics parseCharacteristics(String characteristics) throws ParseException {
         if (characteristics.isEmpty()) {
             return new Characteristics(new String[0]);
+        }
+        String trimmedCharacteristics = characteristics.trim();
+        if (!Characteristics.isValidCharacteristics(trimmedCharacteristics)) {
+            throw new ParseException(Characteristics.MESSAGE_CONSTRAINTS);
         }
         String[] charArray = characteristics.split(";");
         for (String item : charArray) {
             item = item.trim();
         }
-        
         return new Characteristics(charArray);
     }
 }

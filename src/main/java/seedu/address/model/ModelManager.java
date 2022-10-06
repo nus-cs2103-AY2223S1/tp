@@ -111,7 +111,7 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
         addressBook.setPerson(target, editedPerson);
     }
-    
+
     @Override
     public void setContactRole(Name contactName, Buyer buyer) {
         requireAllNonNull(contactName, buyer);

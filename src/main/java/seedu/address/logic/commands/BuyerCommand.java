@@ -1,19 +1,20 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CHARACTERISTICS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE_RANGE;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Name;
 import seedu.address.model.role.Buyer;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-
 /**
  * Adds a buyer to the address book.
  */
 public class BuyerCommand extends Command {
-
     public static final String COMMAND_WORD = "buyer";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds/Updates a buyer role to the address book. "
@@ -32,7 +33,7 @@ public class BuyerCommand extends Command {
     private final Buyer buyer;
 
     /**
-     * Creates a Buyer Command to add the specified {@code Buyer} 
+     * Creates a Buyer Command to add the specified {@code Buyer}
      * to the {@code Person} with specified {@code Name}
      */
     public BuyerCommand(Buyer buyer, Name contactName) {
