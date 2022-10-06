@@ -4,14 +4,14 @@ import static jarvis.logic.commands.CommandTestUtil.assertCommandFailure;
 import static jarvis.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static jarvis.testutil.TypicalStudents.getTypicalStudentBook;
 
-import jarvis.logic.commands.student.AddCommand;
-import jarvis.model.student.Student;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import jarvis.logic.commands.student.AddCommand;
 import jarvis.model.Model;
 import jarvis.model.ModelManager;
 import jarvis.model.UserPrefs;
+import jarvis.model.student.Student;
 import jarvis.testutil.StudentBuilder;
 
 /**

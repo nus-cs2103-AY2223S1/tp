@@ -12,9 +12,9 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import jarvis.model.student.Student;
 import org.junit.jupiter.api.Test;
 
+import jarvis.model.student.Student;
 import jarvis.model.student.exceptions.DuplicateStudentException;
 import jarvis.testutil.StudentBuilder;
 import javafx.collections.FXCollections;

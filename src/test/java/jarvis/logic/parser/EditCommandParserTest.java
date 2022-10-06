@@ -9,11 +9,11 @@ import static jarvis.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static jarvis.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static jarvis.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 
-import jarvis.logic.parser.student.EditCommandParser;
 import org.junit.jupiter.api.Test;
 
 import jarvis.commons.core.index.Index;
 import jarvis.logic.commands.student.EditCommand;
+import jarvis.logic.parser.student.EditCommandParser;
 import jarvis.model.student.Name;
 import jarvis.testutil.EditStudentDescriptorBuilder;
 
@@ -73,7 +73,8 @@ public class EditCommandParserTest {
         // name
         Index targetIndex = INDEX_THIRD_PERSON;
         String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
-        EditCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY).build();
+        EditCommand.EditStudentDescriptor descriptor =
+                new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

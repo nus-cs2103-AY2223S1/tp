@@ -9,15 +9,15 @@ import static jarvis.testutil.TypicalStudents.getTypicalStudentBook;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import jarvis.logic.commands.student.DeleteCommand;
-import jarvis.model.student.Student;
 import org.junit.jupiter.api.Test;
 
 import jarvis.commons.core.Messages;
 import jarvis.commons.core.index.Index;
+import jarvis.logic.commands.student.DeleteCommand;
 import jarvis.model.Model;
 import jarvis.model.ModelManager;
 import jarvis.model.UserPrefs;
+import jarvis.model.student.Student;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for

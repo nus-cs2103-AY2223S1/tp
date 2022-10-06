@@ -12,13 +12,13 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import jarvis.model.StudentBook;
-import jarvis.storage.student.JsonStudentBookStorage;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import jarvis.commons.exceptions.DataConversionException;
 import jarvis.model.ReadOnlyStudentBook;
+import jarvis.model.StudentBook;
+import jarvis.storage.student.JsonStudentBookStorage;
 
 public class JsonTaskBookStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");

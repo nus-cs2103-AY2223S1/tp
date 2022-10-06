@@ -3,11 +3,11 @@ package jarvis.logic.commands;
 import static jarvis.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static jarvis.testutil.TypicalStudents.getTypicalStudentBook;
 
-import jarvis.model.StudentBook;
 import org.junit.jupiter.api.Test;
 
 import jarvis.model.Model;
 import jarvis.model.ModelManager;
+import jarvis.model.StudentBook;
 import jarvis.model.UserPrefs;
 
 public class ClearCommandTest {

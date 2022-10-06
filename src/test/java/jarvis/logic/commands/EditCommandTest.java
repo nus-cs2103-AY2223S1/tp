@@ -12,17 +12,17 @@ import static jarvis.testutil.TypicalStudents.getTypicalStudentBook;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import jarvis.logic.commands.student.EditCommand;
-import jarvis.model.StudentBook;
-import jarvis.model.student.Student;
 import org.junit.jupiter.api.Test;
 
 import jarvis.commons.core.Messages;
 import jarvis.commons.core.index.Index;
+import jarvis.logic.commands.student.EditCommand;
 import jarvis.logic.commands.student.EditCommand.EditStudentDescriptor;
 import jarvis.model.Model;
 import jarvis.model.ModelManager;
+import jarvis.model.StudentBook;
 import jarvis.model.UserPrefs;
+import jarvis.model.student.Student;
 import jarvis.testutil.EditStudentDescriptorBuilder;
 import jarvis.testutil.StudentBuilder;
 
@@ -47,26 +47,26 @@ public class EditCommandTest {
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
-//    @Test
-//    public void execute_someFieldsSpecifiedUnfilteredList_success() {
-//        Index indexLastPerson = Index.fromOneBased(model.getFilteredStudentList().size());
-//        Student lastStudent = model.getFilteredStudentList().get(indexLastPerson.getZeroBased());
-//
-//        StudentBuilder personInList = new StudentBuilder(lastStudent);
-//        Student editedStudent = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-//                .withTags(VALID_TAG_HUSBAND).build();
-//
-//        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-//                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
-//        EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
-//
-//        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStudent);
-//
-//        Model expectedModel = new ModelManager(new StudentBook(model.getStudentBook()), new UserPrefs());
-//        expectedModel.setStudent(lastStudent, editedStudent);
-//
-//        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-//    }
+    //    @Test
+    //    public void execute_someFieldsSpecifiedUnfilteredList_success() {
+    //        Index indexLastPerson = Index.fromOneBased(model.getFilteredStudentList().size());
+    //        Student lastStudent = model.getFilteredStudentList().get(indexLastPerson.getZeroBased());
+    //
+    //        StudentBuilder personInList = new StudentBuilder(lastStudent);
+    //        Student editedStudent = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+    //                .withTags(VALID_TAG_HUSBAND).build();
+    //
+    //        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
+    //                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
+    //        EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
+    //
+    //        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStudent);
+    //
+    //        Model expectedModel = new ModelManager(new StudentBook(model.getStudentBook()), new UserPrefs());
+    //        expectedModel.setStudent(lastStudent, editedStudent);
+    //
+    //        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    //    }
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
@@ -121,7 +121,8 @@ public class EditCommandTest {
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
-        EditCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB).build();
+        EditCommand.EditStudentDescriptor descriptor =
+                new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);

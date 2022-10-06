@@ -1,12 +1,8 @@
 package jarvis.testutil;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import jarvis.logic.commands.student.EditCommand;
 import jarvis.logic.commands.student.EditCommand.EditStudentDescriptor;
-import jarvis.model.student.*;
+import jarvis.model.student.Name;
 import jarvis.model.student.Student;
 
 /**

@@ -5,11 +5,11 @@ import static jarvis.testutil.Assert.assertThrows;
 import static jarvis.testutil.TypicalStudents.BENSON;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import jarvis.storage.student.JsonAdaptedStudent;
 import org.junit.jupiter.api.Test;
 
 import jarvis.commons.exceptions.IllegalValueException;
 import jarvis.model.student.Name;
+import jarvis.storage.student.JsonAdaptedStudent;
 
 public class JsonAdaptedTaskTest {
     private static final String INVALID_NAME = "R@chel";

@@ -1,11 +1,7 @@
 package jarvis.testutil;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import jarvis.model.student.*;
+import jarvis.model.student.Name;
 import jarvis.model.student.Student;
-import jarvis.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Person objects.

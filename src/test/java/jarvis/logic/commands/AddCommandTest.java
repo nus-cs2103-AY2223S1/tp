@@ -11,17 +11,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
-import jarvis.logic.commands.student.AddCommand;
-import jarvis.model.ReadOnlyTaskBook;
-import jarvis.model.student.Student;
 import org.junit.jupiter.api.Test;
 
 import jarvis.commons.core.GuiSettings;
 import jarvis.logic.commands.exceptions.CommandException;
-import jarvis.model.StudentBook;
+import jarvis.logic.commands.student.AddCommand;
 import jarvis.model.Model;
 import jarvis.model.ReadOnlyStudentBook;
+import jarvis.model.ReadOnlyTaskBook;
 import jarvis.model.ReadOnlyUserPrefs;
+import jarvis.model.StudentBook;
+import jarvis.model.student.Student;
 import jarvis.model.task.Task;
 import jarvis.testutil.StudentBuilder;
 import javafx.collections.ObservableList;

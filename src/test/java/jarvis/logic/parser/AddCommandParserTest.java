@@ -9,14 +9,13 @@ import static jarvis.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static jarvis.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static jarvis.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static jarvis.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static jarvis.testutil.TypicalStudents.AMY;
 import static jarvis.testutil.TypicalStudents.BOB;
 
-import jarvis.logic.parser.student.AddCommandParser;
-import jarvis.model.student.*;
 import org.junit.jupiter.api.Test;
 
 import jarvis.logic.commands.student.AddCommand;
+import jarvis.logic.parser.student.AddCommandParser;
+import jarvis.model.student.Name;
 import jarvis.model.student.Student;
 import jarvis.testutil.StudentBuilder;
 

@@ -13,9 +13,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.Arrays;
 import java.util.Collections;
 
-import jarvis.logic.commands.student.FindCommand;
 import org.junit.jupiter.api.Test;
 
+import jarvis.logic.commands.student.FindCommand;
 import jarvis.model.Model;
 import jarvis.model.ModelManager;
 import jarvis.model.UserPrefs;

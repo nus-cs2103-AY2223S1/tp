@@ -11,19 +11,19 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import jarvis.model.student.Student;
 import org.junit.jupiter.api.Test;
 
-import jarvis.logic.commands.student.AddCommand;
 import jarvis.logic.commands.ClearCommand;
+import jarvis.logic.commands.ExitCommand;
+import jarvis.logic.commands.HelpCommand;
+import jarvis.logic.commands.student.AddCommand;
 import jarvis.logic.commands.student.DeleteCommand;
 import jarvis.logic.commands.student.EditCommand;
-import jarvis.logic.commands.ExitCommand;
 import jarvis.logic.commands.student.FindCommand;
-import jarvis.logic.commands.HelpCommand;
 import jarvis.logic.commands.student.ListCommand;
 import jarvis.logic.parser.exceptions.ParseException;
 import jarvis.model.student.NameContainsKeywordsPredicate;
+import jarvis.model.student.Student;
 import jarvis.testutil.EditStudentDescriptorBuilder;
 import jarvis.testutil.StudentBuilder;
 import jarvis.testutil.StudentUtil;

@@ -1,7 +1,6 @@
 package jarvis.model.student;
 
 import static jarvis.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static jarvis.testutil.Assert.assertThrows;
 import static jarvis.testutil.TypicalStudents.ALICE;
 import static jarvis.testutil.TypicalStudents.BOB;
 import static org.junit.jupiter.api.Assertions.assertFalse;

@@ -6,15 +6,15 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.nio.file.Path;
 
-import jarvis.model.StudentBook;
-import jarvis.storage.student.JsonStudentBookStorage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import jarvis.commons.core.GuiSettings;
 import jarvis.model.ReadOnlyStudentBook;
+import jarvis.model.StudentBook;
 import jarvis.model.UserPrefs;
+import jarvis.storage.student.JsonStudentBookStorage;
 import jarvis.storage.task.JsonTaskBookStorage;
 
 public class StorageManagerTest {

@@ -6,12 +6,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import jarvis.model.StudentBook;
-import jarvis.storage.student.JsonSerializableStudentBook;
 import org.junit.jupiter.api.Test;
 
 import jarvis.commons.exceptions.IllegalValueException;
 import jarvis.commons.util.JsonUtil;
+import jarvis.model.StudentBook;
+import jarvis.storage.student.JsonSerializableStudentBook;
 import jarvis.testutil.TypicalStudents;
 
 public class JsonSerializableTaskBookTest {
