@@ -17,6 +17,8 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.user.EmptyUser;
+import seedu.address.model.person.user.ExistingUser;
 import seedu.address.model.person.user.User;
 
 /**
@@ -24,7 +26,7 @@ import seedu.address.model.person.user.User;
  */
 class JsonAdaptedUser {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "User's %s field is missing!";
 
     private final String name;
     private final String phone;
@@ -62,19 +64,29 @@ class JsonAdaptedUser {
      * Converts a given {@code User} into this class for Jackson use.
      */
     public JsonAdaptedUser(User source) {
-        name = source.getName().fullName;
-        phone = source.getPhone().value;
-        email = source.getEmail().value;
-        address = source.getAddress().value;
-        currModules.addAll(source.getCurrModules().stream()
-                .map(JsonAdaptedCurrentModule::new)
-                .collect(Collectors.toList()));
-        prevModules.addAll(source.getPrevModules().stream()
-                .map(JsonAdaptedPreviousModule::new)
-                .collect(Collectors.toList()));
-        planModules.addAll(source.getPlanModules().stream()
-                .map(JsonAdaptedPlannedModule::new)
-                .collect(Collectors.toList()));
+        if (source instanceof EmptyUser) {
+            EmptyUser emptyUser = (EmptyUser) source;
+            name = "";
+            phone = "empty";
+            email = "";
+            address = "";
+        } else {
+            assert source instanceof ExistingUser : "User cannot be any other type";
+            ExistingUser user = (ExistingUser) source;
+            name = user.getName().fullName;
+            phone = user.getPhone().value;
+            email = user.getEmail().value;
+            address = user.getAddress().value;
+            currModules.addAll(user.getCurrModules().stream()
+                    .map(JsonAdaptedCurrentModule::new)
+                    .collect(Collectors.toList()));
+            prevModules.addAll(user.getPrevModules().stream()
+                    .map(JsonAdaptedPreviousModule::new)
+                    .collect(Collectors.toList()));
+            planModules.addAll(user.getPlanModules().stream()
+                    .map(JsonAdaptedPlannedModule::new)
+                    .collect(Collectors.toList()));
+        }
     }
 
     /**
@@ -83,6 +95,11 @@ class JsonAdaptedUser {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public User toModelType() throws IllegalValueException {
+
+        if (phone.equals("empty")) {
+            return new EmptyUser();
+        }
+
         final List<CurrentModule> personCurrModules = new ArrayList<>();
         for (JsonAdaptedCurrentModule currModule : currModules) {
             personCurrModules.add(currModule.toModelType());
@@ -136,7 +153,7 @@ class JsonAdaptedUser {
 
         final Set<PlannedModule> modelPlanModules = new HashSet<>(personPlanModules);
 
-        return new User(modelName, modelPhone, modelEmail, modelAddress,
+        return new ExistingUser(modelName, modelPhone, modelEmail, modelAddress,
                 modelCurrModules, modelPrevModules, modelPlanModules);
     }
 

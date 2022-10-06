@@ -21,6 +21,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.user.ExistingUser;
 import seedu.address.model.person.user.User;
 
 /**
@@ -52,7 +53,7 @@ public class UserCommandParser implements Parser<UserCommand> {
         Set<PlannedModule> plannedList = ParserUtil.parsePlannedModules(argMultimap.getAllValues(PREFIX_PLANNEDMOD));
 
 
-        User user = new User(name, phone, email, address, currList, prevList, plannedList);
+        User user = new ExistingUser(name, phone, email, address, currList, prevList, plannedList);
 
         return new UserCommand(user);
     }

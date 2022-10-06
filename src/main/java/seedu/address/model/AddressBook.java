@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.user.EmptyUser;
+import seedu.address.model.person.user.ExistingUser;
 import seedu.address.model.person.user.User;
 
 /**
@@ -65,7 +66,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Returns true if a user is already saved in the address book.
      */
     public boolean hasUser() {
-        return !(user instanceof EmptyUser);
+        return user instanceof ExistingUser;
     }
 
     /**
