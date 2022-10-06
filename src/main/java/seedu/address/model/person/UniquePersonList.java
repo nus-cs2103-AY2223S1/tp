@@ -105,7 +105,6 @@ public class UniquePersonList implements Iterable<Person> {
     /**
      * Get the count of unique persons in the list. Used for displaying information
      * on total count of candidates.
-     * 
      * @return the count of unique persons in the list.
      */
     public int getCount() {

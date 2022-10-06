@@ -83,15 +83,12 @@ public interface Model {
 
     /**
      * Returns the total number of persons in the address book.
-     * 
-     * @return the total number of persons in the address book.
      */
     int getTotalNumberOfPersons();
 
     /**
      * Updates the filter of the filtered person list to filter by the given
      * {@code predicate}.
-     * 
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
