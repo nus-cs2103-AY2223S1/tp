@@ -12,9 +12,10 @@ import seedu.address.model.tutorial.exceptions.TutorialNotFoundException;
 
 /**
  * A list of tutorials that enforces uniqueness between its elements and does not allow nulls.
- * A tutorial is considered unique by comparing using {@code Tutorial#isSameTutorial(Tutorial)}. As such, adding and updating of
- * tutorials uses Tutorial#isSameTutorial(Tutorial) for equality so as to ensure that the tutorial being added or updated is
- * unique in terms of identity in the UniqueTutorialList. However, the removal of a tutorial uses Tutorial#equals(Object) so
+ * A tutorial is considered unique by comparing using {@code Tutorial#isSameTutorial(Tutorial)}.
+ * As such, adding and updating of tutorials uses Tutorial#isSameTutorial(Tutorial) for equality
+ * so as to ensure that the tutorial being added or updated is unique in terms of identity in the UniqueTutorialList.
+ * However, the removal of a tutorial uses Tutorial#equals(Object) so
  * as to ensure that the tutorial with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.

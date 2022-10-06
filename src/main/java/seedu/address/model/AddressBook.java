@@ -25,7 +25,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      *
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
-     */ {
+     */
+    {
         persons = new UniquePersonList();
         tutorials = new UniqueTutorialList();
     }
@@ -118,7 +119,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Replaces the given tutorial {@code target} in the list with {@code editedTutorial}.
      * {@code target} must exist in the address book.
-     * The tutorial identity of {@code editedTutorial} must not be the same as another existing tutorial in the address book.
+     * The tutorial identity of {@code editedTutorial} must not be the same as another existing tutorial
+     * in the address book.
      */
     public void setTutorial(Tutorial target, Tutorial editedTutorial) {
         requireNonNull(editedTutorial);
