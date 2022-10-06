@@ -1,11 +1,19 @@
 package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.task.Task;
 import seedu.address.model.team.Name;
 import seedu.address.model.team.Team;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static seedu.address.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
 
 /**
  * Jackson-friendly version of {@link Team}.
@@ -13,10 +21,12 @@ import seedu.address.model.team.Team;
 public class JsonAdaptedTeam {
 
     private final String teamName;
+    private final List<JsonAdaptedTask> tasks = new ArrayList<>();
 
     @JsonCreator
-    public JsonAdaptedTeam(String teamName) {
+    public JsonAdaptedTeam(@JsonProperty("name") String teamName, @JsonProperty("tasks") List<JsonAdaptedTask> tasks) {
         this.teamName = teamName;
+        this.tasks.addAll(tasks);
     }
 
     /**
@@ -24,11 +34,19 @@ public class JsonAdaptedTeam {
      */
     public JsonAdaptedTeam(Team source) {
         teamName = source.getName().fullName;
+        tasks.addAll(source.getTasks().getTaskList().stream()
+                .map(JsonAdaptedTask::new)
+                .collect(Collectors.toList()));
     }
 
     @JsonValue
     public String getTeamName() {
         return teamName;
+    }
+
+    @JsonValue
+    public List<JsonAdaptedTask> getTasks() {
+        return tasks;
     }
 
     /**
@@ -37,6 +55,18 @@ public class JsonAdaptedTeam {
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
     public Team toModelType() throws IllegalValueException {
-        return new Team(new Name(teamName));
+        if (teamName == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+        }
+
+        final seedu.address.model.team.Name modelName = new Name(teamName);
+
+        final List<Task> modelTasks = new ArrayList<>();
+
+        for (JsonAdaptedTask task : tasks) {
+            modelTasks.add(task.toModelType());
+        }
+
+        return new Team(modelName, modelTasks);
     }
 }

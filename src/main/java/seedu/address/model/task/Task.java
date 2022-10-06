@@ -21,6 +21,13 @@ public class Task {
         this.isDone = false;
     }
 
+    public Task(Name name, boolean isDone) {
+        requireAllNonNull(name);
+        this.name = name;
+        this.isDone = isDone;
+    }
+
+
     public Name getName() {
         return this.name;
     }

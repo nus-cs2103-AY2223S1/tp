@@ -3,6 +3,7 @@ package seedu.address.model.team;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import seedu.address.model.person.Person;
@@ -19,7 +20,7 @@ public class Team {
     // Identity fields
     private final Name name;
     private ArrayList<Person> members;
-    private TaskList tasks;
+    private TaskList tasks = new TaskList();
 
 
 
@@ -29,11 +30,19 @@ public class Team {
     public Team(Name name) {
         requireAllNonNull(name);
         this.name = name;
-        this.tasks = new TaskList();
+    }
+
+    public Team(Name name, List<Task> tasks) {
+        this.name = name;
+        this.tasks.addAll(tasks);
     }
 
     public Name getName() {
         return name;
+    }
+
+    public TaskList getTasks() {
+        return tasks;
     }
 
     public void addMember(Person p) {
