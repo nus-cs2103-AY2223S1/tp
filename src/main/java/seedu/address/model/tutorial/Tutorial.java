@@ -15,6 +15,10 @@ public class Tutorial {
     private final Content content;
     private final Time time;
 
+    /**
+     * Constructs a {@code Tutorial}.
+     * Every field must be present and not null.
+     */
     public Tutorial(Group group, Content content, Time time) {
         requireAllNonNull(group, content, time);
         this.group = group;
