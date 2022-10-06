@@ -41,7 +41,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/genfusion122.png" width="200px">
 
 [[github](https://github.com/GenFusion122)]
-[[portfolio](team/GenFusion122.md)]
+[[portfolio](team/genfusion122.md)]
 
 * Role: Developer
 * Responsibilities: Development
@@ -52,7 +52,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 [github](https://github.com/HakkaNgin)
 
-[portfolio](team/HakkaNgin.md)
+[portfolio](team/hakkangin.md)
 
 * Role: Developer
 * Responsibilities: Development
