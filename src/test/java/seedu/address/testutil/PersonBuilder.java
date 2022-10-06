@@ -83,7 +83,7 @@ public class PersonBuilder {
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
     public PersonBuilder withPhone(String phone) {
-        this.phone = phone.isEmpty() ? new Phone() : new Phone(phone);
+        this.phone = new Phone(phone);
         return this;
     }
 

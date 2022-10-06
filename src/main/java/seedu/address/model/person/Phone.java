@@ -18,14 +18,6 @@ public class Phone {
     /**
      * Constructs a {@code Phone}.
      *
-     */
-    public Phone() {
-        value = "";
-    }
-
-    /**
-     * Constructs a {@code Phone}.
-     *
      * @param phone A valid phone number.
      */
     public Phone(String phone) {
