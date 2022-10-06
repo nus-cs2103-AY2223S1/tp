@@ -54,6 +54,11 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
+     * Returns true if a user already exists in the address book.
+     */
+    boolean hasUser();
+
+    /**
      * Adds the user
      */
     void addUser(User user);

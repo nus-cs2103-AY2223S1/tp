@@ -7,6 +7,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.user.EmptyUser;
 import seedu.address.model.person.user.User;
 
 /**
@@ -16,7 +17,7 @@ import seedu.address.model.person.user.User;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-    private User user;
+    private User user = new EmptyUser();
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -59,6 +60,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     //// user operations
+
+    /**
+     * Returns true if a user is already saved in the address book.
+     */
+    public boolean hasUser() {
+        return !(user instanceof EmptyUser);
+    }
 
     /**
      * Adds user to the address book.

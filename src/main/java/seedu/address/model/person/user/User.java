@@ -47,6 +47,13 @@ public class User {
         this.planModules.addAll(planModules);
     }
 
+    public User() {
+        this.name = new Name("blank");
+        this.phone = new Phone("000");
+        this.email = new Email("x@y.co");
+        this.address = new Address("blank");
+    }
+
     public Name getName() {
         return name;
     }

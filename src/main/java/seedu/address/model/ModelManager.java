@@ -89,6 +89,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasUser() {
+        return addressBook.hasUser();
+    }
+
+    @Override
     public void addUser(User user) {
         addressBook.addUser(user);
     }
