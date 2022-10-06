@@ -18,7 +18,6 @@ import foodwhere.model.Model;
 import foodwhere.model.detail.Detail;
 import foodwhere.model.stall.Address;
 import foodwhere.model.stall.Name;
-import foodwhere.model.stall.Phone;
 import foodwhere.model.stall.Stall;
 
 /**
@@ -33,11 +32,9 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + CliSyntax.PREFIX_NAME + "NAME] "
-            + "[" + CliSyntax.PREFIX_PHONE + "PHONE] "
             + "[" + CliSyntax.PREFIX_ADDRESS + "ADDRESS] "
             + "[" + CliSyntax.PREFIX_DETAIL + "DETAIL]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + CliSyntax.PREFIX_PHONE + "91234567 ";
+            + "Example: " + COMMAND_WORD + " 1 ";
 
     public static final String MESSAGE_EDIT_STALL_SUCCESS = "Edited Stall: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -87,11 +84,10 @@ public class EditCommand extends Command {
         assert stallToEdit != null;
 
         Name updatedName = editStallDescriptor.getName().orElse(stallToEdit.getName());
-        Phone updatedPhone = editStallDescriptor.getPhone().orElse(stallToEdit.getPhone());
         Address updatedAddress = editStallDescriptor.getAddress().orElse(stallToEdit.getAddress());
         Set<Detail> updatedDetails = editStallDescriptor.getDetails().orElse(stallToEdit.getDetails());
 
-        return new Stall(updatedName, updatedPhone, updatedAddress, updatedDetails);
+        return new Stall(updatedName, updatedAddress, updatedDetails);
     }
 
     @Override
@@ -118,7 +114,6 @@ public class EditCommand extends Command {
      */
     public static class EditStallDescriptor {
         private Name name;
-        private Phone phone;
         private Address address;
         private Set<Detail> details;
 
@@ -130,7 +125,6 @@ public class EditCommand extends Command {
          */
         public EditStallDescriptor(EditStallDescriptor toCopy) {
             setName(toCopy.name);
-            setPhone(toCopy.phone);
             setAddress(toCopy.address);
             setDetails(toCopy.details);
         }
@@ -139,7 +133,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, address, details);
+            return CollectionUtil.isAnyNonNull(name, address, details);
         }
 
         public void setName(Name name) {
@@ -148,14 +142,6 @@ public class EditCommand extends Command {
 
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
-        }
-
-        public void setPhone(Phone phone) {
-            this.phone = phone;
-        }
-
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
         }
 
         public void setAddress(Address address) {
@@ -199,7 +185,6 @@ public class EditCommand extends Command {
             EditStallDescriptor e = (EditStallDescriptor) other;
 
             return getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
                     && getAddress().equals(e.getAddress())
                     && getDetails().equals(e.getDetails());
         }

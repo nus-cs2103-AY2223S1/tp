@@ -2,7 +2,6 @@ package foodwhere.logic;
 
 import static foodwhere.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static foodwhere.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static foodwhere.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static foodwhere.testutil.Assert.assertThrows;
 import static foodwhere.testutil.TypicalStalls.AMY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -77,7 +76,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + ADDRESS_DESC_AMY;
+        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + ADDRESS_DESC_AMY;
         Stall expectedStall = new StallBuilder(AMY).withDetails().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addStall(expectedStall);

@@ -9,7 +9,6 @@ import foodwhere.model.ReadOnlyAddressBook;
 import foodwhere.model.detail.Detail;
 import foodwhere.model.stall.Address;
 import foodwhere.model.stall.Name;
-import foodwhere.model.stall.Phone;
 import foodwhere.model.stall.Stall;
 
 /**
@@ -18,23 +17,17 @@ import foodwhere.model.stall.Stall;
 public class SampleDataUtil {
     public static Stall[] getSampleStalls() {
         return new Stall[] {
-            new Stall(new Name("Alex Yeoh"), new Phone("87438807"),
-                new Address("Blk 30 Geylang Street 29, #06-40"),
+            new Stall(new Name("Alex Yeoh"), new Address("Blk 30 Geylang Street 29, #06-40"),
                     getDetailSet("friends")),
-            new Stall(new Name("Bernice Yu"), new Phone("99272758"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
+            new Stall(new Name("Bernice Yu"), new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                     getDetailSet("colleagues", "friends")),
-            new Stall(new Name("Charlotte Oliveiro"), new Phone("93210283"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
+            new Stall(new Name("Charlotte Oliveiro"),new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
                     getDetailSet("neighbours")),
-            new Stall(new Name("David Li"), new Phone("91031282"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
+            new Stall(new Name("David Li"), new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
                     getDetailSet("family")),
-            new Stall(new Name("Irfan Ibrahim"), new Phone("92492021"),
-                new Address("Blk 47 Tampines Street 20, #17-35"),
+            new Stall(new Name("Irfan Ibrahim"), new Address("Blk 47 Tampines Street 20, #17-35"),
                     getDetailSet("classmates")),
-            new Stall(new Name("Roy Balakrishnan"), new Phone("92624417"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"),
+            new Stall(new Name("Roy Balakrishnan"), new Address("Blk 45 Aljunied Street 85, #11-31"),
                     getDetailSet("colleagues"))
         };
     }

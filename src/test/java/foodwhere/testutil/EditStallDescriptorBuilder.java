@@ -8,7 +8,6 @@ import foodwhere.logic.commands.EditCommand;
 import foodwhere.model.detail.Detail;
 import foodwhere.model.stall.Address;
 import foodwhere.model.stall.Name;
-import foodwhere.model.stall.Phone;
 import foodwhere.model.stall.Stall;
 
 /**
@@ -32,7 +31,6 @@ public class EditStallDescriptorBuilder {
     public EditStallDescriptorBuilder(Stall stall) {
         descriptor = new EditCommand.EditStallDescriptor();
         descriptor.setName(stall.getName());
-        descriptor.setPhone(stall.getPhone());
         descriptor.setAddress(stall.getAddress());
         descriptor.setDetails(stall.getDetails());
     }
@@ -42,14 +40,6 @@ public class EditStallDescriptorBuilder {
      */
     public EditStallDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
-        return this;
-    }
-
-    /**
-     * Sets the {@code Phone} of the {@code EditStallDescriptor} that we are building.
-     */
-    public EditStallDescriptorBuilder withPhone(String phone) {
-        descriptor.setPhone(new Phone(phone));
         return this;
     }
 

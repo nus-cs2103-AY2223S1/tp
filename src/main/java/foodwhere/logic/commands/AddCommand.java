@@ -17,12 +17,10 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a stall to the address book. "
             + "Parameters: "
             + CliSyntax.PREFIX_NAME + "NAME "
-            + CliSyntax.PREFIX_PHONE + "PHONE "
             + CliSyntax.PREFIX_ADDRESS + "ADDRESS "
             + "[" + CliSyntax.PREFIX_DETAIL + "DETAIL]...\n"
             + "Example: " + COMMAND_WORD + " "
             + CliSyntax.PREFIX_NAME + "John Doe "
-            + CliSyntax.PREFIX_PHONE + "98765432 "
             + CliSyntax.PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + CliSyntax.PREFIX_DETAIL + "friends "
             + CliSyntax.PREFIX_DETAIL + "owesMoney";

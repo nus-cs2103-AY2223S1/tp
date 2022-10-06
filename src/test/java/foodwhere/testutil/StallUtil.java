@@ -26,7 +26,6 @@ public class StallUtil {
     public static String getStallDetails(Stall stall) {
         StringBuilder sb = new StringBuilder();
         sb.append(CliSyntax.PREFIX_NAME + stall.getName().fullName + " ");
-        sb.append(CliSyntax.PREFIX_PHONE + stall.getPhone().value + " ");
         sb.append(CliSyntax.PREFIX_ADDRESS + stall.getAddress().value + " ");
         stall.getDetails().stream().forEach(
             s -> sb.append(CliSyntax.PREFIX_DETAIL + s.detail + " ")
@@ -40,7 +39,6 @@ public class StallUtil {
     public static String getEditStallDescriptorDetails(EditCommand.EditStallDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(CliSyntax.PREFIX_NAME).append(name.fullName).append(" "));
-        descriptor.getPhone().ifPresent(phone -> sb.append(CliSyntax.PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getAddress().ifPresent(address ->
                 sb.append(CliSyntax.PREFIX_ADDRESS).append(address.value).append(" "));
         if (descriptor.getDetails().isPresent()) {
