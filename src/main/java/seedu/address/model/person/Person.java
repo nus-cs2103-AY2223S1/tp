@@ -52,6 +52,10 @@ public class Person {
         return address;
     }
 
+    public String getDetailsAsString() {
+        return String.format("%s %s %s %s %s", name, phone, email, address, tags);
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
