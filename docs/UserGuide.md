@@ -12,7 +12,7 @@ interactions recorded faster and simpler than traditional GUI applications.
 * [Features](#features)
   * [Adding a company: `add`](#adding-a-company-add)
   * [Clearing all entries: `clear`](#clearing-all-entries--clear)
-  * [Creating a company: `create`](#creating-a-company-create)
+  * [Creating a point-of-contact: `create`](#creating-a-point-of-contact-create)
   * [Deleting a company: `delete`](#deleting-a-company--delete)
   * [Editing a company: `edit`](#editing-a-company--edit)
   * [Exiting the program: `exit`](#exiting-the-program--exit)
@@ -47,7 +47,7 @@ interactions recorded faster and simpler than traditional GUI applications.
 
    * **`list`** : Lists all companies.
 
-   * **`add`**`coy/MacDonalds n/James hp/98765432 e/jamesho@example.com loc/West Coast Park` : Adds a point-of-contact named `James` to the Company `MacDonalds`.
+   * **`create`**`n/James coy/MacDonalds p/98765432 e/jamesho@example.com` : Creates a point-of-contact named `James` linked to the Company `MacDonalds`.
 
    * **`delete`**`coy/MacDonalds` : Deletes MacDonalds (Company) together with all their contacts in the current list.
 
@@ -116,10 +116,10 @@ Example:
 
 Creates a new person (point-of-contact) for a specific company.
 
-Format: `create n/NAME coy/COMPANY_NAME hp/NUMBER e/EMAIL`
+Format: `create n/NAME coy/COMPANY_NAME p/NUMBER e/EMAIL`
 
 Examples:
-* `create n/James coy/MCDONALDS hp/82692192 e/JamesSho@example.com` adds James as a point-of-contact for MCDONALDS.
+* `create n/James coy/MCDONALDS p/82692192 e/JamesSho@example.com` adds James as a point-of-contact for MCDONALDS.
 
 ### Deleting a company : `delete`
 
@@ -245,9 +245,9 @@ _Details coming soon ..._
 
 | Action          | Format, Examples                                                                                                                                                                                                                                                           |
 |-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**         | `add coy/COMPANY n/NAME hp/NUMBER e/EMAIL loc/ADDRESS`<br> e.g., `add coy/KFC n/Tom hp/85948392 e/tom@example.com loc/Yishun Street 81`                                                                                                                                    |
+| **Add**         | `add n/COMPANY a/ADDRESS`<br> e.g., `add n/KFC a/Yishun Street 81`                                                                                                                                                                                                         |
 | **Clear**       | `clear` followed by `confirm`                                                                                                                                                                                                                                              |
- | **Create**      | `create coy/COMPANY_NAME`<br> e.g., `create coy/MacDonalds`                                                                                                                                                                                                                |
+ | **Create**      | `create n/NAME coy/COMPANY_NAME p/NUMBER e/EMAIL`<br> e.g., `create n/James coy/MacDonalds p/82692192 e/James@example.com`                                                                                                                                                 |
 | **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                        |
 | **Edit**        | Coming Soon                                                                                                                                                                                                                                                                |
 | **Exit**        | `exit`                                                                                                                                                                                                                                                                     |
