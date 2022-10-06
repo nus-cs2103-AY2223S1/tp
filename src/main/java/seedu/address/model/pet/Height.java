@@ -2,7 +2,7 @@ package seedu.address.model.pet;
 
 public class Height {
 
-    public static String UNIT = "cm";
+    public static final String UNIT = "cm";
 
     private final double value;
 
@@ -30,4 +30,5 @@ public class Height {
     public double getValue() {
         return value;
     }
+
 }
