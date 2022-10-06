@@ -2,10 +2,8 @@ package seedu.address.model.person;
 
 import static java.util.Objects.isNull;
 
-import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.FilterCommand;
 
 /**
@@ -21,19 +19,19 @@ public class AttributesMatchKeywordsPredicate implements Predicate<Person> {
     @Override
     public boolean test(Person person) {
         boolean predicate = true;
-        if(!isNull(descriptor.getName())) {
+        if (!isNull(descriptor.getName())) {
             predicate = predicate && descriptor.getName().equals(person.getName());
         }
-        if(!isNull(descriptor.getAddress())) {
+        if (!isNull(descriptor.getAddress())) {
             predicate = predicate && person.getAddress().equals(descriptor.getAddress());
         }
-        if(!isNull(descriptor.getPhone())) {
+        if (!isNull(descriptor.getPhone())) {
             predicate = predicate && person.getPhone().equals(descriptor.getPhone());
         }
-        if(!isNull(descriptor.getEmail())) {
+        if (!isNull(descriptor.getEmail())) {
             predicate = predicate && person.getEmail().equals(descriptor.getEmail());
         }
-        if(!isNull(descriptor.getTags())) {
+        if (!isNull(descriptor.getTags())) {
             predicate = predicate && person.getTags().equals(descriptor.getTags());
         }
         return predicate;
