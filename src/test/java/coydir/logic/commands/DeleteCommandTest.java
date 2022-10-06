@@ -67,7 +67,7 @@ public class DeleteCommandTest {
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
-        
+
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(2 < model.getAddressBook().getPersonList().size());
 
