@@ -3,6 +3,7 @@ package seedu.address.model.group;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
@@ -50,6 +51,24 @@ public class UniqueGroupList implements Iterable<Group> {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new GroupNotFoundException();
+        }
+    }
+
+    /**
+     * Removes the group with this {@code groupname} from the list.
+     * The {@code groupname} must exist in the list.
+     */
+    public void removeFromStringName(String groupNameString) {
+        requireNonNull(groupNameString);
+        GroupName groupName = new GroupName(groupNameString);
+        Group toRemove = new Group(groupName, new HashSet<>());
+        if (!contains(toRemove)) {
+            throw new GroupNotFoundException();
+        }
+        for (int i = 0; i < internalList.size(); i++) {
+            if (internalList.get(i).getName().equals(groupName)) {
+                internalList.remove(i);
+            }
         }
     }
 
