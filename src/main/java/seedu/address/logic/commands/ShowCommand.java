@@ -22,7 +22,7 @@ public class ShowCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_SUCCESS = "Showing client";
+    public static final String MESSAGE_SHOW_PERSON_SUCCESS = "Showing person: %1$s";
 
     private final Index targetIndex;
 
@@ -41,7 +41,7 @@ public class ShowCommand extends Command {
 
         Person personToShow = lastShownList.get(targetIndex.getZeroBased());
         model.setTargetPerson(personToShow);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(String.format(MESSAGE_SHOW_PERSON_SUCCESS, personToShow));
     }
 
     @Override
