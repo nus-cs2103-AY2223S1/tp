@@ -26,7 +26,7 @@ public class EmployeeId {
      * Constructs a {@code EmployeeId}.
      */
     public EmployeeId() {
-        this.value = String.format("%d", count++);
+        this.value = String.format("%05d", count++);
     }
 
     /**

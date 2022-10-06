@@ -153,9 +153,11 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleDarkTheme() {
-        getPrimaryStage().getScene().getStylesheets().remove(0);
-        getPrimaryStage().getScene().getStylesheets().add(
-                getClass().getClassLoader().getResource("view/DarkTheme.css").toExternalForm());
+        System.out.println("changing to dark mode");
+        getPrimaryStage().getScene().getStylesheets().remove(0, 2);
+        getPrimaryStage().getScene().getStylesheets().addAll(
+                getClass().getClassLoader().getResource("view/DarkTheme.css").toExternalForm(),
+                getClass().getClassLoader().getResource("view/Extensions.css").toExternalForm());
     }
 
     /**
@@ -164,9 +166,11 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleLightTheme() {
-        getPrimaryStage().getScene().getStylesheets().remove(0);
-        getPrimaryStage().getScene().getStylesheets().add(
-                getClass().getClassLoader().getResource("view/LightTheme.css").toExternalForm());
+        System.out.println("changing to light mode");
+        getPrimaryStage().getScene().getStylesheets().remove(0, 2);
+        getPrimaryStage().getScene().getStylesheets().addAll(
+                getClass().getClassLoader().getResource("view/LightTheme.css").toExternalForm(),
+                getClass().getClassLoader().getResource("view/Extensions.css").toExternalForm());
     }
 
     void show() {
