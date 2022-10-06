@@ -1,22 +1,22 @@
 {
   "persons" : [ {
-    "name" : "Name",
+    "name" : "Rico",
     "phone" : "90909090",
-    "email" : "email@gmail.com",
-    "address" : "address",
-    "tagged" : [ "test2", "fishes" ]
+    "email" : "rico@gmail.com",
+    "address" : "Westwood",
+    "tagged" : [ "female", "male" ]
   }, {
     "name" : "Nami",
     "phone" : "87654321",
     "email" : "nami@gmail.com",
-    "address" : "Alantis",
-    "tagged" : [ "fishes" ]
+    "address" : "SouthWood",
+    "tagged" : [ "female" ]
   }, {
     "name" : "Alex",
     "phone" : "98765432",
     "email" : "Alex@gmail.com",
     "address" : "NorthWood",
-    "tagged" : [ "fishes" ]
+    "tagged" : [ "male" ]
   } ],
-  "tags" : [ "test2", "fishes" ]
+  "tags" : [ "female", "male" ]
 }
