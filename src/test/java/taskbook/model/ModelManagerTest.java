@@ -1,14 +1,16 @@
 package taskbook.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+
 import org.junit.jupiter.api.Test;
+
 import taskbook.commons.core.GuiSettings;
 import taskbook.model.person.NameContainsKeywordsPredicate;
 import taskbook.testutil.AddressBookBuilder;
