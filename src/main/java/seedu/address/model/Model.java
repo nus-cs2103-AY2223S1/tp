@@ -5,14 +5,14 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Person;
+import seedu.address.model.project.Project;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Project> PREDICATE_SHOW_ALL_PROJECTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -53,35 +53,36 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a project with the same identity as {@code project} exists in the address book.
      */
-    boolean hasPerson(Person person);
+    boolean hasProject(Project project);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given project.
+     * The project must exist in the address book.
      */
-    void deletePerson(Person target);
+    void deleteProject(Project target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given project.
+     * {@code project} must not already exist in the address book.
      */
-    void addPerson(Person person);
+    void addProject(Project project);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given project {@code target} with {@code editedProject}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The project identity of {@code editedProject} must not be the same as
+     * another existing project in the address book.
      */
-    void setPerson(Person target, Person editedPerson);
+    void setProject(Project target, Project editedProject);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered project list */
+    ObservableList<Project> getFilteredProjectList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered project list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredProjectList(Predicate<Project> predicate);
 }
