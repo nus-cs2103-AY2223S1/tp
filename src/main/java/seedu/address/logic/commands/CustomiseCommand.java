@@ -90,6 +90,27 @@ public class CustomiseCommand extends Command {
     }
 
     /**
+     * Changes the attribute order shown to the user.
+     *
+     * @param model the model which the command operates on
+     * @throws CommandException if an error occurs during command execution
+     */
+    private void changeAttributeOrder(Model model) throws CommandException {
+        GuiSettings currSettings = model.getGuiSettings();
+        int xCoordinate = 0;
+        int yCoordinate = 0;
+        if (currSettings.getWindowCoordinates() != null) {
+            xCoordinate = (int) currSettings.getWindowCoordinates().getX();
+            yCoordinate = (int) currSettings.getWindowCoordinates().getY();
+        }
+        GuiSettings newSettings = new GuiSettings(currSettings.getWindowWidth(), currSettings.getWindowHeight(),
+                xCoordinate, yCoordinate, convertOrderToString(arguments), currSettings.getHiddenAttributes());
+
+        model.setGuiSettings(newSettings);
+        refreshList(model);
+    }
+
+    /**
      * Toggles the attributes between being shown or hidden.
      *
      * @param model the model which the command operates on
@@ -122,13 +143,8 @@ public class CustomiseCommand extends Command {
             xCoordinate = (int) currSettings.getWindowCoordinates().getX();
             yCoordinate = (int) currSettings.getWindowCoordinates().getY();
         }
-        GuiSettings newSettings = new GuiSettings(
-                currSettings.getWindowWidth(),
-                currSettings.getWindowHeight(),
-                xCoordinate,
-                yCoordinate,
-                currSettings.getAttributeOrder(),
-                convertHiddenToString(isHidden));
+        GuiSettings newSettings = new GuiSettings(currSettings.getWindowWidth(), currSettings.getWindowHeight(),
+                xCoordinate, yCoordinate, currSettings.getAttributeOrder(), convertHiddenToString(isHidden));
 
         model.setGuiSettings(newSettings);
         refreshList(model);
@@ -143,7 +159,7 @@ public class CustomiseCommand extends Command {
      */
     private void readHidden(String[] strArr, boolean[] isHidden) {
         for (String s : strArr) {
-            isHidden[convertToIndex(s)] = true;
+            isHidden[convertAttributeToIndex(s)] = true;
         }
     }
 
@@ -156,7 +172,7 @@ public class CustomiseCommand extends Command {
      */
     private void setNewHiddenState(boolean[] isHidden, boolean isSetToHide) {
         for (Attribute argument : arguments) {
-            isHidden[convertToIndex(argument.toString())] = isSetToHide;
+            isHidden[convertAttributeToIndex(argument.toString())] = isSetToHide;
         }
     }
 
@@ -200,7 +216,7 @@ public class CustomiseCommand extends Command {
      * @param attribute the string representation of the attribute
      * @return an index that corresponds to the attribute
      */
-    private int convertToIndex(String attribute) {
+    private int convertAttributeToIndex(String attribute) {
         switch(attribute) {
         case "ADDRESS":
             return 0;
@@ -213,32 +229,6 @@ public class CustomiseCommand extends Command {
         default:
             throw new IllegalArgumentException();
         }
-    }
-
-    /**
-     * Changes the attribute order shown to the user.
-     *
-     * @param model the model which the command operates on
-     * @throws CommandException if an error occurs during command execution
-     */
-    private void changeAttributeOrder(Model model) throws CommandException {
-        GuiSettings currSettings = model.getGuiSettings();
-        int xCoordinate = 0;
-        int yCoordinate = 0;
-        if (currSettings.getWindowCoordinates() != null) {
-            xCoordinate = (int) currSettings.getWindowCoordinates().getX();
-            yCoordinate = (int) currSettings.getWindowCoordinates().getY();
-        }
-        GuiSettings newSettings = new GuiSettings(
-                currSettings.getWindowWidth(),
-                currSettings.getWindowHeight(),
-                xCoordinate,
-                yCoordinate,
-                convertOrderToString(arguments),
-                currSettings.getHiddenAttributes());
-
-        model.setGuiSettings(newSettings);
-        refreshList(model);
     }
 
     /**
