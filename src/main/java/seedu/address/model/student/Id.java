@@ -6,7 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 /**
  * Represents a Student's id in the record.
  * Id is the last 4 digits of the NRIC (e.g. 123A).
- * Guarantees: immutable; is valid as declared in
+ * Guarantees: immutable; is valid as declared in {@link #isValidId(String)}
  */
 public class Id {
 
