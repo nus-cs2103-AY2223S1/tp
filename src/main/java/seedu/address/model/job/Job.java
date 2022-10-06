@@ -11,9 +11,9 @@ import java.util.Objects;
 public class Job {
 
     // Identity fields
+    public final String value;
     private final Id id;
     private final Title title;
-    public final String value;
 
     /**
      * Every field must be present and not null.

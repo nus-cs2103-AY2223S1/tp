@@ -2,7 +2,13 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBTITLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -57,8 +63,8 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_ID_DESC = " " + PREFIX_JOBID + "J9021-1"; // '-' not allowed in job IDs
-    public static final String INVALID_TITLE_DESC = " " + PREFIX_JOBTITLE +
-            "Intern | Software Engineer"; // '|' not allowed in job titles
+    public static final String INVALID_TITLE_DESC = " " + PREFIX_JOBTITLE
+            + "Intern | Software Engineer"; // '|' not allowed in job titles
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "offered*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
