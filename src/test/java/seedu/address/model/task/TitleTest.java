@@ -14,13 +14,13 @@ public class TitleTest {
     }
 
     @Test
-    public void constructor_invalidAddress_throwsIllegalArgumentException() {
+    public void constructor_invalidTitle_throwsIllegalArgumentException() {
         String invalidTitle = "";
         assertThrows(IllegalArgumentException.class, () -> new Title(invalidTitle));
     }
 
     @Test
-    public void isValidAddress() {
+    public void isValidTitle() {
         // null address
         assertThrows(NullPointerException.class, () -> Title.isValidTitle(null));
 

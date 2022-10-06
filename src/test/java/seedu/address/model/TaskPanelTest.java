@@ -63,13 +63,13 @@ public class TaskPanelTest {
     }
 
     @Test
-    public void hasTask_taskInAddressBook_returnsTrue() {
+    public void hasTask_taskInTaskPanel_returnsTrue() {
         taskPanel.addTask(TASK_ONE);
         assertTrue(taskPanel.hasTask(TASK_ONE));
     }
 
     @Test
-    public void hasTask_taskWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasTask_taskWithSameIdentityFieldsInTaskPanel_returnsTrue() {
         // TODO: Update task
         taskPanel.addTask(TASK_ONE);
         Task editedTaskOne = new TaskBuilder(TASK_ONE).build();
@@ -82,7 +82,7 @@ public class TaskPanelTest {
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyTaskPanel whose tasks list can violate interface constraints.
      */
     private static class TaskPanelStub implements ReadOnlyTaskPanel {
         private final ObservableList<Task> tasks = FXCollections.observableArrayList();
