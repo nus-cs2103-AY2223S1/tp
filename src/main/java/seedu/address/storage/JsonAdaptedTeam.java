@@ -1,19 +1,20 @@
 package seedu.address.storage;
 
+import static seedu.address.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.task.Task;
 import seedu.address.model.team.Name;
 import seedu.address.model.team.Team;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
-import static seedu.address.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
 
 /**
  * Jackson-friendly version of {@link Team}.
@@ -23,10 +24,15 @@ public class JsonAdaptedTeam {
     private final String teamName;
     private final List<JsonAdaptedTask> tasks = new ArrayList<>();
 
+    /**
+     * Constructs a {@code JsonAdaptedTeam} with the given team details.
+     */
     @JsonCreator
     public JsonAdaptedTeam(@JsonProperty("name") String teamName, @JsonProperty("tasks") List<JsonAdaptedTask> tasks) {
         this.teamName = teamName;
-        this.tasks.addAll(tasks);
+        if (tasks != null) {
+            this.tasks.addAll(tasks);
+        }
     }
 
     /**
@@ -34,20 +40,13 @@ public class JsonAdaptedTeam {
      */
     public JsonAdaptedTeam(Team source) {
         teamName = source.getName().fullName;
-        tasks.addAll(source.getTasks().getTaskList().stream()
+        List<Task> taskList = source.getTasks().getTaskList();
+        tasks.addAll(taskList.stream()
                 .map(JsonAdaptedTask::new)
                 .collect(Collectors.toList()));
+
     }
 
-    @JsonValue
-    public String getTeamName() {
-        return teamName;
-    }
-
-    @JsonValue
-    public List<JsonAdaptedTask> getTasks() {
-        return tasks;
-    }
 
     /**
      * Converts this Jackson-friendly adapted tag object into the model's {@code Tag} object.

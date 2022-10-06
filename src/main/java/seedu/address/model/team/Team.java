@@ -32,6 +32,11 @@ public class Team {
         this.name = name;
     }
 
+    /**
+     * Create a team with certain preset {@code task}.
+     * @param name A valid team name.
+     * @param tasks A list with tasks.
+     */
     public Team(Name name, List<Task> tasks) {
         this.name = name;
         this.tasks.addAll(tasks);

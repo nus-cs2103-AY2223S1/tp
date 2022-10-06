@@ -2,7 +2,7 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Task;
@@ -13,10 +13,13 @@ import seedu.address.model.task.Task;
 public class JsonAdaptedTask {
 
     private final String name;
-    private final boolean isDone;
+    private final Boolean isDone;
 
+    /**
+     * Constructs a {@code JsonAdaptedTask} with the given {@code taskName} and {@code isDone}
+     */
     @JsonCreator
-    public JsonAdaptedTask(@JsonProperty("name") String name,@JsonProperty("isDone") boolean isDone) {
+    public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("isDone") boolean isDone) {
         this.name = name;
         this.isDone = isDone;
     }
@@ -27,11 +30,6 @@ public class JsonAdaptedTask {
     public JsonAdaptedTask(Task source) {
         this.name = source.getName().fullName;
         this.isDone = source.getIsDone();
-    }
-
-    @JsonValue
-    public String getTaskName() {
-        return name;
     }
 
     /**

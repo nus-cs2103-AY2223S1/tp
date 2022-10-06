@@ -33,6 +33,7 @@ class JsonAdaptedTag {
         return tagName;
     }
 
+
     /**
      * Converts this Jackson-friendly adapted tag object into the model's {@code Tag} object.
      *
