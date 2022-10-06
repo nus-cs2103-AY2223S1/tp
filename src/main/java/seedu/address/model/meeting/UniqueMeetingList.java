@@ -8,6 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.meeting.exceptions.DuplicateMeetingException;
+import seedu.address.model.meeting.exceptions.MeetingNotFoundException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
@@ -49,7 +51,7 @@ public class UniqueMeetingList implements Iterable<Meeting> {
     public void add(Meeting toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateMeetingException();
         }
         internalList.add(toAdd);
     }
@@ -64,11 +66,11 @@ public class UniqueMeetingList implements Iterable<Meeting> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new MeetingNotFoundException();
         }
 
         if (!target.isSameMeeting(editedMeeting) && contains(editedMeeting)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateMeetingException();
         }
 
         internalList.set(index, editedMeeting);
@@ -81,7 +83,7 @@ public class UniqueMeetingList implements Iterable<Meeting> {
     public void remove(Person toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new MeetingNotFoundException();
         }
     }
 
@@ -97,7 +99,7 @@ public class UniqueMeetingList implements Iterable<Meeting> {
     public void setMeetings(List<Meeting> meetings) {
         requireAllNonNull(meetings);
         if (!meetingsAreUnique(meetings)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateMeetingException();
         }
 
         internalList.setAll(meetings);
