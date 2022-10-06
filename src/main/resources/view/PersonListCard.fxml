@@ -28,7 +28,11 @@
         </Label>
         <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
       </HBox>
-      <FlowPane fx:id="tags" />
+      <FlowPane fx:id="tags" >
+      <padding>
+        <Insets top="10" right="10" bottom="10" left="10" />
+      </padding>
+      </FlowPane>
       <VBox fx:id="personDetails" alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
         <padding>
           <Insets top="10" right="10" bottom="10" left="30" />
