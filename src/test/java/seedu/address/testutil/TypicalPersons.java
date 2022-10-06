@@ -25,7 +25,7 @@ public class TypicalPersons {
             .withPhone("94351253").withLessonPlan("Algorithms")
             .withTags("friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
-            .withHomework("Science test").withPhone("98765432").withLessonPlan("Trigonometry")
+            .withPhone("98765432").withLessonPlan("Trigonometry")
             .withTags("owesMoney", "friends").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withLessonPlan("Cell structure").build();

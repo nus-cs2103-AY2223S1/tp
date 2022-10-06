@@ -10,7 +10,7 @@
     "name" : "Benson Meier",
     "phone" : "98765432",
     "lessonPlan" : "Trigonometry",
-    "homework": [ "Science test" ],
+    "homework": [ ],
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
