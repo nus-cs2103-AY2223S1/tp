@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICAL_TEST;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SLOT;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
 
@@ -19,7 +19,7 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Doctor;
 import seedu.address.model.appointment.MedicalTest;
 import seedu.address.model.appointment.Slot;
-import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
 
 /**
  * Edits the details of an existing appointment in the address book.
@@ -32,13 +32,13 @@ public class EditAppointmentCommand extends Command {
             + "by the index number used in the displayed appointment list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_MEDICAL_TEST + "ADDRESS] "
             + "[" + PREFIX_SLOT + "SLOT<yyyy-MM-dd HH:mm>] "
             + "[" + PREFIX_DOCTOR + "DOCTOR] "
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_EMAIL + "johndoe@example.com"
-            + PREFIX_MEDICAL_TEST + "Computer Tomography"
+            + PREFIX_NAME + "John Doe"
+            + PREFIX_MEDICAL_TEST + "Computed Tomography"
             + PREFIX_SLOT + "2020-10-09 13:30"
             + PREFIX_DOCTOR + "Muhammad Wong";
 
@@ -90,12 +90,12 @@ public class EditAppointmentCommand extends Command {
                                                        EditAppointmentDescriptor editAppointmentDescriptor) {
         assert appointmentToEdit != null;
 
-        Email updatedEmail = editAppointmentDescriptor.getEmail().orElse(appointmentToEdit.getEmail());
+        Name updatedName = editAppointmentDescriptor.getName().orElse(appointmentToEdit.getName());
         MedicalTest updatedMedicalTest = editAppointmentDescriptor.getTest().orElse(appointmentToEdit.getMedicalTest());
         Slot updatedSlot = editAppointmentDescriptor.getSlot().orElse(appointmentToEdit.getSlot());
         Doctor updatedDoctor = editAppointmentDescriptor.getDoctor().orElse(appointmentToEdit.getDoctor());
 
-        return new Appointment(updatedEmail, updatedMedicalTest, updatedSlot, updatedDoctor);
+        return new Appointment(updatedName, updatedMedicalTest, updatedSlot, updatedDoctor);
     }
 
     @Override
@@ -121,7 +121,7 @@ public class EditAppointmentCommand extends Command {
      * corresponding field value of the appointment.
      */
     public static class EditAppointmentDescriptor {
-        private Email email;
+        private Name name;
         private MedicalTest test;
         private Slot slot;
         private Doctor doctor;
@@ -133,7 +133,7 @@ public class EditAppointmentCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditAppointmentDescriptor(EditAppointmentDescriptor toCopy) {
-            setEmail(toCopy.email);
+            setName(toCopy.name);
             setMedicalTest(toCopy.test);
             setSlot(toCopy.slot);
             setDoctor(toCopy.doctor);
@@ -143,7 +143,7 @@ public class EditAppointmentCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(email, test, slot, doctor);
+            return CollectionUtil.isAnyNonNull(name, test, slot, doctor);
         }
 
         public void setMedicalTest(MedicalTest test) {
@@ -154,12 +154,12 @@ public class EditAppointmentCommand extends Command {
             return Optional.ofNullable(test);
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
+        public void setName(Name name) {
+            this.name = name;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+        public Optional<Name> getName() {
+            return Optional.ofNullable(name);
         }
 
         public void setSlot(Slot slot) {
@@ -193,7 +193,7 @@ public class EditAppointmentCommand extends Command {
             // state check
             EditAppointmentDescriptor e = (EditAppointmentDescriptor) other;
 
-            return getEmail().equals(e.getEmail())
+            return getName().equals(e.getName())
                     && getTest().equals(e.getTest())
                     && getDoctor().equals(e.getDoctor())
                     && getSlot().equals(e.getSlot());

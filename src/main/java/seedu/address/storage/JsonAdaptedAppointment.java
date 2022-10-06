@@ -8,7 +8,7 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Doctor;
 import seedu.address.model.appointment.MedicalTest;
 import seedu.address.model.appointment.Slot;
-import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
 
 /**
  * Jackson-friendly version of {@link seedu.address.model.appointment.Appointment}.
@@ -17,7 +17,7 @@ class JsonAdaptedAppointment {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Appointment's %s field is missing!";
 
-    private final String email;
+    private final String name;
     private final String slot;
     private final String medicalTest;
     private final String doctor;
@@ -26,9 +26,9 @@ class JsonAdaptedAppointment {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedAppointment(@JsonProperty("email") String email, @JsonProperty("medicalTest") String medicalTest,
+    public JsonAdaptedAppointment(@JsonProperty("name") String name, @JsonProperty("medicalTest") String medicalTest,
                                   @JsonProperty("slot") String slot, @JsonProperty("doctor") String doctor) {
-        this.email = email;
+        this.name = name;
         this.slot = slot;
         this.medicalTest = medicalTest;
         this.doctor = doctor;
@@ -38,7 +38,7 @@ class JsonAdaptedAppointment {
      * Converts a given {@code Appointment} into this class for Jackson use.
      */
     public JsonAdaptedAppointment(Appointment source) {
-        email = source.getEmail().value;
+        name = source.getName().fullName;
         slot = source.getSlot().toString();
         medicalTest = source.getMedicalTest().toString();
         doctor = source.getDoctor().toString();
@@ -52,13 +52,13 @@ class JsonAdaptedAppointment {
      */
     public Appointment toModelType() throws IllegalValueException {
 
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+        if (name == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+        if (!Name.isValidName(name)) {
+            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
-        final Email modelEmail = new Email(email);
+        final Name modelEmail = new Name(name);
 
         if (medicalTest == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
