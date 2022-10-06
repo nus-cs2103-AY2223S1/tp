@@ -189,7 +189,7 @@ public class Class {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Class // instanceof handles nulls
-                && classToString.equals(((Class) other).classToString)); // state check
+                && classDateTime.equals(((Class) other).classDateTime)); // state check
     }
 
 }

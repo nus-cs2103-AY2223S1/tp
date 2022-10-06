@@ -123,9 +123,6 @@ public class PersonBuilder {
      * Sets the {@code Class} of the {@code Person} that we are building.
      */
     public PersonBuilder withClass(String classDateTime) throws ParseException {
-        if (classDateTime.equals("")) {
-            this.aClass = new Class("");
-        }
         this.aClass = ParserUtil.parseClass(classDateTime);
         return this;
     }

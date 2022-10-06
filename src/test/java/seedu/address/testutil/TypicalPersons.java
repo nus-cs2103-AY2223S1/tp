@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.Person;
 
@@ -41,9 +42,8 @@ public class TypicalPersons {
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withAddress("little tokyo")
             .withAdditionalNotes("Remind student to submit homework").build();
-    public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withAddress("4th street")
-            .withAdditionalNotes("Remind student to submit homework").build();
+
+    public static final Person GEORGE = constructGeorge();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
@@ -65,6 +65,22 @@ public class TypicalPersons {
 
     private TypicalPersons() {} // prevents instantiation
 
+    /**
+     * Returns a Person object with fields initialised.
+     *
+     * @return Person object.
+     */
+    public static Person constructGeorge() {
+        try {
+            return new PersonBuilder().withName("George Best").withPhone("9482442")
+                    .withEmail("anna@example.com").withAddress("4th street")
+                    .withAdditionalNotes("Remind student to submit homework")
+                    .withClass("2022-05-29 1000-1200").build();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
     /**
      * Returns an {@code AddressBook} with all the typical persons.
      */

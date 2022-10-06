@@ -5,10 +5,14 @@ import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Class;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.MoneyOwed;
 import seedu.address.model.person.MoneyPaid;
@@ -22,6 +26,8 @@ public class ParserUtilTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final Integer INVALID_MONEY_OWED = -1;
     private static final Integer INVALID_MONEY_PAID = -1;
+    private static final String INVALID_CLASS_DATE_TIME = "2022 05 10 1500-1600";
+    private static final String INVALID_EMPTY_CLASS_DATE_TIME = "";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -29,6 +35,7 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final Integer VALID_MONEY_OWED = 10;
     private static final Integer VALID_MONEY_PAID = 100;
+    private static final String VALID_CLASS_DATE_TIME = "2022-05-10 1500-1600";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -174,6 +181,19 @@ public class ParserUtilTest {
     public void parseMoneyPaid_validValue_returnsMoneyOwed() throws Exception {
         MoneyPaid expectedMoneyPaid = new MoneyPaid(VALID_MONEY_PAID);
         assertEquals(expectedMoneyPaid, ParserUtil.parseMoneyPaid(VALID_MONEY_PAID.toString()));
+    }
+
+    @Test
+    public void parseClassDateTime_validDateTime_returnsClass() throws Exception {
+        Class expectedClass = new Class(LocalDate.of(2022, 5, 10),
+                LocalTime.of(15, 0), LocalTime.of(16, 0), VALID_CLASS_DATE_TIME);
+        assertEquals(expectedClass, ParserUtil.parseClass(VALID_CLASS_DATE_TIME));
+    }
+
+    @Test
+    public void parseClassDateTime_invalidDateTime_throwsParseException() throws Exception {
+        assertThrows(ParseException.class, () -> ParserUtil.parseClass(INVALID_CLASS_DATE_TIME));
+        assertThrows(ParseException.class, () -> ParserUtil.parseClass(INVALID_EMPTY_CLASS_DATE_TIME));
     }
 
 }
