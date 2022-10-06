@@ -15,8 +15,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.internship.exceptions.DuplicateInternshipException;
-import seedu.address.model.internship.exceptions.InternshipNotFoundException;
+import seedu.address.model.tag.exceptions.DuplicateInternshipException;
+import seedu.address.model.tag.exceptions.InternshipNotFoundException;
 import seedu.address.testutil.InternshipBuilder;
 
 public class UniqueInternshipListTest {

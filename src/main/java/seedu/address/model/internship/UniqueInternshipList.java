@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.internship.exceptions.DuplicateInternshipException;
-import seedu.address.model.internship.exceptions.InternshipNotFoundException;
+import seedu.address.model.tag.exceptions.DuplicateInternshipException;
+import seedu.address.model.tag.exceptions.InternshipNotFoundException;
 
 /**
  * A list of internships that enforces uniqueness between its elements and does not allow nulls.
