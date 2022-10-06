@@ -6,22 +6,21 @@ import static seedu.rc4hdb.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
 import seedu.rc4hdb.logic.commands.AddCommand;
 import seedu.rc4hdb.logic.commands.ClearCommand;
 import seedu.rc4hdb.logic.commands.Command;
 import seedu.rc4hdb.logic.commands.DeleteCommand;
 import seedu.rc4hdb.logic.commands.EditCommand;
 import seedu.rc4hdb.logic.commands.ExitCommand;
-import seedu.rc4hdb.logic.commands.FindCommand;
 import seedu.rc4hdb.logic.commands.FilterCommand;
+import seedu.rc4hdb.logic.commands.FindCommand;
 import seedu.rc4hdb.logic.commands.HelpCommand;
 import seedu.rc4hdb.logic.commands.ListCommand;
 import seedu.rc4hdb.logic.parser.commandparsers.AddCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.DeleteCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.EditCommandParser;
-import seedu.rc4hdb.logic.parser.commandparsers.FindCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.FilterCommandParser;
+import seedu.rc4hdb.logic.parser.commandparsers.FindCommandParser;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 
 /**
