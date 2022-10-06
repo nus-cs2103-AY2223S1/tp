@@ -1,11 +1,9 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_COMPANIES;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -14,6 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.company.Address;
 import seedu.address.model.company.Name;
 import seedu.address.model.poc.Email;
+import seedu.address.model.poc.PersonName;
 import seedu.address.model.poc.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -50,6 +49,21 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code Name}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static PersonName parsePersonName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!Name.isValidName(trimmedName)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        return new PersonName(trimmedName);
     }
 
     /**

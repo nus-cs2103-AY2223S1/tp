@@ -2,22 +2,21 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.AddCommandParser.arePrefixesPresent;
 import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CreateCommand;
+import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.company.*;
 import seedu.address.model.poc.PersonName;
 import seedu.address.model.poc.Poc;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.poc.Email;
 import seedu.address.model.poc.Phone;
 
+import java.sql.SQLOutput;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -41,12 +40,12 @@ public class CreateCommandParser implements Parser<CreateCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PREFIX_NAME), ive);
         }
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
-                || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL)
+                || argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CreateCommand.MESSAGE_USAGE));
         }
 
-        PersonName name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        PersonName name = ParserUtil.parsePersonName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));

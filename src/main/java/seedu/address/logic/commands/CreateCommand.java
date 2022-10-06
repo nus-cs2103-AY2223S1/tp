@@ -1,7 +1,9 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_COY;
+import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -19,16 +21,21 @@ public class CreateCommand extends Command {
 
 
     //Update here
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the remark of the person identified "
-            + "by the index number used in the last person listing. "
-            + "Existing remark will be overwritten by the input.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_COY + "[Create]\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_COY + "Likes to swim.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a Point-Of-Contact and links to Company. "
+            + "Parameters: "
+            + "Index "
+            + PREFIX_NAME + "NAME "
+            + PREFIX_PHONE + "HP "
+            + PREFIX_EMAIL + "EMAIL "
+            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_NAME + "John Doe "
+            + PREFIX_PHONE + "97814456 "
+            + PREFIX_EMAIL + "test@test.com "
+            + PREFIX_TAG + "friends "
+            + PREFIX_TAG + "owesMoney";
 
-    //Update here
-    public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Remark: %2$s";
+    public static final String MESSAGE_SUCCESS = "New POC created: %1$s";
 
     private final Index index;
 
@@ -47,25 +54,10 @@ public class CreateCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        throw new CommandException(String.format(MESSAGE_ARGUMENTS));
+        requireNonNull(model);
+
+        return new CommandResult(String.format(MESSAGE_SUCCESS));
     }
 
-    @Override
-    public boolean equals(Object other) {
-        // short circuit if same object
-        if (other == this) {
-            return true;
-        }
 
-        // instanceof handles nulls
-        if (!(other instanceof CreateCommand)) {
-            return false;
-        }
-
-        // state check
-        CreateCommand e = (CreateCommand) other;
-        return index.equals(e.index)
-                && create.equals(e.create);
-        return false;
-    }
 }
