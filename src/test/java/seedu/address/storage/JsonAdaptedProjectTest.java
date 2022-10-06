@@ -65,13 +65,13 @@ public class JsonAdaptedProjectTest {
         assertThrows(IllegalValueException.class, expectedMessage, project::toModelType);
     }
 
-    //    @Test
-    //    public void toModelType_invalidDeadline_throwsIllegalValueException() {
-    //        JsonAdaptedProject project =
-    //                new JsonAdaptedProject(VALID_NAME, VALID_BUDGET, INVALID_DEADLINE, VALID_TAGS);
-    //        String expectedMessage = Deadline.MESSAGE_CONSTRAINTS;
-    //        assertThrows(IllegalValueException.class, expectedMessage, project::toModelType);
-    //    }
+    @Test
+    public void toModelType_invalidDeadline_throwsIllegalValueException() {
+        JsonAdaptedProject project =
+                new JsonAdaptedProject(VALID_NAME, VALID_BUDGET, INVALID_DEADLINE, VALID_TAGS);
+        String expectedMessage = Deadline.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, project::toModelType);
+    }
 
     @Test
     public void toModelType_nullDeadline_throwsIllegalValueException() {

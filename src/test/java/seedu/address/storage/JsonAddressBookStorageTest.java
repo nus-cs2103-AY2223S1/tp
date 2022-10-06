@@ -50,10 +50,10 @@ public class JsonAddressBookStorageTest {
         assertThrows(DataConversionException.class, () -> readAddressBook("notJsonFormatAddressBook.json"));
     }
 
-    //    @Test
-    //    public void readAddressBook_invalidProjectAddressBook_throwDataConversionException() {
-    //        assertThrows(DataConversionException.class, () -> readAddressBook("invalidProjectAddressBook.json"));
-    //    }
+    @Test
+    public void readAddressBook_invalidProjectAddressBook_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readAddressBook("invalidProjectAddressBook.json"));
+    }
 
     @Test
     public void readAddressBook_invalidAndValidProjectAddressBook_throwDataConversionException() {
