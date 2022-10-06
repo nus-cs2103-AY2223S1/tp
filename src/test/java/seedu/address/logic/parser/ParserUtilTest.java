@@ -37,7 +37,7 @@ public class ParserUtilTest {
     private static final String INVALID_MEDICATION = " ";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
+    private static final String VALID_PHONE = "12345678";
     private static final String VALID_EMAIL = "rachelw@example.com";
     private static final String VALID_NEXT_OF_KIN = "John Walker, Husband, 81858493";
     private static final String VALID_PATIENT_TYPE = "i";

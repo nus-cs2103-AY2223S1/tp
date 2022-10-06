@@ -27,11 +27,12 @@ public class NextOfKinTest {
         // invalid NextOfKines
         assertFalse(NextOfKin.isValidNextOfKin("")); // empty string
         assertFalse(NextOfKin.isValidNextOfKin(" ")); // spaces only
+        assertFalse(NextOfKin.isValidNextOfKin("-")); // one character
 
         // valid NextOfKines
+        assertTrue(NextOfKin.isValidNextOfKin("a, a, 81283745")); // short NextOfKin
         assertTrue(NextOfKin.isValidNextOfKin("Charles, Husband, 81283745"));
-        assertTrue(NextOfKin.isValidNextOfKin("-")); // one character
         assertTrue(NextOfKin
-                .isValidNextOfKin("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long NextOfKin
+                .isValidNextOfKin("King Kong the Fifth, King of Swazililand, 23234923492304")); // long NextOfKin
     }
 }
