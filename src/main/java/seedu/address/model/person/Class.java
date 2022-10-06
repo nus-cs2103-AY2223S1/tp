@@ -30,10 +30,8 @@ public class Class {
 
     /**
      * Constructs a {@code Class}.
-     *
-     * @param classDateTime Defaulted to be "".
      */
-    public Class(String classDateTime) {
+    public Class() {
         this.date = null;
         this.startTime = null;
         this.endTime = null;
@@ -85,7 +83,6 @@ public class Class {
      * @return String.
      */
     private static String convertToTimeString(LocalTime startTime, LocalTime endTime) {
-        String time = "";
         int startHour = startTime.getHour();
         int startMin = startTime.getMinute();
         int endHour = endTime.getHour();

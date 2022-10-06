@@ -36,24 +36,24 @@ public class Person {
         this.moneyOwed = new MoneyOwed();
         this.moneyPaid = new MoneyPaid();
         this.additionalNotes = new AdditionalNotes("");
-        this.aClass = new Class("");
+        this.aClass = new Class();
     }
 
     /**
      * Overloaded constructor.
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address,
-                  MoneyOwed moneyOwed, MoneyPaid moneyPaid, AdditionalNotes additionalNotes, Class aClass) {
+    public Person(Name name, Phone phone, Email email, Address address, Class aClass,
+                  MoneyOwed moneyOwed, MoneyPaid moneyPaid, AdditionalNotes additionalNotes) {
         requireAllNonNull(name, phone, email, address, additionalNotes, aClass);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.aClass = aClass;
         this.moneyOwed = moneyOwed;
         this.moneyPaid = moneyPaid;
         this.additionalNotes = additionalNotes;
-        this.aClass = aClass;
     }
 
     public Name getName() {
@@ -72,6 +72,10 @@ public class Person {
         return address;
     }
 
+    public Class getAClass() {
+        return aClass;
+    }
+
     public MoneyOwed getMoneyOwed() {
         return moneyOwed;
     }
@@ -82,10 +86,6 @@ public class Person {
 
     public AdditionalNotes getAdditionalNotes() {
         return additionalNotes;
-    }
-
-    public Class getAClass() {
-        return aClass;
     }
 
     /**
@@ -121,16 +121,16 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getAClass().toString().equals(getAClass().toString())
                 && otherPerson.getMoneyOwed().equals(getMoneyOwed())
                 && otherPerson.getMoneyPaid().equals(getMoneyPaid())
-                && otherPerson.getAdditionalNotes().equals(getAdditionalNotes())
-                && otherPerson.getAClass().toString().equals(getAClass().toString());
+                && otherPerson.getAdditionalNotes().equals(getAdditionalNotes());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, moneyOwed, moneyPaid, additionalNotes, aClass);
+        return Objects.hash(name, phone, email, address, aClass, moneyOwed, moneyPaid, additionalNotes);
     }
 
     @Override

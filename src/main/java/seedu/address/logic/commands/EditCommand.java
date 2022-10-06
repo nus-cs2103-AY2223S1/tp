@@ -109,8 +109,8 @@ public class EditCommand extends Command {
                 .orElse(personToEdit.getAdditionalNotes());
         Class updatedClassDateTime = editPersonDescriptor.getAClass().orElse(personToEdit.getAClass());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedMoneyOwed, updatedMoneyPaid, updatedNotes, updatedClassDateTime);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedClassDateTime,
+                updatedMoneyOwed, updatedMoneyPaid, updatedNotes);
     }
 
     @Override
@@ -231,7 +231,7 @@ public class EditCommand extends Command {
 
         public Optional<Class> getAClass() {
             return Optional.ofNullable(aClass).equals(Optional.empty())
-                    ? Optional.ofNullable(new Class(""))
+                    ? Optional.ofNullable(new Class())
                     : Optional.ofNullable(aClass);
         }
 

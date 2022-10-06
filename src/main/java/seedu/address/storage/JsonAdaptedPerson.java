@@ -26,10 +26,10 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String classDateTime;
     private final Integer moneyOwed;
     private final Integer moneyPaid;
     private final String additionalNotes;
-    private final String classDateTime;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -37,18 +37,18 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("classDateTime") String classDateTime,
                              @JsonProperty("moneyOwed") Integer moneyOwed,
                              @JsonProperty("moneyPaid") Integer moneyPaid,
-                             @JsonProperty("additionalNotes") String additionalNotes,
-                             @JsonProperty("classDateTime") String classDateTime) {
+                             @JsonProperty("additionalNotes") String additionalNotes) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.classDateTime = classDateTime;
         this.moneyOwed = moneyOwed;
         this.moneyPaid = moneyPaid;
         this.additionalNotes = additionalNotes;
-        this.classDateTime = classDateTime;
     }
 
     /**
@@ -59,10 +59,10 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        classDateTime = source.getAClass().classDateTime;
         moneyOwed = source.getMoneyOwed().value;
         moneyPaid = source.getMoneyPaid().value;
         additionalNotes = source.getAdditionalNotes().notes;
-        classDateTime = source.getAClass().classDateTime;
     }
 
     /**
@@ -111,7 +111,7 @@ class JsonAdaptedPerson {
             }
             modelClassDateTime = ParserUtil.parseClass(classDateTime);
         } else {
-            modelClassDateTime = new Class("");
+            modelClassDateTime = new Class();
         }
 
         final MoneyOwed modelMoneyOwed;
@@ -141,8 +141,8 @@ class JsonAdaptedPerson {
             modelAdditionalNotes = new AdditionalNotes("");
         }
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress,
-                modelMoneyOwed, modelMoneyPaid, modelAdditionalNotes, modelClassDateTime);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelClassDateTime,
+                modelMoneyOwed, modelMoneyPaid, modelAdditionalNotes);
     }
 
 }

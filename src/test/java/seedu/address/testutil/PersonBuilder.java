@@ -23,7 +23,7 @@ public class PersonBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final Integer DEFAULT_MONEY_OWED = 0;
     public static final Integer DEFAULT_MONEY_PAID = 0;
-    public static final String DEFAULT_ADDITIONALNOTES = "";
+    public static final String DEFAULT_ADDITIONAL_NOTES = "";
 
     private Name name;
     private Phone phone;
@@ -42,10 +42,10 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        aClass = new Class();
         moneyOwed = new MoneyOwed(DEFAULT_MONEY_OWED);
         moneyPaid = new MoneyPaid(DEFAULT_MONEY_PAID);
-        additionalNotes = new AdditionalNotes(DEFAULT_ADDITIONALNOTES);
-        aClass = new Class("");
+        additionalNotes = new AdditionalNotes(DEFAULT_ADDITIONAL_NOTES);
     }
 
     /**
@@ -56,10 +56,10 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        aClass = personToCopy.getAClass();
         moneyOwed = personToCopy.getMoneyOwed();
         moneyPaid = personToCopy.getMoneyPaid();
         additionalNotes = personToCopy.getAdditionalNotes();
-        aClass = personToCopy.getAClass();
     }
 
     /**
@@ -95,6 +95,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Class} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withClass(String classDateTime) throws ParseException {
+        this.aClass = ParserUtil.parseClass(classDateTime);
+        return this;
+    }
+
+    /**
      * Sets the {@code MoneyOwed} of the {@code Person} that we are building.
      */
     public PersonBuilder withMoneyOwed(Integer moneyOwed) {
@@ -119,19 +127,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Class} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withClass(String classDateTime) throws ParseException {
-        this.aClass = ParserUtil.parseClass(classDateTime);
-        return this;
-    }
-
-    /**
      * Returns Person object with the fields initialised.
      * @return Person object.
      */
     public Person build() {
-        return new Person(name, phone, email, address, moneyOwed, moneyPaid, additionalNotes,
-                aClass);
+        return new Person(name, phone, email, address, aClass, moneyOwed, moneyPaid, additionalNotes);
     }
 }
