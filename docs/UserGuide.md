@@ -164,7 +164,7 @@ Examples:
 
 Add a contact to your contact list.
 
-Format: `add contact [contact name] /mods [current module list] /previous [previous module list] /planning [future module list]`
+Format: `add n/[contact name] p/[contact phone number] e/[contact email] a/[contact address] t/[contact tag] curr/[current module] prev/[previous module] plan/[future module]`
 
 
 
@@ -177,7 +177,7 @@ Examples:
 
 
 
-* `add contact Ruijie /mods CS2100, CS2101, CS2100, ST2334, GESS1037 /previous CS1101S, CS1231S, MA2001, MA1521, GEC1000 /planning CS2109, CS2106 `adds module contact Ruijie to your contact list with all the module details specified.
+* `add n/Ruijie p/91234567 e/kohrj@gmail.com a/Kent Ridge Avenue t/Classmate curr/CS2100 prev/CS1101S plan/CS2109`adds module contact Ruijie to your contact list with all the details specified.
 
 
 ### Listing contacts
@@ -281,9 +281,9 @@ Format: `exit`
   <tr>
    <td><strong>Adding Contact</strong>
    </td>
-   <td><code>add contact n/[contact name] p/[contact phone number] e/[contact email] a/[contact address] t/[contact tag] curr/[current module] prev/[previous module] plan/[future module]</code>
+   <td><code>add n/[contact name] p/[contact phone number] e/[contact email] a/[contact address] t/[contact tag] curr/[current module] prev/[previous module] plan/[future module]</code>
 <p>
-<code>Eg. add n/Ruijie p/91234567 e/kohrj@gmail.com a/Kent Ridge Avenue t/Classmate 123 curr/CS2100 prev/CS1101S plan/CS2109</code>
+<code>Eg. add n/Ruijie p/91234567 e/kohrj@gmail.com a/Kent Ridge Avenue t/Classmate curr/CS2100 prev/CS1101S plan/CS2109</code>
    </td>
   </tr>
   <tr>
