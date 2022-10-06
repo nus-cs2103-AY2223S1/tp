@@ -2,8 +2,6 @@ package seedu.address.model.appointment;
 
 import seedu.address.model.person.Email;
 
-import java.time.LocalDateTime;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
@@ -14,15 +12,15 @@ public class Appointment {
      * The FOREIGN KEY to identify a patient
      */
     private final Email email;
-    private final String medicalTest;
-    private final LocalDateTime dateTime;
-    private final String doctor;
+    private final MedicalTest medicalTest;
+    private final Slot slot;
+    private final Doctor doctor;
 
-    public Appointment(Email email, String medicalTest, LocalDateTime dateTime, String doctor) {
-        requireAllNonNull(email, medicalTest, dateTime, doctor);
+    public Appointment(Email email, MedicalTest medicalTest, Slot slot, Doctor doctor) {
+        requireAllNonNull(email, medicalTest, slot, doctor);
         this.email = email;
         this.medicalTest = medicalTest;
-        this.dateTime = dateTime;
+        this.slot = slot;
         this.doctor = doctor;
     }
 
@@ -30,15 +28,15 @@ public class Appointment {
         return email;
     }
 
-    public String getMedicalTest() {
+    public MedicalTest getMedicalTest() {
         return medicalTest;
     }
 
-    public LocalDateTime getDateTime() {
-        return dateTime;
+    public Slot getSlot() {
+        return slot;
     }
 
-    public String getDoctor() {
+    public Doctor getDoctor() {
         return doctor;
     }
 
@@ -49,7 +47,7 @@ public class Appointment {
         }
         if (o instanceof Appointment) {
             Appointment other = (Appointment) o;
-            return dateTime.equals(other.getDateTime())
+            return slot.equals(other.getSlot())
                     && medicalTest.equals(other.getMedicalTest())
                     && doctor.equals(other.getDoctor())
                     && email.equals(other.getEmail());
