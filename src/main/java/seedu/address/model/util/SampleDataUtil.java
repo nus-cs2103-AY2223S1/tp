@@ -13,9 +13,9 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.TaskList;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Module;
-import seedu.address.model.TaskList;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskName;
 
