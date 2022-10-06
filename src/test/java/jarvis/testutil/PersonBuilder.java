@@ -3,11 +3,8 @@ package jarvis.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import jarvis.model.person.Address;
-import jarvis.model.person.Email;
-import jarvis.model.person.Name;
-import jarvis.model.person.Person;
-import jarvis.model.person.Phone;
+import jarvis.model.student.*;
+import jarvis.model.student.Student;
 import jarvis.model.tag.Tag;
 import jarvis.model.util.SampleDataUtil;
 
@@ -41,12 +38,12 @@ public class PersonBuilder {
     /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
-    public PersonBuilder(Person personToCopy) {
-        name = personToCopy.getName();
-        phone = personToCopy.getPhone();
-        email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
-        tags = new HashSet<>(personToCopy.getTags());
+    public PersonBuilder(Student studentToCopy) {
+        name = studentToCopy.getName();
+        phone = studentToCopy.getPhone();
+        email = studentToCopy.getEmail();
+        address = studentToCopy.getAddress();
+        tags = new HashSet<>(studentToCopy.getTags());
     }
 
     /**
@@ -89,8 +86,8 @@ public class PersonBuilder {
         return this;
     }
 
-    public Person build() {
-        return new Person(name, phone, email, address, tags);
+    public Student build() {
+        return new Student(name, phone, email, address, tags);
     }
 
 }

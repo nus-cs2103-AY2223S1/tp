@@ -3,7 +3,7 @@ package jarvis.ui;
 import java.util.logging.Logger;
 
 import jarvis.commons.core.LogsCenter;
-import jarvis.model.person.Person;
+import jarvis.model.student.Student;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -18,30 +18,30 @@ public class PersonListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
 
     @FXML
-    private ListView<Person> personListView;
+    private ListView<Student> personListView;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Person> personList) {
+    public PersonListPanel(ObservableList<Student> studentList) {
         super(FXML);
-        personListView.setItems(personList);
+        personListView.setItems(studentList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
-    class PersonListViewCell extends ListCell<Person> {
+    class PersonListViewCell extends ListCell<Student> {
         @Override
-        protected void updateItem(Person person, boolean empty) {
-            super.updateItem(person, empty);
+        protected void updateItem(Student student, boolean empty) {
+            super.updateItem(student, empty);
 
-            if (empty || person == null) {
+            if (empty || student == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                setGraphic(new PersonCard(student, getIndex() + 1).getRoot());
             }
         }
     }

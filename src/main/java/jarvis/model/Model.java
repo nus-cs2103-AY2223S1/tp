@@ -4,7 +4,8 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import jarvis.commons.core.GuiSettings;
-import jarvis.model.person.Person;
+import jarvis.model.student.Student;
+import jarvis.model.task.Task;
 import javafx.collections.ObservableList;
 
 /**
@@ -12,7 +13,10 @@ import javafx.collections.ObservableList;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Student> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
+
+    //=========== UserPrefs ==================================================================================
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -35,53 +39,108 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' student book file path.
      */
-    Path getAddressBookFilePath();
+    Path getStudentBookFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' student book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setStudentBookFilePath(Path studentBookFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Returns the user prefs' task book file path.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
-
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    Path getTaskBookFilePath();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Sets the user prefs' task book file path.
      */
-    boolean hasPerson(Person person);
+    void setTaskBookFilePath(Path taskBookFilePath);
+
+    //=========== StudentBook ================================================================================
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Replaces student book data with the data in {@code studentBook}.
      */
-    void deletePerson(Person target);
+    void setStudentBook(ReadOnlyStudentBook studentBook);
+
+    /** Returns the StudentBook */
+    ReadOnlyStudentBook getStudentBook();
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in the student book.
      */
-    void addPerson(Person person);
+    boolean hasStudent(Student student);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Deletes the given student.
+     * The student must exist in the student book.
      */
-    void setPerson(Person target, Person editedPerson);
-
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    void deleteStudent(Student target);
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Adds the given student.
+     * {@code student} must not already exist in the student book.
+     */
+    void addStudent(Student student);
+
+    /**
+     * Replaces the given student {@code target} with {@code editedStudent}.
+     * {@code target} must exist in the student book.
+     * The identity of {@code editedStudent} must not be the same as another existing student in the student book.
+     */
+    void setStudent(Student target, Student editedStudent);
+
+    /** Returns an unmodifiable view of the filtered student list */
+    ObservableList<Student> getFilteredStudentList();
+
+    /**
+     * Updates the filter of the filtered student list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredStudentList(Predicate<Student> predicate);
+
+    //=========== TaskBook ================================================================================
+
+    /**
+     * Replaces task book data with the data in {@code taskBook}.
+     */
+    void setTaskBook(ReadOnlyTaskBook taskBook);
+
+    /** Returns the TaskBook */
+    ReadOnlyTaskBook getTaskBook();
+
+    /**
+     * Returns true if a task with the same identity as {@code task} exists in the task book.
+     */
+    boolean hasTask(Task task);
+
+    /**
+     * Deletes the given task.
+     * The person must exist in the task book.
+     */
+    void deleteTask(Task target);
+
+    /**
+     * Adds the given task.
+     * {@code task} must not already exist in the task book.
+     */
+    void addTask(Task task);
+
+    /**
+     * Replaces the given task {@code target} with {@code editedTask}.
+     * {@code target} must exist in the address book.
+     * The task identity of {@code editedTask} must not be the same as another existing task in the task book.
+     */
+    void setTask(Task target, Task editedTask);
+
+    /** Returns an unmodifiable view of the filtered task list */
+    ObservableList<Task> getFilteredTaskList();
+
+    /**
+     * Updates the filter of the filtered task list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredTaskList(Predicate<Task> predicate);
 }

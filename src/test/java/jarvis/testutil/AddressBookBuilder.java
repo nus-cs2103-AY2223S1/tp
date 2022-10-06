@@ -1,7 +1,7 @@
 package jarvis.testutil;
 
-import jarvis.model.AddressBook;
-import jarvis.model.person.Person;
+import jarvis.model.StudentBook;
+import jarvis.model.student.Student;
 
 /**
  * A utility class to help with building Addressbook objects.
@@ -10,25 +10,25 @@ import jarvis.model.person.Person;
  */
 public class AddressBookBuilder {
 
-    private AddressBook addressBook;
+    private StudentBook studentBook;
 
     public AddressBookBuilder() {
-        addressBook = new AddressBook();
+        studentBook = new StudentBook();
     }
 
-    public AddressBookBuilder(AddressBook addressBook) {
-        this.addressBook = addressBook;
+    public AddressBookBuilder(StudentBook studentBook) {
+        this.studentBook = studentBook;
     }
 
     /**
      * Adds a new {@code Person} to the {@code AddressBook} that we are building.
      */
-    public AddressBookBuilder withPerson(Person person) {
-        addressBook.addPerson(person);
+    public AddressBookBuilder withPerson(Student student) {
+        studentBook.addStudent(student);
         return this;
     }
 
-    public AddressBook build() {
-        return addressBook;
+    public StudentBook build() {
+        return studentBook;
     }
 }

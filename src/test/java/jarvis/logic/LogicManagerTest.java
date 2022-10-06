@@ -13,21 +13,22 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.io.IOException;
 import java.nio.file.Path;
 
+import jarvis.model.student.Student;
+import jarvis.storage.task.JsonTaskBookStorage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import jarvis.logic.commands.AddCommand;
+import jarvis.logic.commands.student.AddCommand;
 import jarvis.logic.commands.CommandResult;
-import jarvis.logic.commands.ListCommand;
+import jarvis.logic.commands.student.ListCommand;
 import jarvis.logic.commands.exceptions.CommandException;
 import jarvis.logic.parser.exceptions.ParseException;
 import jarvis.model.Model;
 import jarvis.model.ModelManager;
-import jarvis.model.ReadOnlyAddressBook;
+import jarvis.model.ReadOnlyStudentBook;
 import jarvis.model.UserPrefs;
-import jarvis.model.person.Person;
-import jarvis.storage.JsonAddressBookStorage;
+import jarvis.storage.student.JsonStudentBookStorage;
 import jarvis.storage.JsonUserPrefsStorage;
 import jarvis.storage.StorageManager;
 import jarvis.testutil.PersonBuilder;
@@ -43,10 +44,12 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonStudentBookStorage studentBookStorage =
+                new JsonStudentBookStorage(temporaryFolder.resolve("studentBook.json"));
+        JsonTaskBookStorage taskBookStorage =
+                new JsonTaskBookStorage(temporaryFolder.resolve("taskBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(studentBookStorage, taskBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -71,8 +74,8 @@ public class LogicManagerTest {
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        JsonStudentBookStorage addressBookStorage =
+                new JsonStudentBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
@@ -81,16 +84,16 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        Student expectedStudent = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedPerson);
+        expectedModel.addStudent(expectedStudent);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredStudentList().remove(0));
     }
 
     /**
@@ -129,7 +132,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getStudentBook(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -149,13 +152,13 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
-        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
+    private static class JsonStudentBookIoExceptionThrowingStub extends JsonStudentBookStorage {
+        private JsonStudentBookIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+        public void saveStudentBook(ReadOnlyStudentBook addressBook, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

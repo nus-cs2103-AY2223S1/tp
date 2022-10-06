@@ -13,19 +13,23 @@ import jarvis.commons.util.ConfigUtil;
 import jarvis.commons.util.StringUtil;
 import jarvis.logic.Logic;
 import jarvis.logic.LogicManager;
-import jarvis.model.AddressBook;
 import jarvis.model.Model;
 import jarvis.model.ModelManager;
-import jarvis.model.ReadOnlyAddressBook;
+import jarvis.model.ReadOnlyStudentBook;
+import jarvis.model.ReadOnlyTaskBook;
 import jarvis.model.ReadOnlyUserPrefs;
+import jarvis.model.StudentBook;
+import jarvis.model.TaskBook;
 import jarvis.model.UserPrefs;
 import jarvis.model.util.SampleDataUtil;
-import jarvis.storage.AddressBookStorage;
-import jarvis.storage.JsonAddressBookStorage;
 import jarvis.storage.JsonUserPrefsStorage;
 import jarvis.storage.Storage;
 import jarvis.storage.StorageManager;
 import jarvis.storage.UserPrefsStorage;
+import jarvis.storage.student.JsonStudentBookStorage;
+import jarvis.storage.student.StudentBookStorage;
+import jarvis.storage.task.JsonTaskBookStorage;
+import jarvis.storage.task.TaskBookStorage;
 import jarvis.ui.Ui;
 import jarvis.ui.UiManager;
 import javafx.application.Application;
@@ -36,7 +40,7 @@ import javafx.stage.Stage;
  */
 public class MainApp extends Application {
 
-    public static final Version VERSION = new Version(0, 2, 0, true);
+    public static final Version VERSION = new Version(1, 1, 0, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
@@ -48,7 +52,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing JARVIS ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -56,8 +60,9 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StudentBookStorage studentBookStorage = new JsonStudentBookStorage(userPrefs.getStudentBookFilePath());
+        TaskBookStorage taskBookStorage = new JsonTaskBookStorage(userPrefs.getTaskBookFilePath());
+        storage = new StorageManager(studentBookStorage, taskBookStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -74,23 +79,28 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyStudentBook> studentBookOptional;
+        Optional<ReadOnlyTaskBook> taskBookOptional;
+        ReadOnlyStudentBook initialStudentData;
+        ReadOnlyTaskBook initialTaskData;
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+            studentBookOptional = storage.readStudentBook();
+            taskBookOptional = storage.readTaskBook();
+            if (!studentBookOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample JARVIS");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialStudentData = studentBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialTaskData = taskBookOptional.orElse(new TaskBook());
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Data file not in the correct format. Will be starting with an empty JARVIS");
+            initialStudentData = new StudentBook();
+            initialTaskData = new TaskBook();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Problem while reading from the file. Will be starting with an empty JARVIS");
+            initialStudentData = new StudentBook();
+            initialTaskData = new TaskBook();
         }
-
-        return new ModelManager(initialData, userPrefs);
+        return new ModelManager(initialStudentData, initialTaskData, userPrefs);
     }
 
     private void initLogging(Config config) {
@@ -151,7 +161,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty JARVIS");
             initializedPrefs = new UserPrefs();
         }
 
@@ -167,13 +177,13 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting JARVIS " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping JARVIS ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

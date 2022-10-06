@@ -1,8 +1,5 @@
 package jarvis.ui;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
@@ -20,9 +17,9 @@ public class StatusBarFooter extends UiPart<Region> {
     /**
      * Creates a {@code StatusBarFooter} with the given {@code Path}.
      */
-    public StatusBarFooter(Path saveLocation) {
+    public StatusBarFooter(String saveLocation) {
         super(FXML);
-        saveLocationStatus.setText(Paths.get(".").resolve(saveLocation).toString());
+        saveLocationStatus.setText(saveLocation);
     }
 
 }

@@ -29,14 +29,12 @@ import static jarvis.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static jarvis.testutil.TypicalPersons.AMY;
 import static jarvis.testutil.TypicalPersons.BOB;
 
+import jarvis.logic.parser.student.AddCommandParser;
+import jarvis.model.student.*;
 import org.junit.jupiter.api.Test;
 
-import jarvis.logic.commands.AddCommand;
-import jarvis.model.person.Address;
-import jarvis.model.person.Email;
-import jarvis.model.person.Name;
-import jarvis.model.person.Person;
-import jarvis.model.person.Phone;
+import jarvis.logic.commands.student.AddCommand;
+import jarvis.model.student.Student;
 import jarvis.model.tag.Tag;
 import jarvis.testutil.PersonBuilder;
 
@@ -45,41 +43,41 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Student expectedStudent = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedStudent));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedStudent));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedStudent));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedStudent));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedStudent));
 
         // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        Student expectedStudentMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedPersonMultipleTags));
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedStudentMultipleTags));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        Student expectedStudent = new PersonBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedStudent));
     }
 
     @Test

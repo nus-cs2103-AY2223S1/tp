@@ -9,11 +9,13 @@ import jarvis.commons.core.LogsCenter;
 import jarvis.logic.commands.Command;
 import jarvis.logic.commands.CommandResult;
 import jarvis.logic.commands.exceptions.CommandException;
-import jarvis.logic.parser.AddressBookParser;
+import jarvis.logic.parser.JarvisParser;
 import jarvis.logic.parser.exceptions.ParseException;
 import jarvis.model.Model;
-import jarvis.model.ReadOnlyAddressBook;
-import jarvis.model.person.Person;
+import jarvis.model.ReadOnlyStudentBook;
+import jarvis.model.ReadOnlyTaskBook;
+import jarvis.model.student.Student;
+import jarvis.model.task.Task;
 import jarvis.storage.Storage;
 import javafx.collections.ObservableList;
 
@@ -26,7 +28,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final JarvisParser jarvisParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,7 +36,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        jarvisParser = new JarvisParser();
     }
 
     @Override
@@ -42,11 +44,12 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = jarvisParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveStudentBook(model.getStudentBook());
+            storage.saveTaskBook(model.getTaskBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -55,18 +58,33 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyStudentBook getStudentBook() {
+        return model.getStudentBook();
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Student> getFilteredStudentList() {
+        return model.getFilteredStudentList();
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getStudentBookFilePath() {
+        return model.getStudentBookFilePath();
+    }
+
+    @Override
+    public ReadOnlyTaskBook getTaskBook() {
+        return model.getTaskBook();
+    }
+
+    @Override
+    public ObservableList<Task> getFilteredTaskList() {
+        return model.getFilteredTaskList();
+    }
+
+    @Override
+    public Path getTaskBookFilePath() {
+        return model.getTaskBookFilePath();
     }
 
     @Override

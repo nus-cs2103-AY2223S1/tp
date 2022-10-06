@@ -14,10 +14,10 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import jarvis.logic.parser.exceptions.ParseException;
-import jarvis.model.person.Address;
-import jarvis.model.person.Email;
-import jarvis.model.person.Name;
-import jarvis.model.person.Phone;
+import jarvis.model.student.Address;
+import jarvis.model.student.Email;
+import jarvis.model.student.Name;
+import jarvis.model.student.Phone;
 import jarvis.model.tag.Tag;
 
 public class ParserUtilTest {

@@ -5,14 +5,17 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import jarvis.commons.exceptions.DataConversionException;
-import jarvis.model.ReadOnlyAddressBook;
+import jarvis.model.ReadOnlyStudentBook;
+import jarvis.model.ReadOnlyTaskBook;
 import jarvis.model.ReadOnlyUserPrefs;
 import jarvis.model.UserPrefs;
+import jarvis.storage.student.StudentBookStorage;
+import jarvis.storage.task.TaskBookStorage;
 
 /**
  * API of the Storage component
  */
-public interface Storage extends AddressBookStorage, UserPrefsStorage {
+public interface Storage extends StudentBookStorage, TaskBookStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -21,12 +24,20 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getAddressBookFilePath();
+    Path getStudentBookFilePath();
 
     @Override
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyStudentBook> readStudentBook() throws DataConversionException, IOException;
 
     @Override
-    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
+    void saveStudentBook(ReadOnlyStudentBook studentBook) throws IOException;
 
+    @Override
+    Path getTaskBookFilePath();
+
+    @Override
+    Optional<ReadOnlyTaskBook> readTaskBook() throws DataConversionException, IOException;
+
+    @Override
+    void saveTaskBook(ReadOnlyTaskBook taskBook) throws IOException;
 }

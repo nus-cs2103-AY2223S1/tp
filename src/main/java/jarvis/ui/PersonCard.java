@@ -1,11 +1,9 @@
 package jarvis.ui;
 
-import java.util.Comparator;
 
-import jarvis.model.person.Person;
+import jarvis.model.student.Student;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
@@ -24,7 +22,7 @@ public class PersonCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Person person;
+    public final Student student;
 
     @FXML
     private HBox cardPane;
@@ -32,29 +30,15 @@ public class PersonCard extends UiPart<Region> {
     private Label name;
     @FXML
     private Label id;
-    @FXML
-    private Label phone;
-    @FXML
-    private Label address;
-    @FXML
-    private Label email;
-    @FXML
-    private FlowPane tags;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public PersonCard(Student student, int displayedIndex) {
         super(FXML);
-        this.person = person;
+        this.student = student;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        name.setText(student.getName().fullName);
     }
 
     @Override
@@ -72,6 +56,6 @@ public class PersonCard extends UiPart<Region> {
         // state check
         PersonCard card = (PersonCard) other;
         return id.getText().equals(card.id.getText())
-                && person.equals(card.person);
+                && student.equals(card.student);
     }
 }

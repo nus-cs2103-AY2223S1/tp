@@ -31,15 +31,16 @@ import static jarvis.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static jarvis.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static jarvis.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 
+import jarvis.logic.parser.student.EditCommandParser;
 import org.junit.jupiter.api.Test;
 
 import jarvis.commons.core.index.Index;
-import jarvis.logic.commands.EditCommand;
-import jarvis.logic.commands.EditCommand.EditPersonDescriptor;
-import jarvis.model.person.Address;
-import jarvis.model.person.Email;
-import jarvis.model.person.Name;
-import jarvis.model.person.Phone;
+import jarvis.logic.commands.student.EditCommand;
+import jarvis.logic.commands.student.EditCommand.EditPersonDescriptor;
+import jarvis.model.student.Address;
+import jarvis.model.student.Email;
+import jarvis.model.student.Name;
+import jarvis.model.student.Phone;
 import jarvis.model.tag.Tag;
 import jarvis.testutil.EditPersonDescriptorBuilder;
 

@@ -1,5 +1,6 @@
 package jarvis.ui;
 
+import java.nio.file.Paths;
 import java.util.logging.Logger;
 
 import jarvis.commons.core.GuiSettings;
@@ -32,6 +33,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private TaskListPanel taskListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -43,6 +45,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane taskListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -110,13 +115,17 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanel = new PersonListPanel(logic.getFilteredStudentList());
+        taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        String studentBookPath = Paths.get(".").resolve(logic.getStudentBookFilePath()).toString();
+        String taskBookPath = Paths.get(".").resolve(logic.getTaskBookFilePath()).toString();
+        StatusBarFooter statusBarFooter = new StatusBarFooter(studentBookPath + " and " + taskBookPath);
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
