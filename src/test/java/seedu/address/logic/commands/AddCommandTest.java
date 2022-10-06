@@ -17,6 +17,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
+import seedu.address.model.FilteredStudents;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
@@ -139,13 +140,28 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public ObservableList<Person> getFilteredStudentList() {
+            return null;
+        }
+
+        @Override
+        public void updateFilteredStudentList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void setStudentListInfoConcise(boolean b) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isStudentListInfoConcise() {
+            return false;
+        }
+
+        @Override
+        public FilteredStudents getFilteredStudents() {
+            return null;
         }
     }
 
