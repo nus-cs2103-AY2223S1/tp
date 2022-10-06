@@ -18,7 +18,7 @@ import jarvis.model.task.Task;
 import jarvis.model.task.TaskDesc;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddTaskCommand object
  */
 public class AddTaskCommandParser implements Parser<AddTaskCommand> {
 

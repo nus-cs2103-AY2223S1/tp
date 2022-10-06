@@ -10,18 +10,20 @@ import jarvis.logic.commands.Command;
 import jarvis.logic.commands.ExitCommand;
 import jarvis.logic.commands.HelpCommand;
 import jarvis.logic.commands.student.AddCommand;
-import jarvis.logic.commands.student.ClearCommand;
+import jarvis.logic.commands.ClearCommand;
 import jarvis.logic.commands.student.DeleteCommand;
 import jarvis.logic.commands.student.EditCommand;
 import jarvis.logic.commands.student.FindCommand;
 import jarvis.logic.commands.student.ListCommand;
 import jarvis.logic.commands.task.AddTaskCommand;
+import jarvis.logic.commands.task.DeleteTaskCommand;
 import jarvis.logic.parser.exceptions.ParseException;
 import jarvis.logic.parser.student.AddCommandParser;
 import jarvis.logic.parser.student.DeleteCommandParser;
 import jarvis.logic.parser.student.EditCommandParser;
 import jarvis.logic.parser.student.FindCommandParser;
 import jarvis.logic.parser.task.AddTaskCommandParser;
+import jarvis.logic.parser.task.DeleteTaskCommandParser;
 
 /**
  * Parses user input.
@@ -61,6 +63,9 @@ public class JarvisParser {
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
+
+        case DeleteTaskCommand.COMMAND_WORD:
+            return new DeleteTaskCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
