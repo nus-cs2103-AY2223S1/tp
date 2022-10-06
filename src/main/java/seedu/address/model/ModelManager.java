@@ -139,7 +139,9 @@ public class ModelManager implements Model {
     @Override
     public void addCommission(Commission commission) {
         addressBook.addCommission(getSelectedCustomer().getValue(), commission);
-        updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
+        // Why is this necessary? Question from @James
+        updateFilteredCommissionListToSelectedCustomer();
+//        filteredCommissions = new FilteredList<>(getCommissionList());
     }
 
     @Override
@@ -194,6 +196,7 @@ public class ModelManager implements Model {
     }
 
     public void updateFilteredCommissionListToSelectedCustomer() {
+        // Problem here
         updateFilteredCommissionList(getSelectedCustomerCommissionsPredicate());
     }
 

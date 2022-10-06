@@ -129,11 +129,16 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The commission must not already exist in the customer's commission list.
      */
     public void addCommission(Customer customer, Commission commission) {
+        // Can I ask why we must replace the customer with a new customer and copy over the commissions?
+        // Can't we just add the new commission to the Hashset? Question from @James
         requireAllNonNull(customer, commission);
+        // Hashset would cause the commissions to be out of order
         HashSet<Commission> customerCommissions = new HashSet<>(getCustomerCommissions(customer));
         customerCommissions.add(commission);
         commissions.add(commission);
+
         Customer newCustomer = customer.copyWithCommissions(customerCommissions);
+        customerCommissions.forEach(comm -> comm.setCustomer(newCustomer));
         setCustomer(customer, newCustomer);
     }
 
