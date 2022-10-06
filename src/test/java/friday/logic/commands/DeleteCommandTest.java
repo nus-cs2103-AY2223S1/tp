@@ -16,7 +16,7 @@ import friday.commons.core.index.Index;
 import friday.model.Model;
 import friday.model.ModelManager;
 import friday.model.UserPrefs;
-import friday.model.person.Student;
+import friday.model.student.Student;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for

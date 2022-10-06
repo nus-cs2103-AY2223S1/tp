@@ -8,7 +8,7 @@ import friday.commons.core.Messages;
 import friday.commons.core.index.Index;
 import friday.logic.commands.exceptions.CommandException;
 import friday.model.Model;
-import friday.model.person.Student;
+import friday.model.student.Student;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.

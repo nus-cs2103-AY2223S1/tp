@@ -10,8 +10,8 @@ import friday.commons.core.Messages;
 import friday.commons.core.index.Index;
 import friday.logic.commands.exceptions.CommandException;
 import friday.model.Model;
-import friday.model.person.Student;
-import friday.model.person.Remark;
+import friday.model.student.Remark;
+import friday.model.student.Student;
 
 /**
  * Changes the remark of an existing person in the address book.
@@ -51,8 +51,8 @@ public class RemarkCommand extends Command {
         }
 
         Student studentToEdit = lastShownList.get(index.getZeroBased());
-        Student editedStudent = new Student(studentToEdit.getName(), studentToEdit.getTelegramHandle(), studentToEdit.getConsultation(),
-                studentToEdit.getMasteryCheck(), remark, studentToEdit.getTags());
+        Student editedStudent = new Student(studentToEdit.getName(), studentToEdit.getTelegramHandle(),
+                studentToEdit.getConsultation(), studentToEdit.getMasteryCheck(), remark, studentToEdit.getTags());
 
         model.setPerson(studentToEdit, editedStudent);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

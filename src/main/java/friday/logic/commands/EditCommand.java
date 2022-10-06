@@ -19,8 +19,12 @@ import friday.commons.core.index.Index;
 import friday.commons.util.CollectionUtil;
 import friday.logic.commands.exceptions.CommandException;
 import friday.model.Model;
-import friday.model.person.*;
-import friday.model.person.Student;
+import friday.model.student.Consultation;
+import friday.model.student.MasteryCheck;
+import friday.model.student.Name;
+import friday.model.student.Remark;
+import friday.model.student.Student;
+import friday.model.student.TelegramHandle;
 import friday.model.tag.Tag;
 
 /**
@@ -91,13 +95,15 @@ public class EditCommand extends Command {
         assert studentToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(studentToEdit.getName());
-        TelegramHandle updatedTelegramHandle = editPersonDescriptor.getPhone().orElse(studentToEdit.getTelegramHandle());
+        TelegramHandle updatedTelegramHandle = editPersonDescriptor.getPhone().orElse(studentToEdit.
+                getTelegramHandle());
         Consultation updatedConsultation = editPersonDescriptor.getEmail().orElse(studentToEdit.getConsultation());
         MasteryCheck updatedMasteryCheck = editPersonDescriptor.getAddress().orElse(studentToEdit.getMasteryCheck());
         Remark updatedRemark = studentToEdit.getRemark(); // edit command does not allow editing remarks
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(studentToEdit.getTags());
 
-        return new Student(updatedName, updatedTelegramHandle, updatedConsultation, updatedMasteryCheck, updatedRemark, updatedTags);
+        return new Student(updatedName, updatedTelegramHandle, updatedConsultation, updatedMasteryCheck, updatedRemark,
+                updatedTags);
     }
 
     @Override

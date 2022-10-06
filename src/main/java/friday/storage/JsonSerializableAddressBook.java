@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import friday.commons.exceptions.IllegalValueException;
 import friday.model.AddressBook;
 import friday.model.ReadOnlyAddressBook;
-import friday.model.person.Student;
+import friday.model.student.Student;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.

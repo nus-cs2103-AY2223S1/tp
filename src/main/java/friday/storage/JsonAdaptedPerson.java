@@ -11,8 +11,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import friday.commons.exceptions.IllegalValueException;
-import friday.model.person.*;
-import friday.model.person.Student;
+import friday.model.student.Consultation;
+import friday.model.student.MasteryCheck;
+import friday.model.student.Name;
+import friday.model.student.Remark;
+import friday.model.student.Student;
+import friday.model.student.TelegramHandle;
 import friday.model.tag.Tag;
 
 /**
@@ -36,7 +40,8 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("telegramHandle") String telegramHandle,
                              @JsonProperty("consultation") LocalDate consultation,
                              @JsonProperty("masteryCheck") LocalDate MasteryCheck,
-                             @JsonProperty("remark") String remark, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("remark") String remark,
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.telegramHandle = telegramHandle;
         this.masteryCheck = MasteryCheck;
@@ -53,8 +58,8 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(Student source) {
         name = source.getName().fullName;
         telegramHandle = source.getTelegramHandle().value;
-        masteryCheck = source.getConsultation().value;
-        consultation = source.getMasteryCheck().value;
+        masteryCheck = source.getConsultation().getValue();
+        consultation = source.getMasteryCheck().getValue();
         remark = source.getRemark().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -81,7 +86,8 @@ class JsonAdaptedPerson {
         final Name modelName = new Name(name);
 
         if (telegramHandle == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TelegramHandle.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    TelegramHandle.class.getSimpleName()));
         }
         if (!TelegramHandle.isValidTelegramHandle(telegramHandle)) {
             throw new IllegalValueException(TelegramHandle.MESSAGE_CONSTRAINTS);
@@ -89,7 +95,8 @@ class JsonAdaptedPerson {
         final TelegramHandle modelTelegramHandle = new TelegramHandle(telegramHandle);
 
         if (masteryCheck == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Consultation.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Consultation.class.getSimpleName()));
         }
         if (!Consultation.isValidConsultation(consultation.toString())) {
             throw new IllegalValueException(Consultation.MESSAGE_CONSTRAINTS);
@@ -97,7 +104,8 @@ class JsonAdaptedPerson {
         final Consultation modelConsultation = new Consultation(masteryCheck);
 
         if (consultation == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, MasteryCheck.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    MasteryCheck.class.getSimpleName()));
         }
         if (!MasteryCheck.isValidMasteryCheck(masteryCheck.toString())) {
             throw new IllegalValueException(MasteryCheck.MESSAGE_CONSTRAINTS);
@@ -105,12 +113,14 @@ class JsonAdaptedPerson {
         final MasteryCheck modelMasteryCheck = new MasteryCheck(consultation);
 
         if (remark == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Remark.class.getSimpleName()));
         }
         final Remark modelRemark = new Remark(remark);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Student(modelName, modelTelegramHandle, modelConsultation, modelMasteryCheck, modelRemark, modelTags);
+        return new Student(modelName, modelTelegramHandle, modelConsultation, modelMasteryCheck, modelRemark,
+                modelTags);
     }
 
 }

@@ -9,7 +9,7 @@ import static java.util.Objects.requireNonNull;
 
 import friday.logic.commands.exceptions.CommandException;
 import friday.model.Model;
-import friday.model.person.Student;
+import friday.model.student.Student;
 
 /**
  * Adds a person to the address book.

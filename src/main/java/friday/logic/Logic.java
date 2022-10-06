@@ -8,7 +8,7 @@ import friday.logic.commands.exceptions.CommandException;
 import friday.logic.parser.exceptions.ParseException;
 import friday.model.Model;
 import friday.model.ReadOnlyAddressBook;
-import friday.model.person.Student;
+import friday.model.student.Student;
 import javafx.collections.ObservableList;
 
 /**

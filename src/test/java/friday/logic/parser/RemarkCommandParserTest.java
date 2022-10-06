@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import friday.commons.core.index.Index;
 import friday.logic.commands.RemarkCommand;
-import friday.model.person.Remark;
+import friday.model.student.Remark;
 
 public class RemarkCommandParserTest {
     private RemarkCommandParser parser = new RemarkCommandParser();

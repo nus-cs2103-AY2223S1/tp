@@ -1,4 +1,4 @@
-package friday.model.person;
+package friday.model.student;
 
 import static friday.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -28,7 +28,8 @@ public class Student {
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, TelegramHandle telegramHandle, Consultation consultation, MasteryCheck masteryCheck, Remark remark, Set<Tag> tags) {
+    public Student(Name name, TelegramHandle telegramHandle, Consultation consultation, MasteryCheck masteryCheck,
+                   Remark remark, Set<Tag> tags) {
         requireAllNonNull(name, telegramHandle, consultation, masteryCheck, tags);
         this.name = name;
         this.telegramHandle = telegramHandle;

@@ -5,8 +5,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import friday.logic.commands.EditCommand.EditPersonDescriptor;
-import friday.model.person.*;
-import friday.model.person.TelegramHandle;
+import friday.model.student.*;
+import friday.model.student.TelegramHandle;
 import friday.model.tag.Tag;
 
 /**

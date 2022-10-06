@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 
 import friday.commons.core.GuiSettings;
 import friday.commons.core.LogsCenter;
-import friday.model.person.Student;
+import friday.model.student.Student;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 

@@ -7,8 +7,12 @@ import java.util.stream.Collectors;
 
 import friday.model.AddressBook;
 import friday.model.ReadOnlyAddressBook;
-import friday.model.person.*;
-import friday.model.person.Student;
+import friday.model.student.Consultation;
+import friday.model.student.MasteryCheck;
+import friday.model.student.Name;
+import friday.model.student.Remark;
+import friday.model.student.Student;
+import friday.model.student.TelegramHandle;
 import friday.model.tag.Tag;
 
 /**

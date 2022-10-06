@@ -6,16 +6,16 @@ import static friday.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static friday.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static friday.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 
-import friday.model.person.TelegramHandle;
+import friday.model.student.TelegramHandle;
 import org.junit.jupiter.api.Test;
 
 import friday.commons.core.index.Index;
 import friday.logic.commands.CommandTestUtil;
 import friday.logic.commands.EditCommand;
 import friday.logic.commands.EditCommand.EditPersonDescriptor;
-import friday.model.person.MasteryCheck;
-import friday.model.person.Consultation;
-import friday.model.person.Name;
+import friday.model.student.MasteryCheck;
+import friday.model.student.Consultation;
+import friday.model.student.Name;
 import friday.model.tag.Tag;
 import friday.testutil.EditPersonDescriptorBuilder;
 

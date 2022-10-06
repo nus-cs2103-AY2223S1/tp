@@ -4,7 +4,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import friday.commons.core.GuiSettings;
-import friday.model.person.Student;
+import friday.model.student.Student;
 import javafx.collections.ObservableList;
 
 /**

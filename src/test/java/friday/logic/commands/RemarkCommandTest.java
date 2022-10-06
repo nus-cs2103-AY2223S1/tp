@@ -11,7 +11,7 @@ import static friday.testutil.TypicalPersons.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import friday.model.person.Student;
+import friday.model.student.Student;
 import org.junit.jupiter.api.Test;
 
 import friday.commons.core.Messages;
@@ -20,7 +20,7 @@ import friday.model.AddressBook;
 import friday.model.Model;
 import friday.model.ModelManager;
 import friday.model.UserPrefs;
-import friday.model.person.Remark;
+import friday.model.student.Remark;
 import friday.testutil.PersonBuilder;
 
 /**

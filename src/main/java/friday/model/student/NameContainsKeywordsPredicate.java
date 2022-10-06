@@ -1,4 +1,4 @@
-package friday.model.person;
+package friday.model.student;
 
 import java.util.List;
 import java.util.function.Predicate;

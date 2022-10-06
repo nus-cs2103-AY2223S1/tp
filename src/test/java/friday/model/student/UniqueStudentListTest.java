@@ -1,4 +1,4 @@
-package friday.model.person;
+package friday.model.student;
 
 import static friday.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static friday.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -15,8 +15,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import friday.model.person.exceptions.DuplicatePersonException;
-import friday.model.person.exceptions.PersonNotFoundException;
+import friday.model.student.exceptions.DuplicatePersonException;
+import friday.model.student.exceptions.PersonNotFoundException;
 import friday.testutil.PersonBuilder;
 
 public class UniqueStudentListTest {

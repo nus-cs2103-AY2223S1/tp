@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 
 import friday.commons.core.index.Index;
 import friday.model.Model;
-import friday.model.person.Student;
+import friday.model.student.Student;
 
 /**
  * A utility class for test cases.

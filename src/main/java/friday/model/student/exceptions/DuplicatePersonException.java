@@ -1,4 +1,4 @@
-package friday.model.person.exceptions;
+package friday.model.student.exceptions;
 
 /**
  * Signals that the operation will result in duplicate Persons (Persons are considered duplicates if they have the same

@@ -12,8 +12,12 @@ import java.util.stream.Stream;
 
 import friday.logic.commands.AddCommand;
 import friday.logic.parser.exceptions.ParseException;
-import friday.model.person.*;
-import friday.model.person.Student;
+import friday.model.student.Consultation;
+import friday.model.student.MasteryCheck;
+import friday.model.student.Name;
+import friday.model.student.Remark;
+import friday.model.student.Student;
+import friday.model.student.TelegramHandle;
 import friday.model.tag.Tag;
 
 /**

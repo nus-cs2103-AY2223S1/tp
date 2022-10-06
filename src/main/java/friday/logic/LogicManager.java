@@ -13,7 +13,7 @@ import friday.logic.parser.AddressBookParser;
 import friday.logic.parser.exceptions.ParseException;
 import friday.model.Model;
 import friday.model.ReadOnlyAddressBook;
-import friday.model.person.Student;
+import friday.model.student.Student;
 import friday.storage.Storage;
 import javafx.collections.ObservableList;
 

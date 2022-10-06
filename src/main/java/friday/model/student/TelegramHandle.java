@@ -1,4 +1,4 @@
-package friday.model.person;
+package friday.model.student;
 
 import static friday.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;

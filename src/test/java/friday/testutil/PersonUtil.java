@@ -10,7 +10,7 @@ import java.util.Set;
 
 import friday.logic.commands.AddCommand;
 import friday.logic.commands.EditCommand.EditPersonDescriptor;
-import friday.model.person.Student;
+import friday.model.student.Student;
 import friday.model.tag.Tag;
 
 /**

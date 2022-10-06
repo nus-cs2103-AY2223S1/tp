@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import friday.commons.core.Messages;
 import friday.model.Model;
-import friday.model.person.NameContainsKeywordsPredicate;
+import friday.model.student.NameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.

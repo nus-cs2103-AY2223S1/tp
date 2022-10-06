@@ -11,13 +11,13 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import friday.model.person.MasteryCheck;
+import friday.model.student.MasteryCheck;
 import org.junit.jupiter.api.Test;
 
 import friday.logic.parser.exceptions.ParseException;
-import friday.model.person.Consultation;
-import friday.model.person.Name;
-import friday.model.person.TelegramHandle;
+import friday.model.student.Consultation;
+import friday.model.student.Name;
+import friday.model.student.TelegramHandle;
 import friday.model.tag.Tag;
 
 public class ParserUtilTest {

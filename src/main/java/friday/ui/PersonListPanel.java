@@ -3,7 +3,7 @@ package friday.ui;
 import java.util.logging.Logger;
 
 import friday.commons.core.LogsCenter;
-import friday.model.person.Student;
+import friday.model.student.Student;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;

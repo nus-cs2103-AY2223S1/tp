@@ -1,4 +1,4 @@
-package friday.model.person;
+package friday.model.student;
 
 import static friday.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
@@ -6,8 +6,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.Iterator;
 import java.util.List;
 
-import friday.model.person.exceptions.DuplicatePersonException;
-import friday.model.person.exceptions.PersonNotFoundException;
+import friday.model.student.exceptions.DuplicatePersonException;
+import friday.model.student.exceptions.PersonNotFoundException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

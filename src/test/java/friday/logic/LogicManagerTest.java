@@ -26,7 +26,7 @@ import friday.model.Model;
 import friday.model.ModelManager;
 import friday.model.ReadOnlyAddressBook;
 import friday.model.UserPrefs;
-import friday.model.person.Student;
+import friday.model.student.Student;
 import friday.storage.JsonAddressBookStorage;
 import friday.storage.JsonUserPrefsStorage;
 import friday.storage.StorageManager;

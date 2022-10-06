@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import friday.model.person.Student;
-import friday.model.person.UniquePersonList;
+import friday.model.student.Student;
+import friday.model.student.UniquePersonList;
 import javafx.collections.ObservableList;
 
 /**

@@ -3,8 +3,8 @@ package friday.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import friday.model.person.*;
-import friday.model.person.Student;
+import friday.model.student.*;
+import friday.model.student.Student;
 import friday.model.tag.Tag;
 import friday.model.util.SampleDataUtil;
 

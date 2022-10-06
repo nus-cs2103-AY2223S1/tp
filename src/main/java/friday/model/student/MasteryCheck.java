@@ -1,18 +1,19 @@
-package friday.model.person;
-
-import java.time.LocalDate;
+package friday.model.student;
 
 import static friday.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
+
+import java.time.LocalDate;
 
 /**
  * Represents a Student's desired date for their Mastery Check.
  */
 public class MasteryCheck {
 
-    public static final String MESSAGE_CONSTRAINTS = "Desired dates for Mastery Checks should be in the format: YYYY-MM-DD";
+    public static final String MESSAGE_CONSTRAINTS = "Desired dates for Mastery Checks should be in the format:" +
+            "YYYY-MM-DD";
     public static final String VALIDATION_REGEX = "^((19|2[0-9])[0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$";
-    public LocalDate value;
+    private LocalDate value;
 
     /**
      * Constructs an {@code MasteryCheck}.
@@ -30,6 +31,15 @@ public class MasteryCheck {
      */
     public static boolean isValidMasteryCheck(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns the value of the given Mastery Check.
+     *
+     * @return value
+     */
+    public LocalDate getValue() {
+        return value;
     }
 
     @Override

@@ -17,8 +17,8 @@ import friday.commons.core.index.Index;
 import friday.logic.commands.exceptions.CommandException;
 import friday.model.AddressBook;
 import friday.model.Model;
-import friday.model.person.NameContainsKeywordsPredicate;
-import friday.model.person.Student;
+import friday.model.student.NameContainsKeywordsPredicate;
+import friday.model.student.Student;
 import friday.testutil.EditPersonDescriptorBuilder;
 
 /**

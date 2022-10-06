@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
-import friday.model.person.Student;
+import friday.model.student.Student;
 import org.junit.jupiter.api.Test;
 
 import friday.commons.core.GuiSettings;

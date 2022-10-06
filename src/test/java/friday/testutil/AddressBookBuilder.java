@@ -1,7 +1,7 @@
 package friday.testutil;
 
 import friday.model.AddressBook;
-import friday.model.person.Student;
+import friday.model.student.Student;
 
 /**
  * A utility class to help with building Addressbook objects.

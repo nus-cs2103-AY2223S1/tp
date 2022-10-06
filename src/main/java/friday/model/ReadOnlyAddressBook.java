@@ -1,6 +1,6 @@
 package friday.model;
 
-import friday.model.person.Student;
+import friday.model.student.Student;
 import javafx.collections.ObservableList;
 
 /**

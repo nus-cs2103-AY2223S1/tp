@@ -29,11 +29,11 @@ import static friday.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static friday.testutil.TypicalPersons.AMY;
 import static friday.testutil.TypicalPersons.BOB;
 
-import friday.model.person.*;
+import friday.model.student.*;
 import org.junit.jupiter.api.Test;
 
 import friday.logic.commands.AddCommand;
-import friday.model.person.Student;
+import friday.model.student.Student;
 import friday.model.tag.Tag;
 import friday.testutil.PersonBuilder;
 

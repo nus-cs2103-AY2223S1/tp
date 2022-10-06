@@ -1,4 +1,4 @@
-package friday.model.person;
+package friday.model.student;
 
 import static friday.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertFalse;

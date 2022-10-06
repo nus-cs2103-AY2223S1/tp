@@ -1,4 +1,4 @@
-package friday.model.person;
+package friday.model.student;
 
 import static friday.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static friday.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;

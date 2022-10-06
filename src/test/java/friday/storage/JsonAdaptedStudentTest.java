@@ -9,13 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import friday.model.person.Consultation;
-import friday.model.person.TelegramHandle;
+import friday.model.student.Consultation;
+import friday.model.student.TelegramHandle;
 import org.junit.jupiter.api.Test;
 
 import friday.commons.exceptions.IllegalValueException;
-import friday.model.person.MasteryCheck;
-import friday.model.person.Name;
+import friday.model.student.MasteryCheck;
+import friday.model.student.Name;
 import friday.testutil.TypicalPersons;
 
 public class JsonAdaptedStudentTest {

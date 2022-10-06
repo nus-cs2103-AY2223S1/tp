@@ -2,7 +2,7 @@ package friday.ui;
 
 import java.util.Comparator;
 
-import friday.model.person.Student;
+import friday.model.student.Student;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;

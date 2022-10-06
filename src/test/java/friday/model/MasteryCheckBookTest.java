@@ -10,11 +10,11 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import friday.model.person.Student;
+import friday.model.student.Student;
 import org.junit.jupiter.api.Test;
 
 import friday.logic.commands.CommandTestUtil;
-import friday.model.person.exceptions.DuplicatePersonException;
+import friday.model.student.exceptions.DuplicatePersonException;
 import friday.testutil.PersonBuilder;
 import friday.testutil.TypicalPersons;
 import javafx.collections.FXCollections;

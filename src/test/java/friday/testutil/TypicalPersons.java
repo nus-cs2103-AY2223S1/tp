@@ -16,7 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import friday.model.AddressBook;
-import friday.model.person.Student;
+import friday.model.student.Student;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.

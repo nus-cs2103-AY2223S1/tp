@@ -4,7 +4,7 @@ import static friday.logic.commands.CommandTestUtil.assertCommandFailure;
 import static friday.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static friday.testutil.TypicalPersons.getTypicalAddressBook;
 
-import friday.model.person.Student;
+import friday.model.student.Student;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
