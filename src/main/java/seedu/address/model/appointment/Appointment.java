@@ -2,6 +2,8 @@ package seedu.address.model.appointment;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Objects;
+
 import seedu.address.model.person.Email;
 
 /**
@@ -56,5 +58,25 @@ public class Appointment {
                     && email.equals(other.getEmail());
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("Appointment Email: ")
+                .append(getEmail())
+                .append("; Medical Test: ")
+                .append(getMedicalTest())
+                .append(" Slot: ")
+                .append(getSlot())
+                .append(" Doctor: ")
+                .append(getDoctor());
+
+        return builder.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(email, medicalTest, slot, doctor);
     }
 }
