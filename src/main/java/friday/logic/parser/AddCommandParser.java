@@ -12,12 +12,8 @@ import java.util.stream.Stream;
 
 import friday.logic.commands.AddCommand;
 import friday.logic.parser.exceptions.ParseException;
-import friday.model.person.Address;
-import friday.model.person.Email;
-import friday.model.person.Name;
-import friday.model.person.Person;
-import friday.model.person.Phone;
-import friday.model.person.Remark;
+import friday.model.person.*;
+import friday.model.person.Student;
 import friday.model.tag.Tag;
 
 /**
@@ -40,15 +36,15 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        TelegramHandle telegramHandle = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
+        Consultation consultation = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+        MasteryCheck masteryCheck = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Remark remark = new Remark(""); // add command does not allow adding remarks straight away
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, address, remark, tagList);
+        Student student = new Student(name, telegramHandle, consultation, masteryCheck, remark, tagList);
 
-        return new AddCommand(person);
+        return new AddCommand(student);
     }
 
     /**

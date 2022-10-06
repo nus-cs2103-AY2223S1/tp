@@ -11,13 +11,13 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import friday.model.person.MasteryCheck;
 import org.junit.jupiter.api.Test;
 
 import friday.logic.parser.exceptions.ParseException;
-import friday.model.person.Address;
-import friday.model.person.Email;
+import friday.model.person.Consultation;
 import friday.model.person.Name;
-import friday.model.person.Phone;
+import friday.model.person.TelegramHandle;
 import friday.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -91,15 +91,15 @@ public class ParserUtilTest {
 
     @Test
     public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(VALID_PHONE));
+        TelegramHandle expectedTelegramHandle = new TelegramHandle(VALID_PHONE);
+        assertEquals(expectedTelegramHandle, ParserUtil.parsePhone(VALID_PHONE));
     }
 
     @Test
     public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
         String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
+        TelegramHandle expectedTelegramHandle = new TelegramHandle(VALID_PHONE);
+        assertEquals(expectedTelegramHandle, ParserUtil.parsePhone(phoneWithWhitespace));
     }
 
     @Test
@@ -114,15 +114,15 @@ public class ParserUtilTest {
 
     @Test
     public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(VALID_ADDRESS));
+        MasteryCheck expectedMasteryCheck = new MasteryCheck(VALID_ADDRESS);
+        assertEquals(expectedMasteryCheck, ParserUtil.parseAddress(VALID_ADDRESS));
     }
 
     @Test
     public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
         String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
+        MasteryCheck expectedMasteryCheck = new MasteryCheck(VALID_ADDRESS);
+        assertEquals(expectedMasteryCheck, ParserUtil.parseAddress(addressWithWhitespace));
     }
 
     @Test
@@ -137,15 +137,15 @@ public class ParserUtilTest {
 
     @Test
     public void parseEmail_validValueWithoutWhitespace_returnsEmail() throws Exception {
-        Email expectedEmail = new Email(VALID_EMAIL);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(VALID_EMAIL));
+        Consultation expectedConsultation = new Consultation(VALID_EMAIL);
+        assertEquals(expectedConsultation, ParserUtil.parseEmail(VALID_EMAIL));
     }
 
     @Test
     public void parseEmail_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
         String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
-        Email expectedEmail = new Email(VALID_EMAIL);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+        Consultation expectedConsultation = new Consultation(VALID_EMAIL);
+        assertEquals(expectedConsultation, ParserUtil.parseEmail(emailWithWhitespace));
     }
 
     @Test

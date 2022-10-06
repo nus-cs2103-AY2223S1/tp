@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import friday.commons.exceptions.IllegalValueException;
 import friday.model.AddressBook;
 import friday.model.ReadOnlyAddressBook;
-import friday.model.person.Person;
+import friday.model.person.Student;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -48,11 +48,11 @@ class JsonSerializableAddressBook {
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(person)) {
+            Student student = jsonAdaptedPerson.toModelType();
+            if (addressBook.hasPerson(student)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            addressBook.addPerson(person);
+            addressBook.addPerson(student);
         }
         return addressBook;
     }

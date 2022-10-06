@@ -19,16 +19,12 @@ import friday.commons.core.index.Index;
 import friday.commons.util.CollectionUtil;
 import friday.logic.commands.exceptions.CommandException;
 import friday.model.Model;
-import friday.model.person.Address;
-import friday.model.person.Email;
-import friday.model.person.Name;
-import friday.model.person.Person;
-import friday.model.person.Phone;
-import friday.model.person.Remark;
+import friday.model.person.*;
+import friday.model.person.Student;
 import friday.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing person in the masteryCheck book.
  */
 public class EditCommand extends Command {
 
@@ -49,7 +45,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the masteryCheck book.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -69,39 +65,39 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Student> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Student studentToEdit = lastShownList.get(index.getZeroBased());
+        Student editedStudent = createEditedPerson(studentToEdit, editPersonDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+        if (!studentToEdit.isSamePerson(editedStudent) && model.hasPerson(editedStudent)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.setPerson(personToEdit, editedPerson);
+        model.setPerson(studentToEdit, editedStudent);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent));
     }
 
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    private static Student createEditedPerson(Student studentToEdit, EditPersonDescriptor editPersonDescriptor) {
+        assert studentToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Remark updatedRemark = personToEdit.getRemark(); // edit command does not allow editing remarks
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Name updatedName = editPersonDescriptor.getName().orElse(studentToEdit.getName());
+        TelegramHandle updatedTelegramHandle = editPersonDescriptor.getPhone().orElse(studentToEdit.getTelegramHandle());
+        Consultation updatedConsultation = editPersonDescriptor.getEmail().orElse(studentToEdit.getConsultation());
+        MasteryCheck updatedMasteryCheck = editPersonDescriptor.getAddress().orElse(studentToEdit.getMasteryCheck());
+        Remark updatedRemark = studentToEdit.getRemark(); // edit command does not allow editing remarks
+        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(studentToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags);
+        return new Student(updatedName, updatedTelegramHandle, updatedConsultation, updatedMasteryCheck, updatedRemark, updatedTags);
     }
 
     @Override
@@ -128,9 +124,9 @@ public class EditCommand extends Command {
      */
     public static class EditPersonDescriptor {
         private Name name;
-        private Phone phone;
-        private Email email;
-        private Address address;
+        private TelegramHandle telegramHandle;
+        private Consultation consultation;
+        private MasteryCheck masteryCheck;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -141,9 +137,9 @@ public class EditCommand extends Command {
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
-            setPhone(toCopy.phone);
-            setEmail(toCopy.email);
-            setAddress(toCopy.address);
+            setPhone(toCopy.telegramHandle);
+            setEmail(toCopy.consultation);
+            setAddress(toCopy.masteryCheck);
             setTags(toCopy.tags);
         }
 
@@ -151,7 +147,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, telegramHandle, consultation, masteryCheck, tags);
         }
 
         public void setName(Name name) {
@@ -162,28 +158,28 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        public void setPhone(TelegramHandle telegramHandle) {
+            this.telegramHandle = telegramHandle;
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+        public Optional<TelegramHandle> getPhone() {
+            return Optional.ofNullable(telegramHandle);
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
+        public void setEmail(Consultation consultation) {
+            this.consultation = consultation;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+        public Optional<Consultation> getEmail() {
+            return Optional.ofNullable(consultation);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        public void setAddress(MasteryCheck masteryCheck) {
+            this.masteryCheck = masteryCheck;
         }
 
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<MasteryCheck> getAddress() {
+            return Optional.ofNullable(masteryCheck);
         }
 
         /**

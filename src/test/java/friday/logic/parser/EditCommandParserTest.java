@@ -6,16 +6,16 @@ import static friday.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static friday.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static friday.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 
+import friday.model.person.TelegramHandle;
 import org.junit.jupiter.api.Test;
 
 import friday.commons.core.index.Index;
 import friday.logic.commands.CommandTestUtil;
 import friday.logic.commands.EditCommand;
 import friday.logic.commands.EditCommand.EditPersonDescriptor;
-import friday.model.person.Address;
-import friday.model.person.Email;
+import friday.model.person.MasteryCheck;
+import friday.model.person.Consultation;
 import friday.model.person.Name;
-import friday.model.person.Phone;
 import friday.model.tag.Tag;
 import friday.testutil.EditPersonDescriptorBuilder;
 
@@ -62,22 +62,22 @@ public class EditCommandParserTest {
         CommandParserTestUtil.assertParseFailure(parser, "1" + CommandTestUtil.INVALID_NAME_DESC,
                 Name.MESSAGE_CONSTRAINTS); // invalid name
         CommandParserTestUtil.assertParseFailure(parser, "1" + CommandTestUtil.INVALID_PHONE_DESC,
-                Phone.MESSAGE_CONSTRAINTS); // invalid phone
+                TelegramHandle.MESSAGE_CONSTRAINTS); // invalid phone
         CommandParserTestUtil.assertParseFailure(parser, "1" + CommandTestUtil.INVALID_EMAIL_DESC,
-                Email.MESSAGE_CONSTRAINTS); // invalid email
+                Consultation.MESSAGE_CONSTRAINTS); // invalid email
         CommandParserTestUtil.assertParseFailure(parser, "1" + CommandTestUtil.INVALID_ADDRESS_DESC,
-                Address.MESSAGE_CONSTRAINTS); // invalid address
+                MasteryCheck.MESSAGE_CONSTRAINTS); // invalid address
         CommandParserTestUtil.assertParseFailure(parser, "1" + CommandTestUtil.INVALID_TAG_DESC,
                 Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid phone followed by valid email
         CommandParserTestUtil.assertParseFailure(parser, "1" + CommandTestUtil.INVALID_PHONE_DESC
-                + CommandTestUtil.EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
+                + CommandTestUtil.EMAIL_DESC_AMY, TelegramHandle.MESSAGE_CONSTRAINTS);
 
         // valid phone followed by invalid phone. The test case for invalid phone followed by valid phone
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
         CommandParserTestUtil.assertParseFailure(parser, "1" + CommandTestUtil.PHONE_DESC_BOB
-                + CommandTestUtil.INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS);
+                + CommandTestUtil.INVALID_PHONE_DESC, TelegramHandle.MESSAGE_CONSTRAINTS);
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
         // parsing it together with a valid tag results in error

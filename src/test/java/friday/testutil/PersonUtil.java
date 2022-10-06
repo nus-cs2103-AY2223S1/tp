@@ -10,7 +10,7 @@ import java.util.Set;
 
 import friday.logic.commands.AddCommand;
 import friday.logic.commands.EditCommand.EditPersonDescriptor;
-import friday.model.person.Person;
+import friday.model.person.Student;
 import friday.model.tag.Tag;
 
 /**
@@ -21,20 +21,20 @@ public class PersonUtil {
     /**
      * Returns an add command string for adding the {@code person}.
      */
-    public static String getAddCommand(Person person) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(person);
+    public static String getAddCommand(Student student) {
+        return AddCommand.COMMAND_WORD + " " + getPersonDetails(student);
     }
 
     /**
      * Returns the part of command string for the given {@code person}'s details.
      */
-    public static String getPersonDetails(Person person) {
+    public static String getPersonDetails(Student student) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + person.getName().fullName + " ");
-        sb.append(PREFIX_PHONE + person.getPhone().value + " ");
-        sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
-        person.getTags().stream().forEach(
+        sb.append(PREFIX_NAME + student.getName().fullName + " ");
+        sb.append(PREFIX_PHONE + student.getTelegramHandle().value + " ");
+        sb.append(PREFIX_EMAIL + student.getConsultation().value + " ");
+        sb.append(PREFIX_ADDRESS + student.getMasteryCheck().value + " ");
+        student.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         return sb.toString();

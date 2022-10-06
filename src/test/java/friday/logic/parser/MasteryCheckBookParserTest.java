@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import friday.model.person.Student;
 import org.junit.jupiter.api.Test;
 
 import friday.logic.commands.AddCommand;
@@ -26,21 +27,20 @@ import friday.logic.commands.ListCommand;
 import friday.logic.commands.RemarkCommand;
 import friday.logic.parser.exceptions.ParseException;
 import friday.model.person.NameContainsKeywordsPredicate;
-import friday.model.person.Person;
 import friday.model.person.Remark;
 import friday.testutil.EditPersonDescriptorBuilder;
 import friday.testutil.PersonBuilder;
 import friday.testutil.PersonUtil;
 
-public class AddressBookParserTest {
+public class MasteryCheckBookParserTest {
 
     private final AddressBookParser parser = new AddressBookParser();
 
     @Test
     public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+        Student student = new PersonBuilder().build();
+        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(student));
+        assertEquals(new AddCommand(student), command);
     }
 
     @Test
@@ -58,8 +58,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Person person = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
+        Student student = new PersonBuilder().build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(student).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);

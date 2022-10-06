@@ -16,8 +16,8 @@ import friday.model.AddressBook;
 import friday.model.ReadOnlyAddressBook;
 import friday.testutil.TypicalPersons;
 
-public class JsonAddressBookStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
+public class JsonMasteryCheckBookStorageTest {
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonMasteryCheckBookStorageTest");
 
     @TempDir
     public Path testFolder;

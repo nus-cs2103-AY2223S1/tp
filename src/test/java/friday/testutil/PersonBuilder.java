@@ -3,12 +3,8 @@ package friday.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import friday.model.person.Address;
-import friday.model.person.Email;
-import friday.model.person.Name;
-import friday.model.person.Person;
-import friday.model.person.Phone;
-import friday.model.person.Remark;
+import friday.model.person.*;
+import friday.model.person.Student;
 import friday.model.tag.Tag;
 import friday.model.util.SampleDataUtil;
 
@@ -24,9 +20,9 @@ public class PersonBuilder {
     public static final String DEFAULT_REMARK = "She likes aardvarks.";
 
     private Name name;
-    private Phone phone;
-    private Email email;
-    private Address address;
+    private TelegramHandle telegramHandle;
+    private Consultation consultation;
+    private MasteryCheck masteryCheck;
     private Remark remark;
     private Set<Tag> tags;
 
@@ -35,9 +31,9 @@ public class PersonBuilder {
      */
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
+        telegramHandle = new TelegramHandle(DEFAULT_PHONE);
+        consultation = new Consultation(DEFAULT_EMAIL);
+        masteryCheck = new MasteryCheck(DEFAULT_ADDRESS);
         remark = new Remark(DEFAULT_REMARK);
         tags = new HashSet<>();
     }
@@ -45,13 +41,13 @@ public class PersonBuilder {
     /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
-    public PersonBuilder(Person personToCopy) {
-        name = personToCopy.getName();
-        phone = personToCopy.getPhone();
-        email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
-        remark = personToCopy.getRemark();
-        tags = new HashSet<>(personToCopy.getTags());
+    public PersonBuilder(Student studentToCopy) {
+        name = studentToCopy.getName();
+        telegramHandle = studentToCopy.getTelegramHandle();
+        consultation = studentToCopy.getConsultation();
+        masteryCheck = studentToCopy.getMasteryCheck();
+        remark = studentToCopy.getRemark();
+        tags = new HashSet<>(studentToCopy.getTags());
     }
 
     /**
@@ -71,26 +67,26 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Sets the {@code MasteryCheck} of the {@code Person} that we are building.
      */
     public PersonBuilder withAddress(String address) {
-        this.address = new Address(address);
+        this.masteryCheck = new MasteryCheck(address);
         return this;
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
+     * Sets the {@code TelegramHandle} of the {@code Person} that we are building.
      */
     public PersonBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+        this.telegramHandle = new TelegramHandle(phone);
         return this;
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code Consultation} of the {@code Person} that we are building.
      */
     public PersonBuilder withEmail(String email) {
-        this.email = new Email(email);
+        this.consultation = new Consultation(email);
         return this;
     }
 
@@ -102,8 +98,8 @@ public class PersonBuilder {
         return this;
     }
 
-    public Person build() {
-        return new Person(name, phone, email, address, remark, tags);
+    public Student build() {
+        return new Student(name, telegramHandle, consultation, masteryCheck, remark, tags);
     }
 
 }

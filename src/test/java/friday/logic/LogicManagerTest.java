@@ -26,7 +26,7 @@ import friday.model.Model;
 import friday.model.ModelManager;
 import friday.model.ReadOnlyAddressBook;
 import friday.model.UserPrefs;
-import friday.model.person.Person;
+import friday.model.person.Student;
 import friday.storage.JsonAddressBookStorage;
 import friday.storage.JsonUserPrefsStorage;
 import friday.storage.StorageManager;
@@ -81,9 +81,9 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        Student expectedStudent = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedPerson);
+        expectedModel.addPerson(expectedStudent);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
