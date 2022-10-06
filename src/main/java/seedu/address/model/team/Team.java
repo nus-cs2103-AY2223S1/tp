@@ -30,6 +30,7 @@ public class Team {
         requireAllNonNull(name);
         this.name = name;
         this.tasks = new TaskList();
+        members = new ArrayList<>();
     }
 
     public Name getName() {
@@ -48,6 +49,14 @@ public class Team {
         if (members.contains(p)) {
             members.remove(p);
         }
+    }
+
+    /**
+     * Returns list of members in the team
+     * @return members
+     */
+    public ArrayList<Person> getMembers() {
+        return members;
     }
 
     /**

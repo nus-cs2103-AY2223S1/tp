@@ -68,6 +68,18 @@ public class UniquePersonList implements Iterable<Person> {
         internalList.set(index, editedPerson);
     }
 
+    public Person getPerson(Name personName) {
+        requireNonNull(personName);
+        System.out.println(internalList.size());
+        for (int i = 0; i < internalList.size(); i++) {
+            Person person = internalList.get(i);
+            if (person.getName().equals(personName)) {
+                return person;
+            }
+        }
+        throw new PersonNotFoundException();
+    }
+
     /**
      * Removes the equivalent person from the list.
      * The person must exist in the list.

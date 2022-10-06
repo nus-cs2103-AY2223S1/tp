@@ -8,6 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.team.Name;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.task.Task;
@@ -56,6 +58,17 @@ public class UniqueTeamList implements Iterable<Team> {
      */
     public Team get(int index) {
         return internalList.get(index);
+    }
+
+    public Team getTeam(Name teamName) {
+        requireNonNull(teamName);
+        for (int i = 0; i < internalList.size(); i++) {
+            Team team = internalList.get(i);
+            if (team.getName().equals(teamName)) {
+                return team;
+            }
+        }
+        throw new PersonNotFoundException();
     }
 
     /**

@@ -129,6 +129,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         teams.remove(t);
     }
 
+    public void addPersonToTeam(Person person, Team team) {
+        team.addMember(person);
+    }
+
     //// task-level operations
 
     public void addTask(Index index, Task task) {
@@ -151,6 +155,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Team> getTeamList() {
         return teams.asUnmodifiableObservableList();
+    }
+
+    public UniquePersonList getPersonL() {
+        return persons;
+    }
+
+    public UniqueTeamList getTeamL() {
+        return teams;
     }
 
     @Override

@@ -22,8 +22,10 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.task.Task;
 import seedu.address.model.team.Team;
+import seedu.address.model.team.UniqueTeamList;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -153,6 +155,21 @@ public class AddCommandTest {
 
         @Override
         public void addTeam(Team team) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addPersonToTeam(Person person, Team team) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public UniquePersonList getPersons() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public UniqueTeamList getTeams() {
             throw new AssertionError("This method should not be called.");
         }
 

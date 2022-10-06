@@ -7,8 +7,10 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.task.Task;
 import seedu.address.model.team.Team;
+import seedu.address.model.team.UniqueTeamList;
 
 /**
  * The API of the Model component.
@@ -86,6 +88,12 @@ public interface Model {
     public void deleteTeam(Team team);
 
     public void addTeam(Team team);
+
+    public void addPersonToTeam(Person person, Team team);
+
+    public UniquePersonList getPersons();
+
+    public UniqueTeamList getTeams();
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
