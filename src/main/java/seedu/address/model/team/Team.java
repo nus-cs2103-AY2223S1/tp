@@ -54,14 +54,6 @@ public class Team {
         return teamMembers.contains(person);
     }
 
-    public void setMember(Person target, Person editedPerson) {
-        teamMembers.setPerson(target, editedPerson);
-    }
-
-    public void removeMember(Person person) {
-        teamMembers.remove(person);
-    }
-
     /**
      * Returns true if a given string is a valid tag name.
      */
