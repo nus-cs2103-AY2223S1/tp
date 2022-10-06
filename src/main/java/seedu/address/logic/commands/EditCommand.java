@@ -145,7 +145,8 @@ public class EditCommand extends Command {
         private MoneyPaid moneyPaid;
         private AdditionalNotes additionalNotes;
 
-        public EditPersonDescriptor() {}
+        public EditPersonDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -226,13 +227,15 @@ public class EditCommand extends Command {
         }
 
         public void setClass(Class aClass) {
-            this.aClass = aClass;
+            if (aClass == null) {
+                this.aClass = new Class();
+            } else {
+                this.aClass = aClass;
+            }
         }
 
         public Optional<Class> getAClass() {
-            return Optional.ofNullable(aClass).equals(Optional.empty())
-                    ? Optional.ofNullable(new Class())
-                    : Optional.ofNullable(aClass);
+            return Optional.ofNullable(aClass);
         }
 
         @Override

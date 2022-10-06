@@ -5,6 +5,7 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.AdditionalNotes;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Class;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.MoneyOwed;
 import seedu.address.model.person.MoneyPaid;
@@ -19,8 +20,14 @@ public class EditPersonDescriptorBuilder {
 
     private EditPersonDescriptor descriptor;
 
+    /**
+     * Constructs a EditPersonDescriptionBuilder object with descriptor initialised.
+     * By default, descriptor field Class will have fields date and time to be null.
+     */
     public EditPersonDescriptorBuilder() {
-        descriptor = new EditPersonDescriptor();
+        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+        editPersonDescriptor.setClass(new Class());
+        descriptor = editPersonDescriptor;
     }
 
     public EditPersonDescriptorBuilder(EditPersonDescriptor descriptor) {

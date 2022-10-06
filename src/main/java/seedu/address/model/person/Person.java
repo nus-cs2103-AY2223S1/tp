@@ -73,6 +73,9 @@ public class Person {
     }
 
     public Class getAClass() {
+        if (aClass == null) {
+            return new Class();
+        }
         return aClass;
     }
 
