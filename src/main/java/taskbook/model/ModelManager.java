@@ -1,7 +1,7 @@
-package seedu.address.model;
+package taskbook.model;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static taskbook.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
@@ -9,11 +9,11 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import seedu.address.commons.core.GuiSettings;
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.task.Task;
+import taskbook.commons.core.GuiSettings;
+import taskbook.commons.core.LogsCenter;
+import taskbook.model.person.Name;
+import taskbook.model.person.Person;
+import taskbook.model.task.Task;
 
 /**
  * Represents the in-memory model of the address book data.

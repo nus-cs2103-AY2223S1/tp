@@ -1,13 +1,13 @@
-package seedu.address.model;
+package taskbook.model;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
-import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.task.Task;
+import taskbook.commons.core.GuiSettings;
+import taskbook.model.person.Name;
+import taskbook.model.person.Person;
+import taskbook.model.task.Task;
 
 /**
  * The API of the Model component.

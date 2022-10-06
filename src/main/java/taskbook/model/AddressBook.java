@@ -1,15 +1,15 @@
-package seedu.address.model;
+package taskbook.model;
 
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.task.Task;
-import seedu.address.model.task.TaskList;
+import taskbook.model.person.Name;
+import taskbook.model.person.Person;
+import taskbook.model.person.UniquePersonList;
+import taskbook.model.task.Task;
+import taskbook.model.task.TaskList;
 
 /**
  * Wraps all data at the address-book level

@@ -1,10 +1,10 @@
-package seedu.address.logic.commands;
+package taskbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.Assert.assertThrows;
+import static taskbook.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -14,17 +14,17 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
-import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.contacts.ContactAddCommand;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.task.Task;
-import seedu.address.testutil.PersonBuilder;
+import taskbook.commons.core.GuiSettings;
+import taskbook.logic.commands.contacts.ContactAddCommand;
+import taskbook.logic.commands.exceptions.CommandException;
+import taskbook.model.AddressBook;
+import taskbook.model.Model;
+import taskbook.model.ReadOnlyAddressBook;
+import taskbook.model.ReadOnlyUserPrefs;
+import taskbook.model.person.Name;
+import taskbook.model.person.Person;
+import taskbook.model.task.Task;
+import taskbook.testutil.PersonBuilder;
 
 public class ContactAddCommandTest {
 

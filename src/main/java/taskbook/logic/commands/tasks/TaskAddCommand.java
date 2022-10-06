@@ -1,20 +1,20 @@
-package seedu.address.logic.commands.tasks;
+package taskbook.logic.commands.tasks;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGN_FROM;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGN_TO;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static taskbook.logic.parser.CliSyntax.PREFIX_ASSIGN_FROM;
+import static taskbook.logic.parser.CliSyntax.PREFIX_ASSIGN_TO;
+import static taskbook.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.tasks.TaskCategoryParser;
-import seedu.address.model.Model;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.task.Description;
-import seedu.address.model.task.Task;
-import seedu.address.model.task.enums.Assignment;
+import taskbook.logic.commands.Command;
+import taskbook.logic.commands.CommandResult;
+import taskbook.logic.commands.exceptions.CommandException;
+import taskbook.logic.parser.tasks.TaskCategoryParser;
+import taskbook.model.Model;
+import taskbook.model.person.Name;
+import taskbook.model.person.Person;
+import taskbook.model.task.Description;
+import taskbook.model.task.Task;
+import taskbook.model.task.enums.Assignment;
 
 /**
  * Adds a task to the task book.
