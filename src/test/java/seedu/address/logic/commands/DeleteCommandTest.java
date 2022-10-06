@@ -16,7 +16,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.TypicalPersons;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -77,6 +80,49 @@ public class DeleteCommandTest {
     }
 
     @Test
+    public void execute_validFullName_success() {
+        Person personToDelete = TypicalPersons.BENSON;
+        DeleteCommand deleteCommand = new DeleteCommand(new Name("Benson Meier"));
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.deletePerson(personToDelete);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_validNameMultipleResults_throwsCommandException() {
+        DeleteCommand deleteCommand = new DeleteCommand(new Name("Benson"));
+        model.addPerson(new PersonBuilder().withName("Benson Meiere")
+                .withAddress("311, Clementi Ave 2, #02-25")
+                .withEmail("johnd@example.com").withPhone("98765432")
+                .withTags("owesMoney", "friends").build());
+
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_MULTIPLE_PERSON_DISPLAYED_NAME);
+    }
+
+    @Test
+    public void execute_validNameNoResults_throwsCommandException() {
+        DeleteCommand deleteCommand = new DeleteCommand(new Name("Ben"));
+
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_NAME);
+    }
+
+    @Test
+    public void execute_validName_success() {
+        Person personToDelete = TypicalPersons.BENSON;
+        DeleteCommand deleteCommand = new DeleteCommand(new Name("Benson"));
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.deletePerson(personToDelete);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
     public void equals() {
         DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_PERSON);
         DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_PERSON);
@@ -96,6 +142,26 @@ public class DeleteCommandTest {
 
         // different person -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
+
+        DeleteCommand deleteAliceCommand = new DeleteCommand(new Name("Alice"));
+        DeleteCommand deleteBobCommand = new DeleteCommand(new Name("Bob"));
+
+        // same object -> returns true
+        assertTrue(deleteAliceCommand.equals(deleteAliceCommand));
+
+
+        // same values -> returns true
+        DeleteCommand deleteAliceCommandCopy = new DeleteCommand(new Name("Alice"));
+        assertTrue(deleteAliceCommand.equals(deleteAliceCommandCopy));
+
+        // different types -> returns false
+        assertFalse(deleteAliceCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(deleteAliceCommand.equals(null));
+
+        // different person -> returns false
+        assertFalse(deleteAliceCommand.equals(deleteBobCommand));
     }
 
     /**
