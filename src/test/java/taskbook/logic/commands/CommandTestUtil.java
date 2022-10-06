@@ -32,6 +32,8 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_DESCRIPTION_WORK = "work";
+    public static final String VALID_DESCRIPTION_EAT = "eat";
 
     public static final String NAME_DESC_AMY = " " + CliSyntax.PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + CliSyntax.PREFIX_NAME + VALID_NAME_BOB;
@@ -43,12 +45,24 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + CliSyntax.PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + CliSyntax.PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + CliSyntax.PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String DESCRIPTION_DESC_WORK = " " + CliSyntax.PREFIX_DESCRIPTION + VALID_DESCRIPTION_WORK;
+    public static final String DESCRIPTION_DESC_EAT = " " + CliSyntax.PREFIX_DESCRIPTION + VALID_DESCRIPTION_EAT;
+    public static final String ASSIGN_FROM_DESC_AMY = " " + CliSyntax.PREFIX_ASSIGN_FROM + VALID_NAME_AMY;
+    public static final String ASSIGN_FROM_DESC_BOB = " " + CliSyntax.PREFIX_ASSIGN_FROM + VALID_NAME_BOB;
+    public static final String ASSIGN_TO_DESC_AMY = " " + CliSyntax.PREFIX_ASSIGN_TO + VALID_NAME_AMY;
+    public static final String ASSIGN_TO_DESC_BOB = " " + CliSyntax.PREFIX_ASSIGN_TO + VALID_NAME_BOB;
 
     public static final String INVALID_NAME_DESC = " " + CliSyntax.PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + CliSyntax.PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + CliSyntax.PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + CliSyntax.PREFIX_ADDRESS; // empty string not allowed
     public static final String INVALID_TAG_DESC = " " + CliSyntax.PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_ASSIGN_FROM_DESC =
+            " " + CliSyntax.PREFIX_ASSIGN_FROM + "James&"; // '&' not allowed in names
+    public static final String INVALID_ASSIGN_TO_DESC =
+            " " + CliSyntax.PREFIX_ASSIGN_TO + "James&"; // '&' not allowed in names
+
+
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

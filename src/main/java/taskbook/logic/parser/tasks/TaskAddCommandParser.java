@@ -28,12 +28,12 @@ public class TaskAddCommandParser implements Parser<TaskAddCommand> {
     @Override
     public TaskAddCommand parse(String args) throws ParseException {
         // Note: the space at the start of the arguments is necessary due to ArgumentTokenizer behavior.
-        if (args.startsWith(" " + CliSyntax.PREFIX_ASSIGN_TO.getPrefix())) {
+        if (args.trim().startsWith(CliSyntax.PREFIX_ASSIGN_TO.getPrefix())) {
             return parseWithPrefix(args, CliSyntax.PREFIX_ASSIGN_TO);
         }
 
         // Note: the space at the start of the arguments is necessary due to ArgumentTokenizer behavior.
-        if (args.startsWith(" " + CliSyntax.PREFIX_ASSIGN_FROM.getPrefix())) {
+        if (args.trim().startsWith(CliSyntax.PREFIX_ASSIGN_FROM.getPrefix())) {
             return parseWithPrefix(args, CliSyntax.PREFIX_ASSIGN_FROM);
         }
 
