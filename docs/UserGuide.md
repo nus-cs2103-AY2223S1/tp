@@ -87,7 +87,7 @@ A customer can have any number of tags (including 0)
 
 Examples:
 * `addcus n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/animal cartoons t/vip`
-Creates the customer entry for John Doe with his details including multiple tags. 
+Creates the customer entry for John Doe with his details including multiple tags.
 * `addcus n/Betsy Crowe e/betsycrowe@example.com p/12345867`
 Creates the customer entry for Betsy Crowe with her email and phone number.
 
