@@ -2,10 +2,9 @@ package seedu.address.model.appointment;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import seedu.address.model.person.Email;
-import seedu.address.model.tag.Tag;
+import java.util.Objects;
 
-import java.util.Set;
+import seedu.address.model.person.Email;
 
 /**
  * Represents an Appointment of a patient in the HealthConnect
@@ -74,5 +73,10 @@ public class Appointment {
                 .append(getDoctor());
 
         return builder.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(email, medicalTest, slot, doctor);
     }
 }
