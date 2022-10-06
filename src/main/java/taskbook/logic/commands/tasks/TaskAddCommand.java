@@ -65,7 +65,7 @@ public class TaskAddCommand extends Command {
             throw new CommandException(MESSAGE_PERSON_NOT_FOUND);
         }
 
-        Task newTask = new Task(personToAddTask, this.assignment, this.description, this.isDone);
+        Task newTask = new Task(personToAddTask, assignment, description, isDone);
         model.addTask(newTask);
         return new CommandResult(String.format(MESSAGE_SUCCESS, newTask));
     }

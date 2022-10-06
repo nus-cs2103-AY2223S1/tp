@@ -29,8 +29,6 @@ public class TaskAddCommandParser implements Parser<TaskAddCommand> {
     private static final Pattern ASSIGN_FROM_COMMAND_FORMAT =
             Pattern.compile(String.format("\\s+%s.*", CliSyntax.PREFIX_ASSIGN_FROM.getPrefix()));
 
-
-
     /**
      * Parses the given {@code String} of arguments in the context of the TaskAddCommand
      * and returns an TaskAddCommand object for execution.
@@ -38,7 +36,6 @@ public class TaskAddCommandParser implements Parser<TaskAddCommand> {
      */
     @Override
     public TaskAddCommand parse(String args) throws ParseException {
-
         if (ASSIGN_TO_COMMAND_FORMAT.matcher(args).matches()) {
             return parseWithPrefix(args, CliSyntax.PREFIX_ASSIGN_TO);
         }

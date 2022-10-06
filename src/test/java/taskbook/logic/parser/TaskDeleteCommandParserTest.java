@@ -18,6 +18,7 @@ import taskbook.logic.parser.tasks.TaskDeleteCommandParser;
  * therefore should be covered by the ParserUtilTest.
  */
 public class TaskDeleteCommandParserTest {
+
     private TaskDeleteCommandParser parser = new TaskDeleteCommandParser();
 
     @Test

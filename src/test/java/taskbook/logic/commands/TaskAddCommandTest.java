@@ -3,7 +3,6 @@ package taskbook.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static taskbook.testutil.Assert.assertThrows;
-import static taskbook.testutil.PersonBuilder.DEFAULT_NAME;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,36 +13,47 @@ import taskbook.model.task.enums.Assignment;
 
 public class TaskAddCommandTest {
 
-    private static final Name NAME = new Name(DEFAULT_NAME);
-    private static final Description DESCRIPTION_ONE = new Description("Placeholder1");
-    private static final Description DESCRIPTION_TWO = new Description("Placeholder2");
-    private static final Assignment ASSIGNMENT = Assignment.TO;
+    private static final Name NAME_AMY = new Name("Amy");
+    private static final Name NAME_BOB = new Name("Bob");
+    private static final Description DESCRIPTION_ONE = new Description("DESCRIPTION ONE");
+    private static final Description DESCRIPTION_TWO = new Description("DESCRIPTION TWO");
+    private static final Assignment ASSIGNMENT_TO = Assignment.TO;
+    private static final Assignment ASSIGNMENT_FROM = Assignment.FROM;
 
     @Test
     public void constructor_nullName_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new TaskAddCommand(null, DESCRIPTION_ONE, ASSIGNMENT));
+        assertThrows(NullPointerException.class, () -> new TaskAddCommand(null, DESCRIPTION_ONE, ASSIGNMENT_TO));
     }
 
     @Test
     public void constructor_nullDescription_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new TaskAddCommand(NAME, null, ASSIGNMENT));
+        assertThrows(NullPointerException.class, () -> new TaskAddCommand(NAME_AMY, null, ASSIGNMENT_TO));
     }
 
     @Test
     public void constructor_nullAssignment_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new TaskAddCommand(NAME, DESCRIPTION_ONE, null));
+        assertThrows(NullPointerException.class, () -> new TaskAddCommand(NAME_AMY, DESCRIPTION_ONE, null));
     }
 
     @Test
     public void equals() {
-        TaskAddCommand addTaskCommandOne = new TaskAddCommand(NAME, DESCRIPTION_ONE, ASSIGNMENT);
-        TaskAddCommand addTaskCommandTwo = new TaskAddCommand(NAME, DESCRIPTION_TWO, ASSIGNMENT);
+        // 2 tasks with different descriptions
+        TaskAddCommand addTaskCommandOne = new TaskAddCommand(NAME_AMY, DESCRIPTION_ONE, ASSIGNMENT_TO);
+        TaskAddCommand addTaskCommandTwo = new TaskAddCommand(NAME_AMY, DESCRIPTION_TWO, ASSIGNMENT_TO);
+
+        // 2 tasks with different names
+        TaskAddCommand addTaskCommandThree = new TaskAddCommand(NAME_AMY, DESCRIPTION_ONE, ASSIGNMENT_TO);
+        TaskAddCommand addTaskCommandFour = new TaskAddCommand(NAME_BOB, DESCRIPTION_ONE, ASSIGNMENT_TO);
+
+        // 2 tasks with different assignments
+        TaskAddCommand addTaskCommandFive = new TaskAddCommand(NAME_AMY, DESCRIPTION_ONE, ASSIGNMENT_TO);
+        TaskAddCommand addTaskCommandSix = new TaskAddCommand(NAME_AMY, DESCRIPTION_ONE, ASSIGNMENT_FROM);
 
         // same object -> returns true
         assertTrue(addTaskCommandOne.equals(addTaskCommandOne));
 
         // same values -> returns true
-        TaskAddCommand addTaskCommandOneCopy = new TaskAddCommand(NAME, DESCRIPTION_ONE, ASSIGNMENT);
+        TaskAddCommand addTaskCommandOneCopy = new TaskAddCommand(NAME_AMY, DESCRIPTION_ONE, ASSIGNMENT_TO);
         assertTrue(addTaskCommandOne.equals(addTaskCommandOneCopy));
 
         // different types -> returns false
@@ -52,7 +62,13 @@ public class TaskAddCommandTest {
         // null -> returns false
         assertFalse(addTaskCommandOne.equals(null));
 
-        // different task -> returns false
+        // different description -> returns false
         assertFalse(addTaskCommandOne.equals(addTaskCommandTwo));
+
+        // different name -> returns false
+        assertFalse(addTaskCommandThree.equals(addTaskCommandFour));
+
+        // different assignment -> returns false
+        assertFalse(addTaskCommandFive.equals(addTaskCommandSix));
     }
 }
