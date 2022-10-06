@@ -14,8 +14,8 @@ import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.address.model.TaskList;
 import seedu.address.model.ReadOnlyTaskList;
+import seedu.address.model.TaskList;
 
 public class JsonTaskListStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonTaskListStorageTest");
