@@ -100,17 +100,14 @@ public class EditAppointmentCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        // short circuit if same object
         if (other == this) {
             return true;
         }
 
-        // instanceof handles nulls
         if (!(other instanceof EditAppointmentCommand)) {
             return false;
         }
 
-        // state check
         EditAppointmentCommand e = (EditAppointmentCommand) other;
         return index.equals(e.index)
                 && editAppointmentDescriptor.equals(e.editAppointmentDescriptor);
@@ -180,17 +177,14 @@ public class EditAppointmentCommand extends Command {
 
         @Override
         public boolean equals(Object other) {
-            // short circuit if same object
             if (other == this) {
                 return true;
             }
 
-            // instanceof handles nulls
             if (!(other instanceof EditAppointmentDescriptor)) {
                 return false;
             }
 
-            // state check
             EditAppointmentDescriptor e = (EditAppointmentDescriptor) other;
 
             return getEmail().equals(e.getEmail())
