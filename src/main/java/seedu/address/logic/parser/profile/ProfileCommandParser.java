@@ -1,6 +1,7 @@
 package seedu.address.logic.parser.profile;
 
 import static seedu.address.commons.core.Messages.MESSAGE_FLAG_NOT_SPECIFIED;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
@@ -31,6 +32,10 @@ public class ProfileCommandParser implements Parser<ProfileCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public ProfileCommand parse(String args) throws ParseException {
+        if (!args.matches("\\h+(-(\\S*)(\\h+(?!-)\\S+)?)(\\h+(?!-)\\S*.)*")) {
+            throw new ParseException(String.format(MESSAGE_FLAG_NOT_SPECIFIED));
+        }
+
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,
                         PREFIX_OPTION, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG);
