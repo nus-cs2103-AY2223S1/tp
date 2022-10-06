@@ -138,4 +138,19 @@ public class Person {
 
     }
 
+    /**
+     * Gets the string to be displayed in the main UI page.
+     * @return The display string
+     */
+    public String toDisplayString() {
+
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getPhone()).append(" ").append(getEmail());
+        builder.append(getAddress());
+        builder.append(getServers());
+        builder.append("Timezone: ").append(getTimeZone());
+        return builder.toString();
+
+    }
+
 }
