@@ -25,13 +25,12 @@ public class AssignCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assign students to a class. "
             + "Parameters: INDEX... (must be positive integers) "
-            + PREFIX_MODULE_CLASS + "CLASS_NAME\n"
+            + PREFIX_MODULE_CLASS + "CLASS_NAME (case sensitive)\n"
             + "Example: " + COMMAND_WORD + " "
             + "1 2 3 "
             + PREFIX_MODULE_CLASS + "CS1231S";
 
     public static final String MESSAGE_SUCCESS = "Students with %1$s %2$s are assigned to: %3$s";
-    public static final String MESSAGE_DUPLICATE_MODULE_CLASS = "Some students are already assigned with this class";
 
     private final List<Index> indices;
     private final ModuleClass moduleClassToAssign;

@@ -2,6 +2,7 @@ package seedu.taassist.logic;
 
 import java.nio.file.Path;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import seedu.taassist.commons.core.GuiSettings;
 import seedu.taassist.logic.commands.CommandResult;
@@ -47,4 +48,9 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Returns the current focus label as a {@code SimpleStringProperty}.
+     */
+    SimpleStringProperty getFocusLabelProperty();
 }

@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.taassist.commons.core.GuiSettings;
@@ -19,11 +20,15 @@ import seedu.taassist.model.student.Student;
  * Represents the in-memory model of TA-Assist data.
  */
 public class ModelManager implements Model {
+    private static final String DEFAULT_FOCUS_LABEL = "";
+    private static final String FOCUS_LABEL_FORMAT = "Focus: %s";
+
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final TaAssist taAssist;
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
+    private final SimpleStringProperty focusLabelProperty;
     private ModuleClass focusedClass;
 
     /**
@@ -37,6 +42,7 @@ public class ModelManager implements Model {
         this.taAssist = new TaAssist(taAssist);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.taAssist.getStudentList());
+        focusLabelProperty = new SimpleStringProperty(DEFAULT_FOCUS_LABEL);
     }
 
     public ModelManager() {
@@ -179,6 +185,7 @@ public class ModelManager implements Model {
     public void enterFocusMode(ModuleClass classToFocus) {
         requireNonNull(classToFocus);
         this.focusedClass = classToFocus;
+        focusLabelProperty.set(String.format(FOCUS_LABEL_FORMAT, focusedClass));
         IsPartOfClassPredicate predicate = new IsPartOfClassPredicate(classToFocus);
         updateFilteredStudentList(predicate);
     }
@@ -186,6 +193,7 @@ public class ModelManager implements Model {
     @Override
     public void exitFocusMode() {
         focusedClass = null;
+        focusLabelProperty.set(DEFAULT_FOCUS_LABEL);
         updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
     }
 
@@ -197,5 +205,10 @@ public class ModelManager implements Model {
     @Override
     public ModuleClass getFocusedClass() {
         return focusedClass;
+    }
+
+    @Override
+    public SimpleStringProperty getFocusLabelProperty() {
+        return focusLabelProperty;
     }
 }

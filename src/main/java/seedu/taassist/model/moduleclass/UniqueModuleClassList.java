@@ -3,6 +3,7 @@ package seedu.taassist.model.moduleclass;
 import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
@@ -105,14 +106,7 @@ public class UniqueModuleClassList implements Iterable<ModuleClass> {
      * Returns true if {@code moduleClasses} contains only unique classes.
      */
     private boolean isUniqueListOfModuleClasses(List<ModuleClass> moduleClasses) {
-        for (int i = 0; i < moduleClasses.size() - 1; i++) {
-            for (int j = i + 1; j < moduleClasses.size(); j++) {
-                if (moduleClasses.get(i).equals(moduleClasses.get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
+        return new HashSet<>(moduleClasses).size() == moduleClasses.size();
     }
 }
 

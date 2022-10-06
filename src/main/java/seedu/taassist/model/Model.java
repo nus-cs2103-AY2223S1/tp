@@ -3,6 +3,7 @@ package seedu.taassist.model;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import seedu.taassist.commons.core.GuiSettings;
 import seedu.taassist.model.moduleclass.ModuleClass;
@@ -118,4 +119,6 @@ public interface Model {
 
     /** Returns module class currently in focus. */
     ModuleClass getFocusedClass();
+
+    SimpleStringProperty getFocusLabelProperty();
 }

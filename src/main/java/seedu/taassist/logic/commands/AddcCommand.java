@@ -14,39 +14,40 @@ public class AddcCommand extends Command {
 
     public static final String COMMAND_WORD = "addc";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a class to TA-Assist. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Adds a class to TA-Assist. "
             + "Parameters: "
-            + PREFIX_MODULE_CLASS + "CLASS_NAME\n"
+            + PREFIX_MODULE_CLASS + "CLASS_NAME (case sensitive)\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_MODULE_CLASS + "CS1231S";
 
     public static final String MESSAGE_SUCCESS = "New class added: %1$s";
     public static final String MESSAGE_DUPLICATE_MODULE_CLASS = "This class already exists in TA-Assist";
 
-    private final ModuleClass toAdd;
+    private final ModuleClass moduleClass;
 
     /**
      * Creates an AddCommand to add the specified {@code ModuleClass}.
      */
     public AddcCommand(ModuleClass moduleClass) {
         requireNonNull(moduleClass);
-        toAdd = moduleClass;
+        this.moduleClass = moduleClass;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (model.hasModuleClass(toAdd)) {
+        if (model.hasModuleClass(moduleClass)) {
             throw new CommandException(MESSAGE_DUPLICATE_MODULE_CLASS);
         }
-        model.addModuleClass(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        model.addModuleClass(moduleClass);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, moduleClass));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddcCommand // instanceof handles nulls
-                && toAdd.equals(((AddcCommand) other).toAdd));
+                && moduleClass.equals(((AddcCommand) other).moduleClass));
     }
 }

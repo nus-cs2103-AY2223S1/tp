@@ -50,5 +50,4 @@ public class ModuleClass {
     public String toString() {
         return '[' + className + ']';
     }
-
 }

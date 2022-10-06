@@ -25,13 +25,12 @@ public class UnassignCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unassigns students from a class. "
             + "Parameters: INDEX... (must be positive integers) "
-            + PREFIX_MODULE_CLASS + "CLASS_NAME\n"
+            + PREFIX_MODULE_CLASS + "CLASS_NAME (case sensitive)\n"
             + "Example: " + COMMAND_WORD + " "
             + "1 2 3 "
             + PREFIX_MODULE_CLASS + "CS1231S";
 
     public static final String MESSAGE_SUCCESS = "Students with %1$s %2$s are unassigned from: %3$s";
-    public static final String MESSAGE_MODULE_CLASS_NOT_ASSIGNED = "Some students are not assigned to this class";
 
     private final List<Index> indices;
     private final ModuleClass moduleClassToUnassign;
