@@ -6,6 +6,7 @@ import java.util.Set;
 
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
+import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -21,6 +22,7 @@ public abstract class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_GENDER = "F";
+    public static final String DEFAULT_LOCATION = "NUS";
 
 
     private Name name;
@@ -28,6 +30,7 @@ public abstract class PersonBuilder {
     private Email email;
     private Gender gender;
     private Set<Tag> tags;
+    private Location location;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -38,6 +41,7 @@ public abstract class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         gender = new Gender(DEFAULT_GENDER);
         tags = new HashSet<>();
+        location = new Location(DEFAULT_LOCATION);
     }
 
     /**
@@ -49,6 +53,7 @@ public abstract class PersonBuilder {
         email = personToCopy.getEmail();
         gender = personToCopy.getGender();
         tags = new HashSet<>(personToCopy.getTags());
+        location = new Location(DEFAULT_LOCATION);
     }
 
     /**
@@ -91,6 +96,14 @@ public abstract class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Location} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withLocation(String location) {
+        this.location = new Location(location);
+        return this;
+    }
+
     public Name getName() {
         return name;
     }
@@ -109,6 +122,10 @@ public abstract class PersonBuilder {
 
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public Location getLocation() {
+        return location;
     }
 
     public abstract Person build();

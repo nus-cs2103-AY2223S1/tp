@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
+import seedu.address.model.person.Location;
 import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -30,8 +31,9 @@ class JsonAdaptedProfessor extends JsonAdaptedPerson {
     public JsonAdaptedProfessor(@JsonProperty("type") String type, @JsonProperty("name") String name,
                                 @JsonProperty("moduleCode") String moduleCode, @JsonProperty("phone") String phone,
                                 @JsonProperty("email") String email, @JsonProperty("gender") String gender,
-                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
-        super(type, name, moduleCode, phone, email, gender, tagged);
+                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                                @JsonProperty("location") String location) {
+        super(type, name, moduleCode, phone, email, gender, tagged, location);
     }
 
     /**
@@ -86,7 +88,7 @@ class JsonAdaptedProfessor extends JsonAdaptedPerson {
 
         if (getModuleCode() == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    ModuleCode.class.getSimpleName()));
+                ModuleCode.class.getSimpleName()));
         }
         if (!ModuleCode.isValidModuleCode(getModuleCode())) {
             throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
@@ -94,7 +96,20 @@ class JsonAdaptedProfessor extends JsonAdaptedPerson {
         final ModuleCode modelModuleCode = new ModuleCode(getModuleCode());
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Professor(modelName, modelModuleCode, modelPhone, modelEmail, modelGender, modelTags);
+
+        if (getLocation() == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                Location.class.getSimpleName()));
+        }
+
+        if (!Location.isValidLocation(getLocation())) {
+            throw new IllegalValueException(Location.MESSAGE_CONSTRAINTS);
+        }
+
+        final Location modelLocation = new Location(getLocation());
+
+        return new Professor(modelName, modelModuleCode, modelPhone, modelEmail, modelGender, modelTags,
+            modelLocation);
     }
 
 }
