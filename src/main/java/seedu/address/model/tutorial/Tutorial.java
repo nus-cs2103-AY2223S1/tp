@@ -81,8 +81,8 @@ public class Tutorial {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("Tutorial")
-                .append("; Group: ")
+        builder.append("Tutorial Information")
+                .append(": Group: ")
                 .append(getGroup())
                 .append("; Content: ")
                 .append(getContent())
