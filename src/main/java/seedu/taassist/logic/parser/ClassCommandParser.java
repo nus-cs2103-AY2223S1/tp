@@ -1,9 +1,9 @@
 package seedu.taassist.logic.parser;
 
 import static seedu.taassist.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.taassist.logic.parser.ParserUtil.parseModuleClass;
 
 import seedu.taassist.logic.commands.ClassCommand;
-import static seedu.taassist.logic.parser.ParserUtil.parseModuleClass;
 import seedu.taassist.logic.parser.exceptions.ParseException;
 import seedu.taassist.model.moduleclass.ModuleClass;
 
