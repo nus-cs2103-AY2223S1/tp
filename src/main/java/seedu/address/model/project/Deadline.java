@@ -32,8 +32,6 @@ public class Deadline {
 
     private LocalDate projectDeadline;
 
-    private String deadlineString;
-
     /**
      * Constructs a project Deadline.
      *
@@ -43,7 +41,6 @@ public class Deadline {
         requireNonNull(deadline);
         checkArgument(isValidDeadline(deadline), MESSAGE_CONSTRAINTS);
         this.projectDeadline = LocalDate.parse(deadline);
-        this.deadlineString = deadline;
     }
 
     /**
@@ -59,6 +56,6 @@ public class Deadline {
 
     @Override
     public String toString() {
-        return deadlineString;
+        return projectDeadline.toString();
     }
 }
