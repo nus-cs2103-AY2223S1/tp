@@ -3,6 +3,7 @@ package seedu.address.model.student;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -20,31 +21,39 @@ public class Student {
 
     // Parent fields
     private final Name parentName;
-    private final Address address;
     private final Phone phone;
+    private final Address address;
+
+    // Additional fields - may not be implemented
+    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
+    public Student(Name studentName, Id id, Name parentName, Phone phone, Address address, Set<Tag> tags) {
+        requireAllNonNull(studentName, id, parentName, phone, address);
+        this.studentName = studentName;
+        this.id = id;
+        this.parentName = parentName;
         this.phone = phone;
-        this.email = email;
         this.address = address;
         this.tags.addAll(tags);
     }
 
-    public Name getName() {
-        return name;
+    public Name getStudentName() {
+        return studentName;
+    }
+
+    public Id getId() {
+        return id;
+    }
+
+    public Name getParentName() {
+        return parentName;
     }
 
     public Phone getPhone() {
         return phone;
-    }
-
-    public Email getEmail() {
-        return email;
     }
 
     public Address getAddress() {
@@ -60,8 +69,8 @@ public class Student {
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both students have the same name.
+     * This defines a weaker notion of equality between two students.
      */
     public boolean isSameStudent(Student otherStudent) {
         if (otherStudent == this) {
@@ -69,12 +78,12 @@ public class Student {
         }
 
         return otherStudent != null
-                && otherStudent.getName().equals(getName());
+                && otherStudent.getStudentName().equals(getStudentName());
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both students have the same identity and parent fields.
+     * This defines a stronger notion of equality between two students.
      */
     @Override
     public boolean equals(Object other) {
@@ -87,27 +96,29 @@ public class Student {
         }
 
         Student otherStudent = (Student) other;
-        return otherStudent.getName().equals(getName())
+        return otherStudent.getStudentName().equals(getStudentName())
+                && otherStudent.getId().equals(getId())
+                && otherStudent.getParentName().equals(getParentName())
                 && otherStudent.getPhone().equals(getPhone())
-                && otherStudent.getEmail().equals(getEmail())
-                && otherStudent.getAddress().equals(getAddress())
-                && otherStudent.getTags().equals(getTags());
+                && otherStudent.getAddress().equals(getAddress());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(studentName, id, parentName, phone, address);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
+        builder.append(getStudentName())
+                .append("; Id: ")
+                .append(getId())
+                .append("; Parent Name: ")
+                .append(getParentName())
                 .append("; Phone: ")
                 .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
                 .append("; Address: ")
                 .append(getAddress());
 
