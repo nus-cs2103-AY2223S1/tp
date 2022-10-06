@@ -8,16 +8,16 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.FoodBuilder;
 
-public class IsTodayPredicateTest {
+public class IsFoodAddedTodayPredicateTest {
     @Test
     public void test_foodRecordedOnSameDay_returnsTrue() {
-        IsTodayPredicate predicate = new IsTodayPredicate();
+        IsFoodAddedTodayPredicate predicate = new IsFoodAddedTodayPredicate();
         assertTrue(predicate.test(new FoodBuilder().build()));
     }
 
     @Test
     public void test_foodRecordedOnDifferentDay_returnsFalse() {
-        IsTodayPredicate predicate = new IsTodayPredicate();
+        IsFoodAddedTodayPredicate predicate = new IsFoodAddedTodayPredicate();
         assertFalse(predicate.test(new FoodBuilder().withDateTime(DEFAULT_EARLIER_TIME).build()));
     }
 }

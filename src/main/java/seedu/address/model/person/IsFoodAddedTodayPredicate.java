@@ -3,15 +3,15 @@ package seedu.address.model.person;
 import java.util.function.Predicate;
 
 /**
- * Tests if a {@code Food} was recorded today.
+ * Tests if a {@code Food} was added today.
  */
-public class IsTodayPredicate implements Predicate<Food> {
+public class IsFoodAddedTodayPredicate implements Predicate<Food> {
     private final DateTime dateTime;
 
     /**
-     * Constructs a {@code IsTodayPredicate}.
+     * Constructs a {@code IsFoodAddedTodayPredicate}.
      */
-    public IsTodayPredicate() {
+    public IsFoodAddedTodayPredicate() {
         this.dateTime = new DateTime();
     }
 
@@ -23,7 +23,7 @@ public class IsTodayPredicate implements Predicate<Food> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof IsTodayPredicate // instanceof handles nulls
-                && dateTime.equals(((IsTodayPredicate) other).dateTime)); // state check
+                || (other instanceof IsFoodAddedTodayPredicate // instanceof handles nulls
+                && dateTime.equals(((IsFoodAddedTodayPredicate) other).dateTime)); // state check
     }
 }
