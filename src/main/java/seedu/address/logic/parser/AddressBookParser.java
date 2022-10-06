@@ -15,6 +15,9 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.TutorialGroupAddCommand;
+import seedu.address.logic.commands.TutorialGroupDeleteCommand;
+import seedu.address.logic.commands.TutorialGroupListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -27,6 +30,9 @@ public class AddressBookParser {
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
+    private static final Pattern COMPLEX_COMMAND_FORMAT = Pattern
+            .compile("(?<commandWord>(\\S+ \\S+))(?<arguments>.*)");
+
     /**
      * Parses user input into command for execution.
      *
@@ -36,6 +42,7 @@ public class AddressBookParser {
      */
     public Command parseCommand(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
@@ -61,6 +68,15 @@ public class AddressBookParser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case TutorialGroupAddCommand.COMMAND_WORD:
+            return new TutorialGroupAddCommandParser().parse(arguments);
+
+        case TutorialGroupDeleteCommand.COMMAND_WORD:
+            return new TutorialGroupDeleteCommandParser().parse(arguments);
+
+        case TutorialGroupListCommand.COMMAND_WORD:
+            return new TutorialGroupListCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

@@ -19,6 +19,7 @@ public class Student {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final TutorialGroup tutorialGroup;
 
     // Data fields
     private final Address address;
@@ -34,6 +35,21 @@ public class Student {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.tutorialGroup = new TutorialGroup();
+    }
+
+    /**
+     * Overload the constructor.
+     */
+    public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags, TutorialGroup tutorialGroup) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.tutorialGroup = tutorialGroup;
+        tutorialGroup.addStudentToTutorialGroup(this);
     }
 
     public Name getName() {
@@ -51,6 +67,8 @@ public class Student {
     public Address getAddress() {
         return address;
     }
+
+    public TutorialGroup getTutorialGroup() { return tutorialGroup; }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}

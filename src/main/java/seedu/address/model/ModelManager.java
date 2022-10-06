@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.TutorialGroup;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
+    private final FilteredList<TutorialGroup> filteredTutorialGroups;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +36,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.addressBook.getStudentList());
+        filteredTutorialGroups = new FilteredList<>(this.addressBook.getTutorialGroupList());
     }
 
     public ModelManager() {
@@ -111,6 +114,23 @@ public class ModelManager implements Model {
         addressBook.setStudent(target, editedStudent);
     }
 
+    @Override
+    public boolean hasTutorialGroup(TutorialGroup tutorialGroup) {
+        requireNonNull(tutorialGroup);
+        return addressBook.hasTutorialGroup(tutorialGroup);
+    }
+
+    @Override
+    public void deleteTutorialGroup(TutorialGroup target) {
+        addressBook.removeTutorialGroup(target);
+    }
+
+    @Override
+    public void addTutorialGroup(TutorialGroup tutorialGroup) {
+        addressBook.addTutorialGroup(tutorialGroup);
+        updateFilteredTutorialGroupList(PREDICATE_SHOW_ALL_TUTORIAL_GROUPS);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -123,10 +143,23 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<TutorialGroup> getFilteredTutorialGroupList() {
+        return filteredTutorialGroups;
+    }
+
+    @Override
     public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
         filteredStudents.setPredicate(predicate);
     }
+
+    @Override
+    public void updateFilteredTutorialGroupList(Predicate<TutorialGroup> predicate) {
+        requireNonNull(predicate);
+        filteredTutorialGroups.setPredicate(predicate);
+    }
+
+
 
     @Override
     public boolean equals(Object obj) {
