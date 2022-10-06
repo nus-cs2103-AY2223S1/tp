@@ -124,7 +124,7 @@ public class Person {
                 && otherPerson.getMoneyOwed().equals(getMoneyOwed())
                 && otherPerson.getMoneyPaid().equals(getMoneyPaid())
                 && otherPerson.getAdditionalNotes().equals(getAdditionalNotes())
-                && otherPerson.getAClass().equals(getAClass());
+                && otherPerson.getAClass().toString().equals(getAClass().toString());
     }
 
     @Override

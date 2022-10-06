@@ -24,7 +24,6 @@ public class PersonBuilder {
     public static final Integer DEFAULT_MONEY_OWED = 0;
     public static final Integer DEFAULT_MONEY_PAID = 0;
     public static final String DEFAULT_ADDITIONALNOTES = "";
-    public static final String DEFAULT_CLASS_DATE_TIME = "";
 
     private Name name;
     private Phone phone;
@@ -46,7 +45,7 @@ public class PersonBuilder {
         moneyOwed = new MoneyOwed(DEFAULT_MONEY_OWED);
         moneyPaid = new MoneyPaid(DEFAULT_MONEY_PAID);
         additionalNotes = new AdditionalNotes(DEFAULT_ADDITIONALNOTES);
-        aClass = new Class(DEFAULT_CLASS_DATE_TIME);
+        aClass = new Class("");
     }
 
     /**
@@ -116,6 +115,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withAdditionalNotes(String additionalNotes) {
         this.additionalNotes = new AdditionalNotes(additionalNotes);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Class} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withClass(String classDateTime) throws ParseException {
+        this.aClass = ParserUtil.parseClass(classDateTime);
         return this;
     }
 

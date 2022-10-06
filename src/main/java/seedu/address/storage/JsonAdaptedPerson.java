@@ -105,7 +105,7 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Class modelClassDateTime;
-        if (!classDateTime.equals(null) && !classDateTime.equals("")) {
+        if (classDateTime != null && !classDateTime.equals("")) {
             if (!Class.isValidClassString(classDateTime)) {
                 throw new IllegalValueException(Class.MESSAGE_CONSTRAINTS);
             }

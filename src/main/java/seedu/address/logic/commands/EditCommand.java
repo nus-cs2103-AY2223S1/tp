@@ -143,7 +143,7 @@ public class EditCommand extends Command {
         private MoneyOwed moneyOwed;
         private MoneyPaid moneyPaid;
         private AdditionalNotes additionalNotes;
-        private Class classDateTime;
+        private Class aClass;
 
         public EditPersonDescriptor() {}
 
@@ -155,7 +155,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
-            setClass(toCopy.classDateTime);
+            setClass(toCopy.aClass);
             setMoneyOwed(toCopy.moneyOwed);
             setMoneyPaid(toCopy.moneyPaid);
             setAdditionalNotes(toCopy.additionalNotes);
@@ -165,7 +165,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, classDateTime, moneyOwed, moneyPaid,
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, aClass, moneyOwed, moneyPaid,
                     additionalNotes);
         }
 
@@ -225,12 +225,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(additionalNotes);
         }
 
-        public void setClass(Class classDateTime) {
-            this.classDateTime = classDateTime;
+        public void setClass(Class aClass) {
+            this.aClass = aClass;
         }
 
         public Optional<Class> getAClass() {
-            return Optional.ofNullable(classDateTime);
+            return Optional.ofNullable(aClass).equals(Optional.empty())
+                    ? Optional.ofNullable(new Class(""))
+                    : Optional.ofNullable(aClass);
         }
 
         @Override
@@ -247,6 +249,8 @@ public class EditCommand extends Command {
 
             // state check
             EditPersonDescriptor e = (EditPersonDescriptor) other;
+            System.out.println(getAClass().toString());
+            System.out.println(e.getAClass().toString());
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
@@ -255,7 +259,7 @@ public class EditCommand extends Command {
                     && getMoneyOwed().equals(e.getMoneyOwed())
                     && getMoneyPaid().equals(e.getMoneyPaid())
                     && getAdditionalNotes().equals(e.getAdditionalNotes())
-                    && getAClass().equals(e.getAClass());
+                    && getAClass().toString().equals(e.getAClass().toString());
         }
     }
 }

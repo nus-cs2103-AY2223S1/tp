@@ -82,6 +82,9 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Class} of the {@code EditPersonDescriptor} that we are building.
+     */
     public EditPersonDescriptorBuilder withClass(String classDateTime) throws ParseException {
         descriptor.setClass(ParserUtil.parseClass(classDateTime));
         return this;

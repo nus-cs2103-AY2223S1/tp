@@ -60,7 +60,7 @@ public class Class {
      * @return String.
      */
     public String toString() {
-        if (date.equals(null)) {
+        if (date == null) {
             //Tutor yet to edit in a class date.
             return "";
         }
@@ -96,7 +96,7 @@ public class Class {
     private static String convertTime(int hour, int min) {
         String time = "";
         if (hour >= 12) {
-            if (hour !=12) {
+            if (hour != 12) {
                 hour -= 12;
             }
             if (min == 0) {
