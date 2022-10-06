@@ -328,7 +328,7 @@ Use case ends.
 
 * 2a. The itinerary name is incomplete.
   * Waddle shows an error message.<br>
-  Use case resumes at step 2.
+  Use case resumes from step 2.
 
 
 **Use case: Delete an itinerary**
@@ -339,13 +339,27 @@ Use case ends.
 2. User requests to delete the itinerary.
 3. Waddle requests for user confirmation.
 4. User confirms intention to delete itinerary.
-5. Waddle deletes the itinerary.
+5. Waddle deletes the itinerary.<br>
 Use case ends.
 
 **Extensions**
-* 4a. User decides against deleting the itinerary.
-  Use case ends.
+* 4a. User decides against deleting the itinerary.<br>
+Use case ends.
 
+
+**Use case: Add an item to an itinerary**
+
+**MSS**
+
+1. User selects a specific itinerary.
+2. User requests to add new item to itinerary with accompanying description.
+3. Waddle creates new item and adds it to the list of items to be scheduled.<br>
+Use case ends.
+
+**Extensions**
+* 2a. User does not provide name of item.
+  * Waddle shows an error message.<br>
+  Use case resumes from step 2.
 
 *{More to be added}*
 
