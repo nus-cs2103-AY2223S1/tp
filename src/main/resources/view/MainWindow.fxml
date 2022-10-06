@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage"
+<fx:root minHeight="600" minWidth="800.0" onCloseRequest="#handleExit" title="ArtBuddy" type="javafx.stage.Stage"
          xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <Image url="@/images/address_book_32.png"/>
@@ -28,7 +28,7 @@
                 <URL value="@Extensions.css"/>
             </stylesheets>
 
-            <VBox>
+            <VBox minWidth="800.0">
                 <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
                     <Menu mnemonicParsing="false" text="File">
                         <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit"/>
@@ -38,24 +38,24 @@
                     </Menu>
                 </MenuBar>
 
-                <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
+                <StackPane fx:id="commandBoxPlaceholder" styleClass="background" VBox.vgrow="NEVER">
                     <padding>
                         <Insets bottom="5" left="10" right="10" top="5"/>
                     </padding>
                 </StackPane>
 
                 <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100"
-                           styleClass="pane-with-border" VBox.vgrow="NEVER">
+                           styleClass="background" VBox.vgrow="NEVER">
                     <padding>
                         <Insets bottom="5" left="10" right="10" top="5"/>
                     </padding>
                 </StackPane>
-                <VBox fx:id="tabs" minWidth="340" prefWidth="340" styleClass="pane-with-border"
+                <VBox fx:id="tabs" minWidth="340" prefWidth="340" styleClass="background"
                       AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
                       AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS">
                     <TabPane
                             styleClass="increment-button" stylesheets="@Extensions.css" tabClosingPolicy="UNAVAILABLE"
-                            VBox.vgrow="ALWAYS">
+                            tabMaxHeight="35.0" tabMinWidth="115.0" VBox.vgrow="ALWAYS">
                         <tabs>
                             <Tab text="Customers">
                                 <content>
@@ -63,12 +63,12 @@
                                         <children>
                                             <SplitPane dividerPositions="0.2" AnchorPane.bottomAnchor="0.0"
                                                        AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                                                       AnchorPane.topAnchor="0.0">
+                                                       AnchorPane.topAnchor="0.0" styleClass="split-pane">
                                                 <items>
-                                                    <AnchorPane minHeight="0.0" minWidth="0.0">
+                                                    <AnchorPane minHeight="0.0" minWidth="360.0">
                                                         <children>
-                                                            <VBox fx:id="customerList" minWidth="340" prefWidth="340"
-                                                                  styleClass="pane-with-border"
+                                                            <VBox fx:id="customerList" minHeight="380.0" minWidth="340"
+                                                                  prefWidth="340" styleClass="card-pane"
                                                                   AnchorPane.bottomAnchor="0.0"
                                                                   AnchorPane.leftAnchor="0.0"
                                                                   AnchorPane.rightAnchor="0.0"
@@ -84,7 +84,7 @@
                                                     <AnchorPane minHeight="0.0" minWidth="0.0">
                                                         <children>
                                                             <VBox fx:id="customerDetailsPane" minWidth="340"
-                                                                  prefWidth="340" styleClass="pane-with-border"
+                                                                  prefWidth="340"
                                                                   AnchorPane.bottomAnchor="0.0"
                                                                   AnchorPane.leftAnchor="0.0"
                                                                   AnchorPane.rightAnchor="0.0"
@@ -111,12 +111,13 @@
                                         <children>
                                             <SplitPane dividerPositions="0.2" AnchorPane.bottomAnchor="0.0"
                                                        AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                                                       AnchorPane.topAnchor="0.0">
+                                                       AnchorPane.topAnchor="0.0" styleClass="split-pane">
                                                 <items>
-                                                    <AnchorPane minHeight="0.0" minWidth="0.0">
+                                                    <AnchorPane minHeight="0.0" minWidth="360.0">
                                                         <children>
-                                                            <VBox fx:id="commissionList" minWidth="340" prefWidth="340"
-                                                                  styleClass="pane-with-border"
+                                                            <VBox fx:id="commissionList" minHeight="380.0"
+                                                                  minWidth="340.0" prefWidth="340"
+                                                                  styleClass="card-pane"
                                                                   AnchorPane.bottomAnchor="0.0"
                                                                   AnchorPane.leftAnchor="0.0"
                                                                   AnchorPane.rightAnchor="0.0"
@@ -129,7 +130,7 @@
                                                             </VBox>
                                                         </children>
                                                     </AnchorPane>
-                                                    <AnchorPane minHeight="0.0" minWidth="0.0" />
+                                                    <AnchorPane minHeight="0.0" minWidth="0.0"/>
                                                 </items>
                                             </SplitPane>
                                         </children>
@@ -140,6 +141,9 @@
                         <effect>
                             <ColorAdjust/>
                         </effect>
+                  <VBox.margin>
+                     <Insets bottom="25.0" left="25.0" right="25.0" top="18.0" />
+                  </VBox.margin>
                     </TabPane>
                 </VBox>
 
