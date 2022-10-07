@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,6 +27,21 @@ public class ArgumentTokenizer {
     public static ArgumentMultimap tokenize(String argsString, Prefix... prefixes) {
         List<PrefixPosition> positions = findAllPrefixPositions(argsString, prefixes);
         return extractArguments(argsString, positions);
+    }
+
+    /**
+     * Tokenizes an arguments string and returns an {@code List<PrefixArgument>} object that stores a list of
+     * PrefixArguments. Each PrefixArgument contains a prefix and its argument value. Only the given prefixes will be
+     * recognized in the arguments string. The PrefixArguments are in the same order as that their prefix appeared in
+     * argsString.
+     *
+     * @param argsString Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}
+     * @param prefixes   Prefixes to tokenize the arguments string with
+     * @return           List of prefixes and their respective argument values
+     */
+    public static List<PrefixArgument> tokenizeToList(String argsString, Prefix... prefixes) {
+        List<PrefixPosition> positions = findAllPrefixPositions(argsString, prefixes);
+        return extractArgumentsToList(argsString, positions);
     }
 
     /**
@@ -63,7 +79,7 @@ public class ArgumentTokenizer {
      * is valid if there is a whitespace before {@code prefix}. Returns -1 if no
      * such occurrence can be found.
      *
-     * E.g if {@code argsString} = "e/hip/900", {@code prefix} = "p/" and
+     * E.g. if {@code argsString} = "e/hip/900", {@code prefix} = "p/" and
      * {@code fromIndex} = 0, this method returns -1 as there are no valid
      * occurrences of "p/" with whitespace before it. However, if
      * {@code argsString} = "e/hi p/900", {@code prefix} = "p/" and
@@ -85,19 +101,9 @@ public class ArgumentTokenizer {
      * @return                ArgumentMultimap object that maps prefixes to their arguments
      */
     private static ArgumentMultimap extractArguments(String argsString, List<PrefixPosition> prefixPositions) {
+        sortPrefixPositions(argsString.length(), prefixPositions);
 
-        // Sort by start position
-        prefixPositions.sort((prefix1, prefix2) -> prefix1.getStartPosition() - prefix2.getStartPosition());
-
-        // Insert a PrefixPosition to represent the preamble
-        PrefixPosition preambleMarker = new PrefixPosition(new Prefix(""), 0);
-        prefixPositions.add(0, preambleMarker);
-
-        // Add a dummy PrefixPosition to represent the end of the string
-        PrefixPosition endPositionMarker = new PrefixPosition(new Prefix(""), argsString.length());
-        prefixPositions.add(endPositionMarker);
-
-        // Map prefixes to their argument values (if any)
+        // Store prefixes and their argument values (if any)
         ArgumentMultimap argMultimap = new ArgumentMultimap();
         for (int i = 0; i < prefixPositions.size() - 1; i++) {
             // Extract and store prefixes and their arguments
@@ -107,6 +113,50 @@ public class ArgumentTokenizer {
         }
 
         return argMultimap;
+    }
+
+    /**
+     * Extracts prefixes and their argument values, converts them to {@code PrefixArgument}, and returns a {@code List}
+     * of {@code PrefixArgument}. Prefixes are extracted based on their zero-based positions in {@code argsString}.
+     *
+     * @param argsString      Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}
+     * @param prefixPositions Zero-based positions of all prefixes in {@code argsString}
+     * @return                List of PrefixArgument, in the order that the prefixes appeared in {@code argsString}
+     */
+    private static List<PrefixArgument> extractArgumentsToList(String argsString,
+                                                               List<PrefixPosition> prefixPositions) {
+        sortPrefixPositions(argsString.length(), prefixPositions);
+
+        // Map prefixes to their argument values (if any)
+        List<PrefixArgument> argList = new ArrayList<>();
+        for (int i = 0; i < prefixPositions.size() - 1; i++) {
+            // Extract and store prefixes and their arguments
+            Prefix argPrefix = prefixPositions.get(i).getPrefix();
+            String argValue = extractArgumentValue(argsString, prefixPositions.get(i), prefixPositions.get(i + 1));
+            argList.add(new PrefixArgument(argPrefix, argValue));
+        }
+
+        return argList;
+    }
+
+    /**
+     * Sort a list of PrefixPositions by their positions.
+     * Inserts dummy PrefixPositions at the start and end of the list to denote the boundaries of the argument string.
+     *
+     * @param len             The length of the argument string
+     * @param prefixPositions The list of PrefixPositions to sort
+     */
+    private static void sortPrefixPositions(int len, List<PrefixPosition> prefixPositions) {
+        // Sort by start position
+        prefixPositions.sort(Comparator.comparingInt(PrefixPosition::getStartPosition));
+
+        // Insert a PrefixPosition to represent the preamble
+        PrefixPosition preambleMarker = new PrefixPosition(new Prefix(""), 0);
+        prefixPositions.add(0, preambleMarker);
+
+        // Add a dummy PrefixPosition to represent the end of the string
+        PrefixPosition endPositionMarker = new PrefixPosition(new Prefix(""), len);
+        prefixPositions.add(endPositionMarker);
     }
 
     /**
@@ -128,7 +178,7 @@ public class ArgumentTokenizer {
      * Represents a prefix's position in an arguments string.
      */
     private static class PrefixPosition {
-        private int startPosition;
+        private final int startPosition;
         private final Prefix prefix;
 
         PrefixPosition(Prefix prefix, int startPosition) {
@@ -141,6 +191,27 @@ public class ArgumentTokenizer {
         }
 
         Prefix getPrefix() {
+            return prefix;
+        }
+    }
+
+    /**
+     * Represents a prefix and its argument value.
+     */
+    public static class PrefixArgument {
+        private final Prefix prefix;
+        private final String argument;
+
+        PrefixArgument(Prefix prefix, String argument) {
+            this.prefix = prefix;
+            this.argument = argument;
+        }
+
+        public String getArgument() {
+            return argument;
+        }
+
+        public Prefix getPrefix() {
             return prefix;
         }
     }

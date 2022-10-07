@@ -2,11 +2,13 @@ package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.ArrayList;
@@ -16,6 +18,7 @@ import java.util.Collections;
 import java.util.List;
 
 // import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
@@ -85,6 +88,80 @@ public class AddressBookTest {
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+    }
+
+    @Test
+    void sortByName() {
+        AddressBook sampleA = new AddressBook();
+        AddressBook sampleB = new AddressBook();
+        sampleA.addPerson(ALICE);
+        sampleA.addPerson(BENSON);
+        sampleB.addPerson(BENSON);
+        sampleB.addPerson(ALICE);
+        sampleA.sortByName(true);
+        assertEquals(sampleA, sampleB);
+        sampleA.sortByName(false);
+        assertNotEquals(sampleA, sampleB);
+    }
+
+    @Test
+    void sortByPhone() {
+        AddressBook sampleA = new AddressBook();
+        AddressBook sampleB = new AddressBook();
+        sampleA.addPerson(ALICE);
+        sampleA.addPerson(BENSON);
+        sampleB.addPerson(BENSON);
+        sampleB.addPerson(ALICE);
+        sampleA.sortByPhone(true);
+        assertEquals(sampleA, sampleB);
+        sampleA.sortByPhone(false);
+        assertNotEquals(sampleA, sampleB);
+    }
+
+    @Test
+    void sortByEmail() {
+        AddressBook sampleA = new AddressBook();
+        AddressBook sampleB = new AddressBook();
+        sampleA.addPerson(ALICE);
+        sampleA.addPerson(BENSON);
+        sampleB.addPerson(BENSON);
+        sampleB.addPerson(ALICE);
+        sampleA.sortByEmail(true);
+        assertEquals(sampleA, sampleB);
+        sampleA.sortByEmail(false);
+        assertNotEquals(sampleA, sampleB);
+    }
+
+    @Test
+    void sortByAddress() {
+        AddressBook sampleA = new AddressBook();
+        AddressBook sampleB = new AddressBook();
+        sampleA.addPerson(ALICE);
+        sampleA.addPerson(BENSON);
+        sampleB.addPerson(BENSON);
+        sampleB.addPerson(ALICE);
+        sampleA.sortByAddress(true);
+        assertEquals(sampleA, sampleB);
+        sampleA.sortByAddress(false);
+        assertNotEquals(sampleA, sampleB);
+    }
+
+    /**
+     * Disabled until test methods has been updated for upgraded tags.
+     */
+    @Test
+    @Disabled
+    void sortByTag() {
+        AddressBook sampleA = new AddressBook();
+        AddressBook sampleB = new AddressBook();
+        sampleA.addPerson(ALICE);
+        sampleA.addPerson(BENSON);
+        sampleB.addPerson(BENSON);
+        sampleB.addPerson(ALICE);
+        sampleA.sortByTag(new Tag("owesMoney"), true);
+        assertEquals(sampleA, sampleB);
+        sampleA.sortByTag(new Tag("owesMoney"), false);
+        assertNotEquals(sampleA, sampleB);
     }
 
     /**

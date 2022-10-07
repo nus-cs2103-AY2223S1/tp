@@ -42,6 +42,12 @@ public class Address {
         return value;
     }
 
+    /**
+     * Compares this Address to another Address.
+     *
+     * @param other The other Address object
+     * @return      -1 if this object is lesser, 0 if they are equal, 1 otherwise
+     */
     public int compareTo(Address other) {
         return value.compareToIgnoreCase(other.value);
     }

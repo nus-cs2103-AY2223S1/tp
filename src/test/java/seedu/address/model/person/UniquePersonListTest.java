@@ -2,11 +2,13 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
 import java.util.Arrays;
@@ -14,10 +16,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.TreeSet;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
 public class UniquePersonListTest {
@@ -183,5 +187,79 @@ public class UniquePersonListTest {
     public void getUniqueNames_emptyList_success() {
         TreeSet<String> expectedEmptyList = new TreeSet<>();
         assertEquals(expectedEmptyList, uniquePersonList.getUniqueNames());
+    }
+
+    @Test
+    public void sortByName_success() {
+        UniquePersonList sampleA = new UniquePersonList();
+        UniquePersonList sampleB = new UniquePersonList();
+        sampleA.add(ALICE);
+        sampleA.add(BENSON);
+        sampleB.add(BENSON);
+        sampleB.add(ALICE);
+        sampleA.sortByName(true);
+        assertEquals(sampleA, sampleB);
+        sampleA.sortByName(false);
+        assertNotEquals(sampleA, sampleB);
+    }
+
+    @Test
+    public void sortByPhone_success() {
+        UniquePersonList sampleA = new UniquePersonList();
+        UniquePersonList sampleB = new UniquePersonList();
+        sampleA.add(ALICE);
+        sampleA.add(BENSON);
+        sampleB.add(BENSON);
+        sampleB.add(ALICE);
+        sampleA.sortByPhone(true);
+        assertEquals(sampleA, sampleB);
+        sampleA.sortByPhone(false);
+        assertNotEquals(sampleA, sampleB);
+    }
+
+    @Test
+    public void sortByEmail_success() {
+        UniquePersonList sampleA = new UniquePersonList();
+        UniquePersonList sampleB = new UniquePersonList();
+        sampleA.add(ALICE);
+        sampleA.add(BENSON);
+        sampleB.add(BENSON);
+        sampleB.add(ALICE);
+        sampleA.sortByEmail(true);
+        assertEquals(sampleA, sampleB);
+        sampleA.sortByEmail(false);
+        assertNotEquals(sampleA, sampleB);
+    }
+
+    @Test
+    public void sortByAddress_success() {
+        UniquePersonList sampleA = new UniquePersonList();
+        UniquePersonList sampleB = new UniquePersonList();
+        sampleA.add(ALICE);
+        sampleA.add(BENSON);
+        sampleB.add(BENSON);
+        sampleB.add(ALICE);
+        sampleA.sortByAddress(true);
+        assertEquals(sampleA, sampleB);
+        sampleA.sortByAddress(false);
+        assertNotEquals(sampleA, sampleB);
+    }
+
+    /**
+     * Disabled until test methods has been updated for upgraded tags.
+     */
+    @Test
+    @Disabled
+    public void sortByTag_success() {
+        UniquePersonList sampleA = new UniquePersonList();
+        UniquePersonList sampleB = new UniquePersonList();
+        sampleA.add(ALICE);
+        sampleA.add(BENSON);
+        sampleB.add(BENSON);
+        sampleB.add(ALICE);
+        sampleA.sortByTag(new Tag("owesMoney"), true);
+        assertEquals(sampleA, sampleB);
+        sampleA.sortByTag(new Tag("owesMoney"), false);
+        assertNotEquals(sampleA, sampleB);
     }
 }
