@@ -23,10 +23,8 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.task.Task;
 import seedu.address.model.team.Team;
-import seedu.address.model.team.UniqueTeamList;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
