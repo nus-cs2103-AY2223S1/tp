@@ -12,18 +12,6 @@
 
 package org.openapitools.client.api;
 
-import org.openapitools.client.ApiClient;
-import org.openapitools.client.ApiException;
-import org.openapitools.client.ApiResponse;
-import org.openapitools.client.Pair;
-
-import org.openapitools.client.model.Module;
-import org.openapitools.client.model.ModuleCondensed;
-import org.openapitools.client.model.ModuleInformation;
-
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
@@ -31,352 +19,398 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
-
-import java.util.ArrayList;
-import java.util.StringJoiner;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import java.util.function.Consumer;
+
+import org.openapitools.client.ApiClient;
+import org.openapitools.client.ApiException;
+import org.openapitools.client.ApiResponse;
+import org.openapitools.client.model.Module;
+import org.openapitools.client.model.ModuleCondensed;
+import org.openapitools.client.model.ModuleInformation;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-03T22:22:26.802458+08:00[Asia/Singapore]")
 public class ModulesApi {
-  private final HttpClient memberVarHttpClient;
-  private final ObjectMapper memberVarObjectMapper;
-  private final String memberVarBaseUri;
-  private final Consumer<HttpRequest.Builder> memberVarInterceptor;
-  private final Duration memberVarReadTimeout;
-  private final Consumer<HttpResponse<InputStream>> memberVarResponseInterceptor;
-  private final Consumer<HttpResponse<String>> memberVarAsyncResponseInterceptor;
 
-  public ModulesApi() {
-    this(new ApiClient());
-  }
+    private final HttpClient memberVarHttpClient;
+    private final ObjectMapper memberVarObjectMapper;
+    private final String memberVarBaseUri;
+    private final Consumer<HttpRequest.Builder> memberVarInterceptor;
+    private final Duration memberVarReadTimeout;
+    private final Consumer<HttpResponse<InputStream>> memberVarResponseInterceptor;
+    private final Consumer<HttpResponse<String>> memberVarAsyncResponseInterceptor;
 
-  public ModulesApi(ApiClient apiClient) {
-    memberVarHttpClient = apiClient.getHttpClient();
-    memberVarObjectMapper = apiClient.getObjectMapper();
-    memberVarBaseUri = apiClient.getBaseUri();
-    memberVarInterceptor = apiClient.getRequestInterceptor();
-    memberVarReadTimeout = apiClient.getReadTimeout();
-    memberVarResponseInterceptor = apiClient.getResponseInterceptor();
-    memberVarAsyncResponseInterceptor = apiClient.getAsyncResponseInterceptor();
-  }
-
-  protected ApiException getApiException(String operationId, HttpResponse<InputStream> response) throws IOException {
-    String body = response.body() == null ? null : new String(response.body().readAllBytes());
-    String message = formatExceptionMessage(operationId, response.statusCode(), body);
-    return new ApiException(response.statusCode(), message, response.headers(), body);
-  }
-
-  private String formatExceptionMessage(String operationId, int statusCode, String body) {
-    if (body == null || body.isEmpty()) {
-      body = "[no body]";
+    public ModulesApi() {
+        this(new ApiClient());
     }
-    return operationId + " call failed with: " + statusCode + " - " + body;
-  }
 
-  /**
-   * Get detailed information about all modules
-   * Get all information about modules except for timetable and prereq tree in a year. This is compact enough to be loaded and filtered in browsers without lag and is useful for faceted search and detailed module listing.  NUSMods feeds this information into an Elasticsearch search server for the detailed module search page.
-   * @param acadYear academic year, with the slash (/) replaced by a dash (required)
-   * @return List&lt;ModuleInformation&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public List<ModuleInformation> acadYearModuleInfoJsonGet(String acadYear) throws ApiException {
-    ApiResponse<List<ModuleInformation>> localVarResponse = acadYearModuleInfoJsonGetWithHttpInfo(acadYear);
-    return localVarResponse.getData();
-  }
+    public ModulesApi(ApiClient apiClient) {
+        memberVarHttpClient = apiClient.getHttpClient();
+        memberVarObjectMapper = apiClient.getObjectMapper();
+        memberVarBaseUri = apiClient.getBaseUri();
+        memberVarInterceptor = apiClient.getRequestInterceptor();
+        memberVarReadTimeout = apiClient.getReadTimeout();
+        memberVarResponseInterceptor = apiClient.getResponseInterceptor();
+        memberVarAsyncResponseInterceptor = apiClient.getAsyncResponseInterceptor();
+    }
 
-  /**
-   * Get detailed information about all modules
-   * Get all information about modules except for timetable and prereq tree in a year. This is compact enough to be loaded and filtered in browsers without lag and is useful for faceted search and detailed module listing.  NUSMods feeds this information into an Elasticsearch search server for the detailed module search page.
-   * @param acadYear academic year, with the slash (/) replaced by a dash (required)
-   * @return ApiResponse&lt;List&lt;ModuleInformation&gt;&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<List<ModuleInformation>> acadYearModuleInfoJsonGetWithHttpInfo(String acadYear) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = acadYearModuleInfoJsonGetRequestBuilder(acadYear);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("acadYearModuleInfoJsonGet", localVarResponse);
+    protected ApiException getApiException(String operationId, HttpResponse<InputStream> response) throws IOException {
+        String body = response.body() == null ? null : new String(response.body().readAllBytes());
+        String message = formatExceptionMessage(operationId, response.statusCode(), body);
+        return new ApiException(response.statusCode(), message, response.headers(), body);
+    }
+
+    private String formatExceptionMessage(String operationId, int statusCode, String body) {
+        if (body == null || body.isEmpty()) {
+            body = "[no body]";
         }
-        return new ApiResponse<List<ModuleInformation>>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<List<ModuleInformation>>() {}) // closes the InputStream
-
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
-
-  private HttpRequest.Builder acadYearModuleInfoJsonGetRequestBuilder(String acadYear) throws ApiException {
-    // verify the required parameter 'acadYear' is set
-    if (acadYear == null) {
-      throw new ApiException(400, "Missing the required parameter 'acadYear' when calling acadYearModuleInfoJsonGet");
+        return operationId + " call failed with: " + statusCode + " - " + body;
     }
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/{acadYear}/moduleInfo.json"
-        .replace("{acadYear}", ApiClient.urlEncode(acadYear.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    /**
+     * Get detailed information about all modules Get all information about modules except for timetable and prereq tree
+     * in a year. This is compact enough to be loaded and filtered in browsers without lag and is useful for faceted
+     * search and detailed module listing.  NUSMods feeds this information into an Elasticsearch search server for the
+     * detailed module search page.
+     *
+     * @param acadYear academic year, with the slash (/) replaced by a dash (required)
+     * @return List&lt;ModuleInformation&gt;
+     * @throws ApiException if fails to make API call
+     */
+    public List<ModuleInformation> acadYearModuleInfoJsonGet(String acadYear) throws ApiException {
+        ApiResponse<List<ModuleInformation>> localVarResponse = acadYearModuleInfoJsonGetWithHttpInfo(acadYear);
+        return localVarResponse.getData();
     }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Get detailed information about all modules
-   * Get all information about modules except for timetable and prereq tree in a year. This is compact enough to be loaded and filtered in browsers without lag and is useful for faceted search and detailed module listing.  In AY2018/2019, NUSMods used this information for the detailed module search page. This endpoint will no longer be present starting in AY2019/2020. Please use the moduleInfo.json endpoint instead, which contains modules which are not offered in the specified academic year, but is otherwise identical to this endpoint.
-   * @param acadYear academic year, with the slash (/) replaced by a dash (required)
-   * @return List&lt;ModuleInformation&gt;
-   * @throws ApiException if fails to make API call
-   * @deprecated
-   */
-  @Deprecated
-  public List<ModuleInformation> acadYearModuleInformationJsonGet(String acadYear) throws ApiException {
-    ApiResponse<List<ModuleInformation>> localVarResponse = acadYearModuleInformationJsonGetWithHttpInfo(acadYear);
-    return localVarResponse.getData();
-  }
 
-  /**
-   * Get detailed information about all modules
-   * Get all information about modules except for timetable and prereq tree in a year. This is compact enough to be loaded and filtered in browsers without lag and is useful for faceted search and detailed module listing.  In AY2018/2019, NUSMods used this information for the detailed module search page. This endpoint will no longer be present starting in AY2019/2020. Please use the moduleInfo.json endpoint instead, which contains modules which are not offered in the specified academic year, but is otherwise identical to this endpoint.
-   * @param acadYear academic year, with the slash (/) replaced by a dash (required)
-   * @return ApiResponse&lt;List&lt;ModuleInformation&gt;&gt;
-   * @throws ApiException if fails to make API call
-   * @deprecated
-   */
-  @Deprecated
-  public ApiResponse<List<ModuleInformation>> acadYearModuleInformationJsonGetWithHttpInfo(String acadYear) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = acadYearModuleInformationJsonGetRequestBuilder(acadYear);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("acadYearModuleInformationJsonGet", localVarResponse);
+    /**
+     * Get detailed information about all modules Get all information about modules except for timetable and prereq tree
+     * in a year. This is compact enough to be loaded and filtered in browsers without lag and is useful for faceted
+     * search and detailed module listing.  NUSMods feeds this information into an Elasticsearch search server for the
+     * detailed module search page.
+     *
+     * @param acadYear academic year, with the slash (/) replaced by a dash (required)
+     * @return ApiResponse&lt;List&lt;ModuleInformation&gt;&gt;
+     * @throws ApiException if fails to make API call
+     */
+    public ApiResponse<List<ModuleInformation>> acadYearModuleInfoJsonGetWithHttpInfo(String acadYear)
+        throws ApiException {
+        HttpRequest.Builder localVarRequestBuilder = acadYearModuleInfoJsonGetRequestBuilder(acadYear);
+        try {
+            HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+                localVarRequestBuilder.build(),
+                HttpResponse.BodyHandlers.ofInputStream());
+            if (memberVarResponseInterceptor != null) {
+                memberVarResponseInterceptor.accept(localVarResponse);
+            }
+            try {
+                if (localVarResponse.statusCode() / 100 != 2) {
+                    throw getApiException("acadYearModuleInfoJsonGet", localVarResponse);
+                }
+                return new ApiResponse<List<ModuleInformation>>(
+                    localVarResponse.statusCode(),
+                    localVarResponse.headers().map(),
+                    memberVarObjectMapper.readValue(localVarResponse.body(),
+                        new TypeReference<List<ModuleInformation>>() {
+                        }) // closes the InputStream
+
+                );
+            } finally {
+            }
+        } catch (IOException e) {
+            throw new ApiException(e);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new ApiException(e);
         }
-        return new ApiResponse<List<ModuleInformation>>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<List<ModuleInformation>>() {}) // closes the InputStream
-
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
-
-  private HttpRequest.Builder acadYearModuleInformationJsonGetRequestBuilder(String acadYear) throws ApiException {
-    // verify the required parameter 'acadYear' is set
-    if (acadYear == null) {
-      throw new ApiException(400, "Missing the required parameter 'acadYear' when calling acadYearModuleInformationJsonGet");
     }
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/{acadYear}/moduleInformation.json"
-        .replace("{acadYear}", ApiClient.urlEncode(acadYear.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Get summaries of all modules
-   * Get the module code, title and semesters which the module is available in for all modules in a year. This is useful for tasks that only require a minimal set of information, such as simple search, autocompleting module code and titles, and checking if a module code is valid.  NUSMods uses this information to validate module codes and for searching.
-   * @param acadYear academic year, with the slash (/) replaced by a dash (required)
-   * @return List&lt;ModuleCondensed&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public List<ModuleCondensed> acadYearModuleListJsonGet(String acadYear) throws ApiException {
-    ApiResponse<List<ModuleCondensed>> localVarResponse = acadYearModuleListJsonGetWithHttpInfo(acadYear);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Get summaries of all modules
-   * Get the module code, title and semesters which the module is available in for all modules in a year. This is useful for tasks that only require a minimal set of information, such as simple search, autocompleting module code and titles, and checking if a module code is valid.  NUSMods uses this information to validate module codes and for searching.
-   * @param acadYear academic year, with the slash (/) replaced by a dash (required)
-   * @return ApiResponse&lt;List&lt;ModuleCondensed&gt;&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<List<ModuleCondensed>> acadYearModuleListJsonGetWithHttpInfo(String acadYear) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = acadYearModuleListJsonGetRequestBuilder(acadYear);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("acadYearModuleListJsonGet", localVarResponse);
+    private HttpRequest.Builder acadYearModuleInfoJsonGetRequestBuilder(String acadYear) throws ApiException {
+        // verify the required parameter 'acadYear' is set
+        if (acadYear == null) {
+            throw new ApiException(400,
+                "Missing the required parameter 'acadYear' when calling acadYearModuleInfoJsonGet");
         }
-        return new ApiResponse<List<ModuleCondensed>>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<List<ModuleCondensed>>() {}) // closes the InputStream
 
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
+        HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
-  private HttpRequest.Builder acadYearModuleListJsonGetRequestBuilder(String acadYear) throws ApiException {
-    // verify the required parameter 'acadYear' is set
-    if (acadYear == null) {
-      throw new ApiException(400, "Missing the required parameter 'acadYear' when calling acadYearModuleListJsonGet");
-    }
+        String localVarPath = "/{acadYear}/moduleInfo.json"
+            .replace("{acadYear}", ApiClient.urlEncode(acadYear.toString()));
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+        localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
-    String localVarPath = "/{acadYear}/moduleList.json"
-        .replace("{acadYear}", ApiClient.urlEncode(acadYear.toString()));
+        localVarRequestBuilder.header("Accept", "application/json");
 
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Get all information about a specific module
-   * Get all information available for a specific module including prerequite tree and timetable.  NUSMods uses this on the module information page.
-   * @param acadYear academic year, with the slash (/) replaced by a dash (required)
-   * @param moduleCode module code (required)
-   * @return Module
-   * @throws ApiException if fails to make API call
-   */
-  public Module acadYearModulesModuleCodeJsonGet(String acadYear, String moduleCode) throws ApiException {
-    ApiResponse<Module> localVarResponse = acadYearModulesModuleCodeJsonGetWithHttpInfo(acadYear, moduleCode);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Get all information about a specific module
-   * Get all information available for a specific module including prerequite tree and timetable.  NUSMods uses this on the module information page.
-   * @param acadYear academic year, with the slash (/) replaced by a dash (required)
-   * @param moduleCode module code (required)
-   * @return ApiResponse&lt;Module&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<Module> acadYearModulesModuleCodeJsonGetWithHttpInfo(String acadYear, String moduleCode) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = acadYearModulesModuleCodeJsonGetRequestBuilder(acadYear, moduleCode);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("acadYearModulesModuleCodeJsonGet", localVarResponse);
+        localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+        if (memberVarReadTimeout != null) {
+            localVarRequestBuilder.timeout(memberVarReadTimeout);
         }
-        return new ApiResponse<Module>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<Module>() {}) // closes the InputStream
-
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
-
-  private HttpRequest.Builder acadYearModulesModuleCodeJsonGetRequestBuilder(String acadYear, String moduleCode) throws ApiException {
-    // verify the required parameter 'acadYear' is set
-    if (acadYear == null) {
-      throw new ApiException(400, "Missing the required parameter 'acadYear' when calling acadYearModulesModuleCodeJsonGet");
-    }
-    // verify the required parameter 'moduleCode' is set
-    if (moduleCode == null) {
-      throw new ApiException(400, "Missing the required parameter 'moduleCode' when calling acadYearModulesModuleCodeJsonGet");
+        if (memberVarInterceptor != null) {
+            memberVarInterceptor.accept(localVarRequestBuilder);
+        }
+        return localVarRequestBuilder;
     }
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/{acadYear}/modules/{moduleCode}.json"
-        .replace("{acadYear}", ApiClient.urlEncode(acadYear.toString()))
-        .replace("{moduleCode}", ApiClient.urlEncode(moduleCode.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    /**
+     * Get detailed information about all modules Get all information about modules except for timetable and prereq tree
+     * in a year. This is compact enough to be loaded and filtered in browsers without lag and is useful for faceted
+     * search and detailed module listing.  In AY2018/2019, NUSMods used this information for the detailed module search
+     * page. This endpoint will no longer be present starting in AY2019/2020. Please use the moduleInfo.json endpoint
+     * instead, which contains modules which are not offered in the specified academic year, but is otherwise identical
+     * to this endpoint.
+     *
+     * @param acadYear academic year, with the slash (/) replaced by a dash (required)
+     * @return List&lt;ModuleInformation&gt;
+     * @throws ApiException if fails to make API call
+     * @deprecated
+     */
+    @Deprecated
+    public List<ModuleInformation> acadYearModuleInformationJsonGet(String acadYear) throws ApiException {
+        ApiResponse<List<ModuleInformation>> localVarResponse = acadYearModuleInformationJsonGetWithHttpInfo(acadYear);
+        return localVarResponse.getData();
     }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
+
+    /**
+     * Get detailed information about all modules Get all information about modules except for timetable and prereq tree
+     * in a year. This is compact enough to be loaded and filtered in browsers without lag and is useful for faceted
+     * search and detailed module listing.  In AY2018/2019, NUSMods used this information for the detailed module search
+     * page. This endpoint will no longer be present starting in AY2019/2020. Please use the moduleInfo.json endpoint
+     * instead, which contains modules which are not offered in the specified academic year, but is otherwise identical
+     * to this endpoint.
+     *
+     * @param acadYear academic year, with the slash (/) replaced by a dash (required)
+     * @return ApiResponse&lt;List&lt;ModuleInformation&gt;&gt;
+     * @throws ApiException if fails to make API call
+     * @deprecated
+     */
+    @Deprecated
+    public ApiResponse<List<ModuleInformation>> acadYearModuleInformationJsonGetWithHttpInfo(String acadYear)
+        throws ApiException {
+        HttpRequest.Builder localVarRequestBuilder = acadYearModuleInformationJsonGetRequestBuilder(acadYear);
+        try {
+            HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+                localVarRequestBuilder.build(),
+                HttpResponse.BodyHandlers.ofInputStream());
+            if (memberVarResponseInterceptor != null) {
+                memberVarResponseInterceptor.accept(localVarResponse);
+            }
+            try {
+                if (localVarResponse.statusCode() / 100 != 2) {
+                    throw getApiException("acadYearModuleInformationJsonGet", localVarResponse);
+                }
+                return new ApiResponse<List<ModuleInformation>>(
+                    localVarResponse.statusCode(),
+                    localVarResponse.headers().map(),
+                    memberVarObjectMapper.readValue(localVarResponse.body(),
+                        new TypeReference<List<ModuleInformation>>() {
+                        }) // closes the InputStream
+
+                );
+            } finally {
+            }
+        } catch (IOException e) {
+            throw new ApiException(e);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new ApiException(e);
+        }
     }
-    return localVarRequestBuilder;
-  }
+
+    private HttpRequest.Builder acadYearModuleInformationJsonGetRequestBuilder(String acadYear) throws ApiException {
+        // verify the required parameter 'acadYear' is set
+        if (acadYear == null) {
+            throw new ApiException(400,
+                "Missing the required parameter 'acadYear' when calling acadYearModuleInformationJsonGet");
+        }
+
+        HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+        String localVarPath = "/{acadYear}/moduleInformation.json"
+            .replace("{acadYear}", ApiClient.urlEncode(acadYear.toString()));
+
+        localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+        localVarRequestBuilder.header("Accept", "application/json");
+
+        localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+        if (memberVarReadTimeout != null) {
+            localVarRequestBuilder.timeout(memberVarReadTimeout);
+        }
+        if (memberVarInterceptor != null) {
+            memberVarInterceptor.accept(localVarRequestBuilder);
+        }
+        return localVarRequestBuilder;
+    }
+
+    /**
+     * Get summaries of all modules Get the module code, title and semesters which the module is available in for all
+     * modules in a year. This is useful for tasks that only require a minimal set of information, such as simple
+     * search, autocompleting module code and titles, and checking if a module code is valid.  NUSMods uses this
+     * information to validate module codes and for searching.
+     *
+     * @param acadYear academic year, with the slash (/) replaced by a dash (required)
+     * @return List&lt;ModuleCondensed&gt;
+     * @throws ApiException if fails to make API call
+     */
+    public List<ModuleCondensed> acadYearModuleListJsonGet(String acadYear) throws ApiException {
+        ApiResponse<List<ModuleCondensed>> localVarResponse = acadYearModuleListJsonGetWithHttpInfo(acadYear);
+        return localVarResponse.getData();
+    }
+
+    /**
+     * Get summaries of all modules Get the module code, title and semesters which the module is available in for all
+     * modules in a year. This is useful for tasks that only require a minimal set of information, such as simple
+     * search, autocompleting module code and titles, and checking if a module code is valid.  NUSMods uses this
+     * information to validate module codes and for searching.
+     *
+     * @param acadYear academic year, with the slash (/) replaced by a dash (required)
+     * @return ApiResponse&lt;List&lt;ModuleCondensed&gt;&gt;
+     * @throws ApiException if fails to make API call
+     */
+    public ApiResponse<List<ModuleCondensed>> acadYearModuleListJsonGetWithHttpInfo(String acadYear)
+        throws ApiException {
+        HttpRequest.Builder localVarRequestBuilder = acadYearModuleListJsonGetRequestBuilder(acadYear);
+        try {
+            HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+                localVarRequestBuilder.build(),
+                HttpResponse.BodyHandlers.ofInputStream());
+            if (memberVarResponseInterceptor != null) {
+                memberVarResponseInterceptor.accept(localVarResponse);
+            }
+            try {
+                if (localVarResponse.statusCode() / 100 != 2) {
+                    throw getApiException("acadYearModuleListJsonGet", localVarResponse);
+                }
+                return new ApiResponse<List<ModuleCondensed>>(
+                    localVarResponse.statusCode(),
+                    localVarResponse.headers().map(),
+                    memberVarObjectMapper.readValue(localVarResponse.body(),
+                        new TypeReference<List<ModuleCondensed>>() {
+                        }) // closes the InputStream
+
+                );
+            } finally {
+            }
+        } catch (IOException e) {
+            throw new ApiException(e);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new ApiException(e);
+        }
+    }
+
+    private HttpRequest.Builder acadYearModuleListJsonGetRequestBuilder(String acadYear) throws ApiException {
+        // verify the required parameter 'acadYear' is set
+        if (acadYear == null) {
+            throw new ApiException(400,
+                "Missing the required parameter 'acadYear' when calling acadYearModuleListJsonGet");
+        }
+
+        HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+        String localVarPath = "/{acadYear}/moduleList.json"
+            .replace("{acadYear}", ApiClient.urlEncode(acadYear.toString()));
+
+        localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+        localVarRequestBuilder.header("Accept", "application/json");
+
+        localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+        if (memberVarReadTimeout != null) {
+            localVarRequestBuilder.timeout(memberVarReadTimeout);
+        }
+        if (memberVarInterceptor != null) {
+            memberVarInterceptor.accept(localVarRequestBuilder);
+        }
+        return localVarRequestBuilder;
+    }
+
+    /**
+     * Get all information about a specific module Get all information available for a specific module including
+     * prerequite tree and timetable.  NUSMods uses this on the module information page.
+     *
+     * @param acadYear   academic year, with the slash (/) replaced by a dash (required)
+     * @param moduleCode module code (required)
+     * @return Module
+     * @throws ApiException if fails to make API call
+     */
+    public Module acadYearModulesModuleCodeJsonGet(String acadYear, String moduleCode) throws ApiException {
+        ApiResponse<Module> localVarResponse = acadYearModulesModuleCodeJsonGetWithHttpInfo(acadYear, moduleCode);
+        return localVarResponse.getData();
+    }
+
+    /**
+     * Get all information about a specific module Get all information available for a specific module including
+     * prerequite tree and timetable.  NUSMods uses this on the module information page.
+     *
+     * @param acadYear   academic year, with the slash (/) replaced by a dash (required)
+     * @param moduleCode module code (required)
+     * @return ApiResponse&lt;Module&gt;
+     * @throws ApiException if fails to make API call
+     */
+    public ApiResponse<Module> acadYearModulesModuleCodeJsonGetWithHttpInfo(String acadYear, String moduleCode)
+        throws ApiException {
+        HttpRequest.Builder localVarRequestBuilder =
+            acadYearModulesModuleCodeJsonGetRequestBuilder(acadYear, moduleCode);
+        try {
+            HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+                localVarRequestBuilder.build(),
+                HttpResponse.BodyHandlers.ofInputStream());
+            if (memberVarResponseInterceptor != null) {
+                memberVarResponseInterceptor.accept(localVarResponse);
+            }
+            try {
+                if (localVarResponse.statusCode() / 100 != 2) {
+                    throw getApiException("acadYearModulesModuleCodeJsonGet", localVarResponse);
+                }
+                return new ApiResponse<Module>(
+                    localVarResponse.statusCode(),
+                    localVarResponse.headers().map(),
+                    memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<Module>() {
+                    }) // closes the InputStream
+
+                );
+            } finally {
+            }
+        } catch (IOException e) {
+            throw new ApiException(e);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new ApiException(e);
+        }
+    }
+
+    private HttpRequest.Builder acadYearModulesModuleCodeJsonGetRequestBuilder(String acadYear, String moduleCode)
+        throws ApiException {
+        // verify the required parameter 'acadYear' is set
+        if (acadYear == null) {
+            throw new ApiException(400,
+                "Missing the required parameter 'acadYear' when calling acadYearModulesModuleCodeJsonGet");
+        }
+        // verify the required parameter 'moduleCode' is set
+        if (moduleCode == null) {
+            throw new ApiException(400,
+                "Missing the required parameter 'moduleCode' when calling acadYearModulesModuleCodeJsonGet");
+        }
+
+        HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+        String localVarPath = "/{acadYear}/modules/{moduleCode}.json"
+            .replace("{acadYear}", ApiClient.urlEncode(acadYear.toString()))
+            .replace("{moduleCode}", ApiClient.urlEncode(moduleCode.toString()));
+
+        localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+        localVarRequestBuilder.header("Accept", "application/json");
+
+        localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+        if (memberVarReadTimeout != null) {
+            localVarRequestBuilder.timeout(memberVarReadTimeout);
+        }
+        if (memberVarInterceptor != null) {
+            memberVarInterceptor.accept(localVarRequestBuilder);
+        }
+        return localVarRequestBuilder;
+    }
 }

@@ -13,357 +13,352 @@
 
 package org.openapitools.client.model;
 
+import java.math.BigDecimal;
 import java.util.Objects;
-import java.util.Arrays;
-import java.util.Map;
-import java.util.HashMap;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import java.math.BigDecimal;
-import org.openapitools.client.model.LessonWeeks;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+import io.swagger.annotations.ApiModelProperty;
 
 
 /**
  * VenueLesson
  */
 @JsonPropertyOrder({
-  VenueLesson.JSON_PROPERTY_CLASS_NO,
-  VenueLesson.JSON_PROPERTY_START_TIME,
-  VenueLesson.JSON_PROPERTY_END_TIME,
-  VenueLesson.JSON_PROPERTY_WEEKS,
-  VenueLesson.JSON_PROPERTY_VENUE,
-  VenueLesson.JSON_PROPERTY_DAY,
-  VenueLesson.JSON_PROPERTY_LESSON_TYPE,
-  VenueLesson.JSON_PROPERTY_SIZE,
-  VenueLesson.JSON_PROPERTY_MODULE_CODE
+    VenueLesson.JSON_PROPERTY_CLASS_NO,
+    VenueLesson.JSON_PROPERTY_START_TIME,
+    VenueLesson.JSON_PROPERTY_END_TIME,
+    VenueLesson.JSON_PROPERTY_WEEKS,
+    VenueLesson.JSON_PROPERTY_VENUE,
+    VenueLesson.JSON_PROPERTY_DAY,
+    VenueLesson.JSON_PROPERTY_LESSON_TYPE,
+    VenueLesson.JSON_PROPERTY_SIZE,
+    VenueLesson.JSON_PROPERTY_MODULE_CODE
 })
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-03T22:22:26.802458+08:00[Asia/Singapore]")
 public class VenueLesson {
-  public static final String JSON_PROPERTY_CLASS_NO = "classNo";
-  private String classNo;
 
-  public static final String JSON_PROPERTY_START_TIME = "startTime";
-  private String startTime;
-
-  public static final String JSON_PROPERTY_END_TIME = "endTime";
-  private String endTime;
-
-  public static final String JSON_PROPERTY_WEEKS = "weeks";
-  private LessonWeeks weeks;
-
-  public static final String JSON_PROPERTY_VENUE = "venue";
-  private String venue;
-
-  public static final String JSON_PROPERTY_DAY = "day";
-  private String day;
-
-  public static final String JSON_PROPERTY_LESSON_TYPE = "lessonType";
-  private String lessonType;
-
-  public static final String JSON_PROPERTY_SIZE = "size";
-  private BigDecimal size;
-
-  public static final String JSON_PROPERTY_MODULE_CODE = "moduleCode";
-  private String moduleCode;
-
-  public VenueLesson() {
-  }
-
-  public VenueLesson classNo(String classNo) {
-    this.classNo = classNo;
-    return this;
-  }
-
-   /**
-   * Get classNo
-   * @return classNo
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "08", required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_CLASS_NO)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getClassNo() {
-    return classNo;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CLASS_NO)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setClassNo(String classNo) {
-    this.classNo = classNo;
-  }
-
-
-  public VenueLesson startTime(String startTime) {
-    this.startTime = startTime;
-    return this;
-  }
-
-   /**
-   * Get startTime
-   * @return startTime
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "1100", required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_START_TIME)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getStartTime() {
-    return startTime;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_START_TIME)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setStartTime(String startTime) {
-    this.startTime = startTime;
-  }
-
-
-  public VenueLesson endTime(String endTime) {
-    this.endTime = endTime;
-    return this;
-  }
-
-   /**
-   * Get endTime
-   * @return endTime
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "1200", required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_END_TIME)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getEndTime() {
-    return endTime;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_END_TIME)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setEndTime(String endTime) {
-    this.endTime = endTime;
-  }
-
-
-  public VenueLesson weeks(LessonWeeks weeks) {
-    this.weeks = weeks;
-    return this;
-  }
-
-   /**
-   * Get weeks
-   * @return weeks
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_WEEKS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public LessonWeeks getWeeks() {
-    return weeks;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_WEEKS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setWeeks(LessonWeeks weeks) {
-    this.weeks = weeks;
-  }
-
-
-  public VenueLesson venue(String venue) {
-    this.venue = venue;
-    return this;
-  }
-
-   /**
-   * Get venue
-   * @return venue
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "COM1-0208", required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_VENUE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getVenue() {
-    return venue;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_VENUE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setVenue(String venue) {
-    this.venue = venue;
-  }
-
-
-  public VenueLesson day(String day) {
-    this.day = day;
-    return this;
-  }
-
-   /**
-   * Get day
-   * @return day
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "Friday", value = "")
-  @JsonProperty(JSON_PROPERTY_DAY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getDay() {
-    return day;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DAY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDay(String day) {
-    this.day = day;
-  }
-
-
-  public VenueLesson lessonType(String lessonType) {
-    this.lessonType = lessonType;
-    return this;
-  }
-
-   /**
-   * Get lessonType
-   * @return lessonType
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "Tutorial", required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_LESSON_TYPE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getLessonType() {
-    return lessonType;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_LESSON_TYPE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setLessonType(String lessonType) {
-    this.lessonType = lessonType;
-  }
-
-
-  public VenueLesson size(BigDecimal size) {
-    this.size = size;
-    return this;
-  }
-
-   /**
-   * Get size
-   * @return size
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "30", value = "")
-  @JsonProperty(JSON_PROPERTY_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public BigDecimal getSize() {
-    return size;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSize(BigDecimal size) {
-    this.size = size;
-  }
-
-
-  public VenueLesson moduleCode(String moduleCode) {
-    this.moduleCode = moduleCode;
-    return this;
-  }
-
-   /**
-   * Get moduleCode
-   * @return moduleCode
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "CS1010S", required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_MODULE_CODE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getModuleCode() {
-    return moduleCode;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MODULE_CODE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setModuleCode(String moduleCode) {
-    this.moduleCode = moduleCode;
-  }
-
-
-  /**
-   * Return true if this VenueLesson object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    public static final String JSON_PROPERTY_CLASS_NO = "classNo";
+    public static final String JSON_PROPERTY_START_TIME = "startTime";
+    public static final String JSON_PROPERTY_END_TIME = "endTime";
+    public static final String JSON_PROPERTY_WEEKS = "weeks";
+    public static final String JSON_PROPERTY_VENUE = "venue";
+    public static final String JSON_PROPERTY_DAY = "day";
+    public static final String JSON_PROPERTY_LESSON_TYPE = "lessonType";
+    public static final String JSON_PROPERTY_SIZE = "size";
+    public static final String JSON_PROPERTY_MODULE_CODE = "moduleCode";
+    private String classNo;
+    private String startTime;
+    private String endTime;
+    private LessonWeeks weeks;
+    private String venue;
+    private String day;
+    private String lessonType;
+    private BigDecimal size;
+    private String moduleCode;
+
+    public VenueLesson() {
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    public VenueLesson classNo(String classNo) {
+        this.classNo = classNo;
+        return this;
     }
-    VenueLesson venueLesson = (VenueLesson) o;
-    return Objects.equals(this.classNo, venueLesson.classNo) &&
-        Objects.equals(this.startTime, venueLesson.startTime) &&
-        Objects.equals(this.endTime, venueLesson.endTime) &&
-        Objects.equals(this.weeks, venueLesson.weeks) &&
-        Objects.equals(this.venue, venueLesson.venue) &&
-        Objects.equals(this.day, venueLesson.day) &&
-        Objects.equals(this.lessonType, venueLesson.lessonType) &&
-        Objects.equals(this.size, venueLesson.size) &&
-        Objects.equals(this.moduleCode, venueLesson.moduleCode);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(classNo, startTime, endTime, weeks, venue, day, lessonType, size, moduleCode);
-  }
+    /**
+     * Get classNo
+     *
+     * @return classNo
+     **/
+    @javax.annotation.Nonnull
+    @ApiModelProperty(example = "08", required = true, value = "")
+    @JsonProperty(JSON_PROPERTY_CLASS_NO)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class VenueLesson {\n");
-    sb.append("    classNo: ").append(toIndentedString(classNo)).append("\n");
-    sb.append("    startTime: ").append(toIndentedString(startTime)).append("\n");
-    sb.append("    endTime: ").append(toIndentedString(endTime)).append("\n");
-    sb.append("    weeks: ").append(toIndentedString(weeks)).append("\n");
-    sb.append("    venue: ").append(toIndentedString(venue)).append("\n");
-    sb.append("    day: ").append(toIndentedString(day)).append("\n");
-    sb.append("    lessonType: ").append(toIndentedString(lessonType)).append("\n");
-    sb.append("    size: ").append(toIndentedString(size)).append("\n");
-    sb.append("    moduleCode: ").append(toIndentedString(moduleCode)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public String getClassNo() {
+        return classNo;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+
+    @JsonProperty(JSON_PROPERTY_CLASS_NO)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setClassNo(String classNo) {
+        this.classNo = classNo;
+    }
+
+
+    public VenueLesson startTime(String startTime) {
+        this.startTime = startTime;
+        return this;
+    }
+
+    /**
+     * Get startTime
+     *
+     * @return startTime
+     **/
+    @javax.annotation.Nonnull
+    @ApiModelProperty(example = "1100", required = true, value = "")
+    @JsonProperty(JSON_PROPERTY_START_TIME)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+
+    @JsonProperty(JSON_PROPERTY_START_TIME)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+
+    public VenueLesson endTime(String endTime) {
+        this.endTime = endTime;
+        return this;
+    }
+
+    /**
+     * Get endTime
+     *
+     * @return endTime
+     **/
+    @javax.annotation.Nonnull
+    @ApiModelProperty(example = "1200", required = true, value = "")
+    @JsonProperty(JSON_PROPERTY_END_TIME)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+
+    @JsonProperty(JSON_PROPERTY_END_TIME)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+
+
+    public VenueLesson weeks(LessonWeeks weeks) {
+        this.weeks = weeks;
+        return this;
+    }
+
+    /**
+     * Get weeks
+     *
+     * @return weeks
+     **/
+    @javax.annotation.Nonnull
+    @ApiModelProperty(required = true, value = "")
+    @JsonProperty(JSON_PROPERTY_WEEKS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+    public LessonWeeks getWeeks() {
+        return weeks;
+    }
+
+
+    @JsonProperty(JSON_PROPERTY_WEEKS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setWeeks(LessonWeeks weeks) {
+        this.weeks = weeks;
+    }
+
+
+    public VenueLesson venue(String venue) {
+        this.venue = venue;
+        return this;
+    }
+
+    /**
+     * Get venue
+     *
+     * @return venue
+     **/
+    @javax.annotation.Nonnull
+    @ApiModelProperty(example = "COM1-0208", required = true, value = "")
+    @JsonProperty(JSON_PROPERTY_VENUE)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+    public String getVenue() {
+        return venue;
+    }
+
+
+    @JsonProperty(JSON_PROPERTY_VENUE)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setVenue(String venue) {
+        this.venue = venue;
+    }
+
+
+    public VenueLesson day(String day) {
+        this.day = day;
+        return this;
+    }
+
+    /**
+     * Get day
+     *
+     * @return day
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(example = "Friday", value = "")
+    @JsonProperty(JSON_PROPERTY_DAY)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+    public String getDay() {
+        return day;
+    }
+
+
+    @JsonProperty(JSON_PROPERTY_DAY)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public void setDay(String day) {
+        this.day = day;
+    }
+
+
+    public VenueLesson lessonType(String lessonType) {
+        this.lessonType = lessonType;
+        return this;
+    }
+
+    /**
+     * Get lessonType
+     *
+     * @return lessonType
+     **/
+    @javax.annotation.Nonnull
+    @ApiModelProperty(example = "Tutorial", required = true, value = "")
+    @JsonProperty(JSON_PROPERTY_LESSON_TYPE)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+    public String getLessonType() {
+        return lessonType;
+    }
+
+
+    @JsonProperty(JSON_PROPERTY_LESSON_TYPE)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setLessonType(String lessonType) {
+        this.lessonType = lessonType;
+    }
+
+
+    public VenueLesson size(BigDecimal size) {
+        this.size = size;
+        return this;
+    }
+
+    /**
+     * Get size
+     *
+     * @return size
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(example = "30", value = "")
+    @JsonProperty(JSON_PROPERTY_SIZE)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+    public BigDecimal getSize() {
+        return size;
+    }
+
+
+    @JsonProperty(JSON_PROPERTY_SIZE)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public void setSize(BigDecimal size) {
+        this.size = size;
+    }
+
+
+    public VenueLesson moduleCode(String moduleCode) {
+        this.moduleCode = moduleCode;
+        return this;
+    }
+
+    /**
+     * Get moduleCode
+     *
+     * @return moduleCode
+     **/
+    @javax.annotation.Nonnull
+    @ApiModelProperty(example = "CS1010S", required = true, value = "")
+    @JsonProperty(JSON_PROPERTY_MODULE_CODE)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+    public String getModuleCode() {
+        return moduleCode;
+    }
+
+
+    @JsonProperty(JSON_PROPERTY_MODULE_CODE)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setModuleCode(String moduleCode) {
+        this.moduleCode = moduleCode;
+    }
+
+
+    /**
+     * Return true if this VenueLesson object is equal to o.
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        VenueLesson venueLesson = (VenueLesson) o;
+        return Objects.equals(this.classNo, venueLesson.classNo) &&
+            Objects.equals(this.startTime, venueLesson.startTime) &&
+            Objects.equals(this.endTime, venueLesson.endTime) &&
+            Objects.equals(this.weeks, venueLesson.weeks) &&
+            Objects.equals(this.venue, venueLesson.venue) &&
+            Objects.equals(this.day, venueLesson.day) &&
+            Objects.equals(this.lessonType, venueLesson.lessonType) &&
+            Objects.equals(this.size, venueLesson.size) &&
+            Objects.equals(this.moduleCode, venueLesson.moduleCode);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(classNo, startTime, endTime, weeks, venue, day, lessonType, size, moduleCode);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class VenueLesson {\n");
+        sb.append("    classNo: ").append(toIndentedString(classNo)).append("\n");
+        sb.append("    startTime: ").append(toIndentedString(startTime)).append("\n");
+        sb.append("    endTime: ").append(toIndentedString(endTime)).append("\n");
+        sb.append("    weeks: ").append(toIndentedString(weeks)).append("\n");
+        sb.append("    venue: ").append(toIndentedString(venue)).append("\n");
+        sb.append("    day: ").append(toIndentedString(day)).append("\n");
+        sb.append("    lessonType: ").append(toIndentedString(lessonType)).append("\n");
+        sb.append("    size: ").append(toIndentedString(size)).append("\n");
+        sb.append("    moduleCode: ").append(toIndentedString(moduleCode)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

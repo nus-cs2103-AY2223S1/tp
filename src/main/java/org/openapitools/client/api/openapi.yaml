@@ -222,11 +222,11 @@ info:
   title: NUSMods API
   version: 2.0.0
 servers:
-- url: https://api.nusmods.com/v2
-- url: http://api.nusmods.com/v2
+  - url: https://api.nusmods.com/v2
+  - url: http://api.nusmods.com/v2
 tags:
-- name: Modules
-- name: Venues
+  - name: Modules
+  - name: Venues
 paths:
   /{acadYear}/moduleList.json:
     get:
@@ -235,15 +235,15 @@ paths:
 
         NUSMods uses this information to validate module codes and for searching.
       parameters:
-      - description: "academic year, with the slash (/) replaced by a dash"
-        explode: false
-        in: path
-        name: acadYear
-        required: true
-        schema:
-          example: 2018-2019
-          type: string
-        style: simple
+        - description: "academic year, with the slash (/) replaced by a dash"
+          explode: false
+          in: path
+          name: acadYear
+          required: true
+          schema:
+            example: 2018-2019
+            type: string
+          style: simple
       responses:
         "200":
           content:
@@ -257,7 +257,7 @@ paths:
           description: Not found
       summary: Get summaries of all modules
       tags:
-      - Modules
+        - Modules
       x-accepts: application/json
     summary: Module list
   /{acadYear}/moduleInformation.json:
@@ -268,15 +268,15 @@ paths:
 
         In AY2018/2019, NUSMods used this information for the detailed module search page. This endpoint will no longer be present starting in AY2019/2020. Please use the moduleInfo.json endpoint instead, which contains modules which are not offered in the specified academic year, but is otherwise identical to this endpoint.
       parameters:
-      - description: "academic year, with the slash (/) replaced by a dash"
-        explode: false
-        in: path
-        name: acadYear
-        required: true
-        schema:
-          example: 2018-2019
-          type: string
-        style: simple
+        - description: "academic year, with the slash (/) replaced by a dash"
+          explode: false
+          in: path
+          name: acadYear
+          required: true
+          schema:
+            example: 2018-2019
+            type: string
+          style: simple
       responses:
         "200":
           content:
@@ -290,7 +290,7 @@ paths:
           description: Not found
       summary: Get detailed information about all modules
       tags:
-      - Modules
+        - Modules
       x-accepts: application/json
   /{acadYear}/moduleInfo.json:
     get:
@@ -299,15 +299,15 @@ paths:
 
         NUSMods feeds this information into an Elasticsearch search server for the detailed module search page.
       parameters:
-      - description: "academic year, with the slash (/) replaced by a dash"
-        explode: false
-        in: path
-        name: acadYear
-        required: true
-        schema:
-          example: 2018-2019
-          type: string
-        style: simple
+        - description: "academic year, with the slash (/) replaced by a dash"
+          explode: false
+          in: path
+          name: acadYear
+          required: true
+          schema:
+            example: 2018-2019
+            type: string
+          style: simple
       responses:
         "200":
           content:
@@ -321,7 +321,7 @@ paths:
           description: Not found
       summary: Get detailed information about all modules
       tags:
-      - Modules
+        - Modules
       x-accepts: application/json
   /{acadYear}/modules/{moduleCode}.json:
     get:
@@ -330,24 +330,24 @@ paths:
 
         NUSMods uses this on the module information page.
       parameters:
-      - description: "academic year, with the slash (/) replaced by a dash"
-        explode: false
-        in: path
-        name: acadYear
-        required: true
-        schema:
-          example: 2018-2019
-          type: string
-        style: simple
-      - description: module code
-        explode: false
-        in: path
-        name: moduleCode
-        required: true
-        schema:
-          example: CS1010S
-          type: string
-        style: simple
+        - description: "academic year, with the slash (/) replaced by a dash"
+          explode: false
+          in: path
+          name: acadYear
+          required: true
+          schema:
+            example: 2018-2019
+            type: string
+          style: simple
+        - description: module code
+          explode: false
+          in: path
+          name: moduleCode
+          required: true
+          schema:
+            example: CS1010S
+            type: string
+          style: simple
       responses:
         "200":
           content:
@@ -359,36 +359,36 @@ paths:
           description: Not found
       summary: Get all information about a specific module
       tags:
-      - Modules
+        - Modules
       x-accepts: application/json
   /{acadYear}/semesters/{semester}/venues.json:
     get:
       description: |
         Get a list of all venues, including lecture theatres, seminar rooms, laboratories, etc. used in the given semester's classes. This endpoint only returns an array of names, and is useful for searching and autocompletion.
       parameters:
-      - description: "academic year, with the slash (/) replaced by a dash"
-        explode: false
-        in: path
-        name: acadYear
-        required: true
-        schema:
-          example: 2018-2019
-          type: string
-        style: simple
-      - description: "semester, with 1 and 2 representing semester 1 and 2, and 3,\
+        - description: "academic year, with the slash (/) replaced by a dash"
+          explode: false
+          in: path
+          name: acadYear
+          required: true
+          schema:
+            example: 2018-2019
+            type: string
+          style: simple
+        - description: "semester, with 1 and 2 representing semester 1 and 2, and 3,\
           \ 4 representing special term 1 and 2"
-        explode: false
-        in: path
-        name: semester
-        required: true
-        schema:
-          enum:
-          - 1
-          - 2
-          - 3
-          - 4
-          type: number
-        style: simple
+          explode: false
+          in: path
+          name: semester
+          required: true
+          schema:
+            enum:
+              - 1
+              - 2
+              - 3
+              - 4
+            type: number
+          style: simple
       responses:
         "200":
           content:
@@ -403,36 +403,36 @@ paths:
           description: Not found
       summary: Get a list of all venues
       tags:
-      - Venues
+        - Venues
       x-accepts: application/json
   /{acadYear}/semesters/{semester}/venueInformation.json:
     get:
       description: |
         Get detailed venue information including classes and occupancy for every venue. This is useful for displaying a timetable of the given venue as well as for checking if a venue is occupied at any given time.
       parameters:
-      - description: "academic year, with the slash (/) replaced by a dash"
-        explode: false
-        in: path
-        name: acadYear
-        required: true
-        schema:
-          example: 2018-2019
-          type: string
-        style: simple
-      - description: "semester, with 1 and 2 representing semester 1 and 2, and 3,\
+        - description: "academic year, with the slash (/) replaced by a dash"
+          explode: false
+          in: path
+          name: acadYear
+          required: true
+          schema:
+            example: 2018-2019
+            type: string
+          style: simple
+        - description: "semester, with 1 and 2 representing semester 1 and 2, and 3,\
           \ 4 representing special term 1 and 2"
-        explode: false
-        in: path
-        name: semester
-        required: true
-        schema:
-          enum:
-          - 1
-          - 2
-          - 3
-          - 4
-          type: number
-        style: simple
+          explode: false
+          in: path
+          name: semester
+          required: true
+          schema:
+            enum:
+              - 1
+              - 2
+              - 3
+              - 4
+            type: number
+          style: simple
       responses:
         "200":
           content:
@@ -444,40 +444,40 @@ paths:
                   type: array
                 example:
                   LT19:
-                  - day: Monday
-                    classes:
-                    - classNo: "1"
-                      startTime: "1830"
-                      endTime: "2030"
-                      weeks:
-                      - 1
-                      - 2
-                      - 3
-                      - 4
-                      - 5
-                      - 6
-                      - 7
-                      - 8
-                      - 9
-                      - 10
-                      - 11
-                      - 12
-                      - 13
-                      day: Wednesday
-                      lessonType: Lecture
-                      moduleCode: CS5322
-                      size: 40
-                    availability:
-                      "0900": occupied
-                      "0930": occupied
-                      "1000": occupied
+                    - day: Monday
+                      classes:
+                        - classNo: "1"
+                          startTime: "1830"
+                          endTime: "2030"
+                          weeks:
+                            - 1
+                            - 2
+                            - 3
+                            - 4
+                            - 5
+                            - 6
+                            - 7
+                            - 8
+                            - 9
+                            - 10
+                            - 11
+                            - 12
+                            - 13
+                          day: Wednesday
+                          lessonType: Lecture
+                          moduleCode: CS5322
+                          size: 40
+                      availability:
+                        "0900": occupied
+                        "0930": occupied
+                        "1000": occupied
                 type: object
           description: Success
         "404":
           description: Not found
       summary: Get detailed information on all venues
       tags:
-      - Venues
+        - Venues
       x-accepts: application/json
 components:
   parameters:
@@ -510,10 +510,10 @@ components:
       required: true
       schema:
         enum:
-        - 1
-        - 2
-        - 3
-        - 4
+          - 1
+          - 2
+          - 3
+          - 4
         type: number
       style: simple
   responses:
@@ -524,12 +524,12 @@ components:
       properties:
         day:
           enum:
-          - Monday
-          - Tuesday
-          - Wednesday
-          - Thursday
-          - Friday
-          - Saturday
+            - Monday
+            - Tuesday
+            - Wednesday
+            - Thursday
+            - Friday
+            - Saturday
           type: string
         classes:
           items:
@@ -538,7 +538,7 @@ components:
         availability:
           additionalProperties:
             enum:
-            - occupied
+              - occupied
             type: string
           example:
             "0900": occupied
@@ -547,33 +547,33 @@ components:
           type: object
     VenueLesson:
       allOf:
-      - $ref: '#/components/schemas/Lesson'
-      - $ref: '#/components/schemas/VenueLesson_allOf'
+        - $ref: '#/components/schemas/Lesson'
+        - $ref: '#/components/schemas/VenueLesson_allOf'
     PrereqTree:
       example:
         and:
-        - or:
-          - CS1010S
-          - CS1010X
-        - CS1231
+          - or:
+              - CS1010S
+              - CS1010X
+          - CS1231
       oneOf:
-      - example: CS1010S
-        type: string
-      - $ref: '#/components/schemas/PrereqTree_oneOf'
-      - $ref: '#/components/schemas/PrereqTree_oneOf_1'
+        - example: CS1010S
+          type: string
+        - $ref: '#/components/schemas/PrereqTree_oneOf'
+        - $ref: '#/components/schemas/PrereqTree_oneOf_1'
     Workload:
       oneOf:
-      - example:
-        - 3
-        - 1
-        - 1
-        - 3
-        - 2
-        items:
-          type: number
-        type: array
-      - example: A good background in the topics selected
-        type: string
+        - example:
+            - 3
+            - 1
+            - 1
+            - 3
+            - 2
+          items:
+            type: number
+          type: array
+        - example: A good background in the topics selected
+          type: string
     WeekRange:
       properties:
         start:
@@ -590,17 +590,17 @@ components:
           type: number
         weeks:
           example:
-          - 1
-          - 2
-          - 4
-          - 5
-          - 6
+            - 1
+            - 2
+            - 4
+            - 5
+            - 6
           items:
             type: number
           type: array
       required:
-      - end
-      - start
+        - end
+        - start
     Lesson:
       example:
         venue: COM1-0208
@@ -636,18 +636,18 @@ components:
           example: 30
           type: number
       required:
-      - classNo
-      - endTime
-      - lessonType
-      - startTime
-      - venue
-      - weeks
+        - classNo
+        - endTime
+        - lessonType
+        - startTime
+        - venue
+        - weeks
     ModuleCondensed:
       example:
         moduleCode: EL1101E
         semesters:
-        - 1
-        - 2
+          - 1
+          - 2
         title: The Nature of Language
       properties:
         moduleCode:
@@ -658,42 +658,42 @@ components:
           type: string
         semesters:
           example:
-          - 1
-          - 2
-          items:
-            enum:
             - 1
             - 2
-            - 3
-            - 4
+          items:
+            enum:
+              - 1
+              - 2
+              - 3
+              - 4
             type: number
           type: array
       required:
-      - moduleCode
-      - semesters
-      - title
+        - moduleCode
+        - semesters
+        - title
     SemesterData:
       example:
         examDate: 2018-11-27T09:00:00Z
         semester: 1
         examDuration: 120
         timetable:
-        - venue: COM1-0208
-          weeks: null
-          size: 30
-          classNo: "08"
-          startTime: "1100"
-          endTime: "1200"
-          day: Friday
-          lessonType: Tutorial
-        - venue: COM1-0208
-          weeks: null
-          size: 30
-          classNo: "08"
-          startTime: "1100"
-          endTime: "1200"
-          day: Friday
-          lessonType: Tutorial
+          - venue: COM1-0208
+            weeks: null
+            size: 30
+            classNo: "08"
+            startTime: "1100"
+            endTime: "1200"
+            day: Friday
+            lessonType: Tutorial
+          - venue: COM1-0208
+            weeks: null
+            size: 30
+            classNo: "08"
+            startTime: "1100"
+            endTime: "1200"
+            day: Friday
+            lessonType: Tutorial
       properties:
         semester:
           example: 1
@@ -710,59 +710,59 @@ components:
             $ref: '#/components/schemas/Lesson'
           type: array
       required:
-      - semester
+        - semester
     Module:
       example:
         moduleCode: CS2100
         semesterData:
-        - examDate: 2018-11-27T09:00:00Z
-          semester: 1
-          examDuration: 120
-          timetable:
-          - venue: COM1-0208
-            weeks: null
-            size: 30
-            classNo: "08"
-            startTime: "1100"
-            endTime: "1200"
-            day: Friday
-            lessonType: Tutorial
-          - venue: COM1-0208
-            weeks: null
-            size: 30
-            classNo: "08"
-            startTime: "1100"
-            endTime: "1200"
-            day: Friday
-            lessonType: Tutorial
-        - examDate: 2018-11-27T09:00:00Z
-          semester: 1
-          examDuration: 120
-          timetable:
-          - venue: COM1-0208
-            weeks: null
-            size: 30
-            classNo: "08"
-            startTime: "1100"
-            endTime: "1200"
-            day: Friday
-            lessonType: Tutorial
-          - venue: COM1-0208
-            weeks: null
-            size: 30
-            classNo: "08"
-            startTime: "1100"
-            endTime: "1200"
-            day: Friday
-            lessonType: Tutorial
+          - examDate: 2018-11-27T09:00:00Z
+            semester: 1
+            examDuration: 120
+            timetable:
+              - venue: COM1-0208
+                weeks: null
+                size: 30
+                classNo: "08"
+                startTime: "1100"
+                endTime: "1200"
+                day: Friday
+                lessonType: Tutorial
+              - venue: COM1-0208
+                weeks: null
+                size: 30
+                classNo: "08"
+                startTime: "1100"
+                endTime: "1200"
+                day: Friday
+                lessonType: Tutorial
+          - examDate: 2018-11-27T09:00:00Z
+            semester: 1
+            examDuration: 120
+            timetable:
+              - venue: COM1-0208
+                weeks: null
+                size: 30
+                classNo: "08"
+                startTime: "1100"
+                endTime: "1200"
+                day: Friday
+                lessonType: Tutorial
+              - venue: COM1-0208
+                weeks: null
+                size: 30
+                classNo: "08"
+                startTime: "1100"
+                endTime: "1200"
+                day: Friday
+                lessonType: Tutorial
         moduleCredit: "4"
         prerequisite: CS1010 or its equivalent
         prereqTree:
           and:
-          - or:
-            - CS1010S
-            - CS1010X
-          - CS1231
+            - or:
+                - CS1010S
+                - CS1010X
+            - CS1231
         description: "The objective of this module is to familiarise students with\
           \ the fundamentals of computing devices. Through this module students will\
           \ understand the basics of data representation, and how the various parts\
@@ -778,8 +778,8 @@ components:
         faculty: Computing
         preclusion: CS1104 or Students from department of ECE
         fulfillRequirements:
-        - CS2106
-        - CS3210
+          - CS2106
+          - CS3210
         department: Computer Science
       properties:
         acadYear:
@@ -827,33 +827,33 @@ components:
           $ref: '#/components/schemas/PrereqTree'
         fulfillRequirements:
           example:
-          - CS2106
-          - CS3210
+            - CS2106
+            - CS3210
           items:
             type: string
           type: array
       required:
-      - acadYear
-      - department
-      - description
-      - faculty
-      - moduleCode
-      - moduleCredit
-      - semesterData
-      - title
-      - workload
+        - acadYear
+        - department
+        - description
+        - faculty
+        - moduleCode
+        - moduleCredit
+        - semesterData
+        - title
+        - workload
     ModuleInformation:
       example:
         corequisite: Students must take CS2101 in the same semester as this module
         preclusion: CS1104 or Students from department of ECE
         moduleCode: CS2100
         semesterData:
-        - examDate: 2018-11-27T09:00:00Z
-          semester: 1
-          examDuration: 120
-        - examDate: 2018-11-27T09:00:00Z
-          semester: 1
-          examDuration: 120
+          - examDate: 2018-11-27T09:00:00Z
+            semester: 1
+            examDuration: 120
+          - examDate: 2018-11-27T09:00:00Z
+            semester: 1
+            examDuration: 120
         moduleCredit: "4"
         prerequisite: CS1010 or its equivalent
         description: "The objective of this module is to familiarise students with\
@@ -912,21 +912,21 @@ components:
             $ref: '#/components/schemas/ModuleInformation_semesterData_inner'
           type: array
       required:
-      - department
-      - description
-      - faculty
-      - moduleCode
-      - moduleCredit
-      - semesterData
-      - title
-      - workload
+        - department
+        - description
+        - faculty
+        - moduleCode
+        - moduleCredit
+        - semesterData
+        - title
+        - workload
     VenueLesson_allOf:
       properties:
         moduleCode:
           example: CS1010S
           type: string
       required:
-      - moduleCode
+        - moduleCode
       type: object
       example: null
     PrereqTree_oneOf:
@@ -936,7 +936,7 @@ components:
             $ref: '#/components/schemas/PrereqTree'
           type: array
       required:
-      - or
+        - or
       type: object
       example: null
     PrereqTree_oneOf_1:
@@ -946,29 +946,29 @@ components:
             $ref: '#/components/schemas/PrereqTree'
           type: array
       required:
-      - and
+        - and
       type: object
       example: null
     Lesson_weeks:
       oneOf:
-      - $ref: '#/components/schemas/WeekRange'
-      - example:
-        - 1
-        - 2
-        - 3
-        - 4
-        - 5
-        - 6
-        - 7
-        - 8
-        - 9
-        - 10
-        - 11
-        - 12
-        - 13
-        items:
-          type: number
-        type: array
+        - $ref: '#/components/schemas/WeekRange'
+        - example:
+            - 1
+            - 2
+            - 3
+            - 4
+            - 5
+            - 6
+            - 7
+            - 8
+            - 9
+            - 10
+            - 11
+            - 12
+            - 13
+          items:
+            type: number
+          type: array
     ModuleInformation_semesterData_inner:
       example:
         examDate: 2018-11-27T09:00:00Z

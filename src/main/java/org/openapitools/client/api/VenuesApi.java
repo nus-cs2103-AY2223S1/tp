@@ -12,227 +12,249 @@
 
 package org.openapitools.client.api;
 
-import org.openapitools.client.ApiClient;
-import org.openapitools.client.ApiException;
-import org.openapitools.client.ApiResponse;
-import org.openapitools.client.Pair;
-
-import java.math.BigDecimal;
-import org.openapitools.client.model.VenueInformation;
-
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigDecimal;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
-
-import java.util.ArrayList;
-import java.util.StringJoiner;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.function.Consumer;
+
+import org.openapitools.client.ApiClient;
+import org.openapitools.client.ApiException;
+import org.openapitools.client.ApiResponse;
+import org.openapitools.client.model.VenueInformation;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-03T22:22:26.802458+08:00[Asia/Singapore]")
 public class VenuesApi {
-  private final HttpClient memberVarHttpClient;
-  private final ObjectMapper memberVarObjectMapper;
-  private final String memberVarBaseUri;
-  private final Consumer<HttpRequest.Builder> memberVarInterceptor;
-  private final Duration memberVarReadTimeout;
-  private final Consumer<HttpResponse<InputStream>> memberVarResponseInterceptor;
-  private final Consumer<HttpResponse<String>> memberVarAsyncResponseInterceptor;
 
-  public VenuesApi() {
-    this(new ApiClient());
-  }
+    private final HttpClient memberVarHttpClient;
+    private final ObjectMapper memberVarObjectMapper;
+    private final String memberVarBaseUri;
+    private final Consumer<HttpRequest.Builder> memberVarInterceptor;
+    private final Duration memberVarReadTimeout;
+    private final Consumer<HttpResponse<InputStream>> memberVarResponseInterceptor;
+    private final Consumer<HttpResponse<String>> memberVarAsyncResponseInterceptor;
 
-  public VenuesApi(ApiClient apiClient) {
-    memberVarHttpClient = apiClient.getHttpClient();
-    memberVarObjectMapper = apiClient.getObjectMapper();
-    memberVarBaseUri = apiClient.getBaseUri();
-    memberVarInterceptor = apiClient.getRequestInterceptor();
-    memberVarReadTimeout = apiClient.getReadTimeout();
-    memberVarResponseInterceptor = apiClient.getResponseInterceptor();
-    memberVarAsyncResponseInterceptor = apiClient.getAsyncResponseInterceptor();
-  }
-
-  protected ApiException getApiException(String operationId, HttpResponse<InputStream> response) throws IOException {
-    String body = response.body() == null ? null : new String(response.body().readAllBytes());
-    String message = formatExceptionMessage(operationId, response.statusCode(), body);
-    return new ApiException(response.statusCode(), message, response.headers(), body);
-  }
-
-  private String formatExceptionMessage(String operationId, int statusCode, String body) {
-    if (body == null || body.isEmpty()) {
-      body = "[no body]";
+    public VenuesApi() {
+        this(new ApiClient());
     }
-    return operationId + " call failed with: " + statusCode + " - " + body;
-  }
 
-  /**
-   * Get detailed information on all venues
-   * Get detailed venue information including classes and occupancy for every venue. This is useful for displaying a timetable of the given venue as well as for checking if a venue is occupied at any given time.
-   * @param acadYear academic year, with the slash (/) replaced by a dash (required)
-   * @param semester semester, with 1 and 2 representing semester 1 and 2, and 3, 4 representing special term 1 and 2 (required)
-   * @return Map&lt;String, List&lt;VenueInformation&gt;&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public Map<String, List<VenueInformation>> acadYearSemestersSemesterVenueInformationJsonGet(String acadYear, BigDecimal semester) throws ApiException {
-    ApiResponse<Map<String, List<VenueInformation>>> localVarResponse = acadYearSemestersSemesterVenueInformationJsonGetWithHttpInfo(acadYear, semester);
-    return localVarResponse.getData();
-  }
+    public VenuesApi(ApiClient apiClient) {
+        memberVarHttpClient = apiClient.getHttpClient();
+        memberVarObjectMapper = apiClient.getObjectMapper();
+        memberVarBaseUri = apiClient.getBaseUri();
+        memberVarInterceptor = apiClient.getRequestInterceptor();
+        memberVarReadTimeout = apiClient.getReadTimeout();
+        memberVarResponseInterceptor = apiClient.getResponseInterceptor();
+        memberVarAsyncResponseInterceptor = apiClient.getAsyncResponseInterceptor();
+    }
 
-  /**
-   * Get detailed information on all venues
-   * Get detailed venue information including classes and occupancy for every venue. This is useful for displaying a timetable of the given venue as well as for checking if a venue is occupied at any given time.
-   * @param acadYear academic year, with the slash (/) replaced by a dash (required)
-   * @param semester semester, with 1 and 2 representing semester 1 and 2, and 3, 4 representing special term 1 and 2 (required)
-   * @return ApiResponse&lt;Map&lt;String, List&lt;VenueInformation&gt;&gt;&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<Map<String, List<VenueInformation>>> acadYearSemestersSemesterVenueInformationJsonGetWithHttpInfo(String acadYear, BigDecimal semester) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = acadYearSemestersSemesterVenueInformationJsonGetRequestBuilder(acadYear, semester);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("acadYearSemestersSemesterVenueInformationJsonGet", localVarResponse);
+    protected ApiException getApiException(String operationId, HttpResponse<InputStream> response) throws IOException {
+        String body = response.body() == null ? null : new String(response.body().readAllBytes());
+        String message = formatExceptionMessage(operationId, response.statusCode(), body);
+        return new ApiException(response.statusCode(), message, response.headers(), body);
+    }
+
+    private String formatExceptionMessage(String operationId, int statusCode, String body) {
+        if (body == null || body.isEmpty()) {
+            body = "[no body]";
         }
-        return new ApiResponse<Map<String, List<VenueInformation>>>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<Map<String, List<VenueInformation>>>() {}) // closes the InputStream
-
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
-
-  private HttpRequest.Builder acadYearSemestersSemesterVenueInformationJsonGetRequestBuilder(String acadYear, BigDecimal semester) throws ApiException {
-    // verify the required parameter 'acadYear' is set
-    if (acadYear == null) {
-      throw new ApiException(400, "Missing the required parameter 'acadYear' when calling acadYearSemestersSemesterVenueInformationJsonGet");
-    }
-    // verify the required parameter 'semester' is set
-    if (semester == null) {
-      throw new ApiException(400, "Missing the required parameter 'semester' when calling acadYearSemestersSemesterVenueInformationJsonGet");
+        return operationId + " call failed with: " + statusCode + " - " + body;
     }
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/{acadYear}/semesters/{semester}/venueInformation.json"
-        .replace("{acadYear}", ApiClient.urlEncode(acadYear.toString()))
-        .replace("{semester}", ApiClient.urlEncode(semester.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    /**
+     * Get detailed information on all venues Get detailed venue information including classes and occupancy for every
+     * venue. This is useful for displaying a timetable of the given venue as well as for checking if a venue is
+     * occupied at any given time.
+     *
+     * @param acadYear academic year, with the slash (/) replaced by a dash (required)
+     * @param semester semester, with 1 and 2 representing semester 1 and 2, and 3, 4 representing special term 1 and 2
+     *                 (required)
+     * @return Map&lt;String, List&lt;VenueInformation&gt;&gt;
+     * @throws ApiException if fails to make API call
+     */
+    public Map<String, List<VenueInformation>> acadYearSemestersSemesterVenueInformationJsonGet(String acadYear,
+        BigDecimal semester) throws ApiException {
+        ApiResponse<Map<String, List<VenueInformation>>> localVarResponse =
+            acadYearSemestersSemesterVenueInformationJsonGetWithHttpInfo(acadYear, semester);
+        return localVarResponse.getData();
     }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Get a list of all venues
-   * Get a list of all venues, including lecture theatres, seminar rooms, laboratories, etc. used in the given semester&#39;s classes. This endpoint only returns an array of names, and is useful for searching and autocompletion.
-   * @param acadYear academic year, with the slash (/) replaced by a dash (required)
-   * @param semester semester, with 1 and 2 representing semester 1 and 2, and 3, 4 representing special term 1 and 2 (required)
-   * @return List&lt;String&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public List<String> acadYearSemestersSemesterVenuesJsonGet(String acadYear, BigDecimal semester) throws ApiException {
-    ApiResponse<List<String>> localVarResponse = acadYearSemestersSemesterVenuesJsonGetWithHttpInfo(acadYear, semester);
-    return localVarResponse.getData();
-  }
 
-  /**
-   * Get a list of all venues
-   * Get a list of all venues, including lecture theatres, seminar rooms, laboratories, etc. used in the given semester&#39;s classes. This endpoint only returns an array of names, and is useful for searching and autocompletion.
-   * @param acadYear academic year, with the slash (/) replaced by a dash (required)
-   * @param semester semester, with 1 and 2 representing semester 1 and 2, and 3, 4 representing special term 1 and 2 (required)
-   * @return ApiResponse&lt;List&lt;String&gt;&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<List<String>> acadYearSemestersSemesterVenuesJsonGetWithHttpInfo(String acadYear, BigDecimal semester) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = acadYearSemestersSemesterVenuesJsonGetRequestBuilder(acadYear, semester);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("acadYearSemestersSemesterVenuesJsonGet", localVarResponse);
+    /**
+     * Get detailed information on all venues Get detailed venue information including classes and occupancy for every
+     * venue. This is useful for displaying a timetable of the given venue as well as for checking if a venue is
+     * occupied at any given time.
+     *
+     * @param acadYear academic year, with the slash (/) replaced by a dash (required)
+     * @param semester semester, with 1 and 2 representing semester 1 and 2, and 3, 4 representing special term 1 and 2
+     *                 (required)
+     * @return ApiResponse&lt;Map&lt;String, List&lt;VenueInformation&gt;&gt;&gt;
+     * @throws ApiException if fails to make API call
+     */
+    public ApiResponse<Map<String, List<VenueInformation>>> acadYearSemestersSemesterVenueInformationJsonGetWithHttpInfo(
+        String acadYear, BigDecimal semester) throws ApiException {
+        HttpRequest.Builder localVarRequestBuilder =
+            acadYearSemestersSemesterVenueInformationJsonGetRequestBuilder(acadYear, semester);
+        try {
+            HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+                localVarRequestBuilder.build(),
+                HttpResponse.BodyHandlers.ofInputStream());
+            if (memberVarResponseInterceptor != null) {
+                memberVarResponseInterceptor.accept(localVarResponse);
+            }
+            try {
+                if (localVarResponse.statusCode() / 100 != 2) {
+                    throw getApiException("acadYearSemestersSemesterVenueInformationJsonGet", localVarResponse);
+                }
+                return new ApiResponse<Map<String, List<VenueInformation>>>(
+                    localVarResponse.statusCode(),
+                    localVarResponse.headers().map(),
+                    memberVarObjectMapper.readValue(localVarResponse.body(),
+                        new TypeReference<Map<String, List<VenueInformation>>>() {
+                        }) // closes the InputStream
+
+                );
+            } finally {
+            }
+        } catch (IOException e) {
+            throw new ApiException(e);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new ApiException(e);
         }
-        return new ApiResponse<List<String>>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<List<String>>() {}) // closes the InputStream
-
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
-
-  private HttpRequest.Builder acadYearSemestersSemesterVenuesJsonGetRequestBuilder(String acadYear, BigDecimal semester) throws ApiException {
-    // verify the required parameter 'acadYear' is set
-    if (acadYear == null) {
-      throw new ApiException(400, "Missing the required parameter 'acadYear' when calling acadYearSemestersSemesterVenuesJsonGet");
-    }
-    // verify the required parameter 'semester' is set
-    if (semester == null) {
-      throw new ApiException(400, "Missing the required parameter 'semester' when calling acadYearSemestersSemesterVenuesJsonGet");
     }
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+    private HttpRequest.Builder acadYearSemestersSemesterVenueInformationJsonGetRequestBuilder(String acadYear,
+        BigDecimal semester) throws ApiException {
+        // verify the required parameter 'acadYear' is set
+        if (acadYear == null) {
+            throw new ApiException(400,
+                "Missing the required parameter 'acadYear' when calling acadYearSemestersSemesterVenueInformationJsonGet");
+        }
+        // verify the required parameter 'semester' is set
+        if (semester == null) {
+            throw new ApiException(400,
+                "Missing the required parameter 'semester' when calling acadYearSemestersSemesterVenueInformationJsonGet");
+        }
 
-    String localVarPath = "/{acadYear}/semesters/{semester}/venues.json"
-        .replace("{acadYear}", ApiClient.urlEncode(acadYear.toString()))
-        .replace("{semester}", ApiClient.urlEncode(semester.toString()));
+        HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+        String localVarPath = "/{acadYear}/semesters/{semester}/venueInformation.json"
+            .replace("{acadYear}", ApiClient.urlEncode(acadYear.toString()))
+            .replace("{semester}", ApiClient.urlEncode(semester.toString()));
 
-    localVarRequestBuilder.header("Accept", "application/json");
+        localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
+        localVarRequestBuilder.header("Accept", "application/json");
+
+        localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+        if (memberVarReadTimeout != null) {
+            localVarRequestBuilder.timeout(memberVarReadTimeout);
+        }
+        if (memberVarInterceptor != null) {
+            memberVarInterceptor.accept(localVarRequestBuilder);
+        }
+        return localVarRequestBuilder;
     }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
+
+    /**
+     * Get a list of all venues Get a list of all venues, including lecture theatres, seminar rooms, laboratories, etc.
+     * used in the given semester&#39;s classes. This endpoint only returns an array of names, and is useful for
+     * searching and autocompletion.
+     *
+     * @param acadYear academic year, with the slash (/) replaced by a dash (required)
+     * @param semester semester, with 1 and 2 representing semester 1 and 2, and 3, 4 representing special term 1 and 2
+     *                 (required)
+     * @return List&lt;String&gt;
+     * @throws ApiException if fails to make API call
+     */
+    public List<String> acadYearSemestersSemesterVenuesJsonGet(String acadYear, BigDecimal semester)
+        throws ApiException {
+        ApiResponse<List<String>> localVarResponse =
+            acadYearSemestersSemesterVenuesJsonGetWithHttpInfo(acadYear, semester);
+        return localVarResponse.getData();
     }
-    return localVarRequestBuilder;
-  }
+
+    /**
+     * Get a list of all venues Get a list of all venues, including lecture theatres, seminar rooms, laboratories, etc.
+     * used in the given semester&#39;s classes. This endpoint only returns an array of names, and is useful for
+     * searching and autocompletion.
+     *
+     * @param acadYear academic year, with the slash (/) replaced by a dash (required)
+     * @param semester semester, with 1 and 2 representing semester 1 and 2, and 3, 4 representing special term 1 and 2
+     *                 (required)
+     * @return ApiResponse&lt;List&lt;String&gt;&gt;
+     * @throws ApiException if fails to make API call
+     */
+    public ApiResponse<List<String>> acadYearSemestersSemesterVenuesJsonGetWithHttpInfo(String acadYear,
+        BigDecimal semester) throws ApiException {
+        HttpRequest.Builder localVarRequestBuilder =
+            acadYearSemestersSemesterVenuesJsonGetRequestBuilder(acadYear, semester);
+        try {
+            HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+                localVarRequestBuilder.build(),
+                HttpResponse.BodyHandlers.ofInputStream());
+            if (memberVarResponseInterceptor != null) {
+                memberVarResponseInterceptor.accept(localVarResponse);
+            }
+            try {
+                if (localVarResponse.statusCode() / 100 != 2) {
+                    throw getApiException("acadYearSemestersSemesterVenuesJsonGet", localVarResponse);
+                }
+                return new ApiResponse<List<String>>(
+                    localVarResponse.statusCode(),
+                    localVarResponse.headers().map(),
+                    memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<List<String>>() {
+                    }) // closes the InputStream
+
+                );
+            } finally {
+            }
+        } catch (IOException e) {
+            throw new ApiException(e);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new ApiException(e);
+        }
+    }
+
+    private HttpRequest.Builder acadYearSemestersSemesterVenuesJsonGetRequestBuilder(String acadYear,
+        BigDecimal semester) throws ApiException {
+        // verify the required parameter 'acadYear' is set
+        if (acadYear == null) {
+            throw new ApiException(400,
+                "Missing the required parameter 'acadYear' when calling acadYearSemestersSemesterVenuesJsonGet");
+        }
+        // verify the required parameter 'semester' is set
+        if (semester == null) {
+            throw new ApiException(400,
+                "Missing the required parameter 'semester' when calling acadYearSemestersSemesterVenuesJsonGet");
+        }
+
+        HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+        String localVarPath = "/{acadYear}/semesters/{semester}/venues.json"
+            .replace("{acadYear}", ApiClient.urlEncode(acadYear.toString()))
+            .replace("{semester}", ApiClient.urlEncode(semester.toString()));
+
+        localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+        localVarRequestBuilder.header("Accept", "application/json");
+
+        localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+        if (memberVarReadTimeout != null) {
+            localVarRequestBuilder.timeout(memberVarReadTimeout);
+        }
+        if (memberVarInterceptor != null) {
+            memberVarInterceptor.accept(localVarRequestBuilder);
+        }
+        return localVarRequestBuilder;
+    }
 }

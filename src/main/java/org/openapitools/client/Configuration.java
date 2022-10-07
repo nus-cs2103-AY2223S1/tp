@@ -15,11 +15,11 @@ package org.openapitools.client;
 
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-03T22:22:26.802458+08:00[Asia/Singapore]")
 public class Configuration {
+
     private static ApiClient defaultApiClient = new ApiClient();
 
     /**
-     * Get the default API client, which would be used when creating API
-     * instances without providing an API client.
+     * Get the default API client, which would be used when creating API instances without providing an API client.
      *
      * @return Default API client
      */
@@ -28,8 +28,7 @@ public class Configuration {
     }
 
     /**
-     * Set the default API client, which would be used when creating API
-     * instances without providing an API client.
+     * Set the default API client, which would be used when creating API instances without providing an API client.
      *
      * @param apiClient API client
      */

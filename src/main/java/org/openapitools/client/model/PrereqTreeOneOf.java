@@ -13,107 +13,102 @@
 
 package org.openapitools.client.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
-import org.openapitools.client.model.PrereqTree;
+import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+import io.swagger.annotations.ApiModelProperty;
 
 
 /**
  * PrereqTreeOneOf
  */
 @JsonPropertyOrder({
-  PrereqTreeOneOf.JSON_PROPERTY_OR
+    PrereqTreeOneOf.JSON_PROPERTY_OR
 })
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-03T22:22:26.802458+08:00[Asia/Singapore]")
 public class PrereqTreeOneOf {
-  public static final String JSON_PROPERTY_OR = "or";
-  private List<PrereqTree> or = new ArrayList<>();
 
-  public PrereqTreeOneOf() {
-  }
+    public static final String JSON_PROPERTY_OR = "or";
+    private List<PrereqTree> or = new ArrayList<>();
 
-  public PrereqTreeOneOf or(List<PrereqTree> or) {
-    this.or = or;
-    return this;
-  }
-
-  public PrereqTreeOneOf addOrItem(PrereqTree orItem) {
-    this.or.add(orItem);
-    return this;
-  }
-
-   /**
-   * Get or
-   * @return or
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_OR)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public List<PrereqTree> getOr() {
-    return or;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_OR)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setOr(List<PrereqTree> or) {
-    this.or = or;
-  }
-
-
-  /**
-   * Return true if this PrereqTree_oneOf object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    public PrereqTreeOneOf() {
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    public PrereqTreeOneOf or(List<PrereqTree> or) {
+        this.or = or;
+        return this;
     }
-    PrereqTreeOneOf prereqTreeOneOf = (PrereqTreeOneOf) o;
-    return Objects.equals(this.or, prereqTreeOneOf.or);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(or);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class PrereqTreeOneOf {\n");
-    sb.append("    or: ").append(toIndentedString(or)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public PrereqTreeOneOf addOrItem(PrereqTree orItem) {
+        this.or.add(orItem);
+        return this;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    /**
+     * Get or
+     *
+     * @return or
+     **/
+    @javax.annotation.Nonnull
+    @ApiModelProperty(required = true, value = "")
+    @JsonProperty(JSON_PROPERTY_OR)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+    public List<PrereqTree> getOr() {
+        return or;
+    }
+
+
+    @JsonProperty(JSON_PROPERTY_OR)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setOr(List<PrereqTree> or) {
+        this.or = or;
+    }
+
+
+    /**
+     * Return true if this PrereqTree_oneOf object is equal to o.
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        PrereqTreeOneOf prereqTreeOneOf = (PrereqTreeOneOf) o;
+        return Objects.equals(this.or, prereqTreeOneOf.or);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(or);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class PrereqTreeOneOf {\n");
+        sb.append("    or: ").append(toIndentedString(or)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

@@ -13,10 +13,8 @@
 
 package org.openapitools.client.model;
 
-import org.openapitools.client.ApiException;
-import java.util.Objects;
-import java.lang.reflect.Type;
 import java.util.Map;
+import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 
@@ -26,14 +24,12 @@ import com.fasterxml.jackson.annotation.JsonValue;
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-03T22:22:26.802458+08:00[Asia/Singapore]")
 public abstract class AbstractOpenApiSchema {
 
-    // store the actual instance of the schema/object
-    private Object instance;
-
-    // is nullable
-    private Boolean isNullable;
-
     // schema type (e.g. oneOf, anyOf)
     private final String schemaType;
+    // store the actual instance of the schema/object
+    private Object instance;
+    // is nullable
+    private Boolean isNullable;
 
     public AbstractOpenApiSchema(String schemaType, Boolean isNullable) {
         this.schemaType = schemaType;
@@ -53,14 +49,18 @@ public abstract class AbstractOpenApiSchema {
      * @return an instance of the actual schema/object
      */
     @JsonValue
-    public Object getActualInstance() {return instance;}
+    public Object getActualInstance() {
+        return instance;
+    }
 
     /**
      * Set the actual instance
      *
      * @param instance the actual instance of the schema/object
      */
-    public void setActualInstance(Object instance) {this.instance = instance;}
+    public void setActualInstance(Object instance) {
+        this.instance = instance;
+    }
 
     /**
      * Get the instant recursively when the schemas defined in oneOf/anyof happen to be oneOf/anyOf schema as well
@@ -75,7 +75,7 @@ public abstract class AbstractOpenApiSchema {
         if (object.getActualInstance() == null) {
             return null;
         } else if (object.getActualInstance() instanceof AbstractOpenApiSchema) {
-            return getActualInstanceRecursively((AbstractOpenApiSchema)object.getActualInstance());
+            return getActualInstanceRecursively((AbstractOpenApiSchema) object.getActualInstance());
         } else {
             return object.getActualInstance();
         }
@@ -102,8 +102,7 @@ public abstract class AbstractOpenApiSchema {
     }
 
     /**
-     * Convert the given object to string with each line indented by 4 spaces
-     * (except the first line).
+     * Convert the given object to string with each line indented by 4 spaces (except the first line).
      */
     private String toIndentedString(Object o) {
         if (o == null) {
@@ -142,7 +141,6 @@ public abstract class AbstractOpenApiSchema {
             return Boolean.FALSE;
         }
     }
-
 
 
 }

@@ -13,208 +13,203 @@
 
 package org.openapitools.client.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import org.openapitools.client.model.Lesson;
+import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+import io.swagger.annotations.ApiModelProperty;
 
 
 /**
  * SemesterData
  */
 @JsonPropertyOrder({
-  SemesterData.JSON_PROPERTY_SEMESTER,
-  SemesterData.JSON_PROPERTY_EXAM_DATE,
-  SemesterData.JSON_PROPERTY_EXAM_DURATION,
-  SemesterData.JSON_PROPERTY_TIMETABLE
+    SemesterData.JSON_PROPERTY_SEMESTER,
+    SemesterData.JSON_PROPERTY_EXAM_DATE,
+    SemesterData.JSON_PROPERTY_EXAM_DURATION,
+    SemesterData.JSON_PROPERTY_TIMETABLE
 })
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-03T22:22:26.802458+08:00[Asia/Singapore]")
 public class SemesterData {
-  public static final String JSON_PROPERTY_SEMESTER = "semester";
-  private BigDecimal semester;
 
-  public static final String JSON_PROPERTY_EXAM_DATE = "examDate";
-  private OffsetDateTime examDate;
+    public static final String JSON_PROPERTY_SEMESTER = "semester";
+    public static final String JSON_PROPERTY_EXAM_DATE = "examDate";
+    public static final String JSON_PROPERTY_EXAM_DURATION = "examDuration";
+    public static final String JSON_PROPERTY_TIMETABLE = "timetable";
+    private BigDecimal semester;
+    private OffsetDateTime examDate;
+    private BigDecimal examDuration;
+    private List<Lesson> timetable = null;
 
-  public static final String JSON_PROPERTY_EXAM_DURATION = "examDuration";
-  private BigDecimal examDuration;
-
-  public static final String JSON_PROPERTY_TIMETABLE = "timetable";
-  private List<Lesson> timetable = null;
-
-  public SemesterData() {
-  }
-
-  public SemesterData semester(BigDecimal semester) {
-    this.semester = semester;
-    return this;
-  }
-
-   /**
-   * Get semester
-   * @return semester
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "1", required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_SEMESTER)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public BigDecimal getSemester() {
-    return semester;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SEMESTER)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setSemester(BigDecimal semester) {
-    this.semester = semester;
-  }
-
-
-  public SemesterData examDate(OffsetDateTime examDate) {
-    this.examDate = examDate;
-    return this;
-  }
-
-   /**
-   * Get examDate
-   * @return examDate
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "2018-11-27T09:00Z", value = "")
-  @JsonProperty(JSON_PROPERTY_EXAM_DATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public OffsetDateTime getExamDate() {
-    return examDate;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_EXAM_DATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setExamDate(OffsetDateTime examDate) {
-    this.examDate = examDate;
-  }
-
-
-  public SemesterData examDuration(BigDecimal examDuration) {
-    this.examDuration = examDuration;
-    return this;
-  }
-
-   /**
-   * Get examDuration
-   * @return examDuration
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "120", value = "")
-  @JsonProperty(JSON_PROPERTY_EXAM_DURATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public BigDecimal getExamDuration() {
-    return examDuration;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_EXAM_DURATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setExamDuration(BigDecimal examDuration) {
-    this.examDuration = examDuration;
-  }
-
-
-  public SemesterData timetable(List<Lesson> timetable) {
-    this.timetable = timetable;
-    return this;
-  }
-
-  public SemesterData addTimetableItem(Lesson timetableItem) {
-    if (this.timetable == null) {
-      this.timetable = new ArrayList<>();
+    public SemesterData() {
     }
-    this.timetable.add(timetableItem);
-    return this;
-  }
 
-   /**
-   * Get timetable
-   * @return timetable
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_TIMETABLE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<Lesson> getTimetable() {
-    return timetable;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TIMETABLE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTimetable(List<Lesson> timetable) {
-    this.timetable = timetable;
-  }
-
-
-  /**
-   * Return true if this SemesterData object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    public SemesterData semester(BigDecimal semester) {
+        this.semester = semester;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get semester
+     *
+     * @return semester
+     **/
+    @javax.annotation.Nonnull
+    @ApiModelProperty(example = "1", required = true, value = "")
+    @JsonProperty(JSON_PROPERTY_SEMESTER)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+    public BigDecimal getSemester() {
+        return semester;
     }
-    SemesterData semesterData = (SemesterData) o;
-    return Objects.equals(this.semester, semesterData.semester) &&
-        Objects.equals(this.examDate, semesterData.examDate) &&
-        Objects.equals(this.examDuration, semesterData.examDuration) &&
-        Objects.equals(this.timetable, semesterData.timetable);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(semester, examDate, examDuration, timetable);
-  }
 
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class SemesterData {\n");
-    sb.append("    semester: ").append(toIndentedString(semester)).append("\n");
-    sb.append("    examDate: ").append(toIndentedString(examDate)).append("\n");
-    sb.append("    examDuration: ").append(toIndentedString(examDuration)).append("\n");
-    sb.append("    timetable: ").append(toIndentedString(timetable)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    @JsonProperty(JSON_PROPERTY_SEMESTER)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setSemester(BigDecimal semester) {
+        this.semester = semester;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+
+    public SemesterData examDate(OffsetDateTime examDate) {
+        this.examDate = examDate;
+        return this;
+    }
+
+    /**
+     * Get examDate
+     *
+     * @return examDate
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(example = "2018-11-27T09:00Z", value = "")
+    @JsonProperty(JSON_PROPERTY_EXAM_DATE)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+    public OffsetDateTime getExamDate() {
+        return examDate;
+    }
+
+
+    @JsonProperty(JSON_PROPERTY_EXAM_DATE)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public void setExamDate(OffsetDateTime examDate) {
+        this.examDate = examDate;
+    }
+
+
+    public SemesterData examDuration(BigDecimal examDuration) {
+        this.examDuration = examDuration;
+        return this;
+    }
+
+    /**
+     * Get examDuration
+     *
+     * @return examDuration
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(example = "120", value = "")
+    @JsonProperty(JSON_PROPERTY_EXAM_DURATION)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+    public BigDecimal getExamDuration() {
+        return examDuration;
+    }
+
+
+    @JsonProperty(JSON_PROPERTY_EXAM_DURATION)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public void setExamDuration(BigDecimal examDuration) {
+        this.examDuration = examDuration;
+    }
+
+
+    public SemesterData timetable(List<Lesson> timetable) {
+        this.timetable = timetable;
+        return this;
+    }
+
+    public SemesterData addTimetableItem(Lesson timetableItem) {
+        if (this.timetable == null) {
+            this.timetable = new ArrayList<>();
+        }
+        this.timetable.add(timetableItem);
+        return this;
+    }
+
+    /**
+     * Get timetable
+     *
+     * @return timetable
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
+    @JsonProperty(JSON_PROPERTY_TIMETABLE)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+    public List<Lesson> getTimetable() {
+        return timetable;
+    }
+
+
+    @JsonProperty(JSON_PROPERTY_TIMETABLE)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public void setTimetable(List<Lesson> timetable) {
+        this.timetable = timetable;
+    }
+
+
+    /**
+     * Return true if this SemesterData object is equal to o.
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        SemesterData semesterData = (SemesterData) o;
+        return Objects.equals(this.semester, semesterData.semester) &&
+            Objects.equals(this.examDate, semesterData.examDate) &&
+            Objects.equals(this.examDuration, semesterData.examDuration) &&
+            Objects.equals(this.timetable, semesterData.timetable);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(semester, examDate, examDuration, timetable);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class SemesterData {\n");
+        sb.append("    semester: ").append(toIndentedString(semester)).append("\n");
+        sb.append("    examDate: ").append(toIndentedString(examDate)).append("\n");
+        sb.append("    examDuration: ").append(toIndentedString(examDuration)).append("\n");
+        sb.append("    timetable: ").append(toIndentedString(timetable)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 
