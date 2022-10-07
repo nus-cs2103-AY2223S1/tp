@@ -1,4 +1,4 @@
-package seedu.address.model.item;
+package seedu.address.model.validator;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

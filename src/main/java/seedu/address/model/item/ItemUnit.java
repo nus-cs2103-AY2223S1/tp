@@ -1,5 +1,7 @@
 package seedu.address.model.item;
 
+import seedu.address.model.item.itemvalidator.ItemUnitValidator;
+
 import static java.util.Objects.requireNonNull;
 
 /**

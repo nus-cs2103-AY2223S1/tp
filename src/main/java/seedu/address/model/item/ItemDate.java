@@ -1,5 +1,7 @@
 package seedu.address.model.item;
 
+import seedu.address.model.item.itemvalidator.ItemDateValidator;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 

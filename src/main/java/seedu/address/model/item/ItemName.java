@@ -1,5 +1,7 @@
 package seedu.address.model.item;
 
+import seedu.address.model.item.itemvalidator.ItemNameValidator;
+
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -20,7 +22,7 @@ public class ItemName {
         ItemNameValidator.validate(name);
         itemName = name;
     }
-    
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
