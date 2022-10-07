@@ -1,4 +1,4 @@
-package seedu.address.ui.module;
+package nus.climods.ui.module;
 
 import javafx.stage.Stage;
 
@@ -7,7 +7,9 @@ import javafx.stage.Stage;
  */
 public interface Ui {
 
-    /** Starts the UI (and the App).  */
+    /**
+     * Starts the UI (and the App).
+     */
     void start(Stage primaryStage);
 
 }

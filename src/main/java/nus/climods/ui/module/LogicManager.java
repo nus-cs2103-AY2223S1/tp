@@ -1,27 +1,28 @@
-package seedu.address.ui.module;
+package nus.climods.ui.module;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
-import seedu.address.commons.core.GuiSettings;
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.Logic;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.AddressBookParser;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
-import seedu.address.storage.Storage;
+import nus.climods.commons.core.GuiSettings;
+import nus.climods.commons.core.LogsCenter;
+import nus.climods.logic.Logic;
+import nus.climods.logic.commands.Command;
+import nus.climods.logic.commands.CommandResult;
+import nus.climods.logic.commands.exceptions.CommandException;
+import nus.climods.logic.parser.AddressBookParser;
+import nus.climods.logic.parser.exceptions.ParseException;
+import nus.climods.model.Model;
+import nus.climods.model.ReadOnlyAddressBook;
+import nus.climods.model.person.Person;
+import nus.climods.storage.Storage;
 
 /**
  * The main LogicManager of the app.
  */
 public class LogicManager implements Logic {
+
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 

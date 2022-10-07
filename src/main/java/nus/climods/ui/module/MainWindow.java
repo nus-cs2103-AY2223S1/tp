@@ -1,4 +1,4 @@
-package seedu.address.ui.module;
+package nus.climods.ui.module;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,21 +14,21 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import seedu.address.commons.core.GuiSettings;
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.Logic;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.ui.CommandBox;
-import seedu.address.ui.HelpWindow;
-import seedu.address.ui.ResultDisplay;
-import seedu.address.ui.StatusBarFooter;
-import seedu.address.ui.UiPart;
+import nus.climods.commons.core.GuiSettings;
+import nus.climods.commons.core.LogsCenter;
+import nus.climods.logic.Logic;
+import nus.climods.logic.commands.CommandResult;
+import nus.climods.logic.commands.exceptions.CommandException;
+import nus.climods.logic.parser.exceptions.ParseException;
+import nus.climods.ui.CommandBox;
+import nus.climods.ui.HelpWindow;
+import nus.climods.ui.ResultDisplay;
+import nus.climods.ui.StatusBarFooter;
+import nus.climods.ui.UiPart;
 
 /**
- * The Main Window. Provides the basic application layout containing
- * a menu bar and space where other JavaFX elements can be placed.
+ * The Main Window. Provides the basic application layout containing a menu bar and space where other JavaFX elements
+ * can be placed.
  */
 public class MainWindow extends UiPart<Stage> {
 
@@ -86,6 +86,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Initialise MainWindow without Logic, for testing
+     *
      * @return MainWindonw
      */
     public MainWindow(Stage primaryStage) {
@@ -116,6 +117,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {

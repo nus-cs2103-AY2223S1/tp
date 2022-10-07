@@ -1,4 +1,4 @@
-package seedu.address.ui.module;
+package nus.climods.ui.module;
 
 import java.util.logging.Logger;
 
@@ -7,13 +7,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.ui.UiPart;
+import nus.climods.commons.core.LogsCenter;
+import nus.climods.ui.UiPart;
 
 /**
  * Panel containing the list of modules.
  */
 public class SavedModuleListPanel extends UiPart<Region> {
+
     private static final String FXML = "ModuleListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(SavedModuleListPanel.class);
 
@@ -33,6 +34,7 @@ public class SavedModuleListPanel extends UiPart<Region> {
      * Custom {@code ListCell} that displays the graphics of a {@code Module} using a {@code ModuleCard}.
      */
     class ModuleListViewCell extends ListCell<Module> {
+
         @Override
         protected void updateItem(Module module, boolean empty) {
             super.updateItem(module, empty);

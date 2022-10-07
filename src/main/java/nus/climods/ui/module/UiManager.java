@@ -1,4 +1,4 @@
-package seedu.address.ui.module;
+package nus.climods.ui.module;
 
 import java.util.logging.Logger;
 
@@ -8,10 +8,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import seedu.address.MainApp;
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.util.StringUtil;
-import seedu.address.ui.Ui;
+import nus.climods.MainApp;
+import nus.climods.commons.core.LogsCenter;
+import nus.climods.commons.util.StringUtil;
 
 /**
  * The manager of the UI component.
@@ -30,6 +29,26 @@ public class UiManager extends Application implements Ui {
      * Creates a {@code UiManager} with the given {@code Logic}.
      */
     public UiManager() {
+    }
+
+    /**
+     * Shows an alert dialog on {@code owner} with the given parameters. This method only returns after the user has
+     * closed the alert dialog.
+     */
+    private static void showAlertDialogAndWait(Stage owner, AlertType type, String title, String headerText,
+        String contentText) {
+        final Alert alert = new Alert(type);
+        alert.getDialogPane().getStylesheets().add("view/OneDarkTheme.css");
+        alert.initOwner(owner);
+        alert.setTitle(title);
+        alert.setHeaderText(headerText);
+        alert.setContentText(contentText);
+        alert.getDialogPane().setId(ALERT_DIALOG_PANE_FIELD_ID);
+        alert.showAndWait();
+    }
+
+    public static void main(String[] args) {
+        Launcher.main(args);
     }
 
     @Override
@@ -62,33 +81,13 @@ public class UiManager extends Application implements Ui {
     }
 
     /**
-     * Shows an alert dialog on {@code owner} with the given parameters.
-     * This method only returns after the user has closed the alert dialog.
-     */
-    private static void showAlertDialogAndWait(Stage owner, AlertType type, String title, String headerText,
-                                               String contentText) {
-        final Alert alert = new Alert(type);
-        alert.getDialogPane().getStylesheets().add("view/OneDarkTheme.css");
-        alert.initOwner(owner);
-        alert.setTitle(title);
-        alert.setHeaderText(headerText);
-        alert.setContentText(contentText);
-        alert.getDialogPane().setId(ALERT_DIALOG_PANE_FIELD_ID);
-        alert.showAndWait();
-    }
-
-    /**
-     * Shows an error alert dialog with {@code title} and error message, {@code e},
-     * and exits the application after the user has closed the alert dialog.
+     * Shows an error alert dialog with {@code title} and error message, {@code e}, and exits the application after the
+     * user has closed the alert dialog.
      */
     private void showFatalErrorDialogAndShutdown(String title, Throwable e) {
         logger.severe(title + " " + e.getMessage() + StringUtil.getDetails(e));
         showAlertDialogAndWait(AlertType.ERROR, title, e.getMessage(), e.toString());
         Platform.exit();
         System.exit(1);
-    }
-
-    public static void main(String[] args) {
-        Launcher.main(args);
     }
 }

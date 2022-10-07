@@ -1,4 +1,4 @@
-package seedu.address.ui.module;
+package nus.climods.ui.module;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,11 +25,18 @@ public class Module {
         return "Software Engineering";
     }
 
-    public String getaydata() { return "AY2223 S1"; }
+    public String getaydata() {
+        return "AY2223 S1";
+    }
 
-    public String getTutorial() { return "Tutorial: Monday, 1400-1500"; }
+    public String getTutorial() {
+        return "Tutorial: Monday, 1400-1500";
+    }
 
-    public String getLecture() { return "Lecture: Friday, 1600-1800"; }
+    public String getLecture() {
+        return "Lecture: Friday, 1600-1800";
+    }
+
     public ArrayList<String> getSemesterData() {
         return new ArrayList<String>(Arrays.asList("Semester 1", "Semester 2"));
     }
