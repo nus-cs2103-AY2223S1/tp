@@ -2,7 +2,11 @@ package seedu.address.logic.commands;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.tag.TagType;
 
+/**
+ * Creates a new tag type.
+ */
 public class CreateTagTypeCommand extends Command{
     public static final String COMMAND_WORD = "create";
 
@@ -18,6 +22,9 @@ public class CreateTagTypeCommand extends Command{
 
     private final TagType toAdd;
 
+    /**
+     * Creates a CreateTagTypeCommand to add the specified {@code TagType}
+     */
     public CreateTagTypeCommand(TagType toAdd) {
         this.toAdd = toAdd;
     }

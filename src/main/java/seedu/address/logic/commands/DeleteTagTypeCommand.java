@@ -2,7 +2,11 @@ package seedu.address.logic.commands;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.tag.TagType;
 
+/**
+ * Deletes a specified tag type.
+ */
 public class DeleteTagTypeCommand extends Command{
     public static final String COMMAND_WORD = "deleteTagType";
 
@@ -15,6 +19,9 @@ public class DeleteTagTypeCommand extends Command{
     public static final String MESSAGE_DELETE_TAG_TYPE_SUCCESS = "Deleted tag type: %1$s";
     private final TagType toDelete;
 
+    /**
+     * Creates a DeleteTagTypeCommand to delete the specified {@code TagType}
+     */
     public DeleteTagTypeCommand(TagType toDelete) {
         this.toDelete = toDelete;
     }

@@ -7,6 +7,9 @@ import seedu.address.model.tag.Tag;
 
 import static seedu.address.logic.parser.CliSyntax.*;
 
+/**
+ * Deletes a specified tag of a person.
+ */
 public class DeleteTagCommand extends Command{
 
     public static final String COMMAND_WORD = "deleteTag";
@@ -26,6 +29,9 @@ public class DeleteTagCommand extends Command{
     private final Index targetIndex;
     private final Tag toDelete;
 
+    /**
+     * Creates an DeleteTagCommand to delete the specified {@code Tag} of a person at the specified {@code Index}
+     */
     public DeleteTagCommand(Index targetIndex, Tag toDelete) {
         this.targetIndex = targetIndex;
         this.toDelete = toDelete;

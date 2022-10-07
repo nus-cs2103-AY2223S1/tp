@@ -2,7 +2,11 @@ package seedu.address.logic.commands;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.tag.TagType;
 
+/**
+ * Edits a tag type.
+ */
 public class EditTagTypeCommand extends Command{
 
     public static final String COMMAND_WORD = "editTagType";
@@ -17,6 +21,9 @@ public class EditTagTypeCommand extends Command{
     private final TagType toEdit;
     private final TagType editTo;
 
+    /**
+     * Creates an EditTagTypeCommand to edit the specified {@code TagType}
+     */
     public EditTagTypeCommand(TagType toEdit, TagType editTo) {
         this.toEdit = toEdit;
         this.editTo = editTo;

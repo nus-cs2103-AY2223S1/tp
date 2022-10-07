@@ -6,6 +6,9 @@ import seedu.address.model.tag.Tag;
 
 import static seedu.address.logic.parser.CliSyntax.*;
 
+/**
+ * Adds a tag of a specific tag type to a person.
+ */
 public class AddTagCommand extends Command{
     public static final String COMMAND_WORD = "addTag";
 
@@ -26,6 +29,9 @@ public class AddTagCommand extends Command{
 
     private final Tag toAdd;
 
+    /**
+     * Creates an AddTagCommand to add the specified {@code Tag}
+     */
     public AddTagCommand(Tag toAdd) {
         this.toAdd = toAdd;
     }
