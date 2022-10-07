@@ -1,16 +1,27 @@
 package seedu.address.model.module;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Iterator;
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.module.exceptions.DuplicateModuleException;
 import seedu.address.model.module.exceptions.ModuleNotFoundException;
 
-import java.util.Iterator;
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
+/**
+ * A list of modules that enforces uniqueness between its elements and does not allow nulls.
+ * A module is considered unique by comparing using {@code Module#isSameModule(Module)}. As such, adding and updating of
+ * modules uses Module#isSameModule(Module) for equality so as to ensure that the module being added or updated is
+ * unique in terms of identity in the UniqueModuleList. However, the removal of a module uses Module#equals(Object) so
+ * as to ensure that the module with exactly the same fields will be removed.
+ *
+ * Supports a minimal set of list operations.
+ *
+ * @see Module#isSameModule(Module)
+ */
 public class UniqueModuleList implements Iterable<Module> {
 
     private final ObservableList<Module> internalList = FXCollections.observableArrayList();
@@ -68,7 +79,7 @@ public class UniqueModuleList implements Iterable<Module> {
         }
     }
 
-    public void setModule(UniqueModuleList replacement) {
+    public void setModules(UniqueModuleList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
