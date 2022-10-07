@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -32,5 +33,17 @@ public class AddressTest {
         assertTrue(Address.isValidAddress("Blk 456, Den Road, #01-355"));
         assertTrue(Address.isValidAddress("-")); // one character
         assertTrue(Address.isValidAddress("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
+    }
+
+    @Test
+    void compareTo() {
+        Address a = new Address("alpha");
+        Address b = new Address("bravo");
+        Address c = new Address("charlie");
+        Address bb = new Address("BRAVO");
+
+        assertEquals(1, b.compareTo(a));
+        assertEquals(-1, b.compareTo(c));
+        assertEquals(0, b.compareTo(bb)); // check that case is ignored in compareTo
     }
 }
