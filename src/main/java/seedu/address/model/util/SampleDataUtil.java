@@ -12,7 +12,6 @@ import seedu.address.model.internship.InternshipId;
 import seedu.address.model.internship.InternshipRole;
 import seedu.address.model.internship.InternshipStatus;
 import seedu.address.model.internship.InterviewDate;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -31,7 +30,6 @@ public class SampleDataUtil {
                     new Name("Alex Yeoh"),
                     new Phone("87438807"),
                     new Email("alexyeoh@example.com"),
-                    new Address("Blk 30 Geylang Street 29, #06-40"),
                     null,
                     getTagSet("friends")),
             new Person(
@@ -39,7 +37,6 @@ public class SampleDataUtil {
                     new Name("Bernice Yu"),
                     new Phone("99272758"),
                     new Email("berniceyu@example.com"),
-                    new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                     null,
                     getTagSet("colleagues", "friends")),
             new Person(
@@ -47,7 +44,6 @@ public class SampleDataUtil {
                     new Name("Charlotte Oliveiro"),
                     new Phone("93210283"),
                     new Email("charlotte@example.com"),
-                    new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
                     null,
                     getTagSet("neighbours")),
             new Person(
@@ -55,7 +51,6 @@ public class SampleDataUtil {
                     new Name("David Li"),
                     new Phone("91031282"),
                     new Email("lidavid@example.com"),
-                    new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
                     new InternshipId(1),
                     getTagSet("family")),
             new Person(
@@ -63,7 +58,6 @@ public class SampleDataUtil {
                     new Name("Irfan Ibrahim"),
                     new Phone("92492021"),
                     new Email("irfan@example.com"),
-                    new Address("Blk 47 Tampines Street 20, #17-35"),
                     null,
                     getTagSet("classmates")),
             new Person(
@@ -71,7 +65,6 @@ public class SampleDataUtil {
                     new Name("Roy Balakrishnan"),
                     new Phone("92624417"),
                     new Email("royb@example.com"),
-                    new Address("Blk 45 Aljunied Street 85, #11-31"),
                     new InternshipId(0),
                     getTagSet("colleagues"))
         };
