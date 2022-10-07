@@ -1,4 +1,4 @@
-package seedu.rc4hdb.logic.commands;
+package seedu.rc4hdb.logic.commands.modelcommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_ADDRESS;
@@ -12,6 +12,7 @@ import java.util.Set;
 
 import seedu.rc4hdb.commons.core.Messages;
 import seedu.rc4hdb.commons.util.CollectionUtil;
+import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.person.Address;
@@ -25,7 +26,7 @@ import seedu.rc4hdb.model.tag.Tag;
  * Filters and lists all persons in address book whose attributes are equal to any of the argument keywords.
  * Keyword matching is case sensitive.
  */
-public class FilterCommand extends Command {
+public class FilterCommand extends ModelCommand {
     public static final String COMMAND_WORD = "filter";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": filters the details of the person identified "

@@ -1,11 +1,11 @@
-package seedu.rc4hdb.logic.commands;
+package seedu.rc4hdb.logic.commands.misccommands;
 
-import seedu.rc4hdb.model.Model;
+import seedu.rc4hdb.logic.commands.CommandResult;
 
 /**
  * Format full help instructions for every command for display.
  */
-public class HelpCommand extends Command {
+public class HelpCommand extends MiscCommand {
 
     public static final String COMMAND_WORD = "help";
 
@@ -15,7 +15,7 @@ public class HelpCommand extends Command {
     public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute() {
         return new CommandResult(SHOWING_HELP_MESSAGE, true, false);
     }
 }

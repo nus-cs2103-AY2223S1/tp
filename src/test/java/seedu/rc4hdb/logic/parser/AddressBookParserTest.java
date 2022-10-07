@@ -13,15 +13,15 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.rc4hdb.logic.commands.AddCommand;
-import seedu.rc4hdb.logic.commands.ClearCommand;
-import seedu.rc4hdb.logic.commands.DeleteCommand;
-import seedu.rc4hdb.logic.commands.EditCommand;
-import seedu.rc4hdb.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.rc4hdb.logic.commands.ExitCommand;
-import seedu.rc4hdb.logic.commands.FindCommand;
-import seedu.rc4hdb.logic.commands.HelpCommand;
-import seedu.rc4hdb.logic.commands.ListCommand;
+import seedu.rc4hdb.logic.commands.misccommands.ExitCommand;
+import seedu.rc4hdb.logic.commands.misccommands.HelpCommand;
+import seedu.rc4hdb.logic.commands.modelcommands.AddCommand;
+import seedu.rc4hdb.logic.commands.modelcommands.ClearCommand;
+import seedu.rc4hdb.logic.commands.modelcommands.DeleteCommand;
+import seedu.rc4hdb.logic.commands.modelcommands.EditCommand;
+import seedu.rc4hdb.logic.commands.modelcommands.EditCommand.EditPersonDescriptor;
+import seedu.rc4hdb.logic.commands.modelcommands.FindCommand;
+import seedu.rc4hdb.logic.commands.modelcommands.ListCommand;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 import seedu.rc4hdb.model.person.NameContainsKeywordsPredicate;
 import seedu.rc4hdb.model.person.Person;

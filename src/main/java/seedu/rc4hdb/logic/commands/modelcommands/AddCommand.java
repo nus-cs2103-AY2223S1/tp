@@ -1,4 +1,4 @@
-package seedu.rc4hdb.logic.commands;
+package seedu.rc4hdb.logic.commands.modelcommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_ADDRESS;
@@ -7,6 +7,7 @@ import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_TAG;
 
+import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.person.Person;
@@ -14,7 +15,7 @@ import seedu.rc4hdb.model.person.Person;
 /**
  * Adds a person to the address book.
  */
-public class AddCommand extends Command {
+public class AddCommand extends ModelCommand {
 
     public static final String COMMAND_WORD = "add";
 

@@ -1,7 +1,7 @@
-package seedu.rc4hdb.logic.commands;
+package seedu.rc4hdb.logic.commands.modelcommands;
 
-import static seedu.rc4hdb.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.rc4hdb.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.assertCommandSuccess;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.showPersonAtIndex;
 import static seedu.rc4hdb.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.rc4hdb.testutil.TypicalPersons.getTypicalAddressBook;
 

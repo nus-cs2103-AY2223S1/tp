@@ -4,7 +4,7 @@ import static java.util.Objects.isNull;
 
 import java.util.function.Predicate;
 
-import seedu.rc4hdb.logic.commands.FilterCommand;
+import seedu.rc4hdb.logic.commands.modelcommands.FilterCommand;
 
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
