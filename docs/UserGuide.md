@@ -60,9 +60,7 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 
 ### Viewing help: `help`
 
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
+Shows a message explaining how to access the help page.
 
 Format: `help`
 
@@ -71,7 +69,7 @@ Format: `help`
 
 Adds an applicant to InternConnect.
 
-Format: `dd name/NAME phone/PHONE email/EMAIL [specifier/SPECIFIER_DETAIL]`
+Format: `add name/NAME phone/PHONE email/EMAIL [specifier/SPECIFIER_DETAIL]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of specifiers (including 0)
@@ -96,7 +94,7 @@ Examples:
 * `add name/Bobby phone/91234567 email/bob@example.com job/420`
 
 
-### Listing all persons: `list`
+### Listing all persons : `list`
 
 Shows a list of all persons in the address book.
 
@@ -109,41 +107,44 @@ Shows a detailed view of a selected applicant listed in InternConnect.
 Format: `view INDEX`
 
 
-### Editing a person: `edit`
+### Editing an applicant : `edit`
 
-Edits an existing person in the address book.
+Edits an existing applicant in InternConnect.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [name/NAME] [phone/PHONE] [email/EMAIL] [specifier/SPECIFIER_DETAIL]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the applicant at the specified `INDEX`. 
+* The index refers to the index number shown in the displayed applicant list. 
+* The index **must be a positive integer** 1, 2, 3, …​ and not exceed the total records listed.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+* When modifying tags, the existing tags of the applicant will be removed i.e adding of tags is not cumulative.
+* You can remove all the applicant’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 phone/91234567 email/bob@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `bob@example.com` respectively.
+*  `edit 2 name/Betty` Edits the name of the 2nd person to be `Betty`.
 
 
-### Locating persons by name: `find`
+### Locating person's fields by field: `find`
 
 Finds persons whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find specifier/KEYWORD [more_specifier/MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* The search is case-insensitive. E.g., `bobby` will match `Bobby`.
+* The order of the keywords does not matter. E.g., `Bobby cortez` will match `Cortez bobby`.
+* Only full words will be matched e.g., `Bobby` will not match `Bobbys`.
+  
+  <!--- Can consider a flag for subwords in future increments) -->
+
+* Applicants matching at least one keyword will be returned (i.e., OR search). E.g., `Bobby Cortez` will return `Bobby Lacruz`, `Alexander Cortez`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find name/Bobby ` Returns applicants with names matching `bobby` and `Bobby Cortez`
+* `find gender/F cap/5 ` returns female applicants with a CAP of 5
+
+<br>
 
 
 ### Deleting an applicant: `delete`
@@ -195,9 +196,9 @@ If your changes to the data file makes its format invalid, InternConnect will di
 | **Add**    | `add name/NAME phone/PHONE email/EMAIL [specifier/SPECIFIER_DETAIL]` <br> e.g., `add name/Bobby phone/91234567 email/bob@example.com job/420` |
 | **Clear**  | `clear`                                                                                                                                       |
 | **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                           |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                   |
+| **Edit**   | `edit INDEX [name/NAME] [phone/PHONE] [email/EMAIL] [specifier/SPECIFIER_DETAIL]…​`<br> e.g.,`edit 1 phone/91234567 email/bob@example.com`    |
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                    |
-| **View**   | `view INDEX`<br> e.g., `view 2`                                                                                                                |
+| **View**   | `view INDEX`<br> e.g., `view 2`                                                                                                               |
 | **List**   | `list`                                                                                                                                        | 
 | **Help**   | `help`                                                                                                                                        |
 | **Exit**   | `exit`                                                                                                                                        |
