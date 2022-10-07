@@ -13,8 +13,8 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.profile.ProfileCommand;
-import seedu.address.logic.parser.profile.exceptions.ParseException;
 import seedu.address.logic.parser.profile.ProfileCommandParser;
+import seedu.address.logic.parser.profile.exceptions.ParseException;
 
 /**
  * Parses user input.
