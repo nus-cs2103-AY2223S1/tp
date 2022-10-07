@@ -22,7 +22,7 @@ public class DeleteProfileCommandParserTest {
     private DeleteProfileCommandParser parser = new DeleteProfileCommandParser();
 
     @Test
-    public void parse_validArgs_returnsDeleteCommand() {
+    public void parse_validArgs_returnsDeleteProfileCommand() {
         assertParseSuccess(parser, "1", new DeleteProfileCommand(INDEX_FIRST_PROFILE));
     }
 
