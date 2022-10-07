@@ -101,12 +101,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasTask_taskNotInAddressBook_returnsFalse() {
+    public void hasTask_taskNotInTaskPanel_returnsFalse() {
         assertFalse(modelManager.hasTask(TASK_ONE));
     }
 
     @Test
-    public void hasTask_personInAddressBook_returnsTrue() {
+    public void hasTask_taskInTaskPanel_returnsTrue() {
         modelManager.addTask(TASK_ONE);
         assertTrue(modelManager.hasTask(TASK_ONE));
     }

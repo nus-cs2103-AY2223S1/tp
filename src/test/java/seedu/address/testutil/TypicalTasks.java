@@ -14,6 +14,8 @@ public class TypicalTasks {
 
     public static final Task TASK_ONE = new TaskBuilder().withTitle("Add tasks to list").build();
     public static final Task TASK_TWO = new TaskBuilder().withTitle("Assign contacts to task").build();
+    public static final Task TASK_THREE = new TaskBuilder().withTitle("Set deadline for a task").build();
+    public static final Task TASK_FOUR = new TaskBuilder().withTitle("Set tags for a task").build();
 
     private TypicalTasks() {} // prevents instantiation
 

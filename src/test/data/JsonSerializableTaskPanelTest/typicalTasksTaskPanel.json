@@ -1,0 +1,8 @@
+{
+  "_comment": "TaskPanel save file which contains the same Task values as in TypicalTasks#getTypicalTaskPanel()",
+  "tasks": [{
+    "title": "Add tasks to list"
+  }, {
+    "title": "Assign contacts to task"
+  } ]
+}
