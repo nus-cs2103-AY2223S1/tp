@@ -31,13 +31,21 @@ public class TaskList {
     }
 
     /**
-<<<<<<< HEAD
      * Mark a task from this {@code TaskList} as done.
      *
      * @param task The {@code Task} object to be marked from this {@code TaskList}.
      */
     public void mark(Task task) {
         task.markAsDone();
+    }
+
+    /**
+     * Deletes a task from this {@code TaskList}.
+     *
+     * @param task The {@code Task} object to be deleted from this {@code TaskList}.
+     */
+    public void delete(Task task) {
+        this.taskList.remove(task);
     }
 
     /**

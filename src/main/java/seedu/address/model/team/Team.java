@@ -81,6 +81,14 @@ public class Team {
     }
 
     /**
+     * Deletes a task to this team.
+     * @param t
+     */
+    public void deleteTask(Task t) {
+        tasks.delete(t);
+    }
+
+    /**
      * Returns true if both team have the same name.
      * This defines a weaker notion of equality between two team.
      */
