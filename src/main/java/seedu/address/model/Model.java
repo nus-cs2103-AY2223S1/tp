@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
 
 /**
@@ -13,6 +14,9 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Module> PREDICATE_SHOW_ALL_MODULES = unused -> true;
+
+    //// person-related methods
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -84,4 +88,20 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    //// module-related methods
+
+    /**
+     * Returns true if a module with the same identity as {@code module} exists in Plannit,
+     * and false otherwise.
+     */
+    boolean hasModule(Module module);
+
+    /**
+     * Adds the given module.
+     * {@code person} must not already exist in Plannit.
+     */
+    void addModule(Module module);
+
+    void updateFilteredModuleList(Predicate<Module> predicate);
 }
