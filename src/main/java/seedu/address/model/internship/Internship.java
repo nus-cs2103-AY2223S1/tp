@@ -20,6 +20,7 @@ public class Internship {
     private final Position position;
     private final Phone phone;
     private final Email email;
+    private final Status status;
 
     // Data fields
     private final Address address;
@@ -28,12 +29,14 @@ public class Internship {
     /**
      * Every field must be present and not null.
      */
-    public Internship(Name name, Position position, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, position, phone, email, address, tags);
+     
+    public Internship(Name name, Position position, Phone phone, Email email, Status status, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, position, phone, email, status, address, tags);
         this.name = name;
         this.position = position;
         this.phone = phone;
         this.email = email;
+        this.status = status;
         this.address = address;
         this.tags.addAll(tags);
     }
@@ -56,6 +59,10 @@ public class Internship {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Status getStatus() {
+        return status;
     }
 
     /**
@@ -98,6 +105,7 @@ public class Internship {
                 && otherInternship.getPosition().equals(getPosition())
                 && otherInternship.getPhone().equals(getPhone())
                 && otherInternship.getEmail().equals(getEmail())
+                && otherInternship.getStatus().equals(getStatus())
                 && otherInternship.getAddress().equals(getAddress())
                 && otherInternship.getTags().equals(getTags());
     }
@@ -118,6 +126,8 @@ public class Internship {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
+                .append("; Status: ")
+                .append(getStatus())
                 .append("; Address: ")
                 .append(getAddress());
 

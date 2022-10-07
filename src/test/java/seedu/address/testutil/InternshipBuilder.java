@@ -9,6 +9,7 @@ import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.Name;
 import seedu.address.model.internship.Phone;
 import seedu.address.model.internship.Position;
+import seedu.address.model.internship.Status;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -21,12 +22,14 @@ public class InternshipBuilder {
     public static final String DEFAULT_POSITION = "Software Engineer";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
+    public static final String DEFAULT_STATUS = "Offered";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
     private Position position;
     private Phone phone;
     private Email email;
+    private Status status;
     private Address address;
     private Set<Tag> tags;
 
@@ -38,6 +41,7 @@ public class InternshipBuilder {
         position = new Position(DEFAULT_POSITION);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
+        status = new Status(DEFAULT_STATUS);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
     }
@@ -50,6 +54,7 @@ public class InternshipBuilder {
         position = internshipToCopy.getPosition();
         phone = internshipToCopy.getPhone();
         email = internshipToCopy.getEmail();
+        status = internshipToCopy.getStatus();
         address = internshipToCopy.getAddress();
         tags = new HashSet<>(internshipToCopy.getTags());
     }
@@ -102,8 +107,16 @@ public class InternshipBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Status} of the {@code Internship} that we are building.
+     */
+    public InternshipBuilder withStatus(String status) {
+        this.status = new Status(status);
+        return this;
+    }
+
     public Internship build() {
-        return new Internship(name, position, phone, email, address, tags);
+        return new Internship(name, position, phone, email, status, address, tags);
     }
 
 }

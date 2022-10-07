@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POSITION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
 
@@ -26,6 +27,7 @@ import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.Name;
 import seedu.address.model.internship.Phone;
 import seedu.address.model.internship.Position;
+import seedu.address.model.internship.Status;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -43,6 +45,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_POSITION + "POSITION] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_STATUS + "STATUS] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -101,10 +104,11 @@ public class EditCommand extends Command {
         Position updatedPosition = editInternshipDescriptor.getPosition().orElse(internshipToEdit.getPosition());
         Phone updatedPhone = editInternshipDescriptor.getPhone().orElse(internshipToEdit.getPhone());
         Email updatedEmail = editInternshipDescriptor.getEmail().orElse(internshipToEdit.getEmail());
+        Status updatedStatus = editInternshipDescriptor.getStatus().orElse(internshipToEdit.getStatus());
         Address updatedAddress = editInternshipDescriptor.getAddress().orElse(internshipToEdit.getAddress());
         Set<Tag> updatedTags = editInternshipDescriptor.getTags().orElse(internshipToEdit.getTags());
 
-        return new Internship(updatedName, updatedPosition, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Internship(updatedName, updatedPosition, updatedPhone, updatedEmail, updatedStatus, updatedAddress, updatedTags);
     }
 
     @Override
@@ -134,6 +138,7 @@ public class EditCommand extends Command {
         private Position position;
         private Phone phone;
         private Email email;
+        private Status status;
         private Address address;
         private Set<Tag> tags;
 
@@ -148,6 +153,7 @@ public class EditCommand extends Command {
             setPosition(toCopy.position);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
+            setStatus(toCopy.status);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
         }
@@ -156,7 +162,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, position, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, position, phone, email, status, address, tags);
         }
 
         public void setName(Name name) {
@@ -189,6 +195,14 @@ public class EditCommand extends Command {
 
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
+        }
+
+        public void setStatus(Status status) {
+            this.status = status;
+        }
+
+        public Optional<Status> getStatus() {
+            return Optional.ofNullable(status);
         }
 
         public void setAddress(Address address) {
@@ -235,6 +249,7 @@ public class EditCommand extends Command {
                     && getPosition().equals(e.getPosition())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
+                    && getStatus().equals(e.getStatus())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
         }

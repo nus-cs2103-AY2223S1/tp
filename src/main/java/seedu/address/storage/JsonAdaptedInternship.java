@@ -16,6 +16,7 @@ import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.Name;
 import seedu.address.model.internship.Phone;
 import seedu.address.model.internship.Position;
+import seedu.address.model.internship.Status;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -29,6 +30,7 @@ class JsonAdaptedInternship {
     private final String position;
     private final String phone;
     private final String email;
+    private final String status;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -36,13 +38,14 @@ class JsonAdaptedInternship {
      * Constructs a {@code JsonAdaptedInternship} with the given internship details.
      */
     @JsonCreator
-    public JsonAdaptedInternship(@JsonProperty("name") String name, @JsonProperty("position") String position,
-            @JsonProperty("phone") String phone, @JsonProperty("email") String email,
+    public JsonAdaptedInternship(@JsonProperty("name") String name, @JsonProperty("position") String position, @JsonProperty("phone") String phone,
+            @JsonProperty("email") String email, @JsonProperty("status") String status,
             @JsonProperty("address") String address, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.position = position;
         this.phone = phone;
         this.email = email;
+        this.status = status;
         this.address = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -57,6 +60,7 @@ class JsonAdaptedInternship {
         position = source.getPosition().positionName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
+        status = source.getStatus().value.toString();
         address = source.getAddress().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -107,6 +111,14 @@ class JsonAdaptedInternship {
         }
         final Email modelEmail = new Email(email);
 
+        if (status == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName()));
+        }
+        if (!Status.isValidStatus(status)) {
+            throw new IllegalValueException(Status.MESSAGE_CONSTRAINTS);
+        }
+        final Status modelStatus = new Status(status);
+
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
         }
@@ -116,7 +128,8 @@ class JsonAdaptedInternship {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(internshipTags);
-        return new Internship(modelName, modelPosition, modelPhone, modelEmail, modelAddress, modelTags);
+
+        return new Internship(modelName, modelPosition, modelPhone, modelEmail, modelStatus, modelAddress, modelTags);
     }
 
 }
