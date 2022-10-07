@@ -25,6 +25,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.TaskList;
 
 /**
  * Edits the details of an existing patient in the address book.
@@ -97,9 +98,10 @@ public class EditPatientCommand extends Command {
         Phone updatedPhone = editPatientDescriptor.getPhone().orElse(patientToEdit.getPhone());
         Email updatedEmail = editPatientDescriptor.getEmail().orElse(patientToEdit.getEmail());
         Address updatedAddress = editPatientDescriptor.getAddress().orElse(patientToEdit.getAddress());
+        TaskList updatedTasks = patientToEdit.getTasks(); // editPatient command does not allow editing tasks
         Set<Tag> updatedTags = editPatientDescriptor.getTags().orElse(patientToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTasks, updatedTags);
     }
 
     @Override
@@ -216,6 +218,7 @@ public class EditPatientCommand extends Command {
             // state check
             EditPatientDescriptor e = (EditPatientDescriptor) other;
 
+            // TODO: add support for tasks
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
