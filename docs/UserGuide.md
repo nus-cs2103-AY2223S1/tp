@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-FABook is a **desktop app for managing contacts, optimized for a financial adviser to use via a Command Line Interface (CLI)** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FABook can get your contact management tasks done faster than traditional GUI apps.
+IBook is a **desktop app for managing contacts, optimized for a financial adviser to use via a Command Line Interinsurance agentsce (CLI)** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, IBook can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -14,9 +14,9 @@ FABook is a **desktop app for managing contacts, optimized for a financial advis
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `FABook.jar` from [here](https://github.com/AY2223S1-CS2103T-T10-2/tp/releases).
+2. Download the latest `IBook.jar` from [here](https://github.com/AY2223S1-CS2103T-T10-2/tp/releases).
 
-4. Copy the file to the folder you want to use as the _home folder_ for your FABook.
+4. Copy the file to the folder you want to use as the _home folder_ for your IBook.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -26,7 +26,7 @@ FABook is a **desktop app for managing contacts, optimized for a financial advis
 
    * **`list`** : Lists all contacts.
 
-   * **`create`**`name:John Doe num:98765432 address:John street, block 123, #01-01` : Adds a contact named `John Doe` to the FABook.
+   * **`create`**`name:John Doe num:98765432 address:John street, block 123, #01-01` : Adds a contact named `John Doe` to the IBook.
 
    * **`exit`** : Exits the app.
 
@@ -69,7 +69,7 @@ Format: `help`
 
 ### Creating a contact: `create`
 
-Creates a contact that is stored in the FABook and contains their contact information. Any contact information that is not available can be updated later.
+Creates a contact that is stored in the IBook and contains their contact information. Any contact information that is not available can be updated later.
 
 Format: `create name:NAME [num:PHONE_NUMBER] [address:ADDRESS] [meeting_time:TIME]`
 
@@ -87,13 +87,13 @@ Format: `c name:NAME [num:PHONE_NUMBER] [address:ADDRESS] [meeting_time:TIME]`
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the FABook.
+Shows a list of all persons in the IBook.
 
 Format: `list`
 
 ### Updating a person : `update`
 
-Searches for a contact that is stored in the FABook and updates its contact information.
+Searches for a contact that is stored in the IBook and updates its contact information.
 
 Format: `update name:NAME [num:PHONE_NUMBER] [address:ADDRESS] [meeting_time:TIME]`
 
@@ -156,18 +156,18 @@ Format: `f NUMBER`
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the FABook.
+Deletes the specified person from the IBook.
 
 Format: `delete NAME`
 
 * Deletes the person with the specified `NAME`.
 
 Examples:
-* `delete Aaron Judge` deletes `Aaron Judge` in the FABook.
+* `delete Aaron Judge` deletes `Aaron Judge` in the IBook.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the FABook.
+Clears all entries from the IBook.
 
 Format: `clear`
 
@@ -183,14 +183,14 @@ Format: `e`
 
 ### Saving the data
 
-FABook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+IBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-FABook data are saved as a text file `[JAR file location]/data/fabook.text`. Advanced users are welcome to update data directly by editing that data file.
+IBook data are saved as a text file `[JAR file location]/data/IBook.text`. Advanced users are welcome to update data directly by editing that data file.
 
 :exclamation: **Caution:**
-If your changes to the data file makes its format invalid, FABook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, IBook will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -202,7 +202,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FABook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous IBook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
