@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -15,7 +14,6 @@ import java.util.Set;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.internship.InternshipId;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -35,13 +33,11 @@ public class AddPersonCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
@@ -52,7 +48,6 @@ public class AddPersonCommand extends Command {
     private final Phone phone;
     private final Email email;
     private final InternshipId internshipId;
-    private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -63,7 +58,6 @@ public class AddPersonCommand extends Command {
         this.name = person.getName();
         this.phone = person.getPhone();
         this.email = person.getEmail();
-        this.address = person.getAddress();
         this.internshipId = person.getInternshipId();
         this.tags.addAll(person.getTags());
     }
@@ -77,14 +71,12 @@ public class AddPersonCommand extends Command {
             Name name,
             Phone phone,
             Email email,
-            Address address,
             InternshipId internshipId,
             Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+        requireAllNonNull(name, phone, email, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
         this.internshipId = internshipId;
         this.tags.addAll(tags);
     }
@@ -100,7 +92,6 @@ public class AddPersonCommand extends Command {
                     name,
                     phone,
                     email,
-                    address,
                     null,
                     tags
             );
@@ -110,7 +101,6 @@ public class AddPersonCommand extends Command {
                     name,
                     phone,
                     email,
-                    address,
                     internshipId,
                     tags
             );
@@ -138,7 +128,6 @@ public class AddPersonCommand extends Command {
         return name.equals(otherCommand.name)
                 && phone.equals(otherCommand.phone)
                 && email.equals(otherCommand.email)
-                && address.equals(otherCommand.address)
                 && Objects.equals(internshipId, otherCommand.internshipId)
                 && tags.equals(otherCommand.tags);
     }
