@@ -12,10 +12,24 @@ public class HelpCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows program usage instructions.\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
+    private static final String USER_GUIDE_URL =
+            "https://ay2223s1-cs2103t-f11-4.github.io/tp/UserGuide.html#quick-start";
+
+    public static final String SHOWING_HELP_MESSAGE = "Sample usage:\n\t"
+            + AddContactCommand.MESSAGE_USAGE + "\n\t"
+            + DeleteContactCommand.MESSAGE_USAGE + "\n\t"
+            + EditContactCommand.MESSAGE_USAGE + "\n\t"
+            + FindContactCommand.MESSAGE_USAGE + "\n\t"
+            + HelpCommand.MESSAGE_USAGE + "\n\n"
+            + "Other Commands:\n\t"
+            + ClearCommand.COMMAND_WORD + "\n\t"
+            + ListContactCommand.COMMAND_WORD + "\n\t"
+            + ExitCommand.COMMAND_WORD + "\n\n"
+            + "Further help:\n"
+            + USER_GUIDE_URL;
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(SHOWING_HELP_MESSAGE, true, false);
+        return new CommandResult(SHOWING_HELP_MESSAGE, false, false);
     }
 }
