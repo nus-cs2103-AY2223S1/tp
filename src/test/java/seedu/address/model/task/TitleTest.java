@@ -21,14 +21,14 @@ public class TitleTest {
 
     @Test
     public void isValidTitle() {
-        // null address
+        // null title
         assertThrows(NullPointerException.class, () -> Title.isValidTitle(null));
 
-        // invalid addresses
+        // invalid titles
         assertFalse(Title.isValidTitle("")); // empty string
         assertFalse(Title.isValidTitle(" ")); // spaces only
 
-        // valid addresses
+        // valid titles
         assertTrue(Title.isValidTitle("Add tasks functionality"));
         assertTrue(Title.isValidTitle("-")); // one character
         assertTrue(Title.isValidTitle("This is a very long task title that is still acceptable")); // long address

@@ -11,7 +11,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
-import seedu.address.logic.parser.TaskCommandParser;
+import seedu.address.logic.parser.TaskPanelParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -28,7 +28,7 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final AddressBookParser addressBookParser;
-    private final TaskCommandParser taskCommandParser;
+    private final TaskPanelParser taskPanelParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -37,7 +37,7 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         addressBookParser = new AddressBookParser();
-        taskCommandParser = new TaskCommandParser();
+        taskPanelParser = new TaskPanelParser();
     }
 
     @Override
@@ -46,8 +46,8 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         Command command;
-        if (commandText.startsWith("task")) {
-            command = taskCommandParser.parse(commandText);
+        if (commandText.startsWith("task") && Character.isWhitespace(commandText.charAt(4))) {
+            command = taskPanelParser.parse(commandText);
         } else {
             command = addressBookParser.parseCommand(commandText);
         }
@@ -55,6 +55,7 @@ public class LogicManager implements Logic {
 
         try {
             storage.saveAddressBook(model.getAddressBook());
+            storage.saveTaskPanel(model.getTaskPanel());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }

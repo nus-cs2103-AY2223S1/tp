@@ -10,11 +10,12 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.TaskCommand;
 import seedu.address.logic.commands.task.AddTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.task.AddTaskCommandParser;
 
 /**
  * Parses user input for all task-related commands (starting with "tasks").
  */
-public class TaskCommandParser implements Parser<TaskCommand> {
+public class TaskPanelParser implements Parser<TaskCommand> {
 
     /**
      * Used for initial separation of command word and args.

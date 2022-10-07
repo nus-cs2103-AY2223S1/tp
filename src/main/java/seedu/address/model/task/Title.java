@@ -35,13 +35,6 @@ public class Title {
         return test.matches(VALIDATION_REGEX);
     }
 
-    /**
-     * Returns true if a given title is the same as this title.
-     */
-    public boolean isSameTitle(Task test) {
-        return this.equals(test);
-    }
-
     @Override
     public String toString() {
         return value;
