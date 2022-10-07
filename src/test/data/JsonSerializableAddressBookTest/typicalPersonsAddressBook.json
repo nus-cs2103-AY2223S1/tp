@@ -6,6 +6,7 @@
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "gender": "Female",
+    "university": "Singapore University",
     "tagged" : [ "interview", "rejected" ]
   }, {
     "name" : "Benson Meier",
@@ -13,6 +14,7 @@
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "gender": "Male",
+    "university": "NUS",
     "tagged" : [ "KIV" ]
   }, {
     "name" : "Carl Kurz",
@@ -20,6 +22,7 @@
     "email" : "heinz@example.com",
     "address" : "wall street",
     "gender": "Male",
+    "university": "SUTD",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
@@ -27,6 +30,7 @@
     "email" : "cornelia@example.com",
     "address" : "10th street",
     "gender": "Male",
+    "university": "SMU",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -34,6 +38,7 @@
     "email" : "werner@example.com",
     "address" : "michegan ave",
     "gender": "Female",
+    "university": "Lasalle",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -41,6 +46,7 @@
     "email" : "lydia@example.com",
     "address" : "little tokyo",
     "gender": "Female",
+    "university": "Nanyang Polytechnic",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
@@ -48,6 +54,7 @@
     "email" : "anna@example.com",
     "address" : "4th street",
     "gender": "Male",
+    "university": "Temasek Polytechnic",
     "tagged" : [ ]
   } ]
 }
