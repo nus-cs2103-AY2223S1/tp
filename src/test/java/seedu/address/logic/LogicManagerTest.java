@@ -17,9 +17,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.address.logic.commands.AddContactCommand;
+import seedu.address.logic.commands.contact.AddContactCommand;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.ListContactCommand;
+import seedu.address.logic.commands.contact.ListContactCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;

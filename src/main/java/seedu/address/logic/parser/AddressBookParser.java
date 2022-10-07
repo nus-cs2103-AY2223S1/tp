@@ -6,21 +6,29 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddContactCommand;
-import seedu.address.logic.commands.AddTagCommand;
+import seedu.address.logic.commands.contact.AddContactCommand;
+import seedu.address.logic.commands.tag.AddTagCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteContactCommand;
-import seedu.address.logic.commands.DeleteTagCommand;
-import seedu.address.logic.commands.EditContactCommand;
+import seedu.address.logic.commands.contact.DeleteContactCommand;
+import seedu.address.logic.commands.tag.DeleteTagCommand;
+import seedu.address.logic.commands.contact.EditContactCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindContactCommand;
+import seedu.address.logic.commands.contact.FindContactCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListContactCommand;
-import seedu.address.logic.commands.ListTaskCommand;
-import seedu.address.logic.commands.MarkTaskCommand;
-import seedu.address.logic.commands.UnmarkTaskCommand;
+import seedu.address.logic.commands.contact.ListContactCommand;
+import seedu.address.logic.commands.task.ListTaskCommand;
+import seedu.address.logic.commands.task.MarkTaskCommand;
+import seedu.address.logic.commands.task.UnmarkTaskCommand;
+import seedu.address.logic.parser.contact.AddContactCommandParser;
+import seedu.address.logic.parser.contact.DeleteContactCommandParser;
+import seedu.address.logic.parser.contact.EditContactCommandParser;
+import seedu.address.logic.parser.contact.FindContactCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.tag.AddTagCommandParser;
+import seedu.address.logic.parser.tag.DeleteTagCommandParser;
+import seedu.address.logic.parser.task.MarkTaskCommandParser;
+import seedu.address.logic.parser.task.UnmarkTaskCommandParser;
 
 /**
  * Parses user input.
