@@ -157,14 +157,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         return teams.asUnmodifiableObservableList();
     }
 
-    public UniquePersonList getPersonL() {
-        return persons;
-    }
-
-    public UniqueTeamList getTeamL() {
-        return teams;
-    }
-
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

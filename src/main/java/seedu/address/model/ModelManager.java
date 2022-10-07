@@ -15,12 +15,10 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.task.Task;
 import seedu.address.model.team.Name;
 import seedu.address.model.team.Team;
-import seedu.address.model.team.UniqueTeamList;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -32,8 +30,6 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Team> filteredTeams;
-    private final UniquePersonList persons;
-    private final UniqueTeamList teams;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -46,8 +42,6 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        persons = this.addressBook.getPersonL();
-        teams = this.addressBook.getTeamL();
 
         // Temp code
         // todo replace this code
@@ -153,14 +147,6 @@ public class ModelManager implements Model {
     @Override
     public void addPersonToTeam(Person person, Team team) {
         addressBook.addPersonToTeam(person, team);
-    }
-
-    public UniquePersonList getPersons() {
-        return persons;
-    }
-
-    public UniqueTeamList getTeams() {
-        return teams;
     }
 
     @Override

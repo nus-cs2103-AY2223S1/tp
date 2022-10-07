@@ -92,10 +92,6 @@ public interface Model {
 
     public void addPersonToTeam(Person person, Team team);
 
-    public UniquePersonList getPersons();
-
-    public UniqueTeamList getTeams();
-
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 

@@ -50,13 +50,8 @@ public class AssignMemberCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        System.out.println(toAssign);
         Person p = model.getPerson(toAssign);
-        System.out.println(p.getName());
-        List<Team> teams = model.getFilteredTeamList();
-        System.out.println(teams);
         Team t = model.getTeam(teamName);
-        System.out.println(t.getName());
         model.addPersonToTeam(p, t);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAssign, teamName));
     }
