@@ -16,10 +16,11 @@ done faster and more securely than traditional GUI apps.
 - [Features](#features)
     * [Adding a client: `add`](#adding-a-client-add)
     * [Editing a client: `edit`](#editing-a-client--edit)
-    * [Deleting a client : `delete`](#deleting-a-client--delete)
-    * [Listing all clients : `list`](#listing-all-clients-list)
-    * [Exiting the application : `exit`](#exiting-the-application--exit)
+    * [Deleting a client: `delete`](#deleting-a-client--delete)
+    * [Listing all clients: `list`](#listing-all-clients-list)
+    * [Exiting the application: `exit`](#exiting-the-application--exit)
     * [Saving the data](#saving-the-data)
+    * [Importing data: `import`](#importing-data--import)
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
@@ -175,7 +176,23 @@ If your changes to the data file makes its format invalid, FinBook will discard 
 
 ---
 
-### Importing data from external sources [coming soon]
+### Importing data : `import`
+
+Imports data from a `JSON` or `CSV` file
+
+* `JSON` files must be saved by the latest version of FinBook
+* `CSV` files must be exported as Google CSV from Google Contacts
+
+Format: `import PATH`
+
+* Imports data from the file at the specified `PATH`
+* `PATH` can be a relative or full path
+* `PATH` must end in `.json` or `.csv`
+
+Examples:
+
+* `import ./data.json` imports data from the file `data.json` which is located in the same directory as the FinBook executable
+* `import ../data.csv` imports data from the file `data.csv` which is located one level outside the directory of the FinBook executable
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -183,16 +200,17 @@ If your changes to the data file makes its format invalid, FinBook will discard 
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
-the data of your previous FinBook home folder.
+the data of your previous FinBook home folder. Alternatively, you may use the `import` command.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-Action               | Format, Examples
----------------------|------------------
-**Add**              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/MONTHLY_INCOME m/UPCOMING_MEETING_DATES​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$100000 m/12-Jan-2022`
-**Delete**           | `delete INDEX`<br> e.g., `delete 3`
-**Edit**             | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**List**             | `list`
-**Exit application** | `exit`
+| Action               | Format, Examples                                                                                                                                                                                             |
+|----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/MONTHLY_INCOME m/UPCOMING_MEETING_DATES​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$100000 m/12-Jan-2022` |
+| **Delete**           | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                          |
+| **Edit**             | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                  |
+| **List**             | `list`                                                                                                                                                                                                       |
+| **Exit application** | `exit`                                                                                                                                                                                                       |
+| **Import**           | `import PATH`<br> e.g., `import ./data.json`                                                                                                                                                                 |
