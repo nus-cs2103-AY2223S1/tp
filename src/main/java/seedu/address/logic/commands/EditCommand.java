@@ -108,7 +108,8 @@ public class EditCommand extends Command {
         Address updatedAddress = editInternshipDescriptor.getAddress().orElse(internshipToEdit.getAddress());
         Set<Tag> updatedTags = editInternshipDescriptor.getTags().orElse(internshipToEdit.getTags());
 
-        return new Internship(updatedName, updatedPosition, updatedPhone, updatedEmail, updatedStatus, updatedAddress, updatedTags);
+        return new Internship(updatedName, updatedPosition, updatedPhone, updatedEmail, updatedStatus,
+                updatedAddress, updatedTags);
     }
 
     @Override

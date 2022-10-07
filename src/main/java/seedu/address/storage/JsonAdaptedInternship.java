@@ -38,9 +38,10 @@ class JsonAdaptedInternship {
      * Constructs a {@code JsonAdaptedInternship} with the given internship details.
      */
     @JsonCreator
-    public JsonAdaptedInternship(@JsonProperty("name") String name, @JsonProperty("position") String position, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("status") String status,
-            @JsonProperty("address") String address, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+    public JsonAdaptedInternship(@JsonProperty("name") String name, @JsonProperty("position") String position,
+            @JsonProperty("phone") String phone, @JsonProperty("email") String email,
+            @JsonProperty("status") String status, @JsonProperty("address") String address,
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.position = position;
         this.phone = phone;

@@ -29,8 +29,9 @@ public class Internship {
     /**
      * Every field must be present and not null.
      */
-     
-    public Internship(Name name, Position position, Phone phone, Email email, Status status, Address address, Set<Tag> tags) {
+
+    public Internship(Name name, Position position, Phone phone, Email email, Status status, Address address,
+            Set<Tag> tags) {
         requireAllNonNull(name, position, phone, email, status, address, tags);
         this.name = name;
         this.position = position;
