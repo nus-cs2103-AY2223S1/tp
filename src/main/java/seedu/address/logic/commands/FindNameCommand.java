@@ -40,4 +40,5 @@ public class FindNameCommand extends Command {
                 && predicate.equals(((FindCommand) other).predicate)); // state check
     }
 
+
 }
