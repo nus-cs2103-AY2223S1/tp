@@ -61,7 +61,6 @@ public class DeleteCommand extends Command {
                 && x.getReligion().equals(religion.orElse(x.getReligion()))
                 && x.getSurvey().equals(survey.orElse(x.getSurvey()));
         String str = model.deletePersons(predicate);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, str));
     }
 

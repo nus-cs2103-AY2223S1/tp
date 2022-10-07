@@ -2,12 +2,13 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+
+import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
@@ -17,8 +18,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
-
-import java.util.Optional;
+import seedu.address.model.person.Race;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -80,6 +80,21 @@ public class DeleteCommandTest {
                 Optional.empty(), Optional.empty());
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_validRaceUnfilteredList_success() {
+        Race race = new Race(VALID_RACE_AMY);
+        DeleteCommand deleteCommand = new DeleteCommand(Optional.empty(), Optional.of(race), Optional.empty(),
+                Optional.empty());
+        model.updateFilteredPersonList(p -> p.getRace() == race);
+        List<Person> personList = model.getFilteredPersonList();
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personList.toString());
+
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.deletePersons(p -> p.getRace() == race);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
