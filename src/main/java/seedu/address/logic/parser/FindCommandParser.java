@@ -2,8 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.util.Arrays;
 import java.util.stream.Stream;
@@ -11,9 +10,11 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.FindAddressCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindNameCommand;
+import seedu.address.logic.commands.FindPhoneCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.AddressContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.PhoneContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -28,22 +29,23 @@ public class FindCommandParser implements Parser<FindCommand> {
     public FindCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE);
 
-        if (arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS)
-                || (argMultimap.getValue(PREFIX_NAME).isEmpty()
-                && argMultimap.getValue(PREFIX_ADDRESS).isEmpty())) {
+        if (!isOnlyOnePrefixPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
         String trimmedArgs = "";
         boolean isFindByName = argMultimap.getValue(PREFIX_NAME).isPresent();
         boolean isFindByAddress = argMultimap.getValue(PREFIX_ADDRESS).isPresent();
+        boolean isFindByPhone = argMultimap.getValue(PREFIX_PHONE).isPresent();
 
         if (isFindByName) {
             trimmedArgs = argMultimap.getValue(PREFIX_NAME).get().trim();
         } else if (isFindByAddress) {
             trimmedArgs = argMultimap.getValue(PREFIX_ADDRESS).get().trim();
+        } else if (isFindByPhone) {
+            trimmedArgs = argMultimap.getValue(PREFIX_PHONE).get().trim();
         }
 
         if (trimmedArgs.isEmpty()) {
@@ -53,15 +55,16 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
         return isFindByName ? new FindNameCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)))
-                : new FindAddressCommand(new AddressContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+                : isFindByAddress ? new FindAddressCommand(new AddressContainsKeywordsPredicate(Arrays.asList(nameKeywords)))
+                : new FindPhoneCommand(new PhoneContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
      */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    private static boolean isOnlyOnePrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).filter(prefix -> argumentMultimap.getValue(prefix).isPresent()).count() == 1;
     }
 
 }
