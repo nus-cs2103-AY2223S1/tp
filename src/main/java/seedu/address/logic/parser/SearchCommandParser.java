@@ -24,7 +24,7 @@ import seedu.address.model.person.ContactContainsKeywordsPredicate;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new SearchCommand object
+ * Parses input arguments and creates a new SearchCommand object.
  */
 public class SearchCommandParser implements Parser<SearchCommand> {
 
