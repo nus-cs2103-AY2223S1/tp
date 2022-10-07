@@ -91,6 +91,14 @@ public class Team {
     }
 
     /**
+     * Marks a task of the team as not done.
+     * @param t
+     */
+    public void unmarkTask(Task t) {
+        tasks.unmark(t);
+    }
+
+    /**
      * Deletes a task to this team.
      * @param t
      */
