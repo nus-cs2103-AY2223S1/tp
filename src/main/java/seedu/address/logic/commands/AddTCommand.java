@@ -1,12 +1,12 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.task.Task;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
+
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.task.Task;
 
 public class AddTCommand extends Command {
 
@@ -21,7 +21,7 @@ public class AddTCommand extends Command {
             + PREFIX_TASK_DEADLINE + "12-09-2022";
 
     public static final String MESSAGE_ADD_TASK_SUCCESS = "New task added: %1$s";
-    public static final String MESSAGE_MISSING_DESCRIPTION = "A task must have a description";
+    // public static final String MESSAGE_MISSING_DESCRIPTION = "A task must have a description";
 
     private final Task newTask;
 

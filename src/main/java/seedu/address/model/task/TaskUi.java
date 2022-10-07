@@ -1,5 +1,8 @@
 package seedu.address.model.task;
 
+/**
+ * Temporary class for task related UI.
+ */
 public class TaskUi {
 
     /**
