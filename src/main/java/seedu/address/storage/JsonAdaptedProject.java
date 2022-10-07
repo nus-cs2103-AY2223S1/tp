@@ -76,10 +76,7 @@ class JsonAdaptedProject {
         }
         final Deadline modelDeadline = new Deadline(deadline);
 
-        final ArrayList<Client> emptyClientList = new ArrayList<>();
-        final ArrayList<Issue> emptyIssueList = new ArrayList<>();
-
-        return new Project(modelName, modelRepository, modelDeadline, emptyClientList, emptyIssueList);
+        return new Project(modelName, modelRepository, modelDeadline);
     }
 
 }

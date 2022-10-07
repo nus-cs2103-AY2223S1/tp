@@ -22,14 +22,13 @@ public class Project {
     /**
      * Name field must be present and not null and other fields may be optional.
      */
-    public Project(Name name, Repository repository, Deadline deadline, ArrayList<Client> clientList,
-                   ArrayList<Issue> issueList) {
-        requireAllNonNull(name, repository, deadline, clientList, issueList);
+    public Project(Name name, Repository repository, Deadline deadline) {
+        requireAllNonNull(name, repository, deadline);
         this.name = name;
         this.repository = repository;
         this.deadline = deadline;
-        this.clientList = clientList;
-        this.issueList = issueList;
+        this.clientList = new ArrayList<>();
+        this.issueList = new ArrayList<>();
     }
 
     public Name getProjectName() {
