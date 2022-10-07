@@ -1,11 +1,11 @@
 package seedu.address.model.tag;
 
-import seedu.address.logic.parser.Prefix;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.Objects;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
+import seedu.address.logic.parser.Prefix;
 
 /**
  * Represents a TagType in the address book.

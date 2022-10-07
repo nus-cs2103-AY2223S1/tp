@@ -11,6 +11,21 @@ import javafx.collections.ObservableList;
 import seedu.address.model.tag.exceptions.DuplicateTagTypeException;
 import seedu.address.model.tag.exceptions.TagTypeNotFoundException;
 
+/**
+ * A list of tagtypes that enforces uniqueness between its elements and does not
+ * allow nulls.
+ * A tagtype is considered unique by comparing using
+ * {@code TagType#equals(Object)}. As such, adding and updating of
+ * tag types uses TagType#equals(Object) for equality so as to ensure that
+ * the tag type being added or updated is
+ * unique in terms of identity in the UniqueTagTypeList. The removal of
+ * a tag type also uses TagType#equals(Object) so
+ * as to ensure that the tag type with exactly the same fields will be removed.
+ *
+ * Supports a minimal set of list operations.
+ *
+ * @see TagType#equals(Object)
+ */
 public class UniqueTagTypeList implements Iterable<TagType> {
     private final ObservableList<TagType> internalList = FXCollections.observableArrayList();
     private final ObservableList<TagType> internalUnmodifiableList = FXCollections
