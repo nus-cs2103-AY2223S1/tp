@@ -36,6 +36,11 @@ public class Tag {
         return this.tagName;
     }
 
+    /**
+     * Returns true if other tag has the same name as this tag.
+     *
+     * @param otherTag Tag instance to be checked.
+     */
     public boolean isSameTag(Tag otherTag) {
         if (otherTag == this) {
             return true;
