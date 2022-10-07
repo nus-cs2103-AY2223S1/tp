@@ -32,6 +32,24 @@ public class Tag {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public String getName() {
+        return this.tagName;
+    }
+
+    /**
+     * Returns true if other tag has the same name as this tag.
+     *
+     * @param otherTag Tag instance to be checked.
+     */
+    public boolean isSameTag(Tag otherTag) {
+        if (otherTag == this) {
+            return true;
+        }
+
+        return otherTag != null
+                && otherTag.getName().equals(getName());
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
