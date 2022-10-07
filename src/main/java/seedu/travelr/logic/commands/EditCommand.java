@@ -17,7 +17,7 @@ import seedu.travelr.commons.core.index.Index;
 import seedu.travelr.commons.util.CollectionUtil;
 import seedu.travelr.logic.commands.exceptions.CommandException;
 import seedu.travelr.model.Model;
-import seedu.travelr.model.tag.Tag;
+import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.Description;
 import seedu.travelr.model.trip.Title;
 import seedu.travelr.model.trip.Trip;
@@ -88,7 +88,7 @@ public class EditCommand extends Command {
 
         Title updatedTitle = editTripDescriptor.getName().orElse(tripToEdit.getTitle());
         Description updatedDescription = editTripDescriptor.getDescription().orElse(tripToEdit.getDescription());
-        Set<Tag> updatedTags = editTripDescriptor.getTags().orElse(tripToEdit.getTags());
+        Set<Event> updatedTags = editTripDescriptor.getTags().orElse(tripToEdit.getEvents());
 
         return new Trip(updatedTitle, updatedDescription, updatedTags);
     }
@@ -118,7 +118,7 @@ public class EditCommand extends Command {
     public static class EditTripDescriptor {
         private Title title;
         private Description description;
-        private Set<Tag> tags;
+        private Set<Event> events;
 
         public EditTripDescriptor() {
         }
@@ -130,14 +130,14 @@ public class EditCommand extends Command {
         public EditTripDescriptor(EditTripDescriptor toCopy) {
             setName(toCopy.title);
             setDescription(toCopy.description);
-            setTags(toCopy.tags);
+            setTags(toCopy.events);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, description, tags);
+            return CollectionUtil.isAnyNonNull(title, description, events);
         }
 
         public void setName(Title title) {
@@ -160,8 +160,8 @@ public class EditCommand extends Command {
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
          */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setTags(Set<Event> tags) {
+            this.events = (tags != null) ? new HashSet<>(tags) : null;
         }
 
         /**
@@ -169,8 +169,8 @@ public class EditCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<Set<Event>> getTags() {
+            return (events != null) ? Optional.of(Collections.unmodifiableSet(events)) : Optional.empty();
         }
 
         @Override

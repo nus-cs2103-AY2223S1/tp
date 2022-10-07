@@ -6,10 +6,12 @@ import java.util.stream.Collectors;
 
 import seedu.travelr.model.AddressBook;
 import seedu.travelr.model.ReadOnlyAddressBook;
-import seedu.travelr.model.tag.Tag;
+import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.Description;
 import seedu.travelr.model.trip.Title;
 import seedu.travelr.model.trip.Trip;
+
+import static seedu.travelr.logic.parser.ParserUtil.EVENT_DESCRIPTION_PLACEHOLDER;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -18,17 +20,17 @@ public class SampleDataUtil {
     public static Trip[] getSampleTrips() {
         return new Trip[] {
             new Trip(new Title("Grad Trip"), new Description("Grad Trip with friends!"),
-                getTagSet("friends")),
+                getEventSet("friends")),
             new Trip(new Title("Honeymoon"), new Description("Lorem ipsum dolor sit amet."),
-                getTagSet("colleagues", "friends")),
+                getEventSet("colleagues", "friends")),
             new Trip(new Title("Business Trip"), new Description("Consectetur adipiscing elit."),
-                getTagSet("neighbours")),
+                getEventSet("neighbours")),
             new Trip(new Title("Solo Trip"), new Description("Sed do eiusmod tempor."),
-                getTagSet("family")),
+                getEventSet("family")),
             new Trip(new Title("Backpacking"), new Description("Incididunt ut labore et dolore magna aliqua."),
-                getTagSet("classmates")),
+                getEventSet("classmates")),
             new Trip(new Title("Conference"), new Description("Dolore eu fugiat nulla pariatur."),
-                getTagSet("colleagues"))
+                getEventSet("colleagues"))
         };
     }
 
@@ -43,9 +45,9 @@ public class SampleDataUtil {
     /**
      * Returns a tag set containing the list of strings given.
      */
-    public static Set<Tag> getTagSet(String... strings) {
+    public static Set<Event> getEventSet(String... strings) {
         return Arrays.stream(strings)
-                .map(Tag::new)
+                .map(titles -> new Event(titles, EVENT_DESCRIPTION_PLACEHOLDER))
                 .collect(Collectors.toSet());
     }
 

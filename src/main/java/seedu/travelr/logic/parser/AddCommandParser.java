@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 
 import seedu.travelr.logic.commands.AddCommand;
 import seedu.travelr.logic.parser.exceptions.ParseException;
-import seedu.travelr.model.tag.Tag;
+import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.Description;
 import seedu.travelr.model.trip.Title;
 import seedu.travelr.model.trip.Trip;
@@ -37,7 +37,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Title title = ParserUtil.parseName(argMultimap.getValue(PREFIX_TITLE).get());
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESC).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Set<Event> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Trip trip = new Trip(title, description, tagList);
 
