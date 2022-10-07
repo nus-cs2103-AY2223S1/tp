@@ -146,6 +146,12 @@ public class ModelManager implements Model {
         addressBook.addTask(index, task);
     }
 
+    @Override
+    public void deleteTask(Index index, Task task) {
+        requireAllNonNull(index, task);
+        addressBook.deleteTask(index, task);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
