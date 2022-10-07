@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddTCommand;
+import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
@@ -14,27 +14,27 @@ import seedu.address.model.task.Task;
 /**
  * Parses input arguments and creates a new AddTCommand object
  */
-public class AddTCommandParser implements Parser<AddTCommand> {
+public class AddTaskCommandParser implements Parser<AddTaskCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddTCommand
      * and returns an AddTCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddTCommand parse(String args) throws ParseException {
+    public AddTaskCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TASK_DESCRIPTION, PREFIX_TASK_DEADLINE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_TASK_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
         }
 
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_TASK_DESCRIPTION).get());
 
         Task task = new Task(description);
 
-        return new AddTCommand(task);
+        return new AddTaskCommand(task);
     }
 
     /**

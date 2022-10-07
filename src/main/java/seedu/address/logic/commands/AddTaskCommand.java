@@ -11,7 +11,7 @@ import seedu.address.model.task.Task;
 /**
  * Adds a task to the TaskList.
  */
-public class AddTCommand extends Command {
+public class AddTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "addT";
 
@@ -31,7 +31,7 @@ public class AddTCommand extends Command {
     /**
      * Creates an AddTCommand to add the specified {@code Task}
      */
-    public AddTCommand(Task task) {
+    public AddTaskCommand(Task task) {
         requireNonNull(task);
         newTask = task;
     }
@@ -47,8 +47,8 @@ public class AddTCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddTCommand // instanceof handles nulls
-                && newTask.equals(((AddTCommand) other).newTask));
+                || (other instanceof AddTaskCommand // instanceof handles nulls
+                && newTask.equals(((AddTaskCommand) other).newTask));
     }
 
 }
