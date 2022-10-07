@@ -18,7 +18,7 @@ public class DeletecCommand extends Command {
     public static final String COMMAND_WORD = "deletec";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the class identified by the class name.\n"
+            + ": Deletes the class(es) identified by the class name(s).\n"
             + "Parameters: "
             + PREFIX_MODULE_CLASS + "CLASS_NAME... (case sensitive)\n"
             + "Example: " + COMMAND_WORD + " "
