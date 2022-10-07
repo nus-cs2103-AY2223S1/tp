@@ -8,7 +8,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 public class Task {
 
     private final Name name;
-    private boolean isDone;
+    private Boolean isDone;
 
     /**
      * Constructs an unfinished {@code Task}.
@@ -20,6 +20,19 @@ public class Task {
         this.name = name;
         this.isDone = false;
     }
+
+    /**
+     * Constructs a {@code Task} with specified state.
+     *
+     * @param name A valid name.
+     * @param isDone The state.
+     */
+    public Task(Name name, boolean isDone) {
+        requireAllNonNull(name);
+        this.name = name;
+        this.isDone = isDone;
+    }
+
 
     public Name getName() {
         return this.name;
