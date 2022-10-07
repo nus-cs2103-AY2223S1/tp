@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.meeting.MeetingDate;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Income;
@@ -22,12 +23,14 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_INCOME = "$5230";
+    public static final String DEFAULT_MEETINGDATE = "20 Nov 2022";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private Income income;
+    private MeetingDate meetingDate;
     private Set<Tag> tags;
 
     /**
@@ -39,6 +42,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         income = new Income(DEFAULT_INCOME);
+        meetingDate = new MeetingDate(DEFAULT_MEETINGDATE);
         tags = new HashSet<>();
     }
 
@@ -51,6 +55,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         income = personToCopy.getIncome();
+        meetingDate = personToCopy.getMeetingDate();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -102,8 +107,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code MeetingDate} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withMeetingDate(String meetingDate) {
+        this.meetingDate = new MeetingDate(meetingDate);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, income, tags);
+        return new Person(name, phone, email, address, income, meetingDate, tags);
     }
 
 }

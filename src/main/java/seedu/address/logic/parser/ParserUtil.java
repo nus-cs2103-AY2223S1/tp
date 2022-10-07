@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.meeting.MeetingDate;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Income;
@@ -109,6 +110,24 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String meetingDate} into an {@code MeetingDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     * MeetingDate can be null.
+     * @throws ParseException if the given {@code meetingDate} is invalid.
+     */
+    public static MeetingDate parseMeetingDate(String meetingDate) throws ParseException {
+        if (meetingDate != null) {
+            String trimmedMeetingDate = meetingDate.trim();
+            if (!MeetingDate.isValidMeetingDate(meetingDate)) {
+                throw new ParseException(MeetingDate.MESSAGE_CONSTRAINTS);
+            }
+            return new MeetingDate(trimmedMeetingDate);
+        } else {
+            return new MeetingDate(null);
+        }
     }
 
     /**

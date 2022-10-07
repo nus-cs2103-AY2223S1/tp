@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INCOME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -20,6 +21,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.meeting.MeetingDate;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Income;
@@ -44,6 +46,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_INCOME + "INCOME] "
+            + "[" + PREFIX_MEETING_DATE + "MEETINGDATE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -101,9 +104,11 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Income updatedIncome = editPersonDescriptor.getIncome().orElse(personToEdit.getIncome());
+        MeetingDate updatedMeetingDate = editPersonDescriptor.getMeetingDate().orElse(personToEdit.getMeetingDate());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedIncome, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedIncome,
+                updatedMeetingDate, updatedTags);
     }
 
     @Override
@@ -134,6 +139,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Income income;
+        private MeetingDate meetingDate;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -148,6 +154,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setIncome(toCopy.income);
+            setMeetingDate(toCopy.meetingDate);
             setTags(toCopy.tags);
         }
 
@@ -155,7 +162,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, income, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, income, meetingDate, tags);
         }
 
         public void setName(Name name) {
@@ -198,6 +205,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(income);
         }
 
+        public void setMeetingDate(MeetingDate meetingDate) {
+            this.meetingDate = (meetingDate != null) ? meetingDate : null;
+        }
+
+        public Optional<MeetingDate> getMeetingDate() {
+            return (meetingDate != null) ? Optional.ofNullable(meetingDate) : Optional.empty();
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -235,6 +250,7 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getIncome().equals(e.getIncome())
+                    && getMeetingDate().equals(e.getMeetingDate())
                     && getTags().equals(e.getTags());
         }
     }

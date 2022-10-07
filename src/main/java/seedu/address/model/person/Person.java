@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.meeting.MeetingDate;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -19,22 +20,25 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
-    private final Income income;
 
     // Data fields
     private final Address address;
+    private final Income income;
+    private final MeetingDate meetingDate;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Income income, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, income, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Income income, MeetingDate meetingDate,
+                  Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, income, meetingDate, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.income = income;
+        this.meetingDate = meetingDate;
         this.tags.addAll(tags);
     }
 
@@ -56,6 +60,10 @@ public class Person {
 
     public Income getIncome() {
         return income;
+    }
+
+    public MeetingDate getMeetingDate() {
+        return meetingDate;
     }
 
     /**
@@ -99,13 +107,14 @@ public class Person {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getIncome().equals(getIncome())
+                && otherPerson.getMeetingDate().equals(getMeetingDate())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, income, tags);
+        return Objects.hash(name, phone, email, address, income, meetingDate, tags);
     }
 
     @Override
@@ -119,7 +128,9 @@ public class Person {
                 .append("; Address: ")
                 .append(getAddress())
                 .append("; Income: ")
-                .append(getIncome());
+                .append(getIncome())
+                .append("; MeetingDate: ")
+                .append(getMeetingDate());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
