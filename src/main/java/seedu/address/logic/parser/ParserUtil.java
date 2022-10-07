@@ -14,6 +14,9 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Deadline;
+import seedu.address.model.task.Module;
+import seedu.address.model.task.TaskName;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -120,5 +123,50 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code TaskName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static TaskName parseTaskName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!TaskName.isValidName(trimmedName)) {
+            throw new ParseException(TaskName.MESSAGE_CONSTRAINTS);
+        }
+        return new TaskName(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String deadline} into a {@code Deadline}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code deadline} is invalid.
+     */
+    public static Deadline parseDeadline(String deadline) throws ParseException {
+        requireNonNull(deadline);
+        String trimmedDeadline = deadline.trim();
+        if (!Deadline.isValidDeadline(trimmedDeadline)) {
+            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
+        }
+        return new Deadline(trimmedDeadline);
+    }
+
+    /**
+     * Parses a {@code String module} into a {@code Module}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code module} is invalid.
+     */
+    public static Module parseModule(String module) throws ParseException {
+        requireNonNull(module);
+        String trimmedModule = module.trim();
+        if (!Module.isValidModule(trimmedModule)) {
+            throw new ParseException(Module.MESSAGE_CONSTRAINTS);
+        }
+        return new Module(trimmedModule);
     }
 }
