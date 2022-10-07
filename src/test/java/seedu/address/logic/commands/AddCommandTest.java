@@ -20,6 +20,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -114,6 +115,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addModule(Module module) {
+            throw new AssertionError("This method should not even be called.");
+        }
+
+        @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
@@ -139,7 +145,17 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasModule(Module module) {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Module> getFilteredModuleList() {
             throw new AssertionError("This method should not be called.");
         }
 

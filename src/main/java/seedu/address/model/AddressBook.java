@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.module.DistinctModuleList;
+import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -15,6 +17,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final DistinctModuleList modules;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +28,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        modules = new DistinctModuleList();
     }
 
     public AddressBook() {}
@@ -47,6 +51,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.persons.setPersons(persons);
     }
 
+    public void setModules(List<Module> modules) {
+        this.modules.setModules(modules);
+    }
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
@@ -54,6 +61,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setModules(newData.getModuleList());
     }
 
     //// person-level operations
@@ -92,18 +100,36 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void removePerson(Person key) {
         persons.remove(key);
     }
-
+    public void addModule(Module mod) {
+        modules.addModule(mod);
+    }
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return persons.asUnmodifiableObservableList().size() + " persons"
+                + "\n" + modules.getUnmodifiableModuleList().size() + " modules";
         // TODO: refine later
     }
 
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    /**
+     * Checks whether the module list contains the module.
+     *
+     * @param module The module that is being checked.
+     * @return true if the module list contains the module; else returns false.
+     */
+    public boolean hasModule(Module module) {
+        requireNonNull(module);
+        return modules.containsModule(module);
+    }
+    @Override
+    public ObservableList<Module> getModuleList() {
+        return modules.getUnmodifiableModuleList();
     }
 
     @Override

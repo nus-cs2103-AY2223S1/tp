@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -78,6 +79,22 @@ public class ParserUtil {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
         return new Address(trimmedAddress);
+    }
+
+    /**
+     * Parses the {@code moduleCode} String into a {@code ModuleCode} object.
+     *
+     * @param moduleCode The module code of the module.
+     * @return The ModuleCode object created from the moduleCode string.
+     * @throws ParseException if the given {@code moduleCode} is not valid.
+     */
+    public static ModuleCode parseModuleCode(String moduleCode) throws ParseException {
+        requireNonNull(moduleCode);
+        String trimmedModuleCode = moduleCode.strip();
+        if (!ModuleCode.isValidModuleCode(trimmedModuleCode)) {
+            throw new ParseException(ModuleCode.MODULE_CODE_CONSTRAINTS);
+        }
+        return new ModuleCode(trimmedModuleCode);
     }
 
     /**
