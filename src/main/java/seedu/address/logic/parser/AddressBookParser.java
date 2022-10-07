@@ -76,7 +76,7 @@ public class AddressBookParser {
             return new TaskAddCommandParser().parse(arguments);
 
         case TaskDeleteCommand.COMMAND_WORD:
-                return new TaskDeleteCommandParser().parse(arguments);
+            return new TaskDeleteCommandParser().parse(arguments);
 
         case CreateTeamCommand.COMMAND_WORD:
             return new CreateTeamParser().parse(arguments);
