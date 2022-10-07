@@ -62,7 +62,6 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private TabPane tabPane;
 
-
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
