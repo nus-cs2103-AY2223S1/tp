@@ -6,7 +6,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.profile.DeleteProfileCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
-import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.profile.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new DeleteProfileCommand object

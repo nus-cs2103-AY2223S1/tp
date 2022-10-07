@@ -16,7 +16,7 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
-import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.profile.exceptions.ParseException;
 import seedu.address.model.profile.Email;
 import seedu.address.model.profile.Name;
 import seedu.address.model.profile.Phone;
@@ -39,7 +39,7 @@ public class AddProfileCommandParser implements Parser<AddProfileCommand> {
                         PREFIX_OPTION, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL)
-                || !argMultimap.getPreamble().isEmpty()) {
+                || !argMultimap.getPreamble().isEmpty() || !argMultimap.getOptionArgs().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddProfileCommand.MESSAGE_USAGE));
         }
 
