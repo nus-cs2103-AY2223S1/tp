@@ -8,10 +8,13 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCompanies.ALICE;
 import static seedu.address.testutil.TypicalCompanies.BOB;
+import static seedu.address.testutil.TypicalPoc.ELLE;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.poc.Poc;
 import seedu.address.testutil.CompanyBuilder;
+import seedu.address.testutil.PocBuilder;
 
 public class CompanyTest {
 
@@ -46,6 +49,14 @@ public class CompanyTest {
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
         editedBob = new CompanyBuilder(BOB).withName(nameWithTrailingSpaces).build();
         assertFalse(BOB.isSameCompany(editedBob));
+    }
+
+    @Test
+    public void addPoc() {
+        Company aliceCopy = new CompanyBuilder(ALICE).build();
+        Poc elleCopy = new PocBuilder(ELLE).build();
+        aliceCopy.addPoc(elleCopy);
+        assertTrue(aliceCopy.getPocs().contains(elleCopy));
     }
 
     @Test
