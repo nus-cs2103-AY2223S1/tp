@@ -57,7 +57,8 @@ public class StringUtilTest {
 
     @Test
     public void containsWordIgnoreCase_nullWord_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> StringUtil.containsWordIgnoreCase("typical sentence", null));
+        Assert.assertThrows(NullPointerException.class, ()
+                -> StringUtil.containsWordIgnoreCase("typical sentence", null));
     }
 
     @Test

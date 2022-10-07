@@ -54,7 +54,8 @@ public class JsonFoodGuideStorageTest {
 
     @Test
     public void readFoodGuide_invalidAndValidFoodGuide_throwDataConversionException() {
-        Assert.assertThrows(DataConversionException.class, () -> readFoodGuide("invalidAndValidPersonAddressBook.json"));
+        Assert.assertThrows(DataConversionException.class, ()
+                -> readFoodGuide("invalidAndValidPersonAddressBook.json"));
     }
 
     @Test
