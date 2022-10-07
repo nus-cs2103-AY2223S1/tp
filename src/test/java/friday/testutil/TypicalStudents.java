@@ -22,12 +22,12 @@ import friday.model.student.Student;
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
  */
-public class TypicalPersons {
+public class TypicalStudents {
 
     public static final Student ALICE = new PersonBuilder().withName("Alice Pauline")
             .withMasteryCheck(LocalDate.of(2022, 2, 17))
             .withConsultation(LocalDate.of(2022, 2, 22))
-            .withTelegramHandle("4lice").withRemark("She likes aardvarks.")
+            .withTelegramHandle("al1ce").withRemark("She likes aardvarks.")
             .withTags("friends").build();
     public static final Student BENSON = new PersonBuilder().withName("Benson Meier")
             .withMasteryCheck(LocalDate.of(2022, 8, 17)).withRemark("He can't take beer!")
@@ -36,10 +36,10 @@ public class TypicalPersons {
     public static final Student CARL = new PersonBuilder().withName("Carl Kurz").withTelegramHandle("carl_isle")
             .withConsultation(LocalDate.of(2022, 11, 17))
             .withMasteryCheck(LocalDate.of(2022, 2, 17)).build();
-    public static final Student DANIEL = new PersonBuilder().withName("Daniel Meier").withTelegramHandle("D4NI3L")
+    public static final Student DANIEL = new PersonBuilder().withName("Daniel Meier").withTelegramHandle("d4ni3l")
             .withConsultation(LocalDate.of(2022, 1, 21))
             .withMasteryCheck(LocalDate.of(2022, 4, 2)).withTags("friends").build();
-    public static final Student ELLE = new PersonBuilder().withName("Elle Meyer").withTelegramHandle("33elle33")
+    public static final Student ELLE = new PersonBuilder().withName("Elle Meyer").withTelegramHandle("e33elle33")
             .withConsultation(LocalDate.of(2022, 9, 7))
             .withMasteryCheck(LocalDate.of(2022, 1, 1)).build();
     public static final Student FIONA = new PersonBuilder().withName("Fiona Kunz").withTelegramHandle("fionakunz")
@@ -67,7 +67,7 @@ public class TypicalPersons {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalPersons() {} // prevents instantiation
+    private TypicalStudents() {} // prevents instantiation
 
     /**
      * Returns an {@code AddressBook} with all the typical persons.

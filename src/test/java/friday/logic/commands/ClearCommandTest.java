@@ -1,7 +1,7 @@
 package friday.logic.commands;
 
 import static friday.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static friday.testutil.TypicalPersons.getTypicalAddressBook;
+import static friday.testutil.TypicalStudents.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 

@@ -14,7 +14,7 @@ import org.junit.jupiter.api.io.TempDir;
 // import friday.commons.exceptions.DataConversionException;
 import friday.model.Friday;
 import friday.model.ReadOnlyFriday;
-import friday.testutil.TypicalPersons;
+import friday.testutil.TypicalStudents;
 
 public class JsonMasteryCheckBookStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonMasteryCheckBookStorageTest");
@@ -62,7 +62,7 @@ public class JsonMasteryCheckBookStorageTest {
     @Test
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
-        Friday original = TypicalPersons.getTypicalAddressBook();
+        Friday original = TypicalStudents.getTypicalAddressBook();
         JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(filePath);
 
         // Save in new file and read back
@@ -71,14 +71,14 @@ public class JsonMasteryCheckBookStorageTest {
         assertEquals(original, new Friday(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addPerson(TypicalPersons.HOON);
-        original.removePerson(TypicalPersons.ALICE);
+        original.addPerson(TypicalStudents.HOON);
+        original.removePerson(TypicalStudents.ALICE);
         jsonAddressBookStorage.saveAddressBook(original, filePath);
         readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
         assertEquals(original, new Friday(readBack));
 
         // Save and read without specifying file path
-        original.addPerson(TypicalPersons.IDA);
+        original.addPerson(TypicalStudents.IDA);
         jsonAddressBookStorage.saveAddressBook(original); // file path not specified
         readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified
         assertEquals(original, new Friday(readBack));
