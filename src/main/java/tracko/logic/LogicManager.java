@@ -9,13 +9,15 @@ import tracko.commons.core.GuiSettings;
 import tracko.commons.core.LogsCenter;
 import tracko.logic.commands.Command;
 import tracko.logic.commands.CommandResult;
+import tracko.logic.commands.MultiLevelCommand;
 import tracko.logic.commands.exceptions.CommandException;
-import tracko.logic.parser.AddressBookParser;
+import tracko.logic.parser.TrackOParser;
 import tracko.logic.parser.exceptions.ParseException;
 import tracko.model.Model;
-import tracko.model.ReadOnlyAddressBook;
-import tracko.model.person.Person;
+import tracko.model.ReadOnlyTrackO;
+import tracko.model.order.Order;
 import tracko.storage.Storage;
+
 
 /**
  * The main LogicManager of the app.
@@ -26,7 +28,9 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final TrackOParser trackOParser;
+
+    private MultiLevelCommand inProgressCommand;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,19 +38,33 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        inProgressCommand = null;
+        trackOParser = new TrackOParser();
     }
 
     @Override
-    public CommandResult execute(String commandText) throws CommandException, ParseException {
-        logger.info("----------------[USER COMMAND][" + commandText + "]");
+    public CommandResult execute(String userInput) throws CommandException, ParseException {
+        logger.info("----------------[USER INPUT][" + userInput + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command;
+
+        if (inProgressCommand != null) {
+            command = trackOParser.parseAndUpdateCommand(userInput, inProgressCommand);
+        } else {
+            command = trackOParser.parseCommand(userInput);
+        }
+
+        if (command.isAwaitingInput()) {
+            inProgressCommand = (MultiLevelCommand) command;
+        } else {
+            inProgressCommand = null;
+        }
+
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveTrackO(model.getTrackO());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -55,18 +73,18 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyTrackO getTrackO() {
+        return model.getTrackO();
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Order> getOrderList() {
+        return model.getOrderList();
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getOrdersFilePath() {
+        return model.getOrdersFilePath();
     }
 
     @Override
@@ -78,4 +96,6 @@ public class LogicManager implements Logic {
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
     }
+
+
 }

@@ -4,12 +4,12 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import tracko.logic.commands.EditCommand.EditPersonDescriptor;
-import tracko.model.person.Address;
-import tracko.model.person.Email;
-import tracko.model.person.Name;
+import tracko.logic.commands.order.EditOrderCommand.EditPersonDescriptor;
+import tracko.model.order.Address;
+import tracko.model.order.Email;
+import tracko.model.order.Name;
+import tracko.model.order.Phone;
 import tracko.model.person.Person;
-import tracko.model.person.Phone;
 import tracko.model.tag.Tag;
 
 /**

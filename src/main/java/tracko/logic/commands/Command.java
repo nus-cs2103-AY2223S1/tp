@@ -8,6 +8,9 @@ import tracko.model.Model;
  */
 public abstract class Command {
 
+
+    protected Command() {}
+
     /**
      * Executes the command and returns the result message.
      *
@@ -16,5 +19,13 @@ public abstract class Command {
      * @throws CommandException If an error occurs during command execution.
      */
     public abstract CommandResult execute(Model model) throws CommandException;
+
+    public boolean isMultiLevelCommand() {
+        return this instanceof MultiLevelCommand;
+    }
+
+    public boolean isAwaitingInput() {
+        return false;
+    }
 
 }

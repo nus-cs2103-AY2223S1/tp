@@ -6,6 +6,8 @@ import static tracko.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import tracko.model.order.Address;
+
 public class AddressTest {
 
     @Test

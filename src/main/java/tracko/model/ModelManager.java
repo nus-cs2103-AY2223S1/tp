@@ -4,40 +4,37 @@ import static java.util.Objects.requireNonNull;
 import static tracko.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import tracko.commons.core.GuiSettings;
 import tracko.commons.core.LogsCenter;
-import tracko.model.person.Person;
+import tracko.model.order.Order;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the application data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final TrackO trackO;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyTrackO trackO, ReadOnlyUserPrefs userPrefs) {
+        // After iteration, remove addressbook-related data/fields
+        requireAllNonNull(trackO, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with TrackO: " + trackO + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.trackO = new TrackO(trackO);
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new TrackO(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -64,68 +61,39 @@ public class ModelManager implements Model {
         userPrefs.setGuiSettings(guiSettings);
     }
 
+    public Path getOrdersFilePath() {
+        return userPrefs.getOrdersFilePath();
+    }
+
+    public void setOrdersFilePath(Path ordersFilePath) {
+        requireNonNull(ordersFilePath);
+        userPrefs.setOrdersFilePath(ordersFilePath);
+    }
+
+    // TODO: add items file path related methods
+
+    //=========== TrackO ==============================================================================
+
+    // TODO: add items related methods
+
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public void setTrackO(ReadOnlyTrackO trackO) {
+        this.trackO.resetData(trackO);
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
-    }
-
-    //=========== AddressBook ================================================================================
-
-    @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public ReadOnlyTrackO getTrackO() {
+        return trackO;
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public void addOrder(Order order) {
+        trackO.addOrder(order);
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
-    }
-
-    @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
-    }
-
-    @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-    }
-
-    @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
-    }
-
-    //=========== Filtered Person List Accessors =============================================================
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
-    }
-
-    @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+    public ObservableList<Order> getOrderList() {
+        return trackO.getOrderList();
     }
 
     @Override
@@ -142,9 +110,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+        return trackO.equals(other.trackO)
+            && userPrefs.equals(other.userPrefs);
     }
-
 }

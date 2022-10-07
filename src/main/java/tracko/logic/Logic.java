@@ -7,9 +7,8 @@ import tracko.commons.core.GuiSettings;
 import tracko.logic.commands.CommandResult;
 import tracko.logic.commands.exceptions.CommandException;
 import tracko.logic.parser.exceptions.ParseException;
-import tracko.model.Model;
-import tracko.model.ReadOnlyAddressBook;
-import tracko.model.person.Person;
+import tracko.model.ReadOnlyTrackO;
+import tracko.model.order.Order;
 
 /**
  * API of the Logic component
@@ -25,19 +24,19 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
-     *
-     * @see Model#getAddressBook()
+     * Returns the TrackO.
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyTrackO getTrackO();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the list of orders */
+    ObservableList<Order> getOrderList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user pref's order list file path.
      */
-    Path getAddressBookFilePath();
+    Path getOrdersFilePath();
+
+
 
     /**
      * Returns the user prefs' GUI settings.

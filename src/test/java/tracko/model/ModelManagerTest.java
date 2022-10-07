@@ -3,20 +3,20 @@ package tracko.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static tracko.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+// import static tracko.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static tracko.testutil.Assert.assertThrows;
-import static tracko.testutil.TypicalPersons.ALICE;
-import static tracko.testutil.TypicalPersons.BENSON;
+import static tracko.testutil.TypicalOrders.ORDER_1;
+import static tracko.testutil.TypicalOrders.ORDER_2;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
+// import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import tracko.commons.core.GuiSettings;
-import tracko.model.person.NameContainsKeywordsPredicate;
-import tracko.testutil.AddressBookBuilder;
+// import tracko.model.order.NameContainsKeywordsPredicate;
+import tracko.testutil.TrackOBuilder;
 
 public class ModelManagerTest {
 
@@ -26,7 +26,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
+        assertEquals(new TrackO(), new TrackO(modelManager.getTrackO()));
     }
 
     @Test
@@ -61,47 +61,47 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setAddressBookFilePath(null));
+    public void setOrdersFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setOrdersFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
-        Path path = Paths.get("address/book/file/path");
-        modelManager.setAddressBookFilePath(path);
-        assertEquals(path, modelManager.getAddressBookFilePath());
+    public void setOrdersFilePath_validPath_setsAddressBookFilePath() {
+        Path path = Paths.get("tracko/orders/file/path");
+        modelManager.setOrdersFilePath(path);
+        assertEquals(path, modelManager.getOrdersFilePath());
     }
 
-    @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
-    }
-
-    @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasPerson(ALICE));
-    }
-
-    @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        modelManager.addPerson(ALICE);
-        assertTrue(modelManager.hasPerson(ALICE));
-    }
-
-    @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
-    }
+    // @Test
+    // public void hasPerson_nullPerson_throwsNullPointerException() {
+    //     assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
+    // }
+    //
+    // @Test
+    // public void hasPerson_personNotInAddressBook_returnsFalse() {
+    //     assertFalse(modelManager.hasPerson(ORDER_1));
+    // }
+    //
+    // @Test
+    // public void hasPerson_personInAddressBook_returnsTrue() {
+    //     modelManager.addPerson(ORDER_1);
+    //     assertTrue(modelManager.hasPerson(ORDER_1));
+    // }
+    //
+    // @Test
+    // public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
+    //     assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    // }
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
-        AddressBook differentAddressBook = new AddressBook();
+        TrackO trackO = new TrackOBuilder().withOrder(ORDER_1).withOrder(ORDER_2).build();
+        TrackO differentTrackO = new TrackO();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
+        modelManager = new ModelManager(trackO, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(trackO, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -113,20 +113,20 @@ public class ModelManagerTest {
         // different types -> returns false
         assertFalse(modelManager.equals(5));
 
-        // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
+        // different trackO -> returns false
+        assertFalse(modelManager.equals(new ModelManager(differentTrackO, userPrefs)));
 
-        // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
-
-        // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        // // different filteredList -> returns false
+        // String[] keywords = ORDER_1.getName().fullName.split("\\s+");
+        // modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        // assertFalse(modelManager.equals(new ModelManager(trackO, userPrefs)));
+        //
+        // // resets modelManager to initial state for upcoming tests
+        // modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(trackO, differentUserPrefs)));
     }
 }

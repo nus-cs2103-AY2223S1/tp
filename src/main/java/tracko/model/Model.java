@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import tracko.commons.core.GuiSettings;
+import tracko.model.order.Order;
 import tracko.model.person.Person;
 
 /**
@@ -34,54 +35,36 @@ public interface Model {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
-    /**
-     * Returns the user prefs' address book file path.
-     */
-    Path getAddressBookFilePath();
+    // TrackO =======================================================================================
+
+    // TODO: add item related methods
 
     /**
-     * Sets the user prefs' address book file path.
+     * Returns the user pref's orders file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    Path getOrdersFilePath();
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Sets the user pref's orders file path.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
-
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    void setOrdersFilePath(Path ordersFilePath);
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Replaces application data with the data in {@code trackO}
      */
-    boolean hasPerson(Person person);
+    void setTrackO(ReadOnlyTrackO trackO);
+
+    /** Returns the TrackO */
+    ReadOnlyTrackO getTrackO();
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Adds the given order.
      */
-    void deletePerson(Person target);
+    void addOrder(Order order);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Returns the order list.
      */
-    void addPerson(Person person);
+    ObservableList<Order> getOrderList();
 
-    /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
-     */
-    void setPerson(Person target, Person editedPerson);
-
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
-
-    /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredPersonList(Predicate<Person> predicate);
 }
