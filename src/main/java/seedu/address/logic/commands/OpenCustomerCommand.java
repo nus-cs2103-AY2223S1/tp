@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CUSTOMERS;
 
 import java.util.List;
 
@@ -43,8 +42,6 @@ public class OpenCustomerCommand extends Command {
 
         Customer customerToOpen = lastShownList.get(targetIndex.getZeroBased());
         model.selectCustomer(customerToOpen);
-
-        model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
 
         return new CommandResult(String.format(MESSAGE_OPEN_CUSTOMER_SUCCESS, customerToOpen));
     }
