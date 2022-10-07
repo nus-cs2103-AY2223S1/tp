@@ -4,15 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,16 +15,10 @@ import seedu.address.logic.commands.DeleteContactCommand;
 import seedu.address.logic.commands.EditContactCommand;
 import seedu.address.logic.commands.EditContactCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindContactCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListContactCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.PersonContainsKeywordsPredicate;
-import seedu.address.model.person.Phone;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -77,22 +64,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_find() throws Exception {
-        List<Name> nameKeywords = List.of(new Name("ali"));
-        List<Phone> phoneKeywords = List.of(new Phone("999"));
-        List<Email> emailKeywords = List.of(new Email("john@gmail.com"));
-        List<Address> addressKeywords = List.of(new Address("17A Lower Kent Ridge Road, #01-01, S(119081)"));
-        FindContactCommand command = (FindContactCommand) parser.parseCommand(
-                FindContactCommand.COMMAND_WORD + " "
-                        + PREFIX_NAME
-                        + nameKeywords.stream().map(Name::toString).collect(Collectors.joining(" ")) + " "
-                        + PREFIX_PHONE
-                        + phoneKeywords.stream().map(Phone::toString).collect(Collectors.joining(" ")) + " "
-                        + PREFIX_EMAIL
-                        + emailKeywords.stream().map(Email::toString).collect(Collectors.joining(" ")) + " "
-                        + PREFIX_ADDRESS
-                        + addressKeywords.stream().map(Address::toString).collect(Collectors.joining(" ")));
-        assertEquals(new FindContactCommand(new PersonContainsKeywordsPredicate(
-                nameKeywords, phoneKeywords, emailKeywords, addressKeywords)), command);
+        // TODO
     }
 
     @Test
