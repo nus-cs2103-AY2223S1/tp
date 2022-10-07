@@ -31,4 +31,5 @@ public class FindNameCommandParserTest {
         assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindNameCommand);
     }
 
+
 }
