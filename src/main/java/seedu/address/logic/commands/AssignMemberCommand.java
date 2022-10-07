@@ -12,6 +12,8 @@ import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.team.Team;
 import seedu.address.model.team.UniqueTeamList;
 
+import java.util.List;
+
 
 /**
  * Adds a person to the address book.
@@ -49,12 +51,11 @@ public class AssignMemberCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         System.out.println(toAssign);
-        UniquePersonList persons = (UniquePersonList) model.getPersons();
-        UniqueTeamList teams = (UniqueTeamList) model.getTeams();
-        //System.out.println(persons.internalList.size());
-        Person p = persons.getPerson(toAssign);
+        Person p = model.getPerson(toAssign);
         System.out.println(p.getName());
-        Team t = teams.getTeam(teamName);
+        List<Team> teams = model.getFilteredTeamList();
+        System.out.println(teams);
+        Team t = model.getTeam(teamName);
         System.out.println(t.getName());
         model.addPersonToTeam(p, t);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAssign, teamName));

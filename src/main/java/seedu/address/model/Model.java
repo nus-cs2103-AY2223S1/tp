@@ -9,6 +9,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.task.Task;
+import seedu.address.model.team.Name;
 import seedu.address.model.team.Team;
 import seedu.address.model.team.UniqueTeamList;
 
@@ -98,6 +99,8 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
+    public Person getPerson(seedu.address.model.person.Name name);
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
@@ -107,6 +110,8 @@ public interface Model {
     void updateFilteredTeamList(Predicate<Team> predicate);
 
     ObservableList<Team> getFilteredTeamList();
+
+    public Team getTeam(Name name);
 
     void addTask(Index index, Task task);
 }
