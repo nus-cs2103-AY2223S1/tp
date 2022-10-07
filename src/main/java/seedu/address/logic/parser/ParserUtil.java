@@ -14,7 +14,6 @@ import seedu.address.model.internship.InternshipId;
 import seedu.address.model.internship.InternshipRole;
 import seedu.address.model.internship.InternshipStatus;
 import seedu.address.model.internship.InterviewDate;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.PersonId;
@@ -88,20 +87,6 @@ public class ParserUtil {
         return new Phone(trimmedPhone);
     }
 
-    /**
-     * Parses a {@code String address} into an {@code Address}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code address} is invalid.
-     */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        }
-        return new Address(trimmedAddress);
-    }
 
     /**
      * Parses a {@code String email} into an {@code Email}.
