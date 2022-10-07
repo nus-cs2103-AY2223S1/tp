@@ -104,8 +104,7 @@ public class AddCommandParserTest {
 
         Person expectedPersonMissingOptional = new PersonBuilder(PRITTAM).withTags().build();
         PersonBuilder.setEmployeeId(PRITTAM.getEmployeeId().value);
-        assertParseSuccess(parser, NAME_DESC_PRITTAM + 
-                POSITION_DESC_PRITTAM, new AddCommand(expectedPersonMissingOptional));
+        assertParseSuccess(parser, NAME_DESC_PRITTAM + POSITION_DESC_PRITTAM, new AddCommand(expectedPersonMissingOptional));
     }
 
     @Test
