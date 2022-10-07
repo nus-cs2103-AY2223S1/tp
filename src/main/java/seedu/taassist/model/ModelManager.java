@@ -131,12 +131,7 @@ public class ModelManager implements Model {
     @Override
     public boolean hasModuleClasses(Collection<ModuleClass> moduleClasses) {
         requireAllNonNull(moduleClasses);
-        for (ModuleClass moduleClass : moduleClasses) {
-            if (!hasModuleClass(moduleClass)) {
-                return false;
-            }
-        }
-        return true;
+        return moduleClasses.stream().allMatch(this::hasModuleClass);
     }
 
     @Override
