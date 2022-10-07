@@ -4,8 +4,8 @@
     "phone": "94351253",
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
+    "tagged": [ "interview", "rejected" ],
     "cap": "3.8/4.0",
-    "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
