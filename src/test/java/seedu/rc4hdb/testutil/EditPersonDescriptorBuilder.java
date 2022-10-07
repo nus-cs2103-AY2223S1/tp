@@ -4,7 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.rc4hdb.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.rc4hdb.logic.commands.modelcommands.EditCommand.EditPersonDescriptor;
 import seedu.rc4hdb.model.person.Address;
 import seedu.rc4hdb.model.person.Email;
 import seedu.rc4hdb.model.person.Name;

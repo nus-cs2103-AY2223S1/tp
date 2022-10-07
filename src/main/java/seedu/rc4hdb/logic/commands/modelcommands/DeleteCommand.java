@@ -1,4 +1,4 @@
-package seedu.rc4hdb.logic.commands;
+package seedu.rc4hdb.logic.commands.modelcommands;
 
 import static java.util.Objects.requireNonNull;
 
@@ -6,6 +6,7 @@ import java.util.List;
 
 import seedu.rc4hdb.commons.core.Messages;
 import seedu.rc4hdb.commons.core.index.Index;
+import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.person.Person;
@@ -13,7 +14,7 @@ import seedu.rc4hdb.model.person.Person;
 /**
  * Deletes a person identified using it's displayed index from the address book.
  */
-public class DeleteCommand extends Command {
+public class DeleteCommand extends ModelCommand {
 
     public static final String COMMAND_WORD = "delete";
 

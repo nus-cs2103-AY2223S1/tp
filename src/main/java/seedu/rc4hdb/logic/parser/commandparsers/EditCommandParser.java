@@ -14,8 +14,8 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.rc4hdb.commons.core.index.Index;
-import seedu.rc4hdb.logic.commands.EditCommand;
-import seedu.rc4hdb.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.rc4hdb.logic.commands.modelcommands.EditCommand;
+import seedu.rc4hdb.logic.commands.modelcommands.EditCommand.EditPersonDescriptor;
 import seedu.rc4hdb.logic.parser.ArgumentMultimap;
 import seedu.rc4hdb.logic.parser.ArgumentTokenizer;
 import seedu.rc4hdb.logic.parser.Parser;

@@ -1,10 +1,10 @@
-package seedu.rc4hdb.logic.commands;
+package seedu.rc4hdb.logic.commands.modelcommands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.rc4hdb.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
-import static seedu.rc4hdb.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.assertCommandSuccess;
 import static seedu.rc4hdb.testutil.TypicalPersons.CARL;
 import static seedu.rc4hdb.testutil.TypicalPersons.ELLE;
 import static seedu.rc4hdb.testutil.TypicalPersons.FIONA;

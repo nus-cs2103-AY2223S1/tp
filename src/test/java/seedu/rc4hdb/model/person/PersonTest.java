@@ -2,11 +2,11 @@ package seedu.rc4hdb.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.rc4hdb.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.rc4hdb.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.rc4hdb.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.rc4hdb.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.rc4hdb.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_NAME_BOB;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_PHONE_BOB;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.rc4hdb.testutil.Assert.assertThrows;
 import static seedu.rc4hdb.testutil.TypicalPersons.ALICE;
 import static seedu.rc4hdb.testutil.TypicalPersons.BOB;

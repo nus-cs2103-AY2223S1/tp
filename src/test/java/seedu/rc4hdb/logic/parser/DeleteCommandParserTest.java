@@ -7,7 +7,7 @@ import static seedu.rc4hdb.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.rc4hdb.logic.commands.DeleteCommand;
+import seedu.rc4hdb.logic.commands.modelcommands.DeleteCommand;
 import seedu.rc4hdb.logic.parser.commandparsers.DeleteCommandParser;
 
 /**
