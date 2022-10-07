@@ -7,6 +7,7 @@ import java.util.List;
 
 import seedu.taassist.commons.core.index.Index;
 import seedu.taassist.logic.commands.UnassignCommand;
+import static seedu.taassist.logic.parser.ParserUtil.isPrefixPresent;
 import seedu.taassist.logic.parser.exceptions.ParseException;
 import seedu.taassist.model.moduleclass.ModuleClass;
 
@@ -22,7 +23,7 @@ public class UnassignCommandParser implements Parser<UnassignCommand> {
      */
     public UnassignCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MODULE_CLASS);
-        if (!isPrefixPresent(argMultimap) || argMultimap.getPreamble().isEmpty()) {
+        if (!isPrefixPresent(argMultimap, PREFIX_MODULE_CLASS) || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnassignCommand.MESSAGE_USAGE));
         }
 
@@ -35,13 +36,5 @@ public class UnassignCommandParser implements Parser<UnassignCommand> {
         }
 
         return new UnassignCommand(indices, moduleClass);
-    }
-
-    /**
-     * Returns true if the {@code PREFIX_MODULE_CLASS} does not contain empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean isPrefixPresent(ArgumentMultimap argumentMultimap) {
-        return argumentMultimap.getValue(PREFIX_MODULE_CLASS).isPresent();
     }
 }

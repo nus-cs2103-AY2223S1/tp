@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 import seedu.taassist.logic.commands.DeletecCommand;
+import static seedu.taassist.logic.parser.ParserUtil.isPrefixPresent;
 import seedu.taassist.logic.parser.exceptions.ParseException;
 import seedu.taassist.model.moduleclass.ModuleClass;
 
@@ -23,7 +24,7 @@ public class DeletecCommandParser implements Parser<DeletecCommand> {
     public DeletecCommand parse(String args) throws ParseException {
         try {
             ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MODULE_CLASS);
-            if (!isPrefixPresentAndNotEmpty(argMultimap, PREFIX_MODULE_CLASS)) {
+            if (!isPrefixPresent(argMultimap, PREFIX_MODULE_CLASS)) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeletecCommand.MESSAGE_USAGE));
             }
 
@@ -33,12 +34,5 @@ public class DeletecCommandParser implements Parser<DeletecCommand> {
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeletecCommand.MESSAGE_USAGE), pe);
         }
-    }
-
-    /**
-     * Returns true if the prefix for the command is present and non-empty.
-     */
-    private static boolean isPrefixPresentAndNotEmpty(ArgumentMultimap argumentMultimap, Prefix prefix) {
-        return argumentMultimap.getAllValues(prefix).size() != 0;
     }
 }
