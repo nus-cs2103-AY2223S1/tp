@@ -16,7 +16,7 @@ public class Gender {
      * The first character of the gender name must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "^[A-Za-z]+$";
+    public static final String VALIDATION_REGEX = "^(?i)(male|female)$";
 
     public final String value;
 
