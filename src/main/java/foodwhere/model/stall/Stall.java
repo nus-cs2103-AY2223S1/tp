@@ -17,7 +17,6 @@ public class Stall {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
 
     // Data fields
     private final Address address;
@@ -26,20 +25,15 @@ public class Stall {
     /**
      * Every field must be present and not null.
      */
-    public Stall(Name name, Phone phone, Address address, Set<Detail> details) {
-        requireAllNonNull(name, phone, address, details);
+    public Stall(Name name, Address address, Set<Detail> details) {
+        requireAllNonNull(name, address, details);
         this.name = name;
-        this.phone = phone;
         this.address = address;
         this.details.addAll(details);
     }
 
     public Name getName() {
         return name;
-    }
-
-    public Phone getPhone() {
-        return phone;
     }
 
     public Address getAddress() {
@@ -83,7 +77,6 @@ public class Stall {
 
         Stall otherStall = (Stall) other;
         return otherStall.getName().equals(getName())
-                && otherStall.getPhone().equals(getPhone())
                 && otherStall.getAddress().equals(getAddress())
                 && otherStall.getDetails().equals(getDetails());
     }
@@ -91,15 +84,13 @@ public class Stall {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, address, details);
+        return Objects.hash(name, address, details);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
                 .append("; Address: ")
                 .append(getAddress());
 

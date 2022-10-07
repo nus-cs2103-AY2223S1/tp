@@ -340,17 +340,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. User issues the correct `add` command.
+* 2a. User issues the correct command with the wrong syntax.
 
-    * 2a1. User uses `sadd` command.
-
-      Use case resumes at step 3.
-
-* 2b. User issues the correct `sadd` command with the wrong syntax.
-
-    * 2b1. FoodWhere sends an error message to the User, indicating that the format for adding a stall is incorrect, 
+    * 2a1. FoodWhere sends an error message to the User, indicating that the syntax is incorrect,
       and attaches the correct syntax format in the message.
-
+    
       Use case ends.
 
 ****
@@ -367,15 +361,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. User issues the correct `add` command.
+* 2a. User issues the correct command with the wrong syntax
 
-    * 2a1. User uses `radd` command.
-
-      Use case resumes at step 3.
-
-* 2b. User issues the correct `radd` command with the wrong syntax.
-
-    * 2b1. FoodWhere sends an error message to the User, indicating that the format for adding a review is incorrect, and attaches the correct syntax format in the message.
+    * 2a1. FoodWhere sends an error message to the User, indicating that the syntax is incorrect, and attaches the correct syntax format in the message.
 
       Use case ends.
 
@@ -394,8 +382,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. FoodWhere detects an error in the entered data. (Invalid index)
-    * 2a1. FoodWhere sends an error message to User, indicating the index used for the delete
-      command is incorrect, attached with the correct syntax format.
+    * 2a1. FoodWhere sends an error message to the User, indicating the index used for the delete
+      command is incorrect, and attaches the correct syntax format in the message.
 
       Use case ends.
 
@@ -414,8 +402,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. FoodWhere detects an error in the entered data. (Invalid index)
-    * 2a1. FoodWhere sends an error message to User, indicating the index used for the delete.
-      command is incorrect, attached with the correct syntax format.
+    * 2a1. FoodWhere sends an error message to the User, indicating the index used for the delete
+      command is incorrect, and attaches the correct syntax format in the message.
 
       Use case ends.
 
@@ -434,8 +422,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. User uses list food stalls command with the wrong syntax.
-    * 2a1. FoodWhere sends an error message to User, that the list food stalls command is incorrect, attached
-      with the correct syntax format.
+    * 2a1. FoodWhere sends an error message to the User, indicating that the syntax is incorrect, and attaches the correct syntax format in the message.
 
       Use case ends.
 
@@ -454,8 +441,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. User uses list food reviews command with the wrong syntax.
-    * 2a1. FoodWhere sends an error message to User, that the list food reviews command is incorrect, attached
-      with the correct syntax format.
+    * 2a1. FoodWhere sends an error message to the User, indicating that the syntax is incorrect, and attaches the correct syntax format in the message.
 
       Use case ends.
 

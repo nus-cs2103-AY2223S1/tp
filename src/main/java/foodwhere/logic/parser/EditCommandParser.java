@@ -29,7 +29,6 @@ public class EditCommandParser implements Parser<EditCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,
                         CliSyntax.PREFIX_NAME,
-                        CliSyntax.PREFIX_PHONE,
                         CliSyntax.PREFIX_ADDRESS,
                         CliSyntax.PREFIX_DETAIL);
 
@@ -44,9 +43,6 @@ public class EditCommandParser implements Parser<EditCommand> {
         EditStallDescriptor editStallDescriptor = new EditStallDescriptor();
         if (argMultimap.getValue(CliSyntax.PREFIX_NAME).isPresent()) {
             editStallDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(CliSyntax.PREFIX_NAME).get()));
-        }
-        if (argMultimap.getValue(CliSyntax.PREFIX_PHONE).isPresent()) {
-            editStallDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(CliSyntax.PREFIX_PHONE).get()));
         }
         if (argMultimap.getValue(CliSyntax.PREFIX_ADDRESS).isPresent()) {
             editStallDescriptor.setAddress(ParserUtil.parseAddress(

@@ -34,8 +34,6 @@ public class StallCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
-    @FXML
     private Label address;
     @FXML
     private FlowPane details;
@@ -48,7 +46,6 @@ public class StallCard extends UiPart<Region> {
         this.stall = stall;
         id.setText(displayedIndex + ". ");
         name.setText(stall.getName().fullName);
-        phone.setText(stall.getPhone().value);
         address.setText(stall.getAddress().value);
         stall.getDetails().stream()
                 .sorted(Comparator.comparing(detail -> detail.detail))

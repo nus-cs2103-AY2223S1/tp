@@ -29,7 +29,6 @@ public class StallTest {
         // same name, all other attributes different -> returns true
         Stall editedAlice =
                 new StallBuilder(TypicalStalls.ALICE)
-                        .withPhone(CommandTestUtil.VALID_PHONE_BOB)
                 .withAddress(CommandTestUtil.VALID_ADDRESS_BOB).withDetails(CommandTestUtil.VALID_DETAIL_HUSBAND)
                         .build();
         assertTrue(TypicalStalls.ALICE.isSameStall(editedAlice));
@@ -69,10 +68,6 @@ public class StallTest {
 
         // different name -> returns false
         Stall editedAlice = new StallBuilder(TypicalStalls.ALICE).withName(CommandTestUtil.VALID_NAME_BOB).build();
-        assertFalse(TypicalStalls.ALICE.equals(editedAlice));
-
-        // different phone -> returns false
-        editedAlice = new StallBuilder(TypicalStalls.ALICE).withPhone(CommandTestUtil.VALID_PHONE_BOB).build();
         assertFalse(TypicalStalls.ALICE.equals(editedAlice));
 
         // different address -> returns false
