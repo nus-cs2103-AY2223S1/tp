@@ -34,16 +34,18 @@ MODPRO is a desktop application which helps NUS students in tracking the progres
 ### Adding task functions [Coming Soon in v1.2]
 Adds task into task list
 
-Format: `add TASK`
+Format: `task m/MODULE d/DESCRIPTION`
 * Adds a task to the end of the task list
-* Task refers to the task description to be shown
+* Module refers to the module which the task belongs to
+* Description refers to the task description to be shown
+* If the task module is empty or does not exist in module list, an error message will be displayed
 * If the task description is empty, an error message will be displayed to inform the user to enter a description
 
 Examples:
 
-`add CS2105 Assignment 1` adds CS2105 Assignment 1 task into task list
+`task m/CS2105 d/Assignment 1` adds CS2105 Assignment 1 task into task list
 
-`add CS2103T Quiz` adds CS2103T Quiz task into task list
+`task m/CS2103T d/Quiz` adds CS2103T Quiz task into task list
 
 ### Tagging task order [Coming Soon in v1.2]
 Tags the order that the task is scheduled to be completed in
@@ -76,9 +78,9 @@ Examples:
 
 ## Summary of Commands
 
-| Command | Format and Examples                                                     |
-|---------|-------------------------------------------------------------------------|
-| **Add** | **Format**: `add TASK`<br/> **Example**: `add CS2105 Assignment 1`      |
+| Command  | Format and Examples                                                     |
+|----------|-------------------------------------------------------------------------|
+| **Task** | **Format**: `task m/MODULE d/DESCRIPTION`<br/> **Example**: `task m/CS2105 d/Assignment 1`      |
 | **Tag**  | **Format**: `tag task (number)`<br/> **Example**: `tag CS2105 Quiz (1)` |
 | **List** | **Format**: `list`<br/> **Example**:`list`                               |
 
