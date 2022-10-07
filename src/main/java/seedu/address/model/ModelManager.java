@@ -14,6 +14,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 
+
 /**
  * Represents the in-memory model of the address book data.
  */
@@ -148,6 +149,13 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
+    }
+
+    //=========== TaskList ======================================================================
+
+    @Override
+    public void addT(Task task) {
+        addressBook.addTask(task);
     }
 
     //=========== Filtered Task List Accessors =============================================================

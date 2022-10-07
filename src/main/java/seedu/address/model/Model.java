@@ -89,6 +89,12 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    /**
+     * Adds a task to the TaskList.
+     * @param task The task to be added.
+     */
+    void addT(Task task);
+
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();
 
