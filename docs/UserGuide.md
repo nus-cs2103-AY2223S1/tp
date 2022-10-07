@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-TutHub is a **desktop app for tech-savvy tuition agents who want to keep track of hundreds of tutors’ profiles in a more organised and systematic way compared to excel sheets, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
+TutHub is a **desktop app for NUS School of Computing professors who have to keep track of hundreds of teaching assistant/tutor profiles and monitor their performance and track records but have little time to spare for tedious administrative work. It is optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 * Table of Contents
 {:toc}
@@ -24,15 +24,15 @@ TutHub is a **desktop app for tech-savvy tuition agents who want to keep track o
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`list`** : Lists all tutors.
 
-   * **`add`**`n/John Doe p/98765432 g/M e/johnd@example.com s/40` : Adds a contact named `John Doe` to Tuthub.
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com y/3 m/CS2103T` : Adds a tutor named `John Doe` to Tuthub.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`delete`**`3` : Deletes the 3rd tutor shown in the current list.
    
    * **`save`** : Saves the data to your local device. 
 
-   * **`clear`** : Deletes all contacts.
+   * **`clear`** : Deletes all tutors.
 
    * **`exit`** : Exits the TutHub app.
 
@@ -50,10 +50,10 @@ TutHub is a **desktop app for tech-savvy tuition agents who want to keep track o
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/s2math` or as `n/John Doe`.
+  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/s2math`, `t/s2math t/s2chem` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/senior`, `t/senior t/great` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -71,15 +71,15 @@ TutHub is a **desktop app for tech-savvy tuition agents who want to keep track o
 
 Adds a tutor to the Tuthub.
 
-Format: `add n/NAME p/PHONE_NUMBER g/GENDER e/EMAIL s/SALARY [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR m/MODULE [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 g/M e/johnd@example.com s/40`
-* `add n/Betsy Crowe t/s2chem g/F e/betsycrowe@example.com s/30 p/1234567 t/s2math`
+* `add n/John Doe p/98765432 e/johnd@example.com y/3 m/CS2100`
+* `add n/Betsy Crowe t/senior ta e/betsycrowe@example.com y/3 m/CS1101S p/1234567`
 
 ### Listing all tutors : `list`
 
@@ -97,7 +97,7 @@ Format: `list`
 
 ### Deleting a tutor : `delete`
 
-Deletes the specified tutor from Tuthub.
+Deletes the specified tutors from Tuthub.
 
 Format: `delete INDEX`
 
@@ -142,10 +142,10 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/Betsy Crowe t/s2chem g/F e/betsycrowe@example.com s/30 p/1234567 t/s2math`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**List** | `list`
-**Save** | `save`
-**Exit** | `exit`
+| Action     | Format, Examples                                                                                                                                            |
+|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR m/MODULE [t/TAG]…​` <br> e.g., `add n/Betsy Crowe t/  e/betsycrowe@example.com  p/1234567 y/3 m/CS1101S t/senior` |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                         |
+| **List**   | `list`                                                                                                                                                      |
+| **Save**   | `save`                                                                                                                                                      |
+| **Exit**   | `exit`                                                                                                                                                      |
