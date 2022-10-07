@@ -18,7 +18,7 @@ public class CreateTagTypeCommand extends Command {
             + "Grage grdt";
 
     public static final String MESSAGE_SUCCESS = "New tag type created: %1$s";
-    public static final String MESSAGE_DUPLICATE_TAG_TYPE  = "This tag type already exists";
+    public static final String MESSAGE_DUPLICATE_TAG_TYPE = "This tag type already exists";
 
     private final TagType toAdd;
 
