@@ -93,6 +93,16 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Removes {@code keys} from this {@code AddressBook}.
+     * {@code keys} must exist in the address book.
+     */
+    public void removePersons(List<Person> keys) {
+        for (Person key : keys) {
+            persons.remove(key);
+        }
+    }
+
     //// util methods
 
     @Override
