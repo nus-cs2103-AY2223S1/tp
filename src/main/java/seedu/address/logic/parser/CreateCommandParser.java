@@ -2,23 +2,22 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.logic.commands.CreateCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.poc.PersonName;
-import seedu.address.model.poc.Poc;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.poc.Email;
-import seedu.address.model.poc.Phone;
-
-import java.sql.SQLOutput;
 import java.util.Set;
 import java.util.stream.Stream;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.CreateCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.poc.Email;
+import seedu.address.model.poc.PersonName;
+import seedu.address.model.poc.Phone;
+import seedu.address.model.poc.Poc;
+import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new {@code RemarkCommand} object
@@ -34,25 +33,29 @@ public class CreateCommandParser implements Parser<CreateCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG);
 
         Index index;
+
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (IllegalValueException ive) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PREFIX_NAME), ive);
+        } catch (ParseException ive) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CreateCommand.MESSAGE_USAGE), ive);
         }
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL)
-                || argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CreateCommand.MESSAGE_USAGE));
-        }
+//        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL)
+//                || argMultimap.getPreamble().isEmpty()) {
+//            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CreateCommand.MESSAGE_USAGE));
+//        }
 
         PersonName name = ParserUtil.parsePersonName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Poc POC = new Poc(name, phone, email, tagList);
+//        AddPocCompanyDescriptor addPocCompanyDescriptor = new AddPocCompanyDescriptor();
+//        addPocCompanyDescriptor.getPocs().get().add();
 
-        return new CreateCommand(index, POC);
+        Poc poc = new Poc(name, phone, email, tagList);
+
+        return new CreateCommand(index, poc);
     }
 
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
