@@ -17,7 +17,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-public class PersonCommandParser implements Parser<ClientCommand> {
+public class ClientCommandParser implements Parser<ClientCommand> {
     public static final String ADD_COMMAND_FLAG = "-a";
     public static final String EDIT_COMMAND_FLAG = "-e";
     public static final String DELETE_COMMAND_FLAG = "-d";
