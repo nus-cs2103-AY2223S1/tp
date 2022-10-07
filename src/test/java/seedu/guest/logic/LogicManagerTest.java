@@ -45,7 +45,7 @@ public class LogicManagerTest {
     @BeforeEach
     public void setUp() {
         JsonGuestBookStorage addressBookStorage =
-                new JsonGuestBookStorage(temporaryFolder.resolve("addressBook.json"));
+                new JsonGuestBookStorage(temporaryFolder.resolve("guestBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
@@ -54,7 +54,6 @@ public class LogicManagerTest {
     @Test
     public void execute_invalidCommandFormat_throwsParseException() {
         String invalidCommand = "uicfhmowqewca";
-        assertParseException(invalidCommand, MESSAGE_UNKNOWN_COMMAND);
         assertParseException(invalidCommand, MESSAGE_UNKNOWN_COMMAND);
     }
 

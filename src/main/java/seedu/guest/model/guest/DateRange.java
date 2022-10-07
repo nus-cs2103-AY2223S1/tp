@@ -21,7 +21,7 @@ public class DateRange {
     public final String value;
 
     /**
-     * Constructs a {@code CheckInDate}.
+     * Constructs a {@code DateRange}.
      *
      * @param dateRange A valid date range.
      */
@@ -36,11 +36,14 @@ public class DateRange {
      */
     public static boolean isValidDateRange(String test) {
         try {
-            String[] dates = test.split(" - ", 2);
+            String[] dates = test.split(" - ");
+            if (dates.length != 2) {
+                return false;
+            }
             LocalDate checkInDate = LocalDate.parse(dates[0], DATE_TIME_FORMATTER);
             LocalDate checkOutDate = LocalDate.parse(dates[1], DATE_TIME_FORMATTER);
             return checkOutDate.isAfter(checkInDate);
-        } catch (DateTimeParseException | ArrayIndexOutOfBoundsException e) {
+        } catch (DateTimeParseException e) {
             return false;
         }
     }

@@ -28,9 +28,11 @@ public class DateRangeTest {
         assertFalse(DateRange.isValidDateRange("")); // empty string
         assertFalse(DateRange.isValidDateRange("13/09/22")); // 1 date only
         assertFalse(DateRange.isValidDateRange("13/09/22 15/09/22")); // wrong separator
-        assertFalse(DateRange.isValidDateRange("13/09/2022 - 15/09/2022")); // wrong date format
-        assertFalse(DateRange.isValidDateRange("13/9/22 - 15/9/22")); // wrong date format
-        assertFalse(DateRange.isValidDateRange("13/09/22 - 31/09/22")); // invalid date
+        assertFalse(DateRange.isValidDateRange("13/09/2022 - 15/09/2022")); // wrong year format
+        assertFalse(DateRange.isValidDateRange("13/9/22 - 15/9/22")); // wrong month format
+        assertFalse(DateRange.isValidDateRange("1/09/22 - 3/09/22")); // wrong month format
+        assertFalse(DateRange.isValidDateRange("13/09/22 - 31/09/22")); // invalid day
+        assertFalse(DateRange.isValidDateRange("13/09/22 - 15/13/22")); // invalid month
         assertFalse(DateRange.isValidDateRange("13/09/22 - 13/09/22")); // end date same as start date
         assertFalse(DateRange.isValidDateRange("13/09/22 - 12/09/22")); // end date earlier than start date
         assertFalse(DateRange.isValidDateRange("13/09/22 - 15/09/22 - 17/09/22")); // more than 2 dates

@@ -29,7 +29,7 @@ public class Guest {
      * Every field must be present and not null.
      */
     public Guest(Name name, Phone phone, Email email, DateRange dateRange, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+        requireAllNonNull(name, phone, email, dateRange, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
