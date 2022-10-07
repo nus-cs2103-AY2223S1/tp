@@ -1,6 +1,7 @@
 package seedu.address.model.task;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Represents a list that stores {@code Task}s.
@@ -14,6 +15,10 @@ public class TaskList {
      */
     public TaskList() {
         taskList = new ArrayList<>();
+    }
+
+    public List<Task> getTaskList() {
+        return taskList;
     }
 
     /**
@@ -32,6 +37,16 @@ public class TaskList {
      */
     public void delete(Task task) {
         this.taskList.remove(task);
+    }
+
+    /**
+     * Adds a all tasks of a list into this {@code TaskList}.
+     *
+     * @param tasks The {@code Tasks} object cotaining the task
+     *             to be transferred into this {@code TaskList}.
+     */
+    public void addAll(List<Task> tasks) {
+        this.taskList.addAll(tasks);
     }
 
     /**
