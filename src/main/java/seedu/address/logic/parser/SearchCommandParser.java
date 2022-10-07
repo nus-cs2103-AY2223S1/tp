@@ -54,7 +54,8 @@ public class SearchCommandParser implements Parser<SearchCommand> {
         }
     }
 
-    private SearchCommand parseSearchWithCondition(ArgumentMultimap argMultimap, Boolean isJointCondition) throws ParseException {
+    private SearchCommand parseSearchWithCondition(ArgumentMultimap argMultimap, Boolean isJointCondition)
+            throws ParseException {
         Pair<List<String>, List<List<String>>> keywordsAndPrefixes = extractPrefixesAndKeywords(argMultimap);
         List<String> prefixes = keywordsAndPrefixes.getKey();
         List<List<String>> keywords = keywordsAndPrefixes.getValue();
