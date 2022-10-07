@@ -8,6 +8,7 @@ import seedu.address.model.internship.Email;
 import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.Name;
 import seedu.address.model.internship.Phone;
+import seedu.address.model.internship.Position;
 import seedu.address.model.internship.Status;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -18,12 +19,14 @@ import seedu.address.model.util.SampleDataUtil;
 public class InternshipBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
+    public static final String DEFAULT_POSITION = "Software Engineer";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_STATUS = "Offered";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
+    private Position position;
     private Phone phone;
     private Email email;
     private Status status;
@@ -35,6 +38,7 @@ public class InternshipBuilder {
      */
     public InternshipBuilder() {
         name = new Name(DEFAULT_NAME);
+        position = new Position(DEFAULT_POSITION);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         status = new Status(DEFAULT_STATUS);
@@ -47,6 +51,7 @@ public class InternshipBuilder {
      */
     public InternshipBuilder(Internship internshipToCopy) {
         name = internshipToCopy.getName();
+        position = internshipToCopy.getPosition();
         phone = internshipToCopy.getPhone();
         email = internshipToCopy.getEmail();
         status = internshipToCopy.getStatus();
@@ -87,6 +92,14 @@ public class InternshipBuilder {
     }
 
     /**
+     * Sets the {@code Position} of the {@code Internship} that we are building.
+     */
+    public InternshipBuilder withPosition(String position) {
+        this.position = new Position(position);
+        return this;
+    }
+
+    /**
      * Sets the {@code Email} of the {@code Internship} that we are building.
      */
     public InternshipBuilder withEmail(String email) {
@@ -103,7 +116,7 @@ public class InternshipBuilder {
     }
 
     public Internship build() {
-        return new Internship(name, phone, email, status, address, tags);
+        return new Internship(name, position, phone, email, status, address, tags);
     }
 
 }

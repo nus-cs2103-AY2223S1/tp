@@ -1,4 +1,4 @@
-package seedu.address.model.internship.exceptions;
+package seedu.address.model.tag.exceptions;
 
 /**
  * Signals that the operation will result in duplicate Internships (Internships are considered duplicates if they have

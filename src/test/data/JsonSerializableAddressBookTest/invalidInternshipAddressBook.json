@@ -1,6 +1,7 @@
 {
   "internships": [ {
     "name": "Hans Muster",
+    "position": "Software Engineer",
     "phone": "9482424",
     "email": "invalid@email!3e",
     "status" : "Oof",

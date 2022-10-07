@@ -17,6 +17,7 @@ public class Internship {
 
     // Identity fields
     private final Name name;
+    private final Position position;
     private final Phone phone;
     private final Email email;
     private final Status status;
@@ -28,9 +29,12 @@ public class Internship {
     /**
      * Every field must be present and not null.
      */
-    public Internship(Name name, Phone phone, Email email, Status status, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+
+    public Internship(Name name, Position position, Phone phone, Email email, Status status, Address address,
+            Set<Tag> tags) {
+        requireAllNonNull(name, position, phone, email, status, address, tags);
         this.name = name;
+        this.position = position;
         this.phone = phone;
         this.email = email;
         this.status = status;
@@ -40,6 +44,10 @@ public class Internship {
 
     public Name getName() {
         return name;
+    }
+
+    public Position getPosition() {
+        return position;
     }
 
     public Phone getPhone() {
@@ -95,6 +103,7 @@ public class Internship {
 
         Internship otherInternship = (Internship) other;
         return otherInternship.getName().equals(getName())
+                && otherInternship.getPosition().equals(getPosition())
                 && otherInternship.getPhone().equals(getPhone())
                 && otherInternship.getEmail().equals(getEmail())
                 && otherInternship.getStatus().equals(getStatus())
@@ -105,13 +114,15 @@ public class Internship {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, position, phone, email, address, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
+                .append("; Position: ")
+                .append(getPosition())
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Email: ")

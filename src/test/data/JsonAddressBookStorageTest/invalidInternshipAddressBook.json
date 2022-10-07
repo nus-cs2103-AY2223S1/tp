@@ -1,6 +1,7 @@
 {
   "internships": [ {
     "name": "Internship with invalid name field: Ha!ns Mu@ster",
+    "position": "Valid Position",
     "phone": "9482424",
     "email": "hans@example.com",
     "status": "Offered",

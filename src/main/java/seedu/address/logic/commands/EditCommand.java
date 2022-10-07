@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_POSITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
@@ -25,6 +26,7 @@ import seedu.address.model.internship.Email;
 import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.Name;
 import seedu.address.model.internship.Phone;
+import seedu.address.model.internship.Position;
 import seedu.address.model.internship.Status;
 import seedu.address.model.tag.Tag;
 
@@ -40,6 +42,7 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_POSITION + "POSITION] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_STATUS + "STATUS] "
@@ -98,13 +101,15 @@ public class EditCommand extends Command {
         assert internshipToEdit != null;
 
         Name updatedName = editInternshipDescriptor.getName().orElse(internshipToEdit.getName());
+        Position updatedPosition = editInternshipDescriptor.getPosition().orElse(internshipToEdit.getPosition());
         Phone updatedPhone = editInternshipDescriptor.getPhone().orElse(internshipToEdit.getPhone());
         Email updatedEmail = editInternshipDescriptor.getEmail().orElse(internshipToEdit.getEmail());
         Status updatedStatus = editInternshipDescriptor.getStatus().orElse(internshipToEdit.getStatus());
         Address updatedAddress = editInternshipDescriptor.getAddress().orElse(internshipToEdit.getAddress());
         Set<Tag> updatedTags = editInternshipDescriptor.getTags().orElse(internshipToEdit.getTags());
 
-        return new Internship(updatedName, updatedPhone, updatedEmail, updatedStatus, updatedAddress, updatedTags);
+        return new Internship(updatedName, updatedPosition, updatedPhone, updatedEmail, updatedStatus,
+                updatedAddress, updatedTags);
     }
 
     @Override
@@ -131,6 +136,7 @@ public class EditCommand extends Command {
      */
     public static class EditInternshipDescriptor {
         private Name name;
+        private Position position;
         private Phone phone;
         private Email email;
         private Status status;
@@ -145,6 +151,7 @@ public class EditCommand extends Command {
          */
         public EditInternshipDescriptor(EditInternshipDescriptor toCopy) {
             setName(toCopy.name);
+            setPosition(toCopy.position);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setStatus(toCopy.status);
@@ -156,7 +163,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, status, address, tags);
+            return CollectionUtil.isAnyNonNull(name, position, phone, email, status, address, tags);
         }
 
         public void setName(Name name) {
@@ -165,6 +172,14 @@ public class EditCommand extends Command {
 
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
+        }
+
+        public void setPosition(Position position) {
+            this.position = position;
+        }
+
+        public Optional<Position> getPosition() {
+            return Optional.ofNullable(position);
         }
 
         public void setPhone(Phone phone) {
@@ -232,6 +247,7 @@ public class EditCommand extends Command {
             EditInternshipDescriptor e = (EditInternshipDescriptor) other;
 
             return getName().equals(e.getName())
+                    && getPosition().equals(e.getPosition())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getStatus().equals(e.getStatus())

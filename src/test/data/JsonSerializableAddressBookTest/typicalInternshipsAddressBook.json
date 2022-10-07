@@ -2,6 +2,7 @@
   "_comment": "AddressBook save file which contains the same Internship values as in TypicalInternships#getTypicalAddressBook()",
   "internships" : [ {
     "name" : "Alice Pauline",
+    "position": "Software Engineer",
     "phone" : "94351253",
     "email" : "alice@example.com",
     "status" : "Offered",
@@ -9,6 +10,7 @@
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
+    "position": "Data Analyst",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "status" : "Offered",
@@ -16,6 +18,7 @@
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
+    "position": "Frontend Engineer",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "status" : "Offered",
@@ -23,6 +26,7 @@
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
+    "position": "Backend Engineer",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "status" : "Offered",
@@ -30,6 +34,7 @@
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
+    "position": "Full Stack Engineer",
     "phone" : "9482224",
     "email" : "werner@example.com",
     "status" : "Offered",
@@ -37,6 +42,7 @@
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
+    "position": "Cyber Security Analyst",
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "status" : "Offered",
@@ -44,6 +50,7 @@
     "tagged" : [ ]
   }, {
     "name" : "George Best",
+    "position": "Algorithm Engineer",
     "phone" : "9482442",
     "email" : "anna@example.com",
     "status" : "Offered",

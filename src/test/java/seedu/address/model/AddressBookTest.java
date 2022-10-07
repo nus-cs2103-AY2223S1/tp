@@ -19,7 +19,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.internship.Internship;
-import seedu.address.model.internship.exceptions.DuplicateInternshipException;
+import seedu.address.model.tag.exceptions.DuplicateInternshipException;
 import seedu.address.testutil.InternshipBuilder;
 
 public class AddressBookTest {

@@ -1,6 +1,7 @@
 {
   "internships": [ {
     "name": "Alice Pauline",
+    "position": "Software Engineer",
     "phone": "94351253",
     "email": "alice@example.com",
     "status" : "Offered",
@@ -8,6 +9,7 @@
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
+    "position": "Software Engineer",
     "phone": "94351253",
     "email": "pauline@example.com",
     "status" : "Offered",
