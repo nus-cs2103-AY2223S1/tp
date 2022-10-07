@@ -46,7 +46,7 @@ public class Job {
     }
 
     /**
-     * Returns true if both jobs have the same id.
+     * Returns true if both jobs have the same id and title.
      * This defines a stronger notion of equality between two jobs.
      */
     @Override
@@ -60,7 +60,8 @@ public class Job {
         }
 
         seedu.address.model.job.Job otherJob = (seedu.address.model.job.Job) other;
-        return otherJob.getId().equals(getId());
+        return otherJob.getId().equals(getId())
+                && otherJob.getTitle().equals(getTitle());
     }
 
     @Override
