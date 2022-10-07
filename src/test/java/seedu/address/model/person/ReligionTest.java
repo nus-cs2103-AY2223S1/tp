@@ -16,11 +16,12 @@ public class ReligionTest {
         assertFalse(Religion.isValidReligion(""));
         assertFalse(Religion.isValidReligion(" "));
         assertFalse(Religion.isValidReligion("^"));
+        assertFalse(Religion.isValidReligion("123"));
+        assertFalse(Religion.isValidReligion("Buddhist123"));
         assertFalse(Religion.isValidReligion("Buddhist^"));
 
         // valid name
         assertTrue(Religion.isValidReligion("Buddhist")); // alphabets only
-        assertTrue(Religion.isValidReligion("12345")); // numbers only
-        assertTrue(Religion.isValidReligion("1st Order Christians")); // alphanumeric characters
+        assertTrue(Religion.isValidReligion("Budd hist")); // alphabets only
     }
 }
