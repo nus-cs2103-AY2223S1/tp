@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_TITLE;
 
 import java.util.stream.Stream;
 
@@ -10,6 +11,7 @@ import seedu.address.logic.commands.AddModuleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.ModuleTitle;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -32,6 +34,8 @@ public class AddModuleCommandParser implements Parser<AddModuleCommand> {
 
         ModuleCode moduleCode =
                 ParserUtil.parseModuleCode(argMultimap.getValue(PREFIX_MODULE_CODE).get());
+        ModuleTitle moduleTitle =
+                ParserUtil.parseModuleTitle(argMultimap.getValue(PREFIX_MODULE_TITLE).get());
 
         Module module = new Module(moduleCode);
 

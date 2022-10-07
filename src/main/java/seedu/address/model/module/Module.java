@@ -20,25 +20,36 @@ public class Module {
     private final ModuleCode moduleCode;
 
     // Data fields
+    private final ModuleTitle moduleTitle;
     private final Set<Task> tasks = new HashSet<>();
     private final Set<Link> links = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Module(ModuleCode moduleCode, Set<Task> tasks, Set<Link> links) {
-        requireAllNonNull(moduleCode, tasks, links);
+    public Module(ModuleCode moduleCode, ModuleTitle moduleTitle, Set<Task> tasks,
+                  Set<Link> links) {
+        requireAllNonNull(moduleCode, moduleTitle, tasks, links);
         this.moduleCode = moduleCode;
+        this.moduleTitle = moduleTitle;
         this.tasks.addAll(tasks);
         this.links.addAll(links);
     }
 
     /**
-     * Adds a {@code Module} with module code, without module description and without any
+     * Adds a {@code Module} with module code, without module title and without any
      * associated tasks and links.
      */
     public Module(ModuleCode moduleCode) {
-        this(moduleCode, new HashSet<>(), new HashSet<>());
+        this(moduleCode, new ModuleTitle(""), new HashSet<>(), new HashSet<>());
+    }
+
+    /**
+     * Adds a {@code Module} with module code and module title but without any
+     * associated tasks and links.
+     */
+    public Module(ModuleCode moduleCode, ModuleTitle moduleTitle) {
+        this(moduleCode, moduleTitle, new HashSet<>(), new HashSet<>());
     }
 
     public ModuleCode getModuleCode() {
@@ -105,6 +116,11 @@ public class Module {
         final StringBuilder builder = new StringBuilder();
         builder.append(getModuleCode());
 
+        if (!moduleTitle.toString().isBlank()) {
+            builder.append("; Title: ");
+            builder.append(moduleTitle);
+        }
+
         Set<Link> links = getLinks();
         if (!links.isEmpty()) {
             builder.append("; Links: ");
@@ -121,4 +137,3 @@ public class Module {
     }
 
 }
-
