@@ -104,6 +104,8 @@ public interface Model {
 
     void markTask(Index index, Task task);
 
+    void unmarkTask(Index index, Task task);
+
     void deleteTask(Index index, Task task);
 
 }

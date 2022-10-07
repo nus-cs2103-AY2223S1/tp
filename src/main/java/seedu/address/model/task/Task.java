@@ -50,6 +50,13 @@ public class Task {
     }
 
     /**
+     * Marks the task as not done.
+     */
+    public void markAsNotDone() {
+        isDone = false;
+    }
+
+    /**
      * Returns 'X' if done or " " otherwise.
      * @return String "X" if the task is done.
      */

@@ -40,6 +40,15 @@ public class TaskList {
     }
 
     /**
+     * Mark a task from this {@code TaskList} as not done.
+     *
+     * @param task The {@code Task} object to be unmarked from this {@code TaskList}.
+     */
+    public void unmark(Task task) {
+        task.markAsNotDone();
+    }
+
+    /**
      * Deletes a task from this {@code TaskList}.
      *
      * @param task The {@code Task} object to be deleted from this {@code TaskList}.
