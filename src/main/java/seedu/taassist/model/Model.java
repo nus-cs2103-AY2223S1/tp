@@ -88,6 +88,26 @@ public interface Model {
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
 
+    /**
+     * Returns true if a class with the same identity as {@code moduleClass} exists in TA-Assist.
+     */
+    boolean hasModuleClass(ModuleClass moduleClass);
+
+    /**
+     * Deletes the given class.
+     * The class must exist in TA-Assist.
+     */
+    void deleteModuleClass(ModuleClass moduleClass);
+
+    /**
+     * Adds the given class.
+     * {@code moduleClass} must not already exist in TA-Assist.
+     */
+    void addModuleClass(ModuleClass moduleClass);
+
+    /** Returns an unmodifiable view of the module class list */
+    ObservableList<ModuleClass> getModuleClassList();
+
     /** Enters focus mode. */
     void enterFocusMode(ModuleClass classToFocus);
 

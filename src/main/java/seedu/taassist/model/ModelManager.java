@@ -21,7 +21,7 @@ import seedu.taassist.model.student.Student;
  */
 public class ModelManager implements Model {
     private static final String DEFAULT_FOCUS_LABEL = "";
-    private static final String FOCUS_LABEL_FORMAT = "Focus: [%s]";
+    private static final String FOCUS_LABEL_FORMAT = "Focus: %s";
 
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
@@ -104,11 +104,13 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteStudent(Student target) {
+        requireNonNull(target);
         taAssist.removeStudent(target);
     }
 
     @Override
     public void addStudent(Student student) {
+        requireNonNull(student);
         taAssist.addStudent(student);
         updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
     }
@@ -116,8 +118,30 @@ public class ModelManager implements Model {
     @Override
     public void setStudent(Student target, Student editedStudent) {
         requireAllNonNull(target, editedStudent);
-
         taAssist.setStudent(target, editedStudent);
+    }
+
+    @Override
+    public boolean hasModuleClass(ModuleClass moduleClass) {
+        requireAllNonNull(moduleClass);
+        return taAssist.hasModuleClass(moduleClass);
+    }
+
+    @Override
+    public void deleteModuleClass(ModuleClass target) {
+        requireNonNull(target);
+        taAssist.removeModuleClass(target);
+    }
+
+    @Override
+    public void addModuleClass(ModuleClass moduleClass) {
+        requireNonNull(moduleClass);
+        taAssist.addModuleClass(moduleClass);
+    }
+
+    @Override
+    public ObservableList<ModuleClass> getModuleClassList() {
+        return taAssist.getModuleClassList();
     }
 
     //=========== Filtered Student List Accessors =============================================================

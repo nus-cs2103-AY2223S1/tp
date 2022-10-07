@@ -58,10 +58,10 @@ public class StudentBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Student} that we are building.
+     * Parses the {@code moduleClasses} into a {@code Set<Tag>} and set it to the {@code Student} that we are building.
      */
-    public StudentBuilder withTags(String ... tags) {
-        this.moduleClasses = SampleDataUtil.getTagSet(tags);
+    public StudentBuilder withModuleClasses(String ... moduleClasses) {
+        this.moduleClasses = SampleDataUtil.getModuleClassSet(moduleClasses);
         return this;
     }
 
