@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import paymelah.model.AddressBook;
 import paymelah.model.ReadOnlyAddressBook;
+import paymelah.model.debt.Debt;
 import paymelah.model.debt.DebtList;
 import paymelah.model.person.Address;
 import paymelah.model.person.Email;
@@ -57,6 +58,13 @@ public class SampleDataUtil {
         return Arrays.stream(strings)
                 .map(Tag::new)
                 .collect(Collectors.toSet());
+    }
+
+    /**
+     * Returns a debt list containing the list of debts given.
+     */
+    public static DebtList getDebtList(Debt... debts) {
+        return DebtList.fromList(Arrays.stream(debts).collect(Collectors.toList()));
     }
 
 }
