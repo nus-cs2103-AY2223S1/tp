@@ -59,6 +59,14 @@ public class Team {
     }
 
     /**
+     * Marks a task of the team as done.
+     * @param t
+     */
+    public void markTask(Task t) {
+        tasks.mark(t);
+    }
+
+    /**
      * Returns true if both team have the same name.
      * This defines a weaker notion of equality between two team.
      */

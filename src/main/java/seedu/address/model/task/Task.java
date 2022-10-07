@@ -30,6 +30,21 @@ public class Task {
     }
 
     /**
+     * Marks the task as done.
+     */
+    public void markAsDone() {
+        isDone = true;
+    }
+
+    /**
+     * Returns 'X' if done or " " otherwise.
+     * @return String "X" if the task is done.
+     */
+    public String getStatusIcon() {
+        return (isDone ? "X" : " ");
+    }
+
+    /**
      * Returns true if both task have the same description and both are done or both are not done.
      */
     @Override
@@ -41,6 +56,6 @@ public class Task {
 
     @Override
     public String toString() {
-        return this.name.toString();
+        return "[" + this.getStatusIcon() + "] " + this.name.toString();
     }
 }

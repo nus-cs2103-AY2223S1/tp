@@ -95,6 +95,14 @@ public class UniqueTeamList implements Iterable<Team> {
         internalList.get(index).addTask(task);
     }
 
+    /**
+     * Marks the {@code Task} from the {@code Team} at the specified index as done.
+     *
+     */
+    public void markTask(int index, Task task) {
+        internalList.get(index).markTask(task);
+    }
+
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.

@@ -18,6 +18,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.TaskAddCommand;
+import seedu.address.logic.commands.TaskMarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -73,6 +74,9 @@ public class AddressBookParser {
 
         case TaskAddCommand.COMMAND_WORD:
             return new TaskAddCommandParser().parse(arguments);
+
+        case TaskMarkCommand.COMMAND_WORD:
+            return new TaskMarkCommandParser().parse(arguments);
 
         case CreateTeamCommand.COMMAND_WORD:
             return new CreateTeamParser().parse(arguments);
