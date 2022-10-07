@@ -7,7 +7,7 @@ import seedu.address.model.tag.TagType;
 /**
  * Deletes a specified tag type.
  */
-public class DeleteTagTypeCommand extends Command{
+public class DeleteTagTypeCommand extends Command {
     public static final String COMMAND_WORD = "deleteTagType";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD

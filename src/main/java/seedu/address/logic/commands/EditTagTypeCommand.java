@@ -7,7 +7,7 @@ import seedu.address.model.tag.TagType;
 /**
  * Edits a tag type.
  */
-public class EditTagTypeCommand extends Command{
+public class EditTagTypeCommand extends Command {
 
     public static final String COMMAND_WORD = "editTagType";
 

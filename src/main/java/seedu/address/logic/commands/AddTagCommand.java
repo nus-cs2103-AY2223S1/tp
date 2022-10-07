@@ -1,15 +1,17 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEGREETAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBTYPETAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILLTAG;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
 
-import static seedu.address.logic.parser.CliSyntax.*;
-
 /**
  * Adds a tag of a specific tag type to a person.
  */
-public class AddTagCommand extends Command{
+public class AddTagCommand extends Command {
     public static final String COMMAND_WORD = "addTag";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tag of a specific tag type to a person.\n"

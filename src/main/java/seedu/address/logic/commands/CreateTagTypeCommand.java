@@ -7,7 +7,7 @@ import seedu.address.model.tag.TagType;
 /**
  * Creates a new tag type.
  */
-public class CreateTagTypeCommand extends Command{
+public class CreateTagTypeCommand extends Command {
     public static final String COMMAND_WORD = "create";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a new tag type so that you can add a tag "
