@@ -20,9 +20,10 @@ public class DeletecCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the class identified by the class name.\n"
             + "Parameters: "
-            + PREFIX_MODULE_CLASS + "CLASS_NAME (case sensitive)\n"
+            + PREFIX_MODULE_CLASS + "CLASS_NAME... (case sensitive)\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_MODULE_CLASS + "CS1101S";
+            + PREFIX_MODULE_CLASS + "CS1101S" + " "
+            + PREFIX_MODULE_CLASS + "CS1231S";
 
     public static final String MESSAGE_DELETE_MODULE_CLASS_SUCCESS = "Deleted class(es): %1$s";
 
