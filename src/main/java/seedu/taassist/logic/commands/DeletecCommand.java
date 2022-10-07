@@ -34,7 +34,7 @@ public class DeletecCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         if (!model.hasModuleClass(moduleClass)) {
-            throw new CommandException(Messages.MESSAGE_MODULE_CLASS_DOES_NOT_EXIST);
+            throw new CommandException(String.format(Messages.MESSAGE_CLASS_DOES_NOT_EXIST, moduleClass));
         }
         model.deleteModuleClass(moduleClass);
         return new CommandResult(String.format(MESSAGE_DELETE_MODULE_CLASS_SUCCESS, moduleClass));
