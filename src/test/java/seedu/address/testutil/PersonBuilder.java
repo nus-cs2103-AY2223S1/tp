@@ -11,6 +11,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
+// need to edit based on new person model
 /**
  * A utility class to help with building Person objects.
  */
