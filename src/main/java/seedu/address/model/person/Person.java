@@ -8,6 +8,8 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.TaskList;
+
 
 /**
  * Represents a Person in the address book.
@@ -22,17 +24,19 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final TaskList tasks;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, TaskList tasks, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, tasks, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.tasks = tasks;
         this.tags.addAll(tags);
     }
 
@@ -50,6 +54,12 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public TaskList getTasks() {
+        // find some other place to make tasklist immutable with Collections.unmodifiableList
+        // since can't use if encapsualted in a TaskList class
+        return tasks;
     }
 
     /**
@@ -92,13 +102,14 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getTasks().equals(getTasks())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tasks, tags);
     }
 
     @Override
@@ -111,6 +122,12 @@ public class Person {
                 .append(getEmail())
                 .append("; Address: ")
                 .append(getAddress());
+
+        TaskList tasks = getTasks();
+        if (!tasks.isEmpty()) {
+            builder.append("; Tasks: ")
+                    .append(tasks.toString());
+        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
