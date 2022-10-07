@@ -48,11 +48,10 @@ public class SearchCommandParser implements Parser<SearchCommand> {
 
         switch (condition) {
         case SearchCommand.AND_CONDITION:
+        case SearchCommand.EMPTY_CONDITION:
             return parseSearchWithAndCondition(argMultimap);
         case SearchCommand.OR_CONDITION:
             return parseSearchWithOrCondition(argMultimap);
-        case SearchCommand.EMPTY_CONDITION:
-            return parseSearchWithEmptyCondition(argMultimap);
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
         }
@@ -70,25 +69,6 @@ public class SearchCommandParser implements Parser<SearchCommand> {
         List<String> prefixes = keywordsAndPrefixes.getKey();
         List<List<String>> keywords = keywordsAndPrefixes.getValue();
         return new SearchCommand(new ContactContainsAnyKeywordsPredicate(prefixes, keywords));
-    }
-
-    private SearchCommand parseSearchWithEmptyCondition(ArgumentMultimap argMultimap) {
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            return new SearchCommand(new ContactContainsKeywordsPredicate(PREFIX_NAME.getPrefix(),
-                    argMultimap.getAllValues(PREFIX_NAME)));
-        } else if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            return new SearchCommand(new ContactContainsKeywordsPredicate(PREFIX_PHONE.getPrefix(),
-                    argMultimap.getAllValues(PREFIX_PHONE)));
-        } else if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            return new SearchCommand(new ContactContainsKeywordsPredicate(PREFIX_EMAIL.getPrefix(),
-                    argMultimap.getAllValues(PREFIX_EMAIL)));
-        } else if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            return new SearchCommand(new ContactContainsKeywordsPredicate(PREFIX_ADDRESS.getPrefix(),
-                    argMultimap.getAllValues(PREFIX_ADDRESS)));
-        } else {
-            return new SearchCommand(new ContactContainsKeywordsPredicate(PREFIX_TAG.getPrefix(),
-                    argMultimap.getAllValues(PREFIX_TAG)));
-        }
     }
 
     private Pair<List<String>, List<List<String>>> extractPrefixesAndKeywords(ArgumentMultimap argMultimap)
