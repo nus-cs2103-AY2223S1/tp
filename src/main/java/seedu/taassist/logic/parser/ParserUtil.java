@@ -10,7 +10,6 @@ import java.util.Set;
 
 import seedu.taassist.commons.core.index.Index;
 import seedu.taassist.commons.util.StringUtil;
-import static seedu.taassist.logic.parser.CliSyntax.PREFIX_MODULE_CLASS;
 import seedu.taassist.logic.parser.exceptions.ParseException;
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.student.Address;
