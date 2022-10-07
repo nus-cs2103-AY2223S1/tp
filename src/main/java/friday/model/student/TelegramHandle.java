@@ -11,8 +11,9 @@ public class TelegramHandle {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "TelegramHandle should only contain letters and numbers, and it should be at least 1 digit long";
-    public static final String VALIDATION_REGEX = "[a-zA-Z0-9_]{1,}";
+            "TelegramHandle should only contain letters a-z, numbers 0-9, and underscores, and it should be at least "
+                    + "5 characters long";
+    public static final String VALIDATION_REGEX = "[a-z0-9_]{5,}";
     public final String value;
 
     /**
@@ -30,7 +31,14 @@ public class TelegramHandle {
      * Returns true if a given string is a valid phone number.
      */
     public static boolean isValidTelegramHandle(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.equals("") || test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if the given Telegram handle is a dummy value.
+     */
+    public boolean isDummyTelegramHandle() {
+        return value.equals("");
     }
 
     @Override

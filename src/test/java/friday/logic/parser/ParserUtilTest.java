@@ -79,26 +79,21 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parsePhone_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
-    }
-
-    @Test
     public void parsePhone_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parsePhone(INVALID_TELEGRAMHANDLE));
+        assertThrows(ParseException.class, () -> ParserUtil.parseTelegramHandle(INVALID_TELEGRAMHANDLE));
     }
 
     @Test
     public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
         TelegramHandle expectedTelegramHandle = new TelegramHandle(VALID_TELEGRAMHANDLE);
-        assertEquals(expectedTelegramHandle, ParserUtil.parsePhone(VALID_TELEGRAMHANDLE));
+        assertEquals(expectedTelegramHandle, ParserUtil.parseTelegramHandle(VALID_TELEGRAMHANDLE));
     }
 
     @Test
     public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
         String phoneWithWhitespace = WHITESPACE + VALID_TELEGRAMHANDLE + WHITESPACE;
         TelegramHandle expectedTelegramHandle = new TelegramHandle(VALID_TELEGRAMHANDLE);
-        assertEquals(expectedTelegramHandle, ParserUtil.parsePhone(phoneWithWhitespace));
+        assertEquals(expectedTelegramHandle, ParserUtil.parseTelegramHandle(phoneWithWhitespace));
     }
 
     @Test

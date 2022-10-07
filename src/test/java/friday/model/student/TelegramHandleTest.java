@@ -15,20 +15,20 @@ public class TelegramHandleTest {
 
     @Test
     public void constructor_invalidPhone_throwsIllegalArgumentException() {
-        String invalidPhone = "";
+        String invalidPhone = ".";
         assertThrows(IllegalArgumentException.class, () -> new TelegramHandle(invalidPhone));
     }
 
     @Test
     public void isValidTelegramHandle() {
-        // null phone number
+        // null Telegram handle
         assertThrows(NullPointerException.class, () -> TelegramHandle.isValidTelegramHandle(null));
 
-        // invalid phone numbers
+        // invalid Telegram handles
         assertFalse(TelegramHandle.isValidTelegramHandle("john+doe")); // symbols are not allowed
+        assertFalse(TelegramHandle.isValidTelegramHandle("JohnDoe")); // capital letters are not allowed
 
-        // valid phone numbers
-        assertTrue(TelegramHandle.isValidTelegramHandle("911"));
+        // valid Telegram handles
         assertTrue(TelegramHandle.isValidTelegramHandle("john123")); // letters and numbers
         assertTrue(TelegramHandle.isValidTelegramHandle("john_doe")); // with an underscore
     }

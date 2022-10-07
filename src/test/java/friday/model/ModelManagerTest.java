@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 import friday.commons.core.GuiSettings;
 import friday.model.student.NameContainsKeywordsPredicate;
 import friday.testutil.AddressBookBuilder;
-import friday.testutil.TypicalPersons;
+import friday.testutil.TypicalStudents;
 
 public class ModelManagerTest {
 
@@ -73,29 +73,29 @@ public class ModelManagerTest {
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
+        assertThrows(NullPointerException.class, () -> modelManager.hasStudent(null));
     }
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasPerson(TypicalPersons.ALICE));
+        assertFalse(modelManager.hasStudent(TypicalStudents.ALICE));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        modelManager.addPerson(TypicalPersons.ALICE);
-        assertTrue(modelManager.hasPerson(TypicalPersons.ALICE));
+        modelManager.addStudent(TypicalStudents.ALICE);
+        assertTrue(modelManager.hasStudent(TypicalStudents.ALICE));
     }
 
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredStudentList().remove(0));
     }
 
     @Test
     public void equals() {
-        Friday addressBook = new AddressBookBuilder().withPerson(TypicalPersons.ALICE)
-                .withPerson(TypicalPersons.BENSON).build();
+        Friday addressBook = new AddressBookBuilder().withPerson(TypicalStudents.ALICE)
+                .withPerson(TypicalStudents.BENSON).build();
         Friday differentAddressBook = new Friday();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -117,12 +117,12 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = TypicalPersons.ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        String[] keywords = TypicalStudents.ALICE.getName().fullName.split("\\s+");
+        modelManager.updateFilteredStudentList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

@@ -34,6 +34,13 @@ public class MasteryCheck {
     }
 
     /**
+     * Returns true if the given Mastery Check is a dummy value.
+     */
+    public boolean isDummyMasteryCheck() {
+        return value.equals(LocalDate.of(2001, 01, 01));
+    }
+
+    /**
      * Returns the value of the given Mastery Check.
      *
      * @return value
@@ -44,7 +51,8 @@ public class MasteryCheck {
 
     @Override
     public String toString() {
-        return String.format("Mastery Check: %s", value.toString());
+        String str = isDummyMasteryCheck() ? "" : value.toString();
+        return String.format("Mastery Check: %s", str);
     }
 
     @Override

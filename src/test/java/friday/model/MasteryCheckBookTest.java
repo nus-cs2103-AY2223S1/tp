@@ -16,7 +16,7 @@ import friday.logic.commands.CommandTestUtil;
 import friday.model.student.Student;
 import friday.model.student.exceptions.DuplicatePersonException;
 import friday.testutil.PersonBuilder;
-import friday.testutil.TypicalPersons;
+import friday.testutil.TypicalStudents;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -36,7 +36,7 @@ public class MasteryCheckBookTest {
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        Friday newData = TypicalPersons.getTypicalAddressBook();
+        Friday newData = TypicalStudents.getTypicalAddressBook();
         addressBook.resetData(newData);
         assertEquals(newData, addressBook);
     }
@@ -44,11 +44,11 @@ public class MasteryCheckBookTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Student editedAlice = new PersonBuilder(TypicalPersons.ALICE)
+        Student editedAlice = new PersonBuilder(TypicalStudents.ALICE)
                 .withMasteryCheck(CommandTestUtil.VALID_MASTERYCHECK_BOB)
                 .withTags(CommandTestUtil.VALID_TAG_HUSBAND)
                 .build();
-        List<Student> newStudents = Arrays.asList(TypicalPersons.ALICE, editedAlice);
+        List<Student> newStudents = Arrays.asList(TypicalStudents.ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newStudents);
 
         assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
@@ -61,19 +61,19 @@ public class MasteryCheckBookTest {
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(TypicalPersons.ALICE));
+        assertFalse(addressBook.hasPerson(TypicalStudents.ALICE));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addPerson(TypicalPersons.ALICE);
-        assertTrue(addressBook.hasPerson(TypicalPersons.ALICE));
+        addressBook.addPerson(TypicalStudents.ALICE);
+        assertTrue(addressBook.hasPerson(TypicalStudents.ALICE));
     }
 
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(TypicalPersons.ALICE);
-        Student editedAlice = new PersonBuilder(TypicalPersons.ALICE)
+        addressBook.addPerson(TypicalStudents.ALICE);
+        Student editedAlice = new PersonBuilder(TypicalStudents.ALICE)
                 .withMasteryCheck(CommandTestUtil.VALID_MASTERYCHECK_BOB)
                 .withTags(CommandTestUtil.VALID_TAG_HUSBAND)
                 .build();
