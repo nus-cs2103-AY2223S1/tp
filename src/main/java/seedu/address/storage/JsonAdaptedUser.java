@@ -27,6 +27,7 @@ import seedu.address.model.person.user.User;
 class JsonAdaptedUser {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "User's %s field is missing!";
+    private final EmptyUser EMPTY_USER = new EmptyUser();
 
     private final String name;
     private final String phone;
@@ -64,8 +65,7 @@ class JsonAdaptedUser {
      * Converts a given {@code User} into this class for Jackson use.
      */
     public JsonAdaptedUser(User source) {
-        if (source instanceof EmptyUser) {
-            EmptyUser emptyUser = (EmptyUser) source;
+        if (source.equals(EMPTY_USER)) {
             name = "";
             phone = "empty";
             email = "";

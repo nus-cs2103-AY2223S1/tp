@@ -1,5 +1,7 @@
 package seedu.address.model.person.user;
 
+import seedu.address.model.person.Person;
+
 /**
  * Represents an Empty User field, which is present in the address book when ConnectNUS is first opened or when the
  * User has been deleted.
@@ -11,6 +13,19 @@ public class EmptyUser extends User {
      */
     public EmptyUser() {
         super();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (other instanceof EmptyUser) {
+            return true;
+        }
+
+        return false;
     }
 
     @Override
