@@ -13,260 +13,251 @@
 
 package org.openapitools.client.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.openapitools.client.model.VenueLesson;
+import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonValue;
+
+import io.swagger.annotations.ApiModelProperty;
 
 
 /**
  * VenueInformation
  */
 @JsonPropertyOrder({
-  VenueInformation.JSON_PROPERTY_DAY,
-  VenueInformation.JSON_PROPERTY_CLASSES,
-  VenueInformation.JSON_PROPERTY_AVAILABILITY
+    VenueInformation.JSON_PROPERTY_DAY,
+    VenueInformation.JSON_PROPERTY_CLASSES,
+    VenueInformation.JSON_PROPERTY_AVAILABILITY
 })
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-03T22:22:26.802458+08:00[Asia/Singapore]")
 public class VenueInformation {
-  /**
-   * Gets or Sets day
-   */
-  public enum DayEnum {
-    MONDAY("Monday"),
 
-    TUESDAY("Tuesday"),
+    public static final String JSON_PROPERTY_DAY = "day";
+    public static final String JSON_PROPERTY_CLASSES = "classes";
+    public static final String JSON_PROPERTY_AVAILABILITY = "availability";
+    private DayEnum day;
+    private List<VenueLesson> classes = null;
+    private Map<String, InnerEnum> availability = null;
 
-    WEDNESDAY("Wednesday"),
-
-    THURSDAY("Thursday"),
-
-    FRIDAY("Friday"),
-
-    SATURDAY("Saturday");
-
-    private String value;
-
-    DayEnum(String value) {
-      this.value = value;
+    public VenueInformation() {
     }
 
-    @JsonValue
-    public String getValue() {
-      return value;
+    public VenueInformation day(DayEnum day) {
+        this.day = day;
+        return this;
+    }
+
+    /**
+     * Get day
+     *
+     * @return day
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
+    @JsonProperty(JSON_PROPERTY_DAY)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+    public DayEnum getDay() {
+        return day;
+    }
+
+    @JsonProperty(JSON_PROPERTY_DAY)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public void setDay(DayEnum day) {
+        this.day = day;
+    }
+
+    public VenueInformation classes(List<VenueLesson> classes) {
+        this.classes = classes;
+        return this;
+    }
+
+    public VenueInformation addClassesItem(VenueLesson classesItem) {
+        if (this.classes == null) {
+            this.classes = new ArrayList<>();
+        }
+        this.classes.add(classesItem);
+        return this;
+    }
+
+    /**
+     * Get classes
+     *
+     * @return classes
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
+    @JsonProperty(JSON_PROPERTY_CLASSES)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+    public List<VenueLesson> getClasses() {
+        return classes;
+    }
+
+    @JsonProperty(JSON_PROPERTY_CLASSES)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public void setClasses(List<VenueLesson> classes) {
+        this.classes = classes;
+    }
+
+    public VenueInformation availability(Map<String, InnerEnum> availability) {
+        this.availability = availability;
+        return this;
+    }
+
+    public VenueInformation putAvailabilityItem(String key, InnerEnum availabilityItem) {
+        if (this.availability == null) {
+            this.availability = new HashMap<>();
+        }
+        this.availability.put(key, availabilityItem);
+        return this;
+    }
+
+    /**
+     * Get availability
+     *
+     * @return availability
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(example = "{\"0900\":\"occupied\",\"0930\":\"occupied\",\"1000\":\"occupied\"}", value = "")
+    @JsonProperty(JSON_PROPERTY_AVAILABILITY)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+    public Map<String, InnerEnum> getAvailability() {
+        return availability;
+    }
+
+    @JsonProperty(JSON_PROPERTY_AVAILABILITY)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public void setAvailability(Map<String, InnerEnum> availability) {
+        this.availability = availability;
+    }
+
+    /**
+     * Return true if this VenueInformation object is equal to o.
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        VenueInformation venueInformation = (VenueInformation) o;
+        return Objects.equals(this.day, venueInformation.day) &&
+            Objects.equals(this.classes, venueInformation.classes) &&
+            Objects.equals(this.availability, venueInformation.availability);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(day, classes, availability);
     }
 
     @Override
     public String toString() {
-      return String.valueOf(value);
+        StringBuilder sb = new StringBuilder();
+        sb.append("class VenueInformation {\n");
+        sb.append("    day: ").append(toIndentedString(day)).append("\n");
+        sb.append("    classes: ").append(toIndentedString(classes)).append("\n");
+        sb.append("    availability: ").append(toIndentedString(availability)).append("\n");
+        sb.append("}");
+        return sb.toString();
     }
 
-    @JsonCreator
-    public static DayEnum fromValue(String value) {
-      for (DayEnum b : DayEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
+    /**
+     * Convert the given object to string with each line indented by 4 spaces (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
         }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
-  public static final String JSON_PROPERTY_DAY = "day";
-  private DayEnum day;
-
-  public static final String JSON_PROPERTY_CLASSES = "classes";
-  private List<VenueLesson> classes = null;
-
-  /**
-   * Gets or Sets inner
-   */
-  public enum InnerEnum {
-    OCCUPIED("occupied");
-
-    private String value;
-
-    InnerEnum(String value) {
-      this.value = value;
+        return o.toString().replace("\n", "\n    ");
     }
 
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
+    /**
+     * Gets or Sets day
+     */
+    public enum DayEnum {
+        MONDAY("Monday"),
 
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
+        TUESDAY("Tuesday"),
 
-    @JsonCreator
-    public static InnerEnum fromValue(String value) {
-      for (InnerEnum b : InnerEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
+        WEDNESDAY("Wednesday"),
+
+        THURSDAY("Thursday"),
+
+        FRIDAY("Friday"),
+
+        SATURDAY("Saturday");
+
+        private String value;
+
+        DayEnum(String value) {
+            this.value = value;
         }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+
+        @JsonCreator
+        public static DayEnum fromValue(String value) {
+            for (DayEnum b : DayEnum.values()) {
+                if (b.value.equals(value)) {
+                    return b;
+                }
+            }
+            throw new IllegalArgumentException("Unexpected value '" + value + "'");
+        }
+
+        @JsonValue
+        public String getValue() {
+            return value;
+        }
+
+        @Override
+        public String toString() {
+            return String.valueOf(value);
+        }
     }
-  }
 
-  public static final String JSON_PROPERTY_AVAILABILITY = "availability";
-  private Map<String, InnerEnum> availability = null;
+    /**
+     * Gets or Sets inner
+     */
+    public enum InnerEnum {
+        OCCUPIED("occupied");
 
-  public VenueInformation() {
-  }
+        private String value;
 
-  public VenueInformation day(DayEnum day) {
-    this.day = day;
-    return this;
-  }
+        InnerEnum(String value) {
+            this.value = value;
+        }
 
-   /**
-   * Get day
-   * @return day
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_DAY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+        @JsonCreator
+        public static InnerEnum fromValue(String value) {
+            for (InnerEnum b : InnerEnum.values()) {
+                if (b.value.equals(value)) {
+                    return b;
+                }
+            }
+            throw new IllegalArgumentException("Unexpected value '" + value + "'");
+        }
 
-  public DayEnum getDay() {
-    return day;
-  }
+        @JsonValue
+        public String getValue() {
+            return value;
+        }
 
-
-  @JsonProperty(JSON_PROPERTY_DAY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDay(DayEnum day) {
-    this.day = day;
-  }
-
-
-  public VenueInformation classes(List<VenueLesson> classes) {
-    this.classes = classes;
-    return this;
-  }
-
-  public VenueInformation addClassesItem(VenueLesson classesItem) {
-    if (this.classes == null) {
-      this.classes = new ArrayList<>();
+        @Override
+        public String toString() {
+            return String.valueOf(value);
+        }
     }
-    this.classes.add(classesItem);
-    return this;
-  }
-
-   /**
-   * Get classes
-   * @return classes
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_CLASSES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<VenueLesson> getClasses() {
-    return classes;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CLASSES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setClasses(List<VenueLesson> classes) {
-    this.classes = classes;
-  }
-
-
-  public VenueInformation availability(Map<String, InnerEnum> availability) {
-    this.availability = availability;
-    return this;
-  }
-
-  public VenueInformation putAvailabilityItem(String key, InnerEnum availabilityItem) {
-    if (this.availability == null) {
-      this.availability = new HashMap<>();
-    }
-    this.availability.put(key, availabilityItem);
-    return this;
-  }
-
-   /**
-   * Get availability
-   * @return availability
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "{\"0900\":\"occupied\",\"0930\":\"occupied\",\"1000\":\"occupied\"}", value = "")
-  @JsonProperty(JSON_PROPERTY_AVAILABILITY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Map<String, InnerEnum> getAvailability() {
-    return availability;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_AVAILABILITY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAvailability(Map<String, InnerEnum> availability) {
-    this.availability = availability;
-  }
-
-
-  /**
-   * Return true if this VenueInformation object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    VenueInformation venueInformation = (VenueInformation) o;
-    return Objects.equals(this.day, venueInformation.day) &&
-        Objects.equals(this.classes, venueInformation.classes) &&
-        Objects.equals(this.availability, venueInformation.availability);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(day, classes, availability);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class VenueInformation {\n");
-    sb.append("    day: ").append(toIndentedString(day)).append("\n");
-    sb.append("    classes: ").append(toIndentedString(classes)).append("\n");
-    sb.append("    availability: ").append(toIndentedString(availability)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
 
 }
 

@@ -14,98 +14,94 @@
 package org.openapitools.client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
-import java.util.Map;
-import java.util.HashMap;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+import io.swagger.annotations.ApiModelProperty;
 
 
 /**
  * VenueLessonAllOf
  */
 @JsonPropertyOrder({
-  VenueLessonAllOf.JSON_PROPERTY_MODULE_CODE
+    VenueLessonAllOf.JSON_PROPERTY_MODULE_CODE
 })
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-03T22:22:26.802458+08:00[Asia/Singapore]")
 public class VenueLessonAllOf {
-  public static final String JSON_PROPERTY_MODULE_CODE = "moduleCode";
-  private String moduleCode;
 
-  public VenueLessonAllOf() {
-  }
+    public static final String JSON_PROPERTY_MODULE_CODE = "moduleCode";
+    private String moduleCode;
 
-  public VenueLessonAllOf moduleCode(String moduleCode) {
-    this.moduleCode = moduleCode;
-    return this;
-  }
-
-   /**
-   * Get moduleCode
-   * @return moduleCode
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "CS1010S", required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_MODULE_CODE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getModuleCode() {
-    return moduleCode;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MODULE_CODE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setModuleCode(String moduleCode) {
-    this.moduleCode = moduleCode;
-  }
-
-
-  /**
-   * Return true if this VenueLesson_allOf object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    public VenueLessonAllOf() {
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    public VenueLessonAllOf moduleCode(String moduleCode) {
+        this.moduleCode = moduleCode;
+        return this;
     }
-    VenueLessonAllOf venueLessonAllOf = (VenueLessonAllOf) o;
-    return Objects.equals(this.moduleCode, venueLessonAllOf.moduleCode);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(moduleCode);
-  }
+    /**
+     * Get moduleCode
+     *
+     * @return moduleCode
+     **/
+    @javax.annotation.Nonnull
+    @ApiModelProperty(example = "CS1010S", required = true, value = "")
+    @JsonProperty(JSON_PROPERTY_MODULE_CODE)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class VenueLessonAllOf {\n");
-    sb.append("    moduleCode: ").append(toIndentedString(moduleCode)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public String getModuleCode() {
+        return moduleCode;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+
+    @JsonProperty(JSON_PROPERTY_MODULE_CODE)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setModuleCode(String moduleCode) {
+        this.moduleCode = moduleCode;
+    }
+
+
+    /**
+     * Return true if this VenueLesson_allOf object is equal to o.
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        VenueLessonAllOf venueLessonAllOf = (VenueLessonAllOf) o;
+        return Objects.equals(this.moduleCode, venueLessonAllOf.moduleCode);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(moduleCode);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class VenueLessonAllOf {\n");
+        sb.append("    moduleCode: ").append(toIndentedString(moduleCode)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

@@ -13,207 +13,203 @@
 
 package org.openapitools.client.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+import io.swagger.annotations.ApiModelProperty;
 
 
 /**
  * WeekRange
  */
 @JsonPropertyOrder({
-  WeekRange.JSON_PROPERTY_START,
-  WeekRange.JSON_PROPERTY_END,
-  WeekRange.JSON_PROPERTY_WEEK_INTERVAL,
-  WeekRange.JSON_PROPERTY_WEEKS
+    WeekRange.JSON_PROPERTY_START,
+    WeekRange.JSON_PROPERTY_END,
+    WeekRange.JSON_PROPERTY_WEEK_INTERVAL,
+    WeekRange.JSON_PROPERTY_WEEKS
 })
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-03T22:22:26.802458+08:00[Asia/Singapore]")
 public class WeekRange {
-  public static final String JSON_PROPERTY_START = "start";
-  private LocalDate start;
 
-  public static final String JSON_PROPERTY_END = "end";
-  private LocalDate end;
+    public static final String JSON_PROPERTY_START = "start";
+    public static final String JSON_PROPERTY_END = "end";
+    public static final String JSON_PROPERTY_WEEK_INTERVAL = "weekInterval";
+    public static final String JSON_PROPERTY_WEEKS = "weeks";
+    private LocalDate start;
+    private LocalDate end;
+    private BigDecimal weekInterval = new BigDecimal("1");
+    private List<BigDecimal> weeks = null;
 
-  public static final String JSON_PROPERTY_WEEK_INTERVAL = "weekInterval";
-  private BigDecimal weekInterval = new BigDecimal("1");
-
-  public static final String JSON_PROPERTY_WEEKS = "weeks";
-  private List<BigDecimal> weeks = null;
-
-  public WeekRange() {
-  }
-
-  public WeekRange start(LocalDate start) {
-    this.start = start;
-    return this;
-  }
-
-   /**
-   * Get start
-   * @return start
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "Thu Jan 17 08:00:00 SGT 2019", required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_START)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public LocalDate getStart() {
-    return start;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_START)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setStart(LocalDate start) {
-    this.start = start;
-  }
-
-
-  public WeekRange end(LocalDate end) {
-    this.end = end;
-    return this;
-  }
-
-   /**
-   * Get end
-   * @return end
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "Thu Jun 20 08:00:00 SGT 2019", required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_END)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public LocalDate getEnd() {
-    return end;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_END)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setEnd(LocalDate end) {
-    this.end = end;
-  }
-
-
-  public WeekRange weekInterval(BigDecimal weekInterval) {
-    this.weekInterval = weekInterval;
-    return this;
-  }
-
-   /**
-   * Get weekInterval
-   * @return weekInterval
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "2", value = "")
-  @JsonProperty(JSON_PROPERTY_WEEK_INTERVAL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public BigDecimal getWeekInterval() {
-    return weekInterval;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_WEEK_INTERVAL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWeekInterval(BigDecimal weekInterval) {
-    this.weekInterval = weekInterval;
-  }
-
-
-  public WeekRange weeks(List<BigDecimal> weeks) {
-    this.weeks = weeks;
-    return this;
-  }
-
-  public WeekRange addWeeksItem(BigDecimal weeksItem) {
-    if (this.weeks == null) {
-      this.weeks = new ArrayList<>();
+    public WeekRange() {
     }
-    this.weeks.add(weeksItem);
-    return this;
-  }
 
-   /**
-   * Get weeks
-   * @return weeks
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "[1,2,4,5,6]", value = "")
-  @JsonProperty(JSON_PROPERTY_WEEKS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<BigDecimal> getWeeks() {
-    return weeks;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_WEEKS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWeeks(List<BigDecimal> weeks) {
-    this.weeks = weeks;
-  }
-
-
-  /**
-   * Return true if this WeekRange object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    public WeekRange start(LocalDate start) {
+        this.start = start;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get start
+     *
+     * @return start
+     **/
+    @javax.annotation.Nonnull
+    @ApiModelProperty(example = "Thu Jan 17 08:00:00 SGT 2019", required = true, value = "")
+    @JsonProperty(JSON_PROPERTY_START)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+    public LocalDate getStart() {
+        return start;
     }
-    WeekRange weekRange = (WeekRange) o;
-    return Objects.equals(this.start, weekRange.start) &&
-        Objects.equals(this.end, weekRange.end) &&
-        Objects.equals(this.weekInterval, weekRange.weekInterval) &&
-        Objects.equals(this.weeks, weekRange.weeks);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(start, end, weekInterval, weeks);
-  }
 
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class WeekRange {\n");
-    sb.append("    start: ").append(toIndentedString(start)).append("\n");
-    sb.append("    end: ").append(toIndentedString(end)).append("\n");
-    sb.append("    weekInterval: ").append(toIndentedString(weekInterval)).append("\n");
-    sb.append("    weeks: ").append(toIndentedString(weeks)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    @JsonProperty(JSON_PROPERTY_START)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setStart(LocalDate start) {
+        this.start = start;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+
+    public WeekRange end(LocalDate end) {
+        this.end = end;
+        return this;
+    }
+
+    /**
+     * Get end
+     *
+     * @return end
+     **/
+    @javax.annotation.Nonnull
+    @ApiModelProperty(example = "Thu Jun 20 08:00:00 SGT 2019", required = true, value = "")
+    @JsonProperty(JSON_PROPERTY_END)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+    public LocalDate getEnd() {
+        return end;
+    }
+
+
+    @JsonProperty(JSON_PROPERTY_END)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setEnd(LocalDate end) {
+        this.end = end;
+    }
+
+
+    public WeekRange weekInterval(BigDecimal weekInterval) {
+        this.weekInterval = weekInterval;
+        return this;
+    }
+
+    /**
+     * Get weekInterval
+     *
+     * @return weekInterval
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(example = "2", value = "")
+    @JsonProperty(JSON_PROPERTY_WEEK_INTERVAL)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+    public BigDecimal getWeekInterval() {
+        return weekInterval;
+    }
+
+
+    @JsonProperty(JSON_PROPERTY_WEEK_INTERVAL)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public void setWeekInterval(BigDecimal weekInterval) {
+        this.weekInterval = weekInterval;
+    }
+
+
+    public WeekRange weeks(List<BigDecimal> weeks) {
+        this.weeks = weeks;
+        return this;
+    }
+
+    public WeekRange addWeeksItem(BigDecimal weeksItem) {
+        if (this.weeks == null) {
+            this.weeks = new ArrayList<>();
+        }
+        this.weeks.add(weeksItem);
+        return this;
+    }
+
+    /**
+     * Get weeks
+     *
+     * @return weeks
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(example = "[1,2,4,5,6]", value = "")
+    @JsonProperty(JSON_PROPERTY_WEEKS)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+    public List<BigDecimal> getWeeks() {
+        return weeks;
+    }
+
+
+    @JsonProperty(JSON_PROPERTY_WEEKS)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public void setWeeks(List<BigDecimal> weeks) {
+        this.weeks = weeks;
+    }
+
+
+    /**
+     * Return true if this WeekRange object is equal to o.
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        WeekRange weekRange = (WeekRange) o;
+        return Objects.equals(this.start, weekRange.start) &&
+            Objects.equals(this.end, weekRange.end) &&
+            Objects.equals(this.weekInterval, weekRange.weekInterval) &&
+            Objects.equals(this.weeks, weekRange.weeks);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(start, end, weekInterval, weeks);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class WeekRange {\n");
+        sb.append("    start: ").append(toIndentedString(start)).append("\n");
+        sb.append("    end: ").append(toIndentedString(end)).append("\n");
+        sb.append("    weekInterval: ").append(toIndentedString(weekInterval)).append("\n");
+        sb.append("    weeks: ").append(toIndentedString(weeks)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

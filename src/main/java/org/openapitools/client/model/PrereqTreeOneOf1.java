@@ -13,107 +13,102 @@
 
 package org.openapitools.client.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
-import org.openapitools.client.model.PrereqTree;
+import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+import io.swagger.annotations.ApiModelProperty;
 
 
 /**
  * PrereqTreeOneOf1
  */
 @JsonPropertyOrder({
-  PrereqTreeOneOf1.JSON_PROPERTY_AND
+    PrereqTreeOneOf1.JSON_PROPERTY_AND
 })
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-03T22:22:26.802458+08:00[Asia/Singapore]")
 public class PrereqTreeOneOf1 {
-  public static final String JSON_PROPERTY_AND = "and";
-  private List<PrereqTree> and = new ArrayList<>();
 
-  public PrereqTreeOneOf1() {
-  }
+    public static final String JSON_PROPERTY_AND = "and";
+    private List<PrereqTree> and = new ArrayList<>();
 
-  public PrereqTreeOneOf1 and(List<PrereqTree> and) {
-    this.and = and;
-    return this;
-  }
-
-  public PrereqTreeOneOf1 addAndItem(PrereqTree andItem) {
-    this.and.add(andItem);
-    return this;
-  }
-
-   /**
-   * Get and
-   * @return and
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_AND)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public List<PrereqTree> getAnd() {
-    return and;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_AND)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setAnd(List<PrereqTree> and) {
-    this.and = and;
-  }
-
-
-  /**
-   * Return true if this PrereqTree_oneOf_1 object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    public PrereqTreeOneOf1() {
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    public PrereqTreeOneOf1 and(List<PrereqTree> and) {
+        this.and = and;
+        return this;
     }
-    PrereqTreeOneOf1 prereqTreeOneOf1 = (PrereqTreeOneOf1) o;
-    return Objects.equals(this.and, prereqTreeOneOf1.and);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(and);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class PrereqTreeOneOf1 {\n");
-    sb.append("    and: ").append(toIndentedString(and)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public PrereqTreeOneOf1 addAndItem(PrereqTree andItem) {
+        this.and.add(andItem);
+        return this;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    /**
+     * Get and
+     *
+     * @return and
+     **/
+    @javax.annotation.Nonnull
+    @ApiModelProperty(required = true, value = "")
+    @JsonProperty(JSON_PROPERTY_AND)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+    public List<PrereqTree> getAnd() {
+        return and;
+    }
+
+
+    @JsonProperty(JSON_PROPERTY_AND)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setAnd(List<PrereqTree> and) {
+        this.and = and;
+    }
+
+
+    /**
+     * Return true if this PrereqTree_oneOf_1 object is equal to o.
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        PrereqTreeOneOf1 prereqTreeOneOf1 = (PrereqTreeOneOf1) o;
+        return Objects.equals(this.and, prereqTreeOneOf1.and);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(and);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class PrereqTreeOneOf1 {\n");
+        sb.append("    and: ").append(toIndentedString(and)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

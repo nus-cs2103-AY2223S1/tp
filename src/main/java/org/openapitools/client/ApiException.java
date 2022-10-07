@@ -17,11 +17,13 @@ import java.net.http.HttpHeaders;
 
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-03T22:22:26.802458+08:00[Asia/Singapore]")
 public class ApiException extends Exception {
+
     private int code = 0;
     private HttpHeaders responseHeaders = null;
     private String responseBody = null;
 
-    public ApiException() {}
+    public ApiException() {
+    }
 
     public ApiException(Throwable throwable) {
         super(throwable);
@@ -31,7 +33,8 @@ public class ApiException extends Exception {
         super(message);
     }
 
-    public ApiException(String message, Throwable throwable, int code, HttpHeaders responseHeaders, String responseBody) {
+    public ApiException(String message, Throwable throwable, int code, HttpHeaders responseHeaders,
+        String responseBody) {
         super(message, throwable);
         this.code = code;
         this.responseHeaders = responseHeaders;

@@ -13,23 +13,17 @@
 
 package org.openapitools.client.model;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Arrays;
-import java.util.Map;
-import java.util.HashMap;
-import java.math.BigDecimal;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-
-import com.fasterxml.jackson.core.type.TypeReference;
-
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
 
+import org.openapitools.client.JSON;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -43,15 +37,97 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
-import org.openapitools.client.JSON;
 
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-03T22:22:26.802458+08:00[Asia/Singapore]")
 @JsonDeserialize(using = Workload.WorkloadDeserializer.class)
 @JsonSerialize(using = Workload.WorkloadSerializer.class)
 public class Workload extends AbstractOpenApiSchema {
+
+    // store a list of schema names defined in oneOf
+    public static final Map<String, Class<?>> schemas = new HashMap<>();
     private static final Logger log = Logger.getLogger(Workload.class.getName());
 
+    static {
+        schemas.put("List<BigDecimal>", List.class);
+        schemas.put("String", String.class);
+        JSON.registerDescendants(Workload.class, Collections.unmodifiableMap(schemas));
+    }
+
+    public Workload() {
+        super("oneOf", Boolean.FALSE);
+    }
+
+    public Workload(List<BigDecimal> o) {
+        super("oneOf", Boolean.FALSE);
+        setActualInstance(o);
+    }
+
+    public Workload(String o) {
+        super("oneOf", Boolean.FALSE);
+        setActualInstance(o);
+    }
+
+    @Override
+    public Map<String, Class<?>> getSchemas() {
+        return Workload.schemas;
+    }
+
+    /**
+     * Get the actual instance, which can be the following: List<BigDecimal>, String
+     *
+     * @return The actual instance (List<BigDecimal>, String)
+     */
+    @Override
+    public Object getActualInstance() {
+        return super.getActualInstance();
+    }
+
+    /**
+     * Set the instance that matches the oneOf child schema, check the instance parameter is valid against the oneOf
+     * child schemas: List<BigDecimal>, String
+     * <p>
+     * It could be an instance of the 'oneOf' schemas. The oneOf child schemas may themselves be a composed schema
+     * (allOf, anyOf, oneOf).
+     */
+    @Override
+    public void setActualInstance(Object instance) {
+        if (JSON.isInstanceOf(List.class, instance, new HashSet<Class<?>>())) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        if (JSON.isInstanceOf(String.class, instance, new HashSet<Class<?>>())) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        throw new RuntimeException("Invalid instance type. Must be List<BigDecimal>, String");
+    }
+
+    /**
+     * Get the actual instance of `List<BigDecimal>`. If the actual instance is not `List<BigDecimal>`, the
+     * ClassCastException will be thrown.
+     *
+     * @return The actual instance of `List<BigDecimal>`
+     * @throws ClassCastException if the instance is not `List<BigDecimal>`
+     */
+    public List<BigDecimal> getList() throws ClassCastException {
+        return (List<BigDecimal>) super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `String`. If the actual instance is not `String`, the ClassCastException will be
+     * thrown.
+     *
+     * @return The actual instance of `String`
+     * @throws ClassCastException if the instance is not `String`
+     */
+    public String getString() throws ClassCastException {
+        return (String) super.getActualInstance();
+    }
+
     public static class WorkloadSerializer extends StdSerializer<Workload> {
+
         public WorkloadSerializer(Class<Workload> t) {
             super(t);
         }
@@ -61,12 +137,14 @@ public class Workload extends AbstractOpenApiSchema {
         }
 
         @Override
-        public void serialize(Workload value, JsonGenerator jgen, SerializerProvider provider) throws IOException, JsonProcessingException {
+        public void serialize(Workload value, JsonGenerator jgen, SerializerProvider provider)
+            throws IOException, JsonProcessingException {
             jgen.writeObject(value.getActualInstance());
         }
     }
 
     public static class WorkloadDeserializer extends StdDeserializer<Workload> {
+
         public WorkloadDeserializer() {
             this(Workload.class);
         }
@@ -76,7 +154,8 @@ public class Workload extends AbstractOpenApiSchema {
         }
 
         @Override
-        public Workload deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+        public Workload deserialize(JsonParser jp, DeserializationContext ctxt)
+            throws IOException, JsonProcessingException {
             JsonNode tree = jp.readValueAsTree();
             Object deserialized = null;
             boolean typeCoercion = ctxt.isEnabled(MapperFeature.ALLOW_COERCION_OF_SCALARS);
@@ -99,12 +178,17 @@ public class Workload extends AbstractOpenApiSchema {
             try {
                 boolean attemptParsing = true;
                 // ensure that we respect type coercion as set on the client ObjectMapper
-                if (String.class.equals(Integer.class) || String.class.equals(Long.class) || String.class.equals(Float.class) || String.class.equals(Double.class) || String.class.equals(Boolean.class) || String.class.equals(String.class)) {
+                if (String.class.equals(Integer.class) || String.class.equals(Long.class) || String.class.equals(
+                    Float.class) || String.class.equals(Double.class) || String.class.equals(Boolean.class)
+                    || String.class.equals(String.class)) {
                     attemptParsing = typeCoercion;
                     if (!attemptParsing) {
-                        attemptParsing |= ((String.class.equals(Integer.class) || String.class.equals(Long.class)) && token == JsonToken.VALUE_NUMBER_INT);
-                        attemptParsing |= ((String.class.equals(Float.class) || String.class.equals(Double.class)) && token == JsonToken.VALUE_NUMBER_FLOAT);
-                        attemptParsing |= (String.class.equals(Boolean.class) && (token == JsonToken.VALUE_FALSE || token == JsonToken.VALUE_TRUE));
+                        attemptParsing |= ((String.class.equals(Integer.class) || String.class.equals(Long.class))
+                            && token == JsonToken.VALUE_NUMBER_INT);
+                        attemptParsing |= ((String.class.equals(Float.class) || String.class.equals(Double.class))
+                            && token == JsonToken.VALUE_NUMBER_FLOAT);
+                        attemptParsing |= (String.class.equals(Boolean.class) && (token == JsonToken.VALUE_FALSE
+                            || token == JsonToken.VALUE_TRUE));
                         attemptParsing |= (String.class.equals(String.class) && token == JsonToken.VALUE_STRING);
                     }
                 }
@@ -126,7 +210,8 @@ public class Workload extends AbstractOpenApiSchema {
                 ret.setActualInstance(deserialized);
                 return ret;
             }
-            throw new IOException(String.format("Failed deserialization for Workload: %d classes match result, expected 1", match));
+            throw new IOException(
+                String.format("Failed deserialization for Workload: %d classes match result, expected 1", match));
         }
 
         /**
@@ -136,90 +221,6 @@ public class Workload extends AbstractOpenApiSchema {
         public Workload getNullValue(DeserializationContext ctxt) throws JsonMappingException {
             throw new JsonMappingException(ctxt.getParser(), "Workload cannot be null");
         }
-    }
-
-    // store a list of schema names defined in oneOf
-    public static final Map<String, Class<?>> schemas = new HashMap<>();
-
-    public Workload() {
-        super("oneOf", Boolean.FALSE);
-    }
-
-    public Workload(List<BigDecimal> o) {
-        super("oneOf", Boolean.FALSE);
-        setActualInstance(o);
-    }
-
-    public Workload(String o) {
-        super("oneOf", Boolean.FALSE);
-        setActualInstance(o);
-    }
-
-    static {
-        schemas.put("List<BigDecimal>", List.class);
-        schemas.put("String", String.class);
-        JSON.registerDescendants(Workload.class, Collections.unmodifiableMap(schemas));
-    }
-
-    @Override
-    public Map<String, Class<?>> getSchemas() {
-        return Workload.schemas;
-    }
-
-    /**
-     * Set the instance that matches the oneOf child schema, check
-     * the instance parameter is valid against the oneOf child schemas:
-     * List<BigDecimal>, String
-     *
-     * It could be an instance of the 'oneOf' schemas.
-     * The oneOf child schemas may themselves be a composed schema (allOf, anyOf, oneOf).
-     */
-    @Override
-    public void setActualInstance(Object instance) {
-        if (JSON.isInstanceOf(List.class, instance, new HashSet<Class<?>>())) {
-            super.setActualInstance(instance);
-            return;
-        }
-
-        if (JSON.isInstanceOf(String.class, instance, new HashSet<Class<?>>())) {
-            super.setActualInstance(instance);
-            return;
-        }
-
-        throw new RuntimeException("Invalid instance type. Must be List<BigDecimal>, String");
-    }
-
-    /**
-     * Get the actual instance, which can be the following:
-     * List<BigDecimal>, String
-     *
-     * @return The actual instance (List<BigDecimal>, String)
-     */
-    @Override
-    public Object getActualInstance() {
-        return super.getActualInstance();
-    }
-
-    /**
-     * Get the actual instance of `List<BigDecimal>`. If the actual instance is not `List<BigDecimal>`,
-     * the ClassCastException will be thrown.
-     *
-     * @return The actual instance of `List<BigDecimal>`
-     * @throws ClassCastException if the instance is not `List<BigDecimal>`
-     */
-    public List<BigDecimal> getList() throws ClassCastException {
-        return (List<BigDecimal>)super.getActualInstance();
-    }
-
-    /**
-     * Get the actual instance of `String`. If the actual instance is not `String`,
-     * the ClassCastException will be thrown.
-     *
-     * @return The actual instance of `String`
-     * @throws ClassCastException if the instance is not `String`
-     */
-    public String getString() throws ClassCastException {
-        return (String)super.getActualInstance();
     }
 
 }

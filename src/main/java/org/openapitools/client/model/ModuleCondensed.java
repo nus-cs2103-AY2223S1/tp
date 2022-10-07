@@ -13,210 +13,202 @@
 
 package org.openapitools.client.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonValue;
+
+import io.swagger.annotations.ApiModelProperty;
 
 
 /**
  * ModuleCondensed
  */
 @JsonPropertyOrder({
-  ModuleCondensed.JSON_PROPERTY_MODULE_CODE,
-  ModuleCondensed.JSON_PROPERTY_TITLE,
-  ModuleCondensed.JSON_PROPERTY_SEMESTERS
+    ModuleCondensed.JSON_PROPERTY_MODULE_CODE,
+    ModuleCondensed.JSON_PROPERTY_TITLE,
+    ModuleCondensed.JSON_PROPERTY_SEMESTERS
 })
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-03T22:22:26.802458+08:00[Asia/Singapore]")
 public class ModuleCondensed {
-  public static final String JSON_PROPERTY_MODULE_CODE = "moduleCode";
-  private String moduleCode;
 
-  public static final String JSON_PROPERTY_TITLE = "title";
-  private String title;
+    public static final String JSON_PROPERTY_MODULE_CODE = "moduleCode";
+    public static final String JSON_PROPERTY_TITLE = "title";
+    public static final String JSON_PROPERTY_SEMESTERS = "semesters";
+    private String moduleCode;
+    private String title;
+    private List<SemestersEnum> semesters = new ArrayList<>();
 
-  /**
-   * Gets or Sets semesters
-   */
-  public enum SemestersEnum {
-    NUMBER_1(new BigDecimal("1")),
-
-    NUMBER_2(new BigDecimal("2")),
-
-    NUMBER_3(new BigDecimal("3")),
-
-    NUMBER_4(new BigDecimal("4"));
-
-    private BigDecimal value;
-
-    SemestersEnum(BigDecimal value) {
-      this.value = value;
+    public ModuleCondensed() {
     }
 
-    @JsonValue
-    public BigDecimal getValue() {
-      return value;
+    public ModuleCondensed moduleCode(String moduleCode) {
+        this.moduleCode = moduleCode;
+        return this;
+    }
+
+    /**
+     * Get moduleCode
+     *
+     * @return moduleCode
+     **/
+    @javax.annotation.Nonnull
+    @ApiModelProperty(example = "EL1101E", required = true, value = "")
+    @JsonProperty(JSON_PROPERTY_MODULE_CODE)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+    public String getModuleCode() {
+        return moduleCode;
+    }
+
+    @JsonProperty(JSON_PROPERTY_MODULE_CODE)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setModuleCode(String moduleCode) {
+        this.moduleCode = moduleCode;
+    }
+
+    public ModuleCondensed title(String title) {
+        this.title = title;
+        return this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return title
+     **/
+    @javax.annotation.Nonnull
+    @ApiModelProperty(example = "The Nature of Language", required = true, value = "")
+    @JsonProperty(JSON_PROPERTY_TITLE)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+    public String getTitle() {
+        return title;
+    }
+
+    @JsonProperty(JSON_PROPERTY_TITLE)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public ModuleCondensed semesters(List<SemestersEnum> semesters) {
+        this.semesters = semesters;
+        return this;
+    }
+
+    public ModuleCondensed addSemestersItem(SemestersEnum semestersItem) {
+        this.semesters.add(semestersItem);
+        return this;
+    }
+
+    /**
+     * Get semesters
+     *
+     * @return semesters
+     **/
+    @javax.annotation.Nonnull
+    @ApiModelProperty(example = "[1,2]", required = true, value = "")
+    @JsonProperty(JSON_PROPERTY_SEMESTERS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+    public List<SemestersEnum> getSemesters() {
+        return semesters;
+    }
+
+    @JsonProperty(JSON_PROPERTY_SEMESTERS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setSemesters(List<SemestersEnum> semesters) {
+        this.semesters = semesters;
+    }
+
+    /**
+     * Return true if this ModuleCondensed object is equal to o.
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ModuleCondensed moduleCondensed = (ModuleCondensed) o;
+        return Objects.equals(this.moduleCode, moduleCondensed.moduleCode) &&
+            Objects.equals(this.title, moduleCondensed.title) &&
+            Objects.equals(this.semesters, moduleCondensed.semesters);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(moduleCode, title, semesters);
     }
 
     @Override
     public String toString() {
-      return String.valueOf(value);
+        StringBuilder sb = new StringBuilder();
+        sb.append("class ModuleCondensed {\n");
+        sb.append("    moduleCode: ").append(toIndentedString(moduleCode)).append("\n");
+        sb.append("    title: ").append(toIndentedString(title)).append("\n");
+        sb.append("    semesters: ").append(toIndentedString(semesters)).append("\n");
+        sb.append("}");
+        return sb.toString();
     }
 
-    @JsonCreator
-    public static SemestersEnum fromValue(BigDecimal value) {
-      for (SemestersEnum b : SemestersEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
+    /**
+     * Convert the given object to string with each line indented by 4 spaces (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
         }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+        return o.toString().replace("\n", "\n    ");
     }
-  }
 
-  public static final String JSON_PROPERTY_SEMESTERS = "semesters";
-  private List<SemestersEnum> semesters = new ArrayList<>();
+    /**
+     * Gets or Sets semesters
+     */
+    public enum SemestersEnum {
+        NUMBER_1(new BigDecimal("1")),
 
-  public ModuleCondensed() {
-  }
+        NUMBER_2(new BigDecimal("2")),
 
-  public ModuleCondensed moduleCode(String moduleCode) {
-    this.moduleCode = moduleCode;
-    return this;
-  }
+        NUMBER_3(new BigDecimal("3")),
 
-   /**
-   * Get moduleCode
-   * @return moduleCode
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "EL1101E", required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_MODULE_CODE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+        NUMBER_4(new BigDecimal("4"));
 
-  public String getModuleCode() {
-    return moduleCode;
-  }
+        private BigDecimal value;
 
+        SemestersEnum(BigDecimal value) {
+            this.value = value;
+        }
 
-  @JsonProperty(JSON_PROPERTY_MODULE_CODE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setModuleCode(String moduleCode) {
-    this.moduleCode = moduleCode;
-  }
+        @JsonCreator
+        public static SemestersEnum fromValue(BigDecimal value) {
+            for (SemestersEnum b : SemestersEnum.values()) {
+                if (b.value.equals(value)) {
+                    return b;
+                }
+            }
+            throw new IllegalArgumentException("Unexpected value '" + value + "'");
+        }
 
+        @JsonValue
+        public BigDecimal getValue() {
+            return value;
+        }
 
-  public ModuleCondensed title(String title) {
-    this.title = title;
-    return this;
-  }
-
-   /**
-   * Get title
-   * @return title
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "The Nature of Language", required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_TITLE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getTitle() {
-    return title;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TITLE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setTitle(String title) {
-    this.title = title;
-  }
-
-
-  public ModuleCondensed semesters(List<SemestersEnum> semesters) {
-    this.semesters = semesters;
-    return this;
-  }
-
-  public ModuleCondensed addSemestersItem(SemestersEnum semestersItem) {
-    this.semesters.add(semestersItem);
-    return this;
-  }
-
-   /**
-   * Get semesters
-   * @return semesters
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "[1,2]", required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_SEMESTERS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public List<SemestersEnum> getSemesters() {
-    return semesters;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SEMESTERS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setSemesters(List<SemestersEnum> semesters) {
-    this.semesters = semesters;
-  }
-
-
-  /**
-   * Return true if this ModuleCondensed object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+        @Override
+        public String toString() {
+            return String.valueOf(value);
+        }
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    ModuleCondensed moduleCondensed = (ModuleCondensed) o;
-    return Objects.equals(this.moduleCode, moduleCondensed.moduleCode) &&
-        Objects.equals(this.title, moduleCondensed.title) &&
-        Objects.equals(this.semesters, moduleCondensed.semesters);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(moduleCode, title, semesters);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ModuleCondensed {\n");
-    sb.append("    moduleCode: ").append(toIndentedString(moduleCode)).append("\n");
-    sb.append("    title: ").append(toIndentedString(title)).append("\n");
-    sb.append("    semesters: ").append(toIndentedString(semesters)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
 
 }
 

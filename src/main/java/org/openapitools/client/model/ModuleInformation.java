@@ -13,428 +13,423 @@
 
 package org.openapitools.client.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
-import org.openapitools.client.model.ModuleInformationSemesterDataInner;
-import org.openapitools.client.model.Workload;
+import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+import io.swagger.annotations.ApiModelProperty;
 
 
 /**
  * ModuleInformation
  */
 @JsonPropertyOrder({
-  ModuleInformation.JSON_PROPERTY_MODULE_CODE,
-  ModuleInformation.JSON_PROPERTY_TITLE,
-  ModuleInformation.JSON_PROPERTY_DESCRIPTION,
-  ModuleInformation.JSON_PROPERTY_MODULE_CREDIT,
-  ModuleInformation.JSON_PROPERTY_DEPARTMENT,
-  ModuleInformation.JSON_PROPERTY_FACULTY,
-  ModuleInformation.JSON_PROPERTY_WORKLOAD,
-  ModuleInformation.JSON_PROPERTY_PREREQUISITE,
-  ModuleInformation.JSON_PROPERTY_PRECLUSION,
-  ModuleInformation.JSON_PROPERTY_COREQUISITE,
-  ModuleInformation.JSON_PROPERTY_SEMESTER_DATA
+    ModuleInformation.JSON_PROPERTY_MODULE_CODE,
+    ModuleInformation.JSON_PROPERTY_TITLE,
+    ModuleInformation.JSON_PROPERTY_DESCRIPTION,
+    ModuleInformation.JSON_PROPERTY_MODULE_CREDIT,
+    ModuleInformation.JSON_PROPERTY_DEPARTMENT,
+    ModuleInformation.JSON_PROPERTY_FACULTY,
+    ModuleInformation.JSON_PROPERTY_WORKLOAD,
+    ModuleInformation.JSON_PROPERTY_PREREQUISITE,
+    ModuleInformation.JSON_PROPERTY_PRECLUSION,
+    ModuleInformation.JSON_PROPERTY_COREQUISITE,
+    ModuleInformation.JSON_PROPERTY_SEMESTER_DATA
 })
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-03T22:22:26.802458+08:00[Asia/Singapore]")
 public class ModuleInformation {
-  public static final String JSON_PROPERTY_MODULE_CODE = "moduleCode";
-  private String moduleCode;
 
-  public static final String JSON_PROPERTY_TITLE = "title";
-  private String title;
-
-  public static final String JSON_PROPERTY_DESCRIPTION = "description";
-  private String description;
-
-  public static final String JSON_PROPERTY_MODULE_CREDIT = "moduleCredit";
-  private String moduleCredit;
-
-  public static final String JSON_PROPERTY_DEPARTMENT = "department";
-  private String department;
-
-  public static final String JSON_PROPERTY_FACULTY = "faculty";
-  private String faculty;
-
-  public static final String JSON_PROPERTY_WORKLOAD = "workload";
-  private Workload workload;
-
-  public static final String JSON_PROPERTY_PREREQUISITE = "prerequisite";
-  private String prerequisite;
-
-  public static final String JSON_PROPERTY_PRECLUSION = "preclusion";
-  private String preclusion;
-
-  public static final String JSON_PROPERTY_COREQUISITE = "corequisite";
-  private String corequisite;
-
-  public static final String JSON_PROPERTY_SEMESTER_DATA = "semesterData";
-  private List<ModuleInformationSemesterDataInner> semesterData = new ArrayList<>();
-
-  public ModuleInformation() {
-  }
-
-  public ModuleInformation moduleCode(String moduleCode) {
-    this.moduleCode = moduleCode;
-    return this;
-  }
-
-   /**
-   * Get moduleCode
-   * @return moduleCode
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "CS2100", required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_MODULE_CODE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getModuleCode() {
-    return moduleCode;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MODULE_CODE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setModuleCode(String moduleCode) {
-    this.moduleCode = moduleCode;
-  }
-
-
-  public ModuleInformation title(String title) {
-    this.title = title;
-    return this;
-  }
-
-   /**
-   * Get title
-   * @return title
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "Computer Organisation", required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_TITLE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getTitle() {
-    return title;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TITLE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setTitle(String title) {
-    this.title = title;
-  }
-
-
-  public ModuleInformation description(String description) {
-    this.description = description;
-    return this;
-  }
-
-   /**
-   * Get description
-   * @return description
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "The objective of this module is to familiarise students with the fundamentals of computing devices. Through this module students will understand the basics of data representation, and how the various parts of a computer work, separately and with each other. This allows students to understand the issues in computing devices, and how these issues affect the implementation of solutions. Topics covered include data representation systems, combinational and sequential circuit design techniques, assembly language, processor execution cycles, pipelining, memory hierarchy and input/output systems.", required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getDescription() {
-    return description;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
-
-  public ModuleInformation moduleCredit(String moduleCredit) {
-    this.moduleCredit = moduleCredit;
-    return this;
-  }
-
-   /**
-   * Get moduleCredit
-   * @return moduleCredit
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "4", required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_MODULE_CREDIT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getModuleCredit() {
-    return moduleCredit;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MODULE_CREDIT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setModuleCredit(String moduleCredit) {
-    this.moduleCredit = moduleCredit;
-  }
-
-
-  public ModuleInformation department(String department) {
-    this.department = department;
-    return this;
-  }
-
-   /**
-   * Get department
-   * @return department
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "Computer Science", required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_DEPARTMENT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getDepartment() {
-    return department;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DEPARTMENT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setDepartment(String department) {
-    this.department = department;
-  }
-
-
-  public ModuleInformation faculty(String faculty) {
-    this.faculty = faculty;
-    return this;
-  }
-
-   /**
-   * Get faculty
-   * @return faculty
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "Computing", required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_FACULTY)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getFaculty() {
-    return faculty;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_FACULTY)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setFaculty(String faculty) {
-    this.faculty = faculty;
-  }
-
-
-  public ModuleInformation workload(Workload workload) {
-    this.workload = workload;
-    return this;
-  }
-
-   /**
-   * Get workload
-   * @return workload
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_WORKLOAD)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public Workload getWorkload() {
-    return workload;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_WORKLOAD)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setWorkload(Workload workload) {
-    this.workload = workload;
-  }
-
-
-  public ModuleInformation prerequisite(String prerequisite) {
-    this.prerequisite = prerequisite;
-    return this;
-  }
-
-   /**
-   * Get prerequisite
-   * @return prerequisite
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "CS1010 or its equivalent", value = "")
-  @JsonProperty(JSON_PROPERTY_PREREQUISITE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getPrerequisite() {
-    return prerequisite;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PREREQUISITE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPrerequisite(String prerequisite) {
-    this.prerequisite = prerequisite;
-  }
-
-
-  public ModuleInformation preclusion(String preclusion) {
-    this.preclusion = preclusion;
-    return this;
-  }
-
-   /**
-   * Get preclusion
-   * @return preclusion
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "CS1104 or Students from department of ECE", value = "")
-  @JsonProperty(JSON_PROPERTY_PRECLUSION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getPreclusion() {
-    return preclusion;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PRECLUSION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPreclusion(String preclusion) {
-    this.preclusion = preclusion;
-  }
-
-
-  public ModuleInformation corequisite(String corequisite) {
-    this.corequisite = corequisite;
-    return this;
-  }
-
-   /**
-   * Get corequisite
-   * @return corequisite
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "Students must take CS2101 in the same semester as this module", value = "")
-  @JsonProperty(JSON_PROPERTY_COREQUISITE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getCorequisite() {
-    return corequisite;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_COREQUISITE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCorequisite(String corequisite) {
-    this.corequisite = corequisite;
-  }
-
-
-  public ModuleInformation semesterData(List<ModuleInformationSemesterDataInner> semesterData) {
-    this.semesterData = semesterData;
-    return this;
-  }
-
-  public ModuleInformation addSemesterDataItem(ModuleInformationSemesterDataInner semesterDataItem) {
-    this.semesterData.add(semesterDataItem);
-    return this;
-  }
-
-   /**
-   * Get semesterData
-   * @return semesterData
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_SEMESTER_DATA)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public List<ModuleInformationSemesterDataInner> getSemesterData() {
-    return semesterData;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SEMESTER_DATA)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setSemesterData(List<ModuleInformationSemesterDataInner> semesterData) {
-    this.semesterData = semesterData;
-  }
-
-
-  /**
-   * Return true if this ModuleInformation object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    public static final String JSON_PROPERTY_MODULE_CODE = "moduleCode";
+    public static final String JSON_PROPERTY_TITLE = "title";
+    public static final String JSON_PROPERTY_DESCRIPTION = "description";
+    public static final String JSON_PROPERTY_MODULE_CREDIT = "moduleCredit";
+    public static final String JSON_PROPERTY_DEPARTMENT = "department";
+    public static final String JSON_PROPERTY_FACULTY = "faculty";
+    public static final String JSON_PROPERTY_WORKLOAD = "workload";
+    public static final String JSON_PROPERTY_PREREQUISITE = "prerequisite";
+    public static final String JSON_PROPERTY_PRECLUSION = "preclusion";
+    public static final String JSON_PROPERTY_COREQUISITE = "corequisite";
+    public static final String JSON_PROPERTY_SEMESTER_DATA = "semesterData";
+    private String moduleCode;
+    private String title;
+    private String description;
+    private String moduleCredit;
+    private String department;
+    private String faculty;
+    private Workload workload;
+    private String prerequisite;
+    private String preclusion;
+    private String corequisite;
+    private List<ModuleInformationSemesterDataInner> semesterData = new ArrayList<>();
+
+    public ModuleInformation() {
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    public ModuleInformation moduleCode(String moduleCode) {
+        this.moduleCode = moduleCode;
+        return this;
     }
-    ModuleInformation moduleInformation = (ModuleInformation) o;
-    return Objects.equals(this.moduleCode, moduleInformation.moduleCode) &&
-        Objects.equals(this.title, moduleInformation.title) &&
-        Objects.equals(this.description, moduleInformation.description) &&
-        Objects.equals(this.moduleCredit, moduleInformation.moduleCredit) &&
-        Objects.equals(this.department, moduleInformation.department) &&
-        Objects.equals(this.faculty, moduleInformation.faculty) &&
-        Objects.equals(this.workload, moduleInformation.workload) &&
-        Objects.equals(this.prerequisite, moduleInformation.prerequisite) &&
-        Objects.equals(this.preclusion, moduleInformation.preclusion) &&
-        Objects.equals(this.corequisite, moduleInformation.corequisite) &&
-        Objects.equals(this.semesterData, moduleInformation.semesterData);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(moduleCode, title, description, moduleCredit, department, faculty, workload, prerequisite, preclusion, corequisite, semesterData);
-  }
+    /**
+     * Get moduleCode
+     *
+     * @return moduleCode
+     **/
+    @javax.annotation.Nonnull
+    @ApiModelProperty(example = "CS2100", required = true, value = "")
+    @JsonProperty(JSON_PROPERTY_MODULE_CODE)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ModuleInformation {\n");
-    sb.append("    moduleCode: ").append(toIndentedString(moduleCode)).append("\n");
-    sb.append("    title: ").append(toIndentedString(title)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    moduleCredit: ").append(toIndentedString(moduleCredit)).append("\n");
-    sb.append("    department: ").append(toIndentedString(department)).append("\n");
-    sb.append("    faculty: ").append(toIndentedString(faculty)).append("\n");
-    sb.append("    workload: ").append(toIndentedString(workload)).append("\n");
-    sb.append("    prerequisite: ").append(toIndentedString(prerequisite)).append("\n");
-    sb.append("    preclusion: ").append(toIndentedString(preclusion)).append("\n");
-    sb.append("    corequisite: ").append(toIndentedString(corequisite)).append("\n");
-    sb.append("    semesterData: ").append(toIndentedString(semesterData)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public String getModuleCode() {
+        return moduleCode;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+
+    @JsonProperty(JSON_PROPERTY_MODULE_CODE)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setModuleCode(String moduleCode) {
+        this.moduleCode = moduleCode;
+    }
+
+
+    public ModuleInformation title(String title) {
+        this.title = title;
+        return this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return title
+     **/
+    @javax.annotation.Nonnull
+    @ApiModelProperty(example = "Computer Organisation", required = true, value = "")
+    @JsonProperty(JSON_PROPERTY_TITLE)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+    public String getTitle() {
+        return title;
+    }
+
+
+    @JsonProperty(JSON_PROPERTY_TITLE)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+
+    public ModuleInformation description(String description) {
+        this.description = description;
+        return this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return description
+     **/
+    @javax.annotation.Nonnull
+    @ApiModelProperty(example = "The objective of this module is to familiarise students with the fundamentals of computing devices. Through this module students will understand the basics of data representation, and how the various parts of a computer work, separately and with each other. This allows students to understand the issues in computing devices, and how these issues affect the implementation of solutions. Topics covered include data representation systems, combinational and sequential circuit design techniques, assembly language, processor execution cycles, pipelining, memory hierarchy and input/output systems.", required = true, value = "")
+    @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+    public String getDescription() {
+        return description;
+    }
+
+
+    @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+
+    public ModuleInformation moduleCredit(String moduleCredit) {
+        this.moduleCredit = moduleCredit;
+        return this;
+    }
+
+    /**
+     * Get moduleCredit
+     *
+     * @return moduleCredit
+     **/
+    @javax.annotation.Nonnull
+    @ApiModelProperty(example = "4", required = true, value = "")
+    @JsonProperty(JSON_PROPERTY_MODULE_CREDIT)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+    public String getModuleCredit() {
+        return moduleCredit;
+    }
+
+
+    @JsonProperty(JSON_PROPERTY_MODULE_CREDIT)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setModuleCredit(String moduleCredit) {
+        this.moduleCredit = moduleCredit;
+    }
+
+
+    public ModuleInformation department(String department) {
+        this.department = department;
+        return this;
+    }
+
+    /**
+     * Get department
+     *
+     * @return department
+     **/
+    @javax.annotation.Nonnull
+    @ApiModelProperty(example = "Computer Science", required = true, value = "")
+    @JsonProperty(JSON_PROPERTY_DEPARTMENT)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+    public String getDepartment() {
+        return department;
+    }
+
+
+    @JsonProperty(JSON_PROPERTY_DEPARTMENT)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+
+    public ModuleInformation faculty(String faculty) {
+        this.faculty = faculty;
+        return this;
+    }
+
+    /**
+     * Get faculty
+     *
+     * @return faculty
+     **/
+    @javax.annotation.Nonnull
+    @ApiModelProperty(example = "Computing", required = true, value = "")
+    @JsonProperty(JSON_PROPERTY_FACULTY)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+    public String getFaculty() {
+        return faculty;
+    }
+
+
+    @JsonProperty(JSON_PROPERTY_FACULTY)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setFaculty(String faculty) {
+        this.faculty = faculty;
+    }
+
+
+    public ModuleInformation workload(Workload workload) {
+        this.workload = workload;
+        return this;
+    }
+
+    /**
+     * Get workload
+     *
+     * @return workload
+     **/
+    @javax.annotation.Nonnull
+    @ApiModelProperty(required = true, value = "")
+    @JsonProperty(JSON_PROPERTY_WORKLOAD)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+    public Workload getWorkload() {
+        return workload;
+    }
+
+
+    @JsonProperty(JSON_PROPERTY_WORKLOAD)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setWorkload(Workload workload) {
+        this.workload = workload;
+    }
+
+
+    public ModuleInformation prerequisite(String prerequisite) {
+        this.prerequisite = prerequisite;
+        return this;
+    }
+
+    /**
+     * Get prerequisite
+     *
+     * @return prerequisite
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(example = "CS1010 or its equivalent", value = "")
+    @JsonProperty(JSON_PROPERTY_PREREQUISITE)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+    public String getPrerequisite() {
+        return prerequisite;
+    }
+
+
+    @JsonProperty(JSON_PROPERTY_PREREQUISITE)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public void setPrerequisite(String prerequisite) {
+        this.prerequisite = prerequisite;
+    }
+
+
+    public ModuleInformation preclusion(String preclusion) {
+        this.preclusion = preclusion;
+        return this;
+    }
+
+    /**
+     * Get preclusion
+     *
+     * @return preclusion
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(example = "CS1104 or Students from department of ECE", value = "")
+    @JsonProperty(JSON_PROPERTY_PRECLUSION)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+    public String getPreclusion() {
+        return preclusion;
+    }
+
+
+    @JsonProperty(JSON_PROPERTY_PRECLUSION)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public void setPreclusion(String preclusion) {
+        this.preclusion = preclusion;
+    }
+
+
+    public ModuleInformation corequisite(String corequisite) {
+        this.corequisite = corequisite;
+        return this;
+    }
+
+    /**
+     * Get corequisite
+     *
+     * @return corequisite
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(example = "Students must take CS2101 in the same semester as this module", value = "")
+    @JsonProperty(JSON_PROPERTY_COREQUISITE)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+    public String getCorequisite() {
+        return corequisite;
+    }
+
+
+    @JsonProperty(JSON_PROPERTY_COREQUISITE)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public void setCorequisite(String corequisite) {
+        this.corequisite = corequisite;
+    }
+
+
+    public ModuleInformation semesterData(List<ModuleInformationSemesterDataInner> semesterData) {
+        this.semesterData = semesterData;
+        return this;
+    }
+
+    public ModuleInformation addSemesterDataItem(ModuleInformationSemesterDataInner semesterDataItem) {
+        this.semesterData.add(semesterDataItem);
+        return this;
+    }
+
+    /**
+     * Get semesterData
+     *
+     * @return semesterData
+     **/
+    @javax.annotation.Nonnull
+    @ApiModelProperty(required = true, value = "")
+    @JsonProperty(JSON_PROPERTY_SEMESTER_DATA)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+    public List<ModuleInformationSemesterDataInner> getSemesterData() {
+        return semesterData;
+    }
+
+
+    @JsonProperty(JSON_PROPERTY_SEMESTER_DATA)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setSemesterData(List<ModuleInformationSemesterDataInner> semesterData) {
+        this.semesterData = semesterData;
+    }
+
+
+    /**
+     * Return true if this ModuleInformation object is equal to o.
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ModuleInformation moduleInformation = (ModuleInformation) o;
+        return Objects.equals(this.moduleCode, moduleInformation.moduleCode) &&
+            Objects.equals(this.title, moduleInformation.title) &&
+            Objects.equals(this.description, moduleInformation.description) &&
+            Objects.equals(this.moduleCredit, moduleInformation.moduleCredit) &&
+            Objects.equals(this.department, moduleInformation.department) &&
+            Objects.equals(this.faculty, moduleInformation.faculty) &&
+            Objects.equals(this.workload, moduleInformation.workload) &&
+            Objects.equals(this.prerequisite, moduleInformation.prerequisite) &&
+            Objects.equals(this.preclusion, moduleInformation.preclusion) &&
+            Objects.equals(this.corequisite, moduleInformation.corequisite) &&
+            Objects.equals(this.semesterData, moduleInformation.semesterData);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(moduleCode, title, description, moduleCredit, department, faculty, workload, prerequisite,
+            preclusion, corequisite, semesterData);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class ModuleInformation {\n");
+        sb.append("    moduleCode: ").append(toIndentedString(moduleCode)).append("\n");
+        sb.append("    title: ").append(toIndentedString(title)).append("\n");
+        sb.append("    description: ").append(toIndentedString(description)).append("\n");
+        sb.append("    moduleCredit: ").append(toIndentedString(moduleCredit)).append("\n");
+        sb.append("    department: ").append(toIndentedString(department)).append("\n");
+        sb.append("    faculty: ").append(toIndentedString(faculty)).append("\n");
+        sb.append("    workload: ").append(toIndentedString(workload)).append("\n");
+        sb.append("    prerequisite: ").append(toIndentedString(prerequisite)).append("\n");
+        sb.append("    preclusion: ").append(toIndentedString(preclusion)).append("\n");
+        sb.append("    corequisite: ").append(toIndentedString(corequisite)).append("\n");
+        sb.append("    semesterData: ").append(toIndentedString(semesterData)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

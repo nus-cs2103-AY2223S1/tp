@@ -13,32 +13,15 @@
 
 package org.openapitools.client.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import java.util.ArrayList;
-import java.util.List;
-import org.openapitools.client.model.PrereqTreeOneOf;
-import org.openapitools.client.model.PrereqTreeOneOf1;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-
-import com.fasterxml.jackson.core.type.TypeReference;
-
 import java.io.IOException;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
 
+import org.openapitools.client.JSON;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -52,142 +35,22 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
-import org.openapitools.client.JSON;
 
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-03T22:22:26.802458+08:00[Asia/Singapore]")
 @JsonDeserialize(using = PrereqTree.PrereqTreeDeserializer.class)
 @JsonSerialize(using = PrereqTree.PrereqTreeSerializer.class)
 public class PrereqTree extends AbstractOpenApiSchema {
-    private static final Logger log = Logger.getLogger(PrereqTree.class.getName());
-
-    public static class PrereqTreeSerializer extends StdSerializer<PrereqTree> {
-        public PrereqTreeSerializer(Class<PrereqTree> t) {
-            super(t);
-        }
-
-        public PrereqTreeSerializer() {
-            this(null);
-        }
-
-        @Override
-        public void serialize(PrereqTree value, JsonGenerator jgen, SerializerProvider provider) throws IOException, JsonProcessingException {
-            jgen.writeObject(value.getActualInstance());
-        }
-    }
-
-    public static class PrereqTreeDeserializer extends StdDeserializer<PrereqTree> {
-        public PrereqTreeDeserializer() {
-            this(PrereqTree.class);
-        }
-
-        public PrereqTreeDeserializer(Class<?> vc) {
-            super(vc);
-        }
-
-        @Override
-        public PrereqTree deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
-            JsonNode tree = jp.readValueAsTree();
-            Object deserialized = null;
-            boolean typeCoercion = ctxt.isEnabled(MapperFeature.ALLOW_COERCION_OF_SCALARS);
-            int match = 0;
-            JsonToken token = tree.traverse(jp.getCodec()).nextToken();
-            // deserialize PrereqTreeOneOf
-            try {
-                boolean attemptParsing = true;
-                // ensure that we respect type coercion as set on the client ObjectMapper
-                if (PrereqTreeOneOf.class.equals(Integer.class) || PrereqTreeOneOf.class.equals(Long.class) || PrereqTreeOneOf.class.equals(Float.class) || PrereqTreeOneOf.class.equals(Double.class) || PrereqTreeOneOf.class.equals(Boolean.class) || PrereqTreeOneOf.class.equals(String.class)) {
-                    attemptParsing = typeCoercion;
-                    if (!attemptParsing) {
-                        attemptParsing |= ((PrereqTreeOneOf.class.equals(Integer.class) || PrereqTreeOneOf.class.equals(Long.class)) && token == JsonToken.VALUE_NUMBER_INT);
-                        attemptParsing |= ((PrereqTreeOneOf.class.equals(Float.class) || PrereqTreeOneOf.class.equals(Double.class)) && token == JsonToken.VALUE_NUMBER_FLOAT);
-                        attemptParsing |= (PrereqTreeOneOf.class.equals(Boolean.class) && (token == JsonToken.VALUE_FALSE || token == JsonToken.VALUE_TRUE));
-                        attemptParsing |= (PrereqTreeOneOf.class.equals(String.class) && token == JsonToken.VALUE_STRING);
-                    }
-                }
-                if (attemptParsing) {
-                    deserialized = tree.traverse(jp.getCodec()).readValueAs(PrereqTreeOneOf.class);
-                    // TODO: there is no validation against JSON schema constraints
-                    // (min, max, enum, pattern...), this does not perform a strict JSON
-                    // validation, which means the 'match' count may be higher than it should be.
-                    match++;
-                    log.log(Level.FINER, "Input data matches schema 'PrereqTreeOneOf'");
-                }
-            } catch (Exception e) {
-                // deserialization failed, continue
-                log.log(Level.FINER, "Input data does not match schema 'PrereqTreeOneOf'", e);
-            }
-
-            // deserialize PrereqTreeOneOf1
-            try {
-                boolean attemptParsing = true;
-                // ensure that we respect type coercion as set on the client ObjectMapper
-                if (PrereqTreeOneOf1.class.equals(Integer.class) || PrereqTreeOneOf1.class.equals(Long.class) || PrereqTreeOneOf1.class.equals(Float.class) || PrereqTreeOneOf1.class.equals(Double.class) || PrereqTreeOneOf1.class.equals(Boolean.class) || PrereqTreeOneOf1.class.equals(String.class)) {
-                    attemptParsing = typeCoercion;
-                    if (!attemptParsing) {
-                        attemptParsing |= ((PrereqTreeOneOf1.class.equals(Integer.class) || PrereqTreeOneOf1.class.equals(Long.class)) && token == JsonToken.VALUE_NUMBER_INT);
-                        attemptParsing |= ((PrereqTreeOneOf1.class.equals(Float.class) || PrereqTreeOneOf1.class.equals(Double.class)) && token == JsonToken.VALUE_NUMBER_FLOAT);
-                        attemptParsing |= (PrereqTreeOneOf1.class.equals(Boolean.class) && (token == JsonToken.VALUE_FALSE || token == JsonToken.VALUE_TRUE));
-                        attemptParsing |= (PrereqTreeOneOf1.class.equals(String.class) && token == JsonToken.VALUE_STRING);
-                    }
-                }
-                if (attemptParsing) {
-                    deserialized = tree.traverse(jp.getCodec()).readValueAs(PrereqTreeOneOf1.class);
-                    // TODO: there is no validation against JSON schema constraints
-                    // (min, max, enum, pattern...), this does not perform a strict JSON
-                    // validation, which means the 'match' count may be higher than it should be.
-                    match++;
-                    log.log(Level.FINER, "Input data matches schema 'PrereqTreeOneOf1'");
-                }
-            } catch (Exception e) {
-                // deserialization failed, continue
-                log.log(Level.FINER, "Input data does not match schema 'PrereqTreeOneOf1'", e);
-            }
-
-            // deserialize String
-            try {
-                boolean attemptParsing = true;
-                // ensure that we respect type coercion as set on the client ObjectMapper
-                if (String.class.equals(Integer.class) || String.class.equals(Long.class) || String.class.equals(Float.class) || String.class.equals(Double.class) || String.class.equals(Boolean.class) || String.class.equals(String.class)) {
-                    attemptParsing = typeCoercion;
-                    if (!attemptParsing) {
-                        attemptParsing |= ((String.class.equals(Integer.class) || String.class.equals(Long.class)) && token == JsonToken.VALUE_NUMBER_INT);
-                        attemptParsing |= ((String.class.equals(Float.class) || String.class.equals(Double.class)) && token == JsonToken.VALUE_NUMBER_FLOAT);
-                        attemptParsing |= (String.class.equals(Boolean.class) && (token == JsonToken.VALUE_FALSE || token == JsonToken.VALUE_TRUE));
-                        attemptParsing |= (String.class.equals(String.class) && token == JsonToken.VALUE_STRING);
-                    }
-                }
-                if (attemptParsing) {
-                    deserialized = tree.traverse(jp.getCodec()).readValueAs(String.class);
-                    // TODO: there is no validation against JSON schema constraints
-                    // (min, max, enum, pattern...), this does not perform a strict JSON
-                    // validation, which means the 'match' count may be higher than it should be.
-                    match++;
-                    log.log(Level.FINER, "Input data matches schema 'String'");
-                }
-            } catch (Exception e) {
-                // deserialization failed, continue
-                log.log(Level.FINER, "Input data does not match schema 'String'", e);
-            }
-
-            if (match == 1) {
-                PrereqTree ret = new PrereqTree();
-                ret.setActualInstance(deserialized);
-                return ret;
-            }
-            throw new IOException(String.format("Failed deserialization for PrereqTree: %d classes match result, expected 1", match));
-        }
-
-        /**
-         * Handle deserialization of the 'null' value.
-         */
-        @Override
-        public PrereqTree getNullValue(DeserializationContext ctxt) throws JsonMappingException {
-            throw new JsonMappingException(ctxt.getParser(), "PrereqTree cannot be null");
-        }
-    }
 
     // store a list of schema names defined in oneOf
     public static final Map<String, Class<?>> schemas = new HashMap<>();
+    private static final Logger log = Logger.getLogger(PrereqTree.class.getName());
+
+    static {
+        schemas.put("PrereqTreeOneOf", PrereqTreeOneOf.class);
+        schemas.put("PrereqTreeOneOf1", PrereqTreeOneOf1.class);
+        schemas.put("String", String.class);
+        JSON.registerDescendants(PrereqTree.class, Collections.unmodifiableMap(schemas));
+    }
 
     public PrereqTree() {
         super("oneOf", Boolean.FALSE);
@@ -208,25 +71,27 @@ public class PrereqTree extends AbstractOpenApiSchema {
         setActualInstance(o);
     }
 
-    static {
-        schemas.put("PrereqTreeOneOf", PrereqTreeOneOf.class);
-        schemas.put("PrereqTreeOneOf1", PrereqTreeOneOf1.class);
-        schemas.put("String", String.class);
-        JSON.registerDescendants(PrereqTree.class, Collections.unmodifiableMap(schemas));
-    }
-
     @Override
     public Map<String, Class<?>> getSchemas() {
         return PrereqTree.schemas;
     }
 
     /**
-     * Set the instance that matches the oneOf child schema, check
-     * the instance parameter is valid against the oneOf child schemas:
-     * PrereqTreeOneOf, PrereqTreeOneOf1, String
+     * Get the actual instance, which can be the following: PrereqTreeOneOf, PrereqTreeOneOf1, String
      *
-     * It could be an instance of the 'oneOf' schemas.
-     * The oneOf child schemas may themselves be a composed schema (allOf, anyOf, oneOf).
+     * @return The actual instance (PrereqTreeOneOf, PrereqTreeOneOf1, String)
+     */
+    @Override
+    public Object getActualInstance() {
+        return super.getActualInstance();
+    }
+
+    /**
+     * Set the instance that matches the oneOf child schema, check the instance parameter is valid against the oneOf
+     * child schemas: PrereqTreeOneOf, PrereqTreeOneOf1, String
+     * <p>
+     * It could be an instance of the 'oneOf' schemas. The oneOf child schemas may themselves be a composed schema
+     * (allOf, anyOf, oneOf).
      */
     @Override
     public void setActualInstance(Object instance) {
@@ -249,47 +114,190 @@ public class PrereqTree extends AbstractOpenApiSchema {
     }
 
     /**
-     * Get the actual instance, which can be the following:
-     * PrereqTreeOneOf, PrereqTreeOneOf1, String
-     *
-     * @return The actual instance (PrereqTreeOneOf, PrereqTreeOneOf1, String)
-     */
-    @Override
-    public Object getActualInstance() {
-        return super.getActualInstance();
-    }
-
-    /**
-     * Get the actual instance of `PrereqTreeOneOf`. If the actual instance is not `PrereqTreeOneOf`,
-     * the ClassCastException will be thrown.
+     * Get the actual instance of `PrereqTreeOneOf`. If the actual instance is not `PrereqTreeOneOf`, the
+     * ClassCastException will be thrown.
      *
      * @return The actual instance of `PrereqTreeOneOf`
      * @throws ClassCastException if the instance is not `PrereqTreeOneOf`
      */
     public PrereqTreeOneOf getPrereqTreeOneOf() throws ClassCastException {
-        return (PrereqTreeOneOf)super.getActualInstance();
+        return (PrereqTreeOneOf) super.getActualInstance();
     }
 
     /**
-     * Get the actual instance of `PrereqTreeOneOf1`. If the actual instance is not `PrereqTreeOneOf1`,
-     * the ClassCastException will be thrown.
+     * Get the actual instance of `PrereqTreeOneOf1`. If the actual instance is not `PrereqTreeOneOf1`, the
+     * ClassCastException will be thrown.
      *
      * @return The actual instance of `PrereqTreeOneOf1`
      * @throws ClassCastException if the instance is not `PrereqTreeOneOf1`
      */
     public PrereqTreeOneOf1 getPrereqTreeOneOf1() throws ClassCastException {
-        return (PrereqTreeOneOf1)super.getActualInstance();
+        return (PrereqTreeOneOf1) super.getActualInstance();
     }
 
     /**
-     * Get the actual instance of `String`. If the actual instance is not `String`,
-     * the ClassCastException will be thrown.
+     * Get the actual instance of `String`. If the actual instance is not `String`, the ClassCastException will be
+     * thrown.
      *
      * @return The actual instance of `String`
      * @throws ClassCastException if the instance is not `String`
      */
     public String getString() throws ClassCastException {
-        return (String)super.getActualInstance();
+        return (String) super.getActualInstance();
+    }
+
+    public static class PrereqTreeSerializer extends StdSerializer<PrereqTree> {
+
+        public PrereqTreeSerializer(Class<PrereqTree> t) {
+            super(t);
+        }
+
+        public PrereqTreeSerializer() {
+            this(null);
+        }
+
+        @Override
+        public void serialize(PrereqTree value, JsonGenerator jgen, SerializerProvider provider)
+            throws IOException, JsonProcessingException {
+            jgen.writeObject(value.getActualInstance());
+        }
+    }
+
+    public static class PrereqTreeDeserializer extends StdDeserializer<PrereqTree> {
+
+        public PrereqTreeDeserializer() {
+            this(PrereqTree.class);
+        }
+
+        public PrereqTreeDeserializer(Class<?> vc) {
+            super(vc);
+        }
+
+        @Override
+        public PrereqTree deserialize(JsonParser jp, DeserializationContext ctxt)
+            throws IOException, JsonProcessingException {
+            JsonNode tree = jp.readValueAsTree();
+            Object deserialized = null;
+            boolean typeCoercion = ctxt.isEnabled(MapperFeature.ALLOW_COERCION_OF_SCALARS);
+            int match = 0;
+            JsonToken token = tree.traverse(jp.getCodec()).nextToken();
+            // deserialize PrereqTreeOneOf
+            try {
+                boolean attemptParsing = true;
+                // ensure that we respect type coercion as set on the client ObjectMapper
+                if (PrereqTreeOneOf.class.equals(Integer.class) || PrereqTreeOneOf.class.equals(Long.class)
+                    || PrereqTreeOneOf.class.equals(Float.class) || PrereqTreeOneOf.class.equals(Double.class)
+                    || PrereqTreeOneOf.class.equals(Boolean.class) || PrereqTreeOneOf.class.equals(String.class)) {
+                    attemptParsing = typeCoercion;
+                    if (!attemptParsing) {
+                        attemptParsing |=
+                            ((PrereqTreeOneOf.class.equals(Integer.class) || PrereqTreeOneOf.class.equals(Long.class))
+                                && token == JsonToken.VALUE_NUMBER_INT);
+                        attemptParsing |=
+                            ((PrereqTreeOneOf.class.equals(Float.class) || PrereqTreeOneOf.class.equals(Double.class))
+                                && token == JsonToken.VALUE_NUMBER_FLOAT);
+                        attemptParsing |=
+                            (PrereqTreeOneOf.class.equals(Boolean.class) && (token == JsonToken.VALUE_FALSE
+                                || token == JsonToken.VALUE_TRUE));
+                        attemptParsing |=
+                            (PrereqTreeOneOf.class.equals(String.class) && token == JsonToken.VALUE_STRING);
+                    }
+                }
+                if (attemptParsing) {
+                    deserialized = tree.traverse(jp.getCodec()).readValueAs(PrereqTreeOneOf.class);
+                    // TODO: there is no validation against JSON schema constraints
+                    // (min, max, enum, pattern...), this does not perform a strict JSON
+                    // validation, which means the 'match' count may be higher than it should be.
+                    match++;
+                    log.log(Level.FINER, "Input data matches schema 'PrereqTreeOneOf'");
+                }
+            } catch (Exception e) {
+                // deserialization failed, continue
+                log.log(Level.FINER, "Input data does not match schema 'PrereqTreeOneOf'", e);
+            }
+
+            // deserialize PrereqTreeOneOf1
+            try {
+                boolean attemptParsing = true;
+                // ensure that we respect type coercion as set on the client ObjectMapper
+                if (PrereqTreeOneOf1.class.equals(Integer.class) || PrereqTreeOneOf1.class.equals(Long.class)
+                    || PrereqTreeOneOf1.class.equals(Float.class) || PrereqTreeOneOf1.class.equals(Double.class)
+                    || PrereqTreeOneOf1.class.equals(Boolean.class) || PrereqTreeOneOf1.class.equals(String.class)) {
+                    attemptParsing = typeCoercion;
+                    if (!attemptParsing) {
+                        attemptParsing |=
+                            ((PrereqTreeOneOf1.class.equals(Integer.class) || PrereqTreeOneOf1.class.equals(Long.class))
+                                && token == JsonToken.VALUE_NUMBER_INT);
+                        attemptParsing |=
+                            ((PrereqTreeOneOf1.class.equals(Float.class) || PrereqTreeOneOf1.class.equals(Double.class))
+                                && token == JsonToken.VALUE_NUMBER_FLOAT);
+                        attemptParsing |=
+                            (PrereqTreeOneOf1.class.equals(Boolean.class) && (token == JsonToken.VALUE_FALSE
+                                || token == JsonToken.VALUE_TRUE));
+                        attemptParsing |=
+                            (PrereqTreeOneOf1.class.equals(String.class) && token == JsonToken.VALUE_STRING);
+                    }
+                }
+                if (attemptParsing) {
+                    deserialized = tree.traverse(jp.getCodec()).readValueAs(PrereqTreeOneOf1.class);
+                    // TODO: there is no validation against JSON schema constraints
+                    // (min, max, enum, pattern...), this does not perform a strict JSON
+                    // validation, which means the 'match' count may be higher than it should be.
+                    match++;
+                    log.log(Level.FINER, "Input data matches schema 'PrereqTreeOneOf1'");
+                }
+            } catch (Exception e) {
+                // deserialization failed, continue
+                log.log(Level.FINER, "Input data does not match schema 'PrereqTreeOneOf1'", e);
+            }
+
+            // deserialize String
+            try {
+                boolean attemptParsing = true;
+                // ensure that we respect type coercion as set on the client ObjectMapper
+                if (String.class.equals(Integer.class) || String.class.equals(Long.class) || String.class.equals(
+                    Float.class) || String.class.equals(Double.class) || String.class.equals(Boolean.class)
+                    || String.class.equals(String.class)) {
+                    attemptParsing = typeCoercion;
+                    if (!attemptParsing) {
+                        attemptParsing |= ((String.class.equals(Integer.class) || String.class.equals(Long.class))
+                            && token == JsonToken.VALUE_NUMBER_INT);
+                        attemptParsing |= ((String.class.equals(Float.class) || String.class.equals(Double.class))
+                            && token == JsonToken.VALUE_NUMBER_FLOAT);
+                        attemptParsing |= (String.class.equals(Boolean.class) && (token == JsonToken.VALUE_FALSE
+                            || token == JsonToken.VALUE_TRUE));
+                        attemptParsing |= (String.class.equals(String.class) && token == JsonToken.VALUE_STRING);
+                    }
+                }
+                if (attemptParsing) {
+                    deserialized = tree.traverse(jp.getCodec()).readValueAs(String.class);
+                    // TODO: there is no validation against JSON schema constraints
+                    // (min, max, enum, pattern...), this does not perform a strict JSON
+                    // validation, which means the 'match' count may be higher than it should be.
+                    match++;
+                    log.log(Level.FINER, "Input data matches schema 'String'");
+                }
+            } catch (Exception e) {
+                // deserialization failed, continue
+                log.log(Level.FINER, "Input data does not match schema 'String'", e);
+            }
+
+            if (match == 1) {
+                PrereqTree ret = new PrereqTree();
+                ret.setActualInstance(deserialized);
+                return ret;
+            }
+            throw new IOException(
+                String.format("Failed deserialization for PrereqTree: %d classes match result, expected 1", match));
+        }
+
+        /**
+         * Handle deserialization of the 'null' value.
+         */
+        @Override
+        public PrereqTree getNullValue(DeserializationContext ctxt) throws JsonMappingException {
+            throw new JsonMappingException(ctxt.getParser(), "PrereqTree cannot be null");
+        }
     }
 
 }
