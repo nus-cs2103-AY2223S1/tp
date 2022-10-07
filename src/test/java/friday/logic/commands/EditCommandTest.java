@@ -38,17 +38,19 @@ public class EditCommandTest {
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Student editedStudent = new PersonBuilder().build();
+        System.out.println(editedStudent);
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedStudent).build();
+        System.out.println(descriptor);
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStudent);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedStudent);
+        ModelManager expectedModel = new ModelManager(model.getFriday(), new UserPrefs());
+        expectedModel.setStudent(model.getFilteredStudentList().get(0), editedStudent);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
-     */
+    */
 
     /*
     @Test
