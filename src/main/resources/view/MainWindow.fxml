@@ -7,6 +7,9 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
@@ -43,20 +46,29 @@
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
-
-        <VBox fx:id="personList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets bottom="10" left="10" right="10" top="10" />
-          </padding>
-          <StackPane fx:id="personListPanelPlaceholder" prefWidth="318.0" VBox.vgrow="ALWAYS" />
-        </VBox>
-
-        <VBox fx:id="taskList" minWidth="340.0" prefWidth="340.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-           <padding>
-              <Insets bottom="10" left="10" right="10" top="10" />
-           </padding>
-           <StackPane fx:id="taskListPanelPlaceholder" prefWidth="318.0" VBox.vgrow="ALWAYS" />
-        </VBox>
+            <GridPane hgap="5.0" styleClass="background" stylesheets="@DarkTheme.css" VBox.vgrow="ALWAYS">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                             <VBox fx:id="personList" minWidth="165.0" prefWidth="340" styleClass="pane-with-border">
+                <padding>
+                  <Insets bottom="10" left="10" right="10" top="10" />
+                </padding>
+                <StackPane fx:id="personListPanelPlaceholder" prefWidth="318.0" VBox.vgrow="ALWAYS" />
+              </VBox>
+                    <VBox fx:id="taskList" minWidth="165.0" prefWidth="340.0" styleClass="pane-with-border" GridPane.columnIndex="1">
+                 <padding>
+                    <Insets bottom="10" left="10" right="10" top="10" />
+                 </padding>
+                 <StackPane fx:id="taskListPanelPlaceholder" prefWidth="318.0" VBox.vgrow="ALWAYS" />
+              </VBox>
+               </children>
+            </GridPane>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>

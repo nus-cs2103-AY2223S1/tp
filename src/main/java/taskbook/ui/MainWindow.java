@@ -128,6 +128,7 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
+        //Temporary task list for basic functionality testing. To be removed when logic can retrieve taskList.
         ObservableList<Task> temp = FXCollections.observableArrayList();
         temp.add(new Task(new Person(new Name("Hoshimachi Suisei"),
                                     new Phone("12345678"),
@@ -150,7 +151,6 @@ public class MainWindow extends UiPart<Stage> {
                 new HashSet<>()),
                 Assignment.TO,
                 new Description("Bukorosu"), true));
-
 
         taskListPanel = new TaskListPanel(/*logic.getTaskList()*/ temp); //to be replaced later
         taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
