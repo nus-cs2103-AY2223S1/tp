@@ -13,10 +13,10 @@ import bookface.commons.util.ConfigUtil;
 import bookface.commons.util.StringUtil;
 import bookface.logic.Logic;
 import bookface.logic.LogicManager;
-import bookface.model.AddressBook;
+import bookface.model.BookFace;
 import bookface.model.Model;
 import bookface.model.ModelManager;
-import bookface.model.ReadOnlyAddressBook;
+import bookface.model.ReadOnlyBookFace;
 import bookface.model.ReadOnlyUserPrefs;
 import bookface.model.UserPrefs;
 import bookface.model.util.SampleDataUtil;
@@ -74,8 +74,8 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyBookFace> addressBookOptional;
+        ReadOnlyBookFace initialData;
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
@@ -84,10 +84,10 @@ public class MainApp extends Application {
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            initialData = new BookFace();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            initialData = new BookFace();
         }
 
         return new ModelManager(initialData, userPrefs);

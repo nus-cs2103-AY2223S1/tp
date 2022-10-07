@@ -7,7 +7,7 @@ import bookface.logic.commands.CommandResult;
 import bookface.logic.commands.exceptions.CommandException;
 import bookface.logic.parser.exceptions.ParseException;
 import bookface.model.Model;
-import bookface.model.ReadOnlyAddressBook;
+import bookface.model.ReadOnlyBookFace;
 import bookface.model.person.Person;
 import javafx.collections.ObservableList;
 
@@ -27,9 +27,9 @@ public interface Logic {
     /**
      * Returns the AddressBook.
      *
-     * @see Model#getAddressBook()
+     * @see Model#getBookFace()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyBookFace getAddressBook();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();

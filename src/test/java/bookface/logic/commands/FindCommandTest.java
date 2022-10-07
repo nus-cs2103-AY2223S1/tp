@@ -5,7 +5,7 @@ import static bookface.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static bookface.testutil.TypicalPersons.CARL;
 import static bookface.testutil.TypicalPersons.ELLE;
 import static bookface.testutil.TypicalPersons.FIONA;
-import static bookface.testutil.TypicalPersons.getTypicalAddressBook;
+import static bookface.testutil.TypicalPersons.getTypicalBookFaceData;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -24,8 +24,8 @@ import bookface.model.person.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalBookFaceData(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalBookFaceData(), new UserPrefs());
 
     @Test
     public void equals() {

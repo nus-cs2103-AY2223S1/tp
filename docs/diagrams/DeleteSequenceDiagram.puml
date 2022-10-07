@@ -16,7 +16,7 @@ end box
 [-> LogicManager : execute("delete 1")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("delete 1")
+LogicManager -> AddressBookParser : parse("delete 1")
 activate AddressBookParser
 
 create DeleteCommandParser

@@ -1,6 +1,6 @@
 package bookface.storage;
 
-import static bookface.testutil.TypicalPersons.getTypicalAddressBook;
+import static bookface.testutil.TypicalPersons.getTypicalBookFaceData;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import bookface.commons.core.GuiSettings;
-import bookface.model.AddressBook;
-import bookface.model.ReadOnlyAddressBook;
+import bookface.model.BookFace;
+import bookface.model.ReadOnlyBookFace;
 import bookface.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -54,10 +54,10 @@ public class StorageManagerTest {
          * {@link JsonAddressBookStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
          */
-        AddressBook original = getTypicalAddressBook();
+        BookFace original = getTypicalBookFaceData();
         storageManager.saveAddressBook(original);
-        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
-        assertEquals(original, new AddressBook(retrieved));
+        ReadOnlyBookFace retrieved = storageManager.readAddressBook().get();
+        assertEquals(original, new BookFace(retrieved));
     }
 
     @Test
