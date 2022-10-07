@@ -5,10 +5,10 @@ import static seedu.taassist.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.taassist.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.taassist.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.taassist.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.taassist.logic.commands.CommandTestUtil.INVALID_CLASS_DESC;
 import static seedu.taassist.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.taassist.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.taassist.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
-import static seedu.taassist.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.taassist.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.taassist.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.taassist.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
@@ -48,7 +48,7 @@ public class EditCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
 
-    private EditCommandParser parser = new EditCommandParser();
+    private final EditCommandParser parser = new EditCommandParser();
 
     @Test
     public void parse_missingParts_failure() {
@@ -82,7 +82,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
-        assertParseFailure(parser, "1" + INVALID_TAG_DESC, ModuleClass.MESSAGE_CONSTRAINTS); // invalid tag
+        assertParseFailure(parser, "1" + INVALID_CLASS_DESC, ModuleClass.MESSAGE_CONSTRAINTS); // invalid class
 
         // invalid phone followed by valid email
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
@@ -91,8 +91,8 @@ public class EditCommandParserTest {
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
         assertParseFailure(parser, "1" + PHONE_DESC_BOB + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS);
 
-        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Student} being edited,
-        // parsing it together with a valid tag results in error
+        // while parsing {@code PREFIX_TAG} alone will reset the classes of the {@code Student} being edited,
+        // parsing it together with a valid class results in error
         assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + MODULE_CLASS_EMPTY,
                 ModuleClass.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, "1" + TAG_DESC_FRIEND + MODULE_CLASS_EMPTY + TAG_DESC_HUSBAND,
@@ -158,7 +158,7 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // tags
+        // classes
         userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
         descriptor = new EditStudentDescriptorBuilder().withModuleClasses(VALID_TAG_FRIEND).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);

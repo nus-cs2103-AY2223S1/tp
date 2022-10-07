@@ -84,7 +84,7 @@ public class StudentTest {
         editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different tags -> returns false
+        // different classes -> returns false
         editedAlice = new StudentBuilder(ALICE).withModuleClasses(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
     }

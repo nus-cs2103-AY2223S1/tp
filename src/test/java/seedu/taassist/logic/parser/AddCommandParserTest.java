@@ -5,10 +5,10 @@ import static seedu.taassist.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.taassist.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.taassist.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.taassist.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.taassist.logic.commands.CommandTestUtil.INVALID_CLASS_DESC;
 import static seedu.taassist.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.taassist.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.taassist.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
-import static seedu.taassist.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.taassist.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.taassist.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.taassist.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
@@ -65,7 +65,7 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedStudent));
 
-        // multiple tags - all accepted
+        // multiple classes - all accepted
         Student expectedStudentMultipleTags = new StudentBuilder(BOB)
                 .withModuleClasses(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
@@ -75,7 +75,7 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_optionalFieldsMissing_success() {
-        // zero tags
+        // zero classes
         Student expectedStudentNoTag = new StudentBuilder(AMY).withModuleClasses().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
                 new AddCommand(expectedStudentNoTag));
@@ -123,9 +123,9 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
 
-        // invalid tag
+        // invalid class
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + INVALID_TAG_DESC + VALID_TAG_FRIEND, ModuleClass.MESSAGE_CONSTRAINTS);
+                + INVALID_CLASS_DESC + VALID_TAG_FRIEND, ModuleClass.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB,
