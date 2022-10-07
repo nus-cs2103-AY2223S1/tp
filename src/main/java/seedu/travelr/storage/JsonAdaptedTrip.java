@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.travelr.commons.exceptions.IllegalValueException;
-import seedu.travelr.model.tag.Tag;
+import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.Description;
 import seedu.travelr.model.trip.Title;
 import seedu.travelr.model.trip.Trip;
@@ -24,14 +24,14 @@ class JsonAdaptedTrip {
 
     private final String title;
     private final String description;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedEvent> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedTrip(@JsonProperty("title") String title, @JsonProperty("description") String description,
-                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                           @JsonProperty("tagged") List<JsonAdaptedEvent> tagged) {
         this.title = title;
         this.description = description;
         if (tagged != null) {
@@ -45,8 +45,8 @@ class JsonAdaptedTrip {
     public JsonAdaptedTrip(Trip source) {
         title = source.getTitle().fullTitle;
         description = source.getDescription().value;
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
+        tagged.addAll(source.getEvents().stream()
+                .map(JsonAdaptedEvent::new)
                 .collect(Collectors.toList()));
     }
 
@@ -56,8 +56,8 @@ class JsonAdaptedTrip {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Trip toModelType() throws IllegalValueException {
-        final List<Tag> tripTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
+        final List<Event> tripTags = new ArrayList<>();
+        for (JsonAdaptedEvent tag : tagged) {
             tripTags.add(tag.toModelType());
         }
 
@@ -78,7 +78,7 @@ class JsonAdaptedTrip {
         }
         final Description modelDescription = new Description(description);
 
-        final Set<Tag> modelTags = new HashSet<>(tripTags);
+        final Set<Event> modelTags = new HashSet<>(tripTags);
 
         return new Trip(modelTitle, modelDescription, modelTags);
     }

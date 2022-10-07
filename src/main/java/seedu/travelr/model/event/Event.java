@@ -1,4 +1,4 @@
-package seedu.travelr.model.tag;
+package seedu.travelr.model.event;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.travelr.commons.util.AppUtil.checkArgument;

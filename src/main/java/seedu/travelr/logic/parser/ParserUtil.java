@@ -9,7 +9,7 @@ import java.util.Set;
 import seedu.travelr.commons.core.index.Index;
 import seedu.travelr.commons.util.StringUtil;
 import seedu.travelr.logic.parser.exceptions.ParseException;
-import seedu.travelr.model.tag.Tag;
+import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.Address;
 import seedu.travelr.model.trip.Description;
 import seedu.travelr.model.trip.Email;
@@ -22,6 +22,8 @@ import seedu.travelr.model.trip.Title;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String EVENT_DESCRIPTION_PLACEHOLDER
+            = "This is a placeholder text for the event description, located in ParserUtil class.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -117,23 +119,23 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code tag} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
+    public static Event parseEvent(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        if (!Event.isValidTagName(trimmedTag)) {
+            throw new ParseException(Event.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new Event(trimmedTag, EVENT_DESCRIPTION_PLACEHOLDER);
     }
 
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
+    public static Set<Event> parseTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
+        final Set<Event> tagSet = new HashSet<>();
         for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+            tagSet.add(parseEvent(tagName));
         }
         return tagSet;
     }

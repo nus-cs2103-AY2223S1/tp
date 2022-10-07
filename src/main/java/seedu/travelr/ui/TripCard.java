@@ -35,7 +35,7 @@ public class TripCard extends UiPart<Region> {
     @FXML
     private Label description;
     @FXML
-    private FlowPane tags;
+    private FlowPane events;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -46,9 +46,9 @@ public class TripCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         title.setText(trip.getTitle().fullTitle);
         description.setText(trip.getDescription().value);
-        trip.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        trip.getEvents().stream()
+                .sorted(Comparator.comparing(event -> event.title))
+                .forEach(event -> events.getChildren().add(new Label(event.title)));
     }
 
     @Override

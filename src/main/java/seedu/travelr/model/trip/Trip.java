@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.travelr.model.tag.Tag;
+import seedu.travelr.model.event.Event;
 
 /**
  * Represents a Person in the address book.
@@ -20,16 +20,16 @@ public class Trip {
     private final Description description;
 
     // Data fields
-    private final Set<Tag> tags = new HashSet<>();
+    private final Set<Event> events = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Trip(Title title, Description description, Set<Tag> tags) {
+    public Trip(Title title, Description description, Set<Event> tags) {
         requireAllNonNull(title, description, tags);
         this.title = title;
         this.description = description;
-        this.tags.addAll(tags);
+        this.events.addAll(tags);
     }
 
     public Title getTitle() {
@@ -44,8 +44,8 @@ public class Trip {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<Event> getEvents() {
+        return Collections.unmodifiableSet(events);
     }
 
     /**
@@ -78,13 +78,13 @@ public class Trip {
         Trip otherTrip = (Trip) other;
         return otherTrip.getTitle().equals(getTitle())
                 && otherTrip.getDescription().equals(getDescription())
-                && otherTrip.getTags().equals(getTags());
+                && otherTrip.getEvents().equals(getEvents());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(title, description, tags);
+        return Objects.hash(title, description, events);
     }
 
     @Override
@@ -94,7 +94,7 @@ public class Trip {
                 .append("; Description: ")
                 .append(getDescription());
 
-        Set<Tag> tags = getTags();
+        Set<Event> tags = getEvents();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
