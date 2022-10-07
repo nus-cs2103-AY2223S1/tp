@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.taassist.model.TaAssist;
+import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.student.Student;
 
 /**
@@ -66,8 +67,14 @@ public class TypicalStudents {
     public static TaAssist getTypicalTaAssist() {
         TaAssist ab = new TaAssist();
         for (Student student : getTypicalStudents()) {
+            student.getModuleClasses().forEach(c -> {
+                if (!ab.hasModuleClass(c)) {
+                    ab.addModuleClass(c);
+                }
+            });
             ab.addStudent(student);
         }
+        ab.addModuleClass(new ModuleClass(VALID_CLASS_HUSBAND));
         return ab;
     }
 

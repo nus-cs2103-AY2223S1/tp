@@ -232,6 +232,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasModuleClasses(Collection<ModuleClass> moduleClasses) {
+            return true;
+        }
+
+        @Override
         public void addStudent(Student student) {
             requireNonNull(student);
             studentsAdded.add(student);
