@@ -2,8 +2,8 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICAL_TEST;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SLOT;
 
 import java.util.stream.Stream;
@@ -14,7 +14,7 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Doctor;
 import seedu.address.model.appointment.MedicalTest;
 import seedu.address.model.appointment.Slot;
-import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
 
 /**
  * Parses input arguments and creates a new AddAppointmentCommand object
@@ -29,20 +29,20 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
      */
     public AddAppointmentCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_EMAIL, PREFIX_MEDICAL_TEST, PREFIX_SLOT, PREFIX_DOCTOR);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MEDICAL_TEST, PREFIX_SLOT, PREFIX_DOCTOR);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_EMAIL, PREFIX_MEDICAL_TEST, PREFIX_SLOT, PREFIX_DOCTOR)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MEDICAL_TEST, PREFIX_SLOT, PREFIX_DOCTOR)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAppointmentCommand.MESSAGE_USAGE));
         }
 
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         MedicalTest medicalTest = ParserUtil.parseMedicalTest(argMultimap.getValue(PREFIX_MEDICAL_TEST).get());
         Slot slot = ParserUtil.parseSlot(argMultimap.getValue(PREFIX_SLOT).get());
         Doctor doctor = ParserUtil.parseDoctor(argMultimap.getValue(PREFIX_DOCTOR).get());
 
-        Appointment appointment = new Appointment(email, medicalTest, slot, doctor);
+        Appointment appointment = new Appointment(name, medicalTest, slot, doctor);
 
         return new AddAppointmentCommand(appointment);
     }
