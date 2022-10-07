@@ -17,7 +17,7 @@ public class Pet {
     private final Name name;
     private final Person owner;
     private final Color color;
-    private final Pattern pattern;
+    private final ColorPattern colorPattern;
     private final DateOfBirth dateOfBirth;
     private final Species species;
     private final Weight weight;
@@ -29,7 +29,7 @@ public class Pet {
     public Pet(Name name,
                Person owner,
                Color color,
-               Pattern pattern,
+               ColorPattern colorPattern,
                DateOfBirth dateOfBirth,
                Species species,
                Weight weight,
@@ -37,11 +37,11 @@ public class Pet {
                VaccinationStatus vaccinationStatus,
                Set<Tag> tags,
                Set<PetCertificate> certificates) {
-        requireAllNonNull(name, owner, color, pattern, dateOfBirth, species, weight, height, vaccinationStatus);
+        requireAllNonNull(name, owner, color, colorPattern, dateOfBirth, species, weight, height, vaccinationStatus);
         this.name = name;
         this.owner = owner;
         this.color = color;
-        this.pattern = pattern;
+        this.colorPattern = colorPattern;
         this.dateOfBirth = dateOfBirth;
         this.species = species;
         this.weight = weight;
@@ -53,7 +53,7 @@ public class Pet {
 
     public Pet(Name name,
                Color color,
-               Pattern pattern,
+               ColorPattern colorPattern,
                String dateOfBirthString,
                Species species,
                Weight weight,
@@ -63,7 +63,7 @@ public class Pet {
         this(name,
                 null,
                 color,
-                pattern,
+                colorPattern,
                 DateOfBirth.parseString(dateOfBirthString),
                 species,
                 weight,
@@ -75,7 +75,7 @@ public class Pet {
 
     public Pet(Name name,
                Color color,
-               Pattern pattern,
+               ColorPattern colorPattern,
                DateOfBirth dateOfBirth,
                Species species,
                Weight weight,
@@ -83,7 +83,7 @@ public class Pet {
         this(name,
                 null,
                 color,
-                pattern,
+                colorPattern,
                 dateOfBirth,
                 species,
                 weight,
@@ -95,14 +95,14 @@ public class Pet {
 
     public Pet(Name name,
                Color color,
-               Pattern pattern,
+               ColorPattern colorPattern,
                String dateOfBirthString,
                Species species,
                Weight weight,
                Height height) throws IllegalValueException {
         this(name,
                 color,
-                pattern,
+                colorPattern,
                 DateOfBirth.parseString(dateOfBirthString),
                 species,
                 weight,
@@ -123,8 +123,8 @@ public class Pet {
                 .append(getHeight())
                 .append("; Color: ")
                 .append(getColor())
-                .append("; Pattern: ")
-                .append(getPattern())
+                .append("; Color pattern: ")
+                .append(getColorPattern())
                 .append("; ")
                 .append(getVaccinationStatus());
 
@@ -161,6 +161,7 @@ public class Pet {
         Pet otherPet = (Pet) other;
         return otherPet.getName().equals(getName())
                 && otherPet.getColor().equals(getColor())
+                && otherPet.getColorPattern().equals(getColorPattern())
                 && otherPet.getDateOfBirth().equals(getDateOfBirth())
                 && otherPet.getHeight().equals(getHeight())
                 && otherPet.getWeight().equals(getWeight())
@@ -207,8 +208,8 @@ public class Pet {
         return color;
     }
 
-    public Pattern getPattern() {
-        return pattern;
+    public ColorPattern getColorPattern() {
+        return colorPattern;
     }
 
     public DateOfBirth getDateOfBirth() {

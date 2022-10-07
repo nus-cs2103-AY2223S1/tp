@@ -4,21 +4,21 @@ import java.util.Objects;
 
 import seedu.address.model.pet.Age;
 import seedu.address.model.pet.Color;
-import seedu.address.model.pet.Pattern;
+import seedu.address.model.pet.ColorPattern;
 import seedu.address.model.pet.Species;
 
 public class Request {
 
     private final Age age;
     private final Color color;
-    private final Pattern pattern;
+    private final ColorPattern colorPattern;
     private final Species species;
 
-    public Request(Age age, Color color, Pattern pattern,
+    public Request(Age age, Color color, ColorPattern colorPattern,
                    Species species) {
         this.age = age;
         this.color = color;
-        this.pattern = pattern;
+        this.colorPattern = colorPattern;
         this.species = species;
     }
 
@@ -30,8 +30,8 @@ public class Request {
         return color;
     }
 
-    public Pattern getPattern() {
-        return pattern;
+    public ColorPattern getColorPattern() {
+        return colorPattern;
     }
 
     public Species getSpecies() {
@@ -46,7 +46,7 @@ public class Request {
             Request otherRequest = (Request) other;
             return age.equals(otherRequest.getAge())
                     && color.equals(otherRequest.getColor())
-                    && pattern.equals(otherRequest.getPattern())
+                    && colorPattern.equals(otherRequest.getColorPattern())
                     && species.equals(otherRequest.getSpecies());
         } else {
             return false;
@@ -55,7 +55,7 @@ public class Request {
 
     @Override
     public int hashCode() {
-        return Objects.hash(age, color, pattern, species);
+        return Objects.hash(age, color, colorPattern, species);
     }
 
     @Override
@@ -65,7 +65,7 @@ public class Request {
                 .append(System.lineSeparator())
                 .append("Color: ").append(getColor())
                 .append(System.lineSeparator())
-                .append("Pattern: ").append(getPattern())
+                .append("Pattern: ").append(getColorPattern())
                 .append(System.lineSeparator())
                 .append("Species: ").append(getSpecies());
         return builder.toString();
