@@ -1,11 +1,10 @@
 package eatwhere.foodguide.model.person;
 
+import static eatwhere.foodguide.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static eatwhere.foodguide.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static eatwhere.foodguide.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static eatwhere.foodguide.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static eatwhere.foodguide.testutil.Assert.assertThrows;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -13,11 +12,11 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import eatwhere.foodguide.model.person.exceptions.DuplicatePersonException;
+import eatwhere.foodguide.model.person.exceptions.PersonNotFoundException;
 import eatwhere.foodguide.testutil.Assert;
 import eatwhere.foodguide.testutil.PersonBuilder;
 import eatwhere.foodguide.testutil.TypicalPersons;
-import eatwhere.foodguide.model.person.exceptions.DuplicatePersonException;
-import eatwhere.foodguide.model.person.exceptions.PersonNotFoundException;
 
 public class UniquePersonListTest {
 

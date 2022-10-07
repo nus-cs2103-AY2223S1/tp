@@ -1,9 +1,8 @@
 package eatwhere.foodguide.logic;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static eatwhere.foodguide.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static eatwhere.foodguide.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static eatwhere.foodguide.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -12,12 +11,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import eatwhere.foodguide.logic.commands.CommandTestUtil;
-import eatwhere.foodguide.testutil.Assert;
-import eatwhere.foodguide.testutil.PersonBuilder;
-import eatwhere.foodguide.testutil.TypicalPersons;
 import eatwhere.foodguide.logic.commands.AddCommand;
 import eatwhere.foodguide.logic.commands.CommandResult;
+import eatwhere.foodguide.logic.commands.CommandTestUtil;
 import eatwhere.foodguide.logic.commands.ListCommand;
 import eatwhere.foodguide.logic.commands.exceptions.CommandException;
 import eatwhere.foodguide.logic.parser.exceptions.ParseException;
@@ -29,6 +25,9 @@ import eatwhere.foodguide.model.person.Person;
 import eatwhere.foodguide.storage.JsonFoodGuideStorage;
 import eatwhere.foodguide.storage.JsonUserPrefsStorage;
 import eatwhere.foodguide.storage.StorageManager;
+import eatwhere.foodguide.testutil.Assert;
+import eatwhere.foodguide.testutil.PersonBuilder;
+import eatwhere.foodguide.testutil.TypicalPersons;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");

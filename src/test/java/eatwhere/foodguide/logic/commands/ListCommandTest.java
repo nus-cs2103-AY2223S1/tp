@@ -5,11 +5,11 @@ import static eatwhere.foodguide.logic.commands.CommandTestUtil.assertCommandSuc
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import eatwhere.foodguide.testutil.TypicalIndexes;
-import eatwhere.foodguide.testutil.TypicalPersons;
 import eatwhere.foodguide.model.Model;
 import eatwhere.foodguide.model.ModelManager;
 import eatwhere.foodguide.model.UserPrefs;
+import eatwhere.foodguide.testutil.TypicalIndexes;
+import eatwhere.foodguide.testutil.TypicalPersons;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.

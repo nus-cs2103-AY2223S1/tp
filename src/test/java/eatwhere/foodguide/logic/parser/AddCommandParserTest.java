@@ -4,16 +4,16 @@ import static eatwhere.foodguide.commons.core.Messages.MESSAGE_INVALID_COMMAND_F
 
 import org.junit.jupiter.api.Test;
 
-import eatwhere.foodguide.logic.commands.CommandTestUtil;
-import eatwhere.foodguide.testutil.PersonBuilder;
-import eatwhere.foodguide.testutil.TypicalPersons;
 import eatwhere.foodguide.logic.commands.AddCommand;
+import eatwhere.foodguide.logic.commands.CommandTestUtil;
 import eatwhere.foodguide.model.person.Address;
 import eatwhere.foodguide.model.person.Email;
 import eatwhere.foodguide.model.person.Name;
 import eatwhere.foodguide.model.person.Person;
 import eatwhere.foodguide.model.person.Phone;
 import eatwhere.foodguide.model.tag.Tag;
+import eatwhere.foodguide.testutil.PersonBuilder;
+import eatwhere.foodguide.testutil.TypicalPersons;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();

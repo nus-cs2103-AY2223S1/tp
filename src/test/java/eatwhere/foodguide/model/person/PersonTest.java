@@ -1,13 +1,12 @@
 package eatwhere.foodguide.model.person;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static eatwhere.foodguide.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static eatwhere.foodguide.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static eatwhere.foodguide.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static eatwhere.foodguide.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static eatwhere.foodguide.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static eatwhere.foodguide.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 

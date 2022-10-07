@@ -2,7 +2,6 @@ package eatwhere.foodguide.ui;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static eatwhere.foodguide.testutil.Assert.assertThrows;
 
 import java.net.URL;
 import java.nio.file.Path;
@@ -10,9 +9,9 @@ import java.nio.file.Path;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import eatwhere.foodguide.MainApp;
 import eatwhere.foodguide.testutil.Assert;
 import javafx.fxml.FXML;
-import eatwhere.foodguide.MainApp;
 
 public class UiPartTest {
 

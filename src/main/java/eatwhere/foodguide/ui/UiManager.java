@@ -2,6 +2,7 @@ package eatwhere.foodguide.ui;
 
 import java.util.logging.Logger;
 
+import eatwhere.foodguide.MainApp;
 import eatwhere.foodguide.commons.core.LogsCenter;
 import eatwhere.foodguide.commons.util.StringUtil;
 import eatwhere.foodguide.logic.Logic;
@@ -10,7 +11,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import eatwhere.foodguide.MainApp;
 
 /**
  * The manager of the UI component.

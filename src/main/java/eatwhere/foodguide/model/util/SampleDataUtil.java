@@ -4,13 +4,13 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import eatwhere.foodguide.model.AddressBook;
+import eatwhere.foodguide.model.ReadOnlyAddressBook;
 import eatwhere.foodguide.model.person.Address;
 import eatwhere.foodguide.model.person.Email;
 import eatwhere.foodguide.model.person.Name;
-import eatwhere.foodguide.model.person.Phone;
-import eatwhere.foodguide.model.AddressBook;
-import eatwhere.foodguide.model.ReadOnlyAddressBook;
 import eatwhere.foodguide.model.person.Person;
+import eatwhere.foodguide.model.person.Phone;
 import eatwhere.foodguide.model.tag.Tag;
 
 /**

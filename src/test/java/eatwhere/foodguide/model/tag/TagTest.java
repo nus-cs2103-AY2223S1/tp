@@ -1,7 +1,5 @@
 package eatwhere.foodguide.model.tag;
 
-import static eatwhere.foodguide.testutil.Assert.assertThrows;
-
 import org.junit.jupiter.api.Test;
 
 import eatwhere.foodguide.testutil.Assert;

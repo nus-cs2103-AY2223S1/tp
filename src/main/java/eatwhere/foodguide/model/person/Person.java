@@ -1,7 +1,5 @@
 package eatwhere.foodguide.model.person;
 
-import static eatwhere.foodguide.commons.util.CollectionUtil.requireAllNonNull;
-
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;

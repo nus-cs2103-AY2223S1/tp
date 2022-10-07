@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static eatwhere.foodguide.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -13,9 +12,6 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
-import eatwhere.foodguide.testutil.Assert;
-import eatwhere.foodguide.testutil.PersonBuilder;
-import javafx.collections.ObservableList;
 import eatwhere.foodguide.commons.core.GuiSettings;
 import eatwhere.foodguide.logic.commands.exceptions.CommandException;
 import eatwhere.foodguide.model.AddressBook;
@@ -23,6 +19,9 @@ import eatwhere.foodguide.model.Model;
 import eatwhere.foodguide.model.ReadOnlyAddressBook;
 import eatwhere.foodguide.model.ReadOnlyUserPrefs;
 import eatwhere.foodguide.model.person.Person;
+import eatwhere.foodguide.testutil.Assert;
+import eatwhere.foodguide.testutil.PersonBuilder;
+import javafx.collections.ObservableList;
 
 public class AddCommandTest {
 

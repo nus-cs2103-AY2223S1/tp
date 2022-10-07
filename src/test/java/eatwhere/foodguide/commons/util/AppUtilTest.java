@@ -1,7 +1,6 @@
 package eatwhere.foodguide.commons.util;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static eatwhere.foodguide.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 

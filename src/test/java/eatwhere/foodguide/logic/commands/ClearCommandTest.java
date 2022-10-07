@@ -4,11 +4,11 @@ import static eatwhere.foodguide.logic.commands.CommandTestUtil.assertCommandSuc
 
 import org.junit.jupiter.api.Test;
 
-import eatwhere.foodguide.testutil.TypicalPersons;
 import eatwhere.foodguide.model.AddressBook;
 import eatwhere.foodguide.model.Model;
 import eatwhere.foodguide.model.ModelManager;
 import eatwhere.foodguide.model.UserPrefs;
+import eatwhere.foodguide.testutil.TypicalPersons;
 
 public class ClearCommandTest {
 

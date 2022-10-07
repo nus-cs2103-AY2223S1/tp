@@ -4,8 +4,8 @@ import static eatwhere.foodguide.commons.core.Messages.MESSAGE_INVALID_COMMAND_F
 
 import org.junit.jupiter.api.Test;
 
-import eatwhere.foodguide.testutil.TypicalIndexes;
 import eatwhere.foodguide.logic.commands.DeleteCommand;
+import eatwhere.foodguide.testutil.TypicalIndexes;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations

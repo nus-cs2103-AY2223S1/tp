@@ -2,7 +2,6 @@ package eatwhere.foodguide.commons.util;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static eatwhere.foodguide.testutil.Assert.assertThrows;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -13,9 +12,9 @@ import java.util.logging.Level;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import eatwhere.foodguide.testutil.Assert;
 import eatwhere.foodguide.commons.core.Config;
 import eatwhere.foodguide.commons.exceptions.DataConversionException;
+import eatwhere.foodguide.testutil.Assert;
 
 public class ConfigUtilTest {
 

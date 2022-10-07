@@ -1,8 +1,7 @@
 package eatwhere.foodguide.storage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static eatwhere.foodguide.storage.JsonAdaptedEatery.MISSING_FIELD_MESSAGE_FORMAT;
-import static eatwhere.foodguide.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,13 +9,13 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import eatwhere.foodguide.testutil.Assert;
-import eatwhere.foodguide.testutil.TypicalPersons;
 import eatwhere.foodguide.commons.exceptions.IllegalValueException;
 import eatwhere.foodguide.model.person.Address;
 import eatwhere.foodguide.model.person.Email;
 import eatwhere.foodguide.model.person.Name;
 import eatwhere.foodguide.model.person.Phone;
+import eatwhere.foodguide.testutil.Assert;
+import eatwhere.foodguide.testutil.TypicalPersons;
 
 public class JsonAdaptedEateryTest {
     private static final String INVALID_NAME = "R@chel";

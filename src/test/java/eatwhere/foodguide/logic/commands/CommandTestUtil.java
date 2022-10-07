@@ -1,26 +1,25 @@
 package eatwhere.foodguide.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_NAME;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_PHONE;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_TAG;
-import static eatwhere.foodguide.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import eatwhere.foodguide.testutil.Assert;
-import eatwhere.foodguide.testutil.EditPersonDescriptorBuilder;
 import eatwhere.foodguide.commons.core.index.Index;
 import eatwhere.foodguide.logic.commands.exceptions.CommandException;
 import eatwhere.foodguide.model.AddressBook;
 import eatwhere.foodguide.model.Model;
 import eatwhere.foodguide.model.person.NameContainsKeywordsPredicate;
 import eatwhere.foodguide.model.person.Person;
+import eatwhere.foodguide.testutil.Assert;
+import eatwhere.foodguide.testutil.EditPersonDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.

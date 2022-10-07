@@ -1,15 +1,11 @@
 package eatwhere.foodguide.logic.commands;
 
+import static eatwhere.foodguide.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static eatwhere.foodguide.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 import org.junit.jupiter.api.Test;
 
-import eatwhere.foodguide.testutil.EditPersonDescriptorBuilder;
-import eatwhere.foodguide.testutil.PersonBuilder;
-import eatwhere.foodguide.testutil.TypicalIndexes;
-import eatwhere.foodguide.testutil.TypicalPersons;
 import eatwhere.foodguide.commons.core.Messages;
 import eatwhere.foodguide.commons.core.index.Index;
 import eatwhere.foodguide.logic.commands.EditCommand.EditPersonDescriptor;
@@ -18,6 +14,10 @@ import eatwhere.foodguide.model.Model;
 import eatwhere.foodguide.model.ModelManager;
 import eatwhere.foodguide.model.UserPrefs;
 import eatwhere.foodguide.model.person.Person;
+import eatwhere.foodguide.testutil.EditPersonDescriptorBuilder;
+import eatwhere.foodguide.testutil.PersonBuilder;
+import eatwhere.foodguide.testutil.TypicalIndexes;
+import eatwhere.foodguide.testutil.TypicalPersons;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.

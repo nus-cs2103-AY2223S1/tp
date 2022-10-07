@@ -9,11 +9,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import eatwhere.foodguide.testutil.TypicalPersons;
 import eatwhere.foodguide.commons.core.GuiSettings;
 import eatwhere.foodguide.model.AddressBook;
 import eatwhere.foodguide.model.ReadOnlyAddressBook;
 import eatwhere.foodguide.model.UserPrefs;
+import eatwhere.foodguide.testutil.TypicalPersons;
 
 public class StorageManagerTest {
 

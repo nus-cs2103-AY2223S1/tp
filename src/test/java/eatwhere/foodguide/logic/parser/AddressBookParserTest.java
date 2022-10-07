@@ -1,10 +1,9 @@
 package eatwhere.foodguide.logic.parser;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static eatwhere.foodguide.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static eatwhere.foodguide.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static eatwhere.foodguide.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,11 +11,6 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import eatwhere.foodguide.testutil.Assert;
-import eatwhere.foodguide.testutil.EditPersonDescriptorBuilder;
-import eatwhere.foodguide.testutil.PersonBuilder;
-import eatwhere.foodguide.testutil.PersonUtil;
-import eatwhere.foodguide.testutil.TypicalIndexes;
 import eatwhere.foodguide.logic.commands.AddCommand;
 import eatwhere.foodguide.logic.commands.ClearCommand;
 import eatwhere.foodguide.logic.commands.DeleteCommand;
@@ -29,6 +23,11 @@ import eatwhere.foodguide.logic.commands.ListCommand;
 import eatwhere.foodguide.logic.parser.exceptions.ParseException;
 import eatwhere.foodguide.model.person.NameContainsKeywordsPredicate;
 import eatwhere.foodguide.model.person.Person;
+import eatwhere.foodguide.testutil.Assert;
+import eatwhere.foodguide.testutil.EditPersonDescriptorBuilder;
+import eatwhere.foodguide.testutil.PersonBuilder;
+import eatwhere.foodguide.testutil.PersonUtil;
+import eatwhere.foodguide.testutil.TypicalIndexes;
 
 public class AddressBookParserTest {
 

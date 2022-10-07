@@ -1,9 +1,8 @@
 package eatwhere.foodguide.commons.util;
 
+import static eatwhere.foodguide.commons.util.CollectionUtil.requireAllNonNull;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static eatwhere.foodguide.commons.util.CollectionUtil.requireAllNonNull;
-import static eatwhere.foodguide.testutil.Assert.assertThrows;
 
 import java.util.Arrays;
 import java.util.Collection;

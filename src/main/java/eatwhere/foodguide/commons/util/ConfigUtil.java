@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 
-import eatwhere.foodguide.commons.exceptions.DataConversionException;
 import eatwhere.foodguide.commons.core.Config;
+import eatwhere.foodguide.commons.exceptions.DataConversionException;
 
 /**
  * A class for accessing the Config File.

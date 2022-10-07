@@ -1,9 +1,8 @@
 package eatwhere.foodguide.logic.parser;
 
+import static eatwhere.foodguide.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static eatwhere.foodguide.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
-import static eatwhere.foodguide.testutil.Assert.assertThrows;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -12,14 +11,14 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import eatwhere.foodguide.testutil.Assert;
-import eatwhere.foodguide.testutil.TypicalIndexes;
 import eatwhere.foodguide.logic.parser.exceptions.ParseException;
 import eatwhere.foodguide.model.person.Address;
 import eatwhere.foodguide.model.person.Email;
 import eatwhere.foodguide.model.person.Name;
 import eatwhere.foodguide.model.person.Phone;
 import eatwhere.foodguide.model.tag.Tag;
+import eatwhere.foodguide.testutil.Assert;
+import eatwhere.foodguide.testutil.TypicalIndexes;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";

@@ -1,11 +1,11 @@
 package eatwhere.foodguide.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_NAME;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_PHONE;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_TAG;
+import static java.util.Objects.requireNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;

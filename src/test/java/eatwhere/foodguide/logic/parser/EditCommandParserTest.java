@@ -5,10 +5,8 @@ import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_TAG;
 
 import org.junit.jupiter.api.Test;
 
-import eatwhere.foodguide.logic.commands.CommandTestUtil;
-import eatwhere.foodguide.testutil.EditPersonDescriptorBuilder;
-import eatwhere.foodguide.testutil.TypicalIndexes;
 import eatwhere.foodguide.commons.core.index.Index;
+import eatwhere.foodguide.logic.commands.CommandTestUtil;
 import eatwhere.foodguide.logic.commands.EditCommand;
 import eatwhere.foodguide.logic.commands.EditCommand.EditPersonDescriptor;
 import eatwhere.foodguide.model.person.Address;
@@ -16,6 +14,8 @@ import eatwhere.foodguide.model.person.Email;
 import eatwhere.foodguide.model.person.Name;
 import eatwhere.foodguide.model.person.Phone;
 import eatwhere.foodguide.model.tag.Tag;
+import eatwhere.foodguide.testutil.EditPersonDescriptorBuilder;
+import eatwhere.foodguide.testutil.TypicalIndexes;
 
 public class EditCommandParserTest {
 

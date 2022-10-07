@@ -1,7 +1,6 @@
 package eatwhere.foodguide.model.person;
 
 import static java.util.Objects.requireNonNull;
-import static eatwhere.foodguide.commons.util.AppUtil.checkArgument;
 
 import eatwhere.foodguide.commons.util.AppUtil;
 
