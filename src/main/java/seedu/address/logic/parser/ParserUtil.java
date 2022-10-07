@@ -81,6 +81,13 @@ public class ParserUtil {
         return new Address(trimmedAddress);
     }
 
+    /**
+     * Parses the {@code moduleCode} String into a {@code ModuleCode} object.
+     *
+     * @param moduleCode The module code of the module.
+     * @return The ModuleCode object created from the moduleCode string.
+     * @throws ParseException if the given {@code moduleCode} is not valid.
+     */
     public static ModuleCode parseModuleCode(String moduleCode) throws ParseException {
         requireNonNull(moduleCode);
         String trimmedModuleCode = moduleCode.strip();

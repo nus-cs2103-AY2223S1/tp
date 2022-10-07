@@ -6,9 +6,9 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.module.DistinctModuleList;
+import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.module.Module;
 
 /**
  * Wraps all data at the address-book level
@@ -117,6 +117,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
+    /**
+     * Checks whether the module list contains the module.
+     *
+     * @param module The module that is being checked.
+     * @return true if the module list contains the module; else returns false.
+     */
     public boolean hasModule(Module module) {
         requireNonNull(module);
         return modules.containsModule(module);

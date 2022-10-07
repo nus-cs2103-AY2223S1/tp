@@ -1,21 +1,19 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.AddCommand;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_CODE;
+
+import java.util.stream.Stream;
+
 import seedu.address.logic.commands.AddModuleCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
-import seedu.address.model.person.*;
-import seedu.address.model.tag.Tag;
 
-import java.util.Set;
-import java.util.stream.Stream;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-
+/**
+ * Parses arguments to create a new AddModuleCommand Object.
+ */
 public class AddModuleCommandParser implements Parser<Command> {
     @Override
     public Command parse(String args) throws ParseException {

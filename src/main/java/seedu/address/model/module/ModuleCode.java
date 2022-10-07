@@ -3,6 +3,9 @@ package seedu.address.model.module;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * ModuleCode represents the module code of the module.
+ */
 public class ModuleCode {
     public static final String MODULE_CODE_CONSTRAINTS = "Module code should be at least 6 "
             + "characters long, with first two characters "
@@ -11,9 +14,15 @@ public class ModuleCode {
 
     public final String moduleCode;
 
+    /**
+     * The constructor of the ModuleCode class which stores
+     * the module code of the module.
+     *
+     * @param moduleCode The module code of the module.
+     */
     public ModuleCode(String moduleCode) {
         requireNonNull(moduleCode);
-        checkArgument(isValidModuleCode(moduleCode),MODULE_CODE_CONSTRAINTS);
+        checkArgument(isValidModuleCode(moduleCode), MODULE_CODE_CONSTRAINTS);
         this.moduleCode = moduleCode;
     }
 
