@@ -1,14 +1,14 @@
 package seedu.address.model.task;
 
 /**
- * Represents a task in the tasklist.
+ * Represents a Task in the TaskList.
  */
 public class Task {
     private Description description;
     private boolean isDone;
 
     /**
-     * Creates an instance of a Task.
+     * A constructor that creates an instance of Task.
      * @param description The description of the task.
      */
     public Task(Description description) {

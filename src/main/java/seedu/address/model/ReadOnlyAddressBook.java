@@ -19,4 +19,10 @@ public interface ReadOnlyAddressBook {
      * Returns an unmodifiable view of the tasks list.
      */
     ObservableList<Task> getTaskList();
+
+    /**
+     * Adds a task to the TaskList
+     * @param task
+     */
+    void addTask(Task task);
 }

@@ -151,6 +151,10 @@ public class AddContactCommandTest {
         }
 
         @Override
+        public void addT(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         public ObservableList<Task> getFilteredTaskList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -159,6 +163,7 @@ public class AddContactCommandTest {
         public void updateFilteredTaskList(Predicate<Task> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
     }
 
     /**

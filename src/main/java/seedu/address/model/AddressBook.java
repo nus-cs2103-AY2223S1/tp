@@ -128,4 +128,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     public ObservableList<Task> getTaskList() {
         return tasks.asUnmodifiableObservableList();
     }
+
+    @Override
+    public void addTask(Task task) {
+        tasks.addTask(task);
+    }
 }

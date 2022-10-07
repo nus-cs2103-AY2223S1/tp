@@ -1,5 +1,7 @@
 package seedu.address.model.task;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Iterator;
 
 import javafx.collections.FXCollections;
@@ -18,6 +20,19 @@ public class TaskList implements Iterable<Task> {
      */
     public ObservableList<Task> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
+    }
+
+    /**
+     * Adds a Task to the TaskList.
+     * @param task The Task tp be added.
+     * @return A String describing the number of tasks in the TaskList.
+     */
+    public String addTask(Task task) {
+        requireNonNull(task);
+
+        internalList.add(task);
+
+        return TaskUi.addText(internalList.get(internalList.size() - 1).toString(), internalList.size());
     }
 
     @Override
