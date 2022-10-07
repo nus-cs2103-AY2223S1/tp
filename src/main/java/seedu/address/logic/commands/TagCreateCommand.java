@@ -14,16 +14,16 @@ public class TagCreateCommand extends Command {
 
     public static final String COMMAND_WORD = "create";
 
-    public static final String MESSAGE_USAGE = TagCommand.COMMAND_WORD
+    public static final String MESSAGE_USAGE = TagCommand.COMMAND_WORD + " "
             + COMMAND_WORD + ": Creates a tag to the address book. "
             + "Parameters: "
             + PREFIX_TAG + "TAG...\n"
-            + "Example: " + TagCommand.COMMAND_WORD
+            + "Example: " + TagCommand.COMMAND_WORD + " "
             + COMMAND_WORD + " "
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New tag added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This tag already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_TAG = "This tag already exists in the address book";
 
     private final Tag toCreate;
 
@@ -40,7 +40,7 @@ public class TagCreateCommand extends Command {
         requireNonNull(model);
 
         if (model.hasTag(toCreate)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_TAG);
         }
 
         model.addTag(toCreate);

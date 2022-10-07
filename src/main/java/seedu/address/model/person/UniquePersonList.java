@@ -3,8 +3,11 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
@@ -102,6 +105,32 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Updates the tag in every contact.
+     *
+     * @param oldTag The old tag to be changed
+     * @param newTag The new tag that is changed into
+     */
+    public void changeRelevantPersonTag(Tag oldTag, Tag newTag) {
+        for (int i = 0; i < internalList.size(); i++) {
+            Person oldPerson = internalList.get(i);
+            List<Tag> personTags = new ArrayList<>(oldPerson.getTags());
+            if (!personTags.contains(oldTag)) {
+            } else {
+                int index = personTags.indexOf(oldTag);
+                personTags.set(index, newTag);
+                Set<Tag> newTags = new HashSet<>(personTags);
+                Person newPerson = new Person(oldPerson.getName(),
+                        oldPerson.getPhone(),
+                        oldPerson.getEmail(),
+                        oldPerson.getAddress(),
+                        newTags);
+                internalList.set(i, newPerson);
+            }
+        }
+    }
+
+    /**
+     * Sorts the list by name, alphabetically.
      * Sorts the address book by name in alphabetical order.
      *
      * @param isReverse Whether the sorting should be in reverse order

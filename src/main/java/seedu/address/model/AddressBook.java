@@ -163,7 +163,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Returns true if tag already does exists.
-     * @param tag tag added
+     * @param tag The tag added.
      * @return True if tag exists. False if otherwise.
      */
     public boolean hasTag(Tag tag) {
@@ -171,12 +171,24 @@ public class AddressBook implements ReadOnlyAddressBook {
         return tags.hasTag(tag);
     }
 
+    /**
+     * Adds the tag to the tagList.
+     *
+     * @param tag The tag to be added
+     */
     public void addTag(Tag tag) {
         tags.addTagToList(tag);
     }
 
+    /**
+     * Changes the original tag to the new tag.
+     *
+     * @param oldTag The original tag
+     * @param newTag The new tag to replace the original tag
+     */
     public void editTag(Tag oldTag, Tag newTag) {
         tags.editTag(oldTag, newTag);
+        persons.changeRelevantPersonTag(oldTag, newTag);
     }
 
     //// util methods

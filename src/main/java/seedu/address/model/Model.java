@@ -13,7 +13,9 @@ import seedu.address.model.tag.Tag;
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     /**
@@ -125,20 +127,32 @@ public interface Model {
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
-     *  Returns true if tag exists.
+     * Returns true if tag exists.
+     *
      * @param tag tag added.
      * @return True if tag exists. False if otherwise.
      */
     boolean hasTag(Tag tag);
 
+    /**
+     * Adds a tag.
+     *
+     * @param tag
+     */
     void addTag(Tag tag);
 
+    /**
+     * Changes the oldTag to the newTag.
+     *
+     * @param oldTag The tag to be changed
+     * @param newTag The tag to be changed into
+     */
     void editTag(Tag oldTag, Tag newTag);
 
-    ObservableList<Tag> getTagList();
 }

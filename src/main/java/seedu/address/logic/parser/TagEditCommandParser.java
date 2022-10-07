@@ -16,7 +16,11 @@ import seedu.address.model.tag.Tag;
  */
 public class TagEditCommandParser implements Parser<TagEditCommand> {
 
-    @Override
+    /**
+     * Parses the given {@code String} of arguments in the context of the TagEditCommand
+     * and returns an TagEditCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public TagEditCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TAG);

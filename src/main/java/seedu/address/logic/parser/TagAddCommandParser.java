@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.TagAddCommand;
-import seedu.address.logic.commands.TagAddCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
@@ -15,22 +14,26 @@ import seedu.address.model.tag.Tag;
  */
 public class TagAddCommandParser implements Parser<TagAddCommand> {
 
-    @Override
+    /**
+     * Parses the given {@code String} of arguments in the context of the TagAddCommand
+     * and returns an TagAddCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public TagAddCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TAG);
 
         Index index;
+        Tag tag;
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            tag = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagAddCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagAddCommand.MESSAGE_USAGE));
         }
 
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-        Tag tag = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
-        return new TagAddCommand(index, tag, editPersonDescriptor);
+        return new TagAddCommand(index, tag);
     }
 }

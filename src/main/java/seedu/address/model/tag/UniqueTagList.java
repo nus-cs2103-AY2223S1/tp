@@ -23,30 +23,30 @@ public class UniqueTagList implements Iterable<Tag> {
         return tagArrayList.size();
     }
 
-    public Tag getTag(int number) {
-        return tagArrayList.get(number);
-    }
-
     public void addTagToList(Tag tag) {
         tagArrayList.add(tag);
     }
 
     /**
      * Edits the tag.
-     * @param oldTag The tag to be changed.
-     * @param newTag The tag to be changed into.
+     *
+     * @param oldTag The tag to be changed
+     * @param newTag The tag to be changed into
      */
     public void editTag(Tag oldTag, Tag newTag) {
+        requireAllNonNull(oldTag, newTag);
         int index = tagArrayList.indexOf(oldTag);
         tagArrayList.set(index, newTag);
     }
 
     /**
-     * Checks if the tag exists
+     * Checks if the tag exists.
+     *
      * @param tag The tag to be checked
-     * @return True if the tag exists. False if otherwise.
+     * @return True if the tag exists. False if otherwise
      */
     public boolean hasTag(Tag tag) {
+        requireNonNull(tag);
         for (Tag value : tagArrayList) {
             if (value.equals(tag)) {
                 return true;
@@ -55,14 +55,10 @@ public class UniqueTagList implements Iterable<Tag> {
         return false;
     }
 
-    public void setTags(UniqueTagList replacement) {
-        requireNonNull(replacement);
-        tagArrayList.setAll(replacement.tagArrayList);
-    }
-
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Changes the old tags to a new list of tags.
+     *
+     * @param tags The new list of tags
      */
     public void setTags(List<Tag> tags) {
         requireAllNonNull(tags);
@@ -73,6 +69,11 @@ public class UniqueTagList implements Iterable<Tag> {
         tagArrayList.setAll(tags);
     }
 
+    /**
+     * Returns an unmodifiable list of tags.
+     *
+     * @return The list of unmodifiable tags.
+     */
     public ObservableList<Tag> asUnmodifiableObservableList() {
         return tagUnmodifiableList;
     }

@@ -15,17 +15,17 @@ public class TagEditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = TagCommand.COMMAND_WORD
+    public static final String MESSAGE_USAGE = TagCommand.COMMAND_WORD + " "
             + COMMAND_WORD + ": Edits a tag to the taglist in the address book. "
             + "Parameters: "
             + PREFIX_TAG + "TAG"
             + PREFIX_TAG + "TAG...\n"
-            + "Example: " + TagCommand.COMMAND_WORD
+            + "Example: " + TagCommand.COMMAND_WORD + " "
             + COMMAND_WORD + " "
             + PREFIX_TAG + "friend"
             + PREFIX_TAG + "bestFriend";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Tag has changed from ";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Tag has changed from %1$s to %2$s";
     public static final String MESSAGE_NOT_EDITED = "Both tags need to be provided";
     public static final String MESSAGE_DUPLICATE_TAG = "This new tag already exists.";
     public static final String MESSAGE_TAG_NOT_FOUND = "This old tag does not exist.";
@@ -53,7 +53,7 @@ public class TagEditCommand extends Command {
             throw new CommandException((MESSAGE_DUPLICATE_TAG));
         } else {
             model.editTag(oldTag, newTag);
-            return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, oldTag, " to ", newTag));
+            return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, oldTag, newTag));
         }
     }
 
