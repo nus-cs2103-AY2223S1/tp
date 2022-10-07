@@ -147,6 +147,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void removePersonFromTeam(Person person, Team team) {
+        addressBook.removePersonFromTeam(person, team);
+    }
+
+    @Override
     public void addTask(Index index, Task task) {
         requireAllNonNull(index, task);
         addressBook.addTask(index, task);

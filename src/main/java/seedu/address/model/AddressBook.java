@@ -133,6 +133,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         team.addMember(person);
     }
 
+    public void removePersonFromTeam(Person person, Team team) {
+        team.removeMember(person);
+    }
+
     //// task-level operations
 
     public void addTask(Index index, Task task) {

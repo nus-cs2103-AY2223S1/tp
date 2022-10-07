@@ -90,6 +90,8 @@ public interface Model {
 
     public void addPersonToTeam(Person person, Team team);
 
+    public void removePersonFromTeam(Person person, Team team);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
