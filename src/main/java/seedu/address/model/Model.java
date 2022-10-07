@@ -7,11 +7,9 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.task.Task;
 import seedu.address.model.team.Name;
 import seedu.address.model.team.Team;
-import seedu.address.model.team.UniqueTeamList;
 
 /**
  * The API of the Model component.
