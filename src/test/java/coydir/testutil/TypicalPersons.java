@@ -6,6 +6,7 @@ import static coydir.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static coydir.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static coydir.logic.commands.CommandTestUtil.VALID_EMPLOYEE_ID_AMY;
 import static coydir.logic.commands.CommandTestUtil.VALID_EMPLOYEE_ID_BOB;
+import static coydir.logic.commands.CommandTestUtil.VALID_EMPLOYEE_ID_PRITTAM;
 import static coydir.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static coydir.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static coydir.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
@@ -59,6 +60,11 @@ public class TypicalPersons {
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
             .withEmail("hans@example.com").withPosition("Intern")
             .withAddress("chicago ave").build();
+    public static final Person PRITTAM = new PersonBuilder().withName("Prittam Kok")
+            .withEmployeeId(VALID_EMPLOYEE_ID_PRITTAM).withPhone("00000000")
+            .withEmail("null@null.com").withPosition("Intern")
+            .withAddress("null").build();
+
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withEmployeeId(VALID_EMPLOYEE_ID_AMY)

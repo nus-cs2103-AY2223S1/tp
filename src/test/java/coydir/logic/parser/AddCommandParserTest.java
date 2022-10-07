@@ -13,10 +13,12 @@ import static coydir.logic.commands.CommandTestUtil.INVALID_POSITION_DESC;
 import static coydir.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static coydir.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static coydir.logic.commands.CommandTestUtil.NAME_DESC_BOB;
+import static coydir.logic.commands.CommandTestUtil.NAME_DESC_PRITTAM;
 import static coydir.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static coydir.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static coydir.logic.commands.CommandTestUtil.POSITION_DESC_AMY;
 import static coydir.logic.commands.CommandTestUtil.POSITION_DESC_BOB;
+import static coydir.logic.commands.CommandTestUtil.POSITION_DESC_PRITTAM;
 import static coydir.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static coydir.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static coydir.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
@@ -32,6 +34,7 @@ import static coydir.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static coydir.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static coydir.testutil.TypicalPersons.AMY;
 import static coydir.testutil.TypicalPersons.BOB;
+import static coydir.testutil.TypicalPersons.PRITTAM;
 
 import org.junit.jupiter.api.Test;
 
@@ -98,6 +101,11 @@ public class AddCommandParserTest {
         PersonBuilder.setEmployeeId(AMY.getEmployeeId().value); // set employee id to Amy's id
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + POSITION_DESC_AMY + ADDRESS_DESC_AMY, new AddCommand(expectedPerson));
+
+        Person expectedPersonMissingOptional = new PersonBuilder(PRITTAM).withTags().build();
+        PersonBuilder.setEmployeeId(PRITTAM.getEmployeeId().value);
+        assertParseSuccess(parser, NAME_DESC_PRITTAM
+                + POSITION_DESC_PRITTAM, new AddCommand(expectedPersonMissingOptional));
     }
 
     @Test
@@ -108,21 +116,9 @@ public class AddCommandParserTest {
         assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + POSITION_DESC_BOB + ADDRESS_DESC_BOB, expectedMessage);
 
-        // missing phone prefix
-        assertParseFailure(parser, NAME_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB
-                + POSITION_DESC_BOB + ADDRESS_DESC_BOB, expectedMessage);
-
-        // missing email prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB
-                + POSITION_DESC_BOB + ADDRESS_DESC_BOB, expectedMessage);
-
         // missing position prefix
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + VALID_POSITION_BOB + ADDRESS_DESC_BOB, expectedMessage);
-
-        // missing address prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + POSITION_DESC_BOB + VALID_ADDRESS_BOB, expectedMessage);
 
         // all prefixes missing
         assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB

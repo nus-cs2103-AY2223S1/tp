@@ -8,6 +8,7 @@ import static coydir.logic.parser.CliSyntax.PREFIX_PHONE;
 import static coydir.logic.parser.CliSyntax.PREFIX_POSITION;
 import static coydir.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -37,18 +38,32 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                         PREFIX_POSITION, PREFIX_ADDRESS, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_POSITION, PREFIX_EMAIL)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_POSITION)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Position position = ParserUtil.parsePosition(argMultimap.getValue(PREFIX_POSITION).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Phone phone = new Phone("00000000");
+        Email email = new Email("null@null.com");
+        Address address = new Address("null");
+        Set<Tag> tagList = new HashSet<>();
         EmployeeId employeeId = new EmployeeId();
+
+        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
+            phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
+        }
+        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
+            email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+        }
+        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
+            address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        }
+
+        if (!argMultimap.getAllValues(PREFIX_TAG).isEmpty()) {
+            tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        }
 
         Person person = new Person(name, employeeId, phone, email, position, address, tagList);
 
