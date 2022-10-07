@@ -1,82 +1,69 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.SortCommand.SortArgument;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
-import seedu.address.testutil.PersonBuilder;
 
-public class AddCommandTest {
+class SortCommandTest {
 
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+        assertThrows(NullPointerException.class, () -> new SortCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+    public void execute_wrongPrefix_throwsCommandException() {
+        SortCommand sortCommand = new SortCommand(List.of(new SortArgument(new Prefix("x/"), false, null)));
+        Model modelStub = new ModelStub();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
-
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertThrows(CommandException.class, SortCommand.MESSAGE_WRONG_PREFIX, () -> sortCommand.execute(modelStub));
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+    void execute_success() throws CommandException {
+        SortCommand sortCommand = new SortCommand(List.of(new SortArgument(PREFIX_NAME, false, null)));
+        Model modelStub = new ModelStubThatSorts();
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertEquals(SortCommand.MESSAGE_SUCCESS, sortCommand.execute(modelStub).getFeedbackToUser());
     }
 
     @Test
-    public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+    void testEquals() {
+        SortCommand sampleA = new SortCommand(List.of(new SortArgument(PREFIX_NAME, false, null)));
+        SortCommand sampleB = new SortCommand(List.of(new SortArgument(PREFIX_ADDRESS, false, null)));
+        SortCommand sampleC = new SortCommand(List.of(
+            new SortArgument(PREFIX_NAME, false, null),
+            new SortArgument(PREFIX_ADDRESS, false, null)));
+        SortCommand sampleD = new SortCommand(List.of(new SortArgument(PREFIX_NAME, false, null)));
 
-        // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
-
-        // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
-
-        // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
-
-        // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
-
-        // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertEquals(sampleA, sampleA); // same object
+        assertNotEquals(1, sampleA); // not SortCommand
+        assertNotEquals(sampleA, sampleC); // argList of different lengths
+        assertNotEquals(sampleA, sampleB); // different value
+        assertEquals(sampleA, sampleD); // same value
     }
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A default model stub that have all the methods failing.
      */
     private class ModelStub implements Model {
         @Override
@@ -176,65 +163,42 @@ public class AddCommandTest {
 
         @Override
         public boolean hasTag(Tag tag) {
-            return false;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void addTag(Tag tag) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void editTag(Tag oldTag, Tag newTag) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public ObservableList<Tag> getTagList() {
-            return null;
+            throw new AssertionError("This method should not be called.");
         }
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that allows sorting.
      */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
-
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
-        }
+    private class ModelStubThatSorts extends ModelStub {
+        @Override
+        public void sortByName(Boolean isReverse) {}
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
-        }
+        public void sortByPhone(Boolean isReverse) {}
+
+        @Override
+        public void sortByEmail(Boolean isReverse) {}
+
+        @Override
+        public void sortByAddress(Boolean isReverse) {}
+
+        @Override
+        public void sortByTag(Tag tag, Boolean isReverse) {}
     }
-
-    /**
-     * A Model stub that always accept the person being added.
-     */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
-
-        @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
-        }
-
-        @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
-        }
-
-        @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
-        }
-    }
-
 }

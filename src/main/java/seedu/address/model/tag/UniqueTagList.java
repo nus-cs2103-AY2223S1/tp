@@ -47,8 +47,8 @@ public class UniqueTagList implements Iterable<Tag> {
      * @return True if the tag exists. False if otherwise.
      */
     public boolean hasTag(Tag tag) {
-        for (int i = 0; i < tagArrayList.size(); i++) {
-            if (tagArrayList.get(i).equals(tag)) {
+        for (Tag value : tagArrayList) {
+            if (value.equals(tag)) {
                 return true;
             }
         }
