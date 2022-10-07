@@ -15,6 +15,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.person.PersonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -22,6 +23,15 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class AddressBookParser {
 
+    public static void main(String[] args) {
+        try {
+            new AddressBookParser().parseCommand("client -a n/name p/98765432 e/email@example.com a/address t/tag");
+            new AddressBookParser().parseCommand("client -e 2 n/name p/98765432 e/email@example.com a/address t/tag");
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
     /**
      * Used for initial separation of command word and args.
      */
@@ -45,15 +55,8 @@ public class AddressBookParser {
         final String flag = matcher.group("flag"); // returns a whitespace, followed by the tag e.g. " -f".
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
-
-        case AddPersonCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
-
-        case EditPersonCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
-
-        case DeletePersonCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+        case PersonCommand.COMMAND_WORD:
+            return new PersonCommandParser().parse(flag, arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
