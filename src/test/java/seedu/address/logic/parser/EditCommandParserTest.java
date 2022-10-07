@@ -118,12 +118,12 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_SECOND_PERSON;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_KIV
                 + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + UNIVERSITY_DESC_BOB + NAME_DESC_AMY + TAG_DESC_REJECTED;
-        
+
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withUniversity(VALID_UNIVERSITY_BOB).withTags(VALID_TAG_KIV, VALID_TAG_REJECTED).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
-        
+
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
