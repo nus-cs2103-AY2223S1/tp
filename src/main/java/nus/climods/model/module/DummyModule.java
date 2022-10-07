@@ -3,7 +3,11 @@ package nus.climods.model.module;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Dummy class to represent a Module
+ */
 public class DummyModule {
+
     public String getModuleCode() {
         return "CS2103";
     }
