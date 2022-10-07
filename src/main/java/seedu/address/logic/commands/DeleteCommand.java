@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 import java.util.Optional;
@@ -34,6 +33,14 @@ public class DeleteCommand extends Command {
     private final Optional<Religion> religion;
     private final Optional<Survey> survey;
 
+    /**
+     * Initialises a new DeleteCommand
+     *
+     * @param targetIndex
+     * @param race
+     * @param religion
+     * @param survey
+     */
     public DeleteCommand(Optional<Index> targetIndex, Optional<Race> race, Optional<Religion> religion,
             Optional<Survey> survey) {
         this.targetIndex = targetIndex;
