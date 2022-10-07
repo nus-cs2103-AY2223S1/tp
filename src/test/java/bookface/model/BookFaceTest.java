@@ -48,7 +48,7 @@ public class BookFaceTest {
         Person editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        BookStubFace newData = new BookStubFace(newPersons);
+        BookFaceStub newData = new BookFaceStub(newPersons);
 
         assertThrows(DuplicatePersonException.class, () -> bookFace.resetData(newData));
     }
@@ -85,10 +85,10 @@ public class BookFaceTest {
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
-    private static class BookStubFace implements ReadOnlyBookFace {
+    private static class BookFaceStub implements ReadOnlyBookFace {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
 
-        BookStubFace(Collection<Person> persons) {
+        BookFaceStub(Collection<Person> persons) {
             this.persons.setAll(persons);
         }
 
