@@ -36,8 +36,8 @@ public class FindNameCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindCommand // instanceof handles nulls
-                && predicate.equals(((FindCommand) other).predicate)); // state check
+                || (other instanceof FindNameCommand // instanceof handles nulls
+                && predicate.equals(((FindNameCommand) other).predicate)); // state check
     }
 
 
