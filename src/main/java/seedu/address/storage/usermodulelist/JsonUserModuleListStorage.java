@@ -21,7 +21,7 @@ public class JsonUserModuleListStorage implements UserModuleListStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonUserModuleListStorage.class);
 
-    private Path filePath;
+    private final Path filePath;
 
     public JsonUserModuleListStorage(Path filePath) {
         this.filePath = filePath;
