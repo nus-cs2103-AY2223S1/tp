@@ -16,6 +16,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Description;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -202,5 +203,20 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String description} into a {@code Description}.
+     * @param description The String to be parsed.
+     * @return A Description instance
+     * @throws ParseException if the given description is invalid.
+     */
+    public static Description parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!Description.isValidDescription(trimmedDescription)) {
+            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+        }
+        return new Description(trimmedDescription);
     }
 }

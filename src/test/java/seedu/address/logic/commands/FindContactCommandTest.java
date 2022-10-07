@@ -27,9 +27,9 @@ import seedu.address.model.person.PersonContainsKeywordsPredicate;
 import seedu.address.model.person.Phone;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindCommand}.
+ * Contains integration tests (interaction with the Model) for {@code FindContactCommand}.
  */
-public class FindCommandTest {
+public class FindContactCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
@@ -62,14 +62,14 @@ public class FindCommandTest {
                 new PersonContainsKeywordsPredicate(nameKeywords, emptyPhoneKeywords,
                         emptyEmailKeywords, emptyAddressKeywords);
 
-        FindCommand findFirstCommand = new FindCommand(firstPredicate);
-        FindCommand findSecondCommand = new FindCommand(secondPredicate);
+        FindContactCommand findFirstCommand = new FindContactCommand(firstPredicate);
+        FindContactCommand findSecondCommand = new FindContactCommand(secondPredicate);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        FindCommand findFirstCommandCopy = new FindCommand(firstPredicate);
+        FindContactCommand findFirstCommandCopy = new FindContactCommand(firstPredicate);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -85,11 +85,11 @@ public class FindCommandTest {
     @Test
     public void execute_zeroMatchingKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                FindCommand.MESSAGE_USAGE);
+                FindContactCommand.MESSAGE_USAGE);
         PersonContainsKeywordsPredicate predicate =
                 new PersonContainsKeywordsPredicate(emptyNameKeywords,
                         emptyPhoneKeywords, emptyEmailKeywords, emptyAddressKeywords);
-        FindCommand command = new FindCommand(predicate);
+        FindContactCommand command = new FindContactCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
@@ -101,7 +101,7 @@ public class FindCommandTest {
         PersonContainsKeywordsPredicate predicate =
                 new PersonContainsKeywordsPredicate(nameKeywords, emptyPhoneKeywords,
                         emptyEmailKeywords, emptyAddressKeywords);
-        FindCommand command = new FindCommand(predicate);
+        FindContactCommand command = new FindContactCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(ALICE, BENSON), model.getFilteredPersonList());

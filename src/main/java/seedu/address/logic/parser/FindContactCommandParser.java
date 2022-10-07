@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindContactCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -19,22 +19,26 @@ import seedu.address.model.person.PersonContainsKeywordsPredicate;
 import seedu.address.model.person.Phone;
 
 /**
- * Parses input arguments and creates a new FindCommand object
+ * Parses input arguments and creates a new FindContactCommand object
  */
-public class FindCommandParser implements Parser<FindCommand> {
+public class FindContactCommandParser implements Parser<FindContactCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the FindCommand
-     * and returns a FindCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the FindContactCommand
+     * and returns a FindContactCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public FindCommand parse(String args) throws ParseException {
+    public FindContactCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME,
+                        PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
 
-        if (arePrefixesEmpty(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
+        if (arePrefixesEmpty(argMultimap, PREFIX_NAME, PREFIX_ADDRESS,
+                PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                            FindContactCommand.MESSAGE_USAGE));
         }
 
         List<Name> names = getNames(argMultimap);
@@ -42,7 +46,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         List<Email> emails = getEmails(argMultimap);
         List<Address> addresses = getAddresses(argMultimap);
 
-        return new FindCommand(new PersonContainsKeywordsPredicate(names, phones, emails, addresses));
+        return new FindContactCommand(new PersonContainsKeywordsPredicate(names, phones, emails, addresses));
     }
 
     private List<Name> getNames(ArgumentMultimap argMultimap) throws ParseException {
@@ -80,5 +84,4 @@ public class FindCommandParser implements Parser<FindCommand> {
     private static boolean arePrefixesEmpty(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).noneMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
-
 }

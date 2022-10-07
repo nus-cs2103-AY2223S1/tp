@@ -13,7 +13,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindContactCommand;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -22,11 +22,12 @@ import seedu.address.model.person.Phone;
 
 public class FindCommandParserTest {
 
-    private FindCommandParser parser = new FindCommandParser();
+    private FindContactCommandParser parser = new FindContactCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindContactCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -45,7 +46,7 @@ public class FindCommandParserTest {
         List<Email> emailKeywords = Arrays.asList(new Email(emailKeyword1), new Email(emailKeyword2));
         List<Address> addressKeywords = Arrays.asList(new Address(addressKeyword1), new Address(addressKeyword2));
 
-        FindCommand expectedFindCommand = new FindCommand(new PersonContainsKeywordsPredicate(
+        FindContactCommand expectedFindCommand = new FindContactCommand(new PersonContainsKeywordsPredicate(
                 nameKeywords, phoneKeywords, emailKeywords, addressKeywords));
 
         // no leading and trailing whitespaces
