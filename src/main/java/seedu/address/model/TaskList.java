@@ -74,4 +74,11 @@ public class TaskList implements ReadOnlyTaskList {
     public int hashCode() {
         return this.tasks.hashCode();
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if they are the same object.
+            || (other instanceof TaskList
+            && tasks.hashCode() == (((TaskList) other).tasks).hashCode()); // temp only TODO: Implement UniqueTaskList
+    }
 }
