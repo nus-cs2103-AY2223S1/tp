@@ -31,6 +31,15 @@ public class TaskList {
     }
 
     /**
+     * Mark a task from this {@code TaskList} as done.
+     *
+     * @param task The {@code Task} object to be marked from this {@code TaskList}.
+     */
+    public void mark(Task task) {
+        task.markAsDone();
+    }
+
+    /**
      * Deletes a task from this {@code TaskList}.
      *
      * @param task The {@code Task} object to be deleted from this {@code TaskList}.
