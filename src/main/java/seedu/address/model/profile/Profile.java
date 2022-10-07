@@ -97,7 +97,8 @@ public class Profile {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
+        builder.append("\nName: ")
+                .append(getName())
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Email: ")
