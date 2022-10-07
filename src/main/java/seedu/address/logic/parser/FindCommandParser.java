@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
-
 import java.util.Arrays;
 import java.util.stream.Stream;
 
@@ -58,7 +57,8 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
         return isFindByName ? new FindNameCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)))
-                : isFindByAddress ? new FindAddressCommand(new AddressContainsKeywordsPredicate(Arrays.asList(nameKeywords)))
+                : isFindByAddress
+                ? new FindAddressCommand(new AddressContainsKeywordsPredicate(Arrays.asList(nameKeywords)))
                 : new FindPhoneCommand(new PhoneContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 

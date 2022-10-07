@@ -1,21 +1,22 @@
 package seedu.address.model.person;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.testutil.PersonBuilder;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
 
+import seedu.address.testutil.PersonBuilder;
 
 class PhoneContainsKeywordsPredicateTest {
     @Test
     public void test_phoneContainsKeywords_returnsTrue() {
         // One keyword
-        PhoneContainsKeywordsPredicate predicate = new PhoneContainsKeywordsPredicate(Collections.singletonList("89897676"));
+        PhoneContainsKeywordsPredicate predicate =
+                new PhoneContainsKeywordsPredicate(Collections.singletonList("89897676"));
         assertTrue(predicate.test(new PersonBuilder().withPhone("89897676").build()));
 
         // Multiple keywords
