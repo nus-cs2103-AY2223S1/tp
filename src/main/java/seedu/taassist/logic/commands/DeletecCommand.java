@@ -35,28 +35,16 @@ public class DeletecCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (!areAllExistingModuleClasses(model, moduleClasses)) {
+        if (!model.areAllExistingModuleClasses(moduleClasses)) {
             throw new CommandException(String.format(MESSAGE_MODULE_CLASS_DOES_NOT_EXIST,
                     model.getModuleClassList()));
         }
 
-        // Each module class in guaranteed to exist
+        // Each module class is guaranteed to exist
         for (ModuleClass mc : moduleClasses) {
             model.deleteModuleClass(mc);
         }
         return new CommandResult(String.format(MESSAGE_DELETE_MODULE_CLASS_SUCCESS, moduleClasses));
-    }
-
-    /**
-     * Checks if all the {}
-     *
-     * @param model
-     * @param moduleClasses
-     * @return
-     */
-    public boolean areAllExistingModuleClasses(Model model, Set<ModuleClass> moduleClasses) {
-        requireNonNull(model);
-        return moduleClasses.stream().allMatch(model::hasModuleClass);
     }
 
     @Override

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -142,6 +143,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<ModuleClass> getModuleClassList() {
         return taAssist.getModuleClassList();
+    }
+
+    @Override
+    public boolean areAllExistingModuleClasses(Set<ModuleClass> moduleClasses) {
+        return moduleClasses.stream().allMatch(this::hasModuleClass);
     }
 
     //=========== Filtered Student List Accessors =============================================================

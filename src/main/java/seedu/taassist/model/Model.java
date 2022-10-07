@@ -1,6 +1,7 @@
 package seedu.taassist.model;
 
 import java.nio.file.Path;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import javafx.beans.property.SimpleStringProperty;
@@ -107,6 +108,9 @@ public interface Model {
 
     /** Returns an unmodifiable view of the module class list */
     ObservableList<ModuleClass> getModuleClassList();
+
+    /** Checks if all {@code moduleClass} in {@code moduleClasses} exists */
+    boolean areAllExistingModuleClasses(Set<ModuleClass> moduleClasses);
 
     /** Enters focus mode. */
     void enterFocusMode(ModuleClass classToFocus);
