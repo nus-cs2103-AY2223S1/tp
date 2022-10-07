@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,6 +15,8 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskList;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -93,6 +96,34 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String taskDescription} into a {@code Task}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code taskDescription} is invalid.
+     */
+    public static Task parseTask(String taskDescription) throws ParseException {
+        requireNonNull(taskDescription);
+        String trimmedTaskDescription = taskDescription.trim();
+        if (!Task.isValidTaskDescription(trimmedTaskDescription)) {
+            throw new ParseException(Task.MESSAGE_CONSTRAINTS);
+        }
+        return new Task(trimmedTaskDescription);
+    }
+
+    /**
+     * Parses {@code Collection<String> tasks} into a {@code TaskList}.
+     */
+    public static TaskList parseTasks(Collection<String> taskDescriptions) throws ParseException {
+        requireNonNull(taskDescriptions);
+        final ArrayList<Task> tasks = new ArrayList<>();
+        final TaskList taskList = new TaskList(tasks);
+        for (String taskDescription : taskDescriptions) {
+            taskList.add(parseTask(taskDescription));
+        }
+        return taskList;
     }
 
     /**

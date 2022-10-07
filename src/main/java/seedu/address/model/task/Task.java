@@ -5,13 +5,20 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Task for a Patient.
- * Guarantees: immutable;
+ * Guarantees: immutable; is always valid
  */
 public class Task {
-    public static final String MESSAGE_CONSTRAINTS =
-            "Task Description should only contain alphanumeric characters and spaces";
+    // consideration for v1.3: display status of task, which is to be
+    // set in constructor since task is immutable
 
-    public static final String VALIDATION_REGEX = "[\\p{Alnum} ]*";
+    public static final String MESSAGE_CONSTRAINTS = "Tasks can take any values, and it should not be blank";
+
+    /*
+     * The first character of the task must not be a whitespace,
+     * otherwise " " (a blank string) becomes a valid input.
+     */
+    public static final String VALIDATION_REGEX = "[^\\s].*";
+
     public final String taskDescription;
 
     /**
@@ -26,10 +33,7 @@ public class Task {
     }
 
     /**
-     * Checks the validity of the task description.
-     *
-     * @param test the string to be tested.
-     * @return true if valid.
+     * Returns true if a given string is a valid task description.
      */
     public static boolean isValidTaskDescription(String test) {
         return test.matches(VALIDATION_REGEX);
