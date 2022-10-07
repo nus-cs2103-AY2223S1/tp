@@ -17,6 +17,7 @@ public class ClassCommand extends Command {
             + "Parameters: CLASS_NAME\n"
             + "Example: " + COMMAND_WORD + " CS1101S";
     public static final String MESSAGE_ENTERED_FOCUS_MODE = "Entered focus mode for %s";
+    public static final String MESSAGE_CLASS_NOT_FOUND = "Class not found: %s";
 
     private final ModuleClass targetClass;
 
@@ -30,6 +31,11 @@ public class ClassCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (!model.hasModuleClass(targetClass)) {
+            throw new CommandException(String.format(MESSAGE_CLASS_NOT_FOUND, targetClass));
+        }
+
         model.enterFocusMode(targetClass);
         return new CommandResult(String.format(MESSAGE_ENTERED_FOCUS_MODE, targetClass));
     }
