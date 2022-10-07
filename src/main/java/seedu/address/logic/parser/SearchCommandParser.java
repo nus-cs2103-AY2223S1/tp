@@ -72,30 +72,23 @@ public class SearchCommandParser implements Parser<SearchCommand> {
             throws ParseException {
         List<String> prefixes = new ArrayList<>();
         List<List<String>> keywords = new ArrayList<>();
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            prefixes.add(PREFIX_NAME.getPrefix());
-            keywords.add(argMultimap.getAllValues(PREFIX_NAME));
-        }
-        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            prefixes.add(PREFIX_PHONE.getPrefix());
-            keywords.add(argMultimap.getAllValues(PREFIX_PHONE));
-        }
-        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            prefixes.add(PREFIX_EMAIL.getPrefix());
-            keywords.add(argMultimap.getAllValues(PREFIX_EMAIL));
-        }
-        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            prefixes.add(PREFIX_ADDRESS.getPrefix());
-            keywords.add(argMultimap.getAllValues(PREFIX_ADDRESS));
-        }
-        if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
-            prefixes.add(PREFIX_TAG.getPrefix());
-            keywords.add(argMultimap.getAllValues(PREFIX_TAG));
-        }
+        populatePrefixAndKeywordsList(PREFIX_NAME, argMultimap, prefixes, keywords);
+        populatePrefixAndKeywordsList(PREFIX_PHONE, argMultimap, prefixes, keywords);
+        populatePrefixAndKeywordsList(PREFIX_EMAIL, argMultimap, prefixes, keywords);
+        populatePrefixAndKeywordsList(PREFIX_ADDRESS, argMultimap, prefixes, keywords);
+        populatePrefixAndKeywordsList(PREFIX_TAG, argMultimap, prefixes, keywords);
         if (prefixes.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
         }
         return new Pair<>(prefixes, keywords);
+    }
+
+    private void populatePrefixAndKeywordsList(Prefix prefix, ArgumentMultimap argMultimap,
+                                               List<String> prefixes, List<List<String>> keywords) {
+        if (argMultimap.getValue(prefix).isPresent()) {
+            prefixes.add(prefix.getPrefix());
+            keywords.add(argMultimap.getAllValues(prefix));
+        }
     }
 
 }
