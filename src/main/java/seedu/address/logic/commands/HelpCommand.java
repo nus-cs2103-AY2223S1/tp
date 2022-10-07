@@ -1,6 +1,10 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.commands.contact.*;
+import seedu.address.logic.commands.contact.AddContactCommand;
+import seedu.address.logic.commands.contact.DeleteContactCommand;
+import seedu.address.logic.commands.contact.EditContactCommand;
+import seedu.address.logic.commands.contact.FindContactCommand;
+import seedu.address.logic.commands.contact.ListContactCommand;
 import seedu.address.model.Model;
 
 /**
