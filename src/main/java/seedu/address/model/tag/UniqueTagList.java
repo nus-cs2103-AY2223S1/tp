@@ -29,8 +29,9 @@ public class UniqueTagList implements Iterable<Tag> {
 
     /**
      * Edits the tag.
-     * @param oldTag The tag to be changed.
-     * @param newTag The tag to be changed into.
+     *
+     * @param oldTag The tag to be changed
+     * @param newTag The tag to be changed into
      */
     public void editTag(Tag oldTag, Tag newTag) {
         requireAllNonNull(oldTag, newTag);
@@ -39,9 +40,10 @@ public class UniqueTagList implements Iterable<Tag> {
     }
 
     /**
-     * Checks if the tag exists
+     * Checks if the tag exists.
+     *
      * @param tag The tag to be checked
-     * @return True if the tag exists. False if otherwise.
+     * @return True if the tag exists. False if otherwise
      */
     public boolean hasTag(Tag tag) {
         requireNonNull(tag);
@@ -54,8 +56,9 @@ public class UniqueTagList implements Iterable<Tag> {
     }
 
     /**
-     * Changes the old tags to a new list of tags
-     * @param tags The new list of tags.
+     * Changes the old tags to a new list of tags.
+     *
+     * @param tags The new list of tags
      */
     public void setTags(List<Tag> tags) {
         requireAllNonNull(tags);
@@ -68,6 +71,7 @@ public class UniqueTagList implements Iterable<Tag> {
 
     /**
      * Returns an unmodifiable list of tags.
+     *
      * @return The list of unmodifiable tags.
      */
     public ObservableList<Tag> asUnmodifiableObservableList() {

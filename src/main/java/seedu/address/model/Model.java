@@ -53,7 +53,7 @@ public interface Model {
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
     /**
-     * Returns the AddressBook
+     * Returns the AddressBook.
      */
     ReadOnlyAddressBook getAddressBook();
 
@@ -107,7 +107,7 @@ public interface Model {
     void reverseSort();
 
     /**
-     * Returns an unmodifiable view of the filtered person list
+     * Returns an unmodifiable view of the filtered person list.
      */
     ObservableList<Person> getFilteredPersonList();
 
@@ -136,8 +136,8 @@ public interface Model {
     /**
      * Changes the oldTag to the newTag.
      *
-     * @param oldTag The tag to be changed.
-     * @param newTag The tag to be changed into.
+     * @param oldTag The tag to be changed
+     * @param newTag The tag to be changed into
      */
     void editTag(Tag oldTag, Tag newTag);
 
