@@ -1,21 +1,25 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-
-import seedu.address.model.person.PersonContainsAttributePredicate;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.FIONA;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.*;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.person.PersonContainsAttributePredicate;
+import seedu.address.model.UserPrefs;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code ViewCommand}.
