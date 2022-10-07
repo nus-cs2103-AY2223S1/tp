@@ -35,53 +35,53 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' FRIDAY file path.
      */
-    Path getAddressBookFilePath();
+    Path getFridayFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' FRIDAY file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setFridayFilePath(Path fridayFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces FRIDAY's data with the data in {@code friday}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setFriday(ReadOnlyFriday friday);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns FRIDAY */
+    ReadOnlyFriday getFriday();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a student with the same identity as {@code student} exists in FRIDAY.
      */
-    boolean hasPerson(Student student);
+    boolean hasStudent(Student student);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given student.
+     * The student must exist in STUDENT.
      */
-    void deletePerson(Student target);
+    void deleteStudent(Student target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given student.
+     * {@code student} must not already exist in FRIDAY.
      */
-    void addPerson(Student student);
+    void addStudent(Student student);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces the given student {@code target} with {@code editedStudent}.
+     * {@code target} must exist in FRIDAY.
+     * The student identity of {@code editedStudent} must not be the same as another existing student in FRIDAY.
      */
-    void setPerson(Student target, Student editedStudent);
+    void setStudent(Student target, Student editedStudent);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Student> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered student list */
+    ObservableList<Student> getFilteredStudentList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered student list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Student> predicate);
+    void updateFilteredStudentList(Predicate<Student> predicate);
 }

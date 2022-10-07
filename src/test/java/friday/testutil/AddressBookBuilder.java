@@ -1,6 +1,6 @@
 package friday.testutil;
 
-import friday.model.AddressBook;
+import friday.model.Friday;
 import friday.model.student.Student;
 
 /**
@@ -10,13 +10,13 @@ import friday.model.student.Student;
  */
 public class AddressBookBuilder {
 
-    private AddressBook addressBook;
+    private Friday addressBook;
 
     public AddressBookBuilder() {
-        addressBook = new AddressBook();
+        addressBook = new Friday();
     }
 
-    public AddressBookBuilder(AddressBook addressBook) {
+    public AddressBookBuilder(Friday addressBook) {
         this.addressBook = addressBook;
     }
 
@@ -28,7 +28,7 @@ public class AddressBookBuilder {
         return this;
     }
 
-    public AddressBook build() {
+    public Friday build() {
         return addressBook;
     }
 }

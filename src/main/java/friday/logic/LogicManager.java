@@ -12,7 +12,7 @@ import friday.logic.commands.exceptions.CommandException;
 import friday.logic.parser.AddressBookParser;
 import friday.logic.parser.exceptions.ParseException;
 import friday.model.Model;
-import friday.model.ReadOnlyAddressBook;
+import friday.model.ReadOnlyFriday;
 import friday.model.student.Student;
 import friday.storage.Storage;
 import javafx.collections.ObservableList;
@@ -46,7 +46,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveAddressBook(model.getFriday());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -55,18 +55,18 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyFriday getAddressBook() {
+        return model.getFriday();
     }
 
     @Override
     public ObservableList<Student> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+        return model.getFilteredStudentList();
     }
 
     @Override
     public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+        return model.getFridayFilePath();
     }
 
     @Override

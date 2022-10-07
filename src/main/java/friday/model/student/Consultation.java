@@ -6,12 +6,12 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDate;
 
 /**
- * Represents a Person's email in the address book.
+ * Represents a Student's consultations in FRIDAY.
  * Guarantees: immutable; is valid as declared in {@link #isValidConsultation(String)}
  */
 public class Consultation {
 
-    public static final String MESSAGE_CONSTRAINTS = "Desired dates for Mastery Checks should be in the format:"
+    public static final String MESSAGE_CONSTRAINTS = "Desired dates for consultations should be in the format:"
             + "YYYY-MM-DD";
     public static final String VALIDATION_REGEX = "^((19|2[0-9])[0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$";
 
@@ -20,7 +20,7 @@ public class Consultation {
     /**
      * Constructs an {@code Consultation}.
      *
-     * @param desiredDate A valid email address.
+     * @param desiredDate A valid date.
      */
     public Consultation(LocalDate desiredDate) {
         requireNonNull(desiredDate);
@@ -29,10 +29,17 @@ public class Consultation {
     }
 
     /**
-     * Returns if a given string is a valid email.
+     * Returns if a given string is a valid consultation.
      */
     public static boolean isValidConsultation(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if the given consultation is a dummy value.
+     */
+    public boolean isDummyConsultation() {
+        return value.equals(LocalDate.of(2001, 01, 01));
     }
 
     /**
@@ -46,7 +53,8 @@ public class Consultation {
 
     @Override
     public String toString() {
-        return String.format("Consultation: %s", value.toString());
+        String str = isDummyConsultation() ? "" : value.toString();
+        return String.format("Consultation: %s", str);
     }
 
     @Override

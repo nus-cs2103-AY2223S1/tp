@@ -3,7 +3,7 @@ package friday.logic.commands;
 import static friday.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static friday.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static friday.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static friday.testutil.TypicalPersons.getTypicalAddressBook;
+import static friday.testutil.TypicalStudents.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,7 +23,7 @@ public class ListCommandTest {
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel = new ModelManager(model.getFriday(), new UserPrefs());
     }
 
     @Test

@@ -9,7 +9,7 @@ import static friday.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static friday.logic.commands.CommandTestUtil.TELEGRAMHANDLE_DESC_AMY;
  */
 import static friday.testutil.Assert.assertThrows;
-// import static friday.testutil.TypicalPersons.AMY;
+// import static friday.testutil.TypicalStudents.AMY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
@@ -26,7 +26,7 @@ import friday.logic.commands.exceptions.CommandException;
 import friday.logic.parser.exceptions.ParseException;
 import friday.model.Model;
 import friday.model.ModelManager;
-import friday.model.ReadOnlyAddressBook;
+import friday.model.ReadOnlyFriday;
 import friday.model.UserPrefs;
 // import friday.model.student.Student;
 import friday.storage.JsonAddressBookStorage;
@@ -133,7 +133,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
                                       String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getFriday(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -159,7 +159,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+        public void saveAddressBook(ReadOnlyFriday addressBook, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

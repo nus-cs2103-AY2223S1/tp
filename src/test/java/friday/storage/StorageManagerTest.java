@@ -10,10 +10,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import friday.commons.core.GuiSettings;
-import friday.model.AddressBook;
-import friday.model.ReadOnlyAddressBook;
+import friday.model.Friday;
+import friday.model.ReadOnlyFriday;
 import friday.model.UserPrefs;
-import friday.testutil.TypicalPersons;
+import friday.testutil.TypicalStudents;
 
 public class StorageManagerTest {
 
@@ -54,10 +54,10 @@ public class StorageManagerTest {
          * {@link JsonAddressBookStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonMasteryCheckBookStorageTest} class.
          */
-        AddressBook original = TypicalPersons.getTypicalAddressBook();
+        Friday original = TypicalStudents.getTypicalAddressBook();
         storageManager.saveAddressBook(original);
-        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
-        assertEquals(original, new AddressBook(retrieved));
+        ReadOnlyFriday retrieved = storageManager.readAddressBook().get();
+        assertEquals(original, new Friday(retrieved));
     }
 
     @Test

@@ -13,10 +13,10 @@ import friday.commons.util.ConfigUtil;
 import friday.commons.util.StringUtil;
 import friday.logic.Logic;
 import friday.logic.LogicManager;
-import friday.model.AddressBook;
+import friday.model.Friday;
 import friday.model.Model;
 import friday.model.ModelManager;
-import friday.model.ReadOnlyAddressBook;
+import friday.model.ReadOnlyFriday;
 import friday.model.ReadOnlyUserPrefs;
 import friday.model.UserPrefs;
 import friday.model.util.SampleDataUtil;
@@ -74,8 +74,8 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyFriday> addressBookOptional;
+        ReadOnlyFriday initialData;
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
@@ -84,10 +84,10 @@ public class MainApp extends Application {
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            initialData = new Friday();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            initialData = new Friday();
         }
 
         return new ModelManager(initialData, userPrefs);
