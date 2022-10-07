@@ -9,15 +9,15 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.AddCustomerCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteCommissionCommand;
+import seedu.address.logic.commands.DeleteCustomerCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.OpenCustomerCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-
 /**
  * Parses user input.
  */
@@ -48,11 +48,14 @@ public class AddressBookParser {
         case AddCustomerCommand.COMMAND_WORD:
             return new AddCustomerCommandParser().parse(arguments);
 
+        case OpenCustomerCommand.COMMAND_WORD:
+            return new OpenCustomerCommandParser().parse(arguments);
+
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+        case DeleteCustomerCommand.COMMAND_WORD:
+            return new DeleteCustomerCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
