@@ -33,6 +33,14 @@ public class Module {
         this.links.addAll(links);
     }
 
+    /**
+     * Adds a {@code Module} with module code, without module description and without any
+     * associated tasks and links.
+     */
+    public Module(ModuleCode moduleCode) {
+        this(moduleCode, new HashSet<>(), new HashSet<>());
+    }
+
     public ModuleCode getModuleCode() {
         return moduleCode;
     }
