@@ -397,7 +397,7 @@ Guarantees: TutHub application will close.
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-* **Tutor Profile**: A profile containing the tutor's details, such as `NAME`, `PHONE_NUMBER`, `GENDER`, `EMAIL`, etc.
+* **Tutor Profile**: A profile containing the tutor's details, such as `NAME`, `PHONE_NUMBER`, `YEAR`, `EMAIL`, `MODULE`, etc.
 
 --------------------------------------------------------------------------------------------------------------------
 
