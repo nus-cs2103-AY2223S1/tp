@@ -6,7 +6,7 @@
 * This is **a project for Software Engineering (SE) students**.<br>
   Example usages:
   * As a tech lead, you can edit the team information and team members in the team
-  * As a tech lead, you can assign tasks to each team. 
+  * As a tech lead, you can assign tasks to each team.
 * The project simulates an ongoing software project for a desktop application used for managing teams in a work place by tech leads.
   * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
   * It comes with a **reasonable level of user and developer documentation**.

@@ -261,7 +261,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * has a need to manage a significant number of teams
 * prefer desktop apps over other types
 * can type fast
-* has a need to distribute and track a significant number of tasks 
+* has a need to distribute and track a significant number of tasks
 
 
 **Value proposition**: Create teams and distribute members amongst teams. Assign and track tasks to teams.
@@ -323,16 +323,16 @@ Step 1 and 2 is repeated until all members have been added
 
 **Extensions:**
 
-* 1a. Member with the same name already exists 
+* 1a. Member with the same name already exists
 
     * 1a1. EZLead throws an error signifying duplicate name
-  
+
       Use case continues at step 1.
-  
+
 * 1b. Member with specified name does not exist
 
     * 1b1. EZLead throws an error signifying name does not exist
-  
+
       Use case continues at step 1
 
 
