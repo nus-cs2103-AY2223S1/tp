@@ -14,10 +14,10 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_UNIVERSITY_DE
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_KIV;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_REJECTED;
+import static seedu.address.logic.commands.CommandTestUtil.UNIVERSITY_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.UNIVERSITY_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;

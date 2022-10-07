@@ -153,7 +153,7 @@ public class AddCommandParserTest {
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + UNIVERSITY_DESC_BOB + TAG_DESC_KIV + TAG_DESC_REJECTED,
+                + ADDRESS_DESC_BOB + UNIVERSITY_DESC_BOB + TAG_DESC_KIV + TAG_DESC_REJECTED
                 + ADDRESS_DESC_BOB + TAG_DESC_KIV + TAG_DESC_REJECTED,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
