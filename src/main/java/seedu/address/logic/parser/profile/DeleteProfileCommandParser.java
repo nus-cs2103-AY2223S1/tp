@@ -25,7 +25,7 @@ public class DeleteProfileCommandParser implements Parser<DeleteProfileCommand> 
     public DeleteProfileCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_OPTION);
         String indexInput = argMultimap.getOptionArgs();
-        if (indexInput.equals("")) {
+        if (indexInput.isEmpty()) {
             throw new ParseException(
                     String.format(DeleteProfileCommand.MESSAGE_MISSING_INDEX, DeleteProfileCommand.MESSAGE_USAGE));
         }
