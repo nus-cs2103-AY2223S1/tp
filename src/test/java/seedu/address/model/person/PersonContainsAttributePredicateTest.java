@@ -5,8 +5,6 @@ import seedu.address.logic.commands.ViewCommand;
 import seedu.address.testutil.PersonBuilder;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
