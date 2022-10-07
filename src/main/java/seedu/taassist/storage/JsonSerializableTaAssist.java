@@ -22,6 +22,7 @@ class JsonSerializableTaAssist {
 
     public static final String MESSAGE_DUPLICATE_STUDENT = "Students list contains duplicate student(s).";
     public static final String MESSAGE_DUPLICATE_MODULE_CLASS = "Classes list contains duplicate class(es).";
+    public static final String MESSAGE_CLASS_NOT_FOUND = "Class for some student(s) not found in class(es) list.";
 
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
     private final List<JsonAdaptedModuleClass> moduleClasses = new ArrayList<>();
@@ -55,19 +56,24 @@ class JsonSerializableTaAssist {
      */
     public TaAssist toModelType() throws IllegalValueException {
         TaAssist taAssist = new TaAssist();
-        for (JsonAdaptedStudent jsonAdaptedStudent : students) {
-            Student student = jsonAdaptedStudent.toModelType();
-            if (taAssist.hasStudent(student)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_STUDENT);
-            }
-            taAssist.addStudent(student);
-        }
         for (JsonAdaptedModuleClass jsonAdaptedModuleClass : moduleClasses) {
             ModuleClass moduleClass = jsonAdaptedModuleClass.toModelType();
             if (taAssist.hasModuleClass(moduleClass)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_MODULE_CLASS);
             }
             taAssist.addModuleClass(moduleClass);
+        }
+        for (JsonAdaptedStudent jsonAdaptedStudent : students) {
+            Student student = jsonAdaptedStudent.toModelType();
+            if (taAssist.hasStudent(student)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_STUDENT);
+            }
+            for (ModuleClass moduleClass : student.getModuleClasses()) {
+                if (!taAssist.hasModuleClass(moduleClass)) {
+                    throw new IllegalValueException(MESSAGE_CLASS_NOT_FOUND);
+                }
+            }
+            taAssist.addStudent(student);
         }
         return taAssist;
     }
