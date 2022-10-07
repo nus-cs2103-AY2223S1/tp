@@ -30,7 +30,7 @@ public class DeleteProfileCommandParser implements Parser<DeleteProfileCommand> 
                     String.format(DeleteProfileCommand.MESSAGE_MISSING_INDEX, DeleteProfileCommand.MESSAGE_USAGE));
         }
         try {
-            Index index = ParserUtil.parseIndex(argMultimap.getOptionArgs());
+            Index index = ParserUtil.parseIndex(indexInput);
             return new DeleteProfileCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
