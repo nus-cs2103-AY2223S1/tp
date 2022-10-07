@@ -6,7 +6,7 @@ import static swift.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import swift.logic.commands.AddCommand;
+import swift.logic.commands.AddContactCommand;
 import swift.logic.commands.ClearCommand;
 import swift.logic.commands.Command;
 import swift.logic.commands.DeleteCommand;
@@ -44,7 +44,7 @@ public class AddressBookParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
+        case AddContactCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
