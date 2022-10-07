@@ -1,7 +1,5 @@
 package seedu.address.model.person.user;
 
-import seedu.address.model.person.Person;
-
 /**
  * Represents an Empty User field, which is present in the address book when ConnectNUS is first opened or when the
  * User has been deleted.

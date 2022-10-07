@@ -1,15 +1,14 @@
 package seedu.address.logic.commands;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.person.user.EmptyUser;
-import seedu.address.model.person.user.User;
-
-import java.util.List;
-
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.person.user.User;
+
+/**
+ * Deletes the user from the address book.
+ */
 public class DeleteUserCommand extends DeleteCommand {
 
     public static final String MESSAGE_DELETE_USER_SUCCESS = "Deleted User: %1$s";
