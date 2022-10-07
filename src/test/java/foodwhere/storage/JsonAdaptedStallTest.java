@@ -17,7 +17,7 @@ import foodwhere.model.stall.Name;
 public class JsonAdaptedStallTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_ADDRESS = " ";
-    private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_DETAIL = "#friend";
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
@@ -66,9 +66,9 @@ public class JsonAdaptedStallTest {
     }
 
     @Test
-    public void toModelType_invalidTags_throwsIllegalValueException() {
+    public void toModelType_invalidDetails_throwsIllegalValueException() {
         List<JsonAdaptedDetail> invalidDetails = new ArrayList<>(VALID_DETAILS);
-        invalidDetails.add(new JsonAdaptedDetail(INVALID_TAG));
+        invalidDetails.add(new JsonAdaptedDetail(INVALID_DETAIL));
         JsonAdaptedStall stall = new JsonAdaptedStall(VALID_NAME, VALID_ADDRESS,
                 invalidDetails, new ArrayList<>());
         assertThrows(IllegalValueException.class, stall::toModelType);

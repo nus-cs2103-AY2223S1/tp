@@ -56,11 +56,12 @@ public class JsonAddressBookStorageTest {
         assertThrows(DataConversionException.class, () -> readAddressBook("invalidStallAddressBook.json"));
     }
 
-    @Ignore("tests phone field, need to update file")
+    @Test
     public void readAddressBook_invalidAndValidStallAddressBook_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidStallAddressBook.json"));
     }
 
+    @Test
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
         AddressBook original = getTypicalAddressBook();
