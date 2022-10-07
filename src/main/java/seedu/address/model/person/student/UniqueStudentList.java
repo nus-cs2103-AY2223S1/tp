@@ -1,4 +1,5 @@
 package seedu.address.model.person.student;
 
-public class UniqueStudentList {
-}
+import seedu.address.model.person.UniquePersonList;
+
+public class UniqueStudentList extends UniquePersonList {}
