@@ -56,6 +56,7 @@ public class OpenCustomerCommandTest {
         String expectedMessage = String.format(OpenCustomerCommand.MESSAGE_OPEN_CUSTOMER_SUCCESS, customerToOpen);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        showCustomerAtIndex(expectedModel, INDEX_FIRST_CUSTOMER);
 
         assertCommandSuccess(openCommand, model, expectedMessage, expectedModel);
     }
