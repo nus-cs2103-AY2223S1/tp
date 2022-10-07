@@ -22,10 +22,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Ong Zheng Long
 
-<img src="images/ZhengLong3.png" width="200px">
+<img src="images/zhenglong3.png" width="200px">
 
 [[github](https://github.com/ZhengLong3)]
-[[portfolio](team/ZhengLong3.md)]
+[[portfolio](team/zhenglong3.md)]
 
 * Role: Developer
 * Responsibilities: Data
