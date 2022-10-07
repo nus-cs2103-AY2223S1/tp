@@ -8,7 +8,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 public class Task {
 
     private final Name name;
-    private boolean isDone;
+    private Boolean isDone;
 
     /**
      * Constructs an unfinished {@code Task}.
@@ -21,12 +21,40 @@ public class Task {
         this.isDone = false;
     }
 
+    /**
+     * Constructs a {@code Task} with specified state.
+     *
+     * @param name A valid name.
+     * @param isDone The state.
+     */
+    public Task(Name name, boolean isDone) {
+        requireAllNonNull(name);
+        this.name = name;
+        this.isDone = isDone;
+    }
+
+
     public Name getName() {
         return this.name;
     }
 
     public boolean getIsDone() {
         return this.isDone;
+    }
+
+    /**
+     * Marks the task as done.
+     */
+    public void markAsDone() {
+        isDone = true;
+    }
+
+    /**
+     * Returns 'X' if done or " " otherwise.
+     * @return String "X" if the task is done.
+     */
+    public String getStatusIcon() {
+        return (isDone ? "X" : " ");
     }
 
     /**
@@ -41,6 +69,6 @@ public class Task {
 
     @Override
     public String toString() {
-        return this.name.toString();
+        return "[" + this.getStatusIcon() + "] " + this.name.toString();
     }
 }

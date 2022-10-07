@@ -3,8 +3,8 @@ layout: page
 title: User Guide
 ---
 
-EZLead is a **desktop app for tech leads to manage teams optimized for use via a Command Line Interface (CLI)**. 
-As a tech lead, you will be able to easily keep track of all the teams under you as well as each team's current and 
+EZLead is a **desktop app for tech leads to manage teams optimized for use via a Command Line Interface (CLI)**.
+As a tech lead, you will be able to easily keep track of all the teams under you as well as each team's current and
 future tasks. With our app, teams management would be easier than ever.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -69,8 +69,12 @@ Edits an employee's details.
 Format: `employee edit n/NAME e/EMAIL c/CONTACT-NUMBER`
 
 Examples:
-* `employee edit n/John Doe e/johndoe1@example.com c/12345678` 
+* `employee edit n/John Doe e/johndoe1@example.com c/12345678
+<<<<<<< HEAD
+  Edits the employee John Doe's email to johndoe1@example.com and contact number to 12345678.
+=======
 Edits the employee John Doe's email to johndoe1@example.com and contact number to 12345678.
+>>>>>>> master
 
 ### Deleting an employee: `employee delete`
 
@@ -142,8 +146,12 @@ Adds a new task with a deadline.
 Format: `task deadline t/TASK-DESCRIPTION d/DEADLINE`
 
 Examples:
-* `task deadline t/Implement a payment system d/12/12/2023` Adds a new task with 
+* `task deadline t/Implement a payment system d/12/12/2023` Adds a new task with
+<<<<<<< HEAD
+  the description "Implement a payment system" and the deadline of 12th December 2023.
+=======
 the description "Implement a payment system" and the deadline of 12th December 2023.
+>>>>>>> master
 
 ### Updating a task description: `task update`
 
@@ -152,8 +160,12 @@ Updates a task's description.
 Format: `task update o/OLD-TASK-DESCRIPTION n/NEW-TASK-DESCRIPTION`
 
 Examples:
-* `task update o/Implement an authentication system n/Implement an authentication system with encryption` 
+* `task update o/Implement an authentication system n/Implement an authentication system with encryption`
+<<<<<<< HEAD
+  Updates the task "Implement an authentication system" to "Implement an authentication system with encryption".
+=======
 Updates the task "Implement an authentication system" to "Implement an authentication system with encryption".
+>>>>>>> master
 
 ### Assigning a task to a team: `task assign`
 
@@ -163,7 +175,7 @@ Format: `task assign t/TASK-DESCRIPTION n/TEAM-NAME`
 
 Examples:
 * `task assign t/Create GUI for the Duke app n/UIDevelopers` Assigns the task "Create GUI for the Duke app" to the
-team UIDevelopers.
+  team UIDevelopers.
 
 ### Deleting a task `task delete`
 

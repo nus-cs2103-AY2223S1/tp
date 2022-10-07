@@ -3,6 +3,7 @@ package seedu.address.model.team;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import seedu.address.model.person.Person;
@@ -19,7 +20,7 @@ public class Team {
     // Identity fields
     private final Name name;
     private ArrayList<Person> members;
-    private TaskList tasks;
+    private TaskList tasks = new TaskList();
 
 
 
@@ -33,8 +34,22 @@ public class Team {
         members = new ArrayList<>();
     }
 
+    /**
+     * Create a team with certain preset {@code task}.
+     * @param name A valid team name.
+     * @param tasks A list with tasks.
+     */
+    public Team(Name name, List<Task> tasks) {
+        this.name = name;
+        this.tasks.addAll(tasks);
+    }
+
     public Name getName() {
         return name;
+    }
+
+    public TaskList getTasks() {
+        return tasks;
     }
 
     public void addMember(Person p) {
@@ -65,6 +80,22 @@ public class Team {
      */
     public void addTask(Task t) {
         tasks.add(t);
+    }
+
+    /**
+     * Marks a task of the team as done.
+     * @param t
+     */
+    public void markTask(Task t) {
+        tasks.mark(t);
+    }
+
+    /**
+     * Deletes a task to this team.
+     * @param t
+     */
+    public void deleteTask(Task t) {
+        tasks.delete(t);
     }
 
     /**

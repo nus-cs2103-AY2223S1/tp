@@ -17,7 +17,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.task.Task;
-import seedu.address.model.team.Name;
 import seedu.address.model.team.Team;
 
 /**
@@ -46,9 +45,7 @@ public class ModelManager implements Model {
         // Temp code
         // todo replace this code
         ObservableList<Team> team = FXCollections.observableArrayList();
-        team.add(0, new Team(new Name("test")));
-        filteredTeams = new FilteredList<>(team);
-        System.out.println("tet");
+        filteredTeams = new FilteredList<>(this.addressBook.getTeamList());
 
     }
 
@@ -155,6 +152,18 @@ public class ModelManager implements Model {
         addressBook.addTask(index, task);
     }
 
+    @Override
+    public void markTask(Index index, Task task) {
+        requireAllNonNull(index, task);
+        addressBook.markTask(index, task);
+    }
+
+    @Override
+    public void deleteTask(Index index, Task task) {
+        requireAllNonNull(index, task);
+        addressBook.deleteTask(index, task);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -202,7 +211,7 @@ public class ModelManager implements Model {
         return filteredTeams;
     }
 
-    public Team getTeam(Name name) {
+    public Team getTeam(seedu.address.model.team.Name name) {
         List<Team> teams = getFilteredTeamList();
         requireNonNull(name);
         for (int i = 0; i < teams.size(); i++) {

@@ -139,6 +139,18 @@ public class AddressBook implements ReadOnlyAddressBook {
         teams.addTask(index.getZeroBased(), task);
     }
 
+    //// task-level operations
+
+    public void markTask(Index index, Task task) {
+        teams.markTask(index.getZeroBased(), task);
+    }
+
+    //// task-level operations
+
+    public void deleteTask(Index index, Task task) {
+        teams.deleteTask(index.getZeroBased(), task);
+    }
+
     //// util methods
 
     @Override
