@@ -3,6 +3,9 @@ package seedu.address.model.task;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/**
+ * A list of Tasks that does not allow nulls.
+ */
 public class TaskList {
     private static ArrayList<Task> tempStorage = new ArrayList<>();
 
@@ -10,6 +13,11 @@ public class TaskList {
     // TaskUi is temporary until we update Ui.
     // private Storage saveFile;
 
+    /**
+     * Adds a Task to the TaskList.
+     * @param task The Task tp be added.
+     * @return A String describing the number of tasks in the TaskList.
+     */
     public String addTask(Task task) {
 
         tempStorage.add(task);

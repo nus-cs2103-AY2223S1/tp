@@ -1,5 +1,9 @@
 package seedu.address.model.task;
 
+
+/**
+ * Represents a Task in the TaskList.
+ */
 public class Task {
     protected Description description;
     protected boolean isDone;
@@ -25,7 +29,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return "[" + this.getStatusIcon()  + "] " + description;
+        return "[" + this.getStatusIcon() + "] " + description;
     }
 
     /**

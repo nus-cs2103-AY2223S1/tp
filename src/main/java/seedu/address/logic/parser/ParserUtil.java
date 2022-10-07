@@ -123,6 +123,12 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Parses a {@code String description} into a {@code Description}.
+     * @param description The String to be parsed.
+     * @return A Description instance
+     * @throws ParseException if the given description is invalid.
+     */
     public static Description parseDescription(String description) throws ParseException {
         requireNonNull(description);
         String trimmedDescription = description.trim();

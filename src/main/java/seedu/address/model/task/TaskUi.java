@@ -11,7 +11,7 @@ public class TaskUi {
      * @return A greeting to be displayed to the user.
      */
     public static String introduction() {
-        String intro = "Hello! I'm Duke \n" + "What can I do for you?";
+        String intro = "Hello! I'm YellowBook \n" + "What can I do for you?";
 
         return intro;
     }
