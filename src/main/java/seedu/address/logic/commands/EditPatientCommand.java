@@ -218,7 +218,6 @@ public class EditPatientCommand extends Command {
             // state check
             EditPatientDescriptor e = (EditPatientDescriptor) other;
 
-            // TODO: add support for tasks
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())

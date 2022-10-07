@@ -28,6 +28,22 @@ public class TaskList {
         internalTaskList.add(task);
     }
 
+    // TODO: add edit method
+
+    /**
+     * Removes the task from the list.
+     */
+    public Task delete(int index) {
+        return internalTaskList.remove(index);
+    }
+
+    /**
+     * Returns the size of the list.
+     */
+    public int size() {
+        return internalTaskList.size();
+    }
+
     public boolean isEmpty() {
         return this.internalTaskList.isEmpty();
     }
