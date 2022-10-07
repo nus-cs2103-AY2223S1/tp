@@ -72,9 +72,9 @@ public class CommandBox extends UiPart<Region> {
 
     /**
      * Displays a list of autocomplete entries.
+     * Solution below adapted from https://stackoverflow.com/questions/36861056/javafx-textfield-auto-suggestions.
      */
     private void setAutocompleteListener() {
-        // Solution below adapted from https://stackoverflow.com/questions/36861056/javafx-textfield-auto-suggestions
         commandTextField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -103,11 +103,11 @@ public class CommandBox extends UiPart<Region> {
 
     /**
      * Generates a list of autocomplete entries with the given search result.
+     * Solution below adapted from https://stackoverflow.com/questions/36861056/javafx-textfield-auto-suggestions.
      *
      * @param searchResult The list of matching strings
      */
     private void populatePopup(List<String> searchResult) {
-        // Solution below adapted from https://stackoverflow.com/questions/36861056/javafx-textfield-auto-suggestions
         List<CustomMenuItem> menuItems = new LinkedList<>();
         for (int i = 0; i < searchResult.size(); i++) {
             final String result = autocomplete.AUTOCOMPLETE_COMMAND_WORD + searchResult.get(i);
