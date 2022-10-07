@@ -1,6 +1,7 @@
 package seedu.taassist.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.taassist.commons.core.Messages.MESSAGE_CLASS_DOES_NOT_EXIST;
 
 import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.model.Model;
@@ -17,7 +18,6 @@ public class ClassCommand extends Command {
             + "Parameters: CLASS_NAME\n"
             + "Example: " + COMMAND_WORD + " CS1101S";
     public static final String MESSAGE_ENTERED_FOCUS_MODE = "Entered focus mode for %s";
-    public static final String MESSAGE_CLASS_NOT_FOUND = "Class not found: %s";
 
     private final ModuleClass targetClass;
 
@@ -33,7 +33,7 @@ public class ClassCommand extends Command {
         requireNonNull(model);
 
         if (!model.hasModuleClass(targetClass)) {
-            throw new CommandException(String.format(MESSAGE_CLASS_NOT_FOUND, targetClass));
+            throw new CommandException(String.format(MESSAGE_CLASS_DOES_NOT_EXIST, targetClass));
         }
 
         model.enterFocusMode(targetClass);
