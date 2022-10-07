@@ -3,7 +3,6 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
