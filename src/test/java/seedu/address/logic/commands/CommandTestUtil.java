@@ -35,10 +35,14 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
+    public static final String VALID_CLASS_AMY = "2022-09-10 0000-1200";
+    public static final String VALID_CLASS_BOB = "2022-09-10 0000-1200";
     public static final Integer VALID_MONEY_OWED_AMY = 10;
     public static final Integer VALID_MONEY_OWED_BOB = 20;
     public static final Integer VALID_MONEY_PAID_AMY = 234;
     public static final Integer VALID_MONEY_PAID_BOB = 345;
+    public static final String VALID_ADDITIONAL_NOTES_AMY = "alive person";
+    public static final String VALID_ADDITIONAL_NOTES_BOB = "alive person";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -70,8 +74,9 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withMoneyOwed(VALID_MONEY_OWED_AMY).withMoneyPaid(VALID_MONEY_PAID_AMY).build();
+                    .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+                    .withMoneyOwed(VALID_MONEY_OWED_AMY).withMoneyPaid(VALID_MONEY_PAID_AMY).build();
+
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withMoneyOwed(VALID_MONEY_OWED_BOB).withMoneyPaid(VALID_MONEY_PAID_BOB).build();

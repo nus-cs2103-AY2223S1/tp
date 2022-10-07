@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDITIONAL_NOTES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MONEY_OWED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MONEY_PAID;
@@ -20,6 +21,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.AdditionalNotes;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Class;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.MoneyOwed;
 import seedu.address.model.person.MoneyPaid;
@@ -42,6 +44,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_CLASS_DATE_TIME + "CLASS_DATE_TIME] "
             + "[" + PREFIX_MONEY_OWED + "MONEY_OWED] "
             + "[" + PREFIX_MONEY_PAID + "MONEY_PAID] "
             + "[" + PREFIX_ADDITIONAL_NOTES + "NOTES] "
@@ -100,14 +103,13 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-
-
+        Class updatedClassDateTime = editPersonDescriptor.getAClass().orElse(personToEdit.getAClass());
         MoneyOwed updatedMoneyOwed = editPersonDescriptor.getMoneyOwed().orElse(personToEdit.getMoneyOwed());
         MoneyPaid updatedMoneyPaid = editPersonDescriptor.getMoneyPaid().orElse(personToEdit.getMoneyPaid());
         AdditionalNotes updatedNotes = editPersonDescriptor.getAdditionalNotes()
                 .orElse(personToEdit.getAdditionalNotes());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedClassDateTime,
                 updatedMoneyOwed, updatedMoneyPaid, updatedNotes);
     }
 
@@ -138,11 +140,13 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private Class aClass;
         private MoneyOwed moneyOwed;
         private MoneyPaid moneyPaid;
         private AdditionalNotes additionalNotes;
 
-        public EditPersonDescriptor() {}
+        public EditPersonDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -152,6 +156,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setClass(toCopy.aClass);
             setMoneyOwed(toCopy.moneyOwed);
             setMoneyPaid(toCopy.moneyPaid);
             setAdditionalNotes(toCopy.additionalNotes);
@@ -161,7 +166,8 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, moneyOwed, moneyPaid, additionalNotes);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, aClass, moneyOwed, moneyPaid,
+                    additionalNotes);
         }
 
         public void setName(Name name) {
@@ -220,6 +226,18 @@ public class EditCommand extends Command {
             return Optional.ofNullable(additionalNotes);
         }
 
+        public void setClass(Class aClass) {
+            if (aClass == null) {
+                this.aClass = new Class();
+            } else {
+                this.aClass = aClass;
+            }
+        }
+
+        public Optional<Class> getAClass() {
+            return Optional.ofNullable(aClass);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -234,15 +252,17 @@ public class EditCommand extends Command {
 
             // state check
             EditPersonDescriptor e = (EditPersonDescriptor) other;
+            System.out.println(getAClass().toString());
+            System.out.println(e.getAClass().toString());
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
+                    && getAClass().toString().equals(e.getAClass().toString())
                     && getMoneyOwed().equals(e.getMoneyOwed())
                     && getMoneyPaid().equals(e.getMoneyPaid())
                     && getAdditionalNotes().equals(e.getAdditionalNotes());
         }
-
     }
 }

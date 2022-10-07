@@ -27,6 +27,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_MONEY_PAID_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_DATE_TIME;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -38,7 +39,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Class;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -197,6 +200,23 @@ public class EditCommandParserTest {
                 .withAddress(VALID_ADDRESS_BOB).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_validClassDateTime() throws ParseException {
+        Index targetIndex = INDEX_FIRST_PERSON;
+        String userInput = targetIndex.getOneBased() + " " + PREFIX_CLASS_DATE_TIME + "2022-05-05 1200-1500";
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withClass("2022-05-05 1200-1500").build();
+        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_invalidClassDateTime() {
+        assertParseFailure(parser, "1 " + PREFIX_CLASS_DATE_TIME + "2022-05-05 1200 1500", Class.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1 " + PREFIX_CLASS_DATE_TIME + "2022-20-05 1200-1500", Class.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1 " + PREFIX_CLASS_DATE_TIME + "2022-05-05 1200-1100",
+                Class.INVALID_DURATION_ERROR_MESSAGE);
     }
 
 }

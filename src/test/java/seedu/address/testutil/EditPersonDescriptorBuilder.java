@@ -1,8 +1,11 @@
 package seedu.address.testutil;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.AdditionalNotes;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Class;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.MoneyOwed;
 import seedu.address.model.person.MoneyPaid;
@@ -17,8 +20,14 @@ public class EditPersonDescriptorBuilder {
 
     private EditPersonDescriptor descriptor;
 
+    /**
+     * Constructs a EditPersonDescriptionBuilder object with descriptor initialised.
+     * By default, descriptor field Class will have fields date and time to be null.
+     */
     public EditPersonDescriptorBuilder() {
-        descriptor = new EditPersonDescriptor();
+        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+        editPersonDescriptor.setClass(new Class());
+        descriptor = editPersonDescriptor;
     }
 
     public EditPersonDescriptorBuilder(EditPersonDescriptor descriptor) {
@@ -34,6 +43,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
+        descriptor.setClass(person.getAClass());
         descriptor.setMoneyOwed(person.getMoneyOwed());
         descriptor.setMoneyPaid(person.getMoneyPaid());
         descriptor.setAdditionalNotes(person.getAdditionalNotes());
@@ -80,6 +90,14 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
+     * Sets the {@code Class} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withClass(String classDateTime) throws ParseException {
+        descriptor.setClass(ParserUtil.parseClass(classDateTime));
+        return this;
+    }
+
+    /**
      * Sets the {@code moneyPaid} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withMoneyPaid(Integer moneyPaid) {
@@ -98,4 +116,5 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptor build() {
         return descriptor;
     }
+
 }

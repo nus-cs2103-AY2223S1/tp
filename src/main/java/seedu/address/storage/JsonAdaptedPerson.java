@@ -4,8 +4,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.person.AdditionalNotes;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Class;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.MoneyOwed;
 import seedu.address.model.person.MoneyPaid;
@@ -24,6 +26,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String classDateTime;
     private final Integer moneyOwed;
     private final Integer moneyPaid;
     private final String additionalNotes;
@@ -34,6 +37,7 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("classDateTime") String classDateTime,
                              @JsonProperty("moneyOwed") Integer moneyOwed,
                              @JsonProperty("moneyPaid") Integer moneyPaid,
                              @JsonProperty("additionalNotes") String additionalNotes) {
@@ -41,6 +45,7 @@ class JsonAdaptedPerson {
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.classDateTime = classDateTime;
         this.moneyOwed = moneyOwed;
         this.moneyPaid = moneyPaid;
         this.additionalNotes = additionalNotes;
@@ -54,6 +59,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        classDateTime = source.getAClass().classDateTime;
         moneyOwed = source.getMoneyOwed().value;
         moneyPaid = source.getMoneyPaid().value;
         additionalNotes = source.getAdditionalNotes().notes;
@@ -97,8 +103,16 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final Address modelAddress = new Address(address);
-        //There is no invalid additionalNotes since it can be empty or non-empty.
-        final AdditionalNotes modelAdditionalNotes = new AdditionalNotes(additionalNotes);
+
+        final Class modelClassDateTime;
+        if (classDateTime != null && !classDateTime.equals("")) {
+            if (!Class.isValidClassString(classDateTime)) {
+                throw new IllegalValueException(Class.MESSAGE_CONSTRAINTS);
+            }
+            modelClassDateTime = ParserUtil.parseClass(classDateTime);
+        } else {
+            modelClassDateTime = new Class();
+        }
 
         final MoneyOwed modelMoneyOwed;
         if (moneyOwed != null) {
@@ -120,7 +134,14 @@ class JsonAdaptedPerson {
             modelMoneyPaid = new MoneyPaid(0);
         }
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress,
+        final AdditionalNotes modelAdditionalNotes;
+        if (additionalNotes != null) {
+            modelAdditionalNotes = new AdditionalNotes(additionalNotes);
+        } else {
+            modelAdditionalNotes = new AdditionalNotes("");
+        }
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelClassDateTime,
                 modelMoneyOwed, modelMoneyPaid, modelAdditionalNotes);
     }
 

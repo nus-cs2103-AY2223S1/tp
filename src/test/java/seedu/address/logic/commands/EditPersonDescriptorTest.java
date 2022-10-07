@@ -52,6 +52,7 @@ public class EditPersonDescriptorTest {
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
+        // todo: add test case for class and additional notes field
         // different money owed -> returns false
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withMoneyOwed(VALID_MONEY_OWED_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
