@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Collection;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -125,6 +126,17 @@ public class ModelManager implements Model {
     public boolean hasModuleClass(ModuleClass moduleClass) {
         requireAllNonNull(moduleClass);
         return taAssist.hasModuleClass(moduleClass);
+    }
+
+    @Override
+    public boolean hasModuleClasses(Collection<ModuleClass> moduleClasses) {
+        requireAllNonNull(moduleClasses);
+        for (ModuleClass moduleClass : moduleClasses) {
+            if (!hasModuleClass(moduleClass)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override

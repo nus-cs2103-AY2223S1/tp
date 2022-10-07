@@ -1,6 +1,7 @@
 package seedu.taassist.model;
 
 import java.nio.file.Path;
+import java.util.Collection;
 import java.util.function.Predicate;
 
 import javafx.beans.property.SimpleStringProperty;
@@ -92,6 +93,11 @@ public interface Model {
      * Returns true if a class with the same identity as {@code moduleClass} exists in TA-Assist.
      */
     boolean hasModuleClass(ModuleClass moduleClass);
+
+    /**
+     * Returns true if all the classes in {@code moduleClass} exist in TA-Assist.
+     */
+    boolean hasModuleClasses(Collection<ModuleClass> moduleClasses);
 
     /**
      * Deletes the given class.

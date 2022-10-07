@@ -81,6 +81,10 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
+        if (!model.hasModuleClasses(editedStudent.getModuleClasses())) {
+            throw new CommandException(Messages.MESSAGE_SOME_CLASSES_DO_NOT_EXIST);
+        }
+
         model.setStudent(studentToEdit, editedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent));

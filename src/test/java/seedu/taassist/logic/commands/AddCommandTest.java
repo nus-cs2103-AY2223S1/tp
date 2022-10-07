@@ -9,6 +9,7 @@ import static seedu.taassist.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -152,6 +153,11 @@ public class AddCommandTest {
 
         @Override
         public boolean hasModuleClass(ModuleClass moduleClass) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasModuleClasses(Collection<ModuleClass> moduleClasses) {
             throw new AssertionError("This method should not be called.");
         }
 
