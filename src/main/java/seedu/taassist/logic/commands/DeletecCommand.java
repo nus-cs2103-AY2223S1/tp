@@ -1,5 +1,8 @@
 package seedu.taassist.logic.commands;
 
+import java.util.List;
+import java.util.Set;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_MODULE_CLASS;
 
@@ -22,29 +25,39 @@ public class DeletecCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_MODULE_CLASS + "CS1101S";
 
-    public static final String MESSAGE_DELETE_MODULE_CLASS_SUCCESS = "Deleted class: %1$s";
+    public static final String MESSAGE_DELETE_MODULE_CLASS_SUCCESS = "Deleted class(es): %1$s";
 
-    private final ModuleClass moduleClass;
+    private final Set<ModuleClass> moduleClasses;
 
-    public DeletecCommand(ModuleClass moduleClass) {
-        this.moduleClass = moduleClass;
+    public DeletecCommand(Set<ModuleClass> moduleClasses) {
+        this.moduleClasses = moduleClasses;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (!model.hasModuleClass(moduleClass)) {
-            throw new CommandException(Messages.MESSAGE_MODULE_CLASS_DOES_NOT_EXIST);
+        if (!areAllExistingModuleClasses(model, moduleClasses)) {
+            throw new CommandException(String.format(Messages.MESSAGE_MODULE_CLASS_DOES_NOT_EXIST,
+                    model.getModuleClassList()));
         }
-        model.deleteModuleClass(moduleClass);
-        return new CommandResult(String.format(MESSAGE_DELETE_MODULE_CLASS_SUCCESS, moduleClass));
+
+        // Each module class in guaranteed to exist
+        for (ModuleClass mc : moduleClasses) {
+            model.deleteModuleClass(mc);
+        }
+        return new CommandResult(String.format(MESSAGE_DELETE_MODULE_CLASS_SUCCESS, moduleClasses));
+    }
+
+    public boolean areAllExistingModuleClasses(Model model, Set<ModuleClass> moduleClasses) {
+        requireNonNull(model);
+        return moduleClasses.stream().allMatch(model::hasModuleClass);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeletecCommand // instanceof handles nulls
-                && moduleClass.equals(((DeletecCommand) other).moduleClass)); // state check
+                && moduleClasses.equals(((DeletecCommand) other).moduleClasses)); // state check
     }
 }
 
