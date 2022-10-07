@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.customer.Customer;
 
 /**
- * Deletes a and shows customer details and switches tab to commissions to show commissions made by the customer.
+ * Selects a customer and shows their details.
  */
 public class OpenCustomerCommand extends Command {
     public static final String COMMAND_WORD = "opencus";
