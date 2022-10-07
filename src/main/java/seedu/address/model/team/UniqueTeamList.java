@@ -58,6 +58,17 @@ public class UniqueTeamList implements Iterable<Team> {
         return internalList.get(index);
     }
 
+    public Team getTeam(Name teamName) {
+        requireNonNull(teamName);
+        for (int i = 0; i < internalList.size(); i++) {
+            Team team = internalList.get(i);
+            if (team.getName().equals(teamName)) {
+                return team;
+            }
+        }
+        throw new PersonNotFoundException();
+    }
+
     /**
      * Removes the equivalent person from the list.
      * The person must exist in the list.

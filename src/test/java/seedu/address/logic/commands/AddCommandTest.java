@@ -21,6 +21,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 import seedu.address.model.team.Team;
@@ -157,7 +158,17 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addPersonToTeam(Person person, Team team) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Person getPerson(Name name) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -173,6 +184,11 @@ public class AddCommandTest {
 
         @Override
         public ObservableList<Team> getFilteredTeamList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Team getTeam(seedu.address.model.team.Name name) {
             throw new AssertionError("This method should not be called.");
         }
 

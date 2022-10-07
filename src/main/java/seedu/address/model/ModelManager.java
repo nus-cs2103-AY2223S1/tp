@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -14,6 +15,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.task.Task;
 import seedu.address.model.team.Team;
 
@@ -39,7 +41,6 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-
 
         // Temp code
         // todo replace this code
@@ -141,6 +142,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addPersonToTeam(Person person, Team team) {
+        addressBook.addPersonToTeam(person, team);
+    }
+
+    @Override
     public void addTask(Index index, Task task) {
         requireAllNonNull(index, task);
         addressBook.addTask(index, task);
@@ -181,7 +187,18 @@ public class ModelManager implements Model {
         filteredTeams.setPredicate(predicate);
     }
 
-
+    @Override
+    public Person getPerson(seedu.address.model.person.Name name) {
+        List<Person> persons = getFilteredPersonList();
+        requireNonNull(name);
+        for (int i = 0; i < persons.size(); i++) {
+            Person person = persons.get(i);
+            if (person.getName().equals(name)) {
+                return person;
+            }
+        }
+        throw new PersonNotFoundException();
+    }
 
     //=========== Filtered Team List Accessors =============================================================
 
@@ -192,6 +209,18 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Team> getFilteredTeamList() {
         return filteredTeams;
+    }
+
+    public Team getTeam(seedu.address.model.team.Name name) {
+        List<Team> teams = getFilteredTeamList();
+        requireNonNull(name);
+        for (int i = 0; i < teams.size(); i++) {
+            Team team = teams.get(i);
+            if (team.getName().equals(name)) {
+                return team;
+            }
+        }
+        throw new PersonNotFoundException();
     }
 
     // todo implementation of updateFilteredTeamList
