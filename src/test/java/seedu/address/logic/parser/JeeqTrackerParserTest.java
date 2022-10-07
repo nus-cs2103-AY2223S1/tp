@@ -6,6 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_COMPANY;
+import static seedu.address.testutil.TypicalPoc.ALICE;
 
 import java.util.Arrays;
 import java.util.List;
@@ -30,6 +31,7 @@ import seedu.address.model.company.NameContainsKeywordsPredicate;
 import seedu.address.testutil.CompanyBuilder;
 import seedu.address.testutil.CompanyUtil;
 import seedu.address.testutil.EditCompanyDescriptorBuilder;
+import seedu.address.testutil.PocUtil;
 
 public class JeeqTrackerParserTest {
 
@@ -98,7 +100,9 @@ public class JeeqTrackerParserTest {
 
     @Test
     public void parseCommand_create() throws Exception {
-        assertTrue(parser.parseCommand(CreateCommand.COMMAND_WORD) instanceof CreateCommand);
+        CreateCommand command = (CreateCommand) parser.parseCommand(
+                PocUtil.getCreateCommand(ALICE, INDEX_FIRST_COMPANY));
+        assertEquals(new CreateCommand(INDEX_FIRST_COMPANY, ALICE), command);
     }
 
     @Test
