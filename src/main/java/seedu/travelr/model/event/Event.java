@@ -2,6 +2,7 @@ package seedu.travelr.model.event;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.travelr.commons.util.AppUtil.checkArgument;
+import static seedu.travelr.logic.parser.ParserUtil.EVENT_DESCRIPTION_PLACEHOLDER;
 
 /**
  * Represents a Tag in the address book.
@@ -25,6 +26,12 @@ public class Event {
         //checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.title = tagName;
         this.description = description;
+    }
+
+    public Event(String eventName) {
+        requireNonNull(eventName);
+        this.title = eventName;
+        this.description = EVENT_DESCRIPTION_PLACEHOLDER;
     }
 
     /**

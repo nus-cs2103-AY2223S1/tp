@@ -24,7 +24,7 @@ class JsonAdaptedTrip {
 
     private final String title;
     private final String description;
-    private final List<JsonAdaptedEvent> tagged = new ArrayList<>();
+    private final List<JsonAdaptedEvent> events = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -35,7 +35,7 @@ class JsonAdaptedTrip {
         this.title = title;
         this.description = description;
         if (tagged != null) {
-            this.tagged.addAll(tagged);
+            this.events.addAll(tagged);
         }
     }
 
@@ -45,7 +45,7 @@ class JsonAdaptedTrip {
     public JsonAdaptedTrip(Trip source) {
         title = source.getTitle().fullTitle;
         description = source.getDescription().value;
-        tagged.addAll(source.getEvents().stream()
+        events.addAll(source.getEvents().stream()
                 .map(JsonAdaptedEvent::new)
                 .collect(Collectors.toList()));
     }
@@ -57,7 +57,7 @@ class JsonAdaptedTrip {
      */
     public Trip toModelType() throws IllegalValueException {
         final List<Event> tripTags = new ArrayList<>();
-        for (JsonAdaptedEvent tag : tagged) {
+        for (JsonAdaptedEvent tag : events) {
             tripTags.add(tag.toModelType());
         }
 

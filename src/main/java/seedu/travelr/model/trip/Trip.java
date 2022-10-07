@@ -25,11 +25,12 @@ public class Trip {
     /**
      * Every field must be present and not null.
      */
-    public Trip(Title title, Description description, Set<Event> tags) {
-        requireAllNonNull(title, description, tags);
+    public Trip(Title title, Description description, Set<Event> events) {
+        requireAllNonNull(title, description, events);
         this.title = title;
         this.description = description;
-        this.events.addAll(tags);
+        this.events.addAll(events);
+        //System.out.println(events);
     }
 
     public Title getTitle() {
