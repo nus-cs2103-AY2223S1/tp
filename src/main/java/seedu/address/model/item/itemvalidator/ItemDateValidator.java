@@ -1,7 +1,7 @@
 package seedu.address.model.item.itemvalidator;
 
+import seedu.address.model.item.Item;
 import seedu.address.model.validator.DateValidator;
-import seedu.address.model.item.ItemDate;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -46,7 +46,7 @@ public class ItemDateValidator {
     /**
      * Returns true if an item date has a year more than {@link ItemDateValidator#MAX_YEAR}, false otherwise.
      *
-     * @param date a local date that represents the {@link ItemDate#itemDate}.
+     * @param date a local date that represents the date of the {@link Item}.
      */
     private static boolean isYearMoreThanMaxYear(LocalDate date) {
         return date.getYear() > MAX_YEAR;
@@ -55,7 +55,7 @@ public class ItemDateValidator {
     /**
      * Returns true if an item date has a year less than {@link ItemDateValidator#MIN_YEAR}, false otherwise.
      *
-     * @param date a LocalDate that represents the {@link ItemDate#itemDate}.
+     * @param date a LocalDate that represents the date of the {@link Item}.
      */
     private static boolean isYearLessThanMaxYear(LocalDate date) {
         return date.getYear() < MIN_YEAR;

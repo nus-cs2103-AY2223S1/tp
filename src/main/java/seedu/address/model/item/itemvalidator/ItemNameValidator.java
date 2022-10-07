@@ -1,6 +1,6 @@
 package seedu.address.model.item.itemvalidator;
 
-import seedu.address.model.item.ItemName;
+import seedu.address.model.item.Item;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -29,7 +29,7 @@ public class ItemNameValidator {
     /**
      * Returns true if a given string contains invalid characters, false otherwise.
      *
-     * @param itemName a string that represents the {@link ItemName#itemName}.
+     * @param itemName a string that represents the name of the {@link Item}.
      */
     private static boolean doesNameContainInvalidCharacters(String itemName) {
         return !itemName.matches(VALIDATION_REGEX);
@@ -38,7 +38,7 @@ public class ItemNameValidator {
     /**
      * Returns true if an item name has a length more than {@link ItemNameValidator#MAX_LENGTH}, false otherwise.
      *
-     * @param itemName a string that represents the {@link ItemName#itemName}.
+     * @param itemName a string that represents the name of the {@link Item}.
      */
     private static boolean isNameLengthMoreThanMaxLength(String itemName) {
         return itemName.length() > MAX_LENGTH;
@@ -47,7 +47,7 @@ public class ItemNameValidator {
     /**
      * Returns true if an item name is {@link String#isEmpty()}, false otherwise.
      *
-     * @param itemName a string that represents the {@link ItemName#itemName}.
+     * @param itemName a string that represents the name of the {@link Item}.
      */
     private static boolean isNameBlank(String itemName) {
         return itemName.isEmpty();

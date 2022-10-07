@@ -13,7 +13,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class ItemDate {
 
-    public final LocalDate itemDate;
+    private final LocalDate itemDate;
 
     private static final String DATE_OUTPUT_PATTERN_REGEX = "dd/MM/yyyy";
 
@@ -26,16 +26,6 @@ public class ItemDate {
         requireNonNull(dateString);
         ItemDateValidator.validate(dateString);
         itemDate = LocalDate.parse(dateString);
-    }
-
-    /**
-     * Returns a string representation of {@link ItemDate}.
-     *
-     * @param localDate a LocalDate that represents the {@link ItemDate#itemDate}.
-     * @return a string representation of {@link ItemDate#itemDate}.
-     */
-    public static String getDatetimeStringFromLocalDate(LocalDate localDate) {
-        return localDate.format(DateTimeFormatter.ofPattern(DATE_OUTPUT_PATTERN_REGEX));
     }
 
     /**
@@ -62,6 +52,6 @@ public class ItemDate {
      */
     @Override
     public String toString() {
-        return getDatetimeStringFromLocalDate(itemDate);
+        return itemDate.format(DateTimeFormatter.ofPattern(DATE_OUTPUT_PATTERN_REGEX));
     }
 }

@@ -68,7 +68,7 @@ public class Item {
         }
 
         return otherItem != null
-                && otherItem.getName().equals(getName());
+                && otherItem.getName().equals(name);
     }
 
     /**
@@ -89,11 +89,11 @@ public class Item {
         }
 
         Item otherItem = (Item) other;
-        return otherItem.getName().equals(getName())
-                && otherItem.getQuantity().equals(getQuantity())
-                && otherItem.getUnit().equals(getUnit())
-                && otherItem.getBoughtDate().equals(getBoughtDate())
-                && otherItem.getExpiryDate().equals(getExpiryDate());
+        return otherItem.getName().equals(name)
+                && otherItem.getQuantity().equals(quantity)
+                && otherItem.getUnit().equals(unit)
+                && otherItem.getBoughtDate().equals(boughtDate)
+                && otherItem.getExpiryDate().equals(expiryDate);
     }
 
     /**
@@ -111,10 +111,6 @@ public class Item {
     @Override
     public String toString() {
         return String.format("%s; Quantity: %s %s; Bought Date: %s, Expiry Date: %s;",
-                getName(),
-                getQuantity(),
-                getUnit(),
-                getBoughtDate(),
-                getExpiryDate());
+                name, quantity, unit, boughtDate, expiryDate);
     }
 }

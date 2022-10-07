@@ -10,7 +10,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class ItemUnit {
 
-    public final String itemUnit;
+    private final String itemUnit;
 
     /**
      * Constructs an {@link ItemUnit}.
@@ -23,6 +23,9 @@ public class ItemUnit {
         itemUnit = unitString;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

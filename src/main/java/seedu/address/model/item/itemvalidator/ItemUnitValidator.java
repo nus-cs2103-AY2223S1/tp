@@ -1,6 +1,6 @@
 package seedu.address.model.item.itemvalidator;
 
-import seedu.address.model.item.ItemUnit;
+import seedu.address.model.item.Item;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -27,7 +27,7 @@ public class ItemUnitValidator {
     /**
      * Returns true if a given string contains invalid characters, false otherwise.
      *
-     * @param itemUnit a string that represents the {@link ItemUnit#itemUnit}.
+     * @param itemUnit a string that represents the unit of the {@link Item}.
      */
     private static boolean doesUnitContainInvalidCharacters(String itemUnit) {
         return !itemUnit.matches(VALIDATION_REGEX);
@@ -36,7 +36,7 @@ public class ItemUnitValidator {
     /**
      * Returns true if an item unit has a length more than {@link ItemUnitValidator#MAX_LENGTH}, false otherwise.
      *
-     * @param itemUnit a string that represents the {@link ItemUnit#itemUnit}.
+     * @param itemUnit a string that represents the unit of the {@link Item}.
      */
     private static boolean isUnitLengthMoreThanMaxLength(String itemUnit) {
         return itemUnit.length() > MAX_LENGTH;

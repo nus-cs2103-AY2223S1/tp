@@ -10,10 +10,13 @@ import static java.util.Objects.requireNonNull;
  */
 public class ItemQuantity {
 
-    public final double itemQuantity;
+    private final double itemQuantity;
 
     private static final double DEFAULT_QUANTITY = 0;
 
+    /**
+     * {@inheritDoc}
+     */
     public ItemQuantity(String itemQuantityString) {
         requireNonNull(itemQuantityString);
         if (itemQuantityString.isEmpty()) {

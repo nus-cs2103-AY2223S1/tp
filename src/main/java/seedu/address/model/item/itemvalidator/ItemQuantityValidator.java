@@ -1,6 +1,6 @@
 package seedu.address.model.item.itemvalidator;
 
-import seedu.address.model.item.ItemQuantity;
+import seedu.address.model.item.Item;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -35,7 +35,7 @@ public class ItemQuantityValidator {
     /**
      * Returns true if an item quantity can be parsed, false otherwise.
      *
-     * @param itemQuantityString a string that represents the {@link ItemQuantity#itemQuantity}.
+     * @param itemQuantityString a string that represents the quantity of the {@link Item}.
      */
     private static boolean isParsableQuantity(String itemQuantityString) {
         try {
@@ -49,7 +49,7 @@ public class ItemQuantityValidator {
     /**
      * Returns true if an item quantity is too precise, false otherwise.
      *
-     * @param itemQuantityString a string that represents the {@link ItemQuantity#itemQuantity}.
+     * @param itemQuantityString a string that represents the quantity of the {@link Item}.
      */
     private static boolean isQuantityTooPrecise(String itemQuantityString) {
         if (!itemQuantityString.contains(DECIMAL_POINT)) {
@@ -62,7 +62,7 @@ public class ItemQuantityValidator {
     /**
      * Returns true if an item quantity is more than the {@link ItemQuantityValidator#MAX_QUANTITY}, false otherwise.
      *
-     * @param itemQuantity a double that represents the {@link ItemQuantity#itemQuantity}.
+     * @param itemQuantity a double that represents the quantity of the {@link Item}.
      */
     private static boolean isQuantityMoreThanMaxQuantity(double itemQuantity) {
         return itemQuantity > MAX_QUANTITY;
@@ -71,7 +71,7 @@ public class ItemQuantityValidator {
     /**
      * Returns true if an item quantity is negative, false otherwise.
      *
-     * @param itemQuantity a double that represents the {@link ItemQuantity#itemQuantity}.
+     * @param itemQuantity a double that represents the quantity of the {@link Item}.
      */
     private static boolean isQuantityNegative(double itemQuantity) {
         return itemQuantity < 0;
