@@ -71,6 +71,12 @@ public interface Model {
     void addTask(Task task);
 
     /**
+     * Deletes the given task.
+     * {@code task} must exist in the task book.
+     */
+    void deleteTask(Task task);
+
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
@@ -91,6 +97,9 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
+
+    /** Returns an unmodifiable view of the filtered task list */
+    ObservableList<Task> getFilteredTaskList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
