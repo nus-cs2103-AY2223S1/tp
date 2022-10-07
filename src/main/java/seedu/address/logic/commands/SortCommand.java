@@ -36,7 +36,7 @@ public class SortCommand extends Command {
         + "Example: " + COMMAND_WORD + " " + PREFIX_TAG + "!friend";
 
     public static final String MESSAGE_SUCCESS = "List has been sorted.";
-    public static final String MESSAGE_WRONG_PREFIX = "Invalid parameter(s)";
+    public static final String MESSAGE_WRONG_PREFIX = "Invalid parameter(s).";
 
     private final List<SortArgument> argList;
 
@@ -56,7 +56,7 @@ public class SortCommand extends Command {
         for (int i = argList.size() - 1; i >= 0; i--) {
             SortArgument currSort = argList.get(i);
             Prefix prefixParam = currSort.getPrefix();
-            boolean isReverse = currSort.getIsReverse();
+            boolean isReverse = currSort.isReverse();
 
             if (prefixParam.equals(PREFIX_NAME)) {
                 model.sortByName(isReverse);
@@ -103,19 +103,19 @@ public class SortCommand extends Command {
      */
     public static class SortArgument {
         private final Prefix prefix;
-        private final boolean isReverse;
+        private final boolean isSortingReversed;
         private final Tag tag;
 
         /**
          * Constructs a SortArgument.
          *
-         * @param prefix    The prefix to use as the parameter
-         * @param isReverse Whether the sorting order should be reversed
-         * @param tag       The tag to sort with, if the prefix is PREFIX_TAG
+         * @param prefix            The prefix to use as the parameter
+         * @param isSortingReversed Whether the sorting order should be reversed
+         * @param tag               The tag to sort with, if the prefix is PREFIX_TAG
          */
-        public SortArgument(Prefix prefix, boolean isReverse, Tag tag) {
+        public SortArgument(Prefix prefix, boolean isSortingReversed, Tag tag) {
             this.prefix = prefix;
-            this.isReverse = isReverse;
+            this.isSortingReversed = isSortingReversed;
             this.tag = tag;
         }
 
@@ -123,8 +123,8 @@ public class SortCommand extends Command {
             return prefix;
         }
 
-        public boolean getIsReverse() {
-            return isReverse;
+        public boolean isReverse() {
+            return isSortingReversed;
         }
 
         public Tag getTag() {
@@ -144,9 +144,11 @@ public class SortCommand extends Command {
                 return false;
             }
             if (tag == otherSort.tag) {
-                return isReverse == otherSort.isReverse && prefix.equals(otherSort.prefix);
+                return isSortingReversed == otherSort.isSortingReversed && prefix.equals(otherSort.prefix);
             }
-            return isReverse == otherSort.isReverse && prefix.equals(otherSort.prefix) && tag.equals(otherSort.tag);
+            return isSortingReversed == otherSort.isSortingReversed
+                && prefix.equals(otherSort.prefix)
+                && tag.equals(otherSort.tag);
         }
     }
 }
