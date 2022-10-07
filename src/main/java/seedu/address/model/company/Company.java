@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Objects;
 import java.util.Set;
 
@@ -40,7 +41,7 @@ public class Company {
      * @param pocs list of unique pocs.
      */
     public Company(Name name, Address address, Set<Tag> tags, UniquePocList pocs) {
-        requireAllNonNull(name, address, tags);
+        requireAllNonNull(name, address, tags, pocs);
         this.name = name;
         this.address = address;
         this.tags.addAll(tags);
@@ -73,6 +74,15 @@ public class Company {
      */
     public void addPoc(Poc poc) {
         this.pocs.add(poc);
+    }
+
+    /**
+     * Returns true if poc is in the list of pocs
+     * @param poc to be checked
+     * @return true if contains
+     */
+    public boolean containsPoc(Poc poc) {
+        return this.pocs.contains(poc);
     }
 
     /**
@@ -111,7 +121,7 @@ public class Company {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, address, tags);
+        return Objects.hash(name, address, tags, pocs);
     }
 
     @Override
@@ -125,6 +135,17 @@ public class Company {
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
+        }
+
+        UniquePocList pocs = getPocs();
+        builder.append("; POCs: ");
+        Iterator<Poc> itr = pocs.iterator();
+        String prefix = "";
+        while (itr.hasNext()) {
+            Poc poc = itr.next();
+            builder.append(prefix);
+            prefix = ", ";
+            builder.append(poc.getName());
         }
         return builder.toString();
     }
