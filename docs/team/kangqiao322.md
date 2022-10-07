@@ -17,7 +17,7 @@ Given below are my contributions to the project.
     * Highlights: [To be added soon]
     * Credits: [To be added soon]
 
-* **New Feature**: [To be added soon]
+* **New Feature**: [StatusCommand]
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=kangqiao322&breakdown=true)
 
