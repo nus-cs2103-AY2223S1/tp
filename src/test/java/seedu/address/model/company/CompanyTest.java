@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCompanies.ALICE;
 import static seedu.address.testutil.TypicalCompanies.BOB;
 import static seedu.address.testutil.TypicalPoc.ELLE;
+import static seedu.address.testutil.TypicalPoc.BENSON;
 
 import org.junit.jupiter.api.Test;
 
@@ -57,6 +58,13 @@ public class CompanyTest {
         Poc elleCopy = new PocBuilder(ELLE).build();
         aliceCopy.addPoc(elleCopy);
         assertTrue(aliceCopy.getPocs().contains(elleCopy));
+    }
+
+    @Test
+    public void containsPoc() {
+        Company company = new CompanyBuilder(ALICE).build();
+        company.addPoc(BENSON);
+        assertTrue(company.getPocs().contains(BENSON));
     }
 
     @Test

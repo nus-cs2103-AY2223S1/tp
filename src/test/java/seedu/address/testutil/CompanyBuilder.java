@@ -6,6 +6,7 @@ import java.util.Set;
 import seedu.address.model.company.Address;
 import seedu.address.model.company.Company;
 import seedu.address.model.company.Name;
+import seedu.address.model.poc.Poc;
 import seedu.address.model.poc.UniquePocList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -73,6 +74,11 @@ public class CompanyBuilder {
      */
     public CompanyBuilder withUniquePocList(UniquePocList pocs) {
         this.pocs = pocs;
+        return this;
+    }
+
+    public CompanyBuilder withAddedPoc(Poc poc) {
+        this.pocs.add(poc);
         return this;
     }
 
