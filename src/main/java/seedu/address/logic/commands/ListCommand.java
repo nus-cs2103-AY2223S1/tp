@@ -40,11 +40,11 @@ public class ListCommand extends Command {
      * @param g gender to be filtered
      * @param t tag to be filtered
      */
-    public ListCommand(Address a, String c, Gender g, Tag t) {
-        address = Optional.ofNullable(a);
-        category = Optional.ofNullable(c);
-        gender = Optional.ofNullable(g);
-        tag = Optional.ofNullable(t);
+    public ListCommand(Optional<Address> a, Optional<String> c, Optional<Gender> g, Optional<Tag> t) {
+        address = a;
+        category = c;
+        gender = g;
+        tag = t;
     }
 
     @Override
