@@ -1,7 +1,7 @@
 package seedu.taassist.model;
 
 import java.nio.file.Path;
-import java.util.Set;
+import java.util.Collection;
 import java.util.function.Predicate;
 
 import javafx.beans.property.SimpleStringProperty;
@@ -101,6 +101,12 @@ public interface Model {
     void deleteModuleClass(ModuleClass moduleClass);
 
     /**
+     * Deletes multiple classes.
+     * The classes must exist in TA-Assist.
+     */
+    void deleteModuleClasses(Collection<ModuleClass> moduleClasses);
+
+    /**
      * Adds the given class.
      * {@code moduleClass} must not already exist in TA-Assist.
      */
@@ -110,7 +116,7 @@ public interface Model {
     ObservableList<ModuleClass> getModuleClassList();
 
     /** Checks if all {@code moduleClass} in {@code moduleClasses} exists */
-    boolean areAllExistingModuleClasses(Set<ModuleClass> moduleClasses);
+    boolean areAllExistingModuleClasses(Collection<ModuleClass> moduleClasses);
 
     /** Enters focus mode. */
     void enterFocusMode(ModuleClass classToFocus);

@@ -41,9 +41,7 @@ public class DeletecCommand extends Command {
         }
 
         // Each module class is guaranteed to exist
-        for (ModuleClass mc : moduleClasses) {
-            model.deleteModuleClass(mc);
-        }
+        model.deleteModuleClasses(moduleClasses);
         return new CommandResult(String.format(MESSAGE_DELETE_MODULE_CLASS_SUCCESS, moduleClasses));
     }
 
