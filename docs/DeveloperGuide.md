@@ -336,6 +336,34 @@ Step 1 and 2 is repeated until all members have been added
       Use case continues at step 1
 
 
+**Use case: UC3 - Deleting Team**
+
+**Actor: Team Lead**
+
+**Prerequisites: A team exist**
+
+**Guarantee: Selected Team will be deleted from EZLead**
+
+**MSS**
+
+1. Team Lead specify the name of the team being deleted.
+2. Team Deleted from EZLead’s database.
+
+
+**Extensions:**
+
+* 1a. Team Lead enter wrong command
+
+    * 1a1. EZLead display error message
+    * 
+      Use case ends
+
+* 1b. Team does not exist in EZLead’s Database
+
+    * 1b1. EZLead informs Team Lead that the team does not exist
+
+      Use case ends
+
 **MSS**
 
 1. LinkUp request user username and password
@@ -416,6 +444,7 @@ Step 1 and 2 is repeated until all members have been added
     * 1a1. EZLead shows an error message
 
       Use case resumes at step 1.
+
 
 
 *{More to be added}*
