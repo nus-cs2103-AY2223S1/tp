@@ -82,8 +82,8 @@ public class OpenCustomerCommandTest {
         assertTrue(openFirstCommand.equals(openFirstCommand));
 
         // same values -> returns true
-        OpenCustomerCommand deleteFirstCommandCopy = new OpenCustomerCommand(INDEX_FIRST_CUSTOMER);
-        assertTrue(openFirstCommand.equals(deleteFirstCommandCopy));
+        OpenCustomerCommand openFirstCommandCopy = new OpenCustomerCommand(INDEX_FIRST_CUSTOMER);
+        assertTrue(openFirstCommand.equals(openFirstCommandCopy));
 
         // different types -> returns false
         assertFalse(openFirstCommand.equals(1));
