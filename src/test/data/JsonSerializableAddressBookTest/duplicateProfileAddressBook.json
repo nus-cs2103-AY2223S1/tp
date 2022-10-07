@@ -2,10 +2,10 @@
   "profiles": [ {
     "name": "Alice Pauline",
     "phone": "94351253",
-    "email": "alice@example.com"
+    "email": "alice@u.nus.edu"
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
-    "email": "pauline@example.com"
+    "email": "pauline@u.nus.edu"
   } ]
 }

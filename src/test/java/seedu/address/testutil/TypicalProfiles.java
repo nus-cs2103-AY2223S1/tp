@@ -22,28 +22,28 @@ import seedu.address.model.profile.Profile;
 public class TypicalProfiles {
 
     public static final Profile ALICE = new ProfileBuilder().withName("Alice Pauline")
-            .withEmail("alice@example.com")
+            .withEmail("alice@u.nus.edu")
             .withPhone("94351253")
             .withTags("friends").build();
     public static final Profile BENSON = new ProfileBuilder().withName("Benson Meier")
-            .withEmail("johnd@example.com").withPhone("98765432")
+            .withEmail("johnd@u.nus.edu").withPhone("98765432")
             .withTags("owesMoney", "friends").build();
     public static final Profile CARL = new ProfileBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").build();
+            .withEmail("heinz@u.nus.edu").build();
     public static final Profile DANIEL = new ProfileBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withTags("friends").build();
+            .withEmail("cornelia@u.nus.edu").withTags("friends").build();
     public static final Profile ELLE = new ProfileBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").build();
+            .withEmail("werner@u.nus.edu").build();
     public static final Profile FIONA = new ProfileBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").build();
+            .withEmail("lydia@u.nus.edu").build();
     public static final Profile GEORGE = new ProfileBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").build();
+            .withEmail("anna@u.nus.edu").build();
 
     // Manually added
     public static final Profile HOON = new ProfileBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withEmail("stefan@example.com").build();
+            .withEmail("stefan@u.nus.edu").build();
     public static final Profile IDA = new ProfileBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").build();
+            .withEmail("hans@u.nus.edu").build();
 
     // Manually added - Profile's details found in {@code CommandTestUtil}
     public static final Profile AMY = new ProfileBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
