@@ -128,11 +128,10 @@ public class ParserUtil {
 
     public static Description parseDescription(String description) throws ParseException {
         String trimmedDescription = description.trim();
-        if (!StringUtil.isEmptyDescription(trimmedDescription)) {
+        if (StringUtil.isEmptyDescription(trimmedDescription)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
-        String descriptionString = trimmedDescription.substring(5);
-        return new Description(descriptionString);
+        return new Description(trimmedDescription);
     }
 
     /**

@@ -68,7 +68,7 @@ public class StringUtil {
 
     public static boolean isEmptyDescription(String s) {
         requireNonNull(s);
-        if (s.equals("addq")) {
+        if (s.equals("")) {
             return true;
         } else {
             return false;
