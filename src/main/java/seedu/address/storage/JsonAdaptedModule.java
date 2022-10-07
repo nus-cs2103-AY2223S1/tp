@@ -79,14 +79,16 @@ public class JsonAdaptedModule {
         final TutorialDetails modelTutorialDetails = new TutorialDetails(tutorialDetails);
 
         if (zoomLink == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ZoomLink.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ZoomLink.class.getSimpleName()));
         }
         if (!ZoomLink.isValidUrl(zoomLink)) {
             throw new IllegalValueException(ZoomLink.MESSAGE_CONSTRAINTS);
         }
         final ZoomLink modelZoomLink = new ZoomLink(zoomLink);
 
-        return new Module(modelModuleCode, modelLectureDetails, modelTutorialDetails, modelZoomLink, null);
+        return new Module(modelModuleCode, modelLectureDetails, modelTutorialDetails, modelZoomLink,
+                null);
     }
 
 }
