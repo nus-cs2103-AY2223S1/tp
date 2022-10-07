@@ -45,9 +45,12 @@ public class SampleDataUtil {
 
     public static Task[] getSampleTasks() {
         return new Task[] {
-            new Task("Stock up on Gas", "2022-10-05", getTagSet("Fuel")),
-            new Task("Stock up on Peanuts", "2022-10-05", getTagSet("Food")),
-            new Task("Stock up on Cooking Oil", "2022-10-05", getTagSet("Fuel")),
+            new Task("Stock up on Gas", "2022-10-05",
+                    true, getTagSet("Fuel")),
+            new Task("Stock up on Peanuts", "2022-10-05",
+                    false, getTagSet("Food")),
+            new Task("Stock up on Cooking Oil", "2022-10-05",
+                    false, getTagSet("Fuel")),
         };
     }
 

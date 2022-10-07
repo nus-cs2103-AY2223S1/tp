@@ -206,9 +206,6 @@
 .menu .left-container {
     -fx-background-color: black;
 }
-.menu:hover {
-    -fx-background-color: #796161;
-}
 
 /*
  * Metro style Push Button

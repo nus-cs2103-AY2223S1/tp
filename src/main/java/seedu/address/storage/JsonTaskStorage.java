@@ -61,7 +61,7 @@ public class JsonTaskStorage implements TaskStorage {
 
     @Override
     public void saveTaskList(ReadOnlyTaskList taskList) throws IOException {
-        saveTaskList(taskList);
+        saveTaskList(taskList, filePath);
     }
 
     /**

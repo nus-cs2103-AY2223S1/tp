@@ -7,6 +7,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.task.Task;
 
 /**
@@ -59,6 +60,14 @@ public class TaskList implements ReadOnlyTaskList {
      */
     public void addTask(Task t) {
         tasks.add(t);
+    }
+
+    /**
+     * Replaces the given task {@code target} in the list with {@code editedTask}.
+     * {@code target} must exist in the task list.
+     */
+    public void setTask(Task target, Index targetIndex) {
+        tasks.set(targetIndex.getZeroBased(), target);
     }
 
     @Override
