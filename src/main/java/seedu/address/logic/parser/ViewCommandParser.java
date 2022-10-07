@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.*;
+import seedu.address.model.person.PersonContainsAttributePredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -46,15 +46,24 @@ public class ViewCommandParser implements Parser<ViewCommand> {
         Optional<String> religionStringOptional = argMultimap.getValue(PREFIX_RELIGION);
         Optional<String> surveyStringOptional = argMultimap.getValue(PREFIX_SURVEY);
 
-        String[] nameKeywords = nameStringOptional.isEmpty() ? new String[] {} : nameStringOptional.get().trim().split("\\s+");
-        String[] phoneKeywords = phoneStringOptional.isEmpty() ? new String[] {} : phoneStringOptional.get().trim().split("\\s+");
-        String[] emailKeywords = emailStringOptional.isEmpty() ? new String[] {} : emailStringOptional.get().trim().split("\\s+");
-        String[] addressKeywords = addressStringOptional.isEmpty() ? new String[] {} : addressStringOptional.get().trim().split("\\s+");
-        String[] genderKeywords = genderStringOptional.isEmpty() ? new String[] {} : genderStringOptional.get().trim().split("\\s+");
-        String[] birthdateKeywords = birthdateStringOptional.isEmpty() ? new String[] {} : birthdateStringOptional.get().trim().split("\\s+");
-        String[] raceKeywords = raceStringOptional.isEmpty() ? new String[] {} : raceStringOptional.get().trim().split("\\s+");
-        String[] religionKeywords = religionStringOptional.isEmpty() ? new String[] {} : religionStringOptional.get().trim().split("\\s+");
-        String[] surveyKeywords = surveyStringOptional.isEmpty() ? new String[] {} : surveyStringOptional.get().trim().split("\\s+");
+        String[] nameKeywords = nameStringOptional.isEmpty() ? new String[] {} :
+                nameStringOptional.get().trim().split("\\s+");
+        String[] phoneKeywords = phoneStringOptional.isEmpty() ? new String[] {} :
+                phoneStringOptional.get().trim().split("\\s+");
+        String[] emailKeywords = emailStringOptional.isEmpty() ? new String[] {} :
+                emailStringOptional.get().trim().split("\\s+");
+        String[] addressKeywords = addressStringOptional.isEmpty() ? new String[] {} :
+                addressStringOptional.get().trim().split("\\s+");
+        String[] genderKeywords = genderStringOptional.isEmpty() ? new String[] {} :
+                genderStringOptional.get().trim().split("\\s+");
+        String[] birthdateKeywords = birthdateStringOptional.isEmpty() ? new String[] {} :
+                birthdateStringOptional.get().trim().split("\\s+");
+        String[] raceKeywords = raceStringOptional.isEmpty() ? new String[] {} :
+                raceStringOptional.get().trim().split("\\s+");
+        String[] religionKeywords = religionStringOptional.isEmpty() ? new String[] {} :
+                religionStringOptional.get().trim().split("\\s+");
+        String[] surveyKeywords = surveyStringOptional.isEmpty() ? new String[] {} :
+                surveyStringOptional.get().trim().split("\\s+");
 
         List<String> nameList = Arrays.asList(nameKeywords);
         List<String> phoneList = Arrays.asList(phoneKeywords);

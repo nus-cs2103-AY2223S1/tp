@@ -20,6 +20,9 @@ public class PersonContainsAttributePredicate implements Predicate<Person> {
     private final List<String> religionList;
     private final List<String> surveyList;
 
+    /**
+     * Every field must be non-null.
+     */
     public PersonContainsAttributePredicate(List<String> nameList, List<String> phoneList, List<String> emailList,
                                     List<String> addressList, List<String> genderList, List<String> birthdateList,
                                     List<String> raceList, List<String> religionList, List<String> surveyList) {
@@ -38,15 +41,24 @@ public class PersonContainsAttributePredicate implements Predicate<Person> {
     @Override
     public boolean test(Person person) {
 
-        boolean containsName = nameList.isEmpty() || nameList.stream().anyMatch(doesKeywordMatchWith(person.getName().fullName));
-        boolean containsPhone = phoneList.isEmpty() || phoneList.stream().anyMatch(doesKeywordMatchWith(person.getPhone().value));
-        boolean containsEmail = emailList.isEmpty() || emailList.stream().anyMatch(doesKeywordMatchWith(person.getEmail().value));
-        boolean containsAddress = addressList.isEmpty() || addressList.stream().anyMatch(doesKeywordMatchWith(person.getAddress().value));
-        boolean containsGender = genderList.isEmpty() || genderList.stream().anyMatch(doesKeywordMatchWith(person.getGender().gender));
-        boolean containsBirthdate = birthdateList.isEmpty() || birthdateList.stream().anyMatch(keyword -> person.getBirthdate().toString().contains(keyword));
-        boolean containsRace = raceList.isEmpty() || raceList.stream().anyMatch(doesKeywordMatchWith(person.getRace().race));
-        boolean containsReligion = religionList.isEmpty() || religionList.stream().anyMatch(doesKeywordMatchWith(person.getReligion().religion));
-        boolean containsSurvey = surveyList.isEmpty() || surveyList.stream().anyMatch(doesKeywordMatchWith(person.getSurvey().survey));
+        boolean containsName = nameList.isEmpty() || nameList.stream()
+                .anyMatch(doesKeywordMatchWith(person.getName().fullName));
+        boolean containsPhone = phoneList.isEmpty() || phoneList.stream()
+                .anyMatch(doesKeywordMatchWith(person.getPhone().value));
+        boolean containsEmail = emailList.isEmpty() || emailList.stream()
+                .anyMatch(doesKeywordMatchWith(person.getEmail().value));
+        boolean containsAddress = addressList.isEmpty() || addressList.stream()
+                .anyMatch(doesKeywordMatchWith(person.getAddress().value));
+        boolean containsGender = genderList.isEmpty() || genderList.stream()
+                .anyMatch(doesKeywordMatchWith(person.getGender().gender));
+        boolean containsBirthdate = birthdateList.isEmpty() || birthdateList.stream()
+                .anyMatch(keyword -> person.getBirthdate().toString().contains(keyword));
+        boolean containsRace = raceList.isEmpty() || raceList.stream()
+                .anyMatch(doesKeywordMatchWith(person.getRace().race));
+        boolean containsReligion = religionList.isEmpty() || religionList.stream()
+                .anyMatch(doesKeywordMatchWith(person.getReligion().religion));
+        boolean containsSurvey = surveyList.isEmpty() || surveyList.stream()
+                .anyMatch(doesKeywordMatchWith(person.getSurvey().survey));
 
         return (containsName && containsPhone && containsEmail && containsAddress && containsGender
                 && containsBirthdate && containsRace && containsReligion && containsSurvey);
