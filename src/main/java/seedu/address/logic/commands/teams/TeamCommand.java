@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.teams;
 
 /**
  * Add a team to the address book.
