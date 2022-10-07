@@ -1,16 +1,12 @@
 package seedu.taassist.logic.parser;
 
-import java.util.ArrayList;
+import static seedu.taassist.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.taassist.logic.parser.CliSyntax.PREFIX_MODULE_CLASS;
+
 import java.util.List;
 import java.util.Set;
 
-import static seedu.taassist.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import seedu.taassist.logic.commands.AddCommand;
-import static seedu.taassist.logic.parser.CliSyntax.PREFIX_MODULE_CLASS;
-
-import seedu.taassist.logic.commands.DeleteCommand;
 import seedu.taassist.logic.commands.DeletecCommand;
-import static seedu.taassist.logic.parser.CliSyntax.PREFIX_NAME;
 import seedu.taassist.logic.parser.exceptions.ParseException;
 import seedu.taassist.model.moduleclass.ModuleClass;
 
@@ -44,5 +40,5 @@ public class DeletecCommandParser implements Parser<DeletecCommand> {
      */
     private static boolean isPrefixPresentAndNotEmpty(ArgumentMultimap argumentMultimap, Prefix prefix) {
         return argumentMultimap.getAllValues(prefix).size() != 0;
-   }
+    }
 }

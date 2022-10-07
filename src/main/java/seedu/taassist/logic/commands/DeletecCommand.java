@@ -1,12 +1,11 @@
 package seedu.taassist.logic.commands;
 
-import java.util.List;
-import java.util.Set;
-
 import static java.util.Objects.requireNonNull;
+import static seedu.taassist.commons.core.Messages.MESSAGE_MODULE_CLASS_DOES_NOT_EXIST;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_MODULE_CLASS;
 
-import seedu.taassist.commons.core.Messages;
+import java.util.Set;
+
 import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.moduleclass.ModuleClass;
@@ -37,7 +36,7 @@ public class DeletecCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         if (!areAllExistingModuleClasses(model, moduleClasses)) {
-            throw new CommandException(String.format(Messages.MESSAGE_MODULE_CLASS_DOES_NOT_EXIST,
+            throw new CommandException(String.format(MESSAGE_MODULE_CLASS_DOES_NOT_EXIST,
                     model.getModuleClassList()));
         }
 
@@ -48,6 +47,13 @@ public class DeletecCommand extends Command {
         return new CommandResult(String.format(MESSAGE_DELETE_MODULE_CLASS_SUCCESS, moduleClasses));
     }
 
+    /**
+     * Checks if all the {}
+     *
+     * @param model
+     * @param moduleClasses
+     * @return
+     */
     public boolean areAllExistingModuleClasses(Model model, Set<ModuleClass> moduleClasses) {
         requireNonNull(model);
         return moduleClasses.stream().allMatch(model::hasModuleClass);
