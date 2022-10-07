@@ -6,7 +6,7 @@
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "cap": "3.9/5.0",
-    "tagged" : [ "interview", "rejected" ],
+    "tagged" : [ "interview", "rejected" ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
