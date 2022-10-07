@@ -7,7 +7,9 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
@@ -25,10 +27,33 @@ public class PersonListPanel extends MainPanel {
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Person> personList) {
+    public PersonListPanel(ObservableList<Person> personList, DetailPanelSwitcher switcher) {
         super(FXML);
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
+
+        EventHandler keyEventHandler = new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if (event.getCode().equals(KeyCode.ENTER)) {
+                    switcher.execute(getSelectedPerson());
+                }
+            }
+        };
+        setKeyEventHandler(keyEventHandler);
+
+        EventHandler clickEventHandler = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                // Double Click
+                if (event.getButton().equals(MouseButton.PRIMARY)) {
+                    if (event.getClickCount() == 2) {
+                        switcher.execute(getSelectedPerson());
+                    }
+                }
+            }
+        };
+        setClickEventHandler(clickEventHandler);
     }
 
     public Person getSelectedPerson() {
@@ -65,4 +90,14 @@ public class PersonListPanel extends MainPanel {
         }
     }
 
+    /**
+     * Represents a function that switch to detail panel.
+     */
+    @FunctionalInterface
+    public interface DetailPanelSwitcher {
+        /**
+         * Switch to detail panel with the person.
+         */
+        void execute(Person person);
+    }
 }
