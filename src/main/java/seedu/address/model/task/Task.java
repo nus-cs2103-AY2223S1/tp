@@ -1,16 +1,14 @@
 package seedu.address.model.task;
 
-
 /**
  * Represents a Task in the TaskList.
  */
 public class Task {
-    protected Description description;
-    protected boolean isDone;
+    private Description description;
+    private boolean isDone;
 
     /**
      * A constructor that creates an instance of Task.
-     *
      * @param description The description of the task.
      */
     public Task(Description description) {
@@ -19,29 +17,24 @@ public class Task {
     }
 
     /**
-     * Returns a String that reflects whether this task is done or not done.
-     *
-     * @return Returns an "X" or " " depending on whether this task is done.
+     * Returns true if task is done, false if task is not done.
+     * @return boolean indicating task completion status.
      */
-    public String getStatusIcon() {
-        return (isDone ? "X" : "  "); // mark done task with X
-    }
-
-    @Override
-    public String toString() {
-        return "[" + this.getStatusIcon() + "] " + description;
+    public boolean getTaskStatus() {
+        return isDone;
     }
 
     /**
-     * Returns a String that is written to a file to be stored.
-     *
-     * @return A String formatted to be stored.
+     * Marks task as done.
      */
-    public String toStore() {
-        if (isDone) {
-            return " : 1 : " + description;
-        } else {
-            return " : 0 : " + description;
-        }
+    public void markTask() {
+        isDone = true;
+    }
+
+    /**
+     * Marks task as not done.
+     */
+    public void unmarkTask() {
+        isDone = false;
     }
 }

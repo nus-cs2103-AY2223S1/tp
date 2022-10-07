@@ -1,17 +1,26 @@
 package seedu.address.model.task;
 
-import java.util.ArrayList;
+import static java.util.Objects.requireNonNull;
+
 import java.util.Iterator;
 
-/**
- * A list of Tasks that does not allow nulls.
- */
-public class TaskList {
-    private static ArrayList<Task> tempStorage = new ArrayList<>();
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
-    // Commented out parts of code related to saving into storage.
-    // TaskUi is temporary until we update Ui.
-    // private Storage saveFile;
+/**
+ * Represents the tasklist.
+ */
+public class TaskList implements Iterable<Task> {
+    private final ObservableList<Task> internalList = FXCollections.observableArrayList();
+    private final ObservableList<Task> internalUnmodifiableList =
+            FXCollections.unmodifiableObservableList(internalList);
+
+    /**
+     * Returns the backing list as an unmodifiable {@code ObservableList}.
+     */
+    public ObservableList<Task> asUnmodifiableObservableList() {
+        return internalUnmodifiableList;
+    }
 
     /**
      * Adds a Task to the TaskList.
@@ -19,56 +28,15 @@ public class TaskList {
      * @return A String describing the number of tasks in the TaskList.
      */
     public String addTask(Task task) {
+        requireNonNull(task);
 
-        tempStorage.add(task);
-        assert tempStorage.contains(task) : "Task failed to be added to temporary storage";
+        internalList.add(task);
 
-        return TaskUi.addText(tempStorage.get(tempStorage.size() - 1).toString(), tempStorage.size());
+        return TaskUi.addText(internalList.get(internalList.size() - 1).toString(), internalList.size());
     }
 
-    /**
-     *  Removes the specified Task from storage if it exists.
-     *
-     *  If the specified Task does not exist, a statement telling the user that
-     *  the specified does not exist is printed.
-     *
-     * @param index The index of the Task to be removed from storage.
-     * @return A response to be displayed to the user.
-     */
-    public String delete(int index) {
-        assert index >= 0 : "Index does not exist.";
-        assert tempStorage != null : "No temporary storage created.";
-        // assert saveFile != null : "No save file provided.";
-
-        try {
-            Task toRemove = tempStorage.remove(index);
-            // saveFile.reload(tempStorage);
-
-            return TaskUi.deleteText(toRemove.toString(), tempStorage.size());
-        } catch (IndexOutOfBoundsException e) {
-            return TaskUi.taskNotFoundText();
-        }
-
+    @Override
+    public Iterator<Task> iterator() {
+        return internalList.iterator();
     }
-
-    /**
-     * Lists all the tasks currently being stored.
-     *
-     * @return A response to be displayed to the user.
-     */
-    public String list() {
-        String list = "Here are the tasks in your list:\n";
-
-        int index = 1;
-        Iterator<Task> iterator = tempStorage.iterator();
-        while (iterator.hasNext()) {
-            String task = index + ". " + iterator.next().toString() + "\n";
-            list = list + task;
-
-            index++;
-        }
-
-        return list;
-    }
-
 }
