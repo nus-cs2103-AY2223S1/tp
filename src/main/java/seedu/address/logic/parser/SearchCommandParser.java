@@ -42,6 +42,8 @@ public class SearchCommandParser implements Parser<SearchCommand> {
         boolean isJointCondition;
 
         switch (condition) {
+        // Search commands with empty and "and" preamble are both treated as
+        // search for result that satisfy all prefix conditions
         case SearchCommand.AND_CONDITION:
         case SearchCommand.EMPTY_CONDITION:
             isJointCondition = true;
