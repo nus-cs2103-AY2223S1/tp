@@ -2,6 +2,11 @@ package seedu.address.model.project;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
+
+import seedu.address.model.issue.Issue;
+import seedu.address.model.person.Client;
+
 /**
  * Represents a Project.
  */
@@ -11,19 +16,19 @@ public class Project {
     private Name name;
     private Repository repository;
     private Deadline deadline;
-    private String client;
-    private String issue;
+    private ArrayList<Client> clientList = new ArrayList<>();
+    private ArrayList<Issue> issueList = new ArrayList<>();
 
     /**
      * Name field must be present and not null and other fields may be optional.
      */
-    public Project(Name name, Repository repository, Deadline deadline, String client, String issue) {
+    public Project(Name name, Repository repository, Deadline deadline, Client client, Issue issue) {
         requireAllNonNull(name, repository, deadline, client, issue);
         this.name = name;
         this.repository = repository;
         this.deadline = deadline;
-        this.client = client;
-        this.issue = issue;
+        this.clientList.add(client);
+        this.issueList.add(issue);
     }
 
     public Name getProjectName() {
@@ -38,12 +43,12 @@ public class Project {
         return deadline;
     }
 
-    public String getClient() {
-        return client;
+    public ArrayList<Client> getClientList() {
+        return clientList;
     }
 
-    public String getIssue() {
-        return issue;
+    public ArrayList<Issue> getIssueList() {
+        return issueList;
     }
 
     /**
@@ -64,8 +69,8 @@ public class Project {
         return otherProject.getProjectName().equals(getProjectName())
                 && otherProject.getRepository().equals(getRepository())
                 && otherProject.getDeadline().equals(getDeadline())
-                && otherProject.getClient().equals(getClient())
-                && otherProject.getIssue().equals(getIssue());
+                && otherProject.getClientList().equals(getClientList())
+                && otherProject.getIssueList().equals(getIssueList());
     }
 
     /**
