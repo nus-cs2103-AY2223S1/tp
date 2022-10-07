@@ -5,7 +5,9 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.issue.Issue;
 import seedu.address.model.person.Person;
+import seedu.address.model.project.Project;
 
 /**
  * The API of the Model component.
@@ -13,6 +15,8 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Project> PREDICATE_SHOW_ALL_PROJECTS = unused -> true;
+    Predicate<Issue> PREDICATE_SHOW_ALL_ISSUES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -57,17 +61,31 @@ public interface Model {
      */
     boolean hasPerson(Person person);
 
+    boolean hasProject(Project project);
+
+    boolean hasIssue(Issue issue);
+
     /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
     void deletePerson(Person target);
 
+    void deleteProject(Project target);
+
+    void deleteIssue(Issue target);
+
+    void addProject(Project person);
+
     /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.
      */
     void addPerson(Person person);
+
+    void addIssue(Issue issue);
+
+    void setProject(Project target, Project editedProject);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
@@ -76,12 +94,22 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    void setIssue(Issue target, Issue editedIssue);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
+
+    ObservableList<Project> getFilteredProjectList();
+
+    ObservableList<Issue> getFilteredIssueList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    void updateFilteredProjectList(Predicate<Project> predicate);
+
+    void updateFilteredIssueList(Predicate<Issue> predicate);
 }
