@@ -5,6 +5,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -182,6 +184,17 @@ public class UniquePersonList implements Iterable<Person> {
             }
         });
         internalList.setAll(sorted);
+    }
+
+    /**
+     * Returns a set of unique {@code Name} in the address book.
+     *
+     * @return a set of unique {@code Name}.
+     */
+    public TreeSet<String> getUniqueNames() {
+        TreeSet<String> uniqueNames = new TreeSet<>();
+        uniqueNames.addAll(internalList.stream().map(person -> person.getName().fullName).collect(Collectors.toList()));
+        return uniqueNames;
     }
 
     /**

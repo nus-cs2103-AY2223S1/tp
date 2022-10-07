@@ -14,6 +14,7 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.TreeSet;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -173,7 +174,23 @@ public class UniquePersonListTest {
     }
 
     @Test
-    void sortByName() {
+    public void getUniqueNames_listWithUniqueNames_success() {
+        uniquePersonList.add(ALICE);
+        uniquePersonList.add(BOB);
+        TreeSet<String> listWithUniqueNames = uniquePersonList.getUniqueNames();
+        TreeSet<String> expectedListWithUniqueNames = new TreeSet<>();
+        expectedListWithUniqueNames.addAll(Arrays.asList(ALICE.getName().fullName, BOB.getName().fullName));
+        assertEquals(expectedListWithUniqueNames, listWithUniqueNames);
+    }
+
+    @Test
+    public void getUniqueNames_emptyList_success() {
+        TreeSet<String> expectedEmptyList = new TreeSet<>();
+        assertEquals(expectedEmptyList, uniquePersonList.getUniqueNames());
+    }
+
+    @Test
+    public void sortByName_success() {
         UniquePersonList sampleA = new UniquePersonList();
         UniquePersonList sampleB = new UniquePersonList();
         sampleA.add(ALICE);
@@ -187,7 +204,7 @@ public class UniquePersonListTest {
     }
 
     @Test
-    void sortByPhone() {
+    public void sortByPhone_success() {
         UniquePersonList sampleA = new UniquePersonList();
         UniquePersonList sampleB = new UniquePersonList();
         sampleA.add(ALICE);
@@ -201,7 +218,7 @@ public class UniquePersonListTest {
     }
 
     @Test
-    void sortByEmail() {
+    public void sortByEmail_success() {
         UniquePersonList sampleA = new UniquePersonList();
         UniquePersonList sampleB = new UniquePersonList();
         sampleA.add(ALICE);
@@ -215,7 +232,7 @@ public class UniquePersonListTest {
     }
 
     @Test
-    void sortByAddress() {
+    public void sortByAddress_success() {
         UniquePersonList sampleA = new UniquePersonList();
         UniquePersonList sampleB = new UniquePersonList();
         sampleA.add(ALICE);
@@ -233,7 +250,7 @@ public class UniquePersonListTest {
      */
     @Test
     @Disabled
-    void sortByTag() {
+    public void sortByTag_success() {
         UniquePersonList sampleA = new UniquePersonList();
         UniquePersonList sampleB = new UniquePersonList();
         sampleA.add(ALICE);

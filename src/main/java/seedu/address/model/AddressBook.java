@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.TreeSet;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
@@ -115,6 +116,10 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void sortByTag(Tag tag, Boolean isReverse) {
         persons.sortByTag(tag, isReverse);
+    }
+
+    public TreeSet<String> getUniqueNames() {
+        return persons.getUniqueNames();
     }
 
     //// person-level operations
