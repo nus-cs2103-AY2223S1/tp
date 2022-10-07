@@ -45,30 +45,30 @@ public class SearchCommandParser implements Parser<SearchCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
         String condition = argMultimap.getPreamble().toLowerCase();
+        boolean isJointCondition;
 
         switch (condition) {
         case SearchCommand.AND_CONDITION:
         case SearchCommand.EMPTY_CONDITION:
-            return parseSearchWithAndCondition(argMultimap);
+            isJointCondition = true;
+            return parseSearchWithCondition(argMultimap, isJointCondition);
         case SearchCommand.OR_CONDITION:
-            return parseSearchWithOrCondition(argMultimap);
+            isJointCondition = false;
+            return parseSearchWithCondition(argMultimap, isJointCondition);
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
         }
     }
 
-    private SearchCommand parseSearchWithAndCondition(ArgumentMultimap argMultimap) throws ParseException {
+    private SearchCommand parseSearchWithCondition(ArgumentMultimap argMultimap, Boolean isJointCondition) throws ParseException {
         Pair<List<String>, List<List<String>>> keywordsAndPrefixes = extractPrefixesAndKeywords(argMultimap);
         List<String> prefixes = keywordsAndPrefixes.getKey();
         List<List<String>> keywords = keywordsAndPrefixes.getValue();
-        return new SearchCommand(new ContactContainsAllKeywordsPredicate(prefixes, keywords));
-    }
-
-    private SearchCommand parseSearchWithOrCondition(ArgumentMultimap argMultimap) throws ParseException {
-        Pair<List<String>, List<List<String>>> keywordsAndPrefixes = extractPrefixesAndKeywords(argMultimap);
-        List<String> prefixes = keywordsAndPrefixes.getKey();
-        List<List<String>> keywords = keywordsAndPrefixes.getValue();
-        return new SearchCommand(new ContactContainsAnyKeywordsPredicate(prefixes, keywords));
+        if (isJointCondition) {
+            return new SearchCommand(new ContactContainsAllKeywordsPredicate(prefixes, keywords));
+        } else {
+            return new SearchCommand(new ContactContainsAnyKeywordsPredicate(prefixes, keywords));
+        }
     }
 
     private Pair<List<String>, List<List<String>>> extractPrefixesAndKeywords(ArgumentMultimap argMultimap)
