@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.poc.Poc;
+import seedu.address.model.poc.UniquePocList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -21,15 +23,28 @@ public class Company {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final UniquePocList pocs;
 
     /**
      * Every field must be present and not null.
      */
     public Company(Name name, Address address, Set<Tag> tags) {
+        this(name, address, tags, new UniquePocList());
+    }
+
+    /**
+     * Overloaded Constructor take in all fields.
+     * @param name company name.
+     * @param address address of company.
+     * @param tags tags of company.
+     * @param pocs list of unique pocs.
+     */
+    public Company(Name name, Address address, Set<Tag> tags, UniquePocList pocs) {
         requireAllNonNull(name, address, tags);
         this.name = name;
         this.address = address;
         this.tags.addAll(tags);
+        this.pocs = pocs;
     }
 
     public Name getName() {
@@ -46,6 +61,18 @@ public class Company {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public UniquePocList getPocs() {
+        return pocs;
+    }
+
+    /**
+     * Adds a poc to the unique list in the company.
+     * @param poc to be added to the list.
+     */
+    public void addPoc(Poc poc) {
+        this.pocs.add(poc);
     }
 
     /**
