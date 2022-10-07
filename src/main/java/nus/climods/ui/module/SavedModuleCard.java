@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import nus.climods.model.module.DummyModule;
 import nus.climods.ui.UiPart;
 
 /**
@@ -22,7 +23,7 @@ public class SavedModuleCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Module module;
+    public final DummyModule module;
 
     @FXML
     private HBox cardPane;
@@ -41,14 +42,14 @@ public class SavedModuleCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public SavedModuleCard(Module module) {
+    public SavedModuleCard(DummyModule module) {
         super(FXML);
         this.module = module;
         moduleCode.setText(module.getModuleCode());
         tutorial.setText(module.getTutorial());
         lecture.setText(module.getLecture());
         // TODO: Find a better display for the buttons
-        ayData.getChildren().add(new Button(module.getaydata()));
+        ayData.getChildren().add(new Button(module.getAcademicYear()));
         ayData.getChildren().forEach(child -> child.setStyle("-fx-background-color:#E5C07B;-fx-text-fill: #2E333D;"
             + buttonStyle));
 

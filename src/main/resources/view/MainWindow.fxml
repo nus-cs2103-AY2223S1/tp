@@ -31,7 +31,7 @@
           </Menu>
         </MenuBar>
 
-        <SplitPane fx:id="currentModuleList">
+        <SplitPane fx:id="modulePane">
           <VBox VBox.vgrow="ALWAYS" minWidth="350" styleClass="pane-with-border"
             fx:id="moduleListPanel">
             <StackPane VBox.vgrow="ALWAYS" fx:id="moduleListPanelPlaceholder"/>
@@ -40,8 +40,8 @@
             </padding>
           </VBox>
 
-          <VBox VBox.vgrow="ALWAYS" styleClass="pane-with-border" fx:id="currentModuleListPanel">
-            <StackPane VBox.vgrow="ALWAYS" fx:id="currentModuleListPanelPlaceholder"/>
+          <VBox VBox.vgrow="ALWAYS" styleClass="pane-with-border" fx:id="savedModuleListPanel">
+            <StackPane VBox.vgrow="ALWAYS" fx:id="savedModuleListPanelPlaceholder"/>
             <padding>
               <Insets bottom="10" left="10" right="10" top="10"/>
             </padding>

@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import nus.climods.model.module.DummyModule;
 import nus.climods.ui.UiPart;
 
 /**
@@ -22,7 +23,7 @@ public class ModuleCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Module module;
+    public final DummyModule module;
 
     @FXML
     private HBox cardPane;
@@ -42,22 +43,21 @@ public class ModuleCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public ModuleCard(Module module) {
+    public ModuleCard(DummyModule module) {
         super(FXML);
         this.module = module;
         moduleCode.setText(module.getModuleCode());
         title.setText(module.getTitle());
         department.setText(module.getDepartment());
-        // TODO: find a more elegant way to add workload behind semeseter tag
+        // TODO: find a more elegant way to add workload behind semester tag
         workload = new Button(module.getWorkload());
         workload.setStyle("-fx-background-color:#61AFEF;-fx-text-fill: #ffffff;" + buttonStyle);
-        module.getSemesterData().stream()
+        module.getSemesterData()
             .forEach(tag -> semesterData.getChildren()
                 .add(new Button(tag)));
         semesterData.getChildren().forEach(child ->
             child.setStyle("-fx-background-color: #C678DD;-fx-text-fill: #000000;" + buttonStyle));
         semesterData.getChildren().add(workload);
-
     }
 
     @Override

@@ -1,4 +1,4 @@
-package nus.climods.ui;
+package nus.climods.ui.common;
 
 import java.util.logging.Logger;
 
@@ -9,6 +9,7 @@ import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
 import nus.climods.commons.core.LogsCenter;
+import nus.climods.ui.UiPart;
 
 /**
  * Controller for a help page

@@ -1,4 +1,4 @@
-package nus.climods.ui;
+package nus.climods.ui.common;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -8,6 +8,7 @@ import nus.climods.logic.Logic;
 import nus.climods.logic.commands.CommandResult;
 import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.logic.parser.exceptions.ParseException;
+import nus.climods.ui.UiPart;
 
 /**
  * The UI component that is responsible for receiving user command inputs.

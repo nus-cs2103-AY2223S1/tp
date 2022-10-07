@@ -1,14 +1,9 @@
-package nus.climods.ui.module;
+package nus.climods.model.module;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-/**
- * This is a dummy module used to test the UI
- */
-
-public class Module {
-
+public class DummyModule {
     public String getModuleCode() {
         return "CS2103";
     }
@@ -25,8 +20,8 @@ public class Module {
         return "Software Engineering";
     }
 
-    public String getaydata() {
-        return "AY2223 S1";
+    public String getAcademicYear() {
+        return "AY2223";
     }
 
     public String getTutorial() {

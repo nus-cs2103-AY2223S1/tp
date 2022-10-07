@@ -9,6 +9,7 @@ import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.logic.parser.exceptions.ParseException;
 import nus.climods.model.Model;
 import nus.climods.model.ReadOnlyAddressBook;
+import nus.climods.model.module.DummyModule;
 import nus.climods.model.person.Person;
 
 /**
@@ -26,21 +27,28 @@ public interface Logic {
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
+    ObservableList<DummyModule> getFilteredModuleList();
+
+    ObservableList<DummyModule> getFilteredSavedModuleList();
+
     /**
      * Returns the AddressBook.
      *
      * @see Model#getAddressBook()
      */
+    @Deprecated
     ReadOnlyAddressBook getAddressBook();
 
     /**
      * Returns an unmodifiable view of the filtered list of persons
      */
+    @Deprecated
     ObservableList<Person> getFilteredPersonList();
 
     /**
      * Returns the user prefs' address book file path.
      */
+    @Deprecated
     Path getAddressBookFilePath();
 
     /**
