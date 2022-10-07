@@ -2,7 +2,7 @@ package bookface.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import bookface.model.AddressBook;
+import bookface.model.BookFace;
 import bookface.model.Model;
 
 /**
@@ -17,7 +17,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setAddressBook(new AddressBook());
+        model.setBookFace(new BookFace());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

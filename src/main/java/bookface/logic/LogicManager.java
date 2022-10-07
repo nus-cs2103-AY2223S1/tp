@@ -12,7 +12,7 @@ import bookface.logic.commands.exceptions.CommandException;
 import bookface.logic.parser.exceptions.ParseException;
 import bookface.logic.parser.primary.PrimaryParser;
 import bookface.model.Model;
-import bookface.model.ReadOnlyAddressBook;
+import bookface.model.ReadOnlyBookFace;
 import bookface.model.person.Person;
 import bookface.storage.Storage;
 import javafx.collections.ObservableList;
@@ -46,7 +46,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveAddressBook(model.getBookFace());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -55,8 +55,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyBookFace getAddressBook() {
+        return model.getBookFace();
     }
 
     @Override
@@ -66,7 +66,7 @@ public class LogicManager implements Logic {
 
     @Override
     public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+        return model.getBookFaceFilePath();
     }
 
     @Override

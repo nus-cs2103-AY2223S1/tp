@@ -1,11 +1,11 @@
 package bookface.logic.commands;
 
 import static bookface.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static bookface.testutil.TypicalPersons.getTypicalAddressBook;
+import static bookface.testutil.TypicalPersons.getTypicalBookFaceData;
 
 import org.junit.jupiter.api.Test;
 
-import bookface.model.AddressBook;
+import bookface.model.BookFace;
 import bookface.model.Model;
 import bookface.model.ModelManager;
 import bookface.model.UserPrefs;
@@ -22,9 +22,9 @@ public class ClearCommandTest {
 
     @Test
     public void execute_nonEmptyAddressBook_success() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel.setAddressBook(new AddressBook());
+        Model model = new ModelManager(getTypicalBookFaceData(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalBookFaceData(), new UserPrefs());
+        expectedModel.setBookFace(new BookFace());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }

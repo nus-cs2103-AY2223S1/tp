@@ -15,9 +15,9 @@ import org.junit.jupiter.api.Test;
 import bookface.commons.core.GuiSettings;
 import bookface.logic.commands.CommandResult;
 import bookface.logic.commands.exceptions.CommandException;
-import bookface.model.AddressBook;
+import bookface.model.BookFace;
 import bookface.model.Model;
-import bookface.model.ReadOnlyAddressBook;
+import bookface.model.ReadOnlyBookFace;
 import bookface.model.ReadOnlyUserPrefs;
 import bookface.model.book.Book;
 import bookface.model.person.Person;
@@ -101,12 +101,12 @@ public class AddUserCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getBookFaceFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setBookFaceFilePath(Path bookFaceFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -116,12 +116,12 @@ public class AddUserCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setBookFace(ReadOnlyBookFace bookFace) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyBookFace getBookFace() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -198,8 +198,8 @@ public class AddUserCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyBookFace getBookFace() {
+            return new BookFace();
         }
     }
 

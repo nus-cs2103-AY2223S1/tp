@@ -34,7 +34,9 @@ public class Book {
         return author;
     }
 
-    public boolean isLoaned() { return this.isLoaned; }
+    public boolean isLoaned() {
+        return this.isLoaned;
+    }
 
     /**
      * Sets the book's isLoaned status to false and loanee to null.

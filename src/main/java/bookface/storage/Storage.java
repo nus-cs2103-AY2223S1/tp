@@ -5,7 +5,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import bookface.commons.exceptions.DataConversionException;
-import bookface.model.ReadOnlyAddressBook;
+import bookface.model.ReadOnlyBookFace;
 import bookface.model.ReadOnlyUserPrefs;
 import bookface.model.UserPrefs;
 
@@ -24,9 +24,9 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     Path getAddressBookFilePath();
 
     @Override
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyBookFace> readAddressBook() throws DataConversionException, IOException;
 
     @Override
-    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
+    void saveAddressBook(ReadOnlyBookFace addressBook) throws IOException;
 
 }

@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import bookface.model.AddressBook;
-import bookface.model.ReadOnlyAddressBook;
+import bookface.model.BookFace;
+import bookface.model.ReadOnlyBookFace;
 import bookface.model.person.Email;
 import bookface.model.person.Name;
 import bookface.model.person.Person;
@@ -35,8 +35,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyBookFace getSampleAddressBook() {
+        BookFace sampleAb = new BookFace();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }
