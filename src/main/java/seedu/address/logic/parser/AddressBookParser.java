@@ -6,16 +6,13 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.person.AddPersonCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.person.DeletePersonCommand;
-import seedu.address.logic.commands.person.EditPersonCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.person.PersonCommand;
+import seedu.address.logic.commands.client.ClientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -27,6 +24,7 @@ public class AddressBookParser {
         try {
             new AddressBookParser().parseCommand("client -a n/name p/98765432 e/email@example.com a/address t/tag");
             new AddressBookParser().parseCommand("client -e 2 n/name p/98765432 e/email@example.com a/address t/tag");
+            new AddressBookParser().parseCommand("client -d 1 n/Amy");
 
         } catch (ParseException e) {
             e.printStackTrace();
@@ -55,7 +53,7 @@ public class AddressBookParser {
         final String flag = matcher.group("flag"); // returns a whitespace, followed by the tag e.g. " -f".
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
-        case PersonCommand.COMMAND_WORD:
+        case ClientCommand.COMMAND_WORD:
             return new PersonCommandParser().parse(flag, arguments);
 
         case ClearCommand.COMMAND_WORD:

@@ -57,7 +57,7 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a client with the same identity as {@code client} exists in the address book.
      */
     boolean hasPerson(Person person);
 
@@ -66,8 +66,8 @@ public interface Model {
     boolean hasIssue(Issue issue);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given client.
+     * The client must exist in the address book.
      */
     void deletePerson(Person target);
 
@@ -78,8 +78,8 @@ public interface Model {
     void addProject(Project person);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given client.
+     * {@code client} must not already exist in the address book.
      */
     void addPerson(Person person);
 
@@ -88,15 +88,15 @@ public interface Model {
     void setProject(Project target, Project editedProject);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given client {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The client identity of {@code editedPerson} must not be the same as another existing client in the address book.
      */
     void setPerson(Person target, Person editedPerson);
 
     void setIssue(Issue target, Issue editedIssue);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /** Returns an unmodifiable view of the filtered client list */
     ObservableList<Person> getFilteredPersonList();
 
     ObservableList<Project> getFilteredProjectList();
@@ -104,7 +104,7 @@ public interface Model {
     ObservableList<Issue> getFilteredIssueList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered client list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);

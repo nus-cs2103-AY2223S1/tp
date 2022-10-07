@@ -48,7 +48,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
+     * Replaces the contents of the client list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
     public void setPersons(List<Person> persons) {
@@ -82,10 +82,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         setProjects(newData.getProjectList());
     }
 
-    //// person-level operations
+    //// client-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a client with the same identity as {@code client} exists in the address book.
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -109,8 +109,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a client to the address book.
+     * The client must not already exist in the address book.
      */
     public void addPerson(Person p) {
         persons.add(p);
@@ -133,9 +133,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Replaces the given client {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The client identity of {@code editedPerson} must not be the same as another existing client in the address book.
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
@@ -144,7 +144,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedProject}.
+     * Replaces the given client {@code target} in the list with {@code editedProject}.
      * {@code target} must exist in the address book.
      * The project identity of {@code editedProject} must not be the same as another
      * existing project in the address book.
@@ -156,7 +156,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedIssue}.
+     * Replaces the given client {@code target} in the list with {@code editedIssue}.
      * {@code target} must exist in the address book.
      * The issue identity of {@code editedIssue} must not be the same as another
      * existing issue in the address book.
