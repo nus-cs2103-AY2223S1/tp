@@ -5,7 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.ArrayList;
 
 import seedu.address.model.issue.Issue;
-import seedu.address.model.person.Client;
+import seedu.address.model.person.client.Client;
 
 /**
  * Represents a Project.
@@ -16,19 +16,20 @@ public class Project {
     private Name name;
     private Repository repository;
     private Deadline deadline;
-    private ArrayList<Client> clientList = new ArrayList<>();
-    private ArrayList<Issue> issueList = new ArrayList<>();
+    private ArrayList<Client> clientList;
+    private ArrayList<Issue> issueList;
 
     /**
      * Name field must be present and not null and other fields may be optional.
      */
-    public Project(Name name, Repository repository, Deadline deadline, Client client, Issue issue) {
-        requireAllNonNull(name, repository, deadline, client, issue);
+    public Project(Name name, Repository repository, Deadline deadline, ArrayList<Client> clientList,
+                   ArrayList<Issue> issueList) {
+        requireAllNonNull(name, repository, deadline, clientList, issueList);
         this.name = name;
         this.repository = repository;
         this.deadline = deadline;
-        this.clientList.add(client);
-        this.issueList.add(issue);
+        this.clientList = clientList;
+        this.issueList = issueList;
     }
 
     public Name getProjectName() {
