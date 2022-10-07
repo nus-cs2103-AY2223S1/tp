@@ -25,13 +25,13 @@ public class DeleteCommandParserTest {
     private DeleteCommandParser parser = new DeleteCommandParser();
 
     @Test
-    public void parse_validArgs_index_returnsDeleteCommand() {
+    public void parse_validArgsIndex_returnsDeleteCommand() {
         assertParseSuccess(parser, "1", new DeleteCommand(Optional.of(INDEX_FIRST_PERSON), Optional.empty(),
                 Optional.empty(), Optional.empty()));
     }
 
     @Test
-    public void parse_validArgs_race_returnsDeleteCommand() {
+    public void parse_validArgsRace_returnsDeleteCommand() {
         Race race = new Race(VALID_RACE_AMY);
         assertParseSuccess(parser, " ra/Chinese",
                 new DeleteCommand(Optional.empty(), Optional.of(race), Optional.empty(), Optional.empty()));

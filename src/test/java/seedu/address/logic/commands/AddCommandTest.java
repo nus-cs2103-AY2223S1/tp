@@ -134,7 +134,9 @@ public class AddCommandTest {
         }
 
         @Override
-        public String deletePersons(Predicate<Person> predicate) { throw new AssertionError("This method should not be called."); }
+        public String deletePersons(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public void setPerson(Person target, Person editedPerson) {
