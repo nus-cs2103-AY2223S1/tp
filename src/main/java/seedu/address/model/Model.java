@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.TreeSet;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -117,8 +118,11 @@ public interface Model {
     void sortByTag(Tag tag, Boolean isReverse);
 
     /**
-     * Returns an unmodifiable view of the filtered person list.
+     * Returns a set of unique {@code Name} in the address book.
      */
+    TreeSet<String> getUniqueNames();
+
+    /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
     /**
