@@ -77,6 +77,9 @@ public class CompanyBuilder {
         return this;
     }
 
+    /**
+     * Adds poc to the {@code UniquePocList} of the {@code Company} that we are building.
+     */
     public CompanyBuilder withAddedPoc(Poc poc) {
         this.pocs.add(poc);
         return this;

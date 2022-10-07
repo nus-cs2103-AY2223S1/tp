@@ -8,8 +8,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCompanies.ALICE;
 import static seedu.address.testutil.TypicalCompanies.BOB;
-import static seedu.address.testutil.TypicalPoc.ELLE;
 import static seedu.address.testutil.TypicalPoc.BENSON;
+import static seedu.address.testutil.TypicalPoc.ELLE;
 
 import org.junit.jupiter.api.Test;
 

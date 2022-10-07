@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.CreateCommand;
 
 class CreateCommandParserTest {
@@ -21,19 +22,6 @@ class CreateCommandParserTest {
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, CreateCommand.MESSAGE_USAGE);
 
     private CreateCommandParser parser = new CreateCommandParser();
-
-    @Test
-    public void parse_allPocFieldsSpecified_success() {
-//        Company expectedCompany = new CompanyBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
-//
-//        Index targetIndex = INDEX_SECOND_COMPANY;
-//        String userInput = targetIndex.getOneBased() + EMAIL_DESC_AMY
-//                + NAME_DESC_AMY + EMAIL_DESC_AMY;
-//
-//        CreateCommand createCommand = new CreateCommand(targetIndex, AMY);
-////        String expectedCommand = String.format(CreateCommand.MESSAGE_SUCCESS, VALID_NAME_AMY, editedCompany);
-//        assertParseSuccess(parser, userInput, createCommand);
-    }
 
     @Test
     public void parse_invalidIndexPreamble_failure() {
@@ -74,16 +62,16 @@ class CreateCommandParserTest {
         assertParseFailure(parser, INVALID_ADDRESS_DESC, MESSAGE_INVALID_FORMAT);
         assertParseFailure(parser, "1" + VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
         assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
-        assertParseFailure(parser, "1" + VALID_NAME_AMY + VALID_EMAIL_AMY
-                , MESSAGE_INVALID_FORMAT);
-        assertParseFailure(parser, VALID_NAME_AMY + VALID_EMAIL_AMY
-                , MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1" + VALID_NAME_AMY + VALID_EMAIL_AMY,
+                MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, VALID_NAME_AMY + VALID_EMAIL_AMY,
+                MESSAGE_INVALID_FORMAT);
         assertParseFailure(parser, "1" + VALID_NAME_AMY + VALID_PHONE_AMY, MESSAGE_INVALID_FORMAT);
         assertParseFailure(parser, VALID_NAME_AMY + VALID_PHONE_AMY, MESSAGE_INVALID_FORMAT);
-        assertParseFailure(parser, "1" + VALID_NAME_AMY + VALID_PHONE_AMY + VALID_EMAIL_AMY
-                , MESSAGE_INVALID_FORMAT);
-        assertParseFailure(parser, VALID_NAME_AMY + VALID_PHONE_AMY + VALID_EMAIL_AMY
-                , MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1" + VALID_NAME_AMY + VALID_PHONE_AMY + VALID_EMAIL_AMY,
+                MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, VALID_NAME_AMY + VALID_PHONE_AMY + VALID_EMAIL_AMY,
+                MESSAGE_INVALID_FORMAT);
 
     }
 }
