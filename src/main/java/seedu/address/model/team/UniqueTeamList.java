@@ -95,6 +95,13 @@ public class UniqueTeamList implements Iterable<Team> {
         internalList.get(index).addTask(task);
     }
 
+    /**
+     * Deletes the {@code Task} from the {@code Team} at the specified index.
+     *
+     */
+    public void deleteTask(int index, Task task) {
+        internalList.get(index).deleteTask(task);
+    }
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.

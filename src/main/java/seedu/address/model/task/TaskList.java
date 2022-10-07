@@ -26,6 +26,15 @@ public class TaskList {
     }
 
     /**
+     * Deletes a task from this {@code TaskList}.
+     *
+     * @param task The {@code Task} object to be deleted from this {@code TaskList}.
+     */
+    public void delete(Task task) {
+        this.taskList.remove(task);
+    }
+
+    /**
      * Returns the task in the specified index.
      *
      * @param index Index of the task.

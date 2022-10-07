@@ -101,4 +101,6 @@ public interface Model {
     ObservableList<Team> getFilteredTeamList();
 
     void addTask(Index index, Task task);
+
+    void deleteTask(Index index, Task task);
 }
