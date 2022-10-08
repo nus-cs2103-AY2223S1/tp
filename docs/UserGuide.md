@@ -87,11 +87,11 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com r/0 t/new `
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com p/1234567 r/5000 t/gold`
 
-### Updating a Customer’s details: `update`
+### Editing a Customer’s details: `edit`
 
-Updates an existing Customer in bobaBot.
+Edits an existing Customer in bobaBot.
 
-Format: `update n/NAME OR update p/PHONE_NUMBER OR update e/EMAIL
+Format: `edit n/NAME OR edit p/PHONE_NUMBER OR edit e/EMAIL
 [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/REWARD] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: Tip:
@@ -99,8 +99,8 @@ At least one of the optional fields must be provided
 </div>
 
 Examples:
-* `update n/John Doe p/91234567 e/johndoe@example.com r/1000`
-* `update n/Peter Parker r/420`
+* `edit n/John Doe p/91234567 e/johndoe@example.com r/1000`
+* `edit n/Peter Parker r/420`
 
 ### Listing all customers : `list`
 
@@ -185,14 +185,14 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                                             |
-|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL [r/REWARD] [t/TAG]…` <br> e.g., ` add n/Betsy Crowe t/friend e/betsycrowe@example.com p/1234567 r/5000 t/gold`                                            |
-| **Update** | `update n/NAME` or `update p/PHONE_NUMBER` or `update e/EMAIL [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/REWARD] [t/TAG]…​`<br> e.g.,`update n/John Doe p/91234567 e/johndoe@example.com r/1000` |
-| **Delete** | `delete n/NAME` or `delete p/PHONE_NUMBER` or `delete e/EMAIL` <br> e.g., `delete n/Alex Yeoh`, `delete p/87438807`, `delete e/alexyeoh@example.com`                                         |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find alex david`                                                                                                                                   |
-| **Clear**  | `clear`                                                                                                                                                                                      |
-| **List**   | `list`                                                                                                                                                                                       |
-| **Help**   | `help`                                                                                                                                                                                       |
-| **Exit**   | `exit`                                                                                                                                                                                       |
+| Action     | Format, Examples                                                                                                                                                                     |
+|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL [r/REWARD] [t/TAG]…` <br> e.g., ` add n/Betsy Crowe t/friend e/betsycrowe@example.com p/1234567 r/5000 t/gold`                                    |
+| **Edit**   | `edit n/NAME` or `edit p/PHONE_NUMBER` or `edit e/EMAIL [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/REWARD] [t/TAG]…​`<br> e.g.,`edit n/John Doe p/91234567 e/johndoe@example.com r/1000` |
+| **Delete** | `delete n/NAME` or `delete p/PHONE_NUMBER` or `delete e/EMAIL` <br> e.g., `delete n/Alex Yeoh`, `delete p/87438807`, `delete e/alexyeoh@example.com`                                 |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find alex david`                                                                                                                           |
+| **Clear**  | `clear`                                                                                                                                                                              |
+| **List**   | `list`                                                                                                                                                                               |
+| **Help**   | `help`                                                                                                                                                                               |
+| **Exit**   | `exit`                                                                                                                                                                               |
 
