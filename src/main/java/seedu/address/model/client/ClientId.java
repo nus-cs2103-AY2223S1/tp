@@ -30,9 +30,9 @@ public class ClientId {
      * @param clientName Name of the Client whose Id is generated
      * @return Id the unique Id of the Client
      */
-    public ClientId generateId(Name clientName) {
+    public static ClientId generateId(ClientName clientName) {
         requireNonNull(clientName);
-        String name = clientName.toString().replaceAll(" ", "").toLowerCase();
+        String name = clientName.getFullNameRepresentation().replaceAll(" ", "").toLowerCase();
         return new ClientId(name);
     }
 
@@ -40,7 +40,7 @@ public class ClientId {
      * Returns the unique identifier generated
      * @return String representing the unique identifier generated
      */
-    public String getIdentifier() {
+    public String getIdentifierRepresentation() {
         return this.identifier;
     }
 
@@ -49,7 +49,7 @@ public class ClientId {
      * @return String representing the client's Id.
      */
     public String toString() {
-        return "Client Id: " + this.identifier;
+        return this.identifier;
     }
 
 

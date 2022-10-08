@@ -84,7 +84,7 @@ public class ClientEmail {
      * Returns the email of the client.
      * @return String representing email
      */
-    public String getFullName() {
+    public String getEmailRepresentation() {
         return this.email;
     }
 

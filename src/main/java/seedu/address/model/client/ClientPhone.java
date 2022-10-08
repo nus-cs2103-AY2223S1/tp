@@ -62,7 +62,7 @@ public class ClientPhone {
      * Returns the phone of the client.
      * @return String representing phone
      */
-    public String getPhone() {
+    public String getPhoneRepresentation() {
         return this.phone;
     }
 

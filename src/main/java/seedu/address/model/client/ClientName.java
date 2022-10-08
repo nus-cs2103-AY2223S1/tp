@@ -94,7 +94,7 @@ public class ClientName {
      * Returns the full name of the client.
      * @return String representing full name
      */
-    public String getFullName() {
+    public String getFullNameRepresentation() {
         return this.fullName;
     }
 
@@ -104,7 +104,7 @@ public class ClientName {
      */
     @Override
     public String toString() {
-        return "Client Name: " + this.fullName;
+        return this.fullName;
     }
 
     /**

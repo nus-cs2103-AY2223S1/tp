@@ -1,6 +1,7 @@
 package seedu.address.model.client;
 
 
+import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.person.Email;
@@ -17,7 +18,10 @@ public class Client {
     private ClientName name;
 
     //Represents the Client's Email
-    private ClientEmail contact;
+    private ClientEmail email;
+
+    //Represents the Client's Phone
+    private ClientPhone phone;
 
     //Represents the Client's unique ID
     private ClientId id;
@@ -30,11 +34,14 @@ public class Client {
      * @param name String representing name of the client
      * @param phone String representing phone number of the client
      * @param email String representing email address of the client
-     * @param address String representing location of the client
-     * @param tag String representing the tag associated with the client
      */
-    public Client(String name, String phone, String email, String address, String tag) {
+    public Client(String name, String phone, String email) {
        //to be added
+        this.name = new ClientName(name);
+        this.phone = new ClientPhone(phone);
+        this.email = new ClientEmail(email);
+        this.id = ClientId.generateId(this.name);
+        this.projects = new HashSet<>();
     }
 
 
@@ -68,6 +75,51 @@ public class Client {
      */
     public int getProjectCount() {
         return this.projects.size();
+    }
+
+    /**
+     * Returns the client name as is represented in the ClientName object.
+     * @return String representing client's name.
+     */
+    public String getClientName() {
+        return this.name.getFullNameRepresentation();
+    }
+
+    /**
+     * Returns the client Id as is represented in the ClientId object.
+     * @return String representing client's Id.
+     */
+    public String getClientId() {
+        return this.id.getIdentifierRepresentation();
+    }
+
+    /**
+     * Returns the client email as is represented in the ClientEmail object.
+     * @return String representing client's email.
+     */
+    public String getClientEmail() {
+        return this.email.getEmailRepresentation();
+    }
+
+    /**
+     * Returns the client phone as is represented in the ClientPhone object.
+     * @return String representing client's phone.
+     */
+    public String getClientPhone() {
+        return this.phone.getPhoneRepresentation();
+    }
+
+    /**
+     * Returns true if both clients have the same name.
+     * This defines a weaker notion of equality between two clients.
+     */
+    public boolean isSameClient(Client otherClient) {
+        if (otherClient == this) {
+            return true;
+        }
+
+        return otherClient != null
+                && otherClient.getClientName().equals(getClientName());
     }
 
 }
