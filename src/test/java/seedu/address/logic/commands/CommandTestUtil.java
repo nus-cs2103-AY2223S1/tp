@@ -83,7 +83,7 @@ public class CommandTestUtil {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
                 .withAddress(VALID_ADDRESS_AMY)
-                .withCap(VALID_CAP_VALUE_AMY, VALID_MAXIMUM_CAP_VALUE_AMY).build();
+                .withCap(VALID_CAP_VALUE_AMY, VALID_MAXIMUM_CAP_VALUE_AMY)
                 .withUniversity(VALID_UNIVERSITY_AMY)
                 .withTags(VALID_TAG_REJECTED).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)

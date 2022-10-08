@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.CAP_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.CAP_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
@@ -21,10 +22,12 @@ import static seedu.address.logic.commands.CommandTestUtil.UNIVERSITY_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.UNIVERSITY_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CAP_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CAP_VALUE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CAP_VALUE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MAXIMUM_CAP_VALUE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MAXIMUM_CAP_VALUE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
@@ -201,7 +204,7 @@ public class EditCommandParserTest {
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withCap(VALID_CAP_BOB)
+                .withCap(VALID_CAP_VALUE_BOB, VALID_MAXIMUM_CAP_VALUE_BOB)
                 .withUniversity(VALID_UNIVERSITY_BOB)
                 .withTags(VALID_TAG_REJECTED, VALID_TAG_KIV)
                 .build();

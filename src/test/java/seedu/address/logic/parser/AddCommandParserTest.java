@@ -84,7 +84,8 @@ public class AddCommandParserTest {
 
         // multiple CAPs - last CAP accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + CAP_DESC_AMY + CAP_DESC_BOB + UNIVERSITY_DESC_BOB + TAG_DESC_REJECTED, new AddCommand(expectedPerson));
+                + CAP_DESC_AMY + CAP_DESC_BOB + UNIVERSITY_DESC_BOB + TAG_DESC_REJECTED,
+                new AddCommand(expectedPerson));
 
         // multiple universities - last university accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
