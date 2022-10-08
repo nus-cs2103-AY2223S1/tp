@@ -1,4 +1,4 @@
-package seedu.address.model.project;
+package seedu.address.model.issue;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -7,12 +7,12 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Represents a Project's deadline.
+ * Represents an Issue's deadline.
  */
 public class Deadline {
 
     /**
-     * Represents an empty Project deadline.
+     * Represents an empty Issue deadline.
      */
     private static class EmptyDeadline extends Deadline {
         private static final Deadline EMPTY_DEADLINE = new EmptyDeadline();
@@ -30,32 +30,28 @@ public class Deadline {
      */
     public static final String VALIDATION_REGEX = "^\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$";
 
-    private LocalDate projectDeadline;
+    private LocalDate issueDeadline;
 
     /**
-     * Constructs a project Deadline.
+     * Constructs an issue Deadline.
      *
-     * @param deadline A valid project deadline.
+     * @param deadline A valid issue deadline.
      */
     public Deadline(String deadline) {
         requireNonNull(deadline);
         checkArgument(isValidDeadline(deadline), MESSAGE_CONSTRAINTS);
-        this.projectDeadline = LocalDate.parse(deadline);
+        this.issueDeadline = LocalDate.parse(deadline);
     }
 
     /**
-     * Returns true if a given string is a valid deadline.
-     */
+    * Returns true if a given string is a valid deadline.
+    */
     public static boolean isValidDeadline(String deadline) {
         return deadline.matches(VALIDATION_REGEX);
     }
 
-    public String getFormattedDeadline() {
-        return projectDeadline.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
-    }
-
     @Override
     public String toString() {
-        return projectDeadline.toString();
+        return issueDeadline.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
     }
 }
