@@ -90,7 +90,7 @@ public class ParserUtil {
     public static GitHub parseGitHub(String username) throws ParseException {
         requireNonNull(username);
         String trimmedUsername = username.trim();
-        if (!Name.isValidName(trimmedUsername)) {
+        if (!GitHub.isValidGitHub(trimmedUsername)) {
             throw new ParseException(GitHub.MESSAGE_CONSTRAINTS);
         }
         return new GitHub(trimmedUsername);
