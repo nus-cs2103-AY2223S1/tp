@@ -11,6 +11,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.NusModule;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -54,6 +55,15 @@ public class SampleDataUtil {
     public static Set<Tag> getTagSet(String... strings) {
         return Arrays.stream(strings)
                 .map(Tag::new)
+                .collect(Collectors.toSet());
+    }
+
+    /**
+     * Returns a module set containing the list of strings given.
+     */
+    public static Set<NusModule> getModuleSet(String... moduleNames) {
+        return Arrays.stream(moduleNames)
+                .map(NusModule::new)
                 .collect(Collectors.toSet());
     }
 

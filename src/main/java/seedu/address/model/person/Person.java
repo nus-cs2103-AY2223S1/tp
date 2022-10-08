@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.tag.NusModule;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,6 +24,7 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final Set<NusModule> modulesTaken = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -34,6 +36,19 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+    }
+
+    /**
+     * Every field must be present and not null. This overloaded constructor allows modules to be passed.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<NusModule> modulesTaken) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.modulesTaken.addAll(modulesTaken);
     }
 
     public Name getName() {
@@ -60,11 +75,8 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
-    public Set<Mod> getMods() {
-        Set<Mod> mods = new HashSet<Mod>();
-        mods.add(new Mod("CS1101S"));
-        mods.add(new Mod("GEA1000"));
-        return mods;
+    public Set<NusModule> getMods() {
+        return Collections.unmodifiableSet(modulesTaken);
     }
 
     /**

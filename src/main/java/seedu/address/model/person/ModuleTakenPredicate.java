@@ -4,19 +4,24 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
-public class ModuleTakenPredicate implements Predicate<Person> {
-    private final List<Mod> modules;
+import seedu.address.model.tag.NusModule;
 
-    public ModuleTakenPredicate(List<Mod> modules) {
+/**
+ * Tests if any of a {@code Person}'s {@code Module} matches any of the keywords given.
+ */
+public class ModuleTakenPredicate implements Predicate<Person> {
+    private final List<NusModule> modules;
+
+    public ModuleTakenPredicate(List<NusModule> modules) {
         this.modules = modules;
     }
 
     @Override
     public boolean test(Person person) {
         boolean flag = false;
-        Set<Mod> personMods = person.getMods();
-        for (Mod mod : modules) {
-            for (Mod pmod : personMods) {
+        Set<NusModule> personMods = person.getMods();
+        for (NusModule mod : modules) {
+            for (NusModule pmod : personMods) {
                 if (mod.equals(pmod)) {
                     flag = true;
                 }
