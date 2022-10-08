@@ -2,7 +2,6 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.FXCollections;
@@ -15,10 +14,10 @@ import seedu.address.model.task.Task;
  */
 public class TaskList implements ReadOnlyTaskList {
 
-    private final List<Task> tasks;
+    private final ObservableList<Task> tasks;
 
     {
-        tasks = new ArrayList<>();
+        tasks = FXCollections.observableArrayList();
     }
 
     public TaskList() {}
@@ -33,7 +32,7 @@ public class TaskList implements ReadOnlyTaskList {
 
     @Override
     public ObservableList<Task> getTaskList() {
-        return FXCollections.observableList(tasks);
+        return tasks;
     }
 
     //// list overwrite operations
