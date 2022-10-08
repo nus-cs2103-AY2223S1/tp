@@ -1,4 +1,4 @@
-package seedu.address.model.project;
+package seedu.address.model.client;
 
 
 import java.util.HashSet;
@@ -17,6 +17,7 @@ import seedu.address.model.tag.Tag;
  */
 public class Client {
 
+    //The unique ID hat
     //Represents a Collection of projects that the client is responsible for
     private Set<Project> projects = new HashSet<>();
 
