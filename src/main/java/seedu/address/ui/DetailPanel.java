@@ -1,5 +1,10 @@
 package seedu.address.ui;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
 import seedu.address.model.person.Person;
 
 /**
@@ -9,8 +14,28 @@ public class DetailPanel extends MainPanel {
 
     private static final String FXML = "DetailPanel.fxml";
 
+    @FXML
+    private HBox profileBoxContainer;
+
+    @FXML
+    private HBox contactListBoxContainer;
+
+    @FXML
+    private ContactListBox contactListBox;
+
+    @FXML
+    private Label contactHeader;
+
     public DetailPanel(Person person) {
         super(FXML);
+        contactHeader.setText("Contact");
+        ProfileBox profileBox = new ProfileBox();
+        HBox.setHgrow(profileBox.getRoot(), Priority.ALWAYS);
+        profileBoxContainer.getChildren().add(profileBox.getRoot());
+
+        ContactListBox contactListBox = new ContactListBox();
+        HBox.setHgrow(contactListBox.getRoot(), Priority.ALWAYS);
+        contactListBoxContainer.getChildren().add(contactListBox.getRoot());
     }
 
     @Override
