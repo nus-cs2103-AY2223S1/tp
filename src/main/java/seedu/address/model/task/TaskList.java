@@ -61,10 +61,10 @@ public class TaskList {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        internalTaskList.forEach(t -> builder.append("\n")
-                .append(internalTaskList.indexOf(t) + 1)
+        internalTaskList.forEach(t -> builder.append(internalTaskList.indexOf(t) + 1)
                 .append(". ")
-                .append(t));
+                .append(t)
+                .append("\n"));
         return builder.toString();
     }
 

@@ -123,13 +123,13 @@ public class Person {
 
         TaskList tasks = getTasks();
         if (!tasks.isEmpty()) {
-            builder.append("\nTasks:")
+            builder.append("\nTasks:\n")
                     .append(tasks);
         }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
-            builder.append("\nTags: ");
+            builder.append("Tags: ");
             tags.forEach(builder::append);
         }
         return builder.toString();
