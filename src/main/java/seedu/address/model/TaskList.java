@@ -61,6 +61,18 @@ public class TaskList implements ReadOnlyTaskList {
         tasks.add(t);
     }
 
+    /**
+     * Check a task for duplicates
+     */
+    public boolean hasTask(Task t) {
+        for (int i = 0; i < tasks.size(); i++) {
+            if (tasks.get(i).equals(t)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public int hashCode() {
         return this.tasks.hashCode();

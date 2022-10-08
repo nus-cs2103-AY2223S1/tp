@@ -82,7 +82,20 @@ public class ModelManager implements Model {
     }
 
     //=========== TaskList ===================================================================================
+    @Override
+    public void addTask(Task task) {
+        taskList.addTask(task);
+    }
 
+    @Override
+    public boolean hasTask(Task task) {
+        return taskList.hasTask(task);
+    }
+
+    @Override
+    public ReadOnlyTaskList getTaskList() {
+        return taskList;
+    }
     //=========== AddressBook ================================================================================
 
     @Override
@@ -140,6 +153,12 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Task> getFilteredTaskList() {
         return filteredTasks;
+    }
+
+    @Override
+    public void updateFilteredTaskList(Predicate<Task> predicate) {
+        requireNonNull(predicate);
+        filteredTasks.setPredicate(predicate);
     }
 
     @Override
