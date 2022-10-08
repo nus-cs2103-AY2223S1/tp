@@ -7,6 +7,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.student.UniqueStudentList;
 import seedu.address.model.tuitionclass.UniqueTuitionClassList;
 
 /**
@@ -16,6 +17,7 @@ import seedu.address.model.tuitionclass.UniqueTuitionClassList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniqueStudentList students;
     private final UniqueTuitionClassList tuitionClasses;
 
     /*
@@ -27,6 +29,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        students = new UniqueStudentList();
         tuitionClasses = new UniqueTuitionClassList();
     }
 
