@@ -17,8 +17,23 @@ import seedu.address.model.tag.Tag;
  */
 public class Client {
 
+    //Represents the Client's name
+    private Name name;
+
+    //Represents the Client's Email Address
+    private Email email;
+
+    //Represents the Client's Phone Number
+    private Phone phone;
+
+    //Represents the Client's unique ID
+    private Id id;
+
+    //Represents the Client's Organization
+    private Name organization;
+    
     //Represents a Collection of projects that the client is responsible for
-    private Set<Project> projects = new HashSet<>();
+    private Set<Project> projects;
 
     /**
      * Constructs a client with inputs given by the user.
