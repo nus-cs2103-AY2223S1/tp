@@ -101,11 +101,32 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// meeting-level operations
 
     /**
+     * Returns true if a Meeting with the same person to meet
+     * and date and time as {@code meeting} exists in the address book.
+     */
+    public boolean hasMeeting(Meeting meeting) {
+        requireNonNull(meeting);
+        return meetings.contains(meeting);
+    }
+
+    /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
     public void addMeeting(Meeting newMeeting) {
         this.meetings.add(newMeeting);
+    }
+
+    /**
+     * Replaces the given Meeting {@code target} in the list with {@code editedMeeting}.
+     * {@code target} must exist in the address book.
+     * {@code editedMeeting} must not be the same
+     * as another existing Meeting in the address book.
+     */
+    public void setMeeting(Meeting target, Meeting editedMeeting) {
+        requireNonNull(editedMeeting);
+
+        meetings.setMeeting(target, editedMeeting);
     }
 
     //// util methods
