@@ -100,13 +100,13 @@ public class Person {
             return true;
         }
 
-        return otherPerson != null
+        return otherPerson == null
                 && otherPerson.getMinecraftName().equals(getMinecraftName());
     }
 
     /**
      * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * This defines a stronger notion of quality between two persons.
      */
     @Override
     public boolean equals(Object other) {
