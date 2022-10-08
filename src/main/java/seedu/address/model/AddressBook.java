@@ -6,6 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.SortField;
 import seedu.address.model.person.UniquePersonList;
 
 /**
@@ -55,6 +56,19 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setPersons(newData.getPersonList());
     }
+
+    /**
+     * Sorts the persons by the given {@code SortField}.
+     *
+     * @param sortField field to sort by.
+     */
+    public void sortPersons(SortField sortField) {
+        requireNonNull(sortField);
+
+        persons.sort(sortField);
+    }
+
+
 
     //// person-level operations
 
