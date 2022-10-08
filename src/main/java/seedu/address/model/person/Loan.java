@@ -7,12 +7,17 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Loan represents a class encapsulating an amount of money presently owed to the club.
  */
 public class Loan {
-    private double amountOwed = 0;
-
     public static final String MESSAGE_CONSTRAINTS =
             "Loan amount should only contain numerics, possibly with decimal point, optional negative";
     public static final String VALIDATION_REGEX = "^-?[0-9]\\d*(\\.\\d+)?$";
 
+    private double amountOwed = 0;
+
+    /**
+     * Constructs a {@code Loan}.
+     *
+     * @param amountString A valid amount, possibly in decimals
+     */
     public Loan(String amountString) {
         requireNonNull(amountString);
         checkArgument(isValidLoan(amountString), MESSAGE_CONSTRAINTS);

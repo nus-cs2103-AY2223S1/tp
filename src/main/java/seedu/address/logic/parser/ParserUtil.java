@@ -123,6 +123,12 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Parses a {@code String loanAmout} into a {@code Loan}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code loanAmount} is invalid.
+     */
     public static Loan parseLoan(String loanAmount) throws ParseException {
         requireNonNull(loanAmount);
         String trimmedLoan = loanAmount.trim();
