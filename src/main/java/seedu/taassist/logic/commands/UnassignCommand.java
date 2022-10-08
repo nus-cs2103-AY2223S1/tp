@@ -50,7 +50,8 @@ public class UnassignCommand extends Command {
         requireNonNull(model);
 
         if (!model.hasModuleClass(moduleClassToUnassign)) {
-            throw new CommandException(Messages.MESSAGE_MODULE_CLASS_DOES_NOT_EXIST);
+            throw new CommandException(String.format(Messages.MESSAGE_MODULE_CLASS_DOES_NOT_EXIST,
+                    model.getModuleClassList()));
         }
 
         List<Student> lastShownList = model.getFilteredStudentList();
