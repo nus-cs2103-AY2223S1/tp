@@ -3,6 +3,9 @@ package seedu.address.model.person.student;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents the next of kin of a student.
+ */
 public class NextOfKin {
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -30,7 +33,7 @@ public class NextOfKin {
     /**
      * Returns true if a given string is a valid next of kin name.
      */
-    public static boolean isValidNextOfKin (String test) {
+    public static boolean isValidNextOfKin(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

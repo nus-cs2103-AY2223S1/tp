@@ -3,6 +3,9 @@ package seedu.address.model.person.tutor;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents the institution that the tutor has graduated from.
+ */
 public class Institution {
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -30,7 +33,7 @@ public class Institution {
     /**
      * Returns true if a given string is a valid institution name.
      */
-    public static boolean isValidInstitution (String test) {
+    public static boolean isValidInstitution(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

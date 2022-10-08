@@ -12,6 +12,9 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
+/**
+ * Represents a Student in the address book.
+ */
 public class Student extends Person {
 
     private final School school;
@@ -21,7 +24,8 @@ public class Student extends Person {
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags, School school, Level level, NextOfKin nextOfKin) {
+    public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags, School school, Level level,
+                   NextOfKin nextOfKin) {
         super(name, phone, email, address, tags);
         requireAllNonNull(school, level, nextOfKin);
         this.school = school;

@@ -3,8 +3,9 @@ package seedu.address.model.person.tutor;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import seedu.address.model.person.Name;
-
+/**
+ * Represents the highest qualification the tutor has attained.
+ */
 public class Qualification {
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -32,7 +33,7 @@ public class Qualification {
     /**
      * Returns true if a given string is a valid qualification.
      */
-    public static boolean isValidQualification (String test) {
+    public static boolean isValidQualification(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

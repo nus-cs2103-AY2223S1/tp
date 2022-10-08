@@ -21,6 +21,9 @@ public class TuitionClass {
     private final Time time;
     private final Set<Tag> tags = new HashSet<>();
 
+    /**
+     * Every field must be present and not null.
+     */
     public TuitionClass(Name name, Subject subject, Level level, Day day, Time time, Set<Tag> tags) {
         requireAllNonNull(name, subject, day, time, tags);
         this.name = name;

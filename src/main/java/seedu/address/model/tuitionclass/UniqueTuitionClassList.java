@@ -8,7 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.tuitionclass.exceptions.DuplicateTuitionClassException;
@@ -16,10 +15,11 @@ import seedu.address.model.tuitionclass.exceptions.TuitionClassNotFoundException
 
 /**
  * A list of tuition classes that enforces uniqueness between its elements and does not allow nulls.
- * A tuition class is considered unique by comparing using {@code TuitionClass#isSameTuitionClass(TuitionClass)}. As such, adding and updating of
- * tuition classes uses TuitionClass#isSameTuitionClass(TuitionClass) for equality so as to ensure that the tuition class being added or updated is
- * unique in terms of identity in the UniqueTuitionClassList. However, the removal of a tuition class uses TuitionClass#equals(Object) so
- * as to ensure that the tuition class with exactly the same fields will be removed.
+ * A tuition class is considered unique by comparing using {@code TuitionClass#isSameTuitionClass(TuitionClass)}.
+ * As such, adding and updating of tuition classes uses TuitionClass#isSameTuitionClass(TuitionClass) for equality
+ * so as to ensure that the tuition class being added or updated is
+ * unique in terms of identity in the UniqueTuitionClassList. However, the removal of a tuition class uses
+ * TuitionClass#equals(Object) so as to ensure that the tuition class with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *

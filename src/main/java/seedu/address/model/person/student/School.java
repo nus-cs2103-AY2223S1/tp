@@ -3,6 +3,9 @@ package seedu.address.model.person.student;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents the school of a student.
+ */
 public class School {
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -30,7 +33,7 @@ public class School {
     /**
      * Returns true if a given string is a valid school name.
      */
-    public static boolean isValidSchool (String test) {
+    public static boolean isValidSchool(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

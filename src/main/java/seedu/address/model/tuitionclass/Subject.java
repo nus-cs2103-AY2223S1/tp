@@ -11,6 +11,13 @@ public enum Subject {
     public static final String MESSAGE_CONSTRAINTS =
             "Subject name should only contain letters, and should be spelt out in full.";
 
+    /**
+     * Creates a Subject object depending on the inputSubject.
+     *
+     * @param inputSubject A string representing the subject of the tuition class.
+     * @return A Subject object with the respective enum value.
+     * @throws InvalidSubjectException if the inputSubject does not match any of the enum values.
+     */
     public static Subject createSubject(String inputSubject) throws InvalidSubjectException {
         for (Subject subject : Subject.values()) {
             if (inputSubject.toUpperCase().equals(subject.name())) {
