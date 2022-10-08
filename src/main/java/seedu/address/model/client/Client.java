@@ -4,6 +4,7 @@ package seedu.address.model.client;
 import java.util.Set;
 
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.project.Project;
 
@@ -13,7 +14,7 @@ import seedu.address.model.project.Project;
 public class Client {
 
     //Represents the Client's name
-    private Name name;
+    private ClientName name;
 
     //Represents the Client's Email Address
     private Email email;

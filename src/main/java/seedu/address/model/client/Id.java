@@ -1,5 +1,7 @@
 package seedu.address.model.client;
 
+import seedu.address.model.person.Name;
+
 import java.util.UUID;
 
 import static java.util.Objects.requireNonNull;
@@ -47,6 +49,6 @@ public class Id {
      * @return String representing the client's Id.
      */
     public String toString() {
-        return "Client Id: " + this.identifier + "\n";
+        return "Client Id: " + this.identifier;
     }
 }

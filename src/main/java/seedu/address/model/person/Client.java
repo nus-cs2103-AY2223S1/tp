@@ -2,7 +2,6 @@ package seedu.address.model.person;
 
 import java.util.Set;
 
-import seedu.address.model.client.Name;
 import seedu.address.model.project.Project;
 import seedu.address.model.tag.Tag;
 
