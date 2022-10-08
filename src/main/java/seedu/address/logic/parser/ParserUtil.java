@@ -140,17 +140,23 @@ public class ParserUtil {
      * @throws ParseException if the given {@code socialStr} is invalid.
      */
     public static Social parseSocial(String socialStr) throws ParseException {
+        requireNonNull(socialStr);
+
+        if (!Social.isValidSocial(socialStr)) {
+            throw new ParseException(Social.MESSAGE_CONSTRAINTS);
+        }
+
         String[] strArray = socialStr.split("@");
         String rawPlatform = strArray[0];
         String handle = strArray[1];
 
         switch (rawPlatform) {
         case "fb":
-            return new Social(handle, Platform.FACEBOOK);
+            return new Social(handle, Platform.fb);
         case "ig":
-            return new Social(handle, Platform.INSTAGRAM);
+            return new Social(handle, Platform.ig);
         case "sc":
-            return new Social(handle, Platform.SNAPCHAT);
+            return new Social(handle, Platform.sc);
         default:
             throw new SocialNotFoundException();
         }

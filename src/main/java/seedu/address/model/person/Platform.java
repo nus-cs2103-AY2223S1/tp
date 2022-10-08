@@ -1,9 +1,9 @@
 package seedu.address.model.person;
 
 public enum Platform {
-    FACEBOOK,
-    INSTAGRAM,
-    SNAPCHAT
+    fb, // Facebook
+    ig, // Instagram
+    sc  // Snapchat
 }
 
 
