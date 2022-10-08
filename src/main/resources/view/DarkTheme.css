@@ -1,3 +1,16 @@
+.list-background {
+    -fx-background-color: #ADD8E6;
+    -fx-border-width: 3;
+    -fx-border-style: solid;
+    -fx-border-color:black;
+}
+
+.list-title {
+    -fx-text-fill: #ADD8E6;
+    -fx-font-size: 1px;
+}
+
+
 .background {
     -fx-background-color: derive(#1d1d1d, 20%);
     background-color: #383838; /* Used in the default.html file */

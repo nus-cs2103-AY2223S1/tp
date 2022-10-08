@@ -15,6 +15,9 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Book> PREDICATE_SHOW_ALL_BOOKS = unused -> true;
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -88,6 +91,9 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
+    /** Returns an unmodifiable view of the filtered book list */
+    ObservableList<Book> getFilteredBookList();
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
@@ -100,4 +106,7 @@ public interface Model {
      * @param book a book to add to BookFace.
      */
     void addBook(Book book);
+
+
+    void updateFilteredBookList(Predicate<Book> predicate);
 }

@@ -1,20 +1,17 @@
 package bookface.ui;
 
-import java.util.Comparator;
-
-import bookface.model.person.Person;
+import bookface.model.book.Book;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
 /**
  * An UI component that displays information of a {@code user}.
  */
-public class TestCard extends UiPart<Region> {
+public class BookCard extends UiPart<Region> {
 
-    private static final String FXML = "TestListCard.fxml";
+    private static final String FXML = "BookListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -24,34 +21,26 @@ public class TestCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Person person;
+    public final Book book;
 
     @FXML
     private HBox cardPane;
     @FXML
-    private Label name;
+    private Label title;
     @FXML
     private Label id;
     @FXML
-    private Label phone;
-    @FXML
-    private Label email;
-    @FXML
-    private FlowPane tags;
+    private Label author;
 
     /**
-     * Creates a {@code userCode} with the given {@code user} and index to display.
+     * Creates a {@code BookCode} with the given {@code book} and index to display.
      */
-    public TestCard(Person person, int displayedIndex) {
+    public BookCard(Book book, int displayedIndex) {
         super(FXML);
-        this.person = person;
+        this.book = book;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        email.setText(person.getEmail().value);
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        title.setText(book.getTitle().bookTitle);
+        author.setText(book.getAuthor().bookAuthor);
     }
 
     @Override
@@ -62,13 +51,13 @@ public class TestCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof TestCard)) {
+        if (!(other instanceof BookCard)) {
             return false;
         }
 
         // state check
-        TestCard card = (TestCard) other;
+        BookCard card = (BookCard) other;
         return id.getText().equals(card.id.getText())
-                && person.equals(card.person);
+                && book.equals(card.book);
     }
 }

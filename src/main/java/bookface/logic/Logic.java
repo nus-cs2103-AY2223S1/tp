@@ -8,6 +8,7 @@ import bookface.logic.commands.exceptions.CommandException;
 import bookface.logic.parser.exceptions.ParseException;
 import bookface.model.Model;
 import bookface.model.ReadOnlyBookFace;
+import bookface.model.book.Book;
 import bookface.model.person.Person;
 import javafx.collections.ObservableList;
 
@@ -33,6 +34,9 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
+
+    /** Returns an unmodifiable view of the filtered list of books */
+    ObservableList<Book> getFilteredBookList();
 
     /**
      * Returns the user prefs' address book file path.

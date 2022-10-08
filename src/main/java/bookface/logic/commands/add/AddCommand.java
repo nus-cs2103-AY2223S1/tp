@@ -15,6 +15,6 @@ public abstract class AddCommand extends Command {
             + ": Adds an entity to the address book. "
             + "Suitable subcommands: \n"
             + "Example: " + COMMAND_WORD
-            + "user "
+            + " user "
             + "...";
 }
