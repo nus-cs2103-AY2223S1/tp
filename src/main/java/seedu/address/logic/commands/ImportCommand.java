@@ -19,7 +19,13 @@ public class ImportCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Imports data from the JSON or CSV file located at the specified path.\n"
             + "Parameters: path to JSON or CSV file\n"
-            + "Example: " + COMMAND_WORD + " ./somewhere/addressbook.json";
+            + "Examples: \n"
+            + COMMAND_WORD + " ./data.json\n"
+            + "- imports data from the file \"data.json\""
+            + " which is located in the same directory as the FinBook executable\n"
+            + COMMAND_WORD + " ../data.csv\n"
+            + "- imports data from the file \"data.csv\""
+            + " which is located one level outside the directory of the FinBook executable";
 
     public static final String MESSAGE_IMPORT_DATA_SUCCESS = "Imported data: %1$s";
 
