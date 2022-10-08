@@ -126,6 +126,12 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Returns a Description object given a {@code description}
+     * Will return false if the user input does not give a description
+     * e.g. "addq      "
+     * @throws ParseException if {@code description} given is empty
+     */
     public static Description parseDescription(String description) throws ParseException {
         String trimmedDescription = description.trim();
         if (StringUtil.isEmptyDescription(trimmedDescription)) {

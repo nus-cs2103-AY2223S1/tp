@@ -219,7 +219,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     //// util methods
 
-
+    /**
+     * Returns the number of questions in the ObservableList for questions
+     */
     public String questionToString() {
         return questions.asUnmodifiableObservableList().size() + " questions";
         // TODO: refine later

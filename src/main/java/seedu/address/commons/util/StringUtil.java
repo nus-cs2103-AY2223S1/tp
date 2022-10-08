@@ -66,6 +66,10 @@ public class StringUtil {
         }
     }
 
+    /**
+     * Returns true if {@code s} is an empty string
+     * @param s
+     */
     public static boolean isEmptyDescription(String s) {
         requireNonNull(s);
         if (s.equals("")) {
