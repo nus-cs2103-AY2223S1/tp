@@ -1,10 +1,13 @@
 package seedu.address.model.person;
 
-import seedu.address.logic.parser.exceptions.SocialNotFoundException;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.logic.parser.exceptions.SocialNotFoundException;
+
+/**
+ * Represents a Person's social media in the address book.
+ */
 public class Social {
 
     public static final String MESSAGE_CONSTRAINTS =

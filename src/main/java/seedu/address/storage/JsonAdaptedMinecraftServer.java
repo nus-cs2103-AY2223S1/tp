@@ -6,6 +6,9 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.server.Server;
 
+/**
+ * Json model of minecraft server address.
+ */
 public class JsonAdaptedMinecraftServer {
 
     private final String serverName;
@@ -24,6 +27,11 @@ public class JsonAdaptedMinecraftServer {
         return serverName;
     }
 
+    /**
+     * Parses the serverName to produce a Server object
+     * @return Server object
+     * @throws IllegalValueException if the serverName is invalid
+     */
     public Server toModelType() throws IllegalValueException {
         if (!Server.isValidServerName(serverName)) {
             throw new IllegalValueException(Server.getServerConstraints());

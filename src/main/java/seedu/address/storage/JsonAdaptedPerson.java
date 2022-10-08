@@ -1,7 +1,5 @@
 package seedu.address.storage;
 
-import java.sql.Time;
-import java.util.List;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -44,8 +42,13 @@ class JsonAdaptedPerson {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("minecraftName") String minecraftName, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address, @JsonProperty("socials") List<JsonAdaptedSocial> socials, @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("servers") List<JsonAdaptedMinecraftServer> servers, @JsonProperty("timeZone") String timeZone) {
+    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("minecraftName") String minecraftName,
+                             @JsonProperty("phone") String phone, @JsonProperty("email") String email,
+                             @JsonProperty("address") String address,
+                             @JsonProperty("socials") List<JsonAdaptedSocial> socials,
+                             @JsonProperty("tags") List<JsonAdaptedTag> tags,
+                             @JsonProperty("servers") List<JsonAdaptedMinecraftServer> servers,
+                             @JsonProperty("timeZone") String timeZone) {
         this.name = name;
         this.minecraftName = minecraftName;
         this.phone = phone;
@@ -102,9 +105,9 @@ class JsonAdaptedPerson {
         for (JsonAdaptedSocial social : this.socials) {
             socials.add(social.toModelType());
         }
-            
+
         final List<Server> servers = new ArrayList<>();
-        for (JsonAdaptedMinecraftServer server: this.servers) {
+        for (JsonAdaptedMinecraftServer server : this.servers) {
             servers.add(server.toModelType());
         }
 
@@ -117,7 +120,8 @@ class JsonAdaptedPerson {
         final Name modelName = new Name(name);
 
         if (minecraftName == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, MinecraftName.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    MinecraftName.class.getSimpleName()));
         }
         if (!MinecraftName.isValidMinecraftName(minecraftName)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
@@ -155,7 +159,8 @@ class JsonAdaptedPerson {
         final Set<Server> modelServers = new HashSet<>(servers);
 
         if (timeZone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TimeZone.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    TimeZone.class.getSimpleName()));
         }
         if (!TimeZone.isValidTimeZone(timeZone)) {
             throw new IllegalValueException(TimeZone.MESSAGE_CONSTRAINTS);

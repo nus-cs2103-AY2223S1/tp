@@ -180,7 +180,8 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, minecraftName, phone, email, address, socials, tags, servers, timeZone);
+            return CollectionUtil.isAnyNonNull(name, minecraftName, phone, email, address,
+                    socials, tags, servers, timeZone);
         }
 
         public void setName(Name name) {
@@ -238,8 +239,8 @@ public class EditCommand extends Command {
          */
         public Optional<Set<Social>> getSocials() {
             return (socials != null)
-            ? Optional.of(Collections.unmodifiableSet(socials))
-            : Optional.empty();
+                    ? Optional.of(Collections.unmodifiableSet(socials))
+                    : Optional.empty();
         }
 
         /**

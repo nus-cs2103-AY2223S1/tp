@@ -3,17 +3,24 @@ package seedu.address.model.server;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Server in the address book.
+ */
 public class Server {
 
-    private static final String VALIDATION_REGEX = "^(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(\\.(?!$)|$)){4}$";
+    private static final String VALIDATION_REGEX =
+            "^(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(\\.(?!$)|$)){4}$";
 
     private static final String SERVER_CONSTRAINTS =
-            "Server address should only contain numbers and dots. " +
-                    "There can only be a maximum of 4 dots in the address.";
+            "Server address should only contain numbers and dots. "
+                    + "There can only be a maximum of 4 dots in the address.";
 
     private final String serverName;
 
-
+    /**
+     * Constructs a {@code Server}.
+     * @param serverName A valid server name.
+     */
     public Server(String serverName) {
         requireNonNull(serverName);
         checkArgument(isValidServerName(serverName), SERVER_CONSTRAINTS);

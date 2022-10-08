@@ -1,21 +1,28 @@
 package seedu.address.model.person;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
+/**
+ * Represents a Person's timezone in the address book.
+ */
 public class TimeZone {
 
-    public static final String MESSAGE_CONSTRAINTS = "Timezone offsets should be double digit hours, " +
-            "followed by \":\", then double digit minutes";
+    public static final String MESSAGE_CONSTRAINTS = "Timezone offsets should be double digit hours, "
+            + "followed by \":\", then double digit minutes";
 
     private static final String OFFSET_REGEX = "^(?:Z|[+-](?:2[0-3]|[01][0-9]):[0-5][0-9])$";
 
     private static final int HOURS_TO_MINUTES = 60;
     private final String offset;
 
+    /**
+     * Constructs a {@code TimeZone}.
+     * @param offset
+     */
     public TimeZone(String offset) {
         requireNonNull(offset);
         if (offset.equals("")) {
@@ -43,6 +50,12 @@ public class TimeZone {
         return test.matches(OFFSET_REGEX);
     }
 
+    /**
+     * Returns the offset of the timezone.
+     *
+     * @param strOffset
+     * @return
+     */
     public static int convertToIntOffset(String strOffset) {
         String [] strArray = strOffset.split(":");
         return Integer.parseInt(strArray[0].trim()) * HOURS_TO_MINUTES //calculate hours

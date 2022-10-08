@@ -8,10 +8,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
  */
 public class Email {
-
-    private static final String SPECIAL_CHARACTERS = "+_.-";
-    public static final String MESSAGE_CONSTRAINTS = "Any string can be accepted";
     public static final String VALIDATION_REGEX = ".*";
+    public static final String MESSAGE_CONSTRAINTS = "Any string can be accepted";
+    private static final String SPECIAL_CHARACTERS = "+_.-";
 
     public final String value;
 
