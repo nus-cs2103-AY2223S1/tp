@@ -16,6 +16,9 @@ import seedu.address.model.task.Task;
  */
 public class Module {
 
+    // Default value for empty module title
+    public static final String EMPTY_MODULE_TITLE = "";
+
     // Identity fields
     private final ModuleCode moduleCode;
 
@@ -41,7 +44,7 @@ public class Module {
      * associated tasks and links.
      */
     public Module(ModuleCode moduleCode) {
-        this(moduleCode, new ModuleTitle(""), new HashSet<>(), new HashSet<>());
+        this(moduleCode, new ModuleTitle(EMPTY_MODULE_TITLE), new HashSet<>(), new HashSet<>());
     }
 
     /**
@@ -54,6 +57,10 @@ public class Module {
 
     public ModuleCode getModuleCode() {
         return moduleCode;
+    }
+
+    public ModuleTitle getModuleTitle() {
+        return moduleTitle;
     }
 
     /**
@@ -101,6 +108,7 @@ public class Module {
 
         Module otherModule = (Module) other;
         return otherModule.getModuleCode().equals(getModuleCode())
+                && otherModule.getModuleTitle().equals(getModuleTitle())
                 && otherModule.getLinks().equals(getLinks())
                 && otherModule.getTasks().equals(getTasks());
     }
