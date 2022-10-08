@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POSITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -24,17 +25,16 @@ public class ApplicationAddCommand extends ApplicationCommand {
             + PREFIX_CONTACT + "CONTACT "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_POSITION + "POSITION "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + PREFIX_DATE + "DATE"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_COMPANY + "ByteDance "
             + PREFIX_CONTACT + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_POSITION + "Software Engineer (Front-End) "
-            + PREFIX_TAG + "first choice "
-            + PREFIX_TAG + "expected salary: 6000";
+            + PREFIX_DATE + "09/10/2022";
 
     public static final String MESSAGE_SUCCESS = "New application added: %1$s";
-    public static final String MESSAGE_DUPLICATE_APPLICATION = "This application is already exists in CinternS";
+    public static final String MESSAGE_DUPLICATE_APPLICATION = "This application already exists in CinternS";
 
     private final Application toAdd;
 

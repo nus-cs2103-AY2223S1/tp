@@ -11,7 +11,7 @@ import seedu.address.model.ApplicationModel;
 import seedu.address.model.application.Application;
 
 /**
- * Deletes an application identified using it's displayed index from the CinternS.
+ * Deletes an application identified using its displayed index on the CinternS interface.
  */
 public class ApplicationDeleteCommand extends ApplicationCommand {
 
