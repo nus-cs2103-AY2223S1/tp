@@ -13,6 +13,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -26,6 +27,8 @@ public class ModelManager implements Model {
 
     private final FilteredList<Module> moduleFilteredList;
 
+    private final FilteredList<Task> taskFilteredList;
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -38,6 +41,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         moduleFilteredList = new FilteredList<>(this.addressBook.getModuleList());
+        taskFilteredList = new FilteredList<>(this.addressBook.getTaskList());
     }
 
     public ModelManager() {
@@ -166,5 +170,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Module> getFilteredModuleList() {
         return moduleFilteredList;
+    }
+
+    //================================Task Commands=====================================
+    @Override
+    public ObservableList<Task> getFilteredTaskList() {
+        return taskFilteredList;
     }
 }

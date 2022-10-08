@@ -12,7 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.module.Module;
-import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -22,18 +22,19 @@ class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
 
+    public static final String MESSAGE_MODULE_NOT_PRESENT = "This module does not exist";
     public static final String MESSAGE_DUPLICATE_MODULE = "There are duplicate module(s) "
             + "present in the module list";
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
     private final List<JsonAdaptedModule> modules = new ArrayList<>();
+    private final List<JsonAdaptedTask> tasks = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
+    public JsonSerializableAddressBook(@JsonProperty("tasks") List<JsonAdaptedTask> tasks,
             @JsonProperty("modules") List<JsonAdaptedModule> modules) {
-        this.persons.addAll(persons);
+        this.tasks.addAll(tasks);
         this.modules.addAll(modules);
     }
 
@@ -43,8 +44,8 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
         modules.addAll(source.getModuleList().stream().map(JsonAdaptedModule::new).collect(Collectors.toList()));
+        tasks.addAll(source.getTaskList().stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
     }
 
     /**
@@ -54,13 +55,6 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(person)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
-            }
-            addressBook.addPerson(person);
-        }
         for (JsonAdaptedModule jsonAdaptedModule: modules) {
             Module module = jsonAdaptedModule.toModelType();
             if (addressBook.hasModule(module)) {
@@ -68,6 +62,14 @@ class JsonSerializableAddressBook {
             }
             addressBook.addModule(module);
         }
+        for (JsonAdaptedTask jsonAdaptedTask: tasks) {
+            Task task = jsonAdaptedTask.toModelType();
+            if (!addressBook.hasModule(task.getModule())) {
+                throw new IllegalValueException(MESSAGE_MODULE_NOT_PRESENT);
+            }
+            addressBook.addTask(task);
+        }
+
         return addressBook;
     }
 
