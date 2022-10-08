@@ -28,7 +28,7 @@ public class Appointment {
 
 
     /**
-     * Creates an appointment object with the given reason, time, and status.
+     * Creates an appointment object with the given reason, dateTime string, and status.
      *
      * @param reason The given reason for appointment.
      * @param dateTime The given time to book the appointment.
@@ -40,6 +40,19 @@ public class Appointment {
         this.reason = reason;
         String str = String.join(" ", dateTime.split("\\s+", 2));
         this.dateTime = LocalDateTime.parse(str, DATE_FORMATTER);
+        this.isMarked = isMarked;
+    }
+
+    /**
+     * Creates an appointment object with the given reason, LocalDateTime dateTime, and status.
+     *
+     * @param reason The given reason for appointment.
+     * @param dateTime The given time to book the appointment.
+     * @param isMarked Status of the appointment.
+     */
+    public Appointment(String reason, LocalDateTime dateTime, boolean isMarked) {
+        this.reason = reason;
+        this.dateTime = dateTime;
         this.isMarked = isMarked;
     }
 
