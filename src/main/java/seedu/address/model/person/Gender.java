@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Gender {
 
     public static final String MESSAGE_CONSTRAINTS =
-        "Gender should only be one word containing alphabetical characters and it should not be blank";
+        "Gender should only be male or female, case-insensitive, and it should not be blank";
 
     /*
      * The first character of the gender name must not be a whitespace,
