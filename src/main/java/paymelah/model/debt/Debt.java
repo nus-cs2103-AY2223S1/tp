@@ -33,6 +33,13 @@ public class Debt {
     }
 
     /**
+     * Returns a Debt with the given description and money.
+     */
+    public static Debt makeDebt(String description, String money) {
+        return new Debt(new Description(description), new Money(money));
+    }
+
+    /**
      * Returns true only if both debts have the same data fields.
      *
      * @param other The other {@code Debt} object to check.

@@ -3,6 +3,7 @@ package paymelah.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import paymelah.model.debt.Debt;
 import paymelah.model.debt.DebtList;
 import paymelah.model.person.Address;
 import paymelah.model.person.Email;
@@ -96,8 +97,8 @@ public class PersonBuilder {
     /**
      * Sets the {@code DebtList} of the {@code Person} that we are building.
      */
-    public PersonBuilder withDebts(DebtList debts) {
-        this.debts = debts;
+    public PersonBuilder withDebts(Debt... debts) {
+        this.debts = SampleDataUtil.getDebtList(debts);
         return this;
     }
 
