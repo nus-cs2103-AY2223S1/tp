@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.util.DateTimeProcessor;
 
 /**
@@ -14,7 +15,7 @@ import seedu.address.model.util.DateTimeProcessor;
  */
 public class Meeting {
 
-    private ArrayList<Person> peopleToMeet;
+    private UniquePersonList peopleToMeet;
     private String meetingDescription;
     private String meetingDateAndTime;
     private String meetingLocation;
@@ -35,7 +36,7 @@ public class Meeting {
      */
     public Meeting(ArrayList<Person> peopleToMeet, String meetingTitle,
                    String meetingDateAndTime, String meetingLocation) {
-        this.peopleToMeet = peopleToMeet; // adds first person to arrayList
+        this.peopleToMeet.setPersons(peopleToMeet);
         this.meetingDescription = meetingTitle;
         this.meetingDateAndTime = meetingDateAndTime;
         this.meetingLocation = meetingLocation;
@@ -70,7 +71,7 @@ public class Meeting {
         this.meetingDateAndTime = validator.processDateTime(dateAndTime);
     }
 
-    public ArrayList<Person> getPersonToMeet() {
+    public UniquePersonList getPersonToMeet() {
         return this.peopleToMeet;
     }
 
@@ -95,7 +96,7 @@ public class Meeting {
 
     @Override
     public String toString() {
-        return "Meeting with: " + this.peopleToMeet.toString() + "\n"
+        return "Meeting with: " + this.peopleToMeet.asUnmodifiableObservableList() + "\n"
             + "For: " + this.meetingDescription + "\n"
             + "On: " + this.meetingDateAndTime + "\n"
             + "For: " + this.meetingLocation + "\n";
