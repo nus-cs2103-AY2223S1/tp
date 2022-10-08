@@ -702,7 +702,7 @@ bye
   </tr>
   <tr>
     <td>Rename a tag</td>
-    <td><b>renametag n/TAG_NAME n/TAG_NAME</b><br><br><u>Valid Example:</u><br>renametag n/Condiments n/Condiment<br><br><u>Invalid Example:<br>renametag Condiments Condiment</u><br></td>
+    <td><b>renametag n/TAG_NAME n/TAG_NAME</b><br><br><u>Valid Example:</u><br>renametag n/Condiments n/Condiment<br><br><u>Invalid Example:</u><br>renametag Condiments Condiment</u><br></td>
   </tr>
   <tr>
     <td>Delete a tag</td>
