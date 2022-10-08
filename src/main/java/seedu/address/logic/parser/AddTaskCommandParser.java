@@ -10,7 +10,7 @@ import seedu.address.model.team.Task;
 /**
  * Parses input arguments and creates a new AddTaskCommand object
  */
-public class AddTaskCommandParser {
+public class AddTaskCommandParser implements Parser<AddTaskCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddTaskCommand
