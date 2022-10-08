@@ -1,5 +1,6 @@
 package seedu.address.model.person.tutor;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
@@ -61,5 +62,16 @@ public class TutorTest {
         // different institution -> returns false
         editedTutor1 = new TutorBuilder(TUTOR1).withInstitution("Clowning University").build();
         assertFalse(TUTOR1.equals(editedTutor1));
+    }
+
+    @Test
+    public void toString_success() {
+        String str = "Alice Pauline" + "; Phone: " + "94351253" + "; Email: " + "alice@example.com"
+                + "; Address: " + "123, Jurong West Ave 6, #08-111"
+                + "; Tags: " + "[friends]"
+                + "; Highest Qualification: " + "Bachelor of Computing"
+                + "; Institution: " + "National University of Singapore";
+
+        assertEquals(str, TUTOR1.toString());
     }
 }

@@ -1,5 +1,6 @@
 package seedu.address.model.person.student;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
@@ -65,5 +66,16 @@ public class StudentTest {
         // different next of kin -> returns false
         editedStudent1 = new StudentBuilder(STUDENT1).withNextOfKin("Jean Zin").build();
         assertFalse(STUDENT1.equals(editedStudent1));
+    }
+
+    @Test
+    public void toString_success() {
+        String str = "Alice Pauline" + "; Phone: " + "94351253" + "; Email: " + "alice@example.com"
+                + "; Address: " + "123, Jurong West Ave 6, #08-111"
+                + "; Tags: " + "[friends]"
+                + "; School: " + "Keming Primary School"
+                + "; Level: " + "Primary 3"
+                + "; Next of kin: " + "Teresa Lim";
+        assertEquals(str, STUDENT1.toString());
     }
 }

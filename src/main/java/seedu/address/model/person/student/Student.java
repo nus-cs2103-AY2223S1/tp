@@ -86,7 +86,7 @@ public class Student extends Person {
                 .append(getSchool())
                 .append("; Level: ")
                 .append(getLevel())
-                .append("; Next Of Kin: ")
+                .append("; Next of kin: ")
                 .append(getNextOfKin());
 
         return builder.toString();
