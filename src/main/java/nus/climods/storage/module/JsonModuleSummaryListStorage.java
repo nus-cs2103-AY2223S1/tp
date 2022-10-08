@@ -29,22 +29,22 @@ public class JsonModuleSummaryListStorage implements ModuleSummaryListStorage {
         this.filePath = filePath;
     }
 
-    public Path getAcadYearModuleListFilePath() {
+    public Path getModuleSummaryListFilePath() {
         return filePath;
     }
 
     @Override
-    public Optional<ReadOnlyModuleSummaryList> readAcadYearModuleList() throws DataConversionException {
-        return readAcadYearModuleList(filePath);
+    public Optional<ReadOnlyModuleSummaryList> readModuleSummaryList() throws DataConversionException {
+        return readModuleSummaryList(filePath);
     }
 
     /**
-     * Similar to {@link #readAcadYearModuleList()}.
+     * Similar to {@link #readModuleSummaryList()}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyModuleSummaryList> readAcadYearModuleList(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyModuleSummaryList> readModuleSummaryList(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableModuleSummaryList> jsonAcadYearModuleList = JsonUtil.readJsonFile(
@@ -61,14 +61,14 @@ public class JsonModuleSummaryListStorage implements ModuleSummaryListStorage {
         }
     }
 
-    public void saveAcadYearModuleList(List<ModuleCondensed> moduleCondensedList) throws IOException {
-        saveAcadYearModuleList(moduleCondensedList, filePath);
+    public void saveModuleSummaryList(List<ModuleCondensed> moduleCondensedList) throws IOException {
+        saveModuleSummaryList(moduleCondensedList, filePath);
     }
 
     /**
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveAcadYearModuleList(List<ModuleCondensed> moduleCondensedList, Path filePath) throws IOException {
+    public void saveModuleSummaryList(List<ModuleCondensed> moduleCondensedList, Path filePath) throws IOException {
         requireNonNull(moduleCondensedList);
         requireNonNull(filePath);
 

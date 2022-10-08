@@ -1,4 +1,4 @@
-package nus.climods.storage.acadyearmodulelist;
+package nus.climods.storage.module;
 
 import static nus.climods.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,7 +17,6 @@ import org.openapitools.client.model.ModuleCondensed;
 
 import nus.climods.commons.exceptions.DataConversionException;
 import nus.climods.model.module.ReadOnlyModuleSummaryList;
-import nus.climods.storage.module.JsonModuleSummaryListStorage;
 
 class JsonModuleSummaryListStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonModuleSummaryListStorageTest");
@@ -26,13 +25,13 @@ class JsonModuleSummaryListStorageTest {
     public Path testFolder;
 
     @Test
-    public void readAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> readAcadYearModuleList(null));
+    public void readModuleSummary_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> readModuleSummaryList(null));
     }
 
-    private Optional<ReadOnlyModuleSummaryList> readAcadYearModuleList(String filePath) throws Exception {
+    private Optional<ReadOnlyModuleSummaryList> readModuleSummaryList(String filePath) throws Exception {
         return new JsonModuleSummaryListStorage(Paths.get(filePath))
-            .readAcadYearModuleList(addToTestDataPathIfNotNull(filePath));
+            .readModuleSummaryList(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -43,18 +42,18 @@ class JsonModuleSummaryListStorageTest {
 
     @Test
     public void read_missingFile_emptyResult() throws Exception {
-        assertFalse(readAcadYearModuleList("NonExistentFile.json").isPresent());
+        assertFalse(readModuleSummaryList("NonExistentFile.json").isPresent());
     }
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readAcadYearModuleList(
-            "notJsonFormatAcadYearModuleList.json"));
+        assertThrows(DataConversionException.class, () -> readModuleSummaryList(
+            "notJsonFormatModuleSummaryList.json"));
     }
 
     @Test
     public void readValidJsonFormat_success() throws Exception {
-        assertTrue(readAcadYearModuleList("validJsonFormatAcadYearModuleList.json").isPresent());
+        assertTrue(readModuleSummaryList("validJsonFormatModuleSummaryList.json").isPresent());
     }
 
     /**
@@ -63,16 +62,16 @@ class JsonModuleSummaryListStorageTest {
      * @throws Exception any exception that may occur.
      */
     @Test
-    public void saveAndReadAcadYearModuleList_success() throws Exception {
-        Path filePath = testFolder.resolve("TempAcadYearModuleList.json");
+    public void saveAndReadModuleSummaryList_success() throws Exception {
+        Path filePath = testFolder.resolve("TempModuleSummaryList.json");
         ModulesApi modulesApi = new ModulesApi();
         List<ModuleCondensed> data = modulesApi.acadYearModuleListJsonGet("2022-2023");
         JsonModuleSummaryListStorage jsonAcadYearModuleListStorage = new JsonModuleSummaryListStorage(filePath);
 
-        jsonAcadYearModuleListStorage.saveAcadYearModuleList(data);
+        jsonAcadYearModuleListStorage.saveModuleSummaryList(data);
 
         Optional<ReadOnlyModuleSummaryList> optionalReadBack = jsonAcadYearModuleListStorage
-            .readAcadYearModuleList(filePath);
+            .readModuleSummaryList(filePath);
         assertTrue(optionalReadBack.isPresent());
         ReadOnlyModuleSummaryList readBack = optionalReadBack.get();
         List<ModuleCondensed> readBackData = readBack.getModuleList();
