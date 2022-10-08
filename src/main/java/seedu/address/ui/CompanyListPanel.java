@@ -45,5 +45,4 @@ public class CompanyListPanel extends UiPart<Region> {
             }
         }
     }
-
 }
