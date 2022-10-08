@@ -13,4 +13,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_TAG = new Prefix("-t");
     public static final Prefix PREFIX_PRICE_RANGE = new Prefix("-r");
     public static final Prefix PREFIX_CHARACTERISTICS = new Prefix("-c");
+    public static final Prefix PREFIX_PRICE = new Prefix("-price"); // temporary, should refactor all prefixes
+    public static final Prefix PREFIX_DESCRIPTION = new Prefix("-d");
 }
