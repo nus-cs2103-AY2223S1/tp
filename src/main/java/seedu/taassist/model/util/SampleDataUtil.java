@@ -49,7 +49,7 @@ public class SampleDataUtil {
     }
 
     /**
-     * Returns a tag set containing the list of strings given.
+     * Returns a {@code ModuleClass} set containing the list of strings given.
      */
     public static Set<ModuleClass> getModuleClassSet(String... strings) {
         return Arrays.stream(strings)
