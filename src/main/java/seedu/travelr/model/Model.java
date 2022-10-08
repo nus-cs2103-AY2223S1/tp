@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.travelr.commons.core.GuiSettings;
+import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.Trip;
 
 /**
@@ -16,6 +17,10 @@ public interface Model {
      */
     Predicate<Trip> PREDICATE_SHOW_ALL_TRIPS = unused -> true;
 
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
+    Predicate<Event> PREDICATE_SHOW_ALL_EVENTS = unused -> true;
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -62,16 +67,33 @@ public interface Model {
     boolean hasTrip(Trip trip);
 
     /**
+     * Returns true if the event already exists in Travelr.
+     */
+    boolean hasEvent(Event event);
+
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
     void deleteTrip(Trip target);
 
     /**
+     * Deletes the given event.
+     * The event must exist in Travelr.
+     */
+    void deleteEvent(Event target);
+
+    /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.
      */
     void addTrip(Trip trip);
+
+    /**
+     * Adds the given event.
+     * The event must not already exist in Travelr.
+     */
+    void addEvent(Event event);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
@@ -81,9 +103,21 @@ public interface Model {
     void setTrip(Trip target, Trip editedTrip);
 
     /**
+     * Replaces the given event {@code target} with {@code editedEvent}.
+     * {@code target} must exist in Travelr.
+     * The event must not already exist in Travelr.
+     */
+    void setEvent(Event target, Event editedEvent);
+
+    /**
      * Returns an unmodifiable view of the filtered person list
      */
     ObservableList<Trip> getFilteredTripList();
+
+    /**
+     * Returns an unmodifiable view of the filtered events list
+     */
+    ObservableList<Event> getFilteredEventList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
@@ -91,4 +125,11 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTripList(Predicate<Trip> predicate);
+
+    /**
+     * Updates the filter of the filtered event list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredEventList(Predicate<Event> predicate);
 }

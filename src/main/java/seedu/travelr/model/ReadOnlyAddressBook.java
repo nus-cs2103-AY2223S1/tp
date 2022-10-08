@@ -1,6 +1,7 @@
 package seedu.travelr.model;
 
 import javafx.collections.ObservableList;
+import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.Trip;
 
 /**
@@ -13,5 +14,7 @@ public interface ReadOnlyAddressBook {
      * This list will not contain any duplicate persons.
      */
     ObservableList<Trip> getTripList();
+
+    ObservableList<Event> getEventList();
 
 }

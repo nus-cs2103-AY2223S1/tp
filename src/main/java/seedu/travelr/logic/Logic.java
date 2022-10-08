@@ -9,6 +9,7 @@ import seedu.travelr.logic.commands.exceptions.CommandException;
 import seedu.travelr.logic.parser.exceptions.ParseException;
 import seedu.travelr.model.Model;
 import seedu.travelr.model.ReadOnlyAddressBook;
+import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.Trip;
 
 /**
@@ -33,6 +34,9 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Trip> getFilteredTripList();
+
+    /** Returns an unmodifiable view of the filtered list of events */
+    ObservableList<Event> getFilteredEventList();
 
     /**
      * Returns the user prefs' address book file path.
