@@ -15,6 +15,6 @@ public class SetTeamCommandParser implements Parser<SetTeamCommand> {
      */
     @Override
     public SetTeamCommand parse(String args) throws ParseException {
-        return new SetTeamCommand(new Team(args, new ArrayList<>()));
+        return new SetTeamCommand(new Team(args.trim(), new ArrayList<>()));
     }
 }

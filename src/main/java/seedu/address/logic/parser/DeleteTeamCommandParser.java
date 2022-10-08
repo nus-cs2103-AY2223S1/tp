@@ -15,6 +15,6 @@ public class DeleteTeamCommandParser implements Parser<DeleteTeamCommand>  {
      */
     @Override
     public DeleteTeamCommand parse(String args) throws ParseException {
-        return new DeleteTeamCommand(new Team(args, new ArrayList<>()));
+        return new DeleteTeamCommand(new Team(args.trim(), new ArrayList<>()));
     }
 }

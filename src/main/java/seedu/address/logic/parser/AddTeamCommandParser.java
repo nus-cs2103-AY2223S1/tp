@@ -15,6 +15,6 @@ public class AddTeamCommandParser implements Parser<AddTeamCommand> {
      */
     @Override
     public AddTeamCommand parse(String args) throws ParseException {
-        return new AddTeamCommand(new Team(args, new ArrayList<>()));
+        return new AddTeamCommand(new Team(args.trim(), new ArrayList<>()));
     }
 }
