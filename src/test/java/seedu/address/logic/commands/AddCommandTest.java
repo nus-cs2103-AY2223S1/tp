@@ -150,7 +150,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setTaskListFlag(boolean flag) {
+        public void updateFilteredPersonListWithTasks(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 

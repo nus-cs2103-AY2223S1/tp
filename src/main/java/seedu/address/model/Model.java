@@ -86,8 +86,12 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    /** Sets the flag to display tasks */
-    void setTaskListFlag(boolean flag);
+    /**
+     * Updates the filter of the filtered person list to filter by the given {@code predicate}
+     * with tasks list flag enabled.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredPersonListWithTasks(Predicate<Person> predicate);
 
     /** Returns a supplier to get the flag to display tasks */
     Supplier<Boolean> getTaskListFlagSupplier();
