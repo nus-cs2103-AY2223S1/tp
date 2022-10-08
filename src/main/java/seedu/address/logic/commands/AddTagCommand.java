@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 import java.util.Set;
@@ -39,7 +40,9 @@ public class AddTagCommand extends Command {
         + PREFIX_TAG + "tutorial "
         + PREFIX_TAG + "needRemedial";
 
-    public static final String MESSAGE_ADD_TAGS_SUCCESS = "Added tags %1$s Person: %2$s";
+    public static final String MESSAGE_SINGLE_ADD_TAGS_SUCCESS = "Added tags %1$s Person: %2$s";
+
+    public static final String MESSAGE_MULTI_ADD_TAGS_SUCCESS = "Added tags %1$s for %2$d persons";
 
     public static final String MESSAGE_TAGS_NOT_ADDED = "At least one tag must be added";
 
@@ -54,6 +57,25 @@ public class AddTagCommand extends Command {
     /** The tags to be added.*/
     private Set<Tag> tags;
 
+    private String toBeAddedTagsStr;
+
+    /** The tags to be added.*/
+    private boolean isAddToAll;
+
+    /**
+     * Constructs AddTagCommand that will add specified tag to all persons in the
+     * displayed list.
+     * @param index of the person in the filtered person list to add the tag
+     * @param tags of the person to be added
+     */
+    public AddTagCommand(Set<Tag> tags) {
+        requireNonNull(tags);
+
+        this.isAddToAll = true;
+        this.tags = tags;
+        this.toBeAddedTagsStr = tagSetToSting(tags);
+    }
+
     /**
      * @param index of the person in the filtered person list to add the tag
      * @param tags of the person to be added
@@ -61,20 +83,53 @@ public class AddTagCommand extends Command {
     public AddTagCommand(Index index, Set<Tag> tags) {
         requireNonNull(tags);
 
+        this.isAddToAll = false;
         this.index = index;
         this.tags = tags;
+        this.toBeAddedTagsStr = tagSetToSting(tags);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
+    
+        if (this.isAddToAll) {
+            int numOfPersonUpdated = 0;
+            for (int idx = 0; idx < lastShownList.size(); idx++) {
+                Person personToEdit = lastShownList.get(idx);
+                executeSingle(model, Index.fromZeroBased(idx), personToEdit);
+                numOfPersonUpdated += 1;
+            }
+            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+            return new CommandResult(String.format(
+                    MESSAGE_MULTI_ADD_TAGS_SUCCESS, 
+                    toBeAddedTagsStr, 
+                    numOfPersonUpdated));
+        } 
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
+        assert !this.isAddToAll && this.index != null 
+                : "[AddTagCommand] index should not be null if it is not all";
         Person personToEdit = lastShownList.get(index.getZeroBased());
+        CommandResult res = executeSingle(model, this.index, personToEdit);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        return res;
+    }
+
+    /**
+     * Adds tags for a single person in the displayed list.
+     * @param model {@code Model} which the command should operate on.
+     * @param index of the person for whom the tags will be added.
+     * @param personToEdit for whom the tags will be added.
+     * @return feedback message of the operation result for display.
+     * @throws CommandException If an error occurs during command execution.
+     */
+    public CommandResult executeSingle(
+                Model model, Index index, Person personToEdit) throws CommandException{
         Set<Tag> existingTags = personToEdit.getTags();
         for (Tag tag : existingTags) {
             if (!this.tags.contains(tag)) {
@@ -83,10 +138,37 @@ public class AddTagCommand extends Command {
         }
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
         editPersonDescriptor.setTags(this.tags);
-        LOGGER.info((new EditCommand(index, editPersonDescriptor)).execute(model).getFeedbackToUser());
-
+        CommandResult editPersonResult = (new EditCommand(index, editPersonDescriptor)).executeNoRefresh(model);
+        LOGGER.info(editPersonResult.getFeedbackToUser());
 
         String indexStr = this.index == null ? "all" : String.valueOf(index.getOneBased());
-        return new CommandResult(String.format(MESSAGE_ADD_TAGS_SUCCESS, this.tags.toString(), indexStr));
+        return new CommandResult(String.format(MESSAGE_SINGLE_ADD_TAGS_SUCCESS, toBeAddedTagsStr, indexStr));
+    }
+
+    private static String tagSetToSting(Set<Tag> tags) {
+        String res = "";
+        for (Tag tag : tags) {
+            res += tag.toString() + ", ";
+        }
+        return res.substring(0, res.length() - 2);
+    } 
+    
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof AddTagCommand)) {
+            return false;
+        }
+
+        // state check
+        AddTagCommand e = (AddTagCommand) other;
+        return index.equals(e.index)
+                && this.tags.equals(e.tags);
     }
 }

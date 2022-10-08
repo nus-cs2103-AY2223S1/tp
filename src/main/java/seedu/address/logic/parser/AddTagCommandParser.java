@@ -31,11 +31,14 @@ public class AddTagCommandParser implements Parser<AddTagCommand> {
         Index index;
         Set<Tag> tags;
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
             tags = parseTagsSet(argMultimap.getAllValues(PREFIX_TAG));
             if (tags.size() == 0) {
                 throw new ParseException(AddTagCommand.MESSAGE_TAGS_NOT_ADDED);
             }
+            if (argMultimap.getPreamble().equalsIgnoreCase("all")) {
+                return new AddTagCommand(tags);
+            }
+            index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (IllegalValueException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddTagCommand.MESSAGE_USAGE), ive);
