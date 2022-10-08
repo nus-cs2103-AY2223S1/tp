@@ -1,4 +1,4 @@
-package seedu.address.storage.acadyearmodulelist;
+package nus.climods.storage.acadyearmodulelist;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -7,12 +7,14 @@ import java.util.Optional;
 
 import org.openapitools.client.model.ModuleCondensed;
 
-import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyAcadYearModuleList;
+import nus.climods.commons.exceptions.DataConversionException;
+import nus.climods.model.AcadYearModuleList;
+import nus.climods.model.ReadOnlyAcadYearModuleList;
+
 
 
 /**
- * Represents a storage for {@link seedu.address.model.AcadYearModuleList}.
+ * Represents a storage for {@link AcadYearModuleList}.
  */
 public interface AcadYearModuleListStorage {
 

@@ -1,4 +1,4 @@
-package seedu.address.model;
+package nus.climods.model;
 
 import java.util.ArrayList;
 import java.util.List;

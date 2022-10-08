@@ -1,6 +1,5 @@
-package seedu.address.storage.acadyearmodulelist;
+package nus.climods.storage.acadyearmodulelist;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.openapitools.client.model.ModuleCondensed;
@@ -9,23 +8,23 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.AcadYearModuleList;
+import nus.climods.commons.exceptions.IllegalValueException;
+import nus.climods.model.AcadYearModuleList;
 
 /**
  * An Immutable acadYearModuleList that is serializable to JSON format.
  */
-@JsonRootName(value = "acadyearmodulelist")
+@JsonRootName(value = "modules")
 class JsonSerializableAcadYearModuleList {
 
-    private final List<ModuleCondensed> modules = new ArrayList<>();
+    private final List<ModuleCondensed> modules;
 
     /**
      * Constructs a {@code JsonSerializableAcadYearModuleList} with the given modules.
      */
     @JsonCreator
     public JsonSerializableAcadYearModuleList(@JsonProperty("persons") List<ModuleCondensed> modules) {
-        this.modules.addAll(modules);
+        this.modules = modules;
     }
 
     /**

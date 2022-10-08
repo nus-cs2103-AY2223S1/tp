@@ -1,16 +1,17 @@
-package seedu.address.storage.usermodulelist;
+package nus.climods.storage.usermodulelist;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 
-import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyAddressBook;
+import nus.climods.commons.exceptions.DataConversionException;
+import nus.climods.model.ReadOnlyAddressBook;
+
 
 // TODO: Rename all "ReadOnlyAddressBook" to "ReadOnlyUserModuleList"
 
 /**
- * Represents a storage for {@link seedu.address.model.AddressBook}.
+ * Represents a storage for {@link nus.climods.model.AddressBook}.
  */
 public interface UserModuleListStorage {
 

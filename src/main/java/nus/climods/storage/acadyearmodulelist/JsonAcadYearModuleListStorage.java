@@ -1,4 +1,4 @@
-package seedu.address.storage.acadyearmodulelist;
+package nus.climods.storage.acadyearmodulelist;
 
 import static java.util.Objects.requireNonNull;
 
@@ -10,12 +10,12 @@ import java.util.logging.Logger;
 
 import org.openapitools.client.model.ModuleCondensed;
 
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.commons.util.FileUtil;
-import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.ReadOnlyAcadYearModuleList;
+import nus.climods.commons.core.LogsCenter;
+import nus.climods.commons.exceptions.DataConversionException;
+import nus.climods.commons.exceptions.IllegalValueException;
+import nus.climods.commons.util.FileUtil;
+import nus.climods.commons.util.JsonUtil;
+import nus.climods.model.ReadOnlyAcadYearModuleList;
 
 /**
  * A class to access AcadYearModuleList data stored as a json file on the hard disk.
