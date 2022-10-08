@@ -130,6 +130,7 @@ public class ModelManager implements Model {
 
     @Override
     public boolean hasModuleClasses(Collection<ModuleClass> moduleClasses) {
+        requireAllNonNull(moduleClasses);
         return moduleClasses.stream().allMatch(this::hasModuleClass);
     }
 

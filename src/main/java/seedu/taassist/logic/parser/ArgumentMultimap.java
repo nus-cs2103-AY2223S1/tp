@@ -1,5 +1,7 @@
 package seedu.taassist.logic.parser;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -62,6 +64,7 @@ public class ArgumentMultimap {
      * Returns true if the {@code prefix} is present and does not contain empty {@code Optional} values.
      */
     public boolean containsPrefix(Prefix prefix) {
+        requireNonNull(prefix);
         return getValue(prefix).isPresent();
     }
 }
