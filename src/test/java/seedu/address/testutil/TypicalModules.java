@@ -17,6 +17,9 @@ import seedu.address.model.module.Module;
  */
 public class TypicalModules {
 
+    public static final Module CS2103T = new ModuleBuilder().withModuleCode("CS2103T")
+            .withModuleTitle("Software Engineering").build();
+
     public static final Module CS2106 = new ModuleBuilder().withModuleCode(VALID_CS_MODULE_CODE)
             .withModuleTitle(VALID_CS_MODULE_TITLE).build();
     public static final Module MA2001 = new ModuleBuilder().withModuleCode(VALID_MA_MODULE_CODE)
@@ -36,6 +39,6 @@ public class TypicalModules {
     }
 
     public static List<Module> getTypicalModules() {
-        return new ArrayList<>(Arrays.asList(CS2106, MA2001));
+        return new ArrayList<>(Arrays.asList(CS2103T, CS2106, MA2001));
     }
 }

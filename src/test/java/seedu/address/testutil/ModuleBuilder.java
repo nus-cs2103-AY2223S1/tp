@@ -14,7 +14,7 @@ import seedu.address.model.task.Task;
  */
 public class ModuleBuilder {
 
-    public static final String DEFAULT_MODULE_CODE = "CS2103T";
+    public static final String DEFAULT_MODULE_CODE = "CS2109S";
     public static final String DEFAULT_MODULE_TITLE = "";
     public static final Set<Task> DEFAULT_TASKS = new HashSet<>();
     public static final Set<Link> DEFAULT_LINKS = new HashSet<>();
