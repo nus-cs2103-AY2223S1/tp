@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POSITION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ApplicationModel;
