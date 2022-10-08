@@ -14,7 +14,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.property.Description;
 import seedu.address.model.property.Price;
 import seedu.address.model.property.Property;
-import seedu.address.model.property.PropertyAddress;
+import seedu.address.model.address.Address;
 import seedu.address.model.property.PropertyName;
 import seedu.address.model.tag.Tag;
 
@@ -40,11 +40,11 @@ public class AddPropertyParser extends Parser<AddPropertyCommand> {
 
         PropertyName propertyName = ParserUtil.parsePropertyName(argMultimap.getValue(PREFIX_NAME).get());
         Price price = ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get());
-        PropertyAddress propertyAddress = ParserUtil.parsePropertyAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Property property = new Property(propertyName, price, propertyAddress, description, tagList);
+        Property property = new Property(propertyName, price, address, description, tagList);
 
         return new AddPropertyCommand(property);
     }

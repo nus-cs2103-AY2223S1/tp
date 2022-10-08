@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.address.Address;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -21,19 +22,19 @@ public class Property {
     private final Price price;
 
     // Data fields
-    private final PropertyAddress propertyAddress;
+    private final Address address;
     private final Description description;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Property(PropertyName propertyName, Price price, PropertyAddress propertyAddress, Description description,
+    public Property(PropertyName propertyName, Price price, Address address, Description description,
                     Set<Tag> tags) {
-        requireAllNonNull(propertyName, price, propertyAddress, description, tags);
+        requireAllNonNull(propertyName, price, address, description, tags);
         this.propertyName = propertyName;
         this.price = price;
-        this.propertyAddress = propertyAddress;
+        this.address = address;
         this.description = description;
         this.tags.addAll(tags);
     }
@@ -42,8 +43,8 @@ public class Property {
         return propertyName;
     }
 
-    public PropertyAddress getPropertyAddress() {
-        return propertyAddress;
+    public Address getAddress() {
+        return address;
     }
 
     public Price getPrice() {
@@ -92,14 +93,14 @@ public class Property {
         Property otherProperty = (Property) other;
         return otherProperty.getName().equals(getName())
                 && otherProperty.getPrice().equals(getPrice())
-                && otherProperty.getPropertyAddress().equals(getPropertyAddress())
+                && otherProperty.getAddress().equals(getAddress())
                 && otherProperty.getDescription().equals(getDescription());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(propertyName, price, propertyAddress, description, tags);
+        return Objects.hash(propertyName, price, address, description, tags);
     }
 
     @Override
@@ -107,7 +108,7 @@ public class Property {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
                 .append("; Address: ")
-                .append(getPropertyAddress())
+                .append(getAddress())
                 .append("; Price: ")
                 .append(getPrice())
                 .append("; Description: ")

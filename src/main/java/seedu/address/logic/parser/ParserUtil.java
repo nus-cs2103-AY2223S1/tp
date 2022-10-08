@@ -10,13 +10,12 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
+import seedu.address.model.address.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.property.Description;
 import seedu.address.model.property.Price;
-import seedu.address.model.property.PropertyAddress;
 import seedu.address.model.property.PropertyName;
 import seedu.address.model.role.Characteristics;
 import seedu.address.model.role.PriceRange;
@@ -210,20 +209,5 @@ public class ParserUtil {
             throw new ParseException(PropertyName.MESSAGE_CONSTRAINTS);
         }
         return new PropertyName(trimmedPropertyName);
-    }
-
-    /**
-     * Parses a {@code String propertyAddress} into an {@code PropertyAddress}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code propertyAddress} is invalid.
-     */
-    public static PropertyAddress parsePropertyAddress(String propertyAddress) throws ParseException {
-        requireNonNull(propertyAddress);
-        String trimmedPropertyAddress = propertyAddress.trim();
-        if (!PropertyAddress.isValidPropertyAddress(trimmedPropertyAddress)) {
-            throw new ParseException(PropertyAddress.MESSAGE_CONSTRAINTS);
-        }
-        return new PropertyAddress(trimmedPropertyAddress);
     }
 }

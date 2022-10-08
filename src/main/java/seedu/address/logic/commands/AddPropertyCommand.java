@@ -36,14 +36,14 @@ public class AddPropertyCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New property added: %1$s";
     public static final String MESSAGE_DUPLICATE_PROPERTY = "This property already exists in the address book";
 
-    private final Property toAdd;
+    private final Property property;
 
     /**
      * Creates an AddPropertyCommand to add the specified {@code Property}
      */
     public AddPropertyCommand(Property property) {
         requireNonNull(property);
-        toAdd = property;
+        this.property = property;
     }
 
     @Override
@@ -55,13 +55,13 @@ public class AddPropertyCommand extends Command {
         // }
 
         // model.addProperty(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, property));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddPropertyCommand // instanceof handles nulls
-                && toAdd.equals(((AddPropertyCommand) other).toAdd));
+                && property.equals(((AddPropertyCommand) other).property));
     }
 }
