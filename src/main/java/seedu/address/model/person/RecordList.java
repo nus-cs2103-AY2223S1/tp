@@ -1,12 +1,8 @@
 package seedu.address.model.person;
 
-import javafx.collections.ObservableList;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 /**
  * Represents a record list in the address book.
  */
