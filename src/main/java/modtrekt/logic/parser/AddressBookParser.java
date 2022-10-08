@@ -7,14 +7,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import modtrekt.logic.commands.AddCommand;
-import modtrekt.logic.commands.ClearCommand;
+//import modtrekt.logic.commands.ClearCommand;
 import modtrekt.logic.commands.Command;
-import modtrekt.logic.commands.DeleteCommand;
-import modtrekt.logic.commands.EditCommand;
+//import modtrekt.logic.commands.DeleteCommand;
+//import modtrekt.logic.commands.EditCommand;
 import modtrekt.logic.commands.ExitCommand;
-import modtrekt.logic.commands.FindCommand;
+//import modtrekt.logic.commands.FindCommand;
 import modtrekt.logic.commands.HelpCommand;
-import modtrekt.logic.commands.ListCommand;
+//import modtrekt.logic.commands.ListCommand;
 import modtrekt.logic.parser.exceptions.ParseException;
 
 /**
@@ -47,20 +47,20 @@ public class AddressBookParser {
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
-
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
-
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
-
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
-
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+//        case EditCommand.COMMAND_WORD:
+//            return new EditCommandParser().parse(arguments);
+//
+//        case DeleteCommand.COMMAND_WORD:
+//            return new DeleteCommandParser().parse(arguments);
+//
+//        case ClearCommand.COMMAND_WORD:
+//            return new ClearCommand();
+//
+//        case FindCommand.COMMAND_WORD:
+//            return new FindCommandParser().parse(arguments);
+//
+//        case ListCommand.COMMAND_WORD:
+//            return new ListCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

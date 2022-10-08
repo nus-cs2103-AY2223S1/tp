@@ -12,6 +12,7 @@ import modtrekt.commons.exceptions.IllegalValueException;
 import modtrekt.model.person.Name;
 import modtrekt.model.person.Person;
 import modtrekt.model.tag.Tag;
+import modtrekt.model.task.Task;
 
 public class JsonAdaptedTask {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
@@ -34,16 +35,20 @@ public class JsonAdaptedTask {
         name = source.getName().fullName;
     }
 
+    public JsonAdaptedTask(Task task) {
+        name = task.toString();
+    }
+
     /**
      * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
-    public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
-        }
+    public Task toModelType() throws IllegalValueException {
+//        final List<Tag> personTags = new ArrayList<>();
+//        for (JsonAdaptedTag tag : tagged) {
+//            personTags.add(tag.toModelType());
+//        }
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -53,8 +58,8 @@ public class JsonAdaptedTask {
         }
         final Name modelName = new Name(name);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName);
+//        final Set<Tag> modelTags = new HashSet<>(personTags);
+        return new Task(modelName);
     }
 
 }

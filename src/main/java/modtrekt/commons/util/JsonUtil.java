@@ -72,7 +72,6 @@ public class JsonUtil {
             logger.warning("Error reading from jsonFile file " + filePath + ": " + e);
             throw new DataConversionException(e);
         }
-
         return Optional.of(jsonFile);
     }
 

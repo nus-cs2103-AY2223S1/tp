@@ -15,6 +15,7 @@ import modtrekt.logic.parser.exceptions.ParseException;
 import modtrekt.model.Model;
 import modtrekt.model.ReadOnlyAddressBook;
 import modtrekt.model.person.Person;
+import modtrekt.model.task.Task;
 import modtrekt.storage.Storage;
 
 /**
@@ -46,6 +47,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
+            System.out.println("called");
             storage.saveAddressBook(model.getAddressBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
@@ -60,7 +62,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
+    public ObservableList<Task> getFilteredPersonList() {
         return model.getFilteredPersonList();
     }
 

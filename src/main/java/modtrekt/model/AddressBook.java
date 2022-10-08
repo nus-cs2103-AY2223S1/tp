@@ -7,6 +7,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import modtrekt.model.person.Person;
 import modtrekt.model.person.UniquePersonList;
+import modtrekt.model.task.Task;
 
 /**
  * Wraps all data at the address-book level
@@ -43,7 +44,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the contents of the person list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void setPersons(List<Person> persons) {
+    public void setPersons(List<Task> persons) {
         this.persons.setPersons(persons);
     }
 
@@ -61,17 +62,17 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return persons.contains(person);
-    }
+//    public boolean hasPerson(Person person) {
+//        requireNonNull(person);
+//        return persons.contains(person);
+//    }
 
     /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
-    public void addPerson(Person p) {
-        persons.add(p);
+    public void addPerson(Task t) {
+        persons.add(t);
     }
 
     /**
@@ -79,7 +80,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
-    public void setPerson(Person target, Person editedPerson) {
+    public void setPerson(Task target, Task editedPerson) {
         requireNonNull(editedPerson);
 
         persons.setPerson(target, editedPerson);
@@ -102,7 +103,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<Person> getPersonList() {
+    public ObservableList<Task> getPersonList() {
         return persons.asUnmodifiableObservableList();
     }
 

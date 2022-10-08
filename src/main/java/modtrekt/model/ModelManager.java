@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import modtrekt.commons.core.GuiSettings;
 import modtrekt.commons.core.LogsCenter;
 import modtrekt.model.person.Person;
+import modtrekt.model.task.Task;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -21,7 +22,7 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Task> filteredPersons;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -89,8 +90,8 @@ public class ModelManager implements Model {
 
     @Override
     public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+//        requireNonNull(person);
+        return false;
     }
 
     @Override
@@ -99,13 +100,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
+    public void addPerson(Task t) {
+        addressBook.addPerson(t);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
+    public void setPerson(Task target, Task editedPerson) {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
@@ -118,14 +119,14 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
+    public ObservableList<Task> getFilteredPersonList() {
         return filteredPersons;
     }
 
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+//        requireNonNull(predicate);
+//        filteredPersons.setPredicate(predicate);
     }
 
     @Override

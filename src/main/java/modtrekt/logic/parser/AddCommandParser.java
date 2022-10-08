@@ -13,6 +13,7 @@ import modtrekt.model.person.Name;
 import modtrekt.model.person.Person;
 import modtrekt.model.person.Phone;
 import modtrekt.model.tag.Tag;
+import modtrekt.model.task.Task;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -45,9 +46,9 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Name name = ParserUtil.parseName(argMultimap.getValue(CliSyntax.PREFIX_NAME).get());
 
-        Person person = new Person(name);
+        Task t = new Task(name);
 
-        return new AddCommand(person);
+        return new AddCommand(t);
     }
 
 }

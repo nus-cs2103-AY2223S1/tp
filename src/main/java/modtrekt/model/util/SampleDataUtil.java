@@ -12,13 +12,14 @@ import modtrekt.model.person.Name;
 import modtrekt.model.person.Person;
 import modtrekt.model.person.Phone;
 import modtrekt.model.tag.Tag;
+import modtrekt.model.task.Task;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
-    public static Person[] getSamplePersons() {
-        return new Person[] {
+    public static Task[] getSamplePersons() {
+        return new Task[] {
 //            new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
 //                new Address("Blk 30 Geylang Street 29, #06-40"),
 //                getTagSet("friends")),
@@ -37,19 +38,19 @@ public class SampleDataUtil {
 //            new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
 //                new Address("Blk 45 Aljunied Street 85, #11-31"),
 //                getTagSet("colleagues"))
-                new Person(new Name("Alex Yeoh")),
-                new Person(new Name("Bernice Yu")),
-                new Person(new Name("Charlotte Oliveiro")),
-                new Person(new Name("David Li")),
-                new Person(new Name("Irfan Ibrahim")),
-                new Person(new Name("Roy Balakrishnan"))
+                new Task(new Name("Alex Yeoh")),
+                new Task(new Name("Bernice Yu")),
+                new Task(new Name("Charlotte Oliveiro")),
+                new Task(new Name("David Li")),
+                new Task(new Name("Irfan Ibrahim")),
+                new Task(new Name("Roy Balakrishnan"))
 
         };
     }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
-        for (Person samplePerson : getSamplePersons()) {
+        for (Task samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }
         return sampleAb;

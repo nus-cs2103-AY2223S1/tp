@@ -1,5 +1,7 @@
 package modtrekt.model.task;
 
+import modtrekt.model.person.Name;
+
 /**
  * Represents a basic task in the task list.
  * Ensures that necessary details are valid, present and non-null.
@@ -7,19 +9,19 @@ package modtrekt.model.task;
 public class Task {
 
     /** String representing description of task */
-    public final String description;
+    public final Name description;
 
     /**
      * Constructor for an instance of Task.
      *
      * @param description description of task
      */
-    public Task(String description) {
+    public Task(Name description) {
         this.description = description;
     }
 
     @Override
     public String toString() {
-        return this.description;
+        return this.description.toString();
     }
 }
