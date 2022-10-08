@@ -10,7 +10,7 @@ public class DeleteUserByNameCommandParser implements Parser<DeleteUserByNameCom
 
     public DeleteUserByNameCommand parse(String args) throws ParseException {
         ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(args);
-            if (!argumentMultimap.getPreamble().isEmpty()) {
+            if (argumentMultimap.getPreamble().isEmpty()) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteUserByNameCommand.MESSAGE_USAGE));
             }
 
