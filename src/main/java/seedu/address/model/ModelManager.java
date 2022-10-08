@@ -121,6 +121,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteModule(Module target) {
+        addressBook.removeModule(target);
+    }
+
+    @Override
     public void addModule(Module module) {
         addressBook.addModule(module);
         updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
@@ -141,6 +146,17 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    //=========== Filtered Module List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Module} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Module> getFilteredModuleList() {
+        return filteredModules;
     }
 
     @Override
@@ -165,7 +181,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredModules.equals(other.filteredModules);
     }
 
 }

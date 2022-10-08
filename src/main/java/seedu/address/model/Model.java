@@ -98,10 +98,19 @@ public interface Model {
     boolean hasModule(Module module);
 
     /**
+     * Deletes the given module.
+     * The module must exist in the address book.
+     */
+    void deleteModule(Module target);
+
+    /**
      * Adds the given module.
      * {@code module} must not already exist in Plannit.
      */
     void addModule(Module module);
 
     void updateFilteredModuleList(Predicate<Module> predicate);
+
+    /** Returns an unmodifiable view of the filtered module list */
+    ObservableList<Module> getFilteredModuleList();
 }

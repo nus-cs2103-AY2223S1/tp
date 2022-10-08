@@ -91,6 +91,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public void deleteModule(Module target) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public void addModule(Module module) {
         throw new AssertionError("This method should not be called.");
     }
@@ -99,4 +104,10 @@ public class ModelStub implements Model {
     public void updateFilteredModuleList(Predicate<Module> predicate) {
         throw new AssertionError("This method should not be called.");
     }
+
+    @Override
+    public ObservableList<Module> getFilteredModuleList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
 }

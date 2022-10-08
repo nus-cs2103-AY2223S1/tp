@@ -117,11 +117,19 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a module to the address book.
-     * The module must not already exist in the address book.
+     * Adds a module to Plannit.
+     * The module must not already exist in Plannit.
      */
     public void addModule(Module m) {
         modules.add(m);
+    }
+
+    /**
+     * Removes {@code key} from Plannit.
+     * {@code key} must exist in Plannit.
+     */
+    public void removeModule(Module key) {
+        modules.remove(key);
     }
 
     //// util methods
