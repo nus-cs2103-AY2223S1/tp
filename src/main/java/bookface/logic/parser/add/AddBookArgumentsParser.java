@@ -10,6 +10,7 @@ import bookface.logic.commands.add.AddBookCommand;
 import bookface.logic.parser.ArgumentMultimap;
 import bookface.logic.parser.ArgumentTokenizer;
 import bookface.logic.parser.ArgumentsParsable;
+import bookface.logic.parser.ParserUtil;
 import bookface.logic.parser.Prefix;
 import bookface.logic.parser.exceptions.ParseException;
 import bookface.model.book.Author;
@@ -32,8 +33,8 @@ public class AddBookArgumentsParser implements ArgumentsParsable<AddBookCommand>
                     AddBookCommand.MESSAGE_USAGE));
         }
 
-        Author author = new Author(argMultimap.getValue(PREFIX_AUTHOR).get());
-        Title title = new Title(argMultimap.getValue(PREFIX_TITLE).get());
+        Author author = ParserUtil.parseAuthor(argMultimap.getValue(PREFIX_AUTHOR).get());
+        Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
 
         Book book = new Book(title, author);
         return new AddBookCommand(book);

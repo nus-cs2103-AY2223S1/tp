@@ -35,6 +35,16 @@ public class BookList extends ArrayList<Book> implements Iterable<Book> {
         return internalList.stream().anyMatch(toCheck::isSameBook);
     }
 
+    /**
+     * Gets whether BookList contains a certain object.
+     *
+     * @param o element whose presence in this list is to be tested
+     * @return true if object is in BookList
+     */
+    @Override
+    public boolean contains(Object o) {
+        return this.bookList.contains(o);
+    }
 
     /**
      * Gets the size of the BookList.
@@ -92,16 +102,6 @@ public class BookList extends ArrayList<Book> implements Iterable<Book> {
         return this.bookList.get(index);
     }
 
-    /**
-     * Gets whether BookList contains a certain object.
-     *
-     * @param o element whose presence in this list is to be tested
-     * @return true if object is in BookList
-     */
-    @Override
-    public boolean contains(Object o) {
-        return this.bookList.contains(o);
-    }
 
     public ObservableList<Book> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
