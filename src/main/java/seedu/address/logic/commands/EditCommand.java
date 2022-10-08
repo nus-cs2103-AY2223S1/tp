@@ -141,7 +141,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            SetScholarshipname(toCopy.scholarshipname);
+            setScholarshipName(toCopy.scholarshipname);
             setTags(toCopy.tags);
         }
 
@@ -176,8 +176,8 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void SetScholarshipname(Scholarship_Name address) {
-            this.scholarshipname = scholarshipname;
+        public void setScholarshipName(Scholarship_Name scholarshipName) {
+            this.scholarshipname = scholarshipName;
         }
 
         public Optional<Scholarship_Name> getScholarshipName() { return Optional.ofNullable(scholarshipname); }

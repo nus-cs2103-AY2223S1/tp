@@ -70,7 +70,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
-    public PersonBuilder withAddress(String address) {
+    public PersonBuilder withScholarship(String address) {
         this.scholarshipname = new Scholarship_Name(address);
         return this;
     }

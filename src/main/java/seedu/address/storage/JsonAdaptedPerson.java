@@ -28,7 +28,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
 
-    private final String scholarshipname;
+    private final String scholarshipName;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -36,12 +36,12 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("scholarshipname") String scholarshipname,
+            @JsonProperty("email") String email, @JsonProperty("scholarshipname") String scholarshipName,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.scholarshipname = scholarshipname;
+        this.scholarshipName = scholarshipName;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -54,7 +54,7 @@ class JsonAdaptedPerson {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        scholarshipname = source.getScholarshipName().value;
+        scholarshipName = source.getScholarshipName().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -95,13 +95,13 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
-        if (scholarshipname == null) {
+        if (scholarshipName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Scholarship_Name.class.getSimpleName()));
         }
-        if (!Scholarship_Name.isValidScholarship_Name(scholarshipname)) {
+        if (!Scholarship_Name.isValidScholarship_Name(scholarshipName)) {
             throw new IllegalValueException(Scholarship_Name.MESSAGE_CONSTRAINTS);
         }
-        final Scholarship_Name modelScholarship_Name = new Scholarship_Name(scholarshipname);
+        final Scholarship_Name modelScholarship_Name = new Scholarship_Name(scholarshipName);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelPhone, modelEmail, modelScholarship_Name, modelTags);
