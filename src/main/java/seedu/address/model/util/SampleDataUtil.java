@@ -1,5 +1,6 @@
 package seedu.address.model.util;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -10,6 +11,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonData;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -18,26 +20,59 @@ import seedu.address.model.tag.Tag;
  */
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
-        return new Person[] {
-            new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends")),
-            new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends")),
-            new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours")),
-            new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family")),
-            new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates")),
-            new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"))
-        };
+
+        PersonData personData;
+        ArrayList<PersonData> personDatas = new ArrayList<>();
+
+        personData = new PersonData();;
+        personData.setName(new Name("Alex Yeoh"));
+        personData.setPhone(new Phone("87438807"));
+        personData.setEmail(new Email("alexyeoh@example.com"));
+        personData.setAddress(new Address("Blk 30 Geylang Street 29, #06-40"));
+        personData.setTags(getTagSet("friends"));
+        personDatas.add(personData);
+
+        personData = new PersonData();;
+        personData.setName(new Name("Bernice Yu"));
+        personData.setPhone(new Phone("99272758"));
+        personData.setEmail(new Email("berniceyu@example.com"));
+        personData.setAddress(new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"));
+        personData.setTags(getTagSet("colleagues", "friends"));
+        personDatas.add(personData);
+
+        personData = new PersonData();;
+        personData.setName(new Name("Charlotte Oliveiro"));
+        personData.setPhone(new Phone("93210283"));
+        personData.setEmail(new Email("charlotte@example.com"));
+        personData.setAddress(new Address("Blk 11 Ang Mo Kio Street 74, #11-04"));
+        personData.setTags(getTagSet("neighbours"));
+        personDatas.add(personData);
+
+        personData = new PersonData();;
+        personData.setName(new Name("David Li"));
+        personData.setPhone(new Phone("91031282"));
+        personData.setEmail(new Email("lidavid@example.com"));
+        personData.setAddress(new Address("Blk 436 Serangoon Gardens Street 26, #16-43"));
+        personData.setTags(getTagSet("family"));
+        personDatas.add(personData);
+
+        personData = new PersonData();;
+        personData.setName(new Name("Irfan Ibrahim"));
+        personData.setPhone(new Phone("92492021"));
+        personData.setEmail(new Email("irfan@example.com"));
+        personData.setAddress(new Address("Blk 47 Tampines Street 20, #17-35"));
+        personData.setTags(getTagSet("classmates"));
+        personDatas.add(personData);
+
+        personData = new PersonData();;
+        personData.setName(new Name("Roy Balakrishnan"));
+        personData.setPhone(new Phone("92624417"));
+        personData.setEmail(new Email("royb@example.com"));
+        personData.setAddress(new Address("Blk 45 Aljunied Street 85, #11-31"));
+        personData.setTags(getTagSet("colleagues"));
+        personDatas.add(personData);
+
+        return (Person[]) personDatas.stream().map(x -> new Person(x)).toArray();
     }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
