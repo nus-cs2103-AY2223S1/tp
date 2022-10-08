@@ -12,13 +12,13 @@ import seedu.address.model.Model;
 import seedu.address.model.client.Client;
 
 /**
- * Adds a client to client book.
+ * Adds a client to MyInsuRec.
  */
-public class AddCommand extends Command {
+public class AddClientCommand extends Command {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "addClient";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a client to the client book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a client to MyInsuRec. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -34,14 +34,14 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New client added: %1$s";
-    public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the client book";
+    public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in MyInsuRec";
 
     private final Client toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Client}
+     * Creates an AddClientCommand to add the specified {@code Client}
      */
-    public AddCommand(Client client) {
+    public AddClientCommand(Client client) {
         requireNonNull(client);
         toAdd = client;
     }
@@ -57,11 +57,10 @@ public class AddCommand extends Command {
         model.addClient(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
-
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
+                || (other instanceof AddClientCommand // instanceof handles nulls
+                && toAdd.equals(((AddClientCommand) other).toAdd));
     }
 }
