@@ -1,31 +1,46 @@
 package seedu.address.model.item;
 
-import static seedu.address.commons.util.AppUtil.checkArgument;
+import seedu.address.model.item.itemvalidator.ItemQuantityValidator;
 
+import static java.util.Objects.requireNonNull;
+
+/**
+ * Represents an item quantity in an {@link Item}.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
 public class ItemQuantity {
-    public static final String MESSAGE_CONSTRAINTS = "Quantities must be greater than 0, and smaller than 10,000,000.";
 
-    public final int itemQuantity;
+    private final double itemQuantity;
 
-    public ItemQuantity(int itemQuantity) {
-        checkArgument(isValidItemQuantity(itemQuantity), MESSAGE_CONSTRAINTS);
-        this.itemQuantity = itemQuantity;
+    private static final double DEFAULT_QUANTITY = 0;
+
+    /**
+     * {@inheritDoc}
+     */
+    public ItemQuantity(String itemQuantityString) {
+        requireNonNull(itemQuantityString);
+        if (itemQuantityString.isEmpty()) {
+            itemQuantity = DEFAULT_QUANTITY;
+            return;
+        }
+        ItemQuantityValidator.validate(itemQuantityString);
+        itemQuantity = Double.parseDouble(itemQuantityString);
     }
 
-    public static boolean isValidItemQuantity(int itemQuantity) {
-        return itemQuantity > 0 && itemQuantity < 10000000;
-    }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ItemQuantity // instanceof handles nulls
-                && this.itemQuantity == ((ItemQuantity) other).itemQuantity); // state check
+                && itemQuantity == ((ItemQuantity) other).itemQuantity); // state check
     }
 
     /**
-     * Format state as text for viewing.
+     * {@inheritDoc}
      */
+    @Override
     public String toString() {
         return String.valueOf(itemQuantity);
     }
