@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -14,6 +16,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddUserCommand;
+import seedu.address.logic.commands.AssignTaskCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -37,6 +40,18 @@ public class AddressBookParserTest {
         Person person = new PersonBuilder().build();
         AddUserCommand command = (AddUserCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
         assertEquals(new AddUserCommand(person), command);
+    }
+
+    @Test
+    public void parseCommand_assigntask() throws Exception {
+        String name = "Alex";
+        String group = "Group1";
+        String task = "assignment 0";
+        AssignTaskCommand command = (AssignTaskCommand) parser.parseCommand(
+                AssignTaskCommand.COMMAND_WORD + " " + name + " "
+                        + PREFIX_GROUP + group + " "
+                        + PREFIX_TASK + task);
+        assertEquals(new AssignTaskCommand(name, group, task), command);
     }
 
     @Test

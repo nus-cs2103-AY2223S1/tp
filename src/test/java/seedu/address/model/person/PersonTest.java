@@ -3,12 +3,15 @@ package seedu.address.model.person;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.ALILI;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
@@ -51,6 +54,26 @@ public class PersonTest {
     }
 
     @Test
+    public void testHashCode() {
+        Person aliceCopy = new PersonBuilder(ALICE).build();
+        Person aliceCopy2 = new PersonBuilder(ALICE).build();
+
+        assertTrue(aliceCopy.hashCode() == aliceCopy2.hashCode());
+    }
+
+    @Test
+    public void testToString() {
+        Person aliliCopy = new PersonBuilder(ALILI).build();
+        String str = "Alili Pauline; "
+                + "Phone: 94351253; "
+                + "Email: alice@example.com; "
+                + "Address: 123, Jurong West Ave 6, #08-111; "
+                + "Tags: [friends]; "
+                + "Assignment: Group 1 [Midterms]";
+        assertTrue(aliliCopy.toString().equals(str));
+    }
+
+    @Test
     public void equals() {
         // same values -> returns true
         Person aliceCopy = new PersonBuilder(ALICE).build();
@@ -86,6 +109,10 @@ public class PersonTest {
 
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different tags -> returns false
+        editedAlice = new PersonBuilder(ALICE).withAssignments(VALID_GROUP_1, VALID_ASSIGNMENT).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 }
