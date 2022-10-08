@@ -63,16 +63,16 @@ public class TaskList {
         final StringBuilder builder = new StringBuilder();
         internalTaskList.forEach(t -> {
             int index = internalTaskList.indexOf(t);
-                if (index == 0) {
-                    builder.append(index + 1)
-                            .append(". ")
-                            .append(t);
-                } else {
-                    builder.append("\n")
-                            .append(index + 1)
-                            .append(". ")
-                            .append(t);
-                }
+            if (index == 0) {
+                builder.append(index + 1)
+                        .append(". ")
+                        .append(t);
+            } else {
+                builder.append("\n")
+                        .append(index + 1)
+                        .append(". ")
+                        .append(t);
+            }
         });
         return builder.toString();
     }
