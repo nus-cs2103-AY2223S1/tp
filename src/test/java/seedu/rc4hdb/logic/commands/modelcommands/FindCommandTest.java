@@ -12,7 +12,6 @@ import static seedu.rc4hdb.testutil.TypicalPersons.FIONA;
 import static seedu.rc4hdb.testutil.TypicalPersons.GEORGE;
 import static seedu.rc4hdb.testutil.TypicalPersons.getTypicalAddressBook;
 
-
 import java.util.Arrays;
 import java.util.Collections;
 
