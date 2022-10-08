@@ -8,15 +8,15 @@ import org.openapitools.client.model.ModuleCondensed;
 /**
  * All the module codes to allow for searching for modules.
  */
-public class AcadYearModuleList implements ReadOnlyAcadYearModuleList {
+public class ModuleSummaryList implements ReadOnlyModuleSummaryList {
 
     private final List<ModuleCondensed> condensedModules;
 
-    public AcadYearModuleList() {
+    public ModuleSummaryList() {
         this.condensedModules = new ArrayList<>();
     }
 
-    public AcadYearModuleList(List<ModuleCondensed> acadYearModuleList) {
+    public ModuleSummaryList(List<ModuleCondensed> acadYearModuleList) {
         this.condensedModules = acadYearModuleList;
     }
 
@@ -32,8 +32,8 @@ public class AcadYearModuleList implements ReadOnlyAcadYearModuleList {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AcadYearModuleList // instanceof handles nulls
-                && this.condensedModules.equals(((AcadYearModuleList) other).condensedModules));
+                || (other instanceof ModuleSummaryList // instanceof handles nulls
+                && this.condensedModules.equals(((ModuleSummaryList) other).condensedModules));
     }
 
     @Override

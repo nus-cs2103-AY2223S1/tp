@@ -1,4 +1,4 @@
-package nus.climods.storage.usermodulelist;
+package nus.climods.storage.module.user;
 
 import java.util.ArrayList;
 import java.util.HashSet;

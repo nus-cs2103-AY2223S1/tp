@@ -1,4 +1,4 @@
-package nus.climods.storage.acadyearmodulelist;
+package nus.climods.storage.module;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -8,15 +8,14 @@ import java.util.Optional;
 import org.openapitools.client.model.ModuleCondensed;
 
 import nus.climods.commons.exceptions.DataConversionException;
-import nus.climods.model.module.AcadYearModuleList;
-import nus.climods.model.module.ReadOnlyAcadYearModuleList;
-
+import nus.climods.model.module.ModuleSummaryList;
+import nus.climods.model.module.ReadOnlyModuleSummaryList;
 
 
 /**
- * Represents a storage for {@link AcadYearModuleList}.
+ * Represents a storage for {@link ModuleSummaryList}.
  */
-public interface AcadYearModuleListStorage {
+public interface ModuleSummaryListStorage {
 
     /**
      * Returns the file path of the data file.
@@ -24,18 +23,18 @@ public interface AcadYearModuleListStorage {
     Path getAcadYearModuleListFilePath();
 
     /**
-     * Returns user module list data as a {@link ReadOnlyAcadYearModuleList}.
+     * Returns user module list data as a {@link ReadOnlyModuleSummaryList}.
      * Returns {@code Optional.empty()} if storage file is not found.
      *
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException             if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyAcadYearModuleList> readAcadYearModuleList() throws DataConversionException, IOException;
+    Optional<ReadOnlyModuleSummaryList> readAcadYearModuleList() throws DataConversionException, IOException;
 
     /**
      * @see #getAcadYearModuleListFilePath()
      */
-    Optional<ReadOnlyAcadYearModuleList> readAcadYearModuleList(Path filePath)
+    Optional<ReadOnlyModuleSummaryList> readAcadYearModuleList(Path filePath)
             throws DataConversionException, IOException;
 
     void saveAcadYearModuleList(List<ModuleCondensed> modules) throws IOException;

@@ -1,4 +1,4 @@
-package nus.climods.storage.usermodulelist;
+package nus.climods.storage.module.user;
 
 import java.io.IOException;
 import java.nio.file.Path;

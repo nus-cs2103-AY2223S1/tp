@@ -16,10 +16,11 @@ import org.openapitools.client.api.ModulesApi;
 import org.openapitools.client.model.ModuleCondensed;
 
 import nus.climods.commons.exceptions.DataConversionException;
-import nus.climods.model.module.ReadOnlyAcadYearModuleList;
+import nus.climods.model.module.ReadOnlyModuleSummaryList;
+import nus.climods.storage.module.JsonModuleSummaryListStorage;
 
-class JsonAcadYearModuleListStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAcadYearModuleListStorageTest");
+class JsonModuleSummaryListStorageTest {
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonModuleSummaryListStorageTest");
 
     @TempDir
     public Path testFolder;
@@ -29,8 +30,8 @@ class JsonAcadYearModuleListStorageTest {
         assertThrows(NullPointerException.class, () -> readAcadYearModuleList(null));
     }
 
-    private Optional<ReadOnlyAcadYearModuleList> readAcadYearModuleList(String filePath) throws Exception {
-        return new JsonAcadYearModuleListStorage(Paths.get(filePath))
+    private Optional<ReadOnlyModuleSummaryList> readAcadYearModuleList(String filePath) throws Exception {
+        return new JsonModuleSummaryListStorage(Paths.get(filePath))
             .readAcadYearModuleList(addToTestDataPathIfNotNull(filePath));
     }
 
@@ -66,14 +67,14 @@ class JsonAcadYearModuleListStorageTest {
         Path filePath = testFolder.resolve("TempAcadYearModuleList.json");
         ModulesApi modulesApi = new ModulesApi();
         List<ModuleCondensed> data = modulesApi.acadYearModuleListJsonGet("2022-2023");
-        JsonAcadYearModuleListStorage jsonAcadYearModuleListStorage = new JsonAcadYearModuleListStorage(filePath);
+        JsonModuleSummaryListStorage jsonAcadYearModuleListStorage = new JsonModuleSummaryListStorage(filePath);
 
         jsonAcadYearModuleListStorage.saveAcadYearModuleList(data);
 
-        Optional<ReadOnlyAcadYearModuleList> optionalReadBack = jsonAcadYearModuleListStorage
+        Optional<ReadOnlyModuleSummaryList> optionalReadBack = jsonAcadYearModuleListStorage
             .readAcadYearModuleList(filePath);
         assertTrue(optionalReadBack.isPresent());
-        ReadOnlyAcadYearModuleList readBack = optionalReadBack.get();
+        ReadOnlyModuleSummaryList readBack = optionalReadBack.get();
         List<ModuleCondensed> readBackData = readBack.getModuleList();
         assertEquals(data, readBackData);
     }

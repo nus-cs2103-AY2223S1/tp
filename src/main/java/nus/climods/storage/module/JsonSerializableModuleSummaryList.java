@@ -1,4 +1,4 @@
-package nus.climods.storage.acadyearmodulelist;
+package nus.climods.storage.module;
 
 import java.util.List;
 
@@ -9,31 +9,31 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import nus.climods.commons.exceptions.IllegalValueException;
-import nus.climods.model.module.AcadYearModuleList;
+import nus.climods.model.module.ModuleSummaryList;
 
 /**
  * An Immutable acadYearModuleList that is serializable to JSON format.
  */
 @JsonRootName(value = "modules")
-class JsonSerializableAcadYearModuleList {
+class JsonSerializableModuleSummaryList {
 
     private final List<ModuleCondensed> modules;
 
     /**
-     * Constructs a {@code JsonSerializableAcadYearModuleList} with the given modules.
+     * Constructs a {@code JsonSerializableModuleSummaryList} with the given modules.
      */
     @JsonCreator
-    public JsonSerializableAcadYearModuleList(@JsonProperty("modules") List<ModuleCondensed> modules) {
+    public JsonSerializableModuleSummaryList(@JsonProperty("modules") List<ModuleCondensed> modules) {
         this.modules = modules;
     }
 
     /**
-     * Converts this module list into the model's {@code AcadYearModuleList} object.
+     * Converts this module list into the model's {@code ModuleSummaryList} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AcadYearModuleList toModelType() throws IllegalValueException {
-        return new AcadYearModuleList(modules);
+    public ModuleSummaryList toModelType() throws IllegalValueException {
+        return new ModuleSummaryList(modules);
     }
 
 }
