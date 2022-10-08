@@ -14,23 +14,28 @@ import static seedu.address.logic.commands.CommandTestUtil.*;
  */
 public class TypicalPersons {
 
-    public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
+    public static final Person ALICE = new PersonBuilder().withName("Alice Pauline").withMinecraftName("alice123")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
             .withTags("friends").build();
-    public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
+    public static final Person BENSON = new PersonBuilder().withName("Benson Meier").withMinecraftName("benson123")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withTags("owesMoney", "friends").build();
-    public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
+    public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withMinecraftName("carl123")
+            .withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").build();
-    public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
+    public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withMinecraftName("daniel123")
+            .withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends").build();
-    public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
+    public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withMinecraftName("elle123")
+            .withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave").build();
-    public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
+    public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withMinecraftName("fiona123")
+            .withPhone("9482427")
             .withEmail("lydia@example.com").withAddress("little tokyo").build();
-    public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
+    public static final Person GEORGE = new PersonBuilder().withName("George Best").withMinecraftName("george123")
+            .withPhone("9482442")
             .withEmail("anna@example.com").withAddress("4th street").build();
 
     // Manually added

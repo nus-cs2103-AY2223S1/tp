@@ -85,6 +85,10 @@ class JsonAdaptedPerson {
         timeZone = source.getTimeZone().toString();
 
     }
+    // delete later
+    public String getName() {
+        return this.name;
+    }
 
     /**
      * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
