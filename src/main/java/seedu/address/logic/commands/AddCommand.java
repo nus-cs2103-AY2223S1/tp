@@ -4,10 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MINECRAFT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MINECRAFT_SERVER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SOCIAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMEZONE;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -23,19 +25,25 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_MINECRAFT_NAME + "MINECRAFT NAME "
-            + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
-            + "[" + PREFIX_SOCIAL + "SOCIAL MEDIA "
+            + PREFIX_MINECRAFT_NAME + "MINECRAFT_NAME "
+            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_TIMEZONE + "TIMEZONE] "
+            + "[" + PREFIX_SOCIAL + "SOCIAL_PLATFORM@HANDLE] "
+            + "[" + PREFIX_MINECRAFT_SERVER + "SERVER_IP] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
+            + PREFIX_MINECRAFT_NAME + "john_doe_12345 "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_SOCIAL + "Tele: @zbzlvlv"
-            + PREFIX_SOCIAL + "Insta: sdfsdf__2"
+            + PREFIX_ADDRESS + "10 Downing Street "
+            + PREFIX_TIMEZONE + "+08:00 "
+            + PREFIX_SOCIAL + "fb@Bozheng "
+            + PREFIX_SOCIAL + "ig@catherine_33334 "
+            + PREFIX_MINECRAFT_SERVER + "192.168.1.255 "
+            + PREFIX_MINECRAFT_SERVER + "177.44.44.94 "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
