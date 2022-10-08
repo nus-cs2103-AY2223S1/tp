@@ -10,6 +10,7 @@ import paymelah.logic.commands.AddCommand;
 import paymelah.logic.commands.ClearCommand;
 import paymelah.logic.commands.Command;
 import paymelah.logic.commands.DeleteCommand;
+import paymelah.logic.commands.DeleteDebtCommand;
 import paymelah.logic.commands.EditCommand;
 import paymelah.logic.commands.ExitCommand;
 import paymelah.logic.commands.FindCommand;
@@ -54,6 +55,9 @@ public class AddressBookParser {
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
+
+        case DeleteDebtCommand.COMMAND_WORD:
+            return new DeleteDebtCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
