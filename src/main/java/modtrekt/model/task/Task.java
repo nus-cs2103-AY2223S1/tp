@@ -18,6 +18,23 @@ public class Task {
         this.description = description;
     }
 
+    public Description getDescription() {
+        return this.description;
+    }
+
+    /**
+     * Compares task object with another task object and checks if they are the same.
+     */
+    public boolean isSameTask(Task o) {
+        if (this == o) {
+            return true;
+        }
+
+        return o != null
+                && o.getDescription().equals(this.getDescription());
+
+    }
+
     @Override
     public String toString() {
         return this.description.toString();

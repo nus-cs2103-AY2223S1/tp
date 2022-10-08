@@ -14,9 +14,9 @@ public class AddTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the address book. "
             + "Parameters: "
-            + CliSyntax.PREFIX_NAME + "NAME ";
+            + CliSyntax.PREFIX_NAME + "DESCRIPTION ";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
 

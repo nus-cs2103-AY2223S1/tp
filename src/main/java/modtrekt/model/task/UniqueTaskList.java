@@ -86,6 +86,14 @@ public class UniqueTaskList implements Iterable<Task> {
                         && internalList.equals(((UniqueTaskList) other).internalList));
     }
 
+    /**
+     * Checks if two tasks are equal.
+     */
+    public boolean contains(Task toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::isSameTask);
+    }
+
     @Override
     public int hashCode() {
         return internalList.hashCode();

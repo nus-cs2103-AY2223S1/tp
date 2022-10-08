@@ -1,7 +1,7 @@
 package modtrekt.testutil;
 
 import modtrekt.model.TaskBook;
-import modtrekt.model.person.Person;
+import modtrekt.model.task.Task;
 
 /**
  * A utility class to help with building Addressbook objects.
@@ -23,8 +23,8 @@ public class AddressBookBuilder {
     /**
      * Adds a new {@code Person} to the {@code AddressBook} that we are building.
      */
-    public AddressBookBuilder withPerson(Person person) {
-        addressBook.addPerson(person);
+    public AddressBookBuilder withPerson(Task t) {
+        addressBook.addTask(t);
         return this;
     }
 

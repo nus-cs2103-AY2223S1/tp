@@ -4,11 +4,12 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import modtrekt.commons.util.StringUtil;
+import modtrekt.model.task.Task;
 
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
-public class NameContainsKeywordsPredicate implements Predicate<Person> {
+public class NameContainsKeywordsPredicate implements Predicate<Task> {
     private final List<String> keywords;
 
     public NameContainsKeywordsPredicate(List<String> keywords) {
@@ -16,9 +17,9 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
     }
 
     @Override
-    public boolean test(Person person) {
+    public boolean test(Task t) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().description, keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(t.getDescription().description, keyword));
     }
 
     @Override

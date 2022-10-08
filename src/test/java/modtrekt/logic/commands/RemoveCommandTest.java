@@ -2,7 +2,7 @@ package modtrekt.logic.commands;
 
 import static modtrekt.logic.commands.CommandTestUtil.assertCommandFailure;
 import static modtrekt.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static modtrekt.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static modtrekt.logic.commands.CommandTestUtil.showTaskAtIndex;
 import static modtrekt.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static modtrekt.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static modtrekt.testutil.TypicalPersons.getTypicalAddressBook;
@@ -16,7 +16,7 @@ import modtrekt.commons.core.index.Index;
 import modtrekt.model.Model;
 import modtrekt.model.ModelManager;
 import modtrekt.model.UserPrefs;
-import modtrekt.model.person.Person;
+import modtrekt.model.task.Task;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -28,13 +28,13 @@ public class RemoveCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Person personToDelete = model.getFilteredTaskList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Task taskToDelete = model.getFilteredTaskList().get(INDEX_FIRST_PERSON.getZeroBased());
         RemoveCommand removeCommand = new RemoveCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(RemoveCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+        String expectedMessage = String.format(RemoveCommand.MESSAGE_DELETE_TASK_SUCCESS, taskToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getTaskBook(), new UserPrefs());
-        expectedModel.deletePerson(personToDelete);
+        expectedModel.deleteTask(taskToDelete);
 
         assertCommandSuccess(removeCommand, model, expectedMessage, expectedModel);
     }
@@ -49,15 +49,15 @@ public class RemoveCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showTaskAtIndex(model, INDEX_FIRST_PERSON);
 
-        Person personToDelete = model.getFilteredTaskList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Task taskToDelete = model.getFilteredTaskList().get(INDEX_FIRST_PERSON.getZeroBased());
         RemoveCommand removeCommand = new RemoveCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(RemoveCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+        String expectedMessage = String.format(RemoveCommand.MESSAGE_DELETE_TASK_SUCCESS, taskToDelete);
 
         Model expectedModel = new ModelManager(model.getTaskBook(), new UserPrefs());
-        expectedModel.deletePerson(personToDelete);
+        expectedModel.deleteTask(taskToDelete);
         showNoPerson(expectedModel);
 
         assertCommandSuccess(removeCommand, model, expectedMessage, expectedModel);
@@ -65,11 +65,11 @@ public class RemoveCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showTaskAtIndex(model, INDEX_FIRST_PERSON);
 
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getTaskBook().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getTaskBook().getTaskList().size());
 
         RemoveCommand removeCommand = new RemoveCommand(outOfBoundIndex);
 

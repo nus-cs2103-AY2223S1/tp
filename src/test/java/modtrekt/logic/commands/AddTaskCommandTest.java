@@ -15,13 +15,12 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import modtrekt.commons.core.GuiSettings;
-import modtrekt.logic.commands.exceptions.CommandException;
-import modtrekt.model.TaskBook;
 import modtrekt.model.Model;
 import modtrekt.model.ReadOnlyTaskBook;
 import modtrekt.model.ReadOnlyUserPrefs;
-import modtrekt.model.person.Person;
-import modtrekt.testutil.PersonBuilder;
+import modtrekt.model.TaskBook;
+import modtrekt.model.task.Task;
+import modtrekt.testutil.TaskBuilder;
 
 public class AddTaskCommandTest {
 
@@ -33,45 +32,36 @@ public class AddTaskCommandTest {
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+        Task validTask = new TaskBuilder().build();
 
-        CommandResult commandResult = new AddTaskCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddTaskCommand(validTask).execute(modelStub);
 
-        assertEquals(String.format(AddTaskCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
-    }
-
-    @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddTaskCommand addTaskCommand = new AddTaskCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
-
-        assertThrows(CommandException.class, AddTaskCommand.MESSAGE_DUPLICATE_PERSON, () -> addTaskCommand.execute(modelStub));
+        assertEquals(String.format(AddTaskCommand.MESSAGE_SUCCESS, validTask), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validTask), modelStub.tasksAdded);
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddTaskCommand addAliceCommand = new AddTaskCommand(alice);
-        AddTaskCommand addBobCommand = new AddTaskCommand(bob);
+        Task t1 = new TaskBuilder().withDescription("Go to the gym").build();
+        Task t2 = new TaskBuilder().withDescription("Attend lecture").build();
+        AddTaskCommand addTask1Command = new AddTaskCommand(t1);
+        AddTaskCommand addTask2Command = new AddTaskCommand(t2);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addTask1Command.equals(addTask1Command));
 
         // same values -> returns true
-        AddTaskCommand addAliceCommandCopy = new AddTaskCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddTaskCommand addTask1CommandCopy = new AddTaskCommand(t1);
+        assertTrue(addTask1Command.equals(addTask1CommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addTask1Command.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addTask1Command.equals(null));
 
         // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addTask1Command.equals(addTask2Command));
     }
 
     /**
@@ -104,12 +94,12 @@ public class AddTaskCommandTest {
         }
 
         @Override
-        public void setTaskBookFilePath(Path addressBookFilePath) {
+        public void setTaskBookFilePath(Path taskBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addPerson(Person person) {
+        public void addTask(Task person) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -124,27 +114,22 @@ public class AddTaskCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Person person) {
+        public void deleteTask(Task target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Person target) {
+        public void setTask(Task target, Task editedTask) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson) {
+        public ObservableList<Task> getFilteredTaskList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Person> getFilteredTaskList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void updateFilteredTaskList(Predicate<Task> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -152,18 +137,12 @@ public class AddTaskCommandTest {
     /**
      * A Model stub that contains a single person.
      */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
+    private class ModelStubWithTask extends ModelStub {
+        private final Task task;
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
-        }
-
-        @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        ModelStubWithTask(Task task) {
+            requireNonNull(task);
+            this.task = task;
         }
     }
 
@@ -171,18 +150,12 @@ public class AddTaskCommandTest {
      * A Model stub that always accept the person being added.
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+        final ArrayList<Task> tasksAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
-        }
-
-        @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addTask(Task task) {
+            requireNonNull(task);
+            tasksAdded.add(task);
         }
 
         @Override

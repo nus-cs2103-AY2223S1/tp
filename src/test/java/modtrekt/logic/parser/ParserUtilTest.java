@@ -15,10 +15,11 @@ import org.junit.jupiter.api.Test;
 
 import modtrekt.logic.parser.exceptions.ParseException;
 import modtrekt.model.person.Address;
-import modtrekt.model.task.Description;
 import modtrekt.model.person.Email;
 import modtrekt.model.person.Phone;
 import modtrekt.model.tag.Tag;
+import modtrekt.model.task.Description;
+
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
