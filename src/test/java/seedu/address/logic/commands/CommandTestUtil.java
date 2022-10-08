@@ -29,7 +29,7 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
-    public static final String VALID_MINECRAFT_NAME_AMY = "xX__Amy__Xx";
+    public static final String VALID_MINECRAFT_NAME_AMY = "AmyBee123";
     public static final String VALID_MINECRAFT_NAME_BOB = "bobby11234";
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";
