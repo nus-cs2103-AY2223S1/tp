@@ -17,12 +17,11 @@ import seedu.address.model.company.Company;
 import seedu.address.model.poc.Poc;
 
 /**
- * Changes the remark of an existing person in the address book.
+ * Creates a new poc to be added to the specified company.
  */
 public class CreateCommand extends Command {
 
     public static final String COMMAND_WORD = "create";
-
 
     //Update here
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a Point-Of-Contact and links to Company. "
@@ -36,7 +35,7 @@ public class CreateCommand extends Command {
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "97814456 "
             + PREFIX_EMAIL + "test@test.com "
-            + PREFIX_TAG + "friends "
+            + PREFIX_TAG + "Main Poc "
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New POC created: %1$s\nLinked to Company: %2$s";
