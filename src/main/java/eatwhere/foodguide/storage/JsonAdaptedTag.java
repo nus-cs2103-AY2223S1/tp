@@ -2,7 +2,6 @@ package eatwhere.foodguide.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-
 import eatwhere.foodguide.commons.exceptions.IllegalValueException;
 import eatwhere.foodguide.model.tag.Tag;
 
