@@ -104,7 +104,7 @@ public class Person {
             return false;
         }
 
-        return (otherPerson.getMinecraftName().equals(getMinecraftName()));
+        return otherPerson.getMinecraftName().equals(getMinecraftName());
     }
 
     /**
@@ -148,8 +148,8 @@ public class Person {
     public String toDisplayString() {
 
         final StringBuilder builder = new StringBuilder();
-        builder.append("T: ").append(getFieldOrElse(getPhone().toString()))
-                .append(", E: ").append(getFieldOrElse(getEmail().toString())).append("\n");
+        builder.append("Tel: ").append(getFieldOrElse(getPhone().toString()))
+                .append(", Email: ").append(getFieldOrElse(getEmail().toString())).append("\n");
         builder.append("Socials: ").append(getFieldOrElse(getSocials())).append("\n");
         builder.append("Address: ").append(getFieldOrElse(getAddress().toString())).append("\n");
         builder.append("Servers: ").append(getFieldOrElse(getServers())).append("\n");
