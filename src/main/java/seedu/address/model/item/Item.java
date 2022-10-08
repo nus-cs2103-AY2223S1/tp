@@ -17,8 +17,8 @@ public class Item {
     // Data fields
     private final ItemQuantity quantity;
     private final ItemUnit unit;
-    private final ItemDate boughtDate;
-    private final ItemDate expiryDate;
+    private final ItemBoughtDate boughtDate;
+    private final ItemExpiryDate expiryDate;
     // TODO: Implement Item with Tags
 
     /**
@@ -30,7 +30,11 @@ public class Item {
      * @param boughtDate Date when the item was purchased.
      * @param expiryDate Date when the item will expire.
      */
-    public Item(ItemName name, ItemQuantity quantity, ItemUnit unit, ItemDate boughtDate, ItemDate expiryDate) {
+    public Item(ItemName name,
+                ItemQuantity quantity,
+                ItemUnit unit,
+                ItemBoughtDate boughtDate,
+                ItemExpiryDate expiryDate) {
         requireAllNonNull(name, quantity, unit, boughtDate, expiryDate);
         this.name = name;
         this.quantity = quantity;
@@ -51,11 +55,11 @@ public class Item {
         return unit;
     }
 
-    public ItemDate getBoughtDate() {
+    public ItemBoughtDate getBoughtDate() {
         return boughtDate;
     }
 
-    public ItemDate getExpiryDate() {
+    public ItemExpiryDate getExpiryDate() {
         return expiryDate;
     }
 
