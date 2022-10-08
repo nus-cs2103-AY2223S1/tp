@@ -33,7 +33,7 @@ public class PersonUtil {
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
-        person.getSocials().stream().forEach(s -> sb.append(PREFIX_SOCIAL + s.fullHandle + " ")
+        person.getSocials().stream().forEach(s -> sb.append(PREFIX_SOCIAL + s.toString() + " ")
         );
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
@@ -61,7 +61,7 @@ public class PersonUtil {
             if (socials.isEmpty()) {
                 sb.append(PREFIX_SOCIAL);
             } else {
-                socials.forEach(s -> sb.append(PREFIX_SOCIAL).append(s.fullHandle).append(" "));
+                socials.forEach(s -> sb.append(PREFIX_SOCIAL).append(s.toString()).append(" "));
             }
         }
         if (descriptor.getTags().isPresent()) {
