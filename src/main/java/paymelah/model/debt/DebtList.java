@@ -28,7 +28,7 @@ public class DebtList {
     public DebtList(DebtList debtList) {
         requireAllNonNull(debtList);
         debts.addAll(debtList.debts);
-        totalDebt = totalDebt.add(debtList.totalDebt);
+        totalDebt = debtList.totalDebt;
     }
 
     /**
@@ -61,7 +61,7 @@ public class DebtList {
         requireNonNull(toAdd);
         DebtList edited = new DebtList(this);
         edited.debts.add(toAdd);
-        totalDebt = totalDebt.add(toAdd.getMoney().getValue());
+        edited.totalDebt = totalDebt.add(toAdd.getMoney().getValue());
         return edited;
     }
 
@@ -78,7 +78,7 @@ public class DebtList {
         }
         DebtList edited = new DebtList(this);
         edited.debts.remove(toRemove);
-        totalDebt = totalDebt.subtract(toRemove.getMoney().getValue());
+        edited.totalDebt = totalDebt.subtract(toRemove.getMoney().getValue());
         return edited;
     }
 
@@ -101,7 +101,8 @@ public class DebtList {
     public static DebtList fromList(List<Debt> list) {
         DebtList debtList = new DebtList();
         for (Debt debt : list) {
-            debtList = debtList.addDebt(debt);
+            debtList.debts.add(debt);
+            debtList.totalDebt = debtList.totalDebt.add(debt.getMoney().getValue());
         }
         return debtList;
     }
