@@ -11,7 +11,7 @@ import seedu.address.model.validator.DateValidator;
 /**
  * Validation class for item dates.
  */
-public class ItemDateValidator {
+public class ItemExpiryDateValidator {
 
     // Validation for parsing
     private static final String DATE_INPUT_PATTERN_REGEX = "yyyy-MM-dd";
@@ -43,7 +43,7 @@ public class ItemDateValidator {
      * Returns true if an item date is parsable, false otherwise.
      *
      * @param dateTimeString a string that represents the itemDate of the format
-     *                       {@link ItemDateValidator#DATE_INPUT_PATTERN_REGEX}
+     *                       {@link ItemExpiryDateValidator#DATE_INPUT_PATTERN_REGEX}
      */
     private static boolean isParsableItemDatetime(String dateTimeString) {
         DateValidator validator = new DateValidator(DATE_TIME_FORMATTER);
@@ -51,7 +51,7 @@ public class ItemDateValidator {
     }
 
     /**
-     * Returns true if an item date has a year more than {@link ItemDateValidator#MAX_YEAR}, false otherwise.
+     * Returns true if an item date has a year more than {@link ItemExpiryDateValidator#MAX_YEAR}, false otherwise.
      *
      * @param date a local date that represents the date of the {@link Item}.
      */
@@ -60,7 +60,7 @@ public class ItemDateValidator {
     }
 
     /**
-     * Returns true if an item date has a year less than {@link ItemDateValidator#MIN_YEAR}, false otherwise.
+     * Returns true if an item date has a year less than {@link ItemExpiryDateValidator#MIN_YEAR}, false otherwise.
      *
      * @param date a LocalDate that represents the date of the {@link Item}.
      */
