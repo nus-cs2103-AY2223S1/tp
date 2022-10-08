@@ -66,10 +66,9 @@ public class ArgumentMultimap {
     }
 
     /**
-     * Returns true if the {@code prefix} does not contain empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
+     * Returns true if the {@code prefix} is present and does not contain empty {@code Optional} values.
      */
-    public static boolean isPrefixPresent(ArgumentMultimap argumentMultimap, Prefix prefix) {
-        return argumentMultimap.getValue(prefix).isPresent();
+    public boolean containsPrefix(Prefix prefix) {
+        return getValue(prefix).isPresent();
     }
 }

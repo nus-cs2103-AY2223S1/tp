@@ -1,7 +1,6 @@
 package seedu.taassist.logic.parser;
 
 import static seedu.taassist.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.taassist.logic.parser.ArgumentMultimap.isPrefixPresent;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_MODULE_CLASS;
 
 import java.util.List;
@@ -23,7 +22,7 @@ public class UnassignCommandParser implements Parser<UnassignCommand> {
      */
     public UnassignCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MODULE_CLASS);
-        if (!isPrefixPresent(argMultimap, PREFIX_MODULE_CLASS) || argMultimap.getPreamble().isEmpty()) {
+        if (!argMultimap.containsPrefix(PREFIX_MODULE_CLASS) || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnassignCommand.MESSAGE_USAGE));
         }
 

@@ -1,7 +1,6 @@
 package seedu.taassist.logic.parser;
 
 import static seedu.taassist.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.taassist.logic.parser.ArgumentMultimap.isPrefixPresent;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_MODULE_CLASS;
 
 import java.util.List;
@@ -24,7 +23,7 @@ public class DeletecCommandParser implements Parser<DeletecCommand> {
     public DeletecCommand parse(String args) throws ParseException {
         try {
             ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MODULE_CLASS);
-            if (!isPrefixPresent(argMultimap, PREFIX_MODULE_CLASS)) {
+            if (!argMultimap.containsPrefix(PREFIX_MODULE_CLASS)) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeletecCommand.MESSAGE_USAGE));
             }
 

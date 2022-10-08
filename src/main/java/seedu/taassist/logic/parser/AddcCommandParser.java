@@ -1,7 +1,6 @@
 package seedu.taassist.logic.parser;
 
 import static seedu.taassist.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.taassist.logic.parser.ArgumentMultimap.isPrefixPresent;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_MODULE_CLASS;
 
 import seedu.taassist.logic.commands.AddcCommand;
@@ -19,7 +18,7 @@ public class AddcCommandParser implements Parser<AddcCommand> {
      */
     public AddcCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MODULE_CLASS);
-        if (!isPrefixPresent(argMultimap, PREFIX_MODULE_CLASS) || !argMultimap.getPreamble().isEmpty()) {
+        if (!argMultimap.containsPrefix(PREFIX_MODULE_CLASS) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddcCommand.MESSAGE_USAGE));
         }
         ModuleClass moduleClass = ParserUtil.parseModuleClass(argMultimap.getValue(PREFIX_MODULE_CLASS).get());
