@@ -48,10 +48,6 @@ class JsonAdaptedTask {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     TaskDesc.class.getSimpleName()));
         }
-        if (deadline == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    TaskDeadline.class.getSimpleName()));
-        }
         final TaskDesc modelTaskDesc = new TaskDesc(taskDesc);
         final TaskDeadline modelTaskDeadline = new TaskDeadline(deadline);
         return new Task(modelTaskDesc, modelTaskDeadline);

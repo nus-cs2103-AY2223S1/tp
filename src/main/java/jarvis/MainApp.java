@@ -19,9 +19,11 @@ import jarvis.model.ReadOnlyStudentBook;
 import jarvis.model.ReadOnlyTaskBook;
 import jarvis.model.ReadOnlyUserPrefs;
 import jarvis.model.StudentBook;
+import jarvis.model.Task;
 import jarvis.model.TaskBook;
 import jarvis.model.UserPrefs;
 import jarvis.model.util.SampleDataUtil;
+import jarvis.model.util.SampleTaskUtil;
 import jarvis.storage.JsonStudentBookStorage;
 import jarvis.storage.JsonTaskBookStorage;
 import jarvis.storage.JsonUserPrefsStorage;
@@ -81,24 +83,23 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyStudentBook> studentBookOptional;
         Optional<ReadOnlyTaskBook> taskBookOptional;
-        ReadOnlyStudentBook initialStudentData;
-        ReadOnlyTaskBook initialTaskData;
+        ReadOnlyStudentBook initialStudentData = new StudentBook();
+        ReadOnlyTaskBook initialTaskData = new TaskBook();
         try {
             studentBookOptional = storage.readStudentBook();
             taskBookOptional = storage.readTaskBook();
             if (!studentBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample JARVIS");
+                logger.info("Student data file not found. Will be starting with a sample student book");
             }
+            if (!taskBookOptional.isPresent()) {
+                logger.info("Task data file not found. Will be starting with a sample task book");
+            }
+            initialTaskData = taskBookOptional.orElseGet(SampleTaskUtil::getSampleTaskBook);
             initialStudentData = studentBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
-            initialTaskData = taskBookOptional.orElse(new TaskBook());
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty JARVIS");
-            initialStudentData = new StudentBook();
-            initialTaskData = new TaskBook();
+            logger.warning("Data file not in the correct format. Will be starting with empty book");
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty JARVIS");
-            initialStudentData = new StudentBook();
-            initialTaskData = new TaskBook();
+            logger.warning("Problem while reading from the file. Will be starting with empty book");
         }
         return new ModelManager(initialStudentData, initialTaskData, userPrefs);
     }
