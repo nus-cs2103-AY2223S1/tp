@@ -8,7 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import modtrekt.commons.core.LogsCenter;
-import modtrekt.model.person.Person;
+import modtrekt.model.module.Module;
 
 /**
  * Panel containing the list of persons.
@@ -18,30 +18,30 @@ public class TaskListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(TaskListPanel.class);
 
     @FXML
-    private ListView<Person> taskListView;
+    private ListView<Module> taskListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code ModuleListPanel} with the given {@code ObservableList}.
      */
-    public TaskListPanel(ObservableList<Person> personList) {
+    public TaskListPanel(ObservableList<Module> moduleList) {
         super(FXML);
-        taskListView.setItems(personList);
+        taskListView.setItems(moduleList);
         taskListView.setCellFactory(listView -> new TaskListViewCell());
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Module} using a {@code ModuleCard}.
      */
-    class TaskListViewCell extends ListCell<Person> {
+    class TaskListViewCell extends ListCell<Module> {
         @Override
-        protected void updateItem(Person person, boolean empty) {
-            super.updateItem(person, empty);
+        protected void updateItem(Module module, boolean empty) {
+            super.updateItem(module, empty);
 
-            if (empty || person == null) {
+            if (empty || module == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new TaskCard(person, getIndex() + 1).getRoot());
+                setGraphic(new TaskCard(module, getIndex() + 1).getRoot());
             }
         }
     }

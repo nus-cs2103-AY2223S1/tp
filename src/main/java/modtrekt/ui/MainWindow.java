@@ -1,9 +1,7 @@
 package modtrekt.ui;
 
-import java.util.List;
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -18,7 +16,6 @@ import modtrekt.logic.Logic;
 import modtrekt.logic.commands.CommandResult;
 import modtrekt.logic.commands.exceptions.CommandException;
 import modtrekt.logic.parser.exceptions.ParseException;
-import modtrekt.model.module.Module;
 import modtrekt.ui.modules.ModuleListPanel;
 
 /**
@@ -119,20 +116,16 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         // TODO: Replace the hardcoded modules with the module list from `logic`.
-        moduleListPanel = new ModuleListPanel(FXCollections.observableArrayList(
-                new Module("CS2103T", "Software Engineering", 4, List.of("1", "2", "3")),
-                new Module("CS2101", "Effective Communication for Computing Professionals", 4, List.of("1")),
-                new Module("CS2100", "Computer Organisation", 4, List.of())
-        ));
+        moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
         personListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
 
-        taskListPanel = new TaskListPanel(logic.getFilteredPersonList());
+        taskListPanel = new TaskListPanel(logic.getFilteredModuleList());
         taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getModuleListFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);

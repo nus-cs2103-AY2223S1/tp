@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import modtrekt.logic.commands.exceptions.CommandException;
 import modtrekt.logic.parser.CliSyntax;
 import modtrekt.model.Model;
-import modtrekt.model.person.Person;
+import modtrekt.model.module.Module;
 
 /**
  * Adds a person to the address book.
@@ -16,41 +16,36 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
             + "Parameters: "
-            + CliSyntax.PREFIX_NAME + "NAME "
-            + CliSyntax.PREFIX_PHONE + "PHONE "
-            + CliSyntax.PREFIX_EMAIL + "EMAIL "
-            + CliSyntax.PREFIX_ADDRESS + "ADDRESS "
-            + "[" + CliSyntax.PREFIX_TAG + "TAG]...\n"
+            + CliSyntax.PREFIX_MOD_NAME + "NAME "
+            + CliSyntax.PREFIX_MOD_CODE + "CODE "
+            + CliSyntax.PREFIX_MOD_CREDIT + "CREDIT "
             + "Example: " + COMMAND_WORD + " "
-            + CliSyntax.PREFIX_NAME + "John Doe "
-            + CliSyntax.PREFIX_PHONE + "98765432 "
-            + CliSyntax.PREFIX_EMAIL + "johnd@example.com "
-            + CliSyntax.PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + CliSyntax.PREFIX_TAG + "friends "
-            + CliSyntax.PREFIX_TAG + "owesMoney";
+            + CliSyntax.PREFIX_MOD_NAME + "Data Structures and Algorithms "
+            + CliSyntax.PREFIX_MOD_CODE + "CS2040S "
+            + CliSyntax.PREFIX_MOD_CREDIT + "4 ";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New module added: %1$s";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This module already exists in the module list";
 
-    private final Person toAdd;
+    private final Module toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Module}
      */
-    public AddCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddCommand(Module module) {
+        requireNonNull(module);
+        toAdd = module;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
+        if (model.hasModule(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.addPerson(toAdd);
+        model.addModule(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

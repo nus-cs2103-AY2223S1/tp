@@ -33,12 +33,11 @@ public class ModuleCard extends UiPart<Region> {
     public ModuleCard(Module module) {
         super(FXML);
         this.module = module;
-        this.name.setText(module.getName());
-        this.code.setText(module.getCode());
-        this.credits.setText(StringUtil.pluralize(module.getCredits(), "MC"));
+        this.name.setText(module.getName().fullName);
+        this.code.setText(module.getCode().value);
+        this.credits.setText(module.getCredits().value);
         // Add the task count badge, pluralizing `task` if necessary.
-        int taskCount = module.getTasks().size();
-        Label taskBadge = new Label(StringUtil.pluralize(taskCount, "task"));
+        Label taskBadge = new Label(StringUtil.pluralize(1, "task"));
         this.badges.getChildren().add(taskBadge);
     }
 

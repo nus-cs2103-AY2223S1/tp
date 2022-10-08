@@ -8,8 +8,8 @@ import modtrekt.logic.commands.CommandResult;
 import modtrekt.logic.commands.exceptions.CommandException;
 import modtrekt.logic.parser.exceptions.ParseException;
 import modtrekt.model.Model;
-import modtrekt.model.ReadOnlyAddressBook;
-import modtrekt.model.person.Person;
+import modtrekt.model.ReadOnlyModuleList;
+import modtrekt.model.module.Module;
 
 /**
  * API of the Logic component
@@ -25,19 +25,19 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the ModuleList.
      *
-     * @see Model#getAddressBook()
+     * @see Model#getModuleList()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyModuleList getModuleList();
 
     /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Module> getFilteredModuleList();
 
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getModuleListFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

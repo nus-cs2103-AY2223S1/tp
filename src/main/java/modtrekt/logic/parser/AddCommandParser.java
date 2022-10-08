@@ -2,17 +2,14 @@ package modtrekt.logic.parser;
 
 import static modtrekt.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.Set;
 import java.util.stream.Stream;
 
 import modtrekt.logic.commands.AddCommand;
 import modtrekt.logic.parser.exceptions.ParseException;
-import modtrekt.model.person.Address;
-import modtrekt.model.person.Email;
-import modtrekt.model.person.Name;
-import modtrekt.model.person.Person;
-import modtrekt.model.person.Phone;
-import modtrekt.model.tag.Tag;
+import modtrekt.model.module.ModCode;
+import modtrekt.model.module.ModCredit;
+import modtrekt.model.module.ModName;
+import modtrekt.model.module.Module;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -35,24 +32,23 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_PHONE,
-                        CliSyntax.PREFIX_EMAIL, CliSyntax.PREFIX_ADDRESS, CliSyntax.PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_MOD_NAME, CliSyntax.PREFIX_MOD_CODE,
+                        CliSyntax.PREFIX_MOD_CREDIT);
 
-        if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_ADDRESS, CliSyntax.PREFIX_PHONE,
-                CliSyntax.PREFIX_EMAIL)
+        if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_MOD_NAME, CliSyntax.PREFIX_MOD_CODE,
+                CliSyntax.PREFIX_MOD_CREDIT)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(CliSyntax.PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(CliSyntax.PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(CliSyntax.PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(CliSyntax.PREFIX_ADDRESS).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(CliSyntax.PREFIX_TAG));
+        System.out.println(argMultimap.getValue(CliSyntax.PREFIX_MOD_NAME).get());
+        ModName name = ParserUtil.parseName(argMultimap.getValue(CliSyntax.PREFIX_MOD_NAME).get());
+        ModCode code = ParserUtil.parseCode(argMultimap.getValue(CliSyntax.PREFIX_MOD_CODE).get());
+        ModCredit credit = ParserUtil.parseCredit(argMultimap.getValue(CliSyntax.PREFIX_MOD_CREDIT).get());
 
-        Person person = new Person(name, phone, email, address, tagList);
+        Module module = new Module(code, name, credit);
 
-        return new AddCommand(person);
+        return new AddCommand(module);
     }
 
 }
