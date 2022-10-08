@@ -60,7 +60,8 @@ public class EditStudentCommandParserTest {
         Index targetIndex = INDEX_SECOND_PERSON;
         String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
 
-        EditStudentCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
+        EditStudentCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder()
+                .withName(VALID_NAME_AMY)
                 .build();
         EditStudentCommand expectedCommand = new EditStudentCommand(targetIndex, descriptor);
 

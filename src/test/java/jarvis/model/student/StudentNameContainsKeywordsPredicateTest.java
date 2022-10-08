@@ -7,9 +7,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import jarvis.model.NameContainsKeywordsPredicate;
 import org.junit.jupiter.api.Test;
 
+import jarvis.model.NameContainsKeywordsPredicate;
 import jarvis.testutil.StudentBuilder;
 
 public class StudentNameContainsKeywordsPredicateTest {

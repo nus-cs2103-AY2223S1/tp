@@ -9,8 +9,8 @@ import org.junit.jupiter.api.Test;
 
 import jarvis.model.Model;
 import jarvis.model.ModelManager;
-import jarvis.model.UserPrefs;
 import jarvis.model.Student;
+import jarvis.model.UserPrefs;
 import jarvis.testutil.StudentBuilder;
 
 /**

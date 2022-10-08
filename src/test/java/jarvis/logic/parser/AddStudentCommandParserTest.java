@@ -11,11 +11,11 @@ import static jarvis.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static jarvis.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static jarvis.testutil.TypicalStudents.BOB;
 
-import jarvis.model.StudentName;
 import org.junit.jupiter.api.Test;
 
 import jarvis.logic.commands.AddStudentCommand;
 import jarvis.model.Student;
+import jarvis.model.StudentName;
 import jarvis.testutil.StudentBuilder;
 
 public class AddStudentCommandParserTest {

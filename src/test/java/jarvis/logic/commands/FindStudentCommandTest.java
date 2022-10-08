@@ -17,8 +17,8 @@ import org.junit.jupiter.api.Test;
 
 import jarvis.model.Model;
 import jarvis.model.ModelManager;
-import jarvis.model.UserPrefs;
 import jarvis.model.NameContainsKeywordsPredicate;
+import jarvis.model.UserPrefs;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.

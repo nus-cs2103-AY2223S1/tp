@@ -1,7 +1,7 @@
 package jarvis.testutil;
 
-import jarvis.model.StudentName;
 import jarvis.model.Student;
+import jarvis.model.StudentName;
 
 /**
  * A utility class to help with building Person objects.

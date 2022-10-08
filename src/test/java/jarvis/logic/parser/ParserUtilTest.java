@@ -5,10 +5,10 @@ import static jarvis.testutil.Assert.assertThrows;
 import static jarvis.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import jarvis.model.StudentName;
 import org.junit.jupiter.api.Test;
 
 import jarvis.logic.parser.exceptions.ParseException;
+import jarvis.model.StudentName;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";

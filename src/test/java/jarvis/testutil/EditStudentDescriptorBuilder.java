@@ -2,8 +2,8 @@ package jarvis.testutil;
 
 import jarvis.logic.commands.EditStudentCommand;
 import jarvis.logic.commands.EditStudentCommand.EditStudentDescriptor;
-import jarvis.model.StudentName;
 import jarvis.model.Student;
+import jarvis.model.StudentName;
 
 /**
  * A utility class to help with building EditStudentDescriptor objects.

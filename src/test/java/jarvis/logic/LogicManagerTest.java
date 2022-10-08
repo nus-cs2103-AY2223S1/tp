@@ -14,20 +14,20 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import jarvis.logic.commands.CommandResult;
-import jarvis.logic.commands.exceptions.CommandException;
 import jarvis.logic.commands.AddStudentCommand;
+import jarvis.logic.commands.CommandResult;
 import jarvis.logic.commands.ListStudentCommand;
+import jarvis.logic.commands.exceptions.CommandException;
 import jarvis.logic.parser.exceptions.ParseException;
 import jarvis.model.Model;
 import jarvis.model.ModelManager;
 import jarvis.model.ReadOnlyStudentBook;
-import jarvis.model.UserPrefs;
 import jarvis.model.Student;
-import jarvis.storage.JsonUserPrefsStorage;
-import jarvis.storage.StorageManager;
+import jarvis.model.UserPrefs;
 import jarvis.storage.JsonStudentBookStorage;
 import jarvis.storage.JsonTaskBookStorage;
+import jarvis.storage.JsonUserPrefsStorage;
+import jarvis.storage.StorageManager;
 import jarvis.testutil.StudentBuilder;
 
 public class LogicManagerTest {

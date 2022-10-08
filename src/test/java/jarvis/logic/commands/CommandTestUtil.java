@@ -1,6 +1,5 @@
 package jarvis.logic.commands;
 
-
 import static jarvis.logic.parser.CliSyntax.PREFIX_NAME;
 import static jarvis.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -13,9 +12,9 @@ import java.util.List;
 import jarvis.commons.core.index.Index;
 import jarvis.logic.commands.exceptions.CommandException;
 import jarvis.model.Model;
-import jarvis.model.StudentBook;
 import jarvis.model.NameContainsKeywordsPredicate;
 import jarvis.model.Student;
+import jarvis.model.StudentBook;
 import jarvis.testutil.EditStudentDescriptorBuilder;
 
 /**

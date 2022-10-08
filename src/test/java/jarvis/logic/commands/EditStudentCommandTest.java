@@ -19,9 +19,9 @@ import jarvis.commons.core.index.Index;
 import jarvis.logic.commands.EditStudentCommand.EditStudentDescriptor;
 import jarvis.model.Model;
 import jarvis.model.ModelManager;
+import jarvis.model.Student;
 import jarvis.model.StudentBook;
 import jarvis.model.UserPrefs;
-import jarvis.model.Student;
 import jarvis.testutil.EditStudentDescriptorBuilder;
 import jarvis.testutil.StudentBuilder;
 
@@ -69,7 +69,8 @@ public class EditStudentCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_FIRST_PERSON, new EditStudentCommand.EditStudentDescriptor());
+        EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_FIRST_PERSON,
+                new EditStudentCommand.EditStudentDescriptor());
         Student editedStudent = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
 
         String expectedMessage = String.format(EditStudentCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStudent);
@@ -149,7 +150,8 @@ public class EditStudentCommandTest {
         final EditStudentCommand standardCommand = new EditStudentCommand(INDEX_FIRST_PERSON, DESC_AMY);
 
         // same values -> returns true
-        EditStudentCommand.EditStudentDescriptor copyDescriptor = new EditStudentCommand.EditStudentDescriptor(DESC_AMY);
+        EditStudentCommand.EditStudentDescriptor copyDescriptor =
+                new EditStudentCommand.EditStudentDescriptor(DESC_AMY);
         EditStudentCommand commandWithSameValues = new EditStudentCommand(INDEX_FIRST_PERSON, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 

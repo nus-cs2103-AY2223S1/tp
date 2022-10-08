@@ -15,8 +15,8 @@ import jarvis.commons.core.Messages;
 import jarvis.commons.core.index.Index;
 import jarvis.model.Model;
 import jarvis.model.ModelManager;
-import jarvis.model.UserPrefs;
 import jarvis.model.Student;
+import jarvis.model.UserPrefs;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
