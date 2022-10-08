@@ -2,13 +2,15 @@ package paymelah.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-
 import static paymelah.testutil.TypicalIndexes.INDEX_FIRST_DEBT;
 import static paymelah.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static paymelah.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static paymelah.testutil.TypicalIndexes.INDEX_THIRD_DEBT;
 import static paymelah.testutil.TypicalPersons.getTypicalAddressBook;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -16,10 +18,6 @@ import paymelah.commons.core.index.Index;
 import paymelah.model.Model;
 import paymelah.model.ModelManager;
 import paymelah.model.UserPrefs;
-
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
