@@ -93,7 +93,6 @@ public class AddTagCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
-    
         if (this.isAddToAll) {
             int numOfPersonUpdated = 0;
             for (int idx = 0; idx < lastShownList.size(); idx++) {
@@ -103,16 +102,16 @@ public class AddTagCommand extends Command {
             }
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
             return new CommandResult(String.format(
-                    MESSAGE_MULTI_ADD_TAGS_SUCCESS, 
-                    toBeAddedTagsStr, 
+                    MESSAGE_MULTI_ADD_TAGS_SUCCESS,
+                    toBeAddedTagsStr,
                     numOfPersonUpdated));
-        } 
+        }
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        assert !this.isAddToAll && this.index != null 
+        assert !this.isAddToAll && this.index != null
                 : "[AddTagCommand] index should not be null if it is not all";
         Person personToEdit = lastShownList.get(index.getZeroBased());
         CommandResult res = executeSingle(model, this.index, personToEdit);
@@ -129,7 +128,7 @@ public class AddTagCommand extends Command {
      * @throws CommandException If an error occurs during command execution.
      */
     public CommandResult executeSingle(
-                Model model, Index index, Person personToEdit) throws CommandException{
+                Model model, Index index, Person personToEdit) throws CommandException {
         Set<Tag> existingTags = personToEdit.getTags();
         for (Tag tag : existingTags) {
             if (!this.tags.contains(tag)) {
@@ -151,8 +150,7 @@ public class AddTagCommand extends Command {
             res += tag.toString() + ", ";
         }
         return res.substring(0, res.length() - 2);
-    } 
-    
+    }
 
     @Override
     public boolean equals(Object other) {
