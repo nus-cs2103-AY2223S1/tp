@@ -23,7 +23,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.logic.commands.EditAppointmentCommand.EditAppointmentDescriptor;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Appointment;
 import seedu.address.testutil.EditAppointmentDescriptorBuilder;
 
@@ -86,7 +85,7 @@ public class EditAppointmentCommandParserTest {
     }
 
     @Test
-    public void parse_oneFieldSpecified_success() throws ParseException {
+    public void parse_oneFieldSpecified_success() {
         Index patientIndex = INDEX_SECOND_PERSON;
         Index appointmentIndex = INDEX_FIRST_APPOINTMENT;
         String userInput = patientIndex.getOneBased() + " " + appointmentIndex.getOneBased() + REASON_DESC_AMY;

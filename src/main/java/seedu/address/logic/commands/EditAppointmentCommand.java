@@ -72,7 +72,7 @@ public class EditAppointmentCommand extends SelectAppointmentCommand {
         appointmentList.set(indexOfAppointment.getZeroBased(), editedAppointment);
         appointmentList.sort(Comparator.comparing(Appointment::getDateTime));
 
-        model.setPerson(targetPerson, targetPerson);
+        model.refreshPerson(targetPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_APPOINTMENT_SUCCESS, targetPerson.getName(),
                 editedAppointment));
