@@ -23,7 +23,7 @@ import seedu.address.model.commission.Title;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new AddCommissionCommand object
+ * Parses input arguments and creates a new AddCommissionCommand object.
  */
 public class AddCommissionCommandParser implements Parser<AddCommissionCommand> {
     /**

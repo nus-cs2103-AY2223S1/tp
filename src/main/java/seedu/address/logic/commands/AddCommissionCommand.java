@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_FEE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.commission.Commission;
@@ -27,10 +28,10 @@ public class AddCommissionCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TITLE + "Tokyo Ghoul Kaneki "
             + PREFIX_FEE + "50 "
-            + PREFIX_DEADLINE + "johnd@example.com "
+            + PREFIX_DEADLINE + "2022-10-10 "
             + PREFIX_DESCRIPTION + "Unfamiliar, I will need to do up a reference board first. "
             + PREFIX_TAG + "digital "
-            + PREFIX_TAG + "neon palette";
+            + PREFIX_TAG + "neon ";
 
     public static final String MESSAGE_SUCCESS = "New commission added: %1$s";
     public static final String MESSAGE_DUPLICATE_COMMISSION = "This commission already exists in art buddy";
@@ -48,6 +49,10 @@ public class AddCommissionCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (!model.hasSelectedCustomer()) {
+            throw new CommandException(Messages.MESSAGE_NO_ACTIVE_CUSTOMER);
+        }
 
         if (model.hasCommission(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_COMMISSION);

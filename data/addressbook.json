@@ -69,6 +69,13 @@
       "tagged" : [ "test2", "test" ],
       "isCompleted" : true
     }, {
+      "title" : "doodle",
+      "description" : "",
+      "fee" : 10.0,
+      "deadline" : "2022-10-15",
+      "tagged" : [ ],
+      "isCompleted" : false
+    }, {
       "title" : "test 6",
       "description" : "desc",
       "fee" : 0.5,

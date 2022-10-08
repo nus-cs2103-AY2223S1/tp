@@ -1,5 +1,8 @@
 package seedu.address.model.commission;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -158,6 +161,7 @@ public class Commission {
          * Builds CommissionBuilder with all required fields.
          */
         public CommissionBuilder(Title title, Fee fee, Deadline deadline, CompletionStatus status, Set<Tag> tags) {
+            requireAllNonNull(title, fee, deadline, status, tags);
             this.title = title;
             this.fee = fee;
             this.deadline = deadline;
@@ -169,6 +173,7 @@ public class Commission {
          * Sets description and returns itself.
          */
         public CommissionBuilder setDescription(Description description) {
+            requireNonNull(description);
             this.description = description;
             return this;
         }

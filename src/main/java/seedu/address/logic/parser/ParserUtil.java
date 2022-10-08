@@ -127,11 +127,15 @@ public class ParserUtil {
     public static Fee parseFee(String fee) throws ParseException {
         requireNonNull(fee);
         String trimmedFee = fee.trim();
-        double convertedFee = Double.parseDouble(trimmedFee);
-        if (!Fee.isValidFee(convertedFee)) {
-            throw new ParseException(Fee.MESSAGE_CONSTRAINTS);
+        try {
+            double convertedFee = Double.parseDouble(trimmedFee);
+            if (!Fee.isValidFee(convertedFee)) {
+                throw new ParseException(Fee.MESSAGE_CONSTRAINTS);
+            }
+            return new Fee(convertedFee);
+        } catch (NumberFormatException e) {
+            throw new ParseException(Messages.MESSAGE_INVALID_COMMISSION_FEE);
         }
-        return new Fee(convertedFee);
     }
 
 
@@ -181,9 +185,6 @@ public class ParserUtil {
         String trimmedDescription = description.trim();
         return new Description(trimmedDescription);
     }
-
-
-
 
     /**
      * Parses a {@code String tag} into a {@code Tag}.

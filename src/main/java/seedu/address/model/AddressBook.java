@@ -121,6 +121,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public boolean hasCommission(Customer customer, Commission commission) {
         requireAllNonNull(customer, commission);
+        // Previously duplicate commission won't be detected because customer field has not been set.
+        commission.setCustomer(customer);
         return getCustomerCommissions(customer).contains(commission);
     }
 
