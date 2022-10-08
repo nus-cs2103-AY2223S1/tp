@@ -55,6 +55,14 @@ public class NameContainsKeywordsPredicateTest {
         // Mixed-case keywords
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+
+        // Only one partial matching keyword
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("rol"));
+        assertTrue(predicate.test(new PersonBuilder().withName("Alice Carol").build()));
+
+        // Mixed-case partial keywords
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Al", "rol"));
+        assertTrue(predicate.test(new PersonBuilder().withName("Alice Carol").build()));
     }
 
     @Test
@@ -71,5 +79,13 @@ public class NameContainsKeywordsPredicateTest {
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
                 .withEmail("alice@email.com").withAddress("Main Street").build()));
+
+        // Partial keywords that do not fully match
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("role"));
+        assertFalse(predicate.test(new PersonBuilder().withName("Alice Carol").build()));
+
+        // Multiple partial keywords that do not fully match
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("bAlic", "role"));
+        assertFalse(predicate.test(new PersonBuilder().withName("Alice Carol").build()));
     }
 }
