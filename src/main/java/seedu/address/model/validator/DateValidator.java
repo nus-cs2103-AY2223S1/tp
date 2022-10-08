@@ -19,6 +19,7 @@ public class DateValidator {
      * @param dateFormatter the format in which we will validate dateStrings according to.
      */
     public DateValidator(DateTimeFormatter dateFormatter) {
+        // TODO: Use assertion this is not null
         dateTimeFormatter = Optional.of(dateFormatter).orElse(DEFAULT_DATE_TIME_FORMATTER);
     }
 
