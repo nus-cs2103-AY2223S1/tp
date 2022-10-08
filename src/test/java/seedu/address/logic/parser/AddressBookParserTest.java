@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_APPOINTMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
@@ -14,8 +15,11 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.BookCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditAppointmentCommand;
+import seedu.address.logic.commands.EditAppointmentCommand.EditAppointmentDescriptor;
 import seedu.address.logic.commands.EditPatientCommand;
 import seedu.address.logic.commands.EditPatientCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
@@ -23,8 +27,11 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Appointment;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.AppointmentUtil;
+import seedu.address.testutil.EditAppointmentDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -54,13 +61,32 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_edit() throws Exception {
+    public void parseCommand_book() throws Exception {
+        Appointment appointment = new Appointment("Cough", "2022-12-16 17:30", false);
+        BookCommand command = (BookCommand) parser.parseCommand(AppointmentUtil.getBookCommand(appointment));
+        assertEquals(new BookCommand(INDEX_FIRST_PERSON, appointment), command);
+    }
+
+    @Test
+    public void parseCommand_editPatient() throws Exception {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
         EditPatientCommand command = (EditPatientCommand) parser.parseCommand(EditPatientCommand.COMMAND_WORD
                 + " " + EditPatientCommand.DESCRIPTOR_WORD + " " + INDEX_FIRST_PERSON.getOneBased()
                 + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditPatientCommand(INDEX_FIRST_PERSON, descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_editAppointment() throws Exception {
+        Appointment appointment = new Appointment("Cough", "2022-12-16 17:30", false);
+        EditAppointmentDescriptor descriptor = new EditAppointmentDescriptorBuilder(appointment).build();
+        EditAppointmentCommand command = (EditAppointmentCommand)
+                parser.parseCommand(EditAppointmentCommand.COMMAND_WORD
+                + " " + EditAppointmentCommand.DESCRIPTOR_WORD + " " + INDEX_FIRST_PERSON.getOneBased()
+                + " " + INDEX_FIRST_APPOINTMENT.getOneBased()
+                + " " + AppointmentUtil.getEditAppointmentDescriptorDetails(descriptor));
+        assertEquals(new EditAppointmentCommand(INDEX_FIRST_PERSON, INDEX_FIRST_APPOINTMENT, descriptor), command);
     }
 
     @Test
