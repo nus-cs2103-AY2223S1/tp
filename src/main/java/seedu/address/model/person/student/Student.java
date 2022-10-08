@@ -81,12 +81,12 @@ public class Student extends Person {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
 
-        builder.append(this)
+        builder.append(super.toString())
                 .append("; School: ")
                 .append(getSchool())
                 .append("; Level: ")
                 .append(getLevel())
-                .append("; Next Of Kin: ")
+                .append("; Next of kin: ")
                 .append(getNextOfKin());
 
         return builder.toString();

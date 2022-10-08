@@ -74,7 +74,7 @@ public class Tutor extends Person {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
 
-        builder.append(this)
+        builder.append(super.toString())
                 .append("; Highest Qualification: ")
                 .append(getQualification())
                 .append("; Institution: ")
