@@ -22,18 +22,28 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final Gender gender;
     private final University university;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, University university, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, university, tags);
+    public Person(Name name, Phone phone, Email email,
+                  Address address,
+                  Gender gender,
+                  University university,
+                  Set<Tag> tags) {
+        requireAllNonNull(name, phone, email,
+            address,
+            gender,
+            university,
+            tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.gender = gender;
         this.university = university;
         this.tags.addAll(tags);
     }
@@ -52,6 +62,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Gender getGender() {
+        return gender;
     }
 
     public University getUniversity() {
@@ -98,6 +112,7 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getGender().equals(getGender())
                 && otherPerson.getUniversity().equals(getUniversity())
                 && otherPerson.getTags().equals(getTags());
     }
@@ -105,7 +120,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, university, tags);
+        return Objects.hash(name, phone, email, address, gender, university, tags);
     }
 
     @Override
@@ -118,6 +133,8 @@ public class Person {
                 .append(getEmail())
                 .append("; Address: ")
                 .append(getAddress())
+                .append("; Gender: ")
+                .append(getGender())
                 .append("; University: ")
                 .append(getUniversity());
 

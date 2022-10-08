@@ -5,6 +5,7 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
+    "gender": "Female",
     "university": "Singapore University",
     "tagged" : [ "interview", "rejected" ]
   }, {
@@ -12,6 +13,7 @@
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
+    "gender": "Male",
     "university": "NUS",
     "tagged" : [ "KIV" ]
   }, {
@@ -19,6 +21,7 @@
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "address" : "wall street",
+    "gender": "Male",
     "university": "SUTD",
     "tagged" : [ ]
   }, {
@@ -26,6 +29,7 @@
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
+    "gender": "Male",
     "university": "SMU",
     "tagged" : [ "friends" ]
   }, {
@@ -33,6 +37,7 @@
     "phone" : "9482224",
     "email" : "werner@example.com",
     "address" : "michegan ave",
+    "gender": "Female",
     "university": "Lasalle",
     "tagged" : [ ]
   }, {
@@ -40,6 +45,7 @@
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
+    "gender": "Female",
     "university": "Nanyang Polytechnic",
     "tagged" : [ ]
   }, {
@@ -47,6 +53,7 @@
     "phone" : "9482442",
     "email" : "anna@example.com",
     "address" : "4th street",
+    "gender": "Male",
     "university": "Temasek Polytechnic",
     "tagged" : [ ]
   } ]

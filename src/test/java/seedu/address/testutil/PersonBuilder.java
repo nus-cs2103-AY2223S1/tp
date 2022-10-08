@@ -5,6 +5,7 @@ import java.util.Set;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -21,12 +22,14 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_GENDER = "Female";
     public static final String DEFAULT_UNIVERSITY = "NUS";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
+    private Gender gender;
     private University university;
     private Set<Tag> tags;
 
@@ -38,6 +41,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        gender = new Gender(DEFAULT_GENDER);
         university = new University(DEFAULT_UNIVERSITY);
         tags = new HashSet<>();
     }
@@ -50,6 +54,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        gender = personToCopy.getGender();
         university = personToCopy.getUniversity();
         tags = new HashSet<>(personToCopy.getTags());
     }
@@ -95,6 +100,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Gender} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withGender(String gender) {
+        this.gender = new Gender(gender);
+        return this;
+    }
+
+    /**
      * Sets the {@code University} of the {@code Person} that we are building.
      */
     public PersonBuilder withUniversity(String university) {
@@ -102,8 +115,15 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Builds the {@code Person} that we are building.
+     */
     public Person build() {
-        return new Person(name, phone, email, address, university, tags);
+        return new Person(name, phone, email,
+            address,
+            gender,
+            university,
+            tags);
     }
 
 }
