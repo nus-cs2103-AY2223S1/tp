@@ -17,11 +17,11 @@ public class ListCommand extends Command {
     private final Optional<Gender> gender;
     private final Optional<Tag> tag;
 
-    public static final String MESSAGE_ARGUMENTS = "CATEGORY: %s, GENDER: %s, ADDRESS: %s, TAG: %s";
+    public static final String MESSAGE_ARGUMENTS = "ADDRESS: %s, CATEGORY: %s, GENDER: %s, TAG: %s";
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_SUCCESS = "Listed all persons";
+    public static final String MESSAGE_SUCCESS = "Listed all persons with specifications: " + MESSAGE_ARGUMENTS;
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Lists all enrolled users who fit the specified criteria, "
