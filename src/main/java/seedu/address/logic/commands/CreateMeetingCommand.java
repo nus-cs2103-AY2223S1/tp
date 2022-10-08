@@ -4,8 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -71,7 +69,8 @@ public class CreateMeetingCommand extends Command {
 
         ArrayList<Person> arrayOfPeopleToMeet = convertNameToPerson(model, peopleToMeet);
 
-        Meeting newMeeting = model.createNewMeeting(arrayOfPeopleToMeet, meetingTitle, meetingDateAndTime, meetingLocation);
+        Meeting newMeeting = model.createNewMeeting(arrayOfPeopleToMeet, meetingTitle,
+            meetingDateAndTime, meetingLocation);
         model.addMeeting(newMeeting);
 
         return new CommandResult(String.format(MESSAGE_CREATE_MEETING_SUCCESS));
