@@ -12,7 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.ScholarshipName;
+import seedu.address.model.person.Scholarship;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -71,13 +71,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code address} is invalid.
      */
-    public static ScholarshipName parseAddress(String scholarshipname) throws ParseException {
-        requireNonNull(scholarshipname);
-        String trimmedscholarshipname = scholarshipname.trim();
-        if (!ScholarshipName.isValidScholarshipName(trimmedscholarshipname)) {
-            throw new ParseException(ScholarshipName.MESSAGE_CONSTRAINTS);
+    public static Scholarship parseAddress(String scholarship) throws ParseException {
+        requireNonNull(scholarship);
+        String trimmedscholarship = scholarship.trim();
+        if (!Scholarship.isValidScholarship(trimmedscholarship)) {
+            throw new ParseException(Scholarship.MESSAGE_CONSTRAINTS);
         }
-        return new ScholarshipName(trimmedscholarshipname);
+        return new Scholarship(trimmedscholarship);
     }
 
     /**
