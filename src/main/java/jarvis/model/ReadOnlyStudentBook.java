@@ -1,6 +1,5 @@
 package jarvis.model;
 
-import jarvis.model.student.Student;
 import javafx.collections.ObservableList;
 
 /**

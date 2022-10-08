@@ -14,8 +14,6 @@ import jarvis.commons.core.GuiSettings;
 import jarvis.model.ReadOnlyStudentBook;
 import jarvis.model.StudentBook;
 import jarvis.model.UserPrefs;
-import jarvis.storage.student.JsonStudentBookStorage;
-import jarvis.storage.task.JsonTaskBookStorage;
 
 public class StorageManagerTest {
 

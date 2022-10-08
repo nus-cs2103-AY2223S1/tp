@@ -4,8 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import jarvis.model.student.Student;
-import jarvis.model.student.UniqueStudentList;
 import javafx.collections.ObservableList;
 
 /**

@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import jarvis.commons.exceptions.IllegalValueException;
 import jarvis.commons.util.JsonUtil;
 import jarvis.model.StudentBook;
-import jarvis.storage.student.JsonSerializableStudentBook;
 import jarvis.testutil.TypicalStudents;
 
 public class JsonSerializableTaskBookTest {

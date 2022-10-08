@@ -4,8 +4,6 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import jarvis.commons.core.GuiSettings;
-import jarvis.model.student.Student;
-import jarvis.model.task.Task;
 import javafx.collections.ObservableList;
 
 /**

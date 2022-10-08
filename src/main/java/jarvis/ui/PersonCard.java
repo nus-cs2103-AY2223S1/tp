@@ -1,7 +1,7 @@
 package jarvis.ui;
 
 
-import jarvis.model.student.Student;
+import jarvis.model.Student;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -27,7 +27,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label name;
+    private Label studentName;
     @FXML
     private Label id;
 
@@ -38,7 +38,7 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.student = student;
         id.setText(displayedIndex + ". ");
-        name.setText(student.getName().fullName);
+        studentName.setText(student.getName().fullName);
     }
 
     @Override

@@ -2,8 +2,8 @@ package jarvis.model.util;
 
 import jarvis.model.ReadOnlyStudentBook;
 import jarvis.model.StudentBook;
-import jarvis.model.student.Name;
-import jarvis.model.student.Student;
+import jarvis.model.StudentName;
+import jarvis.model.Student;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -11,12 +11,12 @@ import jarvis.model.student.Student;
 public class SampleDataUtil {
     public static Student[] getSamplePersons() {
         return new Student[] {
-            new Student(new Name("Alex Yeoh")),
-            new Student(new Name("Bernice Yu")),
-            new Student(new Name("Charlotte Oliveiro")),
-            new Student(new Name("David Li")),
-            new Student(new Name("Irfan Ibrahim")),
-            new Student(new Name("Roy Balakrishnan"))
+            new Student(new StudentName("Alex Yeoh")),
+            new Student(new StudentName("Bernice Yu")),
+            new Student(new StudentName("Charlotte Oliveiro")),
+            new Student(new StudentName("David Li")),
+            new Student(new StudentName("Irfan Ibrahim")),
+            new Student(new StudentName("Roy Balakrishnan"))
         };
     }
 

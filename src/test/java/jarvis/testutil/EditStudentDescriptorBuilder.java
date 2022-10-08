@@ -1,9 +1,9 @@
 package jarvis.testutil;
 
-import jarvis.logic.commands.student.EditCommand;
-import jarvis.logic.commands.student.EditCommand.EditStudentDescriptor;
-import jarvis.model.student.Name;
-import jarvis.model.student.Student;
+import jarvis.logic.commands.EditStudentCommand;
+import jarvis.logic.commands.EditStudentCommand.EditStudentDescriptor;
+import jarvis.model.StudentName;
+import jarvis.model.Student;
 
 /**
  * A utility class to help with building EditStudentDescriptor objects.
@@ -17,7 +17,7 @@ public class EditStudentDescriptorBuilder {
     }
 
     public EditStudentDescriptorBuilder(EditStudentDescriptor descriptor) {
-        this.descriptor = new EditCommand.EditStudentDescriptor(descriptor);
+        this.descriptor = new EditStudentCommand.EditStudentDescriptor(descriptor);
     }
 
     /**
@@ -32,7 +32,7 @@ public class EditStudentDescriptorBuilder {
      * Sets the {@code Name} of the {@code EditStudentDescriptor} that we are building.
      */
     public EditStudentDescriptorBuilder withName(String name) {
-        descriptor.setName(new Name(name));
+        descriptor.setName(new StudentName(name));
         return this;
     }
 

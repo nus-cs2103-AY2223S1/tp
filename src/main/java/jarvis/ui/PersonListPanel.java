@@ -3,7 +3,7 @@ package jarvis.ui;
 import java.util.logging.Logger;
 
 import jarvis.commons.core.LogsCenter;
-import jarvis.model.student.Student;
+import jarvis.model.Student;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;

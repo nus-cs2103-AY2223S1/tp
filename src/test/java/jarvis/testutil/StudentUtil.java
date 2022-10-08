@@ -2,9 +2,9 @@ package jarvis.testutil;
 
 import static jarvis.logic.parser.CliSyntax.PREFIX_NAME;
 
-import jarvis.logic.commands.student.AddCommand;
-import jarvis.logic.commands.student.EditCommand.EditStudentDescriptor;
-import jarvis.model.student.Student;
+import jarvis.logic.commands.AddStudentCommand;
+import jarvis.logic.commands.EditStudentCommand.EditStudentDescriptor;
+import jarvis.model.Student;
 
 /**
  * A utility class for Student.
@@ -15,7 +15,7 @@ public class StudentUtil {
      * Returns an add command string for adding the {@code student}.
      */
     public static String getAddCommand(Student student) {
-        return AddCommand.COMMAND_WORD + " " + getStudentDetails(student);
+        return AddStudentCommand.COMMAND_WORD + " " + getStudentDetails(student);
     }
 
     /**

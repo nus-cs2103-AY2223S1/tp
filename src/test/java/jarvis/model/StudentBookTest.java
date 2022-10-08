@@ -14,8 +14,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import jarvis.model.student.Student;
-import jarvis.model.student.exceptions.DuplicateStudentException;
+import jarvis.model.exceptions.DuplicateStudentException;
 import jarvis.testutil.StudentBuilder;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

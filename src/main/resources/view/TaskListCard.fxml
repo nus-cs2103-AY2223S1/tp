@@ -25,7 +25,7 @@
         </Label>
         <Label fx:id="taskDesc" text="\$taskDesc" styleClass="cell_big_label" />
       </HBox>
-      <Label fx:id="deadline" text="\$deadline" styleClass="cell_small_label" />
+      <Label fx:id="taskDeadline" text="\$taskDeadline" styleClass="cell_small_label" />
     </VBox>
   </GridPane>
 </HBox>

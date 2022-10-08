@@ -9,8 +9,6 @@ import java.util.logging.Logger;
 
 import jarvis.commons.core.GuiSettings;
 import jarvis.commons.core.LogsCenter;
-import jarvis.model.student.Student;
-import jarvis.model.task.Task;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 

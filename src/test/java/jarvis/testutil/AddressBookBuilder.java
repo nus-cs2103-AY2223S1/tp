@@ -1,7 +1,7 @@
 package jarvis.testutil;
 
 import jarvis.model.StudentBook;
-import jarvis.model.student.Student;
+import jarvis.model.Student;
 
 /**
  * A utility class to help with building Addressbook objects.

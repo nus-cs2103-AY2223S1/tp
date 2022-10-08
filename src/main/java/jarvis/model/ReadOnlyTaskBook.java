@@ -1,6 +1,5 @@
 package jarvis.model;
 
-import jarvis.model.task.Task;
 import javafx.collections.ObservableList;
 
 /**

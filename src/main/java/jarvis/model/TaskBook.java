@@ -4,8 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import jarvis.model.task.Task;
-import jarvis.model.task.UniqueTaskList;
 import javafx.collections.ObservableList;
 
 /**

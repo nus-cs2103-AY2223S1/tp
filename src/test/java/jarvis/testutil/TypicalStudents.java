@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import jarvis.model.StudentBook;
-import jarvis.model.student.Student;
+import jarvis.model.Student;
 
 /**
  * A utility class containing a list of {@code Student} objects to be used in tests.

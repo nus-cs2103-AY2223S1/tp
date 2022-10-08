@@ -12,11 +12,10 @@ import java.util.List;
 
 import jarvis.commons.core.index.Index;
 import jarvis.logic.commands.exceptions.CommandException;
-import jarvis.logic.commands.student.EditCommand;
 import jarvis.model.Model;
 import jarvis.model.StudentBook;
-import jarvis.model.student.NameContainsKeywordsPredicate;
-import jarvis.model.student.Student;
+import jarvis.model.NameContainsKeywordsPredicate;
+import jarvis.model.Student;
 import jarvis.testutil.EditStudentDescriptorBuilder;
 
 /**
@@ -36,8 +35,8 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditStudentDescriptor DESC_AMY;
-    public static final EditCommand.EditStudentDescriptor DESC_BOB;
+    public static final EditStudentCommand.EditStudentDescriptor DESC_AMY;
+    public static final EditStudentCommand.EditStudentDescriptor DESC_BOB;
 
     static {
         DESC_AMY = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY).build();

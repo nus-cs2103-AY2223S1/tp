@@ -5,10 +5,10 @@ import static jarvis.testutil.Assert.assertThrows;
 import static jarvis.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import jarvis.model.StudentName;
 import org.junit.jupiter.api.Test;
 
 import jarvis.logic.parser.exceptions.ParseException;
-import jarvis.model.student.Name;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -49,14 +49,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
-        Name expectedName = new Name(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseName(VALID_NAME));
+        StudentName expectedStudentName = new StudentName(VALID_NAME);
+        assertEquals(expectedStudentName, ParserUtil.parseName(VALID_NAME));
     }
 
     @Test
     public void parseName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
         String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
-        Name expectedName = new Name(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
+        StudentName expectedStudentName = new StudentName(VALID_NAME);
+        assertEquals(expectedStudentName, ParserUtil.parseName(nameWithWhitespace));
     }
 }
