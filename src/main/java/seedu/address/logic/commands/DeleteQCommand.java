@@ -36,7 +36,7 @@ public class DeleteQCommand extends Command {
         List<Question> lastShownList = model.getFilteredQuestionList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_QUESTION_DISPLAYED_INDEX);
         }
 
         Question questionToDelete = lastShownList.get(targetIndex.getZeroBased());

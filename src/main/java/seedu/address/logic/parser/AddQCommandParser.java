@@ -8,7 +8,7 @@ import seedu.address.model.question.Description;
 import seedu.address.model.question.Question;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddQCommand object
  */
 public class AddQCommandParser implements Parser<AddQCommand> {
 

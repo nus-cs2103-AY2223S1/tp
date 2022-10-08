@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.question.Question;
 
 /**
- * Adds a person to the address book.
+ * Adds a question to the address book.
  */
 public class AddQCommand extends Command {
 
