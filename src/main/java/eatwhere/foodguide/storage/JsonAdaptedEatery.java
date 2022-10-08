@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import eatwhere.foodguide.commons.exceptions.IllegalValueException;
 import eatwhere.foodguide.model.person.Address;
 import eatwhere.foodguide.model.person.Email;
