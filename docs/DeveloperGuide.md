@@ -289,47 +289,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 1. Student chooses to add a classmate's contact.
-2. Student enters the command to add a classmate.
-3. MassLinkers verifies entered command has valid syntax.
-4. MassLinkers adds user to the list of classmates. \
+2. Student enters classmate particulars.
+3. MassLinkers adds classmate to current list of classmates. \
    Use case ends.
 
 **Extensions**
-* 4a. MassLinkers detects an error in the entered command.
-    * 4a1. MassLinkers requests for the correct command.
-    * 4a2. Student enters new command.
-    * Steps 4a1-4a2 are repeated until the command entered are correct. \
-      Use case resumes from step 4.
-
-
 * a. At any time, Student chooses to close MassLinkers.
-    * a1. MassLinkers updates the written storage file.
+    * a1. MassLinkers updates the storage file.
     * a2. MassLinkers closes the program. \
       Use case ends.
 
 **Use case 2: Delete a classmate**
 
 **MSS**
-
-1. Student requests to list classmates.
-2. MassLinkers shows a list of classmates.
+1. Student requests for the list of classmates.
+2. MassLinkers displays the current list of classmates.
 3. Student requests to delete a specific classmate in the list.
-4. MassLinkers deletes the classmate using his index.
+4. MassLinkers deletes the classmate using his or her index.
    \
    Use case ends.
 
 **Extensions**
-
 * 2a. The list is empty. 
 \
 Use case ends.
 
-
-* 3a. The given index is invalid.
+* 4a. The given index is invalid.
     * 3a1. MassLinkers shows an error message.
       \
       Use case resumes at step 2.
-
 
 * a. At any time, Student chooses to close MassLinkers.
     * a1. MassLinkers updates the written storage file.
@@ -337,40 +325,26 @@ Use case ends.
       \
       Use case ends.
 
-**Use case 3: Search classmate via a tag**
+**Use case 3: Search classmates via a tag**
 
 **MSS**
 
-1. Student searches classmate with a particular tag.
-2. MassLinkers verifies syntax of the search command is valid.
-3. MassLinkers searches through the list of added tags.
-4. MassLinkers returns the list of classmates associated with the particular tag and display it through the GUI.
+1. Student requests the list of classmates with a tag.
+2. MassLinkers searches through the list of added tags.
+3. MassLinkers returns the list of classmates associated with the particular tag.
    \
    Use case ends.
 
 **Extensions**
-* 3a. MassLinkers detects an error in the sequence or syntax of entered command.
-    * 3a1. MassLinkers prompts error message.
-    * 3a2. MassLinkers requests for the correct command.
-    * 3a3. Student enters new command.
-      Steps 3a1-3a3 are repeated until the command entered are correct.
-      \
-      Use case resumes from step 4.
-
-
-* 4a. MassLinkers detects there is no such tag.
-    * 4a1. MassLinkers prompts error message.
-    * 4a2. MassLinkers requests for the correct command.
-    * 4a3. Student enters new command.
-      \
-      Steps 4a1-4a3 are repeated until the command entered are correct.
-      \
-      Use case resumes from step 4.
-
-
+* 2a. The list of tags is empty.
+  \
+  Use case ends.
+* 2b. MassLinkers detects there is no such tag.
+  * b1. MassLinkers requests for another tag.
+  * Step b1 is repeated until a valid tag is found. \
+  Use case resumes from step 2.
 * a. At any time, Student chooses to close MassLinkers.
-    * a1. MassLinkers updates the written storage file.
-    * a2. MassLinkers closes the program.
+    * a1. MassLinkers updates the storage file.
       \
       Use case ends.
 
@@ -379,36 +353,25 @@ Use case ends.
 
 **MSS**
 
-1. Student chooses to add a tag on a classmate, could be himself or others.
-2. Student enters the add tag command with the associated classmate.
-3. MassLinkers verifies the syntax of the command.
-4. MassLinkers searches through the list of people for the selected classmate.
-5. MassLinkers adds tag to the classmate.
+1. Student chooses to add a tag to a classmate (could be himself or others).
+2. MassLinkers searches through the list of classmates for the selected classmate.
+3. MassLinkers adds tag to the classmate.
    \
    Use case ends.
 
-**Extensions**
-* 3a. MassLinkers detects an error in the entered command.
-    * 3a1. MassLinkers requests for the correct command.
-    * 3a2. Student enters new command.
+**Extensions*
+* 2a. The list of classmates is empty.
+  * a1. MassLinkers warns adding a tag is invalid.
+    \
+    Use case ends.
+* 2b. MassLinkers is unable to find the classmate.
+    * b1. MassLinkers prompts for new classmate details. \
+  Step b1 is repeated until a classmate is found.
       \
-      Steps 3a1-3a2 are repeated until the data entered are correct.
-      \
-      Use case resumes from step 4.
-
-
-* 5a. MassLinkers cannot find classmate in MassLinkers.
-    * 5a1. MassLinkers requests for correct command argument.
-    * 5a2. Student enters new command.
-      \
-      Steps 5a1-5a2 are repeated until the data entered are correct.
-      \
-      Use case resumes from step 5.
-
+      Use case resumes from step 2.
 
 * a. At any time, Student chooses to close MassLinkers.
-    * a1. MassLinkers updates the written storage file.
-    * a2. MassLinkers closes the program.
+    * a1. MassLinkers updates the storage file.
       \
       Use case ends.
 
