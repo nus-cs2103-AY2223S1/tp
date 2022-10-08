@@ -1,0 +1,18 @@
+{
+  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
+  "students" : [ {
+    "name" : "Alice Pauline"
+  }, {
+    "name" : "Benson Meier"
+  }, {
+    "name" : "Carl Kurz"
+  }, {
+    "name" : "Daniel Meier"
+  }, {
+    "name" : "Elle Meyer"
+  }, {
+    "name" : "Fiona Kunz"
+  }, {
+    "name" : "George Best"
+  } ]
+}

@@ -42,6 +42,20 @@ public class ModelManager implements Model {
         filteredTasks = new FilteredList<>(this.taskBook.getTaskList());
     }
 
+    /**
+     * Initializes a ModelManager with the given studentBook and userPrefs.
+     */
+    public ModelManager(ReadOnlyStudentBook studentBook, ReadOnlyUserPrefs userPrefs) {
+        this(studentBook, new TaskBook(), userPrefs);
+    }
+
+    /**
+     * Initializes a ModelManager with the given taskBook and userPrefs.
+     */
+    public ModelManager(ReadOnlyTaskBook taskBook, ReadOnlyUserPrefs userPrefs) {
+        this(new StudentBook(), taskBook, userPrefs);
+    }
+
     public ModelManager() {
         this(new StudentBook(), new TaskBook(), new UserPrefs());
     }
