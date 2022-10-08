@@ -21,6 +21,7 @@ import seedu.address.model.MyInsuRec;
 import seedu.address.model.ReadOnlyMyInsuRec;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.client.Client;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.testutil.ClientBuilder;
 
 public class AddClientCommandTest {
@@ -146,6 +147,16 @@ public class AddClientCommandTest {
 
         @Override
         public void updateFilteredClientList(Predicate<Client> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Meeting> getFilteredMeetingList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
