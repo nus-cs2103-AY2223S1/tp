@@ -27,7 +27,7 @@ TABS helps project team leaders **overview tasks assigned to group members**. It
 1. Ensure you have Java 11 or above installed in your Computer.
 2. Download the latest TABS.jar.
 3. Copy the file to the folder you want to use as the home folder for your TABS.
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. 
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
 Note how the app contains some sample data.
 <br><br>
 ![TABS example](Ui.png)
@@ -69,7 +69,7 @@ Adds a person to the address book.
 
 Format: `adduser n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: 
+<div markdown="span" class="alert alert-primary">:bulb:
 <b>Tip:</b> A person can have any number of tags (including 0)
 </div>
 
@@ -205,16 +205,16 @@ Format: `exit`
 
 ## Command summary
 
- Action | Format, Examples                                                                                                                                                                                     
+ Action | Format, Examples
 -------------------|------------------
 **Add User** | `adduser [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…` <br> e.g. `adduser n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Delete User** | `deleteuser NAME`<br> e.g. `deleteuser James Ho`                                                                                                                                     
-**Edit User** | `edituser NAME [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br> e.g. `edituser 2 n/James Lee e/jameslee@example.com`                                                                
-**Find User** | `finduser KEYWORD [MORE_KEYWORDS]`<br> e.g. `finduser James Jake`                                                                                                                                   
-**List** | `list`                                                                                                                                                                                               
-**Add Group** | `addgroup GROUP` <br> e.g. `addgroup CS2103T`                                                                                                                                                         
-**Add Member** | `addmember [g/GROUP] [n/NAME]` <br> e.g. `addmember g/CS2103T n/James Lee, addmember g/CS2101 n/DefaultUser`                                                                                          
-**Assign Task** | `assigntask [n/NAME] [t/TASK]` <br> e.g. `assigntask n/John t/TeamProject`                                                                                                                            
-**Display Group** | `display GROUP` <br> e.g. `display CS2103T`                                                                                                                                                           
-**Delete Group** | `deletegroup GROUP` <br> e.g. `deletegroup CS2103T`                                                                                                                                                   
-**Exit** | `exit`                                                                                                                                                                                               
+**Delete User** | `deleteuser NAME`<br> e.g. `deleteuser James Ho`
+**Edit User** | `edituser NAME [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br> e.g. `edituser 2 n/James Lee e/jameslee@example.com`
+**Find User** | `finduser KEYWORD [MORE_KEYWORDS]`<br> e.g. `finduser James Jake`
+**List** | `list`
+**Add Group** | `addgroup GROUP` <br> e.g. `addgroup CS2103T`
+**Add Member** | `addmember [g/GROUP] [n/NAME]` <br> e.g. `addmember g/CS2103T n/James Lee, addmember g/CS2101 n/DefaultUser`
+**Assign Task** | `assigntask [n/NAME] [t/TASK]` <br> e.g. `assigntask n/John t/TeamProject`
+**Display Group** | `display GROUP` <br> e.g. `display CS2103T`
+**Delete Group** | `deletegroup GROUP` <br> e.g. `deletegroup CS2103T`
+**Exit** | `exit`
