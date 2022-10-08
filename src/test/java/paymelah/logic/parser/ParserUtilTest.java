@@ -246,4 +246,10 @@ public class ParserUtilTest {
         Money expectedMoney = new Money(VALID_MONEY);
         assertEquals(expectedMoney, ParserUtil.parseMoney(moneyWithWhitespace));
     }
+
+    @Test
+    public void arePrefixesPresent() {
+        // To be implemented
+        assertTrue(true);
+    }
 }

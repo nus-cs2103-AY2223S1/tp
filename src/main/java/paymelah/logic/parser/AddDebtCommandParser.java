@@ -5,8 +5,6 @@ import static paymelah.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static paymelah.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static paymelah.logic.parser.CliSyntax.PREFIX_MONEY;
 
-import java.util.stream.Stream;
-
 import paymelah.commons.core.index.Index;
 import paymelah.logic.commands.AddDebtCommand;
 import paymelah.logic.parser.exceptions.ParseException;
@@ -29,7 +27,7 @@ public class AddDebtCommandParser implements Parser<AddDebtCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_MONEY);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_MONEY)) {
+        if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_MONEY)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddDebtCommand.MESSAGE_USAGE));
         }
 
@@ -47,13 +45,5 @@ public class AddDebtCommandParser implements Parser<AddDebtCommand> {
         Debt debt = new Debt(description, money);
 
         return new AddDebtCommand(index, debt);
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
