@@ -17,31 +17,31 @@ import foodwhere.testutil.TypicalStalls;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DeleteCommand}.
+ * {@code SDeleteCommand}.
  */
-public class DeleteCommandTest {
+public class SDeleteCommandTest {
 
     private Model model = new ModelManager(TypicalStalls.getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Stall stallToDelete = model.getFilteredStallList().get(TypicalIndexes.INDEX_FIRST_STALL.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(TypicalIndexes.INDEX_FIRST_STALL);
+        SDeleteCommand SDeleteCommand = new SDeleteCommand(TypicalIndexes.INDEX_FIRST_STALL);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_STALL_SUCCESS, stallToDelete);
+        String expectedMessage = String.format(SDeleteCommand.MESSAGE_DELETE_STALL_SUCCESS, stallToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteStall(stallToDelete);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(SDeleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStallList().size() + 1);
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        SDeleteCommand SDeleteCommand = new SDeleteCommand(outOfBoundIndex);
 
-        CommandTestUtil.assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_STALL_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(SDeleteCommand, model, Messages.MESSAGE_INVALID_STALL_DISPLAYED_INDEX);
     }
 
     @Test
@@ -49,15 +49,15 @@ public class DeleteCommandTest {
         CommandTestUtil.showStallAtIndex(model, TypicalIndexes.INDEX_FIRST_STALL);
 
         Stall stallToDelete = model.getFilteredStallList().get(TypicalIndexes.INDEX_FIRST_STALL.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(TypicalIndexes.INDEX_FIRST_STALL);
+        SDeleteCommand SDeleteCommand = new SDeleteCommand(TypicalIndexes.INDEX_FIRST_STALL);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_STALL_SUCCESS, stallToDelete);
+        String expectedMessage = String.format(SDeleteCommand.MESSAGE_DELETE_STALL_SUCCESS, stallToDelete);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteStall(stallToDelete);
         showNoStall(expectedModel);
 
-        CommandTestUtil.assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertCommandSuccess(SDeleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -68,21 +68,21 @@ public class DeleteCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getStallList().size());
 
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        SDeleteCommand SDeleteCommand = new SDeleteCommand(outOfBoundIndex);
 
-        CommandTestUtil.assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_STALL_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(SDeleteCommand, model, Messages.MESSAGE_INVALID_STALL_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(TypicalIndexes.INDEX_FIRST_STALL);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(TypicalIndexes.INDEX_SECOND_STALL);
+        SDeleteCommand deleteFirstCommand = new SDeleteCommand(TypicalIndexes.INDEX_FIRST_STALL);
+        SDeleteCommand deleteSecondCommand = new SDeleteCommand(TypicalIndexes.INDEX_SECOND_STALL);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(TypicalIndexes.INDEX_FIRST_STALL);
+        SDeleteCommand deleteFirstCommandCopy = new SDeleteCommand(TypicalIndexes.INDEX_FIRST_STALL);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
