@@ -1,9 +1,9 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a Person's attendance in the address book.
@@ -11,7 +11,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class Attendance {
     protected static final DateTimeFormatter DTF = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    public LocalDate time;
+    public final LocalDate time;
 
     /**
      * Constructs an {@code Attendance}.

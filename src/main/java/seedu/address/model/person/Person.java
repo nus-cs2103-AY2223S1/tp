@@ -29,7 +29,7 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, LessonPlan lessonPlan,
-                  HomeworkList homeworkList, AttendanceList attendanceList,Set<Tag> tags) {
+                  HomeworkList homeworkList, AttendanceList attendanceList, Set<Tag> tags) {
         requireAllNonNull(name, phone, tags);
         this.name = name;
         this.phone = phone;

@@ -10,9 +10,13 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AttendanceCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.*;
+import seedu.address.model.person.AttendanceList;
+import seedu.address.model.person.HomeworkList;
+import seedu.address.model.person.LessonPlan;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -39,7 +43,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         LessonPlan lessonPlan = ParserUtil.parseLessonPlan(argMultimap.getValue(PREFIX_LESSON_PLAN).get());
         HomeworkList homeworkList = new HomeworkList(); // add command does not allow adding homework straight away
-        AttendanceList attendanceList = new AttendanceList(); // add command does not allow adding attendance straight away
+        AttendanceList attendanceList =
+                new AttendanceList(); // add command does not allow adding attendance straight away
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Person person = new Person(name, phone, lessonPlan, homeworkList, attendanceList, tagList);

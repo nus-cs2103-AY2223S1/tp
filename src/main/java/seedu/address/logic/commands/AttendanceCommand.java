@@ -35,7 +35,6 @@ public class AttendanceCommand extends Command {
     private final Attendance attendance;
 
     /**
-     *
      * @param index of the person in the filtered person list to edit the attendance
      * @param attendance of the person to add
      */
@@ -70,7 +69,8 @@ public class AttendanceCommand extends Command {
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {
-        String message = !attendance.toString().isEmpty() ? MESSAGE_ADD_ATTENDANCE_SUCCESS : MESSAGE_DELETE_ATTENDANCE_SUCCESS;
+        String message = !attendance.toString().isEmpty() ? MESSAGE_ADD_ATTENDANCE_SUCCESS
+                                                            : MESSAGE_DELETE_ATTENDANCE_SUCCESS;
         return String.format(message, personToEdit);
     }
 

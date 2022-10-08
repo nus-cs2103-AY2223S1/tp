@@ -10,7 +10,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.*;
+import seedu.address.model.person.AttendanceList;
+import seedu.address.model.person.HomeworkList;
+import seedu.address.model.person.LessonPlan;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -111,7 +116,7 @@ class JsonAdaptedPerson {
         }
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelLessonPlan, modelHomeworkList, modelAttendanceList,modelTags);
+        return new Person(modelName, modelPhone, modelLessonPlan, modelHomeworkList, modelAttendanceList, modelTags);
     }
 
 }
