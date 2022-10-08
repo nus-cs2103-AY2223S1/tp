@@ -21,19 +21,21 @@ public class Person {
     private final Email email;
 
     // Data fields
+    private final ApplicationStatus applicationStatus;
     private final Scholarship scholarship;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Scholarship scholarship, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, scholarship, tags);
+    public Person(Name name, Phone phone, Email email, Scholarship scholarship,
+                  ApplicationStatus applicationStatus, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, scholarship, applicationStatus, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.scholarship = scholarship;
-        this.tags.addAll(tags);
+        this.applicationStatus = applicationStatus;
     }
 
     public Name getName() {
@@ -50,6 +52,10 @@ public class Person {
 
     public Scholarship getScholarship() {
         return scholarship;
+    }
+
+    public ApplicationStatus getApplicationStatus() {
+        return applicationStatus;
     }
 
     /**
@@ -92,6 +98,8 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getScholarship().equals(getScholarship())
+                && otherPerson.getApplicationStatus().equals(getApplicationStatus())
+                && otherPerson.getScholarship().equals(getScholarship())
                 && otherPerson.getTags().equals(getTags());
     }
 
@@ -109,8 +117,10 @@ public class Person {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
-                .append("; Address: ")
-                .append(getScholarship());
+                .append("; Scholarship: ")
+                .append(getScholarship())
+                .append("; Application Status: ")
+                .append(getApplicationStatus());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

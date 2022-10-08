@@ -2,11 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOLARSHIP;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -55,7 +51,11 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         if (argMultimap.getValue(PREFIX_SCHOLARSHIP).isPresent()) {
             editPersonDescriptor.setScholarship(ParserUtil
-                    .parseAddress(argMultimap.getValue(PREFIX_SCHOLARSHIP).get()));
+                    .parseScholarship(argMultimap.getValue(PREFIX_SCHOLARSHIP).get()));
+        }
+        if (argMultimap.getValue(PREFIX_APPLICATION_STATUS).isPresent()) {
+            editPersonDescriptor.setApplicationStatus(ParserUtil.
+                    parseApplicationStatus(argMultimap.getValue(PREFIX_APPLICATION_STATUS).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 

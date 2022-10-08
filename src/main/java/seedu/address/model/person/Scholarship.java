@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Scholarship {
 
-    public static final String MESSAGE_CONSTRAINTS = "Scholarship Name can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Scholarship can take any values, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,

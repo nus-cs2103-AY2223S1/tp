@@ -8,6 +8,8 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Scholarship;
+import seedu.address.model.person.ApplicationStatus;
+
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -21,12 +23,14 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
 
     public static final String DEFAULT_SCHOLARSHIP = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_APPLICATION_STATUS = "pending";
 
     private Name name;
     private Phone phone;
     private Email email;
 
     private Scholarship scholarship;
+    private ApplicationStatus applicationStatus;
     private Set<Tag> tags;
 
     /**
@@ -37,6 +41,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         scholarship = new Scholarship(DEFAULT_SCHOLARSHIP);
+        applicationStatus = new ApplicationStatus(DEFAULT_APPLICATION_STATUS);
         tags = new HashSet<>();
     }
 
@@ -48,6 +53,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         scholarship = personToCopy.getScholarship();
+        applicationStatus = personToCopy.getApplicationStatus();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -76,6 +82,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code ApplicationStatus} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withApplicationStatus(String applicationStatus) {
+        this.applicationStatus = new ApplicationStatus(applicationStatus);
+        return this;
+    }
+
+    /**
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
     public PersonBuilder withPhone(String phone) {
@@ -92,7 +106,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, scholarship, tags);
+        return new Person(name, phone, email, scholarship, applicationStatus, tags);
     }
 
 }
