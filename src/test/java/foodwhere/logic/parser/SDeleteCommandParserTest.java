@@ -3,10 +3,10 @@ package foodwhere.logic.parser;
 import static foodwhere.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static foodwhere.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
-import foodwhere.logic.commands.SDeleteCommand;
 import org.junit.jupiter.api.Test;
 
 import foodwhere.commons.core.Messages;
+import foodwhere.logic.commands.SDeleteCommand;
 import foodwhere.testutil.TypicalIndexes;
 
 /**
