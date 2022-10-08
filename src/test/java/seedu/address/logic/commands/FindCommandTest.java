@@ -15,6 +15,7 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.profile.FindProfileCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -34,14 +35,14 @@ public class FindCommandTest {
         NameContainsKeywordsPredicate secondPredicate =
                 new NameContainsKeywordsPredicate(Collections.singletonList("second"));
 
-        FindCommand findFirstCommand = new FindCommand(firstPredicate);
-        FindCommand findSecondCommand = new FindCommand(secondPredicate);
+        FindProfileCommand findFirstCommand = new FindProfileCommand(firstPredicate);
+        FindProfileCommand findSecondCommand = new FindProfileCommand(secondPredicate);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        FindCommand findFirstCommandCopy = new FindCommand(firstPredicate);
+        FindProfileCommand findFirstCommandCopy = new FindProfileCommand(firstPredicate);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -58,7 +59,7 @@ public class FindCommandTest {
     public void execute_zeroKeywords_noProfileFound() {
         String expectedMessage = String.format(MESSAGE_PROFILES_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindCommand command = new FindCommand(predicate);
+        FindProfileCommand command = new FindProfileCommand(predicate);
         expectedModel.updateFilteredProfileList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredProfileList());
@@ -68,7 +69,7 @@ public class FindCommandTest {
     public void execute_multipleKeywords_multipleProfilesFound() {
         String expectedMessage = String.format(MESSAGE_PROFILES_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
-        FindCommand command = new FindCommand(predicate);
+        FindProfileCommand command = new FindProfileCommand(predicate);
         expectedModel.updateFilteredProfileList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredProfileList());
