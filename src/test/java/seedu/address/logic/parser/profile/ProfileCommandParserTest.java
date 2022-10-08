@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.profile.ProfileCommand;
-import seedu.address.model.profile.Profile;
 
 public class ProfileCommandParserTest {
 

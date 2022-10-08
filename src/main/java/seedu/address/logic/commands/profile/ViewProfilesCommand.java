@@ -1,10 +1,10 @@
 package seedu.address.logic.commands.profile;
 
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.model.Model;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROFILES;
+
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.model.Model;
 
 /**
  * Shows a list of all the profiles in the address book.

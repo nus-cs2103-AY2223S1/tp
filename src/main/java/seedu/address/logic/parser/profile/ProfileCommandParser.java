@@ -11,7 +11,6 @@ import seedu.address.logic.commands.profile.ProfileCommand;
 import seedu.address.logic.commands.profile.ViewProfilesCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.profile.Profile;
 
 /**
  * Parses input arguments and creates a new ProfileCommand object
