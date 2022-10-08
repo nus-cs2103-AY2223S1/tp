@@ -8,10 +8,16 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import foodwhere.logic.commands.*;
 import org.junit.jupiter.api.Test;
 
 import foodwhere.commons.core.Messages;
+import foodwhere.logic.commands.ClearCommand;
+import foodwhere.logic.commands.DeleteCommand;
+import foodwhere.logic.commands.EditCommand;
+import foodwhere.logic.commands.ExitCommand;
+import foodwhere.logic.commands.FindCommand;
+import foodwhere.logic.commands.HelpCommand;
+import foodwhere.logic.commands.ListCommand;
 import foodwhere.logic.commands.SAddCommand;
 import foodwhere.logic.parser.exceptions.ParseException;
 import foodwhere.model.stall.NameContainsKeywordsPredicate;

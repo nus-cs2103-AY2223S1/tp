@@ -14,9 +14,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import foodwhere.commons.core.Messages;
-import foodwhere.logic.commands.SAddCommand;
 import foodwhere.logic.commands.CommandResult;
 import foodwhere.logic.commands.ListCommand;
+import foodwhere.logic.commands.SAddCommand;
 import foodwhere.logic.commands.exceptions.CommandException;
 import foodwhere.logic.parser.exceptions.ParseException;
 import foodwhere.model.Model;
