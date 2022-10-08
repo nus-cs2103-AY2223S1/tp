@@ -9,6 +9,8 @@ import seedu.address.model.module.DistinctModuleList;
 import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.task.DistinctTaskList;
+import seedu.address.model.task.Task;
 
 /**
  * Wraps all data at the address-book level
@@ -18,6 +20,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final DistinctModuleList modules;
+
+    private final DistinctTaskList tasks;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -29,6 +33,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
         modules = new DistinctModuleList();
+        tasks = new DistinctTaskList();
     }
 
     public AddressBook() {}
@@ -60,7 +65,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setTasks(newData.getTaskList());
         setModules(newData.getModuleList());
     }
 
@@ -103,6 +108,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void addModule(Module mod) {
         modules.addModule(mod);
     }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks.setTasks(tasks);
+    }
+    public void addTask(Task task) {
+        tasks.addTask(task);
+    }
     //// util methods
 
     @Override
@@ -130,6 +142,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Module> getModuleList() {
         return modules.getUnmodifiableModuleList();
+    }
+
+    @Override
+    public ObservableList<Task> getTaskList() {
+        return tasks.getUnmodifiableTaskList();
     }
 
     @Override

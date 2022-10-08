@@ -47,11 +47,11 @@
         </StackPane>
 
         <SplitPane VBox.vgrow="ALWAYS" >
-        <VBox fx:id="personList" styleClass="pane-with-border" minWidth="350" prefWidth="400" VBox.vgrow="ALWAYS">
+        <VBox fx:id="taskList" styleClass="pane-with-border" minWidth="350" prefWidth="400" VBox.vgrow="ALWAYS">
           <padding>
             <Insets top="15" right="7" bottom="15" left="7" />
           </padding>
-          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+          <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
         </VBox>
           <VBox fx:id="moduleList" styleClass="pane-with-border" minWidth="350" prefWidth="400" VBox.vgrow="ALWAYS">
             <padding>
