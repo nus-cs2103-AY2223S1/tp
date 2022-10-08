@@ -1,11 +1,15 @@
 package tracko.model.items;
 
+import static tracko.commons.util.AppUtil.checkArgument;
 import static tracko.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents the quantity of an item.
  */
 public class Quantity {
+    public static final String MESSAGE_CONSTRAINTS =
+            "Quantity should not be negative.";
+
     public final int quantity;
 
     /**
@@ -14,7 +18,12 @@ public class Quantity {
      */
     public Quantity(int quantity) {
         requireAllNonNull(quantity);
+        checkArgument(isValidQuantity(quantity), MESSAGE_CONSTRAINTS);
         this.quantity = quantity;
+    }
+
+    public static boolean isValidQuantity(int quantity) {
+        return !(quantity < 0);
     }
 
     public Integer getQuantity() {
