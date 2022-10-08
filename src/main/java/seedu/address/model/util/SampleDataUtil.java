@@ -81,6 +81,7 @@ public class SampleDataUtil {
         return Arrays.stream(moduleNames)
                 .map(NusModule::new)
                 .collect(Collectors.toSet());
+    }
 
     public static ReadOnlyTaskList getSampleTaskList() {
         TaskList sampleTl = new TaskList();
