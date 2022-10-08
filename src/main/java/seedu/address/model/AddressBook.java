@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -9,6 +10,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.team.Task;
 import seedu.address.model.team.TaskList;
+import seedu.address.model.team.Team;
 
 /**
  * Wraps all data at the address-book level
@@ -18,6 +20,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final TaskList taskList;
+    private Team team;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -29,6 +32,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
         taskList = new TaskList();
+        team = new Team("default", new ArrayList<>());
     }
 
     public AddressBook() {
@@ -58,6 +62,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
         setPersons(newData.getPersonList());
+        setTeam(newData.getTeam());
     }
 
     /**
@@ -113,6 +118,16 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+    }
+
+    //// team-level operations
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
     }
 
     //// util methods

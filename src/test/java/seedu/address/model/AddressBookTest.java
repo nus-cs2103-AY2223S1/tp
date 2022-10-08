@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -21,6 +22,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.team.Task;
+import seedu.address.model.team.Team;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
@@ -91,10 +93,13 @@ public class AddressBookTest {
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
         private final ObservableList<Task> tasks = FXCollections.observableArrayList();
+        private final Team team = new Team("default", new ArrayList<>());
+
         AddressBookStub(Collection<Person> persons, Collection<Task> tasks) {
             this.persons.setAll(persons);
             this.tasks.setAll(tasks);
         }
+
 
         @Override
         public ObservableList<Person> getPersonList() {
@@ -105,6 +110,9 @@ public class AddressBookTest {
         public ObservableList<Task> getTaskList() {
             return tasks;
         }
-    }
 
+        public Team getTeam() {
+            return team;
+        }
+    }
 }

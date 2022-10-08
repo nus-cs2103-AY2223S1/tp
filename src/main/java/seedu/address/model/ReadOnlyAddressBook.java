@@ -3,6 +3,7 @@ package seedu.address.model;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.team.Task;
+import seedu.address.model.team.Team;
 
 /**
  * Unmodifiable view of an address book
@@ -19,4 +20,10 @@ public interface ReadOnlyAddressBook {
      * Returns an unmodifiable view of the tasks list.
      */
     ObservableList<Task> getTaskList();
+
+    /**
+     * Returns the team.
+     * The team will not contain any duplicate members.
+     */
+    Team getTeam();
 }
