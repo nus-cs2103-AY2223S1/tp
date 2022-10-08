@@ -3,6 +3,7 @@ package paymelah.model.debt;
 import static java.util.Objects.requireNonNull;
 import static paymelah.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -16,6 +17,7 @@ import paymelah.model.debt.exceptions.DebtNotFoundException;
  */
 public class DebtList {
     private final List<Debt> debts = new ArrayList<>();
+    private BigDecimal totalDebt = new BigDecimal(0).setScale(2);
 
     /**
      * Constructs a {@code DebtList}.
@@ -26,6 +28,7 @@ public class DebtList {
     public DebtList(DebtList debtList) {
         requireAllNonNull(debtList);
         debts.addAll(debtList.debts);
+        totalDebt = debtList.totalDebt;
     }
 
     /**
@@ -44,6 +47,10 @@ public class DebtList {
         return debts.stream().anyMatch(toCheck::equals);
     }
 
+    public BigDecimal getTotalDebt() {
+        return totalDebt;
+    }
+
     /**
      * Adds a debt to the list.
      *
@@ -54,6 +61,7 @@ public class DebtList {
         requireNonNull(toAdd);
         DebtList edited = new DebtList(this);
         edited.debts.add(toAdd);
+        edited.totalDebt = totalDebt.add(toAdd.getMoney().getValue());
         return edited;
     }
 
@@ -70,6 +78,7 @@ public class DebtList {
         }
         DebtList edited = new DebtList(this);
         edited.debts.remove(toRemove);
+        edited.totalDebt = totalDebt.subtract(toRemove.getMoney().getValue());
         return edited;
     }
 
@@ -91,7 +100,10 @@ public class DebtList {
      */
     public static DebtList fromList(List<Debt> list) {
         DebtList debtList = new DebtList();
-        debtList.debts.addAll(list);
+        for (Debt debt : list) {
+            debtList.debts.add(debt);
+            debtList.totalDebt = debtList.totalDebt.add(debt.getMoney().getValue());
+        }
         return debtList;
     }
 
