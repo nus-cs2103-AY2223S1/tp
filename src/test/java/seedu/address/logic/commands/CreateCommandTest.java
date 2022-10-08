@@ -29,6 +29,7 @@ class CreateCommandTest {
     public void constructor_nullIndex_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new CreateCommand(null, ALICE));
     }
+
     @Test
     public void execute_addPoc_success() throws Exception {
 
