@@ -4,9 +4,6 @@ package seedu.address.model.client;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
 import seedu.address.model.project.Project;
 
 /**
@@ -36,7 +33,7 @@ public class Client {
      * @param email String representing email address of the client
      */
     public Client(String name, String phone, String email) {
-       //to be added
+        //to be added
         this.name = new ClientName(name);
         this.phone = new ClientPhone(phone);
         this.email = new ClientEmail(email);
@@ -131,7 +128,7 @@ public class Client {
     public boolean equals(Object other) {
         if (other == this) {
             return true;
-        } else if (other instanceof Client){
+        } else if (other instanceof Client) {
             Client otherClient = (Client) other;
             boolean hasSameId = this.getClientId().equals(otherClient.getClientId());
             boolean hasSameName = this.getClientId().equals(otherClient.getClientName());

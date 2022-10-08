@@ -9,9 +9,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class ClientName {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should not be blank and can contain only contain characters and spaces. A name may contain at most" +
-                    " " +
-                    "3 words and each word can be at most 10 characters long.";
+            "Names should not be blank and can contain only contain characters and spaces. A name may contain at most"
+                    + " "
+                    + "3 words and each word can be at most 10 characters long.";
 
 
     /**
@@ -19,7 +19,7 @@ public class ClientName {
      */
     public static final String VALIDATION_REGEX = "\"[a-zA-Z]+(\\\\s+[a-zA-Z]+)*\"";
 
-    public String fullName;
+    private String fullName;
 
     /**
      * Constructs a ClientName.
@@ -114,14 +114,16 @@ public class ClientName {
      */
     @Override
     public boolean equals(Object other) {
-       if (other == this) {
-       return true;
-       } else if (other instanceof ClientName){
-           ClientName otherName = (ClientName) other;
-           return this.fullName.equals(otherName.fullName);
-       } else {
-           return false;
-       }
+        if (other == this) {
+            return true;
+
+        } else if (other instanceof ClientName) {
+            ClientName otherName = (ClientName) other;
+            return this.fullName.equals(otherName.fullName);
+
+        } else {
+            return false;
+        }
     }
 
 }

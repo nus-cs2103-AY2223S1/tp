@@ -1,10 +1,8 @@
 package seedu.address.model.client;
 
-import seedu.address.model.person.Name;
+import static java.util.Objects.requireNonNull;
 
 import java.util.UUID;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Represents the unique ID that a client is identified by.
@@ -62,7 +60,7 @@ public class ClientId {
     public boolean equals(Object other) {
         if (other == this) {
             return true;
-        } else if (other instanceof ClientId){
+        } else if (other instanceof ClientId) {
             ClientId otherId = (ClientId) other;
             return this.identifier.equals(otherId.identifier);
         } else {

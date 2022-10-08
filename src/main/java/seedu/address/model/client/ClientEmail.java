@@ -1,7 +1,5 @@
 package seedu.address.model.client;
 
-import seedu.address.model.person.Email;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -34,7 +32,7 @@ public class ClientEmail {
     private static final String DOMAIN_REGEX = "(" + DOMAIN_PART_REGEX + "\\.)*" + DOMAIN_LAST_PART_REGEX;
     public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@" + DOMAIN_REGEX;
 
-    public String email;
+    private String email;
 
     /**
      * Constructs a Client Email.
@@ -106,7 +104,7 @@ public class ClientEmail {
     public boolean equals(Object other) {
         if (other == this) {
             return true;
-        } else if (other instanceof ClientEmail){
+        } else if (other instanceof ClientEmail) {
             ClientEmail otherEmail = (ClientEmail) other;
             return this.email.equals(otherEmail.email);
         } else {

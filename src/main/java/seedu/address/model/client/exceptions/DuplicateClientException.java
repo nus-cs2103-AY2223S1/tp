@@ -5,7 +5,7 @@ package seedu.address.model.client.exceptions;
  * same identity.
  */
 
-public class DuplicateClientException extends RuntimeException{
+public class DuplicateClientException extends RuntimeException {
 
     /**
      * Alerts the user with respect to creating duplicate clients.

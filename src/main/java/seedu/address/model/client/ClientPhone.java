@@ -1,7 +1,5 @@
 package seedu.address.model.client;
 
-import seedu.address.model.person.Phone;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -14,7 +12,7 @@ public class ClientPhone {
             "Phone numbers should only contain numbers, and it should be 8-10 digits";
     public static final String VALIDATION_REGEX = "\\d{8,10}";
 
-    public String phone;
+    private String phone;
 
     /**
      * Constructs a Client Phone.
@@ -86,7 +84,7 @@ public class ClientPhone {
     public boolean equals(Object other) {
         if (other == this) {
             return true;
-        } else if (other instanceof ClientPhone){
+        } else if (other instanceof ClientPhone) {
             ClientPhone otherPhone = (ClientPhone) other;
             return this.phone.equals(otherPhone.phone);
         } else {
