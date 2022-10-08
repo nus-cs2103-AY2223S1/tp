@@ -3,14 +3,21 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
-import java.util.Set;
 import java.util.HashSet;
+import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.*;
 import seedu.address.logic.parser.exceptions.SocialNotFoundException;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.MinecraftName;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Platform;
+import seedu.address.model.person.Social;
+import seedu.address.model.person.TimeZone;
 import seedu.address.model.server.Server;
 import seedu.address.model.tag.Tag;
 
@@ -110,32 +117,42 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> socialStrs} into a {@code Socials}.
+     * Parses a {@code String social} into an {@code Social}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code socialStr} is invalid.
      */
 
-    public static Set<Social> parseSocials(Collection<String> socialStrs) throws ParseException {
-        requireNonNull(socialStrs);
+    public static Set<Social> parseSocials(Collection<String> socialStr) throws ParseException {
+        requireNonNull(socialStr);
         final Set<Social> socialSet = new HashSet<>();
-        for (String str : socialStrs) {
+        for (String str : socialStr) {
             socialSet.add(parseSocial(str));
         }
         return socialSet;
     }
 
+    /**
+     * Parses a {@code String socialStr} into a {@code Social}.
+     *
+     * @param socialStr the social media platform to be parsed
+     * @return the social media platform
+     * @throws ParseException if the given {@code socialStr} is invalid.
+     */
     public static Social parseSocial(String socialStr) throws ParseException {
         String[] strArray = socialStr.split("@");
         String rawPlatform = strArray[0];
         String handle = strArray[1];
 
         switch (rawPlatform) {
-            case "fb":
-                return new Social(handle, Platform.FACEBOOK);
-            case "ig":
-                return new Social(handle, Platform.INSTAGRAM);
-            case "sc":
-                return new Social(handle, Platform.SNAPCHAT);
-            default:
-                throw new SocialNotFoundException();
+        case "fb":
+            return new Social(handle, Platform.FACEBOOK);
+        case "ig":
+            return new Social(handle, Platform.INSTAGRAM);
+        case "sc":
+            return new Social(handle, Platform.SNAPCHAT);
+        default:
+            throw new SocialNotFoundException();
         }
 
     }
@@ -167,6 +184,13 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Parses a {@code String server} into a {@code Server}.
+     *
+     * @param server the server to be parsed
+     * @return the server
+     * @throws ParseException if the given {@code server} is invalid.
+     */
     public static Server parseServer(String server) throws ParseException {
         requireNonNull(server);
         String trimmedServer = server.trim();
@@ -176,6 +200,13 @@ public class ParserUtil {
         return new Server(trimmedServer);
     }
 
+    /**
+     * Parses {@code Collection<String> servers} into a {@code Set<Server>}.
+     *
+     * @param servers Collection of servers to be parsed.
+     * @return Set of servers.
+     * @throws ParseException if any of the servers are invalid.
+     */
     public static Set<Server> parseServers(Collection<String> servers) throws ParseException {
         requireNonNull(servers);
         final Set<Server> serverSet = new HashSet<>();
@@ -185,6 +216,12 @@ public class ParserUtil {
         return serverSet;
     }
 
+    /**
+     * Parses a {@code String timezone offset} into a {@code TimeZone object}.
+     * @param offset the offset of the timezone
+     * @return the parsed offset as a TimeZone
+     * @throws ParseException if the given {@code offset} is invalid.
+     */
     public static TimeZone parseTimeZone(String offset) throws ParseException {
         requireNonNull(offset);
         String trimmedOffset = offset.trim();
