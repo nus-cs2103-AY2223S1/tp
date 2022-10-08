@@ -117,7 +117,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * This command does not offer editing a student's profile picture. To do this, refer to [upload](#upload)
 
 Examples:
-*  `edit 1 p/91234567 e/studentEmail@example.com` Edits the phone number and email address of the 1st student in the list to be `91234567` and `studentEmail@example.com` respectively.
+*  `edit 1 p/91234567 e/studentEmail@example.com` Edits the phone number and email studentId of the 1st student in the list to be `91234567` and `studentEmail@example.com` respectively.
 *  `edit 2 n/Jackie Chan t/` Edits the name of the 2nd student to be `Jackie Chan` and clears all existing tags.
 
 ### Locating students by name: `find`

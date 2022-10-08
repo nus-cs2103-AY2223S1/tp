@@ -5,7 +5,7 @@ title: Evan Loo's Project Portfolio Page
 
 ### Project: GREWZ
 
-GREWZ is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a Command line Interface (CLI), and it has a Graphic User Interface (GUI) created with JavaFX. It is written in Java, and has about 10 kLoC.
+GREWZ is a desktop studentId book application used for teaching Software Engineering principles. The user interacts with it using a Command line Interface (CLI), and it has a Graphic User Interface (GUI) created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
