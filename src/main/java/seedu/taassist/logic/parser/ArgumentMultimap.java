@@ -1,10 +1,8 @@
 package seedu.taassist.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

@@ -8,7 +8,6 @@ import static seedu.taassist.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import java.util.Set;
-import java.util.stream.Stream;
 
 import seedu.taassist.logic.commands.AddCommand;
 import seedu.taassist.logic.parser.exceptions.ParseException;
