@@ -132,9 +132,12 @@ public class DebtList {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
+        int i = 1;
         for (Debt debt : debts) {
-            builder.append(debt.toString())
+            builder.append(i + ". ")
+                    .append(debt.toString())
                     .append("\n");
+            i++;
         }
         return builder.toString().equals("") ? "No debts" : builder.toString();
     }
