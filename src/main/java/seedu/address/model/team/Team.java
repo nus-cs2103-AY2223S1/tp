@@ -20,6 +20,7 @@ public class Team {
 
     private final String teamName;
     private final UniquePersonList teamMembers = new UniquePersonList();
+    private final TaskList taskList = new TaskList();
 
     /**
      * Constructs a {@code Team}.
@@ -34,6 +35,19 @@ public class Team {
         this.teamMembers.setPersons(teamMembers);
     }
 
+    /**
+     * Constructs a {@code Team}
+     * @param teamName A valid team name
+     * @param teamMembers A list of persons to be added as members
+     * @param tasks A list of tasks for the team to do
+     */
+    public Team(String teamName, List<Person> teamMembers, List<Task> tasks) {
+        requireNonNull(teamName);
+        checkArgument(isValidTeamName(teamName), MESSAGE_CONSTRAINTS);
+        this.teamName = teamName;
+        this.teamMembers.setPersons(teamMembers);
+        this.taskList.setTasks(tasks);
+    }
     public String getTeamName() {
         return teamName;
     }
@@ -52,6 +66,18 @@ public class Team {
 
     public boolean hasMember(Person person) {
         return teamMembers.contains(person);
+    }
+
+    public List<Task> getTaskList() {
+        return taskList.asUnmodifiableObservableList();
+    }
+
+    public void addTask(Task task) {
+        taskList.add(task);
+    }
+
+    public boolean hasTask(Task task) {
+        return taskList.contains(task);
     }
 
     /**
@@ -73,12 +99,21 @@ public class Team {
 
         Team otherTeam = (Team) other;
         return otherTeam.getTeamName().equals(getTeamName())
-                && otherTeam.getTeamMembers().equals(getTeamMembers());
+                && otherTeam.getTeamMembers().equals(getTeamMembers())
+                && otherTeam.getTaskList().equals(getTaskList());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(teamName, teamMembers);
+        return Objects.hash(teamName, teamMembers, taskList);
+    }
+
+    /**
+     * Returns a string representation of the task list.
+     * @return string representation of task list.
+     */
+    public String getTasksAsString() {
+        return taskList.toString();
     }
 
     /**
@@ -93,6 +128,7 @@ public class Team {
             builder.append("; Members: ");
             members.forEach(builder::append);
         }
+        builder.append(getTasksAsString());
         return builder.toString();
     }
 

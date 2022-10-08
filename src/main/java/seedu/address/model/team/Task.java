@@ -9,13 +9,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Task {
 
     public static final String MESSAGE_CONSTRAINTS =
-        "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+        "Task names should not be blank and cannot begin with a whitespace";
 
     /*
      * The first character of the task name must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "[^\\s].*";
 
     /**
      * Name of the task.
@@ -46,8 +46,14 @@ public class Task {
         return name;
     }
 
+    public String getName() {
+        return name;
+    }
+
     /**
      * Returns true if two tasks have the same name.
+     *
+     * TODO: Check equality of deadline or other attributes when added.
      *
      * @param other the other task to be compared with.
      * @return true if the tasks are considered equal, false otherwise.

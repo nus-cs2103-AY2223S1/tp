@@ -102,18 +102,9 @@ public class TaskList implements Iterable<Task> {
         return internalList.hashCode();
     }
 
-    /**
-     * Returns true if {@code persons} contains only unique persons.
-     */
-    private boolean tasksAreUnique(List<Task> tasks) {
-        for (int i = 0; i < tasks.size() - 1; i++) {
-            for (int j = i + 1; j < tasks.size(); j++) {
-                if (tasks.get(i).equals(tasks.get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
+    @Override
+    public String toString() {
+        return internalList.toString();
     }
 }
 
