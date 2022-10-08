@@ -1,8 +1,8 @@
 package seedu.taassist.logic.parser;
 
 import static seedu.taassist.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.taassist.logic.parser.ArgumentMultimap.isPrefixPresent;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_MODULE_CLASS;
-import static seedu.taassist.logic.parser.ParserUtil.isPrefixPresent;
 
 import java.util.List;
 import java.util.Set;

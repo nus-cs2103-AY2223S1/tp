@@ -140,12 +140,4 @@ public class ParserUtil {
         }
         return moduleClassSet;
     }
-
-    /**
-     * Returns true if the {@code prefix} does not contain empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    public static boolean isPrefixPresent(ArgumentMultimap argumentMultimap, Prefix prefix) {
-        return argumentMultimap.getValue(prefix).isPresent();
-    }
 }
