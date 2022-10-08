@@ -11,7 +11,8 @@ import java.math.BigDecimal;
  */
 public class Money {
     public static final String MESSAGE_CONSTRAINTS =
-            "Money amounts should use numbers to represent the amount in dollars";
+            "Money amounts should use numbers to represent the amount in dollars,"
+                    + " separating dollar and cent values with a .";
 
     public static final String VALIDATION_REGEX = "\\$?\\d+(\\.\\d{1,2})?";
     public static final int CENTS_PRECISION = 2;
