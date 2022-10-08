@@ -8,7 +8,7 @@ public enum ApplicationStatus {
     Accepted("accepted"),
     Applied("applied"),
     Interviewed("interviewed"),
-    Rejected("Rejected");
+    Rejected("rejected");
 
     private final String status;
 
