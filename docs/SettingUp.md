@@ -1,7 +1,4 @@
----
-layout: page
-title: Setting up and getting started
----
+# Setting up and getting started
 
 * Table of Contents
 {:toc}
