@@ -30,23 +30,29 @@ public class DateTest {
         assertFalse(Date.isValidDate(" ")); // spaces only
         assertFalse(Date.isValidDate("^")); // only non-alphanumeric characters
         assertFalse(Date.isValidDate("peter*")); // contains alphanumeric characters
-        assertFalse(Date.isValidDate("12-13-2000")); // month does not exist
-        assertFalse(Date.isValidDate("31-02-2022")); // date does not exist in particular month
-        assertFalse(Date.isValidDate("32-12-2019")); // date does not exist
-        assertFalse(Date.isValidDate("00-12-2000")); // date does not exist
+        assertFalse(Date.isValidDate("2000-13-12")); // month does not exist
+        assertFalse(Date.isValidDate("2022-02-31")); // date does not exist in particular month
+        assertFalse(Date.isValidDate("2019-12-32")); // date does not exist
+        assertFalse(Date.isValidDate("2000-12-00")); // date does not exist
+        assertFalse(Date.isValidDate("1900-02-29")); // not leap year
+        assertFalse(Date.isValidDate("1700-02-29")); // not leap year
+        assertFalse(Date.isValidDate("34-12-13")); //two digit year
 
 
         // valid Date
-        assertTrue(Date.isValidDate("12-11-2022"));
-        assertTrue(Date.isValidDate("13-12-2034"));
-        assertTrue(Date.isValidDate("12-02-2065"));
-        assertTrue(Date.isValidDate("12-09-1987"));
-        assertTrue(Date.isValidDate("29-02-2004")); // leap year
+        assertTrue(Date.isValidDate("2022-11-12"));
+        assertTrue(Date.isValidDate("2034-12-13"));
+        assertTrue(Date.isValidDate("2065-02-12"));
+        assertTrue(Date.isValidDate("1987-09-12"));
+        assertTrue(Date.isValidDate("2004-02-29")); // leap year
+        assertTrue(Date.isValidDate("2000-02-29")); // leap year
+        assertTrue(Date.isValidDate("2400-02-29")); // leap year
+
 
     }
     @Test
     public void date() {
-        assertEquals(new Date("12-11-2022").toString(), "Nov 12 2022");
-        assertEquals(new Date("29-02-2020").toString(), "Feb 29 2020");
+        assertEquals(new Date("2022-11-12").toString(), "Nov 12 2022");
+        assertEquals(new Date("2020-02-29").toString(), "Feb 29 2020");
     }
 }
