@@ -77,6 +77,9 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code MinecraftName} of the {@code Person} that we are building.
+     */
     public PersonBuilder withMinecraftName(String name) {
         this.minecraftName = new MinecraftName(name);
         return this;

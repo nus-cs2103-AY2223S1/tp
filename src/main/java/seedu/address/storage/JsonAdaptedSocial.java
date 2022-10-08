@@ -11,7 +11,7 @@ import seedu.address.model.person.Social;
 /**
  * Jackson-friendly version of {@link Social}.
  */
-class JsonAdaptedSocial{
+class JsonAdaptedSocial {
 
     private final String social;
 
