@@ -10,12 +10,13 @@ import seedu.address.model.person.InternshipHasApplicationStatusPredicate;
 public class FilterCommandParser implements Parser<FilterCommand> {
 
     public FilterCommand parse(String args) throws ParseException {
-        String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
+        String trimmedLowerCaseArgs = args.trim().toLowerCase();
+        if (trimmedLowerCaseArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
 
-        return new FilterCommand(new InternshipHasApplicationStatusPredicate(ApplicationStatus.parse(trimmedArgs)));
+        return new FilterCommand(
+                new InternshipHasApplicationStatusPredicate(ApplicationStatus.parse(trimmedLowerCaseArgs)));
     }
 }
