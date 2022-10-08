@@ -21,42 +21,42 @@ import modtrekt.model.task.Task;
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code RemoveCommand}.
  */
-public class RemoveCommandTest {
+public class RemoveTaskCommandTest {
 
     private Model model = new ModelManager(getTypicalTaskBook(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Task taskToDelete = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-        RemoveCommand removeCommand = new RemoveCommand(INDEX_FIRST_TASK);
+        RemoveTaskCommand removeTaskCommand = new RemoveTaskCommand(INDEX_FIRST_TASK);
 
-        String expectedMessage = String.format(RemoveCommand.MESSAGE_DELETE_TASK_SUCCESS, taskToDelete);
+        String expectedMessage = String.format(RemoveTaskCommand.MESSAGE_DELETE_TASK_SUCCESS, taskToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getTaskBook(), new UserPrefs());
         expectedModel.deleteTask(taskToDelete);
 
-        assertCommandSuccess(removeCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(removeTaskCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
-        RemoveCommand removeCommand = new RemoveCommand(outOfBoundIndex);
+        RemoveTaskCommand removeTaskCommand = new RemoveTaskCommand(outOfBoundIndex);
 
-        assertCommandFailure(removeCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        assertCommandFailure(removeTaskCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
 
     @Test
     public void equals() {
-        RemoveCommand deleteFirstCommand = new RemoveCommand(INDEX_FIRST_TASK);
-        RemoveCommand deleteSecondCommand = new RemoveCommand(INDEX_SECOND_TASK);
+        RemoveTaskCommand deleteFirstCommand = new RemoveTaskCommand(INDEX_FIRST_TASK);
+        RemoveTaskCommand deleteSecondCommand = new RemoveTaskCommand(INDEX_SECOND_TASK);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        RemoveCommand deleteFirstCommandCopy = new RemoveCommand(INDEX_FIRST_TASK);
+        RemoveTaskCommand deleteFirstCommandCopy = new RemoveTaskCommand(INDEX_FIRST_TASK);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false

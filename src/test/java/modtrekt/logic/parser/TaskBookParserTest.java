@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 import modtrekt.logic.commands.AddTaskCommand;
 import modtrekt.logic.commands.ExitCommand;
 import modtrekt.logic.commands.HelpCommand;
-import modtrekt.logic.commands.RemoveCommand;
+import modtrekt.logic.commands.RemoveTaskCommand;
 import modtrekt.logic.parser.exceptions.ParseException;
 import modtrekt.model.task.Task;
 import modtrekt.testutil.TaskBuilder;
@@ -31,9 +31,9 @@ public class TaskBookParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        RemoveCommand command = (RemoveCommand) parser.parseCommand(
-                RemoveCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased());
-        assertEquals(new RemoveCommand(INDEX_FIRST_TASK), command);
+        RemoveTaskCommand command = (RemoveTaskCommand) parser.parseCommand(
+                RemoveTaskCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased());
+        assertEquals(new RemoveTaskCommand(INDEX_FIRST_TASK), command);
     }
 
     @Test

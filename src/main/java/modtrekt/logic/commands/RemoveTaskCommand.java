@@ -13,7 +13,7 @@ import modtrekt.model.task.Task;
 /**
  * Deletes a person identified using it's displayed index from the address book.
  */
-public class RemoveCommand extends Command {
+public class RemoveTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "remove";
 
@@ -26,7 +26,7 @@ public class RemoveCommand extends Command {
 
     private final Index targetIndex;
 
-    public RemoveCommand(Index targetIndex) {
+    public RemoveTaskCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -47,7 +47,7 @@ public class RemoveCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof RemoveCommand // instanceof handles nulls
-                && targetIndex.equals(((RemoveCommand) other).targetIndex)); // state check
+                || (other instanceof RemoveTaskCommand // instanceof handles nulls
+                && targetIndex.equals(((RemoveTaskCommand) other).targetIndex)); // state check
     }
 }
