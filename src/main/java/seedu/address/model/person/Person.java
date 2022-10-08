@@ -41,6 +41,18 @@ public class Person {
         this.tags.addAll(tags);
     }
 
+    public Person(Name name, Phone phone, Email email, Address address,
+                  NetWorth netWorth, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, netWorth, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.remark = new Remark("");
+        this.netWorth = netWorth;
+        this.tags.addAll(tags);
+    }
+
     public Name getName() {
         return name;
     }
@@ -62,7 +74,7 @@ public class Person {
     }
 
     public NetWorth getNetWorth() {
-         return netWorth;
+        return netWorth;
     }
 
     /**
