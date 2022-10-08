@@ -21,13 +21,13 @@ public class Person {
     private final Email email;
 
     // Data fields
-    private final Scholarship_Name scholarshipName;
+    private final ScholarshipName scholarshipName;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Scholarship_Name scholarshipName, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, ScholarshipName scholarshipName, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, scholarshipName, tags);
         this.name = name;
         this.phone = phone;
@@ -48,7 +48,7 @@ public class Person {
         return email;
     }
 
-    public Scholarship_Name getScholarshipName() {
+    public ScholarshipName getScholarshipName() {
         return scholarshipName;
     }
 

@@ -10,11 +10,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Scholarship_Name;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.ScholarshipName;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -96,15 +96,16 @@ class JsonAdaptedPerson {
         final Email modelEmail = new Email(email);
 
         if (scholarshipName == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Scholarship_Name.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ScholarshipName.class.getSimpleName()));
         }
-        if (!Scholarship_Name.isValidScholarship_Name(scholarshipName)) {
-            throw new IllegalValueException(Scholarship_Name.MESSAGE_CONSTRAINTS);
+        if (!ScholarshipName.isValidScholarshipName(scholarshipName)) {
+            throw new IllegalValueException(ScholarshipName.MESSAGE_CONSTRAINTS);
         }
-        final Scholarship_Name modelScholarship_Name = new Scholarship_Name(scholarshipName);
+        final ScholarshipName modelScholarshipName = new ScholarshipName(scholarshipName);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelScholarship_Name, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelScholarshipName, modelTags);
     }
 
 }

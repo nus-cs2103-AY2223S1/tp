@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOLARSHIP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOLARSHIP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -20,10 +20,10 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Scholarship_Name;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.ScholarshipName;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -96,7 +96,8 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Scholarship_Name updatedscholarshipname = editPersonDescriptor.getScholarshipName().orElse(personToEdit.getScholarshipName());
+        ScholarshipName updatedscholarshipname = editPersonDescriptor.getScholarshipName()
+                .orElse(personToEdit.getScholarshipName());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedscholarshipname, updatedTags);
@@ -128,7 +129,7 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
-        private Scholarship_Name scholarshipname;
+        private ScholarshipName scholarshipname;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -176,11 +177,13 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setScholarshipName(Scholarship_Name scholarshipName) {
+        public void setScholarshipName(ScholarshipName scholarshipName) {
             this.scholarshipname = scholarshipName;
         }
 
-        public Optional<Scholarship_Name> getScholarshipName() { return Optional.ofNullable(scholarshipname); }
+        public Optional<ScholarshipName> getScholarshipName() {
+            return Optional.ofNullable(scholarshipname);
+        }
 
         /**
          * Sets {@code tags} to this object's {@code tags}.

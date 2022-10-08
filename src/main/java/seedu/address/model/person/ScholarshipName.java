@@ -5,9 +5,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents an Applicant's Scholarship name in TrackAScholar.
- * Guarantees: immutable; is valid as declared in {@link #isValidScholarship_Name(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidScholarshipName(String)}
  */
-public class Scholarship_Name {
+public class ScholarshipName {
 
     public static final String MESSAGE_CONSTRAINTS = "Scholarship Name can take any values, and it should not be blank";
 
@@ -24,16 +24,16 @@ public class Scholarship_Name {
      *
      * @param address A valid address.
      */
-    public Scholarship_Name(String address) {
+    public ScholarshipName(String address) {
         requireNonNull(address);
-        checkArgument(isValidScholarship_Name(address), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidScholarshipName(address), MESSAGE_CONSTRAINTS);
         value = address;
     }
 
     /**
      * Returns true if a given string is a valid email.
      */
-    public static boolean isValidScholarship_Name(String test) {
+    public static boolean isValidScholarshipName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -45,8 +45,8 @@ public class Scholarship_Name {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Scholarship_Name // instanceof handles nulls
-                && value.equals(((Scholarship_Name) other).value)); // state check
+                || (other instanceof ScholarshipName // instanceof handles nulls
+                && value.equals(((ScholarshipName) other).value)); // state check
     }
 
     @Override
