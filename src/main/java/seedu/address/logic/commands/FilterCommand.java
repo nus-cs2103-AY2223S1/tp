@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.StatusContainsKeywordPredicate;
 
 
 public class FilterCommand extends Command {
@@ -15,9 +15,9 @@ public class FilterCommand extends Command {
             + "Parameters: KEYWORD\n"
             + "Example: " + COMMAND_WORD + " pending";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final StatusContainsKeywordPredicate predicate;
 
-    public FilterCommand(NameContainsKeywordsPredicate predicate) {
+    public FilterCommand(StatusContainsKeywordPredicate predicate) {
         this.predicate = predicate;
     }
 
