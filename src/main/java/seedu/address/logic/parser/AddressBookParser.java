@@ -9,12 +9,10 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.profile.FindProfileCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.profile.ProfileCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.parser.profile.FindProfileCommandParser;
 import seedu.address.logic.parser.profile.ProfileCommandParser;
 
 /**
