@@ -1,6 +1,6 @@
 package jarvis.ui;
 
-import jarvis.model.task.Task;
+import jarvis.model.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -28,7 +28,7 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label taskDesc;
     @FXML
-    private Label deadline;
+    private Label taskDeadline;
     @FXML
     private Label id;
 
@@ -40,7 +40,7 @@ public class TaskCard extends UiPart<Region> {
         this.task = task;
         id.setText(displayedIndex + ". ");
         taskDesc.setText(task.getDesc().taskDesc);
-        deadline.setText(task.getDeadline().deadline);
+        taskDeadline.setText(task.getDeadline().toString());
     }
 
     @Override

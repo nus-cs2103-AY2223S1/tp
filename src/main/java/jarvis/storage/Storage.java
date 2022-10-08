@@ -9,8 +9,6 @@ import jarvis.model.ReadOnlyStudentBook;
 import jarvis.model.ReadOnlyTaskBook;
 import jarvis.model.ReadOnlyUserPrefs;
 import jarvis.model.UserPrefs;
-import jarvis.storage.student.StudentBookStorage;
-import jarvis.storage.task.TaskBookStorage;
 
 /**
  * API of the Storage component

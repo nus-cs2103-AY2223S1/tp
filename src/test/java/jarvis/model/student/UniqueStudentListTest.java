@@ -13,8 +13,10 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import jarvis.model.student.exceptions.DuplicateStudentException;
-import jarvis.model.student.exceptions.StudentNotFoundException;
+import jarvis.model.Student;
+import jarvis.model.UniqueStudentList;
+import jarvis.model.exceptions.DuplicateStudentException;
+import jarvis.model.exceptions.StudentNotFoundException;
 import jarvis.testutil.StudentBuilder;
 
 public class UniqueStudentListTest {

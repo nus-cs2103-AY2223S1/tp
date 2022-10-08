@@ -9,8 +9,6 @@ import java.util.logging.Logger;
 
 import jarvis.commons.core.GuiSettings;
 import jarvis.commons.core.LogsCenter;
-import jarvis.model.student.Student;
-import jarvis.model.task.Task;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 
@@ -181,7 +179,7 @@ public class ModelManager implements Model {
     //=========== Filtered Person List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Student} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override

@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 
 import jarvis.commons.core.index.Index;
 import jarvis.model.Model;
-import jarvis.model.student.Student;
+import jarvis.model.Student;
 
 /**
  * A utility class for test cases.

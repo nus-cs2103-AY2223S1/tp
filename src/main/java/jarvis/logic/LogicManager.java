@@ -14,8 +14,8 @@ import jarvis.logic.parser.exceptions.ParseException;
 import jarvis.model.Model;
 import jarvis.model.ReadOnlyStudentBook;
 import jarvis.model.ReadOnlyTaskBook;
-import jarvis.model.student.Student;
-import jarvis.model.task.Task;
+import jarvis.model.Student;
+import jarvis.model.Task;
 import jarvis.storage.Storage;
 import javafx.collections.ObservableList;
 

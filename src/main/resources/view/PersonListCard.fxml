@@ -23,7 +23,7 @@
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="name" text="\$name" styleClass="cell_big_label" />
+        <Label fx:id="studentName" text="\$studentName" styleClass="cell_big_label" />
       </HBox>
     </VBox>
   </GridPane>

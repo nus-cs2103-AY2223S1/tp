@@ -2,12 +2,15 @@ package jarvis.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
 import jarvis.commons.core.index.Index;
 import jarvis.commons.util.StringUtil;
 import jarvis.logic.parser.exceptions.ParseException;
-import jarvis.model.student.Name;
-import jarvis.model.task.Deadline;
-import jarvis.model.task.TaskDesc;
+import jarvis.model.StudentName;
+import jarvis.model.TaskDeadline;
+import jarvis.model.TaskDesc;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -35,13 +38,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static Name parseName(String name) throws ParseException {
+    public static StudentName parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        if (!StudentName.isValidName(trimmedName)) {
+            throw new ParseException(StudentName.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        return new StudentName(trimmedName);
     }
 
     /**
@@ -62,9 +65,16 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static Deadline parseDeadline(String deadline) throws ParseException {
+    public static TaskDeadline parseDeadline(String deadline) throws ParseException {
         requireNonNull(deadline);
-        String trimmedDeadline = deadline.trim();
-        return new Deadline(trimmedDeadline);
+        if (deadline.isEmpty()) {
+            return new TaskDeadline(null);
+        }
+        try {
+            LocalDate trimmedDeadline = LocalDate.parse(deadline.trim());
+            return new TaskDeadline(trimmedDeadline);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(TaskDeadline.MESSAGE_CONSTRAINTS);
+        }
     }
 }

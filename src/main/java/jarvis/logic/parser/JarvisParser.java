@@ -6,24 +6,18 @@ import static jarvis.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import jarvis.logic.commands.AddStudentCommand;
+import jarvis.logic.commands.AddTaskCommand;
 import jarvis.logic.commands.ClearCommand;
 import jarvis.logic.commands.Command;
+import jarvis.logic.commands.DeleteStudentCommand;
+import jarvis.logic.commands.DeleteTaskCommand;
+import jarvis.logic.commands.EditStudentCommand;
 import jarvis.logic.commands.ExitCommand;
+import jarvis.logic.commands.FindStudentCommand;
 import jarvis.logic.commands.HelpCommand;
-import jarvis.logic.commands.student.AddCommand;
-import jarvis.logic.commands.student.DeleteCommand;
-import jarvis.logic.commands.student.EditCommand;
-import jarvis.logic.commands.student.FindCommand;
-import jarvis.logic.commands.student.ListCommand;
-import jarvis.logic.commands.task.AddTaskCommand;
-import jarvis.logic.commands.task.DeleteTaskCommand;
+import jarvis.logic.commands.ListStudentCommand;
 import jarvis.logic.parser.exceptions.ParseException;
-import jarvis.logic.parser.student.AddCommandParser;
-import jarvis.logic.parser.student.DeleteCommandParser;
-import jarvis.logic.parser.student.EditCommandParser;
-import jarvis.logic.parser.student.FindCommandParser;
-import jarvis.logic.parser.task.AddTaskCommandParser;
-import jarvis.logic.parser.task.DeleteTaskCommandParser;
 
 /**
  * Parses user input.
@@ -52,17 +46,17 @@ public class JarvisParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+        case AddStudentCommand.COMMAND_WORD:
+            return new AddStudentCommandParser().parse(arguments);
 
         case AddTaskCommand.COMMAND_WORD:
             return new AddTaskCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+        case EditStudentCommand.COMMAND_WORD:
+            return new EditStudentCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+        case DeleteStudentCommand.COMMAND_WORD:
+            return new DeleteStudentCommandParser().parse(arguments);
 
         case DeleteTaskCommand.COMMAND_WORD:
             return new DeleteTaskCommandParser().parse(arguments);
@@ -70,11 +64,11 @@ public class JarvisParser {
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+        case FindStudentCommand.COMMAND_WORD:
+            return new FindStudentCommandParser().parse(arguments);
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+        case ListStudentCommand.COMMAND_WORD:
+            return new ListStudentCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

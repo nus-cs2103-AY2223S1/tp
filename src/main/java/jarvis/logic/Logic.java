@@ -8,8 +8,8 @@ import jarvis.logic.commands.exceptions.CommandException;
 import jarvis.logic.parser.exceptions.ParseException;
 import jarvis.model.ReadOnlyStudentBook;
 import jarvis.model.ReadOnlyTaskBook;
-import jarvis.model.student.Student;
-import jarvis.model.task.Task;
+import jarvis.model.Student;
+import jarvis.model.Task;
 import javafx.collections.ObservableList;
 
 /**

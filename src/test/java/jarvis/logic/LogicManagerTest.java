@@ -14,20 +14,20 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import jarvis.logic.commands.AddStudentCommand;
 import jarvis.logic.commands.CommandResult;
+import jarvis.logic.commands.ListStudentCommand;
 import jarvis.logic.commands.exceptions.CommandException;
-import jarvis.logic.commands.student.AddCommand;
-import jarvis.logic.commands.student.ListCommand;
 import jarvis.logic.parser.exceptions.ParseException;
 import jarvis.model.Model;
 import jarvis.model.ModelManager;
 import jarvis.model.ReadOnlyStudentBook;
+import jarvis.model.Student;
 import jarvis.model.UserPrefs;
-import jarvis.model.student.Student;
+import jarvis.storage.JsonStudentBookStorage;
+import jarvis.storage.JsonTaskBookStorage;
 import jarvis.storage.JsonUserPrefsStorage;
 import jarvis.storage.StorageManager;
-import jarvis.storage.student.JsonStudentBookStorage;
-import jarvis.storage.task.JsonTaskBookStorage;
 import jarvis.testutil.StudentBuilder;
 
 public class LogicManagerTest {
@@ -64,8 +64,8 @@ public class LogicManagerTest {
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        String listCommand = ListStudentCommand.COMMAND_WORD;
+        assertCommandSuccess(listCommand, ListStudentCommand.MESSAGE_SUCCESS, model);
     }
 
     @Test
@@ -81,7 +81,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY;
+        String addCommand = AddStudentCommand.COMMAND_WORD + NAME_DESC_AMY;
         Student expectedStudent = new StudentBuilder(AMY).build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addStudent(expectedStudent);
