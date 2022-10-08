@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.ModelManager;
 import seedu.rc4hdb.model.UserPrefs;
-import seedu.rc4hdb.model.person.NameContainsKeywordsPredicate;
+import seedu.rc4hdb.model.person.predicates.NameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.

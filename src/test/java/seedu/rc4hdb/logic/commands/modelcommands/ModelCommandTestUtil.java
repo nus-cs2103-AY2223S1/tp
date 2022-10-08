@@ -19,8 +19,8 @@ import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.logic.commands.modelcommands.EditCommand.EditPersonDescriptor;
 import seedu.rc4hdb.model.AddressBook;
 import seedu.rc4hdb.model.Model;
-import seedu.rc4hdb.model.person.NameContainsKeywordsPredicate;
 import seedu.rc4hdb.model.person.Person;
+import seedu.rc4hdb.model.person.predicates.NameContainsKeywordsPredicate;
 import seedu.rc4hdb.testutil.EditPersonDescriptorBuilder;
 
 /**
