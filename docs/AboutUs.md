@@ -13,6 +13,7 @@ You can reach us at the email `zbz.lvlv@gmail.com`
 <img src="images/zbz-lvlv.png" width="200px">
 
 [[github](https://github.com/zbz-lvlv)]
+
 [[portfolio](team/zbz-lvlv.md)]
 
 * Role: Team Lead
@@ -23,6 +24,7 @@ You can reach us at the email `zbz.lvlv@gmail.com`
 <img src="images/onepersonhere.png" width="200px">
 
 [[github](http://github.com/onepersonhere)]
+
 [[portfolio](team/onepersonhere.md)]
 
 * Role: Developer
@@ -32,7 +34,9 @@ You can reach us at the email `zbz.lvlv@gmail.com`
 
 <img src="images/chustinjeng.png" width="200px">
 
-[[github](http://github.com/Chustinjeng)] [[portfolio](team/Chustinjeng.md)]
+[[github](http://github.com/Chustinjeng)]
+
+[[portfolio](team/Chustinjeng.md)]
 
 * Role: Developer
 * Responsibilities: Data
@@ -42,6 +46,7 @@ You can reach us at the email `zbz.lvlv@gmail.com`
 <img src="images/shawnkai.png" width="200px">
 
 [[github](http://github.com/shawnkai)]
+
 [[portfolio](team/shawnkai.md)]
 
 * Role: Developer
@@ -52,6 +57,7 @@ You can reach us at the email `zbz.lvlv@gmail.com`
 <img src="images/sherylkong18.png" width="200px">
 
 [[github](http://github.com/sherylkong18)]
+
 [[portfolio](team/sherylkong18.md)]
 
 * Role: Developer
