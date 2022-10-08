@@ -1,7 +1,5 @@
 package seedu.address.model.person;
 
-import seedu.address.logic.commands.HomeworkCommand;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 

@@ -26,7 +26,7 @@ public class AttendanceCommand extends Command {
             + "a/ 2022-08-08.";
 
     public static final String MESSAGE_ADD_ATTENDANCE_SUCCESS = "Added attendance to Person: %1$s";
-    public static final String MESSAGE_DELETE_HOMEWORK_SUCCESS = "Removed homework from Person: %1$s";
+    public static final String MESSAGE_DELETE_ATTENDANCE_SUCCESS = "Removed attendance from Person: %1$s";
 
     private final Index index;
     private final Attendance attendance;
@@ -57,7 +57,7 @@ public class AttendanceCommand extends Command {
     }
 
     private String generateSuccessMessage(Person personToEdit) {
-        String message = !attendance.toString().isEmpty() ? MESSAGE_ADD_ATTENDANCE_SUCCESS : MESSAGE_DELETE_HOMEWORK_SUCCESS;
+        String message = !attendance.toString().isEmpty() ? MESSAGE_ADD_ATTENDANCE_SUCCESS : MESSAGE_DELETE_ATTENDANCE_SUCCESS;
         return String.format(message, personToEdit);
     }
 
