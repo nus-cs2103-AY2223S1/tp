@@ -22,17 +22,20 @@ public class Person {
 
     // Data fields
     private final ScholarshipName scholarshipName;
+    private final ApplicationStatus applicationStatus;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, ScholarshipName scholarshipName, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, scholarshipName, tags);
+    public Person(Name name, Phone phone, Email email, ScholarshipName scholarshipName,
+                  ApplicationStatus applicationStatus, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, scholarshipName, applicationStatus, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.scholarshipName = scholarshipName;
+        this.applicationStatus = applicationStatus;
         this.tags.addAll(tags);
     }
 
@@ -50,6 +53,10 @@ public class Person {
 
     public ScholarshipName getScholarshipName() {
         return scholarshipName;
+    }
+
+    public ApplicationStatus getApplicationStatus() {
+        return applicationStatus;
     }
 
     /**
@@ -92,6 +99,7 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getScholarshipName().equals(getScholarshipName())
+                && otherPerson.getApplicationStatus().equals(getApplicationStatus())
                 && otherPerson.getTags().equals(getTags());
     }
 
@@ -109,8 +117,10 @@ public class Person {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
-                .append("; Address: ")
-                .append(getScholarshipName());
+                .append("; Scholarship: ")
+                .append(getScholarshipName())
+                .append("; Application Status: ")
+                .append(getApplicationStatus());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

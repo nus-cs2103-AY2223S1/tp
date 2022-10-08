@@ -24,6 +24,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.ScholarshipName;
+import seedu.address.model.person.ApplicationStatus;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -98,9 +99,12 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         ScholarshipName updatedscholarshipname = editPersonDescriptor.getScholarshipName()
                 .orElse(personToEdit.getScholarshipName());
+        ApplicationStatus updatedApplicationStatus = editPersonDescriptor.getApplicationStatus()
+                .orElse(personToEdit.getApplicationStatus());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedscholarshipname, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedscholarshipname,
+                updatedApplicationStatus, updatedTags);
     }
 
     @Override
@@ -130,6 +134,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private ScholarshipName scholarshipname;
+        private ApplicationStatus applicationStatus;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -143,6 +148,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setScholarshipName(toCopy.scholarshipname);
+            setApplicationStatus(toCopy.applicationStatus);
             setTags(toCopy.tags);
         }
 
@@ -185,6 +191,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(scholarshipname);
         }
 
+        public void setApplicationStatus(ApplicationStatus applicationStatus) {
+            this.applicationStatus = applicationStatus;
+        }
+
+        public Optional<ApplicationStatus> getApplicationStatus() {
+            return Optional.ofNullable(applicationStatus);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -221,6 +235,7 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getScholarshipName().equals(e.getScholarshipName())
+                    && getApplicationStatus().equals(e.getApplicationStatus())
                     && getTags().equals(e.getTags());
         }
     }
