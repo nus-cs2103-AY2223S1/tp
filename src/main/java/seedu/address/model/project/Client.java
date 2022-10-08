@@ -1,4 +1,4 @@
-package seedu.address.model.person.client;
+package seedu.address.model.project;
 
 
 import java.util.HashSet;
