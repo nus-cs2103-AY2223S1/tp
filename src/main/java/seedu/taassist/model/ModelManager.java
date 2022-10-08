@@ -154,7 +154,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean areAllExistingModuleClasses(Collection<ModuleClass> moduleClasses) {
+    public boolean hasModuleClasses(Collection<ModuleClass> moduleClasses) {
         return moduleClasses.stream().allMatch(this::hasModuleClass);
     }
 

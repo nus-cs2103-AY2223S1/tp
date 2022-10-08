@@ -175,7 +175,7 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        public boolean areAllExistingModuleClasses(Collection<ModuleClass> moduleClasses) {
+        public boolean hasModuleClasses(Collection<ModuleClass> moduleClasses) {
             throw new AssertionError("This method should not be called.");
         }
 

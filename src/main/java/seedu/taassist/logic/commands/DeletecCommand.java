@@ -36,7 +36,7 @@ public class DeletecCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (!model.areAllExistingModuleClasses(moduleClasses)) {
+        if (!model.hasModuleClasses(moduleClasses)) {
             throw new CommandException(String.format(MESSAGE_MODULE_CLASS_DOES_NOT_EXIST,
                     model.getModuleClassList()));
         }

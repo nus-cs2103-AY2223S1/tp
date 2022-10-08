@@ -116,7 +116,7 @@ public interface Model {
     ObservableList<ModuleClass> getModuleClassList();
 
     /** Checks if all {@code moduleClass} in {@code moduleClasses} exists */
-    boolean areAllExistingModuleClasses(Collection<ModuleClass> moduleClasses);
+    boolean hasModuleClasses(Collection<ModuleClass> moduleClasses);
 
     /** Enters focus mode. */
     void enterFocusMode(ModuleClass classToFocus);
