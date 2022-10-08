@@ -78,23 +78,10 @@ public class CreateCommand extends Command {
             throw new CommandException(String.format(MESSAGE_DUPLICATE_POC, poc.getName()));
         }
 
-        Company editedCompany = createEditedCompany(companyToEdit, poc);
-        model.setCompany(companyToEdit, editedCompany);
+        companyToEdit.addPoc(poc);
         model.updateFilteredCompanyList(PREDICATE_SHOW_ALL_COMPANIES);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, poc.getName(), editedCompany));
-    }
-
-    /**
-     * Creates and returns a {@code Company} with the details of {@code companyToEdit}
-     * edited with {@code addPocCompanyDescriptor}.
-     */
-    private static Company createEditedCompany(Company companyToEdit, Poc poc) {
-        assert companyToEdit != null;
-        companyToEdit.addPoc(poc);
-
-        return companyToEdit;
-
+        return new CommandResult(String.format(MESSAGE_SUCCESS, poc.getName(), companyToEdit));
     }
 
     @Override
