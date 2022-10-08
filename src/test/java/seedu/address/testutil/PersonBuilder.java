@@ -71,6 +71,11 @@ public class PersonBuilder {
         return this;
     }
 
+    public PersonBuilder withMinecraftName(String name) {
+        this.minecraftName = new MinecraftName(name);
+        return this;
+    }
+
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
