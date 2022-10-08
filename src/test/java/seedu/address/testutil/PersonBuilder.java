@@ -75,8 +75,8 @@ public class PersonBuilder {
     /**
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
-    public PersonBuilder withScholarship(String address) {
-        this.scholarship = new Scholarship(address);
+    public PersonBuilder withScholarship(String scholarship) {
+        this.scholarship = new Scholarship(scholarship);
         return this;
     }
 
