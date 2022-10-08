@@ -1,13 +1,13 @@
 {
   "customers" : [ {
-    "name" : "test",
-    "phone" : "123",
-    "email" : "test@gmail.com",
+    "name" : "Trixx",
+    "phone" : "12345678",
+    "email" : "Trixx@gmail.com",
     "address" : "",
     "tagged" : [ ],
     "commissions" : [ {
-      "title" : "test 2",
-      "description" : "desc",
+      "title" : "Trixx Sunshine",
+      "description" : "Paint forest with blinding sunlight",
       "fee" : 0.5,
       "deadline" : "2022-04-04",
       "tagged" : [ "test2", "test" ],
@@ -18,10 +18,16 @@
       "fee" : 100.0,
       "deadline" : "2022-10-10",
       "tagged" : [ "inking" ],
+    }, {
+      "title" : "Trixx Trixx",
+      "description" : "Paint Trixx portrait",
+      "fee" : 0.5,
+      "deadline" : "2022-04-04",
+      "tagged" : [ "test2", "test" ],
       "isCompleted" : true
     }, {
-      "title" : "test 3",
-      "description" : "desc",
+      "title" : "Trixx Moonshine",
+      "description" : "Paint the alcoholic drink",
       "fee" : 0.5,
       "deadline" : "2022-04-04",
       "tagged" : [ "test2", "test" ],
@@ -42,7 +48,7 @@
       "isCompleted" : false
     } ]
   }, {
-    "name" : "test2",
+    "name" : "Meg",
     "phone" : "123",
     "email" : "test@gmail.com",
     "address" : "",
@@ -76,15 +82,15 @@
       "tagged" : [ ],
       "isCompleted" : false
     }, {
-      "title" : "test 6",
-      "description" : "desc",
+      "title" : "Meg Shark",
+      "description" : "Shark swallowing a boat",
       "fee" : 0.5,
       "deadline" : "2022-04-04",
       "tagged" : [ "test2", "test" ],
       "isCompleted" : true
     }, {
-      "title" : "test 5",
-      "description" : "desc",
+      "title" : "Meg Casino",
+      "description" : "Painting of high end casino",
       "fee" : 0.5,
       "deadline" : "2022-04-04",
       "tagged" : [ "test2", "test" ],
