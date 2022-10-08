@@ -21,6 +21,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.task.Task;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
@@ -103,6 +104,11 @@ public class AddressBookTest {
         @Override
         public ObservableList<Module> getModuleList() {
             return modules;
+        }
+
+        @Override
+        public ObservableList<Task> getTaskList() {
+            return null;
         }
     }
 
