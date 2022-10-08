@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.team.Team;
+import seedu.address.model.team.UniqueTeamList;
 
 /**
  * Wraps all data at the address-book level
@@ -17,7 +18,8 @@ import seedu.address.model.team.Team;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-    private Team team;
+    private final UniqueTeamList teams;
+    private Team currentTeam;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -28,7 +30,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
-        team = new Team("default", new ArrayList<>());
+        currentTeam = new Team("default", new ArrayList<>());
+        teams = new UniqueTeamList();
+        teams.add(currentTeam);
     }
 
     public AddressBook() {}
@@ -101,11 +105,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// team-level operations
 
     public Team getTeam() {
-        return team;
+        return currentTeam;
     }
 
     public void setTeam(Team team) {
-        this.team = team;
+        this.currentTeam = team;
     }
 
     //// util methods
