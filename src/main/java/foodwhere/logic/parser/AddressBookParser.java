@@ -6,7 +6,14 @@ import static foodwhere.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import foodwhere.logic.commands.*;
+import foodwhere.logic.commands.Command;
+import foodwhere.logic.commands.ClearCommand;
+import foodwhere.logic.commands.DeleteCommand;
+import foodwhere.logic.commands.EditCommand;
+import foodwhere.logic.commands.ExitCommand;
+import foodwhere.logic.commands.FindCommand;
+import foodwhere.logic.commands.HelpCommand;
+import foodwhere.logic.commands.ListCommand;
 import foodwhere.logic.commands.SAddCommand;
 import foodwhere.logic.parser.exceptions.ParseException;
 
