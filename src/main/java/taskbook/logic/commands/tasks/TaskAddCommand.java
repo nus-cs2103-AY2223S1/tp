@@ -1,6 +1,7 @@
 package taskbook.logic.commands.tasks;
 
 import static java.util.Objects.requireNonNull;
+import static taskbook.commons.util.CollectionUtil.requireAllNonNull;
 import static taskbook.logic.parser.CliSyntax.PREFIX_ASSIGN_FROM;
 import static taskbook.logic.parser.CliSyntax.PREFIX_ASSIGN_TO;
 import static taskbook.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
@@ -46,6 +47,8 @@ public class TaskAddCommand extends Command {
      * @param assignment Represents task assigned to user or others.
      */
     public TaskAddCommand(Name name, Description description, Assignment assignment) {
+        requireAllNonNull(name, description, assignment);
+
         this.name = name;
         this.description = description;
         this.assignment = assignment;
@@ -61,8 +64,25 @@ public class TaskAddCommand extends Command {
             throw new CommandException(MESSAGE_PERSON_NOT_FOUND);
         }
 
-        Task newTask = new Task(personToAddTask, this.assignment, this.description, this.isDone);
+        Task newTask = new Task(personToAddTask, assignment, description, isDone);
         model.addTask(newTask);
         return new CommandResult(String.format(MESSAGE_SUCCESS, newTask));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (other instanceof TaskAddCommand) {
+            TaskAddCommand otherCommand = (TaskAddCommand) other;
+            return otherCommand.name.equals(name)
+                    && otherCommand.description.equals(description)
+                    && otherCommand.assignment.equals(assignment)
+                    && otherCommand.isDone == isDone;
+        }
+
+        return false;
     }
 }

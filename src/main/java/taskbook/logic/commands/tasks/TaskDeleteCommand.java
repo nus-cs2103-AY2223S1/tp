@@ -29,15 +29,15 @@ public class TaskDeleteCommand extends Command {
             + COMMAND_WORD + " " + CliSyntax.PREFIX_INDEX + "1";
     public static final String MESSAGE_DELETE_TASK_SUCCESS = "Task deleted: %1$s";
 
-    private final Index index;
+    private final Index targetIndex;
 
     /**
      * Creates a TaskDeleteCommand to delete a task with the specified {@code Index index}
      *
-     * @param index Index of the Task in the task book.
+     * @param targetIndex Index of the Task in the task book.
      */
-    public TaskDeleteCommand(Index index) {
-        this.index = index;
+    public TaskDeleteCommand(Index targetIndex) {
+        this.targetIndex = targetIndex;
     }
 
     @Override
@@ -45,11 +45,11 @@ public class TaskDeleteCommand extends Command {
         requireNonNull(model);
         List<Task> lastShownList = model.getFilteredTaskList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        Task taskToDelete = lastShownList.get(index.getZeroBased());
+        Task taskToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteTask(taskToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
     }
@@ -58,6 +58,6 @@ public class TaskDeleteCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TaskDeleteCommand // instanceof handles nulls
-                && this.index.equals(((TaskDeleteCommand) other).index)); // state check
+                && targetIndex.equals(((TaskDeleteCommand) other).targetIndex)); // state check
     }
 }
