@@ -1,6 +1,7 @@
 package seedu.address.model.task;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 
@@ -38,5 +39,33 @@ public class TaskList implements Iterable<Task> {
     @Override
     public Iterator<Task> iterator() {
         return internalList.iterator();
+    }
+
+    /**
+     * Replaces the person {@code target} in the list with {@code editedTask}.
+     * {@code target} must exist in the list.
+     * The person identity of {@code editedTask} must not be the same as another existing person in the list.
+     */
+    public void setTask(Task target, Task editedTask) {
+        requireAllNonNull(target, editedTask);
+
+        int index = internalList.indexOf(target);
+//        if (index == -1) {
+//            throw new TaskNotFoundException();
+//        }
+//
+//        if (!target.isSameTask(editedTask) && contains(editedTask)) {
+//            throw new DuplicateTaskException();
+//        }
+
+        internalList.set(index, editedTask);
+    }
+
+    /**
+     * Returns true if the list contains an equivalent person as the given argument.
+     */
+    public boolean contains(Task toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::isSameTask);
     }
 }
