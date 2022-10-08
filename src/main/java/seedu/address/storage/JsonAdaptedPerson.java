@@ -18,6 +18,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.University;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -32,6 +33,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final String cap;
+    private final String university;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -41,12 +43,14 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("cap") String cap,
+            @JsonProperty("university") String university,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.cap = cap;
+        this.university = university;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -61,6 +65,7 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         cap = source.getCap().toString();
+        university = source.getUniversity().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -115,8 +120,18 @@ class JsonAdaptedPerson {
         // the isValidCap is already handled inside the parseCap() method
         final Cap modelCap = parseCap(cap);
 
+        if (university == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, University.class.getSimpleName()));
+        }
+        if (!University.isValidUniversity(university)) {
+            throw new IllegalValueException(University.MESSAGE_CONSTRAINTS);
+        }
+        final University modelUniversity = new University(university);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelCap, modelTags);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelCap, modelUniversity, modelTags);
     }
 
 }

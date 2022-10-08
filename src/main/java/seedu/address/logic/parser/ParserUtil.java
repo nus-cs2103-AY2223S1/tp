@@ -15,6 +15,7 @@ import seedu.address.model.person.Cap;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.University;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -113,6 +114,21 @@ public class ParserUtil {
             throw new ParseException(Cap.MESSAGE_CONSTRAINTS);
         }
         return new Cap(capValue, maximumCapValue);
+    }
+
+    /**
+     * Parses a {@code String university} into an {@code University}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code university} is invalid.
+     */
+    public static University parseUniversity(String university) throws ParseException {
+        requireNonNull(university);
+        String trimmedUniversity = university.trim();
+        if (!University.isValidUniversity(trimmedUniversity)) {
+            throw new ParseException(University.MESSAGE_CONSTRAINTS);
+        }
+        return new University(trimmedUniversity);
     }
 
     /**
