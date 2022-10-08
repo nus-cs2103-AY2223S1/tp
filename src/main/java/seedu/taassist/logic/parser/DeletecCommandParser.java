@@ -23,7 +23,7 @@ public class DeletecCommandParser implements Parser<DeletecCommand> {
     public DeletecCommand parse(String args) throws ParseException {
         try {
             ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MODULE_CLASS);
-            if (!argMultimap.containsPrefix(PREFIX_MODULE_CLASS)) {
+            if (!argMultimap.containsPrefixes(PREFIX_MODULE_CLASS)) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeletecCommand.MESSAGE_USAGE));
             }
 

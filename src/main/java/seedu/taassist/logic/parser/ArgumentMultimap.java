@@ -1,12 +1,15 @@
 package seedu.taassist.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 /**
  * Stores mapping of prefixes to their respective arguments.
@@ -61,10 +64,11 @@ public class ArgumentMultimap {
     }
 
     /**
-     * Returns true if the {@code prefix} is present and does not contain empty {@code Optional} values.
+     * Returns true if all the {@code prefix} in {@code prefixes} are present and do not contain empty {@code Optional}
+     * values.
      */
-    public boolean containsPrefix(Prefix prefix) {
-        requireNonNull(prefix);
-        return getValue(prefix).isPresent();
+    public boolean containsPrefixes(Prefix... prefixes) {
+        requireNonNull(prefixes);
+        return Stream.of(prefixes).allMatch(prefix -> getValue(prefix).isPresent());
     }
 }

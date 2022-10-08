@@ -22,7 +22,7 @@ public class UnassignCommandParser implements Parser<UnassignCommand> {
      */
     public UnassignCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MODULE_CLASS);
-        if (!argMultimap.containsPrefix(PREFIX_MODULE_CLASS) || argMultimap.getPreamble().isEmpty()) {
+        if (!argMultimap.containsPrefixes(PREFIX_MODULE_CLASS) || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnassignCommand.MESSAGE_USAGE));
         }
 
