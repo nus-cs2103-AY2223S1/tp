@@ -32,8 +32,8 @@ public class ClearDebtsCommandTest {
         assertTrue(clearDebtsFirstCommand.equals(clearDebtsFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_PERSON);
-        assertTrue(clearDebtsFirstCommand.equals(deleteFirstCommandCopy));
+        ClearDebtsCommand clearDebtsFirstCommandCopy = new ClearDebtsCommand(INDEX_FIRST_PERSON);
+        assertTrue(clearDebtsFirstCommand.equals(clearDebtsFirstCommandCopy));
 
         // different types -> returns false
         assertFalse(clearDebtsFirstCommand.equals(1));
