@@ -22,7 +22,6 @@ public class Price {
      */
     public Price(String price) {
         requireNonNull(price);
-        System.out.println(isValidPrice(price));
         checkArgument(isValidPrice(price), MESSAGE_CONSTRAINTS);
         value = price;
     }
