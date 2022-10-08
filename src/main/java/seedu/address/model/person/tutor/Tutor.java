@@ -12,6 +12,9 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
+/**
+ * Represents a Tutor in the address book.
+ */
 public class Tutor extends Person {
 
     private final Qualification qualification;

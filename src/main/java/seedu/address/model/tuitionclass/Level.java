@@ -1,6 +1,6 @@
-package seedu.address.model.person.student;
+package seedu.address.model.tuitionclass;
 
-import seedu.address.model.person.student.exceptions.InvalidLevelException;
+import seedu.address.model.tuitionclass.exceptions.InvalidLevelException;
 
 public enum Level {
     PRIMARY1, PRIMARY2, PRIMARY3, PRIMARY4, PRIMARY5, PRIMARY6, SECONDARY1, SECONDARY2, SECONDARY3, SECONDARY4;

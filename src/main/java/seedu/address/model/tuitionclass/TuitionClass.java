@@ -9,18 +9,23 @@ import java.util.Set;
 
 import seedu.address.model.tag.Tag;
 
+/**
+ * Represents a TuitionClass in the address book.
+ */
 public class TuitionClass {
 
     private final Name name;
     private final Subject subject;
+    private final Level level;
     private final Day day;
     private final Time time;
     private final Set<Tag> tags = new HashSet<>();
 
-    public TuitionClass(Name name, Subject subject, Day day, Time time, Set<Tag> tags) {
+    public TuitionClass(Name name, Subject subject, Level level, Day day, Time time, Set<Tag> tags) {
         requireAllNonNull(name, subject, day, time, tags);
         this.name = name;
         this.subject = subject;
+        this.level = level;
         this.day = day;
         this.time = time;
         this.tags.addAll(tags);
@@ -32,6 +37,10 @@ public class TuitionClass {
 
     public Subject getSubject() {
         return subject;
+    }
+
+    public Level getLevel() {
+        return level;
     }
 
     public Day getDay() {
@@ -80,6 +89,7 @@ public class TuitionClass {
         TuitionClass otherClass = (TuitionClass) other;
         return otherClass.getName().equals(getName())
                 && otherClass.getSubject().equals(getSubject())
+                && otherClass.getLevel().equals(getLevel())
                 && otherClass.getDay().equals(getDay())
                 && otherClass.getTime().equals(getTime())
                 && otherClass.getTags().equals(getTags());
@@ -88,7 +98,7 @@ public class TuitionClass {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, subject, day, time);
+        return Objects.hash(name, subject, level, day, time);
     }
 
     @Override
@@ -97,6 +107,8 @@ public class TuitionClass {
         builder.append(getName())
                 .append("; Subject: ")
                 .append(getSubject())
+                .append("; Level: ")
+                .append(getLevel())
                 .append("; Day: ")
                 .append(getDay())
                 .append("; Time: ")

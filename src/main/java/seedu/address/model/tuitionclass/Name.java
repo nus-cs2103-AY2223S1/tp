@@ -3,6 +3,9 @@ package seedu.address.model.tuitionclass;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents the name of the tuition class.
+ */
 public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
