@@ -97,9 +97,11 @@ public class MyInsuRec implements ReadOnlyMyInsuRec {
         clients.remove(key);
     }
 
+    //// client-level operations
+
     /**
-     * Adds a client to the client book.
-     * The client must not already exist in the client book.
+     * Adds a meeting to the meeting list.
+     * There must not be any timing conflicts with any other meeting on the list.
      */
     public void addMeeting(Meeting meeting) {
         meetings.add(meeting);
@@ -116,6 +118,11 @@ public class MyInsuRec implements ReadOnlyMyInsuRec {
     @Override
     public ObservableList<Client> getClientList() {
         return clients.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Meeting> getMeetingList() {
+        return meetings.asUnmodifiableObservableList();
     }
 
     @Override

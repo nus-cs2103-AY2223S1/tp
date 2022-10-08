@@ -15,6 +15,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListMeetingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -67,6 +68,9 @@ public class MyInsuRecParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case ListMeetingCommand.COMMAND_WORD:
+            return new ListMeetingCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
