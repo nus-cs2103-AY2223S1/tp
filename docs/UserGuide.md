@@ -178,15 +178,15 @@ Exits the program.
 Format: `exit`
 
 ## Command summary
-| Action          | Format, Examples |
-|-----------------|------------------ |
+| Action          | Format, Examples                                                                                                                                                                                                          |
+|-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add An Order** | `addo i/ITEM_NAME q/ORDER_QUANTITY cn/CUSTOMER_NAME ca/CUSTOMER_ADDRESS ce/CUSTOMER_EMAIL cc/CUSTOMER_CONTACT` <br> e.g., `addo i/Fountain Pen q/3 cn/John Doe ca/48 Westwood Terrace ce/johndoe@example.com cc/91234567` |
-| **Delete An Order** | `deleteo INDEX` <br> e.g., `delete 2` |
-| **List All Orders** | `listo` |
-| **Find Order(s)**  | `findo KEYWORD [MORE_KEYWORDS]` |
-| **Add An Inventory Item** | `addi n/NAME [t/TAG]…​` <br> e.g., `addi n/Chair t/Furniture` |
-| **Delete An Inventory Item** | `deletei INDEX`<br> e.g., `deletei 3` |
-| **Tag An Inventory Item** | `tagi INDEX [t/TAG]…​` <br> e.g, `tagi 1 t/Perishable t/Premium` |
-| **List All Inventory Items** | `listi` |
-| **Find Inventory Item(s)** | `findi KEYWORD [MORE_KEYWORDS]` <br/> e.g., `find blue shirt` |
-| **Exit** | `exit`|
+| **Delete An Order** | `deleteo INDEX` <br> e.g., `deleteo 2`                                                                                                                                                                                    |
+| **List All Orders** | `listo`                                                                                                                                                                                                                   |
+| **Find Order(s)**  | `findo KEYWORD [MORE_KEYWORDS]`                                                                                                                                                                                           |
+| **Add An Inventory Item** | `addi n/NAME [t/TAG]…​` <br> e.g., `addi n/Chair t/Furniture`                                                                                                                                                             |
+| **Delete An Inventory Item** | `deletei INDEX`<br> e.g., `deletei 3`                                                                                                                                                                                     |
+| **Tag An Inventory Item** | `tagi INDEX [t/TAG]…​` <br> e.g, `tagi 1 t/Perishable t/Premium`                                                                                                                                                          |
+| **List All Inventory Items** | `listi`                                                                                                                                                                                                                   |
+| **Find Inventory Item(s)** | `findi KEYWORD [MORE_KEYWORDS]` <br/> e.g., `findi blue shirt`                                                                                                                                                            |
+| **Exit** | `exit`                                                                                                                                                                                                                    |

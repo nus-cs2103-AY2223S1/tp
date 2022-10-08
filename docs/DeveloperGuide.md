@@ -316,8 +316,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 1a. User inputs incomplete order data. <br>
   - 1a1. System informs user of the incomplete data.
-  
-    Use case ends.
+
+    Use case resumes at 1.
 
 **Use case: UC02 - Delete an order**
 
@@ -331,17 +331,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 - 1a. The order the user wishes to delete does not exist.
-      
+  
   - 1a1. System informs the user of the non-existent order.
-    
+
      Use case ends.
+
 - 2a. The list has no orders.
-  
+
   - 2a1. System informs the user of the empty order list.
-  
+
     Use case ends.
 
-**Use case: UC03 - Listing orders**
+**Use case: UC03 - List orders**
 
 **MSS**
 
@@ -354,7 +355,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. The list of orders is empty.
     - 2a1. System informs the user that the list is empty.
-  
+
       Use case ends.
 
 **Use case: UC04 - Find orders**
@@ -370,7 +371,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 1a. The order the user is trying to find does not exist.
   - 1a1. System informs the user that the order does not exist.
-    
+
     Use case ends.
 
 **Use case: UC05 - Add an inventory item**
@@ -386,8 +387,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 1a. User inputs incomplete details of the item.
   - 1a1. System informs user of the incomplete details.
-    
-    Use case ends.
+ 
+    Use case resumes at 1.
 
 **Use case: UC06 - Delete an inventory item**
 
@@ -402,7 +403,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 1a. The item that the user requests to delete does not exist.
   - 1a1. System informs user of the non-existent item.
-    
+
     Use case ends.
 
 - 2a. The list of inventory items is empty.
