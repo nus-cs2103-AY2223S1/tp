@@ -2,7 +2,7 @@ package seedu.address.logic.parser;
 
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.StatusContainsKeywordsPredicate;
+import seedu.address.model.person.StatusContainsKeywordPredicate;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
@@ -25,7 +25,7 @@ public class FilterCommandParser implements Parser<FilterCommand> {
 
 
 
-        return new FilterCommand(new StatusContainsKeywordsPredicate(trimmedArgs));
+        return new FilterCommand(new StatusContainsKeywordPredicate(trimmedArgs));
     }
 
 }
