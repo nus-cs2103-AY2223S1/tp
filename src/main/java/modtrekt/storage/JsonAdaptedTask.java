@@ -1,17 +1,14 @@
 package modtrekt.storage;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import modtrekt.commons.exceptions.IllegalValueException;
-import modtrekt.model.person.Name;
+import modtrekt.model.task.Description;
 import modtrekt.model.person.Person;
-import modtrekt.model.tag.Tag;
 import modtrekt.model.task.Task;
 
 public class JsonAdaptedTask {
@@ -32,7 +29,7 @@ public class JsonAdaptedTask {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedTask(Person source) {
-        name = source.getName().fullName;
+        name = source.getName().description;
     }
 
     public JsonAdaptedTask(Task task) {
@@ -47,15 +44,15 @@ public class JsonAdaptedTask {
     public Task toModelType() throws IllegalValueException {
 
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
         }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        if (!Description.isValidDescription(name)) {
+            throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
         }
-        final Name modelName = new Name(name);
+        final Description modelDescription = new Description(name);
 
 //        final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Task(modelName);
+        return new Task(modelDescription);
     }
 
 }

@@ -15,44 +15,44 @@ import modtrekt.commons.util.JsonUtil;
 import modtrekt.model.ReadOnlyTaskBook;
 
 /**
- * A class to access AddressBook data stored as a json file on the hard disk.
+ * A class to access TaskBook data stored as a json file on the hard disk.
  */
-public class JsonAddressBookStorage implements AddressBookStorage {
+public class JsonTaskBookStorage implements TaskBookStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonTaskBookStorage.class);
 
     private Path filePath;
 
-    public JsonAddressBookStorage(Path filePath) {
+    public JsonTaskBookStorage(Path filePath) {
         this.filePath = filePath;
     }
 
-    public Path getAddressBookFilePath() {
+    public Path getTaskBookFilePath() {
         return filePath;
     }
 
     @Override
-    public Optional<ReadOnlyTaskBook> readAddressBook() throws DataConversionException {
-        return readAddressBook(filePath);
+    public Optional<ReadOnlyTaskBook> readTaskBook() throws DataConversionException {
+        return readTaskBook(filePath);
     }
 
     /**
-     * Similar to {@link #readAddressBook()}.
+     * Similar to {@link #readTaskBook()}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyTaskBook> readAddressBook(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyTaskBook> readTaskBook(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableTaskBook> jsonAddressBook = JsonUtil.readJsonFile(
+        Optional<JsonSerializableTaskBook> jsonTaskBook = JsonUtil.readJsonFile(
                 filePath, JsonSerializableTaskBook.class);
-        if (!jsonAddressBook.isPresent()) {
+        if (!jsonTaskBook.isPresent()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonAddressBook.get().toModelType());
+            return Optional.of(jsonTaskBook.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
@@ -60,21 +60,21 @@ public class JsonAddressBookStorage implements AddressBookStorage {
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyTaskBook addressBook) throws IOException {
-        saveAddressBook(addressBook, filePath);
+    public void saveTaskBook(ReadOnlyTaskBook taskBook) throws IOException {
+        saveTaskBook(taskBook, filePath);
     }
 
     /**
-     * Similar to {@link #saveAddressBook(ReadOnlyTaskBook)}.
+     * Similar to {@link #saveTaskBook(ReadOnlyTaskBook)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveAddressBook(ReadOnlyTaskBook addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveTaskBook(ReadOnlyTaskBook taskBook, Path filePath) throws IOException {
+        requireNonNull(taskBook);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableTaskBook(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableTaskBook(taskBook), filePath);
     }
 
 }

@@ -22,7 +22,7 @@ import modtrekt.model.ModelManager;
 import modtrekt.model.ReadOnlyTaskBook;
 import modtrekt.model.UserPrefs;
 import modtrekt.model.person.Person;
-import modtrekt.storage.JsonAddressBookStorage;
+import modtrekt.storage.JsonTaskBookStorage;
 import modtrekt.storage.JsonUserPrefsStorage;
 import modtrekt.storage.StorageManager;
 import modtrekt.testutil.Assert;
@@ -41,8 +41,8 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonTaskBookStorage addressBookStorage =
+                new JsonTaskBookStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
@@ -69,8 +69,8 @@ public class LogicManagerTest {
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        JsonTaskBookStorage addressBookStorage =
+                new JsonTaskBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
@@ -153,13 +153,13 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
-        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
+    private static class JsonTaskBookIoExceptionThrowingStub extends JsonTaskBookStorage {
+        private JsonTaskBookIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyTaskBook addressBook, Path filePath) throws IOException {
+        public void saveTaskBook(ReadOnlyTaskBook addressBook, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

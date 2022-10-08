@@ -22,8 +22,8 @@ import modtrekt.model.ReadOnlyTaskBook;
 import modtrekt.model.ReadOnlyUserPrefs;
 import modtrekt.model.UserPrefs;
 import modtrekt.model.util.SampleDataUtil;
-import modtrekt.storage.AddressBookStorage;
-import modtrekt.storage.JsonAddressBookStorage;
+import modtrekt.storage.TaskBookStorage;
+import modtrekt.storage.JsonTaskBookStorage;
 import modtrekt.storage.JsonUserPrefsStorage;
 import modtrekt.storage.Storage;
 import modtrekt.storage.StorageManager;
@@ -56,8 +56,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getTaskBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        TaskBookStorage taskBookStorage = new JsonTaskBookStorage(userPrefs.getTaskBookFilePath());
+        storage = new StorageManager(taskBookStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -77,7 +77,7 @@ public class MainApp extends Application {
         Optional<ReadOnlyTaskBook> addressBookOptional;
         ReadOnlyTaskBook initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
+            addressBookOptional = storage.readTaskBook();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }

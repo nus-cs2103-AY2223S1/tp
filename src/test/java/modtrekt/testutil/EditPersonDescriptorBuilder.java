@@ -6,8 +6,8 @@ import java.util.stream.Stream;
 
 import modtrekt.logic.commands.EditCommand.EditPersonDescriptor;
 import modtrekt.model.person.Address;
+import modtrekt.model.task.Description;
 import modtrekt.model.person.Email;
-import modtrekt.model.person.Name;
 import modtrekt.model.person.Person;
 import modtrekt.model.person.Phone;
 import modtrekt.model.tag.Tag;
@@ -43,7 +43,7 @@ public class EditPersonDescriptorBuilder {
      * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withName(String name) {
-        descriptor.setName(new Name(name));
+        descriptor.setName(new Description(name));
         return this;
     }
 

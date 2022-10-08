@@ -15,8 +15,8 @@ import org.junit.jupiter.api.Test;
 
 import modtrekt.logic.parser.exceptions.ParseException;
 import modtrekt.model.person.Address;
+import modtrekt.model.task.Description;
 import modtrekt.model.person.Email;
-import modtrekt.model.person.Name;
 import modtrekt.model.person.Phone;
 import modtrekt.model.tag.Tag;
 
@@ -68,15 +68,15 @@ public class ParserUtilTest {
 
     @Test
     public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
-        Name expectedName = new Name(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseName(VALID_NAME));
+        Description expectedDescription = new Description(VALID_NAME);
+        assertEquals(expectedDescription, ParserUtil.parseName(VALID_NAME));
     }
 
     @Test
     public void parseName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
         String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
-        Name expectedName = new Name(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
+        Description expectedDescription = new Description(VALID_NAME);
+        assertEquals(expectedDescription, ParserUtil.parseName(nameWithWhitespace));
     }
 
     @Test

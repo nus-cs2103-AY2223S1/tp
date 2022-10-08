@@ -2,12 +2,9 @@ package modtrekt.model.person;
 
 import static modtrekt.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
-import modtrekt.model.tag.Tag;
+import modtrekt.model.task.Description;
 
 /**
  * Represents a Person in the address book.
@@ -16,24 +13,24 @@ import modtrekt.model.tag.Tag;
 public class Person {
 
     // Identity fields
-    private final Name name;
+    private final Description description;
 
     // Data fields
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name) {
-        requireAllNonNull(name);
-        this.name = name;
+    public Person(Description description) {
+        requireAllNonNull(description);
+        this.description = description;
 //        this.phone = phone;
 //        this.email = email;
 //        this.address = address;
 //        this.tags.addAll(tags);
     }
 
-    public Name getName() {
-        return name;
+    public Description getName() {
+        return description;
     }
 
 //    public Phone getPhone() {
@@ -94,7 +91,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name);
+        return Objects.hash(description);
     }
 
     @Override

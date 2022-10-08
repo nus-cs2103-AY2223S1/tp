@@ -47,7 +47,7 @@ public class LogicManager implements Logic {
 
         try {
             System.out.println("called");
-            storage.saveAddressBook(model.getTaskBook());
+            storage.saveTaskBook(model.getTaskBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }

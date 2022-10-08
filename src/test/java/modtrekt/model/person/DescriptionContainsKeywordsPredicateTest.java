@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import modtrekt.testutil.PersonBuilder;
 
-public class NameContainsKeywordsPredicateTest {
+public class DescriptionContainsKeywordsPredicateTest {
 
     @Test
     public void equals() {

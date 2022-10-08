@@ -3,14 +3,17 @@ package modtrekt.model.task;
 import static java.util.Objects.requireNonNull;
 import static modtrekt.commons.util.AppUtil.checkArgument;
 
-import modtrekt.model.person.Name;
-
+/**
+ * Represents a Tasks's description in the task book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidDescription(String)}
+ */
 public class Description {
+
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Descriptions should not be blank";
 
     /*
-     * The first character of the address must not be a whitespace,
+     * The first character of the task must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
@@ -29,7 +32,7 @@ public class Description {
     }
 
     /**
-     * Returns true if a given string is a valid name.
+     * Returns true if a given string is a valid description.
      */
     public static boolean isValidDescription(String test) {
         return test.matches(VALIDATION_REGEX);
@@ -38,7 +41,7 @@ public class Description {
 
     @Override
     public String toString() {
-        return this.description;
+        return description;
     }
 
     @Override

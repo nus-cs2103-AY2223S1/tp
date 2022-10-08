@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 
 import modtrekt.logic.commands.AddTaskCommand;
 import modtrekt.logic.parser.exceptions.ParseException;
-import modtrekt.model.person.Name;
+import modtrekt.model.task.Description;
 import modtrekt.model.task.Task;
 
 /**
@@ -38,9 +38,9 @@ public class AddCommandParser implements Parser<AddTaskCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(CliSyntax.PREFIX_NAME).get());
+        Description description = ParserUtil.parseName(argMultimap.getValue(CliSyntax.PREFIX_NAME).get());
 
-        Task t = new Task(name);
+        Task t = new Task(description);
 
         return new AddTaskCommand(t);
     }

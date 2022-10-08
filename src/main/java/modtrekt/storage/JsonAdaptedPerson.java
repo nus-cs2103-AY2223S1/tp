@@ -4,17 +4,13 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import modtrekt.commons.exceptions.IllegalValueException;
-import modtrekt.model.person.Address;
-import modtrekt.model.person.Email;
-import modtrekt.model.person.Name;
+import modtrekt.model.task.Description;
 import modtrekt.model.person.Person;
-import modtrekt.model.person.Phone;
 import modtrekt.model.tag.Tag;
 
 /**
@@ -50,7 +46,7 @@ class JsonAdaptedPerson {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Person source) {
-        name = source.getName().fullName;
+        name = source.getName().description;
         phone = null;
         email = null;
         address = null;
@@ -74,12 +70,12 @@ class JsonAdaptedPerson {
         }
 
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
         }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        if (!Description.isValidDescription(name)) {
+            throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
         }
-        final Name modelName = new Name(name);
+        final Description modelDescription = new Description(name);
 
 //        if (phone == null) {
 //            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
@@ -106,7 +102,7 @@ class JsonAdaptedPerson {
 //        final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName);
+        return new Person(modelDescription);
     }
 
 }

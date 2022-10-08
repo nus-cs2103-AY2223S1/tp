@@ -34,7 +34,7 @@ import org.junit.jupiter.api.Test;
 import modtrekt.logic.commands.AddTaskCommand;
 import modtrekt.model.person.Address;
 import modtrekt.model.person.Email;
-import modtrekt.model.person.Name;
+import modtrekt.model.task.Description;
 import modtrekt.model.person.Person;
 import modtrekt.model.person.Phone;
 import modtrekt.model.tag.Tag;
@@ -111,7 +111,7 @@ public class AddTaskCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Description.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
@@ -131,7 +131,7 @@ public class AddTaskCommandParserTest {
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC,
-                Name.MESSAGE_CONSTRAINTS);
+                Description.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB

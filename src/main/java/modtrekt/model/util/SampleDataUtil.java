@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 import modtrekt.model.TaskBook;
 import modtrekt.model.ReadOnlyTaskBook;
-import modtrekt.model.person.Name;
+import modtrekt.model.task.Description;
 import modtrekt.model.tag.Tag;
 import modtrekt.model.task.Task;
 
@@ -34,12 +34,12 @@ public class SampleDataUtil {
 //            new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
 //                new Address("Blk 45 Aljunied Street 85, #11-31"),
 //                getTagSet("colleagues"))
-                new Task(new Name("Alex Yeoh")),
-                new Task(new Name("Bernice Yu")),
-                new Task(new Name("Charlotte Oliveiro")),
-                new Task(new Name("David Li")),
-                new Task(new Name("Irfan Ibrahim")),
-                new Task(new Name("Roy Balakrishnan"))
+                new Task(new Description("Alex Yeoh")),
+                new Task(new Description("Bernice Yu")),
+                new Task(new Description("Charlotte Oliveiro")),
+                new Task(new Description("David Li")),
+                new Task(new Description("Irfan Ibrahim")),
+                new Task(new Description("Roy Balakrishnan"))
 
         };
     }

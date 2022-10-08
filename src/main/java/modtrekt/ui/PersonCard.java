@@ -1,7 +1,5 @@
 package modtrekt.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -48,7 +46,7 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
+        name.setText(person.getName().description);
 //        phone.setText(person.getPhone().value);
 //        address.setText(person.getAddress().value);
 //        email.setText(person.getEmail().value);
