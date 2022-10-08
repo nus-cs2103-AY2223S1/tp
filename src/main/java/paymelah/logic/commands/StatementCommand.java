@@ -14,8 +14,6 @@ public class StatementCommand extends Command {
 
     public static final String COMMAND_WORD = "statement";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD;
-
     public static final String MESSAGE_SUCCESS = "You are owed $%1$s in total.";
 
     @Override
