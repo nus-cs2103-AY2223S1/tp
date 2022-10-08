@@ -13,7 +13,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.module.Module;
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Module} objects to be used in tests.
  */
 public class TypicalModules {
 

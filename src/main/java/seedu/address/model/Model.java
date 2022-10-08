@@ -99,7 +99,7 @@ public interface Model {
 
     /**
      * Adds the given module.
-     * {@code person} must not already exist in Plannit.
+     * {@code module} must not already exist in Plannit.
      */
     void addModule(Module module);
 

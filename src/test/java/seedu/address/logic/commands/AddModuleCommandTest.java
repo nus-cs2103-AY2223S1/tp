@@ -38,7 +38,7 @@ public class AddModuleCommandTest {
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
+    public void execute_duplicateModule_throwsCommandException() {
         Module validModule = new ModuleBuilder().build();
         AddModuleCommand addModuleCommand = new AddModuleCommand(validModule);
         ModelStub modelStub = new ModelStubWithModule(validModule);
@@ -90,7 +90,7 @@ public class AddModuleCommandTest {
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the module being added.
      */
     private class ModelStubAcceptingModuleAdded extends ModelStub {
         final ArrayList<Module> modulesAdded = new ArrayList<>();
