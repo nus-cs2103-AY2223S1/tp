@@ -21,6 +21,9 @@ public class RecordList {
         this.recordList = new ArrayList<Record>();
     }
 
+    public RecordList(List<Record> recordList) {
+        this.recordList = recordList;
+    }
     /**
      * Getter for list of records.
      *

@@ -109,7 +109,7 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
-        final RecordList modelRecordList = new RecordList();
+        final RecordList modelRecordList = new RecordList(recordList);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
