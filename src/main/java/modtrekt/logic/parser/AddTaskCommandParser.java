@@ -12,7 +12,7 @@ import modtrekt.model.task.Task;
 /**
  * Parses input arguments and creates a new AddCommand object
  */
-public class AddCommandParser implements Parser<AddTaskCommand> {
+public class AddTaskCommandParser implements Parser<AddTaskCommand> {
 
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given

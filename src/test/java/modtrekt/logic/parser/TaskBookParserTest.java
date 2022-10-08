@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import modtrekt.logic.commands.AddTaskCommand;
 import modtrekt.logic.commands.ClearCommand;
-import modtrekt.logic.commands.DeleteCommand;
+import modtrekt.logic.commands.RemoveCommand;
 import modtrekt.logic.commands.EditCommand;
 import modtrekt.logic.commands.EditCommand.EditPersonDescriptor;
 import modtrekt.logic.commands.ExitCommand;
@@ -29,9 +29,9 @@ import modtrekt.testutil.EditPersonDescriptorBuilder;
 import modtrekt.testutil.PersonBuilder;
 import modtrekt.testutil.PersonUtil;
 
-public class AddressBookParserTest {
+public class TaskBookParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final TaskBookParser parser = new TaskBookParser();
 
     @Test
     public void parseCommand_add() throws Exception {
@@ -48,9 +48,9 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+        RemoveCommand command = (RemoveCommand) parser.parseCommand(
+                RemoveCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new RemoveCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test

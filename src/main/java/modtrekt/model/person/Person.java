@@ -23,35 +23,11 @@ public class Person {
     public Person(Description description) {
         requireAllNonNull(description);
         this.description = description;
-//        this.phone = phone;
-//        this.email = email;
-//        this.address = address;
-//        this.tags.addAll(tags);
     }
 
     public Description getName() {
         return description;
     }
-
-//    public Phone getPhone() {
-//        return phone;
-//    }
-//
-//    public Email getEmail() {
-//        return email;
-//    }
-//
-//    public Address getAddress() {
-//        return address;
-//    }
-
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-//    public Set<Tag> getTags() {
-//        return Collections.unmodifiableSet(tags);
-//    }
 
     /**
      * Returns true if both persons have the same name.
@@ -82,10 +58,6 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName());
-//                && otherPerson.getPhone().equals(getPhone())
-//                && otherPerson.getEmail().equals(getEmail())
-//                && otherPerson.getAddress().equals(getAddress())
-//                && otherPerson.getTags().equals(getTags());
     }
 
     @Override

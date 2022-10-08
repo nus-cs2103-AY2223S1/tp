@@ -52,11 +52,6 @@ public interface Model {
     /** Returns the taskBook */
     ReadOnlyTaskBook getTaskBook();
 
-//    /**
-//     * Returns true if a task with the same identity as {@code task} exists in the address book.
-//     */
-//    boolean hasTask(Task task);
-
     /**
      * Deletes the given task.
      * The task must exist in the address book.

@@ -41,7 +41,7 @@ import modtrekt.model.tag.Tag;
 import modtrekt.testutil.PersonBuilder;
 
 public class AddTaskCommandParserTest {
-    private AddCommandParser parser = new AddCommandParser();
+    private AddTaskCommandParser parser = new AddTaskCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {

@@ -5,8 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import modtrekt.model.task.UniqueTaskList;
 import modtrekt.model.task.Task;
+import modtrekt.model.task.UniqueTaskList;
 
 /**
  * Wraps all data at the task-book level
@@ -57,14 +57,6 @@ public class TaskBook implements ReadOnlyTaskBook {
     }
 
     //// task-level operations
-
-//    /**
-//     * Returns true if a person with the same identity as {@code person} exists in the address book.
-//     */
-//    public boolean hasPerson(Person person) {
-//        requireNonNull(person);
-//        return persons.contains(person);
-//    }
 
     /**
      * Adds a task to the task book.

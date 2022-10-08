@@ -7,10 +7,13 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import modtrekt.commons.exceptions.IllegalValueException;
-import modtrekt.model.task.Description;
 import modtrekt.model.person.Person;
+import modtrekt.model.task.Description;
 import modtrekt.model.task.Task;
 
+/**
+ * Jackson-friendly version of {@link Task}.
+ */
 public class JsonAdaptedTask {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
@@ -44,14 +47,14 @@ public class JsonAdaptedTask {
     public Task toModelType() throws IllegalValueException {
 
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Description.class.getSimpleName()));
         }
         if (!Description.isValidDescription(name)) {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
         }
         final Description modelDescription = new Description(name);
 
-//        final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Task(modelDescription);
     }
 

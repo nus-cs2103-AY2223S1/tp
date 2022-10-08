@@ -15,18 +15,18 @@ import modtrekt.commons.util.ConfigUtil;
 import modtrekt.commons.util.StringUtil;
 import modtrekt.logic.Logic;
 import modtrekt.logic.LogicManager;
-import modtrekt.model.TaskBook;
 import modtrekt.model.Model;
 import modtrekt.model.ModelManager;
 import modtrekt.model.ReadOnlyTaskBook;
 import modtrekt.model.ReadOnlyUserPrefs;
+import modtrekt.model.TaskBook;
 import modtrekt.model.UserPrefs;
 import modtrekt.model.util.SampleDataUtil;
-import modtrekt.storage.TaskBookStorage;
 import modtrekt.storage.JsonTaskBookStorage;
 import modtrekt.storage.JsonUserPrefsStorage;
 import modtrekt.storage.Storage;
 import modtrekt.storage.StorageManager;
+import modtrekt.storage.TaskBookStorage;
 import modtrekt.storage.UserPrefsStorage;
 import modtrekt.ui.Ui;
 import modtrekt.ui.UiManager;
@@ -81,7 +81,7 @@ public class MainApp extends Application {
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleTaskBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
             initialData = new TaskBook();

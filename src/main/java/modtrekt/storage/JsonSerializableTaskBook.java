@@ -9,8 +9,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import modtrekt.commons.exceptions.IllegalValueException;
-import modtrekt.model.TaskBook;
 import modtrekt.model.ReadOnlyTaskBook;
+import modtrekt.model.TaskBook;
 import modtrekt.model.task.Task;
 
 /**
@@ -18,8 +18,6 @@ import modtrekt.model.task.Task;
  */
 @JsonRootName(value = "taskbook")
 class JsonSerializableTaskBook {
-
-//    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
 
     private final List<JsonAdaptedTask> tasks = new ArrayList<>();
 

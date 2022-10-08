@@ -7,7 +7,7 @@ import static modtrekt.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 
-import modtrekt.logic.commands.DeleteCommand;
+import modtrekt.logic.commands.RemoveCommand;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -16,17 +16,17 @@ import modtrekt.logic.commands.DeleteCommand;
  * The path variation for those two cases occur inside the ParserUtil, and
  * therefore should be covered by the ParserUtilTest.
  */
-public class DeleteCommandParserTest {
+public class RemoveCommandParserTest {
 
-    private DeleteCommandParser parser = new DeleteCommandParser();
+    private RemoveCommandParser parser = new RemoveCommandParser();
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new DeleteCommand(INDEX_FIRST_PERSON));
+        assertParseSuccess(parser, "1", new RemoveCommand(INDEX_FIRST_PERSON));
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveCommand.MESSAGE_USAGE));
     }
 }
