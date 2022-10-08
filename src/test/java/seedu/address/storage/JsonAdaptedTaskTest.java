@@ -2,13 +2,13 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalTasks.FINISH_TP;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Module;
-import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskName;
 
 class JsonAdaptedTaskTest {
@@ -16,16 +16,14 @@ class JsonAdaptedTaskTest {
     private static final String INVALID_MODULE = " ";
     private static final String INVALID_DEADLINE = "123456";
 
-    private static final String VALID_TASKNAME = "Lab 2";
-    private static final String VALID_MODULE = "CS2030S";
-    private static final String VALID_DEADLINE = "2022-02-02 23:59";
+    private static final String VALID_TASKNAME = FINISH_TP.getName().toString();
+    private static final String VALID_MODULE = FINISH_TP.getModule().toString();
+    private static final String VALID_DEADLINE = FINISH_TP.getDeadline().toString();
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
-        Task actualTask = new Task(
-                new TaskName(VALID_TASKNAME), new Module(VALID_MODULE), new Deadline(VALID_DEADLINE));
-        JsonAdaptedTask task = new JsonAdaptedTask(VALID_TASKNAME, VALID_MODULE, VALID_DEADLINE);
-        assertEquals(actualTask, task.toModelType());
+        JsonAdaptedTask task = new JsonAdaptedTask(FINISH_TP);
+        assertEquals(FINISH_TP, task.toModelType());
     }
 
     @Test
