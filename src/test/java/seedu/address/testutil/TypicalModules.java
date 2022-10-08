@@ -25,7 +25,7 @@ public class TypicalModules {
     private TypicalModules() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code AddressBook} with all the typical modules.
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();

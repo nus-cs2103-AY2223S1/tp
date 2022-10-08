@@ -24,7 +24,7 @@ public class AddModuleCommand extends Command {
             + PREFIX_DESCRIPTION + "Discrete Structures";
 
     public static final String MESSAGE_SUCCESS = "New module added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "Oops, it looks like you have already "
+    public static final String MESSAGE_DUPLICATE_MODULE = "Oops, it looks like you have already "
             + "added the module";
 
     private final Module toAdd;
@@ -42,7 +42,7 @@ public class AddModuleCommand extends Command {
         requireNonNull(model);
 
         if (model.hasModule(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_MODULE);
         }
 
         model.addModule(toAdd);
