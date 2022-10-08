@@ -10,8 +10,8 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 
 import jarvis.commons.exceptions.IllegalValueException;
 import jarvis.model.ReadOnlyStudentBook;
-import jarvis.model.StudentBook;
 import jarvis.model.Student;
+import jarvis.model.StudentBook;
 
 
 /**

@@ -1,14 +1,14 @@
 package jarvis.model.util;
 
 import jarvis.model.ReadOnlyStudentBook;
+import jarvis.model.Student;
 import jarvis.model.StudentBook;
 import jarvis.model.StudentName;
-import jarvis.model.Student;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code StudentBook} with sample data.
  */
-public class SampleDataUtil {
+public class SampleStudentUtil {
     public static Student[] getSamplePersons() {
         return new Student[] {
             new Student(new StudentName("Alex Yeoh")),
@@ -20,11 +20,11 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyStudentBook getSampleAddressBook() {
-        StudentBook sampleAb = new StudentBook();
+    public static ReadOnlyStudentBook getSampleStudentBook() {
+        StudentBook sampleStudentBook = new StudentBook();
         for (Student sampleStudent : getSamplePersons()) {
-            sampleAb.addStudent(sampleStudent);
+            sampleStudentBook.addStudent(sampleStudent);
         }
-        return sampleAb;
+        return sampleStudentBook;
     }
 }

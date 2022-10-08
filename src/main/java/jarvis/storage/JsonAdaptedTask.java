@@ -1,5 +1,7 @@
 package jarvis.storage;
 
+import java.time.LocalDate;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -7,8 +9,6 @@ import jarvis.commons.exceptions.IllegalValueException;
 import jarvis.model.Task;
 import jarvis.model.TaskDeadline;
 import jarvis.model.TaskDesc;
-
-import java.time.LocalDate;
 
 /**
  * Jackson-friendly version of {@link Task}.
