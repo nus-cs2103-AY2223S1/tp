@@ -19,15 +19,24 @@ public class Task {
 
     // Data fields
     private final String deadline;
+    private final boolean status;
     private final Set<Tag> tags = new HashSet<>();
+
+    /**
+     * Constructs a class with the default of status being false.
+     */
+    public Task(String title, String deadline, Set<Tag>tags) {
+        this(title, deadline, false, tags);
+    }
 
     /**
      * Every field must be present and not null.
      */
-    public Task(String title, String deadline, Set<Tag> tags) {
-        requireAllNonNull(title, deadline, tags);
+    public Task(String title, String deadline, boolean status, Set<Tag> tags) {
+        requireAllNonNull(title, deadline, status, tags);
         this.title = title;
         this.deadline = deadline;
+        this.status = status;
         this.tags.addAll(tags);
     }
 
@@ -39,6 +48,18 @@ public class Task {
         return deadline;
     }
 
+    public boolean getStatus() {
+        return status;
+    }
+
+    public String getParsedStatus() {
+        if (status) {
+            return "Completed";
+        } else {
+            return "Not Done";
+        }
+    }
+
     public Set<Tag> getTags() {
         return tags;
     }
@@ -46,7 +67,7 @@ public class Task {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(title, deadline, tags);
+        return Objects.hash(title, deadline, status, tags);
     }
 
     @Override
@@ -55,7 +76,9 @@ public class Task {
         builder.append(getTitle())
                 .append("; Title: ")
                 .append(getDeadline())
-                .append("; Deadline: ");
+                .append("; Deadline: ")
+                .append(", Status: ")
+                .append(getStatus());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
