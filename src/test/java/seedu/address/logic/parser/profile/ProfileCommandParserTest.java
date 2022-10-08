@@ -14,7 +14,8 @@ public class ProfileCommandParserTest {
     @Test
     public void parse_missingOptionFlag_failure() {
         assertParseFailure(parser, " HELLO WORLD",
-                String.format(Messages.MESSAGE_FLAG_NOT_SPECIFIED, ProfileCommand.PROFILE_FORMAT + ProfileCommand.VALID_FLAGS));
+                String.format(Messages.MESSAGE_FLAG_NOT_SPECIFIED,
+                        ProfileCommand.PROFILE_FORMAT + ProfileCommand.VALID_FLAGS));
 
         assertParseFailure(parser, " TEXT -e", ProfileCommand.OPTION_WRONG_ORDER);
 
