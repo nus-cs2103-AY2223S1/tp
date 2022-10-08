@@ -44,10 +44,16 @@ public class TaskList {
         return internalTaskList.size();
     }
 
+    /**
+     * Returns true if the task list is empty/
+     */
     public boolean isEmpty() {
         return this.internalTaskList.isEmpty();
     }
 
+    /**
+     * Returns the internal task list.
+     */
     public ArrayList<Task> getTasks() {
         return internalTaskList;
     }
@@ -55,10 +61,10 @@ public class TaskList {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        internalTaskList.forEach(t -> builder.append(internalTaskList.indexOf(t) + 1)
+        internalTaskList.forEach(t -> builder.append("\n")
+                .append(internalTaskList.indexOf(t) + 1)
                 .append(". ")
-                .append(t)
-                .append(" "));
+                .append(t));
         return builder.toString();
     }
 
