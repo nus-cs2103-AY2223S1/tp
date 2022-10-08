@@ -15,28 +15,28 @@ import modtrekt.model.task.Task;
  * Jackson-friendly version of {@link Task}.
  */
 public class JsonAdaptedTask {
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
 
-    private final String name;
+    private final String description;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedTask(@JsonProperty("name") String name) {
-        this.name = name;
+    public JsonAdaptedTask(@JsonProperty("description") String name) {
+        this.description = name;
     }
 
     /**
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedTask(Person source) {
-        name = source.getName().description;
+        description = source.getName().description;
     }
 
     public JsonAdaptedTask(Task task) {
-        name = task.toString();
+        description = task.toString();
     }
 
     /**
@@ -46,14 +46,14 @@ public class JsonAdaptedTask {
      */
     public Task toModelType() throws IllegalValueException {
 
-        if (name == null) {
+        if (description == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Description.class.getSimpleName()));
         }
-        if (!Description.isValidDescription(name)) {
+        if (!Description.isValidDescription(description)) {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
         }
-        final Description modelDescription = new Description(name);
+        final Description modelDescription = new Description(description);
 
         return new Task(modelDescription);
     }

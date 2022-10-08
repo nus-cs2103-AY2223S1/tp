@@ -56,17 +56,17 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyTaskBook getAddressBook() {
+    public ReadOnlyTaskBook getTaskBook() {
         return model.getTaskBook();
     }
 
     @Override
-    public ObservableList<Task> getFilteredPersonList() {
+    public ObservableList<Task> getFilteredTaskList() {
         return model.getFilteredTaskList();
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getTaskBookFilePath() {
         return model.getTaskBookFilePath();
     }
 

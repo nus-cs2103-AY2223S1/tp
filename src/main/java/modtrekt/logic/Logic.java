@@ -29,15 +29,15 @@ public interface Logic {
      *
      * @see Model#getTaskBook()
      */
-    ReadOnlyTaskBook getAddressBook();
+    ReadOnlyTaskBook getTaskBook();
 
     /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Task> getFilteredPersonList();
+    ObservableList<Task> getFilteredTaskList();
 
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getTaskBookFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

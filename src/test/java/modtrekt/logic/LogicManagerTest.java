@@ -1,6 +1,5 @@
 package modtrekt.logic;
 
-import static modtrekt.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
@@ -23,7 +22,6 @@ import modtrekt.storage.JsonUserPrefsStorage;
 import modtrekt.storage.StorageManager;
 import modtrekt.testutil.Assert;
 
-
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
 
@@ -35,10 +33,10 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonTaskBookStorage addressBookStorage =
-                new JsonTaskBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonTaskBookStorage taskBookStorage =
+                new JsonTaskBookStorage(temporaryFolder.resolve("taskBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(taskBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -48,44 +46,31 @@ public class LogicManagerTest {
         assertParseException(invalidCommand, Messages.MESSAGE_UNKNOWN_COMMAND);
     }
 
-    //    @Test
-    //    public void execute_commandExecutionError_throwsCommandException() {
-    //        String deleteCommand = "delete 9";
-    //        assertCommandException(deleteCommand, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
-    //    }
-
-    //    @Test
-    //    public void execute_validCommand_success() throws Exception {
-    //        String listCommand = ListCommand.COMMAND_WORD;
-    //        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
-    //    }
+    @Test
+    public void execute_commandExecutionError_throwsCommandException() {
+        String deleteCommand = "remove 9";
+        assertCommandException(deleteCommand, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+    }
 
     //    @Test
     //    public void execute_storageThrowsIoException_throwsCommandException() {
     //        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-    //        JsonTaskBookStorage addressBookStorage =
+    //        JsonTaskBookStorage taskBookStorage =
     //                new JsonTaskBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
     //        JsonUserPrefsStorage userPrefsStorage =
     //                new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-    //        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+    //        StorageManager storage = new StorageManager(taskBookStorage, userPrefsStorage);
     //        logic = new LogicManager(model, storage);
     //
     //        // Execute add command
-    //        String addCommand = AddTaskCommand.COMMAND_WORD + CommandTestUtil.NAME_DESC_AMY
-    //                + CommandTestUtil.PHONE_DESC_AMY
-    //                + CommandTestUtil.EMAIL_DESC_AMY
-    //                + CommandTestUtil.ADDRESS_DESC_AMY;
-    //        Task expectedTask = new TaskBuilder(TypicalPersons.AMY).build();
-    //        ModelManager expectedModel = new ModelManager();
+    //        String addCommand = AddTaskCommand.COMMAND_WORD + " -t " + CommandTestUtil.VALID_DESC_1;
+    //        Task expectedTask = new TaskBuilder(TypicalTasks.TASK_1).build();
+    //            ModelManager expectedModel = new ModelManager();
     //        expectedModel.addTask(expectedTask);
     //        String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
     //        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     //    }
 
-    @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
-    }
 
     /**
      * Executes the command and confirms that

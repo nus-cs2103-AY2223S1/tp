@@ -53,12 +53,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
+    public void setTaskBookFilePath_nullPath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.setTaskBookFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setTaskBookFilePath_validPath_setsTaskBookFilePath() {
         Path path = Paths.get("address/book/file/path");
         modelManager.setTaskBookFilePath(path);
         assertEquals(path, modelManager.getTaskBookFilePath());
@@ -80,14 +80,9 @@ public class ModelManagerTest {
     //        assertTrue(modelManager.hasPerson(ALICE));
     //    }
 
-    @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredTaskList().remove(0));
-    }
-
     //    @Test
     //    public void equals() {
-    //        TaskBook addressBook = new AddressBookBuilder().withTas (task1).withPerson(BENSON).build();
+    //        TaskBook addressBook = new AddressBookBuilder().withTas (task1).withTask(BENSON).build();
     //        TaskBook differentAddressBook = new TaskBook();
     //        UserPrefs userPrefs = new UserPrefs();
     //

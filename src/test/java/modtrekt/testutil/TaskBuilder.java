@@ -5,16 +5,16 @@ import modtrekt.model.task.Description;
 import modtrekt.model.task.Task;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Task objects.
  */
 public class TaskBuilder {
 
-    public static final String DEFAULT_DESC = "Amy Bee";
+    public static final String DEFAULT_DESC = "Complete Assignment";
 
     private Description description;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code TaskBuilder} with the default details.
      */
     public TaskBuilder() {
         description = new Description(DEFAULT_DESC);
@@ -28,7 +28,7 @@ public class TaskBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code Description} of the {@code Task} that we are building.
      */
     public TaskBuilder withDescription(String desc) {
         this.description = new Description(desc);

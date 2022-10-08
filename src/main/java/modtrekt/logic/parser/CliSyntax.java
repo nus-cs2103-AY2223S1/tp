@@ -6,10 +6,8 @@ package modtrekt.logic.parser;
 public class CliSyntax {
 
     /* Prefix definitions */
-    public static final Prefix PREFIX_NAME = new Prefix("-t ");
-    public static final Prefix PREFIX_PHONE = new Prefix("-m ");
-    public static final Prefix PREFIX_EMAIL = new Prefix("e/");
-    public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
-    public static final Prefix PREFIX_TAG = new Prefix("t/");
+    public static final Prefix PREFIX_DESC = new Prefix("-t ");
+    public static final Prefix PREFIX_MODULE = new Prefix("-m ");
+    public static final Prefix PREFIX_DEADLINE = new Prefix("-d ");
 
 }

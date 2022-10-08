@@ -1,5 +1,6 @@
 package modtrekt.storage;
 
+import static modtrekt.testutil.TypicalTasks.getTypicalTaskBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -10,6 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import modtrekt.commons.core.GuiSettings;
+import modtrekt.model.ReadOnlyTaskBook;
+import modtrekt.model.TaskBook;
 import modtrekt.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -21,9 +24,9 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonTaskBookStorage addressBookStorage = new JsonTaskBookStorage(getTempFilePath("ab"));
+        JsonTaskBookStorage taskBookStorage = new JsonTaskBookStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(taskBookStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -44,21 +47,21 @@ public class StorageManagerTest {
         assertEquals(original, retrieved);
     }
 
-    //    @Test
-    //    public void addressBookReadSave() throws Exception {
-    //        /*
-    //         * Note: This is an integration test that verifies the StorageManager is properly wired to the
-    //         * {@link JsonAddressBookStorage} class.
-    //         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
-    //         */
-    //        TaskBook original = getTypicalAddressBook();
-    //        storageManager.saveTaskBook(original);
-    //        ReadOnlyTaskBook retrieved = storageManager.readTaskBook().get();
-    //        assertEquals(original, new TaskBook(retrieved));
-    //    }
+    @Test
+    public void taskBookReadSave() throws Exception {
+        /*
+         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * {@link JsonTaskBookStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonTaskBookStorageTest} class.
+         */
+        TaskBook original = getTypicalTaskBook();
+        storageManager.saveTaskBook(original);
+        ReadOnlyTaskBook retrieved = storageManager.readTaskBook().get();
+        assertEquals(original, new TaskBook(retrieved));
+    }
 
     @Test
-    public void getAddressBookFilePath() {
+    public void getTaskBookFilePath() {
         assertNotNull(storageManager.getTaskBookFilePath());
     }
 

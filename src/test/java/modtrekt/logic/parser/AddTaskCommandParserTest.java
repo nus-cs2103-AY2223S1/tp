@@ -1,7 +1,7 @@
 package modtrekt.logic.parser;
 
 import static modtrekt.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static modtrekt.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static modtrekt.logic.commands.CommandTestUtil.VALID_DESC_2;
 import static modtrekt.logic.parser.CommandParserTestUtil.assertParseFailure;
 
 import org.junit.jupiter.api.Test;
@@ -16,7 +16,7 @@ public class AddTaskCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE);
 
         // prefix missing
-        assertParseFailure(parser, VALID_NAME_BOB,
+        assertParseFailure(parser, VALID_DESC_2,
                 expectedMessage);
     }
 }

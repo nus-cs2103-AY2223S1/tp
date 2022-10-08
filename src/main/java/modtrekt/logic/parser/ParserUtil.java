@@ -41,7 +41,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static Description parseName(String name) throws ParseException {
+    public static Description parseDescription(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
         if (!Description.isValidDescription(trimmedName)) {

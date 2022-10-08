@@ -1,0 +1,18 @@
+{
+  "_comment": "TaskBook save file which contains the same Task values as in TypicalTasks#getTypicalTaskBook()",
+  "tasks" : [ {
+    "description" : "Do Math Quiz"
+  }, {
+    "description" : "Submit assignment"
+  }, {
+    "description" : "Submit academic declaration"
+  }, {
+    "description" : "Rewrite resume"
+  }, {
+    "description" : "Lookup SWE internships"
+  }, {
+    "description" : "Submit course survey"
+  }, {
+    "description" : "Buy Groceries"
+  } ]
+}
