@@ -15,6 +15,8 @@ public class Website {
             "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
     //@@author
 
+    public static final String DEFAULT_VALUE = "NA";
+
     public final String value;
 
     /**
@@ -32,7 +34,7 @@ public class Website {
      * Returns true if a given string is a valid website.
      */
     public static boolean isValidWebsite(String test) {
-        return test.matches(VALIDATION_REGEX) || test.equals("NA");
+        return test.matches(VALIDATION_REGEX) || test.equals(DEFAULT_VALUE);
     }
 
     @Override

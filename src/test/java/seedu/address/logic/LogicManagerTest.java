@@ -85,7 +85,7 @@ public class LogicManagerTest {
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY + POSITION_DESC_AMY;
         Person expectedPerson = new PersonBuilder(AMY).withTags().withApplicationProcess("apply")
-                .withDate(LocalDate.now().format(Date.FORMATTER)).withWebsite("NA").build();
+                .withDate(LocalDate.now().format(Date.DEFAULT_FORMATTER)).withWebsite("NA").build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
