@@ -96,6 +96,15 @@ public class DebtList {
     }
 
     /**
+     * Returns whether this DebtList is empty.
+     *
+     * @return true only if the DebtList is empty.
+     */
+    public boolean isEmpty() {
+        return debts.isEmpty();
+    }
+
+    /**
      * Returns true only if both debts have the same data fields.
      *
      * @param other The other {@code Debt} object to check.
@@ -118,5 +127,18 @@ public class DebtList {
     @Override
     public int hashCode() {
         return Objects.hash(debts);
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        int i = 1;
+        for (Debt debt : debts) {
+            builder.append(i + ". ")
+                    .append(debt.toString())
+                    .append("\n");
+            i++;
+        }
+        return builder.toString().equals("") ? "No debts" : builder.toString();
     }
 }

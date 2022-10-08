@@ -16,6 +16,7 @@ import paymelah.logic.commands.ExitCommand;
 import paymelah.logic.commands.FindCommand;
 import paymelah.logic.commands.HelpCommand;
 import paymelah.logic.commands.ListCommand;
+import paymelah.logic.commands.ListDebtorsCommand;
 import paymelah.logic.parser.exceptions.ParseException;
 
 /**
@@ -65,6 +66,9 @@ public class AddressBookParser {
 
         case ClearDebtsCommand.COMMAND_WORD:
             return new ClearDebtsCommandParser().parse(arguments);
+
+        case ListDebtorsCommand.COMMAND_WORD:
+            return new ListDebtorsCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
