@@ -115,14 +115,16 @@ Examples:
 Adds a new meeting to MyInsuRec. 
 DATE should be in DDMMYYYY format and TIME should be in 24-hour format.
 
-Format: `addMeeting n/NAME d/DATE t/TIME`
+Format: `addMeeting i/INDEX d/DATE t/TIME dn/DESCRIPTION`
 
 * Adds a meeting.
-* A meeting contains NAME, DATE and TIME.
+* A meeting contains INDEX, DATE, TIME and DESCRIPTION.
+* Adds the client at the specific `INDEX` to the meeting.
+* The index refers to the index number shown in the displayed clients' list.
 
 Examples:
-* `addMeeting n/John Tan d/28092022 t/1400`
-* `addMeeting n/John Tan t/1400 d/28092022`
+* `addMeeting i/1 d/28092022 t/1400 dn/Team meeting`
+* `addMeeting i/1 t/1400 d/28092022 dn/Follow up meeting`
 
 ### Listing meetings: `listMeeting`
 
@@ -188,7 +190,7 @@ _Details coming soon ..._
 | **List all clients**  | `listClient`                                                                                                                                                       |
 | **View client**       | `viewClient i/INDEX` <br> e.g., <br> • `viewClient i/1`                                                                                                            |
 | **Delete client**     | `delClient i/INDEX` <br> e.g., <br> • `delClient i/1`                                                                                                              |
-| **Add meeting**       | `addMeeting n/NAME d/DATE t/TIME` <br> e.g., <br> • `addMeeting n/Thomas d/28092022 t/1400`                                                                        |
+| **Add meeting**       | `addMeeting n/NAME d/DATE t/TIME dn/DESCRIPTION` <br> e.g., <br> • `addMeeting n/Thomas d/28092022 t/1400 dn/Team meeting`                                         |
 | **List all meetings** | `listMeeting`                                                                                                                                                      |
 | **View meeting**      | `viewMeeting i/INDEX` <br> e.g., <br> • `viewMeeting i/1`                                                                                                          |
 | **Delete meeting**    | `delMeeting i/INDEX` <br> e.g., <br> • `delMeeting i/1`                                                                                                            |

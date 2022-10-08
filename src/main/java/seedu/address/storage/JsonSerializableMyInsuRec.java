@@ -16,6 +16,7 @@ import seedu.address.model.client.Client;
 /**
  * An Immutable MyInsuRec that is serializable to JSON format.
  */
+
 @JsonRootName(value = "myinsurec")
 class JsonSerializableMyInsuRec {
 

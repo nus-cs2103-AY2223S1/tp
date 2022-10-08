@@ -1,42 +1,49 @@
 {
   "_comment": "ClientBook save file which contains the same Client values as in TypicalClients#getTypicalClientBook()",
   "clients" : [ {
+    "@UUID" : "c4fa6f3d-a49f-495d-a5eb-d282b344a36d",
     "name" : "Alice Pauline",
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "tagged" : [ "friends" ]
   }, {
+    "@UUID" : "d4d3240e-589b-4d22-84ab-4c6bee1cca7b",
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
+    "@UUID" : "2f2c94eb-834e-40d0-a22b-3eac6460f26e",
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "address" : "wall street",
     "tagged" : [ ]
   }, {
+    "@UUID" : "234870ed-7cd0-4a1d-9466-6679e5c5f52f",
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
     "tagged" : [ "friends" ]
   }, {
+    "@UUID" : "deed0742-5740-4514-87e7-bd9bef479046",
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
     "address" : "michegan ave",
     "tagged" : [ ]
   }, {
+    "@UUID" : "deed0742-5740-4514-87e7-bd9bef579046",
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
     "tagged" : [ ]
   }, {
+    "@UUID" : "deed0742-5740-4514-97e7-bd9bef479046",
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
