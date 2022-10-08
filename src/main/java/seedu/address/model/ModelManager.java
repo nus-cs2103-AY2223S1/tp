@@ -12,7 +12,12 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Record;
 
+//stub import
+import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;
+import seedu.address.model.person.Record;
 /**
  * Represents the in-memory model of the address book data.
  */
@@ -22,6 +27,10 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+
+    // stub
+    private ObservableList<Record> internalList = FXCollections.observableArrayList();
+    private FilteredList<Record> filteredRecords;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +43,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+
     }
 
     public ModelManager() {
@@ -126,6 +136,34 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    //=========== Filtered Record List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Record} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Record> getFilteredRecordList() {
+        return filteredRecords;
+    }
+
+    @Override
+    public void updateFilteredRecordList(Predicate<Record> predicate) {
+        setFilteredRecords();
+        requireNonNull(predicate);
+        filteredRecords.setPredicate(predicate);
+    }
+
+    //stub
+    private void setFilteredRecords() {
+        for (int i = 0; i < 3; i++) {
+            String toAdd = "Record " + i;
+            Record r = new Record("10-10-2022 1200", toAdd);
+            internalList.add(r);
+        }
+        filteredRecords = new FilteredList<>(internalList);
     }
 
     @Override
