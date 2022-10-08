@@ -20,9 +20,9 @@ import seedu.taassist.model.student.Student;
 @JsonRootName(value = "taassist")
 class JsonSerializableTaAssist {
 
-    public static final String MESSAGE_DUPLICATE_STUDENT = "Students list contains duplicate student(s).";
-    public static final String MESSAGE_DUPLICATE_MODULE_CLASS = "Classes list contains duplicate class(es).";
-    public static final String MESSAGE_CLASS_NOT_FOUND = "Class for some student(s) not found in class(es) list.";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "Student list contains duplicate student(s).";
+    public static final String MESSAGE_DUPLICATE_MODULE_CLASS = "The class list contains duplicate class(es).";
+    public static final String MESSAGE_CLASS_NOT_FOUND = "Class for some student(s) not found in the class list.";
 
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
     private final List<JsonAdaptedModuleClass> moduleClasses = new ArrayList<>();

@@ -94,9 +94,7 @@ public interface Model {
      */
     boolean hasModuleClass(ModuleClass moduleClass);
 
-    /**
-     * Returns true if all the classes in {@code moduleClass} exist in TA-Assist.
-     */
+    /** Checks if all {@code ModuleClass} in {@code moduleClasses} exists in the model */
     boolean hasModuleClasses(Collection<ModuleClass> moduleClasses);
 
     /**
@@ -104,6 +102,12 @@ public interface Model {
      * The class must exist in TA-Assist.
      */
     void deleteModuleClass(ModuleClass moduleClass);
+
+    /**
+     * Deletes multiple classes.
+     * The classes must exist in TA-Assist.
+     */
+    void deleteModuleClasses(Collection<ModuleClass> moduleClasses);
 
     /**
      * Adds the given class.

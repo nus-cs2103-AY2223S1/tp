@@ -167,6 +167,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void deleteModuleClasses(Collection<ModuleClass> moduleClass) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addModuleClass(ModuleClass moduleClass) {
             throw new AssertionError("This method should not be called.");
         }

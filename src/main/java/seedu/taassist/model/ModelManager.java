@@ -141,6 +141,14 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteModuleClasses(Collection<ModuleClass> moduleClasses) {
+        requireAllNonNull(moduleClasses);
+        for (ModuleClass moduleClass : moduleClasses) {
+            deleteModuleClass(moduleClass);
+        }
+    }
+
+    @Override
     public void addModuleClass(ModuleClass moduleClass) {
         requireNonNull(moduleClass);
         taAssist.addModuleClass(moduleClass);
