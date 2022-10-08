@@ -1,8 +1,6 @@
 package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REASON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -11,7 +9,9 @@ import seedu.address.logic.commands.EditAppointmentCommand.EditAppointmentDescri
 import seedu.address.model.person.Appointment;
 
 
-
+/**
+ * A utility class for Appointment.
+ */
 public class AppointmentUtil {
 
     public static String getBookCommand(Appointment appointment) {
