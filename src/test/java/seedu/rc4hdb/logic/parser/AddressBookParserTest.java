@@ -23,8 +23,8 @@ import seedu.rc4hdb.logic.commands.modelcommands.EditCommand.EditPersonDescripto
 import seedu.rc4hdb.logic.commands.modelcommands.FindCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.ListCommand;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
-import seedu.rc4hdb.model.person.NameContainsKeywordsPredicate;
 import seedu.rc4hdb.model.person.Person;
+import seedu.rc4hdb.model.person.predicates.NameContainsKeywordsPredicate;
 import seedu.rc4hdb.testutil.EditPersonDescriptorBuilder;
 import seedu.rc4hdb.testutil.PersonBuilder;
 import seedu.rc4hdb.testutil.PersonUtil;

@@ -11,10 +11,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.rc4hdb.commons.exceptions.IllegalValueException;
 import seedu.rc4hdb.model.person.Address;
-import seedu.rc4hdb.model.person.Email;
-import seedu.rc4hdb.model.person.Name;
 import seedu.rc4hdb.model.person.Person;
-import seedu.rc4hdb.model.person.Phone;
+import seedu.rc4hdb.model.resident.Email;
+import seedu.rc4hdb.model.resident.Name;
+import seedu.rc4hdb.model.resident.Phone;
 import seedu.rc4hdb.model.tag.Tag;
 
 /**

@@ -1,10 +1,11 @@
-package seedu.rc4hdb.model.person;
+package seedu.rc4hdb.model.person.predicates;
 
 import static java.util.Objects.isNull;
 
 import java.util.function.Predicate;
 
 import seedu.rc4hdb.logic.commands.modelcommands.FilterCommand;
+import seedu.rc4hdb.model.person.Person;
 
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.

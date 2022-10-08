@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.rc4hdb.commons.core.Messages;
 import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.model.Model;
-import seedu.rc4hdb.model.person.NameContainsKeywordsPredicate;
+import seedu.rc4hdb.model.person.predicates.NameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.

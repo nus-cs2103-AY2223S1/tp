@@ -6,6 +6,8 @@ import static seedu.rc4hdb.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.rc4hdb.model.resident.Email;
+
 public class EmailTest {
 
     @Test
