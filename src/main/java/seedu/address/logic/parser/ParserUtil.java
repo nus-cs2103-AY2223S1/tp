@@ -9,7 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
+import seedu.address.model.person.Scholarship_Name;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -71,13 +71,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code address} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+    public static Scholarship_Name parseAddress(String scholarshipname) throws ParseException {
+        requireNonNull(scholarshipname);
+        String trimmedscholarshipname = scholarshipname.trim();
+        if (!Scholarship_Name.isValidScholarship_Name(trimmedscholarshipname)) {
+            throw new ParseException(Scholarship_Name.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return new Scholarship_Name(trimmedscholarshipname);
     }
 
     /**

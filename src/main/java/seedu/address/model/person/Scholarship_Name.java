@@ -5,11 +5,11 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents an Applicant's Scholarship name in TrackAScholar.
- * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidScholarship_Name(String)}
  */
-public class Address {
+public class Scholarship_Name {
 
-    public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Scholarship Name can take any values, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -24,16 +24,16 @@ public class Address {
      *
      * @param address A valid address.
      */
-    public Address(String address) {
+    public Scholarship_Name(String address) {
         requireNonNull(address);
-        checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidScholarship_Name(address), MESSAGE_CONSTRAINTS);
         value = address;
     }
 
     /**
      * Returns true if a given string is a valid email.
      */
-    public static boolean isValidAddress(String test) {
+    public static boolean isValidScholarship_Name(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -45,8 +45,8 @@ public class Address {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Address // instanceof handles nulls
-                && value.equals(((Address) other).value)); // state check
+                || (other instanceof Scholarship_Name // instanceof handles nulls
+                && value.equals(((Scholarship_Name) other).value)); // state check
     }
 
     @Override
