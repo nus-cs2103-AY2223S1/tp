@@ -90,8 +90,8 @@ public class ClientBook implements ReadOnlyClientBook {
     }
 
     /**
-     * Removes {@code key} from this {@code ClientBook}.
-     * {@code key} must exist in the client book.
+     * Removes {@code key} from this {@code MyInsuRec}.
+     * {@code key} must exist in MyInsuRec.
      */
     public void removeClient(Client key) {
         clients.remove(key);
