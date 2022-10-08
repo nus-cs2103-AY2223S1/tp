@@ -45,6 +45,13 @@ public class PersonCard extends UiPart<Region> {
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
     public PersonCard(Person person, int displayedIndex) {
+        this(person, displayedIndex, false);
+    }
+
+    /**
+     * Creates a {@code PersonCode} with the given {@code Person} and its associated task list and index to display.
+     */
+    public PersonCard(Person person, int displayedIndex, boolean taskListFlag) {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
@@ -55,6 +62,12 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        if (taskListFlag) {
+            Label taskList = new Label();
+            taskList.setText(person.getTasks().toString());
+            cardPane.getChildren().add(taskList);
+        }
     }
 
     @Override
