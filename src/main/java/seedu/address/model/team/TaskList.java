@@ -16,10 +16,12 @@ import seedu.address.model.person.exceptions.TaskNotFoundException;
  * Supports a minimal set of list operations.
  */
 public class TaskList implements Iterable<Task> {
+    public static final String NO_TASKS = "No Tasks Available";
 
     private final ObservableList<Task> internalList = FXCollections.observableArrayList();
     private final ObservableList<Task> internalUnmodifiableList =
         FXCollections.unmodifiableObservableList(internalList);
+
 
     /**
      * Returns true if the list contains an equivalent person as the given argument.
@@ -104,7 +106,16 @@ public class TaskList implements Iterable<Task> {
 
     @Override
     public String toString() {
-        return internalList.toString();
+        if (internalList.isEmpty()) {
+            return NO_TASKS;
+        }
+        StringBuilder sb = new StringBuilder();
+        int i = 1;
+        for (Task task : internalList) {
+            sb.append(String.format("\t%d. %s\n", i, task));
+            i++;
+        }
+        return sb.toString();
     }
 }
 

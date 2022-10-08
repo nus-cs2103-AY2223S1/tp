@@ -6,6 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.util.List;
 import java.util.Objects;
 
+import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -68,7 +69,7 @@ public class Team {
         return teamMembers.contains(person);
     }
 
-    public List<Task> getTaskList() {
+    public ObservableList<Task> getTaskList() {
         return taskList.asUnmodifiableObservableList();
     }
 
