@@ -1,8 +1,9 @@
 package seedu.address.model.item;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.model.item.itemvalidator.ItemUnitValidator;
 
-import static java.util.Objects.requireNonNull;
 
 /**
  * Represents an item unit in an {@link Item}.

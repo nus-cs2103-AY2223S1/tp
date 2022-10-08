@@ -1,8 +1,9 @@
 package seedu.address.model.item;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.Objects;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents an Item in FoodREM.

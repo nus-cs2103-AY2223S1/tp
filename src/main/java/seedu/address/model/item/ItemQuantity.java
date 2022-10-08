@@ -1,8 +1,9 @@
 package seedu.address.model.item;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.model.item.itemvalidator.ItemQuantityValidator;
 
-import static java.util.Objects.requireNonNull;
 
 /**
  * Represents an item quantity in an {@link Item}.
@@ -10,9 +11,9 @@ import static java.util.Objects.requireNonNull;
  */
 public class ItemQuantity {
 
-    private final double itemQuantity;
-
     private static final double DEFAULT_QUANTITY = 0;
+
+    private final double itemQuantity;
 
     /**
      * {@inheritDoc}

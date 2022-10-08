@@ -1,11 +1,11 @@
 package seedu.address.model.item;
 
-import seedu.address.model.item.itemvalidator.ItemDateValidator;
+import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import static java.util.Objects.requireNonNull;
+import seedu.address.model.item.itemvalidator.ItemDateValidator;
 
 /**
  * Represents an item date in an {@link Item}.
@@ -13,9 +13,9 @@ import static java.util.Objects.requireNonNull;
  */
 public class ItemDate {
 
-    private final LocalDate itemDate;
-
     private static final String DATE_OUTPUT_PATTERN_REGEX = "dd/MM/yyyy";
+
+    private final LocalDate itemDate;
 
     /**
      * Constructs an itemDate.

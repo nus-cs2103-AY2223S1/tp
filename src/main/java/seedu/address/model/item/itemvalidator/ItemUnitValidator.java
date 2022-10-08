@@ -1,9 +1,12 @@
 package seedu.address.model.item.itemvalidator;
 
-import seedu.address.model.item.Item;
-
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.model.item.Item;
+
+/**
+ * Validation class for item names.
+ */
 public class ItemUnitValidator {
 
     // Validation for characters used in unit
@@ -18,7 +21,10 @@ public class ItemUnitValidator {
     private static final String MESSAGE_FOR_NAME_TOO_LONG =
             String.format("Item unit should not exceed %d characters", MAX_LENGTH);
 
-
+    /**
+     * Validates a given input String.
+     * @param unitString String representation of item unit to validate against.
+     */
     public static void validate(String unitString) {
         checkArgument(doesUnitContainInvalidCharacters(unitString), MESSAGE_FOR_INVALID_CHARACTERS);
         checkArgument(isUnitLengthMoreThanMaxLength(unitString), MESSAGE_FOR_NAME_TOO_LONG);

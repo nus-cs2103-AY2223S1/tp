@@ -1,9 +1,12 @@
 package seedu.address.model.item.itemvalidator;
 
-import seedu.address.model.item.Item;
-
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.model.item.Item;
+
+/**
+ * Validation class for item names.
+ */
 public class ItemNameValidator {
 
     // Validation for characters used in name
@@ -19,11 +22,14 @@ public class ItemNameValidator {
     private static final String MESSAGE_FOR_NAME_IS_BLANK =
             "Item name should not be blank";
 
-
-    public static void validate(String name) {
-        checkArgument(doesNameContainInvalidCharacters(name), MESSAGE_FOR_INVALID_CHARACTERS);
-        checkArgument(isNameLengthMoreThanMaxLength(name), MESSAGE_FOR_NAME_TOO_LONG);
-        checkArgument(isNameBlank(name), MESSAGE_FOR_NAME_IS_BLANK);
+    /**
+     * Validates a given input String.
+     * @param itemName String representation of item name to validate against.
+     */
+    public static void validate(String itemName) {
+        checkArgument(doesNameContainInvalidCharacters(itemName), MESSAGE_FOR_INVALID_CHARACTERS);
+        checkArgument(isNameLengthMoreThanMaxLength(itemName), MESSAGE_FOR_NAME_TOO_LONG);
+        checkArgument(isNameBlank(itemName), MESSAGE_FOR_NAME_IS_BLANK);
     }
 
     /**

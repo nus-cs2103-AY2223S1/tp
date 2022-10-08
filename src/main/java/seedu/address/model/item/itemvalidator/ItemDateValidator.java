@@ -1,13 +1,16 @@
 package seedu.address.model.item.itemvalidator;
 
-import seedu.address.model.item.Item;
-import seedu.address.model.validator.DateValidator;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import static seedu.address.commons.util.AppUtil.checkArgument;
+import seedu.address.model.item.Item;
+import seedu.address.model.validator.DateValidator;
 
+/**
+ * Validation class for item dates.
+ */
 public class ItemDateValidator {
 
     // Validation for parsing
@@ -25,6 +28,10 @@ public class ItemDateValidator {
     private static final String MESSAGE_FOR_YEAR_TOO_LARGE =
             String.format("Year should be less than %d.", MAX_YEAR);
 
+    /**
+     * Validates a given input String.
+     * @param dateString String representation of date to validate against.
+     */
     public static void validate(String dateString) {
         checkArgument(isParsableItemDatetime(dateString), MESSAGE_FOR_UNABLE_TO_PARSE);
         LocalDate date = LocalDate.parse(dateString);

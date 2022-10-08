@@ -7,11 +7,12 @@ import java.util.Optional;
 
 /**
  * Validates if a date is parsable according to the dateFormatter provided.
- * Provided an isValidDateString that returns a boolean value indicating if it is parsable.
+ * Provided an isValidDateString that returns a boolean value indicating
+ * if it is parsable.
  */
 public class DateValidator {
-    private final DateTimeFormatter dateTimeFormatter;
     private static final DateTimeFormatter DEFAULT_DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private final DateTimeFormatter dateTimeFormatter;
 
     /**
      * Constructor for a DateValidator object.

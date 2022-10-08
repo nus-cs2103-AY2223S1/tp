@@ -1,9 +1,12 @@
 package seedu.address.model.item.itemvalidator;
 
-import seedu.address.model.item.Item;
-
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.model.item.Item;
+
+/**
+ * Validation class for item quantities.
+ */
 public class ItemQuantityValidator {
 
     // Validation for quantity is a number
@@ -22,7 +25,10 @@ public class ItemQuantityValidator {
     private static final String MESSAGE_FOR_QUANTITY_IS_NEGATIVE =
             "Quantity should not be negative.";
 
-
+    /**
+     * Validates a given input String.
+     * @param itemQuantityString String representation of item quantity to validate against.
+     */
     public static void validate(String itemQuantityString) {
         checkArgument(isParsableQuantity(itemQuantityString), MESSAGE_FOR_NOT_A_NUMBER);
         checkArgument(isQuantityTooPrecise(itemQuantityString), MESSAGE_FOR_PRECISION_TOO_HIGH);
