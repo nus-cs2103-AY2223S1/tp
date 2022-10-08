@@ -40,8 +40,8 @@ public class PersonTest {
     @Test
     public void equals() {
         // same values -> returns true
-    //        Task copy = new TaskBuilder(TASK_1).build();
-    //        assertTrue(TASK_1.equals(copy));
+        //        Task copy = new TaskBuilder(TASK_1).build();
+        //        assertTrue(TASK_1.equals(copy));
 
         // same object -> returns true
         assertTrue(TASK_1.equals(TASK_1));
