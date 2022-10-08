@@ -9,6 +9,8 @@ import java.util.Set;
 import paymelah.commons.core.index.Index;
 import paymelah.commons.util.StringUtil;
 import paymelah.logic.parser.exceptions.ParseException;
+import paymelah.model.debt.Description;
+import paymelah.model.debt.Money;
 import paymelah.model.person.Address;
 import paymelah.model.person.Email;
 import paymelah.model.person.Name;
@@ -120,5 +122,39 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String description} into a {@code Description}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param description The description to turn into a {@code Description} object.
+     * @return The corresponding {@code Description}.
+     * @throws ParseException if the given {@code description} is invalid.
+     */
+    public static Description parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!Description.isValidDescription(trimmedDescription)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+        return new Description(trimmedDescription);
+    }
+
+    /**
+     * Parses a {@code String money} into a {@code Money}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param money The money to turn into a {@code Money} object.
+     * @return The corresponding {@code Money}.
+     * @throws ParseException if the given {@code money} is invalid.
+     */
+    public static Money parseMoney(String money) throws ParseException {
+        requireNonNull(money);
+        String trimmedMoney = money.trim();
+        if (!Money.isValidMoney(trimmedMoney)) {
+            throw new ParseException(Money.MESSAGE_CONSTRAINTS);
+        }
+        return new Money(trimmedMoney);
     }
 }

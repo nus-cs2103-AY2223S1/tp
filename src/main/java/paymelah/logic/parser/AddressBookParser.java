@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import paymelah.logic.commands.AddCommand;
+import paymelah.logic.commands.AddDebtCommand;
 import paymelah.logic.commands.ClearCommand;
 import paymelah.logic.commands.Command;
 import paymelah.logic.commands.DeleteCommand;
@@ -47,6 +48,9 @@ public class AddressBookParser {
 
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
+
+        case AddDebtCommand.COMMAND_WORD:
+            return new AddDebtCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
