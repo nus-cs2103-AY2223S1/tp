@@ -1,10 +1,14 @@
 package seedu.address.model.person;
 
-import seedu.address.commons.util.StringUtil;
 import java.util.function.Predicate;
 
+import seedu.address.commons.util.StringUtil;
 
-public class StatusContainsKeywordPredicate implements Predicate<Person>  {
+
+/**
+ * Tests that a {@code Applicant}'s {@code Status} matches the keyword given.
+ */
+public class StatusContainsKeywordPredicate implements Predicate<Person> {
     private final String keyword;
 
     public StatusContainsKeywordPredicate(String keyword) {
