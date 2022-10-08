@@ -14,6 +14,7 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.profile.EditProfileCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.profile.NameContainsKeywordsPredicate;
@@ -53,8 +54,8 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditProfileDescriptor DESC_AMY;
-    public static final EditCommand.EditProfileDescriptor DESC_BOB;
+    public static final EditProfileCommand.EditProfileDescriptor DESC_AMY;
+    public static final EditProfileCommand.EditProfileDescriptor DESC_BOB;
 
     static {
         DESC_AMY = new EditProfileDescriptorBuilder().withName(VALID_NAME_AMY)

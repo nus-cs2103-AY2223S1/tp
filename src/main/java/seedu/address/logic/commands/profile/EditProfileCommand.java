@@ -1,8 +1,9 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.profile;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROFILES;
@@ -16,6 +17,7 @@ import java.util.Set;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.profile.Email;
@@ -27,11 +29,12 @@ import seedu.address.model.tag.Tag;
 /**
  * Edits the details of an existing profile in the address book.
  */
-public class EditCommand extends Command {
+public class EditProfileCommand extends ProfileCommand {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_OPTION = "e";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the profile identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION
+            + ": Edits the details of the profile identified "
             + "by the index number used in the displayed profile list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
@@ -39,7 +42,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com "
             + PREFIX_TAG + "CS2103T";
@@ -55,7 +58,7 @@ public class EditCommand extends Command {
      * @param index of the profile in the filtered profile list to edit
      * @param editProfileDescriptor details to edit the profile with
      */
-    public EditCommand(Index index, EditProfileDescriptor editProfileDescriptor) {
+    public EditProfileCommand(Index index, EditProfileDescriptor editProfileDescriptor) {
         requireNonNull(index);
         requireNonNull(editProfileDescriptor);
 
@@ -107,12 +110,12 @@ public class EditCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof EditProfileCommand)) {
             return false;
         }
 
         // state check
-        EditCommand e = (EditCommand) other;
+        EditProfileCommand e = (EditProfileCommand) other;
         return index.equals(e.index)
                 && editProfileDescriptor.equals(e.editProfileDescriptor);
     }

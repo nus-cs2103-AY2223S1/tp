@@ -11,7 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.EditCommand.EditProfileDescriptor;
+import seedu.address.logic.commands.profile.EditProfileCommand.EditProfileDescriptor;
 import seedu.address.testutil.EditProfileDescriptorBuilder;
 
 public class EditProfileDescriptorTest {
