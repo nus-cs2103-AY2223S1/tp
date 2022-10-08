@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
@@ -10,16 +10,17 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.FullNamePredicate;
 import seedu.address.model.person.Person;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-
+/**
+ * Deletes a person identified using the displayed name from the address book.
+ */
 public class DeleteUserByNameCommand extends Command {
     public static final String COMMAND_WORD = "deletebyname";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-    + ": Deletes the person identified by name of the person in the displayed person list.\n"
-    + "Parameters: NAME (must be exactly the same as person's name)\n"
-    + "Example: " + COMMAND_WORD + " UserName ";
+        + ": Deletes the person identified by name of the person in the displayed person list.\n"
+        + "Parameters: NAME (must be exactly the same as person's name)\n"
+        + "Example: " + COMMAND_WORD + " UserName ";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
@@ -44,7 +45,7 @@ public class DeleteUserByNameCommand extends Command {
             }
         }
         if (targetIndex == -1) {
-            return new CommandResult(String.format(Messages.MESSAGE_INVALID_PERSON_NAME));
+            throw new CommandException(String.format(Messages.MESSAGE_INVALID_PERSON_NAME));
         }
 
         Person personToDelete = lastShownList.get(targetIndex);
