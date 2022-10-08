@@ -1,17 +1,10 @@
 package seedu.taassist.logic.parser;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
-
-import static java.util.Objects.requireNonNull;
-import seedu.taassist.logic.parser.exceptions.ParseException;
-import seedu.taassist.model.moduleclass.ModuleClass;
 
 /**
  * Stores mapping of prefixes to their respective arguments.

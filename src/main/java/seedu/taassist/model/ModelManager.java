@@ -129,6 +129,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasModuleClasses(Collection<ModuleClass> moduleClasses) {
+        return moduleClasses.stream().allMatch(this::hasModuleClass);
+    }
+
+    @Override
     public void deleteModuleClass(ModuleClass target) {
         requireNonNull(target);
         taAssist.removeModuleClass(target);
@@ -151,11 +156,6 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<ModuleClass> getModuleClassList() {
         return taAssist.getModuleClassList();
-    }
-
-    @Override
-    public boolean hasModuleClasses(Collection<ModuleClass> moduleClasses) {
-        return moduleClasses.stream().allMatch(this::hasModuleClass);
     }
 
     //=========== Filtered Student List Accessors =============================================================
