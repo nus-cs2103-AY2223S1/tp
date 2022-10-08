@@ -1,15 +1,19 @@
 package nus.climods.storage.acadyearmodulelist;
 
 import static nus.climods.testutil.Assert.assertThrows;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.openapitools.client.api.ModulesApi;
 import org.openapitools.client.model.ModuleCondensed;
+
 import nus.climods.commons.exceptions.DataConversionException;
 import nus.climods.model.ReadOnlyAcadYearModuleList;
 
@@ -25,7 +29,8 @@ class JsonAcadYearModuleListStorageTest {
     }
 
     private Optional<ReadOnlyAcadYearModuleList> readAcadYearModuleList(String filePath) throws Exception {
-        return new JsonAcadYearModuleListStorage(Paths.get(filePath)).readAcadYearModuleList(addToTestDataPathIfNotNull(filePath));
+        return new JsonAcadYearModuleListStorage(Paths.get(filePath))
+            .readAcadYearModuleList(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -41,12 +46,14 @@ class JsonAcadYearModuleListStorageTest {
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readAcadYearModuleList("notJsonFormatAcadYearModuleList.json"));
+        assertThrows(DataConversionException.class, () -> readAcadYearModuleList(
+            "notJsonFormatAcadYearModuleList.json"));
     }
 
     @Test
     public void readValidJsonFormat_success() throws Exception {
-        Optional<ReadOnlyAcadYearModuleList> readOnlyAcadYearModuleList = readAcadYearModuleList("validJsonFormatAcadYearModuleList.json");
+        Optional<ReadOnlyAcadYearModuleList> readOnlyAcadYearModuleList =
+            readAcadYearModuleList("validJsonFormatAcadYearModuleList.json");
     }
 
     /**
@@ -67,5 +74,4 @@ class JsonAcadYearModuleListStorageTest {
         List<ModuleCondensed> readBackData = readBack.getModuleList();
         assertEquals(data, readBackData);
     }
-
 }
