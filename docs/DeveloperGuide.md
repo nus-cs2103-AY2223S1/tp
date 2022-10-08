@@ -355,15 +355,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 
-**Use case: Delete debt**
+**Use case: Clear debts**
 
 **MSS**
 
 1.  User requests to list debtors
 1.  PayMeLah shows a list of debtors
-1.  User requests to delete the debts of a specific debtor in the list
-1.  PayMeLah deletes the debts of that person
-1.  PayMeLah displays that the person’s debts are deleted
+1.  User requests to clear the debts of a specific debtor in the list
+1.  PayMeLah clears the debts of that person
+1.  PayMeLah displays that the person’s debts are cleared
 
 **Extensions**
 

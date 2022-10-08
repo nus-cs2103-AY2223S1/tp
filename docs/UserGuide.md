@@ -97,14 +97,14 @@ Format: `adddebt <person index> d/<description> m/<money>`
 Example:
 * `adddebt 3 d/McDonalds m/8.9`
 
-### Deleting a debt: `deletedebt`
+### Clearing debts: `cleardebts`
 
-Deletes a debtor's debts from PayMeLah according to his index number when listed.
+Clears all of a debtor's debts from PayMeLah according to his index number when listed.
 
-Format: `deletedebt <person index>`
+Format: `cleardebts <person index>`
 
 Example:
-* `deletedebt 3`
+* `cleardebt 3`
 
 ### Getting the statement
 

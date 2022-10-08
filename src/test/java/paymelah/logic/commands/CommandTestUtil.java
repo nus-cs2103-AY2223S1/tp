@@ -12,6 +12,7 @@ import static paymelah.testutil.Assert.assertThrows;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 
 import paymelah.commons.core.index.Index;
 import paymelah.logic.commands.exceptions.CommandException;
@@ -139,6 +140,17 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the persons with debt in the
+     * {@code model}'s address book.
+     */
+    public static void showDebtors(Model model) {
+        Predicate<Person> predicateShowDebtors = p -> !p.getDebts().isEmpty();
+
+        model.updateFilteredPersonList(predicateShowDebtors);
+        assertTrue(!model.getFilteredPersonList().isEmpty());
     }
 
 }
