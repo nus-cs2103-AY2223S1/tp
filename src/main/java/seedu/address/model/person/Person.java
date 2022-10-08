@@ -99,8 +99,11 @@ public class Person {
             return true;
         }
 
-        return otherPerson == null
-                && otherPerson.getMinecraftName().equals(getMinecraftName());
+        if (otherPerson == null) {
+            return false;
+        }
+
+        return !(otherPerson.getMinecraftName().equals(getMinecraftName()));
     }
 
     /**
