@@ -61,8 +61,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
 
-    @FXML
-    private StackPane labellerPlaceHolder;
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -134,7 +133,11 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
+        TripsLabeler tripsLabel = new TripsLabeler();
+        tripsTextField.getChildren().add(tripsLabel.getRoot());
 
+        EventsLabeler eventsLabel = new EventsLabeler();
+        eventsTextField.getChildren().add(eventsLabel.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());

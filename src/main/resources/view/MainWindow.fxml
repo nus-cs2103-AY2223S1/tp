@@ -47,12 +47,12 @@
           </padding>
         </StackPane>
 
-        <HBox fx:id="labeller" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+        <HBox fx:id="labeler" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
           <padding>
             <Insets top="10" right="10" bottom="10" left="10" />
           </padding>
-          <StackPane fx:id="tripsLabel" HBox.hgrow="ALWAYS"/>
-          <StackPane fx:id="eventsLabel" HBox.hgrow="ALWAYS"/>
+          <StackPane fx:id="tripsTextField" HBox.hgrow="ALWAYS"/>
+          <StackPane fx:id="eventsTextField" HBox.hgrow="ALWAYS"/>
         </HBox>
         <HBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
           <padding>
