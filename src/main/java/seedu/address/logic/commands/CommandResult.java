@@ -17,13 +17,33 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** Denotes whether the command is client specific. */
+    private final boolean isClient;
+
+    /** Denotes whether the command is meeting specific. */
+    private final boolean isMeeting;
+
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean isClient, boolean isMeeting) {
+        if (isClient && isMeeting) {
+            throw new IllegalArgumentException("A command should not be both client and meeting specific.");
+        }
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.isClient = isClient;
+        this.isMeeting = isMeeting;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser}, {@code showHelp}, {@code exit}.
+     * Client/meeting specific fields are set to their default value.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+        this(feedbackToUser, showHelp, exit, false, false);
     }
 
     /**
@@ -44,6 +64,14 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isClientSpecific() {
+        return isClient;
+    }
+
+    public boolean isMeetingSpecific() {
+        return isMeeting;
     }
 
     @Override
