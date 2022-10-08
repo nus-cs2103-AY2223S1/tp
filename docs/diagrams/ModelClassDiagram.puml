@@ -5,46 +5,59 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyMyInsuRec" as ReadOnlyMyInsuRec
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class AddressBook
+Class MyInsuRec
 Class ModelManager
 Class UserPrefs
 
-Class UniquePersonList
-Class Person
+Class UniqueClientList
+Class Client
 Class Address
 Class Email
 Class Name
 Class Phone
 Class Tag
 
+Class UniqueMeetingList
+Class Meeting
+Class Description
+Class MeetingDate
+Class MeetingTime
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+MyInsuRec .up.|> ReadOnlyMyInsuRec
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+Model .left.> ReadOnlyMyInsuRec
+ModelManager -left-> "1" MyInsuRec
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+ModelManager -->"~* filtered" Client
+
+MyInsuRec *-> "1" UniqueClientList
+UniqueClientList -> "~* all" Client
+Client *--> Name
+Client *--> Phone
+Client *--> Email
+Client *--> Address
+Client *--> "*" Tag
+
+MyInsuRec *--> "1" UniqueMeetingList
+UniqueMeetingList --> "~* all" Meeting
+Meeting *--> Description
+Meeting *--> MeetingDate
+Meeting *--> MeetingTime
+Meeting <-> Client
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
-ModelManager -->"~* filtered" Person
 @enduml
