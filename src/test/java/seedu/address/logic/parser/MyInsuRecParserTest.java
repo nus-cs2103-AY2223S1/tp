@@ -13,9 +13,9 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddClientCommand;
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteClientCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditClientDescriptor;
 import seedu.address.logic.commands.ExitCommand;
@@ -36,8 +36,8 @@ public class MyInsuRecParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Client client = new ClientBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(ClientUtil.getAddCommand(client));
-        assertEquals(new AddCommand(client), command);
+        AddClientCommand command = (AddClientCommand) parser.parseCommand(ClientUtil.getAddCommand(client));
+        assertEquals(new AddClientCommand(client), command);
     }
 
     @Test
@@ -48,9 +48,9 @@ public class MyInsuRecParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_CLIENT.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_CLIENT), command);
+        DeleteClientCommand command = (DeleteClientCommand) parser.parseCommand(
+                DeleteClientCommand.COMMAND_WORD + " " + INDEX_FIRST_CLIENT.getOneBased());
+        assertEquals(new DeleteClientCommand(INDEX_FIRST_CLIENT), command);
     }
 
     @Test

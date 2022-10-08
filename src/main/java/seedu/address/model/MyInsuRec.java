@@ -91,7 +91,7 @@ public class MyInsuRec implements ReadOnlyMyInsuRec {
 
     /**
      * Removes {@code key} from this {@code MyInsuRec}.
-     * {@code key} must exist in the client book.
+     * {@code key} must exist in MyInsuRec.
      */
     public void removeClient(Client key) {
         clients.remove(key);
