@@ -84,8 +84,7 @@ public class Team {
         }
 
         Team otherTeam = (Team) other;
-        return otherTeam.getTeamName().equals(getTeamName())
-                && otherTeam.getTeamMembers().equals(getTeamMembers());
+        return otherTeam.getTeamName().equals(getTeamName());
     }
 
     @Override
