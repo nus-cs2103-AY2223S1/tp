@@ -63,6 +63,11 @@ public interface Model {
     void addOrder(Order order);
 
     /**
+     * Deletes the given order.
+     */
+    void deleteOrder(Order order);
+
+    /**
      * Returns the order list.
      */
     ObservableList<Order> getOrderList();
