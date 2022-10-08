@@ -2,7 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.address.testutil.TypicalClients.getTypicalClientBook;
+import static seedu.address.testutil.TypicalClients.getTypicalMyInsuRec;
 
 import java.nio.file.Path;
 
@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.ClientBook;
-import seedu.address.model.ReadOnlyClientBook;
+import seedu.address.model.MyInsuRec;
+import seedu.address.model.ReadOnlyMyInsuRec;
 import seedu.address.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -24,9 +24,9 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonClientBookStorage clientBookStorage = new JsonClientBookStorage(getTempFilePath("cb"));
+        JsonMyInsuRecStorage myInsuRecStorage = new JsonMyInsuRecStorage(getTempFilePath("cb"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(clientBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(myInsuRecStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -48,21 +48,21 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void clientBookReadSave() throws Exception {
+    public void myInsuRecReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonClientBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonClientBookStorageTest} class.
+         * {@link JsonMyInsuRecStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonMyInsuRecStorageTest} class.
          */
-        ClientBook original = getTypicalClientBook();
-        storageManager.saveClientBook(original);
-        ReadOnlyClientBook retrieved = storageManager.readClientBook().get();
-        assertEquals(original, new ClientBook(retrieved));
+        MyInsuRec original = getTypicalMyInsuRec();
+        storageManager.saveMyInsuRec(original);
+        ReadOnlyMyInsuRec retrieved = storageManager.readMyInsuRec().get();
+        assertEquals(original, new MyInsuRec(retrieved));
     }
 
     @Test
-    public void getClientBookFilePath() {
-        assertNotNull(storageManager.getClientBookFilePath());
+    public void getMyInsuRecFilePath() {
+        assertNotNull(storageManager.getMyInsuRecFilePath());
     }
 
 }

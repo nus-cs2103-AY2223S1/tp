@@ -59,7 +59,7 @@ public class JsonUserPrefsStorageTest {
     private UserPrefs getTypicalUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
         userPrefs.setGuiSettings(new GuiSettings(1000, 500, 300, 100));
-        userPrefs.setClientBookFilePath(Paths.get("clientbook.json"));
+        userPrefs.setMyInsuRecFilePath(Paths.get("myinsurec.json"));
         return userPrefs;
     }
 

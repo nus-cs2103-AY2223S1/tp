@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.client.NameContainsKeywordsPredicate;
-import seedu.address.testutil.ClientBookBuilder;
+import seedu.address.testutil.MyInsuRecBuilder;
 
 public class ModelManagerTest {
 
@@ -26,7 +26,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new ClientBook(), new ClientBook(modelManager.getClientBook()));
+        assertEquals(new MyInsuRec(), new MyInsuRec(modelManager.getMyInsuRec()));
     }
 
     @Test
@@ -37,14 +37,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setClientBookFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setMyInsuRecFilePath(Paths.get("address/book/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setClientBookFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setMyInsuRecFilePath(Paths.get("new/address/book/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -61,15 +61,15 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setClientBookFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setClientBookFilePath(null));
+    public void setMyInsuRecFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setMyInsuRecFilePath(null));
     }
 
     @Test
-    public void setClientBookFilePath_validPath_setsClientBookFilePath() {
+    public void setMyInsuRecFilePath_validPath_setsMyInsuRecFilePath() {
         Path path = Paths.get("address/book/file/path");
-        modelManager.setClientBookFilePath(path);
-        assertEquals(path, modelManager.getClientBookFilePath());
+        modelManager.setMyInsuRecFilePath(path);
+        assertEquals(path, modelManager.getMyInsuRecFilePath());
     }
 
     @Test
@@ -78,12 +78,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasClient_clientNotInClientBook_returnsFalse() {
+    public void hasClient_clientNotInMyInsuRec_returnsFalse() {
         assertFalse(modelManager.hasClient(ALICE));
     }
 
     @Test
-    public void hasClient_clientInClientBook_returnsTrue() {
+    public void hasClient_clientInMyInsuRec_returnsTrue() {
         modelManager.addClient(ALICE);
         assertTrue(modelManager.hasClient(ALICE));
     }
@@ -95,13 +95,13 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        ClientBook clientBook = new ClientBookBuilder().withClient(ALICE).withClient(BENSON).build();
-        ClientBook differentClientBook = new ClientBook();
+        MyInsuRec myInsuRec = new MyInsuRecBuilder().withClient(ALICE).withClient(BENSON).build();
+        MyInsuRec differentMyInsuRec = new MyInsuRec();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(clientBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(clientBook, userPrefs);
+        modelManager = new ModelManager(myInsuRec, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(myInsuRec, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -113,20 +113,20 @@ public class ModelManagerTest {
         // different types -> returns false
         assertFalse(modelManager.equals(5));
 
-        // different clientBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentClientBook, userPrefs)));
+        // different myInsuRec -> returns false
+        assertFalse(modelManager.equals(new ModelManager(differentMyInsuRec, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredClientList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(clientBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(myInsuRec, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setClientBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(clientBook, differentUserPrefs)));
+        differentUserPrefs.setMyInsuRecFilePath(Paths.get("differentFilePath"));
+        assertFalse(modelManager.equals(new ModelManager(myInsuRec, differentUserPrefs)));
     }
 }

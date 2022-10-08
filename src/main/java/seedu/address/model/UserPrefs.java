@@ -14,7 +14,7 @@ import seedu.address.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path clientBookFilePath = Paths.get("data" , "addressbook.json");
+    private Path myInsuRecFilePath = Paths.get("data" , "myinsurec.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -35,7 +35,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void resetData(ReadOnlyUserPrefs newUserPrefs) {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
-        setClientBookFilePath(newUserPrefs.getClientBookFilePath());
+        setMyInsuRecFilePath(newUserPrefs.getMyInsuRecFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -47,13 +47,13 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.guiSettings = guiSettings;
     }
 
-    public Path getClientBookFilePath() {
-        return clientBookFilePath;
+    public Path getMyInsuRecFilePath() {
+        return myInsuRecFilePath;
     }
 
-    public void setClientBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        this.clientBookFilePath = addressBookFilePath;
+    public void setMyInsuRecFilePath(Path myInsuRecFilePath) {
+        requireNonNull(myInsuRecFilePath);
+        this.myInsuRecFilePath = myInsuRecFilePath;
     }
 
     @Override
@@ -68,19 +68,19 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && clientBookFilePath.equals(o.clientBookFilePath);
+                && myInsuRecFilePath.equals(o.myInsuRecFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, clientBookFilePath);
+        return Objects.hash(guiSettings, myInsuRecFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + clientBookFilePath);
+        sb.append("\nLocal data file location : " + myInsuRecFilePath);
         return sb.toString();
     }
 
