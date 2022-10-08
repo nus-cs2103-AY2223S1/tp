@@ -18,8 +18,10 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.issue.Issue;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.project.Project;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
@@ -88,14 +90,26 @@ public class AddressBookTest {
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Project> projects = FXCollections.observableArrayList();
+        private final ObservableList<Issue> issues = FXCollections.observableArrayList();
+
 
         AddressBookStub(Collection<Person> persons) {
+            // TODO: Add test parameters for projects, issues
             this.persons.setAll(persons);
         }
 
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
+        }
+
+        public ObservableList<Project> getProjectList() {
+            return projects;
+        }
+
+        public ObservableList<Issue> getIssueList() {
+            return issues;
         }
     }
 

@@ -19,6 +19,7 @@ public class ListCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        // TODO: Use one filtered list that takes in entities, then switch views based on that filtered list.
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
