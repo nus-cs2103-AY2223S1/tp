@@ -1,5 +1,6 @@
 ---
-Peter Fung's Project Portfolio Page
+layout: page
+title: Peter Fung's Project Portfolio Page
 ---
 
 ### Project: IBook
