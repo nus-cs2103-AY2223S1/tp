@@ -33,10 +33,14 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder(Person person) {
         descriptor = new EditPersonDescriptor();
         descriptor.setName(person.getName());
+        descriptor.setMinecraftName(person.getMinecraftName());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
+        descriptor.setServers(person.getServers());
         descriptor.setTags(person.getTags());
+        descriptor.setSocials(person.getSocials());
+        descriptor.setTimeZone(person.getTimeZone());
     }
 
     /**
