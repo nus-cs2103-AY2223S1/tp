@@ -97,9 +97,13 @@ public interface Model {
      * Creates a new meeting with a person in the address book.
      *
      * @param otherPerson the contact in the address book to create a meeting with
+     * @param meetingTitle the title/ description of meeting
+     * @param meetingDateAndTime the date and time of meeting
+     * @param meetingLocation the location of meeting
      * @return a new meeting
      */
-    Meeting createNewMeeting(Person otherPerson);
+    Meeting createNewMeeting(Person otherPerson, String meetingTitle,
+                             String meetingDateAndTime, String meetingLocation);
 
     /**
      * Adds a new meeting to the address book.

@@ -132,8 +132,9 @@ public class ModelManager implements Model {
     //=========== Meetings ================================================================================
 
     @Override
-    public Meeting createNewMeeting(Person otherPerson) {
-        return new Meeting(otherPerson);
+    public Meeting createNewMeeting(Person otherPerson, String meetingTitle,
+                                    String meetingDateAndTime, String meetingLocation) {
+        return new Meeting(otherPerson, meetingTitle, meetingDateAndTime, meetingLocation);
     }
 
     @Override
