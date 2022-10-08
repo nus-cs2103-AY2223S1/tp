@@ -8,8 +8,8 @@ import java.util.Optional;
 import org.openapitools.client.model.ModuleCondensed;
 
 import nus.climods.commons.exceptions.DataConversionException;
-import nus.climods.model.AcadYearModuleList;
-import nus.climods.model.ReadOnlyAcadYearModuleList;
+import nus.climods.model.module.AcadYearModuleList;
+import nus.climods.model.module.ReadOnlyAcadYearModuleList;
 
 
 

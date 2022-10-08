@@ -15,7 +15,7 @@ import org.openapitools.client.api.ModulesApi;
 import org.openapitools.client.model.ModuleCondensed;
 
 import nus.climods.commons.exceptions.DataConversionException;
-import nus.climods.model.ReadOnlyAcadYearModuleList;
+import nus.climods.model.module.ReadOnlyAcadYearModuleList;
 
 class JsonAcadYearModuleListStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAcadYearModuleListStorageTest");

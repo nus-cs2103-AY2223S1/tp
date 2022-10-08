@@ -1,4 +1,4 @@
-package nus.climods.model;
+package nus.climods.model.module;
 
 import java.util.ArrayList;
 import java.util.List;

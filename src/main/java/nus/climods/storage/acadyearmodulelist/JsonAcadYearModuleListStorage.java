@@ -15,7 +15,7 @@ import nus.climods.commons.exceptions.DataConversionException;
 import nus.climods.commons.exceptions.IllegalValueException;
 import nus.climods.commons.util.FileUtil;
 import nus.climods.commons.util.JsonUtil;
-import nus.climods.model.ReadOnlyAcadYearModuleList;
+import nus.climods.model.module.ReadOnlyAcadYearModuleList;
 
 /**
  * A class to access AcadYearModuleList data stored as a json file on the hard disk.

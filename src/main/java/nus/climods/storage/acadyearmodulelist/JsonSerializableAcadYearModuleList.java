@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import nus.climods.commons.exceptions.IllegalValueException;
-import nus.climods.model.AcadYearModuleList;
+import nus.climods.model.module.AcadYearModuleList;
 
 /**
  * An Immutable acadYearModuleList that is serializable to JSON format.
