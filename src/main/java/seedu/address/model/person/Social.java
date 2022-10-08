@@ -62,4 +62,19 @@ public class Social {
         return this.platform + "@" + this.handle;
     }
 
+    @Override
+    public boolean equals(Object other) {
+
+        if (this == other) {
+            return true;
+        } else if (!(other instanceof Social)) {
+            return false;
+        }
+
+        Social s = (Social) other;
+
+        return this.platform.equals(s.platform) && this.handle.equals(s.handle);
+
+    }
+
 }

@@ -54,6 +54,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
@@ -110,7 +111,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (socials.isEmpty()) {
             return Optional.empty();
         }
-        return Optional.of(ParserUtil.parseSocials(socials));
+        Collection<String> socialSet = socials.size() == 1 && socials.contains("") ? Collections.emptySet() : socials;
+        return Optional.of(ParserUtil.parseSocials(socialSet));
     }
 
     private Optional<Set<Server>> parseMinecraftServersForEdit(Collection<String> servers) throws ParseException {
@@ -119,7 +121,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (servers.isEmpty()) {
             return Optional.empty();
         }
-        return Optional.of(ParserUtil.parseServers(servers));
+        Collection<String> serverSet = servers.size() == 1 && servers.contains("") ? Collections.emptySet() : servers;
+        return Optional.of(ParserUtil.parseServers(serverSet));
     }
 
 }

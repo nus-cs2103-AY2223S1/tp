@@ -59,7 +59,7 @@ public class PersonUtil {
         if (descriptor.getSocials().isPresent()) {
             Set<Social> socials = descriptor.getSocials().get();
             if (socials.isEmpty()) {
-                sb.append(PREFIX_SOCIAL);
+                sb.append(PREFIX_SOCIAL).append(" ");
             } else {
                 socials.forEach(s -> sb.append(PREFIX_SOCIAL).append(s.toString()).append(" "));
             }
@@ -67,7 +67,7 @@ public class PersonUtil {
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG);
+                sb.append(PREFIX_TAG).append(" ");
             } else {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
             }
@@ -75,7 +75,7 @@ public class PersonUtil {
         if (descriptor.getServers().isPresent()) {
             Set<Server> servers = descriptor.getServers().get();
             if (servers.isEmpty()) {
-                sb.append(PREFIX_SOCIAL);
+                sb.append(PREFIX_MINECRAFT_SERVER).append(" ");
             } else {
                 servers.forEach(s -> sb.append(PREFIX_MINECRAFT_SERVER).append(s.getServerName()).append(" "));
             }
