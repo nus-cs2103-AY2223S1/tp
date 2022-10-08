@@ -1,45 +1,37 @@
 package seedu.address.model.item;
 
+import seedu.address.model.item.itemvalidator.ItemDateValidator;
+
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents an item date in an {@link Item}.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
 public class ItemDate {
-    public static final String MESSAGE_CONSTRAINTS =
-            "Dates must follow the format yyyy-mm-dd or dd-mm-yyyy.";
 
-    // TODO: Handle validation
-    public static final String VALIDATION_REGEX = "yyyy-MM-dd";
-    public static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(VALIDATION_REGEX);
+    private final LocalDate itemDate;
 
-    public static final String DATE_OUTPUT_PATTERN = "dd/MM/yyyy";
+    private static final String DATE_OUTPUT_PATTERN_REGEX = "dd/MM/yyyy";
 
-    public final LocalDate itemDate;
-
-    public ItemDate(String unparsedDate) {
-        requireNonNull(unparsedDate);
-         checkArgument(isValidItemDatetime(unparsedDate), MESSAGE_CONSTRAINTS);
-        this.itemDate = getDatetimeFormat(unparsedDate); // TODO: Replace with parser
+    /**
+     * Constructs an itemDate.
+     *
+     * @param dateString a string that represents the itemDate of the format
+     */
+    public ItemDate(String dateString) {
+        requireNonNull(dateString);
+        ItemDateValidator.validate(dateString);
+        itemDate = LocalDate.parse(dateString);
     }
 
-    public static boolean isValidItemDatetime(String unparsedDatetime) {
-        DateValidator validator = new DateValidator(formatter);
-        return validator.isValid(unparsedDatetime);
-    }
-
-    public LocalDate getDatetimeFormat(String unparsedDatetime) {
-        return LocalDate.parse(unparsedDatetime, formatter);
-    }
-
-    public String getStringFromDatetime(LocalDate date) {
-        return date.format(
-                DateTimeFormatter.ofPattern(DATE_OUTPUT_PATTERN));
-    }
-
-
+    /**
+     * Returns true if both {@link ItemDate#itemDate} have the same date by
+     * {@link LocalDate#equals(Object)}.
+     */
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
@@ -47,15 +39,19 @@ public class ItemDate {
                 && itemDate.equals(((ItemDate) other).itemDate)); // state check
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int hashCode() {
         return itemDate.hashCode();
     }
 
     /**
-     * Format state as text for viewing.
+     * {@inheritDoc}
      */
+    @Override
     public String toString() {
-        return getStringFromDatetime(this.itemDate);
+        return itemDate.format(DateTimeFormatter.ofPattern(DATE_OUTPUT_PATTERN_REGEX));
     }
 }

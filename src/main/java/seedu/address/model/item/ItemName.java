@@ -1,45 +1,31 @@
 package seedu.address.model.item;
 
+import seedu.address.model.item.itemvalidator.ItemNameValidator;
+
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents an item name in an {@link Item}.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
 public class ItemName {
-    public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
 
-    /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    // TODO: Change validation
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
-
-    public final String itemName;
+    private final String itemName;
 
     /**
-     * Constructs a {@code Name}.
+     * Constructs an {@link ItemName}.
      *
-     * @param name A valid name.
+     * @param name a valid item {@link ItemName#itemName}.
      */
     public ItemName(String name) {
         requireNonNull(name);
-        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
-        this.itemName = name;
+        ItemNameValidator.validate(name);
+        itemName = name;
     }
 
     /**
-     * Returns true if a given string is a valid name.
+     * {@inheritDoc}
      */
-    public static boolean isValidName(String test) {
-        return test.matches(VALIDATION_REGEX);
-    }
-
-
-    @Override
-    public String toString() {
-        return itemName;
-    }
-
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
@@ -47,8 +33,19 @@ public class ItemName {
                 && itemName.equals(((ItemName) other).itemName)); // state check
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int hashCode() {
         return itemName.hashCode();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return itemName;
     }
 }
