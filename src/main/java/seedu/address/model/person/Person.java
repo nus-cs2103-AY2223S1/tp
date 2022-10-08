@@ -99,7 +99,6 @@ public class Person {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getScholarship().equals(getScholarship())
                 && otherPerson.getApplicationStatus().equals(getApplicationStatus())
-                && otherPerson.getScholarship().equals(getScholarship())
                 && otherPerson.getTags().equals(getTags());
     }
 
