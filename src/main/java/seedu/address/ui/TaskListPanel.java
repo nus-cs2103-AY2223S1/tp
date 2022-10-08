@@ -1,11 +1,11 @@
 package seedu.address.ui;
 
 import java.util.logging.Logger;
-import javax.swing.plaf.synth.Region;
 
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.team.Task;
 
