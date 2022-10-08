@@ -10,6 +10,7 @@ import paymelah.commons.core.Messages;
 import paymelah.commons.core.index.Index;
 import paymelah.logic.commands.exceptions.CommandException;
 import paymelah.model.Model;
+import paymelah.model.debt.DebtList;
 import paymelah.model.person.Address;
 import paymelah.model.person.Email;
 import paymelah.model.person.Name;
