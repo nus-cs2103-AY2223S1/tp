@@ -55,7 +55,12 @@ public class ListCommand extends Command {
             boolean addressMatch = x.getAddress().equals(address.orElse(x.getAddress()));
             boolean categoryMatch = x.getCategory().equals(category.orElse(x.getCategory()));
             boolean genderMatch = x.getGender().equals(gender.orElse(x.getGender()));
-            boolean tagMatch = x.getTags().stream().anyMatch(y -> y.equals(tag.orElse((Tag) x.getTags().toArray()[0])));
+
+            Predicate<Tag> tagPredicate = y -> {
+                Tag tagToCompare = tag.orElse((Tag) x.getTags().toArray()[0]);
+                return y.equals(tagToCompare);
+            };
+            boolean tagMatch = x.getTags().stream().anyMatch(tagPredicate);
             return addressMatch && categoryMatch && genderMatch && tagMatch;
         };
         model.updateFilteredPersonList(predicate);
