@@ -23,7 +23,7 @@ class JsonSerializableAcadYearModuleList {
      * Constructs a {@code JsonSerializableAcadYearModuleList} with the given modules.
      */
     @JsonCreator
-    public JsonSerializableAcadYearModuleList(@JsonProperty("persons") List<ModuleCondensed> modules) {
+    public JsonSerializableAcadYearModuleList(@JsonProperty("modules") List<ModuleCondensed> modules) {
         this.modules = modules;
     }
 

@@ -3,6 +3,7 @@ package nus.climods.storage.acadyearmodulelist;
 import static nus.climods.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -52,8 +53,7 @@ class JsonAcadYearModuleListStorageTest {
 
     @Test
     public void readValidJsonFormat_success() throws Exception {
-        Optional<ReadOnlyAcadYearModuleList> readOnlyAcadYearModuleList =
-            readAcadYearModuleList("validJsonFormatAcadYearModuleList.json");
+        assertTrue(readAcadYearModuleList("validJsonFormatAcadYearModuleList.json").isPresent());
     }
 
     /**
@@ -70,7 +70,10 @@ class JsonAcadYearModuleListStorageTest {
 
         jsonAcadYearModuleListStorage.saveAcadYearModuleList(data);
 
-        ReadOnlyAcadYearModuleList readBack = jsonAcadYearModuleListStorage.readAcadYearModuleList(filePath).get();
+        Optional<ReadOnlyAcadYearModuleList> optionalReadBack = jsonAcadYearModuleListStorage
+            .readAcadYearModuleList(filePath);
+        assertTrue(optionalReadBack.isPresent());
+        ReadOnlyAcadYearModuleList readBack = optionalReadBack.get();
         List<ModuleCondensed> readBackData = readBack.getModuleList();
         assertEquals(data, readBackData);
     }
