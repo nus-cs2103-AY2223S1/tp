@@ -1,0 +1,7 @@
+{
+  "persons": [ {
+    "name": "Valid Person"
+  }, {
+    "name": "Pers@n With Invalid name"
+  } ]
+}

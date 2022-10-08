@@ -6,7 +6,6 @@ import static java.util.Objects.requireNonNull;
 
 import jarvis.commons.core.index.Index;
 import jarvis.logic.commands.student.EditCommand;
-import jarvis.logic.commands.student.EditCommand.EditPersonDescriptor;
 import jarvis.logic.parser.ArgumentMultimap;
 import jarvis.logic.parser.ArgumentTokenizer;
 import jarvis.logic.parser.Parser;
@@ -36,15 +35,15 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+        EditCommand.EditStudentDescriptor editStudentDescriptor = new EditCommand.EditStudentDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+            editStudentDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
 
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
+        if (!editStudentDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditCommand(index, editPersonDescriptor);
+        return new EditCommand(index, editStudentDescriptor);
     }
 }

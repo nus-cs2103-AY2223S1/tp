@@ -11,23 +11,22 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import jarvis.model.student.Student;
 import org.junit.jupiter.api.Test;
 
+import jarvis.logic.commands.ClearCommand;
+import jarvis.logic.commands.ExitCommand;
+import jarvis.logic.commands.HelpCommand;
 import jarvis.logic.commands.student.AddCommand;
-import jarvis.logic.commands.student.ClearCommand;
 import jarvis.logic.commands.student.DeleteCommand;
 import jarvis.logic.commands.student.EditCommand;
-import jarvis.logic.commands.student.EditCommand.EditPersonDescriptor;
-import jarvis.logic.commands.ExitCommand;
 import jarvis.logic.commands.student.FindCommand;
-import jarvis.logic.commands.HelpCommand;
 import jarvis.logic.commands.student.ListCommand;
 import jarvis.logic.parser.exceptions.ParseException;
 import jarvis.model.student.NameContainsKeywordsPredicate;
-import jarvis.testutil.EditPersonDescriptorBuilder;
-import jarvis.testutil.PersonBuilder;
-import jarvis.testutil.PersonUtil;
+import jarvis.model.student.Student;
+import jarvis.testutil.EditStudentDescriptorBuilder;
+import jarvis.testutil.StudentBuilder;
+import jarvis.testutil.StudentUtil;
 
 public class StudentBookParserTest {
 
@@ -35,8 +34,8 @@ public class StudentBookParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Student student = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(student));
+        Student student = new StudentBuilder().build();
+        AddCommand command = (AddCommand) parser.parseCommand(StudentUtil.getAddCommand(student));
         assertEquals(new AddCommand(student), command);
     }
 
@@ -55,10 +54,10 @@ public class StudentBookParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Student student = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(student).build();
+        Student student = new StudentBuilder().build();
+        EditCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(student).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+                + INDEX_FIRST_PERSON.getOneBased() + " " + StudentUtil.getEditStudentDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 
