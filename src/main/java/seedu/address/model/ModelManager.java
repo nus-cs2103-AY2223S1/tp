@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -23,6 +24,8 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
+    private boolean taskListFlag;
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -34,6 +37,8 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+
+        taskListFlag = false;
     }
 
     public ModelManager() {
@@ -126,6 +131,18 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    //=========== Other Accessors =============================================================
+
+    @Override
+    public void setTaskListFlag(boolean flag) {
+        taskListFlag = flag;
+    }
+
+    @Override
+    public Supplier<Boolean> getTaskListFlagSupplier() {
+        return (() -> taskListFlag);
     }
 
     @Override

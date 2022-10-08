@@ -319,36 +319,39 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `UniNurse` application and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `UniNurse` application and the **Actor** is the `user`,
+unless specified otherwise)
 
 ---
 
-**Use case: See the list of all patients**
+**Use case: UC01 - View the list of all patients**
 
 **MSS**
 
 1. User requests to list patients.
 2. UniNurse shows a list of patients.
 
-   Use case ends.
+    Use case ends.
 
 **Extensions**
 
 * 2a. The list is empty.
 
-  Use case ends.
+    Use case ends.
 
 ---
 
-**Use case: Add a patient**
+**Use case: UC02 - Add a patient**
 
 **MSS**
+
 1. User adds a patient to patient list with patient details.
 2. UniNurse shows the list of patients with the newly added patient.
 
-   Use case ends.
+    Use case ends.
 
 **Extensions**
+
 * 1a. The given details are invalid.
 
     * 1a1. UniNurse shows an error message.
@@ -357,182 +360,161 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ---
 
-**Use case: Edit a patient**
+**Use case: UC03 - Edit a patient**
 
 **MSS**
 
-1. User requests to list patients.
-2. UniNurse shows a list of patients.
-3. User requests to edit a patient profile with the information that they want to change.
-4. UniNurse edits the patient.
-
-   Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. UniNurse shows an error message.
-
-      Use case resumes at step 2.
-
-* 3b. The given details to edit are invalid.
-
-    * 3b1. UniNurse shows an error message.
-
-      Use case resumes at step 2.
-
-* 3c. The new details to be updated are invalid.
-
-    * 3b1. UniNurse shows an error message.
-
-      Use case resumes at step 2.
----
-
-**Use case: Delete a patient**
-
-**MSS**
-
-1. User requests to list patients.
-2. UniNurse shows a list of patients.
-3. User requests to delete a specific patient in the list.
-4. UniNurse deletes the patient.
+1. User requests to <u>view the list patients (UC01)</u>.
+2. User requests to edit a patient profile with the information that they want to change.
+3. UniNurse edits the patient.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The given index is invalid.
 
-  Use case ends.
+    * 2a1. UniNurse shows an error message.
 
-* 3a. The given index is invalid.
+      Use case resumes at step 2.
 
-    * 3a1. UniNurse shows an error message.
+* 2b. The given details to edit are invalid.
+
+    * 2b1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+* 2c. The new details to be updated are invalid.
+
+    * 2b1. UniNurse shows an error message.
 
       Use case resumes at step 2.
 
 ---
-**Use case: Find patients with keywords**
+
+**Use case: UC04 - Delete a patient**
+
+**MSS**
+
+1. User requests to <u>view the list patients (UC01)</u>.
+2. User requests to delete a specific patient in the list.
+3. UniNurse deletes the patient.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The given index is invalid.
+
+    * 2a1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+---
+
+**Use case: UC05 - Find patients with keywords**
 
 **MSS**
 
 1. User requests to find patients whose names have specified keywords.
 2. UniNurse shows a list of patients whose names have specified keywords.
    
-   Use case ends.
+    Use case ends.
 
 **Extensions**
 
 * 1a. No keywords are given.
+
    * 1a1. UniNurse shows an error message.
   
      Use case ends. 
-
----
-**Use case: Add a task to a specified patient**
-
-**MSS**
-
-1. User requests to list patients.
-2. UniNurse shows a list of patients.
-3. User requests to add a task with its description to a specific patient.
-4. UniNurse adds the task to a patient.
    
-   Use case ends.
+---
+
+**Use case: UC06 - Add a task to a specified patient**
+
+**MSS**
+
+1. User requests to <u>view the list patients (UC01)</u>.
+2. User requests to add a task with its description to a specific patient.
+3. UniNurse adds the task to a patient.
+   
+    Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The given patient index is invalid.
 
-  Use case ends.
-
-* 3a. The given patient index is invalid.
-
-    * 3a1. UniNurse shows an error message.
+    * 2a1. UniNurse shows an error message.
 
       Use case resumes at step 2.
 
-* 3b. The given task details is invalid.
+* 2b. The given task details is invalid.
 
-    * 3b1. UniNurse shows an error message.
+    * 2b1. UniNurse shows an error message.
 
       Use case resumes at step 2.
 
 ---
 
-**Use case: Edit a task associated with a specified patient**
+**Use case: UC07 - Edit a task associated with a specified patient**
 
 **MSS**
 
-1. User requests to list patients and/or their tasks.
-2. UniNurse shows a list of patients with their tasks.
-3. User requests to edit a task with its description they want to change, by specifying the specific patient and specific task.
-4. UniNurse edits the task description of the chosen task of the specified patient.
+1. User requests to <u>view the list patients (UC01)</u>.
+2. User requests to edit a task with its description they want to change, by specifying the specific patient and specific task.
+3. UniNurse edits the task description of the chosen task of the specified patient.
 
-   Use case ends.
+    Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The given patient index is invalid.
 
-  Use case ends.
-
-* 3a. The given patient index is invalid.
-
-    * 3a1. UniNurse shows an error message.
+    * 2a1. UniNurse shows an error message.
 
       Use case resumes at step 2.
 
-* 3b. The given task index of the specified patient is invalid.
+* 2b. The given task index of the specified patient is invalid.
 
-    * 3b1. UniNurse shows an error message.
+    * 2b1. UniNurse shows an error message.
 
       Use case resumes at step 2.
 
-* 3c. The given task details is invalid.
+* 2c. The given task details is invalid.
   
-    * 3c1. UniNurse shows an error message.
+    * 2c1. UniNurse shows an error message.
 
       Use case resumes at step 2.
 
 ---
 
-**Use case: Delete a task associated with a specified patient**
+**Use case: UC08 - Delete a task associated with a specified patient**
 
 **MSS**
-1. User requests to list patients and/or their tasks.
-2. UniNurse shows a list of patients with their tasks.
-3. User requests to delete a task by specifying the specific patient and specific task.
-4. UniNurse deletes the task of the specified patient.
+1. User requests to <u>view the list patients (UC01)</u>.
+2. User requests to delete a task by specifying the specific patient and specific task.
+3. UniNurse deletes the task of the specified patient.
 
-   Use case ends.
+    Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The given patient index is invalid.
 
-  Use case ends.
-
-* 3a. The given patient index is invalid.
-
-  * 3a1. UniNurse shows an error message.
+  * 2a1. UniNurse shows an error message.
     
     Use case resumes at step 2.
 
-* 3b. The given task index of the specified patient is invalid.
+* 2b. The given task index of the specified patient is invalid.
 
-    * 3b1. UniNurse shows an error message.
+    * 2b1. UniNurse shows an error message.
 
       Use case resumes at step 2.
     
 ---
 
-**Use case: See the list of tasks to be completed**
+**Use case: UC09 - See the list of tasks to be completed**
 
 **MSS**
 
@@ -549,7 +531,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ---
 
-**Use case: See the list of tasks associated with a specific patient**
+**Use case: UC10 - See the list of tasks associated with a specific patient**
 
 **MSS**
 
@@ -599,8 +581,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a
+starting point for testers to work on; testers are expected to do more *exploratory* testing.
 
 </div>
 

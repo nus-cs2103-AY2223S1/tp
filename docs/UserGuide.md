@@ -2,9 +2,41 @@
 layout: page
 title: User Guide
 ---
-UniNurse is a **desktop app** designed for **private nurses to manage their patient contacts, optimized for use via a
-Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type
-fast, UniNurse can get your patient management tasks done faster than traditional GUI apps.
+
+**UniNurse** is a desktop app tailored for you, a **private duty nurse**, to:
+- Manage your patients' contacts.
+- Organize your patient-related tasks.
+- Keep track of your patients' medical conditions.
+
+<div markdown="block" class="alert alert-info">
+
+**Fastest fingers first!**
+
+If your fingers are as quick as your wit, UniNurse helps you to get your patient management tasks done in no time!
+It leverages on a no-frills _Command Line Interface (CLI)_ to give fast typists such as yourself a painless user
+experience.
+
+</div>
+
+UniNurse offers the following features:
+- Add details such as phone numbers, addresses and more.
+- Find any patient by name _(more to be added later...)_.
+- Add tasks to a patient.
+- Categorize patients using tags.
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Using this guide
+
+This guide walks you through all the features of UniNurse, as well as tips, so you can reap all the benefits of
+UniNurse!
+
+If you are a **new user**, this guide equips you with the necessary know-how to [get started](#quick-start)
+with UniNurse.
+
+If you are an **experienced user**, you can refer to the [Command Summary](#command-summary) at the end of this guide.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Table of Contents
 
@@ -14,8 +46,37 @@ fast, UniNurse can get your patient management tasks done faster than traditiona
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
-_To be updated ..._
 
+1. Ensure you have [Java 11](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) or above 
+   installed on your computer. To check your Java version, open a Command Prompt or Terminal window and type:
+
+```
+java -version
+```
+
+2. Download the latest `uninurse.jar` [here](https://github.com/AY2223S1-CS2103T-T12-4/tp/releases).
+3. Move `uninurse.jar` to the folder you want to use as the home folder for UniNurse.
+4. Double-click the file to start UniNurse. A user interface similar to the one below should appear in a few seconds.
+
+<div markdown="block" class="alert alert-info">
+
+:bulb: **Tip:** The app comes with some sample contacts by default. Type `clear` in the command box to remove them.
+
+</div>
+
+  ![Ui](images/Ui.png)
+
+5. Type your command in the command box and hit `Enter` to execute the command. Here are some example commands
+you can try:
+   * **`help`**: Opens the help window.
+   * **`addPatient`**`n/Jane Doe p/91234567 e/janed@example.com a/20 Anderson Road, block 123, #01-01`: Adds a
+     patient named `Jane Doe` to your contacts.
+   * **`delete`**`3`: Deletes the 3rd contact shown in the current list.
+   * **`list`**: Lists all contacts.
+   * **`clear`**: Deletes all contacts.
+   * **`exit`**: Exits from UniNurse.
+6. Refer to the [Features](#features) below for details of each command. Alternatively, you may refer to the
+   [Command Summary](#command-summary) at the end of this guide.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
@@ -48,9 +109,10 @@ _To be updated ..._
 
 Shows a message explaining how to access the help page.
 
-![help message](images/helpMessage.png)
-
 Format: `help`
+
+![help message](images/helpMessage.png)
+_Help window displayed after running the `help` command_
 
 ### Adding a patient: `addPatient`
 
@@ -115,12 +177,13 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `find jo` returns `Joe` and `John`.
-* `find alex david` returns `Alex Tan` & `David Ho`.
+* `find alex david` returns `Alex Yeoh` & `David Li`.
   ![result for 'find alex david'](images/findAlexDavidResult.png)
+  _Contact list displayed after running the `find alex david` command_
 
 ### Adding a task: `addTask`
 
-Edits the specified task associated with a patient.
+Adds a task associated with a patient.
 
 Format: `addTask PATIENT_INDEX [d/TASK_DESCRIPTION]`
 
@@ -216,13 +279,12 @@ There is no need to save manually.
 
 ### Editing the data file
 
-_[To update name of json file]_
-
-UniNurse data are saved as a JSON file `[JAR file location]/data/addressbook.json`.
+UniNurse data are saved as a JSON file `[JAR file location]/data/uninurse.json`.
 Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, UniNurse will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, UniNurse will discard all data and start with an empty
+data file at the next run.
 </div>
 
 ### Adding recurring tasks `[coming in v1.3]`
@@ -234,28 +296,29 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
-
-| Action                          | Format                                                                           |
-|---------------------------------|----------------------------------------------------------------------------------|
-| **Help**                        | `help`                                                                           |
-| **Add patient**                 | `addPatient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/TASK_DESCRIPTION [t/TAG]…` |
-| **Edit patient**                | `editPatient INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`     |
-| **Delete patient**              | `deletePatient INDEX`                                                            |
-| **List all patients**           | `list`                                                                           |
-| **Find patient**                | `find KEYWORD [MORE_KEYWORDS]`                                                   |
-| **Add task**                    | `addTask PATIENT_INDEX [d/TASK_DESCRIPTION]`                                     |
-| **Edit task**                   | `editTask PATIENT_INDEX TASK_INDEX [d/TASK_DESCRIPTION]`                         |
-| **Delete task**                 | `deleteTask PATIENT_INDEX TASK_INDEX`                                            |
-| **List all tasks**              | `listTask`                                                                       |
-| **View all tasks of a patient** | `viewTask INDEX`                                                                 |
-| **Clear all patients**          | `clear`                                                                          |
-| **Exit**                        | `exit`                                                                           |
-
---------------------------------------------------------------------------------------------------------------------
-
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous UniNurse home folder.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Command summary
+
+| Action                          | Format                                                                              |
+|---------------------------------|-------------------------------------------------------------------------------------|
+| **Help**                        | `help`                                                                              |
+| **Add patient**                 | `addPatient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/TASK_DESCRIPTION]… [t/TAG]…` |
+| **Edit patient**                | `editPatient INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`        |
+| **Delete patient**              | `deletePatient INDEX`                                                               |
+| **List all patients**           | `list`                                                                              |
+| **Find patient**                | `find KEYWORD [MORE_KEYWORDS]`                                                      |
+| **Add task**                    | `addTask PATIENT_INDEX [d/TASK_DESCRIPTION]`                                        |
+| **Edit task**                   | `editTask PATIENT_INDEX TASK_INDEX [d/TASK_DESCRIPTION]`                            |
+| **Delete task**                 | `deleteTask PATIENT_INDEX TASK_INDEX`                                               |
+| **List all tasks**              | `listTask`                                                                          |
+| **View all tasks of a patient** | `viewTask INDEX`                                                                    |
+| **Clear all patients**          | `clear`                                                                             |
+| **Exit**                        | `exit`                                                                              |
+
