@@ -2,13 +2,13 @@ package taskbook.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import taskbook.commons.core.GuiSettings;
@@ -17,6 +17,7 @@ import taskbook.testutil.AddressBookBuilder;
 import taskbook.testutil.Assert;
 import taskbook.testutil.TypicalPersons;
 
+
 public class ModelManagerTest {
 
     private ModelManager modelManager = new ModelManager();
@@ -24,7 +25,7 @@ public class ModelManagerTest {
     @Test
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
-        Assertions.assertEquals(new GuiSettings(), modelManager.getGuiSettings());
+        assertEquals(new GuiSettings(), modelManager.getGuiSettings());
         assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
     }
 
@@ -56,7 +57,7 @@ public class ModelManagerTest {
     public void setGuiSettings_validGuiSettings_setsGuiSettings() {
         GuiSettings guiSettings = new GuiSettings(1, 2, 3, 4);
         modelManager.setGuiSettings(guiSettings);
-        Assertions.assertEquals(guiSettings, modelManager.getGuiSettings());
+        assertEquals(guiSettings, modelManager.getGuiSettings());
     }
 
     @Test
@@ -88,8 +89,23 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void findPerson_nullName_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> modelManager.findPerson(null));
+    }
+
+    @Test
+    public void findPerson_personNotInAddressBook_returnsNull() {
+        assertNull(modelManager.findPerson(TypicalPersons.ALICE.getName()));
+    }
+
+    @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         Assert.assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void getFilteredTaskList_modifyList_throwsUnsupportedOperationException() {
+        Assert.assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredTaskList().remove(0));
     }
 
     @Test
