@@ -30,7 +30,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Social;
-import seedu.address.model.person.*;
+import seedu.address.model.person.TimeZone;
 import seedu.address.model.server.Server;
 import seedu.address.model.tag.Tag;
 
@@ -41,8 +41,8 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the friend identified "
+            + "by the index number used in the displayed friend list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
@@ -52,13 +52,17 @@ public class EditCommand extends Command {
             + "[" + PREFIX_TIMEZONE + "TIMEZONE] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_SOCIAL + "SOCIAL_PLATFORM@HANDLE] "
-            + "[" + PREFIX_MINECRAFT_SERVER + "SERVER_IP] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG] "
+            + "[" + PREFIX_MINECRAFT_SERVER + "SERVERS] "
+            + "[" + PREFIX_TIMEZONE + "TIMEZONE]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_PHONE + " 91234567 "
+            + PREFIX_MINECRAFT_NAME + "newMinecraftName "
+            + PREFIX_ADDRESS + " 34 Oxley Road "
+            + PREFIX_EMAIL + " johndoe@example.com "
+            + PREFIX_SOCIAL + " fb@John Doe ";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited friend: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 

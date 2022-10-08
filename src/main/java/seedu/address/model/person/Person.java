@@ -2,9 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Calendar;
 import java.util.Collection;
-import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Collections;
@@ -37,7 +35,8 @@ public class Person {
      */
 
 
-    public Person(Name name, MinecraftName minecraftName, Phone phone, Email email, Address address, Set<Social> socials, Set<Tag> tags, Set<Server> servers, TimeZone timeZone) {
+    public Person(Name name, MinecraftName minecraftName, Phone phone, Email email, Address address,
+                  Set<Social> socials, Set<Tag> tags, Set<Server> servers, TimeZone timeZone) {
         requireAllNonNull(name, minecraftName);
 
         this.name = name;
@@ -101,13 +100,16 @@ public class Person {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getMinecraftName().equals(getMinecraftName());
+        if (otherPerson == null) {
+            return false;
+        }
+
+        return !(otherPerson.getMinecraftName().equals(getMinecraftName()));
     }
 
     /**
      * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * This defines a stronger notion of quality between two persons.
      */
     @Override
     public boolean equals(Object other) {

@@ -24,6 +24,7 @@ import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.utils.CheckedFunction;
 import seedu.address.model.person.Social;
+import seedu.address.model.person.TimeZone;
 import seedu.address.model.server.Server;
 import seedu.address.model.tag.Tag;
 
@@ -81,7 +82,6 @@ public class EditCommandParser implements Parser<EditCommand> {
                 .ifPresent(editPersonDescriptor::setSocials);
         parseMinecraftServersForEdit(argMultimap.getAllValues(PREFIX_MINECRAFT_SERVER))
                 .ifPresent(editPersonDescriptor::setServers);
-
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
