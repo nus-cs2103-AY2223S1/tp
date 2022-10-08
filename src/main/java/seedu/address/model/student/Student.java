@@ -21,17 +21,19 @@ public class Student {
     private final Email email;
 
     // Data fields
+    private final ClassGroup classGroup;
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Student(Name name, Phone phone, Email email, ClassGroup classGroup, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.classGroup = classGroup;
         this.address = address;
         this.tags.addAll(tags);
     }
@@ -46,6 +48,10 @@ public class Student {
 
     public Email getEmail() {
         return email;
+    }
+
+    public ClassGroup getClassGroup() {
+        return classGroup;
     }
 
     public Address getAddress() {
@@ -91,6 +97,7 @@ public class Student {
         return otherStudent.getName().equals(getName())
                 && otherStudent.getPhone().equals(getPhone())
                 && otherStudent.getEmail().equals(getEmail())
+                && otherStudent.getClassGroup().equals(getClassGroup())
                 && otherStudent.getAddress().equals(getAddress())
                 && otherStudent.getTags().equals(getTags());
     }
@@ -98,7 +105,7 @@ public class Student {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, classGroup, address, tags);
     }
 
     @Override
@@ -109,6 +116,8 @@ public class Student {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
+                .append(" Class Group: ")
+                .append(getClassGroup())
                 .append("; Address: ")
                 .append(getAddress());
 
