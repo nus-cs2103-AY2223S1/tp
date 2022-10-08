@@ -129,7 +129,7 @@ public class Person {
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
-            builder.append("Tags: ");
+            builder.append("\nTags: ");
             tags.forEach(builder::append);
         }
         return builder.toString();
