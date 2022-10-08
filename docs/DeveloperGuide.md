@@ -387,7 +387,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 * 1a. No client name was provided.
 
-    * 1a1. IBook shows an error message with suggested format
+    * 1a1. IBook shows an empty list
 
       Use case ends.
 
@@ -417,7 +417,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1b. No such client number was found.
 
-    * 1b1. IBook shows an error message with suggested format
+    * 1b1. IBook shows an empty list
   
       Use case ends.
 
@@ -427,7 +427,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC07 - Delete a person**
+**Use case: UC07 - Finding a client by address**
+
+**MSS**
+1. User requests to find a specific client by address
+
+2. IBook shows a list of matching clients
+
+3. IBook informs the user of number of clients found
+
+   Use case ends.
+
+**Extensions**
+* 1a. No client address was provided.
+
+    * 1a1. IBook shows an error message with suggested format
+
+      Use case ends.
+
+* 1b. No such client address was found.
+
+    * 1b1. IBook shows an empty list
+
+      Use case ends.
+    
+**Use case: UC08 - Delete a person**
 
 **MSS**
 1. User requests to <u>find a client by name(UC05)</u>
@@ -438,7 +462,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC08 - Clearing all entries**
+**Use case: UC09 - Clearing all entries**
 
 **MSS**
 1. User requests to clear all entries
@@ -449,7 +473,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC08 - Exiting IBook**
+**Use case: UC10 - Exiting IBook**
 
 **MSS**
 1. User requests to exit

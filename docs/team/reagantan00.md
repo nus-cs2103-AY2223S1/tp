@@ -24,14 +24,16 @@ Given below are my contributions to the project.
     * [to be added soon]
 
 * **Enhancements to existing features**:
-    * [to be added soon]
+    * added input shortcuts for AddCommand, FindCommand and EditCommand
 
 * **Documentation**:
     * User Guide:
         * rebranded from FABook to IBook
+        * updated formats of 'Create', 'Update'
     * Developer Guide:
         * made changes to user profile, value proposition, user stories and use cases
         * rebranded from FABook to IBook
+        * Included use case for 'find by address'
 
 * **Community**:
     * [to be added soon]
