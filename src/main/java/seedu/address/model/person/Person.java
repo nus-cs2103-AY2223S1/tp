@@ -21,18 +21,18 @@ public class Person {
     private final Email email;
 
     // Data fields
-    private final Address address;
+    private final Reward reward;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Reward reward, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, reward, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.reward = reward;
         this.tags.addAll(tags);
     }
 
@@ -48,8 +48,8 @@ public class Person {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
+    public Reward getReward() {
+        return reward;
     }
 
     /**
@@ -79,7 +79,7 @@ public class Person {
         builder.append(getName())
                 .append(getPhone())
                 .append(getEmail())
-                .append(getAddress());
+                .append(getReward());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
@@ -110,7 +110,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, reward, tags);
     }
 
     @Override
@@ -121,8 +121,8 @@ public class Person {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+                .append("; Reward: ")
+                .append(getReward());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
