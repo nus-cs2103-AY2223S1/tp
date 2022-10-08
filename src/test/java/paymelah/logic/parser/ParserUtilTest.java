@@ -14,6 +14,8 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import paymelah.logic.parser.exceptions.ParseException;
+import paymelah.model.debt.Description;
+import paymelah.model.debt.Money;
 import paymelah.model.person.Address;
 import paymelah.model.person.Email;
 import paymelah.model.person.Name;
@@ -26,6 +28,8 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_DESCRIPTION = " ";
+    private static final String INVALID_MONEY = "one dollar";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -33,6 +37,9 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_DESCRIPTION = "Kickstarter";
+    private static final String VALID_MONEY = "2.50";
+
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -192,5 +199,57 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseDescription_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDescription((String) null));
+    }
+
+    @Test
+    public void parseDescription_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDescription(INVALID_DESCRIPTION));
+    }
+
+    @Test
+    public void parseDescription_validValueWithoutWhitespace_returnsDescription() throws Exception {
+        Description expectedDescription = new Description(VALID_DESCRIPTION);
+        assertEquals(expectedDescription, ParserUtil.parseDescription(VALID_DESCRIPTION));
+    }
+
+    @Test
+    public void parseDescription_validValueWithWhitespace_returnsTrimmedDescription() throws Exception {
+        String descriptionWithWhitespace = WHITESPACE + VALID_DESCRIPTION + WHITESPACE;
+        Description expectedDescription = new Description(VALID_DESCRIPTION);
+        assertEquals(expectedDescription, ParserUtil.parseDescription(descriptionWithWhitespace));
+    }
+
+    @Test
+    public void parseMoney_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseMoney((String) null));
+    }
+
+    @Test
+    public void parseMoney_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseMoney(INVALID_MONEY));
+    }
+
+    @Test
+    public void parseMoney_validValueWithoutWhitespace_returnsMoney() throws Exception {
+        Money expectedMoney = new Money(VALID_MONEY);
+        assertEquals(expectedMoney, ParserUtil.parseMoney(VALID_MONEY));
+    }
+
+    @Test
+    public void parseMoney_validValueWithWhitespace_returnsTrimmedMoney() throws Exception {
+        String moneyWithWhitespace = WHITESPACE + VALID_MONEY + WHITESPACE;
+        Money expectedMoney = new Money(VALID_MONEY);
+        assertEquals(expectedMoney, ParserUtil.parseMoney(moneyWithWhitespace));
+    }
+
+    @Test
+    public void arePrefixesPresent() {
+        // To be implemented
+        assertTrue(true);
     }
 }
