@@ -1,10 +1,12 @@
 package seedu.address.logic.commands;
 
 import java.util.Optional;
+import java.util.function.Predicate;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -49,20 +51,18 @@ public class ListCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        /*
-        requireNonNull(model);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(MESSAGE_SUCCESS);
-         */
-
-        //return new CommandResult(MESSAGE_SUCCESS);
-        throw new CommandException(
-                String.format(MESSAGE_ARGUMENTS,
-                        address.orElse(new Address("NIL")).value,
-                        category.orElse("NIL"),
-                        gender.orElse(new Gender("NIL")).value,
-                        tag.orElse(new Tag("NIL")).tagName)
-        );
+        Predicate<Person> predicate = x -> {
+            boolean addressMatch = x.getAddress().equals(address.orElse(x.getAddress()));
+            boolean categoryMatch = x.getCategory().equals(category.orElse(x.getCategory()));
+            boolean genderMatch = x.getGender().equals(gender.orElse(x.getGender()));
+            boolean tagMatch = x.getTags().stream().anyMatch(y -> y.equals(tag.orElse((Tag) x.getTags().toArray()[0])));
+            return addressMatch && categoryMatch && genderMatch && tagMatch;
+        };
+        model.updateFilteredPersonList(predicate);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, address.orElse(new Address("NIL")).value,
+                category.orElse("NIL"),
+                gender.orElse(new Gender("NIL")),
+                tag.orElse(new Tag("NIL")).tagName));
     }
 
     @Override
