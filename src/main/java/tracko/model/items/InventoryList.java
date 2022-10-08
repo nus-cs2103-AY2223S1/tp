@@ -1,15 +1,9 @@
 package tracko.model.items;
 
-import static java.util.Objects.requireNonNull;
-import static tracko.commons.util.CollectionUtil.requireAllNonNull;
-
 import java.util.Iterator;
-import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import tracko.model.person.exceptions.DuplicatePersonException;
-import tracko.model.person.exceptions.PersonNotFoundException;
 
 /**
  * Represents the list of items in the inventory.
