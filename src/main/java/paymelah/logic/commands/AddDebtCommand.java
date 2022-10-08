@@ -62,7 +62,6 @@ public class AddDebtCommand extends Command {
                 personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getDebts().addDebt(debt));
 
         model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_ADD_DEBT_SUCCESS, debt, editedPerson));
     }
 }
