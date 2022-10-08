@@ -13,6 +13,9 @@ import seedu.address.model.person.Attendance;
 import seedu.address.model.person.AttendanceList;
 import seedu.address.model.person.Person;
 
+/**
+ * Adds attendance to an existing person in the address book.
+ */
 public class AttendanceCommand extends Command {
     public static final String COMMAND_WORD = "attendance";
 
@@ -31,6 +34,11 @@ public class AttendanceCommand extends Command {
     private final Index index;
     private final Attendance attendance;
 
+    /**
+     *
+     * @param index of the person in the filtered person list to edit the attendance
+     * @param attendance of the person to add
+     */
     public AttendanceCommand(Index index, Attendance attendance) {
         requireAllNonNull(index, attendance);
 
@@ -56,6 +64,11 @@ public class AttendanceCommand extends Command {
         return new CommandResult(generateSuccessMessage(editedPerson));
     }
 
+    /**
+     * Generates a command execution success message based on
+     * whether the attendance is added or removed
+     * {@code personToEdit}.
+     */
     private String generateSuccessMessage(Person personToEdit) {
         String message = !attendance.toString().isEmpty() ? MESSAGE_ADD_ATTENDANCE_SUCCESS : MESSAGE_DELETE_ATTENDANCE_SUCCESS;
         return String.format(message, personToEdit);
@@ -63,14 +76,17 @@ public class AttendanceCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
+        //short circuit if same object
         if (other == this) {
             return true;
         }
 
+        //instanceof handles nulls
         if (!(other instanceof AttendanceCommand)) {
             return false;
         }
 
+        //state check
         AttendanceCommand temp = (AttendanceCommand) other;
         return index.equals(temp.index) && attendance.equals(temp.attendance);
     }
