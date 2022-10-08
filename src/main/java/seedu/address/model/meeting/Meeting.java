@@ -3,6 +3,7 @@ package seedu.address.model.meeting;
 import java.text.ParseException;
 import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
+import java.util.ArrayList;
 import java.util.Locale;
 
 import seedu.address.model.person.Person;
@@ -13,7 +14,7 @@ import seedu.address.model.util.DateTimeProcessor;
  */
 public class Meeting {
 
-    private final Person personToMeet;
+    private ArrayList<Person> peopleToMeet = new ArrayList<>();
     private String meetingDescription;
     private String meetingDateAndTime;
     private String meetingLocation;
@@ -27,14 +28,14 @@ public class Meeting {
     /**
      * Constructor for a new Meeting
      *
-     * @param person the person whom the user is meeting with
+     * @param peopleToMeet the people whom the user is meeting with
      * @param meetingTitle the description/ title of the meeting
      * @param meetingDateAndTime the date and time of meeting
      * @param meetingLocation the location of the meeting
      */
-    public Meeting(Person person, String meetingTitle,
+    public Meeting(ArrayList<Person> peopleToMeet, String meetingTitle,
                    String meetingDateAndTime, String meetingLocation) {
-        this.personToMeet = person;
+        this.peopleToMeet = peopleToMeet; // adds first person to arrayList
         this.meetingDescription = meetingTitle;
         this.meetingDateAndTime = meetingDateAndTime;
         this.meetingLocation = meetingLocation;
@@ -69,8 +70,8 @@ public class Meeting {
         this.meetingDateAndTime = validator.processDateTime(dateAndTime);
     }
 
-    public Person getPersonToMeet() {
-        return this.personToMeet;
+    public ArrayList<Person> getPersonToMeet() {
+        return this.peopleToMeet;
     }
 
     public String getDateAndTime() {
@@ -94,7 +95,7 @@ public class Meeting {
 
     @Override
     public String toString() {
-        return "Meeting with: " + this.personToMeet.getName() + "\n"
+        return "Meeting with: " + this.peopleToMeet.toString() + "\n"
             + "For: " + this.meetingDescription + "\n"
             + "On: " + this.meetingDateAndTime + "\n"
             + "For: " + this.meetingLocation + "\n";
