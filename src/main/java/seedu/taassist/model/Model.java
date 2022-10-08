@@ -100,6 +100,13 @@ public interface Model {
     void deleteModuleClass(ModuleClass moduleClass);
 
     /**
+     * Replaces the module class {@code target} in the list with {@code editedModuleClass}.
+     * {@code target} must exist in the list.
+     * The identity of {@code editedModuleClass} must not be the same as another existing module class in the TaAssist.
+     */
+    void setModuleClass(ModuleClass target, ModuleClass editedModuleClass);
+
+    /**
      * Adds the given class.
      * {@code moduleClass} must not already exist in TA-Assist.
      */

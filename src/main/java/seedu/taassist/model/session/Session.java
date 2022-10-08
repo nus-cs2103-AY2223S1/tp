@@ -3,11 +3,9 @@ package seedu.taassist.model.session;
 import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.util.AppUtil.checkArgument;
 
-import seedu.taassist.model.moduleclass.ModuleClass;
-
 /**
  * Represents a Session for a {@code ModuleClass} in TA-Assist.
- * Guarantees: immutable;
+ * Guarantees: immutable; name is valid as declared in {@link #isValidSessionName(String)}
  */
 public class Session {
     public static final String MESSAGE_CONSTRAINTS = "Session names can take any values, but it should not be blank";
@@ -43,6 +41,18 @@ public class Session {
         return other == this // short circuit if same object
                 || (other instanceof Session // instanceof handles nulls
                 && sessionName.equals(((Session) other).sessionName)); // state check
+    }
+
+    /**
+     * Returns true if both sessions have the same name.
+     * This defines a weaker notion of equality between two sessions.
+     *
+     * @param otherSession the session to be compared to.
+     * @return true if both sessions have the same name.
+     */
+    public boolean isSameSession(Session otherSession) {
+        return otherSession == this
+                || (otherSession != null && otherSession.sessionName.equals(sessionName));
     }
 
     @Override

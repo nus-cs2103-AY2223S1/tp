@@ -7,6 +7,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.taassist.commons.exceptions.IllegalValueException;
@@ -28,7 +29,7 @@ class JsonAdaptedStudent {
     private final String phone;
     private final String email;
     private final String address;
-    private final List<JsonAdaptedModuleClass> moduleClasses = new ArrayList<>();
+    private final List<String> moduleClasses = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
@@ -36,7 +37,7 @@ class JsonAdaptedStudent {
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("classes") List<JsonAdaptedModuleClass> moduleClasses) {
+            @JsonProperty("classes") List<String> moduleClasses) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -55,8 +56,13 @@ class JsonAdaptedStudent {
         email = source.getEmail().value;
         address = source.getAddress().value;
         moduleClasses.addAll(source.getModuleClasses().stream()
-                .map(JsonAdaptedModuleClass::new)
+                .map(x -> x.className)
                 .collect(Collectors.toList()));
+    }
+
+    @JsonGetter("classes")
+    public List<String> getModuleClasses() {
+        return moduleClasses;
     }
 
     /**
@@ -66,8 +72,15 @@ class JsonAdaptedStudent {
      */
     public Student toModelType() throws IllegalValueException {
         final List<ModuleClass> studentModuleClasses = new ArrayList<>();
-        for (JsonAdaptedModuleClass moduleClass : moduleClasses) {
-            studentModuleClasses.add(moduleClass.toModelType());
+        for (String moduleName : moduleClasses) {
+            if (moduleName == null) {
+                throw new IllegalValueException(
+                        String.format(MISSING_FIELD_MESSAGE_FORMAT, ModuleClass.class.getSimpleName()));
+            }
+            if (!ModuleClass.isValidModuleClassName(moduleName)) {
+                throw new IllegalValueException(ModuleClass.MESSAGE_CONSTRAINTS);
+            }
+            studentModuleClasses.add(new ModuleClass(moduleName));
         }
 
         if (name == null) {
