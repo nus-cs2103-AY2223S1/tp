@@ -9,7 +9,7 @@
 <StackPane fx:id="placeHolder" styleClass="pane-with-border" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
       <children>
           <VBox>
-              <HBox fx:id="profileBoxContainer" VBox.vgrow="ALWAYS"/>
+              <HBox fx:id="profileBoxContainer" VBox.vgrow="ALWAYS" maxHeight="200"/>
               <Label fx:id="contactHeader" text="test label" wrapText="true" />
               <HBox fx:id="contactListBoxContainer" VBox.vgrow="ALWAYS"/>
           </VBox>
