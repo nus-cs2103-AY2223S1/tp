@@ -41,6 +41,9 @@ public class Person {
         this.tags.addAll(tags);
     }
 
+    /**
+     * Constructor with no remark, for AddCommand only.
+     */
     public Person(Name name, Phone phone, Email email, Address address,
                   NetWorth netWorth, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, netWorth, tags);
