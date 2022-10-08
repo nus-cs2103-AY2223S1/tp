@@ -16,9 +16,11 @@ public class AddTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "addtask";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to JARVIS. "
-            + "Parameters: " + PREFIX_TASK_DESC + "TASK_DESC " + PREFIX_DEADLINE + "DEADLINE\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_TASK_DESC + "Do path " + PREFIX_DEADLINE + "10-4-2022";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to JARVIS.\n"
+            + "Parameters: "
+            + PREFIX_TASK_DESC + "TASK_DESC "
+            + "[" + PREFIX_DEADLINE + "DEADLINE] \n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_TASK_DESC + "Do path " + PREFIX_DEADLINE + "2022-10-04";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This task already exists in JARVIS";

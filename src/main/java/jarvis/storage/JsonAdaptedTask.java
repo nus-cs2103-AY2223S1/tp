@@ -8,6 +8,8 @@ import jarvis.model.Task;
 import jarvis.model.TaskDeadline;
 import jarvis.model.TaskDesc;
 
+import java.time.LocalDate;
+
 /**
  * Jackson-friendly version of {@link Task}.
  */
@@ -16,13 +18,13 @@ class JsonAdaptedTask {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Tasks's %s field is missing!";
 
     private final String taskDesc;
-    private final String deadline;
+    private final LocalDate deadline;
 
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedTask(@JsonProperty("taskDesc") String taskDesc, @JsonProperty("deadline") String deadline) {
+    public JsonAdaptedTask(@JsonProperty("taskDesc") String taskDesc, @JsonProperty("deadline") LocalDate deadline) {
         this.taskDesc = taskDesc;
         this.deadline = deadline;
     }

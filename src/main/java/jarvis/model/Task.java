@@ -74,7 +74,7 @@ public class Task {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getDesc());
-        if (!getDeadline().deadline.isEmpty()) {
+        if (getDeadline().deadlineExists()) {
             builder.append("\nDeadline: ").append(getDeadline());
         }
         return builder.toString();

@@ -2,27 +2,34 @@ package jarvis.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 /**
  * Represents a deadline field for a task in JARVIS.
  */
 public class TaskDeadline {
 
-    public final String deadline;
+    public static final String MESSAGE_CONSTRAINTS = "Deadlines should be in yyyy-MM-dd format";
+
+    public final LocalDate deadline;
 
     /**
      * Constructs a {@code Deadline}.
      *
-     * @param deadline A valid description.
+     * @param deadline A LocalDate representation of the deadline.
      */
-    public TaskDeadline(String deadline) {
-        requireNonNull(deadline);
+    public TaskDeadline(LocalDate deadline) {
         this.deadline = deadline;
     }
 
+    public boolean deadlineExists() {
+        return deadline != null;
+    }
 
     @Override
     public String toString() {
-        return deadline;
+        return deadlineExists() ? deadline.format(DateTimeFormatter.ofPattern("MMM-dd-yyyy")) : "";
     }
 
     @Override
@@ -36,5 +43,4 @@ public class TaskDeadline {
     public int hashCode() {
         return deadline.hashCode();
     }
-
 }

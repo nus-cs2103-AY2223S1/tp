@@ -14,11 +14,10 @@ public class AddStudentCommand extends Command {
 
     public static final String COMMAND_WORD = "addstudent";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to JARVIS. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to JARVIS.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe ";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "John Doe";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in JARVIS";

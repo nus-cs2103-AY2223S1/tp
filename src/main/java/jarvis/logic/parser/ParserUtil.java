@@ -2,6 +2,9 @@ package jarvis.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
 import jarvis.commons.core.index.Index;
 import jarvis.commons.util.StringUtil;
 import jarvis.logic.parser.exceptions.ParseException;
@@ -64,7 +67,14 @@ public class ParserUtil {
      */
     public static TaskDeadline parseDeadline(String deadline) throws ParseException {
         requireNonNull(deadline);
-        String trimmedDeadline = deadline.trim();
-        return new TaskDeadline(trimmedDeadline);
+        if (deadline.isEmpty()) {
+            return new TaskDeadline(null);
+        }
+        try {
+            LocalDate trimmedDeadline = LocalDate.parse(deadline.trim());
+            return new TaskDeadline(trimmedDeadline);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(TaskDeadline.MESSAGE_CONSTRAINTS);
+        }
     }
 }
