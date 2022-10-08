@@ -15,7 +15,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Represents a Client associated with a project.
  */
-public class Client extends Person {
+public class Client {
 
     //Represents a Collection of projects that the client is responsible for
     private Set<Project> projects = new HashSet<>();
@@ -29,8 +29,7 @@ public class Client extends Person {
      * @param tag String representing the tag associated with the client
      */
     public Client(String name, String phone, String email, String address, String tag) {
-        super(new Name(name), new Phone(phone), new Email(email), new Address(address),
-                Set.of(new Tag(tag)));
+       //to be added
     }
 
 
