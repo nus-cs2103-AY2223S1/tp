@@ -14,7 +14,7 @@ import seedu.address.model.util.DateTimeProcessor;
  */
 public class Meeting {
 
-    private ArrayList<Person> peopleToMeet = new ArrayList<>();
+    private ArrayList<Person> peopleToMeet;
     private String meetingDescription;
     private String meetingDateAndTime;
     private String meetingLocation;
