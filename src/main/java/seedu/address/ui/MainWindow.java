@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private PersonCountDisplay personCountDisplay;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -116,8 +117,7 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        PersonCountDisplay personCountDisplay = new PersonCountDisplay(logic.getFilteredPersonList().size(),
-                logic.getAddressBook().getCount());
+        personCountDisplay = new PersonCountDisplay(logic.getFilteredPersonList(), logic.getAddressBook());
         personCountDisplayPlaceholder.getChildren().add(personCountDisplay.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -184,6 +184,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            personCountDisplay.setPersonCountMessage(logic.getFilteredPersonList(), logic.getAddressBook());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -197,6 +198,7 @@ public class MainWindow extends UiPart<Stage> {
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
+            personCountDisplay.setPersonCountMessage(logic.getFilteredPersonList(), logic.getAddressBook());
             throw e;
         }
     }
