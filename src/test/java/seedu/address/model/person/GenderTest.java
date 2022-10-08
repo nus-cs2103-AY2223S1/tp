@@ -24,7 +24,7 @@ public class GenderTest {
         // null gender type
         assertThrows(NullPointerException.class, () -> Gender.isValidGender(null));
 
-        // invalid university name
+        // invalid gender name
         assertFalse(Gender.isValidGender("")); // empty string
         assertFalse(Gender.isValidGender(" ")); // spaces only
         assertFalse(Gender.isValidGender("^")); // only non-alphanumeric characters
@@ -33,7 +33,7 @@ public class GenderTest {
         assertFalse(Gender.isValidGender("female25")); // alphanumeric characters
         assertFalse(Gender.isValidGender("alpha male")); // long names
 
-        // valid university name
+        // valid gender name
         assertTrue(Gender.isValidGender("male")); // alphabets only
         assertTrue(Gender.isValidGender("FEMALE")); // with capital letters
     }
