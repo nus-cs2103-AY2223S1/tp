@@ -46,6 +46,10 @@ public class Loan {
 
     @Override
     public String toString() {
-        return String.valueOf(amountOwed);
+        if (amountOwed < 0) {
+            return String.format("-$%.2f", -amountOwed);
+        } else {
+            return String.format("$%.2f", amountOwed);
+        }
     }
 }
