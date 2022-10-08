@@ -13,12 +13,10 @@ public class ListTaskCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all tasks";
 
-
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setTaskListFlag(true);
-        model.updateFilteredPersonList(p -> !(p.getTasks().isEmpty()));
+        model.updateFilteredPersonListWithTasks(p -> !(p.getTasks().isEmpty()));
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

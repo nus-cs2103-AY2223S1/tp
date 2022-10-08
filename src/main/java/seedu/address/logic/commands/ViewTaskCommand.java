@@ -41,8 +41,7 @@ public class ViewTaskCommand extends Command {
         }
 
         Person person = lastShownList.get(targetIndex.getZeroBased());
-        model.setTaskListFlag(true);
-        model.updateFilteredPersonList(p -> p.equals(person));
+        model.updateFilteredPersonListWithTasks(p -> p.equals(person));
         return new CommandResult(String.format(MESSAGE_SUCCESS, person.getName(), person.getTasks().toString()));
     }
 }

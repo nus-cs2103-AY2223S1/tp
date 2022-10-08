@@ -130,15 +130,18 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
+        taskListFlag = false;
+        filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredPersonListWithTasks(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        taskListFlag = true;
         filteredPersons.setPredicate(predicate);
     }
 
     //=========== Other Accessors =============================================================
-
-    @Override
-    public void setTaskListFlag(boolean flag) {
-        taskListFlag = flag;
-    }
 
     @Override
     public Supplier<Boolean> getTaskListFlagSupplier() {
