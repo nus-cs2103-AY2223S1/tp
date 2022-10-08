@@ -1,5 +1,8 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,6 +21,9 @@ public class ArgumentMultimap {
     /** Prefixes mapped to their respective arguments**/
     private final Map<Prefix, List<String>> argMultimap = new HashMap<>();
 
+    private boolean phoneIdentifier = false;
+    private boolean emailIdentifier = false;
+
     /**
      * Associates the specified argument value with {@code prefix} key in this map.
      * If the map previously contained a mapping for the key, the new value is appended to the list of existing values.
@@ -26,6 +32,11 @@ public class ArgumentMultimap {
      * @param argValue Argument value to be associated with the specified prefix key
      */
     public void put(Prefix prefix, String argValue) {
+        if (prefix.equals(PREFIX_PHONE) && !emailIdentifier) {
+            phoneIdentifier = true;
+        } else if (prefix.equals(PREFIX_EMAIL) && !phoneIdentifier) {
+            emailIdentifier = true;
+        }
         List<String> argValues = getAllValues(prefix);
         argValues.add(argValue);
         argMultimap.put(prefix, argValues);
@@ -56,5 +67,23 @@ public class ArgumentMultimap {
      */
     public String getPreamble() {
         return getValue(new Prefix("")).orElse("");
+    }
+
+    /**
+     * Returns if the phone number of a person exists as an identifier.
+     *
+     * @return whether phone number exists as an identifier.
+     */
+    public boolean getPhoneIdentifier() {
+        return phoneIdentifier;
+    }
+
+    /**
+     * Returns if the email address of a person exists as an identifier.
+     *
+     * @return whether email address exists as an identifier.
+     */
+    public boolean getEmailIdentifier() {
+        return emailIdentifier;
     }
 }

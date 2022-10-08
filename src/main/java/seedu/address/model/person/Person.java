@@ -89,7 +89,7 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
+     * Returns true if both persons have the same identity and phone number/ email address.
      * This defines a stronger notion of equality between two persons.
      */
     @Override
@@ -103,11 +103,8 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+        return otherPerson.getPhone().equals(getPhone())
+                || otherPerson.getEmail().equals(getEmail());
     }
 
     @Override

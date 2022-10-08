@@ -115,11 +115,13 @@ public class ModelManager implements Model {
 
     @Override
     public int findNum(Phone phone) {
+        requireNonNull(phone);
         return addressBook.findNum(phone);
     }
 
     @Override
     public int findEmail(Email email) {
+        requireNonNull(email);
         return addressBook.findEmail(email);
     }
 

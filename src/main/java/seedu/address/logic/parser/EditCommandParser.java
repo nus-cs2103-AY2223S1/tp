@@ -13,10 +13,11 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -33,11 +34,15 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_REWARD, PREFIX_TAG);
-
-        Index index;
+        Phone phoneIdentifier = null;
+        Email emailIdentifier = null;
 
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            if (argMultimap.getPhoneIdentifier()) {
+                phoneIdentifier = ParserUtil.parsePhone(argMultimap.getAllValues(PREFIX_PHONE).get(0));
+            } else if (argMultimap.getEmailIdentifier()) {
+                emailIdentifier = ParserUtil.parseEmail(argMultimap.getAllValues(PREFIX_EMAIL).get(0));
+            }
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
@@ -46,11 +51,19 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
-        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+        if (!argMultimap.getAllValues(PREFIX_PHONE).isEmpty()) {
+            if (argMultimap.getAllValues(PREFIX_PHONE).size() == 1) {
+                editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getAllValues(PREFIX_PHONE).get(0)));
+            } else if (argMultimap.getAllValues(PREFIX_PHONE).size() == 2) {
+                editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getAllValues(PREFIX_PHONE).get(1)));
+            }
         }
-        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+        if (!argMultimap.getAllValues(PREFIX_EMAIL).isEmpty()) {
+            if (argMultimap.getAllValues(PREFIX_EMAIL).size() == 1) {
+                editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getAllValues(PREFIX_EMAIL).get(0)));
+            } else if (argMultimap.getAllValues(PREFIX_EMAIL).size() == 2) {
+                editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getAllValues(PREFIX_EMAIL).get(1)));
+            }
         }
         if (argMultimap.getValue(PREFIX_REWARD).isPresent()) {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_REWARD).get()));
@@ -61,7 +74,9 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditCommand(index, editPersonDescriptor);
+        return argMultimap.getPhoneIdentifier()
+                ? new EditCommand(phoneIdentifier, editPersonDescriptor)
+                : new EditCommand(emailIdentifier, editPersonDescriptor);
     }
 
     /**
