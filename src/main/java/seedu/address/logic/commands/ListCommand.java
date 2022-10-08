@@ -38,4 +38,11 @@ public class ListCommand extends Command {
             return new CommandResult(MESSAGE_SUCCESS_APPOINTMENTS);
         }
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ListCommand // instanceof handles nulls
+                && type.equals(((ListCommand) other).type)); // state check
+    }
 }

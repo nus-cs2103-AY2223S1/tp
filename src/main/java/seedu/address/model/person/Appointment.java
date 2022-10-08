@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
@@ -36,6 +37,8 @@ public class Appointment {
      * @param isMarked Status of the appointment.
      */
     public Appointment(String reason, String dateTime, boolean isMarked) {
+        requireNonNull(reason);
+        requireNonNull(dateTime);
         checkArgument(isValidReason(reason), REASON_MESSAGE_CONSTRAINTS);
         checkArgument(isValidDateTime(dateTime), DATE_MESSAGE_CONSTRAINTS);
         this.reason = reason;
