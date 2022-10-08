@@ -2,7 +2,7 @@ package foodwhere.testutil;
 
 import java.util.Set;
 
-import foodwhere.logic.commands.AddCommand;
+import foodwhere.logic.commands.SAddCommand;
 import foodwhere.logic.commands.EditCommand;
 import foodwhere.logic.parser.CliSyntax;
 import foodwhere.model.detail.Detail;
@@ -17,7 +17,7 @@ public class StallUtil {
      * Returns an add command string for adding the {@code stall}.
      */
     public static String getAddCommand(Stall stall) {
-        return AddCommand.COMMAND_WORD + " " + getStallDetails(stall);
+        return SAddCommand.COMMAND_WORD + " " + getStallDetails(stall);
     }
 
     /**

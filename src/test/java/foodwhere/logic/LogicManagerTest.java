@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import foodwhere.commons.core.Messages;
-import foodwhere.logic.commands.AddCommand;
+import foodwhere.logic.commands.SAddCommand;
 import foodwhere.logic.commands.CommandResult;
 import foodwhere.logic.commands.ListCommand;
 import foodwhere.logic.commands.exceptions.CommandException;
@@ -76,7 +76,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + ADDRESS_DESC_AMY;
+        String addCommand = SAddCommand.COMMAND_WORD + NAME_DESC_AMY + ADDRESS_DESC_AMY;
         Stall expectedStall = new StallBuilder(AMY).withDetails().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addStall(expectedStall);
