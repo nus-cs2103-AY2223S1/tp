@@ -106,13 +106,18 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code socials} of the {@code Person} that we are building.
+     */
     public PersonBuilder withSocial(String ... socials) {
         this.socials = new HashSet<>(Arrays.asList(socials).stream()
                 .map(Social::new)
                 .collect(Collectors.toList()));
         return this;
     }
-
+    /**
+     * Sets the {@code servers} of the {@code Person} that we are building.
+     */
     public PersonBuilder withServers(String ... servers) {
         this.servers = new HashSet<>(Arrays.asList(servers).stream()
                 .map(Server::new)
@@ -120,6 +125,9 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code timeZone} of the {@code Person} that we are building.
+     */
     public PersonBuilder withTimeZone(String timeZone) {
         this.timeZone = new TimeZone(timeZone);
         return this;
