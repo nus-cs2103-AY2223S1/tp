@@ -23,8 +23,8 @@ public class AddBookCommand extends AddCommand {
             + "Example: " + AddCommand.COMMAND_WORD
             + " " + COMMAND_WORD + " "
             + PREFIX_TITLE + "The Hobbit "
-            + PREFIX_AUTHOR + "J.R.R. Tolkien";
-    public static final String MESSAGE_SUCCESS = "New book added: %1$s";
+            + PREFIX_AUTHOR + "JRR Tolkien";
+    public static final String MESSAGE_SUCCESS = "New book added: %s by %s";
     public static final String MESSAGE_DUPLICATE_BOOK = "This book is already in our records.";
     private final Book bookToAdd;
 
@@ -46,6 +46,9 @@ public class AddBookCommand extends AddCommand {
         }
 
         model.addBook(this.bookToAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, this.bookToAdd));
+        return new CommandResult(String.format(
+                MESSAGE_SUCCESS,
+                this.bookToAdd.getTitle(),
+                this.bookToAdd.getAuthor()));
     }
 }

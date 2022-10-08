@@ -8,7 +8,8 @@ import bookface.logic.parser.exceptions.ParseException;
  * An enum class that contains all the valid user commands.
  */
 public enum AddSubcommand implements CommandReturnable {
-    USER((args) -> new AddUserArgumentsParser().parse(args));
+    USER((args) -> new AddUserArgumentsParser().parse(args)),
+    BOOK((args) -> new AddBookArgumentsParser().parse(args));
 
     private final ParserFunction<? super String, ? extends bookface.logic.commands.add.AddCommand> commandFunction;
 
