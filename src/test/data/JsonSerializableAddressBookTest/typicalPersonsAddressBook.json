@@ -2,7 +2,7 @@
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "persons" : [ {
     "name" : "Alice Pauline",
-    "minecraftName" : "alice123",
+    "minecraftName" : "Alice123",
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
@@ -10,7 +10,7 @@
     "timeZone" : "+08:00"
   }, {
     "name" : "Benson Meier",
-    "minecraftName" : "benson123",
+    "minecraftName" : "Benson123",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
@@ -18,7 +18,7 @@
     "timeZone" : "+08:00"
   }, {
     "name" : "Carl Kurz",
-    "minecraftName" : "carl123",
+    "minecraftName" : "Carl",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "address" : "wall street",
@@ -26,7 +26,7 @@
     "timeZone" : "+08:00"
   }, {
     "name" : "Daniel Meier",
-    "minecraftName" : "daniel123",
+    "minecraftName" : "Dan",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
@@ -34,7 +34,7 @@
     "timeZone" : "+08:00"
   }, {
     "name" : "Elle Meyer",
-    "minecraftName" : "elle123",
+    "minecraftName" : "Elli",
     "phone" : "9482224",
     "email" : "werner@example.com",
     "address" : "michegan ave",
@@ -42,7 +42,7 @@
     "timeZone" : "+08:00"
   }, {
     "name" : "Fiona Kunz",
-    "minecraftName" : "fiona123",
+    "minecraftName" : "KUNCZ",
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
@@ -50,7 +50,7 @@
     "timeZone" : "+08:00"
   }, {
     "name" : "George Best",
-    "minecraftName" : "george123",
+    "minecraftName" : "dinnerbone",
     "phone" : "9482442",
     "email" : "anna@example.com",
     "address" : "4th street",
