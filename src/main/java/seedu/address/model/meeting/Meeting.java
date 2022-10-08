@@ -92,4 +92,12 @@ public class Meeting {
             && (otherMeeting.getDateAndTime().equals(getDateAndTime()));
     }
 
+    @Override
+    public String toString() {
+        return "Meeting with: " + this.personToMeet.getName() + "\n"
+            + "For: " + this.meetingDescription + "\n"
+            + "On: " + this.meetingDateAndTime + "\n"
+            + "For: " + this.meetingLocation + "\n";
+    }
+
 }
