@@ -98,8 +98,7 @@ public class Person {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getLessonPlan().equals(getLessonPlan())
-                && otherPerson.getTags().equals(getTags())
-                && otherPerson.getAttendanceList().equals(getAttendanceList());
+                && otherPerson.getTags().equals(getTags());
     }
 
     @Override
