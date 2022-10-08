@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_MISSING_KEYWORDS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -18,7 +17,7 @@ public class FindProfileCommandParserTest {
     /**
      * All inputs passed to FindProfileCommandParser begins with this string.
      */
-    private String REQUIRED_FLAG_OPTION = " " + PREFIX_OPTION + FindProfileCommand.COMMAND_OPTION + " ";
+    private final String REQUIRED_FLAG_OPTION = " " + PREFIX_OPTION + FindProfileCommand.COMMAND_OPTION + " ";
 
     private FindProfileCommandParser parser = new FindProfileCommandParser();
 
