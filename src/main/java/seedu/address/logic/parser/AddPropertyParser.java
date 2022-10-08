@@ -11,10 +11,10 @@ import java.util.Set;
 
 import seedu.address.logic.commands.AddPropertyCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.address.Address;
 import seedu.address.model.property.Description;
 import seedu.address.model.property.Price;
 import seedu.address.model.property.Property;
-import seedu.address.model.address.Address;
 import seedu.address.model.property.PropertyName;
 import seedu.address.model.tag.Tag;
 
