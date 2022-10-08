@@ -10,7 +10,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.project.Project;
 
 /**
- * Represents a Client associated with a project.
+ * Represents a Client associated with a project. This is modelled after the AB3 Person.
  */
 public class Client {
 
@@ -120,6 +120,27 @@ public class Client {
 
         return otherClient != null
                 && otherClient.getClientName().equals(getClientName());
+    }
+
+    /**
+     * Checks if an object equals this.
+     * @param other Object to be checked
+     * @return boolean true if this is equal to other and false otherwise
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        } else if (other instanceof Client){
+            Client otherClient = (Client) other;
+            boolean hasSameId = this.getClientId().equals(otherClient.getClientId());
+            boolean hasSameName = this.getClientId().equals(otherClient.getClientName());
+            boolean hasSameEmail = this.getClientId().equals(otherClient.getClientEmail());
+            boolean hasSamePhone = this.getClientId().equals(otherClient.getClientPhone());
+            return hasSameId && hasSameEmail && hasSamePhone && hasSameName;
+        } else {
+            return false;
+        }
     }
 
 }

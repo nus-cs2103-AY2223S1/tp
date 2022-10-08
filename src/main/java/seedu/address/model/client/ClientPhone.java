@@ -5,6 +5,9 @@ import seedu.address.model.person.Phone;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents the phone of the client. This class is modelled after the Phone class in the Person package of AB3
+ */
 public class ClientPhone {
 
     public static final String MESSAGE_CONSTRAINTS =
