@@ -46,19 +46,6 @@ public class Student extends Person {
     }
 
     /**
-     * Returns true if both students have the same name.
-     * This defines a weaker notion of equality between two students.
-     */
-    public boolean isSamePerson(Person otherPerson) {
-        if (otherPerson == this) {
-            return true;
-        }
-
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
-    }
-
-    /**
      * Returns true if both students have the same identity and data fields.
      * This defines a stronger notion of equality between two students.
      */
@@ -73,12 +60,12 @@ public class Student extends Person {
         }
 
         Student otherStudent = (Student) other;
-
-        if (!(this.equals(otherStudent))) {
-            return false;
-        }
-
-        return otherStudent.getSchool().equals(getSchool())
+        return otherStudent.getName().equals(getName())
+                && otherStudent.getPhone().equals(getPhone())
+                && otherStudent.getEmail().equals(getEmail())
+                && otherStudent.getAddress().equals(getAddress())
+                && otherStudent.getTags().equals(getTags())
+                && otherStudent.getSchool().equals(getSchool())
                 && otherStudent.getLevel().equals(getLevel())
                 && otherStudent.getNextOfKin().equals(getNextOfKin());
     }

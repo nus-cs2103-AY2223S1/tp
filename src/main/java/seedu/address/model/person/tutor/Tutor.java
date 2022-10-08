@@ -54,12 +54,12 @@ public class Tutor extends Person {
         }
 
         Tutor otherTutor = (Tutor) other;
-
-        if (!(this.equals(otherTutor))) {
-            return false;
-        }
-
-        return otherTutor.getQualification().equals(getQualification())
+        return otherTutor.getName().equals(getName())
+                && otherTutor.getPhone().equals(getPhone())
+                && otherTutor.getEmail().equals(getEmail())
+                && otherTutor.getAddress().equals(getAddress())
+                && otherTutor.getTags().equals(getTags())
+                && otherTutor.getQualification().equals(getQualification())
                 && otherTutor.getInstitution().equals(getInstitution());
     }
 
