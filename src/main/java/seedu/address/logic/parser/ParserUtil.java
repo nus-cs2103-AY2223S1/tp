@@ -1,19 +1,16 @@
 package seedu.address.logic.parser;
 
-import static java.util.Objects.requireNonNull;
+import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.*;
+import seedu.address.model.tag.Tag;
 
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -80,20 +77,25 @@ public class ParserUtil {
         return new Address(trimmedAddress);
     }
 
-    /**
-     * Parses a {@code String email} into an {@code Email}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code email} is invalid.
-     */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+
+    public static Price parsePrice(String price) throws ParseException {
+        requireNonNull(price);
+        String trimmedPrice = price.trim();
+        if (!Price.isValidPrice(trimmedPrice)) {
+            throw new ParseException(Price.MESSAGE_CONSTRAINTS);
         }
-        return new Email(trimmedEmail);
+        return new Price(trimmedPrice);
     }
+
+    public static Item parseItem(String item) throws ParseException {
+        requireNonNull(item);
+        String trimmedItem = item.trim();
+        if (!Item.isValidItem(trimmedItem)) {
+            throw new ParseException(Item.MESSAGE_CONSTRAINTS);
+        }
+        return new Item(trimmedItem);
+    }
+
 
     /**
      * Parses a {@code String tag} into a {@code Tag}.

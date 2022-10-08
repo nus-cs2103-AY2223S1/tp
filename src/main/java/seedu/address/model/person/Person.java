@@ -1,13 +1,13 @@
 package seedu.address.model.person;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.model.tag.Tag;
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.tag.Tag;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents a Person in the address book.
@@ -18,7 +18,8 @@ public class Person {
     // Identity fields
     private final Name name;
     private final Phone phone;
-    private final Email email;
+    private final Price price;
+    private final Item item;
 
     // Data fields
     private final Address address;
@@ -27,11 +28,12 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Price price,Item item,Address address, Set<Tag> tags) {
+        requireAllNonNull(name, phone, price,item, address, tags);
         this.name = name;
         this.phone = phone;
-        this.email = email;
+        this.price = price;
+        this.item = item;
         this.address = address;
         this.tags.addAll(tags);
     }
@@ -44,8 +46,12 @@ public class Person {
         return phone;
     }
 
-    public Email getEmail() {
-        return email;
+    public Price getPrice() {
+        return price;
+    }
+
+    public Item getItem() {
+        return item;
     }
 
     public Address getAddress() {
@@ -90,7 +96,8 @@ public class Person {
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getPrice().equals(getPrice())
+                && otherPerson.getItem().equals(getItem())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags());
     }
@@ -98,7 +105,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, price, item, address, tags);
     }
 
     @Override
@@ -107,8 +114,10 @@ public class Person {
         builder.append(getName())
                 .append("; Phone: ")
                 .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
+                .append("; Price: ")
+                .append(getPrice())
+                .append("; Item: ")
+                .append(getItem())
                 .append("; Address: ")
                 .append(getAddress());
 

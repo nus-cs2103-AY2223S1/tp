@@ -1,33 +1,34 @@
-package seedu.address.model.supplier;
+package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Supplier's price in the address book.
+ * Represents a Person's Price number in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidPrice(String)}
  */
 public class Price {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Price should only contain numbers, and it should begin with a $ sign";
-    public static final String VALIDATION_REGEX = "$"+ "\\d+";
+            "Price numbers should only contain numbers, and it should be in the $xx..x.xx format";
+    public static final String VALIDATION_REGEX = "\\$" + "\\d" +"\\." + "\\d{2}";
     public final String value;
 
     /**
      * Constructs a {@code Price}.
      *
-     * @param price A valid price for supplier item.
+     * @param price A valid Price number.
      */
     public Price(String price) {
         requireNonNull(price);
+        System.out.println(isValidPrice(price));
         checkArgument(isValidPrice(price), MESSAGE_CONSTRAINTS);
         value = price;
     }
 
     /**
-     * Returns true if a given string is a valid price.
+     * Returns true if a given string is a valid Price number.
      */
     public static boolean isValidPrice(String test) {
         return test.matches(VALIDATION_REGEX);
