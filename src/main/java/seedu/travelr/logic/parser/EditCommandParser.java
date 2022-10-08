@@ -61,14 +61,14 @@ public class EditCommandParser implements Parser<EditCommand> {
      * If {@code tags} contain only one element which is an empty string, it will be parsed into a
      * {@code Set<Tag>} containing zero tags.
      */
-    private Optional<Set<Event>> parseTagsForEdit(Collection<String> tags) throws ParseException {
-        assert tags != null;
+    private Optional<Set<Event>> parseTagsForEdit(Collection<String> events) throws ParseException {
+        assert events != null;
 
-        if (tags.isEmpty()) {
+        if (events.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseTags(tagSet));
+        Collection<String> eventSet = events.size() == 1 && events.contains("") ? Collections.emptySet() : events;
+        return Optional.of(ParserUtil.parseEvents(eventSet));
     }
 
 }

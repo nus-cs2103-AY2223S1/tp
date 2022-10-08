@@ -1,20 +1,18 @@
 package seedu.travelr.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.Trip;
 
-/**
- * An UI component that displays information of a {@code Person}.
- */
-public class TripCard extends UiPart<Region> {
+import java.util.Comparator;
 
-    private static final String FXML = "TripListCard.fxml";
+public class EventCard extends UiPart<Region> {
+
+    private static final String FXML = "EventListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -24,9 +22,9 @@ public class TripCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Trip trip;
+    public final Event event;
 
-    @FXML
+    @javafx.fxml.FXML
     private HBox cardPane;
     @FXML
     private Label title;
@@ -34,21 +32,21 @@ public class TripCard extends UiPart<Region> {
     private Label id;
     @FXML
     private Label description;
-    @FXML
-    private FlowPane events;
+//    @FXML
+//    private FlowPane events;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public TripCard(Trip trip, int displayedIndex) {
+    public EventCard(Event event, int displayedIndex) {
         super(FXML);
-        this.trip = trip;
+        this.event = event;
         id.setText(displayedIndex + ". ");
-        title.setText(trip.getTitle().fullTitle);
-        description.setText(trip.getDescription().value);
-        trip.getEvents().stream()
-                .sorted(Comparator.comparing(event -> event.title.toString()))
-                .forEach(event -> events.getChildren().add(new Label(event.title.toString())));
+        title.setText(event.getTitle().fullTitle);
+        description.setText(event.getDescription().value);
+//        event.getEvents().stream()
+//                .sorted(Comparator.comparing(event -> event.title.toString()))
+//                .forEach(event -> events.getChildren().add(new Label(event.title.toString())));
     }
 
     @Override
@@ -59,13 +57,14 @@ public class TripCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof TripCard)) {
+        if (!(other instanceof EventCard)) {
             return false;
         }
 
         // state check
-        TripCard card = (TripCard) other;
+        EventCard card = (EventCard) other;
         return id.getText().equals(card.id.getText())
-                && trip.equals(card.trip);
+                && event.equals(card.event);
     }
 }
+

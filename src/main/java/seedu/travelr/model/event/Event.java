@@ -1,44 +1,58 @@
 package seedu.travelr.model.event;
 
+import static seedu.travelr.commons.util.CollectionUtil.requireAllNonNull;
+
+import seedu.travelr.model.trip.Description;
+import seedu.travelr.model.trip.Title;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.travelr.commons.util.AppUtil.checkArgument;
 import static seedu.travelr.logic.parser.ParserUtil.EVENT_DESCRIPTION_PLACEHOLDER;
 
 /**
  * Represents a Tag in the address book.
- * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
+ * Guarantees: immutable; name is valid as declared in {@link #isValidEventName(String)}
  */
 public class Event {
 
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
-    public final String title;
-    public final String description;
+    public final Title title;
+    public final Description description;
 
     /**
-     * Constructs a {@code Tag}.
+     * Constructs a {@code Event}.
      *
-     * @param tagName A valid tag name.
+     * @param title A valid title.
+     * @param description A valid description.
      */
-    public Event(String tagName, String description) {
-        requireNonNull(tagName);
+    public Event(Title title, Description description) {
+        requireAllNonNull(title, description);
         //checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
-        this.title = tagName;
+        this.title = title;
         this.description = description;
     }
 
-    public Event(String eventName) {
+    public Event(Title eventName) {
         requireNonNull(eventName);
         this.title = eventName;
-        this.description = EVENT_DESCRIPTION_PLACEHOLDER;
+        this.description = new Description(EVENT_DESCRIPTION_PLACEHOLDER);
     }
 
     /**
      * Returns true if a given string is a valid tag name.
      */
-    public static boolean isValidTagName(String test) {
+    public static boolean isValidEventTitle(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    public Title getTitle() {
+        return title;
+    }
+
+    public Description getDescription() {
+        return description;
     }
 
     @Override
@@ -48,6 +62,18 @@ public class Event {
                 && title.equals(((Event) other).title)); // state check
     }
 
+    /**
+     * Returns true if both events have the same title.
+     * This defines a weaker notion of equality between two persons.
+     */
+    public boolean isSameTrip(Event otherEvent) {
+        if (otherEvent == this) {
+            return true;
+        }
+
+        return otherEvent != null
+                && otherEvent.getTitle().equals(getTitle());
+    }
     @Override
     public int hashCode() {
         return title.hashCode();
@@ -57,7 +83,11 @@ public class Event {
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + title + ']';
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getTitle())
+                .append("; Description: ")
+                .append(getDescription());
+        return builder.toString();
     }
 
 }
