@@ -27,7 +27,7 @@ class JsonAdaptedSocial{
      * Converts a given {@code socials} into this class for Jackson use.
      */
     public JsonAdaptedSocial(Social source) {
-        social = source.fullHandle;
+        social = source.toString();
     }
 
     @JsonValue
@@ -41,7 +41,7 @@ class JsonAdaptedSocial{
      * @throws IllegalValueException if there were any data constraints violated in the adapted socials.
      */
     public Social toModelType() throws IllegalValueException {
-        if (!Social.isValidName(social)) {
+        if (!Social.isValidSocial(social)) {
             throw new IllegalValueException(Social.MESSAGE_CONSTRAINTS);
         }
         return ParserUtil.parseSocial(social);

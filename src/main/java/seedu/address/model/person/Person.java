@@ -2,10 +2,11 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
+import java.util.Collection;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
+import java.util.Collections;
+import java.util.Objects;
 
 import seedu.address.model.server.Server;
 import seedu.address.model.tag.Tag;
@@ -147,12 +148,22 @@ public class Person {
     public String toDisplayString() {
 
         final StringBuilder builder = new StringBuilder();
-        builder.append(getPhone()).append(" ").append(getEmail());
-        builder.append(getAddress());
-        builder.append(getServers());
-        builder.append("Timezone: ").append(getTimeZone());
+        builder.append("T: ").append(getFieldOrElse(getPhone().toString()))
+                .append(", E: ").append(getFieldOrElse(getEmail().toString())).append("\n");
+        builder.append("Socials: ").append(getFieldOrElse(getSocials())).append("\n");
+        builder.append("Address: ").append(getFieldOrElse(getAddress().toString())).append("\n");
+        builder.append("Servers: ").append(getFieldOrElse(getServers())).append("\n");
+        builder.append("Timezone: ").append(getFieldOrElse(getTimeZone().toString()));
         return builder.toString();
 
+    }
+
+    private String getFieldOrElse(String s) {
+        return s.isEmpty() ? "N/A" : s;
+    }
+
+    private String getFieldOrElse(Collection<?> c) {
+        return c.isEmpty() ? "None available" : c.toString();
     }
 
 }
