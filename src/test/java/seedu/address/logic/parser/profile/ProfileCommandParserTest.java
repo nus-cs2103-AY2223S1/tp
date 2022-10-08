@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.profile.ProfileCommand;
+import seedu.address.model.profile.Profile;
 
 public class ProfileCommandParserTest {
 
@@ -30,7 +31,8 @@ public class ProfileCommandParserTest {
 
     @Test
     public void parse_profileOption_failure() {
-        assertParseFailure(parser, " -unknowncommand", ProfileCommand.OPTION_UNKNOWN);
+        assertParseFailure(parser, " -unknowncommand",
+                ProfileCommand.OPTION_UNKNOWN + ProfileCommand.VALID_FLAGS);
     }
 
 }

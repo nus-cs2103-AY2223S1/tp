@@ -1,19 +1,19 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.profile;
+
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.model.Model;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROFILES;
 
-import seedu.address.model.Model;
-
 /**
- * Lists all profiles in the address book to the user.
+ * Shows a list of all the profiles in the address book.
  */
-public class ListCommand extends Command {
+public class ViewProfilesCommand extends ProfileCommand {
 
-    public static final String COMMAND_WORD = "list";
+    public static final String COMMAND_OPTION = "v";
 
     public static final String MESSAGE_SUCCESS = "Listed all profiles";
-
 
     @Override
     public CommandResult execute(Model model) {
