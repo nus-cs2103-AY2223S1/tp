@@ -17,13 +17,13 @@ public class FindProfileCommandParserTest {
     /**
      * All inputs passed to FindProfileCommandParser begins with this string.
      */
-    private final String REQUIRED_FLAG_OPTION = " " + PREFIX_OPTION + FindProfileCommand.COMMAND_OPTION + " ";
+    private String requiredFlagOption = " " + PREFIX_OPTION + FindProfileCommand.COMMAND_OPTION + " ";
 
     private FindProfileCommandParser parser = new FindProfileCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, REQUIRED_FLAG_OPTION + "     ",
+        assertParseFailure(parser, requiredFlagOption + "     ",
                 String.format(MESSAGE_MISSING_KEYWORDS + FindProfileCommand.MESSAGE_USAGE));
     }
 
@@ -32,10 +32,10 @@ public class FindProfileCommandParserTest {
         // no leading and trailing whitespaces
         FindProfileCommand expectedFindCommand =
                 new FindProfileCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser, REQUIRED_FLAG_OPTION + "Alice Bob", expectedFindCommand);
+        assertParseSuccess(parser, requiredFlagOption + "Alice Bob", expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, REQUIRED_FLAG_OPTION + "     Alice   Bob  ", expectedFindCommand);
+        assertParseSuccess(parser, requiredFlagOption + "     Alice   Bob  ", expectedFindCommand);
     }
 
 }
