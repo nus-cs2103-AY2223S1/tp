@@ -79,6 +79,8 @@ public class AddressBookTest {
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_KIV)
+                .withUniversity(VALID_UNIVERSITY_BOB)
+                .withCap(VALID_CAP_VALUE_BOB, VALID_MAXIMUM_CAP_VALUE_BOB)
                 .build();
         assertTrue(addressBook.hasPerson(editedAlice));
     }
