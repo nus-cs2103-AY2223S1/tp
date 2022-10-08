@@ -108,6 +108,11 @@ public interface Model {
      */
     void addGroup(Group group);
 
+    /**
+     * Replaces the given group {@code target} with {@code editedGroup}.
+     * {@code target} must exist in the address book.
+     */
+    void setGroup(Group target, Group editedGroup);
 
     /** Returns an unmodifiable view of the filtered group list */
     ObservableList<Group> getFilteredGroupList();

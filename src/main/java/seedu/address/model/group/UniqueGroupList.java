@@ -1,6 +1,7 @@
 package seedu.address.model.group;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.HashSet;
 import java.util.Iterator;
@@ -38,6 +39,25 @@ public class UniqueGroupList implements Iterable<Group> {
             throw new DuplicateGroupException();
         }
         internalList.add(toAdd);
+    }
+
+    /**
+     * Replaces the group {@code target} in the list with {@code editedGroup}.
+     * {@code target} must exist in the list.
+     */
+    public void setGroup(Group target, Group editedGroup) {
+        requireAllNonNull(target, editedGroup);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new GroupNotFoundException();
+        }
+
+        if (!target.isSameGroup(editedGroup) && contains(editedGroup)) {
+            throw new DuplicateGroupException();
+        }
+
+        internalList.set(index, editedGroup);
     }
 
     /**
