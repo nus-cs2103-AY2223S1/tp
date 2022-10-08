@@ -1,20 +1,24 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_POSITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
+import seedu.address.model.ApplicationModel;
+import seedu.address.model.application.Application;
 
 /**
- * Adds a person to the address book.
+ * Adds an application to CinternS.
  */
-public class NewAddCommand extends Command {
+public class ApplicationAddCommand extends ApplicationCommand {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an application to Cinterns. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an application to CinternS. "
             + "Parameters: "
             + PREFIX_COMPANY + "COMPANY"
             + PREFIX_CONTACT + "CONTACT "
@@ -37,13 +41,13 @@ public class NewAddCommand extends Command {
     /**
      * Creates an AddCommand to add the specified {@code Application}
      */
-    public NewAddCommand(Application application) {
+    public ApplicationAddCommand(Application application) {
         requireNonNull(application);
         toAdd = application;
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(ApplicationModel model) throws CommandException {
         requireNonNull(model);
 
         if (model.hasApplication(toAdd)) {
@@ -57,7 +61,7 @@ public class NewAddCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
+                || (other instanceof ApplicationAddCommand // instanceof handles nulls
+                && toAdd.equals(((ApplicationAddCommand) other).toAdd));
     }
 }

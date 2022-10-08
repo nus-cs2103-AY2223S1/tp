@@ -1,14 +1,14 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.ApplicationModel.PREDICATE_SHOW_ALL_APPLICATIONS;
 
-import seedu.address.model.Model;
+import seedu.address.model.ApplicationModel;
 
 /**
  * Lists all applications in the CinternS to the user.
  */
-public class ListApplicationCommand extends Command {
+public class ApplicationListCommand extends ApplicationCommand {
 
     public static final String COMMAND_WORD = "list application";
 
@@ -16,9 +16,9 @@ public class ListApplicationCommand extends Command {
 
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(ApplicationModel model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredApplicationList(PREDICATE_SHOW_ALL_APPLICATIONS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

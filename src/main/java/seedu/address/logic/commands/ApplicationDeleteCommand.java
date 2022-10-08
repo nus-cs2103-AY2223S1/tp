@@ -7,13 +7,13 @@ import java.util.List;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.ApplicationModel;
+import seedu.address.model.application.Application;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes an application identified using it's displayed index from the CinternS.
  */
-public class NewDeleteCommand extends Command {
+public class ApplicationDeleteCommand extends ApplicationCommand {
 
     public static final String COMMAND_WORD = "delete";
 
@@ -26,17 +26,17 @@ public class NewDeleteCommand extends Command {
 
     private final Index targetIndex;
 
-    public NewDeleteCommand(Index targetIndex) {
+    public ApplicationDeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(ApplicationModel model) throws CommandException {
         requireNonNull(model);
-        List<Appplication> lastShownList = model.getFilteredApplicationList();
+        List<Application> lastShownList = model.getFilteredApplicationList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX);
         }
 
         Application applicationToDelete = lastShownList.get(targetIndex.getZeroBased());
@@ -47,7 +47,7 @@ public class NewDeleteCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+                || (other instanceof ApplicationDeleteCommand // instanceof handles nulls
+                && targetIndex.equals(((ApplicationDeleteCommand) other).targetIndex)); // state check
     }
 }
