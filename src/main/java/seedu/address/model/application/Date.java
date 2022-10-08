@@ -15,7 +15,7 @@ public class Date {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Date should be in the format of dd-mm-yyyy with proper month and leap year support";
+            "Date should be in the format of yyyy-mm-dd with proper month and leap year support";
     //Only valid if yyyy-mm-dd with month and leap year support
     //Retrieve from https://stackoverflow.com/questions/15491894/regex-to-validate-date-formats-dd-mm-yyyy-dd-mm-yyyy
     // -dd-mm-yyyy-dd-mmm-yyyy
