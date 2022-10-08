@@ -1,5 +1,7 @@
 package seedu.address.model.transaction;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 /**
  * Abstract transaction class
  */
@@ -10,6 +12,7 @@ public abstract class Transaction {
     protected final Quantity quantity;
 
     Transaction(Goods goods, Price price, Quantity quantity) {
+        requireAllNonNull(goods, price, quantity);
         this.goods = goods;
         this.price = price;
         this.quantity = quantity;

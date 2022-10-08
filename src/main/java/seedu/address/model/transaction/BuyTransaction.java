@@ -21,6 +21,7 @@ public class BuyTransaction extends Transaction {
 
     @Override
     public String toString() {
-        return "You bought %d quantity of %s at $%d";
+        return "You bought " + quantity + " quantity of "
+                + goods + " at $" + price;
     }
 }

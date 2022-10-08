@@ -9,7 +9,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Price {
     public static final String MESSAGE_CONSTRAINTS =
             "Price should only contain numbers, and it should be at least 1 digits long";
-    public static final String VALIDATION_REGEX = "\\d{1,}";
     public final String price;
 
     /**
@@ -27,7 +26,13 @@ public class Price {
      * Returns true if a given string is a valid price.
      */
     public static boolean isValidPrice(String test) {
-        return test.matches(VALIDATION_REGEX);
+        boolean isDouble = true;
+        try {
+            Double num = Double.parseDouble(test);
+        } catch (NumberFormatException e) {
+            isDouble = false;
+        }
+        return isDouble;
     }
 
     @Override
