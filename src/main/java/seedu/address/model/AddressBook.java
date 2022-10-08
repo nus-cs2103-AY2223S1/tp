@@ -112,6 +112,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.currentTeam = team;
     }
 
+    public void addTeam(Team teamToAdd) {
+        teams.add(teamToAdd);
+    }
+
+    public void deleteTeam(Team teamToDelete) {
+        teams.remove(teamToDelete);
+    }
+
     //// util methods
 
     @Override
@@ -123,6 +131,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Team> getTeamList () {
+        return teams.asUnmodifiableObservableList();
     }
 
     @Override

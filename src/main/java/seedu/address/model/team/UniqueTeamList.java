@@ -6,6 +6,7 @@ import java.util.Iterator;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Person;
 import seedu.address.model.team.exceptions.DuplicateTeamException;
 import seedu.address.model.team.exceptions.TeamNotFoundException;
 
@@ -49,6 +50,13 @@ public class UniqueTeamList implements Iterable<Team> {
         if (!internalTeams.remove(teamToRemove)) {
             throw new TeamNotFoundException();
         }
+    }
+
+    /**
+     * Returns the backing list as an unmodifiable {@code ObservableList}.
+     */
+    public ObservableList<Team> asUnmodifiableObservableList() {
+        return this.internalTeams;
     }
 
     /**
