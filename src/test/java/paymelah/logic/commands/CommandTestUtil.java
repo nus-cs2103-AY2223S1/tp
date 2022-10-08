@@ -143,7 +143,7 @@ public class CommandTestUtil {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show only the persons with {@code debt} in the
+     * Updates {@code model}'s filtered list to show only the persons with debt in the
      * {@code model}'s address book.
      */
     public static void showDebtors(Model model) {
