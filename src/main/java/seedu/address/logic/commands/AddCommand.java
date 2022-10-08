@@ -36,6 +36,8 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
 
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_ID = "The following student ID already exists: %s.\n "
+            + "Please recreate the student with a different ID.";
 
     private final Student toAdd;
 
@@ -52,8 +54,9 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         if (model.hasStudent(toAdd)) {
-
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
+        } else if (model.hasStudentWithMatchingId(toAdd)) {
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_ID, toAdd.getStudentId().value));
         }
 
         model.addStudent(toAdd);

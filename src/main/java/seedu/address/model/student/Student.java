@@ -74,6 +74,14 @@ public class Student {
     }
 
     /**
+     * Returns true is both students have the same studentId
+     * @param otherStudent
+     * @return Whether this and provided student have the same studentId
+     */
+    public boolean hasSameId(Student otherStudent) {
+        return otherStudent.studentId.equals(studentId);
+    }
+    /**
      * Returns true if both students have the same identity and data fields.
      * This defines a stronger notion of equality between two students.
      */

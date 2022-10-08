@@ -50,6 +50,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited Student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_ID = "A student with the same Student ID already exists, please "
+            + "re-edit the student with a different Student ID.";
 
     private final Index index;
     private final EditStudentDescriptor editStudentDescriptor;
@@ -81,6 +83,8 @@ public class EditCommand extends Command {
 
         if (!studentToEdit.isSameStudent(editedStudent) && model.hasStudent(editedStudent)) {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
+        } else if (!studentToEdit.hasSameId(editedStudent) && model.hasStudentWithMatchingId(editedStudent)) {
+            throw new CommandException(MESSAGE_DUPLICATE_ID);
         }
 
         model.setStudent(studentToEdit, editedStudent);
