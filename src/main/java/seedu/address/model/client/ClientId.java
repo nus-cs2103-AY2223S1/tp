@@ -10,7 +10,7 @@ import static java.util.Objects.requireNonNull;
  * Represents the unique ID that a client is identified by.
  */
 
-public class Id {
+public class ClientId {
     private String nameIdentifier;
     private UUID uuidIdentifier;
     private String identifier;
@@ -19,7 +19,7 @@ public class Id {
      * Constructs a unique Client Id when given a String representing client's name.
      * @param clientName
      */
-    private Id(String clientName) {
+    private ClientId(String clientName) {
         this.uuidIdentifier = UUID.randomUUID();
         this.nameIdentifier = clientName;
         this.identifier = nameIdentifier + uuidIdentifier.variant();
@@ -30,10 +30,10 @@ public class Id {
      * @param clientName Name of the Client whose Id is generated
      * @return Id the unique Id of the Client
      */
-    public Id generateId(Name clientName) {
+    public ClientId generateId(Name clientName) {
         requireNonNull(clientName);
         String name = clientName.toString().replaceAll(" ", "").toLowerCase();
-        return new Id(name);
+        return new ClientId(name);
     }
 
     /**
@@ -50,5 +50,23 @@ public class Id {
      */
     public String toString() {
         return "Client Id: " + this.identifier;
+    }
+
+
+    /**
+     * Checks if an object equals this.
+     * @param other Object to be checked
+     * @return boolean true if this is equal to other and false otherwise
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        } else if (other instanceof ClientId){
+            ClientId otherId = (ClientId) other;
+            return this.identifier.equals(otherId.identifier);
+        } else {
+            return false;
+        }
     }
 }

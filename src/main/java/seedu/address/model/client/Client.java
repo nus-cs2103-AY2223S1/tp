@@ -23,7 +23,7 @@ public class Client {
     private Phone phone;
 
     //Represents the Client's unique ID
-    private Id id;
+    private ClientId id;
 
     //Represents the Client's Organization
     private Name organization;
