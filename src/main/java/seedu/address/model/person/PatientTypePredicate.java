@@ -5,7 +5,7 @@ import java.util.function.Predicate;
  * Tests that a {@code Person} is of the given {@code Patient type}.
  */
 public class PatientTypePredicate implements Predicate<Person> {
-    PatientType.PatientTypes patientType;
+    private final PatientType.PatientTypes patientType;
 
     public PatientTypePredicate(PatientType.PatientTypes patientType) {
         this.patientType = patientType;
