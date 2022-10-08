@@ -55,7 +55,9 @@ public class LessonPlanCommand extends Command {
         Person personToEdit = lastShownList.get(index.getZeroBased());
 
         Person editedPerson = new Person(
-                personToEdit.getName(), personToEdit.getPhone(), lessonPlan, personToEdit.getHomeworkList(),
+                personToEdit.getName(), personToEdit.getPhone(), lessonPlan,
+                personToEdit.getHomeworkList(),
+                personToEdit.getAttendanceList(),
                 personToEdit.getTags());
 
         model.setPerson(personToEdit, editedPerson);

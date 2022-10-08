@@ -22,18 +22,20 @@ public class Person {
     // Data fields
     private final LessonPlan lessonPlan;
     private final HomeworkList homeworkList;
+    private final AttendanceList attendanceList;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, LessonPlan lessonPlan,
-                  HomeworkList homeworkList, Set<Tag> tags) {
+                  HomeworkList homeworkList, AttendanceList attendanceList,Set<Tag> tags) {
         requireAllNonNull(name, phone, tags);
         this.name = name;
         this.phone = phone;
         this.lessonPlan = lessonPlan;
         this.homeworkList = homeworkList;
+        this.attendanceList = attendanceList;
         this.tags.addAll(tags);
     }
 
@@ -51,6 +53,10 @@ public class Person {
 
     public HomeworkList getHomeworkList() {
         return homeworkList;
+    }
+
+    public AttendanceList getAttendanceList() {
+        return attendanceList;
     }
 
     /**
@@ -92,7 +98,8 @@ public class Person {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getLessonPlan().equals(getLessonPlan())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getAttendanceList().equals(getAttendanceList());
     }
 
     @Override
@@ -110,7 +117,8 @@ public class Person {
                 .append("; Lesson Plan: ")
                 .append(getLessonPlan())
                 .append("; Homework: ")
-                .append(getHomeworkList());
+                .append(getHomeworkList())
+                .append(getAttendanceList());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
