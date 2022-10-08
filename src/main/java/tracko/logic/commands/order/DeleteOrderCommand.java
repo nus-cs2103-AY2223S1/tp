@@ -33,16 +33,16 @@ public class DeleteOrderCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-         requireNonNull(model);
-         ObservableList<Order> lastShownList = model.getOrderList();
+        requireNonNull(model);
+        ObservableList<Order> lastShownList = model.getOrderList();
 
-         if (targetIndex.getZeroBased() >= lastShownList.size()) {
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
-         }
+        }
 
-         Order orderToDelete = lastShownList.get(targetIndex.getZeroBased());
-         model.deleteOrder(orderToDelete);
-         return new CommandResult(String.format(MESSAGE_DELETE_ORDER_SUCCESS, orderToDelete));
+        Order orderToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.deleteOrder(orderToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_ORDER_SUCCESS, orderToDelete));
     }
 
     @Override
