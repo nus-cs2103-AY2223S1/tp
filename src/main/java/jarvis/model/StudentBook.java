@@ -28,7 +28,7 @@ public class StudentBook implements ReadOnlyStudentBook {
     public StudentBook() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates a StudentBook using the Students in the {@code toBeCopied}
      */
     public StudentBook(ReadOnlyStudentBook toBeCopied) {
         this();
@@ -38,15 +38,15 @@ public class StudentBook implements ReadOnlyStudentBook {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the student list with {@code students}.
+     * {@code persons} must not contain duplicate students.
      */
     public void setStudents(List<Student> students) {
         this.students.setStudents(students);
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code StudentBook} with {@code newData}.
      */
     public void resetData(ReadOnlyStudentBook newData) {
         requireNonNull(newData);
@@ -57,7 +57,7 @@ public class StudentBook implements ReadOnlyStudentBook {
     //// person-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a student with the same identity as {@code student} exists in the student book.
      */
     public boolean hasStudent(Student student) {
         requireNonNull(student);
@@ -65,17 +65,18 @@ public class StudentBook implements ReadOnlyStudentBook {
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a student to the student book.
+     * The student must not already exist in the student book.
      */
     public void addStudent(Student p) {
         students.add(p);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces the given student {@code target} in the list with {@code editedStudent}.
+     * {@code target} must exist in the student book.
+     * The student identity of {@code editedStudent} must not be the same as another existing student in the student
+     * book.
      */
     public void setStudent(Student target, Student editedStudent) {
         requireNonNull(editedStudent);

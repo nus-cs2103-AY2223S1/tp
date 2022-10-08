@@ -67,7 +67,7 @@ public interface Model {
     ReadOnlyStudentBook getStudentBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the student book.
+     * Returns true if a student with the same identity as {@code student} exists in the student book.
      */
     boolean hasStudent(Student student);
 
@@ -116,7 +116,7 @@ public interface Model {
 
     /**
      * Deletes the given task.
-     * The person must exist in the task book.
+     * The task must exist in the task book.
      */
     void deleteTask(Task target);
 
@@ -128,7 +128,7 @@ public interface Model {
 
     /**
      * Replaces the given task {@code target} with {@code editedTask}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the task book.
      * The task identity of {@code editedTask} must not be the same as another existing task in the task book.
      */
     void setTask(Task target, Task editedTask);

@@ -12,8 +12,8 @@ import jarvis.commons.core.index.Index;
 import jarvis.commons.util.CollectionUtil;
 import jarvis.logic.commands.exceptions.CommandException;
 import jarvis.model.Model;
-import jarvis.model.StudentName;
 import jarvis.model.Student;
+import jarvis.model.StudentName;
 
 /**
  * Edits the details of an existing person in the address book.

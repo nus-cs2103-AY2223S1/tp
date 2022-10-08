@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jarvis.commons.exceptions.IllegalValueException;
-import jarvis.model.StudentName;
 import jarvis.model.Student;
+import jarvis.model.StudentName;
 
 /**
  * Jackson-friendly version of {@link Student}.
@@ -39,7 +39,8 @@ public class JsonAdaptedStudent {
     public Student toModelType() throws IllegalValueException {
 
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, StudentName.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    StudentName.class.getSimpleName()));
         }
         if (!StudentName.isValidName(name)) {
             throw new IllegalValueException(StudentName.MESSAGE_CONSTRAINTS);

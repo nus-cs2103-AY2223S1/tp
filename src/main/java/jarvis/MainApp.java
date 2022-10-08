@@ -19,10 +19,9 @@ import jarvis.model.ReadOnlyStudentBook;
 import jarvis.model.ReadOnlyTaskBook;
 import jarvis.model.ReadOnlyUserPrefs;
 import jarvis.model.StudentBook;
-import jarvis.model.Task;
 import jarvis.model.TaskBook;
 import jarvis.model.UserPrefs;
-import jarvis.model.util.SampleDataUtil;
+import jarvis.model.util.SampleStudentUtil;
 import jarvis.model.util.SampleTaskUtil;
 import jarvis.storage.JsonStudentBookStorage;
 import jarvis.storage.JsonTaskBookStorage;
@@ -95,7 +94,7 @@ public class MainApp extends Application {
                 logger.info("Task data file not found. Will be starting with a sample task book");
             }
             initialTaskData = taskBookOptional.orElseGet(SampleTaskUtil::getSampleTaskBook);
-            initialStudentData = studentBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialStudentData = studentBookOptional.orElseGet(SampleStudentUtil::getSampleStudentBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with empty book");
         } catch (IOException e) {

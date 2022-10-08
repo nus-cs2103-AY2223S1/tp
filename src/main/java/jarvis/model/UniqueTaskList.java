@@ -13,9 +13,9 @@ import javafx.collections.ObservableList;
 
 /**
  * A list of tasks that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code Person#isSameTask(Task)}. As such, adding and updating of
+ * A task is considered unique by comparing using {@code Person#isSameTask(Task)}. As such, adding and updating of
  * tasks uses Task#isSameTask(Task) for equality so as to ensure that the task being added or updated is
- * unique in terms of identity in the UniqueTaskList. However, the removal of a person uses Task#equals(Object) so
+ * unique in terms of identity in the UniqueTaskList. However, the removal of a task uses Task#equals(Object) so
  * as to ensure that the task with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
@@ -37,8 +37,8 @@ public class UniqueTaskList implements Iterable<Task> {
     }
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds a task to the list.
+     * The task must not already exist in the list.
      */
     public void add(Task toAdd) {
         requireNonNull(toAdd);
@@ -49,9 +49,9 @@ public class UniqueTaskList implements Iterable<Task> {
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     * Replaces the task {@code target} in the list with {@code editedTask}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     * The task identity of {@code editedTask} must not be the same as another existing task in the list.
      */
     public void setTask(Task target, Task editedTask) {
         requireAllNonNull(target, editedTask);
@@ -69,8 +69,8 @@ public class UniqueTaskList implements Iterable<Task> {
     }
 
     /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Removes the equivalent task from the list.
+     * The task must exist in the list.
      */
     public void remove(Task toRemove) {
         requireNonNull(toRemove);
@@ -85,8 +85,8 @@ public class UniqueTaskList implements Iterable<Task> {
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code tasks}.
+     * {@code tasks} must not contain duplicate tasks.
      */
     public void setTasks(List<Task> tasks) {
         requireAllNonNull(tasks);

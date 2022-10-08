@@ -10,8 +10,8 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 
 import jarvis.commons.exceptions.IllegalValueException;
 import jarvis.model.ReadOnlyTaskBook;
-import jarvis.model.TaskBook;
 import jarvis.model.Task;
+import jarvis.model.TaskBook;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.

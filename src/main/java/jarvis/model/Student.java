@@ -5,7 +5,7 @@ import static jarvis.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Student in the student book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Student {
@@ -26,8 +26,8 @@ public class Student {
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both students have the same name.
+     * This defines a weaker notion of equality between two students.
      */
     public boolean isSameStudent(Student otherStudent) {
         if (otherStudent == this) {
@@ -39,8 +39,8 @@ public class Student {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both students have the same identity and data fields.
+     * This defines a stronger notion of equality between two students.
      */
     @Override
     public boolean equals(Object other) {
