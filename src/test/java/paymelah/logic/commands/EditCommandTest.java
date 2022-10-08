@@ -23,6 +23,7 @@ import paymelah.model.AddressBook;
 import paymelah.model.Model;
 import paymelah.model.ModelManager;
 import paymelah.model.UserPrefs;
+import paymelah.model.debt.Debt;
 import paymelah.model.person.Person;
 import paymelah.testutil.EditPersonDescriptorBuilder;
 import paymelah.testutil.PersonBuilder;
@@ -36,9 +37,12 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Person editedPerson = new PersonBuilder().build();
+        Index index = INDEX_FIRST_PERSON;
+        Person sourcePerson = model.getFilteredPersonList().get(index.getZeroBased());
+        Person editedPerson =
+                new PersonBuilder().withDebts(sourcePerson.getDebts().asList().toArray(new Debt[0])).build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
+        EditCommand editCommand = new EditCommand(index, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
