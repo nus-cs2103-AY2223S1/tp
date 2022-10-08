@@ -16,6 +16,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
 
+import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -98,9 +99,10 @@ public class EditCommand extends Command {
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
         Predicate<Person> filterPersonToEdit = p -> !p.equals(personToEdit);
-        model.updateFilteredPersonList(filterPersonToEdit);
+        FilteredList<Person> filteredListWithoutTarget = model.getAddressBook().getPersonList()
+                .filtered(filterPersonToEdit);
 
-        if (model.getFilteredPersonList().contains(editedPerson)) {
+        if (filteredListWithoutTarget.contains(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_CUSTOMER);
         }
 
