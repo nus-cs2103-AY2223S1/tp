@@ -27,7 +27,7 @@ public class TypicalStudents {
     public static final Student ALICE = new PersonBuilder().withName("Alice Pauline")
             .withMasteryCheck(LocalDate.of(2022, 2, 17))
             .withConsultation(LocalDate.of(2022, 2, 22))
-            .withTelegramHandle("al1ce").withRemark("She likes aardvarks.")
+            .withTelegramHandle("al1ce").withRemark("She loves CS1101S")
             .withTags("friends").build();
     public static final Student BENSON = new PersonBuilder().withName("Benson Meier")
             .withMasteryCheck(LocalDate.of(2022, 8, 17)).withRemark("He can't take beer!")
