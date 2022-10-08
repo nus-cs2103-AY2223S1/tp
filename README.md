@@ -1,18 +1,18 @@
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103T-T10-2/tp/actions)
 [![codecov](https://codecov.io/gh/se-edu/addressbook-level3/branch/master/graph/badge.svg)](https://codecov.io/gh/se-edu/addressbook-level3)
 
-# FABook
+# IBook
 
 ![Ui](docs/images/Ui.png)
 Figure: A mockup of our application
 
-**FABook** is an application for **mid tier financial advisors** who have
+**IBook** is an application for **mid tier insurance agents** who have
 to manage **countless** potential and current clients.<br>
 
-Many financial advisors have **trouble scheduling** for meet-ups due to
+Many insurance agents have **trouble scheduling** for meet-ups due to
 information overload of their clients.<br>
 
-**FABook** is optimized for a **one-stop storage** to store and remind you on
+**IBook** is optimized for a **one-stop storage** to store and remind you on
 your client's information.
 
 ## Example usages:
@@ -20,10 +20,10 @@ your client's information.
   * Meeting and scheduling reminder.
   * Information storage.
 ## User guide:
-  * To find out more information about FABook, please take a look at our [User Guide](docs/UserGuide.md)!
+  * To find out more information about IBook, please take a look at our [User Guide](docs/UserGuide.md)!
 
 ## Developer Guide:
-  * To find out more technical information or if you want to help improve FABook, please take a look at our
+  * To find out more technical information or if you want to help improve IBook, please take a look at our
   * [Developer Guide](docs/DeveloperGuide.md)!
 
 ## About us
