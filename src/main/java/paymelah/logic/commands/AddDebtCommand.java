@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static paymelah.commons.util.CollectionUtil.requireAllNonNull;
 import static paymelah.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static paymelah.logic.parser.CliSyntax.PREFIX_MONEY;
-import static paymelah.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
