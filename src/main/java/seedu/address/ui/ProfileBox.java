@@ -3,6 +3,7 @@ package seedu.address.ui;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 
 import javafx.scene.image.Image;
@@ -26,5 +27,8 @@ public class ProfileBox extends UiPart<Region> {
     public ProfileBox() {
         super(FXML);
         dp.setImage(defaultDp);
+        ProfileInfoBox profileInfoBox = new ProfileInfoBox();
+        VBox.setVgrow(profileInfoBox.getRoot(), Priority.ALWAYS);
+        profileInfoContainer.getChildren().add(profileInfoBox.getRoot());
     }
 }
