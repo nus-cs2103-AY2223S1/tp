@@ -10,9 +10,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Parses input arguments and creates a new ViewTaskCommand object.
  */
 public class ViewTaskCommandParser implements Parser<ViewTaskCommand> {
-
-    public static final String MESSAGE_INVALID_NUMBER_OF_INDICES = "Invalid number of indices";
-
     /**
      * Parses the given {@code String} of arguments in the context of the ViewTaskCommand
      * and returns a ViewTaskCommand object for execution.
