@@ -18,6 +18,8 @@ import seedu.address.model.person.Record;
 import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
 import seedu.address.model.person.Record;
+import seedu.address.model.person.RecordList;
+
 /**
  * Represents the in-memory model of the address book data.
  */
@@ -43,7 +45,8 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-
+        // Empty record list stub
+        setFilteredRecords();
     }
 
     public ModelManager() {
@@ -151,7 +154,6 @@ public class ModelManager implements Model {
 
     @Override
     public void updateFilteredRecordList(Predicate<Record> predicate) {
-        setFilteredRecords();
         requireNonNull(predicate);
         filteredRecords.setPredicate(predicate);
     }

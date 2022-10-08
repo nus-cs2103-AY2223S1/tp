@@ -32,7 +32,8 @@ public class FindRecordCommand extends Command {
         requireNonNull(model);
         model.updateFilteredRecordList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredRecordList().size()));
+                String.format(Messages.MESSAGE_RECORDS_LISTED_OVERVIEW, model.getFilteredRecordList().size()),
+                false, false, true);
     }
 
     @Override
