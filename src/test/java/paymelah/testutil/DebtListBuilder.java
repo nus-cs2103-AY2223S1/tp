@@ -1,7 +1,5 @@
 package paymelah.testutil;
 
-import static paymelah.testutil.TypicalDebts.CHICKEN_RICE;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,16 +10,12 @@ import paymelah.model.debt.DebtList;
  * A utility class to help with building DebtList objects.
  */
 public class DebtListBuilder {
-    public static final Debt DEFAULT_DEBT = CHICKEN_RICE;
-
     private List<Debt> debtList = new ArrayList<>();
 
     /**
-     * Creates a {@code DebtListBuilder} with a default debt.
+     * Creates an empty {@code DebtListBuilder}.
      */
-    public DebtListBuilder() {
-        debtList.add(DEFAULT_DEBT);
-    }
+    public DebtListBuilder() {}
 
     /**
      * Initializes the {@code DebtListBuilder} with the data of {@code debtToCopy}.
