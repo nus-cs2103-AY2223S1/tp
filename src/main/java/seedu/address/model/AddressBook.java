@@ -73,16 +73,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.taskList.setTasks(tasks);
     }
 
-    /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
-     */
-    public void resetTasks(ReadOnlyAddressBook newData) {
-        requireNonNull(newData);
-
-        setTaskList(newData.getTaskList());
-    }
-
-
     //// person-level operations
 
     /**
