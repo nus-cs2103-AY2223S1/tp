@@ -3,7 +3,9 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOSPITAL_WING_PARSER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INPATIENT_PARSER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME_PARSER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OUTPATIENT_PARSER;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -15,6 +17,8 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.GetInpatientCommand;
+import seedu.address.logic.commands.GetOutpatientCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -30,7 +34,7 @@ public class AddressBookParser {
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
     private static final Pattern GET_COMMAND_FORMAT = Pattern
-            .compile("(?<commandWord>[get\\s]+)(?<prefix>[/a-z\\s]{4})(?<arguments>[a-z\\s].*)");
+            .compile("(?<commandWord>[get\\s]+)(?<prefix>[/a-z]+)(?<arguments>[a-zA-Z0-9\\s]*)");
 
     /**
      * Parses user input into command for execution.
@@ -54,6 +58,14 @@ public class AddressBookParser {
 
             if (prefixes.equals(PREFIX_NAME_PARSER)) {
                 return new FindCommandParser().parse(arguments);
+            }
+
+            if (prefixes.equals(PREFIX_INPATIENT_PARSER)) {
+                return new GetInpatientCommand();
+            }
+
+            if (prefixes.equals(PREFIX_OUTPATIENT_PARSER)) {
+                return new GetOutpatientCommand();
             }
         }
 
