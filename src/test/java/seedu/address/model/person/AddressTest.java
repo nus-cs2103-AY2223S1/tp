@@ -10,28 +10,28 @@ public class AddressTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new ScholarshipName(null));
+        assertThrows(NullPointerException.class, () -> new Scholarship(null));
     }
 
     @Test
     public void constructor_invalidAddress_throwsIllegalArgumentException() {
         String invalidAddress = "";
-        assertThrows(IllegalArgumentException.class, () -> new ScholarshipName(invalidAddress));
+        assertThrows(IllegalArgumentException.class, () -> new Scholarship(invalidAddress));
     }
 
     @Test
     public void isValidAddress() {
         // null address
-        assertThrows(NullPointerException.class, () -> ScholarshipName.isValidScholarshipName(null));
+        assertThrows(NullPointerException.class, () -> Scholarship.isValidScholarship(null));
 
         // invalid addresses
-        assertFalse(ScholarshipName.isValidScholarshipName("")); // empty string
-        assertFalse(ScholarshipName.isValidScholarshipName(" ")); // spaces only
+        assertFalse(Scholarship.isValidScholarship("")); // empty string
+        assertFalse(Scholarship.isValidScholarship(" ")); // spaces only
 
         // valid addresses
-        assertTrue(ScholarshipName.isValidScholarshipName("Blk 456, Den Road, #01-355"));
-        assertTrue(ScholarshipName.isValidScholarshipName("-")); // one character
-        assertTrue(ScholarshipName
-                .isValidScholarshipName("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
+        assertTrue(Scholarship.isValidScholarship("Blk 456, Den Road, #01-355"));
+        assertTrue(Scholarship.isValidScholarship("-")); // one character
+        assertTrue(Scholarship
+                .isValidScholarship("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
     }
 }

@@ -23,8 +23,9 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.ScholarshipName;
+
 import seedu.address.model.person.ApplicationStatus;
+import seedu.address.model.person.Scholarship;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -97,13 +98,13 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        ScholarshipName updatedscholarshipname = editPersonDescriptor.getScholarshipName()
-                .orElse(personToEdit.getScholarshipName());
+        Scholarship updatedScholarship = editPersonDescriptor.getScholarship()
+                .orElse(personToEdit.getScholarship());
         ApplicationStatus updatedApplicationStatus = editPersonDescriptor.getApplicationStatus()
                 .orElse(personToEdit.getApplicationStatus());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedscholarshipname,
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedScholarship,
                 updatedApplicationStatus, updatedTags);
     }
 
@@ -133,7 +134,7 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
-        private ScholarshipName scholarshipname;
+        private Scholarship scholarship;
         private ApplicationStatus applicationStatus;
         private Set<Tag> tags;
 
@@ -147,7 +148,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setScholarshipName(toCopy.scholarshipname);
+            setScholarship(toCopy.scholarship);
             setApplicationStatus(toCopy.applicationStatus);
             setTags(toCopy.tags);
         }
@@ -156,7 +157,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, scholarshipname, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, scholarship, tags);
         }
 
         public void setName(Name name) {
@@ -183,12 +184,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setScholarshipName(ScholarshipName scholarshipName) {
-            this.scholarshipname = scholarshipName;
+        public void setScholarship(Scholarship scholarship) {
+            this.scholarship = scholarship;
         }
 
-        public Optional<ScholarshipName> getScholarshipName() {
-            return Optional.ofNullable(scholarshipname);
+        public Optional<Scholarship> getScholarship() {
+            return Optional.ofNullable(scholarship);
         }
 
         public void setApplicationStatus(ApplicationStatus applicationStatus) {
@@ -234,7 +235,7 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
-                    && getScholarshipName().equals(e.getScholarshipName())
+                    && getScholarship().equals(e.getScholarship())
                     && getApplicationStatus().equals(e.getApplicationStatus())
                     && getTags().equals(e.getTags());
         }

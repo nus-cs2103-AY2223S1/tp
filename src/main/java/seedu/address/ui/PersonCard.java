@@ -35,7 +35,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
-    private Label scholarshipName;
+    private Label scholarship;
     @FXML
     private Label applicationStatus;
     @FXML
@@ -52,7 +52,7 @@ public class PersonCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
-        scholarshipName.setText(person.getScholarshipName().value);
+        scholarship.setText(person.getScholarship().value);
         applicationStatus.setText(person.getApplicationStatus().applicationStatus);
         email.setText(person.getEmail().value);
         person.getTags().stream()

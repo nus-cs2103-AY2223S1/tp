@@ -9,7 +9,11 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.*;
+import seedu.address.model.person.ApplicationStatus;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Scholarship;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -68,13 +72,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code address} is invalid.
      */
-    public static ScholarshipName parseAddress(String scholarshipname) throws ParseException {
-        requireNonNull(scholarshipname);
-        String trimmedscholarshipname = scholarshipname.trim();
-        if (!ScholarshipName.isValidScholarshipName(trimmedscholarshipname)) {
-            throw new ParseException(ScholarshipName.MESSAGE_CONSTRAINTS);
+    public static Scholarship parseScholarship(String scholarship) throws ParseException {
+        requireNonNull(scholarship);
+        String trimmedScholarship = scholarship.trim();
+        if (!Scholarship.isValidScholarship(trimmedScholarship)) {
+            throw new ParseException(Scholarship.MESSAGE_CONSTRAINTS);
         }
-        return new ScholarshipName(trimmedscholarshipname);
+        return new Scholarship(trimmedScholarship);
     }
 
     /**
@@ -87,7 +91,7 @@ public class ParserUtil {
         requireNonNull(applicationStatus);
         String trimmedApplicationStatus = applicationStatus.trim();
         if (!ApplicationStatus.isValidApplicationStatus(trimmedApplicationStatus)) {
-            throw new ParseException(ScholarshipName.MESSAGE_CONSTRAINTS);
+            throw new ParseException(ApplicationStatus.MESSAGE_CONSTRAINTS);
         }
         return new ApplicationStatus(trimmedApplicationStatus);
     }

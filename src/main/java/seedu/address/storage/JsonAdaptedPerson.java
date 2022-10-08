@@ -10,7 +10,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.*;
+import seedu.address.model.person.ApplicationStatus;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Scholarship;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -24,7 +29,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
 
-    private final String scholarshipName;
+    private final String scholarship;
     private final String applicationStatus;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -33,14 +38,15 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("scholarshipname") String scholarshipName,
+            @JsonProperty("email") String email, @JsonProperty("scholarship") String scholarship,
             @JsonProperty("applicationStatus") String applicationStatus,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.scholarshipName = scholarshipName;
+        this.scholarship = scholarship;
         this.applicationStatus = applicationStatus;
+
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -53,7 +59,7 @@ class JsonAdaptedPerson {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        scholarshipName = source.getScholarshipName().value;
+        scholarship = source.getScholarship().value;
         applicationStatus = source.getApplicationStatus().applicationStatus;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -95,14 +101,14 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
-        if (scholarshipName == null) {
+        if (scholarship == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    ScholarshipName.class.getSimpleName()));
+                    Scholarship.class.getSimpleName()));
         }
-        if (!ScholarshipName.isValidScholarshipName(scholarshipName)) {
-            throw new IllegalValueException(ScholarshipName.MESSAGE_CONSTRAINTS);
+        if (!Scholarship.isValidScholarship(scholarship)) {
+            throw new IllegalValueException(Scholarship.MESSAGE_CONSTRAINTS);
         }
-        final ScholarshipName modelScholarshipName = new ScholarshipName(scholarshipName);
+        final Scholarship modelScholarship = new Scholarship(scholarship);
 
         if (applicationStatus == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -114,7 +120,8 @@ class JsonAdaptedPerson {
         final ApplicationStatus modelApplicationStatus = new ApplicationStatus(applicationStatus);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelScholarshipName, modelApplicationStatus, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelScholarship, modelApplicationStatus, modelTags);
+
     }
 
 }
