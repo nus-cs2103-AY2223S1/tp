@@ -4,6 +4,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Appointment;
+import seedu.address.model.person.Person;
 
 /**
  * Unmarks an appointment for the given patient as incomplete.
@@ -32,6 +33,7 @@ public class UnmarkCommand extends SelectAppointmentCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        Person personToMark = getTargetPerson(model);
         Appointment appointmentToUnmark = getTargetAppointment(model);
 
         if (!appointmentToUnmark.isMarked()) {
@@ -39,6 +41,7 @@ public class UnmarkCommand extends SelectAppointmentCommand {
         }
 
         appointmentToUnmark.unmark();
+        model.refreshPerson(personToMark);
         return new CommandResult(String.format(MESSAGE_UNMARK_PERSON_SUCCESS,
                 indexOfAppointment.getOneBased(),
                 getTargetPerson(model).getName()));
