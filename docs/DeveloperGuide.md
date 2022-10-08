@@ -363,6 +363,69 @@ Step 1 and 2 is repeated until all members have been added
     * 1b1. EZLead informs Team Lead that the team does not exist
 
       Use case ends
+    
+
+**Use case: UC4 - Renaming a team's name**
+
+**Actor: Team Lead**
+
+**Prerequisites: A team exists**
+
+**Guarantee: Selected team is renamed to the new given name**
+
+**MSS**
+
+1. Team Lead specifies the old team and the new team name.
+2. EZLead updates the name of the team.
+
+**Extensions:**
+
+* 1a. Team Lead enters the wrong command.
+
+    * 1a1. EZLead displays an error message.
+
+      Use case ends.
+
+* 1b. Old team name does not exist in EZLead's database.
+
+    * 1b1. EZLead displays an error message.
+
+      Use case ends.
+
+* 1c. New name is already used by another team.
+
+    * 1c1. EZLead displays an error message.
+
+      Use case ends.
+
+
+**Use case: UC5 - Removing team members from a team**
+
+**Actor: Team Lead**
+
+**Prerequisites: A team with existing members exists**
+
+**Guarantee: Selected team member is removed from the selected team.**
+
+**MSS**
+
+1. Team Lead specifies the name of the team and name of the team member to be removed.
+2. EZLead removes the team member from the team.
+
+**Extensions:**
+
+* 1a. Specified team does not exist.
+
+    * 1a1. EZLead displays an error message.
+
+      Use case ends.
+
+* 1b. Specified team member does not exist.
+
+    * 1b1. EZLead displays an error message.
+
+      Use case ends.
+
 
 **MSS**
 
