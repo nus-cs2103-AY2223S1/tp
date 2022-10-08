@@ -4,11 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.person.HomeworkList;
-import seedu.address.model.person.LessonPlan;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -25,6 +21,7 @@ public class PersonBuilder {
     private Phone phone;
     private LessonPlan lessonPlan;
     private HomeworkList homeworkList;
+    private AttendanceList attendanceList;
     private Set<Tag> tags;
 
     /**
@@ -35,6 +32,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         lessonPlan = new LessonPlan(DEFAULT_LESSON_PLAN);
         homeworkList = new HomeworkList();
+        attendanceList = new AttendanceList();
         tags = new HashSet<>();
     }
 
@@ -46,6 +44,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         lessonPlan = personToCopy.getLessonPlan();
         homeworkList = new HomeworkList(new ArrayList<>(personToCopy.getHomeworkList().homeworkList));
+        attendanceList = new AttendanceList(new ArrayList<>(personToCopy.getAttendanceList().attendanceList));
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -74,6 +73,11 @@ public class PersonBuilder {
         return this;
     }
 
+    public PersonBuilder withAttendance(String ... attendanceList) {
+        this.attendanceList.attendanceList.addAll(SampleDataUtil.getAttendanceList(attendanceList));
+        return this;
+    }
+
     /**
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
@@ -91,7 +95,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, lessonPlan, homeworkList, tags);
+        return new Person(name, phone, lessonPlan, homeworkList, attendanceList, tags);
     }
 
 }
