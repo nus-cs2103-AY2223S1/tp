@@ -8,6 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import tracko.model.person.exceptions.DuplicatePersonException;
+import tracko.model.person.exceptions.PersonNotFoundException;
 
 /**
  * Represents the list of items in the inventory.
@@ -17,28 +19,6 @@ public class InventoryList implements Iterable<Item> {
     private final ObservableList<Item> internalList = FXCollections.observableArrayList();
     private final ObservableList<Item> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
-
-    /**
-     * Adds an item to the list.
-     * The item must not exist yet in the list.
-     *
-     * @param item The item added.
-     */
-    public void add(Item item) {
-        requireNonNull(item);
-        internalList.add(item);
-    }
-
-
-    public void setItems(InventoryList replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
-    }
-
-    public void setItems(List<Item> items) {
-        requireAllNonNull(items);
-        internalList.setAll(items);
-    }
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
