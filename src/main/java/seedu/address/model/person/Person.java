@@ -104,7 +104,7 @@ public class Person {
             return false;
         }
 
-        return !(otherPerson.getMinecraftName().equals(getMinecraftName()));
+        return otherPerson.getMinecraftName().equals(getMinecraftName());
     }
 
     /**
