@@ -48,23 +48,17 @@ public class AddCommandParser implements Parser<AddCommand> {
         return new AddCommand(person);
     }
 
-    private Object parseOptionalArgument(Prefix prefix, ArgumentMultimap argMultimap, CheckedFunction<String, ?> parserFn) {
+    private Object parseOptionalArgument(Prefix prefix, ArgumentMultimap argMultimap,
+                                         CheckedFunction<String, ?> parserFn) throws ParseException{
         if (argMultimap.getValue(prefix).isPresent()) {
-            try {
-                return parserFn.apply(argMultimap.getValue(prefix).get());
-            } catch (Exception e) {
-                return null;
-            }
+            return parserFn.apply(argMultimap.getValue(prefix).get());
         }
         return null;
     }
 
-    private Object parseMandatoryArgument(Prefix prefix, ArgumentMultimap argMultimap, CheckedFunction<String, ?> parserFn) {
-        try {
-            return parserFn.apply(argMultimap.getValue(prefix).get());
-        } catch (Exception e) {
-            return null;
-        }
+    private Object parseMandatoryArgument(Prefix prefix, ArgumentMultimap argMultimap,
+                                          CheckedFunction<String, ?> parserFn) throws ParseException {
+        return parserFn.apply(argMultimap.getValue(prefix).get());
     }
 
     /**
