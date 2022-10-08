@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.question.Question;
 import seedu.address.model.tutorial.Tutorial;
 
 /**
@@ -14,6 +15,7 @@ import seedu.address.model.tutorial.Tutorial;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Question> PREDICATE_SHOW_ALL_QUESTIONS = unused -> true;
 
     /** {@code Predicate} that always evaluate to true */
     Predicate<Tutorial> PREDICATE_SHOW_ALL_TUTORIALS = unused -> true;
@@ -88,6 +90,44 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+
+
+    /////////////////////////
+
+    /**
+     * Returns true if a question with the same identity as {@code question} exists in the address book.
+     */
+    boolean hasQuestion(Question question);
+
+    /**
+     * Deletes the given question.
+     * The question must exist in the address book.
+     */
+    void deleteQuestion(Question target);
+
+    /**
+     * Adds the given question.
+     * {@code question} must not already exist in the address book.
+     */
+    void addQuestion(Question question);
+
+    /**
+     * Replaces the given question {@code target} with {@code editedQuestion}.
+     * {@code target} must exist in the address book.
+     * The question identity of {@code editedQuestion} must not be the same as another existing question in the address
+     * book.
+     */
+    void setQuestion(Question target, Question editedQuestion);
+
+    /** Returns an unmodifiable view of the filtered question list */
+    ObservableList<Question> getFilteredQuestionList();
+
+    /**
+     * Updates the filter of the filtered question list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredQuestionList(Predicate<Question> predicate);
 
     /**
      * Returns true if a tutorial with the same identity as {@code tutorial} exists in SETA.

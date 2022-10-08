@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.question.Question;
 import seedu.address.model.tutorial.Tutorial;
 
 /**
@@ -23,6 +24,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Question> filteredQuestions;
     private final FilteredList<Tutorial> filteredTutorials;
 
     /**
@@ -36,6 +38,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredQuestions = new FilteredList<>(this.addressBook.getQuestionList());
         filteredTutorials = new FilteredList<>(this.addressBook.getTutorialList());
     }
 
@@ -115,6 +118,31 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+
+    @Override
+    public boolean hasQuestion(Question question) {
+        requireNonNull(question);
+        return addressBook.hasQuestion(question);
+    }
+
+    @Override
+    public void deleteQuestion(Question target) {
+        addressBook.removeQuestion(target);
+    }
+
+    @Override
+    public void addQuestion(Question question) {
+        addressBook.addQuestion(question);
+        updateFilteredQuestionList(PREDICATE_SHOW_ALL_QUESTIONS);
+    }
+
+    @Override
+    public void setQuestion(Question target, Question editedQuestion) {
+        requireAllNonNull(target, editedQuestion);
+
+        addressBook.setQuestion(target, editedQuestion);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -132,7 +160,15 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
-    //=========== Tutorial================================================================================
+    /**
+     * Returns an unmodifiable view of the list of {@code Question} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Question> getFilteredQuestionList() {
+        return filteredQuestions;
+    }
+
     @Override
     public boolean hasTutorial(Tutorial tutorial) {
         requireNonNull(tutorial);
@@ -171,6 +207,12 @@ public class ModelManager implements Model {
     public void updateFilteredTutorialList(Predicate<Tutorial> predicate) {
         requireNonNull(predicate);
         filteredTutorials.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredQuestionList(Predicate<Question> predicate) {
+        requireNonNull(predicate);
+        filteredQuestions.setPredicate(predicate);
     }
 
     @Override

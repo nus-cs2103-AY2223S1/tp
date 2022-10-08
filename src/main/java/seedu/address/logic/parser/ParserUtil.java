@@ -13,6 +13,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.question.Description;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tutorial.Content;
 import seedu.address.model.tutorial.Group;
@@ -123,6 +124,20 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Returns a Description object given a {@code description}
+     * Will return false if the user input does not give a description
+     * e.g. "addq      "
+     * @throws ParseException if {@code description} given is empty
+     */
+    public static Description parseDescription(String description) throws ParseException {
+        String trimmedDescription = description.trim();
+        if (StringUtil.isEmptyDescription(trimmedDescription)) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        return new Description(trimmedDescription);
     }
 
     /**
