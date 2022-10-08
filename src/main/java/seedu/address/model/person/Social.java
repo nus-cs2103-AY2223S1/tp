@@ -19,8 +19,8 @@ public class Social {
      */
     public static final String VALIDATION_REGEX = ".*@.*";
 
-    public String handle;
-    public Platform platform;
+    private String handle;
+    private Platform platform;
 
     /**
      * Constructs a {@code Social}.
