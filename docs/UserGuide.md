@@ -1,6 +1,4 @@
----
-👾 MineFriends User Guide
----
+# 👾 MineFriends User Guide
 
 MineFriends is a **desktop app for MineCraft players to manage information about their online friends, 
 optimized for use via a Command Line Interface** (CLI), while still having the 
