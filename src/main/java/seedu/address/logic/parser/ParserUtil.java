@@ -16,6 +16,7 @@ import seedu.address.model.person.MinecraftName;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Platform;
+import seedu.address.model.person.PlatformConverter;
 import seedu.address.model.person.Social;
 import seedu.address.model.person.TimeZone;
 import seedu.address.model.server.Server;
@@ -147,19 +148,10 @@ public class ParserUtil {
         }
 
         String[] strArray = socialStr.split("@");
-        String rawPlatform = strArray[0];
+        Platform platform = PlatformConverter.stringToPlatform(strArray[0]);
         String handle = strArray[1];
 
-        switch (rawPlatform) {
-        case "fb":
-            return new Social(handle, Platform.fb);
-        case "ig":
-            return new Social(handle, Platform.ig);
-        case "sc":
-            return new Social(handle, Platform.sc);
-        default:
-            throw new SocialNotFoundException();
-        }
+        return new Social(handle, platform);
 
     }
 
