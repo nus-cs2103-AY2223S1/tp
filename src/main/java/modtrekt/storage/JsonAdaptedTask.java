@@ -45,10 +45,6 @@ public class JsonAdaptedTask {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Task toModelType() throws IllegalValueException {
-//        final List<Tag> personTags = new ArrayList<>();
-//        for (JsonAdaptedTag tag : tagged) {
-//            personTags.add(tag.toModelType());
-//        }
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));

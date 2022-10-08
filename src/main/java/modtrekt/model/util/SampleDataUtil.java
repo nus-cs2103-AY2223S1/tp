@@ -4,13 +4,9 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import modtrekt.model.AddressBook;
-import modtrekt.model.ReadOnlyAddressBook;
-import modtrekt.model.person.Address;
-import modtrekt.model.person.Email;
+import modtrekt.model.TaskBook;
+import modtrekt.model.ReadOnlyTaskBook;
 import modtrekt.model.person.Name;
-import modtrekt.model.person.Person;
-import modtrekt.model.person.Phone;
 import modtrekt.model.tag.Tag;
 import modtrekt.model.task.Task;
 
@@ -48,10 +44,10 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyTaskBook getSampleAddressBook() {
+        TaskBook sampleAb = new TaskBook();
         for (Task samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
+            sampleAb.addTask(samplePerson);
         }
         return sampleAb;
     }

@@ -8,8 +8,7 @@ import modtrekt.logic.commands.CommandResult;
 import modtrekt.logic.commands.exceptions.CommandException;
 import modtrekt.logic.parser.exceptions.ParseException;
 import modtrekt.model.Model;
-import modtrekt.model.ReadOnlyAddressBook;
-import modtrekt.model.person.Person;
+import modtrekt.model.ReadOnlyTaskBook;
 import modtrekt.model.task.Task;
 
 /**
@@ -28,9 +27,9 @@ public interface Logic {
     /**
      * Returns the AddressBook.
      *
-     * @see Model#getAddressBook()
+     * @see Model#getTaskBook()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyTaskBook getAddressBook();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Task> getFilteredPersonList();

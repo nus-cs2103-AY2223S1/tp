@@ -1,6 +1,6 @@
 package modtrekt.testutil;
 
-import modtrekt.model.AddressBook;
+import modtrekt.model.TaskBook;
 import modtrekt.model.person.Person;
 
 /**
@@ -10,13 +10,13 @@ import modtrekt.model.person.Person;
  */
 public class AddressBookBuilder {
 
-    private AddressBook addressBook;
+    private TaskBook addressBook;
 
     public AddressBookBuilder() {
-        addressBook = new AddressBook();
+        addressBook = new TaskBook();
     }
 
-    public AddressBookBuilder(AddressBook addressBook) {
+    public AddressBookBuilder(TaskBook addressBook) {
         this.addressBook = addressBook;
     }
 
@@ -28,7 +28,7 @@ public class AddressBookBuilder {
         return this;
     }
 
-    public AddressBook build() {
+    public TaskBook build() {
         return addressBook;
     }
 }

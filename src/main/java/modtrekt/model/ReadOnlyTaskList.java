@@ -1,7 +1,6 @@
 package modtrekt.model;
 
 import javafx.collections.ObservableList;
-import modtrekt.model.person.Person;
 import modtrekt.model.task.Task;
 
 public interface ReadOnlyTaskList {

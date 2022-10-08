@@ -13,8 +13,7 @@ import modtrekt.logic.commands.exceptions.CommandException;
 import modtrekt.logic.parser.AddressBookParser;
 import modtrekt.logic.parser.exceptions.ParseException;
 import modtrekt.model.Model;
-import modtrekt.model.ReadOnlyAddressBook;
-import modtrekt.model.person.Person;
+import modtrekt.model.ReadOnlyTaskBook;
 import modtrekt.model.task.Task;
 import modtrekt.storage.Storage;
 
@@ -48,7 +47,7 @@ public class LogicManager implements Logic {
 
         try {
             System.out.println("called");
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveAddressBook(model.getTaskBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -57,18 +56,18 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyTaskBook getAddressBook() {
+        return model.getTaskBook();
     }
 
     @Override
     public ObservableList<Task> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+        return model.getFilteredTaskList();
     }
 
     @Override
     public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+        return model.getTaskBookFilePath();
     }
 
     @Override

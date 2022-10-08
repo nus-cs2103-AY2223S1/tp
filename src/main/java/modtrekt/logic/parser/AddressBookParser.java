@@ -6,7 +6,7 @@ import static modtrekt.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import modtrekt.logic.commands.AddCommand;
+import modtrekt.logic.commands.AddTaskCommand;
 //import modtrekt.logic.commands.ClearCommand;
 import modtrekt.logic.commands.Command;
 //import modtrekt.logic.commands.DeleteCommand;
@@ -44,7 +44,7 @@ public class AddressBookParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
+        case AddTaskCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
 //        case EditCommand.COMMAND_WORD:

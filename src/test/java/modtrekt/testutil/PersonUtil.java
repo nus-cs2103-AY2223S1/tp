@@ -8,7 +8,7 @@ import static modtrekt.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
-import modtrekt.logic.commands.AddCommand;
+import modtrekt.logic.commands.AddTaskCommand;
 import modtrekt.logic.commands.EditCommand.EditPersonDescriptor;
 import modtrekt.model.person.Person;
 import modtrekt.model.tag.Tag;
@@ -22,7 +22,7 @@ public class PersonUtil {
      * Returns an add command string for adding the {@code person}.
      */
     public static String getAddCommand(Person person) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(person);
+        return AddTaskCommand.COMMAND_WORD + " " + getPersonDetails(person);
     }
 
     /**
