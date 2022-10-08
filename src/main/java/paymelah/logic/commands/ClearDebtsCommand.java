@@ -31,7 +31,6 @@ public class ClearDebtsCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_CLEAR_DEBTS_SUCCESS = "Cleared Person: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
     private final Index index;
 
@@ -57,10 +56,6 @@ public class ClearDebtsCommand extends Command {
         Person debtorToClear = lastShownList.get(index.getZeroBased());
         Person clearedDebtor = createClearedDebtor(debtorToClear);
 
-        if (!debtorToClear.isSamePerson(clearedDebtor) && model.hasPerson(clearedDebtor)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
-        }
-
         model.setPerson(debtorToClear, clearedDebtor);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_CLEAR_DEBTS_SUCCESS, clearedDebtor));
@@ -74,7 +69,7 @@ public class ClearDebtsCommand extends Command {
      * @return Person with an empty {@code DebtList}
      */
     private static Person createClearedDebtor(Person debtorToClear) {
-        assert debtorToClear != null;
+        requireNonNull(debtorToClear);
 
         Name updatedName = debtorToClear.getName();
         Phone updatedPhone = debtorToClear.getPhone();

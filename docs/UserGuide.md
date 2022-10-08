@@ -99,7 +99,7 @@ Example:
 
 ### Clearing debts: `cleardebts`
 
-Deletes a debtor's debts from PayMeLah according to his index number when listed.
+Clears all of a debtor's debts from PayMeLah according to his index number when listed.
 
 Format: `cleardebts <person index>`
 

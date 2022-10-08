@@ -7,7 +7,7 @@ import paymelah.logic.commands.ClearDebtsCommand;
 import paymelah.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new DeleteCommand object
+ * Parses input arguments and creates a new ClearDebtsCommand object
  */
 public class ClearDebtsCommandParser implements Parser<ClearDebtsCommand> {
 
