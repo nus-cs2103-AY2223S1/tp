@@ -11,7 +11,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Record;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code Record}.
  */
 public class RecordCard extends UiPart<Region> {
 
@@ -33,15 +33,18 @@ public class RecordCard extends UiPart<Region> {
     private Label id;
     @FXML
     private Label recordText;
+    @FXML
+    private Label date;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code RecordCode} with the given {@code Record} and index to display.
      */
     public RecordCard(Record record, int displayedIndex) {
         super(FXML);
         this.record = record;
         id.setText(displayedIndex + ". ");
         recordText.setText(record.record);
+        date.setText(record.getRecordDate().toLocalDate().toString());
     }
 
     @Override

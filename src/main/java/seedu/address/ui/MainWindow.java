@@ -203,13 +203,12 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            // Controls which list to display
             if (commandResult.isRecord()) {
                 showRecordList();
             } else {
                 showPersonList();
             }
-
-
 
             return commandResult;
         } catch (CommandException | ParseException e) {

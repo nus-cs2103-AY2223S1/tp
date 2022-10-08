@@ -31,7 +31,7 @@ public class CommandResult {
     }
 
     /**
-     * Constructs a {@code CommandResult} with the specified fields for commands to display recordList
+     * Constructs a {@code CommandResult} with the specified fields for commands that display recordList
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean record) {
         this.feedbackToUser = requireNonNull(feedbackToUser);

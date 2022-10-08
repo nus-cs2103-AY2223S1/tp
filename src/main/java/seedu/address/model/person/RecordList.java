@@ -15,9 +15,8 @@ public class RecordList {
     // todo: have the commands update the record list through an additional add record command.
     // count of the record list should be accessed through the ArrayList#size() method.
     private final ObservableList<Record> recordList = FXCollections.observableArrayList();
-
-    // stub
-    private final ObservableList<Record> recordListStub = FXCollections.observableArrayList();
+    private final ObservableList<Record> internalUnmodifiableRecordList =
+            FXCollections.unmodifiableObservableList(recordList);
 
     /**
      * Getter for list of records.
@@ -25,7 +24,7 @@ public class RecordList {
      * @return List of records.
      */
     public ObservableList<Record> getRecordList() {
-        return this.recordList;
+        return internalUnmodifiableRecordList;
     }
 
     /**
