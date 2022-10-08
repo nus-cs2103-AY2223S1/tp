@@ -140,11 +140,19 @@ public class AddTagCommand extends Command {
         CommandResult editPersonResult = (new EditCommand(index, editPersonDescriptor)).executeNoRefresh(model);
         LOGGER.info(editPersonResult.getFeedbackToUser());
 
-        String indexStr = this.index == null ? "all" : String.valueOf(index.getOneBased());
-        return new CommandResult(String.format(MESSAGE_SINGLE_ADD_TAGS_SUCCESS, toBeAddedTagsStr, indexStr));
+        assert index != null : "[AddTagCommand] Index in executeSingle should not be null";
+        return new CommandResult(String.format(
+                MESSAGE_SINGLE_ADD_TAGS_SUCCESS,
+                toBeAddedTagsStr,
+                personToEdit.getName()));
     }
 
-    private static String tagSetToSting(Set<Tag> tags) {
+    /**
+     * Formats the tag set to be more user friendly string.
+     * @param tags set to be formatted.
+     * @return the fomatted list of tags/
+     */
+    public static String tagSetToSting(Set<Tag> tags) {
         String res = "";
         for (Tag tag : tags) {
             res += tag.toString() + ", ";
