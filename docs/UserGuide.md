@@ -58,8 +58,6 @@ IBook is a **desktop app for managing contacts, optimized for a financial advise
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-</div>
-
 ### Viewing help : `help`
 
 Shows a message explaning how to access the help page.
@@ -208,12 +206,12 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples | Shortcut
---------|------------------|---
-**Create** | `create name:NAME [num:PHONE_NUMBER] [address:ADDRESS] [meeting_time:TIME] `<br> e.g., `create name:Betsy Crowe address:Newgate Prison num:1234567`|c
-**Clear** | `clear` |
-**Delete** | `delete NAME`<br> e.g., `delete Aaron Judge` |
-**Update** | `update name:NAME [num:PHONE_NUMBER] [address:ADDRESS] [meeting_time:TIME]`<br> e.g.,`edit name:John Doe number:91234567 address:21 Lower Kent Ridge Rd`| u
-**Find** | `find NAME…`__or__ `find NUMBER` <br> e.g., `find James Jake` __or__ `find 09122222` |f
-**List** | `list` |
-**Help** | `help` |
+| Action     | Format, Examples                                                                                                                                         | Shortcut |
+|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|----------|
+| **Create** | `create name:NAME [num:PHONE_NUMBER] [address:ADDRESS] [meeting_time:TIME] `<br> e.g., `create name:Betsy Crowe address:Newgate Prison num:1234567`      | c        |
+| **Clear**  | `clear`                                                                                                                                                  |          |
+| **Delete** | `delete NAME`<br> e.g., `delete Aaron Judge`                                                                                                             |          |
+| **Update** | `update name:NAME [num:PHONE_NUMBER] [address:ADDRESS] [meeting_time:TIME]`<br> e.g.,`edit name:John Doe number:91234567 address:21 Lower Kent Ridge Rd` | u        |
+| **Find**   | `find NAME…`__or__ `find NUMBER` <br> e.g., `find James Jake` __or__ `find 09122222`                                                                     | f        |
+| **List**   | `list`                                                                                                                                                   |          |
+| **Help**   | `help`                                                                                                                                                   |          |
