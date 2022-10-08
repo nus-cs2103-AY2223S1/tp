@@ -1,13 +1,13 @@
 package nus.climods.ui.module;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import nus.climods.model.module.DummyModule;
 import nus.climods.ui.UiPart;
+import nus.climods.ui.common.Pill;
 
 /**
  * An UI component that displays information of a {@code Module}.
@@ -36,9 +36,6 @@ public class SavedModuleCard extends UiPart<Region> {
     @FXML
     private FlowPane ayData;
 
-    private String buttonStyle = "-fx-border-width:0;-fx-background-radius: 10px;-fx-padding: 3;"
-        + "-fx-font-size: 8;-fx-font-weight:bold;";
-
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
@@ -48,11 +45,7 @@ public class SavedModuleCard extends UiPart<Region> {
         moduleCode.setText(module.getModuleCode());
         tutorial.setText(module.getTutorial());
         lecture.setText(module.getLecture());
-        // TODO: Find a better display for the buttons
-        ayData.getChildren().add(new Button(module.getAcademicYear()));
-        ayData.getChildren().forEach(child -> child.setStyle("-fx-background-color:#E5C07B;-fx-text-fill: #2E333D;"
-            + buttonStyle));
-
+        ayData.getChildren().add(new Pill(module.getAcademicYear(), "#E5C07B", "#2E333D"));
     }
 
     @Override
