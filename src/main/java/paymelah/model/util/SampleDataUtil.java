@@ -1,5 +1,7 @@
 package paymelah.model.util;
 
+import static paymelah.model.debt.Debt.makeDebt;
+
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -8,8 +10,6 @@ import paymelah.model.AddressBook;
 import paymelah.model.ReadOnlyAddressBook;
 import paymelah.model.debt.Debt;
 import paymelah.model.debt.DebtList;
-import paymelah.model.debt.Description;
-import paymelah.model.debt.Money;
 import paymelah.model.person.Address;
 import paymelah.model.person.Email;
 import paymelah.model.person.Name;
@@ -65,10 +65,10 @@ public class SampleDataUtil {
     }
 
     /**
-     * Returns a Debt with the given description and money.
+     * Returns a debt list containing the list of debts given.
      */
-    public static Debt makeDebt(String description, String money) {
-        return new Debt(new Description(description), new Money(money));
+    public static DebtList getDebtList(Debt... debts) {
+        return DebtList.fromList(Arrays.stream(debts).collect(Collectors.toList()));
     }
 
 }

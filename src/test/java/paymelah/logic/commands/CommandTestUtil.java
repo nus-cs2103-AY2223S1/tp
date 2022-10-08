@@ -17,6 +17,9 @@ import paymelah.commons.core.index.Index;
 import paymelah.logic.commands.exceptions.CommandException;
 import paymelah.model.AddressBook;
 import paymelah.model.Model;
+import paymelah.model.debt.Debt;
+import paymelah.model.debt.Description;
+import paymelah.model.debt.Money;
 import paymelah.model.person.NameContainsKeywordsPredicate;
 import paymelah.model.person.Person;
 import paymelah.testutil.EditPersonDescriptorBuilder;
@@ -36,6 +39,18 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_DEBT_KOI_DESC = "koi";
+    public static final String VALID_DEBT_KOI_AMOUNT = "4.0";
+    public static final Debt VALID_DEBT_KOI =
+            new Debt(new Description(VALID_DEBT_KOI_DESC), new Money(VALID_DEBT_KOI_AMOUNT));
+    public static final String VALID_DEBT_PIZZA_DESC = "pizza";
+    public static final String VALID_DEBT_PIZZA_AMOUNT = "$5";
+    public static final Debt VALID_DEBT_PIZZA =
+            new Debt(new Description(VALID_DEBT_PIZZA_DESC), new Money(VALID_DEBT_PIZZA_AMOUNT));
+    public static final String VALID_DEBT_KARAOKE_DESC = "karaoke";
+    public static final String VALID_DEBT_KARAOKE_AMOUNT = "7";
+    public static final Debt VALID_DEBT_KARAOKE =
+            new Debt(new Description(VALID_DEBT_KARAOKE_DESC), new Money(VALID_DEBT_KARAOKE_AMOUNT));
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -53,6 +68,7 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_DEBT_DESC = " ";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
