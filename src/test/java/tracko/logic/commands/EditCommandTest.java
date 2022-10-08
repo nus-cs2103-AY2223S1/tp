@@ -9,8 +9,8 @@ package tracko.logic.commands;
 //import static tracko.logic.commands.CommandTestUtil.assertCommandFailure;
 //import static tracko.logic.commands.CommandTestUtil.assertCommandSuccess;
 //import static tracko.logic.commands.CommandTestUtil.showOrderAtIndex;
-//import static tracko.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-//import static tracko.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+//import static tracko.testutil.TypicalIndexes.INDEX_FIRST_ORDER;
+//import static tracko.testutil.TypicalIndexes.INDEX_SECOND_ORDER;
 //import static tracko.testutil.TypicalOrders.getTrackOWithTypicalOrders;
 //
 //import org.junit.jupiter.api.Test;
