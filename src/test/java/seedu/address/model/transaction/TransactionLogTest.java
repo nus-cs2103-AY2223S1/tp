@@ -22,7 +22,7 @@ class TransactionLogTest {
         Quantity quantity = new Quantity("10");
 
         Transaction transaction = new SellTransaction(goods, price, quantity);
-        TransactionLog log = new TransactionLog(new ArrayList<>());
+        TransactionLog log = new TransactionLog();
         List<Transaction> transactionList = new ArrayList<>();
         transactionList.add(transaction);
         log.addTransaction(transaction);
