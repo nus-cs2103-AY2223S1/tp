@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.travelr.commons.core.GuiSettings;
 import seedu.travelr.commons.core.LogsCenter;
+import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.Trip;
 
 /**
@@ -23,6 +24,8 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Trip> filteredTrips;
 
+    private final FilteredList<Event> filteredEvents;
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -34,6 +37,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredTrips = new FilteredList<>(this.addressBook.getTripList());
+        filteredEvents = new FilteredList<>(this.addressBook.getEventList());
     }
 
     public ModelManager() {
@@ -94,8 +98,19 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasEvent(Event event) {
+        requireNonNull(event);
+        return addressBook.hasEvent(event);
+    }
+
+    @Override
     public void deleteTrip(Trip target) {
         addressBook.removeTrip(target);
+    }
+
+    @Override
+    public void deleteEvent(Event e) {
+        addressBook.removeEvent(e);
     }
 
     @Override
@@ -105,10 +120,22 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addEvent(Event event) {
+        addressBook.addEvent(event);
+        //update filtered trip list??
+    }
+
+    @Override
     public void setTrip(Trip target, Trip editedTrip) {
         requireAllNonNull(target, editedTrip);
 
         addressBook.setTrip(target, editedTrip);
+    }
+
+    @Override
+    public void setEvent(Event target, Event editedEvent) {
+        requireAllNonNull(target, editedEvent);
+        addressBook.setEvent(target, editedEvent);
     }
 
     //=========== Filtered Trip List Accessors =============================================================
@@ -122,10 +149,22 @@ public class ModelManager implements Model {
         return filteredTrips;
     }
 
+
+    @Override
+    public ObservableList<Event> getFilteredEventList() {
+        return filteredEvents;
+    }
+
     @Override
     public void updateFilteredTripList(Predicate<Trip> predicate) {
         requireNonNull(predicate);
         filteredTrips.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredEventList(Predicate<Event> predicate) {
+        requireNonNull(predicate);
+        filteredEvents.setPredicate(predicate);
     }
 
     @Override

@@ -47,7 +47,7 @@ public class SampleDataUtil {
      */
     public static Set<Event> getEventSet(String... strings) {
         return Arrays.stream(strings)
-                .map(titles -> new Event(titles, EVENT_DESCRIPTION_PLACEHOLDER))
+                .map(titles -> new Event(new Title(titles), new Description(EVENT_DESCRIPTION_PLACEHOLDER)))
                 .collect(Collectors.toSet());
     }
 

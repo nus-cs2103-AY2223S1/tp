@@ -32,6 +32,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private TripListPanel tripListPanel;
+    private EventListPanel eventListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -41,9 +42,18 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private MenuItem helpMenuItem;
 
+    @FXML
+    private StackPane tripsTextField;
+
+    @FXML
+    private StackPane eventsTextField;
+
     // TODO: Refactor
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane eventListPanelPlaceholder ;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -51,6 +61,8 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
 
+    @FXML
+    private StackPane labellerPlaceHolder;
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -113,16 +125,20 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         tripListPanel = new TripListPanel(logic.getFilteredTripList());
+        eventListPanel = new EventListPanel(logic.getFilteredEventList());
         personListPanelPlaceholder.getChildren().add(tripListPanel.getRoot());
-
+        eventListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
+
+
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
     }
 
     /**
@@ -170,6 +186,7 @@ public class MainWindow extends UiPart<Stage> {
         return tripListPanel;
     }
 
+    public EventListPanel getEventListPanel() { return eventListPanel; }
     /**
      * Executes the command and returns the result.
      *
