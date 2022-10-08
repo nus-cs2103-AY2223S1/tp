@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import seedu.address.logic.parser.exceptions.SocialNotFoundException;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -16,6 +18,23 @@ public class Social {
 
     public String handle;
     public Platform platform;
+
+    /**
+     * Constructs a {@code Social}.
+     *
+     * @param fullString A valid social media string, in the form of platform@handle
+     */
+
+    public Social(String fullString) {
+        requireNonNull(fullString);
+        checkArgument(isValidSocial(fullString), MESSAGE_CONSTRAINTS);
+        this.handle = fullString.split("@")[0];
+        try {
+            this.platform = PlatformConverter.stringToPlatform(fullString.split("@")[1]);
+        } catch (SocialNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * Constructs a {@code Social}.
