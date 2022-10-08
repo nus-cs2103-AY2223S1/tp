@@ -1,16 +1,11 @@
 package seedu.address.model.client;
 
 
-import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.project.Project;
-import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Client associated with a project.
@@ -31,7 +26,7 @@ public class Client {
 
     //Represents the Client's Organization
     private Name organization;
-    
+
     //Represents a Collection of projects that the client is responsible for
     private Set<Project> projects;
 

@@ -1,8 +1,5 @@
 package seedu.address.model.client;
 
-import seedu.address.model.person.Name;
-
-import java.util.Set;
 import java.util.UUID;
 
 import static java.util.Objects.requireNonNull;
