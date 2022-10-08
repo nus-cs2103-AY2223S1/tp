@@ -4,6 +4,8 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -35,11 +37,13 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
-    private Label address;
+    private ImageView gender;
     @FXML
     private Label email;
     @FXML
     private FlowPane tags;
+    @FXML
+    private Label locationAt;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -50,11 +54,21 @@ public class PersonCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
+        gender.setImage(getGenderImage(person));
         email.setText(person.getEmail().value);
+        locationAt.setText(person.getLocation().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
+
+    private Image getGenderImage(Person person) {
+        String gender = person.getGender().value;
+        if (gender.equals("M")) {
+            return new Image(this.getClass().getResourceAsStream("/images/maleicon.png"));
+        } else {
+            return new Image(this.getClass().getResourceAsStream("/images/femaleicon.png"));
+        }
     }
 
     @Override
