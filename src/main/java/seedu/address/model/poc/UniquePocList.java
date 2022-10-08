@@ -135,4 +135,23 @@ public class UniquePocList implements Iterable<Poc> {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+
+        builder.append("POCS: ");
+        Iterator<Poc> itr = this.iterator();
+
+        String prefix = "";
+        while (itr.hasNext()) {
+            Poc poc = itr.next();
+            builder.append(prefix);
+            prefix = ", ";
+
+            builder.append(poc.getName());
+        }
+
+        return builder.toString();
+    }
 }
