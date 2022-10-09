@@ -2,7 +2,11 @@ package nus.climods.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import nus.climods.commons.core.index.Index;
 import nus.climods.commons.core.module.ModuleCode;
@@ -20,6 +24,25 @@ import nus.climods.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+
+    /**
+     * Returns List of whitespace-delimited arguments given arguments string supplied by the user
+     * @param arguments String supplied by user as arguments after preamble
+     * @return List of arguments provided
+     */
+    public static List<String> convertArgumentStringToList(String arguments) {
+        List<String> res = ArgumentTokenizer
+                .tokenize(arguments.trim(), new Prefix(""))
+                .getAllValues(new Prefix(""));
+
+        // When arguments is empty string once trimmed, res is a List with just one empty string
+        // Return empty list to demarcate this case clearly
+        if (res.size() == 1 && res.get(0).trim().equals("")) {
+            return List.of();
+        }
+
+        return res;
+    }
 
     /**
      * Parses a {@code String} and returns Optional of a {@code ModuleCode} if supplied string represents a module code

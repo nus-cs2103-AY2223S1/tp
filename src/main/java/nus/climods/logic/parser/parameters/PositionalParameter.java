@@ -5,6 +5,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
 
+import nus.climods.logic.parser.ParserUtil;
 import nus.climods.logic.parser.exceptions.ParseException;
 
 
@@ -25,12 +26,18 @@ public class PositionalParameter<T> {
     protected Optional<T> optionalArg;
 
     /**
-     * Creates a PositionalParameter.
+     * Creates a PositionalParameter given argumentsString
+     *
      * @param index Expected index for the parameter (>= 0)
-     * @param arguments A list of argument strings representing all arguments, without command name
+     * @param argumentsString A list of argument strings representing all arguments, without command name
      * @param conversionFunction A function to convert the argument string into an Optional of type T
+     * @param parseExceptionMessage ParseException message to show upon unsuccessful parse
      */
-    public PositionalParameter(int index, List<String> arguments, Function<String, Optional<T>> conversionFunction,
+    public PositionalParameter(int index, String argumentsString, Function<String, Optional<T>> conversionFunction,
+                               String parseExceptionMessage) {
+        this(index, ParserUtil.convertArgumentStringToList(argumentsString), conversionFunction, parseExceptionMessage);
+    }
+    protected PositionalParameter(int index, List<String> arguments, Function<String, Optional<T>> conversionFunction,
                                String parseExceptionMessage) {
         assert index >= 0;
         Objects.requireNonNull(arguments);
