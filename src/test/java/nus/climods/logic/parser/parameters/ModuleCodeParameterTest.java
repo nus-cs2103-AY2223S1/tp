@@ -61,7 +61,6 @@ public class ModuleCodeParameterTest {
         String argsString = "CS2106 xxx";
         ModuleCodeParameter mcp = createModuleCodeParameter(argsString);
 
-
         try {
             ModuleCode mc = mcp.getArgValue();
             assertEquals(mc.getModuleCode(), "CS2106");
@@ -73,6 +72,18 @@ public class ModuleCodeParameterTest {
     @Test
     public void parseModuleCode_invalidInput_throwsParseException() {
         String argsString = "notmc";
+        ModuleCodeParameter mcp = createModuleCodeParameter(argsString);
+
+        try {
+            ModuleCode mc = mcp.getArgValue();
+        } catch (ParseException e) {
+            assertEquals(e.getMessage(), INVALID_CODE_MESSAGE);
+        }
+    }
+
+    @Test
+    public void parseModuleCode_invalidInputEmptyString_throwsParseException() {
+        String argsString = "  ";
         ModuleCodeParameter mcp = createModuleCodeParameter(argsString);
 
         try {
