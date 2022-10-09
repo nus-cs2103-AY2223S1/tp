@@ -6,6 +6,8 @@ import java.util.Set;
 
 import seedu.address.model.project.Project;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * Represents a Client associated with a project. This is modelled after the AB3 Person.
  */
@@ -34,6 +36,7 @@ public class Client {
      */
     public Client(String name, String phone, String email) {
         //to be added
+        requireNonNull(name);
         this.name = new ClientName(name);
         this.phone = new ClientPhone(phone);
         this.email = new ClientEmail(email);
