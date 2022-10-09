@@ -10,31 +10,31 @@ import java.util.Set;
 
 import eatwhere.foodguide.logic.commands.AddCommand;
 import eatwhere.foodguide.logic.commands.EditCommand.EditPersonDescriptor;
-import eatwhere.foodguide.model.person.Person;
+import eatwhere.foodguide.model.eatery.Eatery;
 import eatwhere.foodguide.model.tag.Tag;
 
 /**
- * A utility class for Person.
+ * A utility class for Eatery.
  */
 public class PersonUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add command string for adding the {@code eatery}.
      */
-    public static String getAddCommand(Person person) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(person);
+    public static String getAddCommand(Eatery eatery) {
+        return AddCommand.COMMAND_WORD + " " + getPersonDetails(eatery);
     }
 
     /**
-     * Returns the part of command string for the given {@code person}'s details.
+     * Returns the part of command string for the given {@code eatery}'s details.
      */
-    public static String getPersonDetails(Person person) {
+    public static String getPersonDetails(Eatery eatery) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + person.getName().fullName + " ");
-        sb.append(PREFIX_PHONE + person.getPhone().value + " ");
-        sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
-        person.getTags().stream().forEach(
+        sb.append(PREFIX_NAME + eatery.getName().fullName + " ");
+        sb.append(PREFIX_PHONE + eatery.getPhone().value + " ");
+        sb.append(PREFIX_EMAIL + eatery.getEmail().value + " ");
+        sb.append(PREFIX_ADDRESS + eatery.getLocation().value + " ");
+        eatery.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         return sb.toString();

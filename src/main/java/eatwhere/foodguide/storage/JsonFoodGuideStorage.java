@@ -12,7 +12,7 @@ import eatwhere.foodguide.commons.exceptions.DataConversionException;
 import eatwhere.foodguide.commons.exceptions.IllegalValueException;
 import eatwhere.foodguide.commons.util.FileUtil;
 import eatwhere.foodguide.commons.util.JsonUtil;
-import eatwhere.foodguide.model.ReadOnlyAddressBook;
+import eatwhere.foodguide.model.ReadOnlyFoodGuide;
 
 /**
  * A class to access FoodGuide data stored as a json file on the hard disk.
@@ -32,7 +32,7 @@ public class JsonFoodGuideStorage implements FoodGuideStorage {
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readFoodGuide() throws DataConversionException {
+    public Optional<ReadOnlyFoodGuide> readFoodGuide() throws DataConversionException {
         return readFoodGuide(filePath);
     }
 
@@ -42,7 +42,7 @@ public class JsonFoodGuideStorage implements FoodGuideStorage {
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyAddressBook> readFoodGuide(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyFoodGuide> readFoodGuide(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableFoodGuide> jsonFoodGuide = JsonUtil.readJsonFile(
@@ -60,16 +60,16 @@ public class JsonFoodGuideStorage implements FoodGuideStorage {
     }
 
     @Override
-    public void saveFoodGuide(ReadOnlyAddressBook foodGuide) throws IOException {
+    public void saveFoodGuide(ReadOnlyFoodGuide foodGuide) throws IOException {
         saveFoodGuide(foodGuide, filePath);
     }
 
     /**
-     * Similar to {@link #saveFoodGuide(ReadOnlyAddressBook)}.
+     * Similar to {@link #saveFoodGuide(ReadOnlyFoodGuide)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveFoodGuide(ReadOnlyAddressBook foodGuide, Path filePath) throws IOException {
+    public void saveFoodGuide(ReadOnlyFoodGuide foodGuide, Path filePath) throws IOException {
         requireNonNull(foodGuide);
         requireNonNull(filePath);
 

@@ -3,16 +3,13 @@ package eatwhere.foodguide.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import eatwhere.foodguide.model.person.Address;
-import eatwhere.foodguide.model.person.Email;
-import eatwhere.foodguide.model.person.Name;
-import eatwhere.foodguide.model.person.Person;
-import eatwhere.foodguide.model.person.Phone;
+import eatwhere.foodguide.model.eatery.*;
+import eatwhere.foodguide.model.eatery.Location;
 import eatwhere.foodguide.model.tag.Tag;
 import eatwhere.foodguide.model.util.SampleDataUtil;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Eatery objects.
  */
 public class PersonBuilder {
 
@@ -24,7 +21,7 @@ public class PersonBuilder {
     private Name name;
     private Phone phone;
     private Email email;
-    private Address address;
+    private Location location;
     private Set<Tag> tags;
 
     /**
@@ -34,23 +31,23 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
+        location = new Location(DEFAULT_ADDRESS);
         tags = new HashSet<>();
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
+     * Initializes the PersonBuilder with the data of {@code eateryToCopy}.
      */
-    public PersonBuilder(Person personToCopy) {
-        name = personToCopy.getName();
-        phone = personToCopy.getPhone();
-        email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
-        tags = new HashSet<>(personToCopy.getTags());
+    public PersonBuilder(Eatery eateryToCopy) {
+        name = eateryToCopy.getName();
+        phone = eateryToCopy.getPhone();
+        email = eateryToCopy.getEmail();
+        location = eateryToCopy.getLocation();
+        tags = new HashSet<>(eateryToCopy.getTags());
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code Name} of the {@code Eatery} that we are building.
      */
     public PersonBuilder withName(String name) {
         this.name = new Name(name);
@@ -58,7 +55,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Eatery} that we are building.
      */
     public PersonBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
@@ -66,15 +63,15 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Sets the {@code Location} of the {@code Eatery} that we are building.
      */
     public PersonBuilder withAddress(String address) {
-        this.address = new Address(address);
+        this.location = new Location(address);
         return this;
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
+     * Sets the {@code Phone} of the {@code Eatery} that we are building.
      */
     public PersonBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
@@ -82,15 +79,15 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code Email} of the {@code Eatery} that we are building.
      */
     public PersonBuilder withEmail(String email) {
         this.email = new Email(email);
         return this;
     }
 
-    public Person build() {
-        return new Person(name, phone, email, address, tags);
+    public Eatery build() {
+        return new Eatery(name, phone, email, location, tags);
     }
 
 }

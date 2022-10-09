@@ -14,15 +14,15 @@ import org.junit.jupiter.api.Test;
 import eatwhere.foodguide.model.Model;
 import eatwhere.foodguide.model.ModelManager;
 import eatwhere.foodguide.model.UserPrefs;
-import eatwhere.foodguide.model.person.NameContainsKeywordsPredicate;
-import eatwhere.foodguide.testutil.TypicalPersons;
+import eatwhere.foodguide.model.eatery.NameContainsKeywordsPredicate;
+import eatwhere.foodguide.testutil.TypicalEateries;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(TypicalEateries.getTypicalAddressBook(), new UserPrefs());
+    private Model expectedModel = new ModelManager(TypicalEateries.getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void equals() {
@@ -47,7 +47,7 @@ public class FindCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different eatery -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
@@ -56,9 +56,9 @@ public class FindCommandTest {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredEateryList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(Collections.emptyList(), model.getFilteredEateryList());
     }
 
     @Test
@@ -66,10 +66,10 @@ public class FindCommandTest {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredEateryList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(TypicalPersons.CARL, TypicalPersons.ELLE, TypicalPersons.FIONA),
-                model.getFilteredPersonList());
+        assertEquals(Arrays.asList(TypicalEateries.CARL, TypicalEateries.ELLE, TypicalEateries.FIONA),
+                model.getFilteredEateryList());
     }
 
     /**

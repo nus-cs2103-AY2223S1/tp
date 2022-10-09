@@ -5,11 +5,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import eatwhere.foodguide.logic.commands.EditCommand.EditPersonDescriptor;
-import eatwhere.foodguide.model.person.Address;
-import eatwhere.foodguide.model.person.Email;
-import eatwhere.foodguide.model.person.Name;
-import eatwhere.foodguide.model.person.Person;
-import eatwhere.foodguide.model.person.Phone;
+import eatwhere.foodguide.model.eatery.*;
+import eatwhere.foodguide.model.eatery.Location;
 import eatwhere.foodguide.model.tag.Tag;
 
 /**
@@ -28,15 +25,15 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
+     * Returns an {@code EditPersonDescriptor} with fields containing {@code eatery}'s details
      */
-    public EditPersonDescriptorBuilder(Person person) {
+    public EditPersonDescriptorBuilder(Eatery eatery) {
         descriptor = new EditPersonDescriptor();
-        descriptor.setName(person.getName());
-        descriptor.setPhone(person.getPhone());
-        descriptor.setEmail(person.getEmail());
-        descriptor.setAddress(person.getAddress());
-        descriptor.setTags(person.getTags());
+        descriptor.setName(eatery.getName());
+        descriptor.setPhone(eatery.getPhone());
+        descriptor.setEmail(eatery.getEmail());
+        descriptor.setAddress(eatery.getLocation());
+        descriptor.setTags(eatery.getTags());
     }
 
     /**
@@ -64,10 +61,10 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Location} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
+        descriptor.setAddress(new Location(address));
         return this;
     }
 

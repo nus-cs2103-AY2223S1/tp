@@ -14,10 +14,10 @@ import java.util.List;
 
 import eatwhere.foodguide.commons.core.index.Index;
 import eatwhere.foodguide.logic.commands.exceptions.CommandException;
-import eatwhere.foodguide.model.AddressBook;
+import eatwhere.foodguide.model.FoodGuide;
 import eatwhere.foodguide.model.Model;
-import eatwhere.foodguide.model.person.NameContainsKeywordsPredicate;
-import eatwhere.foodguide.model.person.Person;
+import eatwhere.foodguide.model.eatery.NameContainsKeywordsPredicate;
+import eatwhere.foodguide.model.eatery.Eatery;
 import eatwhere.foodguide.testutil.Assert;
 import eatwhere.foodguide.testutil.EditPersonDescriptorBuilder;
 
@@ -99,30 +99,30 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
+     * - the food guide, filtered eatery list and selected eatery in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
-        List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        FoodGuide expectedAddressBook = new FoodGuide(actualModel.getFoodGuide());
+        List<Eatery> expectedFilteredList = new ArrayList<>(actualModel.getFilteredEateryList());
 
         Assert.assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
-        assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+        assertEquals(expectedAddressBook, actualModel.getFoodGuide());
+        assertEquals(expectedFilteredList, actualModel.getFilteredEateryList());
     }
     /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * Updates {@code model}'s filtered list to show only the eatery at the given {@code targetIndex} in the
+     * {@code model}'s food guide.
      */
     public static void showPersonAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredEateryList().size());
 
-        Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        Eatery eatery = model.getFilteredEateryList().get(targetIndex.getZeroBased());
+        final String[] splitName = eatery.getName().fullName.split("\\s+");
+        model.updateFilteredEateryList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
-        assertEquals(1, model.getFilteredPersonList().size());
+        assertEquals(1, model.getFilteredEateryList().size());
     }
 
 }

@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 
 import eatwhere.foodguide.commons.core.LogsCenter;
 import eatwhere.foodguide.commons.exceptions.DataConversionException;
-import eatwhere.foodguide.model.ReadOnlyAddressBook;
+import eatwhere.foodguide.model.ReadOnlyFoodGuide;
 import eatwhere.foodguide.model.ReadOnlyUserPrefs;
 import eatwhere.foodguide.model.UserPrefs;
 
@@ -54,23 +54,23 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readFoodGuide() throws DataConversionException, IOException {
+    public Optional<ReadOnlyFoodGuide> readFoodGuide() throws DataConversionException, IOException {
         return readFoodGuide(foodGuideStorage.getFoodGuideFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readFoodGuide(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyFoodGuide> readFoodGuide(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
         return foodGuideStorage.readFoodGuide(filePath);
     }
 
     @Override
-    public void saveFoodGuide(ReadOnlyAddressBook foodGuide) throws IOException {
+    public void saveFoodGuide(ReadOnlyFoodGuide foodGuide) throws IOException {
         saveFoodGuide(foodGuide, foodGuideStorage.getFoodGuideFilePath());
     }
 
     @Override
-    public void saveFoodGuide(ReadOnlyAddressBook foodGuide, Path filePath) throws IOException {
+    public void saveFoodGuide(ReadOnlyFoodGuide foodGuide, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         foodGuideStorage.saveFoodGuide(foodGuide, filePath);
     }

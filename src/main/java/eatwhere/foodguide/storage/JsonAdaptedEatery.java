@@ -10,15 +10,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import eatwhere.foodguide.commons.exceptions.IllegalValueException;
-import eatwhere.foodguide.model.person.Address;
-import eatwhere.foodguide.model.person.Email;
-import eatwhere.foodguide.model.person.Name;
-import eatwhere.foodguide.model.person.Person;
-import eatwhere.foodguide.model.person.Phone;
+import eatwhere.foodguide.model.eatery.*;
+import eatwhere.foodguide.model.eatery.Location;
 import eatwhere.foodguide.model.tag.Tag;
 
 /**
- * Jackson-friendly version of {@link Person}.
+ * Jackson-friendly version of {@link Eatery}.
  */
 class JsonAdaptedEatery {
 
@@ -47,24 +44,24 @@ class JsonAdaptedEatery {
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Eatery} into this class for Jackson use.
      */
-    public JsonAdaptedEatery(Person source) {
+    public JsonAdaptedEatery(Eatery source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        address = source.getAddress().value;
+        address = source.getLocation().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
     }
 
     /**
-     * Converts this Jackson-friendly adapted eatery object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted eatery object into the model's {@code Eatery} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted eatery.
      */
-    public Person toModelType() throws IllegalValueException {
+    public Eatery toModelType() throws IllegalValueException {
         final List<Tag> eateryTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             eateryTags.add(tag.toModelType());
@@ -95,15 +92,15 @@ class JsonAdaptedEatery {
         final Email modelEmail = new Email(email);
 
         if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Location.class.getSimpleName()));
         }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        if (!Location.isValidLocation(address)) {
+            throw new IllegalValueException(Location.MESSAGE_CONSTRAINTS);
         }
-        final Address modelAddress = new Address(address);
+        final Location modelLocation = new Location(address);
 
         final Set<Tag> modelTags = new HashSet<>(eateryTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Eatery(modelName, modelPhone, modelEmail, modelLocation, modelTags);
     }
 
 }

@@ -4,10 +4,10 @@ import static java.util.Objects.requireNonNull;
 
 import eatwhere.foodguide.commons.core.Messages;
 import eatwhere.foodguide.model.Model;
-import eatwhere.foodguide.model.person.NameContainsKeywordsPredicate;
+import eatwhere.foodguide.model.eatery.NameContainsKeywordsPredicate;
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
+ * Finds and lists all persons in food guide whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FindCommand extends Command {
@@ -28,9 +28,9 @@ public class FindCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
+        model.updateFilteredEateryList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredEateryList().size()));
     }
 
     @Override

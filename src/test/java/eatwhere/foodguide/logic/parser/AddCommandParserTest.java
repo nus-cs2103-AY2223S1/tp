@@ -6,76 +6,76 @@ import org.junit.jupiter.api.Test;
 
 import eatwhere.foodguide.logic.commands.AddCommand;
 import eatwhere.foodguide.logic.commands.CommandTestUtil;
-import eatwhere.foodguide.model.person.Address;
-import eatwhere.foodguide.model.person.Email;
-import eatwhere.foodguide.model.person.Name;
-import eatwhere.foodguide.model.person.Person;
-import eatwhere.foodguide.model.person.Phone;
+import eatwhere.foodguide.model.eatery.Location;
+import eatwhere.foodguide.model.eatery.Email;
+import eatwhere.foodguide.model.eatery.Name;
+import eatwhere.foodguide.model.eatery.Eatery;
+import eatwhere.foodguide.model.eatery.Phone;
 import eatwhere.foodguide.model.tag.Tag;
 import eatwhere.foodguide.testutil.PersonBuilder;
-import eatwhere.foodguide.testutil.TypicalPersons;
+import eatwhere.foodguide.testutil.TypicalEateries;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(TypicalPersons.BOB)
+        Eatery expectedEatery = new PersonBuilder(TypicalEateries.BOB)
                 .withTags(CommandTestUtil.VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
         CommandParserTestUtil.assertParseSuccess(parser,
                 CommandTestUtil.PREAMBLE_WHITESPACE + CommandTestUtil.NAME_DESC_BOB
                         + CommandTestUtil.PHONE_DESC_BOB + CommandTestUtil.EMAIL_DESC_BOB
-                + CommandTestUtil.ADDRESS_DESC_BOB + CommandTestUtil.TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + CommandTestUtil.ADDRESS_DESC_BOB + CommandTestUtil.TAG_DESC_FRIEND, new AddCommand(expectedEatery));
 
         // multiple names - last name accepted
         CommandParserTestUtil.assertParseSuccess(parser,
                 CommandTestUtil.NAME_DESC_AMY + CommandTestUtil.NAME_DESC_BOB
                         + CommandTestUtil.PHONE_DESC_BOB + CommandTestUtil.EMAIL_DESC_BOB
                         + CommandTestUtil.ADDRESS_DESC_BOB + CommandTestUtil.TAG_DESC_FRIEND,
-                        new AddCommand(expectedPerson));
+                        new AddCommand(expectedEatery));
 
         // multiple phones - last phone accepted
         CommandParserTestUtil.assertParseSuccess(parser,
                 CommandTestUtil.NAME_DESC_BOB + CommandTestUtil.PHONE_DESC_AMY
                         + CommandTestUtil.PHONE_DESC_BOB + CommandTestUtil.EMAIL_DESC_BOB
                         + CommandTestUtil.ADDRESS_DESC_BOB + CommandTestUtil.TAG_DESC_FRIEND,
-                        new AddCommand(expectedPerson));
+                        new AddCommand(expectedEatery));
 
         // multiple emails - last email accepted
         CommandParserTestUtil.assertParseSuccess(parser,
                 CommandTestUtil.NAME_DESC_BOB + CommandTestUtil.PHONE_DESC_BOB
                         + CommandTestUtil.EMAIL_DESC_AMY + CommandTestUtil.EMAIL_DESC_BOB
                         + CommandTestUtil.ADDRESS_DESC_BOB + CommandTestUtil.TAG_DESC_FRIEND,
-                        new AddCommand(expectedPerson));
+                        new AddCommand(expectedEatery));
 
         // multiple addresses - last address accepted
         CommandParserTestUtil.assertParseSuccess(parser,
                 CommandTestUtil.NAME_DESC_BOB + CommandTestUtil.PHONE_DESC_BOB
                         + CommandTestUtil.EMAIL_DESC_BOB + CommandTestUtil.ADDRESS_DESC_AMY
                         + CommandTestUtil.ADDRESS_DESC_BOB + CommandTestUtil.TAG_DESC_FRIEND,
-                        new AddCommand(expectedPerson));
+                        new AddCommand(expectedEatery));
 
         // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new PersonBuilder(TypicalPersons.BOB)
+        Eatery expectedEateryMultipleTags = new PersonBuilder(TypicalEateries.BOB)
                 .withTags(CommandTestUtil.VALID_TAG_FRIEND, CommandTestUtil.VALID_TAG_HUSBAND)
                 .build();
         CommandParserTestUtil.assertParseSuccess(parser,
                 CommandTestUtil.NAME_DESC_BOB + CommandTestUtil.PHONE_DESC_BOB
                         + CommandTestUtil.EMAIL_DESC_BOB + CommandTestUtil.ADDRESS_DESC_BOB
                         + CommandTestUtil.TAG_DESC_HUSBAND + CommandTestUtil.TAG_DESC_FRIEND,
-                        new AddCommand(expectedPersonMultipleTags));
+                        new AddCommand(expectedEateryMultipleTags));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Person expectedPerson = new PersonBuilder(TypicalPersons.AMY).withTags().build();
+        Eatery expectedEatery = new PersonBuilder(TypicalEateries.AMY).withTags().build();
         CommandParserTestUtil.assertParseSuccess(parser,
                 CommandTestUtil.NAME_DESC_AMY + CommandTestUtil.PHONE_DESC_AMY
                         + CommandTestUtil.EMAIL_DESC_AMY + CommandTestUtil.ADDRESS_DESC_AMY,
-                        new AddCommand(expectedPerson));
+                        new AddCommand(expectedEatery));
     }
 
     @Test
@@ -141,7 +141,7 @@ public class AddCommandParserTest {
                 CommandTestUtil.NAME_DESC_BOB + CommandTestUtil.PHONE_DESC_BOB
                         + CommandTestUtil.EMAIL_DESC_BOB + CommandTestUtil.INVALID_ADDRESS_DESC
                         + CommandTestUtil.TAG_DESC_HUSBAND + CommandTestUtil.TAG_DESC_FRIEND,
-                        Address.MESSAGE_CONSTRAINTS);
+                        Location.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         CommandParserTestUtil.assertParseFailure(parser,

@@ -7,7 +7,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import eatwhere.foodguide.logic.commands.FindCommand;
-import eatwhere.foodguide.model.person.NameContainsKeywordsPredicate;
+import eatwhere.foodguide.model.eatery.NameContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
 

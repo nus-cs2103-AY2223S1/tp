@@ -1,11 +1,11 @@
-package eatwhere.foodguide.model.person;
+package eatwhere.foodguide.model.eatery;
 
 import static java.util.Objects.requireNonNull;
 
 import eatwhere.foodguide.commons.util.AppUtil;
 
 /**
- * Represents a Person's phone number in the address book.
+ * Represents an Eatery's phone number in the food guide.
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
  */
 public class Phone {

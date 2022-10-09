@@ -9,10 +9,10 @@ import eatwhere.foodguide.commons.core.index.Index;
 import eatwhere.foodguide.logic.commands.CommandTestUtil;
 import eatwhere.foodguide.logic.commands.EditCommand;
 import eatwhere.foodguide.logic.commands.EditCommand.EditPersonDescriptor;
-import eatwhere.foodguide.model.person.Address;
-import eatwhere.foodguide.model.person.Email;
-import eatwhere.foodguide.model.person.Name;
-import eatwhere.foodguide.model.person.Phone;
+import eatwhere.foodguide.model.eatery.Location;
+import eatwhere.foodguide.model.eatery.Email;
+import eatwhere.foodguide.model.eatery.Name;
+import eatwhere.foodguide.model.eatery.Phone;
 import eatwhere.foodguide.model.tag.Tag;
 import eatwhere.foodguide.testutil.EditPersonDescriptorBuilder;
 import eatwhere.foodguide.testutil.TypicalIndexes;
@@ -66,7 +66,7 @@ public class EditCommandParserTest {
         CommandParserTestUtil.assertParseFailure(parser,
                 "1" + CommandTestUtil.INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         CommandParserTestUtil.assertParseFailure(parser,
-                "1" + CommandTestUtil.INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
+                "1" + CommandTestUtil.INVALID_ADDRESS_DESC, Location.MESSAGE_CONSTRAINTS); // invalid address
         CommandParserTestUtil.assertParseFailure(parser,
                 "1" + CommandTestUtil.INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
@@ -81,7 +81,7 @@ public class EditCommandParserTest {
                 "1" + CommandTestUtil.PHONE_DESC_BOB + CommandTestUtil.INVALID_PHONE_DESC,
                 Phone.MESSAGE_CONSTRAINTS);
 
-        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
+        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Eatery} being edited,
         // parsing it together with a valid tag results in error
         CommandParserTestUtil.assertParseFailure(parser,
                 "1" + CommandTestUtil.TAG_DESC_FRIEND + CommandTestUtil.TAG_DESC_HUSBAND + TAG_EMPTY,

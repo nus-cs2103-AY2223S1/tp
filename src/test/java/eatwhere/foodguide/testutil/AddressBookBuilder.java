@@ -1,34 +1,34 @@
 package eatwhere.foodguide.testutil;
 
-import eatwhere.foodguide.model.AddressBook;
-import eatwhere.foodguide.model.person.Person;
+import eatwhere.foodguide.model.FoodGuide;
+import eatwhere.foodguide.model.eatery.Eatery;
 
 /**
  * A utility class to help with building Addressbook objects.
  * Example usage: <br>
- *     {@code AddressBook ab = new AddressBookBuilder().withPerson("John", "Doe").build();}
+ *     {@code FoodGuide ab = new AddressBookBuilder().withPerson("John", "Doe").build();}
  */
 public class AddressBookBuilder {
 
-    private AddressBook addressBook;
+    private FoodGuide addressBook;
 
     public AddressBookBuilder() {
-        addressBook = new AddressBook();
+        addressBook = new FoodGuide();
     }
 
-    public AddressBookBuilder(AddressBook addressBook) {
+    public AddressBookBuilder(FoodGuide addressBook) {
         this.addressBook = addressBook;
     }
 
     /**
-     * Adds a new {@code Person} to the {@code AddressBook} that we are building.
+     * Adds a new {@code Eatery} to the {@code FoodGuide} that we are building.
      */
-    public AddressBookBuilder withPerson(Person person) {
-        addressBook.addPerson(person);
+    public AddressBookBuilder withPerson(Eatery eatery) {
+        addressBook.addEatery(eatery);
         return this;
     }
 
-    public AddressBook build() {
+    public FoodGuide build() {
         return addressBook;
     }
 }

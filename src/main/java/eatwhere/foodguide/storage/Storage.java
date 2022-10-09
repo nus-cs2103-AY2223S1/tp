@@ -5,7 +5,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import eatwhere.foodguide.commons.exceptions.DataConversionException;
-import eatwhere.foodguide.model.ReadOnlyAddressBook;
+import eatwhere.foodguide.model.ReadOnlyFoodGuide;
 import eatwhere.foodguide.model.ReadOnlyUserPrefs;
 import eatwhere.foodguide.model.UserPrefs;
 
@@ -24,9 +24,9 @@ public interface Storage extends FoodGuideStorage, UserPrefsStorage {
     Path getFoodGuideFilePath();
 
     @Override
-    Optional<ReadOnlyAddressBook> readFoodGuide() throws DataConversionException, IOException;
+    Optional<ReadOnlyFoodGuide> readFoodGuide() throws DataConversionException, IOException;
 
     @Override
-    void saveFoodGuide(ReadOnlyAddressBook foodGuide) throws IOException;
+    void saveFoodGuide(ReadOnlyFoodGuide foodGuide) throws IOException;
 
 }

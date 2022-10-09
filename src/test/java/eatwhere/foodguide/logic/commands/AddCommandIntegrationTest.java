@@ -3,15 +3,15 @@ package eatwhere.foodguide.logic.commands;
 import static eatwhere.foodguide.logic.commands.CommandTestUtil.assertCommandFailure;
 import static eatwhere.foodguide.logic.commands.CommandTestUtil.assertCommandSuccess;
 
+import eatwhere.foodguide.model.eatery.Eatery;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import eatwhere.foodguide.model.Model;
 import eatwhere.foodguide.model.ModelManager;
 import eatwhere.foodguide.model.UserPrefs;
-import eatwhere.foodguide.model.person.Person;
 import eatwhere.foodguide.testutil.PersonBuilder;
-import eatwhere.foodguide.testutil.TypicalPersons;
+import eatwhere.foodguide.testutil.TypicalEateries;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
@@ -22,24 +22,24 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(TypicalEateries.getTypicalAddressBook(), new UserPrefs());
     }
 
     @Test
     public void execute_newPerson_success() {
-        Person validPerson = new PersonBuilder().build();
+        Eatery validEatery = new PersonBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.addPerson(validPerson);
+        Model expectedModel = new ModelManager(model.getFoodGuide(), new UserPrefs());
+        expectedModel.addEatery(validEatery);
 
-        assertCommandSuccess(new AddCommand(validPerson), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
+        assertCommandSuccess(new AddCommand(validEatery), model,
+                String.format(AddCommand.MESSAGE_SUCCESS, validEatery), expectedModel);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Person personInList = model.getAddressBook().getPersonList().get(0);
-        assertCommandFailure(new AddCommand(personInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
+        Eatery eateryInList = model.getFoodGuide().getEateryList().get(0);
+        assertCommandFailure(new AddCommand(eateryInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
     }
 
 }

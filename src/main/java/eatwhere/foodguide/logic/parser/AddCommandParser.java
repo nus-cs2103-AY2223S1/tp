@@ -10,13 +10,15 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import eatwhere.foodguide.commons.core.Messages;
+
 import eatwhere.foodguide.logic.commands.AddCommand;
 import eatwhere.foodguide.logic.parser.exceptions.ParseException;
-import eatwhere.foodguide.model.person.Address;
-import eatwhere.foodguide.model.person.Email;
-import eatwhere.foodguide.model.person.Name;
-import eatwhere.foodguide.model.person.Person;
-import eatwhere.foodguide.model.person.Phone;
+
+import eatwhere.foodguide.model.eatery.Eatery;
+import eatwhere.foodguide.model.eatery.Email;
+import eatwhere.foodguide.model.eatery.Location;
+import eatwhere.foodguide.model.eatery.Name;
+import eatwhere.foodguide.model.eatery.Phone;
 import eatwhere.foodguide.model.tag.Tag;
 
 /**
@@ -41,12 +43,12 @@ public class AddCommandParser implements Parser<AddCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        Location location = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, address, tagList);
+        Eatery eatery = new Eatery(name, phone, email, location, tagList);
 
-        return new AddCommand(person);
+        return new AddCommand(eatery);
     }
 
     /**

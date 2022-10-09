@@ -1,12 +1,13 @@
 package eatwhere.foodguide.logic;
 
-import static eatwhere.foodguide.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static eatwhere.foodguide.commons.core.Messages.MESSAGE_INVALID_EATERY_DISPLAYED_INDEX;
 import static eatwhere.foodguide.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 import java.nio.file.Path;
 
+import eatwhere.foodguide.model.eatery.Eatery;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -19,15 +20,14 @@ import eatwhere.foodguide.logic.commands.exceptions.CommandException;
 import eatwhere.foodguide.logic.parser.exceptions.ParseException;
 import eatwhere.foodguide.model.Model;
 import eatwhere.foodguide.model.ModelManager;
-import eatwhere.foodguide.model.ReadOnlyAddressBook;
+import eatwhere.foodguide.model.ReadOnlyFoodGuide;
 import eatwhere.foodguide.model.UserPrefs;
-import eatwhere.foodguide.model.person.Person;
 import eatwhere.foodguide.storage.JsonFoodGuideStorage;
 import eatwhere.foodguide.storage.JsonUserPrefsStorage;
 import eatwhere.foodguide.storage.StorageManager;
 import eatwhere.foodguide.testutil.Assert;
 import eatwhere.foodguide.testutil.PersonBuilder;
-import eatwhere.foodguide.testutil.TypicalPersons;
+import eatwhere.foodguide.testutil.TypicalEateries;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -56,7 +56,7 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandException(deleteCommand, MESSAGE_INVALID_EATERY_DISPLAYED_INDEX);
     }
 
     @Test
@@ -79,9 +79,9 @@ public class LogicManagerTest {
         String addCommand = AddCommand.COMMAND_WORD
                 + CommandTestUtil.NAME_DESC_AMY + CommandTestUtil.PHONE_DESC_AMY
                 + CommandTestUtil.EMAIL_DESC_AMY + CommandTestUtil.ADDRESS_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(TypicalPersons.AMY).withTags().build();
+        Eatery expectedEatery = new PersonBuilder(TypicalEateries.AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedPerson);
+        expectedModel.addEatery(expectedEatery);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
@@ -127,7 +127,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getFoodGuide(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -153,7 +153,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveFoodGuide(ReadOnlyAddressBook foodGuide, Path filePath) throws IOException {
+        public void saveFoodGuide(ReadOnlyFoodGuide foodGuide, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

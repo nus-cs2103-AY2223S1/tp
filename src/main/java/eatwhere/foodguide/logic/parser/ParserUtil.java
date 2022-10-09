@@ -8,11 +8,13 @@ import java.util.Set;
 
 import eatwhere.foodguide.commons.core.index.Index;
 import eatwhere.foodguide.commons.util.StringUtil;
+
 import eatwhere.foodguide.logic.parser.exceptions.ParseException;
-import eatwhere.foodguide.model.person.Address;
-import eatwhere.foodguide.model.person.Email;
-import eatwhere.foodguide.model.person.Name;
-import eatwhere.foodguide.model.person.Phone;
+
+import eatwhere.foodguide.model.eatery.Email;
+import eatwhere.foodguide.model.eatery.Location;
+import eatwhere.foodguide.model.eatery.Name;
+import eatwhere.foodguide.model.eatery.Phone;
 import eatwhere.foodguide.model.tag.Tag;
 
 /**
@@ -66,18 +68,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String address} into an {@code Location}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code address} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
+    public static Location parseAddress(String address) throws ParseException {
         requireNonNull(address);
         String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+        if (!Location.isValidLocation(trimmedAddress)) {
+            throw new ParseException(Location.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return new Location(trimmedAddress);
     }
 
     /**

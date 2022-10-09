@@ -12,8 +12,8 @@ import eatwhere.foodguide.logic.commands.exceptions.CommandException;
 import eatwhere.foodguide.logic.parser.AddressBookParser;
 import eatwhere.foodguide.logic.parser.exceptions.ParseException;
 import eatwhere.foodguide.model.Model;
-import eatwhere.foodguide.model.ReadOnlyAddressBook;
-import eatwhere.foodguide.model.person.Person;
+import eatwhere.foodguide.model.ReadOnlyFoodGuide;
+import eatwhere.foodguide.model.eatery.Eatery;
 import eatwhere.foodguide.storage.Storage;
 import javafx.collections.ObservableList;
 
@@ -46,7 +46,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveFoodGuide(model.getAddressBook());
+            storage.saveFoodGuide(model.getFoodGuide());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -55,18 +55,18 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyFoodGuide getAddressBook() {
+        return model.getFoodGuide();
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Eatery> getFilteredPersonList() {
+        return model.getFilteredEateryList();
     }
 
     @Override
     public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+        return model.getFoodGuideFilePath();
     }
 
     @Override

@@ -1,4 +1,4 @@
-package eatwhere.foodguide.model.person;
+package eatwhere.foodguide.model.eatery;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;

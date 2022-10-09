@@ -1,4 +1,4 @@
-package eatwhere.foodguide.model.person;
+package eatwhere.foodguide.model.eatery;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -9,10 +9,10 @@ import eatwhere.foodguide.commons.util.CollectionUtil;
 import eatwhere.foodguide.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
+ * Represents an Eatery in the food guide.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Eatery {
 
     // Identity fields
     private final Name name;
@@ -20,18 +20,18 @@ public class Person {
     private final Email email;
 
     // Data fields
-    private final Address address;
+    private final Location location;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        CollectionUtil.requireAllNonNull(name, phone, email, address, tags);
+    public Eatery(Name name, Phone phone, Email email, Location location, Set<Tag> tags) {
+        CollectionUtil.requireAllNonNull(name, phone, email, location, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.location = location;
         this.tags.addAll(tags);
     }
 
@@ -47,8 +47,8 @@ public class Person {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
+    public Location getLocation() {
+        return location;
     }
 
     /**
@@ -60,21 +60,22 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * TODO: change this to better reflect a weaker notation of equality between eateries.
+     * Returns true if both eateries have the same name.
+     * This defines a weaker notion of equality between two eateries.
      */
-    public boolean isSamePerson(Person otherPerson) {
-        if (otherPerson == this) {
+    public boolean isSameEatery(Eatery otherEatery) {
+        if (otherEatery == this) {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
+        return otherEatery != null
+                && otherEatery.getName().equals(getName());
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both eateries have the same identity and data fields.
+     * This defines a stronger notion of equality between two eateries.
      */
     @Override
     public boolean equals(Object other) {
@@ -82,22 +83,22 @@ public class Person {
             return true;
         }
 
-        if (!(other instanceof Person)) {
+        if (!(other instanceof Eatery)) {
             return false;
         }
 
-        Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+        Eatery otherEatery = (Eatery) other;
+        return otherEatery.getName().equals(getName())
+                && otherEatery.getPhone().equals(getPhone())
+                && otherEatery.getEmail().equals(getEmail())
+                && otherEatery.getLocation().equals(getLocation())
+                && otherEatery.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, location, tags);
     }
 
     @Override
@@ -108,8 +109,8 @@ public class Person {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+                .append("; Location: ")
+                .append(getLocation());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

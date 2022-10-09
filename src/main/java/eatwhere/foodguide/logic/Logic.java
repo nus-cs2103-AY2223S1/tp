@@ -7,8 +7,8 @@ import eatwhere.foodguide.logic.commands.CommandResult;
 import eatwhere.foodguide.logic.commands.exceptions.CommandException;
 import eatwhere.foodguide.logic.parser.exceptions.ParseException;
 import eatwhere.foodguide.model.Model;
-import eatwhere.foodguide.model.ReadOnlyAddressBook;
-import eatwhere.foodguide.model.person.Person;
+import eatwhere.foodguide.model.ReadOnlyFoodGuide;
+import eatwhere.foodguide.model.eatery.Eatery;
 import javafx.collections.ObservableList;
 
 /**
@@ -25,17 +25,17 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the FoodGuide.
      *
-     * @see Model#getAddressBook()
+     * @see Model#getFoodGuide()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyFoodGuide getAddressBook();
 
     /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Eatery> getFilteredPersonList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' food guide file path.
      */
     Path getAddressBookFilePath();
 

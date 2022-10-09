@@ -5,11 +5,11 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import eatwhere.foodguide.commons.exceptions.DataConversionException;
-import eatwhere.foodguide.model.AddressBook;
-import eatwhere.foodguide.model.ReadOnlyAddressBook;
+import eatwhere.foodguide.model.FoodGuide;
+import eatwhere.foodguide.model.ReadOnlyFoodGuide;
 
 /**
- * Represents a storage for {@link AddressBook}.
+ * Represents a storage for {@link FoodGuide}.
  */
 public interface FoodGuideStorage {
 
@@ -19,28 +19,28 @@ public interface FoodGuideStorage {
     Path getFoodGuideFilePath();
 
     /**
-     * Returns FoodGuide data as a {@link ReadOnlyAddressBook}.
+     * Returns FoodGuide data as a {@link ReadOnlyFoodGuide}.
      *   Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyAddressBook> readFoodGuide() throws DataConversionException, IOException;
+    Optional<ReadOnlyFoodGuide> readFoodGuide() throws DataConversionException, IOException;
 
     /**
      * @see #getFoodGuideFilePath()
      */
-    Optional<ReadOnlyAddressBook> readFoodGuide(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyFoodGuide> readFoodGuide(Path filePath) throws DataConversionException, IOException;
 
     /**
-     * Saves the given {@link ReadOnlyAddressBook} to the storage.
+     * Saves the given {@link ReadOnlyFoodGuide} to the storage.
      * @param foodGuide cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveFoodGuide(ReadOnlyAddressBook foodGuide) throws IOException;
+    void saveFoodGuide(ReadOnlyFoodGuide foodGuide) throws IOException;
 
     /**
-     * @see #saveFoodGuide(ReadOnlyAddressBook)
+     * @see #saveFoodGuide(ReadOnlyFoodGuide)
      */
-    void saveFoodGuide(ReadOnlyAddressBook foodGuide, Path filePath) throws IOException;
+    void saveFoodGuide(ReadOnlyFoodGuide foodGuide, Path filePath) throws IOException;
 
 }
