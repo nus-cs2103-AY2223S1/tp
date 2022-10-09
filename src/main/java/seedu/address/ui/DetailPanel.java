@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
 import seedu.address.model.person.Person;
 
 /**
@@ -26,6 +25,11 @@ public class DetailPanel extends MainPanel {
     @FXML
     private Label contactHeader;
 
+    /**
+     * Initialises the DetailPanel.
+     *
+     * @param person The person whose contact details are to be displayed.
+     */
     public DetailPanel(Person person) {
         super(FXML);
         contactHeader.setText("Contact");

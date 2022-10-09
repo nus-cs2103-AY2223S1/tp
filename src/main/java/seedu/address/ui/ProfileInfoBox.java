@@ -5,6 +5,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
+/**
+ * Container for the basic information related to a Contact
+ */
 public class ProfileInfoBox extends UiPart<Region> {
     private static final String FXML = "ProfileInfoBox.fxml";
 
@@ -23,6 +26,14 @@ public class ProfileInfoBox extends UiPart<Region> {
     @FXML
     private Label timezone;
 
+    /**
+     * Initialises a ProfileInfoBox.
+     *
+     * @param name The Contact's name
+     * @param title The Contact's title
+     * @param github The Contact's GitHub handle
+     * @param timezone The time zone the Contact is in
+     */
     public ProfileInfoBox(String name, String title, String github, String timezone) {
         super(FXML);
         this.name.setText(name);
