@@ -24,15 +24,15 @@ public class ContactListBox extends UiPart<Region> {
     public ContactListBox() {
         super(FXML);
 
-        ContactAddressCard emailAddr = new ContactAddressCard();
+        ContactAddressCard emailAddr = new ContactAddressCard("email");
         HBox.setHgrow(emailAddr.getRoot(), Priority.ALWAYS);
         emailAddressContainer.getChildren().add(emailAddr.getRoot());
 
-        ContactAddressCard teleHandle = new ContactAddressCard();
+        ContactAddressCard teleHandle = new ContactAddressCard("telegram");
         HBox.setHgrow(teleHandle.getRoot(), Priority.ALWAYS);
         telegramHandleContainer.getChildren().add(teleHandle.getRoot());
 
-        ContactAddressCard twitterHandle = new ContactAddressCard();
+        ContactAddressCard twitterHandle = new ContactAddressCard("twitter");
         HBox.setHgrow(twitterHandle.getRoot(), Priority.ALWAYS);
         twitterHandleContainer.getChildren().add(twitterHandle.getRoot());
 
