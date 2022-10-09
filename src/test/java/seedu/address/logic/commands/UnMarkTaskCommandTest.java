@@ -18,29 +18,29 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.TaskBuilder;
 
-public class MarkTaskCommandTest {
+public class UnMarkTaskCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Task markedTask = new TaskBuilder().withStatus(true).build();
-        MarkTaskCommand markTaskCommand = new MarkTaskCommand(INDEX_FIRST_PERSON);
+        Task unMarkedTask = new TaskBuilder().withStatus(false).build();
+        UnMarkTaskCommand unMarkTaskCommand = new UnMarkTaskCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(MarkTaskCommand.MESSAGE_MARK_TASK_SUCCESS, markedTask);
+        String expectedMessage = String.format(UnMarkTaskCommand.MESSAGE_UNMARK_TASK_SUCCESS, unMarkedTask);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
                 new UserPrefs(), new TaskList(model.getTaskList()));
         expectedModel.setTask(model.getFilteredTaskList().get(0), INDEX_FIRST_PERSON);
 
-        assertCommandSuccess(markTaskCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(unMarkTaskCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
-        MarkTaskCommand markTaskCommand = new MarkTaskCommand(outOfBoundIndex);
+        UnMarkTaskCommand unMarkTaskCommand = new UnMarkTaskCommand(outOfBoundIndex);
 
-        assertCommandFailure(markTaskCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        assertCommandFailure(unMarkTaskCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
 }

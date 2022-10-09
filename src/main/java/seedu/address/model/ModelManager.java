@@ -83,8 +83,9 @@ public class ModelManager implements Model {
     }
 
     //=========== TaskList ===================================================================================
+
     @Override
-    public void markTask(Task task, Index targetIndex) {
+    public void setTask(Task task, Index targetIndex) {
         taskList.setTask(task, targetIndex);
     }
 

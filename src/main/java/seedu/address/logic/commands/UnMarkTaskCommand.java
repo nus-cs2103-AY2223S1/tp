@@ -17,19 +17,19 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
 
 /**
- * Marks a task identified by its displayed index in the GUI as completed.
+ * Un marks a task identified by its displayed index in the GUI as completed.
  */
-public class MarkTaskCommand extends Command {
-    public static final String COMMAND_WORD = "mark";
+public class UnMarkTaskCommand extends Command {
+    public static final String COMMAND_WORD = "unmark";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks the task identified by the index number used in the displayed task list.\n"
+            + ": Un-marks the task identified by the index number used in the displayed task list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
-    public static final String MESSAGE_MARK_TASK_SUCCESS = "Marked Task as Complete: %1$s";
+    public static final String MESSAGE_UNMARK_TASK_SUCCESS = "Marked Task as Not Done: %1$s";
     private final Index targetIndex;
 
-    public MarkTaskCommand(Index targetIndex) {
+    public UnMarkTaskCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -42,27 +42,28 @@ public class MarkTaskCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        Task taskToMark = lastShownTaskList.get(targetIndex.getZeroBased());
-        MarkTaskDescriptor configureMarkedTask = new MarkTaskDescriptor();
-        configureMarkedTask.setStatus(true);
-        Task markedTask = createMarkedTask(taskToMark, configureMarkedTask);
-        model.setTask(markedTask, targetIndex);
+        Task taskToUnMark = lastShownTaskList.get(targetIndex.getZeroBased());
+        UnMarkTaskDescriptor configureUnMarkedTask = new UnMarkTaskDescriptor();
+        configureUnMarkedTask.setStatus(false);
+        Task unMarkedTask = createUnMarkedTask(taskToUnMark, configureUnMarkedTask);
+        model.setTask(unMarkedTask, targetIndex);
 
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
-        return new CommandResult(String.format(MESSAGE_MARK_TASK_SUCCESS, markedTask));
+        return new CommandResult(String.format(MESSAGE_UNMARK_TASK_SUCCESS, unMarkedTask));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Task} with the details of {@code taskToEdit}
+     * edited with {@code editUnMarkTaskDescriptor}.
      */
-    private static Task createMarkedTask(Task taskToMark, MarkTaskCommand.MarkTaskDescriptor markTaskDescriptor) {
-        assert taskToMark != null;
+    private static Task createUnMarkedTask(
+            Task taskToUnMark, UnMarkTaskCommand.UnMarkTaskDescriptor unMarkTaskDescriptor) {
+        assert taskToUnMark != null;
 
-        String updatedTitle = markTaskDescriptor.getTitle().orElse(taskToMark.getTitle());
-        String updatedDeadline = markTaskDescriptor.getDeadline().orElse(taskToMark.getDeadline());
-        boolean updatedStatus = markTaskDescriptor.getStatus().orElse(taskToMark.getStatus());
-        Set<Tag> updatedTags = markTaskDescriptor.getTags().orElse(taskToMark.getTags());
+        String updatedTitle = unMarkTaskDescriptor.getTitle().orElse(taskToUnMark.getTitle());
+        String updatedDeadline = unMarkTaskDescriptor.getDeadline().orElse(taskToUnMark.getDeadline());
+        boolean updatedStatus = unMarkTaskDescriptor.getStatus().orElse(taskToUnMark.getStatus());
+        Set<Tag> updatedTags = unMarkTaskDescriptor.getTags().orElse(taskToUnMark.getTags());
 
         return new Task(updatedTitle, updatedDeadline, updatedStatus, updatedTags);
     }
@@ -71,19 +72,19 @@ public class MarkTaskCommand extends Command {
      * Stores the details to edit the person with. Each non-empty field value will replace the
      * corresponding field value of the person.
      */
-    public static class MarkTaskDescriptor {
+    public static class UnMarkTaskDescriptor {
         private String title;
         private String deadline;
         private boolean status;
         private Set<Tag> tags;
 
-        public MarkTaskDescriptor() {}
+        public UnMarkTaskDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public MarkTaskDescriptor(MarkTaskCommand.MarkTaskDescriptor toCopy) {
+        public UnMarkTaskDescriptor(UnMarkTaskCommand.UnMarkTaskDescriptor toCopy) {
             setTitle(toCopy.title);
             setDeadline(toCopy.deadline);
             setStatus(toCopy.status);
@@ -146,12 +147,12 @@ public class MarkTaskCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof MarkTaskCommand.MarkTaskDescriptor)) {
+            if (!(other instanceof UnMarkTaskCommand.UnMarkTaskDescriptor)) {
                 return false;
             }
 
             // state check
-            MarkTaskCommand.MarkTaskDescriptor e = (MarkTaskCommand.MarkTaskDescriptor) other;
+            UnMarkTaskCommand.UnMarkTaskDescriptor e = (UnMarkTaskCommand.UnMarkTaskDescriptor) other;
 
             return getTitle().equals(e.getTitle())
                     && getDeadline().equals(e.getDeadline())
@@ -163,7 +164,7 @@ public class MarkTaskCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof MarkTaskCommand
-            && targetIndex.equals(((MarkTaskCommand) other).targetIndex));
+                || (other instanceof UnMarkTaskCommand
+                && targetIndex.equals(((UnMarkTaskCommand) other).targetIndex));
     }
 }
