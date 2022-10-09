@@ -55,7 +55,7 @@ public class PatientBuilder {
      * Initializes the PatientBuilder with the data of {@code patientToCopy}.
      */
     public PatientBuilder(Person patientToCopy) {
-        category = patientToCopy.getCategory();
+        category = "P";
         name = patientToCopy.getName();
         gender = patientToCopy.getGender();
         phone = patientToCopy.getPhone();

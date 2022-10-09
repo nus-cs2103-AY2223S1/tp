@@ -101,6 +101,7 @@ public class EditCommand extends Command {
             return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, PATIENT_INDICATOR, editedPerson));
         }
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, PERSON_INDICATOR, editedPerson));
+
     }
 
     /**
@@ -122,7 +123,7 @@ public class EditCommand extends Command {
             List<DateTime> updatedDateTime = editPersonDescriptor.getDatesTimes()
                     .orElse(((Patient) personToEdit).getDatesTimes());
             return new Patient(updatedName, updatedGender, updatedPhone, updatedEmail,
-                    updatedAddress, updatedTags, updatedDateTime);
+                        updatedAddress, updatedTags, updatedDateTime);
         }
 
         return new Person(updatedName, updatedGender, updatedPhone, updatedEmail, updatedAddress, updatedTags);
@@ -255,7 +256,7 @@ public class EditCommand extends Command {
          * A defensive copy of {@code datesTimes} is used internally.
          */
         public void setDatesTimes(List<DateTime> datesTimes) {
-            this.datesTimes = (datesTimes != null) ? new ArrayList<DateTime>(datesTimes) : new ArrayList<DateTime>();
+            this.datesTimes = (datesTimes != null) ? new ArrayList<DateTime>(datesTimes) : null;
         }
 
         /**

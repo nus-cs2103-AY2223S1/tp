@@ -53,14 +53,14 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
-import seedu.address.testutil.PatientBuilder;
+import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PatientBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + CATEGORY_DESC_PATIENT + NAME_DESC_BOB
@@ -98,28 +98,28 @@ public class AddCommandParserTest {
                 + ADDRESS_DESC_BOB + DATETIME_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple dateTimes - all accepted
-        Person expectedPersonMultipleDatesTimes = new PatientBuilder(BOB).withDatesTimes(VALID_DATETIME_BOB,
-                        VALID_DATETIME_AMY).build();
+        Person expectedPersonMultipleDatesTimes = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND)
+                .withDatesTimes(VALID_DATETIME_BOB, VALID_DATETIME_AMY).build();
         assertParseSuccess(parser, CATEGORY_DESC_PATIENT + NAME_DESC_BOB + GENDER_DESC_BOB + PHONE_DESC_BOB
                 + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + DATETIME_DESC_AMY + DATETIME_DESC_BOB + TAG_DESC_FRIEND,
                 new AddCommand(expectedPersonMultipleDatesTimes));
 
         // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new PatientBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, CATEGORY_DESC_PATIENT + NAME_DESC_BOB + GENDER_DESC_BOB + PHONE_DESC_BOB
-                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + DATETIME_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedPersonMultipleTags));
+                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + DATETIME_DESC_BOB + TAG_DESC_FRIEND + TAG_DESC_HUSBAND,
+                new AddCommand(expectedPersonMultipleTags));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero dateTimes
-        Person expectedPersonNoDatesTimes = new PatientBuilder(AMY).withDatesTimes().build();
+        Person expectedPersonNoDatesTimes = new PersonBuilder(AMY).withDatesTimes().build();
         assertParseSuccess(parser, CATEGORY_DESC_PATIENT + NAME_DESC_AMY + GENDER_DESC_AMY + PHONE_DESC_AMY
                 + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + TAG_DESC_FRIEND, new AddCommand(expectedPersonNoDatesTimes));
         // zero tags
-        Person expectedPersonNoTag = new PatientBuilder(AMY).withTags().build();
+        Person expectedPersonNoTag = new PersonBuilder(AMY).withTags().build();
         assertParseSuccess(parser, CATEGORY_DESC_PATIENT + NAME_DESC_AMY + GENDER_DESC_AMY + PHONE_DESC_AMY
                         + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + DATETIME_DESC_AMY, new AddCommand(expectedPersonNoTag));
     }

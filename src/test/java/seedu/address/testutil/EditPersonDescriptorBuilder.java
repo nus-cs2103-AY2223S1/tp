@@ -43,7 +43,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
-        if (descriptor.getCategory().equals("P")) {
+        if (person.getCategory().equals("P")) {
             descriptor.setDatesTimes(((Patient) person).getDatesTimes());
         }
     }
