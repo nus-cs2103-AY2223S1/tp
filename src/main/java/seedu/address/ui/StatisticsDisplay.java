@@ -21,10 +21,10 @@ public class StatisticsDisplay extends UiPart<Region> {
     /**
      * Displays the statistics of the AddressBook to the user.
      */
-    public void showStatisticsToUser(int numberOfStudents, int amountOwed, int amountCollected) {
+    public void showStatisticsToUser(int numberOfStudents, String amountOwed, String amountCollected) {
         statisticsDisplay.setText(String.format("Number of students: %d\n"
-                + "Total amount owed: $%d\n"
-                + "Total amount collected: $%d", numberOfStudents, amountOwed, amountCollected));
+                + "Total amount owed: %s\n"
+                + "Total amount collected: %s", numberOfStudents, amountOwed, amountCollected));
     }
 
 }
