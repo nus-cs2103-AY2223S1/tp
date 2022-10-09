@@ -3,12 +3,29 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.Comparator;
+
+
+
 /**
  * Represents a Person's email in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
  */
 public class Email {
 
+
+    public static final Comparator<Person> EMAIL_COMPARATOR = new Comparator<Person>() {
+        public int compare(Person p1, Person p2) {
+            int platformCompare = p1.getEmail().getPlatform().compareTo(p2.getEmail().getPlatform());
+            int nameCompare = p1.getEmail().getEmailName().toLowerCase()
+                    .compareTo(p2.getEmail().getEmailName().toLowerCase());
+            if (platformCompare == 0) { // same email platform used
+                return nameCompare;
+            }
+            return platformCompare;
+        }
+    };
+    public static final String SORT_EMAIL = "email";
     private static final String SPECIAL_CHARACTERS = "+_.-";
     public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
             + "and adhere to the following constraints:\n"
@@ -21,8 +38,11 @@ public class Email {
             + "    - end with a domain label at least 2 characters long\n"
             + "    - have each domain label start and end with alphanumeric characters\n"
             + "    - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.";
+
     // alphanumeric and special characters
     private static final String ALPHANUMERIC_NO_UNDERSCORE = "[^\\W_]+"; // alphanumeric characters except underscore
+    private static final String AT_SYMBOL = "@";
+    private static final String DOT = ".";
     private static final String LOCAL_PART_REGEX = "^" + ALPHANUMERIC_NO_UNDERSCORE + "([" + SPECIAL_CHARACTERS + "]"
             + ALPHANUMERIC_NO_UNDERSCORE + ")*";
     private static final String DOMAIN_PART_REGEX = ALPHANUMERIC_NO_UNDERSCORE
@@ -49,6 +69,23 @@ public class Email {
      */
     public static boolean isValidEmail(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns the email name before the @ symbol
+     */
+    private String getEmailName() {
+        return this.value.substring(0, value.indexOf(AT_SYMBOL));
+    }
+
+    /**
+     * Returns the email platform which the email is using
+     * eg. example@gmail.com will return gmail
+     */
+    private String getPlatform() {
+        int index = value.indexOf(AT_SYMBOL);
+        String temp = value.substring(index + 1, value.length());
+        return temp.substring(0, temp.indexOf(DOT));
     }
 
     @Override

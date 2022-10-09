@@ -2,7 +2,9 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -15,6 +17,13 @@ import seedu.address.model.tag.Tag;
  */
 public class Person {
 
+    public static final Comparator<Person> DEFAULT_COMPARATOR = new Comparator<Person>() {
+        public int compare(Person p1, Person p2) {
+            return p1.getLocalDateTime().compareTo(p2.getLocalDateTime());
+        }
+    };
+    public static final String SORT_DEFAULT = "default";
+
     // Identity fields
     private final Name name;
     private final Phone phone;
@@ -22,8 +31,10 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final LocalDateTime timeStamp;
     private final Set<Tag> tags = new HashSet<>();
 
+    // indicate pinned client
     private Boolean pin = false;
 
     /**
@@ -35,6 +46,7 @@ public class Person {
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.timeStamp = LocalDateTime.now();
         this.tags.addAll(tags);
 
     }
@@ -63,6 +75,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public LocalDateTime getLocalDateTime() {
+        return this.timeStamp;
     }
 
     /**
