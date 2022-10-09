@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.task;
 
 import static java.util.Objects.requireNonNull;
 
@@ -6,27 +6,29 @@ import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.task.Task;
 
 /**
- * Marks a task in the tasklist as completed.
+ * Marks a task in the tasklist as incomplete.
  */
-public class MarkTaskCommand extends Command {
+public class UnmarkTaskCommand extends Command {
 
-    public static final String COMMAND_WORD = "markT";
+    public static final String COMMAND_WORD = "unmarkT";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks as complete the task identified by the index number used in the displayed task list.\n"
+            + ": Marks as incomplete the task identified by the index number used in the displayed task list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_MARK_TEST_SUCCESS = "Marked Task: %1$s";
+    public static final String MESSAGE_UNMARK_TASK_SUCCESS = "Unmarked Task: %1$s";
 
     private final Index targetIndex;
 
-    public MarkTaskCommand(Index targetIndex) {
+    public UnmarkTaskCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -39,15 +41,15 @@ public class MarkTaskCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        Task taskToMark = lastShownList.get(targetIndex.getZeroBased());
-        taskToMark.markTask();
-        return new CommandResult(String.format(MESSAGE_MARK_TEST_SUCCESS, taskToMark));
+        Task taskToUnmark = lastShownList.get(targetIndex.getZeroBased());
+        taskToUnmark.unmarkTask();
+        return new CommandResult(String.format(MESSAGE_UNMARK_TASK_SUCCESS, taskToUnmark));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this
-                || (other instanceof MarkTaskCommand
-                && targetIndex.equals(((MarkTaskCommand) other).targetIndex));
+                || (other instanceof UnmarkTaskCommand
+                && targetIndex.equals(((UnmarkTaskCommand) other).targetIndex));
     }
 }
