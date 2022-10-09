@@ -7,7 +7,7 @@ import static taskbook.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static taskbook.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static taskbook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static taskbook.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static taskbook.testutil.TypicalPersons.getTypicalAddressBook;
+import static taskbook.testutil.TypicalPersons.getTypicaltaskBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -25,7 +25,7 @@ import taskbook.model.person.Person;
  */
 public class ContactDeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicaltaskBook(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -34,7 +34,7 @@ public class ContactDeleteCommandTest {
 
         String expectedMessage = String.format(ContactDeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getTaskBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
 
         assertCommandSuccess(contactDeleteCommand, model, expectedMessage, expectedModel);
@@ -57,7 +57,7 @@ public class ContactDeleteCommandTest {
 
         String expectedMessage = String.format(ContactDeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getTaskBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
         showNoPerson(expectedModel);
 
@@ -69,8 +69,8 @@ public class ContactDeleteCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        // ensures that outOfBoundIndex is still in bounds of task book list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getTaskBook().getPersonList().size());
 
         ContactDeleteCommand contactDeleteCommand = new ContactDeleteCommand(outOfBoundIndex);
 

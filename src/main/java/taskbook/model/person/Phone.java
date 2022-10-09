@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import taskbook.commons.util.AppUtil;
 
 /**
- * Represents a Person's phone number in the address book.
+ * Represents a Person's phone number in the task book.
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
  */
 public class Phone {

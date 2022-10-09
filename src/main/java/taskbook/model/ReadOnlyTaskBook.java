@@ -5,9 +5,9 @@ import taskbook.model.person.Person;
 import taskbook.model.task.Task;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of an task book
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyTaskBook {
 
     /**
      * Returns an unmodifiable view of the persons list.

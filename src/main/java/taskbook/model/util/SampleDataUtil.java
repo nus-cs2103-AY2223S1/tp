@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import taskbook.model.AddressBook;
-import taskbook.model.ReadOnlyAddressBook;
+import taskbook.model.ReadOnlyTaskBook;
+import taskbook.model.TaskBook;
 import taskbook.model.person.Address;
 import taskbook.model.person.Email;
 import taskbook.model.person.Name;
@@ -14,7 +14,7 @@ import taskbook.model.person.Phone;
 import taskbook.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code TaskBook} with sample data.
  */
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
@@ -40,8 +40,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyTaskBook getSampleTaskBook() {
+        TaskBook sampleAb = new TaskBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }
