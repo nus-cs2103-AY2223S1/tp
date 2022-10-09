@@ -12,6 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.MyInsuRec;
 import seedu.address.model.ReadOnlyMyInsuRec;
 import seedu.address.model.client.Client;
+import seedu.address.model.meeting.Meeting;
 
 /**
  * An Immutable MyInsuRec that is serializable to JSON format.
@@ -54,6 +55,10 @@ class JsonSerializableMyInsuRec {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_CLIENT);
             }
             myInsuRec.addClient(person);
+            Meeting meeting = person.getMeeting();
+            if (meeting != null) {
+                myInsuRec.addMeeting(person.getMeeting());
+            }
         }
         return myInsuRec;
     }

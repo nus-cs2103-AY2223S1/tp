@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.client.Client;
+import seedu.address.model.meeting.Meeting;
 
 /**
  * Unmodifiable view of a MyInsuRec
@@ -13,5 +14,12 @@ public interface ReadOnlyMyInsuRec {
      * This list will not contain any duplicate clients.
      */
     ObservableList<Client> getClientList();
+
+    /**
+     * Returns an unmodifiable view of the meetings list.
+     * This list will not contain any conflicting meetings.
+     * @return
+     */
+    ObservableList<Meeting> getMeetingList();
 
 }
