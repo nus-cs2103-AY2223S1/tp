@@ -7,7 +7,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.travelr.model.event.Event;
 import seedu.travelr.model.event.UniqueEventList;
-import seedu.travelr.model.eventList.BucketList;
+import seedu.travelr.model.list.BucketList;
 import seedu.travelr.model.trip.Trip;
 import seedu.travelr.model.trip.UniqueTripList;
 

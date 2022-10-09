@@ -1,18 +1,19 @@
 package seedu.travelr.model.event;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.travelr.model.trip.Trip;
-import seedu.travelr.model.trip.UniqueTripList;
-import seedu.travelr.model.trip.exceptions.DuplicateTripException;
-import seedu.travelr.model.trip.exceptions.TripNotFoundException;
+import static java.util.Objects.requireNonNull;
+import static seedu.travelr.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.travelr.commons.util.CollectionUtil.requireAllNonNull;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.travelr.model.trip.exceptions.DuplicateTripException;
+import seedu.travelr.model.trip.exceptions.TripNotFoundException;
 
+/**
+ * Represent a UniqueEventList.
+ */
 public class UniqueEventList implements Iterable<Event> {
 
     private final ObservableList<Event> internalList = FXCollections.observableArrayList();

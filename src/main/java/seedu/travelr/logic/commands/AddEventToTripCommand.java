@@ -1,16 +1,20 @@
 package seedu.travelr.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TRIP;
+
 import seedu.travelr.logic.commands.exceptions.CommandException;
 import seedu.travelr.model.AddressBook;
 import seedu.travelr.model.Model;
 import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.Trip;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.travelr.logic.parser.CliSyntax.*;
-import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TAG;
 
-public class AddEventToTripCommand extends Command{
+/**
+ * Represents the AddEventToTripCommand. Extends the Command class.
+ */
+public class AddEventToTripCommand extends Command {
 
     public static final String COMMAND_WORD = "add-et";
 

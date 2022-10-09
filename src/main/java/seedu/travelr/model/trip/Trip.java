@@ -3,12 +3,11 @@ package seedu.travelr.model.trip;
 import static seedu.travelr.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 import seedu.travelr.model.event.Event;
-import seedu.travelr.model.eventList.Itineraries;
+import seedu.travelr.model.list.Itineraries;
 
 /**
  * Represents a Person in the address book.
@@ -21,7 +20,7 @@ public class Trip {
     private final Description description;
 
     // Data fields
-    public final Itineraries events = new Itineraries();
+    private final Itineraries events = new Itineraries();
 
     /**
      * Every field must be present and not null.
@@ -40,6 +39,10 @@ public class Trip {
 
     public void removeEvent(Event event) {
         events.removeEvent(event);
+    }
+
+    public boolean contains(Event event) {
+        return events.contains(event);
     }
 
     public Title getTitle() {

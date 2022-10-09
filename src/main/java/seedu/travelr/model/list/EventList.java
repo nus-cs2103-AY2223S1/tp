@@ -1,9 +1,12 @@
-package seedu.travelr.model.eventList;
-
-import seedu.travelr.model.event.Event;
+package seedu.travelr.model.list;
 
 import java.util.Set;
 
+import seedu.travelr.model.event.Event;
+
+/**
+ * Represents the EventList interface.
+ */
 public interface EventList {
 
     abstract void addEvent(Event event);

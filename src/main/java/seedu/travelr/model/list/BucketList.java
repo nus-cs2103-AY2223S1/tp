@@ -1,12 +1,15 @@
-package seedu.travelr.model.eventList;
-
-import seedu.travelr.model.event.Event;
-import seedu.travelr.model.trip.Title;
+package seedu.travelr.model.list;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public class BucketList implements EventList{
+import seedu.travelr.model.event.Event;
+import seedu.travelr.model.trip.Title;
+
+/**
+ * Represents the BucketList class.
+ */
+public class BucketList implements EventList {
 
     private final Set<Event> events = new HashSet<>();
 
@@ -27,12 +30,12 @@ public class BucketList implements EventList{
 
     @Override
     public void removeEvent(int i) {
-        events.remove(events.toArray()[i-1]);
+        events.remove(events.toArray()[i - 1]);
     }
 
     @Override
     public Event getEvent(int i) {
-        Object temp = events.toArray()[i-1];
+        Object temp = events.toArray()[i - 1];
         Event event = (Event) temp;
         return event;
     }

@@ -1,5 +1,12 @@
 package seedu.travelr.logic.parser;
 
+import static seedu.travelr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TRIP;
+
+import java.util.HashSet;
+import java.util.stream.Stream;
+
 import seedu.travelr.logic.commands.AddEventToTripCommand;
 import seedu.travelr.logic.commands.DeleteEventFromTripCommand;
 import seedu.travelr.logic.parser.exceptions.ParseException;
@@ -9,14 +16,11 @@ import seedu.travelr.model.trip.Description;
 import seedu.travelr.model.trip.Title;
 import seedu.travelr.model.trip.Trip;
 
-import java.util.HashSet;
-import java.util.stream.Stream;
-
-import static seedu.travelr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TITLE;
-import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TRIP;
-
+/**
+ * Represents the DeleteEventFromTripCommandParser.
+ */
 public class DeleteEventFromTripCommandParser {
+
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
@@ -29,7 +33,8 @@ public class DeleteEventFromTripCommandParser {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_TRIP)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEventToTripCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddEventToTripCommand.MESSAGE_USAGE));
         }
 
         Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
@@ -42,7 +47,7 @@ public class DeleteEventFromTripCommandParser {
         }
 
 
-        if (!toDeleteFrom.events.contains(new Event((title)))) {
+        if (!toDeleteFrom.contains(new Event((title)))) {
             throw new ParseException("Please enter a valid Event");
         }
 

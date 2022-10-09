@@ -1,5 +1,7 @@
 package seedu.travelr.model.util;
 
+import static seedu.travelr.logic.parser.ParserUtil.EVENT_DESCRIPTION_PLACEHOLDER;
+
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -10,8 +12,6 @@ import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.Description;
 import seedu.travelr.model.trip.Title;
 import seedu.travelr.model.trip.Trip;
-
-import static seedu.travelr.logic.parser.ParserUtil.EVENT_DESCRIPTION_PLACEHOLDER;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.

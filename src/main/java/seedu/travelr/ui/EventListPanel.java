@@ -1,16 +1,17 @@
 package seedu.travelr.ui;
 
+import java.util.logging.Logger;
+
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.travelr.commons.core.LogsCenter;
 import seedu.travelr.model.event.Event;
-import seedu.travelr.model.trip.Trip;
 
-import java.util.logging.Logger;
-
+/**
+ * Represents the EventListPanel.
+ */
 public class EventListPanel extends UiPart<Region> {
     private static final String FXML = "EventListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(EventListPanel.class);

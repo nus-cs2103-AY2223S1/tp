@@ -2,14 +2,13 @@ package seedu.travelr.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.travelr.model.event.Event;
-import seedu.travelr.model.trip.Trip;
 
-import java.util.Comparator;
-
+/**
+ * Represents EventsCard
+ */
 public class EventCard extends UiPart<Region> {
 
     private static final String FXML = "EventListCard.fxml";
@@ -32,8 +31,8 @@ public class EventCard extends UiPart<Region> {
     private Label id;
     @FXML
     private Label description;
-//    @FXML
-//    private FlowPane events;
+    //  @FXML
+    //  private FlowPane events;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -44,9 +43,9 @@ public class EventCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         title.setText(event.getTitle().fullTitle);
         description.setText(event.getDescription().value);
-//        event.getEvents().stream()
-//                .sorted(Comparator.comparing(event -> event.title.toString()))
-//                .forEach(event -> events.getChildren().add(new Label(event.title.toString())));
+        //      event.getEvents().stream()
+        //              .sorted(Comparator.comparing(event -> event.title.toString()))
+        //              .forEach(event -> events.getChildren().add(new Label(event.title.toString())));
     }
 
     @Override

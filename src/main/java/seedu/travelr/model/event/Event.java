@@ -1,13 +1,12 @@
 package seedu.travelr.model.event;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.travelr.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.travelr.logic.parser.ParserUtil.EVENT_DESCRIPTION_PLACEHOLDER;
 
 import seedu.travelr.model.trip.Description;
 import seedu.travelr.model.trip.Title;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.travelr.commons.util.AppUtil.checkArgument;
-import static seedu.travelr.logic.parser.ParserUtil.EVENT_DESCRIPTION_PLACEHOLDER;
 
 /**
  * Represents a Tag in the address book.
@@ -22,7 +21,7 @@ public class Event {
     public final Description description;
 
     /**
-     * Constructs a {@code Event}.
+     * Constructs an {@code Event}.
      *
      * @param title A valid title.
      * @param description A valid description.
@@ -34,6 +33,11 @@ public class Event {
         this.description = description;
     }
 
+    /**
+     * Constructs an {@code Event}.
+     *
+     * @param eventName A valid title.
+     */
     public Event(Title eventName) {
         requireNonNull(eventName);
         this.title = eventName;

@@ -53,7 +53,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane personListPanelPlaceholder;
 
     @FXML
-    private StackPane eventListPanelPlaceholder ;
+    private StackPane eventListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -189,7 +189,10 @@ public class MainWindow extends UiPart<Stage> {
         return tripListPanel;
     }
 
-    public EventListPanel getEventListPanel() { return eventListPanel; }
+    public EventListPanel getEventListPanel() {
+        return eventListPanel;
+    }
+
     /**
      * Executes the command and returns the result.
      *

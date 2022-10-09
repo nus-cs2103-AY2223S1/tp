@@ -1,9 +1,9 @@
 package seedu.travelr.model.event;
 
-import seedu.travelr.model.trip.Title;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.travelr.commons.util.AppUtil.checkArgument;
+
+import seedu.travelr.model.trip.Title;
 
 /**
  * Represents a Trip's title in the address book.
