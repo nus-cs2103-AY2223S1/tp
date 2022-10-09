@@ -113,9 +113,6 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public String findPersonNameById(PersonId personId) {
-        if (personId == null) {
-            return null;
-        }
         Person p = findPersonById(personId);
         return p == null ? null : p.getName().toString();
     }
