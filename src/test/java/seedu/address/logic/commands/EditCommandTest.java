@@ -31,9 +31,9 @@ import seedu.address.testutil.StudentBuilder;
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
  */
 public class EditCommandTest {
-
+    public static final String TEST_STUDENT_NAME = "A random Name";
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    public static String TEST_STUDENT_NAME = "A random Name";
+
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
