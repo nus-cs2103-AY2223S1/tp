@@ -1,13 +1,13 @@
 package seedu.address.model.person.student;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
-
-import java.util.List;
-
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * A list of students that enforces uniqueness between its elements and does not allow nulls.
