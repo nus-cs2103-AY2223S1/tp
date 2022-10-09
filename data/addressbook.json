@@ -18,16 +18,10 @@
       "fee" : 100.0,
       "deadline" : "2022-10-10",
       "tagged" : [ "inking" ],
+      "isCompleted" : true
     }, {
       "title" : "Trixx Trixx",
       "description" : "Paint Trixx portrait",
-      "fee" : 0.5,
-      "deadline" : "2022-04-04",
-      "tagged" : [ "test2", "test" ],
-      "isCompleted" : true
-    }, {
-      "title" : "Trixx Moonshine",
-      "description" : "Paint the alcoholic drink",
       "fee" : 0.5,
       "deadline" : "2022-04-04",
       "tagged" : [ "test2", "test" ],
@@ -46,6 +40,13 @@
       "deadline" : "2022-10-20",
       "tagged" : [ ],
       "isCompleted" : false
+    }, {
+      "title" : "Trixx Moonshine",
+      "description" : "Paint the alcoholic drink",
+      "fee" : 0.5,
+      "deadline" : "2022-04-04",
+      "tagged" : [ "test2", "test" ],
+      "isCompleted" : true
     } ]
   }, {
     "name" : "Meg",
@@ -59,6 +60,13 @@
       "fee" : 60.0,
       "deadline" : "2022-10-15",
       "tagged" : [ "city", "night" ],
+      "isCompleted" : true
+    }, {
+      "title" : "Meg Shark",
+      "description" : "Shark swallowing a boat",
+      "fee" : 0.5,
+      "deadline" : "2022-04-04",
+      "tagged" : [ "test2", "test" ],
       "isCompleted" : true
     }, {
       "title" : "Chainsaw man",
@@ -81,13 +89,6 @@
       "deadline" : "2022-10-15",
       "tagged" : [ ],
       "isCompleted" : false
-    }, {
-      "title" : "Meg Shark",
-      "description" : "Shark swallowing a boat",
-      "fee" : 0.5,
-      "deadline" : "2022-04-04",
-      "tagged" : [ "test2", "test" ],
-      "isCompleted" : true
     }, {
       "title" : "Meg Casino",
       "description" : "Painting of high end casino",

@@ -59,7 +59,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Fee}.
+     * Parses a {@code String phone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code phone} is invalid.
@@ -157,10 +157,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String deadline} into a {@code Deadline}.
+     * Parses a {@code String completionStatus} into a {@code CompletionStatus}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code deadline} is invalid.
+     * @throws ParseException if the given {@code completionStatus} is invalid.
      */
     public static CompletionStatus parseStatus(String status) throws ParseException {
         requireNonNull(status);
@@ -172,7 +172,7 @@ public class ParserUtil {
                 || trimmedStatus.equalsIgnoreCase("No") || trimmedStatus.equalsIgnoreCase("N")) {
             return new CompletionStatus(false);
         } else {
-            throw new ParseException(Messages.MESSAGE_INVALID_COMMISSION_STATUS);
+            throw new ParseException(CompletionStatus.MESSAGE_CONSTRAINTS);
         }
     }
 

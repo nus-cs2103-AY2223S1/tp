@@ -7,6 +7,8 @@ import java.util.Objects;
  * Guarantees: immutable.
  */
 public class CompletionStatus {
+    public static final String MESSAGE_CONSTRAINTS = "The commission completion status provided is invalid";
+
     public final boolean isCompleted;
 
     /**

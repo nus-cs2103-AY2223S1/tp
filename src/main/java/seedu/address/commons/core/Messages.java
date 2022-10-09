@@ -12,8 +12,7 @@ public class Messages {
 
     public static final String MESSAGE_INVALID_COMMISSION_DISPLAYED_INDEX = "The commission index provided is invalid";
     public static final String MESSAGE_NO_ACTIVE_CUSTOMER = "This command requires you to open a customer first!";
-    public static final String MESSAGE_INVALID_COMMISSION_DEADLINE = "The commission deadline provided is invalid";
+    public static final String MESSAGE_INVALID_COMMISSION_DEADLINE = "The commission deadline provided is invalid. "
+            + "The input format should be YYYY-MM-DD";
     public static final String MESSAGE_INVALID_COMMISSION_FEE = "The commission fee provided is invalid";
-    public static final String MESSAGE_INVALID_COMMISSION_STATUS =
-            "The commission completion status provided is invalid";
 }

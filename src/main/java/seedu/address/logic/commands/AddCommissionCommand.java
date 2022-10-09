@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FEE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
@@ -23,12 +24,14 @@ public class AddCommissionCommand extends Command {
             + PREFIX_TITLE + "TITLE "
             + PREFIX_FEE + "FEE "
             + PREFIX_DEADLINE + "DEADLINE "
+            + PREFIX_STATUS + "COMPLETION STATUS "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TITLE + "Tokyo Ghoul Kaneki "
             + PREFIX_FEE + "50 "
             + PREFIX_DEADLINE + "2022-10-10 "
+            + PREFIX_STATUS + "False "
             + PREFIX_DESCRIPTION + "Unfamiliar, I will need to do up a reference board first. "
             + PREFIX_TAG + "digital "
             + PREFIX_TAG + "neon ";

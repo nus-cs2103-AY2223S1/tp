@@ -128,6 +128,7 @@ public class ModelManager implements Model {
     @Override
     public boolean hasCommission(Commission commission) {
         requireNonNull(commission);
+        commission.setCustomer(getSelectedCustomer().getValue());
         return addressBook.hasCommission(getSelectedCustomer().getValue(), commission);
     }
 

@@ -130,10 +130,13 @@ public class Commission {
                 .append(getFee())
                 .append("; Deadline: ")
                 .append(getDeadline())
-                .append("; Completed:")
-                .append(getCompletionStatus())
-                .append("; Description: ")
-                .append(getDescription());
+                .append("; Completed: ")
+                .append(getCompletionStatus());
+
+        if (getDescription().isPresent()) {
+            builder.append("; Description: ")
+                    .append(getDescription().get());
+        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

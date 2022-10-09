@@ -48,8 +48,6 @@ public class DeleteCommissionCommand extends Command {
         Commission commissionToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteCommission(commissionToDelete);
 
-        model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
-
         return new CommandResult(String.format(MESSAGE_DELETE_COMMISSION_SUCCESS, commissionToDelete));
     }
 
