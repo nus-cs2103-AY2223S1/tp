@@ -14,6 +14,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.ObservableObject;
 import seedu.address.model.commission.Commission;
+import seedu.address.model.commission.UniqueCommissionList;
 import seedu.address.model.customer.Customer;
 
 /**
@@ -46,7 +47,7 @@ public class ModelManager implements Model {
         // it should only be updated here.
         selectedCustomer.addListener((selectedCustomer, oldCustomer, newCustomer) -> {
             if (oldCustomer == null || !oldCustomer.isSameCustomer(newCustomer)) {
-                this.setSelectedCustomerCommissions(newCustomer);
+                setSelectedCustomerCommissions(newCustomer);
             }
         });
 
@@ -64,7 +65,7 @@ public class ModelManager implements Model {
 
     private void setSelectedCustomerCommissions(Customer customer) {
         ObservableList<Commission> commissionsList = customer == null
-                ? addressBook.getFullCommissionList()
+                ? new UniqueCommissionList().asUnmodifiableObservableList()
                 : customer.getCommissionList();
         observableFilteredCommissions.setValue(new FilteredList<>(commissionsList));
     }
@@ -187,13 +188,13 @@ public class ModelManager implements Model {
     @Override
     public void selectCustomer(Customer customer) {
         if (customer != null) {
-            this.selectedCustomer.setValue(customer);
+            selectedCustomer.setValue(customer);
         }
     }
 
     @Override
     public ObservableObject<Customer> getSelectedCustomer() {
-        return this.selectedCustomer;
+        return selectedCustomer;
     }
 
     /**

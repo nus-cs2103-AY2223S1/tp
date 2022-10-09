@@ -58,7 +58,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-
         setCustomers(newData.getCustomerList());
     }
 
@@ -88,8 +87,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setCustomer(Customer target, Customer editedCustomer) {
         requireNonNull(editedCustomer);
-        // Assumption: edits to commissions should already call the commission-level operations.
-        // Otherwise, combined commission list will not be updated correctly.
         customers.setCustomer(target, editedCustomer);
     }
 
@@ -115,7 +112,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         return customers.asUnmodifiableObservableList();
     }
 
-
     private void updateFullCommissionList() {
         customers.forEach(customer -> customer.getCommissions().forEach(fullCommissionList::add));
     }
@@ -124,7 +120,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Returns an unmodifiable view of all commissions across all customers.
      * This list will not contain any duplicate commissions.
      */
-    public ObservableList<Commission> getFullCommissionList() {
+    private ObservableList<Commission> getFullCommissionList() {
         updateFullCommissionList();
         return fullCommissionList.asUnmodifiableObservableList();
     }
