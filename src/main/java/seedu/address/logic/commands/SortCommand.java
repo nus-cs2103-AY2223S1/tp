@@ -17,14 +17,6 @@ public class SortCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-
-        try {
-            model.sort();
-        } catch (Exception e) {
-
-        }
-
         return new CommandResult(String.format(MESSAGE_SUCCESS, "buyer book","2333"));
     }
 }

@@ -15,7 +15,7 @@ public class Supplier extends Person {
 
     public Supplier(Name name, Phone phone, Email email, Address address, Set<Tag> tags, ArrayList<Pet> petsOnSale) {
         super(name, phone, email, address, tags);
-        requireNonNull(petsOnSale);
+//        requireNonNull(petsOnSale);
         this.petsOnSale = petsOnSale;
     }
 

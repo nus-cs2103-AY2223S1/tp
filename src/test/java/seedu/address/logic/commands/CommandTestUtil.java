@@ -17,8 +17,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.*;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -105,24 +104,56 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
-        List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        List<Buyer> expectedFilteredBuyerList = new ArrayList<>(actualModel.getFilteredBuyerList());
+        List<Supplier> expectedFilteredSupplierList = new ArrayList<>(actualModel.getFilteredSupplierList());
+        List<Deliverer> expectedFilteredDelivererList = new ArrayList<>(actualModel.getFilteredDelivererList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
-        assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+        assertEquals(expectedFilteredBuyerList, actualModel.getFilteredBuyerList());
+        assertEquals(expectedFilteredSupplierList, actualModel.getFilteredSupplierList());
+        assertEquals(expectedFilteredDelivererList, actualModel.getFilteredDelivererList());
     }
+    /**
+     * Updates {@code model}'s filtered list to show only the buyer at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showBuyerAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredBuyerList().size());
+
+        Buyer buyer = model.getFilteredBuyerList().get(targetIndex.getZeroBased());
+        final String[] splitName = buyer.getName().fullName.split("\\s+");
+        model.updateFilteredBuyerList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredBuyerList().size());
+    }
+
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
-    public static void showPersonAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
+    public static void showSupplierAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredSupplierList().size());
 
-        Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
+        Supplier person = model.getFilteredSupplierList().get(targetIndex.getZeroBased());
         final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredSupplierList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
-        assertEquals(1, model.getFilteredPersonList().size());
+        assertEquals(1, model.getFilteredSupplierList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showDelivererAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredDelivererList().size());
+
+        Deliverer deliverer = model.getFilteredDelivererList().get(targetIndex.getZeroBased());
+        final String[] splitName = deliverer.getName().fullName.split("\\s+");
+        model.updateFilteredDelivererList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredDelivererList().size());
     }
 
 }
