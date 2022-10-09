@@ -15,7 +15,7 @@ class JsonAdaptedSession {
     private final String sessionName;
 
     /**
-     * Contructs a {@code JsonAdaptedSession} with the given {@code sessionName}
+     * Contructs a {@code JsonAdaptedSession} with the given {@code sessionName}.
      */
     @JsonCreator
     public JsonAdaptedSession(@JsonProperty("name") String sessionName) {
@@ -26,7 +26,7 @@ class JsonAdaptedSession {
      * Converts a given {@code Session} into this class for Jackson use.
      */
     public JsonAdaptedSession(Session source) {
-        this.sessionName = source.sessionName;
+        this.sessionName = source.getSessionName();
     }
 
     @JsonGetter("name")

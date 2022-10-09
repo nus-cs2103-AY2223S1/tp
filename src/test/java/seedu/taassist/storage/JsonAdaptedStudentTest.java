@@ -29,7 +29,7 @@ public class JsonAdaptedStudentTest {
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
     private static final List<String> VALID_CLASSES = BENSON.getModuleClasses().stream()
-            .map(x -> x.className)
+            .map(x -> x.getClassName())
             .collect(Collectors.toList());
 
     @Test

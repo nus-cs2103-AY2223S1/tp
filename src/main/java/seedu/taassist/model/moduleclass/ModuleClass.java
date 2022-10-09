@@ -20,7 +20,7 @@ public class ModuleClass {
     public static final String MESSAGE_CONSTRAINTS = "Class names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
-    public final String className;
+    private final String className;
 
     // TODO: Implement a more robust solution to check for session uniqueness within the list.
     private final List<Session> sessions;
@@ -38,7 +38,7 @@ public class ModuleClass {
     }
 
     /**
-     * Constructs a {@code ModuleClass} with the provided list of {@code Session}-s
+     * Constructs a {@code ModuleClass} with the provided list of {@code Session}-s.
      *
      * @param className A valid class name.
      * @param sessions A list of sessions.
@@ -55,6 +55,10 @@ public class ModuleClass {
      */
     public static boolean isValidModuleClassName(String test) { // TODO: Ensure that class exists
         return test.matches(VALIDATION_REGEX);
+    }
+
+    public String getClassName() {
+        return className;
     }
 
     /**

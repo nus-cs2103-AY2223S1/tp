@@ -8,7 +8,7 @@ import static seedu.taassist.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; name is valid as declared in {@link #isValidSessionName(String)}
  */
 public class Session {
-    public static final String MESSAGE_CONSTRAINTS = "Session names can take any values, but it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Session names can take any values, but they should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -16,12 +16,12 @@ public class Session {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public final String sessionName;
+    private final String sessionName;
 
     /**
      * Constructs a {@code Session}.
      *
-     * @param sessionName A valid class name.
+     * @param sessionName A valid session name.
      */
     public Session(String sessionName) {
         requireNonNull(sessionName);
@@ -34,6 +34,10 @@ public class Session {
      */
     public static boolean isValidSessionName(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    public String getSessionName() {
+        return sessionName;
     }
 
     @Override

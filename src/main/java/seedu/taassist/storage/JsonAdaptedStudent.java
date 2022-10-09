@@ -56,7 +56,7 @@ class JsonAdaptedStudent {
         email = source.getEmail().value;
         address = source.getAddress().value;
         moduleClasses.addAll(source.getModuleClasses().stream()
-                .map(x -> x.className)
+                .map(x -> x.getClassName())
                 .collect(Collectors.toList()));
     }
 
@@ -66,9 +66,9 @@ class JsonAdaptedStudent {
     }
 
     /**
-     * Converts this Jackson-friendly adapted student object into the model's {@code Student} object.
+     * Converts this Jackson-friendly adapted module class object into the model's {@code ModuleClass} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted student.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted module class.
      */
     public Student toModelType() throws IllegalValueException {
         final List<ModuleClass> studentModuleClasses = new ArrayList<>();

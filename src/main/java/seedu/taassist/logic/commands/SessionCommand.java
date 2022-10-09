@@ -31,7 +31,7 @@ public class SessionCommand extends Command {
     private final Session session;
 
     /**
-     * Creates an AddCommand to add the specified {@code Session}.
+     * Creates a SessionCommand to create the specified {@code Session}.
      */
     public SessionCommand(Session session) {
         requireNonNull(session);
@@ -48,12 +48,12 @@ public class SessionCommand extends Command {
 
         ModuleClass oldClass = model.getFocusedClass();
         if (oldClass.hasSession(session)) {
-            throw new CommandException(String.format(MESSAGE_SESSION_EXISTS, session.sessionName));
+            throw new CommandException(String.format(MESSAGE_SESSION_EXISTS, session.getSessionName()));
         }
 
-        List<Session> newList = new ArrayList<>(oldClass.getSessions());
-        newList.add(session);
-        ModuleClass newClass = new ModuleClass(oldClass.className, newList);
+        List<Session> newSessions = new ArrayList<>(oldClass.getSessions());
+        newSessions.add(session);
+        ModuleClass newClass = new ModuleClass(oldClass.getClassName(), newSessions);
 
         model.setModuleClass(oldClass, newClass);
 

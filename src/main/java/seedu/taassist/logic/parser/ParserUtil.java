@@ -143,10 +143,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String moduleClass} into a {@code ModuleClass}.
+     * Parses a {@code String session} into a {@code Session}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code moduleClass} is invalid.
+     * @throws ParseException if the given {@code session} is invalid.
      */
     public static Session parseSession(String session) throws ParseException {
         requireNonNull(session);

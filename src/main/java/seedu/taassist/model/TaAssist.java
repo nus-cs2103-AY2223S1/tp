@@ -1,6 +1,7 @@
 package seedu.taassist.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 import java.util.Optional;
@@ -96,7 +97,7 @@ public class TaAssist implements ReadOnlyTaAssist {
      * book.
      */
     public void setStudent(Student target, Student editedStudent) {
-        requireNonNull(editedStudent);
+        requireAllNonNull(target, editedStudent);
         students.setStudent(target, editedStudent);
     }
 
@@ -134,7 +135,7 @@ public class TaAssist implements ReadOnlyTaAssist {
      * The identity of {@code editedModuleClass} must not be the same as another existing module class in the app.
      */
     public void setModuleClass(ModuleClass target, ModuleClass editedModuleClass) {
-        requireNonNull(editedModuleClass);
+        requireAllNonNull(target, editedModuleClass);
         moduleClasses.setModuleClass(target, editedModuleClass);
     }
 

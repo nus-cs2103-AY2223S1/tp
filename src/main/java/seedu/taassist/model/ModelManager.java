@@ -199,11 +199,16 @@ public class ModelManager implements Model {
 
     //=========== Handles focus mode state ==================================================================
 
-    // Guarantees: classToFocus must exist in TaAssist.
+    // TODO: Should guarantee classToFocus's equivalent identity module class must exist in TaAssist.
     @Override
     public void enterFocusMode(ModuleClass classToFocus) {
         requireNonNull(classToFocus);
+
+        // This is done as the passed in module class might not be the exact module class needed.
+        // Hence, it should look for the module class with equivalent identity in taAssist.
+        // As it's taAssist's module class that contains the actual Session content.
         this.focusedClass = taAssist.findModuleClass(classToFocus).get();
+
         focusLabelProperty.set(String.format(FOCUS_LABEL_FORMAT, focusedClass));
         IsPartOfClassPredicate predicate = new IsPartOfClassPredicate(focusedClass);
         updateFilteredStudentList(predicate);

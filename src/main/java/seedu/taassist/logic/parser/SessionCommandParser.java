@@ -8,13 +8,13 @@ import seedu.taassist.logic.parser.exceptions.ParseException;
 import seedu.taassist.model.session.Session;
 
 /**
- * Parses input arguments and creates a new SessionCommand object
+ * Parses input arguments and creates a new SessionCommand object.
  */
 public class SessionCommandParser implements Parser<SessionCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the SessionCommand
      * and returns an AssignCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public SessionCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_SESSION);

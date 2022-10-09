@@ -3,7 +3,6 @@ package seedu.taassist.model.moduleclass;
 import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
@@ -13,7 +12,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.taassist.model.moduleclass.exceptions.DuplicateModuleClassException;
 import seedu.taassist.model.moduleclass.exceptions.ModuleClassNotFoundException;
-import seedu.taassist.model.student.exceptions.StudentNotFoundException;
 
 /**
  * A list of classes that enforces uniqueness between its elements and does not allow nulls.
@@ -73,7 +71,7 @@ public class UniqueModuleClassList implements Iterable<ModuleClass> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new StudentNotFoundException();
+            throw new ModuleClassNotFoundException();
         }
 
         if (!target.isSameModuleClass(editedModuleClass) && contains(editedModuleClass)) {
@@ -141,7 +139,14 @@ public class UniqueModuleClassList implements Iterable<ModuleClass> {
      * Returns true if {@code moduleClasses} contains only unique classes.
      */
     private boolean isUniqueListOfModuleClasses(List<ModuleClass> moduleClasses) {
-        return new HashSet<>(moduleClasses).size() == moduleClasses.size();
+        for (int i = 0; i + 1 < moduleClasses.size(); i++) {
+            for (int j = i + 1; j < moduleClasses.size(); j++) {
+                if (moduleClasses.get(i).isSameModuleClass(moduleClasses.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }
 

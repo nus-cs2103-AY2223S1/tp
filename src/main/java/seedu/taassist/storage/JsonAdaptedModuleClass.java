@@ -37,7 +37,7 @@ class JsonAdaptedModuleClass {
      * Converts a given {@code ModuleClass} into this class for Jackson use.
      */
     public JsonAdaptedModuleClass(ModuleClass source) {
-        className = source.className;
+        className = source.getClassName();
         sessions.addAll(source.getSessions().stream().map(JsonAdaptedSession::new).collect(Collectors.toList()));
     }
 
