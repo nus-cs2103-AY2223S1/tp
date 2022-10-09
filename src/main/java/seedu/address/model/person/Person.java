@@ -17,23 +17,32 @@ public class Person {
 
     // Identity fields
     private final Name name;
+    private final Position position;
     private final Phone phone;
     private final Email email;
 
     // Data fields
-    private final Address address;
+    private final Remark remark;
+    private final ApplicationProcess applicationProcess;
+    private final Date date;
+    private final Website website;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Remark remark, Position position,
+                  ApplicationProcess applicationProcess, Date date, Website website, Set<Tag> tags) {
+        requireAllNonNull(name, position, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.remark = remark;
         this.tags.addAll(tags);
+        this.position = position;
+        this.applicationProcess = applicationProcess;
+        this.date = date;
+        this.website = website;
     }
 
     public Name getName() {
@@ -48,8 +57,24 @@ public class Person {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
+    public Remark getRemark() {
+        return remark;
+    }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public Website getWebsite() {
+        return website;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public ApplicationProcess getApplicationProcess() {
+        return applicationProcess;
     }
 
     public String getAttribute(Category category) {
@@ -78,7 +103,7 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both persons have the same name and position.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
@@ -87,7 +112,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getName().equals(getName()) && otherPerson.getPosition().equals(getPosition());
     }
 
     /**
@@ -108,26 +133,38 @@ public class Person {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getRemark().equals(getRemark())
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getPosition().equals(getPosition())
+                && otherPerson.getWebsite().equals(getWebsite())
+                && otherPerson.getDate().equals(getDate())
+                && otherPerson.getApplicationProcess().equals(getApplicationProcess());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, remark, tags, position, website, date, applicationProcess);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
+                .append("; Position: ")
+                .append(getPosition())
+                .append("; Application Process: ")
+                .append(getApplicationProcess())
+                .append("; Date: ")
+                .append(getDate())
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+                .append("; Website: ")
+                .append(getWebsite())
+                .append("; Remark: ")
+                .append(getRemark());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
