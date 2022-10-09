@@ -1,11 +1,11 @@
 package foodwhere.ui;
 
-import java.util.Comparator;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import foodwhere.model.review.Review;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
@@ -36,7 +36,7 @@ public class ReviewCard extends UiPart<Region> {
     @FXML
     private Label content;
     @FXML
-    private FlowPane details;
+    private Label details;
 
     /**
      * Creates a {@code ReviewCode} with the given {@code Review} and index to display.
@@ -47,9 +47,15 @@ public class ReviewCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(review.getName().fullName);
         content.setText(review.getContent().value);
-        review.getDetails().stream()
-                .sorted(Comparator.comparing(detail -> detail.detail))
-                .forEach(detail -> details.getChildren().add(new Label(detail.detail)));
+
+        if (!review.getDetails().isEmpty()) {
+            String assigneesNames = review.getDetails()
+                    .stream()
+                    .flatMap(rev -> Stream.of(rev.detail))
+                    .collect(Collectors.joining(", "));
+
+            details.setText(assigneesNames);
+        }
     }
 
     @Override
