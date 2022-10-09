@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import bookface.commons.util.CollectionUtil;
 import bookface.model.book.Book;
 import bookface.model.book.BookList;
 import bookface.model.person.Person;
@@ -118,6 +119,15 @@ public class BookFace implements ReadOnlyBookFace {
         requireNonNull(editedPerson);
 
         persons.setPerson(target, editedPerson);
+    }
+
+    /**
+     * Loans to the person {@code person} in the user list with the book {@code book} in the book list.
+     * {@code person} and {@code book} must exist in the address book.
+     */
+    public void loan(Person person, Book book) {
+        CollectionUtil.requireAllNonNull(person, book);
+        books.loan(person, book);
     }
 
     /**
