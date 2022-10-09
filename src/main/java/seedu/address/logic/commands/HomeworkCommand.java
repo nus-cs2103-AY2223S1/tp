@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
@@ -25,9 +26,9 @@ public class HomeworkCommand extends Command {
             + "by the index number used in the last person listing. "
             + "Existing homework will not be modified.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "h/ [HOMEWORK]\n"
+            + "[" + PREFIX_HOMEWORK + "HOMEWORK]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + "h/ Science worksheet.";
+            + PREFIX_HOMEWORK + "Science worksheet";
 
     public static final String MESSAGE_ADD_HOMEWORK_SUCCESS = "Added homework to Person: %1$s";
     public static final String MESSAGE_DELETE_HOMEWORK_SUCCESS = "Removed homework from Person: %1$s";

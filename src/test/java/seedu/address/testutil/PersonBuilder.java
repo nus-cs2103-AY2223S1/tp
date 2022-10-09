@@ -74,7 +74,7 @@ public class PersonBuilder {
      * that we are building.
      */
     public PersonBuilder withHomework(String ... homeworkList) {
-        this.homeworkList.homeworkList.addAll(SampleDataUtil.getHomeworkList(homeworkList));
+        this.homeworkList = new HomeworkList(SampleDataUtil.getHomeworkList(homeworkList));
         return this;
     }
 

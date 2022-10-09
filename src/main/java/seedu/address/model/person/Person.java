@@ -60,6 +60,13 @@ public class Person {
     }
 
     /**
+     * Clears the person's homework list.
+     */
+    public void clearHomeworkList() {
+        homeworkList.clearList();
+    }
+
+    /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
@@ -98,13 +105,14 @@ public class Person {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getLessonPlan().equals(getLessonPlan())
+                && otherPerson.getHomeworkList().equals(getHomeworkList())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, lessonPlan, tags);
+        return Objects.hash(name, phone, lessonPlan, homeworkList, tags);
     }
 
     @Override
