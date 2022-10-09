@@ -13,7 +13,7 @@ import taskbook.logic.commands.exceptions.CommandException;
 import taskbook.logic.parser.TaskBookParser;
 import taskbook.logic.parser.exceptions.ParseException;
 import taskbook.model.Model;
-import taskbook.model.ReadOnlyAddressBook;
+import taskbook.model.ReadOnlyTaskBook;
 import taskbook.model.person.Person;
 import taskbook.storage.Storage;
 
@@ -46,7 +46,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveTaskBook(model.getTaskBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -55,8 +55,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyTaskBook getTaskBook() {
+        return model.getTaskBook();
     }
 
     @Override
@@ -65,8 +65,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getTaskBookFilePath() {
+        return model.getTaskBookFilePath();
     }
 
     @Override

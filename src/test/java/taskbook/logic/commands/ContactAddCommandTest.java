@@ -17,9 +17,9 @@ import javafx.collections.ObservableList;
 import taskbook.commons.core.GuiSettings;
 import taskbook.logic.commands.contacts.ContactAddCommand;
 import taskbook.logic.commands.exceptions.CommandException;
-import taskbook.model.AddressBook;
+import taskbook.model.TaskBook;
 import taskbook.model.Model;
-import taskbook.model.ReadOnlyAddressBook;
+import taskbook.model.ReadOnlyTaskBook;
 import taskbook.model.ReadOnlyUserPrefs;
 import taskbook.model.person.Name;
 import taskbook.model.person.Person;
@@ -103,12 +103,12 @@ public class ContactAddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getTaskBookFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setTaskBookFilePath(Path taskBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -118,12 +118,12 @@ public class ContactAddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setTaskBook(ReadOnlyTaskBook newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyTaskBook getTaskBook() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -211,8 +211,8 @@ public class ContactAddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyTaskBook getTaskBook() {
+            return new TaskBook();
         }
     }
 

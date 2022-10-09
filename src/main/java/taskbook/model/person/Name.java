@@ -6,7 +6,7 @@ import taskbook.commons.util.AppUtil;
 
 
 /**
- * Represents a Person's name in the address book.
+ * Represents a Person's name in the task book.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
 public class Name {

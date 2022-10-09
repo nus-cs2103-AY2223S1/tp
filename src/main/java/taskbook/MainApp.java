@@ -15,15 +15,15 @@ import taskbook.commons.util.ConfigUtil;
 import taskbook.commons.util.StringUtil;
 import taskbook.logic.Logic;
 import taskbook.logic.LogicManager;
-import taskbook.model.AddressBook;
+import taskbook.model.TaskBook;
 import taskbook.model.Model;
 import taskbook.model.ModelManager;
-import taskbook.model.ReadOnlyAddressBook;
+import taskbook.model.ReadOnlyTaskBook;
 import taskbook.model.ReadOnlyUserPrefs;
 import taskbook.model.UserPrefs;
 import taskbook.model.util.SampleDataUtil;
-import taskbook.storage.AddressBookStorage;
-import taskbook.storage.JsonAddressBookStorage;
+import taskbook.storage.TaskBookStorage;
+import taskbook.storage.JsonTaskBookStorage;
 import taskbook.storage.JsonUserPrefsStorage;
 import taskbook.storage.Storage;
 import taskbook.storage.StorageManager;
@@ -48,7 +48,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing TaskBook ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -56,8 +56,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        TaskBookStorage taskBookStorage = new JsonTaskBookStorage(userPrefs.getTaskBookFilePath());
+        storage = new StorageManager(taskBookStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -69,25 +69,25 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s task book and {@code userPrefs}. <br>
+     * The data from the sample task book will be used instead if {@code storage}'s task book is not found,
+     * or an empty task book will be used instead if errors occur when reading {@code storage}'s task book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyTaskBook> taskBookOptional;
+        ReadOnlyTaskBook initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+            taskBookOptional = storage.readTaskBook();
+            if (!taskBookOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample TaskBook");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = taskBookOptional.orElseGet(SampleDataUtil::getSampleTaskBook);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Data file not in the correct format. Will be starting with an empty TaskBook");
+            initialData = new TaskBook();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Problem while reading from the file. Will be starting with an empty TaskBook");
+            initialData = new TaskBook();
         }
 
         return new ModelManager(initialData, userPrefs);
@@ -151,7 +151,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty TaskBook");
             initializedPrefs = new UserPrefs();
         }
 
@@ -167,13 +167,13 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting TaskBook " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping task book ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

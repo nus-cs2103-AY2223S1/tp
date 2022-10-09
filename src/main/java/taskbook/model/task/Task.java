@@ -7,7 +7,7 @@ import taskbook.model.person.Person;
 import taskbook.model.task.enums.Assignment;
 
 /**
- * Represents a Task in the address book.
+ * Represents a Task in the task book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Task {

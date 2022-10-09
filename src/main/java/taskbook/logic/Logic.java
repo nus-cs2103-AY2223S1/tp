@@ -8,7 +8,7 @@ import taskbook.logic.commands.CommandResult;
 import taskbook.logic.commands.exceptions.CommandException;
 import taskbook.logic.parser.exceptions.ParseException;
 import taskbook.model.Model;
-import taskbook.model.ReadOnlyAddressBook;
+import taskbook.model.ReadOnlyTaskBook;
 import taskbook.model.person.Person;
 
 /**
@@ -25,19 +25,19 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the TaskBook.
      *
-     * @see Model#getAddressBook()
+     * @see Model#getTaskBook()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyTaskBook getTaskBook();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' task book file path.
      */
-    Path getAddressBookFilePath();
+    Path getTaskBookFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

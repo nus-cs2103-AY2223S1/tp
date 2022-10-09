@@ -3,7 +3,7 @@ package taskbook.logic.commands;
 import static taskbook.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static taskbook.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static taskbook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static taskbook.testutil.TypicalPersons.getTypicalAddressBook;
+import static taskbook.testutil.TypicalPersons.getTypicaltaskBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,8 +23,8 @@ public class ContactListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicaltaskBook(), new UserPrefs());
+        expectedModel = new ModelManager(model.getTaskBook(), new UserPrefs());
     }
 
     @Test
