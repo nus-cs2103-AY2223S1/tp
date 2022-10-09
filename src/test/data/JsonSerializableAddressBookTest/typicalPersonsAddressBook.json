@@ -7,6 +7,7 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "gender": "Female",
     "university": "Singapore University",
+    "major": "Computer Science",
     "tagged" : [ "interview", "rejected" ]
   }, {
     "name" : "Benson Meier",
@@ -15,6 +16,7 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "gender": "Male",
     "university": "NUS",
+    "major": "Computer Engineering",
     "tagged" : [ "KIV" ]
   }, {
     "name" : "Carl Kurz",
@@ -23,6 +25,7 @@
     "address" : "wall street",
     "gender": "Male",
     "university": "SUTD",
+    "major": "Computer Science",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
@@ -31,6 +34,7 @@
     "address" : "10th street",
     "gender": "Male",
     "university": "SMU",
+    "major": "Computer Engineering",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -39,6 +43,7 @@
     "address" : "michegan ave",
     "gender": "Female",
     "university": "Lasalle",
+    "major": "Chemical Engineering",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -47,6 +52,7 @@
     "address" : "little tokyo",
     "gender": "Female",
     "university": "Nanyang Polytechnic",
+    "major": "Civil Engineering",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
@@ -55,6 +61,7 @@
     "address" : "4th street",
     "gender": "Male",
     "university": "Temasek Polytechnic",
+    "major": "Electrical Engineering",
     "tagged" : [ ]
   } ]
 }

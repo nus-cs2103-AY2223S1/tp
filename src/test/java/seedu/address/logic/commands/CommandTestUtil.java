@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -40,6 +41,8 @@ public class CommandTestUtil {
     public static final String VALID_GENDER_BOB = "Male";
     public static final String VALID_UNIVERSITY_AMY = "NUS";
     public static final String VALID_UNIVERSITY_BOB = "NTU";
+    public static final String VALID_MAJOR_AMY = "Computer Science";
+    public static final String VALID_MAJOR_BOB = "Computer Engineering";
     public static final String VALID_TAG_KIV = "KIV";
     public static final String VALID_TAG_REJECTED = "rejected";
 
@@ -55,6 +58,8 @@ public class CommandTestUtil {
     public static final String GENDER_DESC_BOB = " " + PREFIX_GENDER + VALID_GENDER_BOB;
     public static final String UNIVERSITY_DESC_AMY = " " + PREFIX_UNIVERSITY + VALID_UNIVERSITY_AMY;
     public static final String UNIVERSITY_DESC_BOB = " " + PREFIX_UNIVERSITY + VALID_UNIVERSITY_BOB;
+    public static final String MAJOR_DESC_AMY = " " + PREFIX_MAJOR + VALID_MAJOR_AMY;
+    public static final String MAJOR_DESC_BOB = " " + PREFIX_MAJOR + VALID_MAJOR_BOB;
     public static final String TAG_DESC_REJECTED = " " + PREFIX_TAG + VALID_TAG_REJECTED;
     public static final String TAG_DESC_KIV = " " + PREFIX_TAG + VALID_TAG_KIV;
 
@@ -65,6 +70,8 @@ public class CommandTestUtil {
     public static final String INVALID_GENDER_DESC = " " + PREFIX_GENDER + "4Male"; // '4' not allowed in gender
     public static final String INVALID_UNIVERSITY_DESC = " " + PREFIX_UNIVERSITY + "St@r"; // '@' not allowed for
     // universities
+    public static final String INVALID_MAJOR_DESC = " " + PREFIX_MAJOR + "C0MPUT3R $C13NC3"; // '0, 3, $, 1'
+    // not allowed for majors
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "offered*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -78,11 +85,13 @@ public class CommandTestUtil {
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
                 .withAddress(VALID_ADDRESS_AMY)
                 .withUniversity(VALID_UNIVERSITY_AMY)
+                .withMajor(VALID_MAJOR_AMY)
                 .withGender(VALID_GENDER_AMY).withTags(VALID_TAG_REJECTED).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB)
                 .withUniversity(VALID_UNIVERSITY_BOB)
+                .withMajor(VALID_MAJOR_BOB)
                 .withGender(VALID_GENDER_BOB).withTags(VALID_TAG_KIV, VALID_TAG_REJECTED).build();
     }
 

@@ -5,6 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -38,6 +39,7 @@ public class EditCommandParser implements Parser<EditCommand> {
                     PREFIX_ADDRESS,
                     PREFIX_GENDER,
                     PREFIX_UNIVERSITY,
+                    PREFIX_MAJOR,
                     PREFIX_TAG);
 
         Index index;
@@ -72,6 +74,10 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_UNIVERSITY).isPresent()) {
             editPersonDescriptor
                 .setUniversity(ParserUtil.parseUniversity(argMultimap.getValue(PREFIX_UNIVERSITY).get()));
+        }
+        if (argMultimap.getValue(PREFIX_MAJOR).isPresent()) {
+            editPersonDescriptor
+                .setMajor(ParserUtil.parseMajor(argMultimap.getValue(PREFIX_MAJOR).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 

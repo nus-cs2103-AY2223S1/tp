@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MAJOR_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_KIV;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_UNIVERSITY_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -52,6 +53,7 @@ public class AddressBookTest {
             .withAddress(VALID_ADDRESS_BOB)
             .withGender(VALID_GENDER_BOB)
             .withUniversity(VALID_UNIVERSITY_BOB)
+            .withMajor(VALID_MAJOR_BOB)
             .withTags(VALID_TAG_KIV)
             .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
@@ -83,6 +85,7 @@ public class AddressBookTest {
             .withAddress(VALID_ADDRESS_BOB)
             .withGender(VALID_GENDER_BOB)
             .withUniversity(VALID_UNIVERSITY_BOB)
+            .withMajor(VALID_MAJOR_BOB)
             .withTags(VALID_TAG_KIV)
             .build();
         assertTrue(addressBook.hasPerson(editedAlice));

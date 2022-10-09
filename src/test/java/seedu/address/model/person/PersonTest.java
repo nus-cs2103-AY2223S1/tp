@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MAJOR_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_KIV;
@@ -38,6 +39,7 @@ public class PersonTest {
             .withAddress(VALID_ADDRESS_BOB)
             .withGender(VALID_GENDER_BOB)
             .withUniversity(VALID_UNIVERSITY_BOB)
+            .withMajor(VALID_MAJOR_BOB)
             .withTags(VALID_TAG_KIV).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
@@ -95,6 +97,10 @@ public class PersonTest {
 
         // different university -> returns false
         editedAlice = new PersonBuilder(ALICE).withUniversity(VALID_UNIVERSITY_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different major -> returns false
+        editedAlice = new PersonBuilder(ALICE).withMajor(VALID_MAJOR_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false

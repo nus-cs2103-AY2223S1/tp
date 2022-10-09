@@ -6,6 +6,7 @@ import java.util.Set;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
+import seedu.address.model.person.Major;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -24,6 +25,7 @@ public class PersonBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_GENDER = "Female";
     public static final String DEFAULT_UNIVERSITY = "NUS";
+    public static final String DEFAULT_MAJOR = "Computer Science";
 
     private Name name;
     private Phone phone;
@@ -31,6 +33,7 @@ public class PersonBuilder {
     private Address address;
     private Gender gender;
     private University university;
+    private Major major;
     private Set<Tag> tags;
 
     /**
@@ -43,6 +46,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         gender = new Gender(DEFAULT_GENDER);
         university = new University(DEFAULT_UNIVERSITY);
+        major = new Major(DEFAULT_MAJOR);
         tags = new HashSet<>();
     }
 
@@ -56,6 +60,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         gender = personToCopy.getGender();
         university = personToCopy.getUniversity();
+        major = personToCopy.getMajor();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -116,6 +121,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Major} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withMajor(String major) {
+        this.major = new Major(major);
+        return this;
+    }
+
+    /**
      * Builds the {@code Person} that we are building.
      */
     public Person build() {
@@ -123,6 +136,7 @@ public class PersonBuilder {
             address,
             gender,
             university,
+            major,
             tags);
     }
 

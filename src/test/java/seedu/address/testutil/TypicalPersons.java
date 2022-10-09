@@ -6,6 +6,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MAJOR_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MAJOR_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
@@ -34,6 +36,7 @@ public class TypicalPersons {
         .withPhone("94351253")
         .withGender("Female")
         .withUniversity("Singapore University")
+        .withMajor("Computer Science")
         .withTags("interview", "rejected")
         .build();
     public static final Person BENSON = new PersonBuilder()
@@ -43,6 +46,7 @@ public class TypicalPersons {
         .withPhone("98765432")
         .withGender("Male")
         .withUniversity("NUS")
+        .withMajor("Computer Engineering")
         .withTags("KIV")
         .build();
     public static final Person CARL = new PersonBuilder()
@@ -51,6 +55,7 @@ public class TypicalPersons {
         .withAddress("wall street")
         .withGender("Male")
         .withUniversity("SUTD")
+        .withMajor("Chemical Engineering")
         .build();
     public static final Person DANIEL = new PersonBuilder()
         .withName("Daniel Meier")
@@ -59,6 +64,7 @@ public class TypicalPersons {
         .withAddress("10th street")
         .withGender("Male")
         .withUniversity("SMU")
+        .withMajor("Civil Engineering")
         .withTags("friends")
         .build();
     public static final Person ELLE = new PersonBuilder()
@@ -68,6 +74,7 @@ public class TypicalPersons {
         .withAddress("michegan ave")
         .withGender("Female")
         .withUniversity("Lasalle")
+        .withMajor("Electrical Engineering")
         .build();
     public static final Person FIONA = new PersonBuilder()
         .withName("Fiona Kunz")
@@ -76,6 +83,7 @@ public class TypicalPersons {
         .withAddress("little tokyo")
         .withGender("Female")
         .withUniversity("Nanyang Polytechnic")
+        .withMajor("Animal Sciences")
         .build();
     public static final Person GEORGE = new PersonBuilder()
         .withName("George Best")
@@ -84,6 +92,7 @@ public class TypicalPersons {
         .withAddress("4th street")
         .withGender("Male")
         .withUniversity("Temasek Polytechnic")
+        .withMajor("Accounting")
         .build();
 
     // Manually added
@@ -100,7 +109,9 @@ public class TypicalPersons {
         .withEmail("hans@example.com")
         .withAddress("chicago ave")
         .withGender("Female")
-        .withUniversity("SUTD").build();
+        .withUniversity("SUTD")
+        .withMajor("Food and Nutrition")
+        .build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder()
@@ -110,6 +121,7 @@ public class TypicalPersons {
         .withAddress(VALID_ADDRESS_AMY)
         .withGender(VALID_GENDER_AMY)
         .withUniversity(VALID_UNIVERSITY_AMY)
+        .withMajor(VALID_MAJOR_AMY)
         .withTags(VALID_TAG_REJECTED)
         .build();
     public static final Person BOB = new PersonBuilder()
@@ -119,6 +131,7 @@ public class TypicalPersons {
         .withAddress(VALID_ADDRESS_BOB)
         .withGender(VALID_GENDER_BOB)
         .withUniversity(VALID_UNIVERSITY_BOB)
+        .withMajor(VALID_MAJOR_BOB)
         .withTags(VALID_TAG_KIV, VALID_TAG_REJECTED)
         .build();
 

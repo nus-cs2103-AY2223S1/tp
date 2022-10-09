@@ -10,10 +10,13 @@ import static seedu.address.logic.commands.CommandTestUtil.GENDER_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_GENDER_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_MAJOR_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_UNIVERSITY_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.MAJOR_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.MAJOR_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
@@ -27,6 +30,7 @@ import static seedu.address.logic.commands.CommandTestUtil.UNIVERSITY_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MAJOR_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_KIV;
@@ -43,6 +47,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
+import seedu.address.model.person.Major;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -62,6 +67,7 @@ public class AddCommandParserTest {
             + ADDRESS_DESC_BOB
             + GENDER_DESC_BOB
             + UNIVERSITY_DESC_BOB
+            + MAJOR_DESC_BOB
             + TAG_DESC_REJECTED, new AddCommand(expectedPerson));
 
         // multiple names - last name accepted
@@ -69,6 +75,7 @@ public class AddCommandParserTest {
             + ADDRESS_DESC_BOB
             + GENDER_DESC_BOB
             + UNIVERSITY_DESC_BOB
+            + MAJOR_DESC_BOB
             + TAG_DESC_REJECTED, new AddCommand(expectedPerson));
 
         // multiple phones - last phone accepted
@@ -76,6 +83,7 @@ public class AddCommandParserTest {
             + ADDRESS_DESC_BOB
             + GENDER_DESC_BOB
             + UNIVERSITY_DESC_BOB
+            + MAJOR_DESC_BOB
             + TAG_DESC_REJECTED, new AddCommand(expectedPerson));
 
         // multiple emails - last email accepted
@@ -83,6 +91,7 @@ public class AddCommandParserTest {
             + ADDRESS_DESC_BOB
             + GENDER_DESC_BOB
             + UNIVERSITY_DESC_BOB
+            + MAJOR_DESC_BOB
             + TAG_DESC_REJECTED, new AddCommand(expectedPerson));
 
         // multiple addresses - last address accepted
@@ -91,6 +100,7 @@ public class AddCommandParserTest {
             + ADDRESS_DESC_BOB
             + GENDER_DESC_BOB
             + UNIVERSITY_DESC_BOB
+            + MAJOR_DESC_BOB
             + TAG_DESC_REJECTED, new AddCommand(expectedPerson));
 
         // multiple genders - last gender accepted
@@ -99,6 +109,7 @@ public class AddCommandParserTest {
             + GENDER_DESC_AMY
             + GENDER_DESC_BOB
             + UNIVERSITY_DESC_BOB
+            + MAJOR_DESC_BOB
             + TAG_DESC_REJECTED, new AddCommand(expectedPerson));
 
         // multiple universities - last university accepted
@@ -107,6 +118,16 @@ public class AddCommandParserTest {
             + GENDER_DESC_BOB
             + UNIVERSITY_DESC_AMY
             + UNIVERSITY_DESC_BOB
+            + MAJOR_DESC_BOB
+            + TAG_DESC_REJECTED, new AddCommand(expectedPerson));
+
+        // multiple majors - last major accepted
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+            + ADDRESS_DESC_BOB
+            + GENDER_DESC_BOB
+            + UNIVERSITY_DESC_BOB
+            + MAJOR_DESC_AMY
+            + MAJOR_DESC_BOB
             + TAG_DESC_REJECTED, new AddCommand(expectedPerson));
 
         // multiple tags - all accepted
@@ -116,6 +137,7 @@ public class AddCommandParserTest {
             + ADDRESS_DESC_BOB
             + GENDER_DESC_BOB
             + UNIVERSITY_DESC_BOB
+            + MAJOR_DESC_BOB
             + TAG_DESC_KIV
             + TAG_DESC_REJECTED, new AddCommand(expectedPersonMultipleTags));
     }
@@ -127,7 +149,8 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
             + ADDRESS_DESC_AMY
             + GENDER_DESC_AMY
-            + UNIVERSITY_DESC_AMY, new AddCommand(expectedPerson));
+            + UNIVERSITY_DESC_AMY
+            + MAJOR_DESC_AMY, new AddCommand(expectedPerson));
     }
 
     @Test
@@ -138,43 +161,57 @@ public class AddCommandParserTest {
         assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
             + ADDRESS_DESC_BOB
             + GENDER_DESC_BOB
-            + UNIVERSITY_DESC_BOB, expectedMessage);
+            + UNIVERSITY_DESC_BOB
+            + MAJOR_DESC_BOB, expectedMessage);
 
         // missing phone prefix
         assertParseFailure(parser, NAME_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB
             + ADDRESS_DESC_BOB
             + GENDER_DESC_BOB
-            + UNIVERSITY_DESC_BOB, expectedMessage);
+            + UNIVERSITY_DESC_BOB
+            + MAJOR_DESC_BOB, expectedMessage);
 
         // missing email prefix
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB
             + ADDRESS_DESC_BOB
             + GENDER_DESC_BOB
-            + UNIVERSITY_DESC_BOB, expectedMessage);
+            + UNIVERSITY_DESC_BOB
+            + MAJOR_DESC_BOB, expectedMessage);
 
         // missing address prefix
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
             + VALID_ADDRESS_BOB
             + GENDER_DESC_BOB
-            + UNIVERSITY_DESC_BOB, expectedMessage);
+            + UNIVERSITY_DESC_BOB
+            + MAJOR_DESC_BOB, expectedMessage);
 
         // missing gender prefix
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
             + ADDRESS_DESC_BOB
             + VALID_GENDER_BOB
-            + UNIVERSITY_DESC_BOB, expectedMessage);
+            + UNIVERSITY_DESC_BOB
+            + MAJOR_DESC_BOB, expectedMessage);
 
         // missing university prefix
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
             + ADDRESS_DESC_BOB
             + GENDER_DESC_BOB
-            + VALID_UNIVERSITY_BOB, expectedMessage);
+            + VALID_UNIVERSITY_BOB
+            + MAJOR_DESC_BOB, expectedMessage);
+
+        // missing major prefix
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+            + ADDRESS_DESC_BOB
+            + GENDER_DESC_BOB
+            + UNIVERSITY_DESC_BOB
+            + VALID_MAJOR_BOB, expectedMessage);
 
         // all prefixes missing
         assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB
             + VALID_ADDRESS_BOB
             + VALID_GENDER_BOB
-            + VALID_UNIVERSITY_BOB, expectedMessage);
+            + VALID_UNIVERSITY_BOB
+            + VALID_MAJOR_BOB, expectedMessage);
     }
 
     @Test
@@ -184,6 +221,7 @@ public class AddCommandParserTest {
             + ADDRESS_DESC_BOB
             + GENDER_DESC_BOB
             + UNIVERSITY_DESC_BOB
+            + MAJOR_DESC_BOB
             + TAG_DESC_KIV
             + TAG_DESC_REJECTED, Name.MESSAGE_CONSTRAINTS);
 
@@ -192,6 +230,7 @@ public class AddCommandParserTest {
             + ADDRESS_DESC_BOB
             + GENDER_DESC_BOB
             + UNIVERSITY_DESC_BOB
+            + MAJOR_DESC_BOB
             + TAG_DESC_KIV
             + TAG_DESC_REJECTED, Phone.MESSAGE_CONSTRAINTS);
 
@@ -200,6 +239,7 @@ public class AddCommandParserTest {
             + ADDRESS_DESC_BOB
             + GENDER_DESC_BOB
             + UNIVERSITY_DESC_BOB
+            + MAJOR_DESC_BOB
             + TAG_DESC_KIV
             + TAG_DESC_REJECTED, Email.MESSAGE_CONSTRAINTS);
 
@@ -208,6 +248,7 @@ public class AddCommandParserTest {
             + INVALID_ADDRESS_DESC
             + GENDER_DESC_BOB
             + UNIVERSITY_DESC_BOB
+            + MAJOR_DESC_BOB
             + TAG_DESC_KIV
             + TAG_DESC_REJECTED, Address.MESSAGE_CONSTRAINTS);
 
@@ -216,6 +257,7 @@ public class AddCommandParserTest {
             + ADDRESS_DESC_BOB
             + INVALID_GENDER_DESC
             + UNIVERSITY_DESC_BOB
+            + MAJOR_DESC_BOB
             + TAG_DESC_KIV
             + TAG_DESC_REJECTED, Gender.MESSAGE_CONSTRAINTS);
 
@@ -224,14 +266,25 @@ public class AddCommandParserTest {
             + ADDRESS_DESC_BOB
             + GENDER_DESC_BOB
             + INVALID_UNIVERSITY_DESC
+            + MAJOR_DESC_BOB
             + TAG_DESC_KIV
             + TAG_DESC_REJECTED, University.MESSAGE_CONSTRAINTS);
+
+        // invalid major
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+            + ADDRESS_DESC_BOB
+            + GENDER_DESC_BOB
+            + UNIVERSITY_DESC_BOB
+            + INVALID_MAJOR_DESC
+            + TAG_DESC_KIV
+            + TAG_DESC_REJECTED, Major.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
             + ADDRESS_DESC_BOB
             + GENDER_DESC_BOB
             + UNIVERSITY_DESC_BOB
+            + MAJOR_DESC_BOB
             + INVALID_TAG_DESC
             + VALID_TAG_REJECTED, Tag.MESSAGE_CONSTRAINTS);
 
@@ -239,13 +292,15 @@ public class AddCommandParserTest {
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB
             + INVALID_ADDRESS_DESC
             + GENDER_DESC_BOB
-            + UNIVERSITY_DESC_BOB, Name.MESSAGE_CONSTRAINTS);
+            + UNIVERSITY_DESC_BOB
+            + MAJOR_DESC_BOB, Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB
                 + GENDER_DESC_BOB
                 + UNIVERSITY_DESC_BOB
+                + MAJOR_DESC_BOB
                 + TAG_DESC_KIV
                 + TAG_DESC_REJECTED,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));

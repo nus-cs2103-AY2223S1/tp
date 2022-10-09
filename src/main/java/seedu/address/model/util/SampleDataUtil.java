@@ -9,6 +9,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
+import seedu.address.model.person.Major;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -28,6 +29,7 @@ public class SampleDataUtil {
                 new Address("Blk 30 Geylang Street 29, #06-40"),
                 new Gender("Male"),
                 new University("National University of Singapore"),
+                new Major("Computer Science"),
                 getTagSet("offered")),
             new Person(
                 new Name("Bernice Yu"),
@@ -36,6 +38,7 @@ public class SampleDataUtil {
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                 new Gender("Female"),
                 new University("Nanyang Technological University"),
+                new Major("Computer Engineering"),
                 getTagSet()),
             new Person(
                 new Name("Charlotte Oliveiro"),
@@ -44,6 +47,7 @@ public class SampleDataUtil {
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
                 new Gender("Female"),
                 new University("Oxford University"),
+                new Major("Business Analytics"),
                 getTagSet("assessment", "rejected")),
             new Person(
                 new Name("David Li"),
@@ -52,6 +56,7 @@ public class SampleDataUtil {
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
                 new Gender("Male"),
                 new University("Singapore Management University"),
+                new Major("Chemical Engineering"),
                 getTagSet("KIV")),
             new Person(
                 new Name("Irfan Ibrahim"),
@@ -60,6 +65,7 @@ public class SampleDataUtil {
                 new Address("Blk 47 Tampines Street 20, #17-35"),
                 new Gender("Male"),
                 new University("Singapore University of Technology and Design"),
+                new Major("Civil Engineering"),
                 getTagSet("final interview", "rejected")),
             new Person(
                 new Name("Roy Balakrishnan"),
@@ -68,6 +74,7 @@ public class SampleDataUtil {
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
                 new Gender("Male"),
                 new University("Temasek Polytechnic"),
+                new Major("Electrical Engineering"),
                 getTagSet("offer rejected"))
         };
     }

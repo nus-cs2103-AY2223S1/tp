@@ -24,6 +24,7 @@ public class Person {
     private final Address address;
     private final Gender gender;
     private final University university;
+    private final Major major;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -33,11 +34,13 @@ public class Person {
                   Address address,
                   Gender gender,
                   University university,
+                  Major major,
                   Set<Tag> tags) {
         requireAllNonNull(name, phone, email,
             address,
             gender,
             university,
+            major,
             tags);
         this.name = name;
         this.phone = phone;
@@ -45,6 +48,7 @@ public class Person {
         this.address = address;
         this.gender = gender;
         this.university = university;
+        this.major = major;
         this.tags.addAll(tags);
     }
 
@@ -70,6 +74,10 @@ public class Person {
 
     public University getUniversity() {
         return university;
+    }
+
+    public Major getMajor() {
+        return major;
     }
 
     /**
@@ -114,13 +122,14 @@ public class Person {
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getGender().equals(getGender())
                 && otherPerson.getUniversity().equals(getUniversity())
+                && otherPerson.getMajor().equals(getMajor())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, gender, university, tags);
+        return Objects.hash(name, phone, email, address, gender, university, major, tags);
     }
 
     @Override
@@ -136,7 +145,9 @@ public class Person {
                 .append("; Gender: ")
                 .append(getGender())
                 .append("; University: ")
-                .append(getUniversity());
+                .append(getUniversity())
+                .append("; Major: ")
+                .append(getMajor());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

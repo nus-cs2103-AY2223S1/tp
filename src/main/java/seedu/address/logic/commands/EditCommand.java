@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -24,6 +25,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
+import seedu.address.model.person.Major;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -47,6 +49,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_GENDER + "GENDER] "
             + "[" + PREFIX_UNIVERSITY + "UNIVERSITY] "
+            + "[" + PREFIX_MAJOR + "MAJOR] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -105,12 +108,14 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
         University updatedUniversity = editPersonDescriptor.getUniversity().orElse(personToEdit.getUniversity());
+        Major updatedMajor = editPersonDescriptor.getMajor().orElse(personToEdit.getMajor());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedPhone, updatedEmail,
             updatedAddress,
             updatedGender,
             updatedUniversity,
+            updatedMajor,
             updatedTags);
     }
 
@@ -143,6 +148,7 @@ public class EditCommand extends Command {
         private Address address;
         private Gender gender;
         private University university;
+        private Major major;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -158,6 +164,7 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setGender(toCopy.gender);
             setUniversity(toCopy.university);
+            setMajor(toCopy.major);
             setTags(toCopy.tags);
         }
 
@@ -169,6 +176,7 @@ public class EditCommand extends Command {
                 address,
                 gender,
                 university,
+                major,
                 tags);
         }
 
@@ -220,6 +228,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(university);
         }
 
+        public void setMajor(Major major) {
+            this.major = major;
+        }
+
+        public Optional<Major> getMajor() {
+            return Optional.ofNullable(major);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -258,6 +274,7 @@ public class EditCommand extends Command {
                     && getAddress().equals(e.getAddress())
                     && getGender().equals(e.getGender())
                     && getUniversity().equals(e.getUniversity())
+                    && getMajor().equals(e.getMajor())
                     && getTags().equals(e.getTags());
         }
     }

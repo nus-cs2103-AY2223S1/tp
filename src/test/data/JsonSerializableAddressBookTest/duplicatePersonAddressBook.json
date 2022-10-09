@@ -6,6 +6,7 @@
     "address": "123, Jurong West Ave 6, #08-111",
     "gender": "Female",
     "university": "NUS",
+    "major": "Computer Science",
     "tagged": [ "interview", "rejected" ]
   }, {
     "name": "Alice Pauline",
@@ -13,6 +14,7 @@
     "email": "pauline@example.com",
     "address": "4th street",
     "gender": "Female",
-    "university": "NTU"
+    "university": "NTU",
+    "major": "Computer Engineering"
   } ]
 }
