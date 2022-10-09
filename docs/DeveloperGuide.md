@@ -147,10 +147,12 @@ Classes used by multiple components are in the `seedu.taassist.commons` package.
 
 ## **Implementation**
 
-### Add class feature
-todo
+
 ### Assigning students to a class
-todo
+<img src="images/AssignCommandSequenceDiagram.png" width="550" />
+
+DESCRIPTION TODO
+
 ### Tracking the state of focus mode
 The state of focus mode is tracked by `ModelManager`, which stores the current focused `ModuleClass` (`focusedClass`, as seen in the [class diagram for `Model`](#model-component)).
 When `focusedClass` is `null`, it indicates that focus mode is inactive. `ModuleManager` returns the state of the focus mode via the following methods:
@@ -158,7 +160,7 @@ When `focusedClass` is `null`, it indicates that focus mode is inactive. `Module
 * `ModelManager#getFocusedClass()` - Returns the current `ModuleClass` in focus.
 
 The following methods in `ModelManager` toggles the state of the focus mode:
-* `ModelManager#enterFocusMode(ModuleClass classToFocus)` - Sets focus mode to be active .
+* `ModelManager#enterFocusMode(ModuleClass classToFocus)` - Sets focus mode to be active.
   * This is achieved by setting `focusedClass` to be a non-null `ModuleClass` object.
   * This method assumes that `focusedClass` is an existing `ModuleClass` in `TaAssist`.
 
@@ -177,8 +179,6 @@ The call to `ModelManager#hasModuleClass` is necessary to ensure that the `Modul
 argument to `ModelManager#enterFocusMode`.
 
 On the other hand, the `back` command deactivates focus mode.
-
-
 
 --------------------------------------------------------------------------------------------------------------------
 
