@@ -13,8 +13,8 @@ import seedu.address.model.person.PersonId;
  */
 public class InternshipCard extends UiPart<Region> {
 
-    private static final String FXML = "InternshipListCard.fxml";
     static final String NO_CONTACT_PERSON = "No contact person.";
+    private static final String FXML = "InternshipListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.

@@ -46,7 +46,8 @@ public class InternshipListPanel extends UiPart<Region> {
             } else {
                 //create internship card
                 InternshipCard newInternshipCard = new InternshipCard(internship, getIndex() + 1);
-                newInternshipCard.setContactPerson(addressBook.findPersonNameById(newInternshipCard.getContactPersonId()));
+                newInternshipCard.setContactPerson(
+                        addressBook.findPersonNameById(newInternshipCard.getContactPersonId()));
 
                 setGraphic(newInternshipCard.getRoot());
             }
