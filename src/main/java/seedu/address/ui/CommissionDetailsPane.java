@@ -10,6 +10,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.commons.core.ObservableObject;
 import seedu.address.model.commission.Commission;
+import seedu.address.model.commission.Description;
 
 /**
  * An UI component that displays information about a {@code Commission}.
@@ -63,7 +64,7 @@ public class CommissionDetailsPane extends UiPart<Region> {
             iterationListPlaceholder.getChildren().clear();
         } else {
             title.setText(commission.getTitle().title);
-            description.setText(commission.getDescription().description);
+            description.setText(commission.getDescription().orElseGet(() -> Description.NO_DESCRIPTION).description);
             fee.setText(commission.getFee().toString());
             deadline.setText(commission.getDeadline().toString());
             completionStatus.setText(commission.getCompletionStatus().toString());

@@ -6,7 +6,7 @@ import static java.util.Objects.requireNonNull;
  * Represents an Iteration's description in the address book.
  * Guarantees: immutable; any description is valid
  */
-public class Description {
+public class IterationDescription {
 
     public final String description;
 
@@ -15,7 +15,7 @@ public class Description {
      *
      * @param description A valid description.
      */
-    public Description(String description) {
+    public IterationDescription(String description) {
         requireNonNull(description);
         this.description = description;
     }
@@ -31,11 +31,11 @@ public class Description {
             return true;
         }
 
-        if (!(other instanceof Description)) {
+        if (!(other instanceof IterationDescription)) {
             return false;
         }
 
-        Description otherDescription = (Description) other;
+        IterationDescription otherDescription = (IterationDescription) other;
         return otherDescription.description.equals(description);
     }
 

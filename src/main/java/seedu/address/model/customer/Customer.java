@@ -64,6 +64,10 @@ public class Customer {
         return Collections.unmodifiableSet(commissions);
     }
 
+    public Set<Commission> getCommissionsMutable() {
+        return commissions;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.

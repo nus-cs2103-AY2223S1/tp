@@ -12,7 +12,7 @@ public class Iteration {
 
     // Identity fields
     private final Date date;
-    private final Description description;
+    private final IterationDescription description;
     // TODO add artwork (image) attribute
 
     // Optional fields
@@ -26,7 +26,7 @@ public class Iteration {
      * @param date The creation date of the iteration.
      * @param description The description of the iteration.
      */
-    public Iteration(Date date, Description description, Feedback feedback) {
+    public Iteration(Date date, IterationDescription description, Feedback feedback) {
         requireAllNonNull(date, description, feedback);
         this.date = date;
         this.description = description;
@@ -37,7 +37,7 @@ public class Iteration {
         return date;
     }
 
-    public Description getDescription() {
+    public IterationDescription getDescription() {
         return description;
     }
 

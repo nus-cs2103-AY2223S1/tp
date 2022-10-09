@@ -1,9 +1,9 @@
 package seedu.address.logic.parser.iteration;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FEEDBACK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ITERATION_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ITERATION_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ITERATION_FEEDBACK;
 
 import java.util.stream.Stream;
 
@@ -15,9 +15,9 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.iteration.Date;
-import seedu.address.model.iteration.Description;
 import seedu.address.model.iteration.Feedback;
 import seedu.address.model.iteration.Iteration;
+import seedu.address.model.iteration.IterationDescription;
 
 /**
  * Parses input arguments and creates a new AddIterationCommand object.
@@ -40,16 +40,19 @@ public class AddIterationCommandParser implements Parser<AddIterationCommand> {
      */
     public AddIterationCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_DATE, PREFIX_DESCRIPTION, PREFIX_FEEDBACK);
+                ArgumentTokenizer.tokenize(args, PREFIX_ITERATION_DATE,
+                        PREFIX_ITERATION_DESCRIPTION, PREFIX_ITERATION_FEEDBACK);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_DATE, PREFIX_DESCRIPTION, PREFIX_FEEDBACK)
+        if (!arePrefixesPresent(argMultimap, PREFIX_ITERATION_DATE,
+                PREFIX_ITERATION_DESCRIPTION, PREFIX_ITERATION_FEEDBACK)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddIterationCommand.MESSAGE_USAGE));
         }
 
-        Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
-        Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
-        Feedback feedback = ParserUtil.parseFeedback(argMultimap.getValue(PREFIX_FEEDBACK).get());
+        Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_ITERATION_DATE).get());
+        IterationDescription description =
+                ParserUtil.parseIterationDescription(argMultimap.getValue(PREFIX_ITERATION_DESCRIPTION).get());
+        Feedback feedback = ParserUtil.parseFeedback(argMultimap.getValue(PREFIX_ITERATION_FEEDBACK).get());
 
         Iteration iteration = new Iteration(date, description, feedback);
 

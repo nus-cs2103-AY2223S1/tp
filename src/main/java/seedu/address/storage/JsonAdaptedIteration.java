@@ -7,9 +7,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.iteration.Date;
-import seedu.address.model.iteration.Description;
 import seedu.address.model.iteration.Feedback;
 import seedu.address.model.iteration.Iteration;
+import seedu.address.model.iteration.IterationDescription;
 
 /**
  * Jackson-friendly version of {@link Iteration}.
@@ -57,10 +57,10 @@ public class JsonAdaptedIteration {
 
         if (description == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Description.class.getSimpleName()));
+                    IterationDescription.class.getSimpleName()));
         }
 
-        final Description modelDescription = new Description(description);
+        final IterationDescription modelDescription = new IterationDescription(description);
 
         if (feedback == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
