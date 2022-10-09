@@ -52,15 +52,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         try {
             index = ParserUtil.parseIndex(preamble);
         } catch (ParseException pe) {
-            new FindCommandParser().parse(preamble).execute(model);
-            ObservableList<Person> filteredPersonList = model.getFilteredPersonList();
-
-            if (filteredPersonList.size() == 0) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
-            } else if (filteredPersonList.size() > 1) {
-                throw new ParseException(String.format(MESSAGE_INVALID_AMBIGUOUS_NAME, preamble), pe);
-            }
-
+            filterPersonListByName(preamble, pe);
             index = Index.fromOneBased(1);
         }
 
@@ -84,6 +76,29 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         return new EditCommand(index, editPersonDescriptor);
+    }
+
+    /**
+     * Filters the {@code ObservableList<Person>} by person name
+     * @param preamble the name to search for, by complete word
+     * @param pe the ParseException to throw on failure
+     * @throws ParseException if there is nobody found by the find command, or there exist
+     *      an ambiguity
+     */
+    private void filterPersonListByName(String preamble, ParseException pe) throws ParseException {
+        try {
+            new FindCommandParser().parse(preamble).execute(model);
+        } catch (ParseException ignored) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+        }
+
+        ObservableList<Person> filteredPersonList = model.getFilteredPersonList();
+
+        if (filteredPersonList.size() == 0) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+        } else if (filteredPersonList.size() > 1) {
+            throw new ParseException(String.format(MESSAGE_INVALID_AMBIGUOUS_NAME, preamble), pe);
+        }
     }
 
     /**
