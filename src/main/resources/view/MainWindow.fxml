@@ -53,6 +53,8 @@
           <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
         </VBox>
 
+        <StackPane fx:id="personCountDisplayPlaceholder" VBox.vgrow="NEVER"/>
+
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>

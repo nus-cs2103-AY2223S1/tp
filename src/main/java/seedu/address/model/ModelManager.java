@@ -138,6 +138,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public int getFilteredNumberOfPersons() {
+        return filteredPersons.size();
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {

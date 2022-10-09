@@ -34,6 +34,11 @@ public interface Logic {
     ObservableList<Person> getFilteredPersonList();
 
     /**
+     * Returns the size of the filtered person list
+     */
+    int getFilteredPersonListSize();
+
+    /**
      * Returns the user prefs' address book file path.
      */
     Path getAddressBookFilePath();
