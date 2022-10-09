@@ -26,7 +26,7 @@ public class FindEmailCommandParserTest {
         // no leading and trailing whitespaces
         FindEmailCommand expectedFindEmailCommand =
                 new FindEmailCommand(new EmailContainsKeywordsPredicate(Arrays.asList("alice", "johnd")));
-        assertParseSuccess(parser, "alice johnd", expectedFindLocationCommand);
+        assertParseSuccess(parser, "alice johnd", expectedFindEmailCommand);
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n alice \n \t johnd  \t", expectedFindEmailCommand);
