@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
-import seedu.address.model.tag.NusModule;
-
 /**
  * Tests if any of a {@code Person}'s {@code Module} matches any of the keywords given.
  */

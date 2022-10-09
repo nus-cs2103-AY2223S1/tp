@@ -12,7 +12,7 @@ import seedu.address.logic.commands.FindContactCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.ModuleTakenPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.tag.NusModule;
+import seedu.address.model.person.NusModule;
 
 /**
  * Parses input arguments and creates a new FindContactCommand object

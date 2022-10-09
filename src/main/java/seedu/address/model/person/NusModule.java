@@ -1,4 +1,4 @@
-package seedu.address.model.tag;
+package seedu.address.model.person;
 
 /**
  * Stub class to use for development of `FindContactCommand`

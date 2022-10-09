@@ -9,7 +9,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.tag.NusModule;
 import seedu.address.testutil.PersonBuilder;
 
 public class ModuleTakenPredicateTest {
