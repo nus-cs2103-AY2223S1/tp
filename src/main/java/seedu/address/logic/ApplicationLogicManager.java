@@ -1,10 +1,13 @@
 package seedu.address.logic;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.logging.Logger;
+
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.ApplicationCommand;
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.ApplicationBookParser;
@@ -13,10 +16,6 @@ import seedu.address.model.ApplicationModel;
 import seedu.address.model.ReadOnlyApplicationBook;
 import seedu.address.model.application.Application;
 import seedu.address.storage.ApplicationStorage;
-
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.logging.Logger;
 
 /**
  * The main ApplicationLogicManager of the app.
@@ -30,7 +29,8 @@ public class ApplicationLogicManager implements ApplicationLogic {
     private final ApplicationBookParser applicationBookParser;
 
     /**
-     * Constructs a {@code ApplicationLogicManager} with the given {@code ApplicationModel} and {@code ApplicationStorage}.
+     * Constructs a {@code ApplicationLogicManager} with the given
+     * {@code ApplicationModel} and {@code ApplicationStorage}.
      */
     public ApplicationLogicManager(ApplicationModel applicationModel, ApplicationStorage applicationStorage) {
         this.applicationModel = applicationModel;

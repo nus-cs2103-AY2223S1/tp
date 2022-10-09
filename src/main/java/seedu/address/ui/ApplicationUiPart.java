@@ -1,12 +1,12 @@
 package seedu.address.ui;
 
-import javafx.fxml.FXMLLoader;
-import seedu.address.ApplicationMainApp;
+import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
 import java.net.URL;
 
-import static java.util.Objects.requireNonNull;
+import javafx.fxml.FXMLLoader;
+import seedu.address.ApplicationMainApp;
 
 /**
  * Represents a distinct part of the UI. e.g. Windows, dialogs, panels, status bars, etc.

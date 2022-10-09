@@ -1,15 +1,15 @@
 package seedu.address.storage;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.Optional;
+import java.util.logging.Logger;
+
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyApplicationBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
-
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.Optional;
-import java.util.logging.Logger;
 
 /**
  * Manages storage of ApplicationBook data in local storage.
@@ -21,7 +21,8 @@ public class ApplicationStorageManager implements ApplicationStorage {
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code ApplicationStorageManager} with the given {@code ApplicationBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code ApplicationStorageManager} with the given {@code ApplicationBookStorage}
+     * and {@code UserPrefStorage}.
      */
     public ApplicationStorageManager(ApplicationBookStorage applicationBookStorage, UserPrefsStorage userPrefsStorage) {
         this.applicationBookStorage = applicationBookStorage;
@@ -59,7 +60,8 @@ public class ApplicationStorageManager implements ApplicationStorage {
     }
 
     @Override
-    public Optional<ReadOnlyApplicationBook> readApplicationBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyApplicationBook> readApplicationBook(Path filePath)
+            throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
         return applicationBookStorage.readApplicationBook(filePath);
     }

@@ -1,16 +1,17 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ApplicationBook;
 import seedu.address.model.ReadOnlyApplicationBook;
 import seedu.address.model.application.Application;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * An Immutable ApplicationBook that is serializable to JSON format.
@@ -36,7 +37,8 @@ class JsonSerializableApplicationBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableApplicationBook}.
      */
     public JsonSerializableApplicationBook(ReadOnlyApplicationBook source) {
-        applications.addAll(source.getApplicationList().stream().map(JsonAdaptedApplication::new).collect(Collectors.toList()));
+        applications.addAll(source.getApplicationList().stream().map(JsonAdaptedApplication::new)
+                .collect(Collectors.toList()));
     }
 
     /**

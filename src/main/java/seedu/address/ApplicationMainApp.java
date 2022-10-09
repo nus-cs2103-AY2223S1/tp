@@ -1,5 +1,10 @@
 package seedu.address;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.Optional;
+import java.util.logging.Logger;
+
 import javafx.application.Application;
 import javafx.stage.Stage;
 import seedu.address.commons.core.Config;
@@ -10,16 +15,21 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.ApplicationLogic;
 import seedu.address.logic.ApplicationLogicManager;
-import seedu.address.model.*;
+import seedu.address.model.ApplicationBook;
+import seedu.address.model.ApplicationModel;
+import seedu.address.model.ApplicationModelManager;
+import seedu.address.model.ReadOnlyApplicationBook;
+import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtilApplicationBook;
-import seedu.address.storage.*;
+import seedu.address.storage.ApplicationBookStorage;
+import seedu.address.storage.ApplicationStorage;
+import seedu.address.storage.ApplicationStorageManager;
+import seedu.address.storage.JsonApplicationBookStorage;
+import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.UserPrefsStorage;
 import seedu.address.ui.ApplicationUiManager;
 import seedu.address.ui.Ui;
-
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.Optional;
-import java.util.logging.Logger;
 
 /**
  * Runs the application.
@@ -46,7 +56,8 @@ public class ApplicationMainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        ApplicationBookStorage applicationBookStorage = new JsonApplicationBookStorage(userPrefs.getApplicationBookFilePath());
+        ApplicationBookStorage applicationBookStorage =
+                new JsonApplicationBookStorage(userPrefs.getApplicationBookFilePath());
         applicationStorage = new ApplicationStorageManager(applicationBookStorage, userPrefsStorage);
 
         initLogging(config);
@@ -59,9 +70,12 @@ public class ApplicationMainApp extends Application {
     }
 
     /**
-     * Returns a {@code ApplicationModelManager} with the data from {@code applicationStorage}'s application book and {@code userPrefs}. <br>
-     * The data from the sample application book will be used instead if {@code applicationStorage}'s application book is not found,
-     * or an empty application book will be used instead if errors occur when reading {@code applicationStorage}'s application book.
+     * Returns a {@code ApplicationModelManager} with the data from
+     * {@code applicationStorage}'s application book and {@code userPrefs}. <br>
+     * The data from the sample application book will be used instead
+     * if {@code applicationStorage}'s application book is not found,
+     * or an empty application book will be used instead if errors occur when
+     * reading {@code applicationStorage}'s application book.
      */
     private ApplicationModel initModelManager(ApplicationStorage applicationStorage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyApplicationBook> applicationBookOptional;
