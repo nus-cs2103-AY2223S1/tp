@@ -38,8 +38,8 @@ contains some sample data.<br>
 |-----------------------------------------|-------------------------------------------------------|-----------------------------------------------------------------------------|
 | [`add module`](#211-add-module)         | `add    module   m/MODULE_CODE [t/MODULE_TITLE]`      | Add module with a module code and optional module title                     |
 | [`delete module`](#212-delete-module)   | `delete module   m/MODULE_CODE`                       | Delete module by module code                                                |
-| [`add task`](#221-add-task)             | `add    task     m/MODULE_CODE d/TASK_DESCRIPTION`    | Add task with specified module code and task description                    |
-| [`delete task`](#222-delete-task)       | `delete task     m/MODULE_CODE n/TASK_NUMBER`         | Delete task corresponding to specified task number of specified module code |
+| [`add-task`](#221-add-task)             | `add-task        m/MODULE_CODE d/TASK_DESCRIPTION`    | Add task with specified module code and task description                    |
+| [`delete-task`](#222-delete-task)       | `delete-task     m/MODULE_CODE n/TASK_NUMBER`         | Delete task corresponding to specified task number of specified module code |
 | [`add link`](#231-add-link)             | `add    link     m/MODULE_CODE l/LINK_URL`            | Add link to a specified module code by its URL                              |
 | [`delete link`](#232-delete-link)       | `delete link     m/MODULE_CODE l/LINK_URL`            | Delete link from a specified module code by its URL                         |
 | [`add contact`](#241-add-contact)       | `add contact     n/NAME    e/EMAIL    p/PHONE_NUMBER` | Add contact with specified name, email, and phone number                    |
