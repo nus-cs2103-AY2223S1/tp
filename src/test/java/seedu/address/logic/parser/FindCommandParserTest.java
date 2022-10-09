@@ -8,7 +8,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.FindContactCommand;
+import seedu.address.logic.commands.contact.FindContactCommand;
+import seedu.address.logic.parser.contact.FindContactCommandParser;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
