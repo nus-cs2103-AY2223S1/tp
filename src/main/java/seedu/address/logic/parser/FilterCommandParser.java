@@ -4,8 +4,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.ApplicationStatus;
-import seedu.address.model.person.InternshipHasApplicationStatusPredicate;
+import seedu.address.model.internship.ApplicationStatus;
+import seedu.address.model.internship.InternshipHasApplicationStatusPredicate;
 
 /**
  * Parses input arguments and creates a new FilterCommand object

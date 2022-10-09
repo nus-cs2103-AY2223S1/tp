@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.internship;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -39,5 +39,17 @@ public enum ApplicationStatus {
             }
         }
         throw new ParseException(ApplicationStatus.MESSAGE_CONSTRAINTS);
+    }
+
+    /**
+     * Returns true if a given string is a valid application status.
+     */
+    public static boolean isValidApplicationStatus(String test) {
+        for (ApplicationStatus applicationStatus : ApplicationStatus.values()) {
+            if (applicationStatus.status.matches(test)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -1,13 +1,13 @@
-package seedu.address.model.person;
+package seedu.address.model.internship;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_TIKTOK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalInternships.ALIBABA;
+import static seedu.address.testutil.TypicalInternships.TIKTOK;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -15,156 +15,158 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.internship.exceptions.DuplicateInternshipException;
+import seedu.address.model.internship.exceptions.InternshipNotFoundException;
+import seedu.address.testutil.InternshipBuilder;
 
 public class UniqueInternshipListTest {
 
-    private final UniquePersonList uniquePersonList = new UniquePersonList();
+    private final UniqueInternshipList uniqueInternshipList = new UniqueInternshipList();
 
     @Test
-    public void contains_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.contains(null));
+    public void contains_nullInternship_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueInternshipList.contains(null));
     }
 
     @Test
-    public void contains_personNotInList_returnsFalse() {
-        assertFalse(uniquePersonList.contains(ALICE));
+    public void contains_internshipNotInList_returnsFalse() {
+        assertFalse(uniqueInternshipList.contains(ALIBABA));
     }
 
     @Test
-    public void contains_personInList_returnsTrue() {
-        uniquePersonList.add(ALICE);
-        assertTrue(uniquePersonList.contains(ALICE));
+    public void contains_internshipInList_returnsTrue() {
+        uniqueInternshipList.add(ALIBABA);
+        assertTrue(uniqueInternshipList.contains(ALIBABA));
     }
 
     @Test
-    public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
-        uniquePersonList.add(ALICE);
-        Internship editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
-        assertTrue(uniquePersonList.contains(editedAlice));
+    public void contains_internshipWithSameIdentityFieldsInList_returnsTrue() {
+        uniqueInternshipList.add(ALIBABA);
+        Internship editedAlibaba =
+                new InternshipBuilder(ALIBABA).withAddress(VALID_ADDRESS_TIKTOK).withTags(VALID_TAG_HUSBAND).build();
+        assertTrue(uniqueInternshipList.contains(editedAlibaba));
     }
 
     @Test
-    public void add_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.add(null));
+    public void add_nullInternship_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueInternshipList.add(null));
     }
 
     @Test
-    public void add_duplicatePerson_throwsDuplicatePersonException() {
-        uniquePersonList.add(ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.add(ALICE));
+    public void add_duplicateInternship_throwsDuplicateInternshipException() {
+        uniqueInternshipList.add(ALIBABA);
+        assertThrows(DuplicateInternshipException.class, () -> uniqueInternshipList.add(ALIBABA));
     }
 
     @Test
-    public void setPerson_nullTargetPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setPerson(null, ALICE));
+    public void setInternship_nullTargetInternship_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueInternshipList.setInternship(null, ALIBABA));
     }
 
     @Test
-    public void setPerson_nullEditedPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setPerson(ALICE, null));
+    public void setInternship_nullEditedInternship_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueInternshipList.setInternship(ALIBABA, null));
     }
 
     @Test
-    public void setPerson_targetPersonNotInList_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.setPerson(ALICE, ALICE));
+    public void setInternship_targetInternshipNotInList_throwsInternshipNotFoundException() {
+        assertThrows(InternshipNotFoundException.class, () -> uniqueInternshipList.setInternship(ALIBABA, ALIBABA));
     }
 
     @Test
-    public void setPerson_editedPersonIsSamePerson_success() {
-        uniquePersonList.add(ALICE);
-        uniquePersonList.setPerson(ALICE, ALICE);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(ALICE);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+    public void setInternship_editedInternshipIsSameInternship_success() {
+        uniqueInternshipList.add(ALIBABA);
+        uniqueInternshipList.setInternship(ALIBABA, ALIBABA);
+        UniqueInternshipList expectedUniqueInternshipList = new UniqueInternshipList();
+        expectedUniqueInternshipList.add(ALIBABA);
+        assertEquals(expectedUniqueInternshipList, uniqueInternshipList);
     }
 
     @Test
-    public void setPerson_editedPersonHasSameIdentity_success() {
-        uniquePersonList.add(ALICE);
-        Internship editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
-        uniquePersonList.setPerson(ALICE, editedAlice);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(editedAlice);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+    public void setInternship_editedInternshipHasSameIdentity_success() {
+        uniqueInternshipList.add(ALIBABA);
+        Internship editedAlibaba =
+                new InternshipBuilder(ALIBABA).withAddress(VALID_ADDRESS_TIKTOK).withTags(VALID_TAG_HUSBAND).build();
+        uniqueInternshipList.setInternship(ALIBABA, editedAlibaba);
+        UniqueInternshipList expectedUniqueInternshipList = new UniqueInternshipList();
+        expectedUniqueInternshipList.add(editedAlibaba);
+        assertEquals(expectedUniqueInternshipList, uniqueInternshipList);
     }
 
     @Test
-    public void setPerson_editedPersonHasDifferentIdentity_success() {
-        uniquePersonList.add(ALICE);
-        uniquePersonList.setPerson(ALICE, BOB);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(BOB);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+    public void setInternship_editedInternshipHasDifferentIdentity_success() {
+        uniqueInternshipList.add(ALIBABA);
+        uniqueInternshipList.setInternship(ALIBABA, TIKTOK);
+        UniqueInternshipList expectedUniqueInternshipList = new UniqueInternshipList();
+        expectedUniqueInternshipList.add(TIKTOK);
+        assertEquals(expectedUniqueInternshipList, uniqueInternshipList);
     }
 
     @Test
-    public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
-        uniquePersonList.add(ALICE);
-        uniquePersonList.add(BOB);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPerson(ALICE, BOB));
+    public void setInternship_editedInternshipHasNonUniqueIdentity_throwsDuplicateInternshipException() {
+        uniqueInternshipList.add(ALIBABA);
+        uniqueInternshipList.add(TIKTOK);
+        assertThrows(DuplicateInternshipException.class, () -> uniqueInternshipList.setInternship(ALIBABA, TIKTOK));
     }
 
     @Test
-    public void remove_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.remove(null));
+    public void remove_nullInternship_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueInternshipList.remove(null));
     }
 
     @Test
-    public void remove_personDoesNotExist_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.remove(ALICE));
+    public void remove_internshipDoesNotExist_throwsInternshipNotFoundException() {
+        assertThrows(InternshipNotFoundException.class, () -> uniqueInternshipList.remove(ALIBABA));
     }
 
     @Test
-    public void remove_existingPerson_removesPerson() {
-        uniquePersonList.add(ALICE);
-        uniquePersonList.remove(ALICE);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+    public void remove_existingInternship_removesInternship() {
+        uniqueInternshipList.add(ALIBABA);
+        uniqueInternshipList.remove(ALIBABA);
+        UniqueInternshipList expectedUniqueInternshipList = new UniqueInternshipList();
+        assertEquals(expectedUniqueInternshipList, uniqueInternshipList);
     }
 
     @Test
-    public void setPersons_nullUniquePersonList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setPersons((UniquePersonList) null));
+    public void setInternships_nullUniqueInternshipList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, ()
+                -> uniqueInternshipList.setInternships((UniqueInternshipList) null));
     }
 
     @Test
-    public void setPersons_uniquePersonList_replacesOwnListWithProvidedUniquePersonList() {
-        uniquePersonList.add(ALICE);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(BOB);
-        uniquePersonList.setPersons(expectedUniquePersonList);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+    public void setInternships_uniqueInternshipList_replacesOwnListWithProvidedUniqueInternshipList() {
+        uniqueInternshipList.add(ALIBABA);
+        UniqueInternshipList expectedUniqueInternshipList = new UniqueInternshipList();
+        expectedUniqueInternshipList.add(TIKTOK);
+        uniqueInternshipList.setInternships(expectedUniqueInternshipList);
+        assertEquals(expectedUniqueInternshipList, uniqueInternshipList);
     }
 
     @Test
-    public void setPersons_nullList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setPersons((List<Internship>) null));
+    public void setInternships_nullList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueInternshipList.setInternships((List<Internship>) null));
     }
 
     @Test
-    public void setPersons_list_replacesOwnListWithProvidedList() {
-        uniquePersonList.add(ALICE);
-        List<Internship> internshipList = Collections.singletonList(BOB);
-        uniquePersonList.setPersons(internshipList);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(BOB);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+    public void setInternships_list_replacesOwnListWithProvidedList() {
+        uniqueInternshipList.add(ALIBABA);
+        List<Internship> internshipList = Collections.singletonList(TIKTOK);
+        uniqueInternshipList.setInternships(internshipList);
+        UniqueInternshipList expectedUniqueInternshipList = new UniqueInternshipList();
+        expectedUniqueInternshipList.add(TIKTOK);
+        assertEquals(expectedUniqueInternshipList, uniqueInternshipList);
     }
 
     @Test
-    public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
-        List<Internship> listWithDuplicateInternships = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPersons(listWithDuplicateInternships));
+    public void setInternships_listWithDuplicateInternships_throwsDuplicateInternshipException() {
+        List<Internship> listWithDuplicateInternships = Arrays.asList(ALIBABA, ALIBABA);
+        assertThrows(DuplicateInternshipException.class, ()
+                -> uniqueInternshipList.setInternships(listWithDuplicateInternships));
     }
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
-            -> uniquePersonList.asUnmodifiableObservableList().remove(0));
+            -> uniqueInternshipList.asUnmodifiableObservableList().remove(0));
     }
 }

@@ -1,12 +1,12 @@
 {
-  "persons": [ {
-    "name": "Valid Person",
+  "internships": [ {
+    "name": "Valid Internship",
     "phone": "9482424",
     "email": "hans@example.com",
     "applicationStatus" : "applied",
     "address": "4th street"
   }, {
-    "name": "Person With Invalid Phone Field",
+    "name": "Internship With Invalid Phone Field",
     "phone": "948asdf2424",
     "email": "hans@example.com",
     "applicationStatus" : "applied",

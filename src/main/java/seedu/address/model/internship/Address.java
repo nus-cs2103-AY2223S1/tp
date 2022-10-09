@@ -1,10 +1,10 @@
-package seedu.address.model.person;
+package seedu.address.model.internship;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Internship's address in the address book.
+ * Represents an Internship's address in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
  */
 public class Address {

@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.internship;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Internship in the address book.
+ * Represents an Internship in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Internship {
@@ -68,10 +68,10 @@ public class Internship {
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both internships have the same name.
+     * This defines a weaker notion of equality between two internships.
      */
-    public boolean isSamePerson(Internship otherInternship) {
+    public boolean isSameInternship(Internship otherInternship) {
         if (otherInternship == this) {
             return true;
         }
@@ -81,8 +81,8 @@ public class Internship {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both internships have the same identity and data fields.
+     * This defines a stronger notion of equality between two internships.
      */
     @Override
     public boolean equals(Object other) {
@@ -98,6 +98,7 @@ public class Internship {
         return otherInternship.getName().equals(getName())
                 && otherInternship.getPhone().equals(getPhone())
                 && otherInternship.getEmail().equals(getEmail())
+                && otherInternship.getApplicationStatus().equals(getApplicationStatus())
                 && otherInternship.getAddress().equals(getAddress())
                 && otherInternship.getTags().equals(getTags());
     }

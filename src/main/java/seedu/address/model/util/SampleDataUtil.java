@@ -6,36 +6,36 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.ApplicationStatus;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Internship;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.internship.Address;
+import seedu.address.model.internship.ApplicationStatus;
+import seedu.address.model.internship.Email;
+import seedu.address.model.internship.Internship;
+import seedu.address.model.internship.Name;
+import seedu.address.model.internship.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
-    public static Internship[] getSamplePersons() {
+    public static Internship[] getSampleInternships() {
         return new Internship[] {
-            new Internship(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
+            new Internship(new Name("Google"), new Phone("87438807"), new Email("careers@google.com"),
                 ApplicationStatus.Applied, new Address("Blk 30 Geylang Street 29, #06-40"),
                 getTagSet("friends")),
-            new Internship(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
+            new Internship(new Name("Tiktok"), new Phone("99272758"), new Email("careers@tiktok.com"),
                 ApplicationStatus.Applied, new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                 getTagSet("colleagues", "friends")),
-            new Internship(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
+            new Internship(new Name("Stripe"), new Phone("93210283"), new Email("careers@stripe.com"),
                 ApplicationStatus.Applied, new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
                 getTagSet("neighbours")),
-            new Internship(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
+            new Internship(new Name("Meta"), new Phone("91031282"), new Email("careers@meta.com"),
                 ApplicationStatus.Applied, new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
                 getTagSet("family")),
-            new Internship(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
+            new Internship(new Name("Jane Street"), new Phone("92492021"), new Email("careers@janestreet.com"),
                 ApplicationStatus.Applied, new Address("Blk 47 Tampines Street 20, #17-35"),
                 getTagSet("classmates")),
-            new Internship(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
+            new Internship(new Name("Amazon"), new Phone("92624417"), new Email("careers@amazon.com"),
                 ApplicationStatus.Applied, new Address("Blk 45 Aljunied Street 85, #11-31"),
                 getTagSet("colleagues"))
         };
@@ -43,8 +43,8 @@ public class SampleDataUtil {
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
-        for (Internship sampleInternship : getSamplePersons()) {
-            sampleAb.addPerson(sampleInternship);
+        for (Internship sampleInternship : getSampleInternships()) {
+            sampleAb.addInternship(sampleInternship);
         }
         return sampleAb;
     }

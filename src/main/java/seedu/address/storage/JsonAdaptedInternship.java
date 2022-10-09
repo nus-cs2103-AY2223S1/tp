@@ -21,7 +21,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Jackson-friendly version of {@link Internship}.
  */
-class JsonAdaptedPerson {
+class JsonAdaptedInternship {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Internship's %s field is missing!";
 
@@ -33,12 +33,14 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given internship details.
+     * Constructs a {@code JsonAdaptedInternship} with the given internship details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("applicationStatus") String applicationStatus,
-            @JsonProperty("address") String address, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+    public JsonAdaptedInternship(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+                                 @JsonProperty("email") String email,
+                                 @JsonProperty("applicationStatus") String applicationStatus,
+                                 @JsonProperty("address") String address,
+                                 @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -52,7 +54,7 @@ class JsonAdaptedPerson {
     /**
      * Converts a given {@code Internship} into this class for Jackson use.
      */
-    public JsonAdaptedPerson(Internship source) {
+    public JsonAdaptedInternship(Internship source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
@@ -69,9 +71,9 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted internship.
      */
     public Internship toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        final List<Tag> internshipTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+            internshipTags.add(tag.toModelType());
         }
 
         if (name == null) {
@@ -112,7 +114,7 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Set<Tag> modelTags = new HashSet<>(internshipTags);
         return new Internship(modelName, modelPhone, modelEmail, modelApplicationStatus, modelAddress, modelTags);
     }
 

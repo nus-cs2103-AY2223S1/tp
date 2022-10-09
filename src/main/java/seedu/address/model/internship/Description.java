@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.internship;
 
 /**
  * Represents an Internship's description in the address book.

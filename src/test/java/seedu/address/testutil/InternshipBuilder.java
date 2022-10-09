@@ -15,11 +15,11 @@ import seedu.address.model.util.SampleDataUtil;
 /**
  * A utility class to help with building Internship objects.
  */
-public class PersonBuilder {
+public class InternshipBuilder {
 
-    public static final String DEFAULT_NAME = "Amy Bee";
+    public static final String DEFAULT_NAME = "Google";
     public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
+    public static final String DEFAULT_EMAIL = "careers@google.com";
     public static final ApplicationStatus DEFAULT_APPLICATION_STATUS = ApplicationStatus.Applied;
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
@@ -31,9 +31,9 @@ public class PersonBuilder {
     private Set<Tag> tags;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code InternshipBuilder} with the default details.
      */
-    public PersonBuilder() {
+    public InternshipBuilder() {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
@@ -43,9 +43,9 @@ public class PersonBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code internshipToCopy}.
+     * Initializes the InternshipBuilder with the data of {@code internshipToCopy}.
      */
-    public PersonBuilder(Internship internshipToCopy) {
+    public InternshipBuilder(Internship internshipToCopy) {
         name = internshipToCopy.getName();
         phone = internshipToCopy.getPhone();
         email = internshipToCopy.getEmail();
@@ -57,7 +57,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Name} of the {@code Internship} that we are building.
      */
-    public PersonBuilder withName(String name) {
+    public InternshipBuilder withName(String name) {
         this.name = new Name(name);
         return this;
     }
@@ -65,7 +65,7 @@ public class PersonBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Internship} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public InternshipBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
@@ -73,7 +73,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Address} of the {@code Internship} that we are building.
      */
-    public PersonBuilder withAddress(String address) {
+    public InternshipBuilder withAddress(String address) {
         this.address = new Address(address);
         return this;
     }
@@ -81,7 +81,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Phone} of the {@code Internship} that we are building.
      */
-    public PersonBuilder withPhone(String phone) {
+    public InternshipBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
         return this;
     }
@@ -89,7 +89,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Email} of the {@code Internship} that we are building.
      */
-    public PersonBuilder withEmail(String email) {
+    public InternshipBuilder withEmail(String email) {
         this.email = new Email(email);
         return this;
     }
@@ -97,7 +97,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code ApplicationStatus} of the {@code Internship} that we are building.
      */
-    public PersonBuilder withApplicationStatus(ApplicationStatus applicationStatus) {
+    public InternshipBuilder withApplicationStatus(ApplicationStatus applicationStatus) {
         this.applicationStatus = applicationStatus;
         return this;
     }

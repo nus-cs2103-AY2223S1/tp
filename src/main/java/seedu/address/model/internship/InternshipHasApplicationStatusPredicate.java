@@ -1,9 +1,9 @@
-package seedu.address.model.person;
+package seedu.address.model.internship;
 
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code Internship}'s {@code ApplicationStatus} matches the filter given.
+ * Tests that an {@code Internship}'s {@code ApplicationStatus} matches the filter given.
  */
 public class InternshipHasApplicationStatusPredicate implements Predicate<Internship> {
     private final ApplicationStatus applicationStatus;

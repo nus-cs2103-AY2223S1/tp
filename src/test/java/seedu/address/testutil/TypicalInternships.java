@@ -22,63 +22,65 @@ import seedu.address.model.internship.Internship;
 /**
  * A utility class containing a list of {@code Internship} objects to be used in tests.
  */
-public class TypicalPersons {
+public class TypicalInternships {
 
-    public static final Internship ALICE = new InternshipBuilder().withName("Alice Pauline")
-            .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
+    public static final Internship ALIBABA = new InternshipBuilder().withName("Alibaba")
+            .withAddress("123, Jurong West Ave 6, #08-111").withEmail("careers@alibaba.com")
             .withPhone("94351253").withApplicationStatus(ApplicationStatus.Applied)
             .withTags("friends").build();
-    public static final Internship BENSON = new InternshipBuilder().withName("Benson Meier")
+    public static final Internship BINANCE = new InternshipBuilder().withName("Binance")
             .withAddress("311, Clementi Ave 2, #02-25")
-            .withEmail("johnd@example.com").withPhone("98765432").withApplicationStatus(ApplicationStatus.Applied)
+            .withEmail("careers@binance.com").withPhone("98765432").withApplicationStatus(ApplicationStatus.Applied)
             .withTags("owesMoney", "friends").build();
-    public static final Internship CARL = new InternshipBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withAddress("wall street")
+    public static final Internship CITADEL = new InternshipBuilder().withName("Citadel").withPhone("95352563")
+            .withEmail("careers@citadel.com").withAddress("wall street")
             .withApplicationStatus(ApplicationStatus.Applied).build();
-    public static final Internship DANIEL = new InternshipBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withAddress("10th street")
+    public static final Internship DELL = new InternshipBuilder().withName("Dell").withPhone("87652533")
+            .withEmail("careers@dell.com").withAddress("10th street")
             .withApplicationStatus(ApplicationStatus.Applied).withTags("friends").build();
-    public static final Internship ELLE = new InternshipBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withAddress("michegan ave")
+    public static final Internship EBAY = new InternshipBuilder().withName("Ebay").withPhone("9482224")
+            .withEmail("careers@ebay.com").withAddress("michegan ave")
             .withApplicationStatus(ApplicationStatus.Applied).build();
-    public static final Internship FIONA = new InternshipBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withAddress("little tokyo")
+    public static final Internship FACEBOOK = new InternshipBuilder().withName("Facebook").withPhone("9482427")
+            .withEmail("careers@facebook.com").withAddress("little tokyo")
             .withApplicationStatus(ApplicationStatus.Applied).build();
-    public static final Internship GEORGE = new InternshipBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withAddress("4th street")
+    public static final Internship GOLDMAN = new InternshipBuilder().withName("Goldman Sachs").withPhone("9482442")
+            .withEmail("careers@goldmansachs.com").withAddress("4th street")
             .withApplicationStatus(ApplicationStatus.Applied).build();
 
     // Manually added
-    public static final Internship HOON = new InternshipBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withEmail("stefan@example.com").withAddress("little india")
+    public static final Internship HUAWEI = new InternshipBuilder().withName("Huawei").withPhone("8482424")
+            .withEmail("careers@huawei.com").withAddress("little india")
             .withApplicationStatus(ApplicationStatus.Applied).build();
-    public static final Internship IDA = new InternshipBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").withAddress("chicago ave")
+    public static final Internship INDEED = new InternshipBuilder().withName("Indeed").withPhone("8482131")
+            .withEmail("careers@indeed.com").withAddress("chicago ave")
             .withApplicationStatus(ApplicationStatus.Applied).build();
 
     // Manually added - Internship's details found in {@code CommandTestUtil}
-    public static final Internship AMY = new InternshipBuilder().withName(VALID_NAME_GOOGLE).withPhone(VALID_PHONE_GOOGLE)
-            .withEmail(VALID_EMAIL_GOOGLE).withAddress(VALID_ADDRESS_GOOGLE).withTags(VALID_TAG_FRIEND).build();
-    public static final Internship BOB = new InternshipBuilder().withName(VALID_NAME_TIKTOK).withPhone(VALID_PHONE_TIKTOK)
-            .withEmail(VALID_EMAIL_TIKTOK).withAddress(VALID_ADDRESS_TIKTOK).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+    public static final Internship GOOGLE = new InternshipBuilder().withName(VALID_NAME_GOOGLE)
+            .withPhone(VALID_PHONE_GOOGLE).withEmail(VALID_EMAIL_GOOGLE)
+            .withAddress(VALID_ADDRESS_GOOGLE).withTags(VALID_TAG_FRIEND).build();
+    public static final Internship TIKTOK = new InternshipBuilder().withName(VALID_NAME_TIKTOK)
+            .withPhone(VALID_PHONE_TIKTOK).withEmail(VALID_EMAIL_TIKTOK)
+            .withAddress(VALID_ADDRESS_TIKTOK).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalPersons() {} // prevents instantiation
+    private TypicalInternships() {} // prevents instantiation
 
     /**
      * Returns an {@code AddressBook} with all the typical persons.
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
-        for (Internship internship : getTypicalPersons()) {
+        for (Internship internship : getTypicalInternships()) {
             ab.addInternship(internship);
         }
         return ab;
     }
 
-    public static List<Internship> getTypicalPersons() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+    public static List<Internship> getTypicalInternships() {
+        return new ArrayList<>(Arrays.asList(ALIBABA, BINANCE, CITADEL, DELL, EBAY, FACEBOOK, GOLDMAN));
     }
 }

@@ -8,22 +8,22 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.internship.exceptions.DuplicatePersonException;
-import seedu.address.model.internship.exceptions.PersonNotFoundException;
+import seedu.address.model.internship.exceptions.DuplicateInternshipException;
+import seedu.address.model.internship.exceptions.InternshipNotFoundException;
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A internship is considered unique by comparing using {@code Internship#isSamePerson(Internship)}.
- * As such, adding and updating of persons uses Internship#isSamePerson(Internship) for equality to ensure
- * that the internship being added or updated is unique in terms of identity in the UniquePersonList.
+ * A list of internships that enforces uniqueness between its elements and does not allow nulls.
+ * An internship is considered unique by comparing using {@code Internship#isSameInternship(Internship)}.
+ * As such, adding and updating of internships uses Internship#isSameInternship(Internship) for equality to ensure
+ * that the internship being added or updated is unique in terms of identity in the UniqueInternshipList.
  * However, the removal of an internship uses Internship#equals(Object) to ensure that the internship with
  * exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
- * @see Internship#isSamePerson(Internship)
+ * @see Internship#isSameInternship(Internship)
  */
-public class UniquePersonList implements Iterable<Internship> {
+public class UniqueInternshipList implements Iterable<Internship> {
 
     private final ObservableList<Internship> internalList = FXCollections.observableArrayList();
     private final ObservableList<Internship> internalUnmodifiableList =
@@ -34,17 +34,17 @@ public class UniquePersonList implements Iterable<Internship> {
      */
     public boolean contains(Internship toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSamePerson);
+        return internalList.stream().anyMatch(toCheck::isSameInternship);
     }
 
     /**
-     * Adds a internship to the list.
+     * Adds an internship to the list.
      * The internship must not already exist in the list.
      */
     public void add(Internship toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateInternshipException();
         }
         internalList.add(toAdd);
     }
@@ -55,16 +55,16 @@ public class UniquePersonList implements Iterable<Internship> {
      * The internship identity of {@code editedInternship} must not be the same as another
      * existing internship in the list.
      */
-    public void setPerson(Internship target, Internship editedInternship) {
+    public void setInternship(Internship target, Internship editedInternship) {
         requireAllNonNull(target, editedInternship);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new InternshipNotFoundException();
         }
 
-        if (!target.isSamePerson(editedInternship) && contains(editedInternship)) {
-            throw new DuplicatePersonException();
+        if (!target.isSameInternship(editedInternship) && contains(editedInternship)) {
+            throw new DuplicateInternshipException();
         }
 
         internalList.set(index, editedInternship);
@@ -77,11 +77,11 @@ public class UniquePersonList implements Iterable<Internship> {
     public void remove(Internship toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new InternshipNotFoundException();
         }
     }
 
-    public void setPersons(UniquePersonList replacement) {
+    public void setInternships(UniqueInternshipList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -90,10 +90,10 @@ public class UniquePersonList implements Iterable<Internship> {
      * Replaces the contents of this list with {@code internships}.
      * {@code internships} must not contain duplicate internships.
      */
-    public void setPersons(List<Internship> internships) {
+    public void setInternships(List<Internship> internships) {
         requireAllNonNull(internships);
-        if (!personsAreUnique(internships)) {
-            throw new DuplicatePersonException();
+        if (!internshipsAreUnique(internships)) {
+            throw new DuplicateInternshipException();
         }
 
         internalList.setAll(internships);
@@ -114,8 +114,8 @@ public class UniquePersonList implements Iterable<Internship> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniquePersonList // instanceof handles nulls
-                        && internalList.equals(((UniquePersonList) other).internalList));
+                || (other instanceof UniqueInternshipList // instanceof handles nulls
+                        && internalList.equals(((UniqueInternshipList) other).internalList));
     }
 
     @Override
@@ -126,10 +126,10 @@ public class UniquePersonList implements Iterable<Internship> {
     /**
      * Returns true if {@code internships} contains only unique internships.
      */
-    private boolean personsAreUnique(List<Internship> internships) {
+    private boolean internshipsAreUnique(List<Internship> internships) {
         for (int i = 0; i < internships.size() - 1; i++) {
             for (int j = i + 1; j < internships.size(); j++) {
-                if (internships.get(i).isSamePerson(internships.get(j))) {
+                if (internships.get(i).isSameInternship(internships.get(j))) {
                     return false;
                 }
             }

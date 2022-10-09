@@ -11,28 +11,28 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.internship.Internship;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of internships.
  */
-public class PersonListPanel extends UiPart<Region> {
-    private static final String FXML = "PersonListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+public class InternshipListPanel extends UiPart<Region> {
+    private static final String FXML = "InternshipListPanel.fxml";
+    private final Logger logger = LogsCenter.getLogger(InternshipListPanel.class);
 
     @FXML
-    private ListView<Internship> personListView;
+    private ListView<Internship> internshipListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code InternshipListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Internship> internshipList) {
+    public InternshipListPanel(ObservableList<Internship> internshipList) {
         super(FXML);
-        personListView.setItems(internshipList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        internshipListView.setItems(internshipList);
+        internshipListView.setCellFactory(listView -> new InternshipListViewCell());
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Internship} using a {@code InternshipCard}.
      */
-    class PersonListViewCell extends ListCell<Internship> {
+    class InternshipListViewCell extends ListCell<Internship> {
         @Override
         protected void updateItem(Internship internship, boolean empty) {
             super.updateItem(internship, empty);
