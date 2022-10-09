@@ -23,6 +23,7 @@ public class ModelManager implements Model {
     private final MyInsuRec myInsuRec;
     private final UserPrefs userPrefs;
     private final FilteredList<Client> filteredClients;
+    private final FilteredList<Meeting> filteredMeetings;
 
     /**
      * Initializes a ModelManager with the given myInsuRec and userPrefs.
@@ -34,7 +35,9 @@ public class ModelManager implements Model {
 
         this.myInsuRec = new MyInsuRec(myInsuRec);
         this.userPrefs = new UserPrefs(userPrefs);
+
         filteredClients = new FilteredList<>(this.myInsuRec.getClientList());
+        filteredMeetings = new FilteredList<>(this.myInsuRec.getMeetingList());
     }
 
     public ModelManager() {
@@ -137,6 +140,23 @@ public class ModelManager implements Model {
     public void updateFilteredClientList(Predicate<Client> predicate) {
         requireNonNull(predicate);
         filteredClients.setPredicate(predicate);
+    }
+
+    //=========== Filtered Meeting List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Meeting} backed by the internal list of
+     * {@code versionedclientBook}
+     */
+    @Override
+    public ObservableList<Meeting> getFilteredMeetingList() {
+        return filteredMeetings;
+    }
+
+    @Override
+    public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
+        requireNonNull(predicate);
+        filteredMeetings.setPredicate(predicate);
     }
 
     @Override

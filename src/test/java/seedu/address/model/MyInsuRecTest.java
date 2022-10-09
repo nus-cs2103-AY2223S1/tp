@@ -50,7 +50,9 @@ public class MyInsuRecTest {
         Client editedAlice = new ClientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Client> newClients = Arrays.asList(ALICE, editedAlice);
-        MyInsuRecStub newData = new MyInsuRecStub(newClients);
+        // This test only tests for duplicate clients with same identity field. Meeting list can be empty.
+        List<Meeting> emptyMeetings = Collections.emptyList();
+        MyInsuRecStub newData = new MyInsuRecStub(newClients, emptyMeetings);
 
         assertThrows(DuplicateClientException.class, () -> myInsuRec.resetData(newData));
     }
@@ -91,8 +93,9 @@ public class MyInsuRecTest {
         private final ObservableList<Client> clients = FXCollections.observableArrayList();
         private final ObservableList<Meeting> meetings = FXCollections.observableArrayList();
 
-        MyInsuRecStub(Collection<Client> clients) {
+        MyInsuRecStub(Collection<Client> clients, Collection<Meeting> meetings) {
             this.clients.setAll(clients);
+            this.meetings.setAll(meetings);
         }
 
         @Override

@@ -17,8 +17,7 @@ public interface ReadOnlyMyInsuRec {
 
     /**
      * Returns an unmodifiable view of the meetings list.
-     * This list will not contain any conflicting meetings.
-     * @return
+     * This list will not contain meetings with any timing conflicts.
      */
     ObservableList<Meeting> getMeetingList();
 
