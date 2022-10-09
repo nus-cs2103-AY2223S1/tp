@@ -66,13 +66,13 @@ public class ModelManager implements Model {
 
     @Override
     public Path getFoodGuideFilePath() {
-        return userPrefs.getFoodGuideFilePath();
+        return userPrefs.getAddressBookFilePath();
     }
 
     @Override
     public void setFoodGuideFilePath(Path foodGuideFilePath) {
         requireNonNull(foodGuideFilePath);
-        userPrefs.setFoodGuideFilePath(foodGuideFilePath);
+        userPrefs.setAddressBookFilePath(foodGuideFilePath);
     }
 
     //=========== FoodGuide ================================================================================

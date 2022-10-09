@@ -56,7 +56,7 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        FoodGuideStorage foodGuideStorage = new JsonFoodGuideStorage(userPrefs.getFoodGuideFilePath());
+        FoodGuideStorage foodGuideStorage = new JsonFoodGuideStorage(userPrefs.getAddressBookFilePath());
         storage = new StorageManager(foodGuideStorage, userPrefsStorage);
 
         initLogging(config);
