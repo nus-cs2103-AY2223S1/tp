@@ -57,6 +57,13 @@ public class HomeworkList {
         return description.toString();
     }
 
+    /**
+     * Clears the homework list.
+     */
+    public void clearList() {
+        homeworkList.clear();
+    }
+
     @Override
     public String toString() {
         StringBuilder description = new StringBuilder("Homework:\n");

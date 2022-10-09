@@ -33,6 +33,7 @@ class HomeworkCommandTest {
     void execute_addHomeworkUnfilteredList_success() {
         Person secondPerson = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(secondPerson).withHomework(HOMEWORK_STUB).build();
+        secondPerson.clearHomeworkList();
 
         HomeworkCommand homeworkCommand = new HomeworkCommand(INDEX_SECOND_PERSON,
                 new Homework(HOMEWORK_STUB));
@@ -51,6 +52,8 @@ class HomeworkCommandTest {
 
         Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(personInFilteredList).withHomework(HOMEWORK_STUB).build();
+        personInFilteredList.clearHomeworkList();
+
         HomeworkCommand homeworkCommand = new HomeworkCommand(INDEX_FIRST_PERSON,
                 new Homework(HOMEWORK_STUB));
 
@@ -69,6 +72,7 @@ class HomeworkCommandTest {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()))
                 .withHomework(HOMEWORK_STUB).build();
+        firstPerson.clearHomeworkList();
 
         HomeworkCommand homeworkCommand = new HomeworkCommand(
                 INDEX_FIRST_PERSON, new Homework(HOMEWORK_STUB));
