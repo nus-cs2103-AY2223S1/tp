@@ -1,7 +1,7 @@
 package bookface.logic.parser.list;
 
-import bookface.logic.commands.list.ListCommand;
 import bookface.logic.commands.list.ListBooksCommand;
+import bookface.logic.commands.list.ListCommand;
 import bookface.logic.commands.list.ListUsersCommand;
 import bookface.logic.parser.CommandReturnable;
 import bookface.logic.parser.ParserFunction;

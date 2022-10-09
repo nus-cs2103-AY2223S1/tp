@@ -5,6 +5,9 @@ import static java.util.Objects.requireNonNull;
 import bookface.logic.commands.CommandResult;
 import bookface.model.Model;
 
+/**
+ * Lists all books to the user
+ */
 public class ListBooksCommand extends ListCommand {
     public static final String COMMAND_WORD = "books";
 
