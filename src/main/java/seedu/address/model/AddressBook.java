@@ -198,7 +198,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<Schedule> getScheduleList() { return modules.getUnmodifiableObservableScheduleList(); }
+    public ObservableList<Schedule> getScheduleList() {
+        return modules.getUnmodifiableObservableScheduleList();
+    }
 
     @Override
     public boolean equals(Object other) {

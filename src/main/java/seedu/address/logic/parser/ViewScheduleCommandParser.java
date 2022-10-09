@@ -13,7 +13,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new ViewScheduleCommand object
  */
-public class ViewScheduleCommandParser implements Parser<ViewScheduleCommand>{
+public class ViewScheduleCommandParser implements Parser<ViewScheduleCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the ViewScheduleCommand
@@ -30,22 +30,13 @@ public class ViewScheduleCommandParser implements Parser<ViewScheduleCommand>{
         ArgumentMultimap argumentMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_MODULE_OF_SCHEDULE, PREFIX_WEEKDAY);
 
-        if ( !argumentMultimap.getPreamble().isEmpty()) {
+        if (!argumentMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewScheduleCommand.MESSAGE_USAGE));
         } else if (arePrefixesPresent(argumentMultimap, PREFIX_MODULE_OF_SCHEDULE)) {
             String module = ParserUtil.parseModule(argumentMultimap.getValue(PREFIX_MODULE_OF_SCHEDULE).get());
             return new ViewScheduleCommand();
         }
         throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewScheduleCommand.MESSAGE_USAGE));
-//        if (!arePrefixesPresent(argumentMultimap, PREFIX_MODULE_OF_SCHEDULE)
-//                && !arePrefixesPresent(argumentMultimap, PREFIX_WEEKDAY) ) {
-//            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewScheduleCommand.MESSAGE_USAGE));
-//        }
-
-
-
-//        Weekdays weekday = ParserUtil.parseWeekday(argumentMultimap.getValue(PREFIX_WEEKDAY).get());
-//        return new ViewScheduleCommand()
     }
 
 
