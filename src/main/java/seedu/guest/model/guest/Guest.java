@@ -16,16 +16,18 @@ public class Guest {
     private final Email email;
 
     // Data fields
+    private final DateRange dateRange;
     private final NumberOfGuests numberOfGuests;
 
     /**
      * Every field must be present and not null.
      */
-    public Guest(Name name, Phone phone, Email email, NumberOfGuests numberOfGuests) {
+    public Guest(Name name, Phone phone, Email email, DateRange dateRange, NumberOfGuests numberOfGuests) {
         requireAllNonNull(name, phone, email, numberOfGuests);
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.dateRange = dateRange;
         this.numberOfGuests = numberOfGuests;
     }
 
@@ -39,6 +41,10 @@ public class Guest {
 
     public Email getEmail() {
         return email;
+    }
+
+    public DateRange getDateRange() {
+        return dateRange;
     }
 
     public NumberOfGuests getNumberOfGuests() {
@@ -77,13 +83,14 @@ public class Guest {
         return otherGuest.getName().equals(getName())
                 && otherGuest.getPhone().equals(getPhone())
                 && otherGuest.getEmail().equals(getEmail())
+                && otherGuest.getDateRange().equals(getDateRange())
                 && otherGuest.getNumberOfGuests().equals(getNumberOfGuests());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, numberOfGuests);
+        return Objects.hash(name, phone, email, dateRange, numberOfGuests);
     }
 
     @Override
@@ -94,6 +101,8 @@ public class Guest {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
+                .append("; Date Range: ")
+                .append(getDateRange())
                 .append("; No. of Guests: ")
                 .append(getNumberOfGuests());
 

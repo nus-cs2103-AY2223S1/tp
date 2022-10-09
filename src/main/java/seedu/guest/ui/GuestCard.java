@@ -35,6 +35,8 @@ public class GuestCard extends UiPart<Region> {
     private Label numberOfGuests;
     @FXML
     private Label email;
+    @FXML
+    private Label dateRange;
 
     /**
      * Creates a {@code GuestCode} with the given {@code Guest} and index to display.
@@ -46,6 +48,7 @@ public class GuestCard extends UiPart<Region> {
         name.setText(guest.getName().fullName);
         phone.setText(guest.getPhone().value);
         email.setText(guest.getEmail().value);
+        dateRange.setText(guest.getDateRange().value);
         numberOfGuests.setText("No. of Guests: " + guest.getNumberOfGuests().value);
     }
 

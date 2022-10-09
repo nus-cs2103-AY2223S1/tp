@@ -3,6 +3,7 @@ package seedu.guest.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.guest.commons.core.Messages.MESSAGE_INVALID_GUEST_DISPLAYED_INDEX;
 import static seedu.guest.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.guest.logic.commands.CommandTestUtil.DATE_RANGE_DESC_AMY;
 import static seedu.guest.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.guest.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.guest.logic.commands.CommandTestUtil.NUMBER_OF_GUESTS_DESC_AMY;
@@ -80,7 +81,7 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + NUMBER_OF_GUESTS_DESC_AMY;
+                + DATE_RANGE_DESC_AMY + NUMBER_OF_GUESTS_DESC_AMY;
         Guest expectedGuest = new GuestBuilder(AMY).build();
 
         ModelManager expectedModel = new ModelManager();

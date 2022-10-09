@@ -1,6 +1,7 @@
 package seedu.guest.testutil;
 
 import seedu.guest.logic.commands.EditCommand.EditGuestDescriptor;
+import seedu.guest.model.guest.DateRange;
 import seedu.guest.model.guest.Email;
 import seedu.guest.model.guest.Guest;
 import seedu.guest.model.guest.Name;
@@ -30,6 +31,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setName(guest.getName());
         descriptor.setPhone(guest.getPhone());
         descriptor.setEmail(guest.getEmail());
+        descriptor.setDateRange(guest.getDateRange());
         descriptor.setNumberOfGuests(guest.getNumberOfGuests());
     }
 
@@ -54,6 +56,14 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withEmail(String email) {
         descriptor.setEmail(new Email(email));
+        return this;
+    }
+
+    /**
+     * Sets the {@code DateRange} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withDateRange(String dateRange) {
+        descriptor.setDateRange(new DateRange(dateRange));
         return this;
     }
 

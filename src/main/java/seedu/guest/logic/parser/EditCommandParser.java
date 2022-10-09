@@ -2,6 +2,7 @@ package seedu.guest.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.guest.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.guest.logic.parser.CliSyntax.PREFIX_DATE_RANGE;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_NUMBER_OF_GUESTS;
@@ -25,7 +26,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_NUMBER_OF_GUESTS);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_DATE_RANGE,
+                        PREFIX_NUMBER_OF_GUESTS);
 
         Index index;
 
@@ -44,6 +46,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             editGuestDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+        }
+        if (argMultimap.getValue(PREFIX_DATE_RANGE).isPresent()) {
+            editGuestDescriptor.setDateRange(ParserUtil.parseDateRange(argMultimap.getValue(PREFIX_DATE_RANGE).get()));
         }
         if (argMultimap.getValue(PREFIX_NUMBER_OF_GUESTS).isPresent()) {
             editGuestDescriptor.setNumberOfGuests(ParserUtil
