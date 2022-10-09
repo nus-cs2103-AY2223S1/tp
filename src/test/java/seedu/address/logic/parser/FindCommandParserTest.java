@@ -26,7 +26,7 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsFindCommand() {
+    public void parse_validArgs_returnsFindCommandBuyer() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
                 new FindCommand(new NameContainsKeywordsPredicate<>(Arrays.asList("Buyer", "Alice", "Bob")),
@@ -37,6 +37,34 @@ public class FindCommandParserTest {
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser, "Buyer \n Alice \n \t Bob  \t", expectedFindCommand);
+    }
+
+    @Test
+    public void parse_validArgs_returnsFindCommandDeliverer() {
+        // no leading and trailing whitespaces
+        FindCommand expectedFindCommand =
+                new FindCommand(new NameContainsKeywordsPredicate<>(Arrays.asList("Deliverer", "Charlie", "Bob")),
+                        new NameContainsKeywordsPredicate<>(Arrays.asList("Deliverer", "Charlie", "Bob")),
+                        new NameContainsKeywordsPredicate<>(Arrays.asList("Deliverer", "Charlie", "Bob")),
+                        "Deliverer");
+        assertParseSuccess(parser, "Deliverer Charlie Bob", expectedFindCommand);
+
+        // multiple whitespaces between keywords
+        assertParseSuccess(parser, "Deliverer \n Charlie \n \t Bob  \t", expectedFindCommand);
+    }
+
+    @Test
+    public void parse_validArgs_returnsFindCommandSupplier() {
+        // no leading and trailing whitespaces
+        FindCommand expectedFindCommand =
+                new FindCommand(new NameContainsKeywordsPredicate<>(Arrays.asList("Supplier", "Charlie", "Bob")),
+                        new NameContainsKeywordsPredicate<>(Arrays.asList("Supplier", "Charlie", "Bob")),
+                        new NameContainsKeywordsPredicate<>(Arrays.asList("Supplier", "Charlie", "Bob")),
+                        "Supplier");
+        assertParseSuccess(parser, "Supplier Charlie Bob", expectedFindCommand);
+
+        // multiple whitespaces between keywords
+        assertParseSuccess(parser, "Supplier \n Charlie \n \t Bob  \t", expectedFindCommand);
     }
 
 }
