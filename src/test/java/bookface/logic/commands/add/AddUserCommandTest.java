@@ -159,6 +159,11 @@ public class AddUserCommandTest {
         public void addBook(Book book) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void deleteBook(Book book) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

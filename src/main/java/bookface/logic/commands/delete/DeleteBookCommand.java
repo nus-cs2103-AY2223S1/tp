@@ -48,8 +48,8 @@ public class DeleteBookCommand extends DeleteCommand {
 
         model.deleteBook(bookToDelete);
         return new CommandResult(String.format(
-                MESSAGE_SUCCESS, 
-                bookToDelete.getTitle(), 
+                MESSAGE_SUCCESS,
+                bookToDelete.getTitle(),
                 bookToDelete.getAuthor()));
     }
 }

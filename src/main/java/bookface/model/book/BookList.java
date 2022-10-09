@@ -55,7 +55,7 @@ public class BookList extends ArrayList<Book> {
 
     /**
      * Removes the book specified from BookList.
-     * 
+     *
      * @param book the book to be removed.
      * @return the removed book
      */

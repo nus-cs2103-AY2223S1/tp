@@ -100,7 +100,7 @@ public class BookFace implements ReadOnlyBookFace {
 
     /**
      * Deletes a book from BookFace's book list.
-     * 
+     *
      * @param book the book to delete.
      */
     public void deleteBook(Book book) {
