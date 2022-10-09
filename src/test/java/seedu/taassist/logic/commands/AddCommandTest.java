@@ -9,6 +9,7 @@ import static seedu.taassist.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -156,7 +157,17 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasModuleClasses(Collection<ModuleClass> moduleClasses) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteModuleClass(ModuleClass moduleClass) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteModuleClasses(Collection<ModuleClass> moduleClass) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -223,6 +234,11 @@ public class AddCommandTest {
         public boolean hasStudent(Student student) {
             requireNonNull(student);
             return studentsAdded.stream().anyMatch(student::isSameStudent);
+        }
+
+        @Override
+        public boolean hasModuleClasses(Collection<ModuleClass> moduleClasses) {
+            return true;
         }
 
         @Override
