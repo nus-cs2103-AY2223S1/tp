@@ -1,16 +1,15 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.company.Company;
-import seedu.address.model.company.NameContainsKeywordsPredicate;
-
-import java.util.Arrays;
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
+import seedu.address.model.company.NameEqualsKeywordPredicate;
 
 /**
  * Views the details (point-of-contacts, transactions) of an existing company in the address book.
@@ -29,6 +28,10 @@ public class ViewCommand extends Command {
 
     private final Index index;
 
+    /**
+     * Constructor for ViewCommand.
+     * @param index of company to view.
+     */
     public ViewCommand(Index index) {
         requireNonNull(index);
 
@@ -47,8 +50,7 @@ public class ViewCommand extends Command {
         Company companyToView = lastShownList.get(index.getZeroBased());
         String companyName = companyToView.getName().toString();
 
-        String[] keyWords = companyName.split("\\s+");
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Arrays.asList(keyWords));
+        NameEqualsKeywordPredicate predicate = new NameEqualsKeywordPredicate(companyName);
         model.updateFilteredCompanyList(predicate);
 
         return new CommandResult(String.format(MESSAGE_VIEW_COMPANY_SUCCESS, companyName));
