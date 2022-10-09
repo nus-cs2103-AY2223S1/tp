@@ -80,7 +80,7 @@ public class AddressBookParser {
 
         case UnmarkCommand.COMMAND_WORD:
             return new UnmarkCommandParser().parse(arguments);
-            
+
         case FilterCommand.COMMAND_WORD:
             return new FilterCommandParser().parse(arguments);
 
