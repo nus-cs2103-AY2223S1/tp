@@ -1,4 +1,4 @@
-package seedu.rc4hdb.model.resident;
+package seedu.rc4hdb.model.resident.fields;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.rc4hdb.commons.util.AppUtil.checkArgument;

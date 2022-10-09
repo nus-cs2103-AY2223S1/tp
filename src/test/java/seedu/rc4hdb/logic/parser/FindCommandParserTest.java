@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.rc4hdb.logic.commands.modelcommands.FindCommand;
 import seedu.rc4hdb.logic.parser.commandparsers.FindCommandParser;
-import seedu.rc4hdb.model.person.predicates.NameContainsKeywordsPredicate;
+import seedu.rc4hdb.model.resident.predicates.NameContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
 

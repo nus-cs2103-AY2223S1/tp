@@ -7,9 +7,9 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.rc4hdb.model.resident.Email;
-import seedu.rc4hdb.model.resident.Name;
-import seedu.rc4hdb.model.resident.Phone;
+import seedu.rc4hdb.model.resident.fields.Email;
+import seedu.rc4hdb.model.resident.fields.Name;
+import seedu.rc4hdb.model.resident.fields.Phone;
 import seedu.rc4hdb.model.tag.Tag;
 
 /**

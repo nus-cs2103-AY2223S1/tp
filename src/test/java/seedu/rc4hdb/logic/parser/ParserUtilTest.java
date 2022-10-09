@@ -15,9 +15,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 import seedu.rc4hdb.model.person.Address;
-import seedu.rc4hdb.model.resident.Email;
-import seedu.rc4hdb.model.resident.Name;
-import seedu.rc4hdb.model.resident.Phone;
+import seedu.rc4hdb.model.resident.fields.Email;
+import seedu.rc4hdb.model.resident.fields.Name;
+import seedu.rc4hdb.model.resident.fields.Phone;
 import seedu.rc4hdb.model.tag.Tag;
 
 public class ParserUtilTest {

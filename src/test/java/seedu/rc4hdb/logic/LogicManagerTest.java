@@ -1,7 +1,7 @@
 package seedu.rc4hdb.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.rc4hdb.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static seedu.rc4hdb.commons.core.Messages.MESSAGE_INVALID_RESIDENT_DISPLAYED_INDEX;
 import static seedu.rc4hdb.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.EMAIL_DESC_AMY;
@@ -72,7 +72,7 @@ public class LogicManagerTest {
     @Test
     public void execute_modelCommandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
-        assertModelCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, CommandException.class);
+        assertModelCommandException(deleteCommand, MESSAGE_INVALID_RESIDENT_DISPLAYED_INDEX, CommandException.class);
     }
 
     // To add StorageCommand test here when a StorageCommand is implemented
@@ -142,7 +142,7 @@ public class LogicManagerTest {
      */
     private void assertModelCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getResidentBook(), new UserPrefs());
         assertModelCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 

@@ -1,4 +1,4 @@
-package seedu.rc4hdb.model.person;
+package seedu.rc4hdb.model.resident.fields;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -6,7 +6,7 @@ import static seedu.rc4hdb.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.rc4hdb.model.resident.Email;
+import seedu.rc4hdb.model.resident.fields.Email;
 
 public class EmailTest {
 

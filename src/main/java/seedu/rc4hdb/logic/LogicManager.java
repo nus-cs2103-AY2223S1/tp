@@ -18,8 +18,8 @@ import seedu.rc4hdb.logic.commands.storagecommands.StorageCommand;
 import seedu.rc4hdb.logic.parser.AddressBookParser;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 import seedu.rc4hdb.model.Model;
-import seedu.rc4hdb.model.ReadOnlyAddressBook;
-import seedu.rc4hdb.model.person.Person;
+import seedu.rc4hdb.model.ReadOnlyResidentBook;
+import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.storage.Storage;
 
 /**
@@ -50,7 +50,7 @@ public class LogicManager implements Logic {
         CommandResult commandResult = execute(command);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveResidentBook(model.getResidentBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -82,18 +82,18 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyResidentBook getResidentBook() {
+        return model.getResidentBook();
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Resident> getFilteredResidentList() {
+        return model.getFilteredResidentList();
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getResidentBookFilePath() {
+        return model.getResidentBookFilePath();
     }
 
     @Override
