@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a staff contact in HR Pro Max++.
- * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidStaffContact(String)}
  */
 public class StaffContact {
     public static final String MESSAGE_CONSTRAINTS =
@@ -26,17 +26,16 @@ public class StaffContact {
      */
     public StaffContact(String contact) {
         requireNonNull(contact);
-        checkArgument(isValidName(contact), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidStaffContact(contact), MESSAGE_CONSTRAINTS);
         staffContact = contact;
     }
 
     /**
-     * Returns true if a given string is a valid name.
+     * Returns true if a given string is a valid staff contact.
      */
-    public static boolean isValidName(String test) {
+    public static boolean isValidStaffContact(String test) {
         return test.matches(VALIDATION_REGEX);
     }
-
 
     @Override
     public String toString() {

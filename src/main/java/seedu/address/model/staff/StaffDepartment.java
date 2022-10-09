@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a staff department in HR Pro Max++.
- * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidStaffDepartment(String)}
  */
 public class StaffDepartment {
     public static final String MESSAGE_CONSTRAINTS =
@@ -26,17 +26,16 @@ public class StaffDepartment {
      */
     public StaffDepartment(String department) {
         requireNonNull(department);
-        checkArgument(isValidName(department), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidStaffDepartment(department), MESSAGE_CONSTRAINTS);
         staffDepartment = department;
     }
 
     /**
-     * Returns true if a given string is a valid name.
+     * Returns true if a given string is a valid staff department.
      */
-    public static boolean isValidName(String test) {
+    public static boolean isValidStaffDepartment(String test) {
         return test.matches(VALIDATION_REGEX);
     }
-
 
     @Override
     public String toString() {

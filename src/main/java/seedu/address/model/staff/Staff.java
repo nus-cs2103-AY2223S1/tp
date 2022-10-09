@@ -43,6 +43,13 @@ public class Staff {
         this.tags.addAll(tags);
     }
 
+    /**
+     * Returns true if a given string is a valid name.
+     */
+    public static boolean isValidStaff(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
+
     public StaffName getStaffName() {
         return name;
     }

@@ -5,38 +5,38 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.model.project.ProjectName;
+import seedu.address.model.staff.StaffName;
 
 public class StaffNameTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new ProjectName(null));
+        assertThrows(NullPointerException.class, () -> new StaffName(null));
     }
 
     @Test
     public void constructor_invalidStaffName_throwsIllegalArgumentException() {
         String invalidStaffName = "";
-        assertThrows(IllegalArgumentException.class, () -> new ProjectName(invalidStaffName));
+        assertThrows(IllegalArgumentException.class, () -> new StaffName(invalidStaffName));
     }
 
     @Test
     public void isValidStaffName() {
         // null name
-        assertThrows(NullPointerException.class, () -> ProjectName.isValidProjectName(null));
+        assertThrows(NullPointerException.class, () -> StaffName.isValidStaffName(null));
 
         // invalid staff name
-        assertFalse(ProjectName.isValidProjectName("")); // empty string
-        assertFalse(ProjectName.isValidProjectName(" ")); // spaces only
-        assertFalse(ProjectName.isValidProjectName("^")); // only non-alphanumeric characters
-        assertFalse(ProjectName.isValidProjectName("peter*")); // contains non-alphanumeric characters
+        assertFalse(StaffName.isValidStaffName("")); // empty string
+        assertFalse(StaffName.isValidStaffName(" ")); // spaces only
+        assertFalse(StaffName.isValidStaffName("^")); // only non-alphanumeric characters
+        assertFalse(StaffName.isValidStaffName("peter*")); // contains non-alphanumeric characters
 
         // valid staff name
-        assertTrue(ProjectName.isValidProjectName("peter jack")); // alphabets only
-        assertTrue(ProjectName.isValidProjectName("12345")); // numbers only
-        assertTrue(ProjectName.isValidProjectName("peter the 2nd")); // alphanumeric characters
-        assertTrue(ProjectName.isValidProjectName("Capital Tan")); // with capital letters
-        assertTrue(ProjectName.isValidProjectName("David Roger Jackson Ray Jr 2nd")); // long names
+        assertTrue(StaffName.isValidStaffName("peter jack")); // alphabets only
+        assertTrue(StaffName.isValidStaffName("12345")); // numbers only
+        assertTrue(StaffName.isValidStaffName("peter the 2nd")); // alphanumeric characters
+        assertTrue(StaffName.isValidStaffName("Capital Tan")); // with capital letters
+        assertTrue(StaffName.isValidStaffName("David Roger Jackson Ray Jr 2nd")); // long names
     }
 }
 
