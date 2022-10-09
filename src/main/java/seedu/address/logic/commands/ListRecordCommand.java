@@ -1,20 +1,19 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RECORDS;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
-
 import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RECORDS;
 
 /**
  * Lists all records for a specific patient to the user.
  */
-public class ListRecordCommand extends Command{
+public class ListRecordCommand extends Command {
 
     public static final String COMMAND_WORD = "listR";
 
@@ -25,9 +24,9 @@ public class ListRecordCommand extends Command{
 
     public static final String MESSAGE_SUCCESS = "Listed records for this patient: ";
 
-    private final Index targetIndex;
-
     private static Person lastCalledPerson;
+
+    private final Index targetIndex;
 
     public ListRecordCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
@@ -67,9 +66,9 @@ public class ListRecordCommand extends Command{
         model.setFilteredRecordList(personToListRecords);
         model.updateFilteredRecordList(PREDICATE_SHOW_ALL_RECORDS);
 
-        String feedbackToUser = MESSAGE_SUCCESS + personToListRecords.getName() + "\n" +
-                String.format(Messages.MESSAGE_RECORDS_LISTED_OVERVIEW,
-                        model.getFilteredRecordList().size());
+        String feedbackToUser = MESSAGE_SUCCESS + personToListRecords.getName() + "\n"
+                + String.format(Messages.MESSAGE_RECORDS_LISTED_OVERVIEW,
+                model.getFilteredRecordList().size());
 
         return new CommandResult(feedbackToUser, false, false, true);
     }
