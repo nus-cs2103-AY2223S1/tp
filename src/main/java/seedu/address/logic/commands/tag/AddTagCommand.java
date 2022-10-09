@@ -58,7 +58,7 @@ public class AddTagCommand extends Command {
      * @param editPersonDescriptor details to edit the person with
      */
     public AddTagCommand(Index index, EditPersonDescriptor editPersonDescriptor, boolean addTagToContact,
-    boolean addTagToTask, EditTaskDescriptor editTaskDescriptor) {
+        boolean addTagToTask, EditTaskDescriptor editTaskDescriptor) {
         requireNonNull(index);
         requireNonNull(editPersonDescriptor);
 
