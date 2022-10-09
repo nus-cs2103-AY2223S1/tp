@@ -25,7 +25,9 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Buyer> filteredBuyers;
+    private final FilteredList<Supplier> filteredSuppliers;
+    private final FilteredList<Deliverer> filteredDeliverers;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -37,7 +39,9 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredBuyers = new FilteredList<>(this.addressBook.getBuyerList());
+        filteredSuppliers = new FilteredList<>(this.addressBook.getSupplierList());
+        filteredDeliverers = new FilteredList<>(this.addressBook.getDelivererList());
     }
 
     public ModelManager() {
@@ -92,49 +96,121 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public boolean hasBuyer(Buyer buyer) {
+        requireNonNull(buyer);
+        return addressBook.hasBuyer(buyer);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public boolean hasSupplier(Supplier supplier) {
+        requireNonNull(supplier);
+        return addressBook.hasSupplier(supplier);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public boolean hasDeliverer(Deliverer deliverer) {
+        requireNonNull(deliverer);
+        return addressBook.hasDeliverer(deliverer);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void deleteBuyer(Buyer target) {
+        addressBook.removeBuyer(target);
+    }
 
-        addressBook.setPerson(target, editedPerson);
+    @Override
+    public void deleteSupplier(Supplier target) {
+        addressBook.removeSupplier(target);
+    }
+
+    @Override
+    public void deleteDeliverer(Deliverer target) {
+        addressBook.removeDeliverer(target);
+    }
+
+    @Override
+    public void addBuyer(Buyer buyer) {
+        addressBook.addBuyer(buyer);
+        updateFilteredBuyerList(PREDICATE_SHOW_ALL_BUYERS);
+    }
+
+    @Override
+    public void addSupplier(Supplier supplier) {
+        addressBook.addSupplier(supplier);
+        updateFilteredSupplierList(PREDICATE_SHOW_ALL_SUPPLIERS);
+    }
+
+    @Override
+    public void addDeliverer(Deliverer deliverer) {
+        addressBook.addDeliverer(deliverer);
+        updateFilteredDelivererList(PREDICATE_SHOW_ALL_DELIVERERS);
+    }
+
+    @Override
+    public void setBuyer(Buyer target, Buyer editedBuyer) {
+        requireAllNonNull(target, editedBuyer);
+
+        addressBook.setBuyer(target, editedBuyer);
+    }
+
+    @Override
+    public void setSupplier(Supplier target, Supplier editedSupplier) {
+        requireAllNonNull(target, editedSupplier);
+
+        addressBook.setSupplier(target, editedSupplier);
+    }
+
+    @Override
+    public void setDeliverer(Deliverer target, Deliverer editedDeliverer) {
+        requireAllNonNull(target, editedDeliverer);
+
+        addressBook.setDeliverers(target, editedDeliverer);
     }
 
     //=========== Filtered Person List Accessors =============================================================
+    /**
+     * Returns an ObservableList of buyers in the filteredPersons list.
+     *
+     * @return ObservableList of buyers.
+     */
+    public ObservableList<Buyer> getFilteredBuyerList() {
+        return filteredBuyers;
+    }
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an ObservableList of suppliers in the filteredPersons list.
+     *
+     * @return ObservableList of suppliers.
      */
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Supplier> getFilteredSupplierList() {
+        return filteredSuppliers;
+    }
+
+    /**
+     * Returns an ObservableList of deliverers in the filteredPersons list.
+     *
+     * @return ObservableList of deliverers.
+     */
+    public ObservableList<Deliverer> getFilteredDelivererList() {
+        return filteredDeliverers;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredBuyerList(Predicate<Buyer> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredBuyers.setPredicate(predicate);
     }
 
     @Override
-    public void sort() {
-        addressBook.sort();
+    public void updateFilteredSupplierList(Predicate<Supplier> predicate) {
+        requireNonNull(predicate);
+        filteredSuppliers.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredDelivererList(Predicate<Deliverer> predicate) {
+        requireNonNull(predicate);
+        filteredDeliverers.setPredicate(predicate);
     }
 
     @Override
@@ -153,55 +229,11 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredBuyers.equals(other.filteredBuyers)
+                && filteredSuppliers.equals(other.filteredSuppliers)
+                && filteredDeliverers.equals(other.filteredDeliverers);
     }
 
-    /**
-     * Returns an ObservableList of buyers in the filteredPersons list.
-     *
-     * @return ObservableList of buyers.
-     */
-    public ObservableList<Person> getFilteredBuyerList() {
-        UniquePersonList persons = new UniquePersonList();
-        ObservableList<Person> filteredBuyers = new FilteredList<>(persons.asUnmodifiableObservableList());
-        for (Person person : filteredPersons) {
-            if (person instanceof Buyer) {
-                filteredBuyers.add(person);
-            }
-        }
-        return filteredBuyers;
-    }
 
-    /**
-     * Returns an ObservableList of suppliers in the filteredPersons list.
-     *
-     * @return ObservableList of suppliers.
-     */
-    public ObservableList<Person> getFilteredSupplierList() {
-        UniquePersonList persons = new UniquePersonList();
-        ObservableList<Person> filteredSuppliers = new FilteredList<>(persons.asUnmodifiableObservableList());
-        for (Person person : filteredPersons) {
-            if (person instanceof Supplier) {
-                filteredSuppliers.add(person);
-            }
-        }
-        return filteredSuppliers;
-    }
-
-    /**
-     * Returns an ObservableList of deliverers in the filteredPersons list.
-     *
-     * @return ObservableList of deliverers.
-     */
-    public ObservableList<Person> getFilteredDelivererList() {
-        UniquePersonList persons = new UniquePersonList();
-        ObservableList<Person> filteredDeliverers = new FilteredList<>(persons.asUnmodifiableObservableList());
-        for (Person person : filteredPersons) {
-            if (person instanceof Deliverer) {
-                filteredDeliverers.add(person);
-            }
-        }
-        return filteredDeliverers;
-    }
 
 }

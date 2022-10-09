@@ -13,10 +13,9 @@ public class Buyer extends Person {
 
     private final ArrayList<Order> orders;
 
-
     public Buyer(Name name, Phone phone, Email email, Address address, Set<Tag> tags, ArrayList<Order> orders) {
         super(name, phone, email, address, tags);
-        requireNonNull(orders);
+        //requireNonNull(orders);
         this.orders = orders;
     }
 

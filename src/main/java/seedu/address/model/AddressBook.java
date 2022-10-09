@@ -5,8 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.*;
 
 /**
  * Wraps all data at the address-book level
@@ -14,7 +13,9 @@ import seedu.address.model.person.UniquePersonList;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private final UniquePersonList persons;
+    private final UniqueBuyerList buyers;
+    private final UniqueSupplierList suppliers;
+    private final UniqueDelivererList deliverers;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,8 +25,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      * among constructors.
      */
     {
-        persons = new UniquePersonList();
-
+        buyers = new UniqueBuyerList();
+        suppliers = new UniqueSupplierList();
+        deliverers = new UniqueDelivererList();
     }
 
     public AddressBook() {}
@@ -44,8 +46,16 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the contents of the person list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
+    public void setBuyers(List<Buyer> persons) {
+        this.buyers.setPersons(persons);
+    }
+
+    public void setSuppliers(List<Supplier> persons) {
+        this.suppliers.setPersons(persons);
+    }
+
+    public void setDeliverers(List<Deliverer> persons) {
+        this.deliverers.setPersons(persons);
     }
 
     /**
@@ -54,7 +64,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setBuyers(newData.getBuyerList());
+        setSuppliers(newData.getSupplierList());
+        setDeliverers(newData.getDelivererList());
     }
 
     //// person-level operations
@@ -62,17 +74,35 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return persons.contains(person);
+    public boolean hasBuyer(Buyer buyer) {
+        requireNonNull(buyer);
+        return buyers.contains(buyer);
+    }
+
+    public boolean hasSupplier(Supplier supplier) {
+        requireNonNull(supplier);
+        return suppliers.contains(supplier);
+    }
+
+    public boolean hasDeliverer(Deliverer deliverer) {
+        requireNonNull(deliverer);
+        return deliverers.contains(deliverer);
     }
 
     /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
-    public void addPerson(Person p) {
-        persons.add(p);
+    public void addBuyer(Buyer p) {
+        buyers.add(p);
+    }
+
+    public void addSupplier(Supplier p) {
+        suppliers.add(p);
+    }
+
+    public void addDeliverer(Deliverer p) {
+        deliverers.add(p);
     }
 
     /**
@@ -80,46 +110,83 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
-    public void setPerson(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
+    public void setBuyer(Buyer target, Buyer editedBuyer) {
+        requireNonNull(editedBuyer);
 
-        persons.setPerson(target, editedPerson);
+        buyers.setPerson(target, editedBuyer);
+    }
+
+    public void setSupplier(Supplier target, Supplier editedSupplier) {
+        requireNonNull(editedSupplier);
+
+        suppliers.setPerson(target, editedSupplier);
+    }
+
+    public void setDeliverers(Deliverer target, Deliverer editedDeliverer) {
+        requireNonNull(editedDeliverer);
+
+        deliverers.setPerson(target, editedDeliverer);
     }
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removePerson(Person key) {
-        persons.remove(key);
+    public void removeBuyer(Buyer key) {
+        buyers.remove(key);
+    }
+
+    public void removeSupplier(Supplier key) {
+        suppliers.remove(key);
+    }
+
+    public void removeDeliverer(Deliverer key) {
+        deliverers.remove(key);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        StringBuilder sb = new StringBuilder();
+        sb.append(buyers.asUnmodifiableObservableList().size() + " buyers");
+        sb.append("\n");
+        sb.append(suppliers.asUnmodifiableObservableList().size() + " suppliers");
+        sb.append("\n");
+        sb.append(deliverers.asUnmodifiableObservableList().size() + " deliverers");
+        sb.append("\n");
+        return sb.toString();
         // TODO: refine later
     }
 
     @Override
-    public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+    public ObservableList<Buyer> getBuyerList() {
+        return buyers.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Supplier> getSupplierList() {
+        return suppliers.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Deliverer> getDelivererList() {
+        return deliverers.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                && buyers.equals(((AddressBook) other).buyers)
+                && suppliers.equals(((AddressBook) other).suppliers)
+                && deliverers.equals(((AddressBook) other).deliverers));
     }
 
-    @Override
-    public int hashCode() {
-        return persons.hashCode();
-    }
+//TODO
+//    @Override
+//    public int hashCode() {
+//        return persons.hashCode();
+//    }
 
-    public void sort() {
-        persons.sort();
-    }
 }
