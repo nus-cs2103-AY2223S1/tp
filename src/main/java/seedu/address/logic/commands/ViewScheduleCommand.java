@@ -20,11 +20,6 @@ public class ViewScheduleCommand extends Command{
 
     public static final String MESSAGE_SUCCESS = "Showed all schedules";
 
-    private final String keywords;
-
-    public ViewScheduleCommand(String keywords) {
-        this.keywords = keywords;
-    }
 
     @Override
     public CommandResult execute(Model model) {

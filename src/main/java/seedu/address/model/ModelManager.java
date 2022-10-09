@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNullElse;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
@@ -142,6 +143,7 @@ public class ModelManager implements Model {
     public void addSchedule(Schedule schedule) {
         addressBook.addSchedule(schedule);
         updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
+        updateFilteredScheduleList(PREDICATE_SHOW_ALL_SCHEDULES);
     }
 
     @Override
@@ -195,6 +197,12 @@ public class ModelManager implements Model {
     }
 
     //=========== Filtered Schedule List Accessors =============================================================
+
+    @Override
+    public ObservableList<Schedule> getFilteredScheduleList() {
+        return filteredSchedule;
+    }
+
 
     @Override
     public void updateFilteredScheduleList(Predicate<Schedule> predicate) {
