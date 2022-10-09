@@ -79,14 +79,15 @@ Format: `help`
 
 Adds a person to the SectresBook.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...​ [l/LOAN]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/HumanResources`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/Member`
+* `add n/Jane Doe p/98876542 e/jane@example.com a/That Street, block 133, #11-10 t/Member l/10`
 * `add n/Neethesh t/Vice-president e/neethesh@example.com a/Happy Avenue p/91234567`
 
 ### Listing all persons : `list`
