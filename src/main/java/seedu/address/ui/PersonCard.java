@@ -53,8 +53,8 @@ public class PersonCard extends UiPart<Region> {
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         lessonPlan.setText(person.getLessonPlan().value);
-        homework.setText(person.getHomeworkList().toString());
         gradeProgress.setText(person.getGradeProgressList().toString());
+        homework.setText(person.getHomeworkList().shortDescription());
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

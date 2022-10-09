@@ -60,6 +60,13 @@ public class Person {
     }
 
     /**
+     * Clears the person's homework list.
+     */
+    public void clearHomeworkList() {
+        homeworkList.clearList();
+    }
+
+    /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
