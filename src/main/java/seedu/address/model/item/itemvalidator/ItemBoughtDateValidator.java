@@ -30,6 +30,7 @@ public class ItemBoughtDateValidator {
 
     /**
      * Validates a given input String.
+     *
      * @param dateString String representation of date to validate against.
      */
     public static void validate(String dateString) {
@@ -45,7 +46,7 @@ public class ItemBoughtDateValidator {
      * @param dateTimeString a string that represents the itemDate of the format
      *                       {@link ItemBoughtDateValidator#DATE_INPUT_PATTERN_REGEX}
      */
-    private static boolean isParsableItemDatetime(String dateTimeString) {
+    public static boolean isParsableItemDatetime(String dateTimeString) {
         DateValidator validator = new DateValidator(DATE_TIME_FORMATTER);
         return validator.isParsableDateString(dateTimeString);
     }
@@ -55,7 +56,7 @@ public class ItemBoughtDateValidator {
      *
      * @param date a local date that represents the date of the {@link Item}.
      */
-    private static boolean isYearMoreThanMaxYear(LocalDate date) {
+    public static boolean isYearMoreThanMaxYear(LocalDate date) {
         return date.getYear() > MAX_YEAR;
     }
 
@@ -64,7 +65,7 @@ public class ItemBoughtDateValidator {
      *
      * @param date a LocalDate that represents the date of the {@link Item}.
      */
-    private static boolean isYearLessThanMaxYear(LocalDate date) {
+    public static boolean isYearLessThanMaxYear(LocalDate date) {
         return date.getYear() < MIN_YEAR;
     }
 }
