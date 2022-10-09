@@ -2,10 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_HOSPITAL_WING_PARSER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INPATIENT_PARSER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME_PARSER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_OUTPATIENT_PARSER;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -35,7 +32,7 @@ public class AddressBookParser {
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
     private static final Pattern GET_COMMAND_FORMAT = Pattern
-            .compile("(?<commandWord>[get\\s]+)(?<prefix>[/a-z]+)(?<arguments>[a-zA-Z0-9\\s]*)");
+            .compile("(?<commandWord>[get\\s]+)(?<prefix>[/a-z]+)(?<arguments>[a-zA-Z-0-9\\s]*)");
 
     /**
      * Parses user input into command for execution.
@@ -55,6 +52,10 @@ public class AddressBookParser {
 
             if (prefixes.equals(PREFIX_HOSPITAL_WING_PARSER)) {
                 return new GetHospitalWingCommandParser().parse(arguments);
+            }
+
+            if (prefixes.equals(PREFIX_FLOOR_NUMBER_PARSER)) {
+                return new GetFloorNumberParser().parse(arguments);
             }
 
             if (prefixes.equals(PREFIX_NAME_PARSER)) {
