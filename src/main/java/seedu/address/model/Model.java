@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -96,13 +97,13 @@ public interface Model {
     /**
      * Creates a new meeting with a person in the address book.
      *
-     * @param otherPerson the contact in the address book to create a meeting with
+     * @param peopleToMeet the contacts in the address book to create a meeting with
      * @param meetingTitle the title/ description of meeting
      * @param meetingDateAndTime the date and time of meeting
      * @param meetingLocation the location of meeting
      * @return a new meeting
      */
-    Meeting createNewMeeting(Person otherPerson, String meetingTitle,
+    Meeting createNewMeeting(ArrayList<Person> peopleToMeet, String meetingTitle,
                              String meetingDateAndTime, String meetingLocation);
 
     /**

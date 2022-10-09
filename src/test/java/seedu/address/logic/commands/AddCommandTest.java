@@ -150,7 +150,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public Meeting createNewMeeting(Person otherPerson, String meetingTitle,
+        public Meeting createNewMeeting(ArrayList<Person> peopleToMeet, String meetingTitle,
                                         String meetingDateAndTime, String meetingLocation) {
             throw new AssertionError("This method should not be called.");
         }

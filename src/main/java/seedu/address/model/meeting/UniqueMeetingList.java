@@ -59,7 +59,7 @@ public class UniqueMeetingList implements Iterable<Meeting> {
      * {@code target} must exist in the list.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
      */
-    public void setPerson(Meeting target, Meeting editedMeeting) {
+    public void setMeeting(Meeting target, Meeting editedMeeting) {
         requireAllNonNull(target, editedMeeting);
 
         int index = internalList.indexOf(target);
