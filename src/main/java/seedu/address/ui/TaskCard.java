@@ -40,6 +40,5 @@ public class TaskCard extends UiPart<Region> {
         moduleCode.setText(task.getModule().getModuleCode().moduleCode);
         description.setText(task.getDescription().description);
         isComplete.setSelected(task.isComplete());
-
     }
 }

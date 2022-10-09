@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
-import seedu.address.model.task.Status;
+import seedu.address.model.task.TaskStatus;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDescription;
 
@@ -59,13 +59,13 @@ public class JsonAdaptedTask {
         if (!ModuleCode.isValidModuleCode(moduleCode)) {
             throw new IllegalValueException(ModuleCode.MODULE_CODE_CONSTRAINTS);
         }
-        if (!Status.isValidStatus(status)) {
-            throw new IllegalValueException(Status.STATUS_CONSTRAINTS);
+        if (!TaskStatus.isValidStatus(status)) {
+            throw new IllegalValueException(TaskStatus.STATUS_CONSTRAINTS);
         }
         final TaskDescription taskDescription = new TaskDescription(description);
         final ModuleCode modCode = new ModuleCode(moduleCode);
         final Module module = new Module(modCode);
-        final Status taskStatus = Status.of(status);
+        final TaskStatus taskStatus = TaskStatus.of(status);
         Task task = new Task(module, taskDescription, taskStatus);
         return task;
     }
