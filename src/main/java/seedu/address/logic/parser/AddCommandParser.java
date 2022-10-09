@@ -1,7 +1,10 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON_PLAN;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -44,7 +47,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                 new GradeProgressList(); // add command does not allow adding Grade Progress at the start
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, lessonPlan, homeworkList,gradeProgressList, tagList);
+        Person person = new Person(name, phone, lessonPlan, homeworkList, gradeProgressList, tagList);
 
         return new AddCommand(person);
     }

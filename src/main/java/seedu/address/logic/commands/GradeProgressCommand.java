@@ -60,7 +60,7 @@ public class GradeProgressCommand extends Command {
 
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getLessonPlan(),
-                personToEdit.getHomeworkList() ,gradeProgressList, personToEdit.getTags());
+                personToEdit.getHomeworkList(), gradeProgressList, personToEdit.getTags());
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -74,9 +74,9 @@ public class GradeProgressCommand extends Command {
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {
-        String message = !gradeProgress.value.isEmpty() ?
-                MESSAGE_ADD_GRADEPROGRESS_SUCCESS :
-                MESSAGE_DELETE_GRADEPROGRESS_SUCCESS;
+        String message = !gradeProgress.value.isEmpty()
+                ? MESSAGE_ADD_GRADEPROGRESS_SUCCESS
+                : MESSAGE_DELETE_GRADEPROGRESS_SUCCESS;
         return String.format(message, personToEdit);
     }
 

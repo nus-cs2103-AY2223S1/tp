@@ -55,7 +55,9 @@ public class Person {
         return homeworkList;
     }
 
-    public GradeProgressList getGradeProgressList() {return gradeProgressList;}
+    public GradeProgressList getGradeProgressList() {
+        return gradeProgressList;
+    }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}

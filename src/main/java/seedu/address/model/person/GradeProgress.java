@@ -14,7 +14,7 @@ public class GradeProgress {
      *
      * @param gradeProgress A description of the homework.
      */
-    public GradeProgress (String gradeProgress) {
+    public GradeProgress(String gradeProgress) {
         requireNonNull(gradeProgress);
         value = gradeProgress;
     }

@@ -41,7 +41,7 @@ public class GradeProgressList {
         }
         for (int i = 0; i < gradeProgressList.size(); i++) {
             description.append(gradeProgressList.get(i));
-            if (i != gradeProgressList.size() - 1){
+            if (i != gradeProgressList.size() - 1) {
                 description.append(", ");
             }
         }

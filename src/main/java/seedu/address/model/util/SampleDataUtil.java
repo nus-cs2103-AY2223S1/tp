@@ -34,7 +34,7 @@ public class SampleDataUtil {
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new LessonPlan("Math"),
                 new HomeworkList(), new GradeProgressList(), getTagSet("classmates")),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"),
-                new LessonPlan("Test papers"), new HomeworkList(),new GradeProgressList(), getTagSet("colleagues"))
+                new LessonPlan("Test papers"), new HomeworkList(), new GradeProgressList(), getTagSet("colleagues"))
         };
     }
 

@@ -100,7 +100,8 @@ public class EditCommand extends Command {
         GradeProgressList updatedGradeProgressList = personToEdit.getGradeProgressList();
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedLessonPlan, updatedHomeworkList, updatedGradeProgressList, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedLessonPlan,
+                updatedHomeworkList, updatedGradeProgressList, updatedTags);
     }
 
     @Override
