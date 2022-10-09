@@ -7,7 +7,6 @@ import static friday.logic.parser.CliSyntax.PREFIX_NAME;
 import static friday.logic.parser.CliSyntax.PREFIX_TAG;
 import static friday.logic.parser.CliSyntax.PREFIX_TELEGRAMHANDLE;
 
-import java.time.format.DateTimeParseException;
 import java.util.Set;
 import java.util.stream.Stream;
 
