@@ -9,9 +9,9 @@ import seedu.taassist.model.moduleclass.ModuleClass;
 /**
  * Enters focus mode for the specified class.
  */
-public class ClassCommand extends Command {
+public class FocusCommand extends Command {
 
-    public static final String COMMAND_WORD = "class";
+    public static final String COMMAND_WORD = "focus";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " Enters focus mode for the specified class.\n"
             + "Parameters: CLASS_NAME\n"
@@ -21,9 +21,9 @@ public class ClassCommand extends Command {
     private final ModuleClass targetClass;
 
     /**
-     * Creates an ClassCommand that enters focus mode for the specified {@code targetClass}.
+     * Creates an FocusCommand that enters focus mode for the specified {@code targetClass}.
      */
-    public ClassCommand(ModuleClass targetClass) {
+    public FocusCommand(ModuleClass targetClass) {
         this.targetClass = targetClass;
     }
 
@@ -37,8 +37,8 @@ public class ClassCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ClassCommand // instanceof handles nulls
-                && targetClass.equals(((ClassCommand) other).targetClass));
+                || (other instanceof FocusCommand // instanceof handles nulls
+                && targetClass.equals(((FocusCommand) other).targetClass));
     }
 
 }
