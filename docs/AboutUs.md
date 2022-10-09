@@ -9,51 +9,53 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
 
-<img src="images/johndoe.png" width="200px">
+### Jerome Hoo Jun Jie
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+<img src="images/jeromehjj.png" width="200px">
 
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/jeromehjj)]
+[[portfolio](team/jeromehjj.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: _To be determined_
 
-### Jean Doe
+### Isaac Li Haoyang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/isaaclhy00.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/isaaclhy00)]
+[[portfolio](team/isaaclhy00.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: _To be determined_
 
-### James Doe
+### Nguyen Minh Hoang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/hoang227.png.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/hoang227)] 
+[[portfolio](team/hoang227.md)]
+
+* Role: Developer
+* Responsibilities: _To be determined_
+
+### Amadeus Chi Song yi
+
+<img src="images/ama-chi.png" width="200px">
+
+[[github](http://github.com/ama-chi)]
+[[portfolio](team/ama-chi.md)]
+
+* Role: Developer
+* Responsibilities: _To be determined_
+
+### Gavin Cho
+
+<img src="images/gavzzz.png.png" width="200px">
+
+[[github](http://github.com/gavzzz)]
+[[portfolio](team/gavzzz.md)]
 
 * Role: Developer
 * Responsibilities: UI

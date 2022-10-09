@@ -1,11 +1,12 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.listing.Listing;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.*;
+
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.listing.Listing;
 
 /**
  * Adds a person to the address book.
@@ -22,7 +23,7 @@ public class AddListingCommand extends Command {
 			+ "Example: " + COMMAND_WORD + " "
 			+ PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
 			+ PREFIX_NAME + "Bob "
-			+ PREFIX_ASKING_PRICE + "500000";
+			+ PREFIX_ASKING_PRICE + "600000";
 
 	public static final String MESSAGE_SUCCESS = "New listing added: %1$s";
 	public static final String MESSAGE_DUPLICATE_LISTING = "This listing already exists in the address book";

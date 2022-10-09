@@ -1,12 +1,12 @@
 package seedu.address.model.listing;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import seedu.address.model.offer.Offer;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Listing object contains a currently listed property, its owner, asking price, and offers and clients.
