@@ -72,19 +72,24 @@ public class PersonBuilder {
 
     /**
      * Parses the {@code classNames} which the user has attended into a
-     * {@code Set<Attendance>} and set it to the {@code Person} that we are building.
+     * {@code Set<Attendance>} and adds it to the {@code Person} that we are building.
      */
-    public PersonBuilder withAttended(String ... classNames) {
+    public PersonBuilder addAttended(String ... classNames) {
         this.attendances.addAll(SampleDataUtil.getAttendedSet(classNames));
         return this;
     }
 
     /**
      * Parses the {@code classNames} which the user has attended into a
-     * {@code Set<Attendance>} and set it to the {@code Person} that we are building.
+     * {@code Set<Attendance>} and adds it to the {@code Person} that we are building.
      */
-    public PersonBuilder withNotAttended(String ... classNames) {
+    public PersonBuilder addNotAttended(String ... classNames) {
         this.attendances.addAll(SampleDataUtil.getNotAttendedSet(classNames));
+        return this;
+    }
+
+    public PersonBuilder setAttended(Set<Attendance> attendances) {
+        this.attendances = attendances;
         return this;
     }
 

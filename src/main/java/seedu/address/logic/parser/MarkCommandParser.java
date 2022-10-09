@@ -12,6 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS;
 
 public class MarkCommandParser implements Parser<MarkCommand> {
 
+    public static String MESSAGE_INVALID_OPTION = "Option must either be 'present' or 'absent'!";
     public MarkCommand parse(String args) throws ParseException {
 
         ParseException parseException = new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
@@ -42,6 +43,6 @@ public class MarkCommandParser implements Parser<MarkCommand> {
             return true;
         } else if (option.equals("absent")) {
             return false;
-        } else throw new ParseException("Option must either be 'present' or 'absent'!");
+        } else throw new ParseException(MESSAGE_INVALID_OPTION);
     }
 }
