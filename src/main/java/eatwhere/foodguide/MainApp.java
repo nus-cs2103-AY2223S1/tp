@@ -11,10 +11,8 @@ import eatwhere.foodguide.commons.core.Version;
 import eatwhere.foodguide.commons.exceptions.DataConversionException;
 import eatwhere.foodguide.commons.util.ConfigUtil;
 import eatwhere.foodguide.commons.util.StringUtil;
-
 import eatwhere.foodguide.logic.Logic;
 import eatwhere.foodguide.logic.LogicManager;
-
 import eatwhere.foodguide.model.FoodGuide;
 import eatwhere.foodguide.model.Model;
 import eatwhere.foodguide.model.ModelManager;
@@ -22,19 +20,15 @@ import eatwhere.foodguide.model.ReadOnlyFoodGuide;
 import eatwhere.foodguide.model.ReadOnlyUserPrefs;
 import eatwhere.foodguide.model.UserPrefs;
 import eatwhere.foodguide.model.util.SampleDataUtil;
-
 import eatwhere.foodguide.storage.FoodGuideStorage;
 import eatwhere.foodguide.storage.JsonFoodGuideStorage;
 import eatwhere.foodguide.storage.JsonUserPrefsStorage;
 import eatwhere.foodguide.storage.Storage;
 import eatwhere.foodguide.storage.StorageManager;
 import eatwhere.foodguide.storage.UserPrefsStorage;
-
 import eatwhere.foodguide.ui.Ui;
 import eatwhere.foodguide.ui.UiManager;
-
 import javafx.application.Application;
-
 import javafx.stage.Stage;
 
 /**

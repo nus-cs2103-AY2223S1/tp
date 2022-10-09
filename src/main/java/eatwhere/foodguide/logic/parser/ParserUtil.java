@@ -8,9 +8,7 @@ import java.util.Set;
 
 import eatwhere.foodguide.commons.core.index.Index;
 import eatwhere.foodguide.commons.util.StringUtil;
-
 import eatwhere.foodguide.logic.parser.exceptions.ParseException;
-
 import eatwhere.foodguide.model.eatery.Email;
 import eatwhere.foodguide.model.eatery.Location;
 import eatwhere.foodguide.model.eatery.Name;

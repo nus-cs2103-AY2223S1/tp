@@ -10,10 +10,8 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import eatwhere.foodguide.commons.core.Messages;
-
 import eatwhere.foodguide.logic.commands.AddCommand;
 import eatwhere.foodguide.logic.parser.exceptions.ParseException;
-
 import eatwhere.foodguide.model.eatery.Eatery;
 import eatwhere.foodguide.model.eatery.Email;
 import eatwhere.foodguide.model.eatery.Location;

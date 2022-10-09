@@ -6,8 +6,11 @@ import java.util.stream.Collectors;
 
 import eatwhere.foodguide.model.FoodGuide;
 import eatwhere.foodguide.model.ReadOnlyFoodGuide;
-import eatwhere.foodguide.model.eatery.*;
+import eatwhere.foodguide.model.eatery.Eatery;
+import eatwhere.foodguide.model.eatery.Email;
 import eatwhere.foodguide.model.eatery.Location;
+import eatwhere.foodguide.model.eatery.Name;
+import eatwhere.foodguide.model.eatery.Phone;
 import eatwhere.foodguide.model.tag.Tag;
 
 /**

@@ -4,7 +4,6 @@ import java.util.logging.Logger;
 
 import eatwhere.foodguide.commons.core.LogsCenter;
 import eatwhere.foodguide.model.eatery.Eatery;
-
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;

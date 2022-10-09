@@ -18,10 +18,10 @@ import eatwhere.foodguide.commons.core.index.Index;
 import eatwhere.foodguide.commons.util.CollectionUtil;
 import eatwhere.foodguide.logic.commands.exceptions.CommandException;
 import eatwhere.foodguide.model.Model;
-import eatwhere.foodguide.model.eatery.Location;
-import eatwhere.foodguide.model.eatery.Email;
-import eatwhere.foodguide.model.eatery.Name;
 import eatwhere.foodguide.model.eatery.Eatery;
+import eatwhere.foodguide.model.eatery.Email;
+import eatwhere.foodguide.model.eatery.Location;
+import eatwhere.foodguide.model.eatery.Name;
 import eatwhere.foodguide.model.eatery.Phone;
 import eatwhere.foodguide.model.tag.Tag;
 

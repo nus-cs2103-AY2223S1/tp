@@ -6,7 +6,6 @@ import java.util.List;
 
 import eatwhere.foodguide.model.eatery.Eatery;
 import eatwhere.foodguide.model.eatery.UniqueEateryList;
-
 import javafx.collections.ObservableList;
 
 /**

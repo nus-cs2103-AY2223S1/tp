@@ -8,14 +8,13 @@ import java.util.List;
 import eatwhere.foodguide.commons.util.CollectionUtil;
 import eatwhere.foodguide.model.eatery.exceptions.DuplicateEateryException;
 import eatwhere.foodguide.model.eatery.exceptions.EateryNotFoundException;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * an eatery is considered unique by comparing using {@code Eatery#isSamePerson(Eatery)}. As such, adding and updating of
- * persons uses Eatery#isSamePerson(Eatery) for equality so as to ensure that the eatery being added or updated is
+ * an eatery is considered unique by comparing using {@code Eatery#isSamePerson(Eatery)}. As such, adding and updating
+ * of persons uses Eatery#isSamePerson(Eatery) for equality to ensure that the eatery being added or updated is
  * unique in terms of identity in the UniqueEateryList. However, the removal of an eatery uses Eatery#equals(Object) so
  * as to ensure that the eatery with exactly the same fields will be removed.
  *

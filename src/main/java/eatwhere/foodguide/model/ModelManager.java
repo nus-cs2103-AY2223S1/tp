@@ -10,7 +10,6 @@ import eatwhere.foodguide.commons.core.GuiSettings;
 import eatwhere.foodguide.commons.core.LogsCenter;
 import eatwhere.foodguide.commons.util.CollectionUtil;
 import eatwhere.foodguide.model.eatery.Eatery;
-
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 

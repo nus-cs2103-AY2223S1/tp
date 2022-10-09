@@ -5,7 +5,6 @@ import java.util.function.Predicate;
 
 import eatwhere.foodguide.commons.core.GuiSettings;
 import eatwhere.foodguide.model.eatery.Eatery;
-
 import javafx.collections.ObservableList;
 
 /**
