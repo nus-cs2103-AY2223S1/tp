@@ -16,7 +16,8 @@ public class AddTaskCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the address book. "
             + "Parameters: "
-            + CliSyntax.PREFIX_TASK + "DESCRIPTION ";
+            + CliSyntax.PREFIX_TASK + "DESCRIPTION "
+            + CliSyntax.PREFIX_MOD_CODE + "MODULE CODE ";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
 

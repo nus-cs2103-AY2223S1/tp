@@ -6,6 +6,8 @@ import java.util.stream.Stream;
 
 import modtrekt.logic.commands.AddTaskCommand;
 import modtrekt.logic.parser.exceptions.ParseException;
+import modtrekt.model.module.ModCode;
+import modtrekt.model.module.ModName;
 import modtrekt.model.task.Description;
 import modtrekt.model.task.Task;
 
@@ -31,16 +33,17 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
     public AddTaskCommand parse(String args) throws ParseException {
         System.out.println(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_TASK);
+                ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_TASK, CliSyntax.PREFIX_MOD_CODE);
 
-        if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_TASK)
+        if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_TASK, CliSyntax.PREFIX_MOD_CODE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
         }
 
         Description description = ParserUtil.parseDescription(argMultimap.getValue(CliSyntax.PREFIX_TASK).get());
+        ModCode module = ParserUtil.parseCode(argMultimap.getValue(CliSyntax.PREFIX_MOD_CODE).get());
 
-        Task t = new Task(description);
+        Task t = new Task(description, module);
 
         return new AddTaskCommand(t);
     }

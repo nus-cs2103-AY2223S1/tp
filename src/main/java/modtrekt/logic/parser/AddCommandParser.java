@@ -39,10 +39,11 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_MOD_NAME, CliSyntax.PREFIX_MOD_CODE,
                         CliSyntax.PREFIX_MOD_CREDIT, CliSyntax.PREFIX_TASK);
 
-        if (arePrefixesPresent(argMultimap, CliSyntax.PREFIX_TASK)) {
+        if (arePrefixesPresent(argMultimap, CliSyntax.PREFIX_TASK, CliSyntax.PREFIX_MOD_CODE)) {
             // Add task
             Description description = ParserUtil.parseDescription(argMultimap.getValue(CliSyntax.PREFIX_TASK).get());
-            Task t = new Task(description);
+            ModCode code = ParserUtil.parseCode(argMultimap.getValue(CliSyntax.PREFIX_MOD_CODE).get());
+            Task t = new Task(description, code);
             return new AddTaskCommand(t);
         } else if (arePrefixesPresent(argMultimap, CliSyntax.PREFIX_MOD_NAME, CliSyntax.PREFIX_MOD_CODE,
                 CliSyntax.PREFIX_MOD_CREDIT)) {

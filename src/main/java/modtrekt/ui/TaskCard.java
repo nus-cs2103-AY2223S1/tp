@@ -46,7 +46,8 @@ public class TaskCard extends UiPart<Region> {
         super(FXML);
         this.person = t;
         id.setText(displayedIndex + ". ");
-        name.setText(person.toString());
+        name.setText(person.getDescription().toString());
+        phone.setText("Module Code: " + person.getModule().toString());
     }
 
     @Override
