@@ -13,8 +13,8 @@ import org.junit.jupiter.api.Test;
 
 import taskbook.commons.core.GuiSettings;
 import taskbook.model.person.NameContainsKeywordsPredicate;
-import taskbook.testutil.TaskBookBuilder;
 import taskbook.testutil.Assert;
+import taskbook.testutil.TaskBookBuilder;
 import taskbook.testutil.TypicalPersons;
 
 

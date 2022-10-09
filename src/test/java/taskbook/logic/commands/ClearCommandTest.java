@@ -2,9 +2,9 @@ package taskbook.logic.commands;
 
 import org.junit.jupiter.api.Test;
 
-import taskbook.model.TaskBook;
 import taskbook.model.Model;
 import taskbook.model.ModelManager;
+import taskbook.model.TaskBook;
 import taskbook.model.UserPrefs;
 import taskbook.testutil.TypicalPersons;
 

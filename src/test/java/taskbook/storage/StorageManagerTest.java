@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import taskbook.commons.core.GuiSettings;
-import taskbook.model.TaskBook;
 import taskbook.model.ReadOnlyTaskBook;
+import taskbook.model.TaskBook;
 import taskbook.model.UserPrefs;
 import taskbook.testutil.TypicalPersons;
 

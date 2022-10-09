@@ -7,9 +7,9 @@ import org.junit.jupiter.api.Test;
 
 import taskbook.commons.core.Messages;
 import taskbook.commons.core.index.Index;
-import taskbook.model.TaskBook;
 import taskbook.model.Model;
 import taskbook.model.ModelManager;
+import taskbook.model.TaskBook;
 import taskbook.model.UserPrefs;
 import taskbook.model.person.Person;
 import taskbook.testutil.EditPersonDescriptorBuilder;
