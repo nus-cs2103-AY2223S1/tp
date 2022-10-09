@@ -4,5 +4,5 @@
 <?import javafx.scene.image.ImageView?>
 <HBox id = "box" fx:id="box" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <ImageView fx:id="icon" fitWidth="50" fitHeight="50" />
-    <Label>contact address card</Label>
+    <Label fx:id="address" />
 </HBox>

@@ -37,7 +37,9 @@ public class DetailPanel extends MainPanel {
         HBox.setHgrow(profileBox.getRoot(), Priority.ALWAYS);
         profileBoxContainer.getChildren().add(profileBox.getRoot());
 
-        ContactListBox contactListBox = new ContactListBox();
+        ContactListBox contactListBox = new ContactListBox("email",
+                                                           "telegram",
+                                                           "twitter");
         HBox.setHgrow(contactListBox.getRoot(), Priority.ALWAYS);
         contactListBoxContainer.getChildren().add(contactListBox.getRoot());
     }

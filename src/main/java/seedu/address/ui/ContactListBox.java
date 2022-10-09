@@ -21,18 +21,18 @@ public class ContactListBox extends UiPart<Region> {
     @FXML
     private HBox twitterHandleContainer;
 
-    public ContactListBox() {
+    public ContactListBox(String email, String telegram, String twitter) {
         super(FXML);
 
-        ContactAddressCard emailAddr = new ContactAddressCard("email");
+        ContactAddressCard emailAddr = new ContactAddressCard("email", email);
         HBox.setHgrow(emailAddr.getRoot(), Priority.ALWAYS);
         emailAddressContainer.getChildren().add(emailAddr.getRoot());
 
-        ContactAddressCard teleHandle = new ContactAddressCard("telegram");
+        ContactAddressCard teleHandle = new ContactAddressCard("telegram", telegram);
         HBox.setHgrow(teleHandle.getRoot(), Priority.ALWAYS);
         telegramHandleContainer.getChildren().add(teleHandle.getRoot());
 
-        ContactAddressCard twitterHandle = new ContactAddressCard("twitter");
+        ContactAddressCard twitterHandle = new ContactAddressCard("twitter", twitter);
         HBox.setHgrow(twitterHandle.getRoot(), Priority.ALWAYS);
         twitterHandleContainer.getChildren().add(twitterHandle.getRoot());
 

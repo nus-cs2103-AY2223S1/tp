@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -15,9 +16,13 @@ public class ContactAddressCard extends UiPart<Region> {
     @FXML
     private ImageView icon;
 
-    public ContactAddressCard(String iconName) {
+    @FXML
+    private Label address;
+
+    public ContactAddressCard(String iconName, String address) {
         super(FXML);
         Image img = new Image(this.getClass().getResourceAsStream("/images/" + iconName + ".png"));
-        icon.setImage(img);
+        this.icon.setImage(img);
+        this.address.setText(address);
     }
 }
