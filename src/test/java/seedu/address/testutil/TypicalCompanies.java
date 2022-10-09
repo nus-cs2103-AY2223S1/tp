@@ -6,7 +6,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.testutil.TypicalPoc.EMPTY_POC_LIST;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,12 +24,12 @@ public class TypicalCompanies {
             .withTags("friends").build();
     public static final Company BENSON = new CompanyBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
-            .withTags("owesMoney", "friends").withUniquePocList(EMPTY_POC_LIST).build();
+            .withTags("owesMoney", "friends").withAddedPoc(TypicalPoc.BENSON).build();
     public static final Company CARL = new CompanyBuilder().withName("Carl Kurz").withAddress("wall street").build();
     public static final Company DANIEL = new CompanyBuilder().withName("Daniel Meier")
             .withAddress("10th street").withTags("friends").withAddedPoc(TypicalPoc.DANIEL).build();
     public static final Company ELLE = new CompanyBuilder().withName("Elle Meyer")
-            .withAddress("michegan ave").withAddedPoc(TypicalPoc.ELLE).build();
+            .withAddress("michegan ave").build();
     public static final Company FIONA = new CompanyBuilder().withName("Fiona Kunz")
             .withAddress("little tokyo").build();
     public static final Company GEORGE = new CompanyBuilder().withName("George Best")

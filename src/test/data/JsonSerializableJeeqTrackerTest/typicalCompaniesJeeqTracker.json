@@ -9,7 +9,12 @@
     "name" : "Benson Meier",
     "address" : "311, Clementi Ave 2, #02-25",
     "tagged" : [ "owesMoney", "friends" ],
-    "pocs": [ ]
+    "pocs" : [ {
+      "name" : "Benson Meier",
+      "phone" : "98765432",
+      "email" : "johnd@example.com",
+      "tagged" : [ "owesMoney", "friends" ]
+    } ]
   }, {
     "name" : "Carl Kurz",
     "address" : "wall street",

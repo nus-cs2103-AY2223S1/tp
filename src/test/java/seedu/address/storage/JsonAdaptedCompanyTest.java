@@ -18,7 +18,6 @@ import seedu.address.model.company.Name;
 public class JsonAdaptedCompanyTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_ADDRESS = " ";
-    private static final String INVALID_POC = " ";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = BENSON.getName().toString();
