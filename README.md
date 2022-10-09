@@ -1,9 +1,10 @@
 [![codecov](https://codecov.io/gh/AY2223S1-CS2103T-T12-2/tp/branch/master/graph/badge.svg?token=A2FU6P932B)](https://app.codecov.io/gh/AY2223S1-CS2103T-T12-2/tp)
 [![CI Status](https://github.com/AY2223S1-CS2103T-T12-2/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103T-T12-2/tp/actions)
 
+# Swift+
+
 ![Ui](docs/images/Ui.png)
 
-# Swift+
 ### Manage your Team like never before
 #### Team: Swift+ (CS2103-T12-02)
 
