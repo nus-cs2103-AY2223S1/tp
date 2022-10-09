@@ -4,7 +4,7 @@ import static gim.logic.commands.CommandTestUtil.VALID_REP_BENCH_PRESS;
 import static gim.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static gim.testutil.Assert.assertThrows;
 import static gim.testutil.TypicalExercises.ALICE;
-import static gim.testutil.TypicalExercises.getTypicalAddressBook;
+import static gim.testutil.TypicalExercises.getTypicalExerciseTracker;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -22,25 +22,25 @@ import gim.testutil.ExerciseBuilder;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class AddressBookTest {
+public class ExerciseTrackerTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final ExerciseTracker exerciseTracker = new ExerciseTracker();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getExerciseList());
+        assertEquals(Collections.emptyList(), exerciseTracker.getExerciseList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> exerciseTracker.resetData(null));
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+    public void resetData_withValidReadOnlyExerciseTracker_replacesData() {
+        ExerciseTracker newData = getTypicalExerciseTracker();
+        exerciseTracker.resetData(newData);
+        assertEquals(newData, exerciseTracker);
     }
 
     @Test
@@ -49,47 +49,47 @@ public class AddressBookTest {
         Exercise editedAlice = new ExerciseBuilder(ALICE).withRep(VALID_REP_BENCH_PRESS).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Exercise> newExercises = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newExercises);
+        ExerciseTrackerStub newData = new ExerciseTrackerStub(newExercises);
 
-        assertThrows(DuplicateExerciseException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateExerciseException.class, () -> exerciseTracker.resetData(newData));
     }
 
     @Test
     public void hasExercise_nullExercise_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasExercise(null));
+        assertThrows(NullPointerException.class, () -> exerciseTracker.hasExercise(null));
     }
 
     @Test
-    public void hasExercise_exerciseNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasExercise(ALICE));
+    public void hasExercise_exerciseNotInExerciseTracker_returnsFalse() {
+        assertFalse(exerciseTracker.hasExercise(ALICE));
     }
 
     @Test
-    public void hasExercise_exerciseInAddressBook_returnsTrue() {
-        addressBook.addExercise(ALICE);
-        assertTrue(addressBook.hasExercise(ALICE));
+    public void hasExercise_exerciseInExerciseTracker_returnsTrue() {
+        exerciseTracker.addExercise(ALICE);
+        assertTrue(exerciseTracker.hasExercise(ALICE));
     }
 
     @Test
-    public void hasExercise_exerciseWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addExercise(ALICE);
+    public void hasExercise_exerciseWithSameIdentityFieldsInExerciseTracker_returnsTrue() {
+        exerciseTracker.addExercise(ALICE);
         Exercise editedAlice = new ExerciseBuilder(ALICE).withRep(VALID_REP_BENCH_PRESS).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasExercise(editedAlice));
+        assertTrue(exerciseTracker.hasExercise(editedAlice));
     }
 
     @Test
     public void getExerciseList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getExerciseList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> exerciseTracker.getExerciseList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose exercises list can violate interface constraints.
+     * A stub ReadOnlyExerciseTracker whose exercises list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class ExerciseTrackerStub implements ReadOnlyExerciseTracker {
         private final ObservableList<Exercise> exercises = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Exercise> exercises) {
+        ExerciseTrackerStub(Collection<Exercise> exercises) {
             this.exercises.setAll(exercises);
         }
 

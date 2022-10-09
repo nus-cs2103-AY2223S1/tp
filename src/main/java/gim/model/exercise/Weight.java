@@ -4,7 +4,7 @@ import static gim.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents an Exercise's weight number in the address book.
+ * Represents an Exercise's weight number in the exercise tracker.
  * Guarantees: immutable; is valid as declared in {@link #isValidWeight(String)}
  */
 public class Weight {

@@ -20,7 +20,7 @@ import gim.logic.parser.exceptions.ParseException;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class ExerciseTrackerParser {
 
     /**
      * Used for initial separation of command word and args.

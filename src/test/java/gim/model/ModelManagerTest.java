@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import gim.commons.core.GuiSettings;
 import gim.model.exercise.NameContainsKeywordsPredicate;
-import gim.testutil.AddressBookBuilder;
+import gim.testutil.ExerciseTrackerBuilder;
 
 public class ModelManagerTest {
 
@@ -26,7 +26,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
+        assertEquals(new ExerciseTracker(), new ExerciseTracker(modelManager.getExerciseTracker()));
     }
 
     @Test
@@ -37,14 +37,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setAddressBookFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setExerciseTrackerFilePath(Paths.get("address/book/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setAddressBookFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setExerciseTrackerFilePath(Paths.get("new/address/book/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -61,15 +61,15 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setAddressBookFilePath(null));
+    public void setExerciseTrackerFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setExerciseTrackerFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setExerciseTrackerFilePath_validPath_setsExerciseTrackerFilePath() {
         Path path = Paths.get("address/book/file/path");
-        modelManager.setAddressBookFilePath(path);
-        assertEquals(path, modelManager.getAddressBookFilePath());
+        modelManager.setExerciseTrackerFilePath(path);
+        assertEquals(path, modelManager.getExerciseTrackerFilePath());
     }
 
     @Test
@@ -78,12 +78,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasExercise_exerciseNotInAddressBook_returnsFalse() {
+    public void hasExercise_exerciseNotInExerciseTracker_returnsFalse() {
         assertFalse(modelManager.hasExercise(ALICE));
     }
 
     @Test
-    public void hasExercise_exerciseInAddressBook_returnsTrue() {
+    public void hasExercise_exerciseInExerciseTracker_returnsTrue() {
         modelManager.addExercise(ALICE);
         assertTrue(modelManager.hasExercise(ALICE));
     }
@@ -95,13 +95,13 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withExercise(ALICE).withExercise(BENSON).build();
-        AddressBook differentAddressBook = new AddressBook();
+        ExerciseTracker exerciseTracker = new ExerciseTrackerBuilder().withExercise(ALICE).withExercise(BENSON).build();
+        ExerciseTracker differentExerciseTracker = new ExerciseTracker();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
+        modelManager = new ModelManager(exerciseTracker, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(exerciseTracker, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -113,20 +113,20 @@ public class ModelManagerTest {
         // different types -> returns false
         assertFalse(modelManager.equals(5));
 
-        // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
+        // different exerciseTracker -> returns false
+        assertFalse(modelManager.equals(new ModelManager(differentExerciseTracker, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredExerciseList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(exerciseTracker, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredExerciseList(PREDICATE_SHOW_ALL_EXERCISES);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+        differentUserPrefs.setExerciseTrackerFilePath(Paths.get("differentFilePath"));
+        assertFalse(modelManager.equals(new ModelManager(exerciseTracker, differentUserPrefs)));
     }
 }

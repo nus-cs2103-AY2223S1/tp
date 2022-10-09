@@ -15,7 +15,7 @@ import java.util.List;
 
 import gim.commons.core.index.Index;
 import gim.logic.commands.exceptions.CommandException;
-import gim.model.AddressBook;
+import gim.model.ExerciseTracker;
 import gim.model.Model;
 import gim.model.exercise.Exercise;
 import gim.model.exercise.NameContainsKeywordsPredicate;
@@ -101,21 +101,21 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered exercise list and selected exercise in {@code actualModel} remain unchanged
+     * - the exercise tracker, filtered exercise list and selected exercise in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        ExerciseTracker expectedExerciseTracker = new ExerciseTracker(actualModel.getExerciseTracker());
         List<Exercise> expectedFilteredList = new ArrayList<>(actualModel.getFilteredExerciseList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedExerciseTracker, actualModel.getExerciseTracker());
         assertEquals(expectedFilteredList, actualModel.getFilteredExerciseList());
     }
     /**
      * Updates {@code model}'s filtered list to show only the exercise at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * {@code model}'s exercise tracker.
      */
     public static void showExerciseAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredExerciseList().size());

@@ -1,11 +1,11 @@
 package gim.logic.commands;
 
 import static gim.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static gim.testutil.TypicalExercises.getTypicalAddressBook;
+import static gim.testutil.TypicalExercises.getTypicalExerciseTracker;
 
 import org.junit.jupiter.api.Test;
 
-import gim.model.AddressBook;
+import gim.model.ExerciseTracker;
 import gim.model.Model;
 import gim.model.ModelManager;
 import gim.model.UserPrefs;
@@ -13,7 +13,7 @@ import gim.model.UserPrefs;
 public class ClearCommandTest {
 
     @Test
-    public void execute_emptyAddressBook_success() {
+    public void execute_emptyExerciseTracker_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
@@ -21,10 +21,10 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyAddressBook_success() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel.setAddressBook(new AddressBook());
+    public void execute_nonEmptyExerciseTracker_success() {
+        Model model = new ModelManager(getTypicalExerciseTracker(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalExerciseTracker(), new UserPrefs());
+        expectedModel.setExerciseTracker(new ExerciseTracker());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }

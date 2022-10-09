@@ -3,7 +3,7 @@ package gim.logic.commands;
 import static gim.logic.commands.CommandTestUtil.assertCommandFailure;
 import static gim.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static gim.logic.commands.CommandTestUtil.showExerciseAtIndex;
-import static gim.testutil.TypicalExercises.getTypicalAddressBook;
+import static gim.testutil.TypicalExercises.getTypicalExerciseTracker;
 import static gim.testutil.TypicalIndexes.INDEX_FIRST_EXERCISE;
 import static gim.testutil.TypicalIndexes.INDEX_SECOND_EXERCISE;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -24,7 +24,7 @@ import gim.model.exercise.Exercise;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalExerciseTracker(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -33,7 +33,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_EXERCISE_SUCCESS, exerciseToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getExerciseTracker(), new UserPrefs());
         expectedModel.deleteExercise(exerciseToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -56,7 +56,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_EXERCISE_SUCCESS, exerciseToDelete);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getExerciseTracker(), new UserPrefs());
         expectedModel.deleteExercise(exerciseToDelete);
         showNoExercise(expectedModel);
 
@@ -68,8 +68,8 @@ public class DeleteCommandTest {
         showExerciseAtIndex(model, INDEX_FIRST_EXERCISE);
 
         Index outOfBoundIndex = INDEX_SECOND_EXERCISE;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getExerciseList().size());
+        // ensures that outOfBoundIndex is still in bounds of exercise tracker list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getExerciseTracker().getExerciseList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 

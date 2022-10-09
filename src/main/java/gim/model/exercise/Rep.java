@@ -4,7 +4,7 @@ import static gim.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents a Exercise's Reps in the address book.
+ * Represents a Exercise's Reps in the exercise tracker.
  * Guarantees: immutable; is valid as declared in {@link #isValidRep(String)}
  */
 public class Rep {

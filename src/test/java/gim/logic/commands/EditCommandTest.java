@@ -8,7 +8,7 @@ import static gim.logic.commands.CommandTestUtil.VALID_WEIGHT_BENCH_PRESS;
 import static gim.logic.commands.CommandTestUtil.assertCommandFailure;
 import static gim.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static gim.logic.commands.CommandTestUtil.showExerciseAtIndex;
-import static gim.testutil.TypicalExercises.getTypicalAddressBook;
+import static gim.testutil.TypicalExercises.getTypicalExerciseTracker;
 import static gim.testutil.TypicalIndexes.INDEX_FIRST_EXERCISE;
 import static gim.testutil.TypicalIndexes.INDEX_SECOND_EXERCISE;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -19,7 +19,7 @@ import org.junit.jupiter.api.Test;
 import gim.commons.core.Messages;
 import gim.commons.core.index.Index;
 import gim.logic.commands.EditCommand.EditExerciseDescriptor;
-import gim.model.AddressBook;
+import gim.model.ExerciseTracker;
 import gim.model.Model;
 import gim.model.ModelManager;
 import gim.model.UserPrefs;
@@ -35,7 +35,7 @@ import gim.testutil.ExerciseBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalExerciseTracker(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -45,7 +45,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EXERCISE_SUCCESS, editedExercise);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ExerciseTracker(model.getExerciseTracker()), new UserPrefs());
         expectedModel.setExercise(model.getFilteredExerciseList().get(0), editedExercise);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -66,7 +66,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EXERCISE_SUCCESS, editedExercise);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ExerciseTracker(model.getExerciseTracker()), new UserPrefs());
         expectedModel.setExercise(lastExercise, editedExercise);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -79,7 +79,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EXERCISE_SUCCESS, editedExercise);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ExerciseTracker(model.getExerciseTracker()), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -95,7 +95,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EXERCISE_SUCCESS, editedExercise);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ExerciseTracker(model.getExerciseTracker()), new UserPrefs());
         expectedModel.setExercise(model.getFilteredExerciseList().get(0), editedExercise);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -114,8 +114,9 @@ public class EditCommandTest {
     public void execute_duplicateExerciseFilteredList_failure() {
         showExerciseAtIndex(model, INDEX_FIRST_EXERCISE);
 
-        // edit exercise in filtered list into a duplicate in address book
-        Exercise exerciseInList = model.getAddressBook().getExerciseList().get(INDEX_SECOND_EXERCISE.getZeroBased());
+        // edit exercise in filtered list into a duplicate in exercise tracker
+        Exercise exerciseInList = model.getExerciseTracker().getExerciseList().get(
+                INDEX_SECOND_EXERCISE.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_EXERCISE,
                 new EditExerciseDescriptorBuilder(exerciseInList).build());
 
@@ -134,14 +135,14 @@ public class EditCommandTest {
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
+     * but smaller than size of exercise tracker
      */
     @Test
     public void execute_invalidExerciseIndexFilteredList_failure() {
         showExerciseAtIndex(model, INDEX_FIRST_EXERCISE);
         Index outOfBoundIndex = INDEX_SECOND_EXERCISE;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getExerciseList().size());
+        // ensures that outOfBoundIndex is still in bounds of exercise tracker list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getExerciseTracker().getExerciseList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditExerciseDescriptorBuilder().withName(VALID_NAME_BENCH_PRESS).build());

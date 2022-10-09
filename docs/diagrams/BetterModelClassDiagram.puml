@@ -4,8 +4,8 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-AddressBook *-right-> "1" UniqueExerciseList
-AddressBook *-right-> "1" UniqueTagList
+ExerciseTracker *-right-> "1" UniqueExerciseList
+ExerciseTracker *-right-> "1" UniqueTagList
 UniqueTagList -[hidden]down- UniqueExerciseList
 UniqueTagList -[hidden]down- UniqueExerciseList
 

@@ -14,30 +14,30 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the exercise tracker data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final ExerciseTracker exerciseTracker;
     private final UserPrefs userPrefs;
     private final FilteredList<Exercise> filteredExercises;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given exerciseTracker and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyExerciseTracker exerciseTracker, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(exerciseTracker, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with exercise tracker: " + exerciseTracker + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.exerciseTracker = new ExerciseTracker(exerciseTracker);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredExercises = new FilteredList<>(this.addressBook.getExerciseList());
+        filteredExercises = new FilteredList<>(this.exerciseTracker.getExerciseList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new ExerciseTracker(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -65,42 +65,42 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getExerciseTrackerFilePath() {
+        return userPrefs.getExerciseTrackerFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setExerciseTrackerFilePath(Path exerciseTrackerFilePath) {
+        requireNonNull(exerciseTrackerFilePath);
+        userPrefs.setExerciseTrackerFilePath(exerciseTrackerFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== ExerciseTracker ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setExerciseTracker(ReadOnlyExerciseTracker exerciseTracker) {
+        this.exerciseTracker.resetData(exerciseTracker);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyExerciseTracker getExerciseTracker() {
+        return exerciseTracker;
     }
 
     @Override
     public boolean hasExercise(Exercise exercise) {
         requireNonNull(exercise);
-        return addressBook.hasExercise(exercise);
+        return exerciseTracker.hasExercise(exercise);
     }
 
     @Override
     public void deleteExercise(Exercise target) {
-        addressBook.removeExercise(target);
+        exerciseTracker.removeExercise(target);
     }
 
     @Override
     public void addExercise(Exercise exercise) {
-        addressBook.addExercise(exercise);
+        exerciseTracker.addExercise(exercise);
         updateFilteredExerciseList(PREDICATE_SHOW_ALL_EXERCISES);
     }
 
@@ -108,14 +108,14 @@ public class ModelManager implements Model {
     public void setExercise(Exercise target, Exercise editedExercise) {
         requireAllNonNull(target, editedExercise);
 
-        addressBook.setExercise(target, editedExercise);
+        exerciseTracker.setExercise(target, editedExercise);
     }
 
     //=========== Filtered Exercise List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Exercise} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedExerciseTracker}
      */
     @Override
     public ObservableList<Exercise> getFilteredExerciseList() {
@@ -142,7 +142,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return exerciseTracker.equals(other.exerciseTracker)
                 && userPrefs.equals(other.userPrefs)
                 && filteredExercises.equals(other.filteredExercises);
     }

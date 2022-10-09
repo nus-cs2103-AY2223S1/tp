@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import gim.model.AddressBook;
-import gim.model.ReadOnlyAddressBook;
+import gim.model.ExerciseTracker;
+import gim.model.ReadOnlyExerciseTracker;
 import gim.model.exercise.Exercise;
 import gim.model.exercise.Name;
 import gim.model.exercise.Rep;
@@ -14,7 +14,7 @@ import gim.model.exercise.Weight;
 import gim.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code ExerciseTracker} with sample data.
  */
 public class SampleDataUtil {
     public static Exercise[] getSampleExercises() {
@@ -40,8 +40,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyExerciseTracker getSampleExerciseTracker() {
+        ExerciseTracker sampleAb = new ExerciseTracker();
         for (Exercise sampleExercise : getSampleExercises()) {
             sampleAb.addExercise(sampleExercise);
         }

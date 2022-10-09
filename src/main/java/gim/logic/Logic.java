@@ -6,7 +6,7 @@ import gim.commons.core.GuiSettings;
 import gim.logic.commands.CommandResult;
 import gim.logic.commands.exceptions.CommandException;
 import gim.logic.parser.exceptions.ParseException;
-import gim.model.ReadOnlyAddressBook;
+import gim.model.ReadOnlyExerciseTracker;
 import gim.model.exercise.Exercise;
 import javafx.collections.ObservableList;
 
@@ -24,19 +24,19 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the ExerciseTracker.
      *
-     * @see gim.model.Model#getAddressBook()
+     * @see gim.model.Model#getExerciseTracker()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyExerciseTracker getExerciseTracker();
 
     /** Returns an unmodifiable view of the filtered list of exercises */
     ObservableList<Exercise> getFilteredExerciseList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' exercise tracker file path.
      */
-    Path getAddressBookFilePath();
+    Path getExerciseTrackerFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

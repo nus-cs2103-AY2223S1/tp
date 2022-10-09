@@ -35,45 +35,45 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' exercise tracker file path.
      */
-    Path getAddressBookFilePath();
+    Path getExerciseTrackerFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' exercise tracker file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setExerciseTrackerFilePath(Path exerciseTrackerFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces exercise tracker data with the data in {@code exerciseTracker}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setExerciseTracker(ReadOnlyExerciseTracker exerciseTracker);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the ExerciseTracker */
+    ReadOnlyExerciseTracker getExerciseTracker();
 
     /**
-     * Returns true if an exercise with the same identity as {@code exercise} exists in the address book.
+     * Returns true if an exercise with the same identity as {@code exercise} exists in the exercise tracker.
      */
     boolean hasExercise(Exercise exercise);
 
     /**
      * Deletes the given exercise.
-     * The exercise must exist in the address book.
+     * The exercise must exist in the exercise tracker.
      */
     void deleteExercise(Exercise target);
 
     /**
      * Adds the given exercise.
-     * {@code exercise} must not already exist in the address book.
+     * {@code exercise} must not already exist in the exercise tracker.
      */
     void addExercise(Exercise exercise);
 
     /**
      * Replaces the given exercise {@code target} with {@code editedExercise}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the exercise tracker.
      * The exercise identity of {@code editedExercise} must not be the same as another existing exercise
-     * in the address book.
+     * in the exercise tracker.
      */
     void setExercise(Exercise target, Exercise editedExercise);
 
