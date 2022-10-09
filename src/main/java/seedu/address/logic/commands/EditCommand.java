@@ -27,7 +27,7 @@ import seedu.address.model.student.StudentId;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing student in the studentId book.
+ * Edits the details of an existing student in the address book.
  */
 public class EditCommand extends Command {
 

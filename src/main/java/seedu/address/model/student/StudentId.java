@@ -17,7 +17,6 @@ public class StudentId {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "^[e][0][0-9]{6}$";
-    //public static final String VALIDATION_REGEX = "[^\\s].*";
 
     public final String value;
 

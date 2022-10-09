@@ -344,11 +344,7 @@ save it with `Model#setStudent()`.
         List<Student> lastShownList = model.getFilteredStudentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-<<<<<<< HEAD
-            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
-=======
             throw new CommandException(Messages.MESSAGE_INVALID_Student_DISPLAYED_INDEX);
->>>>>>> b012f66537e903613234bb5d4f50a1013dc84649
         }
 
         Student studentToEdit = lastShownList.get(index.getZeroBased());

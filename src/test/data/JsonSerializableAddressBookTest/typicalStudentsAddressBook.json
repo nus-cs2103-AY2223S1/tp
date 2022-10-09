@@ -1,5 +1,5 @@
 {
-  "_comment": "studentIdBook save file which contains the same Student values as in TypicalStudents#getTypicalstudentIdBook()",
+  "_comment": "studentIdBook save file which contains the same Student values as in TypicalStudents#getTypicalAddressBook()",
   "students" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",
