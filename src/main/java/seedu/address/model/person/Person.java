@@ -19,11 +19,11 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
-    private final Loan loan;
 
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final Loan loan;
 
     /**
      * Every field must be present and not null.
@@ -35,6 +35,7 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        System.out.println("Loan of " + name + " is " + loan);
         this.loan = loan;
     }
 
@@ -98,13 +99,14 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getLoan().equals(getLoan());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags, loan);
     }
 
     @Override

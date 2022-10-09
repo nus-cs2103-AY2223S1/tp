@@ -57,4 +57,32 @@ public class Loan {
             return String.format("$%.2f", amountOwed);
         }
     }
+
+    /**
+     * Returns true if both loans have the same identity and data fields.
+     * This defines the notion of equality between two persons.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Loan)) {
+            return false;
+        }
+
+        if (((Loan) other).amountOwed == amountOwed) {
+            return ((Loan) other).amountOwed == amountOwed;
+        } else {
+            System.out.printf("%f not equals to %f%n", ((Loan) other).amountOwed, amountOwed);
+            return false;
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        // use this method for custom fields hashing instead of implementing your own
+        return Double.hashCode(amountOwed);
+    }
 }
