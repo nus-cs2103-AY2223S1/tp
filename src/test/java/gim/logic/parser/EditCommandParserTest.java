@@ -29,6 +29,8 @@ import static gim.testutil.TypicalIndexes.INDEX_FIRST_EXERCISE;
 import static gim.testutil.TypicalIndexes.INDEX_SECOND_EXERCISE;
 import static gim.testutil.TypicalIndexes.INDEX_THIRD_EXERCISE;
 
+import org.junit.jupiter.api.Test;
+
 import gim.commons.core.index.Index;
 import gim.logic.commands.EditCommand;
 import gim.logic.commands.EditCommand.EditExerciseDescriptor;
@@ -38,16 +40,14 @@ import gim.model.exercise.Sets;
 import gim.model.exercise.Weight;
 import gim.model.tag.Date;
 import gim.testutil.EditExerciseDescriptorBuilder;
-import org.junit.jupiter.api.Test;
-
 
 
 public class EditCommandParserTest {
 
     private static final String TAG_EMPTY = " " + PREFIX_DATE;
 
-    private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
+    private static final String MESSAGE_INVALID_FORMAT = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            EditCommand.MESSAGE_USAGE);
 
     private EditCommandParser parser = new EditCommandParser();
 
@@ -107,12 +107,13 @@ public class EditCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_EXERCISE;
-        String userInput = targetIndex.getOneBased() + WEIGHT_DESC_BOB + DATE_DESC
-                + SETS_DESC_AMY + REP_DESC_AMY + NAME_DESC_AMY + DATE_DESC;
+        String userInput =
+                targetIndex.getOneBased() + WEIGHT_DESC_BOB + DATE_DESC + SETS_DESC_AMY + REP_DESC_AMY + NAME_DESC_AMY
+                        + DATE_DESC;
 
-        EditExerciseDescriptor descriptor = new EditExerciseDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withWeight(VALID_WEIGHT_BOB).withSets(VALID_SETS_AMY).withRep(VALID_REP_AMY)
-                .withDates(VALID_DATE, VALID_DATE).build();
+        EditExerciseDescriptor descriptor =
+                new EditExerciseDescriptorBuilder().withName(VALID_NAME_AMY).withWeight(VALID_WEIGHT_BOB)
+                        .withSets(VALID_SETS_AMY).withRep(VALID_REP_AMY).withDates(VALID_DATE, VALID_DATE).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -123,8 +124,8 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_FIRST_EXERCISE;
         String userInput = targetIndex.getOneBased() + WEIGHT_DESC_BOB + SETS_DESC_AMY;
 
-        EditExerciseDescriptor descriptor = new EditExerciseDescriptorBuilder().withWeight(VALID_WEIGHT_BOB)
-                .withSets(VALID_SETS_AMY).build();
+        EditExerciseDescriptor descriptor =
+                new EditExerciseDescriptorBuilder().withWeight(VALID_WEIGHT_BOB).withSets(VALID_SETS_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -167,13 +168,14 @@ public class EditCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_EXERCISE;
-        String userInput = targetIndex.getOneBased() + WEIGHT_DESC_AMY + REP_DESC_AMY + SETS_DESC_AMY
-                + DATE_DESC + WEIGHT_DESC_AMY + REP_DESC_AMY + SETS_DESC_AMY + DATE_DESC
-                + WEIGHT_DESC_BOB + REP_DESC_BOB + SETS_DESC_BOB + DATE_DESC;
+        String userInput =
+                targetIndex.getOneBased() + WEIGHT_DESC_AMY + REP_DESC_AMY + SETS_DESC_AMY + DATE_DESC
+                        + WEIGHT_DESC_AMY + REP_DESC_AMY + SETS_DESC_AMY + DATE_DESC + WEIGHT_DESC_BOB + REP_DESC_BOB
+                        + SETS_DESC_BOB + DATE_DESC;
 
-        EditExerciseDescriptor descriptor = new EditExerciseDescriptorBuilder().withWeight(VALID_WEIGHT_BOB)
-                .withSets(VALID_SETS_BOB).withRep(VALID_REP_BOB).withDates(VALID_DATE, VALID_DATE)
-                .build();
+        EditExerciseDescriptor descriptor =
+                new EditExerciseDescriptorBuilder().withWeight(VALID_WEIGHT_BOB).withSets(VALID_SETS_BOB)
+                        .withRep(VALID_REP_BOB).withDates(VALID_DATE, VALID_DATE).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -189,10 +191,10 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
-        userInput = targetIndex.getOneBased() + SETS_DESC_BOB + INVALID_WEIGHT_DESC + REP_DESC_BOB
-                + WEIGHT_DESC_BOB;
-        descriptor = new EditExerciseDescriptorBuilder().withWeight(VALID_WEIGHT_BOB).withSets(VALID_SETS_BOB)
-                .withRep(VALID_REP_BOB).build();
+        userInput = targetIndex.getOneBased() + SETS_DESC_BOB + INVALID_WEIGHT_DESC + REP_DESC_BOB + WEIGHT_DESC_BOB;
+        descriptor =
+                new EditExerciseDescriptorBuilder().withWeight(VALID_WEIGHT_BOB).withSets(VALID_SETS_BOB)
+                        .withRep(VALID_REP_BOB).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

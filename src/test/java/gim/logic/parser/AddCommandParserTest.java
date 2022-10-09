@@ -27,6 +27,8 @@ import static gim.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static gim.testutil.TypicalExercises.AMY;
 import static gim.testutil.TypicalExercises.BOB;
 
+import org.junit.jupiter.api.Test;
+
 import gim.logic.commands.AddCommand;
 import gim.model.exercise.Exercise;
 import gim.model.exercise.Name;
@@ -35,9 +37,6 @@ import gim.model.exercise.Sets;
 import gim.model.exercise.Weight;
 import gim.model.tag.Date;
 import gim.testutil.ExerciseBuilder;
-import org.junit.jupiter.api.Test;
-
-
 
 
 public class AddCommandParserTest {
@@ -48,30 +47,36 @@ public class AddCommandParserTest {
         Exercise expectedExercise = new ExerciseBuilder(BOB).withDates(VALID_DATE).build();
 
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + WEIGHT_DESC_BOB + SETS_DESC_BOB
-                + REP_DESC_BOB + DATE_DESC, new AddCommand(expectedExercise));
+        assertParseSuccess(parser,
+                PREAMBLE_WHITESPACE + NAME_DESC_BOB + WEIGHT_DESC_BOB + SETS_DESC_BOB
+                        + REP_DESC_BOB + DATE_DESC,
+                new AddCommand(expectedExercise));
 
         // multiple names - last name accepted
-        assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + WEIGHT_DESC_BOB + SETS_DESC_BOB
-                + REP_DESC_BOB + DATE_DESC, new AddCommand(expectedExercise));
+        assertParseSuccess(parser,
+                NAME_DESC_AMY + NAME_DESC_BOB + WEIGHT_DESC_BOB + SETS_DESC_BOB + REP_DESC_BOB + DATE_DESC,
+                new AddCommand(expectedExercise));
 
         // multiple weights - last weight accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + WEIGHT_DESC_AMY + WEIGHT_DESC_BOB + SETS_DESC_BOB
-                + REP_DESC_BOB + DATE_DESC, new AddCommand(expectedExercise));
+        assertParseSuccess(parser,
+                NAME_DESC_BOB + WEIGHT_DESC_AMY + WEIGHT_DESC_BOB + SETS_DESC_BOB + REP_DESC_BOB + DATE_DESC,
+                new AddCommand(expectedExercise));
 
         // multiple setss - last sets accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + WEIGHT_DESC_BOB + SETS_DESC_AMY + SETS_DESC_BOB
-                + REP_DESC_BOB + DATE_DESC, new AddCommand(expectedExercise));
+        assertParseSuccess(parser,
+                NAME_DESC_BOB + WEIGHT_DESC_BOB + SETS_DESC_AMY + SETS_DESC_BOB + REP_DESC_BOB + DATE_DESC,
+                new AddCommand(expectedExercise));
 
         // multiple addresses - last address accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + WEIGHT_DESC_BOB + SETS_DESC_BOB + REP_DESC_AMY
-                + REP_DESC_BOB + DATE_DESC, new AddCommand(expectedExercise));
+        assertParseSuccess(parser,
+                NAME_DESC_BOB + WEIGHT_DESC_BOB + SETS_DESC_BOB + REP_DESC_AMY + REP_DESC_BOB + DATE_DESC,
+                new AddCommand(expectedExercise));
 
         // multiple tags - all accepted
-        Exercise expectedExerciseMultipleTags = new ExerciseBuilder(BOB).withDates(VALID_DATE)
-                .build();
-        assertParseSuccess(parser, NAME_DESC_BOB + WEIGHT_DESC_BOB + SETS_DESC_BOB + REP_DESC_BOB
-                + DATE_DESC + DATE_DESC, new AddCommand(expectedExerciseMultipleTags));
+        Exercise expectedExerciseMultipleTags = new ExerciseBuilder(BOB).withDates(VALID_DATE).build();
+        assertParseSuccess(parser,
+                NAME_DESC_BOB + WEIGHT_DESC_BOB + SETS_DESC_BOB + REP_DESC_BOB + DATE_DESC + DATE_DESC,
+                new AddCommand(expectedExerciseMultipleTags));
     }
 
     @Test
@@ -110,32 +115,39 @@ public class AddCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
-        assertParseFailure(parser, INVALID_NAME_DESC + WEIGHT_DESC_BOB + SETS_DESC_BOB + REP_DESC_BOB
-                + DATE_DESC + DATE_DESC, Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser,
+                INVALID_NAME_DESC + WEIGHT_DESC_BOB + SETS_DESC_BOB + REP_DESC_BOB + DATE_DESC + DATE_DESC,
+                Name.MESSAGE_CONSTRAINTS);
 
         // invalid weight
-        assertParseFailure(parser, NAME_DESC_BOB + INVALID_WEIGHT_DESC + SETS_DESC_BOB + REP_DESC_BOB
-                + DATE_DESC + DATE_DESC, Weight.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser,
+                NAME_DESC_BOB + INVALID_WEIGHT_DESC + SETS_DESC_BOB + REP_DESC_BOB + DATE_DESC + DATE_DESC,
+                Weight.MESSAGE_CONSTRAINTS);
 
         // invalid sets
-        assertParseFailure(parser, NAME_DESC_BOB + WEIGHT_DESC_BOB + INVALID_SETS_DESC + REP_DESC_BOB
-                + DATE_DESC + DATE_DESC, Sets.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser,
+                NAME_DESC_BOB + WEIGHT_DESC_BOB + INVALID_SETS_DESC + REP_DESC_BOB + DATE_DESC + DATE_DESC,
+                Sets.MESSAGE_CONSTRAINTS);
 
         // invalid address
-        assertParseFailure(parser, NAME_DESC_BOB + WEIGHT_DESC_BOB + SETS_DESC_BOB + INVALID_REP_DESC
-                + DATE_DESC + DATE_DESC, Rep.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser,
+                NAME_DESC_BOB + WEIGHT_DESC_BOB + SETS_DESC_BOB + INVALID_REP_DESC + DATE_DESC + DATE_DESC,
+                Rep.MESSAGE_CONSTRAINTS);
 
         // invalid tag
-        assertParseFailure(parser, NAME_DESC_BOB + WEIGHT_DESC_BOB + SETS_DESC_BOB + REP_DESC_BOB
-                + INVALID_DATE_DESC + VALID_DATE, Date.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser,
+                NAME_DESC_BOB + WEIGHT_DESC_BOB + SETS_DESC_BOB + REP_DESC_BOB + INVALID_DATE_DESC
+                        + VALID_DATE,
+                Date.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + WEIGHT_DESC_BOB + SETS_DESC_BOB + INVALID_REP_DESC,
                 Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + WEIGHT_DESC_BOB + SETS_DESC_BOB
-                + REP_DESC_BOB + DATE_DESC + DATE_DESC,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        assertParseFailure(parser,
+                PREAMBLE_NON_EMPTY + NAME_DESC_BOB + WEIGHT_DESC_BOB + SETS_DESC_BOB + REP_DESC_BOB
+                        + DATE_DESC + DATE_DESC, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        AddCommand.MESSAGE_USAGE));
     }
 }

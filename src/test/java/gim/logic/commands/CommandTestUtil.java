@@ -1,9 +1,9 @@
 package gim.logic.commands;
 
+import static gim.logic.parser.CliSyntax.PREFIX_DATE;
 import static gim.logic.parser.CliSyntax.PREFIX_NAME;
 import static gim.logic.parser.CliSyntax.PREFIX_REP;
 import static gim.logic.parser.CliSyntax.PREFIX_SETS;
-import static gim.logic.parser.CliSyntax.PREFIX_DATE;
 import static gim.logic.parser.CliSyntax.PREFIX_WEIGHT;
 import static gim.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;

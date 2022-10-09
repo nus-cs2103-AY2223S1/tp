@@ -11,7 +11,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import gim.model.tag.Date;
 import org.junit.jupiter.api.Test;
 
 import gim.logic.parser.exceptions.ParseException;
@@ -19,6 +18,7 @@ import gim.model.exercise.Name;
 import gim.model.exercise.Rep;
 import gim.model.exercise.Sets;
 import gim.model.exercise.Weight;
+import gim.model.tag.Date;
 
 
 public class ParserUtilTest {
@@ -44,8 +44,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
-            -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, () -> ParserUtil.parseIndex(
+                Long.toString(Integer.MAX_VALUE + 1)));
     }
 
     @Test

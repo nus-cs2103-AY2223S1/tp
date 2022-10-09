@@ -2,8 +2,8 @@ package gim.logic.commands;
 
 import static gim.logic.commands.CommandTestUtil.DESC_AMY;
 import static gim.logic.commands.CommandTestUtil.DESC_BOB;
-import static gim.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static gim.logic.commands.CommandTestUtil.VALID_DATE;
+import static gim.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static gim.logic.commands.CommandTestUtil.VALID_WEIGHT_BOB;
 import static gim.logic.commands.CommandTestUtil.assertCommandFailure;
 import static gim.logic.commands.CommandTestUtil.assertCommandSuccess;

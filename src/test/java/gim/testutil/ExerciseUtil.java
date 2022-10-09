@@ -1,9 +1,9 @@
 package gim.testutil;
 
+import static gim.logic.parser.CliSyntax.PREFIX_DATE;
 import static gim.logic.parser.CliSyntax.PREFIX_NAME;
 import static gim.logic.parser.CliSyntax.PREFIX_REP;
 import static gim.logic.parser.CliSyntax.PREFIX_SETS;
-import static gim.logic.parser.CliSyntax.PREFIX_DATE;
 import static gim.logic.parser.CliSyntax.PREFIX_WEIGHT;
 
 import java.util.Set;
@@ -35,9 +35,7 @@ public class ExerciseUtil {
         sb.append(PREFIX_WEIGHT + exercise.getWeight().value + " ");
         sb.append(PREFIX_SETS + exercise.getSets().value + " ");
         sb.append(PREFIX_REP + exercise.getRep().value + " ");
-        exercise.getDates().stream().forEach(
-            s -> sb.append(PREFIX_DATE + s.date + " ")
-        );
+        exercise.getDates().stream().forEach(s -> sb.append(PREFIX_DATE + s.date + " "));
         return sb.toString();
     }
 

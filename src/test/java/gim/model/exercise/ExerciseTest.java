@@ -1,9 +1,9 @@
 package gim.model.exercise;
 
+import static gim.logic.commands.CommandTestUtil.VALID_DATE;
 import static gim.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static gim.logic.commands.CommandTestUtil.VALID_REP_BOB;
 import static gim.logic.commands.CommandTestUtil.VALID_SETS_BOB;
-import static gim.logic.commands.CommandTestUtil.VALID_DATE;
 import static gim.logic.commands.CommandTestUtil.VALID_WEIGHT_BOB;
 import static gim.testutil.Assert.assertThrows;
 import static gim.testutil.TypicalExercises.ALICE;
@@ -14,7 +14,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import gim.testutil.ExerciseBuilder;
-
 
 
 public class ExerciseTest {
@@ -34,8 +33,9 @@ public class ExerciseTest {
         assertFalse(ALICE.isSameExercise(null));
 
         // same name, all other attributes different -> returns true
-        Exercise editedAlice = new ExerciseBuilder(ALICE).withWeight(VALID_WEIGHT_BOB).withSets(VALID_SETS_BOB)
-                .withRep(VALID_REP_BOB).withDates(VALID_DATE).build();
+        Exercise editedAlice =
+                new ExerciseBuilder(ALICE).withWeight(VALID_WEIGHT_BOB).withSets(VALID_SETS_BOB).withRep(VALID_REP_BOB)
+                        .withDates(VALID_DATE).build();
         assertTrue(ALICE.isSameExercise(editedAlice));
 
         // different name, all other attributes same -> returns false
