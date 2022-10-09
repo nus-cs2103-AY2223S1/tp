@@ -9,7 +9,7 @@ import seedu.address.model.Model;
 
 
 /**
- * Adds a task to the current team.
+ * Lists all tasks of the current team.
  */
 public class ListTasksCommand extends Command {
     public static final String COMMAND_WORD = "list_tasks";
@@ -20,9 +20,6 @@ public class ListTasksCommand extends Command {
 
     public static final String MESSAGE_ADD_TASK_SUCCESS = "Tasks: \n%1$s";
 
-    /**
-     * Lists all tasks of the current team.
-     */
     public ListTasksCommand() {
     }
 

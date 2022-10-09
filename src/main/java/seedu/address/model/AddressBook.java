@@ -19,7 +19,6 @@ import seedu.address.model.team.Team;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-    private final TaskList taskList;
     private Team team;
 
     /*
@@ -31,7 +30,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
-        taskList = new TaskList();
         team = new Team("default", new ArrayList<>());
     }
 
@@ -65,13 +63,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         setTeam(newData.getTeam());
     }
 
-    /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
-     */
-    public void setTaskList(List<Task> tasks) {
-        this.taskList.setTasks(tasks);
-    }
 
     //// person-level operations
 
@@ -133,16 +124,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
-    public ObservableList<Task> getTaskList() {
-        return taskList.asUnmodifiableObservableList();
-    }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
             || (other instanceof AddressBook // instanceof handles nulls
             && persons.equals(((AddressBook) other).persons)
-            && taskList.equals(((AddressBook) other).taskList)
             );
     }
 
