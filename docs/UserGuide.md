@@ -98,7 +98,8 @@ Examples:
 
 Adds a task into the task list.
 
-Format:  `task add (m/o)/ASSIGNOR/ASSIGNEE d/DESCRIPTION [MODIFIER]`
+Format:  `task add m/ASSIGNOR d/DESCRIPTION [MODIFIER]`
+Format:  `task add o/ASSIGNEE d/DESCRIPTION [MODIFIER]`
 
 * Adds a task with an assignor (m) or assignee (o), a description and an optional task modifier.
 
@@ -106,13 +107,14 @@ Examples:
 * `task add m/John d/Finish user guide` adds a task called “Finish user guide” assigned by John to the user.
 * `task add o/Sam d/Finish the assignment` adds a task called “Finish the assignment” which is assigned to Sam.
 
-### Task Modifiers
+### Task Modifiers [coming soon]
 
-#### Adding a deadline: `task add ... d/DUE_DATE`
+#### Adding a deadline: `task add ... t/DUE_DATE` [coming soon]
 
 Adds a task of type Deadline into the task list.
 
-Format: `task add (m/o)/ASSIGNOR/ASSIGNEE t/DESCRIPTION d/DUE_DATE`
+Format: `task add m/ASSIGNOR d/DESCRIPTION t/DUE_DATE`
+Format: `task add o/ASSIGNEE d/DESCRIPTION t/DUE_DATE`
 
 * `DUE_DATE` supports the following Date formats:
     * `yyyy-MM-dd` e.g. "2022-09-21"
@@ -120,9 +122,9 @@ Format: `task add (m/o)/ASSIGNOR/ASSIGNEE t/DESCRIPTION d/DUE_DATE`
     * `MMM dd yyyy` e.g. "Sep 21 2022"
 
 Examples:
-* `task add m/John t/Finish user guide /d 2022-09-21` adds a task called “Finish user guide”
+* `task add m/John d/Finish user guide t/ 2022-09-21` adds a task called “Finish user guide”
   which is assigned by John to the user, and due by 2022-09-21.
-* `task add o/Sam t/Finish the assignment /d 09-21-2022` adds a task called “Finish the assignment”
+* `task add o/Sam d/Finish the assignment t/ 09-21-2022` adds a task called “Finish the assignment”
   which the user has assigned to Sam, and due by 2022-09-21.
 
 ### Deleting a contact : `contact delete`
