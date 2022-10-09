@@ -2,6 +2,9 @@ package seedu.address.model.person;
 
 import java.util.function.Predicate;
 
+/**
+ * Tests that a {@code Person}'s {@code Tag} matches the keyword given.
+ */
 public class TagContainsKeywordPredicate implements Predicate<Person> {
 
     public final String keyword;
