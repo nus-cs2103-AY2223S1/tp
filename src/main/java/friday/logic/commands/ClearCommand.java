@@ -11,7 +11,7 @@ import friday.model.Model;
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "MasteryCheck book has been cleared!";
+    public static final String MESSAGE_SUCCESS = "FRIDAY has been cleared!";
 
 
     @Override

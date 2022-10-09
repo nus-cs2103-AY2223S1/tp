@@ -16,13 +16,13 @@ Given below are my contributions to the project.
 * **Project management**:
 
 * **Enhancements to existing features**:
-  * Updated the ability to add students
+  * Updated the ability to add students with optional details
   * Updated the ability to delete students  
   * Wrote additional tests for existing features
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `add` and `delete` [\#55](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/55)
+    * Wrote documentation for the features `add` and `delete` [\#55](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/55)
   * Developer Guide:
     * Added target user profile and acknowledgements
 

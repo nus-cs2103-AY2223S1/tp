@@ -10,9 +10,13 @@ import java.time.LocalDate;
  */
 public class MasteryCheck {
 
-    public static final String MESSAGE_CONSTRAINTS = "Desired dates for Mastery Checks should be in the format:"
+    public static final String MESSAGE_CONSTRAINTS = "Desired dates for Mastery Check should be in the format:"
             + "YYYY-MM-DD";
     public static final String VALIDATION_REGEX = "^((19|2[0-9])[0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$";
+
+    // The empty value for when there is no mastery check date attached to a student
+    public static final MasteryCheck EMPTY_MASTERY_CHECK = new MasteryCheck();
+
     private LocalDate value;
 
     /**
@@ -27,17 +31,33 @@ public class MasteryCheck {
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Constructs a {@code MasteryCheck} for the empty instance.
+     */
+    private MasteryCheck() {
+        value = LocalDate.of(0001, 01, 01);
+    }
+
+    /**
+     * Returns true if a given string is a valid Mastery Check.
      */
     public static boolean isValidMasteryCheck(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
     /**
-     * Returns true if the given Mastery Check is a dummy value.
+     * Returns true if the given string is a valid Mastery Check or empty.
+     *
+     * Only to be used when converting JSON to Student in JsonAdaptedPerson.
      */
-    public boolean isDummyMasteryCheck() {
-        return value.equals(LocalDate.of(2001, 01, 01));
+    public static boolean isValidOrEmpty(String test) {
+        return test.matches(VALIDATION_REGEX) || test.equals("0001-01-01");
+    }
+
+    /**
+     * Returns true if the given Mastery Check is the empty value.
+     */
+    public boolean isEmpty() {
+        return this == EMPTY_MASTERY_CHECK;
     }
 
     /**
@@ -51,7 +71,7 @@ public class MasteryCheck {
 
     @Override
     public String toString() {
-        String str = isDummyMasteryCheck() ? "" : value.toString();
+        String str = isEmpty() ? "" : value.toString();
         return String.format("Mastery Check: %s", str);
     }
 

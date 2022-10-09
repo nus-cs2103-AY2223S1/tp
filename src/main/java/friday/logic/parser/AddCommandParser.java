@@ -42,12 +42,32 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        TelegramHandle telegramHandle = ParserUtil.parseTelegramHandle(argMultimap
-                .getValue(PREFIX_TELEGRAMHANDLE).orElse(""));
-        Consultation consultation = ParserUtil.parseConsultation(LocalDate.parse(argMultimap
-                .getValue(PREFIX_CONSULTATION).orElse("2001-01-01")));
-        MasteryCheck masteryCheck = ParserUtil.parseMasteryCheck(LocalDate.parse(argMultimap
-                .getValue(PREFIX_MASTERYCHECK).orElse("2001-01-01")));
+
+        TelegramHandle telegramHandle;
+        Consultation consultation;
+        MasteryCheck masteryCheck;
+
+        if (argMultimap.getValue(PREFIX_TELEGRAMHANDLE).isPresent()) {
+            telegramHandle = ParserUtil.parseTelegramHandle(argMultimap
+                    .getValue(PREFIX_TELEGRAMHANDLE).get());
+        } else {
+            telegramHandle = TelegramHandle.EMPTY_TELEGRAM_HANDLE;
+        }
+
+        if (argMultimap.getValue(PREFIX_CONSULTATION).isPresent()) {
+            consultation = ParserUtil.parseConsultation(LocalDate.parse(argMultimap
+                    .getValue(PREFIX_CONSULTATION).get()));
+        } else {
+            consultation = Consultation.EMPTY_CONSULTATION;
+        }
+
+        if (argMultimap.getValue(PREFIX_MASTERYCHECK).isPresent()) {
+            masteryCheck = ParserUtil.parseMasteryCheck(LocalDate.parse(argMultimap
+                    .getValue(PREFIX_MASTERYCHECK).get()));
+        } else {
+            masteryCheck = MasteryCheck.EMPTY_MASTERY_CHECK;
+        }
+
         Remark remark = new Remark(""); // add command does not allow adding remarks straight away
 
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));

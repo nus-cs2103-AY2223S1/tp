@@ -62,12 +62,12 @@ fast, FRIDAY can get your contact management tasks done faster than traditional 
 
 ### Adding a student: `add`
 
-Adds a student to FRIDAY, with the given name and Telegram handle. 
+Adds a student to FRIDAY, with the given name, Telegram handle, consultation date, and Mastery Check date. 
 
-Format: `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK]`
+Format: `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_DATE]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The Telegram handle, consultation, and Mastery Check are optional.
+The Telegram handle, consultation date, and Mastery Check date are optional.
 </div>
 
 ### View individual student details: `view`
@@ -116,7 +116,7 @@ Format: `list`
 
 | Action                       | Format                                                                                                        |
 |------------------------------|---------------------------------------------------------------------------------------------------------------|
-| **Add a student**            | `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK]`                                                           |
+| **Add a student**            | `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_DATE]`                                                           |
 | **Delete a student**         | `delete i/INDEX`                                                                                               |
 | **Edit a student's details** | `edit i/INDEX [t/TELEGRAM_HANDLE] [s/STUDENT_NUMBER] [m/MASTERY_CHECK] [c/CONSULTATION] [g/GRADE] [r/REMARK]` |
 | **View all students**        | `list`                                                                                                        |

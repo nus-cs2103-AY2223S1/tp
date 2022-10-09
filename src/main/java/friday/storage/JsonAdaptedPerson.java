@@ -58,8 +58,8 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(Student source) {
         name = source.getName().fullName;
         telegramHandle = source.getTelegramHandle().value;
-        masteryCheck = source.getConsultation().getValue();
-        consultation = source.getMasteryCheck().getValue();
+        masteryCheck = source.getMasteryCheck().getValue();
+        consultation = source.getConsultation().getValue();
         remark = source.getRemark().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -89,28 +89,43 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     TelegramHandle.class.getSimpleName()));
         }
-        if (!TelegramHandle.isValidTelegramHandle(telegramHandle)) {
+        if (!TelegramHandle.isValidOrEmpty(telegramHandle)) {
             throw new IllegalValueException(TelegramHandle.MESSAGE_CONSTRAINTS);
         }
-        final TelegramHandle modelTelegramHandle = new TelegramHandle(telegramHandle);
-
-        if (masteryCheck == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Consultation.class.getSimpleName()));
+        final TelegramHandle modelTelegramHandle;
+        if (telegramHandle.equals("")) {
+            modelTelegramHandle = TelegramHandle.EMPTY_TELEGRAM_HANDLE;
+        } else {
+            modelTelegramHandle = new TelegramHandle(telegramHandle);
         }
-        if (!Consultation.isValidConsultation(consultation.toString())) {
-            throw new IllegalValueException(Consultation.MESSAGE_CONSTRAINTS);
-        }
-        final Consultation modelConsultation = new Consultation(masteryCheck);
 
         if (consultation == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Consultation.class.getSimpleName()));
+        }
+        if (!Consultation.isValidOrEmpty(consultation.toString())) {
+            throw new IllegalValueException(Consultation.MESSAGE_CONSTRAINTS);
+        }
+        final Consultation modelConsultation;
+        if (consultation.equals(LocalDate.of(0001, 01, 01))) {
+            modelConsultation = Consultation.EMPTY_CONSULTATION;
+        } else {
+            modelConsultation = new Consultation(consultation);
+        }
+
+        if (masteryCheck == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     MasteryCheck.class.getSimpleName()));
         }
-        if (!MasteryCheck.isValidMasteryCheck(masteryCheck.toString())) {
+        if (!MasteryCheck.isValidOrEmpty(masteryCheck.toString())) {
             throw new IllegalValueException(MasteryCheck.MESSAGE_CONSTRAINTS);
         }
-        final MasteryCheck modelMasteryCheck = new MasteryCheck(consultation);
+        final MasteryCheck modelMasteryCheck;
+        if (masteryCheck.equals(LocalDate.of(0001, 01, 01))) {
+            modelMasteryCheck = MasteryCheck.EMPTY_MASTERY_CHECK;
+        } else {
+            modelMasteryCheck = new MasteryCheck(masteryCheck);
+        }
 
         if (remark == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

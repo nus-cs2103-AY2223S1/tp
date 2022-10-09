@@ -173,7 +173,7 @@ public class MainApp extends Application {
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping MasteryCheck Book ] =============================");
+        logger.info("============================ [ Stopping FRIDAY ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

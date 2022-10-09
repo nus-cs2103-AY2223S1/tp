@@ -4,6 +4,8 @@ import static friday.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.LocalDate;
+
 import org.junit.jupiter.api.Test;
 
 public class ConsultationTest {
@@ -33,5 +35,14 @@ public class ConsultationTest {
         // valid dates
         assertTrue(Consultation.isValidConsultation("2022-09-01"));
         assertTrue(Consultation.isValidConsultation("2020-02-28"));
+    }
+
+    @Test
+    public void isEmpty() {
+        // not the empty instance
+        assertFalse(new Consultation(LocalDate.of(2001, 01, 01)).isEmpty());
+
+        // the empty instance
+        assertTrue(Consultation.EMPTY_CONSULTATION.isEmpty());
     }
 }

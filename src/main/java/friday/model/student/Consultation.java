@@ -11,9 +11,12 @@ import java.time.LocalDate;
  */
 public class Consultation {
 
-    public static final String MESSAGE_CONSTRAINTS = "Desired dates for consultations should be in the format:"
+    public static final String MESSAGE_CONSTRAINTS = "Desired dates for consultation should be in the format:"
             + "YYYY-MM-DD";
     public static final String VALIDATION_REGEX = "^((19|2[0-9])[0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$";
+
+    // The empty value for when there is no consultation date attached to a student
+    public static final Consultation EMPTY_CONSULTATION = new Consultation();
 
     private LocalDate value;
 
@@ -29,6 +32,13 @@ public class Consultation {
     }
 
     /**
+     * Constructs a {@code Consultation} for the empty instance.
+     */
+    private Consultation() {
+        value = LocalDate.of(0001, 01, 01);
+    }
+
+    /**
      * Returns if a given string is a valid consultation.
      */
     public static boolean isValidConsultation(String test) {
@@ -36,10 +46,19 @@ public class Consultation {
     }
 
     /**
-     * Returns true if the given consultation is a dummy value.
+     * Returns true if the given string is a valid consultation or empty.
+     *
+     * Only to be used when converting JSON to Student in JsonAdaptedPerson.
      */
-    public boolean isDummyConsultation() {
-        return value.equals(LocalDate.of(2001, 01, 01));
+    public static boolean isValidOrEmpty(String test) {
+        return test.matches(VALIDATION_REGEX) || test.equals("0001-01-01");
+    }
+
+    /**
+     * Returns true if the given consultation is the empty value.
+     */
+    public boolean isEmpty() {
+        return this == EMPTY_CONSULTATION;
     }
 
     /**
@@ -53,7 +72,7 @@ public class Consultation {
 
     @Override
     public String toString() {
-        String str = isDummyConsultation() ? "" : value.toString();
+        String str = isEmpty() ? "" : value.toString();
         return String.format("Consultation: %s", str);
     }
 
