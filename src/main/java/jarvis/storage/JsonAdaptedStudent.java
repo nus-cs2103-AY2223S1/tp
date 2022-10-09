@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jarvis.commons.exceptions.IllegalValueException;
+import jarvis.model.MasteryCheckStatus;
 import jarvis.model.Student;
 import jarvis.model.StudentName;
 
@@ -46,7 +47,7 @@ public class JsonAdaptedStudent {
             throw new IllegalValueException(StudentName.MESSAGE_CONSTRAINTS);
         }
         final StudentName modelStudentName = new StudentName(name);
-        return new Student(modelStudentName);
+        return new Student(modelStudentName, MasteryCheckStatus.getDefault()); // TO DO
     }
 
 }

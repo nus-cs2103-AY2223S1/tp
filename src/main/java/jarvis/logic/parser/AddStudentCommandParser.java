@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 
 import jarvis.logic.commands.AddStudentCommand;
 import jarvis.logic.parser.exceptions.ParseException;
+import jarvis.model.MasteryCheckStatus;
 import jarvis.model.Student;
 import jarvis.model.StudentName;
 
@@ -29,7 +30,7 @@ public class AddStudentCommandParser implements Parser<AddStudentCommand> {
 
         StudentName studentName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
 
-        Student student = new Student(studentName);
+        Student student = new Student(studentName, MasteryCheckStatus.getDefault());
 
         return new AddStudentCommand(student);
     }

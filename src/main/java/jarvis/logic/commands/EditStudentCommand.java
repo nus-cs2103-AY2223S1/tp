@@ -11,6 +11,7 @@ import jarvis.commons.core.Messages;
 import jarvis.commons.core.index.Index;
 import jarvis.commons.util.CollectionUtil;
 import jarvis.logic.commands.exceptions.CommandException;
+import jarvis.model.MasteryCheckStatus;
 import jarvis.model.Model;
 import jarvis.model.Student;
 import jarvis.model.StudentName;
@@ -78,7 +79,8 @@ public class EditStudentCommand extends Command {
         assert studentToEdit != null;
 
         StudentName updatedStudentName = editStudentDescriptor.getName().orElse(studentToEdit.getName());
-        return new Student(updatedStudentName);
+        MasteryCheckStatus mcStatus = studentToEdit.getMcStatus();
+        return new Student(updatedStudentName, mcStatus);
     }
 
     @Override
