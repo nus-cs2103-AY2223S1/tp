@@ -39,7 +39,6 @@ public class DeleteMeetingCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        List<Client> lastShownClientList = model.getFilteredClientList();
         List<Meeting> lastShownMeetingList = model.getFilteredMeetingList();
 
         if (index.getZeroBased() >= lastShownMeetingList.size()) {
