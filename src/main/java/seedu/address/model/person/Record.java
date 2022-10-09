@@ -14,9 +14,12 @@ import java.time.format.DateTimeParseException;
  */
 public class Record {
     public static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
+    public static final String MESSAGE_CONSTRAINTS = "Record date should be in the following format: "
+            + DATE_FORMAT.toString();
     /* Data Fields */
     public final String record;
     private final LocalDateTime recordDate;
+
 
     /**
      * Constructs a record.
@@ -39,7 +42,7 @@ public class Record {
      * @param testDate Date to be tested.
      * @return True if valid.
      */
-    private static boolean isValidDate(String testDate) {
+    public static boolean isValidDate(String testDate) {
         try {
             LocalDateTime.parse(testDate, DATE_FORMAT);
         } catch (DateTimeParseException e) {
@@ -53,8 +56,8 @@ public class Record {
      *
      * @return The record date.
      */
-    public LocalDateTime getRecordDate() {
-        return this.recordDate;
+    public String getRecordDate() {
+        return recordDate.format(DATE_FORMAT);
     }
 
     @Override
