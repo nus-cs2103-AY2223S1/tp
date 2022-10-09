@@ -257,7 +257,8 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* computer science students
+* has a need to keep track of the list of internships application and their status
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -270,31 +271,44 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
+| Priority | As a …​            | I want to …​                                                              | So that I can…​                                 |
+|----------|--------------------|---------------------------------------------------------------------------|-------------------------------------------------|
+| `* * *`  | Basic user         | Add an internship                                                         |                                                 |
+| `* * *`  | Basic user         | Delete an internship                                                      |                                                 |
+| `* * *`  | Basic user         | View an internship details                                                |                                                 |
+| `* * *`  | Basic user         | Update the internship details                                             |                                                 |
+| `* * *`  | Basic user         | Keep track of the list of internships I applied to                        |                                                 |
+| `* * *`  | Basic user         | Add tag to internship                                                     | Find the relevant information easily            |
+| `* * *`  | Basic user         | Filter the internship based on current application process, tagging, etc. | Track my progress                               |
+| `* * *`  | Basic user         | View my interview dates                                                   | Track my interview timings                      |
+| `* * *`  | Basic user         | Know the contact of the HR                                                | Discuss the next step needed to be done         |
+| `* * *`  | Basic user         | Sort my internship list by date                                           | View the upcoming internship matters to prepare |
+| `* *  `  | First-time user    | Have a link to the demo video                                             | Learn how to use the app                        |
+| `* *  `  | First-time user    | See a help message explaining which features I should try first           | Learn the basic features of the application     |
+| `* * *`  | First-time user    | See some sample internships when I open the app                           | Understand how the app works                    |
+| `*   `   | Forgetful user     | Get reminder                                                              |                                                 |
+| `*   `   | Advanced user      | Use a shortcut to do commands                                             | Work more efficiently                           |
+| `*   `   | Advanced user      | Copy internship details easily                                            | Quickly share information to other apps         |
+| `*   `   | Advanced user      | Visit internship website fast                                             |                                                 |
+| `* * *`  | Advanced user      | Delete many internships                                                   |                                                 |
+| `* *  `  | Visual user        | View my internship application process tag with color                     | I can easily identify which stage I have reached|
+| `*   `   | Visual user        | View the count of internships application at each stages                  | See the success rate of my applications         |
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `InternshipBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: List internship(s)**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to list internships
+2. PleaseHireUs shows a list of internships
+3. User requests to delete specific internship(s) in the list
+4. PleaseHireUs deletes the internship(s)
 
-    Use case ends.
+   	 Use case ends.
 
 **Extensions**
 
@@ -302,18 +316,79 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. At least one of the given indexes is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. PleaseHireUs shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: Add internship**
+
+**MSS**
+
+1.  User request to add an internship application
+2.  System adds the internship application
+3.  System displays the success message
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given parameters is invalid.
+
+    * 1a1. System shows an error message.
+
+    Use case ends.
+
+* 1b. The given parameters does not include all required parameters.
+
+    * 1b1. System shows an error message.
+
+  Use case ends.
+
+**Use case: View internship(s)**
+
+**MSS**
+
+1. User wants to view more details of an internship application.
+2. System displays more details of the internship application.
+3. Use case ends.
+
+**Extensions**
+*{More to be added}*
+
+**Use case: Filter internship(s)**
+
+**MSS**
+
+1. User requests to filter internships by category and keywords(s)
+2. PleaseHireUs shows a list of internships filtered by corresponding categories and keywords
+
+    Use case ends.
+
+**Extensions**
+* 1a. No keywords is given
+    * 1a1. PleaseHireUs shows an error message.
+    
+  Use case ends.
+
+
+* 1c. No category is given
+  * 1c1. The category is set to default category
+  * 1c2. Continue from 2
+
+
+* 2a. The list is empty. 
+
+    Use case ends.
+
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 500 internships without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
@@ -351,22 +426,28 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting internship(s)
 
-1. Deleting a person while all persons are being shown
+1. Deleting internship(s) while all internships are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all internships using the `list` command. The list is non-empty.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First internship is deleted from the list. Details of the deleted internship shown in the status message. Timestamp in the status bar is updated.
+
+   1. Test case: `delete 0 2`<br>
+      Expected: No internship is deleted. Error details shown in the status message. Status bar remains the same.
+
+1. Deleting internship(s) while only the selected internships are being shown
+
+   1. Prerequisites: List specific internships using the `find` command. The list is non-empty.
+
+   1. Test case: `delete 1 2`<br>
+      Expected: If there is only one internship in the list, no internship is deleted and error details will be shown in the status message. Else if there are at least two internships on the list, the first and second internship will be deleted from the list. Details of the deleted internships are shown in the status message and the timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No internship is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
 
 ### Saving data
 

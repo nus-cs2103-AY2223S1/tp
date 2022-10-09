@@ -9,51 +9,47 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Aaron Tan Gui Rong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/aarontangr.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[ [github](https://github.com/aarontangr) ][ [portfolio](team/aarontangr.md) ]
 
 * Role: Developer
-* Responsibilities: Data
 
-### Jean Doe
+### Elbert Benedict
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/elben85.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[ [github](http://github.com/Elben85) ]
+[ [portfolio](team/elben85.md) ]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Farrel Dwireswara Salim
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/sugiyem.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[ [github](http://github.com/sugiyem) ] [ [portfolio](team/sugiyem.md) ]
+
+* Role: Developer
+
+### Rachel Angelyn Gunawan
+
+<img src="images/rachel-ag.png" width="200px">
+
+[ [github](https://github.com/Rachel-AG) ]
+[ [portfolio](team/rachel-ag.md) ]
 
 * Role: Developer
 * Responsibilities: UI
+
+### Justin Siaw
+
+<img src="images/justins00.png" width="200px">
+
+[ [github](http://github.com/justinS00) ]
+[ [portfolio](team/justins00.md) ]
+
+* Role: Developer
+* Responsibilities: Documentation
