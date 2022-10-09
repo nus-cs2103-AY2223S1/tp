@@ -71,9 +71,6 @@ public class TypicalPersons {
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
         for (Person person : getTypicalPersons()) {
-            if (person.getAttendanceList().attendanceList.size() !=0) {
-                System.out.println(person.getAttendanceList().attendanceList.get(0));
-            }
             ab.addPerson(person);
         }
         return ab;
