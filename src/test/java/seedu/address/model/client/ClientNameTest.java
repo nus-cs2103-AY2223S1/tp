@@ -28,12 +28,12 @@ public class ClientNameTest {
         assertFalse(ClientName.isValidClientName(" ")); // spaces only
         assertFalse(ClientName.isValidClientName("^")); // only non-alphanumeric characters
         assertFalse(ClientName.isValidClientName("peter*")); // contains non-alphanumeric characters
+        assertFalse(ClientName.isValidClientName("David Roger Jackson Ray Jr 2nd")); // long names
 
         // valid name
         assertTrue(ClientName.isValidClientName("peter jack")); // alphabets only
-        assertTrue(ClientName.isValidClientName("12345")); // numbers only
         assertTrue(ClientName.isValidClientName("peter the 2nd")); // alphanumeric characters
-        assertTrue(ClientName.isValidClientName("Capital Tan")); // with capital letters
-        assertTrue(ClientName.isValidClientName("David Roger Jackson Ray Jr 2nd")); // long names
+        assertTrue(ClientName.isValidClientName("Capital Tan Alan")); // with capital letters
+        assertTrue(ClientName.isValidClientName("12345")); // numbers only
     }
 }

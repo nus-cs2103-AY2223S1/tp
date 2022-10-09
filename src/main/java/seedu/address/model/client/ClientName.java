@@ -9,7 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class ClientName {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should not be blank and can contain only contain characters and spaces. A name may contain at most"
+            "Names should not be blank and can contain only contain alphanumeric characters and spaces. A name may " +
+                    "contain at most"
                     + " "
                     + "3 words and each word can be at most 10 characters long.";
 
@@ -17,7 +18,7 @@ public class ClientName {
     /**
      * The name can contain only letters and spaces.
      */
-    public static final String VALIDATION_REGEX = "\"[a-zA-Z]+(\\\\s+[a-zA-Z]+)*\"";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     private String fullName;
 
@@ -59,11 +60,11 @@ public class ClientName {
      * @return boolean true if a given string is a valid name
      */
     public static boolean isValidClientName(String test) {
-        boolean isInCorrectFormat = test.matches(VALIDATION_REGEX);
+
         String[] words = test.split(" ");
-        boolean hasCorrectWordCount = words.length <= 3;
-        boolean hasCorrectWordLength = isValidWordArray(words);
-        return isInCorrectFormat && hasCorrectWordLength && hasCorrectWordCount;
+        boolean hasCorrectWordCount = words.length > 0 && words.length <= 3;
+        boolean hasCorrectWordFormat = isValidWordArray(words);
+        return !test.isEmpty() && hasCorrectWordFormat && hasCorrectWordCount;
     }
 
 
@@ -77,7 +78,7 @@ public class ClientName {
     public static boolean isValidWordArray(String[] words) {
         boolean isValid = true;
         for (String s : words) {
-            isValid = isValid && s.length() <= 10;
+            isValid = isValid && s.length() <= 10 && s.matches(VALIDATION_REGEX);
         }
         return isValid;
     }
