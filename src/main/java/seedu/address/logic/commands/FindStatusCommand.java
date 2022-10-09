@@ -1,11 +1,14 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.StatusContainsKeywordsPredicate;
 
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Finds a person based on status.
+ */
 public class FindStatusCommand extends Command {
 
     public static final String COMMAND_WORD = "findStatus";
