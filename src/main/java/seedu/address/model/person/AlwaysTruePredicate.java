@@ -12,5 +12,11 @@ public class AlwaysTruePredicate implements Predicate<Person> {
         return true;
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || other instanceof AlwaysTruePredicate; // instanceof handles nulls
+    }
+
 }
 
