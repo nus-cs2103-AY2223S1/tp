@@ -1,7 +1,8 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.commons.core.Messages.*;
+import static seedu.address.logic.parser.CliSyntax.COMMAND_CONTACT;
+import static seedu.address.logic.parser.CliSyntax.COMMAND_MODULE;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -26,7 +27,8 @@ public class AddressBookParser {
     /**
      * Used for initial separation of command word and args.
      */
-    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+    private static final Pattern BASIC_COMMAND_FORMAT =
+            Pattern.compile("(?<commandWord>\\S+)(.)(?<commandType>\\S+)(?<arguments>.*)");
 
     /**
      * Parses user input into command for execution.
@@ -42,20 +44,32 @@ public class AddressBookParser {
         }
 
         final String commandWord = matcher.group("commandWord");
+        final String commandType = matcher.group("commandType");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
-
+            switch (commandType) {
+            case COMMAND_CONTACT:
+                return new AddCommandParser().parse(arguments);
+            case COMMAND_MODULE:
+                return new AddModuleCommandParser().parse(arguments);
+            default:
+                //doesnt reach this block of code, to fix
+                throw new ParseException(MESSAGE_UNKNOWN_COMMAND_TYPE);
+            }
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
-
-        case DeleteModuleCommand.COMMAND_WORD:
-            return new DeleteModuleCommandParser().parse(arguments);
+            switch (commandType) {
+            case COMMAND_CONTACT:
+                return new DeleteCommandParser().parse(arguments);
+            case COMMAND_MODULE:
+                return new DeleteModuleCommandParser().parse(arguments);
+            default:
+                throw new ParseException(MESSAGE_UNKNOWN_COMMAND_TYPE);
+            }
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
@@ -73,6 +87,8 @@ public class AddressBookParser {
             return new HelpCommand();
 
         default:
+            //error runs to here when missing c/m
+//            throw new ParseException("test");
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
