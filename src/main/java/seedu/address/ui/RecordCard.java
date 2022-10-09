@@ -40,7 +40,7 @@ public class RecordCard extends UiPart<Region> {
         this.record = record;
         id.setText(displayedIndex + ". ");
         recordText.setText(record.record);
-        date.setText(record.getRecordDate().toLocalDate().toString());
+        date.setText(record.getRecordDate());
     }
 
     @Override

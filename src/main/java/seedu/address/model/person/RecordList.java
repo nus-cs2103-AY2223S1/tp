@@ -20,6 +20,11 @@ public class RecordList {
      * @return List of records.
      */
     public ObservableList<Record> asUnmodifiableObservableList() {
+        if (recordList.size() == 0) {
+            recordList.add(new Record("10-08-2022 1200", "cold"));
+            recordList.add(new Record("01-09-2022 1200", "flu"));
+            recordList.add(new Record("05-10-2022 1200", "fever"));
+        }
         return internalUnmodifiableRecordList;
     }
 
@@ -42,6 +47,15 @@ public class RecordList {
         return other == this // short circuit if same object
                 || (other instanceof RecordList // instanceof handles nulls
                 && recordList.equals(((RecordList) other).recordList)); // state check
+    }
+
+    /**
+     * Add a record to the RecordList
+     *
+     * @param record record
+     */
+    public void add(Record record) {
+        recordList.add(record);
     }
 
     @Override

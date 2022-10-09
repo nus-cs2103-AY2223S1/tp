@@ -203,7 +203,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             // Controls which list to display
-            if (commandResult.isRecord()) {
+            if (commandResult.isShowRecords()) {
                 showRecordList();
             } else {
                 showPersonList();
