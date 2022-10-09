@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.UniqueModuleList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -15,6 +17,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniqueModuleList modules;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,12 +28,13 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        modules = new UniqueModuleList();
     }
 
     public AddressBook() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an AddressBook using the Persons and Modules in the {@code toBeCopied}
      */
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
@@ -48,12 +52,21 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the module list with {@code modules}.
+     * {@code modules} must not contain duplicate modules.
+     */
+    public void setModules(List<Module> modules) {
+        this.modules.setModules(modules);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setModules(newData.getModuleList());
     }
 
     //// person-level operations
@@ -93,6 +106,32 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    //// module-level operations
+
+    /**
+     * Returns true if a module with the same identity as {@code Module} exists in Plannit.
+     */
+    public boolean hasModule(Module module) {
+        requireNonNull(module);
+        return modules.contains(module);
+    }
+
+    /**
+     * Adds a module to Plannit.
+     * The module must not already exist in Plannit.
+     */
+    public void addModule(Module m) {
+        modules.add(m);
+    }
+
+    /**
+     * Removes {@code key} from Plannit.
+     * {@code key} must exist in Plannit.
+     */
+    public void removeModule(Module key) {
+        modules.remove(key);
+    }
+
     //// util methods
 
     @Override
@@ -104,6 +143,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Module> getModuleList() {
+        return modules.asUnmodifiableObservableList();
     }
 
     @Override

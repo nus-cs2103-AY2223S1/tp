@@ -16,25 +16,51 @@ import seedu.address.model.task.Task;
  */
 public class Module {
 
+    // Default value for empty module title
+    public static final String EMPTY_MODULE_TITLE = "";
+
     // Identity fields
     private final ModuleCode moduleCode;
 
     // Data fields
+    private final ModuleTitle moduleTitle;
     private final Set<Task> tasks = new HashSet<>();
     private final Set<Link> links = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Module(ModuleCode moduleCode, Set<Task> tasks, Set<Link> links) {
-        requireAllNonNull(moduleCode, tasks, links);
+    public Module(ModuleCode moduleCode, ModuleTitle moduleTitle, Set<Task> tasks,
+                  Set<Link> links) {
+        requireAllNonNull(moduleCode, moduleTitle, tasks, links);
         this.moduleCode = moduleCode;
+        this.moduleTitle = moduleTitle;
         this.tasks.addAll(tasks);
         this.links.addAll(links);
     }
 
+    /**
+     * Adds a {@code Module} with module code, without module title and without any
+     * associated tasks and links.
+     */
+    public Module(ModuleCode moduleCode) {
+        this(moduleCode, new ModuleTitle(EMPTY_MODULE_TITLE), new HashSet<>(), new HashSet<>());
+    }
+
+    /**
+     * Adds a {@code Module} with module code and module title but without any
+     * associated tasks and links.
+     */
+    public Module(ModuleCode moduleCode, ModuleTitle moduleTitle) {
+        this(moduleCode, moduleTitle, new HashSet<>(), new HashSet<>());
+    }
+
     public ModuleCode getModuleCode() {
         return moduleCode;
+    }
+
+    public ModuleTitle getModuleTitle() {
+        return moduleTitle;
     }
 
     /**
@@ -82,6 +108,7 @@ public class Module {
 
         Module otherModule = (Module) other;
         return otherModule.getModuleCode().equals(getModuleCode())
+                && otherModule.getModuleTitle().equals(getModuleTitle())
                 && otherModule.getLinks().equals(getLinks())
                 && otherModule.getTasks().equals(getTasks());
     }
@@ -96,6 +123,11 @@ public class Module {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getModuleCode());
+
+        if (!moduleTitle.toString().isBlank()) {
+            builder.append("; Title: ");
+            builder.append(moduleTitle);
+        }
 
         Set<Link> links = getLinks();
         if (!links.isEmpty()) {
@@ -113,4 +145,3 @@ public class Module {
     }
 
 }
-
