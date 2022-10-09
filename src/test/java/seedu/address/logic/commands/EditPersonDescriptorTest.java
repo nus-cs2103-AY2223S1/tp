@@ -5,10 +5,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_APPLICATION_PROCESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_POSITION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_WEBSITE_BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -49,6 +53,23 @@ public class EditPersonDescriptorTest {
 
         // different address -> returns false
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different position -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withPosition(VALID_POSITION_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different application process -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY)
+                .withApplicationProcess(VALID_APPLICATION_PROCESS_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different date -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withDate(VALID_DATE_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different website -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withWebsite(VALID_WEBSITE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false

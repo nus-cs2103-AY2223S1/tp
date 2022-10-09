@@ -43,7 +43,7 @@ public class PersonUtil {
         sb.append(PREFIX_DATE + person.getDate().toInputFormat() + " ");
         sb.append(PREFIX_WEBSITE + person.getWebsite().value + " ");
         person.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
+                s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         return sb.toString();
     }
@@ -57,6 +57,12 @@ public class PersonUtil {
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getRemark().ifPresent(address -> sb.append(PREFIX_REMARK).append(address.value).append(" "));
+        descriptor.getPosition().ifPresent(position -> sb.append(PREFIX_POSITION).append(position.positionName)
+                .append(" "));
+        descriptor.getApplicationProcess().ifPresent(applicationProcess -> sb.append(PREFIX_APPLICATION_PROCESS)
+                .append(applicationProcess.value).append(" "));
+        descriptor.getDate().ifPresent(date -> sb.append(PREFIX_DATE).append(date.toInputFormat()).append(" "));
+        descriptor.getWebsite().ifPresent(website -> sb.append(PREFIX_WEBSITE).append(website.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
@@ -65,6 +71,7 @@ public class PersonUtil {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
             }
         }
+
         return sb.toString();
     }
 }

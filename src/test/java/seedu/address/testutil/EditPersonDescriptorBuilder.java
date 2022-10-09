@@ -5,11 +5,15 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.person.ApplicationProcess;
+import seedu.address.model.person.Date;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Position;
 import seedu.address.model.person.Remark;
+import seedu.address.model.person.Website;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -36,6 +40,10 @@ public class EditPersonDescriptorBuilder {
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setRemark(person.getRemark());
+        descriptor.setPosition(person.getPosition());
+        descriptor.setApplicationProcess(person.getApplicationProcess());
+        descriptor.setDate(person.getDate());
+        descriptor.setWebsite(person.getWebsite());
         descriptor.setTags(person.getTags());
     }
 
@@ -68,6 +76,38 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withAddress(String address) {
         descriptor.setRemark(new Remark(address));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Position} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withPosition(String position) {
+        descriptor.setPosition(new Position(position));
+        return this;
+    }
+
+    /**
+     * Sets the {@code ApplicationProcess} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withApplicationProcess(String applicationProcess) {
+        descriptor.setApplicationProcess(new ApplicationProcess(applicationProcess));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Date} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withDate(String date) {
+        descriptor.setDate(new Date(date));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Website} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withWebsite(String website) {
+        descriptor.setWebsite(new Website(website));
         return this;
     }
 
