@@ -1,5 +1,8 @@
 package seedu.address.logic.commands;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyMyInsuRec;
@@ -9,9 +12,9 @@ import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingDate;
 import seedu.address.model.meeting.MeetingTime;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
+/**
+ * Adds a meeting to MyInsuRec.
+ */
 public class AddMeetingCommand extends Command {
 
     public static final String COMMAND_WORD = "addMeeting";
