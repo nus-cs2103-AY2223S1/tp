@@ -25,10 +25,10 @@ public class DeleteMeetingCommandParser implements Parser<DeleteMeetingCommand> 
         Index index;
         try {
             index = ParserUtil.parseIndex(argumentMultimap.getValue(PREFIX_INDEX).get());
-        } catch (IllegalValueException ive) {
+        } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteMeetingCommand.MESSAGE_USAGE),
-                    ive
+                    pe
             );
         }
 
