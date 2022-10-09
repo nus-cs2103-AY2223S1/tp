@@ -13,10 +13,12 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.task.Task;
 import seedu.address.model.tag.Tag;
 
 /**
- * Contains utility methods used for parsing strings in the various *Parser classes.
+ * Contains utility methods used for parsing strings in the various
+ * {@code Parser} classes.
  */
 public class ParserUtil {
 
@@ -120,5 +122,34 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String} task description into a {@code Task}.
+     * Leading and trailing whitespaces of description will be trimmed.
+     * @throws ParseException if the given description is invalid.
+     */
+    public static Task parseNewTaskDescription(String taskDescription)
+            throws ParseException {
+        requireNonNull(taskDescription);
+        String trimmedDescription = taskDescription.trim();
+        if (!Task.isValidTaskDescription(trimmedDescription)) {
+            throw new ParseException(Task.MESSAGE_CONSTRAINTS);
+        }
+        return new Task(trimmedDescription);
+    }
+
+    /**
+     * Parses a {@code String} task number into an {@code Index}.*
+     * @throws ParseException if the given number is invalid.
+     */
+    public static Index parseTaskNumberToDelete(String oneBasedTaskNumber)
+            throws ParseException {
+        requireNonNull(oneBasedTaskNumber);
+        String trimmedIndex = oneBasedTaskNumber.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 }
