@@ -1,9 +1,5 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADE_PROGRESS_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADE_PROGRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_HOMEWORK_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_HOMEWORK_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LESSON_PLAN_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LESSON_PLAN_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
@@ -18,18 +14,19 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.person.GradeProgress;
 import seedu.address.model.person.Person;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
+ * Same as TypicalPersons, but specifically for GradeProgressCommandTest.
  */
-public class TypicalPersons {
-
+public class GradeProgressTestTypicalPersons {
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withPhone("94351253").withLessonPlan("Algorithms")
             .withTags("friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
-            .withHomework("Science worksheet").withPhone("98765432").withLessonPlan("Trigonometry")
+            .withPhone("98765432").withHomework("Science worksheet").withLessonPlan("Trigonometry")
             .withGradeProgress("Math: A")
             .withTags("owesMoney", "friends").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
@@ -52,18 +49,14 @@ public class TypicalPersons {
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withLessonPlan(VALID_LESSON_PLAN_AMY)
-            .withHomework(VALID_HOMEWORK_AMY)
-            .withGradeProgress(VALID_GRADE_PROGRESS_AMY)
             .withTags(VALID_TAG_FRIEND).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withLessonPlan(VALID_LESSON_PLAN_BOB)
-            .withHomework(VALID_HOMEWORK_BOB)
-            .withGradeProgress(VALID_GRADE_PROGRESS_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalPersons() {} // prevents instantiation
+    private GradeProgressTestTypicalPersons() {} // prevents instantiation
 
     /**
      * Returns an {@code AddressBook} with all the typical persons.

@@ -84,7 +84,7 @@ public class PersonBuilder {
      * that we are building.
      */
     public PersonBuilder withGradeProgress(String ... gradeProgress) {
-        this.gradeProgressList.gradeProgressList.addAll(SampleDataUtil.getGradeProgressList(gradeProgress));
+        this.gradeProgressList = new GradeProgressList(SampleDataUtil.getGradeProgressList(gradeProgress));
         return this;
     }
 

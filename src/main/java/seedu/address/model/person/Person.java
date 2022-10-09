@@ -67,6 +67,13 @@ public class Person {
     }
 
     /**
+     * Clears the person's Grade progress list.
+     */
+    public void clearGradeProgressList() {
+        gradeProgressList.clearList();
+    }
+
+    /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */

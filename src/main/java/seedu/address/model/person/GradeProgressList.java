@@ -31,6 +31,9 @@ public class GradeProgressList {
         gradeProgressList.add(gradeProgress);
     }
 
+    public void clearList() {
+        gradeProgressList.clear();
+    }
     @Override
     public String toString() {
         StringBuilder description = new StringBuilder("Grade Progress:\n");
