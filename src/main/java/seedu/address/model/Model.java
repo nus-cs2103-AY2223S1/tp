@@ -78,6 +78,12 @@ public interface Model {
     void markTask(Task task, Index targetIndex);
 
     /**
+     * Unmarks the given task as not done.
+     * The task must exist in the task list.
+     */
+    void unMarkTask(Task task, Index targetIndex);
+
+    /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.
      */

@@ -145,7 +145,12 @@ public class AddCommandTest {
 
         @Override
         public void markTask(Task task, Index targetIndex) {
+            throw new AssertionError("This method should not be called.");
+        }
 
+        @Override
+        public void unMarkTask(Task task, Index targetIndex) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override

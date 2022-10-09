@@ -89,6 +89,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void unMarkTask(Task task, Index targetIndex) {
+        taskList.setTask(task, targetIndex);
+    }
+
+    @Override
     public ReadOnlyTaskList getTaskList() {
         return taskList;
     }
