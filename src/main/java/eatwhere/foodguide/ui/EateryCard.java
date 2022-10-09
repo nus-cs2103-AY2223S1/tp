@@ -10,9 +10,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
 /**
- * An UI component that displays information of a {@code Eatery}.
+ * An UI component that displays information of a {@code Person}.
  */
-public class PersonCard extends UiPart<Region> {
+public class EateryCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
 
@@ -42,9 +42,9 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Eatery} and index to display.
+     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Eatery eatery, int displayedIndex) {
+    public EateryCard(Eatery eatery, int displayedIndex) {
         super(FXML);
         this.eatery = eatery;
         id.setText(displayedIndex + ". ");
@@ -65,12 +65,12 @@ public class PersonCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof EateryCard)) {
             return false;
         }
 
         // state check
-        PersonCard card = (PersonCard) other;
+        EateryCard card = (EateryCard) other;
         return id.getText().equals(card.id.getText())
                 && eatery.equals(card.eatery);
     }

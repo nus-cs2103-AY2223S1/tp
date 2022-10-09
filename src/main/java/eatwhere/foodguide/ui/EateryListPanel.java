@@ -13,17 +13,17 @@ import javafx.scene.layout.Region;
 /**
  * Panel containing the list of persons.
  */
-public class PersonListPanel extends UiPart<Region> {
-    private static final String FXML = "PersonListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+public class EateryListPanel extends UiPart<Region> {
+    private static final String FXML = "EateryListPanel.fxml";
+    private final Logger logger = LogsCenter.getLogger(EateryListPanel.class);
 
     @FXML
     private ListView<Eatery> personListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code EateryListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Eatery> eateryList) {
+    public EateryListPanel(ObservableList<Eatery> eateryList) {
         super(FXML);
         personListView.setItems(eateryList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
@@ -41,7 +41,7 @@ public class PersonListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(eatery, getIndex() + 1).getRoot());
+                setGraphic(new EateryCard(eatery, getIndex() + 1).getRoot());
             }
         }
     }
