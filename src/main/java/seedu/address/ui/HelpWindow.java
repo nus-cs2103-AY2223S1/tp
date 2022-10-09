@@ -16,8 +16,8 @@ import seedu.address.commons.core.LogsCenter;
 public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://ay2223s1-cs2103t-t13-3.github.io/tp/UserGuide.html";
-    public static final String HELP_MESSAGE = "For more detailed instructions, please refer to the user guide: " +
-            USERGUIDE_URL;
+    public static final String HELP_MESSAGE = "For more detailed instructions, please refer to the user guide: "
+            + USERGUIDE_URL;
 
     public static final String COMMAND_LIST = "Command\n"
             + "\nModifying address book entries: \n"
@@ -40,8 +40,8 @@ public class HelpWindow extends UiPart<Stage> {
             + "help\n"
             + "exit\n";
 
-    public static final String DESCRIPTION_LIST = "Description\n\n" +
-            "\nAdds a candidate to the address book.\n"
+    public static final String DESCRIPTION_LIST = "Description\n\n"
+            + "\nAdds a candidate to the address book.\n"
             + "Delete a candidate by index\n"
             + "Clear all contacts\n"
             + "\n\n"
