@@ -17,7 +17,7 @@ import seedu.address.model.student.Student;
  */
 public class AddStudCommand extends Command {
 
-    public static final String COMMAND_WORD = "addStud";
+    public static final String COMMAND_WORD = "addstud";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student into the record. "
             + "Parameters: "
