@@ -54,6 +54,7 @@ class JsonSerializableAddressBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
             addressBook.hasEntry(e);
+            addressBook.addEntry(e);
         }
         return addressBook;
     }
