@@ -7,6 +7,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.travelr.model.event.Event;
 import seedu.travelr.model.event.UniqueEventList;
+import seedu.travelr.model.eventList.BucketList;
 import seedu.travelr.model.trip.Trip;
 import seedu.travelr.model.trip.UniqueTripList;
 
@@ -16,7 +17,8 @@ import seedu.travelr.model.trip.UniqueTripList;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private final UniqueTripList trips;
+    public static BucketList bucketList;
+    public static UniqueTripList trips;
     private final UniqueEventList events;
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -28,6 +30,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         trips = new UniqueTripList();
         events = new UniqueEventList();
+        bucketList = new BucketList();
     }
 
     public AddressBook() {}

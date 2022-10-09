@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.travelr.model.event.Event;
+import seedu.travelr.model.eventList.Itineraries;
 
 /**
  * Represents a Person in the address book.
@@ -20,7 +21,7 @@ public class Trip {
     private final Description description;
 
     // Data fields
-    private final Set<Event> events = new HashSet<>();
+    public final Itineraries events = new Itineraries();
 
     /**
      * Every field must be present and not null.
@@ -29,8 +30,16 @@ public class Trip {
         requireAllNonNull(title, description, events);
         this.title = title;
         this.description = description;
-        this.events.addAll(events);
+        this.events.addEvents(events);
         //System.out.println(events);
+    }
+
+    public void addEvent(Event event) {
+        events.addEvent(event);
+    }
+
+    public void removeEvent(Event event) {
+        events.removeEvent(event);
     }
 
     public Title getTitle() {
@@ -46,7 +55,7 @@ public class Trip {
      * if modification is attempted.
      */
     public Set<Event> getEvents() {
-        return Collections.unmodifiableSet(events);
+        return Collections.unmodifiableSet(events.getList());
     }
 
     /**
@@ -77,9 +86,10 @@ public class Trip {
         }
 
         Trip otherTrip = (Trip) other;
-        return otherTrip.getTitle().equals(getTitle())
-                && otherTrip.getDescription().equals(getDescription())
-                && otherTrip.getEvents().equals(getEvents());
+        //Sorry, but can we get this to just compare the Title
+        return otherTrip.getTitle().equals(getTitle());
+        //        && otherTrip.getDescription().equals(getDescription())
+        //        && otherTrip.getEvents().equals(getEvents());
     }
 
     @Override

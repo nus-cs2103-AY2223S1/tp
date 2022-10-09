@@ -48,6 +48,21 @@ public class UniqueTripList implements Iterable<Trip> {
         internalList.add(toAdd);
     }
 
+    public int getIndexOfTrip(Trip trip) {
+        if (contains(trip)) {
+            for (int i = 0; i < internalList.size(); i++) {
+                if (internalList.get(i).equals(trip)) {
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
+
+    public Trip getTrip(Trip trip) {
+        return internalList.get(getIndexOfTrip(trip));
+    }
+
     /**
      * Replaces the person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the list.

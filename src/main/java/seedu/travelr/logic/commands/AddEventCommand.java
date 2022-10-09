@@ -1,6 +1,7 @@
 package seedu.travelr.logic.commands;
 
 import seedu.travelr.logic.commands.exceptions.CommandException;
+import seedu.travelr.model.AddressBook;
 import seedu.travelr.model.Model;
 import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.Trip;
@@ -34,6 +35,7 @@ public class AddEventCommand extends Command {
      */
     public AddEventCommand(Event event) {
         requireNonNull(event);
+        AddressBook.bucketList.addEvent(event);
         toAdd = event;
     }
 

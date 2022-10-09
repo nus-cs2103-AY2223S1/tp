@@ -2,6 +2,7 @@ package seedu.travelr.logic.parser;
 
 import seedu.travelr.logic.commands.AddCommand;
 import seedu.travelr.logic.commands.AddEventCommand;
+import seedu.travelr.logic.commands.AddEventToTripCommand;
 import seedu.travelr.logic.parser.exceptions.ParseException;
 import seedu.travelr.model.AddressBook;
 import seedu.travelr.model.event.Event;
@@ -9,39 +10,39 @@ import seedu.travelr.model.trip.Description;
 import seedu.travelr.model.trip.Title;
 import seedu.travelr.model.trip.Trip;
 
-import java.util.Set;
+import java.util.HashSet;
 import java.util.stream.Stream;
 
 import static seedu.travelr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.travelr.logic.parser.CliSyntax.*;
-import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TAG;
 
-public class AddEventCommandParser implements Parser<AddEventCommand> {
-
+public class AddEventToTripCommandParser {
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddEventCommand parse(String args) throws ParseException {
+    public AddEventToTripCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DESC);
-//        ArgumentMultimap argMultimap =
-//                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DESC, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_TRIP);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_DESC)
+        if (!arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_TRIP)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEventToTripCommand.MESSAGE_USAGE));
         }
 
         Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
-        Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESC).get());
-        //Set<Event> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Title trip = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TRIP).get());
 
-        Event event = new Event(title, description);
+        if (!AddressBook.bucketList.contains(new Event(title))) {
+            throw new ParseException("Please enter a valid event");
+        }
 
-        return new AddEventCommand(event);
+        Event event = AddressBook.bucketList.getEvent(new Event(title));
+        Trip toAddInto = AddressBook.trips.getTrip(new Trip(trip, new Description("random"), new HashSet<>()));
+
+        return new AddEventToTripCommand(event, toAddInto);
     }
 
     /**
@@ -51,6 +52,4 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
-
-
 }

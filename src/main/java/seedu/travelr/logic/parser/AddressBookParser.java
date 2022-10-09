@@ -36,8 +36,11 @@ public class AddressBookParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
+        case AddEventToTripCommand.COMMAND_WORD:
+            return new AddEventToTripCommandParser().parse(arguments);
+
         case AddEventCommand.COMMAND_WORD:
-                return new AddEventCommandParser().parse(arguments);
+            return new AddEventCommandParser().parse(arguments);
 
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
