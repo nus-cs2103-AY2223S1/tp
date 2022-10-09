@@ -1,14 +1,16 @@
 package seedu.address.logic.commands;
 
+import java.util.List;
+
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tutorial.Tutorial;
 
-import java.util.List;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Marks a tutorial as complete.
@@ -26,8 +28,13 @@ public class MarkTutorialCommand extends Command {
 
     public static final String MESSAGE_MARKTUT_SUCCESS = "Marked Tutorial %1$s";
 
-    public final Index index;
+    private final Index index;
 
+    /**
+     * Creates a MarkTutorialCommand to mark the tutorial
+     *
+     * @param index The position of the tutorial in the tutorial list
+     */
     public MarkTutorialCommand(Index index) {
         requireAllNonNull(index);
 

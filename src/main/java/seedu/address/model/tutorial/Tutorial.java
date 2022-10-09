@@ -40,7 +40,9 @@ public class Tutorial {
         return time;
     }
 
-    public boolean getStatus() { return status; }
+    public boolean getStatus() {
+        return status;
+    }
 
     /**
      * Returns true if both tutorials have the same time.
