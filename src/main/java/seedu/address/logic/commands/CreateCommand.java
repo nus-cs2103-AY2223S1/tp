@@ -35,7 +35,7 @@ public class CreateCommand extends Command {
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "97814456 "
             + PREFIX_EMAIL + "test@test.com "
-            + PREFIX_TAG + "Main Poc "
+            + PREFIX_TAG + "MainPoc "
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New POC created: %1$s\nLinked to Company: %2$s";
@@ -73,7 +73,7 @@ public class CreateCommand extends Command {
 
         Company companyToEdit = lastShownList.get(index.getZeroBased());
 
-        if (companyToEdit.containsPoc(poc)) {
+        if (companyToEdit.hasPoc(poc)) {
             throw new CommandException(String.format(MESSAGE_DUPLICATE_POC, poc.getName()));
         }
 

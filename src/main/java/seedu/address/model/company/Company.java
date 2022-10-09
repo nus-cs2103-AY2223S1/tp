@@ -1,5 +1,6 @@
 package seedu.address.model.company;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
@@ -8,6 +9,8 @@ import java.util.Iterator;
 import java.util.Objects;
 import java.util.Set;
 
+import javafx.collections.ObservableList;
+import seedu.address.model.ReadOnlyCompany;
 import seedu.address.model.poc.Poc;
 import seedu.address.model.poc.UniquePocList;
 import seedu.address.model.tag.Tag;
@@ -16,7 +19,7 @@ import seedu.address.model.tag.Tag;
  * Represents a Company in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Company {
+public class Company implements ReadOnlyCompany {
 
     // Identity fields
     private final Name name;
@@ -81,8 +84,9 @@ public class Company {
      * @param poc to be checked
      * @return true if contains
      */
-    public boolean containsPoc(Poc poc) {
-        return this.pocs.contains(poc);
+    public boolean hasPoc(Poc poc) {
+        requireNonNull(poc);
+        return pocs.contains(poc);
     }
 
     /**
@@ -150,6 +154,9 @@ public class Company {
         return builder.toString();
     }
 
-
+    @Override
+    public ObservableList<Poc> getPocList() {
+        return pocs.asUnmodifiableObservableList();
+    }
 
 }
