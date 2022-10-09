@@ -16,7 +16,7 @@ import nus.climods.ui.UiPart;
  */
 public class SavedModuleListPanel extends UiPart<Region> {
 
-    private static final String FXML = "ModuleListPanel.fxml";
+    private static final String FXML = "SavedModuleListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(SavedModuleListPanel.class);
 
     @FXML
