@@ -27,7 +27,7 @@ public class TypicalPersons {
             .withPhone("94351253").withLessonPlan("Algorithms")
             .withTags("friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
-            .withHomework("Science Worksheet").withPhone("98765432").withLessonPlan("Trigonometry")
+            .withHomework("Science worksheet").withPhone("98765432").withLessonPlan("Trigonometry")
             .withAttendance("2022-07-12", "2022-07-17")
             .withTags("owesMoney", "friends").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
@@ -71,9 +71,6 @@ public class TypicalPersons {
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
         for (Person person : getTypicalPersons()) {
-            if (person.getAttendanceList().attendanceList.size() !=0) {
-                System.out.println(person.getAttendanceList().attendanceList.get(0));
-            }
             ab.addPerson(person);
         }
         return ab;

@@ -5,12 +5,14 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.AddressBook;
+import seedu.address.model.person.Person;
 import seedu.address.testutil.TypicalPersons;
 
 public class JsonSerializableAddressBookTest {
@@ -25,7 +27,17 @@ public class JsonSerializableAddressBookTest {
         JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
                 JsonSerializableAddressBook.class).get();
         AddressBook addressBookFromFile = dataFromFile.toModelType();
+        List<Person> lst = addressBookFromFile.getPersonList();
         AddressBook typicalPersonsAddressBook = TypicalPersons.getTypicalAddressBook();
+        List<Person> comLst = typicalPersonsAddressBook.getPersonList();
+        for (int i = 0; i < comLst.size(); i++) {
+            System.out.println(String.format("Person %d", i));
+            System.out.println(lst.get(i));
+            System.out.println("\n\n");
+            System.out.println(String.format("Com Person %d", i));
+            System.out.println(comLst.get(i));
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n\n");
+        }
         assertEquals(addressBookFromFile, typicalPersonsAddressBook);
     }
 
