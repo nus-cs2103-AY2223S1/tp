@@ -6,7 +6,6 @@ import static foodwhere.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import foodwhere.logic.commands.AddCommand;
 import foodwhere.logic.commands.ClearCommand;
 import foodwhere.logic.commands.Command;
 import foodwhere.logic.commands.EditCommand;
@@ -44,8 +43,8 @@ public class AddressBookParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+        case SAddCommand.COMMAND_WORD:
+            return new SAddCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);

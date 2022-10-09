@@ -5,7 +5,7 @@ import static foodwhere.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import foodwhere.logic.commands.AddCommand;
+import foodwhere.logic.commands.SAddCommand;
 import foodwhere.logic.parser.exceptions.ParseException;
 import foodwhere.model.detail.Detail;
 import foodwhere.model.stall.Address;
@@ -13,16 +13,16 @@ import foodwhere.model.stall.Name;
 import foodwhere.model.stall.Stall;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new SAddCommand object
  */
-public class AddCommandParser implements Parser<AddCommand> {
+public class SAddCommandParser implements Parser<SAddCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the SAddCommand
+     * and returns an SAddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddCommand parse(String args) throws ParseException {
+    public SAddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,
                         CliSyntax.PREFIX_NAME,
@@ -33,7 +33,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                 CliSyntax.PREFIX_NAME,
                 CliSyntax.PREFIX_ADDRESS)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SAddCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(CliSyntax.PREFIX_NAME).get());
@@ -42,7 +42,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Stall stall = new Stall(name, address, detailList);
 
-        return new AddCommand(stall);
+        return new SAddCommand(stall);
     }
 
     /**
