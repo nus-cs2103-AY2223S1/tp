@@ -3,6 +3,8 @@ package seedu.address.model.person;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * Represents a record list in the address book.
  */
@@ -15,16 +17,21 @@ public class RecordList {
             FXCollections.unmodifiableObservableList(recordList);
 
     /**
+     * Adds a record to the RecordList.
+     *
+     * @param toAdd Record to add.
+     */
+    public void add(Record toAdd) {
+        requireNonNull(toAdd);
+        recordList.add(toAdd);
+    }
+
+    /**
      * Getter for list of records.
      *
      * @return List of records.
      */
     public ObservableList<Record> asUnmodifiableObservableList() {
-        if (recordList.size() == 0) {
-            recordList.add(new Record("10-08-2022 1200", "cold"));
-            recordList.add(new Record("01-09-2022 1200", "flu"));
-            recordList.add(new Record("05-10-2022 1200", "fever"));
-        }
         return internalUnmodifiableRecordList;
     }
 
@@ -47,15 +54,6 @@ public class RecordList {
         return other == this // short circuit if same object
                 || (other instanceof RecordList // instanceof handles nulls
                 && recordList.equals(((RecordList) other).recordList)); // state check
-    }
-
-    /**
-     * Add a record to the RecordList
-     *
-     * @param record record
-     */
-    public void add(Record record) {
-        recordList.add(record);
     }
 
     @Override

@@ -14,7 +14,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RECORDS;
 /**
  * Lists all records for a specific patient to the user.
  */
-public class ListRCommand extends Command{
+public class ListRecordCommand extends Command{
 
     public static final String COMMAND_WORD = "listR";
 
@@ -29,7 +29,7 @@ public class ListRCommand extends Command{
 
     private static Person lastCalledPerson;
 
-    public ListRCommand(Index targetIndex) {
+    public ListRecordCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -39,11 +39,11 @@ public class ListRCommand extends Command{
      * @return true if listR command is previously called, false otherwise.
      */
     public static boolean isCalled() {
-        return ListRCommand.lastCalledPerson != null;
+        return ListRecordCommand.lastCalledPerson != null;
     }
 
     public static Person getLastCalledPerson() {
-        return ListRCommand.lastCalledPerson;
+        return ListRecordCommand.lastCalledPerson;
     }
 
     @Override
@@ -57,24 +57,22 @@ public class ListRCommand extends Command{
 
         Person personToListRecords = lastShownList.get(targetIndex.getZeroBased());
 
-        ListRCommand.lastCalledPerson = personToListRecords;
+        ListRecordCommand.lastCalledPerson = personToListRecords;
 
         model.setFilteredRecordList(personToListRecords);
         model.updateFilteredRecordList(PREDICATE_SHOW_ALL_RECORDS);
-        StringBuilder builder = new StringBuilder()
-                .append(MESSAGE_SUCCESS)
-                .append(personToListRecords.getName())
-                .append("\n")
-                .append(Messages.MESSAGE_RECORDS_LISTED_OVERVIEW)
-                .append(model.getFilteredRecordList().size());
 
-        return new CommandResult(builder.toString(), false, false, true);
+        String feedbackToUser = MESSAGE_SUCCESS + personToListRecords.getName() + "\n" +
+                String.format(Messages.MESSAGE_RECORDS_LISTED_OVERVIEW,
+                        model.getFilteredRecordList().size());
+
+        return new CommandResult(feedbackToUser, false, false, true);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ListRCommand // instanceof handles nulls
-                && targetIndex.equals(((ListRCommand) other).targetIndex)); // state check
+                || (other instanceof ListRecordCommand // instanceof handles nulls
+                && targetIndex.equals(((ListRecordCommand) other).targetIndex)); // state check
     }
 }
