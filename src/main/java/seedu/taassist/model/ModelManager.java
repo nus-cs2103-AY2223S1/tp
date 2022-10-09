@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Collection;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -130,6 +131,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasModuleClasses(Collection<ModuleClass> moduleClasses) {
+        requireAllNonNull(moduleClasses);
+        return moduleClasses.stream().allMatch(this::hasModuleClass);
+    }
+
+    @Override
     public void deleteModuleClass(ModuleClass target) {
         requireNonNull(target);
         taAssist.removeModuleClass(target);
@@ -147,6 +154,14 @@ public class ModelManager implements Model {
 
         if (target.isSameModuleClass(focusedClass)) {
             enterFocusMode(editedModuleClass);
+        }
+    }
+
+    @Override
+    public void deleteModuleClasses(Collection<ModuleClass> moduleClasses) {
+        requireAllNonNull(moduleClasses);
+        for (ModuleClass moduleClass : moduleClasses) {
+            deleteModuleClass(moduleClass);
         }
     }
 

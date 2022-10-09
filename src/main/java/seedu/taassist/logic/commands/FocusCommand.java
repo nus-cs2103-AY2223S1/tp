@@ -2,6 +2,7 @@ package seedu.taassist.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.taassist.commons.core.Messages;
 import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.moduleclass.ModuleClass;
@@ -9,9 +10,9 @@ import seedu.taassist.model.moduleclass.ModuleClass;
 /**
  * Enters focus mode for the specified class.
  */
-public class ClassCommand extends Command {
+public class FocusCommand extends Command {
 
-    public static final String COMMAND_WORD = "class";
+    public static final String COMMAND_WORD = "focus";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " Enters focus mode for the specified class.\n"
             + "Parameters: CLASS_NAME\n"
@@ -22,9 +23,9 @@ public class ClassCommand extends Command {
     private final ModuleClass targetClass;
 
     /**
-     * Creates an ClassCommand that enters focus mode for the specified {@code targetClass}.
+     * Creates an FocusCommand that enters focus mode for the specified {@code targetClass}.
      */
-    public ClassCommand(ModuleClass targetClass) {
+    public FocusCommand(ModuleClass targetClass) {
         this.targetClass = targetClass;
     }
 
@@ -33,7 +34,8 @@ public class ClassCommand extends Command {
         requireNonNull(model);
 
         if (!model.hasModuleClass(targetClass)) {
-            throw new CommandException(String.format(MESSAGE_CLASS_NOT_FOUND, targetClass));
+            throw new CommandException(String.format(Messages.MESSAGE_MODULE_CLASS_DOES_NOT_EXIST,
+                    model.getModuleClassList()));
         }
 
         model.enterFocusMode(targetClass);
@@ -43,8 +45,8 @@ public class ClassCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ClassCommand // instanceof handles nulls
-                && targetClass.equals(((ClassCommand) other).targetClass));
+                || (other instanceof FocusCommand // instanceof handles nulls
+                && targetClass.equals(((FocusCommand) other).targetClass));
     }
 
 }

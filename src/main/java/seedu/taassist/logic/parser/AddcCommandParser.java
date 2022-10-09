@@ -18,18 +18,10 @@ public class AddcCommandParser implements Parser<AddcCommand> {
      */
     public AddcCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MODULE_CLASS);
-        if (!isPrefixPresent(argMultimap) || !argMultimap.getPreamble().isEmpty()) {
+        if (!argMultimap.containsPrefixes(PREFIX_MODULE_CLASS) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddcCommand.MESSAGE_USAGE));
         }
         ModuleClass moduleClass = ParserUtil.parseModuleClass(argMultimap.getValue(PREFIX_MODULE_CLASS).get());
         return new AddcCommand(moduleClass);
-    }
-
-    /**
-     * Returns true if the {@code PREFIX_MODULE_CLASS} does not contain empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean isPrefixPresent(ArgumentMultimap argumentMultimap) {
-        return argumentMultimap.getValue(PREFIX_MODULE_CLASS).isPresent();
     }
 }

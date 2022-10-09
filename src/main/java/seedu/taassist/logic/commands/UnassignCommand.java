@@ -1,13 +1,14 @@
 package seedu.taassist.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.taassist.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
+import static seedu.taassist.commons.core.Messages.MESSAGE_MODULE_CLASS_DOES_NOT_EXIST;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_MODULE_CLASS;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import seedu.taassist.commons.core.Messages;
 import seedu.taassist.commons.core.index.Index;
 import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.logic.parser.ParserStudentIndexUtil;
@@ -50,7 +51,8 @@ public class UnassignCommand extends Command {
         requireNonNull(model);
 
         if (!model.hasModuleClass(moduleClassToUnassign)) {
-            throw new CommandException(Messages.MESSAGE_MODULE_CLASS_DOES_NOT_EXIST);
+            throw new CommandException(String.format(MESSAGE_MODULE_CLASS_DOES_NOT_EXIST,
+                    model.getModuleClassList()));
         }
 
         List<Student> lastShownList = model.getFilteredStudentList();
@@ -58,7 +60,7 @@ public class UnassignCommand extends Command {
         try {
             studentsToUnassign = ParserStudentIndexUtil.parseStudentsFromIndices(indices, lastShownList);
         } catch (ParseException pe) {
-            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
         for (Student student : studentsToUnassign) {

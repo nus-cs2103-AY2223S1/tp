@@ -9,7 +9,14 @@
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
-    "address": "4th street"
+    "address": "4th street",
+    "classes": [ "family" ]
   } ],
-  "moduleClasses" : []
+  "moduleClasses" : [ {
+    "name" : "friends",
+    "sessions" : [ ]
+  }, {
+    "name" : "family",
+    "sessions" : [ ]
+  } ]
 }

@@ -10,7 +10,6 @@ import seedu.taassist.logic.commands.AddCommand;
 import seedu.taassist.logic.commands.AddcCommand;
 import seedu.taassist.logic.commands.AssignCommand;
 import seedu.taassist.logic.commands.BackCommand;
-import seedu.taassist.logic.commands.ClassCommand;
 import seedu.taassist.logic.commands.ClearCommand;
 import seedu.taassist.logic.commands.Command;
 import seedu.taassist.logic.commands.DeleteCommand;
@@ -18,6 +17,7 @@ import seedu.taassist.logic.commands.DeletecCommand;
 import seedu.taassist.logic.commands.EditCommand;
 import seedu.taassist.logic.commands.ExitCommand;
 import seedu.taassist.logic.commands.FindCommand;
+import seedu.taassist.logic.commands.FocusCommand;
 import seedu.taassist.logic.commands.HelpCommand;
 import seedu.taassist.logic.commands.ListCommand;
 import seedu.taassist.logic.commands.ListcCommand;
@@ -92,8 +92,8 @@ public class TaAssistParser {
         case ListsCommand.COMMAND_WORD:
             return new ListsCommand();
 
-        case ClassCommand.COMMAND_WORD:
-            return new ClassCommandParser().parse(arguments);
+        case FocusCommand.COMMAND_WORD:
+            return new FocusCommandParser().parse(arguments);
 
         case BackCommand.COMMAND_WORD:
             return new BackCommand();

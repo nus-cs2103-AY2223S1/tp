@@ -8,7 +8,6 @@ import static seedu.taassist.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import java.util.Set;
-import java.util.stream.Stream;
 
 import seedu.taassist.logic.commands.AddCommand;
 import seedu.taassist.logic.parser.exceptions.ParseException;
@@ -33,8 +32,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                 PREFIX_ADDRESS, PREFIX_MODULE_CLASS);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!argMultimap.containsPrefixes(PREFIX_NAME) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
@@ -48,13 +46,4 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         return new AddCommand(student);
     }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
-
 }
