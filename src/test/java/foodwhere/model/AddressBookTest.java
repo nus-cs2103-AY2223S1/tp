@@ -16,6 +16,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import foodwhere.model.review.Review;
 import foodwhere.model.stall.Stall;
 import foodwhere.model.stall.exceptions.DuplicateStallException;
 import foodwhere.testutil.StallBuilder;
@@ -88,6 +89,7 @@ public class AddressBookTest {
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Stall> stalls = FXCollections.observableArrayList();
+        private final ObservableList<Review> reviews = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Stall> stalls) {
             this.stalls.setAll(stalls);
@@ -96,6 +98,11 @@ public class AddressBookTest {
         @Override
         public ObservableList<Stall> getStallList() {
             return stalls;
+        }
+
+        @Override
+        public ObservableList<Review> getReviewList() {
+            return reviews;
         }
     }
 

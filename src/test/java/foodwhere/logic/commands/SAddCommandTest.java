@@ -47,7 +47,7 @@ public class SAddCommandTest {
         SAddCommand sAddCommand = new SAddCommand(validStall);
         ModelStub modelStub = new ModelStubWithStall(validStall);
 
-        assertThrows(CommandException.class, sAddCommand.MESSAGE_DUPLICATE_STALL, () -> sAddCommand.execute(modelStub));
+        assertThrows(CommandException.class, SAddCommand.MESSAGE_DUPLICATE_STALL, () -> sAddCommand.execute(modelStub));
     }
 
     @Test

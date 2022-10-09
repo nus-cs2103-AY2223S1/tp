@@ -3,7 +3,10 @@ package foodwhere.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Objects;
 
+import foodwhere.model.review.Review;
+import foodwhere.model.review.UniqueReviewList;
 import foodwhere.model.stall.Stall;
 import foodwhere.model.stall.UniqueStallList;
 import javafx.collections.ObservableList;
@@ -15,6 +18,7 @@ import javafx.collections.ObservableList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniqueStallList stalls;
+    private final UniqueReviewList reviews;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +29,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         stalls = new UniqueStallList();
+        reviews = new UniqueReviewList();
     }
 
     public AddressBook() {}
@@ -48,12 +53,21 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the review list with {@code reviews}.
+     * {@code reviews} must not contain duplicate reviews.
+     */
+    public void setReviews(List<Review> reviews) {
+        this.reviews.setReviews(reviews);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
         setStalls(newData.getStallList());
+        setReviews(newData.getReviewList());
     }
 
     //// stall-level operations
@@ -93,11 +107,49 @@ public class AddressBook implements ReadOnlyAddressBook {
         stalls.remove(key);
     }
 
+    //// review methods
+
+    /**
+     * Returns true if a review with the same identity as {@code review} exists in the address book.
+     */
+    public boolean hasReview(Review review) {
+        requireNonNull(review);
+        return reviews.contains(review);
+    }
+
+    /**
+     * Adds a review to the address book.
+     * The review must not already exist in the address book.
+     */
+    public void addReview(Review p) {
+        reviews.add(p);
+    }
+
+    /**
+     * Replaces the given review {@code target} in the list with {@code editedReview}.
+     * {@code target} must exist in the address book.
+     * The review identity of {@code editedReview} must not be the same as another existing review in the address book.
+     */
+    public void setReview(Review target, Review editedReview) {
+        requireNonNull(editedReview);
+
+        reviews.setReview(target, editedReview);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeReview(Review key) {
+        reviews.remove(key);
+    }
+
     //// util methods
 
     @Override
     public String toString() {
-        return stalls.asUnmodifiableObservableList().size() + " stalls";
+        return stalls.asUnmodifiableObservableList().size() + " stalls, "
+                + reviews.asUnmodifiableObservableList().size() + " reviews";
         // TODO: refine later
     }
 
@@ -107,14 +159,20 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
+    public ObservableList<Review> getReviewList() {
+        return reviews.asUnmodifiableObservableList();
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && stalls.equals(((AddressBook) other).stalls));
+                && stalls.equals(((AddressBook) other).stalls)
+                && reviews.equals(((AddressBook) other).reviews));
     }
 
     @Override
     public int hashCode() {
-        return stalls.hashCode();
+        return Objects.hash(stalls, reviews);
     }
 }

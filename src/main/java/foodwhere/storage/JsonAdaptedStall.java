@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import foodwhere.commons.exceptions.IllegalValueException;
 import foodwhere.model.detail.Detail;
+import foodwhere.model.review.Review;
 import foodwhere.model.stall.Address;
 import foodwhere.model.stall.Name;
 import foodwhere.model.stall.Stall;
@@ -25,7 +26,7 @@ class JsonAdaptedStall {
     private final String name;
     private final String address;
     private final List<JsonAdaptedDetail> details = new ArrayList<>();
-    private final List<JsonAdaptedStall> reviews = new ArrayList<>();
+    private final List<JsonAdaptedReview> reviews = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedStall} with the given stall details.
@@ -34,7 +35,7 @@ class JsonAdaptedStall {
     public JsonAdaptedStall(@JsonProperty("name") String name,
                             @JsonProperty("address") String address,
                             @JsonProperty("details") List<JsonAdaptedDetail> details,
-                            @JsonProperty("reviews") List<JsonAdaptedStall> reviews) {
+                            @JsonProperty("reviews") List<JsonAdaptedReview> reviews) {
         this.name = name;
         this.address = address;
         if (details != null) {
@@ -54,6 +55,25 @@ class JsonAdaptedStall {
         details.addAll(source.getDetails().stream()
                 .map(JsonAdaptedDetail::new)
                 .collect(Collectors.toList()));
+    }
+
+    /**
+     * Checks if a review is of this stall.
+     *
+     * @throws IllegalValueException if there are data constraints violated in the name of the stall.
+     */
+    public boolean isReviewOfStall(Review review) throws IllegalValueException {
+        if (name == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+        }
+        return name.equals(review.getName());
+    }
+
+    /**
+     * Adds the review to the stall.
+     */
+    public void addReview(Review review) {
+        reviews.add(new JsonAdaptedReview(review));
     }
 
     /**
@@ -86,5 +106,27 @@ class JsonAdaptedStall {
         final Set<Detail> modelDetails = new HashSet<>(stallDetails);
 
         return new Stall(modelName, modelAddress, modelDetails);
+    }
+
+    /**
+     * Converts the reviews in this Jackson-friendly adapted stall object into the model's {@code Review} objects.
+     *
+     * @throws IllegalValueException if there were any data constraints violated in the adapted stall.
+     */
+    public List<Review> getModelReviews() throws IllegalValueException {
+        final List<Review> modelReviews = new ArrayList<>();
+
+        if (name == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+        }
+        if (!Name.isValidName(name)) {
+            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        }
+        final Name modelStallName = new Name(name);
+
+        for (JsonAdaptedReview review : reviews) {
+            modelReviews.add(review.toModelType(modelStallName));
+        }
+        return modelReviews;
     }
 }

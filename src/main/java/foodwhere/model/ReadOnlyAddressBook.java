@@ -1,5 +1,6 @@
 package foodwhere.model;
 
+import foodwhere.model.review.Review;
 import foodwhere.model.stall.Stall;
 import javafx.collections.ObservableList;
 
@@ -14,4 +15,5 @@ public interface ReadOnlyAddressBook {
      */
     ObservableList<Stall> getStallList();
 
+    ObservableList<Review> getReviewList();
 }

@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import foodwhere.commons.exceptions.IllegalValueException;
 import foodwhere.model.AddressBook;
 import foodwhere.model.ReadOnlyAddressBook;
+import foodwhere.model.review.Review;
 import foodwhere.model.stall.Stall;
+import foodwhere.model.stall.exceptions.StallNotFoundException;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -38,6 +40,20 @@ class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         stalls.addAll(source.getStallList().stream().map(JsonAdaptedStall::new).collect(Collectors.toList()));
+        // find related stall
+        source.getReviewList().stream().forEach(review -> {
+            stalls.stream()
+                    .filter(stall -> {
+                        try {
+                            return stall.isReviewOfStall(review);
+                        } catch (IllegalValueException e) {
+                            throw new RuntimeException(e);
+                        }
+                    })
+                    .findFirst()
+                    .orElseThrow(() -> new StallNotFoundException())
+                    .addReview(review);
+        });
     }
 
     /**
@@ -53,6 +69,10 @@ class JsonSerializableAddressBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_STALL);
             }
             addressBook.addStall(stall);
+
+            for (Review review : jsonAdaptedStall.getModelReviews()) {
+                addressBook.addReview(review);
+            }
         }
         return addressBook;
     }
