@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import foodwhere.model.AddressBook;
+import foodwhere.model.review.Review;
 import foodwhere.model.stall.Stall;
 
 /**
@@ -60,6 +61,9 @@ public class TypicalStalls {
         AddressBook ab = new AddressBook();
         for (Stall stall : getTypicalStalls()) {
             ab.addStall(stall);
+        }
+        for (Review review : TypicalReviews.getTypicalReviews()) {
+            ab.addReview(review);
         }
         return ab;
     }

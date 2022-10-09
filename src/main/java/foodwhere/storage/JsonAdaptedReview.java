@@ -63,7 +63,7 @@ class JsonAdaptedReview {
      */
     public Review toModelType(Name modelName) throws IllegalValueException {
         if (modelName == null) {
-            throw new IllegalValueException(String.format(JsonAdaptedStall.MISSING_FIELD_MESSAGE_FORMAT,
+            throw new IllegalValueException(String.format(JsonAdaptedReview.MISSING_FIELD_MESSAGE_FORMAT,
                     Name.class.getSimpleName()));
         }
 
@@ -73,19 +73,19 @@ class JsonAdaptedReview {
         }
 
         if (date == null) {
-            throw new IllegalValueException(String.format(JsonAdaptedStall.MISSING_FIELD_MESSAGE_FORMAT,
+            throw new IllegalValueException(String.format(JsonAdaptedReview.MISSING_FIELD_MESSAGE_FORMAT,
                     Date.class.getSimpleName()));
         }
-        if (Date.isValidDate(date)) {
+        if (!Date.isValidDate(date)) {
             throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
         }
         final Date modelDate = new Date(date);
 
         if (content == null) {
-            throw new IllegalValueException(String.format(JsonAdaptedStall.MISSING_FIELD_MESSAGE_FORMAT,
+            throw new IllegalValueException(String.format(JsonAdaptedReview.MISSING_FIELD_MESSAGE_FORMAT,
                     Content.class.getSimpleName()));
         }
-        if (Content.isValidContent(content)) {
+        if (!Content.isValidContent(content)) {
             throw new IllegalValueException(Content.MESSAGE_CONSTRAINTS);
         }
         final Content modelContent = new Content(content); // to add later
