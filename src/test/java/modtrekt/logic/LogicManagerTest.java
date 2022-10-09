@@ -11,6 +11,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import modtrekt.commons.core.Messages;
 import modtrekt.logic.commands.CommandResult;
+<<<<<<< HEAD
 import modtrekt.logic.commands.exceptions.CommandException;
 import modtrekt.logic.parser.exceptions.ParseException;
 import modtrekt.model.Model;
@@ -21,6 +22,20 @@ import modtrekt.storage.JsonTaskBookStorage;
 import modtrekt.storage.JsonUserPrefsStorage;
 import modtrekt.storage.StorageManager;
 import modtrekt.testutil.Assert;
+=======
+import modtrekt.logic.commands.ListCommand;
+import modtrekt.logic.commands.exceptions.CommandException;
+import modtrekt.logic.parser.exceptions.ParseException;
+import modtrekt.model.Model;
+import modtrekt.model.ModuleManager;
+import modtrekt.model.ReadOnlyModuleList;
+import modtrekt.model.UserPrefs;
+import modtrekt.storage.JsonModuleListStorage;
+import modtrekt.storage.JsonUserPrefsStorage;
+import modtrekt.storage.StorageManager;
+import modtrekt.testutil.Assert;
+
+>>>>>>> junhao/HoJunHao2000/week-8/implement-module-commands
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -28,13 +43,18 @@ public class LogicManagerTest {
     @TempDir
     public Path temporaryFolder;
 
-    private final Model model = new ModelManager();
+    private final Model model = new ModuleManager();
     private Logic logic;
 
     @BeforeEach
     public void setUp() {
+<<<<<<< HEAD
         JsonTaskBookStorage taskBookStorage =
                 new JsonTaskBookStorage(temporaryFolder.resolve("taskBook.json"));
+=======
+        JsonModuleListStorage addressBookStorage =
+                new JsonModuleListStorage(temporaryFolder.resolve("addressBook.json"));
+>>>>>>> junhao/HoJunHao2000/week-8/implement-module-commands
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(taskBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
@@ -48,8 +68,13 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
+<<<<<<< HEAD
         String deleteCommand = "remove 9";
         assertCommandException(deleteCommand, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+=======
+        String deleteCommand = "delete 9";
+        assertCommandException(deleteCommand, Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
+>>>>>>> junhao/HoJunHao2000/week-8/implement-module-commands
     }
 
     //    @Test
@@ -71,6 +96,13 @@ public class LogicManagerTest {
     //        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     //    }
 
+<<<<<<< HEAD
+=======
+    @Test
+    public void getFilteredModuleList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredModuleList().remove(0));
+    }
+>>>>>>> junhao/HoJunHao2000/week-8/implement-module-commands
 
     /**
      * Executes the command and confirms that
@@ -112,7 +144,11 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
                                       String expectedMessage) {
+<<<<<<< HEAD
         Model expectedModel = new ModelManager(model.getTaskBook(), new UserPrefs());
+=======
+        Model expectedModel = new ModuleManager(model.getModuleList(), new UserPrefs());
+>>>>>>> junhao/HoJunHao2000/week-8/implement-module-commands
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -133,13 +169,22 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
+<<<<<<< HEAD
     private static class JsonTaskBookIoExceptionThrowingStub extends JsonTaskBookStorage {
         private JsonTaskBookIoExceptionThrowingStub(Path filePath) {
+=======
+    private static class JsonModuleListIoExceptionThrowingStub extends JsonModuleListStorage {
+        private JsonModuleListIoExceptionThrowingStub(Path filePath) {
+>>>>>>> junhao/HoJunHao2000/week-8/implement-module-commands
             super(filePath);
         }
 
         @Override
+<<<<<<< HEAD
         public void saveTaskBook(ReadOnlyTaskBook addressBook, Path filePath) throws IOException {
+=======
+        public void saveModuleList(ReadOnlyModuleList addressBook, Path filePath) throws IOException {
+>>>>>>> junhao/HoJunHao2000/week-8/implement-module-commands
             throw DUMMY_IO_EXCEPTION;
         }
     }

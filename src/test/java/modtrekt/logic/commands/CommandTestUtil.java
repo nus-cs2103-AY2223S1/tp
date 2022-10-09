@@ -1,30 +1,48 @@
 package modtrekt.logic.commands;
 
+<<<<<<< HEAD
+=======
+import static modtrekt.logic.parser.CliSyntax.PREFIX_MOD_CODE;
+import static modtrekt.logic.parser.CliSyntax.PREFIX_MOD_CREDIT;
+import static modtrekt.logic.parser.CliSyntax.PREFIX_MOD_NAME;
+>>>>>>> junhao/HoJunHao2000/week-8/implement-module-commands
 import static modtrekt.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import modtrekt.commons.core.index.Index;
 import modtrekt.logic.commands.exceptions.CommandException;
 import modtrekt.model.Model;
+<<<<<<< HEAD
 import modtrekt.model.TaskBook;
 import modtrekt.model.person.NameContainsKeywordsPredicate;
 import modtrekt.model.task.Task;
+=======
+import modtrekt.model.ModuleList;
+import modtrekt.model.module.Module;
+>>>>>>> junhao/HoJunHao2000/week-8/implement-module-commands
 
 /**
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
 
+<<<<<<< HEAD
     public static final String VALID_DESC_1 = "Do weekly lab";
     public static final String VALID_DESC_2 = "Schedule consult with prof";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
+=======
+    public static final String VALID_NAME_AMY = "Probability and Statistics";
+    public static final String VALID_CODE_AMY = "ST2334";
+    public static final String VALID_CREDIT_AMY = "4";
+
+    public static final String NAME_DESC_AMY = " " + PREFIX_MOD_NAME + VALID_NAME_AMY;
+    public static final String CODE_DESC_AMY = " " + PREFIX_MOD_CODE + VALID_CODE_AMY;
+    public static final String CREDIT_DESC_AMY = " " + PREFIX_MOD_CREDIT + VALID_CREDIT_AMY;
+>>>>>>> junhao/HoJunHao2000/week-8/implement-module-commands
 
     /**
      * Executes the given {@code command}, confirms that <br>
@@ -61,6 +79,7 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
+<<<<<<< HEAD
         TaskBook expectedAddressBook = new TaskBook(actualModel.getTaskBook());
         List<Task> expectedFilteredList = new ArrayList<>(actualModel.getFilteredTaskList());
 
@@ -80,6 +99,14 @@ public class CommandTestUtil {
         model.updateFilteredTaskList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredTaskList().size());
+=======
+        ModuleList expectedModuleList = new ModuleList(actualModel.getModuleList());
+        List<Module> expectedFilteredList = new ArrayList<>(actualModel.getFilteredModuleList());
+
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
+        assertEquals(expectedModuleList, actualModel.getModuleList());
+        assertEquals(expectedFilteredList, actualModel.getFilteredModuleList());
+>>>>>>> junhao/HoJunHao2000/week-8/implement-module-commands
     }
 
 }

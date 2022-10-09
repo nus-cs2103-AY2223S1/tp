@@ -10,6 +10,8 @@ import modtrekt.logic.parser.exceptions.ParseException;
 import modtrekt.model.Model;
 import modtrekt.model.ReadOnlyTaskBook;
 import modtrekt.model.task.Task;
+import modtrekt.model.ReadOnlyModuleList;
+import modtrekt.model.module.Module;
 
 /**
  * API of the Logic component
@@ -25,7 +27,7 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the task book.
      *
      * @see Model#getTaskBook()
      */
@@ -35,9 +37,20 @@ public interface Logic {
     ObservableList<Task> getFilteredTaskList();
 
     /**
+     * Returns the module list.
+     *
+     * @see Model#getModuleList()
+     */
+    ReadOnlyModuleList getModuleList();
+
+    /** Returns an unmodifiable view of the filtered list of persons */
+    ObservableList<Module> getFilteredModuleList();
+
+    /**
      * Returns the user prefs' address book file path.
      */
     Path getTaskBookFilePath();
+    Path getModuleListFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

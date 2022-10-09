@@ -15,6 +15,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path taskBookFilePath = Paths.get("data" , "taskbook.json");
+    private Path moduleListFilePath = Paths.get("data" , "modulelist.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -36,6 +37,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setTaskBookFilePath(newUserPrefs.getTaskBookFilePath());
+        setModuleListFilePath(newUserPrefs.getModuleListFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -56,6 +58,15 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.taskBookFilePath = taskBookFilePath;
     }
 
+    public Path getModuleListFilePath() {
+        return moduleListFilePath;
+    }
+
+    public void setModuleListFilePath(Path moduleListFilePath) {
+        requireNonNull(moduleListFilePath);
+        this.moduleListFilePath = moduleListFilePath;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -68,12 +79,13 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && taskBookFilePath.equals(o.taskBookFilePath);
+                && taskBookFilePath.equals(o.taskBookFilePath)
+                && moduleListFilePath.equals(o.moduleListFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, taskBookFilePath);
+        return Objects.hash(guiSettings, taskBookFilePath, moduleListFilePath);
     }
 
     @Override
@@ -81,6 +93,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
         sb.append("\nLocal data file location : " + taskBookFilePath);
+        sb.append("\nLocal data file location : " + moduleListFilePath);
         return sb.toString();
     }
 

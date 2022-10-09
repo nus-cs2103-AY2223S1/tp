@@ -8,6 +8,9 @@ import java.util.regex.Pattern;
 
 import modtrekt.logic.commands.AddTaskCommand;
 import modtrekt.logic.commands.Command;
+import modtrekt.logic.commands.AddCommand;
+import modtrekt.logic.commands.Command;
+//import modtrekt.logic.commands.DeleteCommand;
 import modtrekt.logic.commands.ExitCommand;
 import modtrekt.logic.commands.HelpCommand;
 import modtrekt.logic.commands.RemoveTaskCommand;
@@ -44,6 +47,15 @@ public class TaskBookParser {
             return new AddTaskCommandParser().parse(arguments);
         case RemoveTaskCommand.COMMAND_WORD:
             return new RemoveTaskCommandParser().parse(arguments);
+//        case AddCommand.COMMAND_WORD:
+//            return new AddCommandParser().parse(arguments);
+
+//        case DeleteCommand.COMMAND_WORD:
+//            return new DeleteCommandParser().parse(arguments);
+//
+//        case ListCommand.COMMAND_WORD:
+//            return new ListCommand();
+//
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
         case HelpCommand.COMMAND_WORD:

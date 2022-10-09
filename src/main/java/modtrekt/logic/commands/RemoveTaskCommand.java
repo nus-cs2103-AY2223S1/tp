@@ -9,9 +9,10 @@ import modtrekt.commons.core.index.Index;
 import modtrekt.logic.commands.exceptions.CommandException;
 import modtrekt.model.Model;
 import modtrekt.model.task.Task;
+import modtrekt.model.module.Module;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a module identified using it's displayed index from the address book.
  */
 public class RemoveTaskCommand extends Command {
 
@@ -22,7 +23,12 @@ public class RemoveTaskCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_TASK_SUCCESS = "Removed Task: %1$s";
+    public static final String MESSAGE_DELETE_TASK_SUCCESS = "Removed Task: %1$s"
+            + ": Deletes the module identified by the index number used in the displayed module list.\n"
+            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " 1";
+
+    public static final String MESSAGE_DELETE_MODULE_SUCCESS = "Deleted Module: %1$s";
 
     private final Index targetIndex;
 
@@ -42,6 +48,17 @@ public class RemoveTaskCommand extends Command {
         Task taskToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteTask(taskToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
+        /* todo - new class for removing module.
+        List<Module> lastShownList = model.getFilteredModuleList();
+
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
+        }
+
+        Module moduleToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.deleteModule(moduleToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_MODULE_SUCCESS, moduleToDelete));
+        */
     }
 
     @Override

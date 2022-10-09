@@ -4,11 +4,28 @@ import modtrekt.model.ReadOnlyTaskBook;
 import modtrekt.model.TaskBook;
 import modtrekt.model.task.Description;
 import modtrekt.model.task.Task;
+import java.util.Arrays;
+import java.util.Set;
+import java.util.stream.Collectors;
+import modtrekt.model.ModuleList;
+import modtrekt.model.ReadOnlyModuleList;
+import modtrekt.model.module.ModCode;
+import modtrekt.model.module.ModCredit;
+import modtrekt.model.module.ModName;
+import modtrekt.model.module.Module;
+import modtrekt.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code TaskBook} with sample data.
+ * Contains utility methods for populating {@code ModuleList} with sample data.
  */
 public class SampleDataUtil {
+    public static Module[] getSampleModules() {
+        return new Module[] {
+            new Module(new ModCode("CS2109S"), new ModName("Intro to AI and machine learning"), new ModCredit("4")),
+            new Module(new ModCode("CS2040S"), new ModName("Data Structures and Algorithms"), new ModCredit("4"))
+        };
+    }
+
     public static Task[] getSampleTasks() {
         return new Task[] {
             new Task(new Description("Assignment 1")),
@@ -21,6 +38,14 @@ public class SampleDataUtil {
         };
     }
 
+    public static ReadOnlyModuleList getSampleModuleList() {
+        ModuleList sampleAb = new ModuleList();
+        for (Module sampleModule : getSampleModules()) {
+            sampleAb.addModule(sampleModule);
+        }
+        return sampleAb;
+    }
+
     public static ReadOnlyTaskBook getSampleTaskBook() {
         TaskBook sampleAb = new TaskBook();
         for (Task sampleTask : getSampleTasks()) {
@@ -28,5 +53,4 @@ public class SampleDataUtil {
         }
         return sampleAb;
     }
-
 }

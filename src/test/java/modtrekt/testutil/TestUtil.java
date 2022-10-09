@@ -7,7 +7,11 @@ import java.nio.file.Paths;
 
 import modtrekt.commons.core.index.Index;
 import modtrekt.model.Model;
+<<<<<<< HEAD
 import modtrekt.model.task.Task;
+=======
+import modtrekt.model.module.Module;
+>>>>>>> junhao/HoJunHao2000/week-8/implement-module-commands
 
 /**
  * A utility class for test cases.
@@ -36,20 +40,33 @@ public class TestUtil {
      * Returns the middle index of the task in the {@code model}'s task list.
      */
     public static Index getMidIndex(Model model) {
+<<<<<<< HEAD
         return Index.fromOneBased(model.getFilteredTaskList().size() / 2);
+=======
+        return Index.fromOneBased(model.getFilteredModuleList().size() / 2);
+>>>>>>> junhao/HoJunHao2000/week-8/implement-module-commands
     }
 
     /**
      * Returns the last index of the task in the {@code model}'s task list.
      */
     public static Index getLastIndex(Model model) {
+<<<<<<< HEAD
         return Index.fromOneBased(model.getFilteredTaskList().size());
+=======
+        return Index.fromOneBased(model.getFilteredModuleList().size());
+>>>>>>> junhao/HoJunHao2000/week-8/implement-module-commands
     }
 
     /**
      * Returns the person in the {@code model}'s person list at {@code index}.
      */
+<<<<<<< HEAD
     public static Task getPerson(Model model, Index index) {
         return model.getFilteredTaskList().get(index.getZeroBased());
+=======
+    public static Module getModule(Model model, Index index) {
+        return model.getFilteredModuleList().get(index.getZeroBased());
+>>>>>>> junhao/HoJunHao2000/week-8/implement-module-commands
     }
 }
