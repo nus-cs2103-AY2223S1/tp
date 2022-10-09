@@ -25,16 +25,9 @@ public class ListTasksCommandTest {
         expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
     }
 
-
     @Test
     public void execute_listTaskIsNotFiltered_showsSameList() {
         assertCommandSuccess(new ListTasksCommand(), model, ListTasksCommand.MESSAGE_SUCCESS, expectedModel);
     }
-
-//    @Test
-//   public void execute_listIsFiltered_showsEverything() {
-//       showTaskAtIndex(model, INDEX_FIRST_TASK);
-//       assertCommandSuccess(new ListTaskCommand(), model, ListTaskCommand.MESSAGE_SUCCESS, expectedModel);
-//   }
 
 }
