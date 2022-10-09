@@ -11,9 +11,9 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import eatwhere.foodguide.model.eatery.Eatery;
 import org.junit.jupiter.api.Test;
 
+import eatwhere.foodguide.model.eatery.Eatery;
 import eatwhere.foodguide.model.eatery.exceptions.DuplicateEateryException;
 import eatwhere.foodguide.testutil.Assert;
 import eatwhere.foodguide.testutil.PersonBuilder;

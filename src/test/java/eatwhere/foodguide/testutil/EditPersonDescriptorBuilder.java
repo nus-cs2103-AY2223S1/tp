@@ -5,8 +5,11 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import eatwhere.foodguide.logic.commands.EditCommand.EditPersonDescriptor;
-import eatwhere.foodguide.model.eatery.*;
+import eatwhere.foodguide.model.eatery.Eatery;
+import eatwhere.foodguide.model.eatery.Email;
 import eatwhere.foodguide.model.eatery.Location;
+import eatwhere.foodguide.model.eatery.Name;
+import eatwhere.foodguide.model.eatery.Phone;
 import eatwhere.foodguide.model.tag.Tag;
 
 /**

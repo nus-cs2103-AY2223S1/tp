@@ -5,11 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import eatwhere.foodguide.model.FoodGuide;
 import org.junit.jupiter.api.Test;
 
 import eatwhere.foodguide.commons.exceptions.IllegalValueException;
 import eatwhere.foodguide.commons.util.JsonUtil;
+import eatwhere.foodguide.model.FoodGuide;
 import eatwhere.foodguide.testutil.Assert;
 import eatwhere.foodguide.testutil.TypicalEateries;
 

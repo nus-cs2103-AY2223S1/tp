@@ -9,11 +9,11 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import eatwhere.foodguide.model.eatery.Location;
 import org.junit.jupiter.api.Test;
 
 import eatwhere.foodguide.logic.parser.exceptions.ParseException;
 import eatwhere.foodguide.model.eatery.Email;
+import eatwhere.foodguide.model.eatery.Location;
 import eatwhere.foodguide.model.eatery.Name;
 import eatwhere.foodguide.model.eatery.Phone;
 import eatwhere.foodguide.model.tag.Tag;

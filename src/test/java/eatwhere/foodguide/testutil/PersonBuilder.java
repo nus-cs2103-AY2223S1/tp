@@ -3,8 +3,11 @@ package eatwhere.foodguide.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import eatwhere.foodguide.model.eatery.*;
+import eatwhere.foodguide.model.eatery.Eatery;
+import eatwhere.foodguide.model.eatery.Email;
 import eatwhere.foodguide.model.eatery.Location;
+import eatwhere.foodguide.model.eatery.Name;
+import eatwhere.foodguide.model.eatery.Phone;
 import eatwhere.foodguide.model.tag.Tag;
 import eatwhere.foodguide.model.util.SampleDataUtil;
 

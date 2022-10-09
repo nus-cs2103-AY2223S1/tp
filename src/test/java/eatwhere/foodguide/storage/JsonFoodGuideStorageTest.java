@@ -7,12 +7,12 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import eatwhere.foodguide.model.FoodGuide;
-import eatwhere.foodguide.model.ReadOnlyFoodGuide;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import eatwhere.foodguide.commons.exceptions.DataConversionException;
+import eatwhere.foodguide.model.FoodGuide;
+import eatwhere.foodguide.model.ReadOnlyFoodGuide;
 import eatwhere.foodguide.testutil.Assert;
 import eatwhere.foodguide.testutil.TypicalEateries;
 

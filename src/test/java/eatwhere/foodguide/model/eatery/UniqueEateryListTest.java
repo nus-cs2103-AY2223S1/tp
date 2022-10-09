@@ -10,10 +10,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import eatwhere.foodguide.model.eatery.exceptions.DuplicateEateryException;
-import eatwhere.foodguide.model.eatery.exceptions.EateryNotFoundException;
 import org.junit.jupiter.api.Test;
 
+import eatwhere.foodguide.model.eatery.exceptions.DuplicateEateryException;
+import eatwhere.foodguide.model.eatery.exceptions.EateryNotFoundException;
 import eatwhere.foodguide.testutil.Assert;
 import eatwhere.foodguide.testutil.PersonBuilder;
 import eatwhere.foodguide.testutil.TypicalEateries;

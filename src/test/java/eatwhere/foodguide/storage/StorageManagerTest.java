@@ -5,13 +5,13 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.nio.file.Path;
 
-import eatwhere.foodguide.model.FoodGuide;
-import eatwhere.foodguide.model.ReadOnlyFoodGuide;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import eatwhere.foodguide.commons.core.GuiSettings;
+import eatwhere.foodguide.model.FoodGuide;
+import eatwhere.foodguide.model.ReadOnlyFoodGuide;
 import eatwhere.foodguide.model.UserPrefs;
 import eatwhere.foodguide.testutil.TypicalEateries;
 

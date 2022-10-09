@@ -16,8 +16,8 @@ import eatwhere.foodguide.commons.core.index.Index;
 import eatwhere.foodguide.logic.commands.exceptions.CommandException;
 import eatwhere.foodguide.model.FoodGuide;
 import eatwhere.foodguide.model.Model;
-import eatwhere.foodguide.model.eatery.NameContainsKeywordsPredicate;
 import eatwhere.foodguide.model.eatery.Eatery;
+import eatwhere.foodguide.model.eatery.NameContainsKeywordsPredicate;
 import eatwhere.foodguide.testutil.Assert;
 import eatwhere.foodguide.testutil.EditPersonDescriptorBuilder;
 

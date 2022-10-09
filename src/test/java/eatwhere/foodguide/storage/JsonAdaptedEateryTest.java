@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import eatwhere.foodguide.model.eatery.Location;
 import org.junit.jupiter.api.Test;
 
 import eatwhere.foodguide.commons.exceptions.IllegalValueException;
 import eatwhere.foodguide.model.eatery.Email;
+import eatwhere.foodguide.model.eatery.Location;
 import eatwhere.foodguide.model.eatery.Name;
 import eatwhere.foodguide.model.eatery.Phone;
 import eatwhere.foodguide.testutil.Assert;

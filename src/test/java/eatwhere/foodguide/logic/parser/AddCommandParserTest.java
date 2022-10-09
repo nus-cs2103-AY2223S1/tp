@@ -6,10 +6,10 @@ import org.junit.jupiter.api.Test;
 
 import eatwhere.foodguide.logic.commands.AddCommand;
 import eatwhere.foodguide.logic.commands.CommandTestUtil;
-import eatwhere.foodguide.model.eatery.Location;
-import eatwhere.foodguide.model.eatery.Email;
-import eatwhere.foodguide.model.eatery.Name;
 import eatwhere.foodguide.model.eatery.Eatery;
+import eatwhere.foodguide.model.eatery.Email;
+import eatwhere.foodguide.model.eatery.Location;
+import eatwhere.foodguide.model.eatery.Name;
 import eatwhere.foodguide.model.eatery.Phone;
 import eatwhere.foodguide.model.tag.Tag;
 import eatwhere.foodguide.testutil.PersonBuilder;

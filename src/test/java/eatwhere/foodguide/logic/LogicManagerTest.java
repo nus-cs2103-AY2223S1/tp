@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.io.IOException;
 import java.nio.file.Path;
 
-import eatwhere.foodguide.model.eatery.Eatery;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -22,6 +21,7 @@ import eatwhere.foodguide.model.Model;
 import eatwhere.foodguide.model.ModelManager;
 import eatwhere.foodguide.model.ReadOnlyFoodGuide;
 import eatwhere.foodguide.model.UserPrefs;
+import eatwhere.foodguide.model.eatery.Eatery;
 import eatwhere.foodguide.storage.JsonFoodGuideStorage;
 import eatwhere.foodguide.storage.JsonUserPrefsStorage;
 import eatwhere.foodguide.storage.StorageManager;

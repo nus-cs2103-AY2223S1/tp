@@ -10,14 +10,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
-import eatwhere.foodguide.model.*;
-import eatwhere.foodguide.model.eatery.Eatery;
 import org.junit.jupiter.api.Test;
 
 import eatwhere.foodguide.commons.core.GuiSettings;
 import eatwhere.foodguide.logic.commands.exceptions.CommandException;
 import eatwhere.foodguide.model.FoodGuide;
+import eatwhere.foodguide.model.Model;
 import eatwhere.foodguide.model.ReadOnlyFoodGuide;
+import eatwhere.foodguide.model.ReadOnlyUserPrefs;
+import eatwhere.foodguide.model.eatery.Eatery;
 import eatwhere.foodguide.testutil.Assert;
 import eatwhere.foodguide.testutil.PersonBuilder;
 import javafx.collections.ObservableList;

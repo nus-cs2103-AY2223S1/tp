@@ -9,7 +9,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import eatwhere.foodguide.model.eatery.Eatery;
 import org.junit.jupiter.api.Test;
 
 import eatwhere.foodguide.logic.commands.AddCommand;
@@ -22,6 +21,7 @@ import eatwhere.foodguide.logic.commands.FindCommand;
 import eatwhere.foodguide.logic.commands.HelpCommand;
 import eatwhere.foodguide.logic.commands.ListCommand;
 import eatwhere.foodguide.logic.parser.exceptions.ParseException;
+import eatwhere.foodguide.model.eatery.Eatery;
 import eatwhere.foodguide.model.eatery.NameContainsKeywordsPredicate;
 import eatwhere.foodguide.testutil.Assert;
 import eatwhere.foodguide.testutil.EditPersonDescriptorBuilder;
