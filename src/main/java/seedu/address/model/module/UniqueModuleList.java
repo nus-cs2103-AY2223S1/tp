@@ -8,8 +8,10 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableSet;
 import seedu.address.model.module.exceptions.DuplicateModuleException;
 import seedu.address.model.module.exceptions.ModuleNotFoundException;
+import seedu.address.model.module.schedule.Schedule;
 
 /**
  * A list of modules that enforces uniqueness between its elements and does not allow nulls.
@@ -27,6 +29,7 @@ public class UniqueModuleList implements Iterable<Module> {
     private final ObservableList<Module> internalList = FXCollections.observableArrayList();
     private final ObservableList<Module> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
+
 
     /**
      * Returns true if the list contains an equivalent module as the given argument.
@@ -134,4 +137,25 @@ public class UniqueModuleList implements Iterable<Module> {
         }
         return true;
     }
+
+
+    private ObservableList<Schedule> getInternalScheduleList() {
+        ObservableList<Schedule> internalScheduleList = FXCollections.observableArrayList();
+        for (Module module : internalList) {
+            List<Schedule> schedules = module.getSchedules();
+            internalScheduleList.addAll(schedules);
+        }
+        return internalScheduleList;
+    }
+
+    public ObservableList<Schedule> getUnmodifiableObservableScheduleList() {
+
+        ObservableList<Schedule> internalScheduleList = getInternalScheduleList();
+        ObservableList<Schedule> internalUnmodifiableScheduleList =
+                FXCollections.unmodifiableObservableList(internalScheduleList);
+
+        return internalUnmodifiableScheduleList;
+    }
+
+
 }
