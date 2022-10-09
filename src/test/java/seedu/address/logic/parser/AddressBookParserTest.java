@@ -18,7 +18,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.profile.AddProfileCommand;
-import seedu.address.logic.parser.profile.exceptions.ParseException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.profile.NameContainsKeywordsPredicate;
 import seedu.address.model.profile.Profile;
 import seedu.address.testutil.ProfileBuilder;

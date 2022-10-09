@@ -10,7 +10,7 @@ import seedu.address.logic.commands.profile.DeleteProfileCommand;
 import seedu.address.logic.commands.profile.EditProfileCommand;
 import seedu.address.logic.commands.profile.ProfileCommand;
 import seedu.address.logic.parser.Parser;
-import seedu.address.logic.parser.profile.exceptions.ParseException;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new ProfileCommand object
