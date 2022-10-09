@@ -166,4 +166,15 @@ public class UniquePocListTest {
         assertThrows(UnsupportedOperationException.class, ()
                 -> uniquePocList.asUnmodifiableObservableList().remove(0));
     }
+
+    @Test
+    public void toString_pocList_returnsCorrectRepresentation() {
+        UniquePocList pocs = new UniquePocList();
+        pocs.add(ALICE);
+        pocs.add(BOB);
+
+        PersonName aliceName = ALICE.getName();
+        PersonName bobName = BOB.getName();
+        assertEquals(pocs.toString(), "POCS: " + aliceName + ", " + bobName);
+    }
 }
