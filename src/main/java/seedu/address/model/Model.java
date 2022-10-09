@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Deliverer;
+
 import seedu.address.model.person.Supplier;
 
 /**
