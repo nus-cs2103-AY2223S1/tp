@@ -9,8 +9,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
  */
 public class Attendance {
 
-    public static final String MESSAGE_CONSTRAINTS = "Class names should consist of " +
-            "alphanumerics, space, dash and underscore";
+    public static final String MESSAGE_CONSTRAINTS = "Class names should consist of "
+            + "alphanumerics, space, dash and underscore";
     public static final String VALIDATION_REGEX = "[\\p{Alnum} \\-_]+";
     public static final String ATTENDANCE_TRUE = "Present";
     public static final String ATTENDANCE_FALSE = "Absent";

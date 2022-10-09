@@ -1,18 +1,27 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.MarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Attendance;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS;
-
+/**
+ * Parses input arguments and creates a new MarkCommand object
+ */
 public class MarkCommandParser implements Parser<MarkCommand> {
 
-    public static String MESSAGE_INVALID_OPTION = "Option must either be 'present' or 'absent'!";
+    public static final String MESSAGE_INVALID_OPTION = "Option must either be 'present' or 'absent'!";
+
+    /**
+     * Parses the given {@code String} of arguments in the context of the MarkCommand
+     * and returns a MarkCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public MarkCommand parse(String args) throws ParseException {
 
         ParseException parseException = new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
@@ -23,7 +32,9 @@ public class MarkCommandParser implements Parser<MarkCommand> {
 
         Index index;
         String[] preamble = argMultimap.getPreamble().split("\\s+");
-        if (preamble.length != 2) throw parseException;
+        if (preamble.length != 2) {
+            throw parseException;
+        }
 
         try {
             index = ParserUtil.parseIndex(preamble[0]);
@@ -43,6 +54,8 @@ public class MarkCommandParser implements Parser<MarkCommand> {
             return true;
         } else if (option.equals("absent")) {
             return false;
-        } else throw new ParseException(MESSAGE_INVALID_OPTION);
+        } else {
+            throw new ParseException(MESSAGE_INVALID_OPTION);
+        }
     }
 }
