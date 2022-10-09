@@ -73,7 +73,7 @@ Healthcare Xpress is a **desktop app for managing patients that require home-vis
 
 Shows a message explaning how to access the help page.
 
-![help message](images/helpMessage.png)
+![help message](images/helpMessageUpdated.png)
 
 Format: `help`
 
@@ -99,7 +99,7 @@ Examples:
 
 2. Adds a nurse to the Healthcare Xpress book
 
-Format:`add c/N n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER [t/TAG]…​`
+Format:`add c/N n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary"> 
 
@@ -111,9 +111,9 @@ Format:`add c/N n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER [t/TAG]…​`
 </div>
 
 Examples:
-* `add c/N n/Jason p/98723432 e/jason@example.com g/M t/Asthma`
-* `add c/N n/Betsy t/handle children well e/betsy@example.com g/F p/98345432 t/Heart disease`
-
+* `add c/N n/Jason p/98723432 e/jason@example.com g/M a/Blk 855 Woodlands Street 83, Singapore 730855, block 123, #01-01 t/Asthma`
+* `add c/N n/Betsy t/Pediatric nurse e/betsy@example.com g/F p/98345432 a/Blk 431 Ang Mo Kio Ave 10, Singapore 560431 #01-01 t/Heart disease specialist`
+  
 
 ### Listing nurses or patients : `list`
 
