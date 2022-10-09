@@ -7,6 +7,7 @@ import static swift.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static swift.testutil.Assert.assertThrows;
 import static swift.testutil.TypicalPersons.ALICE;
 import static swift.testutil.TypicalPersons.BENSON;
+import static swift.testutil.TypicalTasks.BUY_MILK;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -91,6 +92,22 @@ public class ModelManagerTest {
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void hasTask_nullTask_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasTask(null));
+    }
+
+    @Test
+    public void hasTask_taskNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasTask(BUY_MILK));
+    }
+
+    @Test
+    public void hasTask_taskInAddressBook_returnsTrue() {
+        modelManager.addTask(BUY_MILK);
+        assertTrue(modelManager.hasTask(BUY_MILK));
     }
 
     @Test

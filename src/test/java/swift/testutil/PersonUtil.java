@@ -8,7 +8,7 @@ import static swift.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
-import swift.logic.commands.AddCommand;
+import swift.logic.commands.AddContactCommand;
 import swift.logic.commands.EditCommand.EditPersonDescriptor;
 import swift.model.person.Person;
 import swift.model.tag.Tag;
@@ -22,7 +22,7 @@ public class PersonUtil {
      * Returns an add command string for adding the {@code person}.
      */
     public static String getAddCommand(Person person) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(person);
+        return AddContactCommand.COMMAND_WORD + " " + getPersonDetails(person);
     }
 
     /**

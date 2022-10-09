@@ -19,6 +19,7 @@ import swift.model.person.Email;
 import swift.model.person.Name;
 import swift.model.person.Phone;
 import swift.model.tag.Tag;
+import swift.model.task.TaskName;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -192,5 +193,28 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseTaskName_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTaskName((String) null));
+    }
+
+    @Test
+    public void parseTaskName_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTaskName(INVALID_NAME));
+    }
+
+    @Test
+    public void parseTaskName_validValueWithoutWhitespace_returnsName() throws Exception {
+        TaskName expectedName = new TaskName(VALID_NAME);
+        assertEquals(expectedName, ParserUtil.parseTaskName(VALID_NAME));
+    }
+
+    @Test
+    public void parseTaskName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
+        String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
+        TaskName expectedName = new TaskName(VALID_NAME);
+        assertEquals(expectedName, ParserUtil.parseTaskName(nameWithWhitespace));
     }
 }
