@@ -9,6 +9,9 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.ModuleDescription;
+import seedu.address.model.module.ModuleName;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -159,5 +162,43 @@ public class ParserUtil {
         requireNonNull(info);
         String trimmedID = info.trim();
         return info;
+    }
+    /**
+     * Parses module name.
+     *
+     * @param moduleName
+     * @return ModuleName
+     * @throws ParseException If null.
+     */
+    public static ModuleName parseModuleName(String moduleName) throws ParseException {
+        requireNonNull(moduleName);
+        String trimmedModuleName = moduleName.trim();
+        return new ModuleName(trimmedModuleName);
+    }
+
+    /**
+     * Parses module code.
+     *
+     * @param moduleCode
+     * @return ModuleCode
+     * @throws ParseException If null.
+     */
+    public static ModuleCode parseModuleCode(String moduleCode) throws ParseException {
+        requireNonNull(moduleCode);
+        String trimmedModuleCode = moduleCode.trim();
+        return new ModuleCode(trimmedModuleCode);
+    }
+
+    /**
+     * Parses module description.
+     *
+     * @param moduleDescription
+     * @return ModuleDescription
+     * @throws ParseException If null.
+     */
+    public static ModuleDescription parseModuleDescription(String moduleDescription) throws ParseException {
+        requireNonNull(moduleDescription);
+        String trimmedModuleDescription = moduleDescription.trim();
+        return new ModuleDescription(trimmedModuleDescription);
     }
 }
