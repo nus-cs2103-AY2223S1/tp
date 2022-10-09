@@ -9,6 +9,11 @@ import static java.util.Objects.requireNonNull;
 public class Birthday {
     public final String value;
 
+    /**
+     * Constructor for Birthday object.
+     *
+     * @param birthday
+     */
     public Birthday(String birthday) {
         requireNonNull(birthday);
         value = birthday;

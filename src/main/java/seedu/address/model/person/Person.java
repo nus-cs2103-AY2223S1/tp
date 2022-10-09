@@ -54,7 +54,9 @@ public class Person {
         return address;
     }
 
-    public Birthday getBirthday() { return birthday; }
+    public Birthday getBirthday() {
+        return birthday;
+    }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
