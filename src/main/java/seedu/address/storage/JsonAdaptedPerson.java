@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.person.ApplicationStatus;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -29,6 +30,7 @@ class JsonAdaptedPerson {
     private final String email;
 
     private final String scholarship;
+    private final String applicationStatus;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -37,11 +39,14 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("scholarship") String scholarship,
+            @JsonProperty("applicationStatus") String applicationStatus,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.scholarship = scholarship;
+        this.applicationStatus = applicationStatus;
+
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -55,6 +60,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         scholarship = source.getScholarship().value;
+        applicationStatus = source.getApplicationStatus().applicationStatus;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -104,8 +110,18 @@ class JsonAdaptedPerson {
         }
         final Scholarship modelScholarship = new Scholarship(scholarship);
 
+        if (applicationStatus == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ApplicationStatus.class.getSimpleName()));
+        }
+        if (!ApplicationStatus.isValidApplicationStatus(applicationStatus)) {
+            throw new IllegalValueException(ApplicationStatus.MESSAGE_CONSTRAINTS);
+        }
+        final ApplicationStatus modelApplicationStatus = new ApplicationStatus(applicationStatus);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelScholarship, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelScholarship, modelApplicationStatus, modelTags);
+
     }
 
 }
