@@ -275,8 +275,8 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                 | I want to …​                                           | So that I can…​                                                            |
-|----------|-------------------------|--------------------------------------------------------|----------------------------------------------------------------------------|
+| Priority | As a …                  | I want to …                                            | So that I can…                                                             |
+| -------- | ----------------------- | ------------------------------------------------------ | -------------------------------------------------------------------------- |
 | `* * *`  | new user                | see usage instructions                                 | refer to instructions when I forget how to use the App                     |
 | `* * *`  | user                    | add a new contact                                      |                                                                            |
 | `* * *`  | user                    | delete a contact                                       | remove entries that I no longer need                                       |
@@ -305,6 +305,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user with many contacts | sort favourite contacts before others                  | see them before other contacts                                             |
 | `*`      | user                    | change the order of information for contacts           | view more important information before others                              |
 | `*`      | user                    | customise the theme of the app                         | adjust it to my comfort and liking                                         |
+
 *{More to be added}*
 
 ### Use cases
