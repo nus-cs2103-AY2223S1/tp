@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON_PLAN;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
@@ -23,9 +24,9 @@ public class LessonPlanCommand extends Command {
             + "by the index number used in the last person listing. "
             + "Existing lesson plan will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "lp/ [LESSON PLAN]\n"
+            + "[" + PREFIX_LESSON_PLAN + "LESSON PLAN]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + "lp/ Data structures and algorithms.";
+            + PREFIX_LESSON_PLAN + "Data structures and algorithms.";
 
     public static final String MESSAGE_ADD_LESSON_PLAN_SUCCESS = "Added lesson plan to Person: %1$s";
     public static final String MESSAGE_DELETE_LESSON_PLAN_SUCCESS = "Removed lesson plan from Person: %1$s";
