@@ -57,8 +57,8 @@ public class AddressBookTest {
     public void resetData_withDuplicateStudents_throwDuplicatePersonException() {
         // Two students with the same identity fields
         Student editedStudent = new StudentBuilder(STUDENT1).withSchool("Woodlands Primary School").build();
-        List<Person> newStudents = Arrays.asList(STUDENT1, editedStudent);
-        List<Person> newTutors = Arrays.asList();
+        List<Student> newStudents = Arrays.asList(STUDENT1, editedStudent);
+        List<Tutor> newTutors = Arrays.asList();
         List<TuitionClass> newTuitionClasses = Arrays.asList();
         AddressBookStub newData = new AddressBookStub(newStudents, newTutors, newTuitionClasses);
 
@@ -68,8 +68,8 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicateTutors_throwDuplicatePersonException() {
         Tutor editedTutor = new TutorBuilder(TUTOR1).withPhone("91006745").build();
-        List<Person> newStudents = Arrays.asList();
-        List<Person> newTutors = Arrays.asList(TUTOR1, editedTutor);
+        List<Student> newStudents = Arrays.asList();
+        List<Tutor> newTutors = Arrays.asList(TUTOR1, editedTutor);
         List<TuitionClass> newTuitionClasses = Arrays.asList();
         AddressBookStub newData = new AddressBookStub(newStudents, newTutors, newTuitionClasses);
 
@@ -79,8 +79,8 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicateTuitionClasses_throwDuplicatePersonException() {
         TuitionClass editedTuitionClass = new TuitionClassBuilder(TUITIONCLASS2).withSubject("MATHEMATICS").build();
-        List<Person> newStudents = Arrays.asList();
-        List<Person> newTutors = Arrays.asList();
+        List<Student> newStudents = Arrays.asList();
+        List<Tutor> newTutors = Arrays.asList();
         List<TuitionClass> newTuitionClasses = Arrays.asList(TUITIONCLASS2, editedTuitionClass);
         AddressBookStub newData = new AddressBookStub(newStudents, newTutors, newTuitionClasses);
 
@@ -175,11 +175,11 @@ public class AddressBookTest {
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
-        private final ObservableList<Person> students = FXCollections.observableArrayList();
-        private final ObservableList<Person> tutors = FXCollections.observableArrayList();
+        private final ObservableList<Student> students = FXCollections.observableArrayList();
+        private final ObservableList<Tutor> tutors = FXCollections.observableArrayList();
         private final ObservableList<TuitionClass> tuitionClasses = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Person> students, Collection<Person> tutors,
+        AddressBookStub(Collection<Student> students, Collection<Tutor> tutors,
                         Collection<TuitionClass> tuitionClasses) {
             this.students.setAll(students);
             this.tutors.setAll(tutors);
@@ -192,12 +192,12 @@ public class AddressBookTest {
         }
 
         @Override
-        public ObservableList<Person> getStudentList() {
+        public ObservableList<Student> getStudentList() {
             return students;
         }
 
         @Override
-        public ObservableList<Person> getTutorList() {
+        public ObservableList<Tutor> getTutorList() {
             return tutors;
         }
 

@@ -63,16 +63,16 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the contents of the student list with {@code students}.
      * {@code students} must not contain duplicate students.
      */
-    public void setStudents(List<Person> students) {
-        this.students.setPersons(students);
+    public void setStudents(List<Student> students) {
+        this.students.setStudents(students);
     }
 
     /**
      * Replaces the contents of the tutor list with {@code tutors}.
      * {@code tutors} must not contain duplicate tutors.
      */
-    public void setTutors(List<Person> tutors) {
-        this.tutors.setPersons(tutors);
+    public void setTutors(List<Tutor> tutors) {
+        this.tutors.setTutors(tutors);
     }
 
 
@@ -215,13 +215,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<Person> getStudentList() {
-        return students.asUnmodifiableObservableList();
+    public ObservableList<Student> getStudentList() {
+        return students.asUnmodifiableObservableStudentList();
     }
 
     @Override
-    public ObservableList<Person> getTutorList() {
-        return tutors.asUnmodifiableObservableList();
+    public ObservableList<Tutor> getTutorList() {
+        return tutors.asUnmodifiableObservableTutorList();
     }
 
     @Override
