@@ -16,7 +16,11 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.role.Seller;
+import seedu.address.testutil.PersonBuilder;
 
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for AddSellerCommand.
+ */
 class AddSellerCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -29,7 +33,7 @@ class AddSellerCommandTest {
     @Test
     public void execute_sellerAcceptedByModel_addSuccessful() throws Exception {
         Seller validSeller = new Seller(List.of(1, 2));
-        Person editedPerson = getTypicalAddressBook().getPersonList().get(0);
+        Person editedPerson = new PersonBuilder(getTypicalAddressBook().getPersonList().get(0)).build();
         editedPerson.setSeller(validSeller);
 
         AddSellerCommand newCommand = new AddSellerCommand(validSeller, INDEX_FIRST_PERSON);

@@ -48,7 +48,7 @@ public class Person {
      * Temporarily for UI Testing of Add Buyer Command
      */
     public boolean isBuyer() {
-        return buyer != null;
+        return buyer.isPresent();
     }
 
     /**
