@@ -20,7 +20,7 @@ public class ViewCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Views the point-of-contact list and transactions "
-            + "with the company by the index number given in the displayed company list.\n"
+            + "of the company by the index number given in the displayed company list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 ";
 
