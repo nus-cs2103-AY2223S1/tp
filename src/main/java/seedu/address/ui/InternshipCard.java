@@ -6,6 +6,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.internship.Internship;
+import seedu.address.model.person.PersonId;
 
 /**
  * An UI component that displays information of a {@code Internship}.
@@ -13,6 +14,7 @@ import seedu.address.model.internship.Internship;
 public class InternshipCard extends UiPart<Region> {
 
     private static final String FXML = "InternshipListCard.fxml";
+    static final String NO_CONTACT_PERSON = "No contact person.";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -35,7 +37,7 @@ public class InternshipCard extends UiPart<Region> {
     @FXML
     private FlowPane status;
     @FXML
-    private Label contactPersonId;
+    private Label contactPerson;
 
     /**
      * Creates a {@code InternshipCode} with the given {@code Internship} and index to display.
@@ -48,9 +50,21 @@ public class InternshipCard extends UiPart<Region> {
         role.setText(internship.getInternshipRole().roleName);
         status.getChildren().add(new Label(internship.getInternshipStatus().toString()));
         if (internship.getContactPersonId() == null) {
-            contactPersonId.setText("No contact person.");
+            contactPerson.setText("No contact person.");
         } else {
-            contactPersonId.setText(internship.getContactPersonId().id.toString());
+            contactPerson.setText(internship.getContactPersonId().id.toString());
+        }
+    }
+
+    public PersonId getContactPersonId() {
+        return internship.getContactPersonId();
+    }
+
+    public void setContactPerson(String contactPersonName) {
+        if (contactPersonName == null) {
+            contactPerson.setText(NO_CONTACT_PERSON);
+        } else {
+            contactPerson.setText(contactPersonName);
         }
     }
 
