@@ -11,6 +11,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Mods;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -120,5 +121,20 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String mods} into an {@code Mods}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code mods} is invalid.
+     */
+    public static Mods parseMods(String mods) throws ParseException {
+        requireNonNull(mods);
+        String trimmedMods = mods.trim();
+        if (!Mods.isValidMods(trimmedMods)) {
+            throw new ParseException(Mods.MESSAGE_CONSTRAINTS);
+        }
+        return new Mods(trimmedMods);
     }
 }

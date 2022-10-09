@@ -10,6 +10,7 @@ import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.TaskList;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Mods;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -27,22 +28,22 @@ public class SampleDataUtil {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends")),
+                getTagSet("friends"), new Mods("CS1231,CS101S,ES2660,IS1103,ES2660")),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends")),
+                getTagSet("colleagues", "friends"), new Mods("CS2030S,CS2040S,GEA1000,ES2660,MA2001")),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours")),
+                getTagSet("neighbours"), new Mods("CS2100,CS2101,GEN2001,ST2334,CS2103T")),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family")),
+                getTagSet("family"), new Mods("CS1101S,GEA1000,IS1103,MA1521,MA2001")),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                 new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates")),
+                getTagSet("classmates"), new Mods("CS2001,CS2019S,CS2106,CS2107,GEA1000")),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"))
+                getTagSet("colleagues"), new Mods("CS2103T,CS2019S,CS2106,CS2107,GEA1000"))
         };
     }
 
