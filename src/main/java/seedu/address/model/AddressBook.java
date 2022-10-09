@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.listing.Listing;
+import seedu.address.model.listing.UniqueListingList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -15,6 +17,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniqueListingList listings;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +28,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        listings = new UniqueListingList();
     }
 
     public AddressBook() {}
@@ -47,13 +51,20 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.persons.setPersons(persons);
     }
 
+    public void setListings(List<Listing> listings) {
+        this.listings.setListings(listings);
+    }
+
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-
-        setPersons(newData.getPersonList());
+        try {
+            setPersons(newData.getPersonList());
+        } catch (Exception e) {
+            setListings(newData.getListingList());
+        }
     }
 
     //// person-level operations
@@ -66,12 +77,21 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.contains(person);
     }
 
+    public boolean hasListing(Listing listing) {
+        requireNonNull(listing);
+        return listings.contains(listing);
+    }
+
     /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
     public void addPerson(Person p) {
         persons.add(p);
+    }
+
+    public void addListing(Listing l) {
+        listings.add(l);
     }
 
     /**
@@ -85,6 +105,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.setPerson(target, editedPerson);
     }
 
+    public void setListing(Listing target, Listing editedListing) {
+        requireNonNull(editedListing);
+
+        listings.setListing(target, editedListing);
+    }
+
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
@@ -93,11 +119,19 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    public void removeListing(Listing key) {
+        listings.remove(key);
+    }
+
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        if (listings.asUnmodifiableObservableList().isEmpty()) {
+            return persons.asUnmodifiableObservableList().size() + " persons";
+        } else {
+            return listings.asUnmodifiableObservableList().size() + " listings";
+        }
         // TODO: refine later
     }
 
@@ -107,14 +141,29 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
+    public ObservableList<Listing> getListingList() {
+        return listings.asUnmodifiableObservableList();
+    }
+
+    @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+        if (listings.asUnmodifiableObservableList().isEmpty()) {
+            return other == this // short circuit if same object
+                    || (other instanceof AddressBook // instanceof handles nulls
+                    && persons.equals(((AddressBook) other).persons));
+        } else {
+            return other == this // short circuit if same object
+                    || (other instanceof AddressBook // instanceof handles nulls
+                    && listings.equals(((AddressBook) other).listings));
+        }
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        if (listings.asUnmodifiableObservableList().isEmpty()) {
+            return persons.hashCode();
+        } else {
+            return listings.hashCode();
+        }
     }
 }
