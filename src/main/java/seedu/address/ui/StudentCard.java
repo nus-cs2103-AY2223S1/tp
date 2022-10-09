@@ -53,14 +53,14 @@ public class StudentCard extends UiPart<Region> {
         this.student = student;
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
-        phone.setText(student.getPhone().value);
-        address.setText(student.getAddress().value);
-        email.setText(student.getEmail().value);
+        phone.setText("Phone: " + student.getPhone().value);
+        address.setText("Address: " + student.getAddress().value);
+        email.setText("Email: " + student.getEmail().value);
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        studentID.setText(student.getId());
-        telegram.setText(student.getTelegramHandle());
+        studentID.setText("(" + student.getId() + ")");
+        telegram.setText("Telegram: " + student.getTelegramHandle());
     }
 
     @Override
