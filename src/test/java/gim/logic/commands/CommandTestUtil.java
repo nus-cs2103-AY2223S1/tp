@@ -32,8 +32,8 @@ public class CommandTestUtil {
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_WEIGHT_AMY = "11111111";
     public static final String VALID_WEIGHT_BOB = "22222222";
-    public static final String VALID_SETS_AMY = "amy@example.com";
-    public static final String VALID_SETS_BOB = "bob@example.com";
+    public static final String VALID_SETS_AMY = "3";
+    public static final String VALID_SETS_BOB = "5";
     public static final String VALID_REP_AMY = "1";
     public static final String VALID_REP_BOB = "2";
     public static final String VALID_TAG_HUSBAND = "husband";
@@ -52,7 +52,7 @@ public class CommandTestUtil {
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_WEIGHT_DESC = " " + PREFIX_WEIGHT + "911a"; // 'a' not allowed in weights
-    public static final String INVALID_SETS_DESC = " " + PREFIX_SETS + "bob!yahoo"; // missing '@' symbol
+    public static final String INVALID_SETS_DESC = " " + PREFIX_SETS; // empty string not allowed for sets
     public static final String INVALID_REP_DESC = " " + PREFIX_REP; // empty string not allowed for reps
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 

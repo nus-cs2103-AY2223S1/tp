@@ -27,6 +27,8 @@ public class RepTest {
         // invalid Reps
         assertFalse(Rep.isValidRep("")); // empty string
         assertFalse(Rep.isValidRep(" ")); // spaces only
+        assertFalse(Sets.isValidSets("abc")); // not an integer
+        assertFalse(Sets.isValidSets("-1")); // negative integer
 
         // valid Reps
         assertTrue(Rep.isValidRep("0")); // single digit

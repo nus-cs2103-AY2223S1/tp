@@ -19,7 +19,7 @@ public class ExerciseBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_WEIGHT = "85355255";
-    public static final String DEFAULT_SETS = "amy@gmail.com";
+    public static final String DEFAULT_SETS = "5";
     public static final String DEFAULT_REP = "5";
 
     private Name name;

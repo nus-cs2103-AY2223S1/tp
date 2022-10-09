@@ -2,13 +2,13 @@
   "exercises": [ {
     "name": "Alice Pauline",
     "weight": "94351253",
-    "sets": "alice@example.com",
+    "sets": "1",
     "rep": "1",
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "weight": "94351253",
-    "sets": "pauline@example.com",
+    "sets": "1",
     "rep": "2"
   } ]
 }

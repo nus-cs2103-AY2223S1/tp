@@ -23,7 +23,7 @@ public class JsonAdaptedExerciseTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_WEIGHT = "+651234";
     private static final String INVALID_REP = " ";
-    private static final String INVALID_SETS = "example.com";
+    private static final String INVALID_SETS = " ";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = BENSON.getName().toString();

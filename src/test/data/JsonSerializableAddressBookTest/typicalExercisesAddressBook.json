@@ -3,43 +3,43 @@
   "exercises" : [ {
     "name" : "Alice Pauline",
     "weight" : "94351253",
-    "sets" : "alice@example.com",
+    "sets" : "1",
     "rep" : "1",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
     "weight" : "98765432",
-    "sets" : "johnd@example.com",
+    "sets" : "1",
     "rep" : "1",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
     "weight" : "95352563",
-    "sets" : "heinz@example.com",
+    "sets" : "1",
     "rep" : "1",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
     "weight" : "87652533",
-    "sets" : "cornelia@example.com",
+    "sets" : "1",
     "rep" : "1",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
     "weight" : "9482224",
-    "sets" : "werner@example.com",
+    "sets" : "1",
     "rep" : "1",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "weight" : "9482427",
-    "sets" : "lydia@example.com",
+    "sets" : "1",
     "rep" : "1",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
     "weight" : "9482442",
-    "sets" : "anna@example.com",
+    "sets" : "1",
     "rep" : "1",
     "tagged" : [ ]
   } ]

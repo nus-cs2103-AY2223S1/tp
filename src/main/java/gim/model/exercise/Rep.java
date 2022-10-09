@@ -9,7 +9,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class Rep {
 
-    public static final String MESSAGE_CONSTRAINTS = "Reps can only take Non negative integer values";
+    public static final String MESSAGE_CONSTRAINTS = "Reps can only take non negative integer values";
 
     /*
      * The first character of the Rep must not be a whitespace,
