@@ -35,14 +35,34 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' tutor address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getTutorAddressBookFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Returns the user prefs' student address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    Path getStudentAddressBookFilePath();
+
+    /**
+     * Returns the user prefs' tuition class address book file path.
+     */
+    Path getTuitionClassAddressBookFilePath();
+
+    /**
+     * Sets the user prefs' tutor address book file path.
+     */
+    void setTutorAddressBookFilePath(Path addressBookFilePath);
+
+    /**
+     * Sets the user prefs' student address book file path.
+     */
+    void setStudentAddressBookFilePath(Path addressBookFilePath);
+
+    /**
+     * Sets the user prefs' tuition class address book file path.
+     */
+    void setTuitionClassAddressBookFilePath(Path addressBookFilePath);
 
     /**
      * Replaces address book data with the data in {@code addressBook}.

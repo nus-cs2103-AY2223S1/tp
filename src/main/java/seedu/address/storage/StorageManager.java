@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
@@ -54,6 +55,11 @@ public class StorageManager implements Storage {
     }
 
     @Override
+    public Optional<ReadOnlyAddressBook> readAllAddressBook() throws DataConversionException, IllegalValueException {
+        return addressBookStorage.readAllAddressBook();
+    }
+
+    @Override
     public Optional<ReadOnlyAddressBook> readAddressBook(AddressBookCategories cat)
             throws DataConversionException, IOException {
         switch (cat) {
@@ -87,14 +93,20 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void saveAllAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
+        addressBookStorage.saveAllAddressBook(addressBook);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+    public void saveAddressBook(ReadOnlyAddressBook addressBook, AddressBookCategories cat) throws IOException {
+            saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath(cat), cat);
+    }
+
+    @Override
+    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath, AddressBookCategories cat)
+            throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        addressBookStorage.saveAddressBook(addressBook, filePath, cat);
     }
 
 }

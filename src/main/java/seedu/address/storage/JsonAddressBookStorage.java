@@ -182,23 +182,54 @@ public class JsonAddressBookStorage implements AddressBookStorage {
         }
     }
 
+    @Override
+    public void saveAllAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
+        requireNonNull(tutorFilePath);
+        requireNonNull(studentFilePath);
+        requireNonNull(tuitionClassFilePath);
+
+        JsonUtil.saveJsonFile(new JsonSerializableTutorAddressBook(addressBook), tutorFilePath);
+        JsonUtil.saveJsonFile(new JsonSerializableStudentAddressBook(addressBook), studentFilePath);
+        JsonUtil.saveJsonFile(new JsonSerializableTuitionClassAddressBook(addressBook), tuitionClassFilePath);
+    }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, filePath);
+    public void saveAddressBook(ReadOnlyAddressBook addressBook, AddressBookCategories cat) throws IOException {
+        Path filePath = null;
+        switch (cat) {
+        case TUTORS:
+            filePath = tutorFilePath;
+            break;
+        case STUDENTS:
+            filePath = studentFilePath;
+            break;
+        case TUITIONCLASSES:
+            filePath = tuitionClassFilePath;
+            break;
+        }
+        saveAddressBook(addressBook, filePath, cat);
     }
 
     /**
-     * Similar to {@link #saveAddressBook(ReadOnlyAddressBook)}.
+     * Similar to {@link #saveAddressBook(ReadOnlyAddressBook, AddressBookCategories)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+    @Override
+    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath, AddressBookCategories cat)
+            throws IOException {
         requireNonNull(addressBook);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
-    }
 
+        switch (cat) {
+        case TUTORS:
+            JsonUtil.saveJsonFile(new JsonSerializableTutorAddressBook(addressBook), filePath);
+        case STUDENTS:
+            JsonUtil.saveJsonFile(new JsonSerializableStudentAddressBook(addressBook), filePath);
+        case TUITIONCLASSES:
+            JsonUtil.saveJsonFile(new JsonSerializableTuitionClassAddressBook(addressBook), filePath);
+        }
+    }
 }

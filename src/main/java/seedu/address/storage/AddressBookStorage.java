@@ -53,15 +53,16 @@ public interface AddressBookStorage {
     Optional<ReadOnlyAddressBook> readAllAddressBook() throws DataConversionException, IllegalValueException;
 
     /**
-     * Saves the given {@link ReadOnlyAddressBook} to the storage.
+     * Saves the given {@link ReadOnlyAddressBook} to the proper storage.
      * @param addressBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
+    void saveAddressBook(ReadOnlyAddressBook addressBook, AddressBookCategories cat) throws IOException;
 
     /**
-     * @see #saveAddressBook(ReadOnlyAddressBook)
+     * @see #saveAddressBook(ReadOnlyAddressBook, AddressBookCategories)
      */
-    void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException;
+    void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath, AddressBookCategories cat) throws IOException;
 
+    void saveAllAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
 }
