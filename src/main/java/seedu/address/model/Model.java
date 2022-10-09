@@ -14,6 +14,7 @@ import seedu.address.model.person.Record;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Record> PREDICATE_SHOW_ALL_RECORDS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -94,4 +95,11 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredRecordList(Predicate<Record> predicate);
+
+    /**
+     * Sets the filtered record list to the record list of the given {@code person}.
+     *
+     * @param person The person whose record list is to be displayed.
+     */
+    void setFilteredRecordList(Person person);
 }

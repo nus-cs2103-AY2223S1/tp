@@ -10,45 +10,17 @@ public class RecordList {
     /* Record List variables */
     // todo: have the commands update the record list through an additional add record command.
     // count of the record list should be accessed through the ArrayList#size() method.
-    public static final String MESSAGE_EMPTY_RECORD_LIST = "Record list is empty!";
-
     private final ObservableList<Record> recordList = FXCollections.observableArrayList();
     private final ObservableList<Record> internalUnmodifiableRecordList =
             FXCollections.unmodifiableObservableList(recordList);
 
-    public RecordList() {}
     /**
      * Getter for list of records.
      *
      * @return List of records.
      */
-    public ObservableList<Record> getRecordList() {
+    public ObservableList<Record> asUnmodifiableObservableList() {
         return internalUnmodifiableRecordList;
-    }
-
-    /**
-     * Returns the String representation of a RecordList.
-     *
-     * @return RecordList String representation.
-     */
-    public String stringifyRecordList() {
-        StringBuilder builder = new StringBuilder();
-
-        if (this.recordList.isEmpty()) {
-            builder.append(MESSAGE_EMPTY_RECORD_LIST);
-            return builder.toString();
-        }
-
-        int index = 1;
-        for (Record record : this.recordList) {
-            builder.append(index)
-                    .append(". ")
-                    .append(record)
-                    .append("\n");
-            index++;
-        }
-
-        return builder.toString();
     }
 
     /**

@@ -9,6 +9,7 @@ import seedu.address.model.person.Person;
 import java.util.List;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RECORDS;
 
 /**
  * Lists all records for a specific patient to the user.
@@ -58,7 +59,16 @@ public class ListRCommand extends Command{
 
         ListRCommand.lastCalledPerson = personToListRecords;
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, personToListRecords)); // show list on ResultDisplay
+        model.setFilteredRecordList(personToListRecords);
+        model.updateFilteredRecordList(PREDICATE_SHOW_ALL_RECORDS);
+        StringBuilder builder = new StringBuilder()
+                .append(MESSAGE_SUCCESS)
+                .append(personToListRecords.getName())
+                .append("\n")
+                .append(Messages.MESSAGE_RECORDS_LISTED_OVERVIEW)
+                .append(model.getFilteredRecordList().size());
+
+        return new CommandResult(builder.toString(), false, false, true);
     }
 
     @Override
