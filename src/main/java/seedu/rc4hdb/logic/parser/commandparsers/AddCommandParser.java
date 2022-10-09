@@ -46,7 +46,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                         PREFIX_HOUSE, PREFIX_MATRIC_NUMBER, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ROOM, PREFIX_GENDER,
-                PREFIX_HOUSE, PREFIX_MATRIC_NUMBER, PREFIX_TAG)
+                PREFIX_HOUSE, PREFIX_MATRIC_NUMBER)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
