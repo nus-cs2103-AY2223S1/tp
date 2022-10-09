@@ -32,6 +32,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private RecordListPanel recordListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -43,6 +44,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane recordListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -106,10 +110,22 @@ public class MainWindow extends UiPart<Stage> {
         });
     }
 
+    void showPersonList() {
+        recordListPanel.getRoot().setVisible(false);
+        personListPanel.getRoot().setVisible(true);
+    }
+
+    void showRecordList() {
+        recordListPanel.getRoot().setVisible(true);
+        personListPanel.getRoot().setVisible(false);
+    }
     /**
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        recordListPanel = new RecordListPanel(logic.getFilteredRecordList());
+        personListPanelPlaceholder.getChildren().add(recordListPanel.getRoot());
+
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
@@ -184,6 +200,13 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            // Controls which list to display
+            if (commandResult.isRecord()) {
+                showRecordList();
+            } else {
+                showPersonList();
             }
 
             return commandResult;
