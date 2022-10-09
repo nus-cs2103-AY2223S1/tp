@@ -27,35 +27,35 @@ public class TypicalPersons {
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withPhone("94351253").withEmail("alice@example.com")
-            .withScholarship("123, Jurong West Ave 6, #08-111").withApplicationStatus("pending")
+            .withScholarship("Global Merit").withApplicationStatus("pending")
             .withTags("friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withPhone("98765432").withEmail("johnd@example.com")
-            .withScholarship("311, Clementi Ave 2, #02-25").withApplicationStatus("accepted")
+            .withScholarship("Merit").withApplicationStatus("accepted")
             .withTags("owesMoney", "friends").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz")
             .withPhone("95352563").withEmail("heinz@example.com")
-            .withScholarship("wall street").withApplicationStatus("pending").build();
+            .withScholarship("Sports").withApplicationStatus("pending").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier")
             .withPhone("87652533").withEmail("cornelia@example.com")
-            .withScholarship("10th street").withApplicationStatus("rejected").withTags("friends").build();
+            .withScholarship("Arts").withApplicationStatus("rejected").withTags("friends").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer")
             .withPhone("9482224").withEmail("werner@example.com")
-            .withScholarship("michegan ave").withApplicationStatus("pending").build();
+            .withScholarship("Global Merit").withApplicationStatus("pending").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz")
             .withPhone("9482427").withEmail("lydia@example.com")
-            .withScholarship("little tokyo").withApplicationStatus("pending").build();
+            .withScholarship("Global Merit").withApplicationStatus("pending").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best")
             .withPhone("9482442").withEmail("anna@example.com")
-            .withScholarship("4th street").withApplicationStatus("accepted").build();
+            .withScholarship("Global Merit").withApplicationStatus("accepted").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier")
             .withPhone("8482424").withEmail("stefan@example.com")
-            .withScholarship("little india").withApplicationStatus("pending").build();
+            .withScholarship("Global Merit").withApplicationStatus("pending").build();
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller")
             .withPhone("8482131").withEmail("hans@example.com")
-            .withScholarship("chicago ave").withApplicationStatus("pending").build();
+            .withScholarship("Global Merit").withApplicationStatus("pending").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
