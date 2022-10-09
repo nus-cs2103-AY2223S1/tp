@@ -31,11 +31,13 @@ public class EditAppointmentCommandTest {
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Appointment appointment = new Appointment("Sore Throat", "2019-10-10 16:30", true);
+        Person person = model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased());
+        appointment.setPatient(person);
+
         EditAppointmentDescriptor descriptor = new EditAppointmentDescriptorBuilder(appointment).build();
         EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_THIRD_PERSON,
                 INDEX_FIRST_APPOINTMENT, descriptor);
 
-        Person person = model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased());
         String expectedMessage = String.format(EditAppointmentCommand.MESSAGE_EDIT_APPOINTMENT_SUCCESS,
                 person.getName(), appointment);
 
@@ -43,6 +45,7 @@ public class EditAppointmentCommandTest {
         Person expectedPerson = new PersonBuilder(expectedModel.getFilteredPersonList().get(2)).build();
         expectedPerson.getAppointments().set(0, appointment);
         expectedModel.setPerson(expectedModel.getFilteredPersonList().get(2), expectedPerson);
+        expectedModel.setAppointment(expectedModel.getFilteredAppointmentList().get(0), appointment);
 
         assertCommandSuccess(editAppointmentCommand, model, expectedMessage, expectedModel);
     }
@@ -50,11 +53,13 @@ public class EditAppointmentCommandTest {
     @Test
     public void execute_oneFieldSpecifiedUnfilteredList_success() {
         Appointment appointment = new Appointment("Sore Throat", "2010-12-31 23:45", true);
+        Person person = model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased());
+        appointment.setPatient(person);
+
         EditAppointmentDescriptor descriptor = new EditAppointmentDescriptorBuilder().withReason("Sore Throat").build();
         EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_THIRD_PERSON,
                 INDEX_FIRST_APPOINTMENT, descriptor);
 
-        Person person = model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased());
         String expectedMessage = String.format(EditAppointmentCommand.MESSAGE_EDIT_APPOINTMENT_SUCCESS,
                 person.getName(), appointment);
 
@@ -62,6 +67,7 @@ public class EditAppointmentCommandTest {
         Person expectedPerson = new PersonBuilder(expectedModel.getFilteredPersonList().get(2)).build();
         expectedPerson.getAppointments().set(0, appointment);
         expectedModel.setPerson(expectedModel.getFilteredPersonList().get(2), expectedPerson);
+        expectedModel.setAppointment(expectedModel.getFilteredAppointmentList().get(0), appointment);
 
         assertCommandSuccess(editAppointmentCommand, model, expectedMessage, expectedModel);
     }
@@ -87,6 +93,7 @@ public class EditAppointmentCommandTest {
 
         Appointment appointment = new Appointment("Sore Throat", "2010-12-31 23:45", true);
         Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        appointment.setPatient(personInFilteredList);
 
         EditAppointmentDescriptor descriptor = new EditAppointmentDescriptorBuilder().withReason("Sore Throat").build();
         EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_PERSON,
@@ -99,6 +106,7 @@ public class EditAppointmentCommandTest {
         Person expectedPerson = new PersonBuilder(expectedModel.getFilteredPersonList().get(2)).build();
         expectedPerson.getAppointments().set(0, appointment);
         expectedModel.setPerson(model.getFilteredPersonList().get(0), expectedPerson);
+        expectedModel.setAppointment(expectedModel.getFilteredAppointmentList().get(0), appointment);
 
         assertCommandSuccess(editAppointmentCommand, model, expectedMessage, expectedModel);
     }

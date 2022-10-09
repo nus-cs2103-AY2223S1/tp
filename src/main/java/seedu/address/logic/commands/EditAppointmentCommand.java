@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REASON;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.time.LocalDateTime;
@@ -64,27 +65,29 @@ public class EditAppointmentCommand extends SelectAppointmentCommand {
         List<Appointment> appointmentList = targetPerson.getAppointments();
         Appointment targetAppointment = getTargetAppointment(model);
 
-        Appointment editedAppointment = createEditedAppointment(targetAppointment, editAppointmentDescriptor);
+        Appointment editedAppointment = createEditedAppointment(targetPerson,
+                targetAppointment, editAppointmentDescriptor);
         if (hasSameTime(appointmentList, targetAppointment, editedAppointment)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
         }
 
         appointmentList.set(indexOfAppointment.getZeroBased(), editedAppointment);
         appointmentList.sort(Comparator.comparing(Appointment::getDateTime));
+        updateDisplay(model, targetPerson, targetAppointment, editedAppointment);
 
-        model.refreshPerson(targetPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_APPOINTMENT_SUCCESS, targetPerson.getName(),
                 editedAppointment));
     }
 
-    private static Appointment createEditedAppointment(Appointment appointmentToEdit,
+    private static Appointment createEditedAppointment(Person patient, Appointment appointmentToEdit,
                                                        EditAppointmentDescriptor editAppointmentDescriptor) {
         assert appointmentToEdit != null;
 
         String reason = editAppointmentDescriptor.getReason().orElse(appointmentToEdit.getReason());
         LocalDateTime dateTime = editAppointmentDescriptor.getDateTime().orElse(appointmentToEdit.getDateTime());
-        return new Appointment(reason, dateTime, appointmentToEdit.isMarked());
+        Appointment editedAppointment = new Appointment(reason, dateTime, appointmentToEdit.isMarked());
+        editedAppointment.setPatient(patient);
+        return editedAppointment;
     }
 
     private boolean hasSameTime(List<Appointment> appointments, Appointment originalAppointment,
@@ -92,6 +95,13 @@ public class EditAppointmentCommand extends SelectAppointmentCommand {
         List<Appointment> appointmentsToCheck = new ArrayList<>(appointments);
         appointmentsToCheck.remove(originalAppointment);
         return appointmentsToCheck.stream().anyMatch(x -> x.isSameTime(appointmentToCheck));
+    }
+
+    private void updateDisplay(Model model, Person person, Appointment appointment, Appointment editedAppointment) {
+        model.refreshPerson(person);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setAppointment(appointment, editedAppointment);
+        model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
     }
 
     @Override

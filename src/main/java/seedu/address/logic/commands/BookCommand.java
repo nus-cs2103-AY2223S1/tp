@@ -33,7 +33,7 @@ public class BookCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + PREFIX_REASON + "REASON "
             + PREFIX_DATE + "DATE "
-            + "Example: " + COMMAND_WORD + " 3"
+            + "Example: " + COMMAND_WORD + " 3 "
             + PREFIX_REASON + "sore throat "
             + PREFIX_DATE + "2022-10-12 16:30";
 

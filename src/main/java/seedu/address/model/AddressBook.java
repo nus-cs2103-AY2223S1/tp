@@ -103,6 +103,24 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Refreshes the given appointment {@code target},
+     * forcing the app to visually show any updated changes back to the user.
+     */
+    public void setAppointment(Appointment target, Appointment editedAppointment) {
+        requireNonNull(editedAppointment);
+
+        appointments.setAppointment(target, editedAppointment);
+    }
+
+    /**
+     * Refreshes the given appointment {@code target},
+     * forcing the app to visually show any updated changes back to the user.
+     */
+    public void refreshAppointment(Appointment target) {
+        appointments.setAppointment(target, target);
+    }
+
+    /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
@@ -118,6 +136,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void removeAppointment(Appointment key) {
         appointments.remove(key);
     }
+
+    public void removeAppointments(List<Appointment> keys) {
+        appointments.removeAppointments(keys);
+    }
+
 
     //// util methods
 

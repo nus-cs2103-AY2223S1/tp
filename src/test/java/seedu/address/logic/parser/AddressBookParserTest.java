@@ -41,34 +41,35 @@ public class AddressBookParserTest {
     private final AddressBookParser parser = new AddressBookParser();
 
     @Test
-    public void parseCommand_add() throws Exception {
+    public void parseCommand_add() throws ParseException {
         Person person = new PersonBuilder().build();
         AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
         assertEquals(new AddCommand(person), command);
     }
 
     @Test
-    public void parseCommand_clear() throws Exception {
+    public void parseCommand_clear() throws ParseException {
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
     }
 
     @Test
-    public void parseCommand_delete() throws Exception {
+    public void parseCommand_delete() throws ParseException {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
                 DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test
-    public void parseCommand_book() throws Exception {
+    public void parseCommand_book() throws ParseException {
         Appointment appointment = new Appointment("Cough", "2022-12-16 17:30", false);
-        BookCommand command = (BookCommand) parser.parseCommand(AppointmentUtil.getBookCommand(appointment));
+        String str = AppointmentUtil.getBookCommand(appointment);
+        BookCommand command = (BookCommand) parser.parseCommand(str);
         assertEquals(new BookCommand(INDEX_FIRST_PERSON, appointment), command);
     }
 
     @Test
-    public void parseCommand_editPatient() throws Exception {
+    public void parseCommand_editPatient() throws ParseException {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
         EditPatientCommand command = (EditPatientCommand) parser.parseCommand(EditPatientCommand.COMMAND_WORD
@@ -78,7 +79,7 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_editAppointment() throws Exception {
+    public void parseCommand_editAppointment() throws ParseException {
         Appointment appointment = new Appointment("Cough", "2022-12-16 17:30", false);
         EditAppointmentDescriptor descriptor = new EditAppointmentDescriptorBuilder(appointment).build();
         EditAppointmentCommand command = (EditAppointmentCommand)
@@ -90,13 +91,13 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_exit() throws Exception {
+    public void parseCommand_exit() throws ParseException {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
     }
 
     @Test
-    public void parseCommand_find() throws Exception {
+    public void parseCommand_find() throws ParseException {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
@@ -104,13 +105,13 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_help() throws Exception {
+    public void parseCommand_help() throws ParseException {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
     }
 
     @Test
-    public void parseCommand_list() throws Exception {
+    public void parseCommand_list() throws ParseException {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " patients") instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " appts") instanceof ListCommand);
     }

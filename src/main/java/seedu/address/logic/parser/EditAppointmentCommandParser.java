@@ -35,10 +35,20 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
         }
 
         EditAppointmentDescriptor editAppointmentDescriptor = new EditAppointmentDescriptor();
+        addDetails(editAppointmentDescriptor, argMultimap);
+
+        if (!editAppointmentDescriptor.isAnyFieldEdited()) {
+            throw new ParseException(EditAppointmentCommand.MESSAGE_NOT_EDITED);
+        }
+
+        return new EditAppointmentCommand(patientIndex, appointmentIndex, editAppointmentDescriptor);
+    }
+
+    private void addDetails(EditAppointmentDescriptor descriptor, ArgumentMultimap argMultimap) throws ParseException {
         if (argMultimap.getValue(PREFIX_REASON).isPresent()) {
             String reason = argMultimap.getValue(PREFIX_REASON).get().trim();
             if (Appointment.isValidReason(reason)) {
-                editAppointmentDescriptor.setReason(reason);
+                descriptor.setReason(reason);
             } else {
                 throw new ParseException(Appointment.REASON_MESSAGE_CONSTRAINTS);
             }
@@ -48,16 +58,10 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
             String dateTime = argMultimap.getValue(PREFIX_DATE).get().trim();
             if (Appointment.isValidDateTime(dateTime)) {
                 String temp = String.join(" ", dateTime.split("\\s+", 2));
-                editAppointmentDescriptor.setDateTime(LocalDateTime.parse(temp, Appointment.DATE_FORMATTER));
+                descriptor.setDateTime(LocalDateTime.parse(temp, Appointment.DATE_FORMATTER));
             } else {
                 throw new ParseException(Appointment.DATE_MESSAGE_CONSTRAINTS);
             }
         }
-
-        if (!editAppointmentDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditAppointmentCommand.MESSAGE_NOT_EDITED);
-        }
-
-        return new EditAppointmentCommand(patientIndex, appointmentIndex, editAppointmentDescriptor);
     }
 }

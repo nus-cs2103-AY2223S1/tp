@@ -42,19 +42,34 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
             throw new DuplicateAppointmentException();
         }
         internalList.add(toAdd);
-        internalList.sort(Comparator.comparing(Appointment::getDateTime));
+        sortList();
     }
 
 
 
     /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Removes the equivalent appointment from the list.
+     * The appointment must exist in the list.
      */
     public void remove(Appointment toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new AppointmentNotFoundException();
+        }
+    }
+
+    /**
+     * Removes all the equivalent appointments from the list.
+     * The appointments must exist in the list.
+     *
+     * @param toRemove List of appointments to remove.
+     */
+    public void removeAppointments(List<Appointment> toRemove) {
+        requireNonNull(toRemove);
+        for (Appointment appointment : toRemove) {
+            if (!internalList.remove(appointment)) {
+                throw new AppointmentNotFoundException();
+            }
         }
     }
 
@@ -64,8 +79,8 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code appointments}.
+     * {@code appointments} must not contain duplicate appointments.
      */
     public void setAppointments(List<Appointment> appointments) {
         requireAllNonNull(appointments);
@@ -74,6 +89,32 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
         }
 
         internalList.setAll(appointments);
+    }
+
+    /**
+     * Replaces the appointment {@code target} in the list with {@code editedAppointment}.
+     * {@code target} must exist in the list.
+     * The appointment of {@code editedAppointment} must not be the same as another existing appointment
+     * in the list.
+     */
+    public void setAppointment(Appointment target, Appointment editedAppointment) {
+        requireAllNonNull(target, editedAppointment);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new AppointmentNotFoundException();
+        }
+
+        if (!target.isSameAppointment(editedAppointment) && contains(editedAppointment)) {
+            throw new DuplicateAppointmentException();
+        }
+
+        internalList.set(index, editedAppointment);
+        sortList();
+    }
+
+    private void sortList() {
+        internalList.sort(Comparator.comparing(Appointment::getDateTime));
     }
 
     /**
