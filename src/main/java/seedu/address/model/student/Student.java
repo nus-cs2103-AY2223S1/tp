@@ -100,7 +100,8 @@ public class Student {
                 && otherStudent.getId().equals(getId())
                 && otherStudent.getParentName().equals(getParentName())
                 && otherStudent.getPhone().equals(getPhone())
-                && otherStudent.getAddress().equals(getAddress());
+                && otherStudent.getAddress().equals(getAddress())
+                && otherStudent.getTags().equals(getTags());
     }
 
     @Override
