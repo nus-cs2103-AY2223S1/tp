@@ -1,6 +1,6 @@
-[![CI Status](https://github.com/se-edu/exercisetracker-level3/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103T-T15-4/tp/actions)
+[![CI Status](https://github.com/AY2223S1-CS2103-W14-2/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103T-T15-4/tp/actions)
 
-![Ui](docs/images/default_Ui.png)
+![Ui](docs/images/Ui.png)
 
 * Gim is a **desktop app for managing gym exercises, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). Gim builds on the commands of Vim so if you can type fast and are an avid Vim user, Gim can optimize your exercise routines to a much greater capacity than traditional GUI apps.
   Example usages:
