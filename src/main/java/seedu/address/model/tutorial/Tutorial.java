@@ -14,16 +14,18 @@ public class Tutorial {
     private final Group group;
     private final Content content;
     private final Time time;
+    private boolean status;
 
     /**
      * Constructs a {@code Tutorial}.
      * Every field must be present and not null.
      */
-    public Tutorial(Group group, Content content, Time time) {
-        requireAllNonNull(group, content, time);
+    public Tutorial(Group group, Content content, Time time, boolean status) {
+        requireAllNonNull(group, content, time, status);
         this.group = group;
         this.content = content;
         this.time = time;
+        this.status = status;
     }
 
     public Group getGroup() {
@@ -36,6 +38,10 @@ public class Tutorial {
 
     public Time getTime() {
         return time;
+    }
+
+    public boolean getStatus() {
+        return status;
     }
 
     /**
@@ -69,13 +75,14 @@ public class Tutorial {
         return other != null
                 && otherTutorial.getGroup().equals(getGroup())
                 && otherTutorial.getContent().equals(getContent())
-                && otherTutorial.getTime().equals(getTime());
+                && otherTutorial.getTime().equals(getTime())
+                && (otherTutorial.getStatus() == this.getStatus());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(group, content, time);
+        return Objects.hash(group, content, time, status);
     }
 
     @Override
@@ -87,7 +94,8 @@ public class Tutorial {
                 .append("; Content: ")
                 .append(getContent())
                 .append("; Time: ")
-                .append(getTime());
+                .append(getTime())
+                .append(getStatus() ? "[X]" : "[ ]");
 
         return builder.toString();
     }

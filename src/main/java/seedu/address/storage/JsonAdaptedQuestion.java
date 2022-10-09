@@ -39,7 +39,8 @@ class JsonAdaptedQuestion {
     public Question toModelType() throws IllegalValueException {
 
         if (description == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Description.class.getSimpleName()));
         }
         final Description modelDescription = new Description(description);
 

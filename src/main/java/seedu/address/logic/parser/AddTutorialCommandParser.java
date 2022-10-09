@@ -37,7 +37,7 @@ public class AddTutorialCommandParser {
         Content content = ParserUtil.parseContent(argMultimap.getValue(PREFIX_CONTENT).get());
         Time time = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME).get());
 
-        Tutorial newTutorial = new Tutorial(group, content, time);
+        Tutorial newTutorial = new Tutorial(group, content, time, false);
         return new AddTutorialCommand(newTutorial);
     }
 
