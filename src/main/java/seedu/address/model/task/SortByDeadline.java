@@ -16,7 +16,6 @@ public class SortByDeadline implements Comparator<Task> {
      * equal to, or greater than the second
      */
     public int compare(Task task1, Task task2) {
-//        return task1.getDeadline().compareTo(task2.getDeadline());
-        return 0;
+        return task1.getDeadline().getDeadline().compareTo(task2.getDeadline().getDeadline());
     }
 }

@@ -9,6 +9,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Person;
 
 /**
  * A list of tasks that enforces uniqueness between its elements and does not allow nulls.
@@ -137,9 +138,9 @@ public class TaskList implements Iterable<Task> {
      * Filters the task list based on the given Priority {@code toFilter}.
      * @param toFilter Priority to filter the task list by
      */
-    public void filter(Task/*Priority*/ toFilter) {
+    public void filter(Priority toFilter) {
         requireNonNull(toFilter);
-        Predicate<Task/*Priority*/> filterer = i -> (i == toFilter);
+        Predicate<Task> filterer = i -> (i.getPriority().equals(toFilter));
         internalList.filtered(filterer);
     }
 
@@ -147,9 +148,9 @@ public class TaskList implements Iterable<Task> {
      * Filters the task list based on the given Category {@code toFilter}.
      * @param toFilter Category to filter the task list by
      */
-    public void filter(Task/*Category*/ toFilter, int removeThis) {
+    public void filter(TaskCategory toFilter) {
         requireNonNull(toFilter);
-        Predicate<Task/*Category*/> filterer = i -> (i == toFilter);
+        Predicate<Task> filterer = i -> (i.getCategory().equals(toFilter));
         internalList.filtered(filterer);
     }
 
@@ -157,9 +158,9 @@ public class TaskList implements Iterable<Task> {
      * Filters the task list based on the given Deadline {@code toFilter}.
      * @param toFilter Deadline to filter the task list by
      */
-    public void filter(Task /*Deadline*/ toFilter, boolean removeThis) {
+    public void filter(TaskDeadline toFilter) {
         requireNonNull(toFilter);
-        Predicate<Task/*Deadline*/> filterer = i -> (i == toFilter);
+        Predicate<Task> filterer = i -> (i.getDeadline().equals(toFilter));
         internalList.filtered(filterer);
     }
 
@@ -167,9 +168,9 @@ public class TaskList implements Iterable<Task> {
      * Filters the task list based on the given assigned Person {@code toFilter}.
      * @param toFilter Person to filter the task list by
      */
-    public void filter(Task /*Person*/ toFilter, String removeThis) {
+    public void filter(Person toFilter) {
         requireNonNull(toFilter);
-        Predicate<Task/*Person*/> filterer = i -> (i == toFilter);
+        Predicate<Task> filterer = i -> (i.getPerson().equals(toFilter));
         internalList.filtered(filterer);
     }
 
@@ -177,9 +178,9 @@ public class TaskList implements Iterable<Task> {
      * Filters the task list based on the given Status {@code toFilter}.
      * @param toFilter Status to filter the task list by
      */
-    public void filter(Task /*Status*/ toFilter, Task removeThis) {
+    public void filter(boolean toFilter) {
         requireNonNull(toFilter);
-        Predicate<Task/*Status*/> filterer = i -> (i == toFilter);
+        Predicate<Task> filterer = i -> (i.isDone() == toFilter);
         internalList.filtered(filterer);
     }
 

@@ -16,7 +16,6 @@ public class SortByCategory implements Comparator<Task> {
      * equal to, or greater than the second
      */
     public int compare(Task task1, Task task2) {
-//        return task1.getCategory().compareTo(task2.getCategory());
-        return 0;
+        return task1.getCategory().getTaskCategoryType().compareTo(task2.getCategory().getTaskCategoryType());
     }
 }
