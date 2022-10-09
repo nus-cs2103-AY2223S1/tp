@@ -16,6 +16,7 @@ import bookface.commons.core.index.Index;
 import bookface.logic.commands.exceptions.CommandException;
 import bookface.model.BookFace;
 import bookface.model.Model;
+import bookface.model.book.Book;
 import bookface.model.person.NameContainsKeywordsPredicate;
 import bookface.model.person.Person;
 import bookface.testutil.EditPersonDescriptorBuilder;
@@ -126,6 +127,20 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the book at the given {@code targetIndex} in the
+     * {@code model}'s BookFace app
+     */
+    public static void showBookAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredBookList().size());
+
+        Book book = model.getFilteredBookList().get(targetIndex.getZeroBased());
+        final String[] splitTitle = book.getTitle().bookTitle.split("\\s+");
+        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitTitle[0])));
+
+        assertEquals(1, model.getFilteredBookList().size());
     }
 
 }

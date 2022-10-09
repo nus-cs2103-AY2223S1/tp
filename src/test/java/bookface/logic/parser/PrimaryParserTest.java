@@ -21,6 +21,7 @@ import bookface.logic.commands.add.AddCommand;
 import bookface.logic.commands.add.AddUserCommand;
 import bookface.logic.commands.delete.DeleteCommand;
 import bookface.logic.commands.delete.DeleteUserCommand;
+import bookface.logic.commands.list.ListBooksCommand;
 import bookface.logic.commands.list.ListCommand;
 import bookface.logic.commands.list.ListUsersCommand;
 import bookface.logic.parser.exceptions.ParseException;
@@ -93,6 +94,10 @@ public class PrimaryParserTest {
                 + ListUsersCommand.COMMAND_WORD) instanceof ListUsersCommand);
         assertTrue(parser.parse(ListCommand.COMMAND_WORD + " "
                 + ListUsersCommand.COMMAND_WORD + " 3") instanceof ListUsersCommand);
+        assertTrue(parser.parse(ListCommand.COMMAND_WORD + ""
+                + ListBooksCommand.COMMAND_WORD) instanceof ListBooksCommand);
+        assertTrue(parser.parse(ListCommand.COMMAND_WORD + " "
+                + ListBooksCommand.COMMAND_WORD + " 3") instanceof ListBooksCommand);
     }
 
     @Test
