@@ -10,11 +10,19 @@ import java.time.format.DateTimeParseException;
 public class DateOfBirth {
 
     public static final String MESSAGE_CONSTRAINTS = "Date of birth must be in format: ";
+    private static final String MESSAGE_ARGUMENT_CONSTRAINTS = "compareTo() of DateOfBirth must take in argument of type LocalDate";
 
-    public static final DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
-    public static final DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("MMM d, yyyy");
+    private static final DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+    private static final DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("MMM d, yyyy");
 
     public final LocalDate date;
+
+    private boolean isEmpty;
+
+    public DateOfBirth() {
+        this.date = null;
+        this.isEmpty = true;
+    }
 
     /**
      * Constructs an {@code Address}.
@@ -25,6 +33,11 @@ public class DateOfBirth {
         requireNonNull(date);
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
         this.date = LocalDate.parse(date, inputFormatter);
+        this.isEmpty = false;
+    }
+
+    public static DateOfBirth empty() {
+        return new DateOfBirth();
     }
 
     /**
@@ -37,6 +50,18 @@ public class DateOfBirth {
             return false;
         }
         return true;
+    }
+
+    public int compareTo(Object other) {
+        if (!(other instanceof LocalDate)) {
+            throw new IllegalArgumentException(MESSAGE_ARGUMENT_CONSTRAINTS);
+        }
+        if ()
+        return this.date.compareTo((LocalDate) other);
+    }
+
+    public boolean isEmpty() {
+        return this.isEmpty;
     }
 
     @Override
