@@ -14,6 +14,7 @@ concerns:
 - updating zoom validation
 - update error message for missing c and m
 - update checkstyle for name, not just class
+- validation regex in tut/lec detail diff from module code?
 
 //new class to implement
 - AddModuleCommand
@@ -36,3 +37,6 @@ concerns:
     - add missing message TYPE message
 - General
     - to update all error from person to module
+
+//tests updated
+- commandTestUtil : added invalid modules, module examples
