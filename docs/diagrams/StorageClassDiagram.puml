@@ -1,25 +1,33 @@
 @startuml
+
 !include style.puml
 skinparam arrowThickness 1.1
 skinparam arrowColor STORAGE_COLOR
 skinparam classBackgroundColor STORAGE_COLOR
 
-package Storage{
+package Storage {
 
-package "UserPrefs Storage" #F4F6F6{
-Class "<<interface>>\nUserPrefsStorage" as UserPrefsStorage
-Class JsonUserPrefsStorage
+package "UserPrefs Storage" #F4F6F6 {
+    Class "<<interface>>\nUserPrefsStorage" as UserPrefsStorage
+    Class JsonUserPrefsStorage
+}
+
+package "TaskPanel Storage" #F4F6F6 {
+    Class "<<interface>>\nTaskPanelStorage" as TaskPanelStorage
+    Class JsonTaskPanelStorage
+    Class JsonSerializableTaskPanel
+    Class JsonAdaptedTask
 }
 
 Class "<<interface>>\nStorage" as Storage
 Class StorageManager
 
-package "AddressBook Storage" #F4F6F6{
-Class "<<interface>>\nAddressBookStorage" as AddressBookStorage
-Class JsonAddressBookStorage
-Class JsonSerializableAddressBook
-Class JsonAdaptedPerson
-Class JsonAdaptedTag
+package "AddressBook Storage" #F4F6F6 {
+    Class "<<interface>>\nAddressBookStorage" as AddressBookStorage
+    Class JsonAddressBookStorage
+    Class JsonSerializableAddressBook
+    Class JsonAdaptedPerson
+    Class JsonAdaptedTag
 }
 
 }
@@ -28,16 +36,23 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> Storage
 
 StorageManager .up.|> Storage
-StorageManager -up-> "1" UserPrefsStorage
-StorageManager -up-> "1" AddressBookStorage
+StorageManager -down-> "1" UserPrefsStorage
+StorageManager -down-> "1" AddressBookStorage
+StorageManager -down-> "1" TaskPanelStorage
 
-Storage -left-|> UserPrefsStorage
-Storage -right-|> AddressBookStorage
+Storage --|> UserPrefsStorage
+Storage --|> AddressBookStorage
+Storage --|> TaskPanelStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
+
 JsonAddressBookStorage .up.|> AddressBookStorage
 JsonAddressBookStorage ..> JsonSerializableAddressBook
 JsonSerializableAddressBook --> "*" JsonAdaptedPerson
 JsonAdaptedPerson --> "*" JsonAdaptedTag
+
+JsonTaskPanelStorage .up.|> TaskPanelStorage
+JsonTaskPanelStorage ..> JsonSerializableTaskPanel
+JsonSerializableTaskPanel --> "*" JsonAdaptedTask
 
 @enduml

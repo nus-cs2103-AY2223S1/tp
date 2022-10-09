@@ -14,19 +14,21 @@ Arrow will help software project managers keep track of their members’ tasks a
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `arrow.jar` from [here](https://github.com/AY2223S1-CS2103T-T08-2/tp).
+2. Download the latest `arrow.jar` from [here](https://github.com/AY2223S1-CS2103T-T08-2/tp).
 
-1. Copy the file to the folder you want to use as the _home folder_ for Arrow.
+3. Copy the file to the folder you want to use as the _home folder_ for Arrow.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`list`** : Lists all contacts.
 
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   
+   * **`task add`** `Task 1` : Adds a task titled `Task 1` to the Task Panel.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
@@ -34,7 +36,7 @@ Arrow will help software project managers keep track of their members’ tasks a
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -88,18 +90,18 @@ Examples:
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
 
-### Adding a task to a person: `addtask`
+### Adding a task: `task add`
 
-Adds a task to a person.
+Adds a task to the task panel.
 
-Format: `addtask DESC to/INDEX`
+Format: `task add DESC`
 
 * DESC refers to the description of the task.
-* INDEX specifies the contact's index on the list.
-* DESC and INDEX cannot be empty.
+* DESC cannot be empty.
 
 Examples:
-* `list` followed by `addtask this is a test description to/2` adds a task with description "this is a test description" to the 2nd contact on the list.
+* `task add Task 1`
+* `task add Another task`
 
 
 ### Viewing tasks of a person: `tasks`
@@ -230,16 +232,16 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Addtask** | `addtask DESC to/INDEX`<br> e.g., `addtask task description to/3`
-**Tasks** | `tasks INDEX`<br> e.g., `tasks 2`
-**Mark** | `mark TASK_INDEX p/PERSON_INDEX`<br> e.g., `mark 2 p/3`
-**Deletetask** | `delete TASK_INDEX p/PERSON_INDEX`<br> e.g., `delete 2 p/3`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action          | Format, Examples                                                                                                                                                      |
+|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**         | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Task add**    | `task add DESC`<br> e.g., `task add Title of task`                                                                                                                    |
+| **Tasks**       | `tasks INDEX`<br> e.g., `tasks 2`                                                                                                                                     |
+| **Mark**        | `mark TASK_INDEX p/PERSON_INDEX`<br> e.g., `mark 2 p/3`                                                                                                               |
+| **Task delete** | `task delete TASK_INDEX p/PERSON_INDEX`<br> e.g., `delete 2 p/3`                                                                                                      |
+| **Clear**       | `clear`                                                                                                                                                               |
+| **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
+| **Edit**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
+| **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
+| **List**        | `list`                                                                                                                                                                |
+| **Help**        | `help`                                                                                                                                                                |

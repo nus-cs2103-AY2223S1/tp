@@ -1,50 +1,68 @@
 @startuml
+
 !include style.puml
 skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
-Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
-Class "<<interface>>\nModel" as Model
-Class AddressBook
-Class ModelManager
-Class UserPrefs
+Package Model <<Rectangle>> {
+    Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+    Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
+    Class "<<interface>>\nReadOnlyTaskPanel" as ReadOnlyTaskPanel
+    Class "<<interface>>\nModel" as Model
+    Class AddressBook
+    Class ModelManager
+    Class UserPrefs
+    Class TaskPanel
 
-Class UniquePersonList
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class Tag
+    Class UniquePersonList
+    Class Person
+    Class Address
+    Class Email
+    Class Name
+    Class Phone
+    Class Tag
+
+    Class UniqueTaskList
+    Class Task
+    Class Title
 
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
-
 ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
-ModelManager -right-> "1" UserPrefs
+Model ..> ReadOnlyAddressBook
+Model ..> ReadOnlyTaskPanel
+Model ..> ReadOnlyUserPrefs
+ModelManager --> "1" AddressBook
+ModelManager --> "1" UserPrefs
+ModelManager --> "1" TaskPanel
+
+AddressBook .up.|> ReadOnlyAddressBook
+TaskPanel .up.|> ReadOnlyTaskPanel
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
 UniquePersonList --> "~* all" Person
+
 Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+TaskPanel *--> "1" UniqueTaskList
+UniqueTaskList --> "~* all" Task
+Task *--> Title
 
 ModelManager -->"~* filtered" Person
+ModelManager -->"~* filtered" Task
+
+Task -[hidden]left-> Person
+Phone -[hidden]left-> Phone
+Address -[hidden]left-> Phone
+Email -[hidden]right-> Tag
+
 @enduml
