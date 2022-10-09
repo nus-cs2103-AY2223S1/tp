@@ -90,13 +90,14 @@ public class ItemBuilder {
     }
 
     // TODO: Implement withItemTags
-//    /**
-//     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@link Item} that we are building.
-//     */
-//    public ItemBuilder withTags(String... tags) {
-//        this.tags = SampleDataUtil.getTagSet(tags);
-//        return this;
-//    }
+
+    ///**
+    // * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@link Item} that we are building.
+    // */
+    //public ItemBuilder withTags(String... tags) {
+    //    this.tags = SampleDataUtil.getTagSet(tags);
+    //    return this;
+    //}
 
 
     public Item build() {

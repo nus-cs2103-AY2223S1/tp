@@ -1,7 +1,5 @@
 package seedu.address.model;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -12,6 +10,8 @@ import static seedu.address.testutil.TypicalItems.POTATOES;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+
+import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.item.NameContainsKeywordsPredicate;

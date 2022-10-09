@@ -35,10 +35,11 @@ import seedu.address.testutil.ItemBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
-    private final Model model = new ModelManager();
     @TempDir
     public Path temporaryFolder;
+    private final Model model = new ModelManager();
     private Logic logic;
+
 
     @BeforeEach
     public void setUp() {
